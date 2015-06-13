@@ -1,0 +1,16 @@
+[
+{
+  "modid": "starwarsmod",
+  "name": "The Star Wars Mod",
+  "description": "Join the Galactic Empire with the Star Wars Mod!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["parzi", "westongray", "speedstergelman"],
+  "credits": "Parzi, for coding the mod, westongray for the models, and SpeedsterGelman for the art. Special thanks to @_janoi_ for some textures!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

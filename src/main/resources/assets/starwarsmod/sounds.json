@@ -1,0 +1,129 @@
+{
+    "mob.wookiee.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/wookiee/say1",
+            "mob/wookiee/say2"
+        ]
+    },
+    "mob.wookiee.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/wookiee/hit1"
+        ]
+    },
+    "mob.tusken.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tusken/say1",
+            "mob/tusken/say2"
+        ]
+    },
+    "mob.tusken.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tusken/hit1"
+        ]
+    },
+    "mob.tusken.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tusken/die1"
+        ]
+    },
+    "mob.tauntaun.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tauntaun/say1",
+            "mob/tauntaun/say2"
+        ]
+    },
+    "mob.tauntaun.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tauntaun/hit1"
+        ]
+    },
+    "mob.tauntaun.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tauntaun/die1"
+        ]
+    },
+    "mob.astromech.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/astromech/say1",
+            "mob/astromech/say2",
+            "mob/astromech/say3",
+            "mob/astromech/say4"
+        ]
+    },
+    "mob.astromech.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/astromech/hit1"
+        ]
+    },
+    "mob.astromech.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/astromech/die1"
+        ]
+    },
+    "mob.jawa.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/jawa/say1",
+            "mob/jawa/say2"
+        ]
+    },
+    "mob.jawa.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/jawa/hit1"
+        ]
+    },
+    "mob.jawa.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/jawa/die1"
+        ]
+    },
+    "item.gaffi.rightclick": {
+        "category": "neutral",
+        "sounds": [
+            "item/gaffi/rc1"
+        ]
+    },
+    "item.blasterRifle.use": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/use1"
+        ]
+    },
+    "item.lightsaber.swing": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/swing"
+        ]
+    },
+    "item.records.Throne": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/throne",
+                "stream": true
+            }
+        ]
+    },
+    "item.records.Theme": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/theme",
+                "stream": true
+            }
+        ]
+    }
+}
