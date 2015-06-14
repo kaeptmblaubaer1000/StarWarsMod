@@ -3,7 +3,6 @@ package com.parzi.starwarsmod.armor;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.BlockWorkbench;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +14,9 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.upgrades.ForceLeap;
+import com.parzi.starwarsmod.upgrades.ForceStep;
+import com.parzi.starwarsmod.upgrades.PowerBase;
 import com.parzi.starwarsmod.utils.TextEffects;
 import com.parzi.starwarsmod.utils.TextUtils;
 
@@ -22,6 +24,8 @@ public class ArmorJediRobes extends ItemArmor {
 	private String name = "jediRobes";
 
 	private List plantMatter = new ArrayList();
+
+	public PowerBase[] powers = { new ForceStep(), new ForceLeap() };
 
 	public ArmorJediRobes(ArmorMaterial par2EnumArmorMaterial, int par3,
 			int par4) {
@@ -41,15 +45,14 @@ public class ArmorJediRobes extends ItemArmor {
 		itemStack.stackTagCompound = new NBTTagCompound();
 		itemStack.stackTagCompound.setString("owner",
 				player.getCommandSenderName());
-		itemStack.stackTagCompound.setInteger("plants", 0);
-		itemStack.stackTagCompound.setInteger("animals", 0);
-		itemStack.stackTagCompound.setInteger("earth", 0);
-		itemStack.stackTagCompound.setInteger("water", 0);
+		itemStack.stackTagCompound.setInteger("plants", 1000);
+		itemStack.stackTagCompound.setInteger("animals", 1000);
+		itemStack.stackTagCompound.setInteger("earth", 1000);
+		itemStack.stackTagCompound.setInteger("water", 1000);
 
-		itemStack.stackTagCompound.setInteger("effectStepUp", 10);
-		itemStack.stackTagCompound.setInteger("effectGrabBlock", 0);
-		itemStack.stackTagCompound.setInteger("effectLevitate", 0);
-		itemStack.stackTagCompound.setInteger("effectAnimalWhisper", 0);
+		for (int i = 0; i < powers.length; i++) {
+			itemStack.stackTagCompound.setInteger(powers[i].internalName, 0);
+		}
 
 		itemStack.stackTagCompound.setInteger("opx",
 				player.getPlayerCoordinates().posX);
@@ -72,25 +75,30 @@ public class ArmorJediRobes extends ItemArmor {
 				incrementTagInNBT(stack, "water");
 			}
 		}
-
-		if (stack.stackTagCompound.getInteger("effectStepUp") > 0) {
-			player.stepHeight = stack.stackTagCompound.getInteger("effectStepUp") + 0.001F;
-		} else {
-			player.stepHeight = 0.5001F;
-		}
 		
+		for (int i = 0; i < powers.length; i++) {
+			powers[i].doPower(world, player, stack);
+		}
+
 		addInformation(stack, player, stack.getTooltip(player, false), false);
 
 		setPositionInNBT(stack, player);
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null) {
-			Minecraft.getMinecraft().displayGuiScreen(new JediGUI(stack));
+	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b) {
+		addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player) {
+		if (world.isRemote && player.isSneaking()
+				&& stack.stackTagCompound != null) {
+			Minecraft.getMinecraft().displayGuiScreen(new JediGUI(player));
 		}
 		if (stack.stackTagCompound == null) {
-			onCreated(stack, world, player);		
+			onCreated(stack, world, player);
 		}
 		return stack;
 	}
@@ -138,6 +146,16 @@ public class ArmorJediRobes extends ItemArmor {
 			list.add("Aqua: "
 					+ TextUtils.addEffect(String.valueOf(stack.stackTagCompound
 							.getInteger("water")), TextEffects.COLOR_BLUE));
+
+			for (int i = 0; i < powers.length; i++) {
+				if (stack.stackTagCompound.getInteger(powers[i].internalName) > 0) {
+					list.add("* "
+							+ powers[i].displayName
+							+ " level "
+							+ stack.stackTagCompound
+									.getInteger(powers[i].internalName));
+				}
+			}
 		} else {
 			list.add("Owner not set!");
 		}
