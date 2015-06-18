@@ -22,6 +22,7 @@ import com.parzi.starwarsmod.upgrades.ForceResist;
 import com.parzi.starwarsmod.upgrades.ForceStep;
 import com.parzi.starwarsmod.upgrades.ForceStride;
 import com.parzi.starwarsmod.upgrades.PowerBase;
+import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextEffects;
 import com.parzi.starwarsmod.utils.TextUtils;
 
@@ -146,33 +147,46 @@ public class ArmorJediRobes extends ItemArmor {
 	public void addInformation(ItemStack stack, EntityPlayer player, List list,
 			boolean par4) {
 		list.add(TextUtils.makeItalic("Learn the Way of the Force"));
-		if (stack.stackTagCompound != null) {
-			String owner = stack.stackTagCompound.getString("owner");
-			list.add("Jedi Master: " + owner);
-			list.add("Flora: "
-					+ TextUtils.addEffect(String.valueOf(stack.stackTagCompound
-							.getInteger("plants")), TextEffects.COLOR_GREEN));
-			list.add("Fauna: "
-					+ TextUtils.addEffect(String.valueOf(stack.stackTagCompound
-							.getInteger("animals")), TextEffects.COLOR_YELLOW));
-			list.add("Terra: "
-					+ TextUtils.addEffect(String.valueOf(stack.stackTagCompound
-							.getInteger("earth")), TextEffects.COLOR_DARK_GREEN));
-			list.add("Aqua: "
-					+ TextUtils.addEffect(String.valueOf(stack.stackTagCompound
-							.getInteger("water")), TextEffects.COLOR_BLUE));
+		if (KeyboardUtils.isShiftDown()) {
+			if (stack.stackTagCompound != null) {
+				String owner = stack.stackTagCompound.getString("owner");
+				list.add("Jedi Master: " + owner);
+				list.add("Flora: "
+						+ TextUtils.addEffect(String
+								.valueOf(stack.stackTagCompound
+										.getInteger("plants")),
+								TextEffects.COLOR_GREEN));
+				list.add("Fauna: "
+						+ TextUtils.addEffect(String
+								.valueOf(stack.stackTagCompound
+										.getInteger("animals")),
+								TextEffects.COLOR_YELLOW));
+				list.add("Terra: "
+						+ TextUtils.addEffect(String
+								.valueOf(stack.stackTagCompound
+										.getInteger("earth")),
+								TextEffects.COLOR_DARK_GREEN));
+				list.add("Aqua: "
+						+ TextUtils.addEffect(String
+								.valueOf(stack.stackTagCompound
+										.getInteger("water")),
+								TextEffects.COLOR_BLUE));
 
-			for (int i = 0; i < powers.length; i++) {
-				if (stack.stackTagCompound.getInteger(powers[i].internalName) > 0) {
-					list.add("* "
-							+ powers[i].displayName
-							+ " level "
-							+ stack.stackTagCompound
-									.getInteger(powers[i].internalName));
+				for (int i = 0; i < powers.length; i++) {
+					if (stack.stackTagCompound
+							.getInteger(powers[i].internalName) > 0) {
+						list.add("* "
+								+ powers[i].displayName
+								+ " level "
+								+ stack.stackTagCompound
+										.getInteger(powers[i].internalName));
+					}
 				}
+			} else {
+				list.add("Owner not set!");
 			}
 		} else {
-			list.add("Owner not set!");
+			list.add(TextUtils.addEffect("<Hold Shift>", TextEffects.COLOR_AQUA));
 		}
 	}
 
