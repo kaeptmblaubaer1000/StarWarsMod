@@ -9,10 +9,12 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
+import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.entities.EntityBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifle;
@@ -29,19 +31,26 @@ import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWookiee;
+import com.parzi.starwarsmod.network.JediRobesBuy;
+import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
 import com.parzi.starwarsmod.structures.WorldGenHut;
 import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.starwarsmod.world.BiomeTatooine;
+import com.parzi.starwarsmod.world.WorldProviderTatooine;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION)
 public class StarWarsMod {
@@ -55,12 +64,15 @@ public class StarWarsMod {
 	@SidedProxy(clientSide = "com.parzi.starwarsmod.StarWarsClientProxy", serverSide = "com.parzi.starwarsmod.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
 
+	/* Networks */
+	public static SimpleNetworkWrapper network;
+
 	/* Creative Tabs */
 	public static CreativeTabs StarWarsTab;
 
 	/* GUIs */
-    @Instance("jediRobesGUI")
-    public static JediGUI jediRobesGui;
+	@Instance("jediRobesGUI")
+	public static JediGUI jediRobesGui;
 
 	/* Items */
 	public static Item gaffiStick;
@@ -79,6 +91,9 @@ public class StarWarsMod {
 	public static Item recordTheme;
 	public static Item recordThrone;
 
+	public static BiomeGenBase biomeTatooine;
+	public static int biomeTatooineId;
+
 	/* Tile Entities */
 
 	/* Tool Materials */
@@ -92,6 +107,15 @@ public class StarWarsMod {
 			"jediRobesMat", -1, new int[] { 0, 1, 0, 0 }, 0);
 
 	/* Events */
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("SaveJediRobes");
+		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class,
+				0, Side.SERVER);
+		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class,
+				JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
+	}
+
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		System.out.println("Begin StarWars Init...");
@@ -110,7 +134,8 @@ public class StarWarsMod {
 		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
 
 		StarWarsMod.hiltMetelCompound = new ItemHiltMetalCompound();
-		GameRegistry.registerItem(StarWarsMod.hiltMetelCompound, "hiltMetalCompound");
+		GameRegistry.registerItem(StarWarsMod.hiltMetelCompound,
+				"hiltMetalCompound");
 
 		StarWarsMod.hiltMetelAlloy = new ItemHiltMetalAlloy();
 		GameRegistry.registerItem(StarWarsMod.hiltMetelAlloy, "hiltMetalAlloy");
@@ -119,10 +144,12 @@ public class StarWarsMod {
 		GameRegistry.registerItem(StarWarsMod.plasmaEmitter, "plasmaEmitter");
 
 		StarWarsMod.containmentField = new ItemContainmentField();
-		GameRegistry.registerItem(StarWarsMod.containmentField, "containmentField");
+		GameRegistry.registerItem(StarWarsMod.containmentField,
+				"containmentField");
 
 		StarWarsMod.lightsaberCrystal = new ItemLightsaberCrystal();
-		GameRegistry.registerItem(StarWarsMod.lightsaberCrystal, "lightsaberCrystal");
+		GameRegistry.registerItem(StarWarsMod.lightsaberCrystal,
+				"lightsaberCrystal");
 
 		StarWarsMod.blasterBolt = new ItemBlasterBolt();
 		GameRegistry.registerItem(StarWarsMod.blasterBolt, "itemBlasterBolt");
@@ -136,6 +163,12 @@ public class StarWarsMod {
 		StarWarsMod.recordThrone = new ItemMusicDisc("Throne");
 		GameRegistry.registerItem(StarWarsMod.recordThrone, "recordThrone");
 
+		//biomeTatooineId = 6;//DimensionManager.getNextFreeDimId();
+		//biomeTatooine = new BiomeTatooine(biomeTatooineId);
+
+		//DimensionManager.registerProviderType(biomeTatooineId, WorldProviderTatooine.class, false);
+		//DimensionManager.registerDimension(biomeTatooineId, biomeTatooineId);
+
 		/* Tile Entities */
 
 		/* Recipes */
@@ -145,24 +178,26 @@ public class StarWarsMod {
 		GameRegistry.addSmelting(StarWarsMod.hiltMetelCompound, new ItemStack(
 				StarWarsMod.hiltMetelAlloy, 1), 0.2f);
 
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberCrystal),
-				" D ", "DED", " D ", 'D', Items.diamond, 'E', Items.emerald);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1),
-				"HGH", "HNH", "HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N',
-				Items.nether_star, 'R', Blocks.beacon, 'G',
-				Blocks.stained_glass_pane);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.containmentField, 1),
-				"AIA", "IEI", "AIA", 'A', StarWarsMod.hiltMetelAlloy, 'I',
-				Items.iron_ingot, 'E', Items.ender_eye);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber), "HCH",
-				"HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C',
-				StarWarsMod.containmentField, 'E', StarWarsMod.lightsaberCrystal, 'P',
-				StarWarsMod.plasmaEmitter);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blasterRifle), "IIO",
-				" GW", "  W", 'I', Items.iron_ingot, 'O', Blocks.obsidian, 'G',
-				Items.gold_ingot, 'W', Blocks.log);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L",
-				"LWL", "LLL", 'L', Items.leather, 'W', Blocks.wool);
+		GameRegistry.addShapedRecipe(new ItemStack(
+				StarWarsMod.lightsaberCrystal), " D ", "DED", " D ", 'D',
+				Items.diamond, 'E', Items.emerald);
+		GameRegistry.addShapedRecipe(
+				new ItemStack(StarWarsMod.plasmaEmitter, 1), "HGH", "HNH",
+				"HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N', Items.nether_star,
+				'R', Blocks.beacon, 'G', Blocks.stained_glass_pane);
+		GameRegistry.addShapedRecipe(new ItemStack(
+				StarWarsMod.containmentField, 1), "AIA", "IEI", "AIA", 'A',
+				StarWarsMod.hiltMetelAlloy, 'I', Items.iron_ingot, 'E',
+				Items.ender_eye);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber),
+				"HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C',
+				StarWarsMod.containmentField, 'E',
+				StarWarsMod.lightsaberCrystal, 'P', StarWarsMod.plasmaEmitter);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blasterRifle),
+				"IIO", " GW", "  W", 'I', Items.iron_ingot, 'O',
+				Blocks.obsidian, 'G', Items.gold_ingot, 'W', Blocks.log);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1),
+				"L L", "LWL", "LLL", 'L', Items.leather, 'W', Blocks.wool);
 
 		/* Mobs */
 		EntityUtils.registerMob(this, MobWookiee.class, "wookiee", 80,
@@ -187,7 +222,10 @@ public class StarWarsMod {
 		EntityRegistry.addSpawn(MobWookiee.class, 8, 2, 5,
 				EnumCreatureType.ambient, BiomeGenBase.jungle,
 				BiomeGenBase.jungleEdge, BiomeGenBase.jungleHills);
-		EntityRegistry.addSpawn(MobTusken.class, 15, 2, 20,
+		EntityRegistry.addSpawn(MobTusken.class, 10, 2, 20,
+				EnumCreatureType.ambient, BiomeGenBase.desert,
+				BiomeGenBase.desertHills);
+		EntityRegistry.addSpawn(MobJawa.class, 6, 2, 20,
 				EnumCreatureType.ambient, BiomeGenBase.desert,
 				BiomeGenBase.desertHills);
 		EntityRegistry.addSpawn(MobTauntaun.class, 1, 1, 1,
@@ -203,5 +241,6 @@ public class StarWarsMod {
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandFlySpeed());
+		event.registerServerCommand(new CommandSWDim());
 	}
 }

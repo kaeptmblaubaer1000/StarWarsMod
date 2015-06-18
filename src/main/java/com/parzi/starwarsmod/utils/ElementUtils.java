@@ -7,20 +7,15 @@ public class ElementUtils {
 	public static int aquaColor = 0x5555FF;
 
 	public static int getColorFromElement(String name) {
-		switch (name.toLowerCase()) {
-		case "flora":
-		case "plants":
+		String low = name.toLowerCase();
+		if (low == "flora" || low == "plants")
 			return floraColor;
-		case "fauna":
-		case "animals":
+		if (low == "fauna" || low == "animals")
 			return faunaColor;
-		case "terra":
-		case "earth":
+		if (low == "terra" || low == "earth")
 			return terraColor;
-		case "aqua":
-		case "water":
+		if (low == "aqua" || low == "water")
 			return aquaColor;
-		}
 		return 0;
 	}
 }

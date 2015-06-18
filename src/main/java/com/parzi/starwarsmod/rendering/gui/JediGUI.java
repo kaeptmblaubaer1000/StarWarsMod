@@ -3,13 +3,16 @@ package com.parzi.starwarsmod.rendering.gui;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.block.BlockAnvil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.upgrades.ForceLeap;
 import com.parzi.starwarsmod.upgrades.ForceStep;
 import com.parzi.starwarsmod.upgrades.PowerBase;
@@ -25,13 +28,17 @@ public class JediGUI extends GuiScreen {
 	private EntityPlayer player;
 
 	private int spinnerIndex = 0;
-	private PowerBase[] spinner = ((ArmorJediRobes)StarWarsMod.jediRobes).powers;
+	private PowerBase[] spinner = ((ArmorJediRobes) StarWarsMod.jediRobes).powers;
 
 	private ResourceLocation backgroundimage = new ResourceLocation(
 			StarWarsMod.MODID + ":" + "textures/gui/jediRobes.png");
 
 	public JediGUI(EntityPlayer senderPlayer) {
 		player = senderPlayer;
+	}
+
+	@Override
+	public void onGuiClosed() {
 	}
 
 	@Override
@@ -53,25 +60,40 @@ public class JediGUI extends GuiScreen {
 	}
 
 	private void buy() {
-		if (Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
-				.getInteger(spinner[spinnerIndex].internalName)) <= player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+		if (Math.pow(
+				2,
+				6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getInteger(spinner[spinnerIndex].internalName)) <= player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
 				.getInteger(spinner[spinnerIndex].internalElement)) {
 
 			int currentEle = player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
 					.getInteger(spinner[spinnerIndex].internalElement);
-			int neededEle = (int) Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
-					.getInteger(spinner[spinnerIndex].internalName));
+			int neededEle = (int) Math
+					.pow(2,
+							6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+									.getInteger(spinner[spinnerIndex].internalName));
 
-			player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.setInteger(spinner[spinnerIndex].internalElement,
-					currentEle - neededEle);
-
+			//player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+			//		.setInteger(spinner[spinnerIndex].internalElement,
+			//				currentEle - neededEle);
 
 			int currentLvl = player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
 					.getInteger(spinner[spinnerIndex].internalName);
 
-			player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.setInteger(spinner[spinnerIndex].internalName,
-					currentLvl + 1);
+			//player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+			//		.setInteger(spinner[spinnerIndex].internalName,
+			//				currentLvl + 1);
+
+			StarWarsMod.network.sendToServer(new JediRobesBuy(
+					spinner[spinnerIndex].internalName, currentLvl + 1,
+					spinner[spinnerIndex].internalElement, currentEle
+							- neededEle));
 		}
+	}
+	
+	@Override
+	public boolean doesGuiPauseGame() {
+		return false;
 	}
 
 	@Override
@@ -89,17 +111,23 @@ public class JediGUI extends GuiScreen {
 		drawString(mc.fontRenderer, "Jedi Robes Upgrades", x + 10, py, 0xFFFFFF);
 		py += 15;
 		drawString(mc.fontRenderer, "Jedi Master: ", x + 10, py, 0xFFFFFF);
-		drawString(mc.fontRenderer, player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getString("owner"),
-				x + 75, py, 0x0F91F0);
+		drawString(
+				mc.fontRenderer,
+				player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getString("owner"), x + 75, py, 0x0F91F0);
 
-		String plants = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
-				.getInteger("plants"));
-		String animals = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
-				.getInteger("animals"));
+		String plants = String
+				.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getInteger("plants"));
+		String animals = String
+				.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getInteger("animals"));
 		String earth = String
-				.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("earth"));
+				.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getInteger("earth"));
 		String water = String
-				.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("water"));
+				.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getInteger("water"));
 
 		py += 15;
 		drawString(mc.fontRenderer, "Flora: " + plants, x + 10, py,
@@ -125,13 +153,20 @@ public class JediGUI extends GuiScreen {
 		drawString(
 				mc.fontRenderer,
 				"Cost: "
-						+ (int) Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
-								.getInteger(spinner[spinnerIndex].internalName)) + " "
-						+ spinner[spinnerIndex].displayElement, x + 10, py,
-				ElementUtils.getColorFromElement(spinner[spinnerIndex].displayElement));
+						+ (int) Math
+								.pow(2,
+										6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+												.getInteger(spinner[spinnerIndex].internalName))
+						+ " " + spinner[spinnerIndex].displayElement,
+				x + 10,
+				py,
+				ElementUtils
+						.getColorFromElement(spinner[spinnerIndex].displayElement));
 		py += 10;
-		if (Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
-				.getInteger(spinner[spinnerIndex].internalName)) > player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+		if (Math.pow(
+				2,
+				6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
+						.getInteger(spinner[spinnerIndex].internalName)) > player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound
 				.getInteger(spinner[spinnerIndex].internalElement)) {
 			drawString(mc.fontRenderer, "Too expensive!", x + 10, py, 0xFF5555);
 		}

@@ -3,6 +3,7 @@ package com.parzi.starwarsmod;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.parzi.starwarsmod.entities.EntityBlasterBolt;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
@@ -47,6 +48,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(
 				EntityBlasterBolt.class, new RenderBlasterBolt(
 						StarWarsMod.blasterBolt));
+
+		/* Events */
+		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
 	}
 
     @Override

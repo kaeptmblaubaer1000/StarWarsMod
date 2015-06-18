@@ -51,10 +51,8 @@ Temporary Items
 bin/
 build/
 eclipse/
-gradle/
 .classpath
 .project
-build.gradle
 
 *.txt
 gradlew

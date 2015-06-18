@@ -1,8 +1,9 @@
 package com.parzi.starwarsmod.armor;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,8 +15,12 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.upgrades.ForceFeed;
 import com.parzi.starwarsmod.upgrades.ForceLeap;
+import com.parzi.starwarsmod.upgrades.ForcePunch;
+import com.parzi.starwarsmod.upgrades.ForceResist;
 import com.parzi.starwarsmod.upgrades.ForceStep;
+import com.parzi.starwarsmod.upgrades.ForceStride;
 import com.parzi.starwarsmod.upgrades.PowerBase;
 import com.parzi.starwarsmod.utils.TextEffects;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -23,9 +28,19 @@ import com.parzi.starwarsmod.utils.TextUtils;
 public class ArmorJediRobes extends ItemArmor {
 	private String name = "jediRobes";
 
-	private List plantMatter = new ArrayList();
+	public static int chanceElement = 100;
 
-	public PowerBase[] powers = { new ForceStep(), new ForceLeap() };
+	public static Block[] plantMatter = { Blocks.dirt, Blocks.grass,
+			Blocks.leaves, Blocks.farmland };
+
+	public static Block[] earthMatter = { Blocks.stone, Blocks.gravel,
+			Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore,
+			Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore,
+			Blocks.redstone_ore };
+
+	public PowerBase[] powers = { new ForceStep(), new ForceLeap(),
+			new ForceStride(), new ForceResist(), new ForcePunch(),
+			new ForceFeed() };
 
 	public ArmorJediRobes(ArmorMaterial par2EnumArmorMaterial, int par3,
 			int par4) {
@@ -33,22 +48,19 @@ public class ArmorJediRobes extends ItemArmor {
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
-
-		plantMatter.add(Blocks.grass);
-		plantMatter.add(Blocks.dirt);
-		plantMatter.add(Blocks.farmland);
-		plantMatter.add(Blocks.leaves);
 	}
 
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
 		itemStack.stackTagCompound = new NBTTagCompound();
+
 		itemStack.stackTagCompound.setString("owner",
 				player.getCommandSenderName());
-		itemStack.stackTagCompound.setInteger("plants", 1000);
-		itemStack.stackTagCompound.setInteger("animals", 1000);
-		itemStack.stackTagCompound.setInteger("earth", 1000);
-		itemStack.stackTagCompound.setInteger("water", 1000);
+
+		itemStack.stackTagCompound.setInteger("plants", 0);
+		itemStack.stackTagCompound.setInteger("animals", 0);
+		itemStack.stackTagCompound.setInteger("earth", 0);
+		itemStack.stackTagCompound.setInteger("water", 0);
 
 		for (int i = 0; i < powers.length; i++) {
 			itemStack.stackTagCompound.setInteger(powers[i].internalName, 0);
@@ -65,7 +77,7 @@ public class ArmorJediRobes extends ItemArmor {
 		if (stack.stackTagCompound == null)
 			onCreated(stack, world, player);
 
-		if (world.rand.nextInt(100) != 10)
+		if (world.rand.nextInt(chanceElement) != 0)
 			return;
 
 		if (hasMoved(stack, player)) {
@@ -75,7 +87,7 @@ public class ArmorJediRobes extends ItemArmor {
 				incrementTagInNBT(stack, "water");
 			}
 		}
-		
+
 		for (int i = 0; i < powers.length; i++) {
 			powers[i].doPower(world, player, stack);
 		}
@@ -86,8 +98,10 @@ public class ArmorJediRobes extends ItemArmor {
 	}
 
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b) {
-		addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
+	public void onUpdate(ItemStack stack, World world, Entity player, int i,
+			boolean b) {
+		addInformation(stack, (EntityPlayer) player,
+				stack.getTooltip((EntityPlayer) player, false), false);
 	}
 
 	@Override
@@ -103,10 +117,11 @@ public class ArmorJediRobes extends ItemArmor {
 		return stack;
 	}
 
-	private boolean isStandingOn(List blockList, World world,
+	private boolean isStandingOn(Block[] blockList, World world,
 			EntityPlayer player) {
-		return blockList.contains(world.getBlock((int) player.posX,
-				(int) player.posY - 1, (int) player.posZ));
+		return Arrays.asList(blockList).contains(
+				world.getBlock((int) player.posX, (int) player.posY - 1,
+						(int) player.posZ));
 	}
 
 	private void incrementTagInNBT(ItemStack stack, String tag) {

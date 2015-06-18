@@ -7,19 +7,19 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ForceLeap extends PowerBase {
+public class ForceFeed extends PowerBase {
 
-	public ForceLeap() {
-		this.internalName = "effectForceLeap";
-		this.displayName = "Force Leap";
-		this.internalElement = "plants";
-		this.displayElement = "flora";
+	public ForceFeed() {
+		this.internalName = "effectForceFeed";
+		this.displayName = "Force Feed";
+		this.internalElement = "animals";
+		this.displayElement = "fauna";
 	}
 
 	@Override
 	public void doPower(World world, EntityPlayer player, ItemStack robe) {
 		if (robe.stackTagCompound.getInteger(this.internalName) > 0) {
-			player.addPotionEffect(new PotionEffect(Potion.jump.id, 1800, robe.stackTagCompound.getInteger(this.internalName), false));
+			player.addPotionEffect(new PotionEffect(23, 1800, robe.stackTagCompound.getInteger(this.internalName), false)); // saturation
 		}
 	}
 }
