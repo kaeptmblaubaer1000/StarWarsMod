@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -9,10 +10,10 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
+import com.parzi.starwarsmod.blocks.BlockMV;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.entities.EntityBlasterBolt;
@@ -35,9 +36,8 @@ import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
 import com.parzi.starwarsmod.structures.WorldGenHut;
+import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.utils.EntityUtils;
-import com.parzi.starwarsmod.world.BiomeTatooine;
-import com.parzi.starwarsmod.world.WorldProviderTatooine;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -95,6 +95,9 @@ public class StarWarsMod {
 	public static int biomeTatooineId;
 
 	/* Tile Entities */
+
+	/* Blocks */
+	public static Block blockFlag;
 
 	/* Tool Materials */
 	public static ToolMaterial gaffiMat = EnumHelper.addToolMaterial(
@@ -170,6 +173,11 @@ public class StarWarsMod {
 		//DimensionManager.registerDimension(biomeTatooineId, biomeTatooineId);
 
 		/* Tile Entities */
+        GameRegistry.registerTileEntity(TileEntityMV.class, "tileEntityFlag");
+
+        /* Blocks */
+        blockFlag = new BlockMV();
+        GameRegistry.registerBlock(blockFlag, "blockFlag");
 
 		/* Recipes */
 		// GameRegistry.addShapelessRecipe(new ItemStack(this.hiltMetelCompound,

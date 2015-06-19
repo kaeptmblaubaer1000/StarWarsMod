@@ -13,20 +13,20 @@ import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech;
+import com.parzi.starwarsmod.rendering.RenderMV;
 import com.parzi.starwarsmod.rendering.RenderJawa;
 import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
 import com.parzi.starwarsmod.rendering.RenderWookiee;
-import com.parzi.starwarsmod.rendering.gui.JediGUI;
 import com.parzi.starwarsmod.rendering.models.ModelDroidAstromech;
 import com.parzi.starwarsmod.rendering.models.ModelJawa;
 import com.parzi.starwarsmod.rendering.models.ModelTauntaun;
 import com.parzi.starwarsmod.rendering.models.ModelWookiee;
+import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHandler {
 	@Override
@@ -48,6 +48,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(
 				EntityBlasterBolt.class, new RenderBlasterBolt(
 						StarWarsMod.blasterBolt));
+		
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 
 		/* Events */
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
