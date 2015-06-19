@@ -11,7 +11,7 @@ public class ForceFeed extends PowerBase {
 
 	public ForceFeed() {
 		this.internalName = "effectForceFeed";
-		this.displayName = "Force Feed";
+		this.displayName = "Jedi Stamina";
 		this.internalElement = "animals";
 		this.displayElement = "fauna";
 	}

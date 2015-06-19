@@ -31,7 +31,7 @@ public class JediGUI extends GuiScreen {
 	private PowerBase[] spinner = ((ArmorJediRobes) StarWarsMod.jediRobes).powers;
 
 	private ResourceLocation backgroundimage = new ResourceLocation(
-			StarWarsMod.MODID + ":" + "textures/gui/jediRobes.png");
+			StarWarsMod.MODID + ":" + "textures/gui/default.png");
 
 	public JediGUI(EntityPlayer senderPlayer) {
 		player = senderPlayer;
@@ -90,7 +90,7 @@ public class JediGUI extends GuiScreen {
 							- neededEle));
 		}
 	}
-	
+
 	@Override
 	public boolean doesGuiPauseGame() {
 		return false;

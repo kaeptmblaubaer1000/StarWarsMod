@@ -10,7 +10,7 @@ public class ForceStep extends PowerBase {
 		this.internalName = "effectStepUp";
 		this.displayName = "Force Step";
 		this.internalElement = "earth";
-		this.displayElement = "Terra";
+		this.displayElement = "terra";
 	}
 
 	@Override

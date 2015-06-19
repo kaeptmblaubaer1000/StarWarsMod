@@ -22,7 +22,6 @@ public class WorldProviderTatooine extends WorldProvider {
 	public void registerWorldChunkManager() {
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
 		this.dimensionId = StarWarsMod.biomeTatooineId;
-		this.hasNoSky = false;
 	}
 
 	public IChunkProvider createChunkGenerator() {

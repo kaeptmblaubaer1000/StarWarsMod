@@ -10,6 +10,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
@@ -27,7 +28,9 @@ import com.parzi.starwarsmod.items.ItemLightsaber;
 import com.parzi.starwarsmod.items.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.ItemMusicDisc;
 import com.parzi.starwarsmod.items.ItemPlasmaEmitter;
+import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
+import com.parzi.starwarsmod.mobs.MobGNK;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
@@ -38,6 +41,8 @@ import com.parzi.starwarsmod.rendering.gui.JediGUI;
 import com.parzi.starwarsmod.structures.WorldGenHut;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.starwarsmod.world.BiomeTatooine;
+import com.parzi.starwarsmod.world.WorldProviderTatooine;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -97,7 +102,7 @@ public class StarWarsMod {
 	/* Tile Entities */
 
 	/* Blocks */
-	public static Block blockFlag;
+	public static Block blockMV;
 
 	/* Tool Materials */
 	public static ToolMaterial gaffiMat = EnumHelper.addToolMaterial(
@@ -166,18 +171,19 @@ public class StarWarsMod {
 		StarWarsMod.recordThrone = new ItemMusicDisc("Throne");
 		GameRegistry.registerItem(StarWarsMod.recordThrone, "recordThrone");
 
-		//biomeTatooineId = 6;//DimensionManager.getNextFreeDimId();
-		//biomeTatooine = new BiomeTatooine(biomeTatooineId);
+		biomeTatooineId = 6;// DimensionManager.getNextFreeDimId();
+		biomeTatooine = new BiomeTatooine(biomeTatooineId);
 
-		//DimensionManager.registerProviderType(biomeTatooineId, WorldProviderTatooine.class, false);
-		//DimensionManager.registerDimension(biomeTatooineId, biomeTatooineId);
+		DimensionManager.registerProviderType(biomeTatooineId,
+				WorldProviderTatooine.class, false);
+		DimensionManager.registerDimension(biomeTatooineId, biomeTatooineId);
 
 		/* Tile Entities */
-        GameRegistry.registerTileEntity(TileEntityMV.class, "tileEntityFlag");
+		GameRegistry.registerTileEntity(TileEntityMV.class, "tileEntityFlag");
 
-        /* Blocks */
-        blockFlag = new BlockMV();
-        GameRegistry.registerBlock(blockFlag, "blockFlag");
+		/* Blocks */
+		blockMV = new BlockMV();
+		GameRegistry.registerBlock(blockMV, "blockMV");
 
 		/* Recipes */
 		// GameRegistry.addShapelessRecipe(new ItemStack(this.hiltMetelCompound,
@@ -218,6 +224,10 @@ public class StarWarsMod {
 				0xFFFFFF, 0x4ADCE8);
 		EntityUtils.registerMob(this, MobDroidAstromech.class,
 				"droidAstromech", 80, 0xFFFFFF, 0x2D00FF);
+		EntityUtils.registerMob(this, MobBantha.class, "bantha", 80, 0x8B4513,
+				0xFFDEAD);
+		EntityUtils.registerMob(this, MobGNK.class, "gonk", 80, 0x6B6B6B,
+				0x000000);
 
 		/* Entities */
 		EntityUtils.registerEntity(this, EntityBlasterBolt.class,

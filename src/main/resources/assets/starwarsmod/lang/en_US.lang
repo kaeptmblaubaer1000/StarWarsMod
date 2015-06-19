@@ -21,6 +21,8 @@ entity.starwarsmod.wookiee.name=Wookiee
 entity.starwarsmod.tusken.name=Tusken Raider
 entity.starwarsmod.jawa.name=Jawa
 entity.starwarsmod.tauntaun.name=Tauntaun
+entity.starwarsmod.astromech.name=Astromech Droid
+entity.starwarsmod.bantha.name=Bantha
 
 // tabs
 itemGroup.tabStarWars=Star Wars

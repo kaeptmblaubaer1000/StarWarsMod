@@ -2,49 +2,61 @@ package com.parzi.starwarsmod.blocks;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.rendering.gui.MVGUI;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 public class BlockMV extends BlockContainer {
 
-    public BlockMV() {
-            super(Material.iron);
-            this.setCreativeTab(StarWarsMod.StarWarsTab);
-            this.setBlockBounds(0F, 0F, 0F, 1F, 4F, 1F);
-    }
+	public BlockMV() {
+		super(Material.iron);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setBlockBounds(0F, 0F, 0F, 1F, 4F, 1F);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-            return new TileEntityMV();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
+		return new TileEntityMV();
+	}
 
-    @Override
-    public int getRenderType() {
-            return -1;
-    }
+	@Override
+	public int getRenderType() {
+		return -1;
+	}
 
-    @Override
-    public String getUnlocalizedName() {
-    	return StarWarsMod.MODID + "." + ".blocks.moistureVaporator";
-    }
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int metadata, float e, float f, float g) {
+		Minecraft.getMinecraft().displayGuiScreen(new MVGUI(x, z));
+		return false;
+	}
 
-    @Override
-    public boolean isOpaqueCube() {
-            return false;
-    }
+	@Override
+	public String getUnlocalizedName() {
+		return StarWarsMod.MODID + "." + "moistureVaporator";
+	}
 
-    public boolean renderAsNormalBlock() {
-            return false;
-    }
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
 
-    //This is the icon to use for showing the block in your hand.
-    @Override
-    public void registerBlockIcons(IIconRegister icon) {
-            this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "moistureVaporator");
-    }
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	// This is the icon to use for showing the block in your hand.
+	@Override
+	public void registerBlockIcons(IIconRegister icon) {
+		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":"
+				+ "iconMoistureVaporator");
+	}
 }

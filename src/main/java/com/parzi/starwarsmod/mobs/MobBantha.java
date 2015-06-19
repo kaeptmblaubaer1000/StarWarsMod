@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.mobs;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
@@ -14,12 +15,12 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class MobTauntaun extends EntityHorse {
+public class MobBantha extends EntityHorse {
 	private int field_110285_bP = 0;
 
-	public MobTauntaun(World par1World) {
+	public MobBantha(World par1World) {
 		super(par1World);
-		this.setSize(1F, 3F);
+		this.setSize(3, 3);
 		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
 		// EntityPlayer.class, 1.0D, false));
 		// this.tasks.addTask(4, new EntityAIWatchClosest(this,
@@ -118,9 +119,9 @@ public class MobTauntaun extends EntityHorse {
 			return this.getCustomNameTag();
 		} else {
 			if (this.isChested()) {
-				return "Pack-Tauntaun";
+				return "Pack-Bantha";
 			} else {
-				return "Tauntaun";
+				return "Bantha";
 			}
 		}
 	}
@@ -156,4 +157,11 @@ public class MobTauntaun extends EntityHorse {
 			}
 		}
 	}
+
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_)
+    {
+        Object p_110161_1_1 = super.onSpawnWithEgg(p_110161_1_);
+        return (IEntityLivingData)p_110161_1_1;
+    }
 }

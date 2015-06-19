@@ -58,10 +58,10 @@ public class ArmorJediRobes extends ItemArmor {
 		itemStack.stackTagCompound.setString("owner",
 				player.getCommandSenderName());
 
-		itemStack.stackTagCompound.setInteger("plants", 0);
-		itemStack.stackTagCompound.setInteger("animals", 0);
-		itemStack.stackTagCompound.setInteger("earth", 0);
-		itemStack.stackTagCompound.setInteger("water", 0);
+		itemStack.stackTagCompound.setInteger("plants", 1000);
+		itemStack.stackTagCompound.setInteger("animals", 1000);
+		itemStack.stackTagCompound.setInteger("earth", 1000);
+		itemStack.stackTagCompound.setInteger("water", 1000);
 
 		for (int i = 0; i < powers.length; i++) {
 			itemStack.stackTagCompound.setInteger(powers[i].internalName, 0);
