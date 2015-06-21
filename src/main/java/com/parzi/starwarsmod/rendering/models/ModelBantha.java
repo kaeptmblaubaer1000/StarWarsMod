@@ -5,7 +5,8 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class ModelBantha extends ModelBase {
+public class ModelBantha extends ModelBase
+{
 	// fields
 	ModelRenderer HornR1;
 	ModelRenderer HornR2;
@@ -54,7 +55,8 @@ public class ModelBantha extends ModelBase {
 
 	float animScale = 1.0F;
 
-	public ModelBantha() {
+	public ModelBantha()
+	{
 		textureWidth = 128;
 		textureHeight = 128;
 
@@ -324,8 +326,8 @@ public class ModelBantha extends ModelBase {
 		setRotation(LegLFront, 0F, 0F, 0F);
 	}
 
-	public void render(Entity entity, float f, float f1, float f2, float f3,
-			float f4, float f5) {
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		HornR1.render(f5);
@@ -374,31 +376,26 @@ public class ModelBantha extends ModelBase {
 		LegLFront.render(f5);
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
+	private void setRotation(ModelRenderer model, float x, float y, float z)
+	{
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3,
-			float f4, float f5, Entity entity) {
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-		this.LegRFront.rotateAngleX = MathHelper.cos(f * 0.6662F
-				+ (float) Math.PI)
-				* animScale * f1 * 0.5F;
-		this.LegLFront.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale
-				* f1 * 0.5F;
+		this.LegRFront.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		this.LegLFront.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
 		this.LegRFront.rotateAngleZ = 0.0F;
 		this.LegLFront.rotateAngleZ = 0.0F;
 
-		this.LegRBack.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale
-				* f1;
-		this.LegLBack.rotateAngleX = MathHelper.cos(f * 0.6662F
-				+ (float) Math.PI)
-				* animScale * f1;
+		this.LegRBack.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
+		this.LegLBack.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
 		this.LegRBack.rotateAngleY = 0.0F;
 		this.LegLBack.rotateAngleY = 0.0F;
 	}

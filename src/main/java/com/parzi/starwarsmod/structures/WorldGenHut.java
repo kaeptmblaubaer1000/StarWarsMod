@@ -9,18 +9,23 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class WorldGenHut extends WorldGenerator implements IWorldGenerator {
+public class WorldGenHut extends WorldGenerator implements IWorldGenerator
+{
 
-	protected Block[] getValidSpawnBlocks() {
+	protected Block[] getValidSpawnBlocks()
+	{
 		return new Block[] { Blocks.sand, Blocks.sandstone };
 	}
 
-	public boolean locationIsValidSpawn(World world, int i, int j, int k) {
+	public boolean locationIsValidSpawn(World world, int i, int j, int k)
+	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
 
-		while (check != Blocks.air) {
-			if (distanceToAir > 3) {
+		while (check != Blocks.air)
+		{
+			if (distanceToAir > 3)
+			{
 				return false;
 			}
 
@@ -34,13 +39,18 @@ public class WorldGenHut extends WorldGenerator implements IWorldGenerator {
 		Block blockAbove = world.getBlock(i, j + 1, k);
 		Block blockBelow = world.getBlock(i, j - 1, k);
 
-		for (Block x : getValidSpawnBlocks()) {
-			if (blockAbove != Blocks.air) {
+		for (Block x : getValidSpawnBlocks())
+		{
+			if (blockAbove != Blocks.air)
+			{
 				return false;
 			}
-			if (block == x) {
+			if (block == x)
+			{
 				return true;
-			} else if (block == Blocks.snow && blockBelow == x) {
+			}
+			else if (block == Blocks.snow && blockBelow == x)
+			{
 				return true;
 			}
 		}
@@ -48,21 +58,21 @@ public class WorldGenHut extends WorldGenerator implements IWorldGenerator {
 		return false;
 	}
 
-	public void setBlock(World world, int x, int y, int z, Block block,
-			int metadata) {
+	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
+	{
 		Block b1 = world.getBlock(x, y, z);
 
-		if (b1.isAir(world, x, y, z) || b1.isLeaves(world, x, y, z)) {
+		if (b1.isAir(world, x, y, z) || b1.isLeaves(world, x, y, z))
+		{
 			world.setBlock(x, y, z, block, metadata, 2);
 		}
 	}
 
 	@Override
-	public boolean generate(World world, Random rand, int i, int j, int k) {
-		if (!locationIsValidSpawn(world, i, j, k)
-				|| !locationIsValidSpawn(world, i + 13, j, k)
-				|| !locationIsValidSpawn(world, i + 13, j, k + 15)
-				|| !locationIsValidSpawn(world, i, j, k + 15)) {
+	public boolean generate(World world, Random rand, int i, int j, int k)
+	{
+		if (!locationIsValidSpawn(world, i, j, k) || !locationIsValidSpawn(world, i + 13, j, k) || !locationIsValidSpawn(world, i + 13, j, k + 15) || !locationIsValidSpawn(world, i, j, k + 15))
+		{
 			return false;
 		}
 
@@ -1418,8 +1428,8 @@ public class WorldGenHut extends WorldGenerator implements IWorldGenerator {
 	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
 		// TODO Auto-generated method stub
 
 	}

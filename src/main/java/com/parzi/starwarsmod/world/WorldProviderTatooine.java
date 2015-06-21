@@ -17,39 +17,47 @@ import com.parzi.starwarsmod.StarWarsMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class WorldProviderTatooine extends WorldProvider {
+public class WorldProviderTatooine extends WorldProvider
+{
 
-	public void registerWorldChunkManager() {
+	public void registerWorldChunkManager()
+	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
 		this.dimensionId = StarWarsMod.biomeTatooineId;
 	}
 
-	public IChunkProvider createChunkGenerator() {
-		return new ChunkProviderGenerate(this.worldObj,
-				this.worldObj.getSeed(), false);
+	public IChunkProvider createChunkGenerator()
+	{
+		return new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), false);
 	}
 
-	public int getAverageGroundLevel() {
+	public int getAverageGroundLevel()
+	{
 		return 30;
 	}
 
-	public String getDimensionName() {
+	public String getDimensionName()
+	{
 		return "Tatooine";
 	}
 
-	public boolean canRespawnHere() {
+	public boolean canRespawnHere()
+	{
 		return false;
 	}
 
-	public boolean isSurfaceWorld() {
+	public boolean isSurfaceWorld()
+	{
 		return true;
 	}
 
-	public boolean canCoordinateBeSpawn(int par1, int par2) {
+	public boolean canCoordinateBeSpawn(int par1, int par2)
+	{
 		return false;
 	}
 
-	public ChunkCoordinates getEntrancePortalLocation() {
+	public ChunkCoordinates getEntrancePortalLocation()
+	{
 		return new ChunkCoordinates(50, 5, 0);
 	}
 

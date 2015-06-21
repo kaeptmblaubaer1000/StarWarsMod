@@ -10,19 +10,22 @@ import org.lwjgl.opengl.GL11;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.ModelGNK;
 
-public class RenderGNK extends RenderLiving {
-	public RenderGNK(ModelGNK modelGNK, float par2) {
+public class RenderGNK extends RenderLiving
+{
+	public RenderGNK(ModelGNK modelGNK, float par2)
+	{
 		super(modelGNK, par2);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation(StarWarsMod.MODID,
-				"textures/models/gnk.png");
+	protected ResourceLocation getEntityTexture(Entity entity)
+	{
+		return new ResourceLocation(StarWarsMod.MODID, "textures/models/gnk.png");
 	}
 
 	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f) {
+	protected void preRenderCallback(EntityLivingBase entity, float f)
+	{
 		GL11.glScalef(0.75F, 0.75F, 0.75F);
 	}
 }

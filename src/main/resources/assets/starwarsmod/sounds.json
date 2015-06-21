@@ -12,6 +12,12 @@
             "mob/wookiee/hit1"
         ]
     },
+    "mob.bantha.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/bantha/say1"
+        ]
+    },
     "mob.tusken.say": {
         "category": "neutral",
         "sounds": [
@@ -69,6 +75,18 @@
         "category": "neutral",
         "sounds": [
             "mob/astromech/die1"
+        ]
+    },
+    "mob.gonk.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/gonk/say1"
+        ]
+    },
+    "mob.gonk.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/gonk/die1"
         ]
     },
     "mob.jawa.say": {

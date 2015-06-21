@@ -7,14 +7,16 @@ import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class RenderDroidAstromech extends RenderLiving {
-	public RenderDroidAstromech(ModelBase par1ModelBase, float par2) {
+public class RenderDroidAstromech extends RenderLiving
+{
+	public RenderDroidAstromech(ModelBase par1ModelBase, float par2)
+	{
 		super(par1ModelBase, par2);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation(StarWarsMod.MODID,
-				"textures/models/astromech.png");
+	protected ResourceLocation getEntityTexture(Entity entity)
+	{
+		return new ResourceLocation(StarWarsMod.MODID, "textures/models/astromech.png");
 	}
 }

@@ -4,10 +4,12 @@ import net.minecraft.item.Item;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemPlasmaEmitter extends Item {
+public class ItemPlasmaEmitter extends Item
+{
 	private String name = "plasmaEmitter";
 
-	public ItemPlasmaEmitter() {
+	public ItemPlasmaEmitter()
+	{
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);

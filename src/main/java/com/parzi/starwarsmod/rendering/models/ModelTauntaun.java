@@ -6,7 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.util.MathHelper;
 
-public class ModelTauntaun extends ModelBase {
+public class ModelTauntaun extends ModelBase
+{
 	// fields
 	ModelRenderer head;
 	ModelRenderer body;
@@ -30,7 +31,8 @@ public class ModelTauntaun extends ModelBase {
 	ModelRenderer TailSection5;
 	float animScale = 1f;
 
-	public ModelTauntaun() {
+	public ModelTauntaun()
+	{
 		textureWidth = 64;
 		textureHeight = 64;
 
@@ -157,8 +159,8 @@ public class ModelTauntaun extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3,
-			float f4, float f5) {
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		head.render(f5);
@@ -183,46 +185,44 @@ public class ModelTauntaun extends ModelBase {
 		TailSection5.render(f5);
 	}
 
-	private void setRotation(ModelRenderer model, float x, float y, float z) {
+	private void setRotation(ModelRenderer model, float x, float y, float z)
+	{
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
 
 	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3,
-			float f4, float f5, Entity ent) {
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity ent)
+	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, ent);
-		this.head.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.Snout.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.Nose.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.HornBaseL.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.HornBaseR.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.HornSectionL.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.HornSectionR.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.SmallHornSectionL.rotateAngleY = f3 / (180F / (float) Math.PI);
-		this.SmallHornSectionR.rotateAngleY = f3 / (180F / (float) Math.PI);
+		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.Snout.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.Nose.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HornBaseL.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HornBaseR.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.SmallHornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.SmallHornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI);
 
-		this.head.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.Snout.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.Nose.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.HornBaseL.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.HornBaseR.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.HornSectionL.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.HornSectionR.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.SmallHornSectionL.rotateAngleX = f4 / (180F / (float) Math.PI);
-		this.SmallHornSectionR.rotateAngleX = f4 / (180F / (float) Math.PI);
+		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.Snout.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.Nose.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.HornBaseL.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.HornBaseR.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.HornSectionL.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.HornSectionR.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.SmallHornSectionL.rotateAngleX = f4 / (180F / (float)Math.PI);
+		this.SmallHornSectionR.rotateAngleX = f4 / (180F / (float)Math.PI);
 
-		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI)
-				* animScale * f1 * 0.5F;
-		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1
-				* 0.5F;
+		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
 		this.ArmL.rotateAngleZ = 0.0F;
 		this.ArmR.rotateAngleZ = 0.0F;
 
 		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI)
-				* animScale * f1;
+		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
 		this.leg1.rotateAngleY = 0.0F;
 		this.leg2.rotateAngleY = 0.0F;
 	}

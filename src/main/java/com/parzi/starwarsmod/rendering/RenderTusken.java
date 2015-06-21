@@ -8,18 +8,21 @@ import net.minecraft.util.ResourceLocation;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTusken;
 
-public class RenderTusken extends RenderBiped {
-	public RenderTusken(ModelBiped par1ModelBase, float par2) {
+public class RenderTusken extends RenderBiped
+{
+	public RenderTusken(ModelBiped par1ModelBase, float par2)
+	{
 		super(par1ModelBase, par2);
 	}
 
-	protected void renderCarrying(MobTusken par1MobTusken, float par2) {
+	protected void renderCarrying(MobTusken par1MobTusken, float par2)
+	{
 		super.renderEquippedItems(par1MobTusken, par2);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation(StarWarsMod.MODID,
-				"textures/models/tusken.png");
+	protected ResourceLocation getEntityTexture(Entity entity)
+	{
+		return new ResourceLocation(StarWarsMod.MODID, "textures/models/tusken.png");
 	}
 }

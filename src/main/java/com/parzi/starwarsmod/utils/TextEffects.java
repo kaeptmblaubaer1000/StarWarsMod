@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.utils;
 
-public class TextEffects {
+public class TextEffects
+{
 	public static String OBFU = (char)167 + "k";
 	public static String BOLD = (char)167 + "l";
 	public static String STRI = (char)167 + "m";

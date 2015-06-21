@@ -14,12 +14,14 @@ import net.minecraft.util.StatCollector;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemMusicDisc extends ItemRecord {
+public class ItemMusicDisc extends ItemRecord
+{
 	private String name = "musicDisc";
 	private static final Map records = new HashMap();
 	public final String recordName;
 
-	public ItemMusicDisc(String songName) {
+	public ItemMusicDisc(String songName)
+	{
 		super(songName);
 		this.recordName = songName;
 		this.maxStackSize = 1;
@@ -29,35 +31,38 @@ public class ItemMusicDisc extends ItemRecord {
 	}
 
 	@Override
-	public void registerIcons(IIconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon(StarWarsMod.MODID + ":" + "record"
-				+ recordName);
+	public void registerIcons(IIconRegister iconRegister)
+	{
+		itemIcon = iconRegister.registerIcon(StarWarsMod.MODID + ":" + "record" + recordName);
 	}
 
 	@Override
-	public void addInformation(ItemStack par1ItemStack,
-			EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
 		par3List.add(this.getRecordNameLocal());
 	}
 
 	@Override
 	// TODO: getRecordTitle()
-	public String getRecordNameLocal() {
-		return StatCollector.translateToLocal(this.getUnlocalizedName()
-				+ recordName + ".desc");
+	public String getRecordNameLocal()
+	{
+		return StatCollector.translateToLocal(this.getUnlocalizedName() + recordName + ".desc");
 	}
 
 	@Override
-	public EnumRarity getRarity(ItemStack itemStack) {
+	public EnumRarity getRarity(ItemStack itemStack)
+	{
 		return EnumRarity.rare;
 	}
 
-	public static ItemMusicDisc getRecord(String par0Str) {
-		return (ItemMusicDisc) records.get(par0Str);
+	public static ItemMusicDisc getRecord(String par0Str)
+	{
+		return (ItemMusicDisc)records.get(par0Str);
 	}
 
 	@Override
-	public ResourceLocation getRecordResource(String name) {
+	public ResourceLocation getRecordResource(String name)
+	{
 		return new ResourceLocation(StarWarsMod.MODID + ":" + "item." + name);
 	}
 }

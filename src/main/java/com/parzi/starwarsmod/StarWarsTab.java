@@ -5,14 +5,17 @@ import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class StarWarsTab extends CreativeTabs {
-	public StarWarsTab() {
+public class StarWarsTab extends CreativeTabs
+{
+	public StarWarsTab()
+	{
 		super("tabStarWars");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem() {
+	public Item getTabIconItem()
+	{
 		return StarWarsMod.gaffiStick;
 	}
 }

@@ -10,10 +10,12 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.TextUtils;
 
-public class ItemGaffiStick extends ItemSword {
+public class ItemGaffiStick extends ItemSword
+{
 	public String name = "gaffiStick";
 
-	public ItemGaffiStick() {
+	public ItemGaffiStick()
+	{
 		super(StarWarsMod.gaffiMat);
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
@@ -21,17 +23,15 @@ public class ItemGaffiStick extends ItemSword {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list,
-			boolean par4) {
-		list.add(TextUtils
-				.makeItalic("Whoever has two hands can hold a gaderffi."));
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		list.add(TextUtils.makeItalic("Whoever has two hands can hold a gaderffi."));
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemStack, World world,
-			EntityPlayer entityPlayer) {
-		entityPlayer.playSound(StarWarsMod.MODID + ":"
-				+ "item.gaffi.rightclick", 1f, 1f);
+	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
+	{
+		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.gaffi.rightclick", 1f, 1f);
 		return itemStack;
 	}
 }

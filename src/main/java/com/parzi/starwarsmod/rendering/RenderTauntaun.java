@@ -10,19 +10,22 @@ import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class RenderTauntaun extends RenderLiving {
-	public RenderTauntaun(ModelBase par1ModelBase, float par2) {
+public class RenderTauntaun extends RenderLiving
+{
+	public RenderTauntaun(ModelBase par1ModelBase, float par2)
+	{
 		super(par1ModelBase, par2);
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation(StarWarsMod.MODID,
-				"textures/models/tauntaun.png");
+	protected ResourceLocation getEntityTexture(Entity entity)
+	{
+		return new ResourceLocation(StarWarsMod.MODID, "textures/models/tauntaun.png");
 	}
 
 	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f){
-    	GL11.glScalef(1.5F, 1.5F, 1.5F);
-    }
+	protected void preRenderCallback(EntityLivingBase entity, float f)
+	{
+		GL11.glScalef(1.5F, 1.5F, 1.5F);
+	}
 }

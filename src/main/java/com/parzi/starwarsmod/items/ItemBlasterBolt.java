@@ -4,10 +4,12 @@ import net.minecraft.item.Item;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemBlasterBolt extends Item {
+public class ItemBlasterBolt extends Item
+{
 	private String name = "blasterBolt";
 
-	public ItemBlasterBolt() {
+	public ItemBlasterBolt()
+	{
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);

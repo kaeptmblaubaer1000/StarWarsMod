@@ -8,66 +8,70 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
-public class CommandFlySpeed implements ICommand {
+public class CommandFlySpeed implements ICommand
+{
 	private List aliases;
 
-	public CommandFlySpeed() {
+	public CommandFlySpeed()
+	{
 		this.aliases = new ArrayList();
 		this.aliases.add("flyspd");
 	}
 
 	@Override
-	public String getCommandName() {
+	public String getCommandName()
+	{
 		return "flyspd";
 	}
 
 	@Override
-	public String getCommandUsage(ICommandSender icommandsender) {
+	public String getCommandUsage(ICommandSender icommandsender)
+	{
 		return "flyspd <speed>";
 	}
 
 	@Override
-	public List getCommandAliases() {
+	public List getCommandAliases()
+	{
 		return this.aliases;
 	}
 
 	@Override
-	public void processCommand(ICommandSender icommandsender, String[] astring) {
-		if (astring.length == 0) {
-			icommandsender.addChatMessage(new ChatComponentText(
-					"Usage: flyspd <speed>"));
+	public void processCommand(ICommandSender icommandsender, String[] astring)
+	{
+		if (astring.length == 0)
+		{
+			icommandsender.addChatMessage(new ChatComponentText("Usage: flyspd <speed>"));
 			return;
 		}
 
-		String oldspd = String
-				.valueOf(Minecraft.getMinecraft().thePlayer.capabilities
-						.getFlySpeed());
-		Minecraft.getMinecraft().thePlayer.capabilities.setFlySpeed(Float
-				.parseFloat(astring[0]));
-		icommandsender.addChatMessage(new ChatComponentText(
-				"Changed flight speed from " + oldspd + " to " + astring[0]
-						+ "."));
+		String oldspd = String.valueOf(Minecraft.getMinecraft().thePlayer.capabilities.getFlySpeed());
+		Minecraft.getMinecraft().thePlayer.capabilities.setFlySpeed(Float.parseFloat(astring[0]));
+		icommandsender.addChatMessage(new ChatComponentText("Changed flight speed from " + oldspd + " to " + astring[0] + "."));
 
 	}
 
 	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender) {
+	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
+	{
 		return true;
 	}
 
 	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender,
-			String[] astring) {
+	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
+	{
 		return null;
 	}
 
 	@Override
-	public boolean isUsernameIndex(String[] astring, int i) {
+	public boolean isUsernameIndex(String[] astring, int i)
+	{
 		return false;
 	}
 
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Object o)
+	{
 		return 0;
 	}
 }
