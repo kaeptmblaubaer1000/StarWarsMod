@@ -31,8 +31,7 @@ public class BiomeKashyyyk extends BiomeGenBase
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.dirt;
 
-		this.theBiomeDecorator = this.createBiomeDecorator();
-		this.theBiomeDecorator.treesPerChunk = 10;
+		this.theBiomeDecorator.treesPerChunk = 6;
 	}
 
 	@Override

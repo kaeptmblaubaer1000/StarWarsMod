@@ -46,17 +46,9 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	public void updateRiderPosition()
 	{
-		super.updateRiderPosition();
-
-		float f = MathHelper.sin(this.renderYawOffset * (float)Math.PI / 180.0F);
-		float f1 = MathHelper.cos(this.renderYawOffset * (float)Math.PI / 180.0F);
-		float f2 = 0.5F;
-		float f3 = 1F;
-		this.riddenByEntity.setPosition(this.posX + (double)(f2 * f), this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + (double)f3, this.posZ - (double)(f2 * f1));
-
-		if (this.riddenByEntity instanceof EntityLivingBase)
+		if (this.riddenByEntity != null)
 		{
-			((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
+			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.1F, this.posZ);
 		}
 	}
 
