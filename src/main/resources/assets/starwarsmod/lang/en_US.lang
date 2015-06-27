@@ -1,28 +1,56 @@
-// items
+// Items
 item.starwarsmod.gaffiStick.name=Gaderffii (Gaffi Stick)
 item.starwarsmod.lightsaber.name=Lightsaber
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy
 item.starwarsmod.plasmaEmitter.name=Plasma Emitter
-item.starwarsmod.containmentField.name=Plasma Containment Field
+item.starwarsmod.containmentField.name=Containment Field
 item.starwarsmod.lightsaberCrystal.name=Lightsaber Crystal
 item.starwarsmod.blasterRifle.name=Blaster Rifle
+item.starwarsmod.banthaHorn.name=Bantha Horn
+item.starwarsmod.ewokSpear.name=Ewok Spear
+item.starwarsmod.chromiumDust.name=Chromium Dust
+item.starwarsmod.titaniumChromiumDust.name=Titanium-Chromium Dust
+item.starwarsmod.titaniumChromiumIngot.name=Titanium-Chromium Ingot
+item.starwarsmod.titaniumDust.name=Titanium Dust
+item.starwarsmod.hyperdriveEngine.name=Hyperdrive Engine
+item.starwarsmod.hyperdriveMotivator.name=Hyperdrive Motivator
+item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
+item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive
+item.starwarsmod.hyperdriveHoth.name=Hoth Hyperdrive
+item.starwarsmod.spawnSpeederBike.name=Speeder Bike
+item.starwarsmod.spawnLandspeeder.name=Landspeeder
+
+// Blocks
+tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
+tile.starwarsmod.chromiumOre.name=Chromium Ore
+tile.starwarsmod.titaniumOre.name=Titanium Ore
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
+item.starwarsmod.endorHelmet.name=Endor Helmet
+item.starwarsmod.endorChestplate.name=Endor Chestplate
+item.starwarsmod.endorLeggings.name=Endor Leggings
+item.starwarsmod.endorBoots.name=Endor Boots
 
-// music discs
+// Music Discs
 item.starwarsmod.musicDisc.name=Music Disc
 item.starwarsmod.musicDiscTheme.desc=Episode IV Theme
 item.starwarsmod.musicDiscThrone.desc=Episode IV Throne Room Theme
 
-// mobs
+// Mobs
 entity.starwarsmod.wookiee.name=Wookiee
 entity.starwarsmod.tusken.name=Tusken Raider
 entity.starwarsmod.jawa.name=Jawa
 entity.starwarsmod.tauntaun.name=Tauntaun
-entity.starwarsmod.astromech.name=Astromech Droid
 entity.starwarsmod.bantha.name=Bantha
+entity.starwarsmod.ewok.name=Ewok
 
-// tabs
+entity.starwarsmod.droidAstromech.name=Astromech Droid
+entity.starwarsmod.droidGonk.name=GNK Power Droid
+
+entity.starwarsmod.speederBike.name=74-Z Speeder Bike
+entity.starwarsmod.landspeeder.name=X-34 Landspeeder
+
+// Tabs
 itemGroup.tabStarWars=Star Wars

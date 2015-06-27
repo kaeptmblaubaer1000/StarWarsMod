@@ -8,6 +8,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderFlat;
 import net.minecraft.world.gen.ChunkProviderGenerate;
@@ -23,7 +24,7 @@ public class WorldProviderTatooine extends WorldProvider
 	public void registerWorldChunkManager()
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
-		this.dimensionId = StarWarsMod.biomeTatooineId;
+		this.dimensionId = StarWarsMod.dimTatooineId;
 	}
 
 	public IChunkProvider createChunkGenerator()
@@ -33,7 +34,11 @@ public class WorldProviderTatooine extends WorldProvider
 
 	public int getAverageGroundLevel()
 	{
-		return 30;
+		return 40;
+	}
+
+	public boolean canRainSnowIce(Chunk chunk) {
+		return false;
 	}
 
 	public String getDimensionName()
@@ -58,7 +63,7 @@ public class WorldProviderTatooine extends WorldProvider
 
 	public ChunkCoordinates getEntrancePortalLocation()
 	{
-		return new ChunkCoordinates(50, 5, 0);
+		return null;
 	}
 
 }

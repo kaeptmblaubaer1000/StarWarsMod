@@ -53,6 +53,7 @@ build/
 eclipse/
 .classpath
 .project
+.metadata/
 
 *.txt
 gradlew

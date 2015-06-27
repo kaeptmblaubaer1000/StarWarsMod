@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.world.TransferDim;
 
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.common.DimensionManager;
 
 public class CommandSWDim implements ICommand
 {
@@ -53,7 +56,7 @@ public class CommandSWDim implements ICommand
 			if (player.dimension != dim)
 			{
 				player.timeUntilPortal = 10;
-				player.mcServer.getConfigurationManager().transferPlayerToDimension(player, dim);
+				new TransferDim(MinecraftServer.getServer().worldServerForDimension(dim)).teleport(player);
 			}
 		}
 		catch (Exception e)

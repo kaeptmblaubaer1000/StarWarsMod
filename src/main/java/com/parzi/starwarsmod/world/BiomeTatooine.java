@@ -5,6 +5,7 @@ import java.util.Random;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTusken;
 
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -20,18 +21,23 @@ public class BiomeTatooine extends BiomeGenBase
 		super(par1);
 		this.heightVariation = 0.001F;
 
+		this.enableRain = false;
+		this.enableSnow = false;
+
 		this.spawnableMonsterList.clear();
-		this.spawnableMonsterList.add(MobJawa.class);
-		this.spawnableMonsterList.add(MobTusken.class);
+		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobJawa.class, 5, 1, 5));
+		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobTusken.class, 1, 2, 4));
 
 		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
 
 		this.setBiomeName("Tatooine");
 
 		this.topBlock = Blocks.sand;
 		this.fillerBlock = Blocks.sandstone;
 
-		this.theBiomeDecorator = new TatooineBiomeDecorator();
+		this.theBiomeDecorator = new BiomeDecoratorTatooine();
 	}
 
 	@Override

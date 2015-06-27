@@ -1,4 +1,30 @@
 {
+    "vehicle.speeder.move": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/speeder/move"
+        ]
+    },
+    "mob.ewok.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/ewok/say1",
+            "mob/ewok/say2"
+        ]
+    },
+    "mob.ewok.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/ewok/hit1",
+            "mob/ewok/hit2"
+        ]
+    },
+    "mob.ewok.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/ewok/die1"
+        ]
+    },
     "mob.wookiee.say": {
         "category": "neutral",
         "sounds": [
@@ -106,6 +132,24 @@
         "category": "neutral",
         "sounds": [
             "mob/jawa/die1"
+        ]
+    },
+    "mob.wampa.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/wampa/say1"
+        ]
+    },
+    "mob.wampa.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/wampa/hit1"
+        ]
+    },
+    "mob.wampa.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/wampa/die1"
         ]
     },
     "item.gaffi.rightclick": {

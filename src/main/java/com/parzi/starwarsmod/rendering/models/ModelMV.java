@@ -14,10 +14,10 @@ public class ModelMV extends ModelBase
 	ModelRenderer controlRod3;
 	ModelRenderer controlRod4;
 	ModelRenderer bodyRod1;
-	ModelRenderer windVaneRod1;
-	ModelRenderer windVane1;
-	ModelRenderer windVaneRod2;
-	ModelRenderer windVane2;
+	public ModelRenderer windVaneRod1;
+	public ModelRenderer windVane1;
+	public ModelRenderer windVaneRod2;
+	public ModelRenderer windVane2;
 	ModelRenderer bodyRodHolder1;
 	ModelRenderer bodyRodHolder2;
 	ModelRenderer bodyRodHolder3;

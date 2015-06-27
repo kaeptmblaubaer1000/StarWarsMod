@@ -47,6 +47,12 @@ public class ArmorJediRobes extends ItemArmor
 	}
 
 	@Override
+	public boolean onDroppedByPlayer(ItemStack stack, EntityPlayer player)
+	{
+		return false;
+	}
+
+	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		itemStack.stackTagCompound = new NBTTagCompound();
@@ -70,11 +76,9 @@ public class ArmorJediRobes extends ItemArmor
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{
-		if (stack.stackTagCompound == null)
-			onCreated(stack, world, player);
+		if (stack.stackTagCompound == null) onCreated(stack, world, player);
 
-		if (world.rand.nextInt(chanceElement) != 0)
-			return;
+		if (world.rand.nextInt(chanceElement) != 0) return;
 
 		if (hasMoved(stack, player))
 		{

@@ -14,6 +14,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.ModelMV;
+import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 public class RenderMV extends TileEntitySpecialRenderer
 {
@@ -35,10 +36,12 @@ public class RenderMV extends TileEntitySpecialRenderer
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale)
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float tickTime)
 	{
 
 		GL11.glPushMatrix();
+		
+		TileEntityMV mv = (TileEntityMV)te;
 
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.2F, (float)z + 0.5F);
 
@@ -49,6 +52,10 @@ public class RenderMV extends TileEntitySpecialRenderer
 		GL11.glPushMatrix();
 		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
+		this.model.windVane1.rotateAngleY = mv.frame / 10;
+		this.model.windVane2.rotateAngleY = mv.frame / 10;
+		this.model.windVaneRod1.rotateAngleY = mv.frame / 10;
+		this.model.windVaneRod2.rotateAngleY = mv.frame / 10;
 		this.model.render((Entity)null, 0, 0, 0, 0, 0, 0.05F);
 
 		GL11.glPopMatrix();

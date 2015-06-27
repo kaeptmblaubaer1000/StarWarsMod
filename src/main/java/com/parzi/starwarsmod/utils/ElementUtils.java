@@ -10,14 +10,10 @@ public class ElementUtils
 	public static int getColorFromElement(String name)
 	{
 		String low = name.toLowerCase();
-		if (low == "flora" || low == "plants")
-			return floraColor;
-		if (low == "fauna" || low == "animals")
-			return faunaColor;
-		if (low == "terra" || low == "earth")
-			return terraColor;
-		if (low == "aqua" || low == "water")
-			return aquaColor;
+		if (low == "flora" || low == "plants") return floraColor;
+		if (low == "fauna" || low == "animals") return faunaColor;
+		if (low == "terra" || low == "earth") return terraColor;
+		if (low == "aqua" || low == "water") return aquaColor;
 		return 0;
 	}
 }

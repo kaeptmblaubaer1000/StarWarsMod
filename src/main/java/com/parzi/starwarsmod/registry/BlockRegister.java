@@ -1,0 +1,31 @@
+package com.parzi.starwarsmod.registry;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.blocks.BlockChromiumOre;
+import com.parzi.starwarsmod.blocks.BlockMV;
+import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
+import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
+import com.parzi.starwarsmod.tileentities.TileEntityMV;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+
+public class BlockRegister
+{
+	public static void registerAll()
+	{
+
+		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
+
+		StarWarsMod.blockMV = new BlockMV();
+		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
+
+		StarWarsMod.chromiumOre = new BlockChromiumOre();
+		GameRegistry.registerBlock(StarWarsMod.chromiumOre, "chromiumOre");
+
+		StarWarsMod.titaniumOre = new BlockTitaniumOre();
+		GameRegistry.registerBlock(StarWarsMod.titaniumOre, "titaniumOre");
+
+		StarWarsMod.titaniumChromiumBlock = new BlockTitaniumChromium();
+		GameRegistry.registerBlock(StarWarsMod.titaniumChromiumBlock, "titaniumChromiumBlock");
+	}
+}

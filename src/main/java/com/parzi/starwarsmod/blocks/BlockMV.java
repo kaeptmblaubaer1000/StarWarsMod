@@ -42,13 +42,13 @@ public class BlockMV extends BlockContainer
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
 		Minecraft.getMinecraft().displayGuiScreen(new MVGUI(x, z));
-		return false;
+		return true;
 	}
 
 	@Override
 	public String getUnlocalizedName()
 	{
-		return StarWarsMod.MODID + "." + "moistureVaporator";
+		return "tile." + StarWarsMod.MODID + "." + "moistureVaporator";
 	}
 
 	@Override

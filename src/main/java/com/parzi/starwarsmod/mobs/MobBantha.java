@@ -97,10 +97,7 @@ public class MobBantha extends EntityHorse
 	{
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
 
-		if (itemstack != null && itemstack.getItem() == Items.spawn_egg)
-		{
-			return false;
-		}
+		if (itemstack != null && itemstack.getItem() == Items.spawn_egg) { return false; }
 
 		return super.interact(p_70085_1_);
 	}

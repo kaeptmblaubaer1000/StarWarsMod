@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,7 +22,7 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class MobTusken extends EntityMob
+public class MobTusken extends EntityMob implements IMob
 {
 	public MobTusken(World par1World)
 	{
@@ -37,9 +38,9 @@ public class MobTusken extends EntityMob
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, false));
+		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
+		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, false));
 
 		this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gaffiStick, 1));
 	}
@@ -50,7 +51,7 @@ public class MobTusken extends EntityMob
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
 	}
 
@@ -82,18 +83,5 @@ public class MobTusken extends EntityMob
 	protected String getDeathSound()
 	{
 		return StarWarsMod.MODID + ":" + "mob.tusken.die";
-	}
-
-	@Override
-	protected Item getDropItem()
-	{
-		switch (this.rand.nextInt(100))
-		{
-			case 36:
-				this.dropItem(StarWarsMod.gaffiStick, 1);
-				break;
-		}
-
-		return Item.getItemFromBlock(Blocks.sand);
 	}
 }

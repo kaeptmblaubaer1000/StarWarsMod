@@ -49,15 +49,13 @@ public class JediGUI extends GuiScreen
 		switch (guiButton.id)
 		{
 			case 1:
-				if (spinnerIndex > 0)
-					spinnerIndex--;
+				if (spinnerIndex > 0) spinnerIndex--;
 				break;
 			case 2:
 				buy();
 				break;
 			case 3:
-				if (spinnerIndex < spinner.length - 1)
-					spinnerIndex++;
+				if (spinnerIndex < spinner.length - 1) spinnerIndex++;
 				break;
 		}
 		// System.out.println("clicked " + guiButton.displayString);

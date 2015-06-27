@@ -7,12 +7,13 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class MobJawa extends EntityMob
+public class MobJawa extends EntityMob implements IMob
 {
 	public MobJawa(World par1World)
 	{
@@ -65,11 +66,11 @@ public class MobJawa extends EntityMob
 	}
 
 	@Override
-	protected void dropRareDrop(int par1)
+	public void dropFewItems(boolean par1, int par2)
 	{
-		switch (this.rand.nextInt(100))
+		switch (this.rand.nextInt(10))
 		{
-			case 35:
+			case 0:
 				this.dropItem(StarWarsMod.hiltMetelCompound, 1);
 				break;
 		}

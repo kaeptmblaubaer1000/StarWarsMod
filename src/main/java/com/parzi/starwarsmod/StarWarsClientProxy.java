@@ -8,29 +8,37 @@ import net.minecraftforge.common.MinecraftForge;
 import com.parzi.starwarsmod.entities.EntityBlasterBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
+import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.mobs.MobGNK;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
+import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.rendering.RenderBantha;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech;
+import com.parzi.starwarsmod.rendering.RenderEwok;
 import com.parzi.starwarsmod.rendering.RenderGNK;
 import com.parzi.starwarsmod.rendering.RenderJawa;
 import com.parzi.starwarsmod.rendering.RenderMV;
-import com.parzi.starwarsmod.rendering.RenderSpeederBike;
 import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
+import com.parzi.starwarsmod.rendering.RenderWampa;
 import com.parzi.starwarsmod.rendering.RenderWookiee;
 import com.parzi.starwarsmod.rendering.models.ModelBantha;
 import com.parzi.starwarsmod.rendering.models.ModelDroidAstromech;
 import com.parzi.starwarsmod.rendering.models.ModelGNK;
-import com.parzi.starwarsmod.rendering.models.ModelJawa;
-import com.parzi.starwarsmod.rendering.models.ModelSpeederBike;
+import com.parzi.starwarsmod.rendering.models.ModelSmallBiped;
 import com.parzi.starwarsmod.rendering.models.ModelTauntaun;
+import com.parzi.starwarsmod.rendering.models.ModelWampa;
 import com.parzi.starwarsmod.rendering.models.ModelWookiee;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelLandspeeder;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
+import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
+import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
+import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -44,14 +52,17 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 	{
 		/* Mobs */
 		RenderingRegistry.registerEntityRenderingHandler(MobWookiee.class, new RenderWookiee(new ModelWookiee(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelJawa(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelSmallBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobEwok.class, new RenderEwok(new ModelSmallBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTauntaun.class, new RenderTauntaun(new ModelTauntaun(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBantha.class, new RenderBantha(new ModelBantha(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobWampa.class, new RenderWampa(new ModelWampa(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTusken.class, new RenderTusken(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobGNK.class, new RenderGNK(new ModelGNK(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
 
 		/* Entities */
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBolt.class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
