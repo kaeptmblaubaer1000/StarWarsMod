@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockTitaniumChromium extends Block
 {
@@ -19,7 +20,7 @@ public class BlockTitaniumChromium extends Block
 		setBlockTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHardness(4F);
-		setHarvestLevel("pickaxe", 3);
+		setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		setStepSound(soundTypeStone);
 	}
 }

@@ -17,6 +17,7 @@ public class ItemSpawnSpeederBike extends Item
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
+		maxStackSize = 1;
 	}
 
 	@Override

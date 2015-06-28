@@ -18,6 +18,7 @@ import com.parzi.starwarsmod.items.crafting.ItemTitaniumChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumChromiumIngot;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumDust;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveEarth;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveEndor;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveHoth;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveKashyyyk;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveTatooine;
@@ -127,5 +128,8 @@ public class ItemRegister
 
 		StarWarsMod.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveYavin4, "hyperdriveYavinFour");
+
+		StarWarsMod.hyperdriveEndor = new ItemHyperdriveEndor();
+		GameRegistry.registerItem(StarWarsMod.hyperdriveEndor, "hyperdriveEndor");
 	}
 }

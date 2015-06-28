@@ -18,7 +18,7 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberCrystal), " D ", "DED", " D ", 'D', Items.diamond, 'E', Items.emerald);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N', Items.nether_star, 'R', Blocks.beacon, 'G', Blocks.stained_glass_pane);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.containmentField, 1), "AIA", "IEI", "AIA", 'A', StarWarsMod.titaniumChromiumIngot, 'I', Items.iron_ingot, 'E', Items.ender_eye);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', StarWarsMod.lightsaberCrystal, 'P', StarWarsMod.plasmaEmitter);
+		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', StarWarsMod.lightsaberCrystal, 'P', StarWarsMod.plasmaEmitter);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blasterRifle), "IIO", " GW", "  W", 'I', Items.iron_ingot, 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'W', Blocks.log);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', Blocks.wool);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.titaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.titaniumChromiumIngot);
@@ -31,5 +31,7 @@ public class RecipeRegister
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), StarWarsMod.hyperdriveEngine, Blocks.sand);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveHoth), StarWarsMod.hyperdriveEngine, Items.snowball);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveKashyyyk), StarWarsMod.hyperdriveEngine, Blocks.leaves);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveYavin4), StarWarsMod.hyperdriveEngine, Blocks.log);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveEndor), StarWarsMod.hyperdriveEngine, Blocks.dirt);
 	}
 }

@@ -25,6 +25,7 @@ public class BlockMV extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(StarWarsMod.MODID + "." + "moistureVaporator");
 		this.setBlockBounds(0F, 0F, 0F, 1F, 4F, 1F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
 	}
@@ -46,12 +47,6 @@ public class BlockMV extends BlockContainer
 	{
 		Minecraft.getMinecraft().displayGuiScreen(new MVGUI(x, z));
 		return true;
-	}
-
-	@Override
-	public String getUnlocalizedName()
-	{
-		return "tile." + StarWarsMod.MODID + "." + "moistureVaporator";
 	}
 
 	@Override

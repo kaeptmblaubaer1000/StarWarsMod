@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
@@ -18,6 +19,7 @@ import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
+import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
@@ -38,6 +40,8 @@ public class StarWarsMod
 	/* Mod Details */
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.0";
+	public static Configuration config;
+
 	public static Random rngChromium = new Random();
 	public static Random rngTitanium = new Random();
 
@@ -84,6 +88,7 @@ public class StarWarsMod
 	public static Item hyperdriveHoth;
 	public static Item hyperdriveKashyyyk;
 	public static Item hyperdriveYavin4;
+	public static Item hyperdriveEndor;
 
 	public static Item spawnSpeederBike;
 	public static Item spawnLandspeeder;
@@ -101,26 +106,34 @@ public class StarWarsMod
 	public static BiomeGenBase biomeHoth;
 	public static BiomeGenBase biomeKashyyyk;
 	public static BiomeGenBase biomeYavin4;
+	public static BiomeGenBase biomeEndor;
 	public static int dimTatooineId;
 	public static int dimHothId;
 	public static int dimKashyyykId;
 	public static int dimYavin4Id;
+	public static int dimEndorId;
 
-	/* Tile Entities */
+	/* Config */
+	public static boolean enableFlyCommand;
+	public static boolean enableDimCommand;
+
+	public static boolean enableLightsaber;
+	public static int lightsaberDamage;
 
 	/* Blocks */
 	public static Block blockMV;
 	public static Block chromiumOre;
 	public static Block titaniumOre;
 	public static Block titaniumChromiumBlock;
+	public static Block endorBaseWall;
 
 	/* Tool Materials */
-	public static ToolMaterial gaffiMat = EnumHelper.addToolMaterial("gaffiMat", 3, 10240, 1f, 3f, 8);
-	public static ToolMaterial plasmaMat = EnumHelper.addToolMaterial("plasmaMat", 3, -1, 10f, 26f, 8);
+	public static ToolMaterial gaffiMat;
+	public static ToolMaterial plasmaMat;
 
 	/* Armor Materials */
-	public static ArmorMaterial jediRobesMat = EnumHelper.addArmorMaterial("jediRobesMat", -1, new int[] { 0, 1, 0, 0 }, 0);
-	public static ArmorMaterial endorArmorMat = EnumHelper.addArmorMaterial("endorArmorMat", 700, new int[] { 1, 3, 2, 1 }, 4);
+	public static ArmorMaterial jediRobesMat;
+	public static ArmorMaterial endorArmorMat;
 
 	/* Events */
 	@EventHandler
@@ -130,6 +143,23 @@ public class StarWarsMod
 		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class, 0, Side.SERVER);
 		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
 		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
+
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+
+		this.dimTatooineId = config.get("dimensions", "tatooineId", 156).getInt();
+		this.dimHothId = config.get("dimensions", "hothId", 155).getInt();
+		this.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
+		this.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
+		this.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
+
+		this.enableFlyCommand = config.get("commands", "flyspd", false).getBoolean();
+		this.enableDimCommand = config.get("commands", "chgdim", false).getBoolean();
+
+		this.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
+		this.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
+
+		config.save();
 	}
 
 	@EventHandler
@@ -141,6 +171,8 @@ public class StarWarsMod
 
 		/* Creative Tabs */
 		StarWarsMod.StarWarsTab = new StarWarsTab();
+
+		MaterialRegister.registerAll();
 
 		ItemRegister.registerAll();
 
@@ -160,7 +192,7 @@ public class StarWarsMod
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		event.registerServerCommand(new CommandFlySpeed());
-		//event.registerServerCommand(new CommandSWDim());
+		if (this.enableFlyCommand) event.registerServerCommand(new CommandFlySpeed());
+		if (this.enableDimCommand) event.registerServerCommand(new CommandSWDim());
 	}
 }

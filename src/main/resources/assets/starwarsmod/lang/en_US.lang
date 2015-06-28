@@ -27,6 +27,7 @@ item.starwarsmod.spawnLandspeeder.name=Landspeeder
 tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
+tile.starwarsmod.endorBaseWall.name=Endor Base Wall
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
