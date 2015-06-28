@@ -27,7 +27,9 @@ public class RecipeRegister
 
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumDust, 1), StarWarsMod.titaniumDust, StarWarsMod.chromiumDust);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumIngot, 9), StarWarsMod.titaniumChromiumBlock);
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), StarWarsMod.hyperdriveEngine, Blocks.sand);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveEarth), StarWarsMod.hyperdriveEngine, Blocks.grass);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), StarWarsMod.hyperdriveEngine, Blocks.sand);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveHoth), StarWarsMod.hyperdriveEngine, Items.snowball);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveKashyyyk), StarWarsMod.hyperdriveEngine, Blocks.leaves);
 	}
 }

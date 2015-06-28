@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.world;
+package com.parzi.starwarsmod.world.provider;
 
 import java.util.Random;
 

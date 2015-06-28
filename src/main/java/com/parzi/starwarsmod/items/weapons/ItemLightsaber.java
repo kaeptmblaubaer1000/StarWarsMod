@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.items.weapons;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -35,5 +36,11 @@ public class ItemLightsaber extends ItemSword
 	{
 		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
+	}
+
+	@Override
+	public boolean canHarvestBlock(Block block, ItemStack stack)
+	{
+		return true;
 	}
 }

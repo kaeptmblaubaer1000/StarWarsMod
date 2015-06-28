@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.world;
+package com.parzi.starwarsmod.world.provider;
 
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
@@ -9,13 +9,13 @@ import net.minecraft.world.gen.ChunkProviderGenerate;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class WorldProviderKashyyyk extends WorldProvider
+public class WorldProviderHoth extends WorldProvider
 {
 
 	public void registerWorldChunkManager()
 	{
-		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeKashyyyk, 0);
-		this.dimensionId = StarWarsMod.dimKashyyykId;
+		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeHoth, 0);
+		this.dimensionId = StarWarsMod.dimHothId;
 	}
 
 	public IChunkProvider createChunkGenerator()
@@ -31,7 +31,7 @@ public class WorldProviderKashyyyk extends WorldProvider
 
 	public String getDimensionName()
 	{
-		return "Kashyyyk";
+		return "Hoth";
 	}
 
 	public boolean canRespawnHere()

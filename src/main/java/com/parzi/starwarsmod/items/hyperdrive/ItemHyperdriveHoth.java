@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.items;
+package com.parzi.starwarsmod.items.hyperdrive;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +12,11 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
 import com.parzi.starwarsmod.world.TransferDim;
 
-public class ItemHyperdriveEarth extends Item
+public class ItemHyperdriveHoth extends Item
 {
-	private String name = "hyperdriveEarth";
+	private String name = "hyperdriveHoth";
 
-	public ItemHyperdriveEarth()
+	public ItemHyperdriveHoth()
 	{
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
@@ -26,10 +26,11 @@ public class ItemHyperdriveEarth extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (player.isSneaking() && player.dimension != 0)
+		System.out.println(player.getPortalCooldown());
+		if (player.isSneaking() && player.dimension != StarWarsMod.dimHothId)
 		{
-			player.timeUntilPortal = 10;
-			StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, 0));
+			player.timeUntilPortal = 20;
+			StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimHothId));
 		}
 		return stack;
 	}

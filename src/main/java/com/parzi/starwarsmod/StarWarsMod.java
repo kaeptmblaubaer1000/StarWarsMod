@@ -83,6 +83,7 @@ public class StarWarsMod
 	public static Item hyperdriveTatooine;
 	public static Item hyperdriveHoth;
 	public static Item hyperdriveKashyyyk;
+	public static Item hyperdriveYavin4;
 
 	public static Item spawnSpeederBike;
 	public static Item spawnLandspeeder;
@@ -99,9 +100,11 @@ public class StarWarsMod
 	public static BiomeGenBase biomeTatooine;
 	public static BiomeGenBase biomeHoth;
 	public static BiomeGenBase biomeKashyyyk;
+	public static BiomeGenBase biomeYavin4;
 	public static int dimTatooineId;
 	public static int dimHothId;
 	public static int dimKashyyykId;
+	public static int dimYavin4Id;
 
 	/* Tile Entities */
 

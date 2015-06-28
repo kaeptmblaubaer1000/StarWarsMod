@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.world;
+package com.parzi.starwarsmod.world.biome;
 
 import java.util.Random;
 
@@ -29,23 +29,7 @@ public class BiomeHoth extends BiomeGenBase
 
 		this.topBlock = Blocks.snow;
 		this.fillerBlock = Blocks.stone;
-		
+
 		this.temperature = 0.0F;
-
-		this.theBiomeDecorator = new BiomeDecoratorHoth();
-	}
-
-	@Override
-	public void decorate(World par1World, Random par2Random, int par3, int par4)
-	{
-		super.decorate(par1World, par2Random, par3, par4);
-
-		if (par2Random.nextInt(30) == 0)
-		{
-			int k = par3 + par2Random.nextInt(16) + 8;
-			int l = par4 + par2Random.nextInt(16) + 8;
-			//WorldGenMV worldGenMV = new WorldGenMV();
-			//worldGenMV.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 2, l);
-		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.world;
+package com.parzi.starwarsmod.world.biome;
 
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CLAY;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
@@ -24,7 +24,7 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class BiomeDecoratorHoth extends BiomeDecorator
+public class BiomeDecoratorTatooine extends BiomeDecorator
 {
 	/** The world the BiomeDecorator is currently decorating */
 	public World currentWorld;
@@ -65,7 +65,7 @@ public class BiomeDecoratorHoth extends BiomeDecorator
 	 */
 	public int clayPerChunk;
 
-	public BiomeDecoratorHoth()
+	public BiomeDecoratorTatooine()
 	{
 		this.sandGen = new WorldGenSand(Blocks.sand, 7);
 		this.gravelAsSandGen = new WorldGenSand(Blocks.gravel, 6);

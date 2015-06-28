@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.items;
+package com.parzi.starwarsmod.items.crafting;
 
 import net.minecraft.item.Item;
 

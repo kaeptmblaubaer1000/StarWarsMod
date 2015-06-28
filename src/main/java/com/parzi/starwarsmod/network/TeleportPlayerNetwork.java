@@ -54,6 +54,7 @@ public class TeleportPlayerNetwork implements IMessage
 		@Override
 		public IMessage onMessage(TeleportPlayerNetwork message, MessageContext ctx)
 		{
+			System.out.println("Teleporting player " + message.player + " to dimension ID " + message.newDim);
 			new TransferDim(MinecraftServer.getServer().worldServerForDimension(message.newDim)).teleport(MinecraftServer.getServer().worldServerForDimension(message.oldDim).getPlayerEntityByName(message.player));
 			return null; // no response in this case
 		}

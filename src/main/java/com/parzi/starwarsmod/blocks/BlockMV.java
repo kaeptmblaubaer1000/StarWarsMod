@@ -15,6 +15,8 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
 import com.parzi.starwarsmod.rendering.gui.MVGUI;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
+import com.parzi.starwarsmod.utils.HarvestLevel;
+import com.parzi.starwarsmod.utils.ItemUtils;
 
 public class BlockMV extends BlockContainer
 {
@@ -24,6 +26,7 @@ public class BlockMV extends BlockContainer
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setBlockBounds(0F, 0F, 0F, 1F, 4F, 1F);
+		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
 	}
 
 	@Override

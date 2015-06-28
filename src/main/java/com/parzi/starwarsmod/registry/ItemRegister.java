@@ -5,22 +5,23 @@ import com.parzi.starwarsmod.armor.ArmorEndor;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
-import com.parzi.starwarsmod.items.ItemHyperdriveEarth;
-import com.parzi.starwarsmod.items.ItemHyperdriveEngine;
-import com.parzi.starwarsmod.items.ItemHyperdriveHoth;
-import com.parzi.starwarsmod.items.ItemHyperdriveKashyyyk;
-import com.parzi.starwarsmod.items.ItemHyperdriveMotivator;
-import com.parzi.starwarsmod.items.ItemHyperdriveTatooine;
 import com.parzi.starwarsmod.items.ItemMusicDisc;
 import com.parzi.starwarsmod.items.crafting.ItemChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemContainmentField;
 import com.parzi.starwarsmod.items.crafting.ItemHiltMetalAlloy;
 import com.parzi.starwarsmod.items.crafting.ItemHiltMetalCompound;
+import com.parzi.starwarsmod.items.crafting.ItemHyperdriveEngine;
+import com.parzi.starwarsmod.items.crafting.ItemHyperdriveMotivator;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.crafting.ItemPlasmaEmitter;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumChromiumIngot;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumDust;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveEarth;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveHoth;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveKashyyyk;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveTatooine;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveYavinFour;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemEwokSpear;
 import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
@@ -123,5 +124,8 @@ public class ItemRegister
 
 		StarWarsMod.spawnLandspeeder = new ItemSpawnLandspeeder();
 		GameRegistry.registerItem(StarWarsMod.spawnLandspeeder, "spawnLandspeeder");
+
+		StarWarsMod.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
+		GameRegistry.registerItem(StarWarsMod.hyperdriveYavin4, "hyperdriveYavinFour");
 	}
 }
