@@ -2,11 +2,13 @@ package com.parzi.starwarsmod.registry;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
+import com.parzi.starwarsmod.blocks.BlockDSTurret;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockMV;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
 import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
 import com.parzi.starwarsmod.items.ItemEndorBaseWall;
+import com.parzi.starwarsmod.tileentities.TileEntityDSTurret;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -20,7 +22,6 @@ public class BlockRegister
 
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
-
 		StarWarsMod.chromiumOre = new BlockChromiumOre();
 		GameRegistry.registerBlock(StarWarsMod.chromiumOre, "chromiumOre");
 

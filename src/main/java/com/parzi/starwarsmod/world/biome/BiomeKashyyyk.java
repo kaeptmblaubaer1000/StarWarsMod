@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 
 import com.parzi.starwarsmod.mobs.MobWookiee;
+import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
 
 public class BiomeKashyyyk extends BiomeGenBase
 {
@@ -37,6 +38,16 @@ public class BiomeKashyyyk extends BiomeGenBase
 	@Override
 	public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
 	{
-		return new WorldGenMegaJungle(false, 10, 20, 3, 3);
+		return new WorldGenMegaKashyyykJungle(false, 10, 20, 3, 3);
+	}
+
+	@Override
+	public int getBiomeFoliageColor(int p1, int p2, int p3) {
+		return 0x005900;
+	}
+
+	@Override
+	public int getBiomeGrassColor(int p1, int p2, int p3) {
+		return 0x198C19;
 	}
 }

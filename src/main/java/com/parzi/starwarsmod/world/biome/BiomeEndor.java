@@ -13,6 +13,10 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 
 import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorBase;
+import com.parzi.starwarsmod.world.gen.WorldGenEndorTree1;
+import com.parzi.starwarsmod.world.gen.WorldGenEndorTree2;
+import com.parzi.starwarsmod.world.gen.WorldGenEndorTree3;
+import com.parzi.starwarsmod.world.gen.WorldGenEndorTree4;
 
 public class BiomeEndor extends BiomeGenBase
 {
@@ -30,12 +34,14 @@ public class BiomeEndor extends BiomeGenBase
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 
+		this.theBiomeDecorator = new BiomeDecoratorEndor();
+
 		this.setBiomeName("Endor");
 
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.dirt;
 
-		this.theBiomeDecorator.treesPerChunk = 6;
+		this.theBiomeDecorator.treesPerChunk = 2;
 	}
 
 	@Override
@@ -67,5 +73,34 @@ public class BiomeEndor extends BiomeGenBase
 			WorldGenEndorBase worldGenBase = new WorldGenEndorBase();
 			worldGenBase.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
+
+		int k = par3 + par2Random.nextInt(16) + 8;
+		int l = par4 + par2Random.nextInt(16) + 8;
+		switch (par2Random.nextInt(4)) {
+			case 0:
+				new WorldGenEndorTree1().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+				break;
+			case 1:
+				new WorldGenEndorTree2().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+				break;
+			case 2:
+				new WorldGenEndorTree3().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+				break;
+			case 3:
+				new WorldGenEndorTree4().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+				break;
+		}
+	}
+
+	@Override
+	public int getBiomeFoliageColor(int p1, int p2, int p3)
+	{
+		return 0x287A28;
+	}
+
+	@Override
+	public int getBiomeGrassColor(int p1, int p2, int p3)
+	{
+		return 0x246D24;
 	}
 }

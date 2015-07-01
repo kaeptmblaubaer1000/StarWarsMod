@@ -107,11 +107,13 @@ public class StarWarsMod
 	public static BiomeGenBase biomeKashyyyk;
 	public static BiomeGenBase biomeYavin4;
 	public static BiomeGenBase biomeEndor;
+	public static BiomeGenBase biomeEndorPlains;
 	public static int dimTatooineId;
 	public static int dimHothId;
 	public static int dimKashyyykId;
 	public static int dimYavin4Id;
 	public static int dimEndorId;
+	public static int biomeEndorPlainsId;
 
 	/* Config */
 	public static boolean enableFlyCommand;
@@ -152,6 +154,7 @@ public class StarWarsMod
 		this.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
 		this.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
 		this.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
+		this.biomeEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
 
 		this.enableFlyCommand = config.get("commands", "flyspd", false).getBoolean();
 		this.enableDimCommand = config.get("commands", "chgdim", false).getBoolean();

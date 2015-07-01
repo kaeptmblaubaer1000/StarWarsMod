@@ -37,7 +37,7 @@ public class BiomeYavinFour extends BiomeGenBase
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.stone;
 
-		this.theBiomeDecorator.treesPerChunk = 8;
+		this.theBiomeDecorator.treesPerChunk = 4;
 	}
 
 	@Override

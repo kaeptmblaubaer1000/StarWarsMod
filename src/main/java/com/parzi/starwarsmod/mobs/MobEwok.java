@@ -25,7 +25,7 @@ public class MobEwok extends EntityLiving implements IAnimals
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 
-		if (this.rand.nextInt(3) == 0)
+		if (this.rand.nextInt(3) == 0 || true)
 		{
 			this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.ewokSpear, 1));
 		}

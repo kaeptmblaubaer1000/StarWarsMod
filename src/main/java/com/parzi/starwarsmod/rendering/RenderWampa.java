@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.ModelWampa;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 
 public class RenderWampa extends RenderLiving
 {

@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.rendering.models;
+package com.parzi.starwarsmod.rendering.models.mobs;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

@@ -17,6 +17,7 @@ import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.rendering.RenderBantha;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
+import com.parzi.starwarsmod.rendering.RenderDSTurret;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech;
 import com.parzi.starwarsmod.rendering.RenderEwok;
 import com.parzi.starwarsmod.rendering.RenderGNK;
@@ -26,13 +27,14 @@ import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
 import com.parzi.starwarsmod.rendering.RenderWampa;
 import com.parzi.starwarsmod.rendering.RenderWookiee;
-import com.parzi.starwarsmod.rendering.models.ModelBantha;
-import com.parzi.starwarsmod.rendering.models.ModelDroidAstromech;
-import com.parzi.starwarsmod.rendering.models.ModelGNK;
-import com.parzi.starwarsmod.rendering.models.ModelSmallBiped;
-import com.parzi.starwarsmod.rendering.models.ModelTauntaun;
-import com.parzi.starwarsmod.rendering.models.ModelWampa;
-import com.parzi.starwarsmod.rendering.models.ModelWookiee;
+import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidAstromech;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelGNK;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelSmallBiped;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelTauntaun;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelWookiee;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelLandspeeder;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
@@ -40,6 +42,7 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -63,6 +66,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
+
+		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 
 		/* Entities */
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBolt.class, new RenderBlasterBolt(StarWarsMod.blasterBolt));

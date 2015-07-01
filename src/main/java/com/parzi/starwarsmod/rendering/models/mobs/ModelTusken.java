@@ -1,11 +1,11 @@
-package com.parzi.starwarsmod.rendering.models;
+package com.parzi.starwarsmod.rendering.models.mobs;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class ModelSmallBiped extends ModelBase
+public class ModelTusken extends ModelBase
 {
 	// fields
 	ModelRenderer head;
@@ -14,46 +14,46 @@ public class ModelSmallBiped extends ModelBase
 	ModelRenderer leftarm;
 	ModelRenderer rightleg;
 	ModelRenderer leftleg;
-	float animScale = 1.0f;
+	private static float animScale = 1;
 
-	public ModelSmallBiped()
+	public ModelTusken()
 	{
 		textureWidth = 64;
 		textureHeight = 32;
 
 		head = new ModelRenderer(this, 0, 0);
-		head.addBox(-4F, -8F, -4F, 6, 6, 7);
-		head.setRotationPoint(1F, 10F, 0F);
+		head.addBox(-4F, -8F, -4F, 8, 8, 8);
+		head.setRotationPoint(0F, 0F, 0F);
 		head.setTextureSize(64, 32);
 		head.mirror = true;
 		setRotation(head, 0F, 0F, 0F);
 		body = new ModelRenderer(this, 16, 16);
-		body.addBox(-4F, 0F, -2F, 6, 8, 4);
-		body.setRotationPoint(1F, 8F, 0F);
+		body.addBox(-4F, 0F, -2F, 8, 12, 4);
+		body.setRotationPoint(0F, 0F, 0F);
 		body.setTextureSize(64, 32);
 		body.mirror = true;
 		setRotation(body, 0F, 0F, 0F);
 		rightarm = new ModelRenderer(this, 40, 16);
-		rightarm.addBox(-3F, -2F, -2F, 3, 9, 4);
-		rightarm.setRotationPoint(-3F, 10F, 0F);
+		rightarm.addBox(-3F, -2F, -2F, 4, 12, 4);
+		rightarm.setRotationPoint(-5F, 2F, 0F);
 		rightarm.setTextureSize(64, 32);
 		rightarm.mirror = true;
 		setRotation(rightarm, 0F, 0F, 0F);
 		leftarm = new ModelRenderer(this, 40, 16);
-		leftarm.addBox(-1F, -2F, -2F, 3, 9, 4);
-		leftarm.setRotationPoint(4F, 10F, 0F);
+		leftarm.addBox(-1F, -2F, -2F, 4, 12, 4);
+		leftarm.setRotationPoint(5F, 2F, 0F);
 		leftarm.setTextureSize(64, 32);
 		leftarm.mirror = true;
 		setRotation(leftarm, 0F, 0F, 0F);
 		rightleg = new ModelRenderer(this, 0, 16);
-		rightleg.addBox(-2F, 0F, -2F, 3, 8, 4);
-		rightleg.setRotationPoint(-1F, 16F, 0F);
+		rightleg.addBox(-2F, 0F, -2F, 4, 12, 4);
+		rightleg.setRotationPoint(-2F, 12F, 0F);
 		rightleg.setTextureSize(64, 32);
 		rightleg.mirror = true;
 		setRotation(rightleg, 0F, 0F, 0F);
 		leftleg = new ModelRenderer(this, 0, 16);
-		leftleg.addBox(-2F, 0F, -2F, 3, 8, 4);
-		leftleg.setRotationPoint(2F, 16F, 0F);
+		leftleg.addBox(-2F, 0F, -2F, 4, 12, 4);
+		leftleg.setRotationPoint(2F, 12F, 0F);
 		leftleg.setTextureSize(64, 32);
 		leftleg.mirror = true;
 		setRotation(leftleg, 0F, 0F, 0F);

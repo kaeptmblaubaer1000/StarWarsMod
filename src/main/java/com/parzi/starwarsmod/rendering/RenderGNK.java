@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.ModelGNK;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelGNK;
 
 public class RenderGNK extends RenderLiving
 {

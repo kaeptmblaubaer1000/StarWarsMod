@@ -14,6 +14,7 @@ import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 public class EntityRegister
 {
@@ -32,6 +33,8 @@ public class EntityRegister
 
 		EntityUtils.registerMob(VehicSpeederBike.class, "speederBike", 0x001F00, 0x003F00);
 		EntityUtils.registerMob(VehicLandspeeder.class, "landspeeder", 0x1F0000, 0x3F0000);
+
+		EntityUtils.registerMob(WeaponDSTurret.class, "dsTurret", 0x000000, 0x000000);
 
 		EntityUtils.registerEntity(EntityBlasterBolt.class, "blasterBolt");
 	}

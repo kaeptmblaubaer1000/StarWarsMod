@@ -5,6 +5,7 @@ import net.minecraftforge.common.DimensionManager;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.world.OreGenerator;
 import com.parzi.starwarsmod.world.biome.BiomeEndor;
+import com.parzi.starwarsmod.world.biome.BiomeEndorPlains;
 import com.parzi.starwarsmod.world.biome.BiomeHoth;
 import com.parzi.starwarsmod.world.biome.BiomeKashyyyk;
 import com.parzi.starwarsmod.world.biome.BiomeTatooine;
@@ -30,6 +31,7 @@ public class WorldRegister
 		StarWarsMod.biomeYavin4 = new BiomeYavinFour(StarWarsMod.dimYavin4Id);
 
 		StarWarsMod.biomeEndor = new BiomeEndor(StarWarsMod.dimEndorId);
+		StarWarsMod.biomeEndorPlains = new BiomeEndorPlains(StarWarsMod.biomeEndorPlainsId);
 
 		DimensionManager.registerProviderType(StarWarsMod.dimTatooineId, WorldProviderTatooine.class, false);
 		DimensionManager.registerDimension(StarWarsMod.dimTatooineId, StarWarsMod.dimTatooineId);

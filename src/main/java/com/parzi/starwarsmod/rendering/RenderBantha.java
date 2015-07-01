@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.ModelBantha;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 
 public class RenderBantha extends RenderCow
 {
