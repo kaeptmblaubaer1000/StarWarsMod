@@ -14,23 +14,23 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBlasterRifle extends Item
+public class ItemBlasterPistol extends Item
 {
-	private String name = "blasterRifle";
+	private String name = "blasterPistol";
 	private int timeSinceLastShot = 0;
-	private int timeToRecharge = 8;
+	private int timeToRecharge = 6;
 
-	private String[] versions = { "A280", "Esb", "Ionization", "Cycler", "Stormtrooper" };
+	private String[] versions = { "Dl44", "Dl18", "Esb11" };
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	public ItemBlasterRifle()
+	public ItemBlasterPistol()
 	{
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHasSubtypes(true);
@@ -102,7 +102,7 @@ public class ItemBlasterRifle extends Item
 	{
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
+			par2World.spawnEntityInWorld(new EntityBlasterPistolBolt(par2World, entityPlayer));
 			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
 		}
 

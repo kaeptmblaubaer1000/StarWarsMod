@@ -14,8 +14,6 @@ public class VehicLandspeeder extends VehicleLandBase
 		this.setSize(1, 1);
 
 		this.vehicYOffset = 0.4F;
-		this.vehicXOffset = -0.2F;
-		this.vehicZOffset = -0.1F;
 
 		this.moveModifier = 2.5F;
 
@@ -26,6 +24,12 @@ public class VehicLandspeeder extends VehicleLandBase
 	public String getMovingSound()
 	{
 		return "vehicle.landspeeder.move";
+	}
+
+	@Override
+	public void dropFewItems(boolean par1, int par2)
+	{
+		this.dropItem(StarWarsMod.spawnLandspeeder, 1);
 	}
 
 	@Override

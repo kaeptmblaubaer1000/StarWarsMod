@@ -10,12 +10,19 @@ public class StarWarsTab extends CreativeTabs
 	public StarWarsTab()
 	{
 		super("tabStarWars");
+		this.setBackgroundImageName("item_search.png");
+	}
+
+	@Override
+	public boolean hasSearchBar()
+	{
+		return true;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return StarWarsMod.gaffiStick;
+		return StarWarsMod.lightsaber;
 	}
 }

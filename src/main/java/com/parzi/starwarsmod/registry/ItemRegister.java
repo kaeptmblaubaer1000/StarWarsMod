@@ -3,8 +3,10 @@ package com.parzi.starwarsmod.registry;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorEndor;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
+import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
+import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
 import com.parzi.starwarsmod.items.ItemMusicDisc;
 import com.parzi.starwarsmod.items.crafting.ItemChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemContainmentField;
@@ -23,6 +25,7 @@ import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveHoth;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveKashyyyk;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveTatooine;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveYavinFour;
+import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemEwokSpear;
 import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
@@ -42,8 +45,8 @@ public class ItemRegister
 		StarWarsMod.lightsaber = new ItemLightsaber();
 		GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
 
-		StarWarsMod.blasterRifle = new ItemBlasterRifle();
-		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
+		StarWarsMod.blasterPistol = new ItemBlasterPistol();
+		GameRegistry.registerItem(StarWarsMod.blasterPistol, "blasterPistol");
 
 		StarWarsMod.hiltMetelCompound = new ItemHiltMetalCompound();
 		GameRegistry.registerItem(StarWarsMod.hiltMetelCompound, "hiltMetalCompound");
@@ -62,6 +65,9 @@ public class ItemRegister
 
 		StarWarsMod.blasterBolt = new ItemBlasterBolt();
 		GameRegistry.registerItem(StarWarsMod.blasterBolt, "blasterBolt");
+
+		StarWarsMod.blasterRifleBolt = new ItemBlasterRifleBolt();
+		GameRegistry.registerItem(StarWarsMod.blasterRifleBolt, "blasterRifleBolt");
 
 		StarWarsMod.ewokSpear = new ItemEwokSpear();
 		GameRegistry.registerItem(StarWarsMod.ewokSpear, "ewokSpear");
@@ -83,6 +89,18 @@ public class ItemRegister
 
 		StarWarsMod.endorBoots = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsMod.endorBoots, "endorBoots");
+
+		StarWarsMod.rebelPilotHelmet = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.rebelPilotHelmet, "rebelPilotHelmet");
+
+		StarWarsMod.rebelPilotChest = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.rebelPilotChest, "rebelPilotChest");
+
+		StarWarsMod.rebelPilotLegs = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.rebelPilotLegs, "rebelPilotLegs");
+
+		StarWarsMod.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.rebelPilotBoots, "rebelPilotBoots");
 
 		StarWarsMod.recordTheme = new ItemMusicDisc("Theme");
 		GameRegistry.registerItem(StarWarsMod.recordTheme, "recordTheme");
@@ -131,5 +149,8 @@ public class ItemRegister
 
 		StarWarsMod.hyperdriveEndor = new ItemHyperdriveEndor();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveEndor, "hyperdriveEndor");
+
+		StarWarsMod.blasterRifle = new ItemBlasterRifle();
+		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
 	}
 }

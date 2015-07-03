@@ -64,7 +64,9 @@ public class StarWarsMod
 	/* Items */
 	public static Item gaffiStick;
 	public static Item lightsaber;
+	public static Item blasterPistol;
 	public static Item blasterRifle;
+	public static Item blasterRifleHeavy;
 	public static Item ewokSpear;
 
 	public static Item hiltMetelCompound;
@@ -73,6 +75,7 @@ public class StarWarsMod
 	public static Item containmentField;
 	public static Item lightsaberCrystal;
 	public static Item blasterBolt;
+	public static Item blasterRifleBolt;
 	public static Item banthaHorn;
 
 	public static Item chromiumDust;
@@ -98,6 +101,10 @@ public class StarWarsMod
 	public static Item endorChest;
 	public static Item endorLegs;
 	public static Item endorBoots;
+	public static Item rebelPilotHelmet;
+	public static Item rebelPilotChest;
+	public static Item rebelPilotLegs;
+	public static Item rebelPilotBoots;
 
 	public static Item recordTheme;
 	public static Item recordThrone;
@@ -136,6 +143,7 @@ public class StarWarsMod
 	/* Armor Materials */
 	public static ArmorMaterial jediRobesMat;
 	public static ArmorMaterial endorArmorMat;
+	public static ArmorMaterial rebelPilotArmorMat;
 
 	/* Events */
 	@EventHandler

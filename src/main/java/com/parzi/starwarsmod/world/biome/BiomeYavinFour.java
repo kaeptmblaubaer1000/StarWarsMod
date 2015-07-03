@@ -16,6 +16,9 @@ import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
 import com.parzi.starwarsmod.mobs.MobWookiee;
+import com.parzi.starwarsmod.world.gen.WorldGenMV;
+import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
+import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
 
 public class BiomeYavinFour extends BiomeGenBase
 {
@@ -59,5 +62,18 @@ public class BiomeYavinFour extends BiomeGenBase
 				return new WorldGenTrees(false);
 		}
 		return new WorldGenTrees(false);
+	}
+
+	@Override
+	public void decorate(World par1World, Random par2Random, int par3, int par4)
+	{
+		super.decorate(par1World, par2Random, par3, par4);
+
+		if (par2Random.nextInt(2) == 0)
+		{
+			int k = par3 + par2Random.nextInt(16) + 8;
+			int l = par4 + par2Random.nextInt(16) + 8;
+			new WorldGenYavinTempleRuins().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+		}
 	}
 }

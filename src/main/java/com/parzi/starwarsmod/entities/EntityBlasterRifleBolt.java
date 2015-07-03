@@ -7,26 +7,27 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
-public class EntityBlasterBolt extends EntityThrowable
+public class EntityBlasterRifleBolt extends EntityThrowable
 {
 	private EntityPlayer sender;
 	private int timeAlive = 0;
 
-	public EntityBlasterBolt(World par1World)
+	public EntityBlasterRifleBolt(World par1World)
 	{
 		super(par1World);
 	}
 
-	public EntityBlasterBolt(World par1World, EntityLivingBase par2EntityLivingBase)
+	public EntityBlasterRifleBolt(World par1World, EntityLivingBase par2EntityLivingBase)
 	{
 		super(par1World, par2EntityLivingBase);
 		sender = (EntityPlayer)par2EntityLivingBase;
 	}
 
-	public EntityBlasterBolt(World par1World, double par2, double par4, double par6)
+	public EntityBlasterRifleBolt(World par1World, double par2, double par4, double par6)
 	{
 		super(par1World, par2, par4, par6);
 	}
@@ -36,7 +37,7 @@ public class EntityBlasterBolt extends EntityThrowable
 	{
 		return;
 	}
-	
+
 	@Override
     public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
     {
@@ -69,11 +70,42 @@ public class EntityBlasterBolt extends EntityThrowable
 	}
 
 	@Override
+    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+    {
+        if (this.isEntityInvulnerable())
+        {
+            return false;
+        }
+        else
+        {
+            this.setBeenAttacked();
+
+            if (p_70097_1_.getEntity() != null)
+            {
+                Vec3 vec3 = p_70097_1_.getEntity().getLookVec();
+
+                if (vec3 != null)
+                {
+                    this.motionX = vec3.xCoord;
+                    this.motionY = vec3.yCoord;
+                    this.motionZ = vec3.zCoord;
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
 		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != sender)
 		{
-			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(sender), 5f);
+			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(sender), 8f);
 			pos.entityHit.setFire(8);
 		}
 		else

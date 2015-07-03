@@ -5,7 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.parzi.starwarsmod.entities.EntityBlasterBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
 import com.parzi.starwarsmod.mobs.MobEwok;
@@ -70,7 +71,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 
 		/* Entities */
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBolt.class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterPistolBolt.class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterRifleBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 

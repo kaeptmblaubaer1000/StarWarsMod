@@ -1,7 +1,7 @@
 package com.parzi.starwarsmod.registry;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.entities.EntityBlasterBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
 import com.parzi.starwarsmod.mobs.MobEwok;
@@ -36,6 +36,7 @@ public class EntityRegister
 
 		EntityUtils.registerMob(WeaponDSTurret.class, "dsTurret", 0x000000, 0x000000);
 
-		EntityUtils.registerEntity(EntityBlasterBolt.class, "blasterBolt");
+		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
+		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 	}
 }

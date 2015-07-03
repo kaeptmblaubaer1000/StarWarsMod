@@ -5,8 +5,7 @@ item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy
 item.starwarsmod.plasmaEmitter.name=Plasma Emitter
 item.starwarsmod.containmentField.name=Containment Field
-item.starwarsmod.lightsaberCrystal.name=Lightsaber Crystal
-item.starwarsmod.blasterRifle.name=Blaster Rifle
+item.starwarsmod.lightsaberCrystal.name=Kyber Crystal
 item.starwarsmod.banthaHorn.name=Bantha Horn
 item.starwarsmod.ewokSpear.name=Ewok Spear
 item.starwarsmod.chromiumDust.name=Chromium Dust
@@ -20,14 +19,26 @@ item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive
 item.starwarsmod.hyperdriveHoth.name=Hoth Hyperdrive
 item.starwarsmod.hyperdriveYavinFour.name=Yavin 4 Hyperdrive
 item.starwarsmod.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
+item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
 item.starwarsmod.spawnSpeederBike.name=Speeder Bike
 item.starwarsmod.spawnLandspeeder.name=Landspeeder
+
+item.starwarsmod.blasterPistol.Dl44.name=DL-44 Heavy Blaster Pistol
+item.starwarsmod.blasterPistol.Dl18.name=DL-18 Blaster Pistol
+item.starwarsmod.blasterPistol.Esb11.name=ESB-11 Blaster Pistol
+
+item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
+item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
+item.starwarsmod.blasterRifle.Ionization.name=Ionization Rifle
+item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
+item.starwarsmod.blasterRifle.Stormtroper.name=BlasTech E-11 Blaster Rifle
 
 // Blocks
 tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
 tile.starwarsmod.endorBaseWall.name=Endor Base Wall
+tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
