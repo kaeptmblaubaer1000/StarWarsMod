@@ -53,7 +53,7 @@ public class ItemBlasterRifle extends Item
 	public String getUnlocalizedName(ItemStack par1ItemStack)
 	{
 		int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
-		return name + "." + versions[metadata];
+		return "item" + "." + StarWarsMod.MODID + "." + name + "." + versions[metadata];
 	}
 
 	@Override

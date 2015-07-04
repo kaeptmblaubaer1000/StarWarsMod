@@ -8,8 +8,12 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 
+import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobWookiee;
+import com.parzi.starwarsmod.world.gen.WorldGenMV;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
+import com.parzi.starwarsmod.world.gen.WorldGenMysteryShrine;
+import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
 
 public class BiomeKashyyyk extends BiomeGenBase
 {
@@ -33,6 +37,19 @@ public class BiomeKashyyyk extends BiomeGenBase
 		this.fillerBlock = Blocks.dirt;
 
 		this.theBiomeDecorator.treesPerChunk = 6;
+	}
+
+	@Override
+	public void decorate(World par1World, Random par2Random, int par3, int par4)
+	{
+		super.decorate(par1World, par2Random, par3, par4);
+
+		if (par2Random.nextInt(200) == 0)
+		{
+			int k = par3 + 4;
+			int l = par4 + 4;
+			new WorldGenMysteryShrine().generate(StarWarsMod.dimKashyyykId, par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+		}
 	}
 
 	@Override

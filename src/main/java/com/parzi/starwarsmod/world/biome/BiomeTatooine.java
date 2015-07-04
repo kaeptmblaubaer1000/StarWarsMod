@@ -2,9 +2,11 @@ package com.parzi.starwarsmod.world.biome;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
+import com.parzi.starwarsmod.world.gen.WorldGenMysteryShrine;
 import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
 
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -20,7 +22,7 @@ public class BiomeTatooine extends BiomeGenBase
 
 	public BiomeTatooine(int par1)
 	{
-		super(par1);
+		super(par1, false);
 		this.heightVariation = 0.001F;
 
 		this.enableRain = false;
@@ -53,6 +55,13 @@ public class BiomeTatooine extends BiomeGenBase
 			int l = par4 + par2Random.nextInt(16) + 8;
 			WorldGenMV worldGenMV = new WorldGenMV();
 			worldGenMV.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 2, l);
+		}
+
+		if (par2Random.nextInt(200) == 0)
+		{
+			int k = par3 + 4;
+			int l = par4 + 4;
+			new WorldGenMysteryShrine().generate(StarWarsMod.dimTatooineId, par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 
 		if (par2Random.nextInt(300) == 0)

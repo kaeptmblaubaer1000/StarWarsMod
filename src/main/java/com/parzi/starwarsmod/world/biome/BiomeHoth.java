@@ -6,7 +6,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
+import com.parzi.starwarsmod.world.gen.WorldGenMysteryShrine;
 
 public class BiomeHoth extends BiomeGenBase
 {
@@ -31,5 +33,18 @@ public class BiomeHoth extends BiomeGenBase
 		this.fillerBlock = Blocks.stone;
 
 		this.temperature = 0.0F;
+	}
+
+	@Override
+	public void decorate(World par1World, Random par2Random, int par3, int par4)
+	{
+		super.decorate(par1World, par2Random, par3, par4);
+
+		if (par2Random.nextInt(200) == 0)
+		{
+			int k = par3 + 4;
+			int l = par4 + 4;
+			new WorldGenMysteryShrine().generate(StarWarsMod.dimHothId, par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+		}
 	}
 }

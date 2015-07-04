@@ -97,14 +97,26 @@ public class StarWarsMod
 	public static Item spawnLandspeeder;
 
 	public static Item jediRobes;
+
 	public static Item endorHelmet;
 	public static Item endorChest;
 	public static Item endorLegs;
 	public static Item endorBoots;
+
 	public static Item rebelPilotHelmet;
 	public static Item rebelPilotChest;
 	public static Item rebelPilotLegs;
 	public static Item rebelPilotBoots;
+
+	public static Item stormtrooperHelmet;
+	public static Item stormtrooperChest;
+	public static Item stormtrooperLegs;
+	public static Item stormtrooperBoots;
+
+	public static Item tiePilotHelmet;
+	public static Item tiePilotChest;
+	public static Item tiePilotLegs;
+	public static Item tiePilotBoots;
 
 	public static Item recordTheme;
 	public static Item recordThrone;
@@ -120,7 +132,7 @@ public class StarWarsMod
 	public static int dimKashyyykId;
 	public static int dimYavin4Id;
 	public static int dimEndorId;
-	public static int biomeEndorPlainsId;
+	public static int dimEndorPlainsId;
 
 	/* Config */
 	public static boolean enableFlyCommand;
@@ -144,6 +156,8 @@ public class StarWarsMod
 	public static ArmorMaterial jediRobesMat;
 	public static ArmorMaterial endorArmorMat;
 	public static ArmorMaterial rebelPilotArmorMat;
+	public static ArmorMaterial stormtrooperArmorMat;
+	public static ArmorMaterial tiePilotArmorMat;
 
 	/* Events */
 	@EventHandler
@@ -162,7 +176,7 @@ public class StarWarsMod
 		this.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
 		this.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
 		this.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
-		this.biomeEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
+		this.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
 
 		this.enableFlyCommand = config.get("commands", "flyspd", false).getBoolean();
 		this.enableDimCommand = config.get("commands", "chgdim", false).getBoolean();

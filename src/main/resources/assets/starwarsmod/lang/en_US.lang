@@ -31,7 +31,7 @@ item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
 item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
 item.starwarsmod.blasterRifle.Ionization.name=Ionization Rifle
 item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
-item.starwarsmod.blasterRifle.Stormtroper.name=BlasTech E-11 Blaster Rifle
+item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
 
 // Blocks
 tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
@@ -42,10 +42,26 @@ tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
+
 item.starwarsmod.endorHelmet.name=Endor Helmet
 item.starwarsmod.endorChestplate.name=Endor Chestplate
 item.starwarsmod.endorLeggings.name=Endor Leggings
 item.starwarsmod.endorBoots.name=Endor Boots
+
+item.starwarsmod.stormtrooperHelmet.name=Stormtrooper Helmet
+item.starwarsmod.stormtrooperChestplate.name=Stormtrooper Chestplate
+item.starwarsmod.stormtrooperLeggings.name=Stormtrooper Leggings
+item.starwarsmod.stormtrooperBoots.name=Stormtrooper Boots
+
+item.starwarsmod.rebelPilotHelmet.name=Rebel Pilot Helmet
+item.starwarsmod.rebelPilotChestplate.name=Rebel Pilot Shirt
+item.starwarsmod.rebelPilotLeggings.name=Rebel Pilot Pants
+item.starwarsmod.rebelPilotBoots.name=Rebel Pilot Boots
+
+item.starwarsmod.tiePilotHelmet.name=TIE Pilot Helmet
+item.starwarsmod.tiePilotChestplate.name=TIE Pilot Shirt
+item.starwarsmod.tiePilotLeggings.name=TIE Pilot Pants
+item.starwarsmod.tiePilotBoots.name=TIE Pilot Boots
 
 // Music Discs
 item.starwarsmod.musicDisc.name=Music Disc

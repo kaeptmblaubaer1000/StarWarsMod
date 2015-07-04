@@ -4,6 +4,8 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorEndor;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
+import com.parzi.starwarsmod.armor.ArmorStormtrooper;
+import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
@@ -101,6 +103,30 @@ public class ItemRegister
 
 		StarWarsMod.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsMod.rebelPilotBoots, "rebelPilotBoots");
+
+		StarWarsMod.tiePilotHelmet = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.tiePilotHelmet, "tiePilotHelmet");
+
+		StarWarsMod.tiePilotChest = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.tiePilotChest, "tiePilotChest");
+
+		StarWarsMod.tiePilotLegs = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.tiePilotLegs, "tiePilotLegs");
+
+		StarWarsMod.tiePilotBoots = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.tiePilotBoots, "tiePilotBoots");
+
+		StarWarsMod.stormtrooperHelmet = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.stormtrooperHelmet, "stormtrooperHelmet");
+
+		StarWarsMod.stormtrooperChest = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.stormtrooperChest, "stormtrooperChest");
+
+		StarWarsMod.stormtrooperLegs = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.stormtrooperLegs, "stormtrooperLegs");
+
+		StarWarsMod.stormtrooperBoots = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.stormtrooperBoots, "stormtrooperBoots");
 
 		StarWarsMod.recordTheme = new ItemMusicDisc("Theme");
 		GameRegistry.registerItem(StarWarsMod.recordTheme, "recordTheme");

@@ -5,6 +5,12 @@
             "vehicle/speeder/move"
         ]
     },
+    "vehicle.landspeeder.move": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/landspeeder/move"
+        ]
+    },
     "mob.ewok.say": {
         "category": "neutral",
         "sounds": [
