@@ -118,6 +118,11 @@ public class StarWarsMod
 	public static Item tiePilotLegs;
 	public static Item tiePilotBoots;
 
+	public static Item hothHelmet;
+	public static Item hothChest;
+	public static Item hothLegs;
+	public static Item hothBoots;
+
 	public static Item recordTheme;
 	public static Item recordThrone;
 
@@ -158,6 +163,7 @@ public class StarWarsMod
 	public static ArmorMaterial rebelPilotArmorMat;
 	public static ArmorMaterial stormtrooperArmorMat;
 	public static ArmorMaterial tiePilotArmorMat;
+	public static ArmorMaterial hothArmorMat;
 
 	/* Events */
 	@EventHandler

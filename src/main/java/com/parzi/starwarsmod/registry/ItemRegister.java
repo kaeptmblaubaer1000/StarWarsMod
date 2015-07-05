@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.registry;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorEndor;
+import com.parzi.starwarsmod.armor.ArmorHoth;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
@@ -91,6 +92,18 @@ public class ItemRegister
 
 		StarWarsMod.endorBoots = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsMod.endorBoots, "endorBoots");
+
+		StarWarsMod.hothHelmet = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.hothHelmet, "hothHelmet");
+
+		StarWarsMod.hothChest = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.hothChest, "hothChest");
+
+		StarWarsMod.hothLegs = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.hothLegs, "hothLegs");
+
+		StarWarsMod.hothBoots = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.hothBoots, "hothBoots");
 
 		StarWarsMod.rebelPilotHelmet = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.rebelPilotHelmet, "rebelPilotHelmet");
