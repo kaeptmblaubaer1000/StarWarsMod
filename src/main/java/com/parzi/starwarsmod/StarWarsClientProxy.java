@@ -3,12 +3,14 @@ package com.parzi.starwarsmod;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
+import com.parzi.starwarsmod.mobs.MobDroidProtocol;
 import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.mobs.MobGNK;
 import com.parzi.starwarsmod.mobs.MobJawa;
@@ -20,9 +22,11 @@ import com.parzi.starwarsmod.rendering.RenderBantha;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
 import com.parzi.starwarsmod.rendering.RenderDSTurret;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech;
+import com.parzi.starwarsmod.rendering.RenderDroidProtocol;
 import com.parzi.starwarsmod.rendering.RenderEwok;
 import com.parzi.starwarsmod.rendering.RenderGNK;
 import com.parzi.starwarsmod.rendering.RenderJawa;
+import com.parzi.starwarsmod.rendering.RenderLightsaber;
 import com.parzi.starwarsmod.rendering.RenderMV;
 import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
@@ -31,6 +35,7 @@ import com.parzi.starwarsmod.rendering.RenderWookiee;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidAstromech;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidProtocol;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelGNK;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelSmallBiped;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelTauntaun;
@@ -63,7 +68,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(MobWampa.class, new RenderWampa(new ModelWampa(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTusken.class, new RenderTusken(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobGNK.class, new RenderGNK(new ModelGNK(), 0.5F));
+
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobDroidProtocol.class, new RenderDroidProtocol(new ModelDroidProtocol(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
@@ -73,6 +80,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		/* Entities */
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterPistolBolt.class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterRifleBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 

@@ -9,15 +9,4 @@ public class RenderBlasterBolt extends RenderSnowball
 	{
 		super(renderAs);
 	}
-
-	/*
-	 * @Override protected ResourceLocation getEntityTexture(Entity entity) {
-	 * return new ResourceLocation(StarWarsMod.MODID,
-	 * "textures/models/blasterBolt.png"); }
-	 * 
-	 * @Override public void doRender(Entity entity, double d0, double d1,
-	 * double d2, float f, float f1) {
-	 * 
-	 * }
-	 */
 }

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class EntityBlasterPistolBolt extends EntityThrowable
 {
-	private EntityPlayer sender;
+	public EntityPlayer sender;
 	private int timeAlive = 0;
 
 	public EntityBlasterPistolBolt(World par1World)

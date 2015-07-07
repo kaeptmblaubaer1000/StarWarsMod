@@ -136,7 +136,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 4, j + 1, k + 16, Blocks.sandstone, 0);
 		this.setBlock(world, i + 4, j + 2, k + 12, Blocks.sandstone, 0);
 		this.setBlock(world, i + 4, j + 2, k + 16, Blocks.sandstone, 0);
-		this.setBlock(world, i + 4, j + 3, k + 8, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 4, j + 3, k + 12, Blocks.sandstone, 0);
 		this.setBlock(world, i + 4, j + 3, k + 16, Blocks.sandstone, 0);
 		this.setBlock(world, i + 5, j + 0, k + 12, Blocks.sandstone, 0);
@@ -168,7 +167,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 6, j + 2, k + 16, Blocks.sandstone, 0);
 		this.setBlock(world, i + 6, j + 3, k + 12, Blocks.sandstone, 0);
 		this.setBlock(world, i + 6, j + 3, k + 16, Blocks.sandstone, 0);
-		this.setBlock(world, i + 6, j + 3, k + 23, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 6, j + 4, k + 12, Blocks.sandstone, 0);
 		this.setBlock(world, i + 6, j + 4, k + 16, Blocks.sandstone, 0);
 		this.setBlock(world, i + 6, j + 5, k + 12, Blocks.sandstone, 0);
@@ -211,7 +209,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 7, j + 2, k + 19, Blocks.sandstone, 0);
 		this.setBlock(world, i + 7, j + 2, k + 20, Blocks.sandstone, 0);
 		this.setBlock(world, i + 7, j + 2, k + 21, Blocks.sandstone, 0);
-		this.setBlock(world, i + 7, j + 3, k + 5, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 7, j + 3, k + 10, Blocks.sandstone, 0);
 		this.setBlock(world, i + 7, j + 3, k + 11, Blocks.sandstone, 0);
 		this.setBlock(world, i + 7, j + 3, k + 17, Blocks.sandstone, 0);
@@ -448,7 +445,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 12, j + 3, k + 6, Blocks.sandstone, 0);
 		this.setBlock(world, i + 12, j + 3, k + 22, Blocks.sandstone, 0);
 		this.setBlock(world, i + 12, j + 3, k + 23, Blocks.sandstone, 0);
-		this.setBlock(world, i + 12, j + 3, k + 26, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 12, j + 4, k + 5, Blocks.sandstone, 0);
 		this.setBlock(world, i + 12, j + 4, k + 6, Blocks.sandstone, 0);
 		this.setBlock(world, i + 12, j + 4, k + 22, Blocks.sandstone, 0);
@@ -665,7 +661,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 16, j + 2, k + 22, Blocks.sandstone, 0);
 		this.setBlock(world, i + 16, j + 2, k + 23, Blocks.sandstone, 0);
 		this.setBlock(world, i + 16, j + 2, k + 24, Blocks.sandstone, 0);
-		this.setBlock(world, i + 16, j + 3, k + 1, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 16, j + 3, k + 5, Blocks.sandstone, 0);
 		this.setBlock(world, i + 16, j + 3, k + 6, Blocks.sandstone, 0);
 		this.setBlock(world, i + 16, j + 3, k + 22, Blocks.sandstone, 0);
@@ -716,7 +711,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 17, j + 2, k + 21, Blocks.sandstone, 0);
 		this.setBlock(world, i + 17, j + 3, k + 7, Blocks.sandstone, 0);
 		this.setBlock(world, i + 17, j + 3, k + 21, Blocks.sandstone, 0);
-		this.setBlock(world, i + 17, j + 3, k + 25, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 17, j + 4, k + 7, Blocks.sandstone, 0);
 		this.setBlock(world, i + 17, j + 4, k + 21, Blocks.sandstone, 0);
 		this.setBlock(world, i + 17, j + 5, k + 7, Blocks.sandstone, 0);
@@ -906,12 +900,10 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 21, j + 2, k + 19, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 2, k + 20, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 2, k + 21, Blocks.sandstone, 0);
-		this.setBlock(world, i + 21, j + 3, k + 6, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 21, j + 3, k + 10, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 3, k + 11, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 3, k + 17, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 3, k + 18, Blocks.sandstone, 0);
-		this.setBlock(world, i + 21, j + 3, k + 22, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 21, j + 4, k + 10, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 4, k + 11, Blocks.sandstone, 0);
 		this.setBlock(world, i + 21, j + 4, k + 17, Blocks.sandstone, 0);
@@ -953,7 +945,6 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		this.setBlock(world, i + 22, j + 5, k + 14, Blocks.sandstone, 0);
 		this.setBlock(world, i + 22, j + 5, k + 15, Blocks.sandstone, 0);
 		this.setBlock(world, i + 22, j + 5, k + 16, Blocks.sandstone, 0);
-		this.setBlock(world, i + 24, j + 3, k + 13, StarWarsMod.blockMV, 0);
 		this.setBlock(world, i + 1, j + 3, k + 12, Blocks.stone_slab, 1);
 		world.setBlockMetadataWithNotify(i + 1, j + 3, k + 12, 1, 2);
 		this.setBlock(world, i + 1, j + 3, k + 16, Blocks.stone_slab, 1);

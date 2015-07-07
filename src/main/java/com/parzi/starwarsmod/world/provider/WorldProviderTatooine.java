@@ -1,22 +1,12 @@
 package com.parzi.starwarsmod.world.provider;
 
-import java.util.Random;
-
 import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderFlat;
-import net.minecraft.world.gen.ChunkProviderGenerate;
 
 import com.parzi.starwarsmod.StarWarsMod;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderTatooine extends WorldProvider
 {
@@ -29,7 +19,7 @@ public class WorldProviderTatooine extends WorldProvider
 
 	public IChunkProvider createChunkGenerator()
 	{
-		return new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), false);
+		return new ChunkProviderGenerateTatooine(this.worldObj, this.worldObj.getSeed(), false);
 	}
 
 	public int getAverageGroundLevel()

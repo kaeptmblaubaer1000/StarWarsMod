@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.rendering;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
@@ -10,20 +11,21 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.models.ModelLightsaber;
 
 public class RenderLightsaber implements IItemRenderer
 {
-	private IModelCustom model;
+	private ModelLightsaber model;
 
 	public RenderLightsaber()
 	{
-		model = AdvancedModelLoader.loadModel(new ResourceLocation(StarWarsMod.MODID, "/models/items/lightsaber.obj"));
+		model = new ModelLightsaber();
 	}
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-		return true;
+		return type == ItemRenderType.EQUIPPED;
 	}
 
 	@Override
@@ -37,24 +39,24 @@ public class RenderLightsaber implements IItemRenderer
 	{
 		GL11.glPushMatrix();
 
-		GL11.glScalef(-1F, -1F, 1F);
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(StarWarsMod.MODID, "textures/models/lightsaber" + item.getItemDamage() + ".png"));
+
+		GL11.glScalef(0.25F, -0.25F, 0.25F);
 
 		switch (type)
 		{
 			case INVENTORY:
-				GL11.glTranslatef(0, 0.12F, 0);
 				break;
 			case EQUIPPED:
-				GL11.glTranslatef(-0.8F, -0.2F, 0.7F);
+				GL11.glTranslatef(-2.4F, -9.4F, -5.4F);
+				GL11.glRotatef(90, 1, 1, 0);
 				break;
 			case EQUIPPED_FIRST_PERSON:
-				GL11.glTranslatef(0, -0.7F, 0.7F);
 				break;
 			default:
+				break;
 		}
-
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(StarWarsMod.MODID, "textures/models/lightsaber.png"));
-		model.renderAll();
+		model.render(null, 0, 0, 0, 0, 0, 0.625F);
 
 		GL11.glPopMatrix();
 	}

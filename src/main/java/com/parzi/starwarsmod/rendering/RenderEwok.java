@@ -44,18 +44,18 @@ public class RenderEwok extends RenderLiving
     {
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         super.renderEquippedItems(p_77029_1_, p_77029_2_);
-        ItemStack itemstack = p_77029_1_.getHeldItem();
-        ItemStack itemstack1 = p_77029_1_.getEquipmentInSlot(3);
+        ItemStack heldItem = p_77029_1_.getHeldItem();
+        ItemStack equippedItem = p_77029_1_.getEquipmentInSlot(3);
         Item item;
         float f1;
 
-        if (itemstack1 != null)
+        if (equippedItem != null)
         {
             GL11.glPushMatrix();
-            item = itemstack1.getItem();
+            item = equippedItem.getItem();
 
-            net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(itemstack1, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
-            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, itemstack1, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
+            net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(equippedItem, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
+            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, equippedItem, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
 
             if (item instanceof ItemBlock)
             {
@@ -67,7 +67,7 @@ public class RenderEwok extends RenderLiving
                     GL11.glScalef(f1, -f1, -f1);
                 }
 
-                this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack1, 0);
+                this.renderManager.itemRenderer.renderItem(p_77029_1_, equippedItem, 0);
             }
             else if (item == Items.skull)
             {
@@ -75,9 +75,9 @@ public class RenderEwok extends RenderLiving
                 GL11.glScalef(f1, -f1, -f1);
                 GameProfile gameprofile = null;
 
-                if (itemstack1.hasTagCompound())
+                if (equippedItem.hasTagCompound())
                 {
-                    NBTTagCompound nbttagcompound = itemstack1.getTagCompound();
+                    NBTTagCompound nbttagcompound = equippedItem.getTagCompound();
 
                     if (nbttagcompound.hasKey("SkullOwner", 10))
                     {
@@ -89,15 +89,15 @@ public class RenderEwok extends RenderLiving
                     }
                 }
 
-                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack1.getItemDamage(), gameprofile);
+                TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, equippedItem.getItemDamage(), gameprofile);
             }
 
             GL11.glPopMatrix();
         }
 
-        if (itemstack != null && itemstack.getItem() != null)
+        if (heldItem != null && heldItem.getItem() != null)
         {
-            item = itemstack.getItem();
+            item = heldItem.getItem();
             GL11.glPushMatrix();
 
             if (this.mainModel.isChild)
@@ -110,8 +110,8 @@ public class RenderEwok extends RenderLiving
 
             GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
 
-            net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(itemstack, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
-            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, itemstack, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
+            net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(heldItem, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
+            boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, heldItem, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
 
             if (item instanceof ItemBlock && (is3D || RenderBlocks.renderItemIn3d(Block.getBlockFromItem(item).getRenderType())))
             {
@@ -159,26 +159,28 @@ public class RenderEwok extends RenderLiving
             int i;
             float f5;
 
-            if (itemstack.getItem().requiresMultipleRenderPasses())
+            GL11.glTranslatef(0.5F, 0.25F, -1.0F);
+
+            if (heldItem.getItem().requiresMultipleRenderPasses())
             {
-                for (i = 0; i < itemstack.getItem().getRenderPasses(itemstack.getItemDamage()); ++i)
+                for (i = 0; i < heldItem.getItem().getRenderPasses(heldItem.getItemDamage()); ++i)
                 {
-                    int j = itemstack.getItem().getColorFromItemStack(itemstack, i);
+                    int j = heldItem.getItem().getColorFromItemStack(heldItem, i);
                     f5 = (float)(j >> 16 & 255) / 255.0F;
                     f2 = (float)(j >> 8 & 255) / 255.0F;
                     float f3 = (float)(j & 255) / 255.0F;
                     GL11.glColor4f(f5, f2, f3, 1.0F);
-                    this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack, i);
+                    this.renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, i);
                 }
             }
             else
             {
-                i = itemstack.getItem().getColorFromItemStack(itemstack, 0);
+                i = heldItem.getItem().getColorFromItemStack(heldItem, 0);
                 float f4 = (float)(i >> 16 & 255) / 255.0F;
                 f5 = (float)(i >> 8 & 255) / 255.0F;
                 f2 = (float)(i & 255) / 255.0F;
                 GL11.glColor4f(f4, f5, f2, 1.0F);
-                this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack, 0);
+                this.renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, 0);
             }
 
             GL11.glPopMatrix();

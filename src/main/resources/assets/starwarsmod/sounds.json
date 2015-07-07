@@ -88,6 +88,28 @@
             "mob/tauntaun/die1"
         ]
     },
+    "mob.protocol.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/protocol/say1",
+            "mob/protocol/say2",
+            "mob/protocol/say3"
+        ]
+    },
+    "mob.protocol.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/protocol/hit1",
+            "mob/protocol/hit2",
+            "mob/protocol/hit3"
+        ]
+    },
+    "mob.protocol.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/protocol/die1"
+        ]
+    },
     "mob.astromech.say": {
         "category": "neutral",
         "sounds": [

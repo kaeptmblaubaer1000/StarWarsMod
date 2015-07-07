@@ -1,16 +1,16 @@
 [
-{
-  "modid": "starwarsmod",
-  "name": "The Star Wars Mod",
-  "description": "Join the Galactic Empire with the Star Wars Mod!",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["parzi", "weaston", "speedstergelman"],
-  "credits": "Special thanks to @_janoi_ for some textures!",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+    {
+        "modid": "starwarsmod",
+        "name": "The Star Wars Mod",
+        "description": "Explore the Galaxy with the Star Wars Mod!",
+        "version": "1.0",
+        "mcversion": "1.7.10",
+        "url": "http://parzivail.com/mods/tswm/",
+        "updateUrl": "",
+        "authorList": ["parzi", "weaston", "olatiny"],
+        "credits": "Special thanks to @_janoi_ for some textures!",
+        "logoFile": "logo.png",
+        "screenshots": [],
+        "dependencies": []
+    }
 ]

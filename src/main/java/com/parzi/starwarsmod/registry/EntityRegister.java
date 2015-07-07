@@ -4,6 +4,7 @@ import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
+import com.parzi.starwarsmod.mobs.MobDroidProtocol;
 import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.mobs.MobGNK;
 import com.parzi.starwarsmod.mobs.MobJawa;
@@ -29,6 +30,7 @@ public class EntityRegister
 		EntityUtils.registerMob(MobWampa.class, "wampa", 0xFFFFFF, 0x7F0000);
 
 		EntityUtils.registerMob(MobDroidAstromech.class, "droidAstromech", 0xFFFFFF, 0x2D00FF);
+		EntityUtils.registerMob(MobDroidProtocol.class, "droidProtocol", 0x998100, 0xCCAC00);
 		EntityUtils.registerMob(MobGNK.class, "droidGonk", 0x6B6B6B, 0x000000);
 
 		EntityUtils.registerMob(VehicSpeederBike.class, "speederBike", 0x001F00, 0x003F00);

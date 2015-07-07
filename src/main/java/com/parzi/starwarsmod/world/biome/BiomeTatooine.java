@@ -9,6 +9,8 @@ import com.parzi.starwarsmod.world.gen.WorldGenMV;
 import com.parzi.starwarsmod.world.gen.WorldGenMysteryShrine;
 import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -19,11 +21,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeTatooine extends BiomeGenBase
 {
+	private BiomeDecoratorTatooine biomeDecorator;
 
 	public BiomeTatooine(int par1)
 	{
-		super(par1, false);
-		this.heightVariation = 0.001F;
+		super(par1);
+		this.heightVariation = 0.00005F;
 
 		this.enableRain = false;
 		this.enableSnow = false;
@@ -41,13 +44,13 @@ public class BiomeTatooine extends BiomeGenBase
 		this.topBlock = Blocks.sand;
 		this.fillerBlock = Blocks.sandstone;
 
-		this.theBiomeDecorator = new BiomeDecoratorTatooine();
+		this.biomeDecorator = new BiomeDecoratorTatooine();
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int par3, int par4)
 	{
-		super.decorate(par1World, par2Random, par3, par4);
+		this.biomeDecorator.decorateChunk(par1World, par2Random, this, par3, par4);
 
 		if (par2Random.nextInt(30) == 0)
 		{

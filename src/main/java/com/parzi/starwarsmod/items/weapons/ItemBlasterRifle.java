@@ -35,6 +35,7 @@ public class ItemBlasterRifle extends Item
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHasSubtypes(true);
 		setTextureName(StarWarsMod.MODID + ":" + name);
+		this.maxStackSize = 1;
 	}
 
 	@SideOnly(Side.CLIENT)

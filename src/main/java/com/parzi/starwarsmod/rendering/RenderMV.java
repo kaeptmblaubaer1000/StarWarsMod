@@ -40,7 +40,7 @@ public class RenderMV extends TileEntitySpecialRenderer
 	{
 
 		GL11.glPushMatrix();
-		
+
 		TileEntityMV mv = (TileEntityMV)te;
 
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.2F, (float)z + 0.5F);
