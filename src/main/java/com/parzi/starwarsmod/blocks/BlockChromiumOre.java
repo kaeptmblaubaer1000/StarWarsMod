@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 

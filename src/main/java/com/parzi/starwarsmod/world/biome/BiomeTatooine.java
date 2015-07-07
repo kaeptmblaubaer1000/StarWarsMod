@@ -32,7 +32,7 @@ public class BiomeTatooine extends BiomeGenBase
 		this.enableSnow = false;
 
 		this.spawnableMonsterList.clear();
-		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobJawa.class, 5, 1, 2));
+		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobJawa.class, 3, 1, 2));
 		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobTusken.class, 1, 2, 3));
 
 		this.spawnableCreatureList.clear();

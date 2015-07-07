@@ -54,7 +54,9 @@ eclipse/
 .classpath
 .project
 .metadata/
+default_textures/
 
 *.txt
 gradlew
 *.bat
+default_textures.zip
