@@ -12,6 +12,7 @@ import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
@@ -41,12 +42,11 @@ public class StarWarsEventHandler
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent)
 	{
-		EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
-		if (player.ridingEntity != null && player.ridingEntity instanceof VehicSpeederBike && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR)
+		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR)
 		{
-			Minecraft.getMinecraft().theWorld.spawnEntityInWorld(new EntityBlasterRifleBolt(Minecraft.getMinecraft().theWorld, Minecraft.getMinecraft().thePlayer));
+			StarWarsMod.network.sendToServer(new CreateBlasterBoltSpeeder(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId));
 
-			Minecraft.getMinecraft().thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Minecraft.getMinecraft().theWorld.rand, -0.2D, 0.2D));
+			Minecraft.getMinecraft().thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 		}
 	}
 }

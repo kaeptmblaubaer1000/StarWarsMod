@@ -13,7 +13,7 @@ public class StarWarsCommonProxy implements IGuiHandler
 	public void registerRendering()
 	{
 		/* GUIs */
-		NetworkRegistry.INSTANCE.registerGuiHandler(StarWarsMod.instance, StarWarsMod.proxy);
+		NetworkRegistry.INSTANCE.registerGuiHandler(StarWarsMod.getInstance(), StarWarsMod.proxy);
 	}
 
 	public void registerKeybindings()

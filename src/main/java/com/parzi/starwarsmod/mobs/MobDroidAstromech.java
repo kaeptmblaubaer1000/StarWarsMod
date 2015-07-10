@@ -1,27 +1,38 @@
 package com.parzi.starwarsmod.mobs;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.block.BlockColored;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAITempt;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class MobDroidAstromech extends EntityLiving implements IAnimals
+public class MobDroidAstromech extends EntityTameable implements IAnimals
 {
 	public MobDroidAstromech(World par1World)
 	{
 		super(par1World);
-		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
-		// EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
+		this.setSize(1, 1);
+		this.tasks.taskEntries.clear();
+		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(1, new EntityAILookIdle(this));
 	}
 
 	@Override
@@ -59,7 +70,7 @@ public class MobDroidAstromech extends EntityLiving implements IAnimals
 	@Override
 	protected Item getDropItem()
 	{
-		return Items.iron_ingot;
+		return StarWarsMod.spawnAstromech;
 	}
 
 	@Override
@@ -75,5 +86,12 @@ public class MobDroidAstromech extends EntityLiving implements IAnimals
 		 * switch (this.rand.nextInt(1)) { case 0:
 		 * this.dropItem(StarWarsMod.gaffiStick, 1); break; }
 		 */
+	}
+
+	@Override
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

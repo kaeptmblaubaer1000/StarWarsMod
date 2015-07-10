@@ -81,7 +81,7 @@ public class ModelMV extends ModelBase
 		controlRod4.setTextureSize(64, 32);
 		controlRod4.mirror = true;
 		setRotation(controlRod4, 0F, 0F, 0F);
-		bodyRod1 = new ModelRenderer(this, 0, 89);
+		bodyRod1 = new ModelRenderer(this, 0, 87);
 		bodyRod1.addBox(0F, 0F, 0F, 2, 39, 2);
 		bodyRod1.setRotationPoint(-1F, -44F, -1F);
 		bodyRod1.setTextureSize(64, 32);
@@ -165,7 +165,7 @@ public class ModelMV extends ModelBase
 		bodyRodHolder8.setTextureSize(64, 32);
 		bodyRodHolder8.mirror = true;
 		setRotation(bodyRodHolder8, 0F, 0F, 0F);
-		bodyBase = new ModelRenderer(this, 0, 76);
+		bodyBase = new ModelRenderer(this, 0, 75);
 		bodyBase.addBox(0F, 0F, 0F, 8, 4, 8);
 		bodyBase.setRotationPoint(-4F, 19F, -4F);
 		bodyBase.setTextureSize(64, 32);

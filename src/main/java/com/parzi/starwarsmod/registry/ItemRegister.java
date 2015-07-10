@@ -1,16 +1,24 @@
 package com.parzi.starwarsmod.registry;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.armor.ArmorBoba;
+import com.parzi.starwarsmod.armor.ArmorBobaJetpack;
 import com.parzi.starwarsmod.armor.ArmorEndor;
 import com.parzi.starwarsmod.armor.ArmorHoth;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
+import com.parzi.starwarsmod.armor.ArmorSandtrooper;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
+import com.parzi.starwarsmod.items.ItemDroidCaller;
 import com.parzi.starwarsmod.items.ItemMusicDisc;
+import com.parzi.starwarsmod.items.ItemSpawnAstromech;
+import com.parzi.starwarsmod.items.ItemSpawnGonk;
+import com.parzi.starwarsmod.items.ItemSpawnProtocol;
+import com.parzi.starwarsmod.items.crafting.ItemBobaJetpack;
 import com.parzi.starwarsmod.items.crafting.ItemChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemContainmentField;
 import com.parzi.starwarsmod.items.crafting.ItemHiltMetalAlloy;
@@ -105,6 +113,36 @@ public class ItemRegister
 		StarWarsMod.hothBoots = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsMod.hothBoots, "hothBoots");
 
+		StarWarsMod.sandtrooperHelmet = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.sandtrooperHelmet, "sandtrooperHelmet");
+
+		StarWarsMod.sandtrooperChest = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.sandtrooperChest, "sandtrooperChest");
+
+		StarWarsMod.sandtrooperLegs = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.sandtrooperLegs, "sandtrooperLegs");
+
+		StarWarsMod.sandtrooperBoots = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.sandtrooperBoots, "sandtrooperBoots");
+
+		StarWarsMod.bobaHelmet = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.bobaHelmet, "bobaHelmet");
+
+		StarWarsMod.bobaChest = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.bobaChest, "bobaChest");
+
+		StarWarsMod.bobaJetpackChest = new ArmorBobaJetpack(StarWarsMod.bobaArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.bobaJetpackChest, "bobaJetpackChest");
+
+		StarWarsMod.bobaJetpack = new ItemBobaJetpack();
+		GameRegistry.registerItem(StarWarsMod.bobaJetpack, "bobaJetpack");
+
+		StarWarsMod.bobaLegs = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.bobaLegs, "bobaLegs");
+
+		StarWarsMod.bobaBoots = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.bobaBoots, "bobaBoots");
+
 		StarWarsMod.rebelPilotHelmet = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.rebelPilotHelmet, "rebelPilotHelmet");
 
@@ -191,5 +229,17 @@ public class ItemRegister
 
 		StarWarsMod.blasterRifle = new ItemBlasterRifle();
 		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
+
+		StarWarsMod.droidCaller = new ItemDroidCaller();
+		GameRegistry.registerItem(StarWarsMod.droidCaller, "droidCaller");
+
+		StarWarsMod.spawnAstromech = new ItemSpawnAstromech();
+		GameRegistry.registerItem(StarWarsMod.spawnAstromech, "spawnAstromech");
+
+		StarWarsMod.spawnProtocol = new ItemSpawnProtocol();
+		GameRegistry.registerItem(StarWarsMod.spawnProtocol, "spawnProtocol");
+
+		StarWarsMod.spawnGonk = new ItemSpawnGonk();
+		GameRegistry.registerItem(StarWarsMod.spawnGonk, "spawnGonk");
 	}
 }

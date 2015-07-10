@@ -1,5 +1,8 @@
 package com.parzi.starwarsmod.mobs;
 
+import java.util.List;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIOcelotAttack;
@@ -9,12 +12,16 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobJawa extends EntityMob implements IMob
 {
+	private int angerLevel;
+	private Entity angryAt;
+
 	public MobJawa(World par1World)
 	{
 		super(par1World);
@@ -74,5 +81,53 @@ public class MobJawa extends EntityMob implements IMob
 				this.dropItem(StarWarsMod.hiltMetelCompound, 1);
 				break;
 		}
+	}
+
+
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		this.angryAt = this.entityToAttack;
+
+		super.onUpdate();
+	}
+
+	@Override
+	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	{
+		Entity entity = p_70097_1_.getEntity();
+
+		if (entity instanceof EntityPlayer)
+		{
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+
+			for (int i = 0; i < list.size(); ++i)
+			{
+				Entity entity1 = (Entity)list.get(i);
+
+				if (entity1 instanceof MobJawa)
+				{
+					MobJawa jawa = (MobJawa)entity1;
+					jawa.becomeAngryAt(entity);
+				}
+			}
+
+			this.becomeAngryAt(entity);
+		}
+
+		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
+	}
+
+	private void becomeAngryAt(Entity p_70835_1_)
+	{
+		this.entityToAttack = p_70835_1_;
+		this.angerLevel = 400 + this.rand.nextInt(400);
 	}
 }

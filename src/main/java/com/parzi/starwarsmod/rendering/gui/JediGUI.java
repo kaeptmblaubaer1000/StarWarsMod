@@ -112,6 +112,11 @@ public class JediGUI extends GuiScreen
 		String earth = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("earth"));
 		String water = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("water"));
 
+		// id, x, y, width, height, text
+		GuiButton prev = new GuiButton(1, x + 10, py, 25, 20, "<");
+		GuiButton buy = new GuiButton(2, x + 40, py, 25, 20, "BUY");
+		GuiButton next = new GuiButton(3, x + 70, py, 25, 20, ">");
+
 		py += 15;
 		drawString(mc.fontRenderer, "Flora: " + plants, x + 10, py, ElementUtils.floraColor);
 		py += 10;
@@ -128,13 +133,14 @@ public class JediGUI extends GuiScreen
 		if (Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalName)) > player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalElement))
 		{
 			drawString(mc.fontRenderer, "Too expensive!", x + 10, py, 0xFF5555);
+			buy.enabled = false;
 		}
 		py += 10;
 		buttonList.clear();
-		// id, x, y, width, height, text
-		buttonList.add(new GuiButton(1, x + 10, py, 25, 20, "<"));
-		buttonList.add(new GuiButton(2, x + 40, py, 25, 20, "BUY"));
-		buttonList.add(new GuiButton(3, x + 70, py, 25, 20, ">"));
+
+		buttonList.add(prev);
+		buttonList.add(buy);
+		buttonList.add(next);
 
 		for (int i = 0; i < buttonList.size(); i++)
 		{

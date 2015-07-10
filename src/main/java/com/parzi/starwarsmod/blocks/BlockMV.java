@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.blocks;
 
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockObsidian;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,7 +28,8 @@ public class BlockMV extends BlockContainer
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		setBlockName(StarWarsMod.MODID + "." + "moistureVaporator");
 		this.setBlockBounds(0F, 0F, 0F, 1F, 4F, 1F);
-		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
+		this.setHardness(50F);
+		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
 	@Override

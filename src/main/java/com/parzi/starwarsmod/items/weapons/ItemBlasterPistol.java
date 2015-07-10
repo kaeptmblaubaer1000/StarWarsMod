@@ -26,6 +26,7 @@ public class ItemBlasterPistol extends Item
 	private int timeToRecharge = 6;
 
 	private String[] versions = { "Dl44", "Dl18", "Esb11" };
+	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

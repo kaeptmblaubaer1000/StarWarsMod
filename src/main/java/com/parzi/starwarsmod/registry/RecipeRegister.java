@@ -34,5 +34,6 @@ public class RecipeRegister
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveKashyyyk), StarWarsMod.hyperdriveEngine, new ItemStack(Blocks.log, 1, 3));
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveYavin4), StarWarsMod.hyperdriveEngine, Blocks.log);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveEndor), StarWarsMod.hyperdriveEngine, new ItemStack(Blocks.leaves, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.bobaJetpackChest), StarWarsMod.bobaChest, StarWarsMod.bobaJetpack);
 	}
 }

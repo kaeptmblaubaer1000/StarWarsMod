@@ -31,6 +31,12 @@ public class VehicleLandBase extends EntityLiving
 	{
 		super(p_i1689_1_);
 		this.setSize(0.9F, 0.9F);
+		this.isImmuneToFire = true;
+	}
+
+	@Override
+	public boolean canRenderOnFire() {
+		return false;
 	}
 
 	@Override

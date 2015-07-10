@@ -105,7 +105,7 @@ public class EntityBlasterPistolBolt extends EntityThrowable
 	{
 		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != sender)
 		{
-			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(sender), 5f);
+			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(sender), 2f);
 			pos.entityHit.setFire(8);
 		}
 		else

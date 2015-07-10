@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.registry;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
+import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
 import com.parzi.starwarsmod.blocks.BlockMV;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
 import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
@@ -28,7 +29,10 @@ public class BlockRegister
 		StarWarsMod.titaniumChromiumBlock = new BlockTitaniumChromium();
 		GameRegistry.registerBlock(StarWarsMod.titaniumChromiumBlock, "titaniumChromiumBlock");
 
-		StarWarsMod.endorBaseWall = new BlockEndorBaseWall();
-		GameRegistry.registerBlock(StarWarsMod.endorBaseWall, ItemEndorBaseWall.class, "endorBaseWall");
+		StarWarsMod.blockEndorBaseWall = new BlockEndorBaseWall();
+		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWall, ItemEndorBaseWall.class, "endorBaseWall");
+
+		StarWarsMod.blockEndorBaseWallStairs = new BlockEndorBaseWallStairs();
+		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWallStairs, "endorBaseWallStairs");
 	}
 }

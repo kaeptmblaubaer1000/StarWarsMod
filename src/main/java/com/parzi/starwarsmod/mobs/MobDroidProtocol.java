@@ -1,26 +1,31 @@
 package com.parzi.starwarsmod.mobs;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITempt;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class MobDroidProtocol extends EntityLiving implements IAnimals
+public class MobDroidProtocol extends EntityAnimal implements IAnimals
 {
 	public MobDroidProtocol(World par1World)
 	{
 		super(par1World);
-		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
-		// EntityPlayer.class, 1.0D, false));
+		this.setSize(1, 2);
+		this.tasks.taskEntries.clear();
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(4, new EntityAITempt(this, 2.0D, StarWarsMod.droidCaller, false));
+		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 	}
 
@@ -30,6 +35,15 @@ public class MobDroidProtocol extends EntityLiving implements IAnimals
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		if (this.rand.nextInt(1000) == 0 && this.worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, this.boundingBox.expand(5, 5, 5), this) instanceof MobDroidAstromech) {
+			this.playSound(StarWarsMod.MODID + ":" + "mob.protocol.r2d2rare", 1F, 1F);
+		}
 	}
 
 	@Override
@@ -59,7 +73,7 @@ public class MobDroidProtocol extends EntityLiving implements IAnimals
 	@Override
 	protected Item getDropItem()
 	{
-		return Items.iron_ingot;
+		return StarWarsMod.spawnProtocol;
 	}
 
 	@Override
@@ -67,12 +81,12 @@ public class MobDroidProtocol extends EntityLiving implements IAnimals
 	{
 		return true;
 	}
-	
+
 	@Override
-    protected float getSoundPitch()
-    {
-        return 1.0F;
-    }
+	protected float getSoundPitch()
+	{
+		return 1.0F;
+	}
 
 	@Override
 	protected void dropRareDrop(int par1)
@@ -81,5 +95,12 @@ public class MobDroidProtocol extends EntityLiving implements IAnimals
 		 * switch (this.rand.nextInt(1)) { case 0:
 		 * this.dropItem(StarWarsMod.gaffiStick, 1); break; }
 		 */
+	}
+
+	@Override
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

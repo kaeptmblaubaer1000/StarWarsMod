@@ -11,13 +11,13 @@ public class EntityUtils
 {
 	private static int mobId = 300;
 
-	public static void registerMob(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
+	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
 	{
 		while (EntityList.getStringFromID(mobId) != null)
 		{
 			mobId++;
 		}
-		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.getInstance(), 80, 3, true);
 		EntityList.IDtoClassMapping.put(mobId, mobClass);
 		EntityList.entityEggs.put(mobId, new EntityEggInfo(mobId, bgColor, fgColor));
 	}
@@ -28,7 +28,7 @@ public class EntityUtils
 		{
 			mobId++;
 		}
-		EntityRegistry.registerModEntity(entityClass, entityName, mobId, StarWarsMod.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(entityClass, entityName, mobId, StarWarsMod.getInstance(), 80, 3, true);
 		EntityList.IDtoClassMapping.put(mobId, entityClass);
 	}
 

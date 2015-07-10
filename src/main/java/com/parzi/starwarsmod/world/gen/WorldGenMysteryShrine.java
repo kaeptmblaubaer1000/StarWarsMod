@@ -253,15 +253,15 @@ public class WorldGenMysteryShrine extends WorldGenerator implements IWorldGener
 		ItemStack[] items = null;
 
 		if (dimId == StarWarsMod.dimHothId) {
-			items = new ItemStack[] { new ItemStack(StarWarsMod.hiltMetelCompound, rand.nextInt(3)), new ItemStack(StarWarsMod.lightsaberCrystal, 1, rand.nextInt(3)), new ItemStack(StarWarsMod.tiePilotBoots), new ItemStack(StarWarsMod.tiePilotLegs), new ItemStack(StarWarsMod.tiePilotChest), new ItemStack(StarWarsMod.tiePilotHelmet), new ItemStack(StarWarsMod.titaniumChromiumIngot) };
+			items = new ItemStack[] { new ItemStack(StarWarsMod.hiltMetelCompound, rand.nextInt(3)), new ItemStack(StarWarsMod.lightsaberCrystal, 1, rand.nextInt(3)), new ItemStack(StarWarsMod.tiePilotBoots), new ItemStack(StarWarsMod.tiePilotLegs), new ItemStack(StarWarsMod.tiePilotChest), new ItemStack(StarWarsMod.tiePilotHelmet), new ItemStack(StarWarsMod.titaniumChromiumIngot), new ItemStack(StarWarsMod.blasterPistol, 1, rand.nextInt(StarWarsMod.blasterPistol.subtypes)), new ItemStack(StarWarsMod.blasterRifle, 1, rand.nextInt(StarWarsMod.blasterRifle.subtypes)) };
 		}
 		else if (dimId == StarWarsMod.dimEndorId) {
-			items = new ItemStack[] { new ItemStack(StarWarsMod.hiltMetelCompound, rand.nextInt(3)), new ItemStack(StarWarsMod.lightsaberCrystal, 1, rand.nextInt(3)), new ItemStack(StarWarsMod.endorBoots), new ItemStack(StarWarsMod.endorLegs), new ItemStack(StarWarsMod.endorChest), new ItemStack(StarWarsMod.endorHelmet), new ItemStack(StarWarsMod.titaniumChromiumIngot) };
+			items = new ItemStack[] { new ItemStack(StarWarsMod.hiltMetelCompound, rand.nextInt(3)), new ItemStack(StarWarsMod.lightsaberCrystal, 1, rand.nextInt(3)), new ItemStack(StarWarsMod.endorBoots), new ItemStack(StarWarsMod.endorLegs), new ItemStack(StarWarsMod.endorChest), new ItemStack(StarWarsMod.endorHelmet), new ItemStack(StarWarsMod.titaniumChromiumIngot), new ItemStack(StarWarsMod.blasterPistol, 1, rand.nextInt(StarWarsMod.blasterPistol.subtypes)), new ItemStack(StarWarsMod.blasterRifle, 1, rand.nextInt(StarWarsMod.blasterRifle.subtypes)) };
 		}
 		else {
-			items = new ItemStack[] { new ItemStack(StarWarsMod.hiltMetelCompound, rand.nextInt(3)), new ItemStack(StarWarsMod.lightsaberCrystal, 1, rand.nextInt(3)), new ItemStack(StarWarsMod.stormtrooperBoots), new ItemStack(StarWarsMod.stormtrooperLegs), new ItemStack(StarWarsMod.stormtrooperChest), new ItemStack(StarWarsMod.stormtrooperHelmet), new ItemStack(StarWarsMod.titaniumChromiumIngot) };
+			items = new ItemStack[] { new ItemStack(StarWarsMod.hiltMetelCompound, rand.nextInt(3)), new ItemStack(StarWarsMod.lightsaberCrystal, 1, rand.nextInt(3)), new ItemStack(StarWarsMod.stormtrooperBoots), new ItemStack(StarWarsMod.stormtrooperLegs), new ItemStack(StarWarsMod.stormtrooperChest), new ItemStack(StarWarsMod.stormtrooperHelmet), new ItemStack(StarWarsMod.titaniumChromiumIngot), new ItemStack(StarWarsMod.blasterPistol, 1, rand.nextInt(StarWarsMod.blasterPistol.subtypes)), new ItemStack(StarWarsMod.blasterRifle, 1, rand.nextInt(StarWarsMod.blasterRifle.subtypes)) };
 		}
-		float[] weights = { 0.05F, 0.001F, 0.005F, 0.005F, 0.005F, 0.005F, 0.05F };
+		float[] weights = { 0.05F, 0.001F, 0.005F, 0.005F, 0.005F, 0.005F, 0.05F, 0.002F, 0.002F };
 
 		double totalWeight = 0.0d;
 		for (int i = 0; i < items.length; i++)

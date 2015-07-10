@@ -26,6 +26,7 @@ public class ItemBlasterRifle extends Item
 	private int timeToRecharge = 8;
 
 	private String[] versions = { "A280", "Esb", "Ionization", "Cycler", "Stormtrooper" };
+	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

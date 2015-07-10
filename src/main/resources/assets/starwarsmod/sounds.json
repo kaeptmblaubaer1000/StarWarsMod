@@ -110,6 +110,12 @@
             "mob/protocol/die1"
         ]
     },
+    "mob.protocol.r2d2rare": {
+        "category": "neutral",
+        "sounds": [
+            "mob/protocol/r2d2rare"
+        ]
+    },
     "mob.astromech.say": {
         "category": "neutral",
         "sounds": [

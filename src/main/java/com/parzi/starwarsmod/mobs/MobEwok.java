@@ -1,10 +1,13 @@
 package com.parzi.starwarsmod.mobs;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITempt;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -14,15 +17,15 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class MobEwok extends EntityLiving implements IAnimals
+public class MobEwok extends EntityAnimal implements IAnimals
 {
 	public MobEwok(World par1World)
 	{
 		super(par1World);
+		this.tasks.taskEntries.clear();
 		this.tasks.addTask(0, new EntityAISwimming(this));
-		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
-		// EntityPlayer.class, 1.0D, false));\
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 
 		if (this.rand.nextInt(3) == 0 || true)
@@ -74,5 +77,12 @@ public class MobEwok extends EntityLiving implements IAnimals
 		}
 
 		return Item.getItemFromBlock(Blocks.leaves);
+	}
+
+	@Override
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

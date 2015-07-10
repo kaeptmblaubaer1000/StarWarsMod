@@ -9,10 +9,15 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.util.EnumHelper;
 
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
+import com.parzi.starwarsmod.items.weapons.ItemBlasterRifle;
+import com.parzi.starwarsmod.items.weapons.ItemEwokSpear;
+import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
+import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
+import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
@@ -46,7 +51,7 @@ public class StarWarsMod
 	public static Random rngTitanium = new Random();
 
 	@Mod.Instance(StarWarsMod.MODID)
-	public static StarWarsMod instance;
+	private static StarWarsMod instance;
 
 	/* Proxies */
 	@SidedProxy(clientSide = "com.parzi.starwarsmod.StarWarsClientProxy", serverSide = "com.parzi.starwarsmod.StarWarsCommonProxy")
@@ -62,12 +67,12 @@ public class StarWarsMod
 	public static JediGUI jediRobesGui;
 
 	/* Items */
-	public static Item gaffiStick;
-	public static Item lightsaber;
-	public static Item blasterPistol;
-	public static Item blasterRifle;
+	public static ItemGaffiStick gaffiStick;
+	public static ItemLightsaber lightsaber;
+	public static ItemBlasterPistol blasterPistol;
+	public static ItemBlasterRifle blasterRifle;
 	public static Item blasterRifleHeavy;
-	public static Item ewokSpear;
+	public static ItemEwokSpear ewokSpear;
 
 	public static Item hiltMetelCompound;
 	public static Item hiltMetelAlloy;
@@ -77,6 +82,7 @@ public class StarWarsMod
 	public static Item blasterBolt;
 	public static Item blasterRifleBolt;
 	public static Item banthaHorn;
+	public static Item droidCaller;
 
 	public static Item chromiumDust;
 	public static Item titaniumDust;
@@ -95,6 +101,9 @@ public class StarWarsMod
 
 	public static Item spawnSpeederBike;
 	public static Item spawnLandspeeder;
+	public static Item spawnAstromech;
+	public static Item spawnProtocol;
+	public static Item spawnGonk;
 
 	public static Item jediRobes;
 
@@ -112,6 +121,18 @@ public class StarWarsMod
 	public static Item stormtrooperChest;
 	public static Item stormtrooperLegs;
 	public static Item stormtrooperBoots;
+
+	public static Item sandtrooperHelmet;
+	public static Item sandtrooperChest;
+	public static Item sandtrooperLegs;
+	public static Item sandtrooperBoots;
+
+	public static Item bobaHelmet;
+	public static Item bobaChest;
+	public static Item bobaJetpack;
+	public static Item bobaJetpackChest;
+	public static Item bobaLegs;
+	public static Item bobaBoots;
 
 	public static Item tiePilotHelmet;
 	public static Item tiePilotChest;
@@ -151,7 +172,8 @@ public class StarWarsMod
 	public static Block chromiumOre;
 	public static Block titaniumOre;
 	public static Block titaniumChromiumBlock;
-	public static Block endorBaseWall;
+	public static Block blockEndorBaseWall;
+	public static Block blockEndorBaseWallStairs;
 
 	/* Tool Materials */
 	public static ToolMaterial gaffiMat;
@@ -164,6 +186,9 @@ public class StarWarsMod
 	public static ArmorMaterial stormtrooperArmorMat;
 	public static ArmorMaterial tiePilotArmorMat;
 	public static ArmorMaterial hothArmorMat;
+	public static ArmorMaterial sandtrooperArmorMat;
+	public static ArmorMaterial bobaArmorMat;
+
 
 	/* Events */
 	@EventHandler
@@ -173,6 +198,7 @@ public class StarWarsMod
 		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class, 0, Side.SERVER);
 		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
 		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
+		network.registerMessage(CreateBlasterBoltSpeeder.Handler.class, CreateBlasterBoltSpeeder.class, 3, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
@@ -184,8 +210,8 @@ public class StarWarsMod
 		this.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
 		this.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
 
-		this.enableFlyCommand = config.get("commands", "flyspd", false).getBoolean();
-		this.enableDimCommand = config.get("commands", "chgdim", false).getBoolean();
+		this.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
+		this.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
 
 		this.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		this.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
@@ -198,7 +224,7 @@ public class StarWarsMod
 	{
 		System.out.println("Begin StarWars Init...");
 
-		this.instance = this;
+		this.setInstance(this);
 
 		/* Creative Tabs */
 		StarWarsMod.StarWarsTab = new StarWarsTab();
@@ -225,5 +251,21 @@ public class StarWarsMod
 	{
 		if (this.enableFlyCommand) event.registerServerCommand(new CommandFlySpeed());
 		if (this.enableDimCommand) event.registerServerCommand(new CommandSWDim());
+	}
+
+	/**
+	 * @return the instance
+	 */
+	public static StarWarsMod getInstance()
+	{
+		return instance;
+	}
+
+	/**
+	 * @param instance the instance to set
+	 */
+	public static void setInstance(StarWarsMod instance)
+	{
+		StarWarsMod.instance = instance;
 	}
 }
