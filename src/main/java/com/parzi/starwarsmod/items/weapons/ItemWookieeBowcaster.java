@@ -14,64 +14,24 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBlasterPistol extends Item
+public class ItemWookieeBowcaster extends Item
 {
-	private String name = "blasterPistol";
+	private String name = "bowcaster";
 	private int timeSinceLastShot = 0;
-	private int timeToRecharge = 6;
+	private int timeToRecharge = 8;
 
-	private String[] versions = { "Dl44", "Dl18" };
-	public int subtypes = versions.length;
-
-	@SideOnly(Side.CLIENT)
-	private IIcon[] icons;
-
-	public ItemBlasterPistol()
+	public ItemWookieeBowcaster()
 	{
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHasSubtypes(true);
+		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		this.maxStackSize = 1;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		icons = new IIcon[versions.length];
-
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + versions[i]);
-		}
-	}
-
-	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
-		int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
-		return "item" + "." + StarWarsMod.MODID + "." + name + "." + versions[metadata];
-	}
-
-	@Override
-	public IIcon getIconFromDamage(int par1)
-	{
-		return icons[par1];
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
-		for (int x = 0; x < versions.length; x++)
-		{
-			par3List.add(new ItemStack(this, 1, x));
-		}
 	}
 
 	@Override
@@ -102,16 +62,13 @@ public class ItemBlasterPistol extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
-		if (par1ItemStack.stackTagCompound.getInteger("timeout")  < 2)
-		{
-			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-		}
-
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			par2World.spawnEntityInWorld(new EntityBlasterPistolBolt(par2World, entityPlayer));
+			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
 			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
 		}
+
+		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 
 		return par1ItemStack;
 	}

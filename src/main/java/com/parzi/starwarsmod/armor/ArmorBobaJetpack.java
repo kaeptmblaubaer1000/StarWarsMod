@@ -1,8 +1,10 @@
 package com.parzi.starwarsmod.armor;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
@@ -23,5 +25,22 @@ public class ArmorBobaJetpack extends ItemArmor
 	{
 		if (stack.getItem() == StarWarsMod.bobaJetpackChest) { return StarWarsMod.MODID + ":" + "textures/models/bobaArmorLayer2.png"; }
 		return "";
+	}
+
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
+	{
+		player.capabilities.allowFlying = true;
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
+	{
+		if (player instanceof EntityPlayer)
+		{
+			EntityPlayer p = (EntityPlayer)player;
+			p.capabilities.allowFlying = (p.capabilities.isCreativeMode || (p.inventory.armorInventory[2] != null && p.inventory.armorInventory[2].getItem() instanceof ArmorBobaJetpack));
+			if (!p.capabilities.allowFlying) p.capabilities.isFlying = false;
+		}
 	}
 }

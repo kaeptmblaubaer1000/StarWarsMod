@@ -41,8 +41,8 @@ public class BiomeTatooine extends BiomeGenBase
 
 		this.setBiomeName("Tatooine");
 
-		this.topBlock = Blocks.sand;
-		this.fillerBlock = Blocks.sandstone;
+		this.topBlock = StarWarsMod.tatooineSand;
+		this.fillerBlock = StarWarsMod.tatooineSand;
 
 		this.biomeDecorator = new BiomeDecoratorTatooine();
 	}

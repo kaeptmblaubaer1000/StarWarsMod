@@ -36,11 +36,10 @@ public class MobDroidGNK extends EntityAnimal implements IAnimals
 	}
 
 	@Override
-	protected Item getDropItem()
+	public void dropFewItems(boolean par1, int par2)
 	{
-		return StarWarsMod.spawnGonk;
+		this.dropItem(StarWarsMod.spawnGonk, 1);
 	}
-
 	@Override
 	protected String getLivingSound()
 	{

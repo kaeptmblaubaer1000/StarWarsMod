@@ -68,9 +68,9 @@ public class MobDroidAstromech extends EntityTameable implements IAnimals
 	}
 
 	@Override
-	protected Item getDropItem()
+	public void dropFewItems(boolean par1, int par2)
 	{
-		return StarWarsMod.spawnAstromech;
+		this.dropItem(StarWarsMod.spawnAstromech, 1);
 	}
 
 	@Override

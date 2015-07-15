@@ -14,24 +14,24 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBlasterPistol extends Item
+public class ItemBlasterHeavy extends Item
 {
-	private String name = "blasterPistol";
+	private String name = "blasterHeavy";
 	private int timeSinceLastShot = 0;
-	private int timeToRecharge = 6;
+	private int timeToRecharge = 10;
 
-	private String[] versions = { "Dl44", "Dl18" };
+	private String[] versions = { "Dlt19" };
 	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	public ItemBlasterPistol()
+	public ItemBlasterHeavy()
 	{
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHasSubtypes(true);
@@ -102,14 +102,14 @@ public class ItemBlasterPistol extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
-		if (par1ItemStack.stackTagCompound.getInteger("timeout")  < 2)
+		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 		{
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		}
 
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			par2World.spawnEntityInWorld(new EntityBlasterPistolBolt(par2World, entityPlayer));
+			par2World.spawnEntityInWorld(new EntityBlasterHeavyBolt(par2World, entityPlayer));
 			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
 		}
 

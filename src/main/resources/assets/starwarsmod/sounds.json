@@ -198,28 +198,16 @@
             "item/blasterRifle/use1"
         ]
     },
+    "item.blasterCycler.use": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/tusken_use1"
+        ]
+    },
     "item.lightsaber.swing": {
         "category": "neutral",
         "sounds": [
             "item/lightsaber/swing"
-        ]
-    },
-    "item.records.Throne": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/throne",
-                "stream": true
-            }
-        ]
-    },
-    "item.records.Theme": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/theme",
-                "stream": true
-            }
         ]
     }
 }

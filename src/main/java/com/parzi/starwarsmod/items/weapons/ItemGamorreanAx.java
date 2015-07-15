@@ -10,13 +10,13 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.TextUtils;
 
-public class ItemEwokSpear extends ItemSword
+public class ItemGamorreanAx extends ItemSword
 {
-	public String name = "ewokSpear";
+	public String name = "gamorreanAx";
 
-	public ItemEwokSpear()
+	public ItemGamorreanAx()
 	{
-		super(StarWarsMod.ewokMat);
+		super(StarWarsMod.gamorreanMat);
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);

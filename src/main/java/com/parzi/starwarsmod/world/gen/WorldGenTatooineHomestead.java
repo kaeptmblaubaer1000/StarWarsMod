@@ -16,9 +16,7 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 {
 	protected Block[] getValidSpawnBlocks() {
 		return new Block[] {
-			Blocks.sand,
-			Blocks.sandstone,
-			Blocks.stone
+			StarWarsMod.tatooineSand
 		};
 	}
 

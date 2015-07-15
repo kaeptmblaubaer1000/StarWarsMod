@@ -5,12 +5,12 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class WorldProviderTatooine extends WorldProvider
 {
-
 	public void registerWorldChunkManager()
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
@@ -27,7 +27,8 @@ public class WorldProviderTatooine extends WorldProvider
 		return 40;
 	}
 
-	public boolean canRainSnowIce(Chunk chunk) {
+	public boolean canRainSnowIce(Chunk chunk)
+	{
 		return false;
 	}
 

@@ -102,13 +102,30 @@ public class ItemBlasterRifle extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
+		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
+		{
+			if (par1ItemStack.getItemDamage() == 3)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1f, 0.82f);
+			}
+			else
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			}
+		}
+
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
-			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+			if (par1ItemStack.getItemDamage() == 3)
+			{
+				par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge + 10);
+			}
+			else
+			{
+				par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+			}
 		}
-
-		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 
 		return par1ItemStack;
 	}

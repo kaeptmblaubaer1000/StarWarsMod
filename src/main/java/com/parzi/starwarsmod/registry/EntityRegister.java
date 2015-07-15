@@ -1,12 +1,15 @@
 package com.parzi.starwarsmod.registry;
 
+import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
+import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
+import com.parzi.starwarsmod.mobs.MobDroidGNK;
 import com.parzi.starwarsmod.mobs.MobDroidProtocol;
 import com.parzi.starwarsmod.mobs.MobEwok;
-import com.parzi.starwarsmod.mobs.MobDroidGNK;
+import com.parzi.starwarsmod.mobs.MobGamorrean;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
@@ -28,6 +31,8 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobTauntaun.class, "tauntaun", 0xFFFFFF, 0x4ADCE8);
 		EntityUtils.registerWithSpawnEgg(MobBantha.class, "bantha", 0x8B4513, 0xFFDEAD);
 		EntityUtils.registerWithSpawnEgg(MobWampa.class, "wampa", 0xFFFFFF, 0x7F0000);
+		EntityUtils.registerWithSpawnEgg(MobGamorrean.class, "gamorrean", 0x000000, 0xFF5500);
+		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 0x000000, 0x000000);
 
 		EntityUtils.registerEntity(MobDroidAstromech.class, "droidAstromech");
 		EntityUtils.registerEntity(MobDroidProtocol.class, "droidProtocol");
@@ -40,5 +45,6 @@ public class EntityRegister
 
 		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
+		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
 	}
 }

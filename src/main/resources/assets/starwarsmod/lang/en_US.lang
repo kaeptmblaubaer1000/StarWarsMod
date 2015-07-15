@@ -8,6 +8,8 @@ item.starwarsmod.containmentField.name=Containment Field
 item.starwarsmod.lightsaberCrystal.name=Kyber Crystal
 item.starwarsmod.banthaHorn.name=Bantha Horn
 item.starwarsmod.ewokSpear.name=Ewok Spear
+item.starwarsmod.gamorreanAx.name=Gamorrean Ax
+item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 item.starwarsmod.droidCaller.name=Droid Caller
 item.starwarsmod.chromiumDust.name=Chromium Dust
 item.starwarsmod.titaniumChromiumDust.name=Titanium-Chromium Dust
@@ -33,6 +35,8 @@ item.starwarsmod.blasterPistol.Dl44.name=DL-44 Heavy Blaster Pistol
 item.starwarsmod.blasterPistol.Dl18.name=DL-18 Blaster Pistol
 item.starwarsmod.blasterPistol.Esb11.name=ESB-11 Blaster Pistol
 
+item.starwarsmod.blasterHeavy.Dlt19.name=DLT-19 Heavy Blaster Rifle
+
 item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
 item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
 item.starwarsmod.blasterRifle.Ionization.name=Ionization Rifle
@@ -43,6 +47,7 @@ item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
 tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
+tile.starwarsmod.tatooineSand.name=Tatooine Sand
 tile.starwarsmod.endorBaseWall.name=Endor Base Wall
 tile.starwarsmod.endorBaseWallStairs.name=Endor Base Wall Stairs
 tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
@@ -50,15 +55,15 @@ tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
 
-item.starwarsmod.endorHelmet.name=Endor Helmet
-item.starwarsmod.endorChestplate.name=Endor Chestplate
-item.starwarsmod.endorLeggings.name=Endor Leggings
-item.starwarsmod.endorBoots.name=Endor Boots
+item.starwarsmod.endorHelmet.name=Rebel Endor Helmet
+item.starwarsmod.endorChestplate.name=Rebel Endor Chestplate
+item.starwarsmod.endorLeggings.name=Rebel Endor Leggings
+item.starwarsmod.endorBoots.name=Rebel Endor Boots
 
-item.starwarsmod.hothHelmet.name=Hoth Helmet
-item.starwarsmod.hothChestplate.name=Hoth Chestplate
-item.starwarsmod.hothLeggings.name=Hoth Leggings
-item.starwarsmod.hothBoots.name=Hoth Boots
+item.starwarsmod.hothHelmet.name=Rebel Hoth Helmet
+item.starwarsmod.hothChestplate.name=Rebel Hoth Chestplate
+item.starwarsmod.hothLeggings.name=Rebel Hoth Leggings
+item.starwarsmod.hothBoots.name=Rebel Hoth Boots
 
 item.starwarsmod.bobaHelmet.name=Bounty Hunter Helmet
 item.starwarsmod.bobaChestplate.name=Bounty Hunter Chestplate
@@ -71,6 +76,16 @@ item.starwarsmod.stormtrooperHelmet.name=Stormtrooper Helmet
 item.starwarsmod.stormtrooperChestplate.name=Stormtrooper Chestplate
 item.starwarsmod.stormtrooperLeggings.name=Stormtrooper Leggings
 item.starwarsmod.stormtrooperBoots.name=Stormtrooper Boots
+
+item.starwarsmod.snowtrooperHelmet.name=Snowtrooper Helmet
+item.starwarsmod.snowtrooperChestplate.name=Snowtrooper Chestplate
+item.starwarsmod.snowtrooperLeggings.name=Snowtrooper Leggings
+item.starwarsmod.snowtrooperBoots.name=Snowtrooper Boots
+
+item.starwarsmod.scoutTrooperHelmet.name=Scout Trooper Helmet
+item.starwarsmod.scoutTrooperChestplate.name=Scout Trooper Chestplate
+item.starwarsmod.scoutTrooperLeggings.name=Scout Trooper Leggings
+item.starwarsmod.scoutTrooperBoots.name=Scout Trooper Boots
 
 item.starwarsmod.sandtrooperHelmet.name=Sandtrooper Helmet
 item.starwarsmod.sandtrooperChestplate.name=Sandtrooper Chestplate
@@ -87,11 +102,6 @@ item.starwarsmod.tiePilotChestplate.name=TIE Pilot Shirt
 item.starwarsmod.tiePilotLeggings.name=TIE Pilot Pants
 item.starwarsmod.tiePilotBoots.name=TIE Pilot Boots
 
-// Music Discs
-item.starwarsmod.musicDisc.name=Music Disc
-item.starwarsmod.musicDiscTheme.desc=Episode IV Theme
-item.starwarsmod.musicDiscThrone.desc=Episode IV Throne Room Theme
-
 // Mobs
 entity.starwarsmod.wookiee.name=Wookiee
 entity.starwarsmod.tusken.name=Tusken Raider
@@ -100,6 +110,8 @@ entity.starwarsmod.tauntaun.name=Tauntaun
 entity.starwarsmod.bantha.name=Bantha
 entity.starwarsmod.ewok.name=Ewok
 entity.starwarsmod.wampa.name=Wampa
+entity.starwarsmod.dewback.name=Dewback
+entity.starwarsmod.gamorrean.name=Gamorrean Guard
 
 entity.starwarsmod.droidAstromech.name=Astromech Droid
 entity.starwarsmod.droidProtocol.name=Protocol Droid

@@ -71,9 +71,9 @@ public class MobDroidProtocol extends EntityAnimal implements IAnimals
 	}
 
 	@Override
-	protected Item getDropItem()
+	public void dropFewItems(boolean par1, int par2)
 	{
-		return StarWarsMod.spawnProtocol;
+		this.dropItem(StarWarsMod.spawnProtocol, 1);
 	}
 
 	@Override

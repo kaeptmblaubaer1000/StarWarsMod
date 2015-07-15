@@ -12,11 +12,14 @@ import net.minecraftforge.common.config.Configuration;
 
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemEwokSpear;
 import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
+import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
+import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
@@ -71,8 +74,11 @@ public class StarWarsMod
 	public static ItemLightsaber lightsaber;
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
+	public static ItemBlasterHeavy blasterHeavy;
 	public static Item blasterRifleHeavy;
 	public static ItemEwokSpear ewokSpear;
+	public static ItemWookieeBowcaster bowcaster;
+	public static ItemGamorreanAx gamorreanAx;
 
 	public static Item hiltMetelCompound;
 	public static Item hiltMetelAlloy;
@@ -122,6 +128,16 @@ public class StarWarsMod
 	public static Item stormtrooperLegs;
 	public static Item stormtrooperBoots;
 
+	public static Item snowtrooperHelmet;
+	public static Item snowtrooperChest;
+	public static Item snowtrooperLegs;
+	public static Item snowtrooperBoots;
+
+	public static Item scoutTrooperHelmet;
+	public static Item scoutTrooperChest;
+	public static Item scoutTrooperLegs;
+	public static Item scoutTrooperBoots;
+
 	public static Item sandtrooperHelmet;
 	public static Item sandtrooperChest;
 	public static Item sandtrooperLegs;
@@ -143,9 +159,6 @@ public class StarWarsMod
 	public static Item hothChest;
 	public static Item hothLegs;
 	public static Item hothBoots;
-
-	public static Item recordTheme;
-	public static Item recordThrone;
 
 	public static BiomeGenBase biomeTatooine;
 	public static BiomeGenBase biomeHoth;
@@ -174,9 +187,12 @@ public class StarWarsMod
 	public static Block titaniumChromiumBlock;
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
+	public static Block tatooineSand;
 
 	/* Tool Materials */
 	public static ToolMaterial gaffiMat;
+	public static ToolMaterial ewokMat;
+	public static ToolMaterial gamorreanMat;
 	public static ToolMaterial plasmaMat;
 
 	/* Armor Materials */
@@ -184,6 +200,8 @@ public class StarWarsMod
 	public static ArmorMaterial endorArmorMat;
 	public static ArmorMaterial rebelPilotArmorMat;
 	public static ArmorMaterial stormtrooperArmorMat;
+	public static ArmorMaterial snowtrooperArmorMat;
+	public static ArmorMaterial scoutTrooperArmorMat;
 	public static ArmorMaterial tiePilotArmorMat;
 	public static ArmorMaterial hothArmorMat;
 	public static ArmorMaterial sandtrooperArmorMat;
@@ -233,9 +251,9 @@ public class StarWarsMod
 
 		ItemRegister.registerAll();
 
-		WorldRegister.registerAll();
-
 		BlockRegister.registerAll();
+
+		WorldRegister.registerAll();
 
 		RecipeRegister.registerAll();
 
