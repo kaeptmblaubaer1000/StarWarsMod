@@ -286,4 +286,8 @@ public class StarWarsMod
 	{
 		StarWarsMod.instance = instance;
 	}
+
+	public static String getDroidSittingMessage(boolean isSitting) {
+		return ((isSitting) ? "Staying" : "Following");
+	}
 }
