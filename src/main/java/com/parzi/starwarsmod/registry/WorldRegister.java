@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class WorldRegister
 {
-	public static void registerAll()
+	public static void registerAll() throws Exception
 	{
 		StarWarsMod.biomeTatooine = new BiomeTatooine(StarWarsMod.dimTatooineId);
 
@@ -34,20 +34,24 @@ public class WorldRegister
 		StarWarsMod.biomeEndor = new BiomeEndor(StarWarsMod.dimEndorId);
 		StarWarsMod.biomeEndorPlains = new BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
 
-		DimensionManager.registerProviderType(StarWarsMod.dimTatooineId, WorldProviderTatooine.class, false);
+		boolean registerOk = true;
+
+		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimTatooineId, WorldProviderTatooine.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimTatooineId, StarWarsMod.dimTatooineId);
 
-		DimensionManager.registerProviderType(StarWarsMod.dimHothId, WorldProviderHoth.class, false);
+		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimHothId, WorldProviderHoth.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimHothId, StarWarsMod.dimHothId);
 
-		DimensionManager.registerProviderType(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class, false);
+		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimKashyyykId, StarWarsMod.dimKashyyykId);
 
-		DimensionManager.registerProviderType(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class, false);
+		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimYavin4Id, StarWarsMod.dimYavin4Id);
 
-		DimensionManager.registerProviderType(StarWarsMod.dimEndorId, WorldProviderEndor.class, false);
+		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimEndorId, WorldProviderEndor.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimEndorId, StarWarsMod.dimEndorId);
+
+		if (!registerOk) throw new Exception("Unable to register dimensions!");
 
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndorPlains);

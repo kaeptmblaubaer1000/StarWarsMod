@@ -20,6 +20,7 @@ public class MobWookiee extends EntityAnimal implements IAnimals
 	public MobWookiee(World par1World)
 	{
 		super(par1World);
+		this.setSize(0.5F, 2);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));

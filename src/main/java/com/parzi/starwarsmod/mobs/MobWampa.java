@@ -19,6 +19,7 @@ public class MobWampa extends EntityMob implements IMob
 	public MobWampa(World par1World)
 	{
 		super(par1World);
+		this.setSize(2, 3);
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 1, true));
 		this.tasks.addTask(0, new EntityAILookIdle(this));
 	}

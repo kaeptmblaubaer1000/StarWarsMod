@@ -25,6 +25,7 @@ public class MobJawa extends EntityMob implements IMob
 	public MobJawa(World par1World)
 	{
 		super(par1World);
+		this.setSize(0.5F, 1.5F);
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
 		// EntityPlayer.class, 1.0D, false));

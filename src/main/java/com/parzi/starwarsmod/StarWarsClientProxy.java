@@ -1,9 +1,11 @@
 package com.parzi.starwarsmod;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -21,6 +23,7 @@ import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
+import com.parzi.starwarsmod.rendering.DrawTatooineSky;
 import com.parzi.starwarsmod.rendering.RenderBantha;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
 import com.parzi.starwarsmod.rendering.RenderDSTurret;
@@ -97,6 +100,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 
 		/* Events */
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
+
+		//DimensionManager.getWorld(StarWarsMod.dimTatooineId).provider.setSkyRenderer(new DrawTatooineSky());
+
 	}
 
 	@Override

@@ -8,6 +8,10 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.DrawTatooineSky;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderTatooine extends WorldProvider
 {
@@ -16,6 +20,12 @@ public class WorldProviderTatooine extends WorldProvider
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
 		this.dimensionId = StarWarsMod.dimTatooineId;
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer()
+    {
+	    return new DrawTatooineSky();
+    }
 
 	public IChunkProvider createChunkGenerator()
 	{

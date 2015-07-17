@@ -31,8 +31,8 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobTauntaun.class, "tauntaun", 0xFFFFFF, 0x4ADCE8);
 		EntityUtils.registerWithSpawnEgg(MobBantha.class, "bantha", 0x8B4513, 0xFFDEAD);
 		EntityUtils.registerWithSpawnEgg(MobWampa.class, "wampa", 0xFFFFFF, 0x7F0000);
-		EntityUtils.registerWithSpawnEgg(MobGamorrean.class, "gamorrean", 0x000000, 0xFF5500);
-		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 0x000000, 0x000000);
+		EntityUtils.registerWithSpawnEgg(MobGamorrean.class, "gamorrean", 0x990033, 0x20B392);
+		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 0xFFA500, 0x544838);
 
 		EntityUtils.registerEntity(MobDroidAstromech.class, "droidAstromech");
 		EntityUtils.registerEntity(MobDroidProtocol.class, "droidProtocol");

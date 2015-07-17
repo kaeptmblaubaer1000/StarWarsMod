@@ -3,21 +3,25 @@ package com.parzi.starwarsmod;
 import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.item.Item;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
-import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.rendering.DrawTatooineSky;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+import com.parzi.starwarsmod.world.provider.WorldProviderTatooine;
 
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent.Action;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class StarWarsEventHandler
 {
@@ -42,7 +46,7 @@ public class StarWarsEventHandler
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent)
 	{
-		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR)
+		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
 		{
 			StarWarsMod.network.sendToServer(new CreateBlasterBoltSpeeder(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId));
 

@@ -4,7 +4,6 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -22,6 +21,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	public MobEwok(World par1World)
 	{
 		super(par1World);
+		this.setSize(0.5F, 1.5F);
 		this.tasks.taskEntries.clear();
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));

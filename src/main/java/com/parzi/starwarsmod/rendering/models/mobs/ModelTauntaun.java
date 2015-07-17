@@ -201,10 +201,10 @@ public class ModelTauntaun extends ModelBase
 		this.Nose.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornBaseL.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornBaseR.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.SmallHornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.SmallHornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI) + 0.12F;
+		this.HornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI) - 0.12F;
+		this.SmallHornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI) + 0.24F;
+		this.SmallHornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI) - 0.24F;
 
 		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
 		this.Snout.rotateAngleX = f4 / (180F / (float)Math.PI);

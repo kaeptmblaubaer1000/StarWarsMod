@@ -253,7 +253,14 @@ public class StarWarsMod
 
 		BlockRegister.registerAll();
 
-		WorldRegister.registerAll();
+		try
+		{
+			WorldRegister.registerAll();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 
 		RecipeRegister.registerAll();
 
