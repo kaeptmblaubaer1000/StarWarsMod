@@ -9,8 +9,6 @@ import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.VILL
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ICE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
 
 import java.util.List;
 import java.util.Random;
@@ -35,7 +33,6 @@ import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
 import net.minecraft.world.gen.feature.WorldGenDungeons;
-import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraft.world.gen.structure.MapGenStronghold;
@@ -44,6 +41,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+
+import com.parzi.starwarsmod.StarWarsMod;
+
 import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class ChunkProviderGenerateTatooine implements IChunkProvider
@@ -186,7 +186,7 @@ public class ChunkProviderGenerateTatooine implements IChunkProvider
 								}
 								else if (k2 * 8 + l2 < b0)
 								{
-									p_147424_3_[j3 += short1] = Blocks.sand;
+									p_147424_3_[j3 += short1] = StarWarsMod.tatooineSand;
 								}
 								else
 								{
@@ -253,8 +253,6 @@ public class ChunkProviderGenerateTatooine implements IChunkProvider
 
 		if (this.mapFeaturesEnabled)
 		{
-			this.mineshaftGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
-			this.villageGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
 			this.strongholdGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
 			this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
 		}
@@ -420,8 +418,6 @@ public class ChunkProviderGenerateTatooine implements IChunkProvider
 
 		if (this.mapFeaturesEnabled)
 		{
-			this.mineshaftGenerator.generateStructuresInChunk(this.worldObj, this.rand, p_73153_2_, p_73153_3_);
-			flag = this.villageGenerator.generateStructuresInChunk(this.worldObj, this.rand, p_73153_2_, p_73153_3_);
 			this.strongholdGenerator.generateStructuresInChunk(this.worldObj, this.rand, p_73153_2_, p_73153_3_);
 			this.scatteredFeatureGenerator.generateStructuresInChunk(this.worldObj, this.rand, p_73153_2_, p_73153_3_);
 		}
@@ -429,15 +425,6 @@ public class ChunkProviderGenerateTatooine implements IChunkProvider
 		int k1;
 		int l1;
 		int i2;
-
-		boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, DUNGEON);
-		for (k1 = 0; doGen && k1 < 8; ++k1)
-		{
-			l1 = k + this.rand.nextInt(16) + 8;
-			i2 = this.rand.nextInt(256);
-			int j2 = l + this.rand.nextInt(16) + 8;
-			(new WorldGenDungeons()).generate(this.worldObj, this.rand, l1, i2, j2);
-		}
 
 		biomegenbase.decorate(this.worldObj, this.rand, k, l);
 		if (TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, ANIMALS))
@@ -447,7 +434,7 @@ public class ChunkProviderGenerateTatooine implements IChunkProvider
 		k += 8;
 		l += 8;
 
-		doGen = TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, ICE);
+		boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, ICE);
 		for (k1 = 0; doGen && k1 < 16; ++k1)
 		{
 			for (l1 = 0; l1 < 16; ++l1)

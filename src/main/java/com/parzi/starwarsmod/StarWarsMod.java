@@ -12,6 +12,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterRifle;
@@ -84,11 +85,12 @@ public class StarWarsMod
 	public static Item hiltMetelAlloy;
 	public static Item plasmaEmitter;
 	public static Item containmentField;
-	public static Item lightsaberCrystal;
+	public static ItemLightsaberCrystal lightsaberCrystal;
 	public static Item blasterBolt;
 	public static Item blasterRifleBolt;
 	public static Item banthaHorn;
 	public static Item droidCaller;
+	public static Item debugLootGen;
 
 	public static Item chromiumDust;
 	public static Item titaniumDust;

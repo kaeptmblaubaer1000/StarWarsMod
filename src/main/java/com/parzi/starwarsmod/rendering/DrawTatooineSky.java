@@ -15,6 +15,9 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.Vector3;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,20 +26,42 @@ public class DrawTatooineSky extends IRenderHandler
 {
 	private ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
 
+	private ResourceLocation ghomrassenTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/ghomrassen.png");
+	private Vector3 ghomrassenOffset;
+	private float ghomrassenSizeMod;
+	private ResourceLocation guermessaTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/guermessa.png");
+	private Vector3 guermessaOffset;
+	private float guermessaSizeMod;
+	private ResourceLocation cheniniTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/chenini.png");
+	private Vector3 cheniniOffset;
+	private float cheniniSizeMod;
+
 	public int starList;
 	public int glSkyList;
 	public int glSkyList2;
 	private float sunSize;
+	private float moonSize;
+
 	private float sun2OffsetX;
 	private float sun2OffsetY;
 	private float sun2OffsetZ;
 
 	public DrawTatooineSky()
 	{
-		this.sunSize = 17.5F;
-		this.sun2OffsetX = 30;
-		this.sun2OffsetY = 0;
-		this.sun2OffsetZ = -15;
+		this.sunSize = 32F;
+		this.moonSize = 32F;
+
+		this.sun2OffsetX = 60; // left/right
+		this.sun2OffsetY = 0; // z index
+		this.sun2OffsetZ = -32; // up/down
+
+		ghomrassenOffset = new Vector3(0, 0, 20); // big one
+		guermessaOffset = new Vector3(32, 0, 0); // middle
+		cheniniOffset = new Vector3(44, 0, -4); // small
+
+		ghomrassenSizeMod = 0.8F;
+		guermessaSizeMod = 1.75F;
+		cheniniSizeMod = 3F;
 
 		int displayLists = GLAllocation.generateDisplayLists(3);
 		this.starList = displayLists;
@@ -207,7 +232,7 @@ public class DrawTatooineSky extends IRenderHandler
 		GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
 
-		// Render sun
+		// Render tatoo I
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
@@ -229,7 +254,7 @@ public class DrawTatooineSky extends IRenderHandler
 		tessellator1.addVertexWithUV(-f10, 100.0D, f10, 0.0D, 1.0D);
 		tessellator1.draw();
 
-		// Render sun 2
+		// Render tatoo II
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
@@ -249,6 +274,74 @@ public class DrawTatooineSky extends IRenderHandler
 		tessellator1.addVertexWithUV(f10 + this.sun2OffsetX, 100.0D + this.sun2OffsetY, -f10 + this.sun2OffsetZ, 1.0D, 0.0D);
 		tessellator1.addVertexWithUV(f10 + this.sun2OffsetX, 100.0D + this.sun2OffsetY, f10 + this.sun2OffsetZ, 1.0D, 1.0D);
 		tessellator1.addVertexWithUV(-f10 + this.sun2OffsetX, 100.0D + this.sun2OffsetY, f10 + this.sun2OffsetZ, 0.0D, 1.0D);
+		tessellator1.draw();
+
+		GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
+
+		// Render chenini
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
+		// Some blanking to conceal the stars
+		f10 = this.moonSize / 3.5F / this.cheniniSizeMod;
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertex(-f10 + this.cheniniOffset.X, 99.9D + this.cheniniOffset.Y, -f10 + this.cheniniOffset.Z);
+		tessellator1.addVertex(f10 + this.cheniniOffset.X, 99.9D + this.cheniniOffset.Y, -f10 + this.cheniniOffset.Z);
+		tessellator1.addVertex(f10 + this.cheniniOffset.X, 99.9D + this.cheniniOffset.Y, f10 + this.cheniniOffset.Z);
+		tessellator1.addVertex(-f10 + this.cheniniOffset.X, 99.9D + this.cheniniOffset.Y, f10 + this.cheniniOffset.Z);
+		tessellator1.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		f10 = this.moonSize / this.cheniniSizeMod;
+		mc.renderEngine.bindTexture(this.cheniniTexture);
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertexWithUV(-f10 + this.cheniniOffset.X, 100.0D + this.cheniniOffset.Y, -f10 + this.cheniniOffset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + this.cheniniOffset.X, 100.0D + this.cheniniOffset.Y, -f10 + this.cheniniOffset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + this.cheniniOffset.X, 100.0D + this.cheniniOffset.Y, f10 + this.cheniniOffset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + this.cheniniOffset.X, 100.0D + this.cheniniOffset.Y, f10 + this.cheniniOffset.Z, 0.0D, 1.0D);
+		tessellator1.draw();
+
+		// Render ghomrassen
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
+		// Some blanking to conceal the stars
+		f10 = this.moonSize / 3.5F / this.ghomrassenSizeMod;
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertex(-f10 + this.ghomrassenOffset.X, 99.9D + this.ghomrassenOffset.Y, -f10 + this.ghomrassenOffset.Z);
+		tessellator1.addVertex(f10 + this.ghomrassenOffset.X, 99.9D + this.ghomrassenOffset.Y, -f10 + this.ghomrassenOffset.Z);
+		tessellator1.addVertex(f10 + this.ghomrassenOffset.X, 99.9D + this.ghomrassenOffset.Y, f10 + this.ghomrassenOffset.Z);
+		tessellator1.addVertex(-f10 + this.ghomrassenOffset.X, 99.9D + this.ghomrassenOffset.Y, f10 + this.ghomrassenOffset.Z);
+		tessellator1.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		f10 = this.moonSize / this.ghomrassenSizeMod;
+		mc.renderEngine.bindTexture(this.ghomrassenTexture);
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertexWithUV(-f10 + this.ghomrassenOffset.X, 100.0D + this.ghomrassenOffset.Y, -f10 + this.ghomrassenOffset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + this.ghomrassenOffset.X, 100.0D + this.ghomrassenOffset.Y, -f10 + this.ghomrassenOffset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + this.ghomrassenOffset.X, 100.0D + this.ghomrassenOffset.Y, f10 + this.ghomrassenOffset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + this.ghomrassenOffset.X, 100.0D + this.ghomrassenOffset.Y, f10 + this.ghomrassenOffset.Z, 0.0D, 1.0D);
+		tessellator1.draw();
+
+		// Render guermessa
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
+		// Some blanking to conceal the stars
+		f10 = this.moonSize / 3.5F / this.guermessaSizeMod;
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertex(-f10 + this.guermessaOffset.X, 99.9D + this.guermessaOffset.Y, -f10 + this.guermessaOffset.Z);
+		tessellator1.addVertex(f10 + this.guermessaOffset.X, 99.9D + this.guermessaOffset.Y, -f10 + this.guermessaOffset.Z);
+		tessellator1.addVertex(f10 + this.guermessaOffset.X, 99.9D + this.guermessaOffset.Y, f10 + this.guermessaOffset.Z);
+		tessellator1.addVertex(-f10 + this.guermessaOffset.X, 99.9D + this.guermessaOffset.Y, f10 + this.guermessaOffset.Z);
+		tessellator1.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		f10 = this.moonSize / this.guermessaSizeMod;
+		mc.renderEngine.bindTexture(this.guermessaTexture);
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertexWithUV(-f10 + this.guermessaOffset.X, 100.0D + this.guermessaOffset.Y, -f10 + this.guermessaOffset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + this.guermessaOffset.X, 100.0D + this.guermessaOffset.Y, -f10 + this.guermessaOffset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + this.guermessaOffset.X, 100.0D + this.guermessaOffset.Y, f10 + this.guermessaOffset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + this.guermessaOffset.X, 100.0D + this.guermessaOffset.Y, f10 + this.guermessaOffset.Z, 0.0D, 1.0D);
 		tessellator1.draw();
 
 		GL11.glDisable(GL11.GL_TEXTURE_2D);

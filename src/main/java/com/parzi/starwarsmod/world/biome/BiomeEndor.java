@@ -11,14 +11,12 @@ import net.minecraft.world.gen.feature.WorldGenCanopyTree;
 import net.minecraft.world.gen.feature.WorldGenSavannaTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
-import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorBase;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree1;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree2;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree3;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree4;
-import com.parzi.starwarsmod.world.gen.WorldGenMysteryShrine;
 
 public class BiomeEndor extends BiomeGenBase
 {
@@ -68,18 +66,11 @@ public class BiomeEndor extends BiomeGenBase
 	{
 		super.decorate(par1World, par2Random, par3, par4);
 
-		if (par2Random.nextInt(1500) == 0)
+		if (par2Random.nextInt(200) == 0)
 		{
 			int k = par3 + par2Random.nextInt(16) + 8;
 			int l = par4 + par2Random.nextInt(16) + 8;
 			new WorldGenEndorBase().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-		}
-
-		if (par2Random.nextInt(200) == 0)
-		{
-			int k = par3 + 4;
-			int l = par4 + 4;
-			new WorldGenMysteryShrine().generate(StarWarsMod.dimEndorId, par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 
 		int k = par3 + par2Random.nextInt(16) + 8;

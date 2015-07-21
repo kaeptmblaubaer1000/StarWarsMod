@@ -14,6 +14,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -89,10 +91,19 @@ public class MobTauntaun extends EntityHorse
 	}
 
 	@Override
-	public boolean getCanSpawnHere()
-	{
-		return true;
-	}
+    public boolean getCanSpawnHere()
+    {
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
+    }
+
+	protected boolean isValidLightLevel()
+    {
+        int i = MathHelper.floor_double(this.posX);
+        int j = MathHelper.floor_double(this.boundingBox.minY);
+        int k = MathHelper.floor_double(this.posZ);
+
+        return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
+    }
 
 	@Override
 	public boolean canMateWith(EntityAnimal p_70878_1_)

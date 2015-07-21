@@ -6,9 +6,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
-import com.parzi.starwarsmod.world.gen.WorldGenMysteryShrine;
+import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 
 public class BiomeHoth extends BiomeGenBase
 {
@@ -40,11 +39,11 @@ public class BiomeHoth extends BiomeGenBase
 	{
 		super.decorate(par1World, par2Random, par3, par4);
 
-		if (par2Random.nextInt(200) == 0)
+		if (par2Random.nextInt(10) == 0)
 		{
 			int k = par3 + 4;
 			int l = par4 + 4;
-			new WorldGenMysteryShrine().generate(StarWarsMod.dimHothId, par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			new WorldGenHothGenerator().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 	}
 }

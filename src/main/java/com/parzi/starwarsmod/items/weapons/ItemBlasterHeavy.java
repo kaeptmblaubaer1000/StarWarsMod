@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
+import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,7 +26,7 @@ public class ItemBlasterHeavy extends Item
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 10;
 
-	private String[] versions = { "Dlt19" };
+	public String[] versions = { "Dlt19" };
 	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
@@ -87,9 +88,28 @@ public class ItemBlasterHeavy extends Item
 			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
 		}
 
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+		{
+			switch (p_77663_1_.getItemDamage())
+			{
+				case 0:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 300);
+					break;
+			}
+		}
+
 		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
 		{
 			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
+		{
+			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 		}
 	}
 
@@ -111,6 +131,13 @@ public class ItemBlasterHeavy extends Item
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterHeavyBolt(par2World, entityPlayer));
 			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+
+			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
+			}
 		}
 
 		return par1ItemStack;

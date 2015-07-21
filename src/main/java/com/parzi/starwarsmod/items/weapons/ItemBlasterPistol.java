@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,7 +26,7 @@ public class ItemBlasterPistol extends Item
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 6;
 
-	private String[] versions = { "Dl44", "Dl18" };
+	public String[] versions = { "Dl44", "Dl18" };
 	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
@@ -87,9 +88,31 @@ public class ItemBlasterPistol extends Item
 			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
 		}
 
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+		{
+			switch (p_77663_1_.getItemDamage())
+			{
+				case 0:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
+					break;
+				case 1:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 100);
+					break;
+			}
+		}
+
 		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
 		{
 			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
+		{
+			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 		}
 	}
 
@@ -102,7 +125,7 @@ public class ItemBlasterPistol extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
-		if (par1ItemStack.stackTagCompound.getInteger("timeout")  < 2)
+		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 		{
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		}
@@ -111,6 +134,13 @@ public class ItemBlasterPistol extends Item
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterPistolBolt(par2World, entityPlayer));
 			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+
+			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
+			}
 		}
 
 		return par1ItemStack;

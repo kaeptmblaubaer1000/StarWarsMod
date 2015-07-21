@@ -13,6 +13,9 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -33,6 +36,22 @@ public class MobJawa extends EntityMob implements IMob
 		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(4, new EntityAILookIdle(this));
 	}
+
+	@Override
+    public boolean getCanSpawnHere()
+    {
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
+    }
+
+	@Override
+    protected boolean isValidLightLevel()
+    {
+        int i = MathHelper.floor_double(this.posX);
+        int j = MathHelper.floor_double(this.boundingBox.minY);
+        int k = MathHelper.floor_double(this.posZ);
+
+        return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
+    }
 
 	@Override
 	protected void applyEntityAttributes()
@@ -65,12 +84,6 @@ public class MobJawa extends EntityMob implements IMob
 	protected String getDeathSound()
 	{
 		return StarWarsMod.MODID + ":" + "mob.jawa.die";
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return true;
 	}
 
 	@Override

@@ -4,16 +4,17 @@ import java.util.Random;
 
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenPlains;
 import net.minecraft.world.biome.WorldChunkManagerHell;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderGenerate;
-import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.DrawEndorSky;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderEndor extends WorldProvider
 {
@@ -23,6 +24,12 @@ public class WorldProviderEndor extends WorldProvider
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeEndor, 0);
 		this.dimensionId = StarWarsMod.dimEndorId;
 	}
+
+	@SideOnly(Side.CLIENT)
+    public IRenderHandler getSkyRenderer()
+    {
+	    return new DrawEndorSky();
+    }
 
 	public IChunkProvider createChunkGenerator()
 	{

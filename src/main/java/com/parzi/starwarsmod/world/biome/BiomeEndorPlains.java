@@ -43,7 +43,7 @@ public class BiomeEndorPlains extends BiomeGenBase
 	{
 		super.decorate(par1World, par2Random, par3, par4);
 
-		if (par2Random.nextInt(1500) == 0)
+		if (par2Random.nextInt(200) == 0)
 		{
 			int k = par3 + par2Random.nextInt(16) + 8;
 			int l = par4 + par2Random.nextInt(16) + 8;

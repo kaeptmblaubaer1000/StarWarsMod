@@ -2,8 +2,12 @@ package com.parzi.starwarsmod.world.gen;
 
 
 import java.util.Random;
+
+import com.parzi.starwarsmod.utils.LootGenUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -3327,6 +3331,10 @@ public class WorldGenYavinTempleRuins extends WorldGenerator implements IWorldGe
 		world.setBlockMetadataWithNotify(i + 11, j + 0, k + 23, 5, 2);
 		this.setBlock(world, i + 11, j + 0, k + 24, Blocks.chest, 5);
 		world.setBlockMetadataWithNotify(i + 11, j + 0, k + 24, 5, 2);
+		if (world.rand.nextBoolean())
+		{
+			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 11, j + 0, k + 24));
+		}
 		this.setBlock(world, i + 11, j + 0, k + 25, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 11, j + 0, k + 25, 2, 2);
 		this.setBlock(world, i + 11, j + 0, k + 26, Blocks.stonebrick, 2);
@@ -8933,6 +8941,10 @@ public class WorldGenYavinTempleRuins extends WorldGenerator implements IWorldGe
 		world.setBlockMetadataWithNotify(i + 23, j + 0, k + 11, 3, 2);
 		this.setBlock(world, i + 23, j + 0, k + 36, Blocks.chest, 2);
 		world.setBlockMetadataWithNotify(i + 23, j + 0, k + 36, 2, 2);
+		if (world.rand.nextBoolean())
+		{
+			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 23, j + 0, k + 36));
+		}
 		this.setBlock(world, i + 23, j + 0, k + 46, Blocks.stone_brick_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 23, j + 0, k + 46, 3, 2);
 		this.setBlock(world, i + 23, j + 1, k + 2, Blocks.stone_brick_stairs, 2);
@@ -9245,6 +9257,10 @@ public class WorldGenYavinTempleRuins extends WorldGenerator implements IWorldGe
 		world.setBlockMetadataWithNotify(i + 24, j + 0, k + 11, 3, 2);
 		this.setBlock(world, i + 24, j + 0, k + 36, Blocks.chest, 2);
 		world.setBlockMetadataWithNotify(i + 24, j + 0, k + 36, 2, 2);
+		if (world.rand.nextBoolean())
+		{
+			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 24, j + 0, k + 36));
+		}
 		this.setBlock(world, i + 24, j + 0, k + 46, Blocks.stone_brick_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 24, j + 0, k + 46, 3, 2);
 		this.setBlock(world, i + 24, j + 1, k + 2, Blocks.stone_brick_stairs, 2);
@@ -15063,6 +15079,10 @@ public class WorldGenYavinTempleRuins extends WorldGenerator implements IWorldGe
 		world.setBlockMetadataWithNotify(i + 36, j + 0, k + 23, 4, 2);
 		this.setBlock(world, i + 36, j + 0, k + 24, Blocks.chest, 4);
 		world.setBlockMetadataWithNotify(i + 36, j + 0, k + 24, 4, 2);
+		if (world.rand.nextBoolean())
+		{
+			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 36, j + 0, k + 24));
+		}
 		this.setBlock(world, i + 36, j + 0, k + 25, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 36, j + 0, k + 25, 2, 2);
 		this.setBlock(world, i + 36, j + 0, k + 26, Blocks.stonebrick, 2);

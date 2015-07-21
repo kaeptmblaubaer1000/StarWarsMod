@@ -24,6 +24,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -100,6 +103,22 @@ public class MobTusken extends EntityMob implements IMob
 	{
 		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
 	}
+
+	@Override
+    public boolean getCanSpawnHere()
+    {
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(40) == 0;
+    }
+
+	@Override
+    protected boolean isValidLightLevel()
+    {
+        int i = MathHelper.floor_double(this.posX);
+        int j = MathHelper.floor_double(this.boundingBox.minY);
+        int k = MathHelper.floor_double(this.posZ);
+
+        return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
+    }
 
 	@Override
 	public void onUpdate()

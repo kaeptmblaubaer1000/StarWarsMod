@@ -18,7 +18,7 @@ public class ItemLightsaberCrystal extends Item
 {
 	private String name = "lightsaberCrystal";
 
-	private String[] colors = { "red", "green", "blue" };
+	public String[] colors = { "red", "green", "blue" };
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

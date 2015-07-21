@@ -198,6 +198,12 @@
             "item/blasterRifle/use1"
         ]
     },
+    "item.blasterRifle.break": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/break"
+        ]
+    },
     "item.blasterCycler.use": {
         "category": "neutral",
         "sounds": [

@@ -25,7 +25,7 @@ public class ItemBlasterRifle extends Item
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 8;
 
-	private String[] versions = { "A280", "Esb", "Ionization", "Cycler", "Stormtrooper" };
+	public String[] versions = { "A280", "Esb", "Ionization", "Cycler", "Stormtrooper" };
 	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
@@ -87,6 +87,28 @@ public class ItemBlasterRifle extends Item
 			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
 		}
 
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+		{
+			switch (p_77663_1_.getItemDamage())
+			{
+				case 0:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+					break;
+				case 1:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+					break;
+				case 2:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+					break;
+				case 3:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+					break;
+				case 4:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", this.itemRand.nextBoolean() ? 500 : 100);
+					break;
+			}
+		}
+
 		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
 		{
 			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
@@ -94,9 +116,12 @@ public class ItemBlasterRifle extends Item
 	}
 
 	@Override
-	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
+		{
+			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
+		}
 	}
 
 	@Override
@@ -124,6 +149,13 @@ public class ItemBlasterRifle extends Item
 			else
 			{
 				par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+			}
+
+			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 			}
 		}
 

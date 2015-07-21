@@ -15,6 +15,7 @@ import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
+import com.parzi.starwarsmod.items.ItemDebugLootGen;
 import com.parzi.starwarsmod.items.ItemDroidCaller;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
@@ -272,5 +273,8 @@ public class ItemRegister
 
 		StarWarsMod.spawnGonk = new ItemSpawnGonk();
 		GameRegistry.registerItem(StarWarsMod.spawnGonk, "spawnGonk");
+
+		StarWarsMod.debugLootGen = new ItemDebugLootGen();
+		GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
 	}
 }
