@@ -11,9 +11,9 @@ public class VehicLandspeeder extends VehicleLandBase
 	public VehicLandspeeder(World par1World)
 	{
 		super(par1World);
-		this.setSize(1, 1);
+		this.setSize(2, 2);
 
-		this.vehicYOffset = 0.4F;
+		this.vehicYOffset = -0.3F;
 
 		this.moveModifier = 2.5F;
 

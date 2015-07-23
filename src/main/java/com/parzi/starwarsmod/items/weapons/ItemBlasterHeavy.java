@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.items.weapons;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +27,7 @@ public class ItemBlasterHeavy extends Item
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 10;
 
-	public String[] versions = { "Dlt19" };
+	public String[] versions = { "Dlt19", "T21" };
 	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
@@ -92,7 +93,10 @@ public class ItemBlasterHeavy extends Item
 		{
 			switch (p_77663_1_.getItemDamage())
 			{
-				case 0:
+				case 1:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 150);
+					break;
+				default:
 					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 300);
 					break;
 			}
@@ -141,5 +145,15 @@ public class ItemBlasterHeavy extends Item
 		}
 
 		return par1ItemStack;
+	}
+
+	private int indexOfMeta(String needle)
+	{
+		return Arrays.asList(this.versions).indexOf(needle);
+	}
+
+	public ItemStack getMeta(String string)
+	{
+		return new ItemStack(StarWarsMod.blasterRifleHeavy, 1, this.indexOfMeta(string));
 	}
 }

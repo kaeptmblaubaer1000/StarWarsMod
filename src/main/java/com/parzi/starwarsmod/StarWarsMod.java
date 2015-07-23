@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 
@@ -91,6 +92,9 @@ public class StarWarsMod
 	public static Item banthaHorn;
 	public static Item droidCaller;
 	public static Item debugLootGen;
+	public static Item imperialCredit;
+
+	public static ItemFood banthaChop;
 
 	public static Item chromiumDust;
 	public static Item titaniumDust;
@@ -184,6 +188,7 @@ public class StarWarsMod
 
 	/* Blocks */
 	public static Block blockMV;
+	public static Block blockTable;
 	public static Block chromiumOre;
 	public static Block titaniumOre;
 	public static Block titaniumChromiumBlock;

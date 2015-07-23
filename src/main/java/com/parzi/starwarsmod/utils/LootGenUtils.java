@@ -18,15 +18,7 @@ public class LootGenUtils
 	{
 		List<WeightedLoot> loot = new ArrayList<WeightedLoot>();
 
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2F));
-
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl18")), baseRarity / 1.5F));
-
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.hyperdriveEarth, 1, 0), baseRarity / 100F));
-
-		// more rare: scout, snow, bounty armor
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 5)), baseRarity));
 
 		if (dimId == StarWarsMod.dimEndorId)
 		{
@@ -57,6 +49,10 @@ public class LootGenUtils
 
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSpeederBike, 1, 0), baseRarity / 2F));
 
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterPistol.versions, "Scout")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifleHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 3F)); // DLT-19
 		}
 		else if (dimId == StarWarsMod.dimHothId)
@@ -78,7 +74,12 @@ public class LootGenUtils
 
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSpeederBike, 1, 0), baseRarity / 3F));
 
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl21")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "T21")), baseRarity / 4F));
 		}
 		else if (dimId == StarWarsMod.dimKashyyykId)
 		{
@@ -92,6 +93,8 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotLegs, 1, 0), baseRarity));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotBoots, 1, 0), baseRarity));
 
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 2F));
 		}
 		else if (dimId == StarWarsMod.dimTatooineId)
@@ -107,9 +110,10 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaLegs, 1, 0), baseRarity / 4F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaBoots, 1, 0), baseRarity / 4F));
 
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnLandspeeder, 1, 0), baseRarity / 3F));
-
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl18")), baseRarity / 1.5F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 4F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "T21")), baseRarity / 4F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Esb")), baseRarity / 2F));
 		}
 		else if (dimId == StarWarsMod.dimYavin4Id)
@@ -122,6 +126,10 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.lightsaberCrystal, 1, indexOf(StarWarsMod.lightsaberCrystal.colors, "red")), baseRarity / 8F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.lightsaberCrystal, 1, indexOf(StarWarsMod.lightsaberCrystal.colors, "green")), baseRarity / 5.5F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.lightsaberCrystal, 1, indexOf(StarWarsMod.lightsaberCrystal.colors, "blue")), baseRarity / 5.5F));
+
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dh17")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
 		}
 		return loot;
 	}
@@ -137,12 +145,12 @@ public class LootGenUtils
 		{
 			for (int i = 0; i < rand.nextInt(2) + 1; i++)
 			{
-				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItem(dimId, rand));
+				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItemForDim(dimId, rand));
 			}
 		}
 	}
 
-	public static ItemStack getWeightedItem(int dimId, Random rand)
+	public static ItemStack getWeightedItemForDim(int dimId, Random rand)
 	{
 		List<WeightedLoot> loot = LootGenUtils.getLootForDim(dimId);
 		int length = loot.toArray().length;
@@ -165,5 +173,29 @@ public class LootGenUtils
 			}
 		}
 		return loot.get(randomIndex).item;
+	}
+
+	public static ItemStack getWeightedItemFromList(List<WeightedLoot> items, Random rand)
+	{
+		int length = items.toArray().length;
+
+		double totalWeight = 0.0d;
+		for (int i = 0; i < length; i++)
+		{
+			totalWeight += items.get(i).weight;
+		}
+		// Now choose a random item
+		int randomIndex = -1;
+		double random = rand.nextDouble() * totalWeight;
+		for (int i = 0; i < length; i++)
+		{
+			random -= items.get(i).weight;
+			if (random <= 0.0d)
+			{
+				randomIndex = i;
+				break;
+			}
+		}
+		return items.get(randomIndex).item;
 	}
 }

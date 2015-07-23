@@ -11,6 +11,7 @@ import com.parzi.starwarsmod.mobs.MobDroidProtocol;
 import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.mobs.MobGamorrean;
 import com.parzi.starwarsmod.mobs.MobJawa;
+import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWampa;
@@ -33,6 +34,7 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobWampa.class, "wampa", 0xFFFFFF, 0x7F0000);
 		EntityUtils.registerWithSpawnEgg(MobGamorrean.class, "gamorrean", 0x990033, 0x20B392);
 		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 0xFFA500, 0x544838);
+		EntityUtils.registerWithSpawnEgg(MobTatooineCommoner.class, "commoner", 0x000000, 0x000000);
 
 		EntityUtils.registerEntity(MobDroidAstromech.class, "droidAstromech");
 		EntityUtils.registerEntity(MobDroidProtocol.class, "droidProtocol");

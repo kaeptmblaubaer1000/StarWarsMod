@@ -1,7 +1,9 @@
 package com.parzi.starwarsmod.items.weapons;
 
+import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -92,19 +94,13 @@ public class ItemBlasterRifle extends Item
 			switch (p_77663_1_.getItemDamage())
 			{
 				case 0:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-					break;
-				case 1:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-					break;
-				case 2:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-					break;
 				case 3:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-					break;
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
 				case 4:
 					p_77663_1_.stackTagCompound.setInteger("shotsLeft", this.itemRand.nextBoolean() ? 500 : 100);
+					break;
+				default:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
 					break;
 			}
 		}
@@ -160,5 +156,15 @@ public class ItemBlasterRifle extends Item
 		}
 
 		return par1ItemStack;
+	}
+
+	private int indexOfMeta(String needle)
+	{
+		return Arrays.asList(this.versions).indexOf(needle);
+	}
+
+	public ItemStack getMeta(String string)
+	{
+		return new ItemStack(StarWarsMod.blasterRifle, 1, this.indexOfMeta(string));
 	}
 }

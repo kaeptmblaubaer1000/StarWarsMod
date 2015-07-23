@@ -1,17 +1,18 @@
 package com.parzi.starwarsmod.mobs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIOcelotAttack;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -19,6 +20,8 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.LootGenUtils;
+import com.parzi.starwarsmod.utils.WeightedLoot;
 
 public class MobJawa extends EntityMob implements IMob
 {
@@ -89,10 +92,16 @@ public class MobJawa extends EntityMob implements IMob
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		switch (this.rand.nextInt(10))
+		List<WeightedLoot> drop = new ArrayList<WeightedLoot>();
+
+		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.hiltMetelCompound, 1), LootGenUtils.baseRarity));
+		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.droidCaller, 1), LootGenUtils.baseRarity / 1.2F));
+		drop.add(new WeightedLoot(StarWarsMod.blasterRifle.getMeta("Ionization"), LootGenUtils.baseRarity / 2F));
+
+		switch (this.rand.nextInt(5))
 		{
 			case 0:
-				this.dropItem(StarWarsMod.hiltMetelCompound, 1);
+				this.entityDropItem(LootGenUtils.getWeightedItemFromList(drop, this.rand), 0F);
 				break;
 		}
 	}

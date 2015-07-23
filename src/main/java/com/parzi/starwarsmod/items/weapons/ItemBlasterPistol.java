@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.items.weapons;
 
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +27,7 @@ public class ItemBlasterPistol extends Item
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 6;
 
-	public String[] versions = { "Dl44", "Dl18" };
+	public String[] versions = { "Dl44", "Dl18", "Dh17", "Sporting", "Dl21", "Scout" };
 	public int subtypes = versions.length;
 
 	@SideOnly(Side.CLIENT)
@@ -95,7 +96,11 @@ public class ItemBlasterPistol extends Item
 				case 0:
 					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
 					break;
-				case 1:
+				case 3:
+				case 4:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 80);
+					break;
+				default:
 					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 100);
 					break;
 			}
@@ -144,5 +149,15 @@ public class ItemBlasterPistol extends Item
 		}
 
 		return par1ItemStack;
+	}
+
+	private int indexOfMeta(String needle)
+	{
+		return Arrays.asList(this.versions).indexOf(needle);
+	}
+
+	public ItemStack getMeta(String string)
+	{
+		return new ItemStack(StarWarsMod.blasterPistol, 1, this.indexOfMeta(string));
 	}
 }

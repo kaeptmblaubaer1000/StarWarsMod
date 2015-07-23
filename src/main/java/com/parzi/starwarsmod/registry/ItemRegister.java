@@ -12,11 +12,13 @@ import com.parzi.starwarsmod.armor.ArmorScoutTrooper;
 import com.parzi.starwarsmod.armor.ArmorSnowtrooper;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
+import com.parzi.starwarsmod.items.ItemBanthaChop;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
 import com.parzi.starwarsmod.items.ItemDebugLootGen;
 import com.parzi.starwarsmod.items.ItemDroidCaller;
+import com.parzi.starwarsmod.items.ItemImperialCredit;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
 import com.parzi.starwarsmod.items.ItemSpawnProtocol;
@@ -276,5 +278,11 @@ public class ItemRegister
 
 		StarWarsMod.debugLootGen = new ItemDebugLootGen();
 		GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
+
+		StarWarsMod.imperialCredit = new ItemImperialCredit();
+		GameRegistry.registerItem(StarWarsMod.imperialCredit, "imperialCredit");
+
+		StarWarsMod.banthaChop = new ItemBanthaChop();
+		GameRegistry.registerItem(StarWarsMod.banthaChop, "banthaChop");
 	}
 }

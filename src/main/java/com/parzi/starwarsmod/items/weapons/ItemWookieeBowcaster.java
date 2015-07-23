@@ -47,9 +47,23 @@ public class ItemWookieeBowcaster extends Item
 			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
 		}
 
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+		{
+			p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+		}
+
 		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
 		{
 			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
+		{
+			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 		}
 	}
 
@@ -62,13 +76,30 @@ public class ItemWookieeBowcaster extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
+		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
+		{
+			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		}
+
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
-			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
-		}
+			if (par1ItemStack.getItemDamage() == 3)
+			{
+				par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge + 10);
+			}
+			else
+			{
+				par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+			}
 
-		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
+			}
+		}
 
 		return par1ItemStack;
 	}

@@ -9,6 +9,7 @@ item.starwarsmod.lightsaberCrystal.name=Kyber Crystal
 item.starwarsmod.banthaHorn.name=Bantha Horn
 item.starwarsmod.ewokSpear.name=Ewok Spear
 item.starwarsmod.gamorreanAx.name=Gamorrean Ax
+item.starwarsmod.imperialCredit.name=Imperial Credit
 item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 item.starwarsmod.droidCaller.name=Droid Caller
 item.starwarsmod.chromiumDust.name=Chromium Dust
@@ -33,9 +34,13 @@ item.starwarsmod.spawnGonk.name=GNK Power Droid
 
 item.starwarsmod.blasterPistol.Dl44.name=DL-44 Heavy Blaster Pistol
 item.starwarsmod.blasterPistol.Dl18.name=DL-18 Blaster Pistol
-item.starwarsmod.blasterPistol.Esb11.name=ESB-11 Blaster Pistol
+item.starwarsmod.blasterPistol.Dh17.name=DH-17 Blaster Pistol
+item.starwarsmod.blasterPistol.Sporting.name=Defender Sporting Blaster
+item.starwarsmod.blasterPistol.Dl21.name=DL-21 Blaster Pistol
+item.starwarsmod.blasterPistol.Scout.name=Scout Blaster Pistol
 
 item.starwarsmod.blasterHeavy.Dlt19.name=DLT-19 Heavy Blaster Rifle
+item.starwarsmod.blasterHeavy.T21.name=T-21 Heavy Blaster Rifle
 
 item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
 item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
@@ -51,6 +56,7 @@ tile.starwarsmod.tatooineSand.name=Tatooine Sand
 tile.starwarsmod.endorBaseWall.name=Endor Base Wall
 tile.starwarsmod.endorBaseWallStairs.name=Endor Base Wall Stairs
 tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
+tile.starwarsmod.table.name=Table
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
@@ -112,6 +118,7 @@ entity.starwarsmod.ewok.name=Ewok
 entity.starwarsmod.wampa.name=Wampa
 entity.starwarsmod.dewback.name=Dewback
 entity.starwarsmod.gamorrean.name=Gamorrean Guard
+entity.starwarsmod.commoner.name=Tatooine Villager
 
 entity.starwarsmod.droidAstromech.name=Astromech Droid
 entity.starwarsmod.droidProtocol.name=Protocol Droid

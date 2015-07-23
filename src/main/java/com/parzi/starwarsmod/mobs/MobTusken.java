@@ -55,7 +55,14 @@ public class MobTusken extends EntityMob implements IMob
 		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityVillager.class, 8, false));
 		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityZombie.class, 6, false));
 
-		this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gaffiStick, 1));
+		switch (this.rand.nextInt(3)) {
+			case 0:
+				this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gaffiStick, 1));
+				break;
+			case 1:
+				this.setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Cycler"));
+				break;
+		}
 	}
 
 	@Override
@@ -105,20 +112,20 @@ public class MobTusken extends EntityMob implements IMob
 	}
 
 	@Override
-    public boolean getCanSpawnHere()
-    {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(40) == 0;
-    }
+	public boolean getCanSpawnHere()
+	{
+		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(40) == 0;
+	}
 
 	@Override
-    protected boolean isValidLightLevel()
-    {
-        int i = MathHelper.floor_double(this.posX);
-        int j = MathHelper.floor_double(this.boundingBox.minY);
-        int k = MathHelper.floor_double(this.posZ);
+	protected boolean isValidLightLevel()
+	{
+		int i = MathHelper.floor_double(this.posX);
+		int j = MathHelper.floor_double(this.boundingBox.minY);
+		int k = MathHelper.floor_double(this.posZ);
 
-        return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
-    }
+		return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
+	}
 
 	@Override
 	public void onUpdate()
