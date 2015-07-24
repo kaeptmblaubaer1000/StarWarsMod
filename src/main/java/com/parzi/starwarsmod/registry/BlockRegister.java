@@ -10,6 +10,7 @@ import com.parzi.starwarsmod.blocks.BlockTatooineSand;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
 import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
 import com.parzi.starwarsmod.items.ItemEndorBaseWall;
+import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
 
@@ -37,10 +38,10 @@ public class BlockRegister
 
 		StarWarsMod.blockEndorBaseWallStairs = new BlockEndorBaseWallStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWallStairs, "endorBaseWallStairs");
-		
+
 		StarWarsMod.tatooineSand = new BlockTatooineSand();
-		GameRegistry.registerBlock(StarWarsMod.tatooineSand, "tatooineSand");
-		
+		GameRegistry.registerBlock(StarWarsMod.tatooineSand, ItemTatooineSand.class, "tatooineSand");
+
 		StarWarsMod.blockTable = new BlockTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
 		GameRegistry.registerTileEntity(TileEntityTable.class, "teTable");
