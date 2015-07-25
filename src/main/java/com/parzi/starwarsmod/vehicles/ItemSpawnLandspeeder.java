@@ -28,7 +28,7 @@ public class ItemSpawnLandspeeder extends Item
 			if (!world.isRemote)
 			{
 				VehicLandspeeder newVehic = new VehicLandspeeder(world);
-				newVehic.setPosition(player.posX, player.posY, player.posZ);
+				newVehic.setPosition(x, y + 1, z);
 				world.spawnEntityInWorld(newVehic);
 			}
 		}
