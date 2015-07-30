@@ -24,16 +24,11 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.titaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.titaniumChromiumIngot);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveMotivator, 1), " B ", " A ", " B ", 'A', Blocks.quartz_block, 'B', StarWarsMod.titaniumChromiumBlock);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveEngine, 1), " F ", " B ", " A ", 'F', StarWarsMod.containmentField, 'B', StarWarsMod.hyperdriveMotivator, 'A', StarWarsMod.titaniumChromiumIngot);
-		//GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blasterPistol), "IIO", " GW", "  W", 'I', Items.iron_ingot, 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'W', Blocks.log);
+		GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumDust, 1), StarWarsMod.titaniumDust, StarWarsMod.chromiumDust);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumIngot, 9), StarWarsMod.titaniumChromiumBlock);
-		//GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveEarth), StarWarsMod.hyperdriveEngine, Blocks.grass);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), StarWarsMod.hyperdriveEngine, Blocks.sand);
-		//GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveHoth), StarWarsMod.hyperdriveEngine, Items.snowball);
-		//GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveKashyyyk), StarWarsMod.hyperdriveEngine, new ItemStack(Blocks.log, 1, 3));
-		//GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveYavin4), StarWarsMod.hyperdriveEngine, Blocks.log);
-		//GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveEndor), StarWarsMod.hyperdriveEngine, new ItemStack(Blocks.leaves, 1, 1));
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.bobaJetpackChest), StarWarsMod.bobaChest, StarWarsMod.bobaJetpack);
 	}
 }

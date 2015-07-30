@@ -1,27 +1,22 @@
 package com.parzi.starwarsmod.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockObsidian;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.gui.JediGUI;
-import com.parzi.starwarsmod.rendering.gui.MVGUI;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.utils.HarvestLevel;
-import com.parzi.starwarsmod.utils.ItemUtils;
 
 public class BlockMV extends BlockContainer
 {
-
 	public BlockMV()
 	{
 		super(Material.iron);
@@ -47,8 +42,15 @@ public class BlockMV extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		Minecraft.getMinecraft().displayGuiScreen(new MVGUI(x, z));
-		return true;
+		if (world.isRemote)
+		{
+			return true;
+		}
+		else
+		{
+			player.openGui(StarWarsMod.instance, 0, world, x, y, z);
+			return true;
+		}
 	}
 
 	@Override
@@ -67,5 +69,31 @@ public class BlockMV extends BlockContainer
 	public void registerBlockIcons(IIconRegister icon)
 	{
 		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconMoistureVaporator");
+	}
+
+	public void breakBlock(World world, int x, int y, int z, Block block, int wut)
+	{
+		TileEntityMV moistureVap = (TileEntityMV)world.getTileEntity(x, y, z);
+
+		if (moistureVap != null)
+		{
+			ItemStack itemstack = moistureVap.getStackInSlot(0);
+
+			if (itemstack != null)
+			{
+				EntityItem entityitem = new EntityItem(world, x, y, z, itemstack);
+
+				if (itemstack.hasTagCompound())
+				{
+					entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+				}
+
+				world.spawnEntityInWorld(entityitem);
+			}
+
+			world.func_147453_f(x, y, z, block);
+		}
+
+		super.breakBlock(world, x, y, z, block, wut);
 	}
 }

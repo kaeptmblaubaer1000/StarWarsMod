@@ -1,57 +1,51 @@
 package com.parzi.starwarsmod.rendering.gui;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.WorldUtils;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.gui.inventory.GuiFurnace;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.StatCollector;
 
-public class MVGUI extends GuiScreen
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityMV;
+import com.parzi.starwarsmod.utils.Lumberjack;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
+public class MVGUI extends GuiContainer
 {
+    private static final ResourceLocation guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/mv.png");
 
-	private int w = 166;
-	private int h = 191;
-	private int x;
-	private int y;
-	private ResourceLocation backgroundimage = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/gui/default.png");
+    TileEntityMV vaporator;
 
-	private int blockx;
-	private int blockz;
+    public MVGUI(InventoryPlayer player, TileEntityMV vap)
+    {
+        super(new ContainerMV(player, vap));
+        this.vaporator = vap;
+    }
 
-	public MVGUI(int x, int z)
-	{
-		blockx = x;
-		blockz = z;
-	}
+    /**
+     * Draw the foreground layer for the GuiContainer (everything in front of the items)
+     */
+    protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
+    {
+        String s = "Moisture Vaporator";
+        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
+        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+    }
 
-	@Override
-	public void onGuiClosed()
-	{
-	}
-
-	@Override
-	public boolean doesGuiPauseGame()
-	{
-		return false;
-	}
-
-	@Override
-	public void drawScreen(int mouseX, int mouseY, float renderPartialTicks)
-	{
-		drawDefaultBackground();
-
-		x = (this.width - w) / 2;
-		y = (this.height - h) / 2;
-
-		int py = y + 10;
-
-		this.mc.getTextureManager().bindTexture(backgroundimage);
-		drawTexturedModalRect(x, y, 0, 0, w, h);
-
-		drawString(mc.fontRenderer, "Moisture Vaporator", x + 10, py, 0xFFFFFF);
-		py += 10;
-		drawString(mc.fontRenderer, "Current Biome: " + WorldUtils.getBiomeName(blockx, blockz), x + 10, py, 0xFFFFFF);
-	}
+    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
+    {
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(guiTexture);
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+        int percent = (int)((float)vaporator.progressTicks / (float)vaporator.totalTicks * 30F);
+        this.drawTexturedModalRect(k + 62, l + 28 + (30 - percent), this.xSize, 30 - percent, 9, percent);
+    }
 }

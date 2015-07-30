@@ -22,6 +22,7 @@ import com.parzi.starwarsmod.items.ItemImperialCredit;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
 import com.parzi.starwarsmod.items.ItemSpawnProtocol;
+import com.parzi.starwarsmod.items.ItemWaterDroplet;
 import com.parzi.starwarsmod.items.crafting.ItemBobaJetpack;
 import com.parzi.starwarsmod.items.crafting.ItemChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemContainmentField;
@@ -284,5 +285,8 @@ public class ItemRegister
 
 		StarWarsMod.banthaChop = new ItemBanthaChop();
 		GameRegistry.registerItem(StarWarsMod.banthaChop, "banthaChop");
+
+		StarWarsMod.waterDroplet = new ItemWaterDroplet();
+		GameRegistry.registerItem(StarWarsMod.waterDroplet, "waterDroplet");
 	}
 }

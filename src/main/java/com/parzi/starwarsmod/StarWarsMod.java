@@ -56,7 +56,7 @@ public class StarWarsMod
 	public static Random rngTitanium = new Random();
 
 	@Mod.Instance(StarWarsMod.MODID)
-	private static StarWarsMod instance;
+	public static StarWarsMod instance;
 
 	/* Proxies */
 	@SidedProxy(clientSide = "com.parzi.starwarsmod.StarWarsClientProxy", serverSide = "com.parzi.starwarsmod.StarWarsCommonProxy")
@@ -91,8 +91,10 @@ public class StarWarsMod
 	public static Item blasterRifleBolt;
 	public static Item banthaHorn;
 	public static Item droidCaller;
-	public static Item debugLootGen;
 	public static Item imperialCredit;
+	public static Item waterDroplet;
+
+	public static Item debugLootGen;
 
 	public static ItemFood banthaChop;
 
@@ -249,10 +251,13 @@ public class StarWarsMod
 	{
 		System.out.println("Begin StarWars Init...");
 
-		this.setInstance(this);
+		this.instance = this;
 
 		/* Creative Tabs */
 		StarWarsMod.StarWarsTab = new StarWarsTab();
+
+		/* GUIs */
+		NetworkRegistry.INSTANCE.registerGuiHandler(StarWarsMod.instance, new GuiHandler());
 
 		MaterialRegister.registerAll();
 
@@ -283,22 +288,6 @@ public class StarWarsMod
 	{
 		if (this.enableFlyCommand) event.registerServerCommand(new CommandFlySpeed());
 		if (this.enableDimCommand) event.registerServerCommand(new CommandSWDim());
-	}
-
-	/**
-	 * @return the instance
-	 */
-	public static StarWarsMod getInstance()
-	{
-		return instance;
-	}
-
-	/**
-	 * @param instance the instance to set
-	 */
-	public static void setInstance(StarWarsMod instance)
-	{
-		StarWarsMod.instance = instance;
 	}
 
 	public static String getDroidSittingMessage(boolean isSitting) {
