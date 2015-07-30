@@ -4,6 +4,7 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.DimensionManager;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.world.OreGenerator;
 import com.parzi.starwarsmod.world.biome.BiomeEndor;
 import com.parzi.starwarsmod.world.biome.BiomeEndorPlains;
@@ -61,5 +62,7 @@ public class WorldRegister
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeYavin4);
 
 		GameRegistry.registerWorldGenerator(new OreGenerator(), 10);
+
+		Lumberjack.info("World, reporting for duty!");
 	}
 }

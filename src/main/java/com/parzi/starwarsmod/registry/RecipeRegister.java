@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -20,7 +21,8 @@ public class RecipeRegister
 		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 0), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 0), 'P', StarWarsMod.plasmaEmitter);
 		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 1), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 1), 'P', StarWarsMod.plasmaEmitter);
 		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 2), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 2), 'P', StarWarsMod.plasmaEmitter);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', Blocks.wool);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightJediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 8));
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.titaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.titaniumChromiumIngot);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveMotivator, 1), " B ", " A ", " B ", 'A', Blocks.quartz_block, 'B', StarWarsMod.titaniumChromiumBlock);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveEngine, 1), " F ", " B ", " A ", 'F', StarWarsMod.containmentField, 'B', StarWarsMod.hyperdriveMotivator, 'A', StarWarsMod.titaniumChromiumIngot);
@@ -30,5 +32,7 @@ public class RecipeRegister
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumIngot, 9), StarWarsMod.titaniumChromiumBlock);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), StarWarsMod.hyperdriveEngine, Blocks.sand);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.bobaJetpackChest), StarWarsMod.bobaChest, StarWarsMod.bobaJetpack);
+
+		Lumberjack.info("Recipes, reporting for duty!");
 	}
 }

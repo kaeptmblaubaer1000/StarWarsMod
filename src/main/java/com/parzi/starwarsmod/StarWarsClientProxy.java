@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.handlers.StarWarsEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;

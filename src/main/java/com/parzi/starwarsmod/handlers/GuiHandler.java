@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod;
+package com.parzi.starwarsmod.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

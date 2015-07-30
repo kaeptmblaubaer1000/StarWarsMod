@@ -14,6 +14,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.EntityUtils;
 
 public class MobDroidProtocol extends EntityTameable
 {
@@ -90,7 +91,7 @@ public class MobDroidProtocol extends EntityTameable
             if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
             {
                 this.aiSit.setSitting(!this.isSitting());
-                par1EntityPlayer.addChatMessage(new ChatComponentText(StarWarsMod.getDroidSittingMessage(!this.isSitting())));
+                par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
                 this.isJumping = false;
             }
         }
@@ -105,7 +106,7 @@ public class MobDroidProtocol extends EntityTameable
                     this.playTameEffect(true);
                     this.aiSit.setSitting(true);
                     this.worldObj.setEntityState(this, (byte)7);
-                    par1EntityPlayer.addChatMessage(new ChatComponentText(StarWarsMod.getDroidSittingMessage(!this.isSitting())));
+                    par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
                 }
                 else
                 {

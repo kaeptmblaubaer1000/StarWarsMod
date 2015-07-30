@@ -29,10 +29,10 @@ public class RenderMV extends TileEntitySpecialRenderer
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
 	{
-		int meta = world.getBlockMetadata(x, y, z);
-		GL11.glPushMatrix();
-		GL11.glRotatef(meta * (-90), 0.0F, 0.0F, 1.0F);
-		GL11.glPopMatrix();
+		//TileEntityMV tile = (TileEntityMV)world.getTileEntity(x, y, z);
+		//GL11.glPushMatrix();
+		//GL11.glRotatef(tile.getFacing() * (-90), 0.0F, 0.0F, 1.0F);
+		//GL11.glPopMatrix();
 	}
 
 	@Override
@@ -50,7 +50,8 @@ public class RenderMV extends TileEntitySpecialRenderer
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 
 		GL11.glPushMatrix();
-		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(180F, 0, 0, 1);
+		GL11.glRotatef(mv.getFacing() * 90, 0, 1, 0);
 
 		this.model.windVane1.rotateAngleY = mv.frame / 10;
 		this.model.windVane2.rotateAngleY = mv.frame / 10;

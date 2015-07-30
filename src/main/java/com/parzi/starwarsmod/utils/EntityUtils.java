@@ -36,4 +36,9 @@ public class EntityUtils
 	{
 		return mobId;
 	}
+
+	public static String getDroidSittingMessage(boolean isSitting)
+	{
+		return ((isSitting) ? "Staying" : "Following");
+	}
 }

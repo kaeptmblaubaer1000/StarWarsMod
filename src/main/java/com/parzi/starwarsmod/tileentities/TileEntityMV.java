@@ -4,22 +4,25 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class TileEntityMV extends TileEntity implements IInventory
 {
-	public float frame;
+	public int frame;
 	public int progressTicks;
 	public int totalTicks;
-
-	public ItemStack waterDroplets;
+    private int facing = 2;
+	private ItemStack waterDroplets;
 
 	public TileEntityMV()
 	{
 		this.frame = 0;
-		this.progressTicks = 0;
+		this.progressTicks = 1;
 		this.totalTicks = 600;
 		this.waterDroplets = null;
 	}
@@ -27,48 +30,72 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public void updateEntity()
 	{
-		if (++frame > 1800) frame = 0;
+		//if (++this.frame > 180) this.frame = 0;
 
-		if (progressTicks < totalTicks)
+		if (this.progressTicks < this.totalTicks)
 		{
-			progressTicks++;
+			this.progressTicks++;
 		}
 		else
 		{
-			progressTicks = 0;
-			if (waterDroplets == null)
+			this.progressTicks = 1;
+			if (this.waterDroplets == null)
 			{
-				waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
+				this.waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
 			}
 			else
 			{
-				if (waterDroplets.stackSize < 64)
+				if (this.waterDroplets.stackSize < 64)
 				{
-					waterDroplets.stackSize++;
+					this.waterDroplets.stackSize++;
 				}
 			}
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 	}
+
+    public int getFacing(){
+        return facing;
+    }
+
+    public void setFacing(int dir){
+        facing = dir;
+    }
 
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
-		super.readFromNBT(tag);
 		this.waterDroplets = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("droplets"));
 		this.progressTicks = tag.getInteger("progress");
+        this.facing = tag.getShort("facing");
+		super.readFromNBT(tag);
+	}
+
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound tag = new NBTTagCompound();
+		writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -999, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+		super.onDataPacket(net, packet);
+		readFromNBT(packet.func_148857_g());
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
-		super.writeToNBT(tag);
 		tag.setInteger("progress", this.progressTicks);
+        tag.setShort("facing", (short)this.facing);
 		if (this.waterDroplets != null)
 		{
 			NBTTagCompound produce = new NBTTagCompound();
 			produce = this.waterDroplets.writeToNBT(produce);
 			tag.setTag("droplets", produce);
 		}
+		super.writeToNBT(tag);
 	}
 
 	@Override

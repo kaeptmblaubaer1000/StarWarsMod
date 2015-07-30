@@ -2,6 +2,8 @@ package com.parzi.starwarsmod;
 
 import java.util.Random;
 
+import org.apache.logging.log4j.Level;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -13,6 +15,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.handlers.GuiHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
@@ -33,11 +36,13 @@ import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -120,6 +125,7 @@ public class StarWarsMod
 	public static Item spawnGonk;
 
 	public static Item jediRobes;
+	public static Item lightJediRobes;
 
 	public static Item endorHelmet;
 	public static Item endorChest;
@@ -216,7 +222,6 @@ public class StarWarsMod
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;
 
-
 	/* Events */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -244,12 +249,13 @@ public class StarWarsMod
 		this.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 
 		config.save();
+		Lumberjack.info("Configuration loaded!");
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		System.out.println("Begin StarWars Init...");
+		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
 
 		this.instance = this;
 
@@ -271,6 +277,8 @@ public class StarWarsMod
 		}
 		catch (Exception e)
 		{
+			Lumberjack.log(Level.FATAL, "World failed to report for duty!");
+			Lumberjack.log(Level.FATAL, "Cause: unable to register dimension provider. See trace below for details:");
 			e.printStackTrace();
 		}
 
@@ -280,17 +288,21 @@ public class StarWarsMod
 
 		proxy.registerRendering();
 
-		System.out.println("...End StarWars Init");
+		Lumberjack.info("=========== End Star Wars Mod init() ===========");
 	}
 
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		if (this.enableFlyCommand) event.registerServerCommand(new CommandFlySpeed());
-		if (this.enableDimCommand) event.registerServerCommand(new CommandSWDim());
-	}
-
-	public static String getDroidSittingMessage(boolean isSitting) {
-		return ((isSitting) ? "Staying" : "Following");
+		if (this.enableFlyCommand)
+		{
+			event.registerServerCommand(new CommandFlySpeed());
+			Lumberjack.warn("Fly command enabled! This is INCOMPATIBLE with anything serverside.");
+		}
+		if (this.enableDimCommand)
+		{
+			event.registerServerCommand(new CommandSWDim());
+			Lumberjack.warn("Dimensional Transport command enabled! This is INCOMPATIBLE with anything serverside.");
+		}
 	}
 }

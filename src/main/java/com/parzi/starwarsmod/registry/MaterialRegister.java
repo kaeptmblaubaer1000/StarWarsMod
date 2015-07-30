@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.registry;
 import net.minecraftforge.common.util.EnumHelper;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.Lumberjack;
 
 public class MaterialRegister
 {
@@ -24,5 +25,7 @@ public class MaterialRegister
 		StarWarsMod.snowtrooperArmorMat = EnumHelper.addArmorMaterial("snowtroopertArmorMat", 90, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.bobaArmorMat = EnumHelper.addArmorMaterial("bobaArmorMat", 100, new int[] { 1, 5, 4, 3 }, 4);
 		StarWarsMod.tiePilotArmorMat = EnumHelper.addArmorMaterial("tiePilotArmorMat", 70, new int[] { 1, 3, 2, 1 }, 4);
+
+		Lumberjack.info("Materials, reporting for duty!");
 	}
 }

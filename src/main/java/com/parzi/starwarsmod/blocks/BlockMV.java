@@ -4,11 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -31,6 +33,17 @@ public class BlockMV extends BlockContainer
 	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TileEntityMV();
+	}
+
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack item)
+	{
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityMV)
+		{
+			TileEntityMV vap = (TileEntityMV)tile;
+			int l = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+			vap.setFacing(l);
+		}
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.registry;
 
+import net.minecraft.tileentity.TileEntity;
+
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
@@ -13,6 +15,7 @@ import com.parzi.starwarsmod.items.ItemEndorBaseWall;
 import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
+import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -46,5 +49,6 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
 		GameRegistry.registerTileEntity(TileEntityTable.class, "teTable");
 
+		Lumberjack.info("Blocks, reporting for duty!");
 	}
 }

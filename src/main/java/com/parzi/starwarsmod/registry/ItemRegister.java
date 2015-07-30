@@ -6,6 +6,7 @@ import com.parzi.starwarsmod.armor.ArmorBobaJetpack;
 import com.parzi.starwarsmod.armor.ArmorEndor;
 import com.parzi.starwarsmod.armor.ArmorHoth;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
+import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.armor.ArmorSandtrooper;
 import com.parzi.starwarsmod.armor.ArmorScoutTrooper;
@@ -49,6 +50,7 @@ import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnSpeederBike;
 
@@ -105,6 +107,9 @@ public class ItemRegister
 
 		StarWarsMod.jediRobes = new ArmorJediRobes(StarWarsMod.jediRobesMat, 1, 1);
 		GameRegistry.registerItem(StarWarsMod.jediRobes, "jediRobes");
+
+		StarWarsMod.lightJediRobes = new ArmorLightJediRobes(StarWarsMod.jediRobesMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.lightJediRobes, "lightJediRobes");
 
 		StarWarsMod.endorHelmet = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.endorHelmet, "endorHelmet");
@@ -288,5 +293,7 @@ public class ItemRegister
 
 		StarWarsMod.waterDroplet = new ItemWaterDroplet();
 		GameRegistry.registerItem(StarWarsMod.waterDroplet, "waterDroplet");
+
+		Lumberjack.info("Items, reporting for duty!");
 	}
 }

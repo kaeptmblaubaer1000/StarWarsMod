@@ -17,6 +17,7 @@ import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
@@ -48,5 +49,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
+
+		Lumberjack.info("Entities, reporting for duty!");
 	}
 }
