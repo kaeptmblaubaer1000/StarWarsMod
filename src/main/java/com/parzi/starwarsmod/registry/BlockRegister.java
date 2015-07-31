@@ -1,12 +1,11 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.tileentity.TileEntity;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
 import com.parzi.starwarsmod.blocks.BlockMV;
+import com.parzi.starwarsmod.blocks.BlockSpaceLamp;
 import com.parzi.starwarsmod.blocks.BlockTable;
 import com.parzi.starwarsmod.blocks.BlockTatooineSand;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
@@ -44,6 +43,9 @@ public class BlockRegister
 
 		StarWarsMod.tatooineSand = new BlockTatooineSand();
 		GameRegistry.registerBlock(StarWarsMod.tatooineSand, ItemTatooineSand.class, "tatooineSand");
+
+		StarWarsMod.spaceLamp = new BlockSpaceLamp();
+		GameRegistry.registerBlock(StarWarsMod.spaceLamp, "spaceLamp");
 
 		StarWarsMod.blockTable = new BlockTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");

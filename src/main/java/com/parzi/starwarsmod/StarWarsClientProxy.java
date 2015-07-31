@@ -41,6 +41,7 @@ import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
 import com.parzi.starwarsmod.rendering.RenderWampa;
 import com.parzi.starwarsmod.rendering.RenderWookiee;
+import com.parzi.starwarsmod.rendering.helper.FancyHaloRenderer;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDewback;
@@ -98,6 +99,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterHeavyBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
+
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.jediRobes, new FancyHaloRenderer());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightJediRobes, new FancyHaloRenderer());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new RenderBlockTable());

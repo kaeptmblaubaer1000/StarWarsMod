@@ -3,7 +3,10 @@ package com.parzi.starwarsmod;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlowstone;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -201,6 +204,7 @@ public class StarWarsMod
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
 	public static Block tatooineSand;
+	public static Block spaceLamp;
 
 	/* Tool Materials */
 	public static ToolMaterial gaffiMat;

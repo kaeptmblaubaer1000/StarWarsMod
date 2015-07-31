@@ -5,16 +5,19 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.rendering.helper.IHaloRenderItem;
 import com.parzi.starwarsmod.upgrades.ForceFeed;
 import com.parzi.starwarsmod.upgrades.ForceLeap;
 import com.parzi.starwarsmod.upgrades.ForcePunch;
@@ -26,7 +29,10 @@ import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextEffects;
 import com.parzi.starwarsmod.utils.TextUtils;
 
-public class ArmorJediRobes extends ItemArmor
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 {
 	private String name = "jediRobes";
 
@@ -37,6 +43,9 @@ public class ArmorJediRobes extends ItemArmor
 	public static Block[] earthMatter = { Blocks.stone, Blocks.gravel, Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore, Blocks.redstone_ore };
 
 	public PowerBase[] powers = { new ForceStep(), new ForceLeap(), new ForceStride(), new ForceResist(), new ForcePunch(), new ForceFeed() };
+
+	private IIcon halo;
+	private IIcon icon;
 
 	public ArmorJediRobes(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -50,6 +59,20 @@ public class ArmorJediRobes extends ItemArmor
 	public boolean onDroppedByPlayer(ItemStack stack, EntityPlayer player)
 	{
 		return false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+		icon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name);
+		halo = par1IconRegister.registerIcon(StarWarsMod.MODID + ":haloSithRobes");
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int i)
+	{
+		return icon;
 	}
 
 	@Override
@@ -196,5 +219,36 @@ public class ArmorJediRobes extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		return StarWarsMod.MODID + ":" + "textures/models/jediRobes.png";
+	}
+
+	@Override
+	public boolean drawHalo(ItemStack stack)
+	{
+		return true;
+	}
+
+	@Override
+	public IIcon getHaloTexture(ItemStack stack)
+	{
+		return halo;
+	}
+
+	@Override
+	public int getHaloSize(ItemStack stack)
+	{
+		return 4;
+	}
+
+	@Override
+	public boolean drawPulseEffect(ItemStack stack)
+	{
+		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getHaloColour(ItemStack stack)
+	{
+		return 0xFF000000;
 	}
 }
