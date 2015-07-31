@@ -19,7 +19,7 @@ import com.parzi.starwarsmod.upgrades.PowerBase;
 import com.parzi.starwarsmod.utils.ElementUtils;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 
-public class JediGUI extends GuiScreen
+public class GuiJediRobes extends GuiScreen
 {
 
 	private int w = 166;
@@ -33,7 +33,7 @@ public class JediGUI extends GuiScreen
 
 	private ResourceLocation backgroundimage = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/gui/default.png");
 
-	public JediGUI(EntityPlayer senderPlayer)
+	public GuiJediRobes(EntityPlayer senderPlayer)
 	{
 		player = senderPlayer;
 	}

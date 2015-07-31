@@ -16,13 +16,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class MVGUI extends GuiContainer
+public class GuiMV extends GuiContainer
 {
     private static final ResourceLocation guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/mv.png");
 
     TileEntityMV vaporator;
 
-    public MVGUI(InventoryPlayer player, TileEntityMV vap)
+    public GuiMV(InventoryPlayer player, TileEntityMV vap)
     {
         super(new ContainerMV(player, vap));
         this.vaporator = vap;

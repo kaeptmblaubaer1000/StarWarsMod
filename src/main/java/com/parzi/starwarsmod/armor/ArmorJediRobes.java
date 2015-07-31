@@ -16,7 +16,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.rendering.gui.GuiJediRobes;
 import com.parzi.starwarsmod.rendering.helper.IHaloRenderItem;
 import com.parzi.starwarsmod.upgrades.ForceFeed;
 import com.parzi.starwarsmod.upgrades.ForceLeap;
@@ -42,7 +42,7 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 
 	public static Block[] earthMatter = { Blocks.stone, Blocks.gravel, Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore, Blocks.redstone_ore };
 
-	public PowerBase[] powers = { new ForceStep(), new ForceLeap(), new ForceStride(), new ForceResist(), new ForcePunch(), new ForceFeed() };
+	public PowerBase[] powers = { new ForceStep(), new ForceLeap(), new ForceStride(), new ForcePunch() };
 
 	private IIcon halo;
 	private IIcon icon;
@@ -151,7 +151,7 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	{
 		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
 		{
-			Minecraft.getMinecraft().displayGuiScreen(new JediGUI(player));
+			Minecraft.getMinecraft().displayGuiScreen(new GuiJediRobes(player));
 		}
 		if (stack.stackTagCompound == null)
 		{

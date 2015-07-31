@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.gui.MVGUI;
+import com.parzi.starwarsmod.rendering.gui.GuiMV;
 import com.parzi.starwarsmod.tileentities.TileEntityDSTurret;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 

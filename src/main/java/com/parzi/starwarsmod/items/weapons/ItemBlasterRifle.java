@@ -16,6 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -162,6 +163,8 @@ public class ItemBlasterRifle extends Item
 				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 			}
 		}
+
+		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
 
 		return par1ItemStack;
 	}

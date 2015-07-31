@@ -132,3 +132,23 @@ entity.starwarsmod.landspeeder.name=X-34 Landspeeder
 
 // Tabs
 itemGroup.tabStarWars=Star Wars
+
+// Achievements
+achievement.starwarsmod.becomeJedi=No such thing as luck!
+achievement.starwarsmod.becomeJedi.desc=Craft some Jedi Robes and begin your journey!
+achievement.starwarsmod.craftHyperdrive=Kessel Run in 12 Parsecs!
+achievement.starwarsmod.craftHyperdrive.desc=Craft your first Hyperdrive Engine!
+achievement.starwarsmod.craftLightsaber=Elegant combat!
+achievement.starwarsmod.craftLightsaber.desc=Craft your first lightsaber!
+achievement.starwarsmod.fireBlaster=Han shot first!
+achievement.starwarsmod.fireBlaster.desc=Fire a blaster!
+achievement.starwarsmod.travelTatooine=Beware the Sandpeople!
+achievement.starwarsmod.travelTatooine.desc=Travel to Tatooine!
+achievement.starwarsmod.travelHoth=They smell worse inside!
+achievement.starwarsmod.travelHoth.desc=Travel to Hoth!
+achievement.starwarsmod.travelYavin=That's no moon!
+achievement.starwarsmod.travelYavin.desc=Travel to Yavin 4!
+achievement.starwarsmod.travelEndor=Secret back entrance!
+achievement.starwarsmod.travelEndor.desc=Travel to Endor!
+achievement.starwarsmod.travelKashyyyk=Walking carpet!
+achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!

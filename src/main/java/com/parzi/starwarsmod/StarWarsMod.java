@@ -16,6 +16,8 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.Level;
 
+import com.parzi.starwarsmod.achievement.StarWarsAchievement;
+import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.handlers.GuiHandler;
@@ -38,7 +40,7 @@ import com.parzi.starwarsmod.registry.ItemRegister;
 import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
-import com.parzi.starwarsmod.rendering.gui.JediGUI;
+import com.parzi.starwarsmod.rendering.gui.GuiJediRobes;
 import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.Mod;
@@ -76,7 +78,7 @@ public class StarWarsMod
 	public static CreativeTabs StarWarsTab;
 
 	/* GuIs */
-	public static JediGUI jediRobesGui;
+	public static GuiJediRobes jediRobesGui;
 
 	/* Items */
 	public static ItemGaffiStick gaffiStick;
@@ -192,6 +194,8 @@ public class StarWarsMod
 	public static boolean enableFlyCommand;
 	public static boolean enableDimCommand;
 
+	public static boolean enableCreditsOverlay;
+
 	public static boolean enableLightsaber;
 	public static int lightsaberDamage;
 
@@ -247,6 +251,8 @@ public class StarWarsMod
 		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
 		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
 
+		StarWarsMod.enableCreditsOverlay = config.get("items", "enableCreditsOverlay", false).getBoolean();
+
 		StarWarsMod.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		StarWarsMod.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 
@@ -286,6 +292,10 @@ public class StarWarsMod
 		RecipeRegister.registerAll();
 
 		EntityRegister.registerAll();
+
+		StarWarsAchievements.registerAll();
+
+		GuiOverlays.registerAll();
 
 		proxy.registerRendering();
 
