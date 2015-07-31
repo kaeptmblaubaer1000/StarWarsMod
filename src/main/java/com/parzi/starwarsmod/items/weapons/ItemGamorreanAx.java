@@ -21,4 +21,11 @@ public class ItemGamorreanAx extends ItemSword
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
 	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
+	{
+		list.add(TextUtils.makeItalic("What they lacked in subtlty, they more "));
+		list.add(TextUtils.makeItalic("than made up for in very damaging blows"));
+	}
 }

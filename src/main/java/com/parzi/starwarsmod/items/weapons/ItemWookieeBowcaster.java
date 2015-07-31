@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.utils.KeyboardUtils;
+import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -61,6 +63,11 @@ public class ItemWookieeBowcaster extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
+		if (KeyboardUtils.isShiftDown())
+		{
+			list.add(TextUtils.makeItalic("I ain't afraid of Wookiees,"));
+			list.add(TextUtils.makeItalic("It's their bowcasters that scare me"));
+		}
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
 		{
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));

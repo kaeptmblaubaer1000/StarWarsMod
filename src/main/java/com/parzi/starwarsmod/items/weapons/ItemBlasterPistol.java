@@ -17,6 +17,8 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.utils.KeyboardUtils;
+import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -115,6 +117,12 @@ public class ItemBlasterPistol extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
+		if (KeyboardUtils.isShiftDown())
+		{
+			list.add(TextUtils.makeItalic("The blaster rifle was the staple"));
+			list.add(TextUtils.makeItalic("infantry weapon since before the"));
+			list.add(TextUtils.makeItalic("formation of the Galactic Republic"));
+		}
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
 		{
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
