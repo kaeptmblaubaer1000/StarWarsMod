@@ -2,8 +2,6 @@ package com.parzi.starwarsmod;
 
 import java.util.Random;
 
-import org.apache.logging.log4j.Level;
-
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -12,6 +10,8 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
+
+import org.apache.logging.log4j.Level;
 
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandSWDim;
@@ -42,7 +42,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -73,7 +72,7 @@ public class StarWarsMod
 	/* Creative Tabs */
 	public static CreativeTabs StarWarsTab;
 
-	/* GUIs */
+	/* GuIs */
 	public static JediGUI jediRobesGui;
 
 	/* Items */
@@ -82,7 +81,6 @@ public class StarWarsMod
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
 	public static ItemBlasterHeavy blasterHeavy;
-	public static Item blasterRifleHeavy;
 	public static ItemEwokSpear ewokSpear;
 	public static ItemWookieeBowcaster bowcaster;
 	public static ItemGamorreanAx gamorreanAx;
@@ -235,18 +233,18 @@ public class StarWarsMod
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 
-		this.dimTatooineId = config.get("dimensions", "tatooineId", 156).getInt();
-		this.dimHothId = config.get("dimensions", "hothId", 155).getInt();
-		this.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
-		this.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
-		this.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
-		this.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
+		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooineId", 156).getInt();
+		StarWarsMod.dimHothId = config.get("dimensions", "hothId", 155).getInt();
+		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
+		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
+		StarWarsMod.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
+		StarWarsMod.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
 
-		this.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
-		this.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
+		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
+		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
 
-		this.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
-		this.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
+		StarWarsMod.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
+		StarWarsMod.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 
 		config.save();
 		Lumberjack.info("Configuration loaded!");
@@ -257,7 +255,7 @@ public class StarWarsMod
 	{
 		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
 
-		this.instance = this;
+		StarWarsMod.instance = this;
 
 		/* Creative Tabs */
 		StarWarsMod.StarWarsTab = new StarWarsTab();
@@ -277,8 +275,7 @@ public class StarWarsMod
 		}
 		catch (Exception e)
 		{
-			Lumberjack.log(Level.FATAL, "World failed to report for duty!");
-			Lumberjack.log(Level.FATAL, "Cause: unable to register dimension provider. See trace below for details:");
+			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
 			e.printStackTrace();
 		}
 
@@ -294,12 +291,12 @@ public class StarWarsMod
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		if (this.enableFlyCommand)
+		if (StarWarsMod.enableFlyCommand)
 		{
 			event.registerServerCommand(new CommandFlySpeed());
 			Lumberjack.warn("Fly command enabled! This is INCOMPATIBLE with anything serverside.");
 		}
-		if (this.enableDimCommand)
+		if (StarWarsMod.enableDimCommand)
 		{
 			event.registerServerCommand(new CommandSWDim());
 			Lumberjack.warn("Dimensional Transport command enabled! This is INCOMPATIBLE with anything serverside.");

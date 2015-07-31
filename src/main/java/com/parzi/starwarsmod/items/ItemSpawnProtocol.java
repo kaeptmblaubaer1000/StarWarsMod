@@ -30,7 +30,7 @@ public class ItemSpawnProtocol extends Item
 			if (!world.isRemote)
 			{
 				MobDroidProtocol newDroid = new MobDroidProtocol(world);
-				newDroid.setPosition(player.posX, player.posY, player.posZ);
+				newDroid.setPosition(x, y, z);
 				world.spawnEntityInWorld(newDroid);
 			}
 		}

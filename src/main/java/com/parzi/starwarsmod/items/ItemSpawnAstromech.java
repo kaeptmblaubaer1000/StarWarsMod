@@ -29,7 +29,7 @@ public class ItemSpawnAstromech extends Item
 			if (!world.isRemote)
 			{
 				MobDroidAstromech newDroid = new MobDroidAstromech(world);
-				newDroid.setPosition(player.posX, player.posY, player.posZ);
+				newDroid.setPosition(x, y, z);
 				world.spawnEntityInWorld(newDroid);
 			}
 		}

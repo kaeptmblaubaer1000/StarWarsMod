@@ -58,7 +58,7 @@ public class TransferDim extends Teleporter
 
 		// Freeze motion
 		entity.motionX = entity.motionY = entity.motionZ = 0.0D;
-		entity.setPosition(dx, dy, dz); // silly to do this multiple time,s but
+		entity.setPosition(dx, dy, dz); // silly to do this multiple times, but
 										// it kept offseting entity until this
 										// was done
 

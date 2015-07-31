@@ -154,6 +154,6 @@ public class ItemBlasterHeavy extends Item
 
 	public ItemStack getMeta(String string)
 	{
-		return new ItemStack(StarWarsMod.blasterRifleHeavy, 1, this.indexOfMeta(string));
+		return new ItemStack(StarWarsMod.blasterHeavy, 1, this.indexOfMeta(string));
 	}
 }

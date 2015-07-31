@@ -53,7 +53,7 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifleHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 3F)); // DLT-19
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 3F)); // DLT-19
 		}
 		else if (dimId == StarWarsMod.dimHothId)
 		{
