@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.entities;
 
+import com.parzi.starwarsmod.StarWarsMod;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -33,8 +35,19 @@ public class EntityBlasterPistolBolt extends EntityThrowable
 	}
 
 	@Override
-	public void onCollideWithPlayer(EntityPlayer p_70100_1_)
+	public void onCollideWithPlayer(EntityPlayer player)
 	{
+		if (player.getHeldItem() != null && player.getHeldItem().getItem() == StarWarsMod.lightsaber && player.isBlocking())
+		{
+			Vec3 vec3 = player.getLookVec();
+
+            if (vec3 != null)
+            {
+                this.motionX = vec3.xCoord;
+                this.motionY = vec3.yCoord;
+                this.motionZ = vec3.zCoord;
+            }
+		}
 		return;
 	}
 
