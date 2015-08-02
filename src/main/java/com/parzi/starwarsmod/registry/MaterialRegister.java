@@ -26,6 +26,8 @@ public class MaterialRegister
 		StarWarsMod.bobaArmorMat = EnumHelper.addArmorMaterial("bobaArmorMat", 100, new int[] { 1, 5, 4, 3 }, 4);
 		StarWarsMod.tiePilotArmorMat = EnumHelper.addArmorMaterial("tiePilotArmorMat", 70, new int[] { 1, 3, 2, 1 }, 4);
 
+		StarWarsMod.leiaBunsArmorMat = EnumHelper.addArmorMaterial("leiaBunsArmorMat", 0, new int[] { 0, 0, 0, 0 }, 0);
+
 		Lumberjack.info("Materials, reporting for duty!");
 	}
 }

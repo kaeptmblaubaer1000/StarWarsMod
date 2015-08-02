@@ -151,7 +151,7 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	{
 		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
 		{
-			Minecraft.getMinecraft().displayGuiScreen(new GuiJediRobes(player));
+			player.openGui(StarWarsMod.instance, 1, world, 0, 0, 0);
 		}
 		if (stack.stackTagCompound == null)
 		{

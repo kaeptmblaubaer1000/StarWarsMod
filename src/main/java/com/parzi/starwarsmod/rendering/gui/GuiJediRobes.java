@@ -6,6 +6,7 @@ import java.util.Map;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -27,6 +28,10 @@ public class GuiJediRobes extends GuiScreen
 	private int x;
 	private int y;
 	private EntityPlayer player;
+	private GuiButton prev;
+	private GuiButton buy;
+	private GuiButton next;
+	private int lastButtonClick = 0;
 
 	private int spinnerIndex = 0;
 	private PowerBase[] spinner = ((ArmorJediRobes)StarWarsMod.jediRobes).powers;
@@ -90,13 +95,24 @@ public class GuiJediRobes extends GuiScreen
 	}
 
 	@Override
+	public void initGui()
+	{
+		this.x = (this.width - w) / 2;
+		this.y = (this.height - h) / 2;
+
+		// id, x, y, width, height, text
+		int buttonY = y + 120;
+		this.prev = new GuiButton(1, x + 10, buttonY, 25, 20, "<");
+		this.buy = new GuiButton(2, x + 40, buttonY, 25, 20, "BUY");
+		this.next = new GuiButton(3, x + 70, buttonY, 25, 20, ">");
+		this.buttonList.add(prev);
+		this.buttonList.add(buy);
+		this.buttonList.add(next);
+	}
+
+	@Override
 	public void drawScreen(int mouseX, int mouseY, float renderPartialTicks)
 	{
-		drawDefaultBackground();
-
-		x = (this.width - w) / 2;
-		y = (this.height - h) / 2;
-
 		int py = y + 10;
 
 		this.mc.getTextureManager().bindTexture(backgroundimage);
@@ -111,11 +127,6 @@ public class GuiJediRobes extends GuiScreen
 		String animals = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("animals"));
 		String earth = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("earth"));
 		String water = String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger("water"));
-
-		// id, x, y, width, height, text
-		GuiButton prev = new GuiButton(1, x + 10, py, 25, 20, "<");
-		GuiButton buy = new GuiButton(2, x + 40, py, 25, 20, "BUY");
-		GuiButton next = new GuiButton(3, x + 70, py, 25, 20, ">");
 
 		py += 15;
 		drawString(mc.fontRenderer, "Flora: " + plants, x + 10, py, ElementUtils.floraColor);
@@ -136,16 +147,7 @@ public class GuiJediRobes extends GuiScreen
 			buy.enabled = false;
 		}
 		py += 10;
-		buttonList.clear();
 
-		buttonList.add(prev);
-		buttonList.add(buy);
-		buttonList.add(next);
-
-		for (int i = 0; i < buttonList.size(); i++)
-		{
-			GuiButton b = (GuiButton)buttonList.get(i);
-			b.drawButton(mc, b.xPosition, b.yPosition);
-		}
+		super.drawScreen(mouseX, mouseY, renderPartialTicks);
 	}
 }

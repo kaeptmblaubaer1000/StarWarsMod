@@ -177,6 +177,8 @@ public class StarWarsMod
 	public static Item hothLegs;
 	public static Item hothBoots;
 
+	public static Item leiasBuns;
+
 	public static BiomeGenBase biomeTatooine;
 	public static BiomeGenBase biomeHoth;
 	public static BiomeGenBase biomeKashyyyk;
@@ -228,6 +230,8 @@ public class StarWarsMod
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;
 
+	public static ArmorMaterial leiaBunsArmorMat;
+
 	/* Events */
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -251,7 +255,7 @@ public class StarWarsMod
 		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
 		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
 
-		StarWarsMod.enableCreditsOverlay = config.get("items", "enableCreditsOverlay", true).getBoolean();
+		StarWarsMod.enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 
 		StarWarsMod.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		StarWarsMod.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();

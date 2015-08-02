@@ -1,6 +1,9 @@
 package com.parzi.starwarsmod.registry;
 
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.armor.ArmorAddonBuns;
 import com.parzi.starwarsmod.armor.ArmorBoba;
 import com.parzi.starwarsmod.armor.ArmorBobaJetpack;
 import com.parzi.starwarsmod.armor.ArmorEndor;
@@ -293,6 +296,9 @@ public class ItemRegister
 
 		StarWarsMod.waterDroplet = new ItemWaterDroplet();
 		GameRegistry.registerItem(StarWarsMod.waterDroplet, "waterDroplet");
+
+		StarWarsMod.leiasBuns = new ArmorAddonBuns(StarWarsMod.leiaBunsArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.leiasBuns, "leiasBuns");
 
 		Lumberjack.info("Items, reporting for duty!");
 	}

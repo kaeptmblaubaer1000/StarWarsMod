@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.network;
 
+import com.parzi.starwarsmod.utils.Lumberjack;
+
 import net.minecraft.client.Minecraft;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -43,7 +45,14 @@ public class JediRobesSetElementInArmorInv implements IMessage
 		@Override
 		public IMessage onMessage(JediRobesSetElementInArmorInv message, MessageContext ctx)
 		{
-			ctx.getServerHandler().playerEntity.inventory.armorInventory[2].stackTagCompound.setInteger(message.element, message.amt);
+			try
+			{
+				ctx.getServerHandler().playerEntity.inventory.armorInventory[2].stackTagCompound.setInteger(message.element, message.amt);
+			}
+			catch (Exception e)
+			{
+				Lumberjack.warn("Unable to add element " + message.element + " (amount " + String.valueOf(message.amt) + ")");
+			}
 			return null; // no response in this case
 		}
 	}

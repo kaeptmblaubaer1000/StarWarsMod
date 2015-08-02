@@ -19,6 +19,7 @@ item.starwarsmod.titaniumDust.name=Titanium Dust
 item.starwarsmod.hyperdriveEngine.name=Hyperdrive Engine
 item.starwarsmod.hyperdriveMotivator.name=Hyperdrive Motivator
 item.starwarsmod.waterDroplet.name=Water Droplet
+item.starwarsmod.banthaChop.name=Bantha CHop
 
 item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
 item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive
@@ -110,6 +111,8 @@ item.starwarsmod.tiePilotHelmet.name=TIE Pilot Helmet
 item.starwarsmod.tiePilotChestplate.name=TIE Pilot Chestplate
 item.starwarsmod.tiePilotLeggings.name=TIE Pilot Pants
 item.starwarsmod.tiePilotBoots.name=TIE Pilot Boots
+
+item.starwarsmod.leiasBuns.name=Leia's Buns
 
 // Mobs
 entity.starwarsmod.wookiee.name=Wookiee
