@@ -251,7 +251,7 @@ public class StarWarsMod
 		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
 		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
 
-		StarWarsMod.enableCreditsOverlay = config.get("items", "enableCreditsOverlay", false).getBoolean();
+		StarWarsMod.enableCreditsOverlay = config.get("items", "enableCreditsOverlay", true).getBoolean();
 
 		StarWarsMod.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		StarWarsMod.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
@@ -281,6 +281,7 @@ public class StarWarsMod
 
 		try
 		{
+
 			WorldRegister.registerAll();
 		}
 		catch (Exception e)
