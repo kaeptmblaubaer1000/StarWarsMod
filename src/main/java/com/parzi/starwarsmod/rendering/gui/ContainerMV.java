@@ -8,7 +8,6 @@ import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
-import com.parzi.starwarsmod.utils.Lumberjack;
 
 public class ContainerMV extends Container
 {
@@ -17,7 +16,7 @@ public class ContainerMV extends Container
 	public ContainerMV(InventoryPlayer player, TileEntityMV vap)
 	{
 		this.tileMV = vap;
-		//                                                          i,  x,  y
+		// i, x, y
 		this.addSlotToContainer(new SlotFurnace(player.player, vap, 2, 80, 35));
 		int i;
 

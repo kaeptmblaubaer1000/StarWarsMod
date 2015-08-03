@@ -3,7 +3,6 @@ package com.parzi.starwarsmod.blocks;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,7 +24,8 @@ public class BlockEndorBaseWall extends Block
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	public BlockEndorBaseWall() {
+	public BlockEndorBaseWall()
+	{
 		super(Material.rock);
 		setBlockName(StarWarsMod.MODID + "." + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);

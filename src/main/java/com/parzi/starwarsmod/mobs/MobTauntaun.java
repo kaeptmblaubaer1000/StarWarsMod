@@ -1,10 +1,8 @@
 package com.parzi.starwarsmod.mobs;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -91,19 +89,19 @@ public class MobTauntaun extends EntityHorse
 	}
 
 	@Override
-    public boolean getCanSpawnHere()
-    {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
-    }
+	public boolean getCanSpawnHere()
+	{
+		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
+	}
 
 	protected boolean isValidLightLevel()
-    {
-        int i = MathHelper.floor_double(this.posX);
-        int j = MathHelper.floor_double(this.boundingBox.minY);
-        int k = MathHelper.floor_double(this.posZ);
+	{
+		int i = MathHelper.floor_double(this.posX);
+		int j = MathHelper.floor_double(this.boundingBox.minY);
+		int k = MathHelper.floor_double(this.posZ);
 
-        return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
-    }
+		return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
+	}
 
 	@Override
 	public boolean canMateWith(EntityAnimal p_70878_1_)

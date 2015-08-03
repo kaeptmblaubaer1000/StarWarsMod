@@ -16,12 +16,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.gui.GuiJediRobes;
 import com.parzi.starwarsmod.rendering.helper.IHaloRenderItem;
-import com.parzi.starwarsmod.upgrades.ForceFeed;
 import com.parzi.starwarsmod.upgrades.ForceLeap;
 import com.parzi.starwarsmod.upgrades.ForcePunch;
-import com.parzi.starwarsmod.upgrades.ForceResist;
 import com.parzi.starwarsmod.upgrades.ForceStep;
 import com.parzi.starwarsmod.upgrades.ForceStride;
 import com.parzi.starwarsmod.upgrades.PowerBase;

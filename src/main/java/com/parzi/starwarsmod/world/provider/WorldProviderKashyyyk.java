@@ -23,10 +23,10 @@ public class WorldProviderKashyyyk extends WorldProvider
 	}
 
 	@SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer()
-    {
-	    return new DrawKashyyykSky();
-    }
+	public IRenderHandler getSkyRenderer()
+	{
+		return new DrawKashyyykSky();
+	}
 
 	public IChunkProvider createChunkGenerator()
 	{

@@ -19,8 +19,6 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class DrawKashyyykSky extends IRenderHandler
 {

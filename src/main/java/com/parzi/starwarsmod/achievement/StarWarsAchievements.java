@@ -1,12 +1,13 @@
 package com.parzi.starwarsmod.achievement;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
+
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
 
 public class StarWarsAchievements
 {
@@ -40,10 +41,10 @@ public class StarWarsAchievements
 		travelEndor = new StarWarsAchievement("travelEndor", 2, 4, StarWarsMod.hyperdriveEndor, craftHyperdrive);
 		travelKashyyyk = new StarWarsAchievement("travelKashyyyk", 2, 5, StarWarsMod.hyperdriveKashyyyk, craftHyperdrive);
 
-        page = new AchievementPage("Star Wars", StarWarsAchievement.achievements.toArray(new Achievement[StarWarsAchievement.achievements.size()]));
-        AchievementPage.registerAchievementPage(page);
+		page = new AchievementPage("Star Wars", StarWarsAchievement.achievements.toArray(new Achievement[StarWarsAchievement.achievements.size()]));
+		AchievementPage.registerAchievementPage(page);
 
-        FMLCommonHandler.instance().bus().register(new AchievementTrigger());
+		FMLCommonHandler.instance().bus().register(new AchievementTrigger());
 
 		Lumberjack.info("Achievements, reporting for duty!");
 	}

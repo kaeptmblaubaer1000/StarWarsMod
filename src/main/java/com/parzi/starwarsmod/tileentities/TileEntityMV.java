@@ -16,7 +16,7 @@ public class TileEntityMV extends TileEntity implements IInventory
 	public int frame;
 	public int progressTicks;
 	public int totalTicks;
-    private int facing = 2;
+	private int facing = 2;
 	private ItemStack waterDroplets;
 
 	public TileEntityMV()
@@ -30,7 +30,7 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public void updateEntity()
 	{
-		//if (++this.frame > 180) this.frame = 0;
+		// if (++this.frame > 180) this.frame = 0;
 
 		if (this.progressTicks < this.totalTicks)
 		{
@@ -54,32 +54,36 @@ public class TileEntityMV extends TileEntity implements IInventory
 		}
 	}
 
-    public int getFacing(){
-        return facing;
-    }
+	public int getFacing()
+	{
+		return facing;
+	}
 
-    public void setFacing(int dir){
-        facing = dir;
-    }
+	public void setFacing(int dir)
+	{
+		facing = dir;
+	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		this.waterDroplets = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("droplets"));
 		this.progressTicks = tag.getInteger("progress");
-        this.facing = tag.getShort("facing");
+		this.facing = tag.getShort("facing");
 		super.readFromNBT(tag);
 	}
 
 	@Override
-	public Packet getDescriptionPacket() {
+	public Packet getDescriptionPacket()
+	{
 		NBTTagCompound tag = new NBTTagCompound();
 		writeToNBT(tag);
 		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -999, tag);
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
 		super.onDataPacket(net, packet);
 		readFromNBT(packet.func_148857_g());
 	}
@@ -88,7 +92,7 @@ public class TileEntityMV extends TileEntity implements IInventory
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		tag.setInteger("progress", this.progressTicks);
-        tag.setShort("facing", (short)this.facing);
+		tag.setShort("facing", (short)this.facing);
 		if (this.waterDroplets != null)
 		{
 			NBTTagCompound produce = new NBTTagCompound();

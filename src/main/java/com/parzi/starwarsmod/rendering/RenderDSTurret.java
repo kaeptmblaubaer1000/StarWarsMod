@@ -32,14 +32,15 @@ public class RenderDSTurret extends RenderLiving
 	}
 
 	@Override
-    public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
+	public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
+	{
 		WeaponDSTurret turret = (WeaponDSTurret)p_76986_1_;
 
-		//GL11.glRotatef(turret.pitch, (float)Math.sin(turret.rotationYaw), (float)Math.cos(turret.rotationYaw), 0);
-		
+		// GL11.glRotatef(turret.pitch, (float)Math.sin(turret.rotationYaw),
+		// (float)Math.cos(turret.rotationYaw), 0);
+
 		turret.setPositionAndRotation(turret.posX, turret.posY, turret.posZ, turret.rotationYaw, turret.pitch);
 
 		super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
-    }
+	}
 }

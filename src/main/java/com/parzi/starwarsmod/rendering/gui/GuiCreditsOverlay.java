@@ -1,19 +1,11 @@
 package com.parzi.starwarsmod.rendering.gui;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 
@@ -22,7 +14,6 @@ import org.lwjgl.opengl.GL12;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-import cpw.mods.fml.client.config.GuiUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class GuiCreditsOverlay extends Gui

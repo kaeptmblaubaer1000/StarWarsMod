@@ -1,9 +1,5 @@
 package com.parzi.starwarsmod.utils;
 
-import javafx.geometry.Point3D;
-
-import javax.vecmath.Point3d;
-
 import net.minecraft.util.Vec3;
 
 public class Vector3
@@ -50,49 +46,57 @@ public class Vector3
 		return (float)Math.sqrt(Math.pow(b.X - this.X, 2) + Math.pow(b.Y - this.Y, 2));
 	}
 
-	public void add(Vector3 b) {
+	public void add(Vector3 b)
+	{
 		this.X += b.X;
 		this.Y += b.Y;
 		this.Z += b.Z;
 	}
 
-	public void add(int b) {
+	public void add(int b)
+	{
 		this.X += b;
 		this.Y += b;
 		this.Z += b;
 	}
 
-	public void subtract(Vector3 b) {
+	public void subtract(Vector3 b)
+	{
 		this.X -= b.X;
 		this.Y -= b.Y;
 		this.Z -= b.Z;
 	}
 
-	public void subtract(int b) {
+	public void subtract(int b)
+	{
 		this.X -= b;
 		this.Y -= b;
 		this.Z -= b;
 	}
 
-	public void multiply(Vector3 b) {
+	public void multiply(Vector3 b)
+	{
 		this.X *= b.X;
 		this.Y *= b.Y;
 		this.Z *= b.Z;
 	}
 
-	public void multiply(int b) {
+	public void multiply(int b)
+	{
 		this.X *= b;
 		this.Y *= b;
 		this.Z *= b;
 	}
 
-	public void divide(Vector3 b) {
+	public void divide(Vector3 b)
+	{
 		this.X /= b.X;
 		this.Y /= b.Y;
 		this.Z /= b.Z;
 	}
 
-	public void divide(int b) {
+	public void divide(int b)
+	{
 		this.X /= b;
 		this.Y /= b;
 		this.Z /= b;

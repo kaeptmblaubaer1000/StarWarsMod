@@ -2,15 +2,16 @@ package com.parzi.starwarsmod.world.gen;
 
 import java.util.Random;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.LootGenUtils;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.LootGenUtils;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenSuperTatooineHomestead extends WorldGenerator implements IWorldGenerator

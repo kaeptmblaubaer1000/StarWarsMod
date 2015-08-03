@@ -83,43 +83,43 @@ public class MobDroidGNK extends EntityTameable
 
 	@Override
 	public boolean interact(EntityPlayer par1EntityPlayer)
-    {
-        ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+	{
+		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 
-        if (this.isTamed())
-        {
-            if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
-            {
-                this.aiSit.setSitting(!this.isSitting());
-                par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-                this.isJumping = false;
-            }
-        }
-        else if (/*this.aiTempt.isRunning() && */itemstack != null && itemstack.getItem() == StarWarsMod.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
-        {
-            if (!this.worldObj.isRemote)
-            {
-                if (this.rand.nextInt(3) == 0)
-                {
-                    this.setTamed(true);
-                    this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-                    this.playTameEffect(true);
-                    this.aiSit.setSitting(true);
-                    this.worldObj.setEntityState(this, (byte)7);
-                    par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-                }
-                else
-                {
-                    this.playTameEffect(false);
-                    this.worldObj.setEntityState(this, (byte)6);
-                }
-            }
+		if (this.isTamed())
+		{
+			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
+			{
+				this.aiSit.setSitting(!this.isSitting());
+				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+				this.isJumping = false;
+			}
+		}
+		else if (/* this.aiTempt.isRunning() && */itemstack != null && itemstack.getItem() == StarWarsMod.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
+		{
+			if (!this.worldObj.isRemote)
+			{
+				if (this.rand.nextInt(3) == 0)
+				{
+					this.setTamed(true);
+					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					this.playTameEffect(true);
+					this.aiSit.setSitting(true);
+					this.worldObj.setEntityState(this, (byte)7);
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+				}
+				else
+				{
+					this.playTameEffect(false);
+					this.worldObj.setEntityState(this, (byte)6);
+				}
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        return super.interact(par1EntityPlayer);
-    }
+		return super.interact(par1EntityPlayer);
+	}
 
 	@Override
 	protected void applyEntityAttributes()
@@ -134,6 +134,7 @@ public class MobDroidGNK extends EntityTameable
 	{
 		this.dropItem(StarWarsMod.spawnGonk, 1);
 	}
+
 	@Override
 	protected String getLivingSound()
 	{

@@ -26,10 +26,10 @@ public class WorldProviderEndor extends WorldProvider
 	}
 
 	@SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer()
-    {
-	    return new DrawEndorSky();
-    }
+	public IRenderHandler getSkyRenderer()
+	{
+		return new DrawEndorSky();
+	}
 
 	public IChunkProvider createChunkGenerator()
 	{
@@ -37,7 +37,8 @@ public class WorldProviderEndor extends WorldProvider
 		return generator;
 	}
 
-	public BiomeGenBase getBiomeGenForCoords(int x, int z) {
+	public BiomeGenBase getBiomeGenForCoords(int x, int z)
+	{
 		if (new Random().nextGaussian() > 0.3) return StarWarsMod.biomeEndorPlains;
 		return StarWarsMod.biomeEndor;
 	}

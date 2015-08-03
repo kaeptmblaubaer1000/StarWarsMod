@@ -8,7 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 
 public class RenderSpeederBike extends RenderLiving

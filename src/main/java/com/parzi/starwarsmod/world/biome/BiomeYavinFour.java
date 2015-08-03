@@ -8,16 +8,11 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenCanopyTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenMegaPineTree;
 import net.minecraft.world.gen.feature.WorldGenSavannaTree;
-import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
-import com.parzi.starwarsmod.mobs.MobWookiee;
-import com.parzi.starwarsmod.world.gen.WorldGenMV;
-import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
 import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
 
 public class BiomeYavinFour extends BiomeGenBase

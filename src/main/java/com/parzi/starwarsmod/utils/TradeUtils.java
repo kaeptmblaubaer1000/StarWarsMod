@@ -3,8 +3,6 @@ package com.parzi.starwarsmod.utils;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.item.ItemStack;
-
 public class TradeUtils
 {
 	public static WeightedTradeItem getWeightedItemFromList(List<WeightedTradeItem> items, Random rand)

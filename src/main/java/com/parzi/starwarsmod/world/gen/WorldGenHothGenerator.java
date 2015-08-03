@@ -2,34 +2,32 @@ package com.parzi.starwarsmod.world.gen;
 
 import java.util.Random;
 
-import com.parzi.starwarsmod.utils.LootGenUtils;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import com.parzi.starwarsmod.utils.LootGenUtils;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenHothGenerator extends WorldGenerator implements IWorldGenerator
 {
-	protected Block[] getValidSpawnBlocks() {
-		return new Block[] {
-			Blocks.snow_layer,
-			Blocks.ice,
-			Blocks.snow
-		};
+	protected Block[] getValidSpawnBlocks()
+	{
+		return new Block[] { Blocks.snow_layer, Blocks.ice, Blocks.snow };
 	}
 
-	public boolean locationIsValidSpawn(World world, int i, int j, int k){
+	public boolean locationIsValidSpawn(World world, int i, int j, int k)
+	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
 
-		while (check != Blocks.air){
-			if (distanceToAir > 2){
-				return false;
-			}
+		while (check != Blocks.air)
+		{
+			if (distanceToAir > 2) { return false; }
 
 			distanceToAir++;
 			check = world.getBlock(i, j + distanceToAir, k);
@@ -38,39 +36,40 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		j += distanceToAir - 1;
 
 		Block block = world.getBlock(i, j, k);
-		Block blockAbove = world.getBlock(i, j+1, k);
-		Block blockBelow = world.getBlock(i, j-1, k);
+		Block blockAbove = world.getBlock(i, j + 1, k);
+		Block blockBelow = world.getBlock(i, j - 1, k);
 
-		for (Block x : getValidSpawnBlocks()){
-			if (blockAbove != Blocks.air){
-				return false;
-			}
-			if (block == x){
-				return true;
-			}else if (block == Blocks.snow && blockBelow == x){
+		for (Block x : getValidSpawnBlocks())
+		{
+			if (blockAbove != Blocks.air) { return false; }
+			if (block == x)
+			{
 				return true;
 			}
+			else if (block == Blocks.snow && blockBelow == x) { return true; }
 		}
 
 		return false;
 	}
 
-	public WorldGenHothGenerator() { }
+	public WorldGenHothGenerator()
+	{
+	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) { }
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
+	}
 
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
 	{
 		world.setBlock(x, y, z, block, metadata, 2);
 	}
 
-	public boolean generate(World world, Random rand, int i, int j, int k) {
-		//check that each corner is one of the valid spawn blocks
-		if(!locationIsValidSpawn(world, i, j, k) || !locationIsValidSpawn(world, i + 29, j, k) || !locationIsValidSpawn(world, i + 29, j, k + 52) || !locationIsValidSpawn(world, i, j, k + 52))
-		{
-			return false;
-		}
+	public boolean generate(World world, Random rand, int i, int j, int k)
+	{
+		// check that each corner is one of the valid spawn blocks
+		if (!locationIsValidSpawn(world, i, j, k) || !locationIsValidSpawn(world, i + 29, j, k) || !locationIsValidSpawn(world, i + 29, j, k + 52) || !locationIsValidSpawn(world, i, j, k + 52)) { return false; }
 
 		k = k - 10;
 		i = i - 10;
@@ -1580,7 +1579,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate2(World world, Random rand, int i, int j, int k) {
+	public boolean generate2(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 2, j + 0, k + 16, Blocks.snow, 0);
 		this.setBlock(world, i + 2, j + 0, k + 17, Blocks.snow, 0);
 		this.setBlock(world, i + 2, j + 0, k + 18, Blocks.snow, 0);
@@ -3086,7 +3086,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate3(World world, Random rand, int i, int j, int k) {
+	public boolean generate3(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 4, j + 0, k + 43, Blocks.snow, 0);
 		this.setBlock(world, i + 4, j + 0, k + 44, Blocks.snow, 0);
 		this.setBlock(world, i + 4, j + 0, k + 45, Blocks.snow, 0);
@@ -4592,7 +4593,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate4(World world, Random rand, int i, int j, int k) {
+	public boolean generate4(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 6, j + 1, k + 22, Blocks.stained_hardened_clay, 0);
 		this.setBlock(world, i + 6, j + 1, k + 23, Blocks.air, 0);
 		this.setBlock(world, i + 6, j + 1, k + 24, Blocks.air, 0);
@@ -6098,7 +6100,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate5(World world, Random rand, int i, int j, int k) {
+	public boolean generate5(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 8, j + 2, k + 1, Blocks.air, 0);
 		this.setBlock(world, i + 8, j + 2, k + 2, Blocks.air, 0);
 		this.setBlock(world, i + 8, j + 2, k + 3, Blocks.air, 0);
@@ -7604,7 +7607,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate6(World world, Random rand, int i, int j, int k) {
+	public boolean generate6(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 10, j + 2, k + 33, Blocks.air, 0);
 		this.setBlock(world, i + 10, j + 2, k + 34, Blocks.air, 0);
 		this.setBlock(world, i + 10, j + 2, k + 35, Blocks.air, 0);
@@ -9110,7 +9114,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate7(World world, Random rand, int i, int j, int k) {
+	public boolean generate7(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 12, j + 3, k + 8, Blocks.air, 0);
 		this.setBlock(world, i + 12, j + 3, k + 9, Blocks.air, 0);
 		this.setBlock(world, i + 12, j + 3, k + 10, Blocks.air, 0);
@@ -10616,7 +10621,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate8(World world, Random rand, int i, int j, int k) {
+	public boolean generate8(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 14, j + 3, k + 39, Blocks.air, 0);
 		this.setBlock(world, i + 14, j + 3, k + 40, Blocks.air, 0);
 		this.setBlock(world, i + 14, j + 3, k + 41, Blocks.air, 0);
@@ -12122,7 +12128,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate9(World world, Random rand, int i, int j, int k) {
+	public boolean generate9(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 16, j + 4, k + 6, Blocks.air, 0);
 		this.setBlock(world, i + 16, j + 4, k + 7, Blocks.air, 0);
 		this.setBlock(world, i + 16, j + 4, k + 8, Blocks.air, 0);
@@ -13628,7 +13635,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate10(World world, Random rand, int i, int j, int k) {
+	public boolean generate10(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 18, j + 4, k + 37, Blocks.air, 0);
 		this.setBlock(world, i + 18, j + 4, k + 38, Blocks.air, 0);
 		this.setBlock(world, i + 18, j + 4, k + 39, Blocks.air, 0);
@@ -15134,7 +15142,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate11(World world, Random rand, int i, int j, int k) {
+	public boolean generate11(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 20, j + 5, k + 8, Blocks.air, 0);
 		this.setBlock(world, i + 20, j + 5, k + 9, Blocks.stained_hardened_clay, 0);
 		this.setBlock(world, i + 20, j + 5, k + 10, Blocks.air, 0);
@@ -16640,7 +16649,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate12(World world, Random rand, int i, int j, int k) {
+	public boolean generate12(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 22, j + 5, k + 40, Blocks.air, 0);
 		this.setBlock(world, i + 22, j + 5, k + 41, Blocks.air, 0);
 		this.setBlock(world, i + 22, j + 5, k + 42, Blocks.air, 0);
@@ -18146,7 +18156,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate13(World world, Random rand, int i, int j, int k) {
+	public boolean generate13(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 24, j + 6, k + 27, Blocks.air, 0);
 		this.setBlock(world, i + 24, j + 6, k + 28, Blocks.air, 0);
 		this.setBlock(world, i + 24, j + 6, k + 29, Blocks.air, 0);
@@ -19652,7 +19663,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate14(World world, Random rand, int i, int j, int k) {
+	public boolean generate14(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 26, j + 7, k + 6, Blocks.air, 0);
 		this.setBlock(world, i + 26, j + 7, k + 7, Blocks.air, 0);
 		this.setBlock(world, i + 26, j + 7, k + 8, Blocks.air, 0);
@@ -21158,7 +21170,8 @@ public class WorldGenHothGenerator extends WorldGenerator implements IWorldGener
 		return true;
 	}
 
-	public boolean generate15(World world, Random rand, int i, int j, int k) {
+	public boolean generate15(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 28, j + 7, k + 22, Blocks.air, 0);
 		this.setBlock(world, i + 28, j + 7, k + 23, Blocks.air, 0);
 		this.setBlock(world, i + 28, j + 7, k + 24, Blocks.air, 0);

@@ -2,14 +2,12 @@ package com.parzi.starwarsmod.blocks;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.gui.GuiMV;
 import com.parzi.starwarsmod.tileentities.TileEntityDSTurret;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 

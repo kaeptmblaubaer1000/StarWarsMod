@@ -1,11 +1,9 @@
 package com.parzi.starwarsmod.weaponry;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class WeaponDSTurret extends WeaponSwivelBase
 {

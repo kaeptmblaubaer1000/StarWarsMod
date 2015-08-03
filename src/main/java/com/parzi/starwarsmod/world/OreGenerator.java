@@ -2,11 +2,12 @@ package com.parzi.starwarsmod.world;
 
 import java.util.Random;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+
+import com.parzi.starwarsmod.StarWarsMod;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class OreGenerator implements IWorldGenerator

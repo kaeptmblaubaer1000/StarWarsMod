@@ -1,10 +1,11 @@
 package com.parzi.starwarsmod.utils;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityList.EntityEggInfo;
+
+import com.parzi.starwarsmod.StarWarsMod;
+
 import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityUtils

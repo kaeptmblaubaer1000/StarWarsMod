@@ -1,9 +1,6 @@
 package com.parzi.starwarsmod.rendering;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -29,10 +26,10 @@ public class RenderMV extends TileEntitySpecialRenderer
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
 	{
-		//TileEntityMV tile = (TileEntityMV)world.getTileEntity(x, y, z);
-		//GL11.glPushMatrix();
-		//GL11.glRotatef(tile.getFacing() * (-90), 0.0F, 0.0F, 1.0F);
-		//GL11.glPopMatrix();
+		// TileEntityMV tile = (TileEntityMV)world.getTileEntity(x, y, z);
+		// GL11.glPushMatrix();
+		// GL11.glRotatef(tile.getFacing() * (-90), 0.0F, 0.0F, 1.0F);
+		// GL11.glPopMatrix();
 	}
 
 	@Override

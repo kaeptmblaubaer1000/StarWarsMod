@@ -23,10 +23,10 @@ public class WorldProviderYavinFour extends WorldProvider
 	}
 
 	@SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer()
-    {
-	    return new DrawYavinFourSky();
-    }
+	public IRenderHandler getSkyRenderer()
+	{
+		return new DrawYavinFourSky();
+	}
 
 	public IChunkProvider createChunkGenerator()
 	{

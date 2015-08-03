@@ -109,7 +109,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		/* Events */
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
 
-		//DimensionManager.getWorld(StarWarsMod.dimTatooineId).provider.setSkyRenderer(new DrawTatooineSky());
+		// DimensionManager.getWorld(StarWarsMod.dimTatooineId).provider.setSkyRenderer(new
+		// DrawTatooineSky());
 
 	}
 

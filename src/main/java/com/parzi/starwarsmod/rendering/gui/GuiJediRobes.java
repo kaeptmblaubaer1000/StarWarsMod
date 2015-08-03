@@ -1,24 +1,15 @@
 package com.parzi.starwarsmod.rendering.gui;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.block.BlockAnvil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.network.JediRobesBuy;
-import com.parzi.starwarsmod.upgrades.ForceLeap;
-import com.parzi.starwarsmod.upgrades.ForceStep;
 import com.parzi.starwarsmod.upgrades.PowerBase;
 import com.parzi.starwarsmod.utils.ElementUtils;
-import com.parzi.starwarsmod.armor.ArmorJediRobes;
 
 public class GuiJediRobes extends GuiScreen
 {

@@ -1,6 +1,5 @@
 package com.parzi.starwarsmod.network;
 
-import net.minecraft.client.Minecraft;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

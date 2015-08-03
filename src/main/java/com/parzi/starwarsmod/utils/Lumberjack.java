@@ -4,10 +4,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
-import cpw.mods.fml.common.FMLLog;
-
 public class Lumberjack
 {
 	public static final Logger logger = LogManager.getLogger("StarWarsMod");

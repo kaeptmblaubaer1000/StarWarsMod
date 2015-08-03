@@ -54,7 +54,7 @@ public class CreateBlasterBoltSpeeder implements IMessage
 			System.out.println("Creating bolt from " + message.player + " in dimension ID " + message.dim);
 
 			world.spawnEntityInWorld(new EntityBlasterRifleBolt(world, player));
-			
+
 			return null; // no response in this case
 		}
 	}

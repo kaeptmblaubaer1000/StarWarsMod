@@ -47,12 +47,14 @@ public class BiomeKashyyyk extends BiomeGenBase
 	}
 
 	@Override
-	public int getBiomeFoliageColor(int p1, int p2, int p3) {
+	public int getBiomeFoliageColor(int p1, int p2, int p3)
+	{
 		return 0x005900;
 	}
 
 	@Override
-	public int getBiomeGrassColor(int p1, int p2, int p3) {
+	public int getBiomeGrassColor(int p1, int p2, int p3)
+	{
 		return 0x198C19;
 	}
 }

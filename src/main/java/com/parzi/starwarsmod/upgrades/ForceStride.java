@@ -1,6 +1,5 @@
 package com.parzi.starwarsmod.upgrades;
 
-import net.minecraft.block.BlockBeacon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;

@@ -2,18 +2,14 @@ package com.parzi.starwarsmod.items.hyperdrive;
 
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
 import com.parzi.starwarsmod.utils.TextUtils;
-import com.parzi.starwarsmod.world.TransferDim;
 
 public class ItemHyperdriveEarth extends Item
 {

@@ -15,7 +15,6 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.LootGenUtils;
 import com.parzi.starwarsmod.utils.TradeUtils;
 import com.parzi.starwarsmod.utils.WeightedTradeItem;
 

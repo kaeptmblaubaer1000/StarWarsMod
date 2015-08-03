@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.entities;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -9,9 +7,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.StarWarsMod;
 
 public class EntityBlasterPistolBolt extends EntityThrowable
 {
@@ -41,36 +41,37 @@ public class EntityBlasterPistolBolt extends EntityThrowable
 		{
 			Vec3 vec3 = player.getLookVec();
 
-            if (vec3 != null)
-            {
-                this.motionX = vec3.xCoord;
-                this.motionY = vec3.yCoord;
-                this.motionZ = vec3.zCoord;
-            }
+			if (vec3 != null)
+			{
+				this.motionX = vec3.xCoord;
+				this.motionY = vec3.yCoord;
+				this.motionZ = vec3.zCoord;
+			}
 		}
 		return;
 	}
 
 	@Override
-    public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
-    {
-        float f2 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_3_ * p_70186_3_ + p_70186_5_ * p_70186_5_);
-        p_70186_1_ /= (double)f2;
-        p_70186_3_ /= (double)f2;
-        p_70186_5_ /= (double)f2;
-        p_70186_1_ += 0.007499999832361937D * (double)p_70186_8_; // haha, no random
-        p_70186_3_ += 0.007499999832361937D * (double)p_70186_8_;
-        p_70186_5_ += 0.007499999832361937D * (double)p_70186_8_;
-        p_70186_1_ *= (double)p_70186_7_;
-        p_70186_3_ *= (double)p_70186_7_;
-        p_70186_5_ *= (double)p_70186_7_;
-        this.motionX = p_70186_1_;
-        this.motionY = p_70186_3_;
-        this.motionZ = p_70186_5_;
-        float f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
-        this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / Math.PI);
-        this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, (double)f3) * 180.0D / Math.PI);
-    }
+	public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
+	{
+		float f2 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_3_ * p_70186_3_ + p_70186_5_ * p_70186_5_);
+		p_70186_1_ /= (double)f2;
+		p_70186_3_ /= (double)f2;
+		p_70186_5_ /= (double)f2;
+		p_70186_1_ += 0.007499999832361937D * (double)p_70186_8_; // haha, no
+																	// random
+		p_70186_3_ += 0.007499999832361937D * (double)p_70186_8_;
+		p_70186_5_ += 0.007499999832361937D * (double)p_70186_8_;
+		p_70186_1_ *= (double)p_70186_7_;
+		p_70186_3_ *= (double)p_70186_7_;
+		p_70186_5_ *= (double)p_70186_7_;
+		this.motionX = p_70186_1_;
+		this.motionY = p_70186_3_;
+		this.motionZ = p_70186_5_;
+		float f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
+		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, (double)f3) * 180.0D / Math.PI);
+	}
 
 	@Override
 	public void onUpdate()
@@ -83,40 +84,40 @@ public class EntityBlasterPistolBolt extends EntityThrowable
 	}
 
 	@Override
-    public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
-    {
-        if (this.isEntityInvulnerable())
-        {
-            return false;
-        }
-        else
-        {
-            this.setBeenAttacked();
+	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	{
+		if (this.isEntityInvulnerable())
+		{
+			return false;
+		}
+		else
+		{
+			this.setBeenAttacked();
 
-            if (p_70097_1_.getEntity() != null)
-            {
-                Vec3 vec3 = p_70097_1_.getEntity().getLookVec();
+			if (p_70097_1_.getEntity() != null)
+			{
+				Vec3 vec3 = p_70097_1_.getEntity().getLookVec();
 
-                if (vec3 != null)
-                {
-                    this.motionX = vec3.xCoord;
-                    this.motionY = vec3.yCoord;
-                    this.motionZ = vec3.zCoord;
-                }
+				if (vec3 != null)
+				{
+					this.motionX = vec3.xCoord;
+					this.motionY = vec3.yCoord;
+					this.motionZ = vec3.zCoord;
+				}
 
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
 
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
-		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != sender)
+		if (pos.typeOfHit == MovingObjectType.ENTITY && (pos.entityHit != sender || timeAlive > 2))
 		{
 			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(sender), 2f);
 			pos.entityHit.setFire(8);

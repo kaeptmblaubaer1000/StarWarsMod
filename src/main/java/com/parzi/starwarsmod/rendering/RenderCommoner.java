@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.mobs.MobTusken;
 
 public class RenderCommoner extends RenderBiped
 {

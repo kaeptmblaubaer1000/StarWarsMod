@@ -2,11 +2,10 @@ package com.parzi.starwarsmod.world.gen;
 
 import java.util.Random;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import com.parzi.starwarsmod.StarWarsMod;
 
 public class WorldGenMV extends WorldGenerator
 {

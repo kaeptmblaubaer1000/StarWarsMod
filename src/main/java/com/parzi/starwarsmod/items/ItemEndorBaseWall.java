@@ -2,7 +2,6 @@ package com.parzi.starwarsmod.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
 public class ItemEndorBaseWall extends ItemBlock
 {
@@ -14,7 +13,7 @@ public class ItemEndorBaseWall extends ItemBlock
 
 	@Override
 	public int getMetadata(int par1)
-    {
-        return par1;
-    }
+	{
+		return par1;
+	}
 }

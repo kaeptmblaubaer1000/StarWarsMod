@@ -16,11 +16,8 @@ import net.minecraftforge.client.IRenderHandler;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class DrawEndorSky extends IRenderHandler
 {
@@ -161,42 +158,38 @@ public class DrawEndorSky extends IRenderHandler
 		tessellator1.setColorRGBA_F(afloat[0] * f18, afloat[1] * f18, afloat[2] * f18, 0.0F);
 
 		/*
-		//Render sun aura
-		f10 = 20.0F;
-		tessellator1.addVertex(-f10, 100.0D, -f10);
-		tessellator1.addVertex(0, 100.0D, (double)-f10 * 1.5F);
-		tessellator1.addVertex(f10, 100.0D, -f10);
-		tessellator1.addVertex((double)f10 * 1.5F, 100.0D, 0);
-		tessellator1.addVertex(f10, 100.0D, f10);
-		tessellator1.addVertex(0, 100.0D, (double)f10 * 1.5F);
-		tessellator1.addVertex(-f10, 100.0D, f10);
-		tessellator1.addVertex((double)-f10 * 1.5F, 100.0D, 0);
-		tessellator1.addVertex(-f10, 100.0D, -f10);
-
-		tessellator1.draw();
-		tessellator1.startDrawing(GL11.GL_TRIANGLE_FAN);
-		tessellator1.setColorRGBA_F(f6 * f18, f7 * f18, f8 * f18, afloat[3] * f18);
-		tessellator1.addVertex(0.0D, 100.0D, 0.0D);
-		tessellator1.setColorRGBA_F(afloat[0] * f18, afloat[1] * f18, afloat[2] * f18, 0.0F);
-
-		// Render larger sun aura
-		f10 = 40.0F;
-		tessellator1.addVertex(-f10, 100.0D, -f10);
-		tessellator1.addVertex(0, 100.0D, (double)-f10 * 1.5F);
-		tessellator1.addVertex(f10, 100.0D, -f10);
-		tessellator1.addVertex((double)f10 * 1.5F, 100.0D, 0);
-		tessellator1.addVertex(f10, 100.0D, f10);
-		tessellator1.addVertex(0, 100.0D, (double)f10 * 1.5F);
-		tessellator1.addVertex(-f10, 100.0D, f10);
-		tessellator1.addVertex((double)-f10 * 1.5F, 100.0D, 0);
-		tessellator1.addVertex(-f10, 100.0D, -f10);*/
+		 * //Render sun aura f10 = 20.0F; tessellator1.addVertex(-f10, 100.0D,
+		 * -f10); tessellator1.addVertex(0, 100.0D, (double)-f10 * 1.5F);
+		 * tessellator1.addVertex(f10, 100.0D, -f10);
+		 * tessellator1.addVertex((double)f10 * 1.5F, 100.0D, 0);
+		 * tessellator1.addVertex(f10, 100.0D, f10); tessellator1.addVertex(0,
+		 * 100.0D, (double)f10 * 1.5F); tessellator1.addVertex(-f10, 100.0D,
+		 * f10); tessellator1.addVertex((double)-f10 * 1.5F, 100.0D, 0);
+		 * tessellator1.addVertex(-f10, 100.0D, -f10);
+		 * 
+		 * tessellator1.draw(); tessellator1.startDrawing(GL11.GL_TRIANGLE_FAN);
+		 * tessellator1.setColorRGBA_F(f6 * f18, f7 * f18, f8 * f18, afloat[3] *
+		 * f18); tessellator1.addVertex(0.0D, 100.0D, 0.0D);
+		 * tessellator1.setColorRGBA_F(afloat[0] * f18, afloat[1] * f18,
+		 * afloat[2] * f18, 0.0F);
+		 * 
+		 * // Render larger sun aura f10 = 40.0F; tessellator1.addVertex(-f10,
+		 * 100.0D, -f10); tessellator1.addVertex(0, 100.0D, (double)-f10 *
+		 * 1.5F); tessellator1.addVertex(f10, 100.0D, -f10);
+		 * tessellator1.addVertex((double)f10 * 1.5F, 100.0D, 0);
+		 * tessellator1.addVertex(f10, 100.0D, f10); tessellator1.addVertex(0,
+		 * 100.0D, (double)f10 * 1.5F); tessellator1.addVertex(-f10, 100.0D,
+		 * f10); tessellator1.addVertex((double)-f10 * 1.5F, 100.0D, 0);
+		 * tessellator1.addVertex(-f10, 100.0D, -f10);
+		 */
 
 		tessellator1.draw();
 		GL11.glPopMatrix();
 		GL11.glShadeModel(GL11.GL_FLAT);
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		//OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE, GL11.GL_ZERO);
+		// OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE,
+		// GL11.GL_ZERO);
 		GL11.glPushMatrix();
 		f7 = 0.0F;
 		f8 = 0.0F;

@@ -23,10 +23,10 @@ public class WorldProviderHoth extends WorldProvider
 	}
 
 	@SideOnly(Side.CLIENT)
-    public IRenderHandler getSkyRenderer()
-    {
-	    return new DrawHothSky();
-    }
+	public IRenderHandler getSkyRenderer()
+	{
+		return new DrawHothSky();
+	}
 
 	public IChunkProvider createChunkGenerator()
 	{

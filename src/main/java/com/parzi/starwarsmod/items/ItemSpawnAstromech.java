@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
-import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 
 public class ItemSpawnAstromech extends Item
 {

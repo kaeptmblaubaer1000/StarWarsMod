@@ -3,7 +3,6 @@ package com.parzi.starwarsmod.rendering;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -12,7 +11,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.ModelBlockTable;
-import com.parzi.starwarsmod.tileentities.TileEntityTable;
 
 public class RenderBlockTable extends TileEntitySpecialRenderer
 {

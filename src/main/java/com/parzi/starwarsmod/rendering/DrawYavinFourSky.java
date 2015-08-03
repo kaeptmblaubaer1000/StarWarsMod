@@ -19,8 +19,6 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class DrawYavinFourSky extends IRenderHandler
 {
@@ -202,7 +200,8 @@ public class DrawYavinFourSky extends IRenderHandler
 		GL11.glShadeModel(GL11.GL_FLAT);
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		//OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE, GL11.GL_ZERO);
+		// OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE,
+		// GL11.GL_ZERO);
 		GL11.glPushMatrix();
 		f7 = 0.0F;
 		f8 = 0.0F;

@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
@@ -30,12 +29,13 @@ public class ItemLightsaberCrystal extends Item
 		setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
-	//@Override
-	//public String getUnlocalizedName(ItemStack par1ItemStack)
-	//{
-	//	int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
-	//	return name + "." + colors[metadata];
-	//}
+	// @Override
+	// public String getUnlocalizedName(ItemStack par1ItemStack)
+	// {
+	// int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0,
+	// 15);
+	// return name + "." + colors[metadata];
+	// }
 
 	@SideOnly(Side.CLIENT)
 	@Override

@@ -1,14 +1,10 @@
 package com.parzi.starwarsmod.network;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.server.MinecraftServer;
+
 import com.parzi.starwarsmod.world.TransferDim;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.MinecraftServer;
-import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorAddonBuns;
 import com.parzi.starwarsmod.armor.ArmorBoba;

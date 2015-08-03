@@ -8,7 +8,7 @@ public class TileEntityDSTurret extends TileEntity
 
 	@Override
 	public void updateEntity()
-    {
-        super.updateEntity();
-    }
+	{
+		super.updateEntity();
+	}
 }

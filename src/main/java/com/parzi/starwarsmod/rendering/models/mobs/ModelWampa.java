@@ -147,28 +147,28 @@ public class ModelWampa extends ModelBase
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornL1.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornL1.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornL2.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornL2.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornL3.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornL3.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornL4.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornL4.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornR1.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornR1.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornR2.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornR2.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornR3.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornR3.rotateAngleX = f4 / (180F / (float)Math.PI);
-		
+
 		this.HornR4.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HornR4.rotateAngleX = f4 / (180F / (float)Math.PI);
 

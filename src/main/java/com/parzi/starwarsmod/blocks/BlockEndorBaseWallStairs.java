@@ -1,7 +1,6 @@
 package com.parzi.starwarsmod.blocks;
 
 import net.minecraft.block.BlockStairs;
-import net.minecraft.block.material.Material;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.HarvestLevel;

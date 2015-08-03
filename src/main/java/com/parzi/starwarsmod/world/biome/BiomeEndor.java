@@ -75,7 +75,8 @@ public class BiomeEndor extends BiomeGenBase
 
 		int k = par3 + par2Random.nextInt(16) + 8;
 		int l = par4 + par2Random.nextInt(16) + 8;
-		switch (par2Random.nextInt(4)) {
+		switch (par2Random.nextInt(4))
+		{
 			case 0:
 				new WorldGenEndorTree1().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
 				break;

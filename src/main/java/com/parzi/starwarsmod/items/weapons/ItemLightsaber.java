@@ -14,7 +14,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.helper.IHaloRenderItem;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;

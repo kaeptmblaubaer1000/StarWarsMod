@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.network;
 
+import io.netty.buffer.ByteBuf;
+
 import com.parzi.starwarsmod.utils.Lumberjack;
 
-import net.minecraft.client.Minecraft;
-import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

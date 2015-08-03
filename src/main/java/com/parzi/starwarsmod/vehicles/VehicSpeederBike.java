@@ -1,7 +1,6 @@
 package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;

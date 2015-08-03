@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.world.gen;
 
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -10,21 +11,19 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerator
 {
-	protected Block[] getValidSpawnBlocks() {
-		return new Block[] {
-			Blocks.grass,
-			Blocks.dirt
-		};
+	protected Block[] getValidSpawnBlocks()
+	{
+		return new Block[] { Blocks.grass, Blocks.dirt };
 	}
 
-	public boolean locationIsValidSpawn(World world, int i, int j, int k){
+	public boolean locationIsValidSpawn(World world, int i, int j, int k)
+	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
 
-		while (check != Blocks.air){
-			if (distanceToAir > 5){
-				return false;
-			}
+		while (check != Blocks.air)
+		{
+			if (distanceToAir > 5) { return false; }
 
 			distanceToAir++;
 			check = world.getBlock(i, j + distanceToAir, k);
@@ -33,44 +32,45 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		j += distanceToAir - 1;
 
 		Block block = world.getBlock(i, j, k);
-		Block blockAbove = world.getBlock(i, j+1, k);
-		Block blockBelow = world.getBlock(i, j-1, k);
+		Block blockAbove = world.getBlock(i, j + 1, k);
+		Block blockBelow = world.getBlock(i, j - 1, k);
 
-		for (Block x : getValidSpawnBlocks()){
-			if (blockAbove != Blocks.air && blockAbove != Blocks.grass && blockAbove != Blocks.dirt){
-				return false;
-			}
-			if (block == x){
-				return true;
-			}else if (block == Blocks.snow && blockBelow == x){
+		for (Block x : getValidSpawnBlocks())
+		{
+			if (blockAbove != Blocks.air && blockAbove != Blocks.grass && blockAbove != Blocks.dirt) { return false; }
+			if (block == x)
+			{
 				return true;
 			}
+			else if (block == Blocks.snow && blockBelow == x) { return true; }
 		}
 
 		return false;
 	}
 
-	public WorldGenEndorTree2() { }
+	public WorldGenEndorTree2()
+	{
+	}
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) { }
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
+	}
 
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
 	{
 		Block b1 = world.getBlock(x, y, z);
 
-		if(b1.isAir(world, x, y, z) || b1.isLeaves(world, x, y, z))
+		if (b1.isAir(world, x, y, z) || b1.isLeaves(world, x, y, z))
 		{
 			world.setBlock(x, y, z, block, metadata, 2);
 		}
 	}
 
-	public boolean generate(World world, Random rand, int i, int j, int k) {
-		//check that each corner is one of the valid spawn blocks
-		if(!locationIsValidSpawn(world, i, j, k) || !locationIsValidSpawn(world, i + 36, j, k) || !locationIsValidSpawn(world, i + 36, j, k + 37) || !locationIsValidSpawn(world, i, j, k + 37))
-		{
-			return false;
-		}
+	public boolean generate(World world, Random rand, int i, int j, int k)
+	{
+		// check that each corner is one of the valid spawn blocks
+		if (!locationIsValidSpawn(world, i, j, k) || !locationIsValidSpawn(world, i + 36, j, k) || !locationIsValidSpawn(world, i + 36, j, k + 37) || !locationIsValidSpawn(world, i, j, k + 37)) { return false; }
 
 		k = k - 10;
 		i = i - 10;
@@ -1580,7 +1580,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate2(World world, Random rand, int i, int j, int k) {
+	public boolean generate2(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 8, j + 39, k + 21, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 8, j + 39, k + 21, 4, 2);
 		this.setBlock(world, i + 8, j + 39, k + 22, Blocks.leaves, 4);
@@ -3086,7 +3087,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate3(World world, Random rand, int i, int j, int k) {
+	public boolean generate3(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 12, j + 35, k + 10, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 12, j + 35, k + 10, 4, 2);
 		this.setBlock(world, i + 12, j + 35, k + 11, Blocks.leaves, 4);
@@ -4592,7 +4594,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate4(World world, Random rand, int i, int j, int k) {
+	public boolean generate4(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 14, j + 47, k + 17, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 14, j + 47, k + 17, 4, 2);
 		this.setBlock(world, i + 14, j + 47, k + 18, Blocks.leaves, 4);
@@ -6098,7 +6101,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate5(World world, Random rand, int i, int j, int k) {
+	public boolean generate5(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 17, j + 40, k + 5, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 17, j + 40, k + 5, 4, 2);
 		this.setBlock(world, i + 17, j + 40, k + 6, Blocks.leaves, 4);
@@ -7604,7 +7608,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate6(World world, Random rand, int i, int j, int k) {
+	public boolean generate6(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 19, j + 46, k + 6, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 19, j + 46, k + 6, 4, 2);
 		this.setBlock(world, i + 19, j + 46, k + 7, Blocks.leaves, 4);
@@ -9110,7 +9115,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate7(World world, Random rand, int i, int j, int k) {
+	public boolean generate7(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 21, j + 48, k + 24, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 21, j + 48, k + 24, 4, 2);
 		this.setBlock(world, i + 21, j + 48, k + 25, Blocks.leaves, 4);
@@ -10616,7 +10622,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate8(World world, Random rand, int i, int j, int k) {
+	public boolean generate8(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 24, j + 37, k + 26, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 24, j + 37, k + 26, 4, 2);
 		this.setBlock(world, i + 24, j + 38, k + 6, Blocks.leaves, 4);
@@ -12122,7 +12129,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate9(World world, Random rand, int i, int j, int k) {
+	public boolean generate9(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 26, j + 42, k + 17, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 26, j + 42, k + 17, 4, 2);
 		this.setBlock(world, i + 26, j + 42, k + 18, Blocks.leaves, 4);
@@ -13628,7 +13636,8 @@ public class WorldGenEndorTree2 extends WorldGenerator implements IWorldGenerato
 		return true;
 	}
 
-	public boolean generate10(World world, Random rand, int i, int j, int k) {
+	public boolean generate10(World world, Random rand, int i, int j, int k)
+	{
 		this.setBlock(world, i + 29, j + 43, k + 18, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 29, j + 43, k + 18, 4, 2);
 		this.setBlock(world, i + 29, j + 43, k + 19, Blocks.leaves, 4);
