@@ -94,8 +94,8 @@ public class GuiJediRobes extends GuiScreen
 		// id, x, y, width, height, text
 		int buttonY = y + 120;
 		this.prev = new GuiButton(1, x + 10, buttonY, 25, 20, "<");
-		this.buy = new GuiButton(2, x + 40, buttonY, 25, 20, "BUY");
-		this.next = new GuiButton(3, x + 70, buttonY, 25, 20, ">");
+		this.buy = new GuiButton(2, x + 40, buttonY, 35, 20, "Learn");
+		this.next = new GuiButton(3, x + 80, buttonY, 25, 20, ">");
 		this.buttonList.add(prev);
 		this.buttonList.add(buy);
 		this.buttonList.add(next);
@@ -130,11 +130,11 @@ public class GuiJediRobes extends GuiScreen
 		py += 20;
 		drawString(mc.fontRenderer, spinner[spinnerIndex].displayName + " level " + String.valueOf(player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalName) + 1), x + 10, py, 0xFFFFFF);
 		py += 10;
-		drawString(mc.fontRenderer, "Cost: " + (int)Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalName)) + " " + spinner[spinnerIndex].displayElement, x + 10, py, ElementUtils.getColorFromElement(spinner[spinnerIndex].displayElement));
+		drawString(mc.fontRenderer, "Learning Cost: " + (int)Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalName)) + " " + spinner[spinnerIndex].displayElement, x + 10, py, ElementUtils.getColorFromElement(spinner[spinnerIndex].displayElement));
 		py += 10;
 		if (Math.pow(2, 6 + player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalName)) > player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.getInteger(spinner[spinnerIndex].internalElement))
 		{
-			drawString(mc.fontRenderer, "Too expensive!", x + 10, py, 0xFF5555);
+			drawString(mc.fontRenderer, "Not enough knowledge!", x + 10, py, 0xFF5555);
 			buy.enabled = false;
 		}
 		py += 10;

@@ -35,6 +35,7 @@ import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
 import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
+import com.parzi.starwarsmod.registry.RegisterGuiOverlays;
 import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.rendering.gui.GuiJediRobes;
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -296,7 +297,7 @@ public class StarWarsMod
 
 		StarWarsAchievements.registerAll();
 
-		GuiOverlays.registerAll();
+		RegisterGuiOverlays.registerAll();
 
 		proxy.registerRendering();
 
