@@ -22,7 +22,6 @@ public class ArmorAddonBuns extends ItemArmor
 		super(par2EnumArmorMaterial, par3, par4);
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
