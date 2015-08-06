@@ -147,6 +147,7 @@ public class LootGenUtils
 			{
 				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItemForDim(dimId, rand));
 			}
+			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 15)));
 		}
 	}
 

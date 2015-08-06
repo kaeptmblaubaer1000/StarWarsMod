@@ -26,7 +26,6 @@ public class ItemHyperdriveEarth extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		System.out.println(player.getPortalCooldown());
 		if (player.isSneaking() && player.dimension != 0)
 		{
 			player.timeUntilPortal = 20;

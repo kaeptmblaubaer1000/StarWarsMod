@@ -2,7 +2,9 @@ package com.parzi.starwarsmod.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,7 +17,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockTatooineSand extends BlockFalling
+public class BlockTatooineSand extends Block
 {
 	private String name = "tatooineSand";
 	private int subtypes = 2;
@@ -25,6 +27,7 @@ public class BlockTatooineSand extends BlockFalling
 
 	public BlockTatooineSand()
 	{
+		super(Material.sand);
 		setBlockName(StarWarsMod.MODID + "." + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHardness(0.5F);

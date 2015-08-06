@@ -3,11 +3,13 @@ package com.parzi.starwarsmod;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
+import net.minecraft.util.Session;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 
@@ -44,19 +46,24 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION)
+@Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, useMetadata = true)
 public class StarWarsMod
 {
 	/* Mod Details */
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.0";
 	public static Configuration config;
+
+	/* Beta Testing */
+	public static boolean isBetaTesting = false;
+	public static String betaTesterUsername = "";
 
 	public static Random rngChromium = new Random();
 	public static Random rngTitanium = new Random();
@@ -249,6 +256,7 @@ public class StarWarsMod
 		StarWarsMod.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
 		StarWarsMod.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
 
+		config.addCustomCategoryComment("unstable_commands", "It is NOT recommended you use these, they were only added for development purposes!");
 		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
 		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
 

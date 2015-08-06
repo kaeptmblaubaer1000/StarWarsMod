@@ -5,6 +5,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -67,4 +68,8 @@ public class WorldProviderTatooine extends WorldProvider
 		return null;
 	}
 
+    public ChunkCoordinates getSpawnPoint()
+    {
+        return new ChunkCoordinates(0, this.worldObj.getHeightValue(0, 0), 0);
+    }
 }

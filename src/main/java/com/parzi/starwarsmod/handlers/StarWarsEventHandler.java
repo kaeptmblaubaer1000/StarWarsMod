@@ -3,7 +3,9 @@ package com.parzi.starwarsmod.handlers;
 import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
@@ -12,12 +14,31 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 public class StarWarsEventHandler
 {
+	@SubscribeEvent
+	public void onLogIn(EntityJoinWorldEvent entityJoinWorldEvent) throws PlayerNotBetaTesterException
+	{
+		if (entityJoinWorldEvent.entity instanceof EntityPlayer && StarWarsMod.isBetaTesting)
+		{
+			EntityPlayer player = (EntityPlayer)entityJoinWorldEvent.entity;
+			if (player.getCommandSenderName() != StarWarsMod.betaTesterUsername)
+			{
+				throw new PlayerNotBetaTesterException(player);
+			}
+			else
+			{
+				Lumberjack.info("Beta tester \"" + player.getCommandSenderName() + "\" logged in!");
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public void onBlockBroken(BreakEvent breakEvent)
 	{
