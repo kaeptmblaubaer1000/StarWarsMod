@@ -9,6 +9,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
@@ -86,6 +87,11 @@ public class MobDroidGNK extends EntityTameable
 	{
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 
+		if (itemstack == null)
+		{
+			itemstack = new ItemStack(Blocks.air);
+		}
+
 		if (this.isTamed())
 		{
 			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
@@ -125,8 +131,8 @@ public class MobDroidGNK extends EntityTameable
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override

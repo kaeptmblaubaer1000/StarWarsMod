@@ -28,7 +28,7 @@ public class ItemSpawnGonk extends Item
 			if (!world.isRemote)
 			{
 				MobDroidGNK newDroid = new MobDroidGNK(world);
-				newDroid.setPosition(x, y, z);
+				newDroid.setPosition(x, y + 1, z);
 				world.spawnEntityInWorld(newDroid);
 			}
 		}
