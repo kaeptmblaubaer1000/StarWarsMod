@@ -5,7 +5,6 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -16,26 +15,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderTatooine extends WorldProvider
 {
-	public void registerWorldChunkManager()
+	@Override
+	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
-		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
-		this.dimensionId = StarWarsMod.dimTatooineId;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer()
-	{
-		return new DrawTatooineSky();
-	}
-
-	public IChunkProvider createChunkGenerator()
-	{
-		return new ChunkProviderGenerateTatooine(this.worldObj, this.worldObj.getSeed(), false);
-	}
-
-	public int getAverageGroundLevel()
-	{
-		return 40;
+		return false;
 	}
 
 	public boolean canRainSnowIce(Chunk chunk)
@@ -43,33 +26,59 @@ public class WorldProviderTatooine extends WorldProvider
 		return false;
 	}
 
-	public String getDimensionName()
-	{
-		return "Tatooine";
-	}
-
+	@Override
 	public boolean canRespawnHere()
 	{
 		return false;
 	}
 
-	public boolean isSurfaceWorld()
+	@Override
+	public IChunkProvider createChunkGenerator()
 	{
-		return true;
+		return new ChunkProviderGenerateTatooine(worldObj, worldObj.getSeed(), false);
 	}
 
-	public boolean canCoordinateBeSpawn(int par1, int par2)
+	@Override
+	public int getAverageGroundLevel()
 	{
-		return false;
+		return 40;
 	}
 
+	@Override
+	public String getDimensionName()
+	{
+		return "Tatooine";
+	}
+
+	@Override
 	public ChunkCoordinates getEntrancePortalLocation()
 	{
 		return null;
 	}
 
-    public ChunkCoordinates getSpawnPoint()
-    {
-        return new ChunkCoordinates(0, this.worldObj.getHeightValue(0, 0), 0);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IRenderHandler getSkyRenderer()
+	{
+		return new DrawTatooineSky();
+	}
+
+	@Override
+	public ChunkCoordinates getSpawnPoint()
+	{
+		return new ChunkCoordinates(0, worldObj.getHeightValue(0, 0), 0);
+	}
+
+	@Override
+	public boolean isSurfaceWorld()
+	{
+		return true;
+	}
+
+	@Override
+	public void registerWorldChunkManager()
+	{
+		worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
+		dimensionId = StarWarsMod.dimTatooineId;
+	}
 }
