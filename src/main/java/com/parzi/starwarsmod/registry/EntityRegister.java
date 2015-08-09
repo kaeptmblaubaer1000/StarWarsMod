@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.registry;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
@@ -49,6 +50,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
+		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
 
 		Lumberjack.info("Entities, reporting for duty!");
 	}

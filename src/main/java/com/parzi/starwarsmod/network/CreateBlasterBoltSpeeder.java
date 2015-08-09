@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 
-import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -51,9 +51,7 @@ public class CreateBlasterBoltSpeeder implements IMessage
 			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			World world = player.worldObj;
 
-			System.out.println("Creating bolt from " + message.player + " in dimension ID " + message.dim);
-
-			world.spawnEntityInWorld(new EntityBlasterRifleBolt(world, player));
+			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, player));
 
 			return null; // no response in this case
 		}
