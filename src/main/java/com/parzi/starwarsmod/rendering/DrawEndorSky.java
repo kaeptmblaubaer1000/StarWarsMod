@@ -30,22 +30,22 @@ public class DrawEndorSky extends IRenderHandler
 
 	public DrawEndorSky()
 	{
-		this.sunSize = 57.5F;
+		sunSize = 57.5F;
 
 		int displayLists = GLAllocation.generateDisplayLists(3);
-		this.starList = displayLists;
-		this.glSkyList = displayLists + 1;
-		this.glSkyList2 = displayLists + 2;
+		starList = displayLists;
+		glSkyList = displayLists + 1;
+		glSkyList2 = displayLists + 2;
 
 		// Bind stars to display list
 		GL11.glPushMatrix();
-		GL11.glNewList(this.starList, GL11.GL_COMPILE);
-		this.renderStars();
+		GL11.glNewList(starList, GL11.GL_COMPILE);
+		renderStars();
 		GL11.glEndList();
 		GL11.glPopMatrix();
 
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glNewList(this.glSkyList, GL11.GL_COMPILE);
+		GL11.glNewList(glSkyList, GL11.GL_COMPILE);
 		byte byte2 = 64;
 		int i = 256 / byte2 + 2;
 		float f = 16F;
@@ -64,7 +64,7 @@ public class DrawEndorSky extends IRenderHandler
 		}
 
 		GL11.glEndList();
-		GL11.glNewList(this.glSkyList2, GL11.GL_COMPILE);
+		GL11.glNewList(glSkyList2, GL11.GL_COMPILE);
 		f = -16F;
 		tessellator.startDrawingQuads();
 
@@ -80,6 +80,22 @@ public class DrawEndorSky extends IRenderHandler
 		}
 		tessellator.draw();
 		GL11.glEndList();
+	}
+
+	public float getSkyBrightness(float par1)
+	{
+		float var2 = FMLClientHandler.instance().getClient().theWorld.getCelestialAngle(par1);
+		float var3 = 1.0F - (MathHelper.sin(var2 * (float)Math.PI * 2.0F) * 2.0F + 0.25F);
+
+		if (var3 < 0.0F)
+		{
+			var3 = 0.0F;
+		}
+		if (var3 > 1.0F)
+		{
+			var3 = 1.0F;
+		}
+		return var3 * var3 * 1F;
 	}
 
 	@Override
@@ -107,7 +123,7 @@ public class DrawEndorSky extends IRenderHandler
 		GL11.glDepthMask(false);
 		GL11.glEnable(GL11.GL_FOG);
 		GL11.glColor3f(f1, f2, f3);
-		GL11.glCallList(this.glSkyList);
+		GL11.glCallList(glSkyList);
 		GL11.glDisable(GL11.GL_FOG);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
@@ -122,7 +138,7 @@ public class DrawEndorSky extends IRenderHandler
 		if (f18 > 0.0F)
 		{
 			GL11.glColor4f(f18, f18, f18, f18);
-			GL11.glCallList(this.starList);
+			GL11.glCallList(starList);
 		}
 
 		float[] afloat = new float[4];
@@ -166,13 +182,13 @@ public class DrawEndorSky extends IRenderHandler
 		 * 100.0D, (double)f10 * 1.5F); tessellator1.addVertex(-f10, 100.0D,
 		 * f10); tessellator1.addVertex((double)-f10 * 1.5F, 100.0D, 0);
 		 * tessellator1.addVertex(-f10, 100.0D, -f10);
-		 * 
+		 *
 		 * tessellator1.draw(); tessellator1.startDrawing(GL11.GL_TRIANGLE_FAN);
 		 * tessellator1.setColorRGBA_F(f6 * f18, f7 * f18, f8 * f18, afloat[3] *
 		 * f18); tessellator1.addVertex(0.0D, 100.0D, 0.0D);
 		 * tessellator1.setColorRGBA_F(afloat[0] * f18, afloat[1] * f18,
 		 * afloat[2] * f18, 0.0F);
-		 * 
+		 *
 		 * // Render larger sun aura f10 = 40.0F; tessellator1.addVertex(-f10,
 		 * 100.0D, -f10); tessellator1.addVertex(0, 100.0D, (double)-f10 *
 		 * 1.5F); tessellator1.addVertex(f10, 100.0D, -f10);
@@ -202,7 +218,7 @@ public class DrawEndorSky extends IRenderHandler
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
-		f10 = this.sunSize / 4.5F;
+		f10 = sunSize / 4.5F;
 		tessellator1.startDrawingQuads();
 		tessellator1.addVertex(-f10, 99.9D, -f10);
 		tessellator1.addVertex(f10, 99.9D, -f10);
@@ -211,8 +227,8 @@ public class DrawEndorSky extends IRenderHandler
 		tessellator1.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		f10 = this.sunSize;
-		mc.renderEngine.bindTexture(this.sunTexture);
+		f10 = sunSize;
+		mc.renderEngine.bindTexture(sunTexture);
 		tessellator1.startDrawingQuads();
 		tessellator1.addVertexWithUV(-f10, 100.0D, -f10, 0.0D, 0.0D);
 		tessellator1.addVertexWithUV(f10, 100.0D, -f10, 1.0D, 0.0D);
@@ -237,7 +253,7 @@ public class DrawEndorSky extends IRenderHandler
 		{
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0.0F, 12.0F, 0.0F);
-			GL11.glCallList(this.glSkyList2);
+			GL11.glCallList(glSkyList2);
 			GL11.glPopMatrix();
 			f8 = 1.0F;
 			f9 = -((float)(d0 + 65.0D));
@@ -277,7 +293,7 @@ public class DrawEndorSky extends IRenderHandler
 		}
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0.0F, -((float)(d0 - 16.0D)), 0.0F);
-		GL11.glCallList(this.glSkyList2);
+		GL11.glCallList(glSkyList2);
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDepthMask(true);
@@ -332,21 +348,5 @@ public class DrawEndorSky extends IRenderHandler
 			}
 		}
 		var2.draw();
-	}
-
-	public float getSkyBrightness(float par1)
-	{
-		float var2 = FMLClientHandler.instance().getClient().theWorld.getCelestialAngle(par1);
-		float var3 = 1.0F - (MathHelper.sin(var2 * (float)Math.PI * 2.0F) * 2.0F + 0.25F);
-
-		if (var3 < 0.0F)
-		{
-			var3 = 0.0F;
-		}
-		if (var3 > 1.0F)
-		{
-			var3 = 1.0F;
-		}
-		return var3 * var3 * 1F;
 	}
 }

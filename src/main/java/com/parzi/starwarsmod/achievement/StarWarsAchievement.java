@@ -13,15 +13,15 @@ public class StarWarsAchievement extends Achievement
 {
 	public static List<Achievement> achievements = new ArrayList();
 
+	public StarWarsAchievement(String name, int x, int y, Item icon, Achievement parent)
+	{
+		this(name, x, y, new ItemStack(icon), parent);
+	}
+
 	public StarWarsAchievement(String name, int x, int y, ItemStack icon, Achievement parent)
 	{
 		super("achievement" + "." + StarWarsMod.MODID + "." + name, StarWarsMod.MODID + "." + name, x, y, icon, parent);
 		achievements.add(this);
 		registerStat();
-	}
-
-	public StarWarsAchievement(String name, int x, int y, Item icon, Achievement parent)
-	{
-		this(name, x, y, new ItemStack(icon), parent);
 	}
 }

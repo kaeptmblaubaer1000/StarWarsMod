@@ -15,23 +15,23 @@ public class BiomeHoth extends BiomeGenBase
 	public BiomeHoth(int par1)
 	{
 		super(par1);
-		this.heightVariation = 0.5F;
+		heightVariation = 0.5F;
 
-		this.enableRain = false;
-		this.enableSnow = true;
+		enableRain = false;
+		enableSnow = true;
 
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobTauntaun.class, 6, 1, 1));
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+		spawnableMonsterList.clear();
+		spawnableCreatureList.clear();
+		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobTauntaun.class, 6, 1, 1));
+		spawnableCaveCreatureList.clear();
+		spawnableWaterCreatureList.clear();
 
-		this.setBiomeName("Hoth");
+		setBiomeName("Hoth");
 
-		this.topBlock = Blocks.snow;
-		this.fillerBlock = Blocks.stone;
+		topBlock = Blocks.snow;
+		fillerBlock = Blocks.stone;
 
-		this.temperature = 0.0F;
+		temperature = 0.0F;
 	}
 
 	@Override

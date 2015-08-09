@@ -39,8 +39,11 @@ public class ArmorBobaJetpack extends ItemArmor
 		if (player instanceof EntityPlayer)
 		{
 			EntityPlayer p = (EntityPlayer)player;
-			p.capabilities.allowFlying = (p.capabilities.isCreativeMode || (p.inventory.armorInventory[2] != null && p.inventory.armorInventory[2].getItem() instanceof ArmorBobaJetpack));
-			if (!p.capabilities.allowFlying) p.capabilities.isFlying = false;
+			p.capabilities.allowFlying = p.capabilities.isCreativeMode || p.inventory.armorInventory[2] != null && p.inventory.armorInventory[2].getItem() instanceof ArmorBobaJetpack;
+			if (!p.capabilities.allowFlying)
+			{
+				p.capabilities.isFlying = false;
+			}
 		}
 	}
 }

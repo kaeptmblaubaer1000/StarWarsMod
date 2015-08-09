@@ -10,18 +10,18 @@ public class ForcePunch extends PowerBase
 
 	public ForcePunch()
 	{
-		this.internalName = "effectForcePunch";
-		this.displayName = "Force Punch";
-		this.internalElement = "animals";
-		this.displayElement = "fauna";
+		internalName = "effectForcePunch";
+		displayName = "Force Punch";
+		internalElement = "animals";
+		displayElement = "fauna";
 	}
 
 	@Override
 	public void doPower(World world, EntityPlayer player, ItemStack robe)
 	{
-		if (robe.stackTagCompound.getInteger(this.internalName) > 0)
+		if (robe.stackTagCompound.getInteger(internalName) > 0)
 		{
-			player.addPotionEffect(new PotionEffect(5, 1800, robe.stackTagCompound.getInteger(this.internalName), false)); // strength
+			player.addPotionEffect(new PotionEffect(5, 1800, robe.stackTagCompound.getInteger(internalName), false)); // strength
 		}
 	}
 }

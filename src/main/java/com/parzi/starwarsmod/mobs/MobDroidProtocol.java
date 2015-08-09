@@ -24,56 +24,21 @@ public class MobDroidProtocol extends EntityTameable
 	public MobDroidProtocol(World par1World)
 	{
 		super(par1World);
-		this.setSize(1, 2);
-		this.tasks.addTask(2, this.aiSit);
-		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
-		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(6, new EntityAIMate(this, 0.8D));
-		this.tasks.addTask(7, new EntityAIWander(this, 0.8D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+		setSize(1, 2);
+		tasks.addTask(2, aiSit);
+		tasks.addTask(3, aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
+		tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		tasks.addTask(6, new EntityAIMate(this, 0.8D));
+		tasks.addTask(7, new EntityAIWander(this, 0.8D));
+		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 	}
 
 	@Override
-	public boolean isAIEnabled()
+	protected void applyEntityAttributes()
 	{
-		return true;
-	}
-
-	@Override
-	protected void entityInit()
-	{
-		super.entityInit();
-		this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
-	}
-
-	@Override
-	public void updateAITick()
-	{
-		if (this.getMoveHelper().isUpdating())
-		{
-			double d0 = this.getMoveHelper().getSpeed();
-
-			if (d0 == 0.6D)
-			{
-				this.setSneaking(true);
-				this.setSprinting(false);
-			}
-			else if (d0 == 1.33D)
-			{
-				this.setSneaking(false);
-				this.setSprinting(true);
-			}
-			else
-			{
-				this.setSneaking(false);
-				this.setSprinting(false);
-			}
-		}
-		else
-		{
-			this.setSneaking(false);
-			this.setSprinting(false);
-		}
+		super.applyEntityAttributes();
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
@@ -83,108 +48,16 @@ public class MobDroidProtocol extends EntityTameable
 	}
 
 	@Override
-	public boolean interact(EntityPlayer par1EntityPlayer)
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
 	{
-		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-
-		if (itemstack == null)
-		{
-			itemstack = new ItemStack(Blocks.air);
-		}
-
-		if (this.isTamed())
-		{
-			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack))
-			{
-				this.aiSit.setSitting(!this.isSitting());
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-				this.isJumping = false;
-			}
-		}
-		else if (/* this.aiTempt.isRunning() && */itemstack != null && itemstack.getItem() == StarWarsMod.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
-		{
-			if (!this.worldObj.isRemote)
-			{
-				if (this.rand.nextInt(3) == 0)
-				{
-					this.setTamed(true);
-					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-					this.playTameEffect(true);
-					this.aiSit.setSitting(true);
-					this.worldObj.setEntityState(this, (byte)7);
-					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-				}
-				else
-				{
-					this.playTameEffect(false);
-					this.worldObj.setEntityState(this, (byte)6);
-				}
-			}
-
-			return true;
-		}
-
-		return super.interact(par1EntityPlayer);
-	}
-
-	@Override
-	protected void applyEntityAttributes()
-	{
-		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		super.onUpdate();
-		if (this.rand.nextInt(1000) == 0 && this.worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, this.boundingBox.expand(5, 5, 5), this) instanceof MobDroidAstromech)
-		{
-			this.playSound(StarWarsMod.MODID + ":" + "mob.protocol.r2d2rare", 1F, 1F);
-		}
-	}
-
-	@Override
-	protected String getLivingSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.protocol.say";
-	}
-
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.protocol.hit";
-	}
-
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
-	@Override
-	protected String getDeathSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.protocol.die";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnProtocol, 1);
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return true;
-	}
-
-	@Override
-	protected float getSoundPitch()
-	{
-		return 1.0F;
+		dropItem(StarWarsMod.spawnProtocol, 1);
 	}
 
 	@Override
@@ -197,9 +70,136 @@ public class MobDroidProtocol extends EntityTameable
 	}
 
 	@Override
-	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	protected void entityInit()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		super.entityInit();
+		dataWatcher.addObject(18, Byte.valueOf((byte)0));
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return true;
+	}
+
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.protocol.die";
+	}
+
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.protocol.hit";
+	}
+
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.protocol.say";
+	}
+
+	@Override
+	protected float getSoundPitch()
+	{
+		return 1.0F;
+	}
+
+	@Override
+	public boolean interact(EntityPlayer par1EntityPlayer)
+	{
+		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+
+		if (itemstack == null)
+		{
+			itemstack = new ItemStack(Blocks.air);
+		}
+
+		if (isTamed())
+		{
+			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack))
+			{
+				aiSit.setSitting(!isSitting());
+				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
+				isJumping = false;
+			}
+		}
+		else if (/* this.aiTempt.isRunning() && */itemstack != null && itemstack.getItem() == StarWarsMod.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
+		{
+			if (!worldObj.isRemote)
+			{
+				if (rand.nextInt(3) == 0)
+				{
+					setTamed(true);
+					func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					playTameEffect(true);
+					aiSit.setSitting(true);
+					worldObj.setEntityState(this, (byte)7);
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
+				}
+				else
+				{
+					playTameEffect(false);
+					worldObj.setEntityState(this, (byte)6);
+				}
+			}
+
+			return true;
+		}
+
+		return super.interact(par1EntityPlayer);
+	}
+
+	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		if (rand.nextInt(1000) == 0 && worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, boundingBox.expand(5, 5, 5), this) instanceof MobDroidAstromech)
+		{
+			playSound(StarWarsMod.MODID + ":" + "mob.protocol.r2d2rare", 1F, 1F);
+		}
+	}
+
+	@Override
+	public void updateAITick()
+	{
+		if (getMoveHelper().isUpdating())
+		{
+			double d0 = getMoveHelper().getSpeed();
+
+			if (d0 == 0.6D)
+			{
+				setSneaking(true);
+				setSprinting(false);
+			}
+			else if (d0 == 1.33D)
+			{
+				setSneaking(false);
+				setSprinting(true);
+			}
+			else
+			{
+				setSneaking(false);
+				setSprinting(false);
+			}
+		}
+		else
+		{
+			setSneaking(false);
+			setSprinting(false);
+		}
 	}
 }

@@ -164,6 +164,7 @@ public class ModelDewback extends ModelBase
 		setRotation(leg4, 0F, 0F, 0F);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -198,36 +199,37 @@ public class ModelDewback extends ModelBase
 		model.rotateAngleZ = z;
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		this.Head.rotateAngleY = f3 / (180F / (float)Math.PI) * 0.4F;
-		this.Head.rotateAngleX = f4 / (180F / (float)Math.PI) * 0.4F;
+		Head.rotateAngleY = f3 / (180F / (float)Math.PI) * 0.4F;
+		Head.rotateAngleX = f4 / (180F / (float)Math.PI) * 0.4F;
 
-		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.leg1.rotateAngleZ = 0.0F;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.leg2.rotateAngleZ = 0.0F;
-		this.leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.leg3.rotateAngleZ = 0.0F;
-		this.leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.leg4.rotateAngleZ = 0.0F;
-		this.UpperLegBackR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.UpperLegBackR.rotateAngleZ = 0.0F;
-		this.UpperLegBackL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.UpperLegBackL.rotateAngleZ = 0.0F;
-		this.UpperLegFrontR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.UpperLegFrontR.rotateAngleZ = 0.0F;
-		this.UpperLegFrontL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.UpperLegFrontL.rotateAngleZ = 0.0F;
-		this.FootBackR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.FootBackR.rotateAngleZ = 0.0F;
-		this.FootBackL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.FootBackL.rotateAngleZ = 0.0F;
-		this.FootFrontR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.FootFrontR.rotateAngleZ = 0.0F;
-		this.FootFrontL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.FootFrontL.rotateAngleZ = 0.0F;
+		leg1.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		leg1.rotateAngleZ = 0.0F;
+		leg2.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		leg2.rotateAngleZ = 0.0F;
+		leg3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		leg3.rotateAngleZ = 0.0F;
+		leg4.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		leg4.rotateAngleZ = 0.0F;
+		UpperLegBackR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		UpperLegBackR.rotateAngleZ = 0.0F;
+		UpperLegBackL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		UpperLegBackL.rotateAngleZ = 0.0F;
+		UpperLegFrontR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		UpperLegFrontR.rotateAngleZ = 0.0F;
+		UpperLegFrontL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		UpperLegFrontL.rotateAngleZ = 0.0F;
+		FootBackR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		FootBackR.rotateAngleZ = 0.0F;
+		FootBackL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		FootBackL.rotateAngleZ = 0.0F;
+		FootFrontR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		FootFrontR.rotateAngleZ = 0.0F;
+		FootFrontL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		FootFrontL.rotateAngleZ = 0.0F;
 	}
 
 }

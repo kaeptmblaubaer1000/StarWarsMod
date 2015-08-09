@@ -17,8 +17,32 @@ public class CommandSWDim implements ICommand
 
 	public CommandSWDim()
 	{
-		this.aliases = new ArrayList();
-		this.aliases.add("sw-dim");
+		aliases = new ArrayList();
+		aliases.add("sw-dim");
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
+	{
+		return null;
+	}
+
+	@Override
+	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
+	{
+		return true;
+	}
+
+	@Override
+	public int compareTo(Object o)
+	{
+		return 0;
+	}
+
+	@Override
+	public List getCommandAliases()
+	{
+		return aliases;
 	}
 
 	@Override
@@ -34,9 +58,9 @@ public class CommandSWDim implements ICommand
 	}
 
 	@Override
-	public List getCommandAliases()
+	public boolean isUsernameIndex(String[] astring, int i)
 	{
-		return this.aliases;
+		return false;
 	}
 
 	@Override
@@ -62,29 +86,5 @@ public class CommandSWDim implements ICommand
 			e.printStackTrace();
 		}
 
-	}
-
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
-	{
-		return true;
-	}
-
-	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
-	{
-		return null;
-	}
-
-	@Override
-	public boolean isUsernameIndex(String[] astring, int i)
-	{
-		return false;
-	}
-
-	@Override
-	public int compareTo(Object o)
-	{
-		return 0;
 	}
 }

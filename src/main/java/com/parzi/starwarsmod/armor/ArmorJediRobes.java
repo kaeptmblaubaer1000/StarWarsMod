@@ -31,13 +31,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 {
-	private String name = "jediRobes";
-
 	public static int chanceElement = 100;
 
 	public static Block[] plantMatter = { Blocks.dirt, Blocks.grass, Blocks.leaves, Blocks.farmland };
 
 	public static Block[] earthMatter = { Blocks.stone, Blocks.gravel, Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore, Blocks.redstone_ore };
+
+	private String name = "jediRobes";
 
 	public PowerBase[] powers = { new ForceStep(), new ForceLeap(), new ForceStride(), new ForcePunch() };
 
@@ -53,23 +53,127 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	}
 
 	@Override
-	public boolean onDroppedByPlayer(ItemStack stack, EntityPlayer player)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		list.add(TextUtils.makeItalic("Learn the Way of the Force"));
+		if (KeyboardUtils.isShiftDown())
+		{
+			if (stack.stackTagCompound != null)
+			{
+				String owner = stack.stackTagCompound.getString("owner");
+				list.add("Jedi Master: " + owner);
+				list.add("Flora: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("plants")), TextEffects.COLOR_GREEN));
+				list.add("Fauna: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("animals")), TextEffects.COLOR_YELLOW));
+				list.add("Terra: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("earth")), TextEffects.COLOR_DARK_GREEN));
+				list.add("Aqua: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("water")), TextEffects.COLOR_BLUE));
+
+				for (PowerBase power : powers)
+				{
+					if (stack.stackTagCompound.getInteger(power.internalName) > 0)
+					{
+						list.add("* " + power.displayName + " level " + stack.stackTagCompound.getInteger(power.internalName));
+					}
+				}
+			}
+			else
+			{
+				list.add("Owner not set!");
+			}
+		}
+		else
+		{
+			list.add(TextUtils.addEffect("<Hold Shift>", TextEffects.COLOR_AQUA));
+		}
+	}
+
+	@Override
+	public boolean drawHalo(ItemStack stack)
+	{
+		return true;
+	}
+
+	@Override
+	public boolean drawPulseEffect(ItemStack stack)
 	{
 		return false;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		icon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name);
-		halo = par1IconRegister.registerIcon(StarWarsMod.MODID + ":haloSithRobes");
+		return StarWarsMod.MODID + ":" + "textures/models/jediRobes.png";
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getHaloColour(ItemStack stack)
+	{
+		return 0xFF000000;
+	}
+
+	@Override
+	public int getHaloSize(ItemStack stack)
+	{
+		return 4;
+	}
+
+	@Override
+	public IIcon getHaloTexture(ItemStack stack)
+	{
+		return halo;
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int i)
 	{
 		return icon;
+	}
+
+	private boolean hasMoved(ItemStack stack, EntityPlayer player)
+	{
+		return player.getPlayerCoordinates().posX != stack.stackTagCompound.getInteger("opx") && player.getPlayerCoordinates().posZ != stack.stackTagCompound.getInteger("opz");
+	}
+
+	private void incrementTagInNBT(ItemStack stack, String tag)
+	{
+		stack.stackTagCompound.setInteger(tag, stack.stackTagCompound.getInteger(tag) + 1);
+	}
+
+	private boolean isStandingOn(Block[] blockList, World world, EntityPlayer player)
+	{
+		return Arrays.asList(blockList).contains(world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ));
+	}
+
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
+	{
+		if (stack.stackTagCompound == null)
+		{
+			onCreated(stack, world, player);
+		}
+
+		if (world.rand.nextInt(chanceElement) != 0) { return; }
+
+		if (hasMoved(stack, player))
+		{
+			if (isStandingOn(plantMatter, world, player))
+			{
+				incrementTagInNBT(stack, "plants");
+			}
+			else if (player.isInWater())
+			{
+				incrementTagInNBT(stack, "water");
+			}
+		}
+
+		for (PowerBase power : powers)
+		{
+			power.doPower(world, player, stack);
+		}
+
+		addInformation(stack, player, stack.getTooltip(player, false), false);
+
+		setPositionInNBT(stack, player);
 	}
 
 	@Override
@@ -84,9 +188,9 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 		itemStack.stackTagCompound.setInteger("earth", 0);
 		itemStack.stackTagCompound.setInteger("water", 0);
 
-		for (int i = 0; i < powers.length; i++)
+		for (PowerBase power : powers)
 		{
-			itemStack.stackTagCompound.setInteger(powers[i].internalName, 0);
+			itemStack.stackTagCompound.setInteger(power.internalName, 0);
 		}
 
 		itemStack.stackTagCompound.setInteger("opx", player.getPlayerCoordinates().posX);
@@ -94,32 +198,23 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	}
 
 	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
+	public boolean onDroppedByPlayer(ItemStack stack, EntityPlayer player)
 	{
-		if (stack.stackTagCompound == null) onCreated(stack, world, player);
+		return false;
+	}
 
-		if (world.rand.nextInt(chanceElement) != 0) return;
-
-		if (hasMoved(stack, player))
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
 		{
-			if (isStandingOn(plantMatter, world, player))
-			{
-				incrementTagInNBT(stack, "plants");
-			}
-			else if (player.isInWater())
-			{
-				incrementTagInNBT(stack, "water");
-			}
+			player.openGui(StarWarsMod.instance, 1, world, 0, 0, 0);
 		}
-
-		for (int i = 0; i < powers.length; i++)
+		if (stack.stackTagCompound == null)
 		{
-			powers[i].doPower(world, player, stack);
+			onCreated(stack, world, player);
 		}
-
-		addInformation(stack, player, stack.getTooltip(player, false), false);
-
-		setPositionInNBT(stack, player);
+		return stack;
 	}
 
 	@Override
@@ -143,109 +238,17 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
-		{
-			player.openGui(StarWarsMod.instance, 1, world, 0, 0, 0);
-		}
-		if (stack.stackTagCompound == null)
-		{
-			onCreated(stack, world, player);
-		}
-		return stack;
-	}
-
-	private boolean isStandingOn(Block[] blockList, World world, EntityPlayer player)
-	{
-		return Arrays.asList(blockList).contains(world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ));
-	}
-
-	private void incrementTagInNBT(ItemStack stack, String tag)
-	{
-		stack.stackTagCompound.setInteger(tag, stack.stackTagCompound.getInteger(tag) + 1);
+		icon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name);
+		halo = par1IconRegister.registerIcon(StarWarsMod.MODID + ":haloSithRobes");
 	}
 
 	private void setPositionInNBT(ItemStack stack, EntityPlayer player)
 	{
 		stack.stackTagCompound.setInteger("opx", player.getPlayerCoordinates().posX);
 		stack.stackTagCompound.setInteger("opz", player.getPlayerCoordinates().posZ);
-	}
-
-	private boolean hasMoved(ItemStack stack, EntityPlayer player)
-	{
-		return (player.getPlayerCoordinates().posX != stack.stackTagCompound.getInteger("opx") && player.getPlayerCoordinates().posZ != stack.stackTagCompound.getInteger("opz"));
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add(TextUtils.makeItalic("Learn the Way of the Force"));
-		if (KeyboardUtils.isShiftDown())
-		{
-			if (stack.stackTagCompound != null)
-			{
-				String owner = stack.stackTagCompound.getString("owner");
-				list.add("Jedi Master: " + owner);
-				list.add("Flora: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("plants")), TextEffects.COLOR_GREEN));
-				list.add("Fauna: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("animals")), TextEffects.COLOR_YELLOW));
-				list.add("Terra: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("earth")), TextEffects.COLOR_DARK_GREEN));
-				list.add("Aqua: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("water")), TextEffects.COLOR_BLUE));
-
-				for (int i = 0; i < powers.length; i++)
-				{
-					if (stack.stackTagCompound.getInteger(powers[i].internalName) > 0)
-					{
-						list.add("* " + powers[i].displayName + " level " + stack.stackTagCompound.getInteger(powers[i].internalName));
-					}
-				}
-			}
-			else
-			{
-				list.add("Owner not set!");
-			}
-		}
-		else
-		{
-			list.add(TextUtils.addEffect("<Hold Shift>", TextEffects.COLOR_AQUA));
-		}
-	}
-
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{
-		return StarWarsMod.MODID + ":" + "textures/models/jediRobes.png";
-	}
-
-	@Override
-	public boolean drawHalo(ItemStack stack)
-	{
-		return true;
-	}
-
-	@Override
-	public IIcon getHaloTexture(ItemStack stack)
-	{
-		return halo;
-	}
-
-	@Override
-	public int getHaloSize(ItemStack stack)
-	{
-		return 4;
-	}
-
-	@Override
-	public boolean drawPulseEffect(ItemStack stack)
-	{
-		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getHaloColour(ItemStack stack)
-	{
-		return 0xFF000000;
 	}
 }

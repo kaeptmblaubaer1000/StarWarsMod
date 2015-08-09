@@ -35,29 +35,29 @@ public class MobTusken extends EntityMob implements IMob
 	public MobTusken(World par1World)
 	{
 		super(par1World);
-		this.getNavigator().setBreakDoors(true);
-		this.getNavigator().setEnterDoors(true);
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.7D, false));
-		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityVillager.class, 0.7D, true));
-		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityZombie.class, 0.7D, true));
-		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-		this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 10, true));
-		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityVillager.class, 8, false));
-		this.targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityZombie.class, 6, false));
+		getNavigator().setBreakDoors(true);
+		getNavigator().setEnterDoors(true);
+		tasks.addTask(0, new EntityAISwimming(this));
+		tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.7D, false));
+		tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityVillager.class, 0.7D, true));
+		tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityZombie.class, 0.7D, true));
+		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
+		tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
+		tasks.addTask(7, new EntityAIWander(this, 1.0D));
+		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		tasks.addTask(8, new EntityAILookIdle(this));
+		targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 10, true));
+		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityVillager.class, 8, false));
+		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityZombie.class, 6, false));
 
-		switch (this.rand.nextInt(3))
+		switch (rand.nextInt(3))
 		{
 			case 0:
-				this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gaffiStick, 1));
+				setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gaffiStick, 1));
 				break;
 			case 1:
-				this.setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Cycler"));
+				setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Cycler"));
 				break;
 		}
 	}
@@ -66,70 +66,10 @@ public class MobTusken extends EntityMob implements IMob
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
-	}
-
-	@Override
-	protected boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
-	protected String getLivingSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.tusken.say";
-	}
-
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.tusken.hit";
-	}
-
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
-	@Override
-	protected String getDeathSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.tusken.die";
-	}
-
-	@Override
-	protected Entity findPlayerToAttack()
-	{
-		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(40) == 0;
-	}
-
-	@Override
-	protected boolean isValidLightLevel()
-	{
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.boundingBox.minY);
-		int k = MathHelper.floor_double(this.posZ);
-
-		return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		this.angryAt = this.entityToAttack;
-
-		super.onUpdate();
+		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
 	}
 
 	@Override
@@ -139,7 +79,7 @@ public class MobTusken extends EntityMob implements IMob
 
 		if (entity instanceof EntityPlayer)
 		{
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 
 			for (int i = 0; i < list.size(); ++i)
 			{
@@ -152,7 +92,7 @@ public class MobTusken extends EntityMob implements IMob
 				}
 			}
 
-			this.becomeAngryAt(entity);
+			becomeAngryAt(entity);
 		}
 
 		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
@@ -160,7 +100,67 @@ public class MobTusken extends EntityMob implements IMob
 
 	private void becomeAngryAt(Entity p_70835_1_)
 	{
-		this.entityToAttack = p_70835_1_;
-		this.angerLevel = 400 + this.rand.nextInt(400);
+		entityToAttack = p_70835_1_;
+		angerLevel = 400 + rand.nextInt(400);
+	}
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return angerLevel == 0 ? null : super.findPlayerToAttack();
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return worldObj.difficultySetting != EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(40) == 0;
+	}
+
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.tusken.die";
+	}
+
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.tusken.hit";
+	}
+
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.tusken.say";
+	}
+
+	@Override
+	protected boolean isAIEnabled()
+	{
+		return true;
+	}
+
+	@Override
+	protected boolean isValidLightLevel()
+	{
+		int i = MathHelper.floor_double(posX);
+		int j = MathHelper.floor_double(boundingBox.minY);
+		int k = MathHelper.floor_double(posZ);
+
+		return worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11;
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		angryAt = entityToAttack;
+
+		super.onUpdate();
 	}
 }

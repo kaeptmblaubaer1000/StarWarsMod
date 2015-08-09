@@ -19,7 +19,7 @@ public class WeaponSwivelBase extends EntityLiving
 	public WeaponSwivelBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
-		this.setSize(0.9F, 0.9F);
+		setSize(0.9F, 0.9F);
 	}
 
 	@Override
@@ -29,29 +29,14 @@ public class WeaponSwivelBase extends EntityLiving
 	}
 
 	@Override
-	protected boolean isAIEnabled()
+	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
-		return true;
+		playSound(StarWarsMod.MODID + ":" + getMovingSound(), 0.15F, 1.0F);
 	}
 
 	public String getMovingSound()
 	{
 		return "vehicle.default.move";
-	}
-
-	@Override
-	public void updateRiderPosition()
-	{
-		if (this.riddenByEntity != null)
-		{
-			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + this.vehicYOffset, this.posZ + this.vehicZOffset);
-		}
-	}
-
-	@Override
-	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
-	{
-		this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
 	}
 
 	/**
@@ -61,7 +46,7 @@ public class WeaponSwivelBase extends EntityLiving
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == p_70085_1_))
+		if (!worldObj.isRemote && (riddenByEntity == null || riddenByEntity == p_70085_1_))
 		{
 			p_70085_1_.mountEntity(this);
 			return true;
@@ -73,24 +58,39 @@ public class WeaponSwivelBase extends EntityLiving
 	}
 
 	@Override
-	public void onUpdate()
+	protected boolean isAIEnabled()
 	{
-		super.onUpdate();
-
-		this.moveEntityWithHeading(0, 0);
+		return true;
 	}
 
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
 	{
-		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
+		if (riddenByEntity != null && riddenByEntity instanceof EntityLivingBase)
 		{
-			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
-			this.rotationYaw = this.riddenByEntity.rotationYaw + 180;
-			this.setRotation(this.riddenByEntity.rotationYaw, this.riddenByEntity.rotationPitch);
-			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
+			rotationYaw = riddenByEntity.rotationYaw + 180;
+			setRotation(riddenByEntity.rotationYaw, riddenByEntity.rotationPitch);
+			rotationYawHead = renderYawOffset = rotationYaw;
 
-			this.pitch = this.riddenByEntity.rotationPitch;
+			pitch = riddenByEntity.rotationPitch;
+		}
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		moveEntityWithHeading(0, 0);
+	}
+
+	@Override
+	public void updateRiderPosition()
+	{
+		if (riddenByEntity != null)
+		{
+			riddenByEntity.setPosition(posX + vehicXOffset, posY + getMountedYOffset() + riddenByEntity.getYOffset() + vehicYOffset, posZ + vehicZOffset);
 		}
 	}
 }

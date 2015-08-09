@@ -24,31 +24,31 @@ public class BiomeTatooine extends BiomeGenBase
 	public BiomeTatooine(int par1)
 	{
 		super(par1);
-		this.heightVariation = 0F;
+		heightVariation = 0F;
 
-		this.enableRain = false;
-		this.enableSnow = false;
+		enableRain = false;
+		enableSnow = false;
 
-		this.spawnableMonsterList.clear();
-		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobJawa.class, 75, 1, 5));
-		this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobTusken.class, 35, 2, 3));
+		spawnableMonsterList.clear();
+		spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobJawa.class, 75, 1, 5));
+		spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobTusken.class, 35, 2, 3));
 
-		this.spawnableCreatureList.clear();
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+		spawnableCreatureList.clear();
+		spawnableCaveCreatureList.clear();
+		spawnableWaterCreatureList.clear();
 
-		this.setBiomeName("Tatooine");
+		setBiomeName("Tatooine");
 
-		this.topBlock = StarWarsMod.tatooineSand;
-		this.fillerBlock = StarWarsMod.tatooineSand;
+		topBlock = StarWarsMod.tatooineSand;
+		fillerBlock = StarWarsMod.tatooineSand;
 
-		this.biomeDecorator = new BiomeDecoratorTatooine();
+		biomeDecorator = new BiomeDecoratorTatooine();
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		this.biomeDecorator.decorateChunk(par1World, par2Random, this, chunkX, chunkZ);
+		biomeDecorator.decorateChunk(par1World, par2Random, this, chunkX, chunkZ);
 
 		if (chunkX == 0 && chunkZ == 0)
 		{

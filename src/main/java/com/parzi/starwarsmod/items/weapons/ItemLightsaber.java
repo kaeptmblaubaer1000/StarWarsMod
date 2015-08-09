@@ -37,16 +37,16 @@ public class ItemLightsaber extends ItemSword
 		setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		icons = new IIcon[colors.length];
+		list.add(TextUtils.makeItalic("This is the formal weapon of a Jedi Knight."));
+	}
 
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + colors[i]);
-		}
+	@Override
+	public boolean canHarvestBlock(Block block, ItemStack stack)
+	{
+		return true;
 	}
 
 	@Override
@@ -66,21 +66,21 @@ public class ItemLightsaber extends ItemSword
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add(TextUtils.makeItalic("This is the formal weapon of a Jedi Knight."));
-	}
-
-	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
 		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
-	public boolean canHarvestBlock(Block block, ItemStack stack)
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		return true;
+		icons = new IIcon[colors.length];
+
+		for (int i = 0; i < icons.length; i++)
+		{
+			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + colors[i]);
+		}
 	}
 }

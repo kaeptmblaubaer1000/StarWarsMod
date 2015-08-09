@@ -18,10 +18,18 @@ import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
 public class StarWarsEventHandler
 {
+	@SubscribeEvent
+	public void onBlockBroken(BreakEvent breakEvent)
+	{
+		if (breakEvent.getPlayer().inventory.armorInventory[2] != null && breakEvent.getPlayer().inventory.armorInventory[2].getItem() instanceof ArmorJediRobes && Arrays.asList(ArmorJediRobes.earthMatter).contains(breakEvent.block) && breakEvent.world.rand.nextInt(ArmorJediRobes.chanceElement / 10) == 0)
+		{
+			StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("earth", breakEvent.getPlayer().inventory.armorInventory[2].stackTagCompound.getInteger("earth") + 1));
+		}
+	}
+
 	@SubscribeEvent
 	public void onLogIn(EntityJoinWorldEvent entityJoinWorldEvent) throws PlayerNotBetaTesterException
 	{
@@ -36,15 +44,6 @@ public class StarWarsEventHandler
 			{
 				Lumberjack.info("Beta tester \"" + player.getCommandSenderName() + "\" logged in!");
 			}
-		}
-	}
-
-	@SubscribeEvent
-	public void onBlockBroken(BreakEvent breakEvent)
-	{
-		if (breakEvent.getPlayer().inventory.armorInventory[2] != null && breakEvent.getPlayer().inventory.armorInventory[2].getItem() instanceof ArmorJediRobes && Arrays.asList(ArmorJediRobes.earthMatter).contains(breakEvent.block) && breakEvent.world.rand.nextInt(ArmorJediRobes.chanceElement / 10) == 0)
-		{
-			StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("earth", breakEvent.getPlayer().inventory.armorInventory[2].stackTagCompound.getInteger("earth") + 1));
 		}
 	}
 

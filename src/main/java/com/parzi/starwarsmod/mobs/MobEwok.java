@@ -21,16 +21,16 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	public MobEwok(World par1World)
 	{
 		super(par1World);
-		this.setSize(0.5F, 1.5F);
-		this.tasks.taskEntries.clear();
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
+		setSize(0.5F, 1.5F);
+		tasks.taskEntries.clear();
+		tasks.addTask(0, new EntityAISwimming(this));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		tasks.addTask(3, new EntityAIWander(this, 1.0D));
+		tasks.addTask(4, new EntityAILookIdle(this));
 
-		if (this.rand.nextInt(3) == 0 || true)
+		if (rand.nextInt(3) == 0 || true)
 		{
-			this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.ewokSpear, 1));
+			setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.ewokSpear, 1));
 		}
 	}
 
@@ -38,23 +38,15 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
-	protected String getLivingSound()
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
 	{
-		return StarWarsMod.MODID + ":" + "mob.ewok.say";
-	}
-
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.ewok.hit";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/**
@@ -69,20 +61,28 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	@Override
 	protected Item getDropItem()
 	{
-		switch (this.rand.nextInt(60))
+		switch (rand.nextInt(60))
 		{
 			case 36:
-				this.dropItem(StarWarsMod.ewokSpear, 1);
+				dropItem(StarWarsMod.ewokSpear, 1);
 				break;
 		}
 
 		return Item.getItemFromBlock(Blocks.leaves);
 	}
 
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
 	@Override
-	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	protected String getHurtSound()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return StarWarsMod.MODID + ":" + "mob.ewok.hit";
+	}
+
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.ewok.say";
 	}
 }

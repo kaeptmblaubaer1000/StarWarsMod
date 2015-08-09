@@ -8,9 +8,9 @@ public class Lumberjack
 {
 	public static final Logger logger = LogManager.getLogger("StarWarsMod");
 
-	public static void log(Level level, String message)
+	public static void debug(String message)
 	{
-		logger.log(level, message);
+		log(Level.DEBUG, message);
 	}
 
 	public static void info(String message)
@@ -18,13 +18,13 @@ public class Lumberjack
 		log(Level.INFO, message);
 	}
 
+	public static void log(Level level, String message)
+	{
+		logger.log(level, message);
+	}
+
 	public static void warn(String message)
 	{
 		log(Level.WARN, message);
-	}
-
-	public static void debug(String message)
-	{
-		log(Level.DEBUG, message);
 	}
 }

@@ -5,6 +5,20 @@ import java.util.Random;
 
 public class TradeUtils
 {
+	public static int fluxPrice(Random rand, int price, int amount)
+	{
+		int x = rand.nextInt(price + amount - (price - amount) + 1) + price - amount;
+		if (x > 64)
+		{
+			x = 64;
+		}
+		else if (x < 1)
+		{
+			x = 1;
+		}
+		return x;
+	}
+
 	public static WeightedTradeItem getWeightedItemFromList(List<WeightedTradeItem> items, Random rand)
 	{
 		int length = items.toArray().length;
@@ -27,19 +41,5 @@ public class TradeUtils
 			}
 		}
 		return items.get(randomIndex);
-	}
-
-	public static int fluxPrice(Random rand, int price, int amount)
-	{
-		int x = rand.nextInt((price + amount) - (price - amount) + 1) + (price - amount);
-		if (x > 64)
-		{
-			x = 64;
-		}
-		else if (x < 1)
-		{
-			x = 1;
-		}
-		return x;
 	}
 }

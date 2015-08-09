@@ -71,6 +71,18 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHandler
 {
 	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		return null;
+	}
+
+	@Override
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+	{
+		return null;
+	}
+
+	@Override
 	public void registerRendering()
 	{
 		/* Mobs */
@@ -114,17 +126,5 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		// DimensionManager.getWorld(StarWarsMod.dimTatooineId).provider.setSkyRenderer(new
 		// DrawTatooineSky());
 
-	}
-
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		return null;
-	}
-
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		return null;
 	}
 }

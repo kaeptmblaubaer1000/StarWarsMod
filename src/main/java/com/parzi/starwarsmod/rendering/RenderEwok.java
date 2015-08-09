@@ -52,7 +52,7 @@ public class RenderEwok extends RenderLiving
 			item = equippedItem.getItem();
 
 			net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(equippedItem, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
-			boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, equippedItem, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
+			boolean is3D = customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, equippedItem, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D);
 
 			if (item instanceof ItemBlock)
 			{
@@ -64,7 +64,7 @@ public class RenderEwok extends RenderLiving
 					GL11.glScalef(f1, -f1, -f1);
 				}
 
-				this.renderManager.itemRenderer.renderItem(p_77029_1_, equippedItem, 0);
+				renderManager.itemRenderer.renderItem(p_77029_1_, equippedItem, 0);
 			}
 			else if (item == Items.skull)
 			{
@@ -97,7 +97,7 @@ public class RenderEwok extends RenderLiving
 			item = heldItem.getItem();
 			GL11.glPushMatrix();
 
-			if (this.mainModel.isChild)
+			if (mainModel.isChild)
 			{
 				f1 = 0.5F;
 				GL11.glTranslatef(0.0F, 0.625F, 0.0F);
@@ -108,7 +108,7 @@ public class RenderEwok extends RenderLiving
 			GL11.glTranslatef(-0.0625F, 0.4375F, 0.0625F);
 
 			net.minecraftforge.client.IItemRenderer customRenderer = net.minecraftforge.client.MinecraftForgeClient.getItemRenderer(heldItem, net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED);
-			boolean is3D = (customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, heldItem, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D));
+			boolean is3D = customRenderer != null && customRenderer.shouldUseRenderHelper(net.minecraftforge.client.IItemRenderer.ItemRenderType.EQUIPPED, heldItem, net.minecraftforge.client.IItemRenderer.ItemRendererHelper.BLOCK_3D);
 
 			if (item instanceof ItemBlock && (is3D || RenderBlocks.renderItemIn3d(Block.getBlockFromItem(item).getRenderType())))
 			{
@@ -163,21 +163,21 @@ public class RenderEwok extends RenderLiving
 				for (i = 0; i < heldItem.getItem().getRenderPasses(heldItem.getItemDamage()); ++i)
 				{
 					int j = heldItem.getItem().getColorFromItemStack(heldItem, i);
-					f5 = (float)(j >> 16 & 255) / 255.0F;
-					f2 = (float)(j >> 8 & 255) / 255.0F;
-					float f3 = (float)(j & 255) / 255.0F;
+					f5 = (j >> 16 & 255) / 255.0F;
+					f2 = (j >> 8 & 255) / 255.0F;
+					float f3 = (j & 255) / 255.0F;
 					GL11.glColor4f(f5, f2, f3, 1.0F);
-					this.renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, i);
+					renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, i);
 				}
 			}
 			else
 			{
 				i = heldItem.getItem().getColorFromItemStack(heldItem, 0);
-				float f4 = (float)(i >> 16 & 255) / 255.0F;
-				f5 = (float)(i >> 8 & 255) / 255.0F;
-				f2 = (float)(i & 255) / 255.0F;
+				float f4 = (i >> 16 & 255) / 255.0F;
+				f5 = (i >> 8 & 255) / 255.0F;
+				f2 = (i & 255) / 255.0F;
 				GL11.glColor4f(f4, f5, f2, 1.0F);
-				this.renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, 0);
+				renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, 0);
 			}
 
 			GL11.glPopMatrix();

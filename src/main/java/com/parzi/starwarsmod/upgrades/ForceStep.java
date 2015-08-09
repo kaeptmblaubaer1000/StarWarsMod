@@ -9,18 +9,18 @@ public class ForceStep extends PowerBase
 
 	public ForceStep()
 	{
-		this.internalName = "effectStepUp";
-		this.displayName = "Force Step";
-		this.internalElement = "earth";
-		this.displayElement = "terra";
+		internalName = "effectStepUp";
+		displayName = "Force Step";
+		internalElement = "earth";
+		displayElement = "terra";
 	}
 
 	@Override
 	public void doPower(World world, EntityPlayer player, ItemStack robe)
 	{
-		if (robe.stackTagCompound.getInteger(this.internalName) > 0)
+		if (robe.stackTagCompound.getInteger(internalName) > 0)
 		{
-			player.stepHeight = robe.stackTagCompound.getInteger(this.internalName) + 0.001F;
+			player.stepHeight = robe.stackTagCompound.getInteger(internalName) + 0.001F;
 		}
 		else
 		{

@@ -20,33 +20,40 @@ public class MobWookiee extends EntityAnimal implements IAnimals
 	public MobWookiee(World par1World)
 	{
 		super(par1World);
-		this.setSize(0.5F, 2);
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
+		setSize(0.5F, 2);
+		tasks.addTask(0, new EntityAISwimming(this));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		tasks.addTask(3, new EntityAIWander(this, 1.0D));
+		tasks.addTask(4, new EntityAILookIdle(this));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
-	protected String getLivingSound()
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
 	{
-		return StarWarsMod.MODID + ":" + "mob.wookiee.say";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
 	@Override
-	protected String getHurtSound()
+	protected void dropRareDrop(int par1)
 	{
-		return StarWarsMod.MODID + ":" + "mob.wookiee.hit";
+		/*
+		 * switch (this.rand.nextInt(1)) { case 0:
+		 * this.dropItem(StarWarsMod.gaffiStick, 1); break; }
+		 */
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return true;
 	}
 
 	/**
@@ -64,25 +71,18 @@ public class MobWookiee extends EntityAnimal implements IAnimals
 		return Items.leather;
 	}
 
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
 	@Override
-	public boolean getCanSpawnHere()
+	protected String getHurtSound()
 	{
-		return true;
+		return StarWarsMod.MODID + ":" + "mob.wookiee.hit";
 	}
 
 	@Override
-	protected void dropRareDrop(int par1)
+	protected String getLivingSound()
 	{
-		/*
-		 * switch (this.rand.nextInt(1)) { case 0:
-		 * this.dropItem(StarWarsMod.gaffiStick, 1); break; }
-		 */
-	}
-
-	@Override
-	public EntityAgeable createChild(EntityAgeable p_90011_1_)
-	{
-		// TODO Auto-generated method stub
-		return null;
+		return StarWarsMod.MODID + ":" + "mob.wookiee.say";
 	}
 }

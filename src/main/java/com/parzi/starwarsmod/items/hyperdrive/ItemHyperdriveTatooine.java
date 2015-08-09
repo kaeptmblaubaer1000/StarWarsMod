@@ -20,7 +20,13 @@ public class ItemHyperdriveTatooine extends Item
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
-		this.maxStackSize = 1;
+		maxStackSize = 1;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
+	{
+		list.add(TextUtils.makeItalic("Your ticket to the galaxy"));
 	}
 
 	@Override
@@ -32,11 +38,5 @@ public class ItemHyperdriveTatooine extends Item
 			StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimTatooineId));
 		}
 		return stack;
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
-	{
-		list.add(TextUtils.makeItalic("Your ticket to the galaxy"));
 	}
 }

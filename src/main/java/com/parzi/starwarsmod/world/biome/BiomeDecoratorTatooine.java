@@ -63,33 +63,33 @@ public class BiomeDecoratorTatooine extends BiomeDecorator
 
 	public BiomeDecoratorTatooine()
 	{
-		this.sandGen = new WorldGenSand(Blocks.sand, 7);
-		this.gravelAsSandGen = new WorldGenSand(Blocks.gravel, 6);
-		this.coalGen = new WorldGenMinable(Blocks.coal_ore, 16);
-		this.ironGen = new WorldGenMinable(Blocks.iron_ore, 8);
-		this.goldGen = new WorldGenMinable(Blocks.gold_ore, 8);
-		this.diamondGen = new WorldGenMinable(Blocks.diamond_ore, 7);
-		this.sandPerChunk = 1;
-		this.sandPerChunk2 = 3;
-		this.clayPerChunk = 1;
+		sandGen = new WorldGenSand(Blocks.sand, 7);
+		gravelAsSandGen = new WorldGenSand(Blocks.gravel, 6);
+		coalGen = new WorldGenMinable(Blocks.coal_ore, 16);
+		ironGen = new WorldGenMinable(Blocks.iron_ore, 8);
+		goldGen = new WorldGenMinable(Blocks.gold_ore, 8);
+		diamondGen = new WorldGenMinable(Blocks.diamond_ore, 7);
+		sandPerChunk = 1;
+		sandPerChunk2 = 3;
+		clayPerChunk = 1;
 	}
 
 	@Override
 	public void decorateChunk(World p_150512_1_, Random p_150512_2_, BiomeGenBase p_150512_3_, int p_150512_4_, int p_150512_5_)
 	{
-		if (this.currentWorld != null)
+		if (currentWorld != null)
 		{
 			throw new RuntimeException("Already decorating!!");
 		}
 		else
 		{
-			this.currentWorld = p_150512_1_;
-			this.randomGenerator = p_150512_2_;
-			this.chunk_X = p_150512_4_;
-			this.chunk_Z = p_150512_5_;
-			this.genDecorations(p_150512_3_);
-			this.currentWorld = null;
-			this.randomGenerator = null;
+			currentWorld = p_150512_1_;
+			randomGenerator = p_150512_2_;
+			chunk_X = p_150512_4_;
+			chunk_Z = p_150512_5_;
+			genDecorations(p_150512_3_);
+			currentWorld = null;
+			randomGenerator = null;
 		}
 	}
 
@@ -97,39 +97,35 @@ public class BiomeDecoratorTatooine extends BiomeDecorator
 	protected void genDecorations(BiomeGenBase p_150513_1_)
 	{
 		MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));
-		this.generateOres();
-		int i;
-		int j;
-		int k; /*
-				 * 
-				 * boolean doGen = TerrainGen.decorate(currentWorld,
-				 * randomGenerator, chunk_X, chunk_Z, SAND); for (i = 0; doGen
-				 * && i < this.sandPerChunk2; ++i) { j = this.chunk_X +
-				 * this.randomGenerator.nextInt(16) + 8; k = this.chunk_Z +
-				 * this.randomGenerator.nextInt(16) + 8;
-				 * this.sandGen.generate(this.currentWorld,
-				 * this.randomGenerator, j,
-				 * this.currentWorld.getTopSolidOrLiquidBlock(j, k), k); }
-				 * 
-				 * doGen = TerrainGen.decorate(currentWorld, randomGenerator,
-				 * chunk_X, chunk_Z, CLAY); for (i = 0; doGen && i <
-				 * this.clayPerChunk; ++i) { j = this.chunk_X +
-				 * this.randomGenerator.nextInt(16) + 8; k = this.chunk_Z +
-				 * this.randomGenerator.nextInt(16) + 8;
-				 * this.clayGen.generate(this.currentWorld,
-				 * this.randomGenerator, j,
-				 * this.currentWorld.getTopSolidOrLiquidBlock(j, k), k); }
-				 * 
-				 * doGen = TerrainGen.decorate(currentWorld, randomGenerator,
-				 * chunk_X, chunk_Z, SAND_PASS2); for (i = 0; doGen && i <
-				 * this.sandPerChunk; ++i) { j = this.chunk_X +
-				 * this.randomGenerator.nextInt(16) + 8; k = this.chunk_Z +
-				 * this.randomGenerator.nextInt(16) + 8;
-				 * this.gravelAsSandGen.generate(this.currentWorld,
-				 * this.randomGenerator, j,
-				 * this.currentWorld.getTopSolidOrLiquidBlock(j, k), k); }
-				 */
+		generateOres();
 		MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(currentWorld, randomGenerator, chunk_X, chunk_Z));
+	}
+
+	/**
+	 * Generates ores in the current chunk
+	 */
+
+	@Override
+	protected void generateOres()
+	{
+		MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));
+		if (TerrainGen.generateOre(currentWorld, randomGenerator, coalGen, chunk_X, chunk_Z, COAL))
+		{
+			genStandardOre1(20, coalGen, 0, 128);
+		}
+		if (TerrainGen.generateOre(currentWorld, randomGenerator, ironGen, chunk_X, chunk_Z, IRON))
+		{
+			genStandardOre1(20, ironGen, 0, 64);
+		}
+		if (TerrainGen.generateOre(currentWorld, randomGenerator, goldGen, chunk_X, chunk_Z, GOLD))
+		{
+			genStandardOre1(2, goldGen, 0, 32);
+		}
+		if (TerrainGen.generateOre(currentWorld, randomGenerator, diamondGen, chunk_X, chunk_Z, DIAMOND))
+		{
+			genStandardOre1(1, diamondGen, 0, 16);
+		}
+		MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(currentWorld, randomGenerator, chunk_X, chunk_Z));
 	}
 
 	/**
@@ -141,10 +137,10 @@ public class BiomeDecoratorTatooine extends BiomeDecorator
 	{
 		for (int l = 0; l < p_76795_1_; ++l)
 		{
-			int i1 = this.chunk_X + this.randomGenerator.nextInt(16);
-			int j1 = this.randomGenerator.nextInt(p_76795_4_ - p_76795_3_) + p_76795_3_;
-			int k1 = this.chunk_Z + this.randomGenerator.nextInt(16);
-			p_76795_2_.generate(this.currentWorld, this.randomGenerator, i1, j1, k1);
+			int i1 = chunk_X + randomGenerator.nextInt(16);
+			int j1 = randomGenerator.nextInt(p_76795_4_ - p_76795_3_) + p_76795_3_;
+			int k1 = chunk_Z + randomGenerator.nextInt(16);
+			p_76795_2_.generate(currentWorld, randomGenerator, i1, j1, k1);
 		}
 	}
 
@@ -157,31 +153,16 @@ public class BiomeDecoratorTatooine extends BiomeDecorator
 	{
 		for (int l = 0; l < p_76793_1_; ++l)
 		{
-			int i1 = this.chunk_X + this.randomGenerator.nextInt(16);
-			int j1 = this.randomGenerator.nextInt(p_76793_4_) + this.randomGenerator.nextInt(p_76793_4_) + (p_76793_3_ - p_76793_4_);
-			int k1 = this.chunk_Z + this.randomGenerator.nextInt(16);
-			p_76793_2_.generate(this.currentWorld, this.randomGenerator, i1, j1, k1);
+			int i1 = chunk_X + randomGenerator.nextInt(16);
+			int j1 = randomGenerator.nextInt(p_76793_4_) + randomGenerator.nextInt(p_76793_4_) + p_76793_3_ - p_76793_4_;
+			int k1 = chunk_Z + randomGenerator.nextInt(16);
+			p_76793_2_.generate(currentWorld, randomGenerator, i1, j1, k1);
 		}
-	}
-
-	/**
-	 * Generates ores in the current chunk
-	 */
-
-	@Override
-	protected void generateOres()
-	{
-		MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(currentWorld, randomGenerator, chunk_X, chunk_Z));
-		if (TerrainGen.generateOre(currentWorld, randomGenerator, coalGen, chunk_X, chunk_Z, COAL)) this.genStandardOre1(20, this.coalGen, 0, 128);
-		if (TerrainGen.generateOre(currentWorld, randomGenerator, ironGen, chunk_X, chunk_Z, IRON)) this.genStandardOre1(20, this.ironGen, 0, 64);
-		if (TerrainGen.generateOre(currentWorld, randomGenerator, goldGen, chunk_X, chunk_Z, GOLD)) this.genStandardOre1(2, this.goldGen, 0, 32);
-		if (TerrainGen.generateOre(currentWorld, randomGenerator, diamondGen, chunk_X, chunk_Z, DIAMOND)) this.genStandardOre1(1, this.diamondGen, 0, 16);
-		MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(currentWorld, randomGenerator, chunk_X, chunk_Z));
 	}
 
 	private int nextInt(int i)
 	{
-		if (i <= 1) return 0;
-		return this.randomGenerator.nextInt(i);
+		if (i <= 1) { return 0; }
+		return randomGenerator.nextInt(i);
 	}
 }

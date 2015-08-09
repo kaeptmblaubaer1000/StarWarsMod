@@ -41,12 +41,6 @@ public class FancyHaloRenderer implements IItemRenderer
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-	{
-		return false;
-	}
-
-	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		boolean renderHalo = false;
@@ -88,10 +82,10 @@ public class FancyHaloRenderer implements IItemRenderer
 
 				if (renderHalo)
 				{
-					float ca = (float)(haloColour >> 24 & 255) / 255.0F;
-					float cr = (float)(haloColour >> 16 & 255) / 255.0F;
-					float cg = (float)(haloColour >> 8 & 255) / 255.0F;
-					float cb = (float)(haloColour & 255) / 255.0F;
+					float ca = (haloColour >> 24 & 255) / 255.0F;
+					float cr = (haloColour >> 16 & 255) / 255.0F;
+					float cg = (haloColour >> 8 & 255) / 255.0F;
+					float cb = (haloColour & 255) / 255.0F;
 					GL11.glColor4f(cr, cg, cb, ca);
 
 					t.startDrawingQuads();
@@ -105,7 +99,7 @@ public class FancyHaloRenderer implements IItemRenderer
 				if (renderPulse)
 				{
 					GL11.glPushMatrix();
-					double xs = (rand.nextGaussian() * 0.15) + 0.95;
+					double xs = rand.nextGaussian() * 0.15 + 0.95;
 					double ox = (1 - xs) / 2.0;
 					GL11.glEnable(GL11.GL_BLEND);
 					GL11.glTranslated(ox * 16.0, ox * 16.0, 1.0);
@@ -138,5 +132,11 @@ public class FancyHaloRenderer implements IItemRenderer
 			default:
 				break;
 		}
+	}
+
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+	{
+		return false;
 	}
 }

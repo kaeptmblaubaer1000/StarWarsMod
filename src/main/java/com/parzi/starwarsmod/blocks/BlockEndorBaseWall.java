@@ -36,18 +36,6 @@ public class BlockEndorBaseWall extends Block
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-	{
-		icons = new IIcon[subtypes];
-
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + i);
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
 		return icons[meta];
@@ -60,6 +48,18 @@ public class BlockEndorBaseWall extends Block
 		for (int i = 0; i < subtypes; i++)
 		{
 			metaTypes.add(new ItemStack(item, 1, i));
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
+	{
+		icons = new IIcon[subtypes];
+
+		for (int i = 0; i < icons.length; i++)
+		{
+			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + i);
 		}
 	}
 }

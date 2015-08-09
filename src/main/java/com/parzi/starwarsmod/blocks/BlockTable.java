@@ -16,10 +16,10 @@ public class BlockTable extends BlockContainer
 	public BlockTable()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTab);
 		setBlockName(StarWarsMod.MODID + "." + "table");
-		this.setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-		this.setHardness(50F);
+		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
+		setHardness(50F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -41,15 +41,16 @@ public class BlockTable extends BlockContainer
 		return false;
 	}
 
-	public boolean renderAsNormalBlock()
-	{
-		return false;
-	}
-
 	// This is the icon to use for showing the block in your hand.
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconTable");
+		blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconTable");
+	}
+
+	@Override
+	public boolean renderAsNormalBlock()
+	{
+		return false;
 	}
 }

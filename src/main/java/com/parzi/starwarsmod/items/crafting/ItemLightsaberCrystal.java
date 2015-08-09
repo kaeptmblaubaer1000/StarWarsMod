@@ -37,18 +37,6 @@ public class ItemLightsaberCrystal extends Item
 	// return name + "." + colors[metadata];
 	// }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		icons = new IIcon[colors.length];
-
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + colors[i]);
-		}
-	}
-
 	@Override
 	public IIcon getIconFromDamage(int par1)
 	{
@@ -62,6 +50,18 @@ public class ItemLightsaberCrystal extends Item
 		for (int x = 0; x < colors.length; x++)
 		{
 			par3List.add(new ItemStack(this, 1, x));
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+		icons = new IIcon[colors.length];
+
+		for (int i = 0; i < icons.length; i++)
+		{
+			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + colors[i]);
 		}
 	}
 }

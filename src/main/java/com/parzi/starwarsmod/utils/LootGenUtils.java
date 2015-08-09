@@ -14,6 +14,18 @@ public class LootGenUtils
 {
 	public static float baseRarity = 0.00025F;
 
+	public static void fillLootChest(int dimId, Random rand, TileEntityChest tile)
+	{
+		if (tile != null)
+		{
+			for (int i = 0; i < rand.nextInt(2) + 1; i++)
+			{
+				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItemForDim(dimId, rand));
+			}
+			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 15)));
+		}
+	}
+
 	public static List<WeightedLoot> getLootForDim(int dimId)
 	{
 		List<WeightedLoot> loot = new ArrayList<WeightedLoot>();
@@ -134,23 +146,6 @@ public class LootGenUtils
 		return loot;
 	}
 
-	private static int indexOf(String[] haystack, String needle)
-	{
-		return Arrays.asList(haystack).indexOf(needle);
-	}
-
-	public static void fillLootChest(int dimId, Random rand, TileEntityChest tile)
-	{
-		if (tile != null)
-		{
-			for (int i = 0; i < rand.nextInt(2) + 1; i++)
-			{
-				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItemForDim(dimId, rand));
-			}
-			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 15)));
-		}
-	}
-
 	public static ItemStack getWeightedItemForDim(int dimId, Random rand)
 	{
 		List<WeightedLoot> loot = LootGenUtils.getLootForDim(dimId);
@@ -198,5 +193,10 @@ public class LootGenUtils
 			}
 		}
 		return items.get(randomIndex).item;
+	}
+
+	private static int indexOf(String[] haystack, String needle)
+	{
+		return Arrays.asList(haystack).indexOf(needle);
 	}
 }

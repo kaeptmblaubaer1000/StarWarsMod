@@ -195,34 +195,34 @@ public class ModelTauntaun extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity ent)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, ent);
-		this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.Snout.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.Nose.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HornBaseL.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HornBaseR.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI) + 0.12F;
-		this.HornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI) - 0.12F;
-		this.SmallHornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI) + 0.24F;
-		this.SmallHornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI) - 0.24F;
+		head.rotateAngleY = f3 / (180F / (float)Math.PI);
+		Snout.rotateAngleY = f3 / (180F / (float)Math.PI);
+		Nose.rotateAngleY = f3 / (180F / (float)Math.PI);
+		HornBaseL.rotateAngleY = f3 / (180F / (float)Math.PI);
+		HornBaseR.rotateAngleY = f3 / (180F / (float)Math.PI);
+		HornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI) + 0.12F;
+		HornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI) - 0.12F;
+		SmallHornSectionL.rotateAngleY = f3 / (180F / (float)Math.PI) + 0.24F;
+		SmallHornSectionR.rotateAngleY = f3 / (180F / (float)Math.PI) - 0.24F;
 
-		this.head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.Snout.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.Nose.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.HornBaseL.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.HornBaseR.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.HornSectionL.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.HornSectionR.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.SmallHornSectionL.rotateAngleX = f4 / (180F / (float)Math.PI);
-		this.SmallHornSectionR.rotateAngleX = f4 / (180F / (float)Math.PI);
+		head.rotateAngleX = f4 / (180F / (float)Math.PI);
+		Snout.rotateAngleX = f4 / (180F / (float)Math.PI);
+		Nose.rotateAngleX = f4 / (180F / (float)Math.PI);
+		HornBaseL.rotateAngleX = f4 / (180F / (float)Math.PI);
+		HornBaseR.rotateAngleX = f4 / (180F / (float)Math.PI);
+		HornSectionL.rotateAngleX = f4 / (180F / (float)Math.PI);
+		HornSectionR.rotateAngleX = f4 / (180F / (float)Math.PI);
+		SmallHornSectionL.rotateAngleX = f4 / (180F / (float)Math.PI);
+		SmallHornSectionR.rotateAngleX = f4 / (180F / (float)Math.PI);
 
-		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.ArmL.rotateAngleZ = 0.0F;
-		this.ArmR.rotateAngleZ = 0.0F;
+		ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		ArmL.rotateAngleZ = 0.0F;
+		ArmR.rotateAngleZ = 0.0F;
 
-		this.leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		this.leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
-		this.leg1.rotateAngleY = 0.0F;
-		this.leg2.rotateAngleY = 0.0F;
+		leg1.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
+		leg2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
+		leg1.rotateAngleY = 0.0F;
+		leg2.rotateAngleY = 0.0F;
 	}
 }

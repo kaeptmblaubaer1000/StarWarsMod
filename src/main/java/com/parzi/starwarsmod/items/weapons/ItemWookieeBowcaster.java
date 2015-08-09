@@ -28,31 +28,7 @@ public class ItemWookieeBowcaster extends Item
 		setHasSubtypes(true);
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
-		this.maxStackSize = 1;
-	}
-
-	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
-	{
-		if (!p_77663_1_.hasTagCompound())
-		{
-			p_77663_1_.stackTagCompound = new NBTTagCompound();
-		}
-
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
-		{
-			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
-		}
-
-		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
-		{
-			p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-		}
-
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
-		{
-			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
-		}
+		maxStackSize = 1;
 	}
 
 	@Override
@@ -67,12 +43,6 @@ public class ItemWookieeBowcaster extends Item
 		{
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 		}
-	}
-
-	@Override
-	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
-	{
-		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
 	}
 
 	@Override
@@ -106,5 +76,35 @@ public class ItemWookieeBowcaster extends Item
 		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
 
 		return par1ItemStack;
+	}
+
+	@Override
+	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
+	{
+		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
+	}
+
+	@Override
+	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
+	{
+		if (!p_77663_1_.hasTagCompound())
+		{
+			p_77663_1_.stackTagCompound = new NBTTagCompound();
+		}
+
+		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
+		{
+			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
+		}
+
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+		{
+			p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+		}
+
+		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
+		{
+			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
 	}
 }

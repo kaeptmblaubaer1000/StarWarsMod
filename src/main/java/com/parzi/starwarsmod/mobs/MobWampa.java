@@ -15,24 +15,27 @@ public class MobWampa extends EntityMob implements IMob
 	public MobWampa(World par1World)
 	{
 		super(par1World);
-		this.setSize(2, 3);
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 1, true));
-		this.tasks.addTask(0, new EntityAILookIdle(this));
+		setSize(2, 3);
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 1, true));
+		tasks.addTask(0, new EntityAILookIdle(this));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(15.0D);
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(15.0D);
 	}
 
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
 	@Override
-	protected String getLivingSound()
+	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.wampa.say";
+		return StarWarsMod.MODID + ":" + "mob.wampa.die";
 	}
 
 	/**
@@ -44,12 +47,9 @@ public class MobWampa extends EntityMob implements IMob
 		return StarWarsMod.MODID + ":" + "mob.wampa.hit";
 	}
 
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
 	@Override
-	protected String getDeathSound()
+	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.wampa.die";
+		return StarWarsMod.MODID + ":" + "mob.wampa.say";
 	}
 }

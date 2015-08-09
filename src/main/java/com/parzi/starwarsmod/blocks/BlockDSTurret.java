@@ -17,9 +17,9 @@ public class BlockDSTurret extends BlockContainer
 	public BlockDSTurret()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTab);
 		setBlockName(StarWarsMod.MODID + "." + "dsTurret");
-		this.setBlockBounds(0F, 0F, 0F, 2.5F, 2.5F, 2.5F);
+		setBlockBounds(0F, 0F, 0F, 2.5F, 2.5F, 2.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.DIAMOND);
 	}
 
@@ -36,26 +36,27 @@ public class BlockDSTurret extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
-	{
-		return true;
-	}
-
-	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
 
-	public boolean renderAsNormalBlock()
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		return false;
+		return true;
 	}
 
 	// This is the icon to use for showing the block in your hand.
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconDSTurret");
+		blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconDSTurret");
+	}
+
+	@Override
+	public boolean renderAsNormalBlock()
+	{
+		return false;
 	}
 }

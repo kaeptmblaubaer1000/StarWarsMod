@@ -3,13 +3,11 @@ package com.parzi.starwarsmod;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
-import net.minecraft.util.Session;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 
@@ -46,7 +44,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -236,39 +233,6 @@ public class StarWarsMod
 
 	public static ArmorMaterial leiaBunsArmorMat;
 
-	/* Events */
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(StarWarsMod.MODID);
-		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class, 0, Side.SERVER);
-		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
-		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
-		network.registerMessage(CreateBlasterBoltSpeeder.Handler.class, CreateBlasterBoltSpeeder.class, 3, Side.SERVER);
-
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		config.load();
-
-		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooineId", 156).getInt();
-		StarWarsMod.dimHothId = config.get("dimensions", "hothId", 155).getInt();
-		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
-		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
-		StarWarsMod.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
-		StarWarsMod.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
-
-		config.addCustomCategoryComment("unstable_commands", "It is NOT recommended you use these, they were only added for development purposes!");
-		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
-		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
-
-		StarWarsMod.enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
-
-		StarWarsMod.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
-		StarWarsMod.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
-
-		config.save();
-		Lumberjack.info("Configuration loaded!");
-	}
-
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
@@ -310,6 +274,39 @@ public class StarWarsMod
 		proxy.registerRendering();
 
 		Lumberjack.info("=========== End Star Wars Mod init() ===========");
+	}
+
+	/* Events */
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event)
+	{
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(StarWarsMod.MODID);
+		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class, 0, Side.SERVER);
+		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
+		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
+		network.registerMessage(CreateBlasterBoltSpeeder.Handler.class, CreateBlasterBoltSpeeder.class, 3, Side.SERVER);
+
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		config.load();
+
+		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooineId", 156).getInt();
+		StarWarsMod.dimHothId = config.get("dimensions", "hothId", 155).getInt();
+		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
+		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
+		StarWarsMod.dimEndorId = config.get("dimensions", "endorId", 152).getInt();
+		StarWarsMod.dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
+
+		config.addCustomCategoryComment("unstable_commands", "It is NOT recommended you use these, they were only added for development purposes!");
+		StarWarsMod.enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
+		StarWarsMod.enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
+
+		StarWarsMod.enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
+
+		StarWarsMod.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
+		StarWarsMod.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
+
+		config.save();
+		Lumberjack.info("Configuration loaded!");
 	}
 
 	@EventHandler

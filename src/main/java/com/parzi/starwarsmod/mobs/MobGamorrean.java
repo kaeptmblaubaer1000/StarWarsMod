@@ -25,78 +25,23 @@ public class MobGamorrean extends EntityMob implements IMob
 	public MobGamorrean(World par1World)
 	{
 		super(par1World);
-		this.tasks.addTask(0, new EntityAISwimming(this));
+		tasks.addTask(0, new EntityAISwimming(this));
 		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
 		// EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
+		tasks.addTask(3, new EntityAIWander(this, 1.0D));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		tasks.addTask(4, new EntityAILookIdle(this));
 
-		this.setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gamorreanAx, 1));
+		setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gamorreanAx, 1));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
-	}
-
-	@Override
-	protected String getLivingSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.gamorrean.say";
-	}
-
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.gamorrean.hit";
-	}
-
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
-	@Override
-	protected String getDeathSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.gamorrean.die";
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return true;
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		switch (this.rand.nextInt(10))
-		{
-			case 0:
-				this.dropItem(StarWarsMod.gamorreanAx, 1);
-				break;
-		}
-	}
-
-	@Override
-	protected Entity findPlayerToAttack()
-	{
-		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		this.angryAt = this.entityToAttack;
-
-		super.onUpdate();
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
@@ -106,7 +51,7 @@ public class MobGamorrean extends EntityMob implements IMob
 
 		if (entity instanceof EntityPlayer)
 		{
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 
 			for (int i = 0; i < list.size(); ++i)
 			{
@@ -119,7 +64,7 @@ public class MobGamorrean extends EntityMob implements IMob
 				}
 			}
 
-			this.becomeAngryAt(entity);
+			becomeAngryAt(entity);
 		}
 
 		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
@@ -127,7 +72,62 @@ public class MobGamorrean extends EntityMob implements IMob
 
 	private void becomeAngryAt(Entity p_70835_1_)
 	{
-		this.entityToAttack = p_70835_1_;
-		this.angerLevel = 400 + this.rand.nextInt(400);
+		entityToAttack = p_70835_1_;
+		angerLevel = 400 + rand.nextInt(400);
+	}
+
+	@Override
+	public void dropFewItems(boolean par1, int par2)
+	{
+		switch (rand.nextInt(10))
+		{
+			case 0:
+				dropItem(StarWarsMod.gamorreanAx, 1);
+				break;
+		}
+	}
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return angerLevel == 0 ? null : super.findPlayerToAttack();
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return true;
+	}
+
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.gamorrean.die";
+	}
+
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.gamorrean.hit";
+	}
+
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.gamorrean.say";
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		angryAt = entityToAttack;
+
+		super.onUpdate();
 	}
 }

@@ -35,23 +35,24 @@ public class GuiJediRobes extends GuiScreen
 	}
 
 	@Override
-	public void onGuiClosed()
-	{
-	}
-
-	@Override
 	protected void actionPerformed(GuiButton guiButton)
 	{
 		switch (guiButton.id)
 		{
 			case 1:
-				if (spinnerIndex > 0) spinnerIndex--;
+				if (spinnerIndex > 0)
+				{
+					spinnerIndex--;
+				}
 				break;
 			case 2:
 				buy();
 				break;
 			case 3:
-				if (spinnerIndex < spinner.length - 1) spinnerIndex++;
+				if (spinnerIndex < spinner.length - 1)
+				{
+					spinnerIndex++;
+				}
 				break;
 		}
 		// System.out.println("clicked " + guiButton.displayString);
@@ -86,27 +87,11 @@ public class GuiJediRobes extends GuiScreen
 	}
 
 	@Override
-	public void initGui()
-	{
-		this.x = (this.width - w) / 2;
-		this.y = (this.height - h) / 2;
-
-		// id, x, y, width, height, text
-		int buttonY = y + 120;
-		this.prev = new GuiButton(1, x + 10, buttonY, 25, 20, "<");
-		this.buy = new GuiButton(2, x + 40, buttonY, 35, 20, "Learn");
-		this.next = new GuiButton(3, x + 80, buttonY, 25, 20, ">");
-		this.buttonList.add(prev);
-		this.buttonList.add(buy);
-		this.buttonList.add(next);
-	}
-
-	@Override
 	public void drawScreen(int mouseX, int mouseY, float renderPartialTicks)
 	{
 		int py = y + 10;
 
-		this.mc.getTextureManager().bindTexture(backgroundimage);
+		mc.getTextureManager().bindTexture(backgroundimage);
 		drawTexturedModalRect(x, y, 0, 0, w, h);
 
 		drawString(mc.fontRenderer, "Jedi Robes Upgrades", x + 10, py, 0xFFFFFF);
@@ -140,5 +125,26 @@ public class GuiJediRobes extends GuiScreen
 		py += 10;
 
 		super.drawScreen(mouseX, mouseY, renderPartialTicks);
+	}
+
+	@Override
+	public void initGui()
+	{
+		x = (width - w) / 2;
+		y = (height - h) / 2;
+
+		// id, x, y, width, height, text
+		int buttonY = y + 120;
+		prev = new GuiButton(1, x + 10, buttonY, 25, 20, "<");
+		buy = new GuiButton(2, x + 40, buttonY, 35, 20, "Learn");
+		next = new GuiButton(3, x + 80, buttonY, 25, 20, ">");
+		buttonList.add(prev);
+		buttonList.add(buy);
+		buttonList.add(next);
+	}
+
+	@Override
+	public void onGuiClosed()
+	{
 	}
 }

@@ -23,42 +23,25 @@ public class BiomeEndor extends BiomeGenBase
 	public BiomeEndor(int par1)
 	{
 		super(par1);
-		this.heightVariation = 0.2F;
+		heightVariation = 0.2F;
 
-		this.enableRain = true;
-		this.enableSnow = false;
+		enableRain = true;
+		enableSnow = false;
 
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobEwok.class, 10, 1, 1));
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+		spawnableMonsterList.clear();
+		spawnableCreatureList.clear();
+		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobEwok.class, 10, 1, 1));
+		spawnableCaveCreatureList.clear();
+		spawnableWaterCreatureList.clear();
 
-		this.theBiomeDecorator = new BiomeDecoratorEndor();
+		theBiomeDecorator = new BiomeDecoratorEndor();
 
-		this.setBiomeName("Endor");
+		setBiomeName("Endor");
 
-		this.topBlock = Blocks.grass;
-		this.fillerBlock = Blocks.dirt;
+		topBlock = Blocks.grass;
+		fillerBlock = Blocks.dirt;
 
-		this.theBiomeDecorator.treesPerChunk = 2;
-	}
-
-	@Override
-	public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
-	{
-		switch (p_150567_1_.nextInt(5))
-		{
-			case 1:
-				return new WorldGenBigTree(false);
-			case 2:
-				return new WorldGenCanopyTree(false);
-			case 3:
-				return new WorldGenSavannaTree(false);
-			case 4:
-				return new WorldGenTrees(false);
-		}
-		return new WorldGenTrees(false);
+		theBiomeDecorator.treesPerChunk = 2;
 	}
 
 	@Override
@@ -90,6 +73,23 @@ public class BiomeEndor extends BiomeGenBase
 				new WorldGenEndorTree4().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
 				break;
 		}
+	}
+
+	@Override
+	public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+	{
+		switch (p_150567_1_.nextInt(5))
+		{
+			case 1:
+				return new WorldGenBigTree(false);
+			case 2:
+				return new WorldGenCanopyTree(false);
+			case 3:
+				return new WorldGenSavannaTree(false);
+			case 4:
+				return new WorldGenTrees(false);
+		}
+		return new WorldGenTrees(false);
 	}
 
 	@Override

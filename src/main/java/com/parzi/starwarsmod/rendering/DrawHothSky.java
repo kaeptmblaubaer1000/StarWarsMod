@@ -42,8 +42,8 @@ public class DrawHothSky extends IRenderHandler
 
 	public DrawHothSky()
 	{
-		this.sunSize = 32F;
-		this.moonSize = 32F;
+		sunSize = 32F;
+		moonSize = 32F;
 
 		moon1Offset = new Vector3(-20, 0, 10); // big one
 		moon2Offset = new Vector3(-44, 0, 0); // middle
@@ -54,19 +54,19 @@ public class DrawHothSky extends IRenderHandler
 		moon3SizeMod = 3F;
 
 		int displayLists = GLAllocation.generateDisplayLists(3);
-		this.starList = displayLists;
-		this.glSkyList = displayLists + 1;
-		this.glSkyList2 = displayLists + 2;
+		starList = displayLists;
+		glSkyList = displayLists + 1;
+		glSkyList2 = displayLists + 2;
 
 		// Bind stars to display list
 		GL11.glPushMatrix();
-		GL11.glNewList(this.starList, GL11.GL_COMPILE);
-		this.renderStars();
+		GL11.glNewList(starList, GL11.GL_COMPILE);
+		renderStars();
 		GL11.glEndList();
 		GL11.glPopMatrix();
 
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glNewList(this.glSkyList, GL11.GL_COMPILE);
+		GL11.glNewList(glSkyList, GL11.GL_COMPILE);
 		byte byte2 = 64;
 		int i = 256 / byte2 + 2;
 		float f = 16F;
@@ -85,7 +85,7 @@ public class DrawHothSky extends IRenderHandler
 		}
 
 		GL11.glEndList();
-		GL11.glNewList(this.glSkyList2, GL11.GL_COMPILE);
+		GL11.glNewList(glSkyList2, GL11.GL_COMPILE);
 		f = -16F;
 		tessellator.startDrawingQuads();
 
@@ -101,6 +101,22 @@ public class DrawHothSky extends IRenderHandler
 		}
 		tessellator.draw();
 		GL11.glEndList();
+	}
+
+	public float getSkyBrightness(float par1)
+	{
+		float var2 = FMLClientHandler.instance().getClient().theWorld.getCelestialAngle(par1);
+		float var3 = 1.0F - (MathHelper.sin(var2 * (float)Math.PI * 2.0F) * 2.0F + 0.25F);
+
+		if (var3 < 0.0F)
+		{
+			var3 = 0.0F;
+		}
+		if (var3 > 1.0F)
+		{
+			var3 = 1.0F;
+		}
+		return var3 * var3 * 1F;
 	}
 
 	@Override
@@ -128,7 +144,7 @@ public class DrawHothSky extends IRenderHandler
 		GL11.glDepthMask(false);
 		GL11.glEnable(GL11.GL_FOG);
 		GL11.glColor3f(f1, f2, f3);
-		GL11.glCallList(this.glSkyList);
+		GL11.glCallList(glSkyList);
 		GL11.glDisable(GL11.GL_FOG);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
@@ -143,7 +159,7 @@ public class DrawHothSky extends IRenderHandler
 		if (f18 > 0.0F)
 		{
 			GL11.glColor4f(f18, f18, f18, f18);
-			GL11.glCallList(this.starList);
+			GL11.glCallList(starList);
 		}
 
 		float[] afloat = new float[4];
@@ -226,7 +242,7 @@ public class DrawHothSky extends IRenderHandler
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
-		f10 = this.sunSize / 3.5F;
+		f10 = sunSize / 3.5F;
 		tessellator1.startDrawingQuads();
 		tessellator1.addVertex(-f10, 99.9D, -f10);
 		tessellator1.addVertex(f10, 99.9D, -f10);
@@ -235,8 +251,8 @@ public class DrawHothSky extends IRenderHandler
 		tessellator1.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		f10 = this.sunSize;
-		mc.renderEngine.bindTexture(this.sunTexture);
+		f10 = sunSize;
+		mc.renderEngine.bindTexture(sunTexture);
 		tessellator1.startDrawingQuads();
 		tessellator1.addVertexWithUV(-f10, 100.0D, -f10, 0.0D, 0.0D);
 		tessellator1.addVertexWithUV(f10, 100.0D, -f10, 1.0D, 0.0D);
@@ -250,66 +266,66 @@ public class DrawHothSky extends IRenderHandler
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
-		f10 = this.moonSize / 3.5F / this.moon3SizeMod;
+		f10 = moonSize / 3.5F / moon3SizeMod;
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertex(-f10 + this.moon3Offset.X, 99.9D + this.moon3Offset.Y, -f10 + this.moon3Offset.Z);
-		tessellator1.addVertex(f10 + this.moon3Offset.X, 99.9D + this.moon3Offset.Y, -f10 + this.moon3Offset.Z);
-		tessellator1.addVertex(f10 + this.moon3Offset.X, 99.9D + this.moon3Offset.Y, f10 + this.moon3Offset.Z);
-		tessellator1.addVertex(-f10 + this.moon3Offset.X, 99.9D + this.moon3Offset.Y, f10 + this.moon3Offset.Z);
+		tessellator1.addVertex(-f10 + moon3Offset.X, 99.9D + moon3Offset.Y, -f10 + moon3Offset.Z);
+		tessellator1.addVertex(f10 + moon3Offset.X, 99.9D + moon3Offset.Y, -f10 + moon3Offset.Z);
+		tessellator1.addVertex(f10 + moon3Offset.X, 99.9D + moon3Offset.Y, f10 + moon3Offset.Z);
+		tessellator1.addVertex(-f10 + moon3Offset.X, 99.9D + moon3Offset.Y, f10 + moon3Offset.Z);
 		tessellator1.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		f10 = this.moonSize / this.moon3SizeMod;
-		mc.renderEngine.bindTexture(this.moon1Texture);
+		f10 = moonSize / moon3SizeMod;
+		mc.renderEngine.bindTexture(moon1Texture);
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertexWithUV(-f10 + this.moon3Offset.X, 100.0D + this.moon3Offset.Y, -f10 + this.moon3Offset.Z, 0.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + this.moon3Offset.X, 100.0D + this.moon3Offset.Y, -f10 + this.moon3Offset.Z, 1.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + this.moon3Offset.X, 100.0D + this.moon3Offset.Y, f10 + this.moon3Offset.Z, 1.0D, 1.0D);
-		tessellator1.addVertexWithUV(-f10 + this.moon3Offset.X, 100.0D + this.moon3Offset.Y, f10 + this.moon3Offset.Z, 0.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + moon3Offset.X, 100.0D + moon3Offset.Y, -f10 + moon3Offset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + moon3Offset.X, 100.0D + moon3Offset.Y, -f10 + moon3Offset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + moon3Offset.X, 100.0D + moon3Offset.Y, f10 + moon3Offset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + moon3Offset.X, 100.0D + moon3Offset.Y, f10 + moon3Offset.Z, 0.0D, 1.0D);
 		tessellator1.draw();
 
 		// Render moon1
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
-		f10 = this.moonSize / 3.5F / this.moon1SizeMod;
+		f10 = moonSize / 3.5F / moon1SizeMod;
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertex(-f10 + this.moon1Offset.X, 99.9D + this.moon1Offset.Y, -f10 + this.moon1Offset.Z);
-		tessellator1.addVertex(f10 + this.moon1Offset.X, 99.9D + this.moon1Offset.Y, -f10 + this.moon1Offset.Z);
-		tessellator1.addVertex(f10 + this.moon1Offset.X, 99.9D + this.moon1Offset.Y, f10 + this.moon1Offset.Z);
-		tessellator1.addVertex(-f10 + this.moon1Offset.X, 99.9D + this.moon1Offset.Y, f10 + this.moon1Offset.Z);
+		tessellator1.addVertex(-f10 + moon1Offset.X, 99.9D + moon1Offset.Y, -f10 + moon1Offset.Z);
+		tessellator1.addVertex(f10 + moon1Offset.X, 99.9D + moon1Offset.Y, -f10 + moon1Offset.Z);
+		tessellator1.addVertex(f10 + moon1Offset.X, 99.9D + moon1Offset.Y, f10 + moon1Offset.Z);
+		tessellator1.addVertex(-f10 + moon1Offset.X, 99.9D + moon1Offset.Y, f10 + moon1Offset.Z);
 		tessellator1.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		f10 = this.moonSize / this.moon1SizeMod;
-		mc.renderEngine.bindTexture(this.moon1Texture);
+		f10 = moonSize / moon1SizeMod;
+		mc.renderEngine.bindTexture(moon1Texture);
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertexWithUV(-f10 + this.moon1Offset.X, 100.0D + this.moon1Offset.Y, -f10 + this.moon1Offset.Z, 0.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + this.moon1Offset.X, 100.0D + this.moon1Offset.Y, -f10 + this.moon1Offset.Z, 1.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + this.moon1Offset.X, 100.0D + this.moon1Offset.Y, f10 + this.moon1Offset.Z, 1.0D, 1.0D);
-		tessellator1.addVertexWithUV(-f10 + this.moon1Offset.X, 100.0D + this.moon1Offset.Y, f10 + this.moon1Offset.Z, 0.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + moon1Offset.X, 100.0D + moon1Offset.Y, -f10 + moon1Offset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + moon1Offset.X, 100.0D + moon1Offset.Y, -f10 + moon1Offset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + moon1Offset.X, 100.0D + moon1Offset.Y, f10 + moon1Offset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + moon1Offset.X, 100.0D + moon1Offset.Y, f10 + moon1Offset.Z, 0.0D, 1.0D);
 		tessellator1.draw();
 
 		// Render moon2
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		// Some blanking to conceal the stars
-		f10 = this.moonSize / 3.5F / this.moon2SizeMod;
+		f10 = moonSize / 3.5F / moon2SizeMod;
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertex(-f10 + this.moon2Offset.X, 99.9D + this.moon2Offset.Y, -f10 + this.moon2Offset.Z);
-		tessellator1.addVertex(f10 + this.moon2Offset.X, 99.9D + this.moon2Offset.Y, -f10 + this.moon2Offset.Z);
-		tessellator1.addVertex(f10 + this.moon2Offset.X, 99.9D + this.moon2Offset.Y, f10 + this.moon2Offset.Z);
-		tessellator1.addVertex(-f10 + this.moon2Offset.X, 99.9D + this.moon2Offset.Y, f10 + this.moon2Offset.Z);
+		tessellator1.addVertex(-f10 + moon2Offset.X, 99.9D + moon2Offset.Y, -f10 + moon2Offset.Z);
+		tessellator1.addVertex(f10 + moon2Offset.X, 99.9D + moon2Offset.Y, -f10 + moon2Offset.Z);
+		tessellator1.addVertex(f10 + moon2Offset.X, 99.9D + moon2Offset.Y, f10 + moon2Offset.Z);
+		tessellator1.addVertex(-f10 + moon2Offset.X, 99.9D + moon2Offset.Y, f10 + moon2Offset.Z);
 		tessellator1.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		f10 = this.moonSize / this.moon2SizeMod;
-		mc.renderEngine.bindTexture(this.moon1Texture);
+		f10 = moonSize / moon2SizeMod;
+		mc.renderEngine.bindTexture(moon1Texture);
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertexWithUV(-f10 + this.moon2Offset.X, 100.0D + this.moon2Offset.Y, -f10 + this.moon2Offset.Z, 0.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + this.moon2Offset.X, 100.0D + this.moon2Offset.Y, -f10 + this.moon2Offset.Z, 1.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + this.moon2Offset.X, 100.0D + this.moon2Offset.Y, f10 + this.moon2Offset.Z, 1.0D, 1.0D);
-		tessellator1.addVertexWithUV(-f10 + this.moon2Offset.X, 100.0D + this.moon2Offset.Y, f10 + this.moon2Offset.Z, 0.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + moon2Offset.X, 100.0D + moon2Offset.Y, -f10 + moon2Offset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + moon2Offset.X, 100.0D + moon2Offset.Y, -f10 + moon2Offset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + moon2Offset.X, 100.0D + moon2Offset.Y, f10 + moon2Offset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + moon2Offset.X, 100.0D + moon2Offset.Y, f10 + moon2Offset.Z, 0.0D, 1.0D);
 		tessellator1.draw();
 
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -327,7 +343,7 @@ public class DrawHothSky extends IRenderHandler
 		{
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0.0F, 12.0F, 0.0F);
-			GL11.glCallList(this.glSkyList2);
+			GL11.glCallList(glSkyList2);
 			GL11.glPopMatrix();
 			f8 = 1.0F;
 			f9 = -((float)(d0 + 65.0D));
@@ -367,7 +383,7 @@ public class DrawHothSky extends IRenderHandler
 		}
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0.0F, -((float)(d0 - 16.0D)), 0.0F);
-		GL11.glCallList(this.glSkyList2);
+		GL11.glCallList(glSkyList2);
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDepthMask(true);
@@ -422,21 +438,5 @@ public class DrawHothSky extends IRenderHandler
 			}
 		}
 		var2.draw();
-	}
-
-	public float getSkyBrightness(float par1)
-	{
-		float var2 = FMLClientHandler.instance().getClient().theWorld.getCelestialAngle(par1);
-		float var3 = 1.0F - (MathHelper.sin(var2 * (float)Math.PI * 2.0F) * 2.0F + 0.25F);
-
-		if (var3 < 0.0F)
-		{
-			var3 = 0.0F;
-		}
-		if (var3 > 1.0F)
-		{
-			var3 = 1.0F;
-		}
-		return var3 * var3 * 1F;
 	}
 }

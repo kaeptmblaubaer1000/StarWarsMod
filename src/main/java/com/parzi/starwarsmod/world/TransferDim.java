@@ -23,10 +23,27 @@ public class TransferDim extends Teleporter
 
 	}
 
+	// Override Default BS
+	@Override
+	public boolean placeInExistingPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
+	{
+		return false;
+	}
+
+	@Override
+	public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
+	{
+	}
+
+	@Override
+	public void removeStalePortalLocations(long par1)
+	{
+	}
+
 	// Move the Entity to the portal
 	public void teleport(Entity entity)
 	{
-		if (!(entity instanceof EntityPlayerMP) || entity instanceof EntityClientPlayerMP) return;
+		if (!(entity instanceof EntityPlayerMP) || entity instanceof EntityClientPlayerMP) { return; }
 
 		// Setup Variables
 		EntityPlayerMP playerMP = (EntityPlayerMP)entity;
@@ -59,8 +76,8 @@ public class TransferDim extends Teleporter
 		// Freeze motion
 		entity.motionX = entity.motionY = entity.motionZ = 0.0D;
 		entity.setPosition(dx, dy, dz); // silly to do this multiple times, but
-										// it kept offseting entity until this
-										// was done
+		// it kept offseting entity until this
+		// was done
 
 		// Set Dimension
 		if (entity.worldObj.provider.dimensionId != worldserver.provider.dimensionId)
@@ -72,23 +89,6 @@ public class TransferDim extends Teleporter
 
 		entity.setPosition(dx, dy, dz);
 
-	}
-
-	// Override Default BS
-	@Override
-	public boolean placeInExistingPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
-	{
-		return false;
-	}
-
-	@Override
-	public void removeStalePortalLocations(long par1)
-	{
-	}
-
-	@Override
-	public void placeInPortal(Entity par1Entity, double par2, double par4, double par6, float par8)
-	{
 	}
 
 }

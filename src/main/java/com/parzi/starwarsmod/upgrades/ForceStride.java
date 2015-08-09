@@ -11,18 +11,18 @@ public class ForceStride extends PowerBase
 
 	public ForceStride()
 	{
-		this.internalName = "effectForceStride";
-		this.displayName = "Force Stride";
-		this.internalElement = "earth";
-		this.displayElement = "terra";
+		internalName = "effectForceStride";
+		displayName = "Force Stride";
+		internalElement = "earth";
+		displayElement = "terra";
 	}
 
 	@Override
 	public void doPower(World world, EntityPlayer player, ItemStack robe)
 	{
-		if (robe.stackTagCompound.getInteger(this.internalName) > 0)
+		if (robe.stackTagCompound.getInteger(internalName) > 0)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1800, robe.stackTagCompound.getInteger(this.internalName), false));
+			player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 1800, robe.stackTagCompound.getInteger(internalName), false));
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class RenderMV extends TileEntitySpecialRenderer
 
 	public RenderMV()
 	{
-		this.model = new ModelMV();
+		model = new ModelMV();
 	}
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
@@ -42,7 +42,7 @@ public class RenderMV extends TileEntitySpecialRenderer
 
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.2F, (float)z + 0.5F);
 
-		ResourceLocation textures = (new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png"));
+		ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png");
 
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 
@@ -50,11 +50,11 @@ public class RenderMV extends TileEntitySpecialRenderer
 		GL11.glRotatef(180F, 0, 0, 1);
 		GL11.glRotatef(mv.getFacing() * 90, 0, 1, 0);
 
-		this.model.windVane1.rotateAngleY = mv.frame / 10;
-		this.model.windVane2.rotateAngleY = mv.frame / 10;
-		this.model.windVaneRod1.rotateAngleY = mv.frame / 10;
-		this.model.windVaneRod2.rotateAngleY = mv.frame / 10;
-		this.model.render((Entity)null, 0, 0, 0, 0, 0, 0.05F);
+		model.windVane1.rotateAngleY = mv.frame / 10;
+		model.windVane2.rotateAngleY = mv.frame / 10;
+		model.windVaneRod1.rotateAngleY = mv.frame / 10;
+		model.windVaneRod2.rotateAngleY = mv.frame / 10;
+		model.render((Entity)null, 0, 0, 0, 0, 0, 0.05F);
 
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();

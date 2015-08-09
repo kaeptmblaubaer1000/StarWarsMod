@@ -14,23 +14,23 @@ public class BiomeEndorPlains extends BiomeGenBase
 	public BiomeEndorPlains(int par1)
 	{
 		super(par1);
-		this.heightVariation = 0.01F;
+		heightVariation = 0.01F;
 
-		this.enableRain = true;
-		this.enableSnow = false;
+		enableRain = true;
+		enableSnow = false;
 
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobEwok.class, 10, 1, 1));
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+		spawnableMonsterList.clear();
+		spawnableCreatureList.clear();
+		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobEwok.class, 10, 1, 1));
+		spawnableCaveCreatureList.clear();
+		spawnableWaterCreatureList.clear();
 
-		this.setBiomeName("Endor Plains");
+		setBiomeName("Endor Plains");
 
-		this.topBlock = Blocks.grass;
-		this.fillerBlock = Blocks.dirt;
+		topBlock = Blocks.grass;
+		fillerBlock = Blocks.dirt;
 
-		this.theBiomeDecorator.treesPerChunk = 0;
+		theBiomeDecorator.treesPerChunk = 0;
 	}
 
 	@Override

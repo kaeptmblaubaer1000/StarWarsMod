@@ -10,37 +10,37 @@ public class VehicSpeederBike extends VehicleLandBase
 	public VehicSpeederBike(World par1World)
 	{
 		super(par1World);
-		this.setSize(1, 1);
+		setSize(1, 1);
 
-		this.vehicYOffset = 0.4F;
+		vehicYOffset = 0.4F;
 
-		this.moveModifier = 3F;
+		moveModifier = 3F;
 
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
+	}
+
+	@Override
+	public void dropFewItems(boolean par1, int par2)
+	{
+		dropItem(StarWarsMod.spawnSpeederBike, 1);
+	}
+
+	@Override
+	public String getCommandSenderName()
+	{
+		if (hasCustomNameTag())
+		{
+			return getCustomNameTag();
+		}
+		else
+		{
+			return "74-Z Speeder Bike";
+		}
 	}
 
 	@Override
 	public String getMovingSound()
 	{
 		return "vehicle.speeder.move";
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsMod.spawnSpeederBike, 1);
-	}
-
-	@Override
-	public String getCommandSenderName()
-	{
-		if (this.hasCustomNameTag())
-		{
-			return this.getCustomNameTag();
-		}
-		else
-		{
-			return "74-Z Speeder Bike";
-		}
 	}
 }

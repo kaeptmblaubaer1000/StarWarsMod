@@ -13,6 +13,6 @@ public class ItemHyperdriveEngine extends Item
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
-		this.maxStackSize = 1;
+		maxStackSize = 1;
 	}
 }

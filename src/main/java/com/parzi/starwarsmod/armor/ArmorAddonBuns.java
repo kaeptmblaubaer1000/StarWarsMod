@@ -25,11 +25,6 @@ public class ArmorAddonBuns extends ItemArmor
 	}
 
 	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{
-		return StarWarsMod.MODID + ":" + "textures/models/leiaBunsLayer1.png";
-	}
-
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
@@ -52,5 +47,11 @@ public class ArmorAddonBuns extends ItemArmor
 		model.bipedLeftLeg.isHidden = true;
 
 		return model;
+	}
+
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	{
+		return StarWarsMod.MODID + ":" + "textures/models/leiaBunsLayer1.png";
 	}
 }

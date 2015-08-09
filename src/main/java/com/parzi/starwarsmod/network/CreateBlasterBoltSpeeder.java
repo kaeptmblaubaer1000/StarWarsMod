@@ -15,7 +15,23 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class CreateBlasterBoltSpeeder implements IMessage
 {
 
+	public static class Handler implements IMessageHandler<CreateBlasterBoltSpeeder, IMessage>
+	{
+
+		@Override
+		public IMessage onMessage(CreateBlasterBoltSpeeder message, MessageContext ctx)
+		{
+			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
+			World world = player.worldObj;
+
+			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, player));
+
+			return null; // no response in this case
+		}
+	}
+
 	private String player;
+
 	private int dim;
 
 	public CreateBlasterBoltSpeeder()
@@ -40,20 +56,5 @@ public class CreateBlasterBoltSpeeder implements IMessage
 	{
 		ByteBufUtils.writeUTF8String(buf, player);
 		ByteBufUtils.writeVarInt(buf, dim, 5);
-	}
-
-	public static class Handler implements IMessageHandler<CreateBlasterBoltSpeeder, IMessage>
-	{
-
-		@Override
-		public IMessage onMessage(CreateBlasterBoltSpeeder message, MessageContext ctx)
-		{
-			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
-			World world = player.worldObj;
-
-			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, player));
-
-			return null; // no response in this case
-		}
 	}
 }

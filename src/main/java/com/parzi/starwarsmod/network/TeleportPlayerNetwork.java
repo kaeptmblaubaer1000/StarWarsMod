@@ -13,8 +13,20 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class TeleportPlayerNetwork implements IMessage
 {
 
+	public static class Handler implements IMessageHandler<TeleportPlayerNetwork, IMessage>
+	{
+
+		@Override
+		public IMessage onMessage(TeleportPlayerNetwork message, MessageContext ctx)
+		{
+			new TransferDim(MinecraftServer.getServer().worldServerForDimension(message.newDim)).teleport(MinecraftServer.getServer().worldServerForDimension(message.oldDim).getPlayerEntityByName(message.player));
+			return null; // no response in this case
+		}
+	}
+
 	private String player;
 	private int oldDim;
+
 	private int newDim;
 
 	public TeleportPlayerNetwork()
@@ -42,16 +54,5 @@ public class TeleportPlayerNetwork implements IMessage
 		ByteBufUtils.writeUTF8String(buf, player);
 		ByteBufUtils.writeVarInt(buf, oldDim, 5);
 		ByteBufUtils.writeVarInt(buf, newDim, 5);
-	}
-
-	public static class Handler implements IMessageHandler<TeleportPlayerNetwork, IMessage>
-	{
-
-		@Override
-		public IMessage onMessage(TeleportPlayerNetwork message, MessageContext ctx)
-		{
-			new TransferDim(MinecraftServer.getServer().worldServerForDimension(message.newDim)).teleport(MinecraftServer.getServer().worldServerForDimension(message.oldDim).getPlayerEntityByName(message.player));
-			return null; // no response in this case
-		}
 	}
 }

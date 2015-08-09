@@ -40,77 +40,7 @@ public class ItemBlasterRifle extends Item
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHasSubtypes(true);
 		setTextureName(StarWarsMod.MODID + ":" + name);
-		this.maxStackSize = 1;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		icons = new IIcon[versions.length];
-
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + versions[i]);
-		}
-	}
-
-	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
-		int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
-		return "item" + "." + StarWarsMod.MODID + "." + name + "." + versions[metadata];
-	}
-
-	@Override
-	public IIcon getIconFromDamage(int par1)
-	{
-		return icons[par1];
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
-		for (int x = 0; x < versions.length; x++)
-		{
-			par3List.add(new ItemStack(this, 1, x));
-		}
-	}
-
-	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
-	{
-		if (!p_77663_1_.hasTagCompound())
-		{
-			p_77663_1_.stackTagCompound = new NBTTagCompound();
-		}
-
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
-		{
-			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
-		}
-
-		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
-		{
-			switch (p_77663_1_.getItemDamage())
-			{
-				case 0:
-				case 3:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
-				case 4:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", this.itemRand.nextBoolean() ? 500 : 100);
-					break;
-				default:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-					break;
-			}
-		}
-
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
-		{
-			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
-		}
+		maxStackSize = 1;
 	}
 
 	@Override
@@ -126,6 +56,39 @@ public class ItemBlasterRifle extends Item
 		{
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 		}
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int par1)
+	{
+		return icons[par1];
+	}
+
+	public ItemStack getMeta(String string)
+	{
+		return new ItemStack(StarWarsMod.blasterRifle, 1, indexOfMeta(string));
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+	{
+		for (int x = 0; x < versions.length; x++)
+		{
+			par3List.add(new ItemStack(this, 1, x));
+		}
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack par1ItemStack)
+	{
+		int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
+		return "item" + "." + StarWarsMod.MODID + "." + name + "." + versions[metadata];
+	}
+
+	private int indexOfMeta(String needle)
+	{
+		return Arrays.asList(versions).indexOf(needle);
 	}
 
 	@Override
@@ -168,13 +131,50 @@ public class ItemBlasterRifle extends Item
 		return par1ItemStack;
 	}
 
-	private int indexOfMeta(String needle)
+	@Override
+	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
 	{
-		return Arrays.asList(this.versions).indexOf(needle);
+		if (!p_77663_1_.hasTagCompound())
+		{
+			p_77663_1_.stackTagCompound = new NBTTagCompound();
+		}
+
+		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
+		{
+			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
+		}
+
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+		{
+			switch (p_77663_1_.getItemDamage())
+			{
+				case 0:
+				case 3:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
+				case 4:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", itemRand.nextBoolean() ? 500 : 100);
+					break;
+				default:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+					break;
+			}
+		}
+
+		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
+		{
+			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
 	}
 
-	public ItemStack getMeta(String string)
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		return new ItemStack(StarWarsMod.blasterRifle, 1, this.indexOfMeta(string));
+		icons = new IIcon[versions.length];
+
+		for (int i = 0; i < icons.length; i++)
+		{
+			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + versions[i]);
+		}
 	}
 }

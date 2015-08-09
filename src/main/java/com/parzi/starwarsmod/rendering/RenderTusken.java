@@ -15,14 +15,14 @@ public class RenderTusken extends RenderBiped
 		super(par1ModelBase, par2);
 	}
 
-	protected void renderCarrying(MobTusken par1MobTusken, float par2)
-	{
-		super.renderEquippedItems(par1MobTusken, par2);
-	}
-
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return new ResourceLocation(StarWarsMod.MODID, "textures/models/tusken.png");
+	}
+
+	protected void renderCarrying(MobTusken par1MobTusken, float par2)
+	{
+		super.renderEquippedItems(par1MobTusken, par2);
 	}
 }

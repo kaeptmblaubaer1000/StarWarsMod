@@ -13,14 +13,14 @@ public interface IHaloRenderItem
 	public boolean drawHalo(ItemStack stack);
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getHaloTexture(ItemStack stack);
+	public boolean drawPulseEffect(ItemStack stack);
+
+	@SideOnly(Side.CLIENT)
+	public int getHaloColour(ItemStack stack);
 
 	@SideOnly(Side.CLIENT)
 	public int getHaloSize(ItemStack stack);
 
 	@SideOnly(Side.CLIENT)
-	public boolean drawPulseEffect(ItemStack stack);
-
-	@SideOnly(Side.CLIENT)
-	public int getHaloColour(ItemStack stack);
+	public IIcon getHaloTexture(ItemStack stack);
 }

@@ -326,6 +326,7 @@ public class ModelBantha extends ModelBase
 		setRotation(LegLFront, 0F, 0F, 0F);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -383,21 +384,22 @@ public class ModelBantha extends ModelBase
 		model.rotateAngleZ = z;
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-		this.LegRFront.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		this.LegLFront.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		this.LegRFront.rotateAngleZ = 0.0F;
-		this.LegLFront.rotateAngleZ = 0.0F;
+		LegRFront.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
+		LegLFront.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
+		LegRFront.rotateAngleZ = 0.0F;
+		LegLFront.rotateAngleZ = 0.0F;
 
-		this.LegRBack.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		this.LegLBack.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
-		this.LegRBack.rotateAngleY = 0.0F;
-		this.LegLBack.rotateAngleY = 0.0F;
+		LegRBack.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
+		LegLBack.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
+		LegRBack.rotateAngleY = 0.0F;
+		LegLBack.rotateAngleY = 0.0F;
 	}
 
 }

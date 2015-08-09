@@ -15,23 +15,23 @@ public class BiomeKashyyyk extends BiomeGenBase
 	public BiomeKashyyyk(int par1)
 	{
 		super(par1);
-		this.heightVariation = 0.8F;
+		heightVariation = 0.8F;
 
-		this.enableRain = true;
-		this.enableSnow = false;
+		enableRain = true;
+		enableSnow = false;
 
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobWookiee.class, 10, 1, 1));
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+		spawnableMonsterList.clear();
+		spawnableCreatureList.clear();
+		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobWookiee.class, 10, 1, 1));
+		spawnableCaveCreatureList.clear();
+		spawnableWaterCreatureList.clear();
 
-		this.setBiomeName("Kashyyyk");
+		setBiomeName("Kashyyyk");
 
-		this.topBlock = Blocks.grass;
-		this.fillerBlock = Blocks.dirt;
+		topBlock = Blocks.grass;
+		fillerBlock = Blocks.dirt;
 
-		this.theBiomeDecorator.treesPerChunk = 6;
+		theBiomeDecorator.treesPerChunk = 6;
 	}
 
 	@Override

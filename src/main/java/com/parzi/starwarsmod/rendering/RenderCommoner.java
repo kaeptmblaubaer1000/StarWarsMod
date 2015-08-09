@@ -22,7 +22,8 @@ public class RenderCommoner extends RenderBiped
 		{
 			MobTatooineCommoner commoner = (MobTatooineCommoner)entity;
 
-			switch (commoner.getDataWatcher().getWatchableObjectInt(25)) {
+			switch (commoner.getDataWatcher().getWatchableObjectInt(25))
+			{
 				case 0:
 					return new ResourceLocation(StarWarsMod.MODID, "textures/models/weaponsDealer.png");
 				case 1:

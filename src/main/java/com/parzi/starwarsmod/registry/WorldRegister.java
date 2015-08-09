@@ -52,7 +52,7 @@ public class WorldRegister
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimEndorId, WorldProviderEndor.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimEndorId, StarWarsMod.dimEndorId);
 
-		if (!registerOk) throw new Exception("Unable to register dimensions!");
+		if (!registerOk) { throw new Exception("Unable to register dimensions!"); }
 
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndorPlains);

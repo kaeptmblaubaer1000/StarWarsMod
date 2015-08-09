@@ -16,52 +16,61 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class WorldProviderHoth extends WorldProvider
 {
 
-	public void registerWorldChunkManager()
+	@Override
+	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
-		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeHoth, 0);
-		this.dimensionId = StarWarsMod.dimHothId;
+		return false;
 	}
 
+	@Override
+	public boolean canRespawnHere()
+	{
+		return false;
+	}
+
+	@Override
+	public IChunkProvider createChunkGenerator()
+	{
+		IChunkProvider generator = new ChunkProviderGenerate(worldObj, worldObj.getSeed(), false);
+		return generator;
+	}
+
+	@Override
+	public int getAverageGroundLevel()
+	{
+		return 40;
+	}
+
+	@Override
+	public String getDimensionName()
+	{
+		return "Hoth";
+	}
+
+	@Override
+	public ChunkCoordinates getEntrancePortalLocation()
+	{
+		return null;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IRenderHandler getSkyRenderer()
 	{
 		return new DrawHothSky();
 	}
 
-	public IChunkProvider createChunkGenerator()
-	{
-		IChunkProvider generator = new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), false);
-		return generator;
-	}
-
-	public int getAverageGroundLevel()
-	{
-		return 40;
-	}
-
-	public String getDimensionName()
-	{
-		return "Hoth";
-	}
-
-	public boolean canRespawnHere()
-	{
-		return false;
-	}
-
+	@Override
 	public boolean isSurfaceWorld()
 	{
 		return true;
 	}
 
-	public boolean canCoordinateBeSpawn(int par1, int par2)
+	@Override
+	public void registerWorldChunkManager()
 	{
-		return false;
-	}
-
-	public ChunkCoordinates getEntrancePortalLocation()
-	{
-		return null;
+		worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeHoth, 0);
+		dimensionId = StarWarsMod.dimHothId;
 	}
 
 }

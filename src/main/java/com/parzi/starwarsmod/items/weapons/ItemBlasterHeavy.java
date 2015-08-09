@@ -40,32 +40,33 @@ public class ItemBlasterHeavy extends Item
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHasSubtypes(true);
 		setTextureName(StarWarsMod.MODID + ":" + name);
-		this.maxStackSize = 1;
+		maxStackSize = 1;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons(IIconRegister par1IconRegister)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		icons = new IIcon[versions.length];
-
-		for (int i = 0; i < icons.length; i++)
+		if (KeyboardUtils.isShiftDown())
 		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + versions[i]);
+			list.add(TextUtils.makeItalic("The blaster rifle was the staple"));
+			list.add(TextUtils.makeItalic("infantry weapon since before the"));
+			list.add(TextUtils.makeItalic("formation of the Galactic Republic"));
 		}
-	}
-
-	@Override
-	public String getUnlocalizedName(ItemStack par1ItemStack)
-	{
-		int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
-		return "item" + "." + StarWarsMod.MODID + "." + name + "." + versions[metadata];
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
+		{
+			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
+		}
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int par1)
 	{
 		return icons[par1];
+	}
+
+	public ItemStack getMeta(String string)
+	{
+		return new ItemStack(StarWarsMod.blasterHeavy, 1, indexOfMeta(string));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -76,6 +77,50 @@ public class ItemBlasterHeavy extends Item
 		{
 			par3List.add(new ItemStack(this, 1, x));
 		}
+	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack par1ItemStack)
+	{
+		int metadata = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15);
+		return "item" + "." + StarWarsMod.MODID + "." + name + "." + versions[metadata];
+	}
+
+	private int indexOfMeta(String needle)
+	{
+		return Arrays.asList(versions).indexOf(needle);
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
+	{
+		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
+		{
+			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		}
+
+		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
+		{
+			par2World.spawnEntityInWorld(new EntityBlasterHeavyBolt(par2World, entityPlayer));
+			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
+
+			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
+			}
+		}
+
+		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
+
+		return par1ItemStack;
+	}
+
+	@Override
+	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
+	{
+		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
 	}
 
 	@Override
@@ -110,60 +155,15 @@ public class ItemBlasterHeavy extends Item
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		if (KeyboardUtils.isShiftDown())
+		icons = new IIcon[versions.length];
+
+		for (int i = 0; i < icons.length; i++)
 		{
-			list.add(TextUtils.makeItalic("The blaster rifle was the staple"));
-			list.add(TextUtils.makeItalic("infantry weapon since before the"));
-			list.add(TextUtils.makeItalic("formation of the Galactic Republic"));
+			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + versions[i]);
 		}
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
-		{
-			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
-		}
-	}
-
-	@Override
-	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
-	{
-		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
-	{
-		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
-		{
-			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-		}
-
-		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
-		{
-			par2World.spawnEntityInWorld(new EntityBlasterHeavyBolt(par2World, entityPlayer));
-			par1ItemStack.stackTagCompound.setInteger("timeout", timeToRecharge);
-
-			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
-			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
-			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
-				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
-			}
-		}
-
-		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
-
-		return par1ItemStack;
-	}
-
-	private int indexOfMeta(String needle)
-	{
-		return Arrays.asList(this.versions).indexOf(needle);
-	}
-
-	public ItemStack getMeta(String string)
-	{
-		return new ItemStack(StarWarsMod.blasterHeavy, 1, this.indexOfMeta(string));
 	}
 }

@@ -21,56 +21,42 @@ public class TileEntityMV extends TileEntity implements IInventory
 
 	public TileEntityMV()
 	{
-		this.frame = 0;
-		this.progressTicks = 1;
-		this.totalTicks = 600;
-		this.waterDroplets = null;
+		frame = 0;
+		progressTicks = 1;
+		totalTicks = 600;
+		waterDroplets = null;
 	}
 
 	@Override
-	public void updateEntity()
+	public void closeInventory()
 	{
-		// if (++this.frame > 180) this.frame = 0;
+	}
 
-		if (this.progressTicks < this.totalTicks)
+	@Override
+	public ItemStack decrStackSize(int slot, int decrement)
+	{
+		if (waterDroplets == null)
 		{
-			this.progressTicks++;
+			return null;
 		}
 		else
 		{
-			this.progressTicks = 1;
-			if (this.waterDroplets == null)
+			if (decrement < waterDroplets.stackSize)
 			{
-				this.waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
+				ItemStack take = waterDroplets.splitStack(decrement);
+				if (waterDroplets.stackSize <= 0)
+				{
+					waterDroplets = null;
+				}
+				return take;
 			}
 			else
 			{
-				if (this.waterDroplets.stackSize < 64)
-				{
-					this.waterDroplets.stackSize++;
-				}
+				ItemStack take = waterDroplets;
+				waterDroplets = null;
+				return take;
 			}
-			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
-	}
-
-	public int getFacing()
-	{
-		return facing;
-	}
-
-	public void setFacing(int dir)
-	{
-		facing = dir;
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound tag)
-	{
-		this.waterDroplets = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("droplets"));
-		this.progressTicks = tag.getInteger("progress");
-		this.facing = tag.getShort("facing");
-		super.readFromNBT(tag);
 	}
 
 	@Override
@@ -81,25 +67,21 @@ public class TileEntityMV extends TileEntity implements IInventory
 		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -999, tag);
 	}
 
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	public int getFacing()
 	{
-		super.onDataPacket(net, packet);
-		readFromNBT(packet.func_148857_g());
+		return facing;
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tag)
+	public String getInventoryName()
 	{
-		tag.setInteger("progress", this.progressTicks);
-		tag.setShort("facing", (short)this.facing);
-		if (this.waterDroplets != null)
-		{
-			NBTTagCompound produce = new NBTTagCompound();
-			produce = this.waterDroplets.writeToNBT(produce);
-			tag.setTag("droplets", produce);
-		}
-		super.writeToNBT(tag);
+		return "Moisture Vaporator";
+	}
+
+	@Override
+	public int getInventoryStackLimit()
+	{
+		return 64;
 	}
 
 	@Override
@@ -115,46 +97,12 @@ public class TileEntityMV extends TileEntity implements IInventory
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int decrement)
-	{
-		if (waterDroplets == null)
-			return null;
-		else
-		{
-			if (decrement < waterDroplets.stackSize)
-			{
-				ItemStack take = waterDroplets.splitStack(decrement);
-				if (waterDroplets.stackSize <= 0) waterDroplets = null;
-				return take;
-			}
-			else
-			{
-				ItemStack take = waterDroplets;
-				waterDroplets = null;
-				return take;
-			}
-		}
-	}
-
-	@Override
 	public ItemStack getStackInSlotOnClosing(int p_70304_1_)
 	{
-		if (waterDroplets == null) return null;
+		if (waterDroplets == null) { return null; }
 		ItemStack take = waterDroplets;
 		waterDroplets = null;
 		return take;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack)
-	{
-		waterDroplets = stack;
-	}
-
-	@Override
-	public String getInventoryName()
-	{
-		return "Moisture Vaporator";
 	}
 
 	@Override
@@ -164,15 +112,22 @@ public class TileEntityMV extends TileEntity implements IInventory
 	}
 
 	@Override
-	public int getInventoryStackLimit()
+	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
 	{
-		return 64;
+		return false;
 	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		super.onDataPacket(net, packet);
+		readFromNBT(packet.func_148857_g());
 	}
 
 	@Override
@@ -181,13 +136,63 @@ public class TileEntityMV extends TileEntity implements IInventory
 	}
 
 	@Override
-	public void closeInventory()
+	public void readFromNBT(NBTTagCompound tag)
 	{
+		waterDroplets = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("droplets"));
+		progressTicks = tag.getInteger("progress");
+		facing = tag.getShort("facing");
+		super.readFromNBT(tag);
+	}
+
+	public void setFacing(int dir)
+	{
+		facing = dir;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
+	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
-		return false;
+		waterDroplets = stack;
+	}
+
+	@Override
+	public void updateEntity()
+	{
+		// if (++this.frame > 180) this.frame = 0;
+
+		if (progressTicks < totalTicks)
+		{
+			progressTicks++;
+		}
+		else
+		{
+			progressTicks = 1;
+			if (waterDroplets == null)
+			{
+				waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
+			}
+			else
+			{
+				if (waterDroplets.stackSize < 64)
+				{
+					waterDroplets.stackSize++;
+				}
+			}
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		tag.setInteger("progress", progressTicks);
+		tag.setShort("facing", (short)facing);
+		if (waterDroplets != null)
+		{
+			NBTTagCompound produce = new NBTTagCompound();
+			produce = waterDroplets.writeToNBT(produce);
+			tag.setTag("droplets", produce);
+		}
+		super.writeToNBT(tag);
 	}
 }

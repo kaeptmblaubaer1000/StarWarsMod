@@ -20,18 +20,6 @@ public class RenderDSTurret extends RenderLiving
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity)
-	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/dsTurret.png");
-	}
-
-	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f)
-	{
-		GL11.glScalef(4F, 4F, 4F);
-	}
-
-	@Override
 	public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
 	{
 		WeaponDSTurret turret = (WeaponDSTurret)p_76986_1_;
@@ -42,5 +30,17 @@ public class RenderDSTurret extends RenderLiving
 		turret.setPositionAndRotation(turret.posX, turret.posY, turret.posZ, turret.rotationYaw, turret.pitch);
 
 		super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+	}
+
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity)
+	{
+		return new ResourceLocation(StarWarsMod.MODID, "textures/models/dsTurret.png");
+	}
+
+	@Override
+	protected void preRenderCallback(EntityLivingBase entity, float f)
+	{
+		GL11.glScalef(4F, 4F, 4F);
 	}
 }

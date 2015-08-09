@@ -14,8 +14,32 @@ public class CommandFlySpeed implements ICommand
 
 	public CommandFlySpeed()
 	{
-		this.aliases = new ArrayList();
-		this.aliases.add("flyspd");
+		aliases = new ArrayList();
+		aliases.add("flyspd");
+	}
+
+	@Override
+	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
+	{
+		return null;
+	}
+
+	@Override
+	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
+	{
+		return true;
+	}
+
+	@Override
+	public int compareTo(Object o)
+	{
+		return 0;
+	}
+
+	@Override
+	public List getCommandAliases()
+	{
+		return aliases;
 	}
 
 	@Override
@@ -31,9 +55,9 @@ public class CommandFlySpeed implements ICommand
 	}
 
 	@Override
-	public List getCommandAliases()
+	public boolean isUsernameIndex(String[] astring, int i)
 	{
-		return this.aliases;
+		return false;
 	}
 
 	@Override
@@ -49,29 +73,5 @@ public class CommandFlySpeed implements ICommand
 		Minecraft.getMinecraft().thePlayer.capabilities.setFlySpeed(Float.parseFloat(astring[0]));
 		icommandsender.addChatMessage(new ChatComponentText("Changed flight speed from " + oldspd + " to " + astring[0] + "."));
 
-	}
-
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
-	{
-		return true;
-	}
-
-	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
-	{
-		return null;
-	}
-
-	@Override
-	public boolean isUsernameIndex(String[] astring, int i)
-	{
-		return false;
-	}
-
-	@Override
-	public int compareTo(Object o)
-	{
-		return 0;
 	}
 }

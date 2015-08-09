@@ -25,41 +25,7 @@ public class GuiCreditsOverlay extends Gui
 	public GuiCreditsOverlay(Minecraft mc)
 	{
 		this.mc = mc;
-		this.r = RenderItem.getInstance();
-	}
-
-	@SubscribeEvent
-	public void onRender(RenderGameOverlayEvent event)
-	{
-		if (event.isCancelable() || event.type != ElementType.HOTBAR) { return; }
-
-		int xPos = 2;
-		int yPos = 2;
-
-		int xSize = 64;
-		int ySize = 32;
-
-		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		RenderHelper.enableGUIStandardItemLighting();
-
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
-
-		this.drawString(mc.fontRenderer, String.valueOf(countCredits()), 17, 7, 0xFFFFFF);
-
-		r.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), new ItemStack(StarWarsMod.imperialCredit), 2, 2, true);
-
-		GL11.glEnable(GL11.GL_ALPHA_TEST);
-		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-
-		r.renderWithColor = true;
-
-		GL11.glDisable(GL11.GL_BLEND);
-
-		GL11.glPopMatrix();
+		r = RenderItem.getInstance();
 	}
 
 	public int countCredits()
@@ -73,5 +39,33 @@ public class GuiCreditsOverlay extends Gui
 			}
 		}
 		return credits;
+	}
+
+	@SubscribeEvent
+	public void onRender(RenderGameOverlayEvent event)
+	{
+		if (event.isCancelable() || event.type != ElementType.HOTBAR) { return; }
+
+		GL11.glPushMatrix();
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		RenderHelper.enableGUIStandardItemLighting();
+
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+
+		drawString(mc.fontRenderer, String.valueOf(countCredits()), 17, 7, 0xFFFFFF);
+
+		r.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), new ItemStack(StarWarsMod.imperialCredit), 2, 2, true);
+
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+
+		r.renderWithColor = true;
+
+		GL11.glDisable(GL11.GL_BLEND);
+
+		GL11.glPopMatrix();
 	}
 }

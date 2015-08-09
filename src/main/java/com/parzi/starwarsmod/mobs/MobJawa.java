@@ -31,93 +31,22 @@ public class MobJawa extends EntityMob implements IMob
 	public MobJawa(World par1World)
 	{
 		super(par1World);
-		this.setSize(0.5F, 1.5F);
-		this.tasks.addTask(0, new EntityAISwimming(this));
+		setSize(0.5F, 1.5F);
+		tasks.addTask(0, new EntityAISwimming(this));
 		// this.tasks.addTask(2, new EntityAIAttackOnCollide(this,
 		// EntityPlayer.class, 1.0D, false));
-		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
-	}
-
-	@Override
-	protected boolean isValidLightLevel()
-	{
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.boundingBox.minY);
-		int k = MathHelper.floor_double(this.posZ);
-
-		return (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11);
+		tasks.addTask(3, new EntityAIWander(this, 1.0D));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		tasks.addTask(4, new EntityAILookIdle(this));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
-	}
-
-	@Override
-	protected String getLivingSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.jawa.say";
-	}
-
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.jawa.hit";
-	}
-
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
-	@Override
-	protected String getDeathSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.jawa.die";
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		List<WeightedLoot> drop = new ArrayList<WeightedLoot>();
-
-		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.hiltMetelCompound, 1), LootGenUtils.baseRarity));
-		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.droidCaller, 1), LootGenUtils.baseRarity / 1.2F));
-		drop.add(new WeightedLoot(StarWarsMod.blasterRifle.getMeta("Ionization"), LootGenUtils.baseRarity / 2F));
-
-		switch (this.rand.nextInt(5))
-		{
-			case 0:
-				this.entityDropItem(LootGenUtils.getWeightedItemFromList(drop, this.rand), 0F);
-				break;
-		}
-	}
-
-	@Override
-	protected Entity findPlayerToAttack()
-	{
-		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		this.angryAt = this.entityToAttack;
-
-		super.onUpdate();
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
@@ -127,7 +56,7 @@ public class MobJawa extends EntityMob implements IMob
 
 		if (entity instanceof EntityPlayer)
 		{
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 
 			for (int i = 0; i < list.size(); ++i)
 			{
@@ -140,7 +69,7 @@ public class MobJawa extends EntityMob implements IMob
 				}
 			}
 
-			this.becomeAngryAt(entity);
+			becomeAngryAt(entity);
 		}
 
 		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
@@ -148,7 +77,78 @@ public class MobJawa extends EntityMob implements IMob
 
 	private void becomeAngryAt(Entity p_70835_1_)
 	{
-		this.entityToAttack = p_70835_1_;
-		this.angerLevel = 400 + this.rand.nextInt(400);
+		entityToAttack = p_70835_1_;
+		angerLevel = 400 + rand.nextInt(400);
+	}
+
+	@Override
+	public void dropFewItems(boolean par1, int par2)
+	{
+		List<WeightedLoot> drop = new ArrayList<WeightedLoot>();
+
+		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.hiltMetelCompound, 1), LootGenUtils.baseRarity));
+		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.droidCaller, 1), LootGenUtils.baseRarity / 1.2F));
+		drop.add(new WeightedLoot(StarWarsMod.blasterRifle.getMeta("Ionization"), LootGenUtils.baseRarity / 2F));
+
+		switch (rand.nextInt(5))
+		{
+			case 0:
+				entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0F);
+				break;
+		}
+	}
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return angerLevel == 0 ? null : super.findPlayerToAttack();
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return worldObj.difficultySetting != EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(20) == 0;
+	}
+
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.jawa.die";
+	}
+
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.jawa.hit";
+	}
+
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.jawa.say";
+	}
+
+	@Override
+	protected boolean isValidLightLevel()
+	{
+		int i = MathHelper.floor_double(posX);
+		int j = MathHelper.floor_double(boundingBox.minY);
+		int k = MathHelper.floor_double(posZ);
+
+		return worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11;
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		angryAt = entityToAttack;
+
+		super.onUpdate();
 	}
 }

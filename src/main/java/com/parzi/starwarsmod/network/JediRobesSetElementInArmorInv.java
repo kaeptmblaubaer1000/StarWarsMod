@@ -12,7 +12,26 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class JediRobesSetElementInArmorInv implements IMessage
 {
 
+	public static class Handler implements IMessageHandler<JediRobesSetElementInArmorInv, IMessage>
+	{
+
+		@Override
+		public IMessage onMessage(JediRobesSetElementInArmorInv message, MessageContext ctx)
+		{
+			try
+			{
+				ctx.getServerHandler().playerEntity.inventory.armorInventory[2].stackTagCompound.setInteger(message.element, message.amt);
+			}
+			catch (Exception e)
+			{
+				Lumberjack.warn("Unable to add element " + message.element + " (amount " + String.valueOf(message.amt) + ")");
+			}
+			return null; // no response in this case
+		}
+	}
+
 	private String element;
+
 	private int amt;
 
 	public JediRobesSetElementInArmorInv()
@@ -37,23 +56,5 @@ public class JediRobesSetElementInArmorInv implements IMessage
 	{
 		ByteBufUtils.writeUTF8String(buf, element);
 		ByteBufUtils.writeVarInt(buf, amt, 5);
-	}
-
-	public static class Handler implements IMessageHandler<JediRobesSetElementInArmorInv, IMessage>
-	{
-
-		@Override
-		public IMessage onMessage(JediRobesSetElementInArmorInv message, MessageContext ctx)
-		{
-			try
-			{
-				ctx.getServerHandler().playerEntity.inventory.armorInventory[2].stackTagCompound.setInteger(message.element, message.amt);
-			}
-			catch (Exception e)
-			{
-				Lumberjack.warn("Unable to add element " + message.element + " (amount " + String.valueOf(message.amt) + ")");
-			}
-			return null; // no response in this case
-		}
 	}
 }

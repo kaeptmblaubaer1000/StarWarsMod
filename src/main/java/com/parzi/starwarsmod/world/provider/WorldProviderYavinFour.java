@@ -16,52 +16,61 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class WorldProviderYavinFour extends WorldProvider
 {
 
-	public void registerWorldChunkManager()
+	@Override
+	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
-		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeYavin4, 0);
-		this.dimensionId = StarWarsMod.dimYavin4Id;
+		return false;
 	}
 
+	@Override
+	public boolean canRespawnHere()
+	{
+		return false;
+	}
+
+	@Override
+	public IChunkProvider createChunkGenerator()
+	{
+		IChunkProvider generator = new ChunkProviderGenerate(worldObj, worldObj.getSeed(), false);
+		return generator;
+	}
+
+	@Override
+	public int getAverageGroundLevel()
+	{
+		return 40;
+	}
+
+	@Override
+	public String getDimensionName()
+	{
+		return "Yavin 4";
+	}
+
+	@Override
+	public ChunkCoordinates getEntrancePortalLocation()
+	{
+		return null;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IRenderHandler getSkyRenderer()
 	{
 		return new DrawYavinFourSky();
 	}
 
-	public IChunkProvider createChunkGenerator()
-	{
-		IChunkProvider generator = new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), false);
-		return generator;
-	}
-
-	public int getAverageGroundLevel()
-	{
-		return 40;
-	}
-
-	public String getDimensionName()
-	{
-		return "Yavin 4";
-	}
-
-	public boolean canRespawnHere()
-	{
-		return false;
-	}
-
+	@Override
 	public boolean isSurfaceWorld()
 	{
 		return true;
 	}
 
-	public boolean canCoordinateBeSpawn(int par1, int par2)
+	@Override
+	public void registerWorldChunkManager()
 	{
-		return false;
-	}
-
-	public ChunkCoordinates getEntrancePortalLocation()
-	{
-		return null;
+		worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeYavin4, 0);
+		dimensionId = StarWarsMod.dimYavin4Id;
 	}
 
 }

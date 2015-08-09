@@ -9,9 +9,23 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class JediRobesBuy implements IMessage
 {
 
+	public static class Handler implements IMessageHandler<JediRobesBuy, IMessage>
+	{
+
+		@Override
+		public IMessage onMessage(JediRobesBuy message, MessageContext ctx)
+		{
+			ctx.getServerHandler().playerEntity.inventory.mainInventory[ctx.getServerHandler().playerEntity.inventory.currentItem].stackTagCompound.setInteger(message.element, message.amt);
+
+			ctx.getServerHandler().playerEntity.inventory.mainInventory[ctx.getServerHandler().playerEntity.inventory.currentItem].stackTagCompound.setInteger(message.power, message.level);
+			return null; // no response in this case
+		}
+	}
+
 	private String power;
 	private String element;
 	private int level;
+
 	private int amt;
 
 	public JediRobesBuy()
@@ -42,18 +56,5 @@ public class JediRobesBuy implements IMessage
 		ByteBufUtils.writeUTF8String(buf, element);
 		ByteBufUtils.writeVarInt(buf, level, 5);
 		ByteBufUtils.writeVarInt(buf, amt, 5);
-	}
-
-	public static class Handler implements IMessageHandler<JediRobesBuy, IMessage>
-	{
-
-		@Override
-		public IMessage onMessage(JediRobesBuy message, MessageContext ctx)
-		{
-			ctx.getServerHandler().playerEntity.inventory.mainInventory[ctx.getServerHandler().playerEntity.inventory.currentItem].stackTagCompound.setInteger(message.element, message.amt);
-
-			ctx.getServerHandler().playerEntity.inventory.mainInventory[ctx.getServerHandler().playerEntity.inventory.currentItem].stackTagCompound.setInteger(message.power, message.level);
-			return null; // no response in this case
-		}
 	}
 }

@@ -26,12 +26,6 @@ public class RenderLightsaber implements IItemRenderer
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-	{
-		return true;
-	}
-
-	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		GL11.glPushMatrix();
@@ -56,5 +50,11 @@ public class RenderLightsaber implements IItemRenderer
 		model.render(null, 0, 0, 0, 0, 0, 0.625F);
 
 		GL11.glPopMatrix();
+	}
+
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+	{
+		return true;
 	}
 }

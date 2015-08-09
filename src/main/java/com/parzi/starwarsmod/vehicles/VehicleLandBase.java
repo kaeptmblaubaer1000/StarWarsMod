@@ -20,8 +20,8 @@ public class VehicleLandBase extends EntityLiving
 	public VehicleLandBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
-		this.setSize(0.9F, 0.9F);
-		this.isImmuneToFire = true;
+		setSize(0.9F, 0.9F);
+		isImmuneToFire = true;
 	}
 
 	@Override
@@ -37,29 +37,14 @@ public class VehicleLandBase extends EntityLiving
 	}
 
 	@Override
-	protected boolean isAIEnabled()
+	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
-		return true;
+		playSound(StarWarsMod.MODID + ":" + getMovingSound(), 0.15F, 1.0F);
 	}
 
 	public String getMovingSound()
 	{
 		return "vehicle.default.move";
-	}
-
-	@Override
-	public void updateRiderPosition()
-	{
-		if (this.riddenByEntity != null)
-		{
-			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + this.vehicYOffset, this.posZ + this.vehicZOffset);
-		}
-	}
-
-	@Override
-	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
-	{
-		this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
 	}
 
 	/**
@@ -69,7 +54,7 @@ public class VehicleLandBase extends EntityLiving
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == p_70085_1_))
+		if (!worldObj.isRemote && (riddenByEntity == null || riddenByEntity == p_70085_1_))
 		{
 			p_70085_1_.mountEntity(this);
 			return true;
@@ -81,41 +66,56 @@ public class VehicleLandBase extends EntityLiving
 	}
 
 	@Override
-	public void onUpdate()
+	protected boolean isAIEnabled()
 	{
-		super.onUpdate();
-
-		this.moveEntityWithHeading(0, 0);
+		return true;
 	}
 
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
 	{
-		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
+		if (riddenByEntity != null && riddenByEntity instanceof EntityLivingBase)
 		{
-			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
-			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
-			this.setRotation(this.rotationYaw, this.rotationPitch);
-			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
-			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (moveModifier / 8);
+			prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
+			rotationPitch = riddenByEntity.rotationPitch * 0.5F;
+			setRotation(rotationYaw, rotationPitch);
+			rotationYawHead = renderYawOffset = rotationYaw;
+			p_70612_1_ = ((EntityLivingBase)riddenByEntity).moveStrafing * 0.5F;
+			p_70612_2_ = ((EntityLivingBase)riddenByEntity).moveForward * (moveModifier / 8);
 
-			if (this.onGround)
+			if (onGround)
 			{
-				float f2 = MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F);
-				float f3 = MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F);
-				this.motionX += (double)(-0.4F * f2 * p_70612_2_);
-				this.motionZ += (double)(0.4F * f3 * p_70612_2_);
+				float f2 = MathHelper.sin(rotationYaw * (float)Math.PI / 180.0F);
+				float f3 = MathHelper.cos(rotationYaw * (float)Math.PI / 180.0F);
+				motionX += -0.4F * f2 * p_70612_2_;
+				motionZ += 0.4F * f3 * p_70612_2_;
 			}
 
-			this.stepHeight = 1.0F;
-			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
+			stepHeight = 1.0F;
+			jumpMovementFactor = getAIMoveSpeed() * 0.1F;
 
-			if (!this.worldObj.isRemote)
+			if (!worldObj.isRemote)
 			{
-				this.setAIMoveSpeed(p_70612_2_);
+				setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 			}
+		}
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		moveEntityWithHeading(0, 0);
+	}
+
+	@Override
+	public void updateRiderPosition()
+	{
+		if (riddenByEntity != null)
+		{
+			riddenByEntity.setPosition(posX + vehicXOffset, posY + getMountedYOffset() + riddenByEntity.getYOffset() + vehicYOffset, posZ + vehicZOffset);
 		}
 	}
 }

@@ -20,22 +20,35 @@ public class BiomeYavinFour extends BiomeGenBase
 	public BiomeYavinFour(int par1)
 	{
 		super(par1);
-		this.heightVariation = 0.25F;
+		heightVariation = 0.25F;
 
-		this.enableRain = true;
-		this.enableSnow = false;
+		enableRain = true;
+		enableSnow = false;
 
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
+		spawnableMonsterList.clear();
+		spawnableCreatureList.clear();
+		spawnableCaveCreatureList.clear();
+		spawnableWaterCreatureList.clear();
 
-		this.setBiomeName("Yavin 4");
+		setBiomeName("Yavin 4");
 
-		this.topBlock = Blocks.grass;
-		this.fillerBlock = Blocks.stone;
+		topBlock = Blocks.grass;
+		fillerBlock = Blocks.stone;
 
-		this.theBiomeDecorator.treesPerChunk = 4;
+		theBiomeDecorator.treesPerChunk = 4;
+	}
+
+	@Override
+	public void decorate(World par1World, Random par2Random, int par3, int par4)
+	{
+		super.decorate(par1World, par2Random, par3, par4);
+
+		if (par2Random.nextInt(2) == 0)
+		{
+			int k = par3 + par2Random.nextInt(16) + 8;
+			int l = par4 + par2Random.nextInt(16) + 8;
+			new WorldGenYavinTempleRuins().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+		}
 	}
 
 	@Override
@@ -57,18 +70,5 @@ public class BiomeYavinFour extends BiomeGenBase
 				return new WorldGenTrees(false);
 		}
 		return new WorldGenTrees(false);
-	}
-
-	@Override
-	public void decorate(World par1World, Random par2Random, int par3, int par4)
-	{
-		super.decorate(par1World, par2Random, par3, par4);
-
-		if (par2Random.nextInt(2) == 0)
-		{
-			int k = par3 + par2Random.nextInt(16) + 8;
-			int l = par4 + par2Random.nextInt(16) + 8;
-			new WorldGenYavinTempleRuins().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-		}
 	}
 }

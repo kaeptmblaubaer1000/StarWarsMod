@@ -12,15 +12,14 @@ public class EntityUtils
 {
 	private static int mobId = 300;
 
-	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
+	public static String getDroidSittingMessage(boolean isSitting)
 	{
-		while (EntityList.getStringFromID(mobId) != null)
-		{
-			mobId++;
-		}
-		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 3, true);
-		EntityList.IDtoClassMapping.put(mobId, mobClass);
-		EntityList.entityEggs.put(mobId, new EntityEggInfo(mobId, bgColor, fgColor));
+		return isSitting ? "Staying" : "Following";
+	}
+
+	public static int getLastUsedId()
+	{
+		return mobId;
 	}
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String entityName)
@@ -33,13 +32,14 @@ public class EntityUtils
 		EntityList.IDtoClassMapping.put(mobId, entityClass);
 	}
 
-	public static int getLastUsedId()
+	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
 	{
-		return mobId;
-	}
-
-	public static String getDroidSittingMessage(boolean isSitting)
-	{
-		return ((isSitting) ? "Staying" : "Following");
+		while (EntityList.getStringFromID(mobId) != null)
+		{
+			mobId++;
+		}
+		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 3, true);
+		EntityList.IDtoClassMapping.put(mobId, mobClass);
+		EntityList.entityEggs.put(mobId, new EntityEggInfo(mobId, bgColor, fgColor));
 	}
 }
