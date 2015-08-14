@@ -153,7 +153,7 @@ public class MobTusken extends EntityMob implements IMob
 		int j = MathHelper.floor_double(boundingBox.minY);
 		int k = MathHelper.floor_double(posZ);
 
-		return worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11;
+		return worldObj.getLightBrightness(i, j, k) < 10;
 	}
 
 	@Override

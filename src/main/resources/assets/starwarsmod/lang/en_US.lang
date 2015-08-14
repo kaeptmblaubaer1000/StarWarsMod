@@ -107,6 +107,11 @@ item.starwarsmod.rebelPilotChestplate.name=Rebel Pilot Chestplate
 item.starwarsmod.rebelPilotLeggings.name=Rebel Pilot Pants
 item.starwarsmod.rebelPilotBoots.name=Rebel Pilot Boots
 
+item.starwarsmod.atatPilotHelmet.name=AT-AT Pilot Helmet
+item.starwarsmod.atatPilotChestplate.name=AT-AT Pilot Chestplate
+item.starwarsmod.atatPilotLeggings.name=AT-AT Pilot Pants
+item.starwarsmod.atatPilotBoots.name=AT-AT Pilot Boots
+
 item.starwarsmod.tiePilotHelmet.name=TIE Pilot Helmet
 item.starwarsmod.tiePilotChestplate.name=TIE Pilot Chestplate
 item.starwarsmod.tiePilotLeggings.name=TIE Pilot Pants

@@ -55,7 +55,7 @@ public class StarWarsMod
 {
 	/* Mod Details */
 	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "1.0.0";
+	public static final String VERSION = "0.1.0";
 	public static Configuration config;
 
 	/* Beta Testing */
@@ -173,6 +173,11 @@ public class StarWarsMod
 	public static Item tiePilotLegs;
 	public static Item tiePilotBoots;
 
+	public static Item atatPilotHelmet;
+	public static Item atatPilotChest;
+	public static Item atatPilotLegs;
+	public static Item atatPilotBoots;
+
 	public static Item hothHelmet;
 	public static Item hothChest;
 	public static Item hothLegs;
@@ -227,6 +232,7 @@ public class StarWarsMod
 	public static ArmorMaterial snowtrooperArmorMat;
 	public static ArmorMaterial scoutTrooperArmorMat;
 	public static ArmorMaterial tiePilotArmorMat;
+	public static ArmorMaterial atatPilotArmorMat;
 	public static ArmorMaterial hothArmorMat;
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;

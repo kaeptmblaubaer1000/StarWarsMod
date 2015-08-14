@@ -137,11 +137,7 @@ public class MobJawa extends EntityMob implements IMob
 	@Override
 	protected boolean isValidLightLevel()
 	{
-		int i = MathHelper.floor_double(posX);
-		int j = MathHelper.floor_double(boundingBox.minY);
-		int k = MathHelper.floor_double(posZ);
-
-		return worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11;
+		return true;
 	}
 
 	@Override

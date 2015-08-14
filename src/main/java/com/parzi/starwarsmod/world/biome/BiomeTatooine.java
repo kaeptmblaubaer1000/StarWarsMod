@@ -6,6 +6,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.mobs.MobBantha;
+import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
@@ -20,6 +22,7 @@ import com.parzi.starwarsmod.world.gen.moseisley.MosEisleyLeft5;
 public class BiomeTatooine extends BiomeGenBase
 {
 	private BiomeDecoratorTatooine biomeDecorator;
+	private int mosY;
 
 	public BiomeTatooine(int par1)
 	{
@@ -30,9 +33,6 @@ public class BiomeTatooine extends BiomeGenBase
 		enableSnow = false;
 
 		spawnableMonsterList.clear();
-		spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobJawa.class, 75, 1, 5));
-		spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(MobTusken.class, 35, 2, 3));
-
 		spawnableCreatureList.clear();
 		spawnableCaveCreatureList.clear();
 		spawnableWaterCreatureList.clear();
@@ -52,23 +52,24 @@ public class BiomeTatooine extends BiomeGenBase
 
 		if (chunkX == 0 && chunkZ == 0)
 		{
-			new MosEisleyLeft1().generate(par1World, par2Random, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			this.mosY = par1World.getHeightValue(chunkX, chunkZ);
+			new MosEisleyLeft1().generate(par1World, par2Random, chunkX, mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 16)
 		{
-			new MosEisleyLeft2().generate(par1World, par2Random, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			new MosEisleyLeft2().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 32)
 		{
-			new MosEisleyLeft3().generate(par1World, par2Random, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			new MosEisleyLeft3().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 48)
 		{
-			new MosEisleyLeft4().generate(par1World, par2Random, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			new MosEisleyLeft4().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 64)
 		{
-			new MosEisleyLeft5().generate(par1World, par2Random, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			new MosEisleyLeft5().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		}
 
 		if (par2Random.nextInt(400) == 0)

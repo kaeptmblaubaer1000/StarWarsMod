@@ -1,5 +1,8 @@
 package com.parzi.starwarsmod.registry;
 
+import net.minecraft.entity.EnumCreatureType;
+
+import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
@@ -22,6 +25,8 @@ import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityRegister
 {
@@ -51,6 +56,12 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
+
+		EntityRegistry.addSpawn(MobGamorrean.class, 10, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
+		EntityRegistry.addSpawn(MobJawa.class, 30, 1, 5, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
+		EntityRegistry.addSpawn(MobTusken.class, 22, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
+		EntityRegistry.addSpawn(MobBantha.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
+		EntityRegistry.addSpawn(MobDewback.class, 10, 1, 2, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
 
 		Lumberjack.info("Entities, reporting for duty!");
 	}
