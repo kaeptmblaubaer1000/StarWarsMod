@@ -31,6 +31,24 @@
             "mob/ewok/die1"
         ]
     },
+    "mob.gamor.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/gamor/say"
+        ]
+    },
+    "mob.gamor.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/gamor/hit"
+        ]
+    },
+    "mob.gamor.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/gamor/die"
+        ]
+    },
     "mob.wookiee.say": {
         "category": "neutral",
         "sounds": [
@@ -42,6 +60,24 @@
         "category": "neutral",
         "sounds": [
             "mob/wookiee/hit1"
+        ]
+    },
+    "mob.dewback.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/dewback/say"
+        ]
+    },
+    "mob.dewback.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/dewback/hit"
+        ]
+    },
+    "mob.dewback.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/dewback/die"
         ]
     },
     "mob.bantha.say": {

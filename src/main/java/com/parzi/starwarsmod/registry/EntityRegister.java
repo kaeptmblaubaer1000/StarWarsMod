@@ -63,6 +63,13 @@ public class EntityRegister
 		EntityRegistry.addSpawn(MobBantha.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobDewback.class, 10, 1, 2, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
 
+		EntityRegistry.addSpawn(MobEwok.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeEndor, StarWarsMod.biomeEndorPlains);
+
+		EntityRegistry.addSpawn(MobTauntaun.class, 6, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeHoth);
+		EntityRegistry.addSpawn(MobWampa.class, 3, 1, 1, EnumCreatureType.monster, StarWarsMod.biomeHoth);
+
+		EntityRegistry.addSpawn(MobWookiee.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeKashyyyk);
+
 		Lumberjack.info("Entities, reporting for duty!");
 	}
 }

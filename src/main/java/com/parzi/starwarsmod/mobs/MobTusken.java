@@ -47,9 +47,9 @@ public class MobTusken extends EntityMob implements IMob
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		tasks.addTask(8, new EntityAILookIdle(this));
 		targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 10, true));
-		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityVillager.class, 8, false));
-		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityZombie.class, 6, false));
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, false));
 
 		switch (rand.nextInt(3))
 		{
@@ -65,7 +65,6 @@ public class MobTusken extends EntityMob implements IMob
 	@Override
 	protected void applyEntityAttributes()
 	{
-		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);

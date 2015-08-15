@@ -22,7 +22,6 @@ public class BiomeHoth extends BiomeGenBase
 
 		spawnableMonsterList.clear();
 		spawnableCreatureList.clear();
-		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobTauntaun.class, 6, 1, 1));
 		spawnableCaveCreatureList.clear();
 		spawnableWaterCreatureList.clear();
 

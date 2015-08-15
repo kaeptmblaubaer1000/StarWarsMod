@@ -30,7 +30,6 @@ public class BiomeEndor extends BiomeGenBase
 
 		spawnableMonsterList.clear();
 		spawnableCreatureList.clear();
-		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobEwok.class, 10, 1, 1));
 		spawnableCaveCreatureList.clear();
 		spawnableWaterCreatureList.clear();
 

@@ -22,7 +22,6 @@ public class BiomeKashyyyk extends BiomeGenBase
 
 		spawnableMonsterList.clear();
 		spawnableCreatureList.clear();
-		spawnableCreatureList.add(new BiomeGenBase.SpawnListEntry(MobWookiee.class, 10, 1, 1));
 		spawnableCaveCreatureList.clear();
 		spawnableWaterCreatureList.clear();
 

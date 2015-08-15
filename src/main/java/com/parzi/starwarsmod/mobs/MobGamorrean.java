@@ -105,7 +105,7 @@ public class MobGamorrean extends EntityMob implements IMob
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gamorrean.die";
+		return StarWarsMod.MODID + ":" + "mob.gamor.die";
 	}
 
 	/**
@@ -114,13 +114,13 @@ public class MobGamorrean extends EntityMob implements IMob
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gamorrean.hit";
+		return StarWarsMod.MODID + ":" + "mob.gamor.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gamorrean.say";
+		return StarWarsMod.MODID + ":" + "mob.gamor.say";
 	}
 
 	@Override
