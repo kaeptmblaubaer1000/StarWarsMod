@@ -25,6 +25,7 @@ import com.parzi.starwarsmod.items.weapons.ItemEwokSpear;
 import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
+import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesBuy;
@@ -60,7 +61,7 @@ public class StarWarsMod
 
 	/* Beta Testing */
 	public static boolean isBetaTesting = false;
-	public static String betaTesterUsername = "";
+	public static String betaTesterUsername = "Cly_Faker";
 
 	public static Random rngChromium = new Random();
 	public static Random rngTitanium = new Random();
@@ -84,6 +85,7 @@ public class StarWarsMod
 	/* Items */
 	public static ItemGaffiStick gaffiStick;
 	public static ItemLightsaber lightsaber;
+	public static ItemLightsaberOff lightsaberOff;
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
 	public static ItemBlasterHeavy blasterHeavy;
@@ -223,6 +225,7 @@ public class StarWarsMod
 	public static ToolMaterial ewokMat;
 	public static ToolMaterial gamorreanMat;
 	public static ToolMaterial plasmaMat;
+	public static ToolMaterial plasmaMatOff;
 
 	/* Armor Materials */
 	public static ArmorMaterial jediRobesMat;

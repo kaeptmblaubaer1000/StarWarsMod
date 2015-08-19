@@ -15,7 +15,9 @@
         "category": "neutral",
         "sounds": [
             "mob/ewok/say1",
-            "mob/ewok/say2"
+            "mob/ewok/say2",
+            "mob/ewok/say3",
+            "mob/ewok/say4"
         ]
     },
     "mob.ewok.hit": {
@@ -124,6 +126,12 @@
             "mob/tauntaun/die1"
         ]
     },
+    "mob.tauntaun.move": {
+        "category": "neutral",
+        "sounds": [
+            "mob/tauntaun/walk1"
+        ]
+    },
     "mob.protocol.say": {
         "category": "neutral",
         "sounds": [
@@ -176,7 +184,8 @@
     "mob.gonk.say": {
         "category": "neutral",
         "sounds": [
-            "mob/gonk/say1"
+            "mob/gonk/say1",
+            "mob/gonk/say2"
         ]
     },
     "mob.gonk.die": {
@@ -228,16 +237,40 @@
             "item/gaffi/rc1"
         ]
     },
-    "item.blasterRifle.use": {
+    "item.blasterPistol.use": {
         "category": "neutral",
         "sounds": [
             "item/blasterRifle/use1"
+        ]
+    },
+    "item.blasterRifle.use": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/stormtrooper"
         ]
     },
     "item.blasterRifle.break": {
         "category": "neutral",
         "sounds": [
             "item/blasterRifle/break"
+        ]
+    },
+    "item.blasterBow.use": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/bowcaster"
+        ]
+    },
+    "item.blasterEsb.use": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/esb"
+        ]
+    },
+    "item.blasterIon.use": {
+        "category": "neutral",
+        "sounds": [
+            "item/blasterRifle/ion"
         ]
     },
     "item.blasterCycler.use": {
@@ -249,7 +282,27 @@
     "item.lightsaber.swing": {
         "category": "neutral",
         "sounds": [
-            "item/lightsaber/swing"
+            "item/lightsaber/swing",
+            "item/lightsaber/swing1"
+        ]
+    },
+    "item.lightsaber.open": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/open"
+        ]
+    },
+    "item.lightsaber.close": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/close"
+        ]
+    },
+    "item.lightsaber.deflect": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/deflect1",
+            "item/lightsaber/deflect2"
         ]
     }
 }

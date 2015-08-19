@@ -96,7 +96,15 @@ public class ItemBlasterRifle extends Item
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 		{
-			if (par1ItemStack.getItemDamage() == 3)
+			if (par1ItemStack.getItemDamage() == 1)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterEsb.use", 1f, 0.82f);
+			}
+			else if (par1ItemStack.getItemDamage() == 2)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterIon.use", 1f, 0.82f);
+			}
+			else if (par1ItemStack.getItemDamage() == 3)
 			{
 				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1f, 0.82f);
 			}

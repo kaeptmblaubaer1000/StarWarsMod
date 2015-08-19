@@ -22,50 +22,30 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawTatooineSky extends IRenderHandler
 {
-	private ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
+	private static ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
 
-	private ResourceLocation ghomrassenTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/ghomrassen.png");
-	private Vector3 ghomrassenOffset;
-	private float ghomrassenSizeMod;
-	private ResourceLocation guermessaTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/guermessa.png");
-	private Vector3 guermessaOffset;
-	private float guermessaSizeMod;
-	private ResourceLocation cheniniTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/chenini.png");
-	private Vector3 cheniniOffset;
-	private float cheniniSizeMod;
+	private static ResourceLocation ghomrassenTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/ghomrassen.png");
+	private static Vector3 ghomrassenOffset = new Vector3(0, 0, 20);
+	private static float ghomrassenSizeMod = 0.8F;
+	private static ResourceLocation guermessaTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/guermessa.png");
+	private static Vector3 guermessaOffset = new Vector3(32, 0, 0);
+	private static float guermessaSizeMod = 1.75F;
+	private static ResourceLocation cheniniTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/chenini.png");
+	private static Vector3 cheniniOffset = new Vector3(44, 0, -4);
+	private static float cheniniSizeMod = 3F;
 
-	public int starList;
-	public int glSkyList;
-	public int glSkyList2;
-	private float sunSize;
-	private float moonSize;
+	static int starList = GLAllocation.generateDisplayLists(3);
+	static int glSkyList = starList + 1;
+	static int glSkyList2 = starList + 2;
+	private static float sunSize = 32F;
+	private static float moonSize = 32F;
 
-	private float sun2OffsetX;
-	private float sun2OffsetY;
-	private float sun2OffsetZ;
+	private static float sun2OffsetX = 60;
+	private static float sun2OffsetY = 0;
+	private static float sun2OffsetZ = -32;
 
 	public DrawTatooineSky()
 	{
-		sunSize = 32F;
-		moonSize = 32F;
-
-		sun2OffsetX = 60; // left/right
-		sun2OffsetY = 0; // z index
-		sun2OffsetZ = -32; // up/down
-
-		ghomrassenOffset = new Vector3(0, 0, 20); // big one
-		guermessaOffset = new Vector3(32, 0, 0); // middle
-		cheniniOffset = new Vector3(44, 0, -4); // small
-
-		ghomrassenSizeMod = 0.8F;
-		guermessaSizeMod = 1.75F;
-		cheniniSizeMod = 3F;
-
-		int displayLists = GLAllocation.generateDisplayLists(3);
-		starList = displayLists;
-		glSkyList = displayLists + 1;
-		glSkyList2 = displayLists + 2;
-
 		// Bind stars to display list
 		GL11.glPushMatrix();
 		GL11.glNewList(starList, GL11.GL_COMPILE);

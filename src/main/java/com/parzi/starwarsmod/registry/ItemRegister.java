@@ -51,6 +51,7 @@ import com.parzi.starwarsmod.items.weapons.ItemEwokSpear;
 import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
+import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
@@ -67,6 +68,9 @@ public class ItemRegister
 
 		StarWarsMod.lightsaber = new ItemLightsaber();
 		GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
+
+		StarWarsMod.lightsaberOff = new ItemLightsaberOff();
+		GameRegistry.registerItem(StarWarsMod.lightsaberOff, "lightsaberOff");
 
 		StarWarsMod.blasterPistol = new ItemBlasterPistol();
 		GameRegistry.registerItem(StarWarsMod.blasterPistol, "blasterPistol");

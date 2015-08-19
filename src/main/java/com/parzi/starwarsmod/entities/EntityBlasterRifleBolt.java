@@ -84,6 +84,8 @@ public class EntityBlasterRifleBolt extends EntityThrowable
 				motionY = vec3.yCoord;
 				motionZ = vec3.zCoord;
 			}
+
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.deflect", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 		}
 		return;
 	}

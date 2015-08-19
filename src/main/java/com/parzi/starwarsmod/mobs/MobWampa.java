@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.mobs;
 
+import java.util.Calendar;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -15,6 +17,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -26,17 +29,13 @@ public class MobWampa extends EntityMob implements IMob
 		super(par1World);
 		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.7D, false));
-		tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityVillager.class, 0.7D, true));
-		tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityZombie.class, 0.7D, true));
 		tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
 		tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
 		tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		tasks.addTask(8, new EntityAILookIdle(this));
 		targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 10, true));
-		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityVillager.class, 8, false));
-		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityZombie.class, 6, false));
+		targetTasks.addTask(9, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 1, true));
 		setSize(2, 3);
 	}
 
@@ -79,4 +78,37 @@ public class MobWampa extends EntityMob implements IMob
 	{
 		return StarWarsMod.MODID + ":" + "mob.wampa.say";
 	}
+
+	@Override
+    public boolean getCanSpawnHere()
+    {
+        int i = MathHelper.floor_double(this.boundingBox.minY);
+
+        if (i >= 63)
+        {
+            return false;
+        }
+        else
+        {
+            int j = MathHelper.floor_double(this.posX);
+            int k = MathHelper.floor_double(this.posZ);
+            int l = this.worldObj.getBlockLightValue(j, i, k);
+            byte b0 = 4;
+            Calendar calendar = this.worldObj.getCurrentDate();
+
+            if ((calendar.get(2) + 1 != 10 || calendar.get(5) < 20) && (calendar.get(2) + 1 != 11 || calendar.get(5) > 3))
+            {
+                if (this.rand.nextBoolean())
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                b0 = 7;
+            }
+
+            return l > this.rand.nextInt(b0) ? false : super.getCanSpawnHere();
+        }
+    }
 }

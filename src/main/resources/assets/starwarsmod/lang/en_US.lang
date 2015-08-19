@@ -1,6 +1,7 @@
 // Items
 item.starwarsmod.gaffiStick.name=Gaderffii (Gaffi Stick)
 item.starwarsmod.lightsaber.name=Lightsaber
+item.starwarsmod.lightsaberOff.name=Lightsaber
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy
 item.starwarsmod.plasmaEmitter.name=Plasma Emitter

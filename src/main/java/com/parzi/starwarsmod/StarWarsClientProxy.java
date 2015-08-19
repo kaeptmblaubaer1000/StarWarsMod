@@ -37,6 +37,7 @@ import com.parzi.starwarsmod.rendering.RenderGNK;
 import com.parzi.starwarsmod.rendering.RenderGamorrean;
 import com.parzi.starwarsmod.rendering.RenderJawa;
 import com.parzi.starwarsmod.rendering.RenderLightsaber;
+import com.parzi.starwarsmod.rendering.RenderLightsaberOff;
 import com.parzi.starwarsmod.rendering.RenderMV;
 import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
@@ -113,6 +114,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpeederBlasterRifleBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaberOff());
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.jediRobes, new FancyHaloRenderer());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightJediRobes, new FancyHaloRenderer());

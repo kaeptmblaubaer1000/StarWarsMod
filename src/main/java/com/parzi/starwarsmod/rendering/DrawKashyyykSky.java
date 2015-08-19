@@ -22,42 +22,26 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawKashyyykSky extends IRenderHandler
 {
-	private ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
-	private ResourceLocation moon1Texture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/kashyyyk_moon.png");
+	private static ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
+	private static ResourceLocation moon1Texture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/kashyyyk_moon.png");
 
-	private Vector3 moon1Offset;
-	private float moon1SizeMod;
+	private static Vector3 moon1Offset = new Vector3(14, 0, 10);
+	private static float moon1SizeMod = 0.8F;
 
-	private Vector3 moon2Offset;
-	private float moon2SizeMod;
+	private static Vector3 moon2Offset = new Vector3(-32, 0, 0);
+	private static float moon2SizeMod = 1.1F;
 
-	private Vector3 moon3Offset;
-	private float moon3SizeMod;
+	private static Vector3 moon3Offset = new Vector3(-6, 0, -30);
+	private static float moon3SizeMod = 1.1F;
 
-	public int starList;
-	public int glSkyList;
-	public int glSkyList2;
-	private float sunSize;
-	private float moonSize;
+	public static int starList = GLAllocation.generateDisplayLists(3);
+	public static int glSkyList = starList + 1;
+	public static int glSkyList2 = starList + 2;
+	private static float sunSize = 17.5F;
+	private static float moonSize = 17.5F;
 
 	public DrawKashyyykSky()
 	{
-		sunSize = 17.5F;
-		moonSize = 17.5F;
-
-		moon1Offset = new Vector3(14, 0, 10); // big one
-		moon2Offset = new Vector3(-32, 0, 0); // middle
-		moon3Offset = new Vector3(-6, 0, -30); // small
-
-		moon1SizeMod = 0.8F;
-		moon2SizeMod = 1.1F;
-		moon3SizeMod = 1.1F;
-
-		int displayLists = GLAllocation.generateDisplayLists(3);
-		starList = displayLists;
-		glSkyList = displayLists + 1;
-		glSkyList2 = displayLists + 2;
-
 		// Bind stars to display list
 		GL11.glPushMatrix();
 		GL11.glNewList(starList, GL11.GL_COMPILE);

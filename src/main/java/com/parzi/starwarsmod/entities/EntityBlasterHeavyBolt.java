@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -84,6 +85,8 @@ public class EntityBlasterHeavyBolt extends EntityThrowable
 				motionY = vec3.yCoord;
 				motionZ = vec3.zCoord;
 			}
+
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.deflect", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 		}
 		return;
 	}

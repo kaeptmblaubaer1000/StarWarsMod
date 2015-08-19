@@ -5,13 +5,16 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -66,10 +69,43 @@ public class ItemLightsaber extends ItemSword
 	}
 
 	@Override
+	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
+	{
+		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
+		if (!p_77663_1_.hasTagCompound())
+		{
+			p_77663_1_.stackTagCompound = new NBTTagCompound();
+		}
+
+		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
+		{
+			p_77663_1_.stackTagCompound.setInteger("timeout", 10);
+		}
+
+		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
+		{
+			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
+	}
+
+	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
 		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if (!stack.stackTagCompound.hasKey("timeout"))
+		{
+			stack.stackTagCompound.setInteger("timeout", 10);
+		}
+		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0) {
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1f, 1f);
+			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaberOff, 1, getDamage(stack));
+		}
+		return super.onItemRightClick(stack, world, player);
 	}
 
 	@SideOnly(Side.CLIENT)

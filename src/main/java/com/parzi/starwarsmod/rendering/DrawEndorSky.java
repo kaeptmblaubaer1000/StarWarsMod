@@ -21,22 +21,15 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawEndorSky extends IRenderHandler
 {
-	private ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/endor.png");
+	private static ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/endor.png");
 
-	public int starList;
-	public int glSkyList;
-	public int glSkyList2;
-	private float sunSize;
+	public static int starList = GLAllocation.generateDisplayLists(3);
+	public static int glSkyList = starList + 1;
+	public static int glSkyList2 = starList + 2;
+	private static float sunSize = 57.5F;
 
 	public DrawEndorSky()
 	{
-		sunSize = 57.5F;
-
-		int displayLists = GLAllocation.generateDisplayLists(3);
-		starList = displayLists;
-		glSkyList = displayLists + 1;
-		glSkyList2 = displayLists + 2;
-
 		// Bind stars to display list
 		GL11.glPushMatrix();
 		GL11.glNewList(starList, GL11.GL_COMPILE);
@@ -106,6 +99,7 @@ public class DrawEndorSky extends IRenderHandler
 		float f1 = (float)vec3.xCoord;
 		float f2 = (float)vec3.yCoord;
 		float f3 = (float)vec3.zCoord;
+		vec3 = null;
 		float f6;
 
 		if (mc.gameSettings.anaglyph)

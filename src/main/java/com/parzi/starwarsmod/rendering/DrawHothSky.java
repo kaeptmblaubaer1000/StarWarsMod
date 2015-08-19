@@ -22,42 +22,26 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawHothSky extends IRenderHandler
 {
-	private ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/hoth_sun.png");
-	private ResourceLocation moon1Texture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/hoth_moon.png");
+	private static ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/hoth_sun.png");
+	private static ResourceLocation moon1Texture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/hoth_moon.png");
 
-	private Vector3 moon1Offset;
-	private float moon1SizeMod;
+	private static Vector3 moon1Offset = new Vector3(-20, 0, 10);
+	private static float moon1SizeMod = 1;
 
-	private Vector3 moon2Offset;
-	private float moon2SizeMod;
+	private static Vector3 moon2Offset = new Vector3(-44, 0, 0);
+	private static float moon2SizeMod = 1.25F;
 
-	private Vector3 moon3Offset;
-	private float moon3SizeMod;
+	private static Vector3 moon3Offset = new Vector3(4, 0, -10);
+	private static float moon3SizeMod = 3;
 
-	public int starList;
-	public int glSkyList;
-	public int glSkyList2;
-	private float sunSize;
-	private float moonSize;
+	public static int starList = GLAllocation.generateDisplayLists(3);
+	public static int glSkyList = starList + 1;
+	public static int glSkyList2 = starList + 2;
+	private static float sunSize = 32F;
+	private static float moonSize = 32F;
 
 	public DrawHothSky()
 	{
-		sunSize = 32F;
-		moonSize = 32F;
-
-		moon1Offset = new Vector3(-20, 0, 10); // big one
-		moon2Offset = new Vector3(-44, 0, 0); // middle
-		moon3Offset = new Vector3(4, 0, -10); // small
-
-		moon1SizeMod = 1F;
-		moon2SizeMod = 1.75F;
-		moon3SizeMod = 3F;
-
-		int displayLists = GLAllocation.generateDisplayLists(3);
-		starList = displayLists;
-		glSkyList = displayLists + 1;
-		glSkyList2 = displayLists + 2;
-
 		// Bind stars to display list
 		GL11.glPushMatrix();
 		GL11.glNewList(starList, GL11.GL_COMPILE);

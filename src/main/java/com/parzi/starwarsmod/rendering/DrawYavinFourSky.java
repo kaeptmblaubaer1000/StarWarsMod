@@ -22,29 +22,19 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawYavinFourSky extends IRenderHandler
 {
-	private ResourceLocation yavinPrimeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/yavin_prime.png");
-	private float yavinPrimeSizeMod;
+	private static ResourceLocation yavinPrimeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/yavin_prime.png");
+	private static float yavinPrimeSizeMod = 150F;
 
-	private ResourceLocation deathStarTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/death_star.png");
+	private static ResourceLocation deathStarTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/death_star.png");
 
-	public int starList;
-	public int glSkyList;
-	public int glSkyList2;
-	private float deathStarSize;
-	private Vector3 deathStarOffset;
+	public static int starList = GLAllocation.generateDisplayLists(3);
+	public static int glSkyList = starList + 1;
+	public static int glSkyList2 = starList + 2;
+	private static float deathStarSize = 4F;
+	private static Vector3 deathStarOffset = new Vector3(-75, 0, 0);
 
 	public DrawYavinFourSky()
 	{
-		yavinPrimeSizeMod = 150F;
-		deathStarSize = 4F;
-
-		deathStarOffset = new Vector3(-75, 0, 0);
-
-		int displayLists = GLAllocation.generateDisplayLists(3);
-		starList = displayLists;
-		glSkyList = displayLists + 1;
-		glSkyList2 = displayLists + 2;
-
 		// Bind stars to display list
 		GL11.glPushMatrix();
 		GL11.glNewList(starList, GL11.GL_COMPILE);

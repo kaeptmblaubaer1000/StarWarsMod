@@ -13,6 +13,7 @@ public class MaterialRegister
 		StarWarsMod.ewokMat = EnumHelper.addToolMaterial("gaffiMat", 3, 128, 1f, 1f, 2);
 		StarWarsMod.gamorreanMat = EnumHelper.addToolMaterial("gamorreanMat", 3, 10240, 1f, 3f, 8);
 		StarWarsMod.plasmaMat = EnumHelper.addToolMaterial("plasmaMat", 3, -1, 10f, StarWarsMod.lightsaberDamage, 8);
+		StarWarsMod.plasmaMatOff = EnumHelper.addToolMaterial("plasmaMatOff", 3, -1, 10f, 0.1F, 8);
 
 		StarWarsMod.jediRobesMat = EnumHelper.addArmorMaterial("jediRobesMat", -1, new int[] { 0, 2, 0, 0 }, 0);
 

@@ -65,20 +65,20 @@ public class MobTauntaun extends EntityHorse
 
 				if (field_110285_bP > 5 && field_110285_bP % 3 == 0)
 				{
-					playSound("mob.horse.gallop", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 				}
 				else if (field_110285_bP <= 5)
 				{
-					playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 				}
 			}
 			else if (soundtype == Block.soundTypeWood)
 			{
-				playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else
 			{
-				playSound("mob.horse.soft", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 		}
 	}
