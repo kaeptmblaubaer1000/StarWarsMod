@@ -26,7 +26,7 @@ public class TogglePlayerLightsaber implements IMessage
 			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			ItemStack cur = player.inventory.getCurrentItem();
 
-			if (cur.getTagCompound().getInteger("timeout") == 0)
+			if (cur.getTagCompound() != null && cur.getTagCompound().hasKey("timeout") && cur.getTagCompound().getInteger("timeout") == 0)
 			{
 				Item n = cur.getItem() == StarWarsMod.lightsaber ? StarWarsMod.lightsaberOff : StarWarsMod.lightsaber;
 

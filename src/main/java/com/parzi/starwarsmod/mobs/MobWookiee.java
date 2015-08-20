@@ -1,5 +1,8 @@
 package com.parzi.starwarsmod.mobs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -11,9 +14,12 @@ import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.LootGenUtils;
+import com.parzi.starwarsmod.utils.WeightedLoot;
 
 public class MobWookiee extends EntityAnimal implements IAnimals
 {
@@ -66,9 +72,18 @@ public class MobWookiee extends EntityAnimal implements IAnimals
 	}
 
 	@Override
-	protected Item getDropItem()
+	public void dropFewItems(boolean par1, int par2)
 	{
-		return Items.leather;
+		List<WeightedLoot> drop = new ArrayList<WeightedLoot>();
+
+		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.bowcaster, 1), LootGenUtils.baseRarity / 2F));
+
+		switch (rand.nextInt(5))
+		{
+			case 0:
+				entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0F);
+				break;
+		}
 	}
 
 	/**

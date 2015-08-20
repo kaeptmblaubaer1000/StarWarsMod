@@ -57,7 +57,7 @@ public class StarWarsMod
 {
 	/* Mod Details */
 	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "0.1.0";
+	public static final String VERSION = "0.1.4.4";
 	public static Configuration config;
 
 	/* Beta Testing */
@@ -256,6 +256,8 @@ public class StarWarsMod
 	public void init(FMLInitializationEvent event)
 	{
 		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
+
+		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
 
 		StarWarsMod.instance = this;
 

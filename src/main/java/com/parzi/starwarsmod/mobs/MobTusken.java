@@ -64,6 +64,7 @@ public class MobTusken extends EntityMob implements IMob
 	@Override
 	protected void applyEntityAttributes()
 	{
+		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
@@ -108,11 +109,11 @@ public class MobTusken extends EntityMob implements IMob
 		return angerLevel == 0 ? null : super.findPlayerToAttack();
 	}
 
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return worldObj.difficultySetting != EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(40) == 0;
-	}
+	//@Override
+	//public boolean getCanSpawnHere()
+	//{
+	//	return worldObj.difficultySetting != EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(40) == 0;
+	//}
 
 	/**
 	 * Returns the sound this mob makes on death.
@@ -139,19 +140,15 @@ public class MobTusken extends EntityMob implements IMob
 	}
 
 	@Override
-	protected boolean isAIEnabled()
+	public boolean getCanSpawnHere()
 	{
 		return true;
 	}
 
 	@Override
-	protected boolean isValidLightLevel()
+	protected boolean isAIEnabled()
 	{
-		int i = MathHelper.floor_double(posX);
-		int j = MathHelper.floor_double(boundingBox.minY);
-		int k = MathHelper.floor_double(posZ);
-
-		return worldObj.getLightBrightness(i, j, k) < 10;
+		return true;
 	}
 
 	@Override

@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.TogglePlayerLightsaber;
 import com.parzi.starwarsmod.utils.TextUtils;
-import com.sun.xml.internal.ws.client.dispatch.PacketDispatch;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

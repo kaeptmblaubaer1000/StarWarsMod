@@ -50,7 +50,14 @@ public class ItemWookieeBowcaster extends Item
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 		{
-			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterBow.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterBow.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			}
+			else
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+			}
 		}
 
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
