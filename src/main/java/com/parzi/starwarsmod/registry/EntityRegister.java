@@ -22,6 +22,7 @@ import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
@@ -47,6 +48,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidProtocol.class, "droidProtocol");
 		EntityUtils.registerEntity(MobDroidGNK.class, "droidGonk");
 
+		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
 

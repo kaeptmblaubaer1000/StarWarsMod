@@ -53,6 +53,21 @@ public class ItemLightsaber extends ItemSword
 	}
 
 	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase a, EntityLivingBase b)
+	{
+		if (a instanceof EntityPlayer)
+		{
+			EntityPlayer pb = (EntityPlayer)a;
+			if (pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.lightsaber && pb.isBlocking())
+			{
+				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1F, 1F);
+				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1F, 1F);
+			}
+		}
+		return super.hitEntity(stack, a, b);
+	}
+
+	@Override
 	public IIcon getIconFromDamage(int par1)
 	{
 		return icons[par1];
@@ -66,6 +81,28 @@ public class ItemLightsaber extends ItemSword
 		{
 			par3List.add(new ItemStack(this, 1, x));
 		}
+	}
+
+	@Override
+	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
+	{
+		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		return super.onEntitySwing(entityLiving, stack);
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		if (!stack.stackTagCompound.hasKey("timeout"))
+		{
+			stack.stackTagCompound.setInteger("timeout", 10);
+		}
+		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
+		{
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1f, 1f);
+			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaberOff, 1, getDamage(stack));
+		}
+		return super.onItemRightClick(stack, world, player);
 	}
 
 	@Override
@@ -86,26 +123,6 @@ public class ItemLightsaber extends ItemSword
 		{
 			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
 		}
-	}
-
-	@Override
-	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
-	{
-		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-		return super.onEntitySwing(entityLiving, stack);
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!stack.stackTagCompound.hasKey("timeout"))
-		{
-			stack.stackTagCompound.setInteger("timeout", 10);
-		}
-		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0) {
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1f, 1f);
-			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaberOff, 1, getDamage(stack));
-		}
-		return super.onItemRightClick(stack, world, player);
 	}
 
 	@SideOnly(Side.CLIENT)

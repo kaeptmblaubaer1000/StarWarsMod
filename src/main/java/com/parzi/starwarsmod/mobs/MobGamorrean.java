@@ -40,7 +40,7 @@ public class MobGamorrean extends EntityMob implements IMob
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 

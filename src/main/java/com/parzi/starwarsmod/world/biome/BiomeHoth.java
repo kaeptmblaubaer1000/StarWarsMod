@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 
 public class BiomeHoth extends BiomeGenBase

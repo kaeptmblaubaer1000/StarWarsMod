@@ -104,6 +104,7 @@ public class StarWarsMod
 	public static Item droidCaller;
 	public static Item imperialCredit;
 	public static Item waterDroplet;
+	public static Item banthaMilk;
 
 	public static Item debugLootGen;
 
@@ -125,6 +126,7 @@ public class StarWarsMod
 	public static Item hyperdriveEndor;
 
 	public static Item spawnSpeederBike;
+	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
 	public static Item spawnAstromech;
 	public static Item spawnProtocol;
@@ -132,6 +134,10 @@ public class StarWarsMod
 
 	public static Item jediRobes;
 	public static Item lightJediRobes;
+
+	public static Item recordTheme;
+	public static Item recordThrone;
+	public static Item recordBinary;
 
 	public static Item endorHelmet;
 	public static Item endorChest;
@@ -218,6 +224,7 @@ public class StarWarsMod
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
 	public static Block tatooineSand;
+	public static Block tatooineSandstone;
 	public static Block spaceLamp;
 
 	/* Tool Materials */

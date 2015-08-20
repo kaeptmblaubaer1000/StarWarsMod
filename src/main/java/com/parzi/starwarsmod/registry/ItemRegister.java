@@ -17,11 +17,13 @@ import com.parzi.starwarsmod.armor.ArmorStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemBanthaChop;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
+import com.parzi.starwarsmod.items.ItemBanthaMilk;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
 import com.parzi.starwarsmod.items.ItemDebugLootGen;
 import com.parzi.starwarsmod.items.ItemDroidCaller;
 import com.parzi.starwarsmod.items.ItemImperialCredit;
+import com.parzi.starwarsmod.items.ItemMusicDisc;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
 import com.parzi.starwarsmod.items.ItemSpawnProtocol;
@@ -54,6 +56,7 @@ import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnSpeederBike;
 
@@ -110,6 +113,9 @@ public class ItemRegister
 
 		StarWarsMod.banthaHorn = new ItemBanthaHorn();
 		GameRegistry.registerItem(StarWarsMod.banthaHorn, "banthaHorn");
+
+		StarWarsMod.banthaMilk = new ItemBanthaMilk();
+		GameRegistry.registerItem(StarWarsMod.banthaMilk, "banthaMilk");
 
 		StarWarsMod.jediRobes = new ArmorJediRobes(StarWarsMod.jediRobesMat, 1, 1);
 		GameRegistry.registerItem(StarWarsMod.jediRobes, "jediRobes");
@@ -267,6 +273,9 @@ public class ItemRegister
 		StarWarsMod.hyperdriveEarth = new ItemHyperdriveEarth();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveEarth, "hyperdriveEarth");
 
+		StarWarsMod.spawnHothSpeederBike = new ItemSpawnHothSpeederBike();
+		GameRegistry.registerItem(StarWarsMod.spawnHothSpeederBike, "spawnHothSpeederBike");
+
 		StarWarsMod.spawnSpeederBike = new ItemSpawnSpeederBike();
 		GameRegistry.registerItem(StarWarsMod.spawnSpeederBike, "spawnSpeederBike");
 
@@ -314,6 +323,15 @@ public class ItemRegister
 
 		StarWarsMod.leiasBuns = new ArmorAddonBuns(StarWarsMod.leiaBunsArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.leiasBuns, "leiasBuns");
+
+		StarWarsMod.recordTheme = new ItemMusicDisc("Theme");
+		GameRegistry.registerItem(StarWarsMod.recordTheme, "recordTheme");
+
+		StarWarsMod.recordThrone = new ItemMusicDisc("Throne");
+		GameRegistry.registerItem(StarWarsMod.recordThrone, "recordThrone");
+
+		StarWarsMod.recordBinary = new ItemMusicDisc("Binary");
+		GameRegistry.registerItem(StarWarsMod.recordBinary, "recordBinary");
 
 		Lumberjack.info("Items, reporting for duty!");
 	}

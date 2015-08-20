@@ -8,10 +8,12 @@ import com.parzi.starwarsmod.blocks.BlockMV;
 import com.parzi.starwarsmod.blocks.BlockSpaceLamp;
 import com.parzi.starwarsmod.blocks.BlockTable;
 import com.parzi.starwarsmod.blocks.BlockTatooineSand;
+import com.parzi.starwarsmod.blocks.BlockTatooineSandstone;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
 import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
 import com.parzi.starwarsmod.items.ItemEndorBaseWall;
 import com.parzi.starwarsmod.items.ItemTatooineSand;
+import com.parzi.starwarsmod.items.ItemTatooineSandstone;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -43,6 +45,9 @@ public class BlockRegister
 
 		StarWarsMod.tatooineSand = new BlockTatooineSand();
 		GameRegistry.registerBlock(StarWarsMod.tatooineSand, ItemTatooineSand.class, "tatooineSand");
+
+		StarWarsMod.tatooineSandstone = new BlockTatooineSandstone();
+		GameRegistry.registerBlock(StarWarsMod.tatooineSandstone, ItemTatooineSandstone.class, "tatooineSandstone");
 
 		StarWarsMod.spaceLamp = new BlockSpaceLamp();
 		GameRegistry.registerBlock(StarWarsMod.spaceLamp, "spaceLamp");

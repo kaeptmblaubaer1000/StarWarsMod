@@ -20,7 +20,13 @@ item.starwarsmod.titaniumDust.name=Titanium Dust
 item.starwarsmod.hyperdriveEngine.name=Hyperdrive Engine
 item.starwarsmod.hyperdriveMotivator.name=Hyperdrive Motivator
 item.starwarsmod.waterDroplet.name=Water Droplet
-item.starwarsmod.banthaChop.name=Bantha CHop
+item.starwarsmod.banthaChop.name=Bantha Chop
+item.starwarsmod.banthaMilk.name=Bantha Milk
+
+item.starwarsmod.musicDisc.name=Music Disc
+item.starwarsmod.musicDiscTheme.desc=Star Wars - A New Hope by John Williams
+item.starwarsmod.musicDiscThrone.desc=Star Wars - Throne Room Theme by John Williams
+item.starwarsmod.musicDiscBinary.desc=Star Wars - Binary Sunset by John Williams
 
 item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
 item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive
@@ -29,8 +35,9 @@ item.starwarsmod.hyperdriveYavinFour.name=Yavin 4 Hyperdrive
 item.starwarsmod.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
 item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
 
-item.starwarsmod.spawnSpeederBike.name=Speeder Bike
-item.starwarsmod.spawnLandspeeder.name=Landspeeder
+item.starwarsmod.spawnHothSpeederBike.name=74-Z Speeder Bike
+item.starwarsmod.spawnSpeederBike.name=74-Z Speeder Bike
+item.starwarsmod.spawnLandspeeder.name=X-34 Landspeeder
 item.starwarsmod.spawnAstromech.name=Astromech Droid
 item.starwarsmod.spawnProtocol.name=Protocol Droid
 item.starwarsmod.spawnGonk.name=GNK Power Droid

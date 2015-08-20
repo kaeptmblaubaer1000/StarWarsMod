@@ -11,7 +11,6 @@ import net.minecraft.world.gen.feature.WorldGenCanopyTree;
 import net.minecraft.world.gen.feature.WorldGenSavannaTree;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
-import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorBase;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree1;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree2;

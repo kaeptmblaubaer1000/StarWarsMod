@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
 
 public class BiomeKashyyyk extends BiomeGenBase

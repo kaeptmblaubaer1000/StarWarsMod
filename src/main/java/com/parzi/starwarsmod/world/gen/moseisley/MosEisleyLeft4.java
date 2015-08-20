@@ -4,12 +4,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
+import com.parzi.starwarsmod.utils.LootGenUtils;
 
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -10604,7 +10606,7 @@ public class MosEisleyLeft4 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 46, j + 6, k + 2, 1, 2);
 		setBlock(world, i + 46, j + 6, k + 3, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 46, j + 6, k + 3, 1, 2);
-		setBlock(world, i + 47, j + 1, k + 3, Blocks.chest, 2);
+		setBlock(world, i + 47, j + 1, k + 3, Blocks.chest, 2);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 47, j + 1, k + 3));
 		world.setBlockMetadataWithNotify(i + 47, j + 1, k + 3, 2, 2);
 		setBlock(world, i + 47, j + 1, k + 11, Blocks.sandstone_stairs, 1);
 		world.setBlockMetadataWithNotify(i + 47, j + 1, k + 11, 1, 2);
@@ -10702,7 +10704,7 @@ public class MosEisleyLeft4 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 53, j + 8, k + 1, 1, 2);
 		setBlock(world, i + 53, j + 9, k + 0, Blocks.sandstone_stairs, 1);
 		world.setBlockMetadataWithNotify(i + 53, j + 9, k + 0, 1, 2);
-		setBlock(world, i + 54, j + 1, k + 0, Blocks.chest, 4);
+		setBlock(world, i + 54, j + 1, k + 0, Blocks.chest, 4);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 54, j + 1, k + 0));
 		world.setBlockMetadataWithNotify(i + 54, j + 1, k + 0, 4, 2);
 		setBlock(world, i + 54, j + 1, k + 3, StarWarsMod.blockTable, 3);
 		world.setBlockMetadataWithNotify(i + 54, j + 1, k + 3, 3, 2);
@@ -10764,7 +10766,7 @@ public class MosEisleyLeft4 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 57, j + 8, k + 14, 2, 2);
 		setBlock(world, i + 57, j + 9, k + 15, Blocks.sandstone_stairs, 2);
 		world.setBlockMetadataWithNotify(i + 57, j + 9, k + 15, 2, 2);
-		setBlock(world, i + 58, j + 1, k + 14, Blocks.chest, 3);
+		setBlock(world, i + 58, j + 1, k + 14, Blocks.chest, 3);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 58, j + 1, k + 14));
 		world.setBlockMetadataWithNotify(i + 58, j + 1, k + 14, 3, 2);
 		setBlock(world, i + 58, j + 2, k + 13, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 58, j + 2, k + 13, 1, 2);

@@ -12,7 +12,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class LootGenUtils
 {
-	public static float baseRarity = 0.00025F;
+	public static float baseRarity = 1F; // 0.00025
 
 	public static void fillLootChest(int dimId, Random rand, TileEntityChest tile)
 	{
@@ -22,7 +22,7 @@ public class LootGenUtils
 			{
 				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItemForDim(dimId, rand));
 			}
-			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 15)));
+			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(1, 15)));
 		}
 	}
 
@@ -31,6 +31,10 @@ public class LootGenUtils
 		List<WeightedLoot> loot = new ArrayList<WeightedLoot>();
 
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 5)), baseRarity));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.leiasBuns, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordBinary, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordTheme, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordThrone, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
 
 		if (dimId == StarWarsMod.dimEndorId)
 		{

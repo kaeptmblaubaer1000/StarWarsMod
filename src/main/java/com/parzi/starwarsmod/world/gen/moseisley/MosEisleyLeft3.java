@@ -4,12 +4,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
+import com.parzi.starwarsmod.utils.LootGenUtils;
 
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -10593,9 +10595,9 @@ public class MosEisleyLeft3 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 58, j + 11, k + 7, 3, 2);
 		setBlock(world, i + 59, j + 1, k + 0, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 59, j + 1, k + 0, 1, 2);
-		setBlock(world, i + 59, j + 1, k + 1, Blocks.chest, 5);
+		setBlock(world, i + 59, j + 1, k + 1, Blocks.chest, 5);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 59, j + 1, k + 1));
 		world.setBlockMetadataWithNotify(i + 59, j + 1, k + 1, 5, 2);
-		setBlock(world, i + 59, j + 1, k + 2, Blocks.chest, 5);
+		setBlock(world, i + 59, j + 1, k + 2, Blocks.chest, 5);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 59, j + 1, k + 2));
 		world.setBlockMetadataWithNotify(i + 59, j + 1, k + 2, 5, 2);
 		setBlock(world, i + 59, j + 1, k + 8, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 59, j + 1, k + 8, 1, 2);

@@ -115,6 +115,7 @@ public class ModelWampa extends ModelBase
 		setRotation(leftleg, 0F, 0F, 0F);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
@@ -173,7 +174,7 @@ public class ModelWampa extends ModelBase
 		HornR4.rotateAngleY = f3 / (180F / (float)Math.PI);
 		HornR4.rotateAngleX = f4 / (180F / (float)Math.PI);
 
-		rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale  * f1 * 0.5F;
+		rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
 		leftarm.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
 		rightarm.rotateAngleZ = 0.0F;
 		leftarm.rotateAngleZ = 0.0F;

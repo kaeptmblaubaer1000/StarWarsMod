@@ -176,13 +176,13 @@ public class DrawEndorSky extends IRenderHandler
 		 * 100.0D, (double)f10 * 1.5F); tessellator1.addVertex(-f10, 100.0D,
 		 * f10); tessellator1.addVertex((double)-f10 * 1.5F, 100.0D, 0);
 		 * tessellator1.addVertex(-f10, 100.0D, -f10);
-		 *
+		 * 
 		 * tessellator1.draw(); tessellator1.startDrawing(GL11.GL_TRIANGLE_FAN);
 		 * tessellator1.setColorRGBA_F(f6 * f18, f7 * f18, f8 * f18, afloat[3] *
 		 * f18); tessellator1.addVertex(0.0D, 100.0D, 0.0D);
 		 * tessellator1.setColorRGBA_F(afloat[0] * f18, afloat[1] * f18,
 		 * afloat[2] * f18, 0.0F);
-		 *
+		 * 
 		 * // Render larger sun aura f10 = 40.0F; tessellator1.addVertex(-f10,
 		 * 100.0D, -f10); tessellator1.addVertex(0, 100.0D, (double)-f10 *
 		 * 1.5F); tessellator1.addVertex(f10, 100.0D, -f10);

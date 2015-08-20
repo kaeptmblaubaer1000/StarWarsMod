@@ -8,14 +8,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -44,6 +41,37 @@ public class ItemLightsaberOff extends Item
 	}
 
 	@Override
+	public boolean canHarvestBlock(Block block, ItemStack stack)
+	{
+		return true;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+	{
+		for (int x = 0; x < colors.length; x++)
+		{
+			par3List.add(new ItemStack(this, 1, x));
+		}
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		if (!stack.stackTagCompound.hasKey("timeout"))
+		{
+			stack.stackTagCompound.setInteger("timeout", 10);
+		}
+		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
+		{
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.open", 1f, 1f);
+			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaber, 1, getDamage(stack));
+		}
+		return stack;
+	}
+
+	@Override
 	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
 	{
 		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
@@ -60,35 +88,6 @@ public class ItemLightsaberOff extends Item
 		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
 		{
 			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
-		}
-	}
-
-	@Override
-	public boolean canHarvestBlock(Block block, ItemStack stack)
-	{
-		return true;
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (!stack.stackTagCompound.hasKey("timeout"))
-		{
-			stack.stackTagCompound.setInteger("timeout", 10);
-		}
-		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0) {
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.open", 1f, 1f);
-			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaber, 1, getDamage(stack));
-		}
-		return stack;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
-		for (int x = 0; x < colors.length; x++)
-		{
-			par3List.add(new ItemStack(this, 1, x));
 		}
 	}
 }

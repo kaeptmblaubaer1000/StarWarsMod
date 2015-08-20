@@ -8,7 +8,6 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.ModelLightsaber;
 import com.parzi.starwarsmod.rendering.models.ModelLightsaberOff;
 
 public class RenderLightsaberOff implements IItemRenderer

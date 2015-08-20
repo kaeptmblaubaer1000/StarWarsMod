@@ -57,10 +57,12 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelWookiee;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelLandspeeder;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
+import com.parzi.starwarsmod.rendering.vehicles.RenderHothSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
+import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
@@ -102,6 +104,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidProtocol.class, new RenderDroidProtocol(new ModelDroidProtocol(), 0.5F));
 
+		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderHothSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
 

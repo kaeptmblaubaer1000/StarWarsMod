@@ -298,11 +298,44 @@
             "item/lightsaber/close"
         ]
     },
+    "item.lightsaber.crash": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/crash"
+        ]
+    },
     "item.lightsaber.deflect": {
         "category": "neutral",
         "sounds": [
             "item/lightsaber/deflect1",
             "item/lightsaber/deflect2"
+        ]
+    },
+    "item.records.Throne": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/throne",
+                "stream": true
+            }
+        ]
+    },
+    "item.records.Theme": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/theme",
+                "stream": true
+            }
+        ]
+    },
+    "item.records.Binary": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/binary",
+                "stream": true
+            }
         ]
     }
 }

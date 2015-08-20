@@ -4,12 +4,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
+import com.parzi.starwarsmod.utils.LootGenUtils;
 
 import cpw.mods.fml.common.IWorldGenerator;
 
@@ -8553,7 +8555,7 @@ public class MosEisleyLeft5 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 39, j + 1, k + 1, 3, 2);
 		setBlock(world, i + 39, j + 1, k + 3, Blocks.sandstone_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 39, j + 1, k + 3, 3, 2);
-		setBlock(world, i + 40, j + 1, k + 1, Blocks.chest, 2);
+		setBlock(world, i + 40, j + 1, k + 1, Blocks.chest, 2);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 40, j + 1, k + 1));
 		world.setBlockMetadataWithNotify(i + 40, j + 1, k + 1, 2, 2);
 		setBlock(world, i + 40, j + 1, k + 3, Blocks.sandstone_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 40, j + 1, k + 3, 3, 2);
@@ -8561,7 +8563,7 @@ public class MosEisleyLeft5 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 40, j + 1, k + 6, 2, 2);
 		setBlock(world, i + 40, j + 3, k + 1, Blocks.torch, 4);
 		world.setBlockMetadataWithNotify(i + 40, j + 3, k + 1, 4, 2);
-		setBlock(world, i + 41, j + 1, k + 1, Blocks.chest, 2);
+		setBlock(world, i + 41, j + 1, k + 1, Blocks.chest, 2);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 41, j + 1, k + 1));
 		world.setBlockMetadataWithNotify(i + 41, j + 1, k + 1, 2, 2);
 		setBlock(world, i + 41, j + 1, k + 3, Blocks.sandstone_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 41, j + 1, k + 3, 3, 2);
@@ -8615,7 +8617,7 @@ public class MosEisleyLeft5 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 42, j + 1, k + 2, 1, 2);
 		setBlock(world, i + 42, j + 1, k + 6, Blocks.sandstone, 2);
 		world.setBlockMetadataWithNotify(i + 42, j + 1, k + 6, 2, 2);
-		setBlock(world, i + 42, j + 1, k + 11, Blocks.chest, 2);
+		setBlock(world, i + 42, j + 1, k + 11, Blocks.chest, 2);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 42, j + 1, k + 11));
 		world.setBlockMetadataWithNotify(i + 42, j + 1, k + 11, 2, 2);
 		setBlock(world, i + 42, j + 1, k + 12, Blocks.sandstone, 2);
 		world.setBlockMetadataWithNotify(i + 42, j + 1, k + 12, 2, 2);
@@ -8647,7 +8649,7 @@ public class MosEisleyLeft5 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 43, j + 1, k + 5, 1, 2);
 		setBlock(world, i + 43, j + 1, k + 7, Blocks.furnace, 3);
 		world.setBlockMetadataWithNotify(i + 43, j + 1, k + 7, 3, 2);
-		setBlock(world, i + 43, j + 1, k + 11, Blocks.chest, 2);
+		setBlock(world, i + 43, j + 1, k + 11, Blocks.chest, 2);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 43, j + 1, k + 11));
 		world.setBlockMetadataWithNotify(i + 43, j + 1, k + 11, 2, 2);
 		setBlock(world, i + 43, j + 1, k + 13, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 43, j + 1, k + 13, 1, 2);
@@ -9163,7 +9165,7 @@ public class MosEisleyLeft5 extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 60, j + 9, k + 1, 1, 2);
 		setBlock(world, i + 60, j + 9, k + 2, Blocks.sandstone_stairs, 1);
 		world.setBlockMetadataWithNotify(i + 60, j + 9, k + 2, 1, 2);
-		setBlock(world, i + 61, j + 1, k + 5, Blocks.chest, 4);
+		setBlock(world, i + 61, j + 1, k + 5, Blocks.chest, 4);LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 61, j + 1, k + 5));
 		world.setBlockMetadataWithNotify(i + 61, j + 1, k + 5, 4, 2);
 		setBlock(world, i + 61, j + 1, k + 6, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 61, j + 1, k + 6, 1, 2);

@@ -18,6 +18,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.utils.KeyboardUtils;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -96,7 +97,14 @@ public class ItemBlasterPistol extends Item
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 		{
-			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterPistol.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterPistol.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			}
+			else
+			{
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
+			}
 		}
 
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
@@ -107,7 +115,6 @@ public class ItemBlasterPistol extends Item
 			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
 			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
 				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 			}
 		}

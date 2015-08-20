@@ -15,6 +15,7 @@ import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -59,7 +60,7 @@ public class StarWarsEventHandler
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent)
 	{
-		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
+		if (playerInteractEvent.entityPlayer.ridingEntity != null && (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike) && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
 		{
 			StarWarsMod.network.sendToServer(new CreateBlasterBoltSpeeder(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId));
 

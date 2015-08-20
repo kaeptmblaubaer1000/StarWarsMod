@@ -85,7 +85,7 @@ public class EntitySpeederBlasterRifleBolt extends EntityThrowable
 				motionZ = vec3.zCoord;
 			}
 
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.deflect", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.deflect", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
 		}
 		return;
 	}
@@ -126,7 +126,7 @@ public class EntitySpeederBlasterRifleBolt extends EntityThrowable
 		p_70186_3_ /= f2;
 		p_70186_5_ /= f2;
 		p_70186_1_ += 0.007499999832361937D * p_70186_8_; // haha, no
-															// random
+		// random
 		p_70186_3_ += 0.007499999832361937D * p_70186_8_;
 		p_70186_5_ += 0.007499999832361937D * p_70186_8_;
 		p_70186_1_ *= p_70186_7_;

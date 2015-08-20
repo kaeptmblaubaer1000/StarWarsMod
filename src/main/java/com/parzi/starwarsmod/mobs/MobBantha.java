@@ -157,6 +157,20 @@ public class MobBantha extends EntityHorse
 
 		if (itemstack != null && itemstack.getItem() == Items.spawn_egg) { return false; }
 
+		if (itemstack != null && itemstack.getItem() == Items.bucket && !p_70085_1_.capabilities.isCreativeMode)
+		{
+			if (itemstack.stackSize-- == 1)
+			{
+				p_70085_1_.inventory.setInventorySlotContents(p_70085_1_.inventory.currentItem, new ItemStack(StarWarsMod.banthaMilk));
+			}
+			else if (!p_70085_1_.inventory.addItemStackToInventory(new ItemStack(StarWarsMod.banthaMilk)))
+			{
+				p_70085_1_.dropPlayerItemWithRandomChoice(new ItemStack(StarWarsMod.banthaMilk, 1, 0), false);
+			}
+
+			return true;
+		}
+
 		return super.interact(p_70085_1_);
 	}
 

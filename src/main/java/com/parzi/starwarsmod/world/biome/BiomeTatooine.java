@@ -6,10 +6,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.mobs.MobBantha;
-import com.parzi.starwarsmod.mobs.MobDewback;
-import com.parzi.starwarsmod.mobs.MobJawa;
-import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
 import com.parzi.starwarsmod.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
@@ -52,24 +48,24 @@ public class BiomeTatooine extends BiomeGenBase
 
 		if (chunkX == 0 && chunkZ == 0)
 		{
-			this.mosY = par1World.getHeightValue(chunkX, chunkZ);
+			mosY = par1World.getHeightValue(chunkX, chunkZ);
 			new MosEisleyLeft1().generate(par1World, par2Random, chunkX, mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 16)
 		{
-			new MosEisleyLeft2().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
+			new MosEisleyLeft2().generate(par1World, par2Random, chunkX, mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 32)
 		{
-			new MosEisleyLeft3().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
+			new MosEisleyLeft3().generate(par1World, par2Random, chunkX, mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 48)
 		{
-			new MosEisleyLeft4().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
+			new MosEisleyLeft4().generate(par1World, par2Random, chunkX, mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 64)
 		{
-			new MosEisleyLeft5().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
+			new MosEisleyLeft5().generate(par1World, par2Random, chunkX, mosY, chunkZ);
 		}
 
 		if (par2Random.nextInt(400) == 0)

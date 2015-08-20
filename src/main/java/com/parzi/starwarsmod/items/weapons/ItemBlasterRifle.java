@@ -18,6 +18,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.utils.KeyboardUtils;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -96,21 +97,28 @@ public class ItemBlasterRifle extends Item
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 		{
-			if (par1ItemStack.getItemDamage() == 1)
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
 			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterEsb.use", 1f, 0.82f);
-			}
-			else if (par1ItemStack.getItemDamage() == 2)
-			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterIon.use", 1f, 0.82f);
-			}
-			else if (par1ItemStack.getItemDamage() == 3)
-			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1f, 0.82f);
+				if (par1ItemStack.getItemDamage() == 1)
+				{
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterEsb.use", 1f, 0.82f);
+				}
+				else if (par1ItemStack.getItemDamage() == 2)
+				{
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterIon.use", 1f, 0.82f);
+				}
+				else if (par1ItemStack.getItemDamage() == 3)
+				{
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1f, 0.82f);
+				}
+				else
+				{
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+				}
 			}
 			else
 			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
 			}
 		}
 
@@ -129,7 +137,6 @@ public class ItemBlasterRifle extends Item
 			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
 			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1f, 1f);
 				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 			}
 		}
