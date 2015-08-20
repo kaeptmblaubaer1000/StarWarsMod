@@ -17,7 +17,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.TogglePlayerLightsaber;
 import com.parzi.starwarsmod.utils.TextUtils;
+import com.sun.xml.internal.ws.client.dispatch.PacketDispatch;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -55,10 +57,11 @@ public class ItemLightsaber extends ItemSword
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase a, EntityLivingBase b)
 	{
-		if (a instanceof EntityPlayer)
+		if (a instanceof EntityPlayer && b instanceof EntityPlayer)
 		{
-			EntityPlayer pb = (EntityPlayer)a;
-			if (pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.lightsaber && pb.isBlocking())
+			EntityPlayer pa = (EntityPlayer)a;
+			EntityPlayer pb = (EntityPlayer)b;
+			if (pa.inventory.mainInventory[pa.inventory.currentItem] != null && pa.inventory.mainInventory[pa.inventory.currentItem].getItem() == StarWarsMod.lightsaber && pa.isBlocking() && pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.lightsaber)
 			{
 				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1F, 1F);
 				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1F, 1F);
@@ -100,7 +103,7 @@ public class ItemLightsaber extends ItemSword
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1f, 1f);
-			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaberOff, 1, getDamage(stack));
+			StarWarsMod.network.sendToServer(new TogglePlayerLightsaber(player.getCommandSenderName(), player.dimension));
 		}
 		return super.onItemRightClick(stack, world, player);
 	}

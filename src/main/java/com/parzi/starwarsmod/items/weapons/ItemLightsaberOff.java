@@ -13,6 +13,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.TogglePlayerLightsaber;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -66,7 +67,7 @@ public class ItemLightsaberOff extends Item
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.open", 1f, 1f);
-			player.inventory.mainInventory[player.inventory.currentItem] = new ItemStack(StarWarsMod.lightsaber, 1, getDamage(stack));
+			StarWarsMod.network.sendToServer(new TogglePlayerLightsaber(player.getCommandSenderName(), player.dimension));
 		}
 		return stack;
 	}

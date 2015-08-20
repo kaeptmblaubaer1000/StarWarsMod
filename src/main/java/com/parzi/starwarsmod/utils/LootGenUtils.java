@@ -35,6 +35,8 @@ public class LootGenUtils
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordBinary, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordTheme, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordThrone, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordImperial, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordCantina, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
 
 		if (dimId == StarWarsMod.dimEndorId)
 		{
@@ -88,7 +90,7 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotLegs, 1, 0), baseRarity));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotBoots, 1, 0), baseRarity));
 
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSpeederBike, 1, 0), baseRarity / 3F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnHothSpeederBike, 1, 0), baseRarity / 3F));
 
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl21")), baseRarity / 1.2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));

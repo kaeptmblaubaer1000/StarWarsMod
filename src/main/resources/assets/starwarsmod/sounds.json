@@ -337,5 +337,23 @@
                 "stream": true
             }
         ]
+    },
+    "item.records.Imperial": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/imperial",
+                "stream": true
+            }
+        ]
+    },
+    "item.records.Cantina": {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "item/records/cantina",
+                "stream": true
+            }
+        ]
     }
 }

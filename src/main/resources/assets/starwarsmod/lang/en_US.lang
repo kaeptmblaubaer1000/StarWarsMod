@@ -26,7 +26,9 @@ item.starwarsmod.banthaMilk.name=Bantha Milk
 item.starwarsmod.musicDisc.name=Music Disc
 item.starwarsmod.musicDiscTheme.desc=Star Wars - A New Hope by John Williams
 item.starwarsmod.musicDiscThrone.desc=Star Wars - Throne Room Theme by John Williams
-item.starwarsmod.musicDiscBinary.desc=Star Wars - Binary Sunset by John Williams
+item.starwarsmod.musicDiscBinary.desc=Star Wars - The Princess Appears (Binary Sunset) by John Williams
+item.starwarsmod.musicDiscCantina.desc=Star Wars - Cantina Band by John Williams
+item.starwarsmod.musicDiscImperial.desc=Star Wars - Imperial March by John Williams
 
 item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
 item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive

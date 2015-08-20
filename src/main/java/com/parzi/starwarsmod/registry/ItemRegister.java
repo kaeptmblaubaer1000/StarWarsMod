@@ -333,6 +333,12 @@ public class ItemRegister
 		StarWarsMod.recordBinary = new ItemMusicDisc("Binary");
 		GameRegistry.registerItem(StarWarsMod.recordBinary, "recordBinary");
 
+		StarWarsMod.recordImperial = new ItemMusicDisc("Imperial");
+		GameRegistry.registerItem(StarWarsMod.recordImperial, "recordImperial");
+
+		StarWarsMod.recordCantina = new ItemMusicDisc("Cantina");
+		GameRegistry.registerItem(StarWarsMod.recordCantina, "recordCantina");
+
 		Lumberjack.info("Items, reporting for duty!");
 	}
 }

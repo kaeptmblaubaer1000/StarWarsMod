@@ -31,6 +31,7 @@ import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
+import com.parzi.starwarsmod.network.TogglePlayerLightsaber;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
@@ -138,6 +139,8 @@ public class StarWarsMod
 	public static Item recordTheme;
 	public static Item recordThrone;
 	public static Item recordBinary;
+	public static Item recordImperial;
+	public static Item recordCantina;
 
 	public static Item endorHelmet;
 	public static Item endorChest;
@@ -301,6 +304,7 @@ public class StarWarsMod
 		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
 		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
 		network.registerMessage(CreateBlasterBoltSpeeder.Handler.class, CreateBlasterBoltSpeeder.class, 3, Side.SERVER);
+		network.registerMessage(TogglePlayerLightsaber.Handler.class, TogglePlayerLightsaber.class, 4, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
