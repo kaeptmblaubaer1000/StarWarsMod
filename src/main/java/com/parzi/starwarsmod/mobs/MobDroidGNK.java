@@ -29,7 +29,7 @@ public class MobDroidGNK extends EntityTameable
 		tasks.addTask(3, aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
 		tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
 		tasks.addTask(6, new EntityAIMate(this, 0.8D));
-		tasks.addTask(7, new EntityAIWander(this, 0.8D));
+		tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 	}
 
@@ -38,7 +38,7 @@ public class MobDroidGNK extends EntityTameable
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class MobDroidGNK extends EntityTameable
 
 		if (isTamed())
 		{
-			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack))
+			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidCaller)
 			{
 				aiSit.setSitting(!isSitting());
 				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));

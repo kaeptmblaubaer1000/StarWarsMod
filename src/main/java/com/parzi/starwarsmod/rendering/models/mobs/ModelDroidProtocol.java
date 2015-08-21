@@ -7,7 +7,7 @@ import net.minecraft.util.MathHelper;
 
 public class ModelDroidProtocol extends ModelBase
 {
-	// fields
+	ModelRenderer BackThing;
 	ModelRenderer head;
 	ModelRenderer body;
 	ModelRenderer LeftArm1;
@@ -16,13 +16,19 @@ public class ModelDroidProtocol extends ModelBase
 	ModelRenderer LeftArm2;
 	ModelRenderer RightArm1;
 	ModelRenderer RightArm2;
-	float animScale = 0.6F;
+	float animScale = 0.5F;
 
 	public ModelDroidProtocol()
 	{
 		textureWidth = 128;
 		textureHeight = 128;
 
+		BackThing = new ModelRenderer(this, 0, 115);
+		BackThing.addBox(0F, 0F, 0F, 6, 4, 1);
+		BackThing.setRotationPoint(-3F, 2.5F, 2F);
+		BackThing.setTextureSize(64, 32);
+		BackThing.mirror = true;
+		setRotation(BackThing, 0F, 0F, 0F);
 		head = new ModelRenderer(this, 0, 0);
 		head.addBox(-3F, -7F, -3F, 6, 7, 6);
 		head.setRotationPoint(0F, 0F, 0F);
@@ -73,11 +79,11 @@ public class ModelDroidProtocol extends ModelBase
 		setRotation(RightArm2, -0.2094395F, 0F, -0.3141593F);
 	}
 
-	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		BackThing.render(f5);
 		head.render(f5);
 		body.render(f5);
 		LeftArm1.render(f5);

@@ -25,7 +25,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 		tasks.taskEntries.clear();
 		tasks.addTask(0, new EntityAISwimming(this));
 		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		tasks.addTask(3, new EntityAIWander(this, 1.0D));
+		tasks.addTask(7, new EntityAIWander(this, 1.0D));
 		tasks.addTask(4, new EntityAILookIdle(this));
 
 		if (rand.nextInt(3) == 0 || true)
@@ -39,7 +39,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
 	}
 
 	@Override

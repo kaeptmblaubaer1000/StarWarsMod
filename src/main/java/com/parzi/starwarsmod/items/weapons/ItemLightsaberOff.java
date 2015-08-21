@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.items.weapons;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,6 +55,24 @@ public class ItemLightsaberOff extends Item
 		for (int x = 0; x < colors.length; x++)
 		{
 			par3List.add(new ItemStack(this, 1, x));
+		}
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int par1)
+	{
+		return icons[par1];
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerIcons(IIconRegister par1IconRegister)
+	{
+		icons = new IIcon[colors.length];
+
+		for (int i = 0; i < icons.length; i++)
+		{
+			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + colors[i]);
 		}
 	}
 
