@@ -220,7 +220,14 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
+		if (!(player instanceof EntityPlayer)) return;
+
 		addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
+
+		if (stack.stackTagCompound == null)
+		{
+			onCreated(stack, world, (EntityPlayer)player);
+		}
 
 		try
 		{
@@ -228,7 +235,7 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 			{
 				player.stepHeight = 0.5001F;
 			}
-			if (!(Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes))
+			if (!(Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes || Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes))
 			{
 				player.stepHeight = 0.5001F;
 			}

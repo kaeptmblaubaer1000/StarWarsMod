@@ -208,7 +208,7 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 	{
 		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
 		{
-			player.openGui(StarWarsMod.instance, 1, world, 0, 0, 0);
+			player.openGui(StarWarsMod.instance, 2, world, 0, 0, 0);
 		}
 		if (stack.stackTagCompound == null)
 		{
@@ -220,7 +220,14 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
+		if (!(player instanceof EntityPlayer)) return;
+
 		addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
+
+		if (stack.stackTagCompound == null)
+		{
+			onCreated(stack, world, (EntityPlayer)player);
+		}
 
 		try
 		{
@@ -228,7 +235,7 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 			{
 				player.stepHeight = 0.5001F;
 			}
-			if (!(Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes))
+			if (!(Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes || Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes))
 			{
 				player.stepHeight = 0.5001F;
 			}

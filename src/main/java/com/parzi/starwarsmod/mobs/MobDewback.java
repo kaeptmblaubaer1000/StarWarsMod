@@ -144,6 +144,11 @@ public class MobDewback extends EntityHorse
 		return StarWarsMod.MODID + ":" + "mob.dewback.say";
 	}
 
+    protected String getAngrySoundName()
+    {
+        return StarWarsMod.MODID + ":" + "mob.dewback.say";
+    }
+
 	@Override
 	public int getMaxSpawnedInChunk()
 	{

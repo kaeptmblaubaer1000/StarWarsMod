@@ -30,13 +30,13 @@ public class LootGenUtils
 	{
 		List<WeightedLoot> loot = new ArrayList<WeightedLoot>();
 
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(0, 5)), baseRarity));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.leiasBuns, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordBinary, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordTheme, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordThrone, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordImperial, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordCantina, ItemUtils.randomRange(0, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, ItemUtils.randomRange(1, 5)), baseRarity));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.leiasBuns, ItemUtils.randomRange(1, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordBinary, ItemUtils.randomRange(1, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordTheme, ItemUtils.randomRange(1, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordThrone, ItemUtils.randomRange(1, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordImperial, ItemUtils.randomRange(1, 1)), baseRarity / 10F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordCantina, ItemUtils.randomRange(1, 1)), baseRarity / 10F));
 
 		if (dimId == StarWarsMod.dimEndorId)
 		{

@@ -10,7 +10,7 @@ public class ItemBanthaChop extends ItemFood
 
 	public ItemBanthaChop()
 	{
-		super(8, 0, false);
+		super(5, 0, false);
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);

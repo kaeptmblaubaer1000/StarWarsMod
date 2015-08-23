@@ -39,6 +39,13 @@ public class MobJawa extends EntityMob implements IMob
 	}
 
 	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		getDataWatcher().addObject(25, rand.nextInt(2));
+	}
+
+	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();

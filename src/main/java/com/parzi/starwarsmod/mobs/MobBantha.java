@@ -1,5 +1,8 @@
 package com.parzi.starwarsmod.mobs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -17,6 +20,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.LootGenUtils;
+import com.parzi.starwarsmod.utils.WeightedLoot;
 
 public class MobBantha extends EntityHorse
 {
@@ -118,9 +123,17 @@ public class MobBantha extends EntityHorse
 	}
 
 	@Override
-	protected Item getDropItem()
+	public void dropFewItems(boolean par1, int par2)
 	{
-		return StarWarsMod.banthaHorn;
+		List<WeightedLoot> drop = new ArrayList<WeightedLoot>();
+
+		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaHorn, 1), LootGenUtils.baseRarity / 1.5F));
+		if (this.isBurning())
+			drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaChopCooked, 1), LootGenUtils.baseRarity));
+		else
+			drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaChop, 1), LootGenUtils.baseRarity));
+
+		entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0F);
 	}
 
 	@Override
@@ -143,6 +156,11 @@ public class MobBantha extends EntityHorse
 	{
 		return StarWarsMod.MODID + ":" + "mob.bantha.say";
 	}
+
+    protected String getAngrySoundName()
+    {
+        return StarWarsMod.MODID + ":" + "mob.bantha.say";
+    }
 
 	@Override
 	public int getMaxSpawnedInChunk()

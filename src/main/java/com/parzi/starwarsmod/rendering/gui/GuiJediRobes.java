@@ -76,7 +76,7 @@ public class GuiJediRobes extends GuiScreen
 			// .setInteger(spinner[spinnerIndex].internalName,
 			// currentLvl + 1);
 
-			StarWarsMod.network.sendToServer(new JediRobesBuy(spinner[spinnerIndex].internalName, currentLvl + 1, spinner[spinnerIndex].internalElement, currentEle - neededEle));
+			StarWarsMod.network.sendToServer(new JediRobesBuy(spinner[spinnerIndex].internalName, currentLvl + 1, spinner[spinnerIndex].internalElement, currentEle - neededEle, player.getCommandSenderName(), player.dimension));
 		}
 	}
 
@@ -121,6 +121,10 @@ public class GuiJediRobes extends GuiScreen
 		{
 			drawString(mc.fontRenderer, "Not enough knowledge!", x + 10, py, 0xFF5555);
 			buy.enabled = false;
+		}
+		else
+		{
+			buy.enabled = true;
 		}
 		py += 10;
 

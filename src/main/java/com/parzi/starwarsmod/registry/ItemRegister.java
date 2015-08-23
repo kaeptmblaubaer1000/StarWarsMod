@@ -16,6 +16,7 @@ import com.parzi.starwarsmod.armor.ArmorSnowtrooper;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemBanthaChop;
+import com.parzi.starwarsmod.items.ItemBanthaChopCooked;
 import com.parzi.starwarsmod.items.ItemBanthaHorn;
 import com.parzi.starwarsmod.items.ItemBanthaMilk;
 import com.parzi.starwarsmod.items.ItemBlasterBolt;
@@ -317,6 +318,9 @@ public class ItemRegister
 
 		StarWarsMod.banthaChop = new ItemBanthaChop();
 		GameRegistry.registerItem(StarWarsMod.banthaChop, "banthaChop");
+
+		StarWarsMod.banthaChopCooked = new ItemBanthaChopCooked();
+		GameRegistry.registerItem(StarWarsMod.banthaChopCooked, "banthaChopCooked");
 
 		StarWarsMod.waterDroplet = new ItemWaterDroplet();
 		GameRegistry.registerItem(StarWarsMod.waterDroplet, "waterDroplet");

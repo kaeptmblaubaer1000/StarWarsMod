@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.rendering.gui.ContainerMV;
 import com.parzi.starwarsmod.rendering.gui.GuiJediRobes;
+import com.parzi.starwarsmod.rendering.gui.GuiLightJediRobes;
 import com.parzi.starwarsmod.rendering.gui.GuiMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
@@ -20,6 +21,7 @@ public class GuiHandler implements IGuiHandler
 			return new GuiMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		}
 		else if (ID == 1) { return new GuiJediRobes(player); }
+		else if (ID == 2) { return new GuiLightJediRobes(player); }
 		return null;
 	}
 
@@ -31,6 +33,7 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		}
 		else if (ID == 1) { return new GuiJediRobes(player); }
+		else if (ID == 2) { return new GuiLightJediRobes(player); }
 		return null;
 	}
 }

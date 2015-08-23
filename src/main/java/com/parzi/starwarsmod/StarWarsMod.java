@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Level;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
+import com.parzi.starwarsmod.commands.CommandForcePoints;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.handlers.GuiHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
@@ -57,12 +58,12 @@ public class StarWarsMod
 {
 	/* Mod Details */
 	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "0.1.4.4";
+	public static final String VERSION = "1.0.0.2";
 	public static Configuration config;
 
 	/* Beta Testing */
 	public static boolean isBetaTesting = false;
-	public static String betaTesterUsername = "Cly_Faker";
+	public static String betaTesterUsername = "";
 
 	public static Random rngChromium = new Random();
 	public static Random rngTitanium = new Random();
@@ -79,9 +80,6 @@ public class StarWarsMod
 
 	/* Creative Tabs */
 	public static CreativeTabs StarWarsTab;
-
-	/* GuIs */
-	public static GuiJediRobes jediRobesGui;
 
 	/* Items */
 	public static ItemGaffiStick gaffiStick;
@@ -110,6 +108,7 @@ public class StarWarsMod
 	public static Item debugLootGen;
 
 	public static ItemFood banthaChop;
+	public static ItemFood banthaChopCooked;
 
 	public static Item chromiumDust;
 	public static Item titaniumDust;
@@ -344,5 +343,7 @@ public class StarWarsMod
 			event.registerServerCommand(new CommandSWDim());
 			Lumberjack.warn("Dimensional Transport command enabled! This is INCOMPATIBLE with anything serverside.");
 		}
+
+		//event.registerServerCommand(new CommandForcePoints());
 	}
 }

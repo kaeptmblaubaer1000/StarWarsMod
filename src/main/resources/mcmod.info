@@ -1,9 +1,9 @@
 [
     {
         "modid": "starwarsmod",
-        "name": "The Star Wars Mod",
-        "description": "Explore the Galaxy with the Star Wars Mod!",
-        "version": "0.1.0",
+        "name": "Parzi's Star Wars Mod",
+        "description": "Explore the Galaxy with Parzi's Star Wars Mod!",
+        "version": "",
         "mcversion": "1.7.10",
         "url": "http://parzivail.com/mods/tswm/",
         "updateUrl": "",

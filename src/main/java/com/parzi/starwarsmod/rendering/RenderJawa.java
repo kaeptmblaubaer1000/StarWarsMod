@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.mobs.MobJawa;
 
 public class RenderJawa extends RenderLiving
 {
@@ -17,6 +18,18 @@ public class RenderJawa extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
+		if (entity instanceof MobJawa)
+		{
+			MobJawa commoner = (MobJawa)entity;
+
+			switch (commoner.getDataWatcher().getWatchableObjectInt(25))
+			{
+				case 0:
+					return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
+				case 1:
+					return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa2.png");
+			}
+		}
 		return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
 	}
 }

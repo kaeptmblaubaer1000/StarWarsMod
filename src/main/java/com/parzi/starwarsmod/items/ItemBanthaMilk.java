@@ -3,18 +3,19 @@ package com.parzi.starwarsmod.items;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemBanthaMilk extends Item
+public class ItemBanthaMilk extends ItemFood
 {
 	private String name = "banthaMilk";
 
 	public ItemBanthaMilk()
 	{
+		super(4, 2, false);
 		setUnlocalizedName(StarWarsMod.MODID + "." + name);
 		setTextureName(StarWarsMod.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTab);
@@ -43,12 +44,9 @@ public class ItemBanthaMilk extends Item
 	@Override
 	public ItemStack onEaten(ItemStack p_77654_1_, World p_77654_2_, EntityPlayer p_77654_3_)
 	{
-		if (!p_77654_3_.capabilities.isCreativeMode)
-		{
-			--p_77654_1_.stackSize;
-		}
+		super.onEaten(p_77654_1_, p_77654_2_, p_77654_3_);
 
-		if (!p_77654_2_.isRemote)
+		if (!p_77654_2_.isRemote && this.itemRand.nextInt(10) == 0)
 		{
 			p_77654_3_.curePotionEffects(p_77654_1_);
 		}
