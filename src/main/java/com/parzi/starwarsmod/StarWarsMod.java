@@ -39,6 +39,7 @@ import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
 
@@ -93,6 +94,7 @@ public class StarWarsMod
 	public static Item blasterRifleBolt;
 	public static Item banthaHorn;
 	public static Item droidCaller;
+	public static Item droidHacker;
 	public static Item imperialCredit;
 	public static Item waterDroplet;
 	public static Item binoculars;
@@ -213,6 +215,8 @@ public class StarWarsMod
 	public static RenderHelper renderHelper;
 	@SideOnly(Side.CLIENT)
 	public static PlayerHelper playerHelper;
+	@SideOnly(Side.CLIENT)
+	public static PGui pgui;
 
 	public static Block blockMV;
 	public static Block blockTable;

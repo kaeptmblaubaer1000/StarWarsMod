@@ -35,7 +35,7 @@ public class GuiCreditsOverlay extends Gui
 	{
 		if (event.isCancelable() || event.type != RenderGameOverlayEvent.ElementType.HOTBAR) return;
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + StarWarsMod.VERSION, 5, 5, 16777215);
-		PGui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
+		StarWarsMod.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
 	}
 }

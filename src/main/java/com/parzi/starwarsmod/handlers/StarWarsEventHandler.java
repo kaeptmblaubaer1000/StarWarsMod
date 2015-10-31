@@ -2,7 +2,11 @@ package com.parzi.starwarsmod.handlers;
 
 import java.util.Arrays;
 
+import org.lwjgl.opengl.GL11;
+
+import scala.Int;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +26,7 @@ import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.utils.PGui;
+import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
@@ -84,7 +89,7 @@ public class StarWarsEventHandler
 				guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
 			else
 				guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
-			PGui.renderOverlay(guiTexture);
+			StarWarsMod.pgui.renderOverlay(guiTexture);
 		}
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}

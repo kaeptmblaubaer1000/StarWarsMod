@@ -22,7 +22,7 @@ import com.parzi.starwarsmod.upgrades.ForceStep;
 import com.parzi.starwarsmod.upgrades.ForceStride;
 import com.parzi.starwarsmod.upgrades.PowerBase;
 import com.parzi.starwarsmod.utils.KeyboardUtils;
-import com.parzi.starwarsmod.utils.TextEffects;
+import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -56,10 +56,10 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 			{
 				String owner = stack.stackTagCompound.getString("owner");
 				list.add("Jedi Master: " + owner);
-				list.add("Flora: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("plants")), TextEffects.COLOR_GREEN));
-				list.add("Fauna: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("animals")), TextEffects.COLOR_YELLOW));
-				list.add("Terra: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("earth")), TextEffects.COLOR_DARK_GREEN));
-				list.add("Aqua: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("water")), TextEffects.COLOR_BLUE));
+				list.add("Flora: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("plants")), Text.COLOR_GREEN));
+				list.add("Fauna: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("animals")), Text.COLOR_YELLOW));
+				list.add("Terra: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("earth")), Text.COLOR_DARK_GREEN));
+				list.add("Aqua: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("water")), Text.COLOR_BLUE));
 				for (PowerBase power : this.powers)
 					if (stack.stackTagCompound.getInteger(power.internalName) > 0) list.add("* " + power.displayName + " level " + stack.stackTagCompound.getInteger(power.internalName));
 			}
@@ -67,7 +67,7 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 				list.add("Owner not set!");
 		}
 		else
-			list.add(TextUtils.addEffect("<Hold Shift>", TextEffects.COLOR_AQUA));
+			list.add(TextUtils.addEffect("<Hold Shift>", Text.COLOR_AQUA));
 	}
 
 	@Override

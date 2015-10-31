@@ -87,6 +87,7 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
+import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -117,6 +118,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHand
 	{
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
+		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
 
 		RenderingRegistry.registerEntityRenderingHandler(MobWookiee.class, new RenderWookiee(new ModelWookiee(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelSmallBiped(), 0.5F));
