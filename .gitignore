@@ -46,15 +46,24 @@ Temporary Items
 # =========================
 # Eclipse, Forge, MCP, etc.
 # =========================
+.classpath
+.project
+
 .gradle/
 .settings/
+.metadata/
 bin/
 build/
 eclipse/
-.classpath
-.project
-.metadata/
+
 default_textures/
+faithful32pack/
+web/
+video/
+shaderpacks/
+needed_sounds/
+lightsaber_sounds/
+com/
 
 *.txt
 gradlew

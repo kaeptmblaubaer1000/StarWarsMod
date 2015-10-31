@@ -12,14 +12,13 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockTable extends BlockContainer
 {
-
 	public BlockTable()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		setBlockName(StarWarsMod.MODID + "." + "table");
-		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
-		setHardness(50F);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setBlockName("starwarsmod.table");
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -41,11 +40,10 @@ public class BlockTable extends BlockContainer
 		return false;
 	}
 
-	// This is the icon to use for showing the block in your hand.
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconTable");
+		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconTable");
 	}
 
 	@Override
@@ -54,3 +52,8 @@ public class BlockTable extends BlockContainer
 		return false;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockTable.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

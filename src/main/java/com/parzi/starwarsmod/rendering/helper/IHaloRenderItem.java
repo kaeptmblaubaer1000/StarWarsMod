@@ -5,22 +5,25 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public interface IHaloRenderItem
+public abstract interface IHaloRenderItem
 {
-	// Thanks SpitefulFox!
-	// https://github.com/SpitefulFox/Avaritia/
 	@SideOnly(Side.CLIENT)
-	public boolean drawHalo(ItemStack stack);
+	public abstract boolean drawHalo(ItemStack paramItemStack);
 
 	@SideOnly(Side.CLIENT)
-	public boolean drawPulseEffect(ItemStack stack);
+	public abstract boolean drawPulseEffect(ItemStack paramItemStack);
 
 	@SideOnly(Side.CLIENT)
-	public int getHaloColour(ItemStack stack);
+	public abstract int getHaloColour(ItemStack paramItemStack);
 
 	@SideOnly(Side.CLIENT)
-	public int getHaloSize(ItemStack stack);
+	public abstract int getHaloSize(ItemStack paramItemStack);
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getHaloTexture(ItemStack stack);
+	public abstract IIcon getHaloTexture(ItemStack paramItemStack);
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\helper\IHaloRenderItem.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

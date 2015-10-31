@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -9,33 +10,36 @@ public class VehicLandspeeder extends VehicleLandBase
 {
 	public VehicLandspeeder(World par1World)
 	{
-		super(par1World);
-		setSize(2, 2);
+		this(par1World, false);
+	}
 
-		vehicYOffset = -0.3F;
+	public VehicLandspeeder(World par1World, boolean isSentient)
+	{
+		super(par1World, isSentient, Blocks.grass);
+		this.setSize(2.0F, 2.0F);
+		this.vehicYOffset = -0.3F;
+		this.moveModifier = 2.5F;
+	}
 
-		moveModifier = 2.5F;
-
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
+	@Override
+	protected void applyEntityAttributes()
+	{
+		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
 	}
 
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		dropItem(StarWarsMod.spawnLandspeeder, 1);
+		this.dropItem(StarWarsMod.spawnLandspeeder, 1);
 	}
 
 	@Override
 	public String getCommandSenderName()
 	{
-		if (hasCustomNameTag())
-		{
-			return getCustomNameTag();
-		}
-		else
-		{
-			return "X-34 Landspeeder";
-		}
+		if (this.hasCustomNameTag()) return this.getCustomNameTag();
+		return "X-34 Landspeeder";
 	}
 
 	@Override
@@ -44,3 +48,8 @@ public class VehicLandspeeder extends VehicleLandBase
 		return "vehicle.landspeeder.move";
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\vehicles\VehicLandspeeder.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -17,8 +17,8 @@ public class CommandSWDim implements ICommand
 
 	public CommandSWDim()
 	{
-		aliases = new ArrayList();
-		aliases.add("sw-dim");
+		this.aliases = new ArrayList();
+		this.aliases.add("sw-dim");
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class CommandSWDim implements ICommand
 	@Override
 	public List getCommandAliases()
 	{
-		return aliases;
+		return this.aliases;
 	}
 
 	@Override
@@ -85,6 +85,10 @@ public class CommandSWDim implements ICommand
 		{
 			e.printStackTrace();
 		}
-
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\commands\CommandSWDim.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

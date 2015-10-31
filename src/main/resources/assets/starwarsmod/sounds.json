@@ -160,6 +160,33 @@
             "mob/protocol/r2d2rare"
         ]
     },
+    "mob.mouse.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/mouse/say1",
+            "mob/mouse/say2"
+            
+        ]
+    },
+    "mob.mouse.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/mouse/scare1"
+        ]
+    },
+    "mob.mouse.scare": {
+        "category": "neutral",
+        "sounds": [
+            "mob/mouse/scare1",
+            "mob/mouse/scare2"
+        ]
+    },
+    "mob.mouse.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/mouse/scare1"
+        ]
+    },
     "mob.astromech.say": {
         "category": "neutral",
         "sounds": [
@@ -179,6 +206,82 @@
         "category": "neutral",
         "sounds": [
             "mob/astromech/die1"
+        ]
+    },
+    "mob.astromech2.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/astromech2/say1",
+            "mob/astromech2/say2",
+            "mob/astromech2/say3",
+            "mob/astromech2/fart"
+        ]
+    },
+    "mob.astromech2.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/astromech/hit1"
+        ]
+    },
+    "mob.astromech2.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/astromech2/die1"
+        ]
+    },
+    "mob.probe.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/probe/say1"
+        ]
+    },
+    "mob.probe.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/probe/hit1"
+        ]
+    },
+    "mob.probe.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/probe/die1"
+        ]
+    },
+    "mob.surgical.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/surgical/say1"
+        ]
+    },
+    "mob.surgical.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/surgical/hit1"
+        ]
+    },
+    "mob.surgical.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/surgical/die1"
+        ]
+    },
+    "mob.treadwell.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/treadwell/say1",
+            "mob/treadwell/say2"
+        ]
+    },
+    "mob.treadwell.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/treadwell/hit1"
+        ]
+    },
+    "mob.treadwell.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/treadwell/die1"
         ]
     },
     "mob.gonk.say": {

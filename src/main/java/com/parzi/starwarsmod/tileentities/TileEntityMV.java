@@ -21,10 +21,10 @@ public class TileEntityMV extends TileEntity implements IInventory
 
 	public TileEntityMV()
 	{
-		frame = 0;
-		progressTicks = 1;
-		totalTicks = 600;
-		waterDroplets = null;
+		this.frame = 0;
+		this.progressTicks = 1;
+		this.totalTicks = 600;
+		this.waterDroplets = null;
 	}
 
 	@Override
@@ -35,41 +35,29 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public ItemStack decrStackSize(int slot, int decrement)
 	{
-		if (waterDroplets == null)
+		if (this.waterDroplets == null) return null;
+		if (decrement < this.waterDroplets.stackSize)
 		{
-			return null;
+			ItemStack take = this.waterDroplets.splitStack(decrement);
+			if (this.waterDroplets.stackSize <= 0) this.waterDroplets = null;
+			return take;
 		}
-		else
-		{
-			if (decrement < waterDroplets.stackSize)
-			{
-				ItemStack take = waterDroplets.splitStack(decrement);
-				if (waterDroplets.stackSize <= 0)
-				{
-					waterDroplets = null;
-				}
-				return take;
-			}
-			else
-			{
-				ItemStack take = waterDroplets;
-				waterDroplets = null;
-				return take;
-			}
-		}
+		ItemStack take = this.waterDroplets;
+		this.waterDroplets = null;
+		return take;
 	}
 
 	@Override
 	public Packet getDescriptionPacket()
 	{
 		NBTTagCompound tag = new NBTTagCompound();
-		writeToNBT(tag);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, -999, tag);
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
 	}
 
 	public int getFacing()
 	{
-		return facing;
+		return this.facing;
 	}
 
 	@Override
@@ -93,20 +81,26 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlot(int p_70301_1_)
 	{
-		return waterDroplets;
+		return this.waterDroplets;
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int p_70304_1_)
 	{
-		if (waterDroplets == null) { return null; }
-		ItemStack take = waterDroplets;
-		waterDroplets = null;
+		if (this.waterDroplets == null) return null;
+		ItemStack take = this.waterDroplets;
+		this.waterDroplets = null;
 		return take;
 	}
 
 	@Override
 	public boolean hasCustomInventoryName()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean isInventoryNameLocalized()
 	{
 		return false;
 	}
@@ -120,14 +114,14 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this && player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
 	{
 		super.onDataPacket(net, packet);
-		readFromNBT(packet.func_148857_g());
+		this.readFromNBT(packet.func_148857_g());
 	}
 
 	@Override
@@ -138,61 +132,54 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
-		waterDroplets = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("droplets"));
-		progressTicks = tag.getInteger("progress");
-		facing = tag.getShort("facing");
+		this.waterDroplets = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("droplets"));
+		this.progressTicks = tag.getInteger("progress");
+		this.facing = tag.getShort("facing");
 		super.readFromNBT(tag);
 	}
 
 	public void setFacing(int dir)
 	{
-		facing = dir;
+		this.facing = dir;
 	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
-		waterDroplets = stack;
+		this.waterDroplets = stack;
 	}
 
 	@Override
 	public void updateEntity()
 	{
-		// if (++this.frame > 180) this.frame = 0;
-
-		if (progressTicks < totalTicks)
-		{
-			progressTicks++;
-		}
+		if (this.progressTicks < this.totalTicks)
+			this.progressTicks += 1;
 		else
 		{
-			progressTicks = 1;
-			if (waterDroplets == null)
-			{
-				waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
-			}
-			else
-			{
-				if (waterDroplets.stackSize < 64)
-				{
-					waterDroplets.stackSize++;
-				}
-			}
-			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			this.progressTicks = 1;
+			if (this.waterDroplets == null)
+				this.waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
+			else if (this.waterDroplets.stackSize < 64) this.waterDroplets.stackSize += 1;
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
-		tag.setInteger("progress", progressTicks);
-		tag.setShort("facing", (short)facing);
-		if (waterDroplets != null)
+		tag.setInteger("progress", this.progressTicks);
+		tag.setShort("facing", (short)this.facing);
+		if (this.waterDroplets != null)
 		{
 			NBTTagCompound produce = new NBTTagCompound();
-			produce = waterDroplets.writeToNBT(produce);
+			produce = this.waterDroplets.writeToNBT(produce);
 			tag.setTag("droplets", produce);
 		}
 		super.writeToNBT(tag);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\tileentities\TileEntityMV.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

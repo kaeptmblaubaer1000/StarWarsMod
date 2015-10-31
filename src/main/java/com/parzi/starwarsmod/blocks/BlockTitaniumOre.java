@@ -16,12 +16,12 @@ public class BlockTitaniumOre extends Block
 	public BlockTitaniumOre()
 	{
 		super(Material.rock);
-		setBlockName(StarWarsMod.MODID + "." + name);
-		setBlockTextureName(StarWarsMod.MODID + ":" + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		setHardness(4F);
-		setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		setStepSound(soundTypeStone);
+		this.setBlockName(StarWarsMod.MODID + "." + this.name);
+		this.setBlockTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setHardness(4.0F);
+		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
+		this.setStepSound(soundTypeStone);
 	}
 
 	@Override
@@ -30,3 +30,8 @@ public class BlockTitaniumOre extends Block
 		return StarWarsMod.titaniumDust;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockTitaniumOre.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

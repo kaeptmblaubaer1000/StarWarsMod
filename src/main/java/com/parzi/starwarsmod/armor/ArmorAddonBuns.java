@@ -15,29 +15,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ArmorAddonBuns extends ItemArmor
 {
 	private String name = "leiasBuns";
-	ModelLeiaBuns model = new ModelLeiaBuns();
 
-	public ArmorAddonBuns(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorAddonBuns(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setTextureName(StarWarsMod.MODID + ":" + name);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
-
+		ModelLeiaBuns model = new ModelLeiaBuns();
 		model.BunL.showModel = armorSlot == 0;
 		model.BunR.showModel = armorSlot == 0;
-
 		model.BunL.rotateAngleX = model.bipedHead.rotateAngleX;
 		model.BunL.rotateAngleY = model.bipedHead.rotateAngleY;
-
 		model.BunR.rotateAngleX = model.bipedHead.rotateAngleX;
 		model.BunR.rotateAngleY = model.bipedHead.rotateAngleY;
-
 		model.bipedHead.isHidden = true;
 		model.bipedHeadwear.isHidden = true;
 		model.bipedBody.isHidden = true;
@@ -45,7 +41,6 @@ public class ArmorAddonBuns extends ItemArmor
 		model.bipedLeftArm.isHidden = true;
 		model.bipedRightLeg.isHidden = true;
 		model.bipedLeftLeg.isHidden = true;
-
 		return model;
 	}
 
@@ -55,3 +50,8 @@ public class ArmorAddonBuns extends ItemArmor
 		return StarWarsMod.MODID + ":" + "textures/models/leiaBunsLayer1.png";
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorAddonBuns.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

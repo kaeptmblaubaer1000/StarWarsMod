@@ -8,24 +8,26 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorTiePilot extends ItemArmor
 {
-	private String[] names = new String[] { "Helmet", "Chestplate", "Leggings", "Boots" };
+	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 
-	public ArmorTiePilot(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorTiePilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + "tiePilot" + names[par4]);
-		setTextureName(StarWarsMod.MODID + ":" + "tiePilot" + names[par4]);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName("starwarsmod.tiePilot" + this.names[par4]);
+		this.setTextureName(StarWarsMod.MODID + ":" + "tiePilot" + this.names[par4]);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.tiePilotHelmet || stack.getItem() == StarWarsMod.tiePilotChest || stack.getItem() == StarWarsMod.tiePilotBoots)
-		{
-			return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer1.png";
-		}
-		else if (stack.getItem() == StarWarsMod.tiePilotLegs) { return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer2.png"; }
+		if (stack.getItem() == StarWarsMod.tiePilotHelmet || stack.getItem() == StarWarsMod.tiePilotChest || stack.getItem() == StarWarsMod.tiePilotBoots) return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.tiePilotLegs) return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer2.png";
 		return "";
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorTiePilot.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

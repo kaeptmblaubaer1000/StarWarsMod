@@ -21,7 +21,6 @@ public class RenderJawa extends RenderLiving
 		if (entity instanceof MobJawa)
 		{
 			MobJawa commoner = (MobJawa)entity;
-
 			switch (commoner.getDataWatcher().getWatchableObjectInt(25))
 			{
 				case 0:
@@ -33,3 +32,8 @@ public class RenderJawa extends RenderLiving
 		return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\RenderJawa.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

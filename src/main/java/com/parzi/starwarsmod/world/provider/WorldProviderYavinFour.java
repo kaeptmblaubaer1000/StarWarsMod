@@ -15,7 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderYavinFour extends WorldProvider
 {
-
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
@@ -31,7 +30,7 @@ public class WorldProviderYavinFour extends WorldProvider
 	@Override
 	public IChunkProvider createChunkGenerator()
 	{
-		IChunkProvider generator = new ChunkProviderGenerate(worldObj, worldObj.getSeed(), false);
+		IChunkProvider generator = new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), false);
 		return generator;
 	}
 
@@ -69,8 +68,13 @@ public class WorldProviderYavinFour extends WorldProvider
 	@Override
 	public void registerWorldChunkManager()
 	{
-		worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeYavin4, 0);
-		dimensionId = StarWarsMod.dimYavin4Id;
+		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeYavin4, 0.0F);
+		this.dimensionId = StarWarsMod.dimYavin4Id;
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\world\provider\WorldProviderYavinFour.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

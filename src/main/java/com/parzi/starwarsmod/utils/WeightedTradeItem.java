@@ -12,7 +12,7 @@ public class WeightedTradeItem
 	public WeightedTradeItem(ItemStack cost, ItemStack item, float weight)
 	{
 		this.cost = cost;
-		cost2 = null;
+		this.cost2 = null;
 		this.item = item;
 		this.weight = weight;
 	}

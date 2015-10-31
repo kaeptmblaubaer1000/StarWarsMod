@@ -35,7 +35,7 @@ public class WorldProviderTatooine extends WorldProvider
 	@Override
 	public IChunkProvider createChunkGenerator()
 	{
-		return new ChunkProviderGenerateTatooine(worldObj, worldObj.getSeed(), false);
+		return new ChunkProviderGenerateTatooine(this.worldObj, this.worldObj.getSeed(), false);
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class WorldProviderTatooine extends WorldProvider
 	@Override
 	public ChunkCoordinates getSpawnPoint()
 	{
-		return new ChunkCoordinates(0, worldObj.getHeightValue(0, 0), 0);
+		return new ChunkCoordinates(0, this.worldObj.getHeightValue(0, 0), 0);
 	}
 
 	@Override
@@ -78,7 +78,13 @@ public class WorldProviderTatooine extends WorldProvider
 	@Override
 	public void registerWorldChunkManager()
 	{
-		worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0);
-		dimensionId = StarWarsMod.dimTatooineId;
+		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0.0F);
+		this.dimensionId = StarWarsMod.dimTatooineId;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\world\provider\WorldProviderTatooine.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

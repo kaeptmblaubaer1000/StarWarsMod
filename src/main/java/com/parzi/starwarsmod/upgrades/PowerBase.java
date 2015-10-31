@@ -13,10 +13,10 @@ public class PowerBase
 
 	public PowerBase()
 	{
-		internalName = "powerBase";
-		displayName = "Base Power";
-		internalElement = "none";
-		displayElement = "none";
+		this.internalName = "powerBase";
+		this.displayName = "Base Power";
+		this.internalElement = "none";
+		this.displayElement = "none";
 	}
 
 	public void doPower(World world, EntityPlayer player, ItemStack robe)

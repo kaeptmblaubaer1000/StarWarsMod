@@ -1,6 +1,5 @@
 package com.parzi.starwarsmod.network;
 
-import net.minecraft.server.MinecraftServer;
 import io.netty.buffer.ByteBuf;
 
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -12,28 +11,25 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class JediRobesSetElementInArmorInv implements IMessage
 {
-
 	public static class Handler implements IMessageHandler<JediRobesSetElementInArmorInv, IMessage>
 	{
-
 		@Override
 		public IMessage onMessage(JediRobesSetElementInArmorInv message, MessageContext ctx)
 		{
 			try
 			{
-				MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player).inventory.armorInventory[2].stackTagCompound.setInteger(message.element, message.amt);
+				net.minecraft.server.MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player).inventory.armorInventory[2].stackTagCompound.setInteger(message.element, message.amt);
 			}
 			catch (Exception e)
 			{
 				Lumberjack.warn("Unable to add element " + message.element + " (amount " + String.valueOf(message.amt) + ")");
 			}
-			return null; // no response in this case
+			return null;
 		}
 	}
 
 	private String element;
 	private String player;
-
 	private int amt;
 	private int dim;
 
@@ -52,18 +48,24 @@ public class JediRobesSetElementInArmorInv implements IMessage
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		element = ByteBufUtils.readUTF8String(buf);
-		player = ByteBufUtils.readUTF8String(buf);
-		amt = ByteBufUtils.readVarInt(buf, 5);
-		dim = ByteBufUtils.readVarInt(buf, 5);
+		this.element = ByteBufUtils.readUTF8String(buf);
+		this.player = ByteBufUtils.readUTF8String(buf);
+		this.amt = ByteBufUtils.readVarInt(buf, 5);
+		this.dim = ByteBufUtils.readVarInt(buf, 5);
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf)
 	{
-		ByteBufUtils.writeUTF8String(buf, element);
-		ByteBufUtils.writeUTF8String(buf, player);
-		ByteBufUtils.writeVarInt(buf, amt, 5);
-		ByteBufUtils.writeVarInt(buf, dim, 5);
+		ByteBufUtils.writeUTF8String(buf, this.element);
+		ByteBufUtils.writeUTF8String(buf, this.player);
+		ByteBufUtils.writeVarInt(buf, this.amt, 5);
+		ByteBufUtils.writeVarInt(buf, this.dim, 5);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\network\JediRobesSetElementInArmorInv.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

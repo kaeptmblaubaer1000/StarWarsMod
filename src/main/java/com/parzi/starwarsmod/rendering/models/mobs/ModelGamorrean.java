@@ -7,7 +7,6 @@ import net.minecraft.util.MathHelper;
 
 public class ModelGamorrean extends ModelBase
 {
-	// fields
 	ModelRenderer head;
 	ModelRenderer body;
 	ModelRenderer rightarm;
@@ -19,65 +18,64 @@ public class ModelGamorrean extends ModelBase
 
 	public ModelGamorrean()
 	{
-		textureWidth = 128;
-		textureHeight = 64;
-
-		head = new ModelRenderer(this, 0, 0);
-		head.addBox(-4F, -8F, -4F, 8, 8, 8);
-		head.setRotationPoint(0F, 0F, 1.5F);
-		head.setTextureSize(128, 64);
-		head.mirror = true;
-		setRotation(head, 0F, 0F, 0F);
-		body = new ModelRenderer(this, 0, 16);
-		body.addBox(-4F, 0F, -2F, 12, 14, 7);
-		body.setRotationPoint(-2F, 0F, 0F);
-		body.setTextureSize(128, 64);
-		body.mirror = true;
-		setRotation(body, 0F, 0F, 0F);
-		rightarm = new ModelRenderer(this, 0, 37);
-		rightarm.addBox(-3F, -2F, -2F, 4, 12, 5);
-		rightarm.setRotationPoint(-7F, 2F, 1F);
-		rightarm.setTextureSize(128, 64);
-		rightarm.mirror = true;
-		setRotation(rightarm, 0F, 0F, 0F);
-		leftarm = new ModelRenderer(this, 18, 37);
-		leftarm.addBox(-1F, -2F, -2F, 4, 12, 5);
-		leftarm.setRotationPoint(7F, 2F, 1F);
-		leftarm.setTextureSize(128, 64);
-		leftarm.mirror = true;
-		setRotation(leftarm, 0F, 0F, 0F);
-		rightleg = new ModelRenderer(this, 32, 0);
-		rightleg.addBox(-2F, 0F, -2F, 5, 10, 5);
-		rightleg.setRotationPoint(-4F, 14F, 1F);
-		rightleg.setTextureSize(128, 64);
-		rightleg.mirror = true;
-		setRotation(rightleg, 0F, 0F, 0F);
-		leftleg = new ModelRenderer(this, 38, 15);
-		leftleg.addBox(-2F, 0F, -2F, 5, 10, 5);
-		leftleg.setRotationPoint(3F, 14F, 1F);
-		leftleg.setTextureSize(128, 64);
-		leftleg.mirror = true;
-		setRotation(leftleg, 0F, 0F, 0F);
-		Snout = new ModelRenderer(this, 0, 54);
-		Snout.addBox(-2F, -4F, -6F, 4, 3, 2);
-		Snout.setRotationPoint(0F, 0F, 1.5F);
-		Snout.setTextureSize(64, 32);
-		Snout.mirror = true;
-		setRotation(Snout, 0F, 0F, 0F);
+		this.textureWidth = 128;
+		this.textureHeight = 64;
+		this.head = new ModelRenderer(this, 0, 0);
+		this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8);
+		this.head.setRotationPoint(0.0F, 0.0F, 1.5F);
+		this.head.setTextureSize(128, 64);
+		this.head.mirror = true;
+		this.setRotation(this.head, 0.0F, 0.0F, 0.0F);
+		this.body = new ModelRenderer(this, 0, 16);
+		this.body.addBox(-4.0F, 0.0F, -2.0F, 12, 14, 7);
+		this.body.setRotationPoint(-2.0F, 0.0F, 0.0F);
+		this.body.setTextureSize(128, 64);
+		this.body.mirror = true;
+		this.setRotation(this.body, 0.0F, 0.0F, 0.0F);
+		this.rightarm = new ModelRenderer(this, 0, 37);
+		this.rightarm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 5);
+		this.rightarm.setRotationPoint(-7.0F, 2.0F, 1.0F);
+		this.rightarm.setTextureSize(128, 64);
+		this.rightarm.mirror = true;
+		this.setRotation(this.rightarm, 0.0F, 0.0F, 0.0F);
+		this.leftarm = new ModelRenderer(this, 18, 37);
+		this.leftarm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 5);
+		this.leftarm.setRotationPoint(7.0F, 2.0F, 1.0F);
+		this.leftarm.setTextureSize(128, 64);
+		this.leftarm.mirror = true;
+		this.setRotation(this.leftarm, 0.0F, 0.0F, 0.0F);
+		this.rightleg = new ModelRenderer(this, 32, 0);
+		this.rightleg.addBox(-2.0F, 0.0F, -2.0F, 5, 10, 5);
+		this.rightleg.setRotationPoint(-4.0F, 14.0F, 1.0F);
+		this.rightleg.setTextureSize(128, 64);
+		this.rightleg.mirror = true;
+		this.setRotation(this.rightleg, 0.0F, 0.0F, 0.0F);
+		this.leftleg = new ModelRenderer(this, 38, 15);
+		this.leftleg.addBox(-2.0F, 0.0F, -2.0F, 5, 10, 5);
+		this.leftleg.setRotationPoint(3.0F, 14.0F, 1.0F);
+		this.leftleg.setTextureSize(128, 64);
+		this.leftleg.mirror = true;
+		this.setRotation(this.leftleg, 0.0F, 0.0F, 0.0F);
+		this.Snout = new ModelRenderer(this, 0, 54);
+		this.Snout.addBox(-2.0F, -4.0F, -6.0F, 4, 3, 2);
+		this.Snout.setRotationPoint(0.0F, 0.0F, 1.5F);
+		this.Snout.setTextureSize(64, 32);
+		this.Snout.mirror = true;
+		this.setRotation(this.Snout, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		head.render(f5);
-		body.render(f5);
-		rightarm.render(f5);
-		leftarm.render(f5);
-		rightleg.render(f5);
-		leftleg.render(f5);
-		Snout.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.head.render(f5);
+		this.body.render(f5);
+		this.rightarm.render(f5);
+		this.leftarm.render(f5);
+		this.rightleg.render(f5);
+		this.leftleg.render(f5);
+		this.Snout.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -91,19 +89,23 @@ public class ModelGamorrean extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		head.rotateAngleY = f3 / (180F / (float)Math.PI);
-		head.rotateAngleX = f4 / (180F / (float)Math.PI);
-		Snout.rotateAngleY = f3 / (180F / (float)Math.PI);
-		Snout.rotateAngleX = f4 / (180F / (float)Math.PI);
-
-		rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		leftarm.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		rightarm.rotateAngleZ = 0.0F;
-		leftarm.rotateAngleZ = 0.0F;
-
-		rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
-		rightleg.rotateAngleY = 0.0F;
-		leftleg.rotateAngleY = 0.0F;
+		this.head.rotateAngleY = f3 / 57.295776F;
+		this.head.rotateAngleX = f4 / 57.295776F;
+		this.Snout.rotateAngleY = f3 / 57.295776F;
+		this.Snout.rotateAngleX = f4 / 57.295776F;
+		this.rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1 * 0.5F;
+		this.leftarm.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1 * 0.5F;
+		this.rightarm.rotateAngleZ = 0.0F;
+		this.leftarm.rotateAngleZ = 0.0F;
+		this.rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1;
+		this.leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1;
+		this.rightleg.rotateAngleY = 0.0F;
+		this.leftleg.rotateAngleY = 0.0F;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\rendering\models\mobs\ModelGamorrean.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

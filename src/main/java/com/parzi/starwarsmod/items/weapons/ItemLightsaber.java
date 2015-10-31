@@ -26,19 +26,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemLightsaber extends ItemSword
 {
 	public String name = "lightsaber";
-
 	private String[] colors = { "red", "green", "blue" };
-
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
 	public ItemLightsaber()
 	{
 		super(StarWarsMod.plasmaMat);
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setTextureName(StarWarsMod.MODID + ":" + name);
-		setHasSubtypes(true);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setHasSubtypes(true);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
@@ -54,6 +52,20 @@ public class ItemLightsaber extends ItemSword
 	}
 
 	@Override
+	public IIcon getIconFromDamage(int par1)
+	{
+		return this.icons[par1];
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+	{
+		for (int x = 0; x < this.colors.length; x++)
+			par3List.add(new ItemStack(this, 1, x));
+	}
+
+	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase a, EntityLivingBase b)
 	{
 		if (a instanceof EntityPlayer && b instanceof EntityPlayer)
@@ -62,46 +74,27 @@ public class ItemLightsaber extends ItemSword
 			EntityPlayer pb = (EntityPlayer)b;
 			if (pa.inventory.mainInventory[pa.inventory.currentItem] != null && pa.inventory.mainInventory[pa.inventory.currentItem].getItem() == StarWarsMod.lightsaber && pa.isBlocking() && pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.lightsaber)
 			{
-				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1F, 1F);
-				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1F, 1F);
+				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
+				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 			}
 		}
 		return super.hitEntity(stack, a, b);
 	}
 
 	@Override
-	public IIcon getIconFromDamage(int par1)
-	{
-		return icons[par1];
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
-		for (int x = 0; x < colors.length; x++)
-		{
-			par3List.add(new ItemStack(this, 1, x));
-		}
-	}
-
-	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
-		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1f, 1f + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (!stack.stackTagCompound.hasKey("timeout"))
-		{
-			stack.stackTagCompound.setInteger("timeout", 10);
-		}
+		if (!stack.stackTagCompound.hasKey("timeout")) stack.stackTagCompound.setInteger("timeout", 10);
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1f, 1f);
+			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
 			StarWarsMod.network.sendToServer(new TogglePlayerLightsaber(player.getCommandSenderName(), player.dimension));
 		}
 		return super.onItemRightClick(stack, world, player);
@@ -111,31 +104,25 @@ public class ItemLightsaber extends ItemSword
 	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
 	{
 		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
-		if (!p_77663_1_.hasTagCompound())
-		{
-			p_77663_1_.stackTagCompound = new NBTTagCompound();
-		}
-
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
-		{
-			p_77663_1_.stackTagCompound.setInteger("timeout", 10);
-		}
-
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
-		{
-			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
-		}
+		if (!p_77663_1_.hasTagCompound()) p_77663_1_.stackTagCompound = new NBTTagCompound();
+		if (!p_77663_1_.stackTagCompound.hasKey("timeout")) p_77663_1_.stackTagCompound.setInteger("timeout", 10);
+		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0) p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		icons = new IIcon[colors.length];
-
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + colors[i]);
-		}
+		this.icons = new IIcon[this.colors.length];
+		for (int i = 0; i < this.icons.length; i++)
+			if (StarWarsMod.enableLightsaberStrobe)
+				this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.colors[i]);
+			else
+				this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.colors[i] + "_static");
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemLightsaber.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

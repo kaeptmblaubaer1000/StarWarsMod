@@ -14,24 +14,19 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class CreateBlasterBoltSpeeder implements IMessage
 {
-
 	public static class Handler implements IMessageHandler<CreateBlasterBoltSpeeder, IMessage>
 	{
-
 		@Override
 		public IMessage onMessage(CreateBlasterBoltSpeeder message, MessageContext ctx)
 		{
 			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			World world = player.worldObj;
-
 			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, player));
-
-			return null; // no response in this case
+			return null;
 		}
 	}
 
 	private String player;
-
 	private int dim;
 
 	public CreateBlasterBoltSpeeder()
@@ -47,14 +42,19 @@ public class CreateBlasterBoltSpeeder implements IMessage
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		player = ByteBufUtils.readUTF8String(buf);
-		dim = ByteBufUtils.readVarInt(buf, 5);
+		this.player = ByteBufUtils.readUTF8String(buf);
+		this.dim = ByteBufUtils.readVarInt(buf, 5);
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf)
 	{
-		ByteBufUtils.writeUTF8String(buf, player);
-		ByteBufUtils.writeVarInt(buf, dim, 5);
+		ByteBufUtils.writeUTF8String(buf, this.player);
+		ByteBufUtils.writeVarInt(buf, this.dim, 5);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\network\CreateBlasterBoltSpeeder.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

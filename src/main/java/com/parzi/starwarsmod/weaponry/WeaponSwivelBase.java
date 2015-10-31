@@ -10,28 +10,26 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class WeaponSwivelBase extends EntityLiving
 {
-	public float vehicXOffset = 0;
-	public float vehicYOffset = 0;
-	public float vehicZOffset = 0;
-
+	public float vehicXOffset = 0.0F;
+	public float vehicYOffset = 0.0F;
+	public float vehicZOffset = 0.0F;
 	public float pitch;
 
 	public WeaponSwivelBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
-		setSize(0.9F, 0.9F);
+		this.setSize(0.9F, 0.9F);
 	}
 
 	@Override
 	public void fall(float p1)
 	{
-		return;
 	}
 
 	@Override
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
-		playSound(StarWarsMod.MODID + ":" + getMovingSound(), 0.15F, 1.0F);
+		this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
 	}
 
 	public String getMovingSound()
@@ -39,22 +37,15 @@ public class WeaponSwivelBase extends EntityLiving
 		return "vehicle.default.move";
 	}
 
-	/**
-	 * Called when a player interacts with a mob. e.g. gets milk from a cow,
-	 * gets into the saddle on a pig.
-	 */
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		if (!worldObj.isRemote && (riddenByEntity == null || riddenByEntity == p_70085_1_))
+		if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == p_70085_1_))
 		{
 			p_70085_1_.mountEntity(this);
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	@Override
@@ -66,14 +57,13 @@ public class WeaponSwivelBase extends EntityLiving
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
 	{
-		if (riddenByEntity != null && riddenByEntity instanceof EntityLivingBase)
+		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
-			rotationYaw = riddenByEntity.rotationYaw + 180;
-			setRotation(riddenByEntity.rotationYaw, riddenByEntity.rotationPitch);
-			rotationYawHead = renderYawOffset = rotationYaw;
-
-			pitch = riddenByEntity.rotationPitch;
+			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.rotationYaw = this.riddenByEntity.rotationYaw + 180.0F;
+			this.setRotation(this.riddenByEntity.rotationYaw, this.riddenByEntity.rotationPitch);
+			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			this.pitch = this.riddenByEntity.rotationPitch;
 		}
 	}
 
@@ -81,16 +71,17 @@ public class WeaponSwivelBase extends EntityLiving
 	public void onUpdate()
 	{
 		super.onUpdate();
-
-		moveEntityWithHeading(0, 0);
+		this.moveEntityWithHeading(0.0F, 0.0F);
 	}
 
 	@Override
 	public void updateRiderPosition()
 	{
-		if (riddenByEntity != null)
-		{
-			riddenByEntity.setPosition(posX + vehicXOffset, posY + getMountedYOffset() + riddenByEntity.getYOffset() + vehicYOffset, posZ + vehicZOffset);
-		}
+		if (this.riddenByEntity != null) this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + this.vehicYOffset, this.posZ + this.vehicZOffset);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\weaponry\WeaponSwivelBase.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

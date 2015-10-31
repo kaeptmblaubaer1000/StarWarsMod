@@ -20,46 +20,45 @@ public class BlockEndorBaseWall extends Block
 {
 	private String name = "endorBaseWall";
 	private int subtypes = 6;
-
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
 	public BlockEndorBaseWall()
 	{
 		super(Material.rock);
-		setBlockName(StarWarsMod.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		setHardness(4F);
-		setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		setStepSound(soundTypeMetal);
+		this.setBlockName(StarWarsMod.MODID + "." + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setHardness(4.0F);
+		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
+		this.setStepSound(soundTypeMetal);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
-		return icons[meta];
+		return this.icons[meta];
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
 	{
-		for (int i = 0; i < subtypes; i++)
-		{
+		for (int i = 0; i < this.subtypes; i++)
 			metaTypes.add(new ItemStack(item, 1, i));
-		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		icons = new IIcon[subtypes];
-
-		for (int i = 0; i < icons.length; i++)
-		{
-			icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + i);
-		}
+		this.icons = new IIcon[this.subtypes];
+		for (int i = 0; i < this.icons.length; i++)
+			this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + i);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockEndorBaseWall.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

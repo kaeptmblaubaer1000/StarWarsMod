@@ -10,20 +10,20 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorBobaJetpack extends ItemArmor
 {
-	private String[] names = new String[] { "Helmet", "JetpackChestplate", "Leggings", "Boots" };
+	private String[] names = { "Helmet", "JetpackChestplate", "Leggings", "Boots" };
 
-	public ArmorBobaJetpack(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorBobaJetpack(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + "boba" + names[par4]);
-		setTextureName(StarWarsMod.MODID + ":" + "boba" + names[par4]);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName("starwarsmod.boba" + this.names[par4]);
+		this.setTextureName(StarWarsMod.MODID + ":" + "boba" + this.names[par4]);
+		this.setCreativeTab(com.parzi.starwarsmod.StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.bobaJetpackChest) { return StarWarsMod.MODID + ":" + "textures/models/bobaArmorLayer1.png"; }
+		if (stack.getItem() == com.parzi.starwarsmod.StarWarsMod.bobaJetpackChest) return StarWarsMod.MODID + ":" + "textures/models/bobaArmorLayer1.png";
 		return "";
 	}
 
@@ -40,10 +40,12 @@ public class ArmorBobaJetpack extends ItemArmor
 		{
 			EntityPlayer p = (EntityPlayer)player;
 			p.capabilities.allowFlying = p.capabilities.isCreativeMode || p.inventory.armorInventory[2] != null && p.inventory.armorInventory[2].getItem() instanceof ArmorBobaJetpack;
-			if (!p.capabilities.allowFlying)
-			{
-				p.capabilities.isFlying = false;
-			}
+			if (!p.capabilities.allowFlying) p.capabilities.isFlying = false;
 		}
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorBobaJetpack.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -15,7 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderKashyyyk extends WorldProvider
 {
-
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
@@ -31,7 +30,7 @@ public class WorldProviderKashyyyk extends WorldProvider
 	@Override
 	public IChunkProvider createChunkGenerator()
 	{
-		IChunkProvider generator = new ChunkProviderGenerate(worldObj, worldObj.getSeed(), false);
+		IChunkProvider generator = new ChunkProviderGenerate(this.worldObj, this.worldObj.getSeed(), false);
 		return generator;
 	}
 
@@ -61,6 +60,12 @@ public class WorldProviderKashyyyk extends WorldProvider
 	}
 
 	@Override
+	public ChunkCoordinates getSpawnPoint()
+	{
+		return new ChunkCoordinates(0, this.worldObj.getHeightValue(0, 0), 0);
+	}
+
+	@Override
 	public boolean isSurfaceWorld()
 	{
 		return true;
@@ -69,8 +74,13 @@ public class WorldProviderKashyyyk extends WorldProvider
 	@Override
 	public void registerWorldChunkManager()
 	{
-		worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeKashyyyk, 0);
-		dimensionId = StarWarsMod.dimKashyyykId;
+		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeKashyyyk, 0.0F);
+		this.dimensionId = StarWarsMod.dimKashyyykId;
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\world\provider\WorldProviderKashyyyk.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

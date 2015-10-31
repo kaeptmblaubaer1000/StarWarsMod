@@ -7,7 +7,6 @@ import net.minecraft.util.MathHelper;
 
 public class ModelGNK extends ModelBase
 {
-	// fields
 	ModelRenderer FootL;
 	ModelRenderer TopBody;
 	ModelRenderer Middle;
@@ -17,83 +16,82 @@ public class ModelGNK extends ModelBase
 	ModelRenderer BottomBodyLower;
 	ModelRenderer GNKPowerAss;
 	ModelRenderer FootR;
-	float animScale = 0.1F;
+	float animScale = 0.5F;
 
 	public ModelGNK()
 	{
-		textureWidth = 64;
-		textureHeight = 128;
-
-		FootL = new ModelRenderer(this, 0, 92);
-		FootL.addBox(0F, 0F, 0F, 3, 2, 5);
-		FootL.setRotationPoint(0.2F, 22F, -3.5F);
-		FootL.setTextureSize(64, 128);
-		FootL.mirror = true;
-		setRotation(FootL, 0F, 0F, 0F);
-		TopBody = new ModelRenderer(this, 0, 62);
-		TopBody.addBox(-4F, -8F, -4F, 9, 5, 9);
-		TopBody.setRotationPoint(-0.5F, 5F, -0.5F);
-		TopBody.setTextureSize(64, 128);
-		TopBody.mirror = true;
-		setRotation(TopBody, 0F, 0F, 0F);
-		Middle = new ModelRenderer(this, 0, 46);
-		Middle.addBox(-4F, 0F, -2F, 14, 2, 14);
-		Middle.setRotationPoint(-3F, 6F, -5F);
-		Middle.setTextureSize(64, 128);
-		Middle.mirror = true;
-		setRotation(Middle, 0F, 0F, 0F);
-		rightleg = new ModelRenderer(this, 0, 76);
-		rightleg.addBox(-2F, 0F, -2F, 3, 5, 3);
-		rightleg.setRotationPoint(-1.2F, 17F, 0.5F);
-		rightleg.setTextureSize(64, 128);
-		rightleg.mirror = true;
-		setRotation(rightleg, 0F, 0F, 0F);
-		leftleg = new ModelRenderer(this, 0, 84);
-		leftleg.addBox(-2F, 0F, -2F, 3, 5, 3);
-		leftleg.setRotationPoint(2.2F, 17F, 0.5F);
-		leftleg.setTextureSize(64, 128);
-		leftleg.mirror = true;
-		setRotation(leftleg, 0F, 0F, 0F);
-		TopBodyLower = new ModelRenderer(this, 0, 30);
-		TopBodyLower.addBox(0F, 0F, 0F, 12, 4, 12);
-		TopBodyLower.setRotationPoint(-6F, 2F, -6F);
-		TopBodyLower.setTextureSize(64, 128);
-		TopBodyLower.mirror = true;
-		setRotation(TopBodyLower, 0F, 0F, 0F);
-		BottomBodyLower = new ModelRenderer(this, 0, 14);
-		BottomBodyLower.addBox(0F, 0F, 0F, 12, 4, 12);
-		BottomBodyLower.setRotationPoint(-6F, 8F, -6F);
-		BottomBodyLower.setTextureSize(64, 128);
-		BottomBodyLower.mirror = true;
-		setRotation(BottomBodyLower, 0F, 0F, 0F);
-		GNKPowerAss = new ModelRenderer(this, 0, 0);
-		GNKPowerAss.addBox(0F, 0F, 0F, 9, 5, 9);
-		GNKPowerAss.setRotationPoint(-4.5F, 12F, -4.5F);
-		GNKPowerAss.setTextureSize(64, 128);
-		GNKPowerAss.mirror = true;
-		setRotation(GNKPowerAss, 0F, 0F, 0F);
-		FootR = new ModelRenderer(this, 0, 99);
-		FootR.addBox(0F, 0F, 0F, 3, 2, 5);
-		FootR.setRotationPoint(-3.2F, 22F, -3.5F);
-		FootR.setTextureSize(64, 128);
-		FootR.mirror = true;
-		setRotation(FootR, 0F, 0F, 0F);
+		this.textureWidth = 64;
+		this.textureHeight = 128;
+		this.FootL = new ModelRenderer(this, 0, 92);
+		this.FootL.addBox(-1.5F, 5.0F, -3.5F, 3, 2, 5);
+		this.FootL.setRotationPoint(1.7F, 17.0F, 0.0F);
+		this.FootL.setTextureSize(64, 32);
+		this.FootL.mirror = true;
+		this.setRotation(this.FootL, 0.0F, 0.0F, 0.0F);
+		this.FootR = new ModelRenderer(this, 0, 99);
+		this.FootR.addBox(-1.5F, 5.0F, -3.5F, 3, 2, 5);
+		this.FootR.setRotationPoint(-1.7F, 17.0F, 0.0F);
+		this.FootR.setTextureSize(64, 32);
+		this.FootR.mirror = true;
+		this.setRotation(this.FootR, 0.0F, 0.0F, 0.0F);
+		this.TopBody = new ModelRenderer(this, 0, 62);
+		this.TopBody.addBox(-4.0F, -8.0F, -4.0F, 9, 5, 9);
+		this.TopBody.setRotationPoint(-0.5F, 5.0F, -0.5F);
+		this.TopBody.setTextureSize(64, 32);
+		this.TopBody.mirror = true;
+		this.setRotation(this.TopBody, 0.0F, 0.0F, 0.0F);
+		this.Middle = new ModelRenderer(this, 0, 46);
+		this.Middle.addBox(-4.0F, 0.0F, -2.0F, 14, 2, 14);
+		this.Middle.setRotationPoint(-3.0F, 6.0F, -5.0F);
+		this.Middle.setTextureSize(64, 32);
+		this.Middle.mirror = true;
+		this.setRotation(this.Middle, 0.0F, 0.0F, 0.0F);
+		this.rightleg = new ModelRenderer(this, 0, 76);
+		this.rightleg.addBox(-1.5F, 0.0F, -1.5F, 3, 5, 3);
+		this.rightleg.setRotationPoint(-1.7F, 17.0F, 0.0F);
+		this.rightleg.setTextureSize(64, 32);
+		this.rightleg.mirror = true;
+		this.setRotation(this.rightleg, 0.0F, 0.0F, 0.0F);
+		this.leftleg = new ModelRenderer(this, 0, 84);
+		this.leftleg.addBox(-1.5F, 0.0F, -1.5F, 3, 5, 3);
+		this.leftleg.setRotationPoint(1.7F, 17.0F, 0.0F);
+		this.leftleg.setTextureSize(64, 32);
+		this.leftleg.mirror = true;
+		this.setRotation(this.leftleg, 0.0F, 0.0F, 0.0F);
+		this.TopBodyLower = new ModelRenderer(this, 0, 30);
+		this.TopBodyLower.addBox(0.0F, 0.0F, 0.0F, 12, 4, 12);
+		this.TopBodyLower.setRotationPoint(-6.0F, 2.0F, -6.0F);
+		this.TopBodyLower.setTextureSize(64, 32);
+		this.TopBodyLower.mirror = true;
+		this.setRotation(this.TopBodyLower, 0.0F, 0.0F, 0.0F);
+		this.BottomBodyLower = new ModelRenderer(this, 0, 14);
+		this.BottomBodyLower.addBox(0.0F, 0.0F, 0.0F, 12, 4, 12);
+		this.BottomBodyLower.setRotationPoint(-6.0F, 8.0F, -6.0F);
+		this.BottomBodyLower.setTextureSize(64, 32);
+		this.BottomBodyLower.mirror = true;
+		this.setRotation(this.BottomBodyLower, 0.0F, 0.0F, 0.0F);
+		this.GNKPowerAss = new ModelRenderer(this, 0, 0);
+		this.GNKPowerAss.addBox(0.0F, 0.0F, 0.0F, 9, 5, 9);
+		this.GNKPowerAss.setRotationPoint(-4.5F, 12.0F, -4.5F);
+		this.GNKPowerAss.setTextureSize(64, 32);
+		this.GNKPowerAss.mirror = true;
+		this.setRotation(this.GNKPowerAss, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		FootL.render(f5);
-		TopBody.render(f5);
-		Middle.render(f5);
-		rightleg.render(f5);
-		leftleg.render(f5);
-		TopBodyLower.render(f5);
-		BottomBodyLower.render(f5);
-		GNKPowerAss.render(f5);
-		FootR.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.FootL.render(f5);
+		this.TopBody.render(f5);
+		this.Middle.render(f5);
+		this.rightleg.render(f5);
+		this.leftleg.render(f5);
+		this.TopBodyLower.render(f5);
+		this.BottomBodyLower.render(f5);
+		this.GNKPowerAss.render(f5);
+		this.FootR.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -107,11 +105,15 @@ public class ModelGNK extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-		rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
-		rightleg.rotateAngleY = 0.0F;
-		leftleg.rotateAngleY = 0.0F;
+		f *= 2.75F;
+		this.rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1;
+		this.leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1;
+		this.FootR.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1;
+		this.FootL.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1;
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\models\mobs\ModelGNK.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

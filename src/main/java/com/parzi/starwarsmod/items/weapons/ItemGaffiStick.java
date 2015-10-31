@@ -17,9 +17,9 @@ public class ItemGaffiStick extends ItemSword
 	public ItemGaffiStick()
 	{
 		super(StarWarsMod.gaffiMat);
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setTextureName(StarWarsMod.MODID + ":" + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
@@ -31,7 +31,12 @@ public class ItemGaffiStick extends ItemSword
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
 	{
-		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.gaffi.rightclick", 1f, 1f);
+		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.gaffi.rightclick", 1.0F, 1.0F);
 		return itemStack;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemGaffiStick.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

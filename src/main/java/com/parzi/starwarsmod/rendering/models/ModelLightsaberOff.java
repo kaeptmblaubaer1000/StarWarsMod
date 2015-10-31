@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelLightsaberOff extends ModelBase
 {
-	// fields
 	ModelRenderer hilt1;
 	ModelRenderer hilt2;
 	ModelRenderer hilt3;
@@ -15,51 +14,50 @@ public class ModelLightsaberOff extends ModelBase
 
 	public ModelLightsaberOff()
 	{
-		textureWidth = 64;
-		textureHeight = 32;
-
-		hilt1 = new ModelRenderer(this, 0, 0);
-		hilt1.addBox(0F, 0F, 0F, 2, 6, 2);
-		hilt1.setRotationPoint(-1F, 18F, -1F);
-		hilt1.setTextureSize(64, 32);
-		hilt1.mirror = true;
-		setRotation(hilt1, 0F, 0F, 0F);
-		hilt2 = new ModelRenderer(this, 8, 0);
-		hilt2.addBox(0F, 0F, 0F, 2, 1, 2);
-		hilt2.setRotationPoint(-1F, 16F, -1F);
-		hilt2.setTextureSize(64, 32);
-		hilt2.mirror = true;
-		setRotation(hilt2, 0F, 0F, 0F);
-		hilt3 = new ModelRenderer(this, 16, 0);
-		hilt3.addBox(0F, 0F, 0F, 2, 1, 2);
-		hilt3.setRotationPoint(-1F, 14F, -1F);
-		hilt3.setTextureSize(64, 32);
-		hilt3.mirror = true;
-		setRotation(hilt3, 0F, 0F, 0F);
-		hilt4 = new ModelRenderer(this, 24, 0);
-		hilt4.addBox(0F, 0F, 0F, 1, 2, 1);
-		hilt4.setRotationPoint(-0.5F, 18.4F, -1.183333F);
-		hilt4.setTextureSize(64, 32);
-		hilt4.mirror = true;
-		setRotation(hilt4, 0F, 0F, 0F);
-		blade1 = new ModelRenderer(this, 35, 0);
-		blade1.addBox(0F, 0F, 0F, 1, 3, 1);
-		blade1.setRotationPoint(-0.5F, 15F, -0.5F);
-		blade1.setTextureSize(64, 32);
-		blade1.mirror = true;
-		setRotation(blade1, 0F, 0F, 0F);
+		this.textureWidth = 64;
+		this.textureHeight = 32;
+		this.hilt1 = new ModelRenderer(this, 0, 0);
+		this.hilt1.addBox(0.0F, 0.0F, 0.0F, 2, 6, 2);
+		this.hilt1.setRotationPoint(-1.0F, 18.0F, -1.0F);
+		this.hilt1.setTextureSize(64, 32);
+		this.hilt1.mirror = true;
+		this.setRotation(this.hilt1, 0.0F, 0.0F, 0.0F);
+		this.hilt2 = new ModelRenderer(this, 8, 0);
+		this.hilt2.addBox(0.0F, 0.0F, 0.0F, 2, 1, 2);
+		this.hilt2.setRotationPoint(-1.0F, 16.0F, -1.0F);
+		this.hilt2.setTextureSize(64, 32);
+		this.hilt2.mirror = true;
+		this.setRotation(this.hilt2, 0.0F, 0.0F, 0.0F);
+		this.hilt3 = new ModelRenderer(this, 16, 0);
+		this.hilt3.addBox(0.0F, 0.0F, 0.0F, 2, 1, 2);
+		this.hilt3.setRotationPoint(-1.0F, 14.0F, -1.0F);
+		this.hilt3.setTextureSize(64, 32);
+		this.hilt3.mirror = true;
+		this.setRotation(this.hilt3, 0.0F, 0.0F, 0.0F);
+		this.hilt4 = new ModelRenderer(this, 24, 0);
+		this.hilt4.addBox(0.0F, 0.0F, 0.0F, 1, 2, 1);
+		this.hilt4.setRotationPoint(-0.5F, 18.4F, -1.183333F);
+		this.hilt4.setTextureSize(64, 32);
+		this.hilt4.mirror = true;
+		this.setRotation(this.hilt4, 0.0F, 0.0F, 0.0F);
+		this.blade1 = new ModelRenderer(this, 35, 0);
+		this.blade1.addBox(0.0F, 0.0F, 0.0F, 1, 3, 1);
+		this.blade1.setRotationPoint(-0.5F, 15.0F, -0.5F);
+		this.blade1.setTextureSize(64, 32);
+		this.blade1.mirror = true;
+		this.setRotation(this.blade1, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		hilt1.render(f5);
-		hilt2.render(f5);
-		hilt3.render(f5);
-		hilt4.render(f5);
-		blade1.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.hilt1.render(f5);
+		this.hilt2.render(f5);
+		this.hilt3.render(f5);
+		this.hilt4.render(f5);
+		this.blade1.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -74,5 +72,10 @@ public class ModelLightsaberOff extends ModelBase
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\rendering\models\ModelLightsaberOff.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

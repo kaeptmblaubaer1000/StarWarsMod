@@ -26,6 +26,11 @@ public class RenderDewback extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		GL11.glScalef(2.5F, 2.5F, 2.5F);
+		if (!entity.isChild()) GL11.glScalef(2.5F, 2.5F, 2.5F);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\RenderDewback.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

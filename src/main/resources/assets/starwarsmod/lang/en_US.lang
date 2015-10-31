@@ -1,18 +1,11 @@
 // Items
-item.starwarsmod.gaffiStick.name=Gaderffii (Gaffi Stick)
-item.starwarsmod.lightsaber.name=Lightsaber
-item.starwarsmod.lightsaberOff.name=Lightsaber
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy
 item.starwarsmod.plasmaEmitter.name=Plasma Emitter
 item.starwarsmod.containmentField.name=Containment Field
 item.starwarsmod.lightsaberCrystal.name=Kyber Crystal
 item.starwarsmod.banthaHorn.name=Bantha Horn
-item.starwarsmod.ewokSpear.name=Ewok Spear
-item.starwarsmod.gamorreanAx.name=Gamorrean Ax
 item.starwarsmod.imperialCredit.name=Imperial Credit
-item.starwarsmod.bowcaster.name=Wookiee Bowcaster
-item.starwarsmod.droidCaller.name=Droid Caller
 item.starwarsmod.chromiumDust.name=Chromium Dust
 item.starwarsmod.titaniumChromiumDust.name=Titanium-Chromium Dust
 item.starwarsmod.titaniumChromiumIngot.name=Titanium-Chromium Ingot
@@ -20,10 +13,51 @@ item.starwarsmod.titaniumDust.name=Titanium Dust
 item.starwarsmod.hyperdriveEngine.name=Hyperdrive Engine
 item.starwarsmod.hyperdriveMotivator.name=Hyperdrive Motivator
 item.starwarsmod.waterDroplet.name=Water Droplet
+
+// Tools
+item.starwarsmod.droidCaller.name=Droid Caller
+item.starwarsmod.binocularsHoth.name=TD2.3 Electrobinoculars
+item.starwarsmod.binocularsTatooine.name=MB450 Macrobinoculars
+
+// Food
 item.starwarsmod.banthaChop.name=Bantha Chop
 item.starwarsmod.banthaChopCooked.name=Cooked Bantha Chop
 item.starwarsmod.banthaMilk.name=Bantha Milk
+item.starwarsmod.acidBeets.name=Acid Beets
+item.starwarsmod.dewbackRibs.name=Dewback Ribs
+item.starwarsmod.canron.name=Canron
+item.starwarsmod.chasuka.name=Chasuka
+item.starwarsmod.banthaPlatter.name=Bantha Platter
+item.starwarsmod.gorrnar.name=Gorrnar
 
+// Weapons
+item.starwarsmod.gaffiStick.name=Gaderffii (Gaffi Stick)
+item.starwarsmod.lightsaber.name=Lightsaber
+item.starwarsmod.lightsaberOff.name=Lightsaber
+item.starwarsmod.ewokSpear.name=Ewok Spear
+item.starwarsmod.gamorreanAx.name=Gamorrean Ax
+item.starwarsmod.bowcaster.name=Wookiee Bowcaster
+
+// Blasters
+item.starwarsmod.blasterPistol.Dl44.name=DL-44 Heavy Blaster Pistol
+item.starwarsmod.blasterPistol.Dl18.name=DL-18 Blaster Pistol
+item.starwarsmod.blasterPistol.Dh17.name=DH-17 Blaster Pistol
+item.starwarsmod.blasterPistol.Sporting.name=Defender Sporting Blaster
+item.starwarsmod.blasterPistol.Dl21.name=DL-21 Blaster Pistol
+item.starwarsmod.blasterPistol.Scout.name=Scout Blaster Pistol
+item.starwarsmod.blasterPistol.Se14c.name=SE-14C Blaster Pistol
+
+item.starwarsmod.blasterHeavy.Dlt19.name=DLT-19 Heavy Blaster Rifle
+item.starwarsmod.blasterHeavy.T21.name=T-21 Heavy Blaster Rifle
+item.starwarsmod.blasterHeavy.Rt97c.name=RT-97C Heavy Blaster Rifle
+
+item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
+item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
+item.starwarsmod.blasterRifle.Ionization.name=Ionization Rifle
+item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
+item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
+
+// Music Discs
 item.starwarsmod.musicDisc.name=Music Disc
 item.starwarsmod.musicDiscTheme.desc=Star Wars - A New Hope by John Williams
 item.starwarsmod.musicDiscThrone.desc=Star Wars - Throne Room Theme by John Williams
@@ -31,6 +65,7 @@ item.starwarsmod.musicDiscBinary.desc=Star Wars - The Princess Appears (Binary S
 item.starwarsmod.musicDiscCantina.desc=Star Wars - Cantina Band by John Williams
 item.starwarsmod.musicDiscImperial.desc=Star Wars - Imperial March by John Williams
 
+// Hyperdrives
 item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
 item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive
 item.starwarsmod.hyperdriveHoth.name=Hoth Hyperdrive
@@ -38,28 +73,34 @@ item.starwarsmod.hyperdriveYavinFour.name=Yavin 4 Hyperdrive
 item.starwarsmod.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
 item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
 
+// Droid Items
+item.starwarsmod.spawnAstromech.name=Astromech Droid
+item.starwarsmod.spawnAstromech2.name=Astromech Droid
+item.starwarsmod.spawnProtocol.name=Protocol Droid
+item.starwarsmod.spawnProtocol2.name=Hoth Protocol Droid
+item.starwarsmod.spawnGonk.name=GNK Power Droid
+item.starwarsmod.spawnSurgical.name=2-1B Surgical Droid
+item.starwarsmod.spawnMouse.name=MSE-6 Repair Droid
+item.starwarsmod.spawnProbe.name=Viper Probe Droid
+
+// Droids
+entity.starwarsmod.droidAstromech.name=Astromech Droid
+entity.starwarsmod.droidAstromech2.name=Astromech Droid
+entity.starwarsmod.droidProtocol.name=Protocol Droid
+entity.starwarsmod.droidProtocol2.name=Hoth Protocol Droid
+entity.starwarsmod.droidGonk.name=GNK Power Droid
+entity.starwarsmod.droidSurgical.name=2-1B Surgical Droid
+entity.starwarsmod.droidMouse.name=MSE-6 Repair Droid
+entity.starwarsmod.droidProbe.name=Viper Probe Droid
+
+// Vehicle Items
 item.starwarsmod.spawnHothSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnLandspeeder.name=X-34 Landspeeder
-item.starwarsmod.spawnAstromech.name=Astromech Droid
-item.starwarsmod.spawnProtocol.name=Protocol Droid
-item.starwarsmod.spawnGonk.name=GNK Power Droid
 
-item.starwarsmod.blasterPistol.Dl44.name=DL-44 Heavy Blaster Pistol
-item.starwarsmod.blasterPistol.Dl18.name=DL-18 Blaster Pistol
-item.starwarsmod.blasterPistol.Dh17.name=DH-17 Blaster Pistol
-item.starwarsmod.blasterPistol.Sporting.name=Defender Sporting Blaster
-item.starwarsmod.blasterPistol.Dl21.name=DL-21 Blaster Pistol
-item.starwarsmod.blasterPistol.Scout.name=Scout Blaster Pistol
-
-item.starwarsmod.blasterHeavy.Dlt19.name=DLT-19 Heavy Blaster Rifle
-item.starwarsmod.blasterHeavy.T21.name=T-21 Heavy Blaster Rifle
-
-item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
-item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
-item.starwarsmod.blasterRifle.Ionization.name=Ionization Rifle
-item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
-item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
+// Vehicles
+entity.starwarsmod.speederBike.name=74-Z Speeder Bike
+entity.starwarsmod.landspeeder.name=X-34 Landspeeder
 
 // Blocks
 tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
@@ -70,7 +111,7 @@ tile.starwarsmod.endorBaseWall.name=Endor Base Wall
 tile.starwarsmod.endorBaseWallStairs.name=Endor Base Wall Stairs
 tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
 tile.starwarsmod.spaceLamp.name=Space Lamp
-tile.starwarsmod.table.name=Table
+tile.starwarsmod.tatooineSandstone.name=Tatooine Sandstone
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
@@ -141,13 +182,8 @@ entity.starwarsmod.wampa.name=Wampa
 entity.starwarsmod.dewback.name=Dewback
 entity.starwarsmod.gamorrean.name=Gamorrean Guard
 entity.starwarsmod.commoner.name=Tatooine Villager
-
-entity.starwarsmod.droidAstromech.name=Astromech Droid
-entity.starwarsmod.droidProtocol.name=Protocol Droid
-entity.starwarsmod.droidGonk.name=GNK Power Droid
-
-entity.starwarsmod.speederBike.name=74-Z Speeder Bike
-entity.starwarsmod.landspeeder.name=X-34 Landspeeder
+entity.starwarsmod.sandtrooper.name=Sandtrooper
+entity.starwarsmod.bith.name=Bith
 
 // Tabs
 itemGroup.tabStarWars=Star Wars

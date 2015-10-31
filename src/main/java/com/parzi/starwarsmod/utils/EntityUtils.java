@@ -2,7 +2,6 @@ package com.parzi.starwarsmod.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityList.EntityEggInfo;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
@@ -25,21 +24,17 @@ public class EntityUtils
 	public static void registerEntity(Class<? extends Entity> entityClass, String entityName)
 	{
 		while (EntityList.getStringFromID(mobId) != null)
-		{
-			mobId++;
-		}
+			mobId += 1;
 		EntityRegistry.registerModEntity(entityClass, entityName, mobId, StarWarsMod.instance, 80, 3, true);
-		EntityList.IDtoClassMapping.put(mobId, entityClass);
+		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), entityClass);
 	}
 
 	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
 	{
 		while (EntityList.getStringFromID(mobId) != null)
-		{
-			mobId++;
-		}
+			mobId += 1;
 		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 3, true);
-		EntityList.IDtoClassMapping.put(mobId, mobClass);
-		EntityList.entityEggs.put(mobId, new EntityEggInfo(mobId, bgColor, fgColor));
+		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), mobClass);
+		EntityList.entityEggs.put(Integer.valueOf(mobId), new EntityList.EntityEggInfo(mobId, bgColor, fgColor));
 	}
 }

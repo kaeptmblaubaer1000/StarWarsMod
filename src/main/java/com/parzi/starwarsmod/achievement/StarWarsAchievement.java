@@ -20,8 +20,13 @@ public class StarWarsAchievement extends Achievement
 
 	public StarWarsAchievement(String name, int x, int y, ItemStack icon, Achievement parent)
 	{
-		super("achievement" + "." + StarWarsMod.MODID + "." + name, StarWarsMod.MODID + "." + name, x, y, icon, parent);
+		super("achievement.starwarsmod." + name, StarWarsMod.MODID + "." + name, x, y, icon, parent);
 		achievements.add(this);
-		registerStat();
+		this.registerStat();
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\achievement\StarWarsAchievement.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -8,6 +8,11 @@ public class ItemBlasterBolt extends Item
 {
 	public ItemBlasterBolt()
 	{
-		setTextureName(StarWarsMod.MODID + ":" + "blasterBolt");
+		this.setTextureName(StarWarsMod.MODID + ":" + "blasterBolt");
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\ItemBlasterBolt.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -27,35 +27,30 @@ public class BlockRegister
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
-
 		StarWarsMod.chromiumOre = new BlockChromiumOre();
 		GameRegistry.registerBlock(StarWarsMod.chromiumOre, "chromiumOre");
-
 		StarWarsMod.titaniumOre = new BlockTitaniumOre();
 		GameRegistry.registerBlock(StarWarsMod.titaniumOre, "titaniumOre");
-
 		StarWarsMod.titaniumChromiumBlock = new BlockTitaniumChromium();
 		GameRegistry.registerBlock(StarWarsMod.titaniumChromiumBlock, "titaniumChromiumBlock");
-
 		StarWarsMod.blockEndorBaseWall = new BlockEndorBaseWall();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWall, ItemEndorBaseWall.class, "endorBaseWall");
-
 		StarWarsMod.blockEndorBaseWallStairs = new BlockEndorBaseWallStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWallStairs, "endorBaseWallStairs");
-
 		StarWarsMod.tatooineSand = new BlockTatooineSand();
 		GameRegistry.registerBlock(StarWarsMod.tatooineSand, ItemTatooineSand.class, "tatooineSand");
-
 		StarWarsMod.tatooineSandstone = new BlockTatooineSandstone();
 		GameRegistry.registerBlock(StarWarsMod.tatooineSandstone, ItemTatooineSandstone.class, "tatooineSandstone");
-
 		StarWarsMod.spaceLamp = new BlockSpaceLamp();
 		GameRegistry.registerBlock(StarWarsMod.spaceLamp, "spaceLamp");
-
 		StarWarsMod.blockTable = new BlockTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
 		GameRegistry.registerTileEntity(TileEntityTable.class, "teTable");
-
 		Lumberjack.info("Blocks, reporting for duty!");
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\registry\BlockRegister.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

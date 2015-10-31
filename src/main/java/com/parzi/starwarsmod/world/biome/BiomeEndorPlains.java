@@ -13,29 +13,23 @@ public class BiomeEndorPlains extends BiomeGenBase
 	public BiomeEndorPlains(int par1)
 	{
 		super(par1);
-		heightVariation = 0.01F;
-
-		enableRain = true;
-		enableSnow = false;
-
-		spawnableMonsterList.clear();
-		spawnableCreatureList.clear();
-		spawnableCaveCreatureList.clear();
-		spawnableWaterCreatureList.clear();
-
-		setBiomeName("Endor Plains");
-
-		topBlock = Blocks.grass;
-		fillerBlock = Blocks.dirt;
-
-		theBiomeDecorator.treesPerChunk = 0;
+		this.heightVariation = 0.01F;
+		this.enableRain = true;
+		this.enableSnow = false;
+		this.spawnableMonsterList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.setBiomeName("Endor Plains");
+		this.topBlock = Blocks.grass;
+		this.fillerBlock = Blocks.dirt;
+		this.theBiomeDecorator.treesPerChunk = 0;
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int par3, int par4)
 	{
 		super.decorate(par1World, par2Random, par3, par4);
-
 		if (par2Random.nextInt(200) == 0)
 		{
 			int k = par3 + par2Random.nextInt(16) + 8;
@@ -48,12 +42,17 @@ public class BiomeEndorPlains extends BiomeGenBase
 	@Override
 	public int getBiomeFoliageColor(int p1, int p2, int p3)
 	{
-		return 0x287A28;
+		return 2652712;
 	}
 
 	@Override
 	public int getBiomeGrassColor(int p1, int p2, int p3)
 	{
-		return 0x246D24;
+		return 2387236;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\world\biome\BiomeEndorPlains.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

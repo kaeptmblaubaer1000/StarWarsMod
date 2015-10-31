@@ -6,11 +6,11 @@ public class KeyboardUtils
 {
 	public static boolean isControlDown()
 	{
-		return Keyboard.isKeyDown(Keyboard.KEY_RCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_LCONTROL);
+		return Keyboard.isKeyDown(157) || Keyboard.isKeyDown(29);
 	}
 
 	public static boolean isShiftDown()
 	{
-		return Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+		return Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54);
 	}
 }

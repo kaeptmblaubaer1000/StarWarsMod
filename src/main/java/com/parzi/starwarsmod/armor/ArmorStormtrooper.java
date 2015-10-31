@@ -8,24 +8,26 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorStormtrooper extends ItemArmor
 {
-	private String[] names = new String[] { "Helmet", "Chestplate", "Leggings", "Boots" };
+	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 
-	public ArmorStormtrooper(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorStormtrooper(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + "stormtrooper" + names[par4]);
-		setTextureName(StarWarsMod.MODID + ":" + "stormtrooper" + names[par4]);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName("starwarsmod.stormtrooper" + this.names[par4]);
+		this.setTextureName(StarWarsMod.MODID + ":" + "stormtrooper" + this.names[par4]);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.stormtrooperHelmet || stack.getItem() == StarWarsMod.stormtrooperChest || stack.getItem() == StarWarsMod.stormtrooperBoots)
-		{
-			return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer1.png";
-		}
-		else if (stack.getItem() == StarWarsMod.stormtrooperLegs) { return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer2.png"; }
+		if (stack.getItem() == StarWarsMod.stormtrooperHelmet || stack.getItem() == StarWarsMod.stormtrooperChest || stack.getItem() == StarWarsMod.stormtrooperBoots) return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.stormtrooperLegs) return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer2.png";
 		return "";
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorStormtrooper.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

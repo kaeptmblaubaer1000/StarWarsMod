@@ -14,13 +14,11 @@ import com.parzi.starwarsmod.rendering.models.ModelBlockTable;
 
 public class RenderBlockTable extends TileEntitySpecialRenderer
 {
-
-	// The model of your block
 	private final ModelBlockTable model;
 
 	public RenderBlockTable()
 	{
-		model = new ModelBlockTable();
+		this.model = new ModelBlockTable();
 	}
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
@@ -35,19 +33,19 @@ public class RenderBlockTable extends TileEntitySpecialRenderer
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float tickTime)
 	{
 		GL11.glPushMatrix();
-
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
-
 		ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/blockTable.png");
-
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
-
 		GL11.glPushMatrix();
-		GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glScalef(1.25F, 1.25F, 1.25F);
-		model.render((Entity)null, 0, 0, 0, 0, 0, 0.05F);
-
+		this.model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\RenderBlockTable.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

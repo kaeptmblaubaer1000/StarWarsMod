@@ -20,29 +20,23 @@ public class BiomeYavinFour extends BiomeGenBase
 	public BiomeYavinFour(int par1)
 	{
 		super(par1);
-		heightVariation = 0.25F;
-
-		enableRain = true;
-		enableSnow = false;
-
-		spawnableMonsterList.clear();
-		spawnableCreatureList.clear();
-		spawnableCaveCreatureList.clear();
-		spawnableWaterCreatureList.clear();
-
-		setBiomeName("Yavin 4");
-
-		topBlock = Blocks.grass;
-		fillerBlock = Blocks.stone;
-
-		theBiomeDecorator.treesPerChunk = 4;
+		this.heightVariation = 0.25F;
+		this.enableRain = true;
+		this.enableSnow = false;
+		this.spawnableMonsterList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.setBiomeName("Yavin 4");
+		this.topBlock = Blocks.grass;
+		this.fillerBlock = Blocks.stone;
+		this.theBiomeDecorator.treesPerChunk = 4;
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int par3, int par4)
 	{
 		super.decorate(par1World, par2Random, par3, par4);
-
 		if (par2Random.nextInt(2) == 0)
 		{
 			int k = par3 + par2Random.nextInt(16) + 8;
@@ -72,3 +66,8 @@ public class BiomeYavinFour extends BiomeGenBase
 		return new WorldGenTrees(false);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\world\biome\BiomeYavinFour.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

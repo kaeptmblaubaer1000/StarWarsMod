@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,24 +31,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 {
 	public static int chanceElement = 100;
-
 	public static Block[] plantMatter = { Blocks.dirt, Blocks.grass, Blocks.leaves, Blocks.farmland };
-
 	public static Block[] earthMatter = { Blocks.stone, Blocks.gravel, Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore, Blocks.redstone_ore };
-
 	private String name = "jediRobes";
-
 	public PowerBase[] powers = { new ForceStep(), new ForceLeap(), new ForceStride(), new ForcePunch() };
-
 	private IIcon halo;
 	private IIcon icon;
 
-	public ArmorJediRobes(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorJediRobes(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setTextureName(StarWarsMod.MODID + ":" + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
@@ -66,24 +60,14 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 				list.add("Fauna: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("animals")), TextEffects.COLOR_YELLOW));
 				list.add("Terra: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("earth")), TextEffects.COLOR_DARK_GREEN));
 				list.add("Aqua: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("water")), TextEffects.COLOR_BLUE));
-
-				for (PowerBase power : powers)
-				{
-					if (stack.stackTagCompound.getInteger(power.internalName) > 0)
-					{
-						list.add("* " + power.displayName + " level " + stack.stackTagCompound.getInteger(power.internalName));
-					}
-				}
+				for (PowerBase power : this.powers)
+					if (stack.stackTagCompound.getInteger(power.internalName) > 0) list.add("* " + power.displayName + " level " + stack.stackTagCompound.getInteger(power.internalName));
 			}
 			else
-			{
 				list.add("Owner not set!");
-			}
 		}
 		else
-		{
 			list.add(TextUtils.addEffect("<Hold Shift>", TextEffects.COLOR_AQUA));
-		}
 	}
 
 	@Override
@@ -108,7 +92,7 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	@SideOnly(Side.CLIENT)
 	public int getHaloColour(ItemStack stack)
 	{
-		return 0xFF000000;
+		return -16777216;
 	}
 
 	@Override
@@ -120,13 +104,13 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	@Override
 	public IIcon getHaloTexture(ItemStack stack)
 	{
-		return halo;
+		return this.halo;
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int i)
 	{
-		return icon;
+		return this.icon;
 	}
 
 	private boolean hasMoved(ItemStack stack, EntityPlayer player)
@@ -145,54 +129,31 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{
-		if (stack.stackTagCompound == null)
-		{
-			onCreated(stack, world, player);
-		}
-
-		if (world.rand.nextInt(chanceElement) != 0) { return; }
-
-		if (hasMoved(stack, player))
-		{
-			if (isStandingOn(plantMatter, world, player))
-			{
-				incrementTagInNBT(stack, "plants");
-			}
-			else if (player.isInWater())
-			{
-				incrementTagInNBT(stack, "water");
-			}
-		}
-
-		for (PowerBase power : powers)
-		{
+		if (stack.stackTagCompound == null) this.onCreated(stack, world, player);
+		if (world.rand.nextInt(chanceElement) != 0) return;
+		if (this.hasMoved(stack, player)) if (this.isStandingOn(plantMatter, world, player))
+			this.incrementTagInNBT(stack, "plants");
+		else if (player.isInWater()) this.incrementTagInNBT(stack, "water");
+		for (PowerBase power : this.powers)
 			power.doPower(world, player, stack);
-		}
-
-		addInformation(stack, player, stack.getTooltip(player, false), false);
-
-		setPositionInNBT(stack, player);
+		this.addInformation(stack, player, stack.getTooltip(player, false), false);
+		this.setPositionInNBT(stack, player);
 	}
 
 	@Override
 	public void onCreated(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		itemStack.stackTagCompound = new NBTTagCompound();
-
 		itemStack.stackTagCompound.setString("owner", player.getCommandSenderName());
-
 		itemStack.stackTagCompound.setInteger("plants", 0);
 		itemStack.stackTagCompound.setInteger("animals", 0);
 		itemStack.stackTagCompound.setInteger("earth", 0);
 		itemStack.stackTagCompound.setInteger("water", 0);
-
-		for (PowerBase power : powers)
-		{
+		for (PowerBase power : this.powers)
 			itemStack.stackTagCompound.setInteger(power.internalName, 0);
-		}
-
 		itemStack.stackTagCompound.setInteger("opx", player.getPlayerCoordinates().posX);
 		itemStack.stackTagCompound.setInteger("opz", player.getPlayerCoordinates().posZ);
 	}
@@ -206,51 +167,40 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
-		{
-			player.openGui(StarWarsMod.instance, 1, world, 0, 0, 0);
-		}
-		if (stack.stackTagCompound == null)
-		{
-			onCreated(stack, world, player);
-		}
+		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null) player.openGui(StarWarsMod.instance, 1, world, 0, 0, 0);
+		if (stack.stackTagCompound == null) this.onCreated(stack, world, player);
 		return stack;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
 		if (!(player instanceof EntityPlayer)) return;
-
-		addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
-
-		if (stack.stackTagCompound == null)
-		{
-			onCreated(stack, world, (EntityPlayer)player);
-		}
-
 		try
 		{
-			if (Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2] == null)
-			{
-				player.stepHeight = 0.5001F;
-			}
-			if (!(Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes || Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes))
-			{
-				player.stepHeight = 0.5001F;
-			}
+			this.addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
 		}
-		catch (Exception e)
+		catch (Throwable localThrowable)
+		{
+		}
+		if (stack.stackTagCompound == null) this.onCreated(stack, world, (EntityPlayer)player);
+		try
+		{
+			if (net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2] == null) player.stepHeight = 0.5001F;
+			if (!(net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes) && !(net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes)) player.stepHeight = 0.5001F;
+		}
+		catch (Exception localException)
 		{
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		icon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name);
-		halo = par1IconRegister.registerIcon(StarWarsMod.MODID + ":haloSithRobes");
+		this.icon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name);
+		this.halo = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "haloSithRobes");
 	}
 
 	private void setPositionInNBT(ItemStack stack, EntityPlayer player)
@@ -259,3 +209,8 @@ public class ArmorJediRobes extends ItemArmor implements IHaloRenderItem
 		stack.stackTagCompound.setInteger("opz", player.getPlayerCoordinates().posZ);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorJediRobes.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

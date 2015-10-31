@@ -1,20 +1,30 @@
 package com.parzi.starwarsmod.registry;
 
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
+import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
+import com.parzi.starwarsmod.mobs.MobDroidAstromech2;
 import com.parzi.starwarsmod.mobs.MobDroidGNK;
+import com.parzi.starwarsmod.mobs.MobDroidMouse;
+import com.parzi.starwarsmod.mobs.MobDroidProbe;
 import com.parzi.starwarsmod.mobs.MobDroidProtocol;
+import com.parzi.starwarsmod.mobs.MobDroidProtocol2;
+import com.parzi.starwarsmod.mobs.MobDroidSurgical;
+import com.parzi.starwarsmod.mobs.MobDroidTreadwell;
 import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.mobs.MobGamorrean;
 import com.parzi.starwarsmod.mobs.MobJawa;
+import com.parzi.starwarsmod.mobs.MobSandtrooper;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
@@ -33,45 +43,52 @@ public class EntityRegister
 {
 	public static void registerAll()
 	{
-		EntityUtils.registerWithSpawnEgg(MobWookiee.class, "wookiee", 0x974F1A, 0x3C200A);
-		EntityUtils.registerWithSpawnEgg(MobTusken.class, "tusken", 0xFFFDB3, 0x5E5E4A);
-		EntityUtils.registerWithSpawnEgg(MobJawa.class, "jawa", 0xFF0000, 0x9B6C00);
-		EntityUtils.registerWithSpawnEgg(MobEwok.class, "ewok", 0x7e6c54, 0x3f362a);
-		EntityUtils.registerWithSpawnEgg(MobTauntaun.class, "tauntaun", 0xFFFFFF, 0x4ADCE8);
-		EntityUtils.registerWithSpawnEgg(MobBantha.class, "bantha", 0x8B4513, 0xFFDEAD);
-		EntityUtils.registerWithSpawnEgg(MobWampa.class, "wampa", 0xFFFFFF, 0x7F0000);
-		EntityUtils.registerWithSpawnEgg(MobGamorrean.class, "gamorrean", 0x990033, 0x20B392);
-		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 0xFFA500, 0x544838);
-		EntityUtils.registerWithSpawnEgg(MobTatooineCommoner.class, "commoner", 0x000000, 0x000000);
-
+		EntityUtils.registerWithSpawnEgg(MobWookiee.class, "wookiee", 9916186, 3940362);
+		EntityUtils.registerWithSpawnEgg(MobTusken.class, "tusken", 16776627, 6184522);
+		EntityUtils.registerWithSpawnEgg(MobJawa.class, "jawa", 16711680, 10185728);
+		EntityUtils.registerWithSpawnEgg(MobEwok.class, "ewok", 8285268, 4142634);
+		EntityUtils.registerWithSpawnEgg(MobTauntaun.class, "tauntaun", 16777215, 4906216);
+		EntityUtils.registerWithSpawnEgg(MobBantha.class, "bantha", 9127187, 16768685);
+		EntityUtils.registerWithSpawnEgg(MobWampa.class, "wampa", 16777215, 8323072);
+		EntityUtils.registerWithSpawnEgg(MobGamorrean.class, "gamorrean", 10027059, 2143122);
+		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 16753920, 5523512);
+		EntityUtils.registerWithSpawnEgg(MobTatooineCommoner.class, "commoner", 0, 0);
+		EntityUtils.registerWithSpawnEgg(MobBith.class, "bith", 0, 0);
+		EntityUtils.registerWithSpawnEgg(MobSandtrooper.class, "sandtrooper", 0, 0);
 		EntityUtils.registerEntity(MobDroidAstromech.class, "droidAstromech");
+		EntityUtils.registerEntity(MobDroidAstromech2.class, "droidAstromech2");
 		EntityUtils.registerEntity(MobDroidProtocol.class, "droidProtocol");
+		EntityUtils.registerEntity(MobDroidProtocol2.class, "droidProtocol2");
+		EntityUtils.registerEntity(MobDroidProbe.class, "droidProbe");
 		EntityUtils.registerEntity(MobDroidGNK.class, "droidGonk");
-
+		EntityUtils.registerEntity(MobDroidSurgical.class, "droidSurgical");
+		EntityUtils.registerEntity(MobDroidTreadwell.class, "droidTreadwell");
+		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
-
 		EntityUtils.registerEntity(WeaponDSTurret.class, "dsTurret");
-
 		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
+		EntityUtils.registerEntity(EntityBlasterProbeBolt.class, "blasterProbeBolt");
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
-
-		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
-		EntityRegistry.addSpawn(MobJawa.class, 30, 1, 5, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
-		EntityRegistry.addSpawn(MobTusken.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
-		EntityRegistry.addSpawn(MobBantha.class, 7, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
-		EntityRegistry.addSpawn(MobDewback.class, 7, 1, 2, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
-
-		EntityRegistry.addSpawn(MobEwok.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeEndor, StarWarsMod.biomeEndorPlains);
-
-		EntityRegistry.addSpawn(MobTauntaun.class, 6, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeHoth);
-		EntityRegistry.addSpawn(MobWampa.class, 1, 1, 1, EnumCreatureType.monster, StarWarsMod.biomeHoth);
-
-		EntityRegistry.addSpawn(MobWookiee.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeKashyyyk);
-
+		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
+		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
+		EntityRegistry.addSpawn(MobJawa.class, 30, 1, 5, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
+		EntityRegistry.addSpawn(MobTusken.class, 3, 1, 3, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
+		EntityRegistry.addSpawn(MobBantha.class, 7, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
+		EntityRegistry.addSpawn(MobDewback.class, 7, 1, 2, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
+		EntityRegistry.addSpawn(MobEwok.class, 10, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeEndor, StarWarsMod.biomeEndorPlains });
+		EntityRegistry.addSpawn(MobTauntaun.class, 6, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeHoth });
+		EntityRegistry.addSpawn(MobDroidProbe.class, 1, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeHoth });
+		EntityRegistry.addSpawn(MobWampa.class, 1, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeHoth });
+		EntityRegistry.addSpawn(MobWookiee.class, 10, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeKashyyyk });
 		Lumberjack.info("Entities, reporting for duty!");
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\registry\EntityRegister.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

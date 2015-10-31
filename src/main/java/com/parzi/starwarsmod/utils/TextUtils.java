@@ -2,7 +2,6 @@ package com.parzi.starwarsmod.utils;
 
 public class TextUtils
 {
-
 	public static String addEffect(String p1, String effect)
 	{
 		return effect + p1 + TextEffects.RESE;

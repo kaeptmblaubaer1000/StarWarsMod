@@ -18,11 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTatooineSandstone extends Block
 {
-	public static final String[] field_150157_a = new String[] { "default", "chiseled", "smooth" };
-	private static final String[] field_150156_b = new String[] { "normal", "carved", "smooth" };
-
+	public static final String[] field_150157_a = { "default", "chiseled", "smooth" };
+	private static final String[] field_150156_b = { "normal", "carved", "smooth" };
 	private String name = "tatooineSandstone";
-
 	private int subtypes = 3;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
@@ -36,11 +34,11 @@ public class BlockTatooineSandstone extends Block
 	public BlockTatooineSandstone()
 	{
 		super(Material.ground);
-		setBlockName(StarWarsMod.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		setHardness(0.5F);
-		setHarvestLevel("pickaxe", HarvestLevel.WOOD);
-		setStepSound(soundTypeSand);
+		this.setBlockName(StarWarsMod.MODID + "." + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setHardness(0.5F);
+		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
+		this.setStepSound(soundTypeSand);
 	}
 
 	@Override
@@ -49,48 +47,34 @@ public class BlockTatooineSandstone extends Block
 	{
 		if (side != 1 && (side != 0 || meta != 1 && meta != 2))
 		{
-			if (side == 0)
-			{
-				return field_150160_O;
-			}
-			else
-			{
-				if (meta < 0 || meta >= field_150158_M.length)
-				{
-					meta = 0;
-				}
-
-				return field_150158_M[meta];
-			}
+			if (side == 0) return this.field_150160_O;
+			if (meta < 0 || meta >= this.field_150158_M.length) meta = 0;
+			return this.field_150158_M[meta];
 		}
-		else
-		{
-			return field_150159_N;
-		}
+		return this.field_150159_N;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
 	{
-		for (int i = 0; i < subtypes; i++)
-		{
+		for (int i = 0; i < this.subtypes; i++)
 			metaTypes.add(new ItemStack(item, 1, i));
-		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		field_150158_M = new IIcon[field_150156_b.length];
-
-		for (int i = 0; i < field_150158_M.length; ++i)
-		{
-			field_150158_M[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_" + field_150156_b[i]);
-		}
-
-		field_150159_N = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_top");
-		field_150160_O = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + name + "_bottom");
+		this.field_150158_M = new IIcon[field_150156_b.length];
+		for (int i = 0; i < this.field_150158_M.length; i++)
+			this.field_150158_M[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + field_150156_b[i]);
+		this.field_150159_N = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_top");
+		this.field_150160_O = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_bottom");
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockTatooineSandstone.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

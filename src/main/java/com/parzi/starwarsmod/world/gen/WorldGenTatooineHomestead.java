@@ -1,39 +1,58 @@
-package com.parzi.starwarsmod.world.gen;
+/*      */package com.parzi.starwarsmod.world.gen;
 
+/*      */
+/*      *//*      */
 import java.util.Random;
 
+/*      */
 import net.minecraft.block.Block;
+/*      */
 import net.minecraft.init.Blocks;
+/*      */
 import net.minecraft.tileentity.TileEntityChest;
+/*      */
 import net.minecraft.world.World;
+/*      */
 import net.minecraft.world.chunk.IChunkProvider;
+/*      */
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.parzi.starwarsmod.StarWarsMod;
+/*      */
 import com.parzi.starwarsmod.utils.LootGenUtils;
 
+/*      */
 import cpw.mods.fml.common.IWorldGenerator;
+/*      */
 
-public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldGenerator
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */
+/*      */public class WorldGenTatooineHomestead
+/*      */extends WorldGenerator
+/*      */implements IWorldGenerator
+/*      */
 {
-	public WorldGenTatooineHomestead()
+	/*      */public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 	}
 
-	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	/*      */
+	/*      */public boolean generate(World world, Random rand, int i, int j, int k)
+	/*      */
 	{
-	}
-
-	@Override
-	public boolean generate(World world, Random rand, int i, int j, int k)
-	{
-		// check that each corner is one of the valid spawn blocks
-		if (!locationIsValidSpawn(world, i, j, k) || !locationIsValidSpawn(world, i + 23, j, k) || !locationIsValidSpawn(world, i + 23, j, k + 25) || !locationIsValidSpawn(world, i, j, k + 25)) { return false; }
-
-		k = k - 10;
-		i = i - 10;
-
+		if ((!locationIsValidSpawn(world, i, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k + 25)) || (!locationIsValidSpawn(world, i, j, k + 25))) { return false;
+		/*      */}
+		k -= 10;
+		i -= 10;
+		/*      */
 		setBlock(world, i + 0, j + 0, k + 11, Blocks.sandstone, 0);
 		setBlock(world, i + 0, j + 0, k + 12, Blocks.sandstone, 0);
 		setBlock(world, i + 0, j + 0, k + 13, Blocks.sandstone, 0);
@@ -997,91 +1016,108 @@ public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldG
 		world.setBlockMetadataWithNotify(i + 15, j + 6, k + 22, 1, 2);
 		setBlock(world, i + 15, j + 6, k + 23, Blocks.sandstone_stairs, 1);
 		world.setBlockMetadataWithNotify(i + 15, j + 6, k + 23, 1, 2);
-		setBlock(world, i + 15, j + 9, k + 9, Blocks.torch, 2);
-		world.setBlockMetadataWithNotify(i + 15, j + 9, k + 9, 2, 2);
-		setBlock(world, i + 15, j + 9, k + 17, Blocks.torch, 2);
-		world.setBlockMetadataWithNotify(i + 15, j + 9, k + 17, 2, 2);
-		setBlock(world, i + 15, j + 10, k + 13, Blocks.torch, 2);
-		world.setBlockMetadataWithNotify(i + 15, j + 10, k + 13, 2, 2);
-		setBlock(world, i + 17, j + 7, k + 8, Blocks.torch, 2);
-		world.setBlockMetadataWithNotify(i + 17, j + 7, k + 8, 2, 2);
-		setBlock(world, i + 17, j + 7, k + 18, Blocks.torch, 2);
-		world.setBlockMetadataWithNotify(i + 17, j + 7, k + 18, 2, 2);
-		setBlock(world, i + 17, j + 9, k + 11, Blocks.torch, 3);
-		world.setBlockMetadataWithNotify(i + 17, j + 9, k + 11, 3, 2);
-		setBlock(world, i + 17, j + 9, k + 15, Blocks.torch, 4);
-		world.setBlockMetadataWithNotify(i + 17, j + 9, k + 15, 4, 2);
-		setBlock(world, i + 18, j + 7, k + 9, Blocks.torch, 3);
-		world.setBlockMetadataWithNotify(i + 18, j + 7, k + 9, 3, 2);
-		setBlock(world, i + 18, j + 7, k + 17, Blocks.torch, 4);
-		world.setBlockMetadataWithNotify(i + 18, j + 7, k + 17, 4, 2);
-		setBlock(world, i + 19, j + 1, k + 13, Blocks.carpet, 1);
-		world.setBlockMetadataWithNotify(i + 19, j + 1, k + 13, 1, 2);
-		setBlock(world, i + 20, j + 4, k + 11, Blocks.torch, 3);
-		world.setBlockMetadataWithNotify(i + 20, j + 4, k + 11, 3, 2);
-		setBlock(world, i + 20, j + 4, k + 15, Blocks.torch, 4);
-		world.setBlockMetadataWithNotify(i + 20, j + 4, k + 15, 4, 2);
-		setBlock(world, i + 21, j + 2, k + 12, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 2, k + 12, 1, 2);
-		setBlock(world, i + 21, j + 2, k + 13, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 2, k + 13, 1, 2);
-		setBlock(world, i + 21, j + 2, k + 14, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 2, k + 14, 1, 2);
-		setBlock(world, i + 21, j + 3, k + 12, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 3, k + 12, 1, 2);
-		setBlock(world, i + 21, j + 3, k + 13, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 3, k + 13, 1, 2);
-		setBlock(world, i + 21, j + 3, k + 14, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 3, k + 14, 1, 2);
-		setBlock(world, i + 21, j + 4, k + 12, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 4, k + 12, 1, 2);
-		setBlock(world, i + 21, j + 4, k + 13, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 4, k + 13, 1, 2);
-		setBlock(world, i + 21, j + 4, k + 14, Blocks.sandstone, 1);
-		world.setBlockMetadataWithNotify(i + 21, j + 4, k + 14, 1, 2);
+		/* 1000 */setBlock(world, i + 15, j + 9, k + 9, Blocks.torch, 2);
+		/* 1001 */world.setBlockMetadataWithNotify(i + 15, j + 9, k + 9, 2, 2);
+		/* 1002 */setBlock(world, i + 15, j + 9, k + 17, Blocks.torch, 2);
+		/* 1003 */world.setBlockMetadataWithNotify(i + 15, j + 9, k + 17, 2, 2);
+		/* 1004 */setBlock(world, i + 15, j + 10, k + 13, Blocks.torch, 2);
+		/* 1005 */world.setBlockMetadataWithNotify(i + 15, j + 10, k + 13, 2, 2);
+		/* 1006 */setBlock(world, i + 17, j + 7, k + 8, Blocks.torch, 2);
+		/* 1007 */world.setBlockMetadataWithNotify(i + 17, j + 7, k + 8, 2, 2);
+		/* 1008 */setBlock(world, i + 17, j + 7, k + 18, Blocks.torch, 2);
+		/* 1009 */world.setBlockMetadataWithNotify(i + 17, j + 7, k + 18, 2, 2);
+		/* 1010 */setBlock(world, i + 17, j + 9, k + 11, Blocks.torch, 3);
+		/* 1011 */world.setBlockMetadataWithNotify(i + 17, j + 9, k + 11, 3, 2);
+		/* 1012 */setBlock(world, i + 17, j + 9, k + 15, Blocks.torch, 4);
+		/* 1013 */world.setBlockMetadataWithNotify(i + 17, j + 9, k + 15, 4, 2);
+		/* 1014 */setBlock(world, i + 18, j + 7, k + 9, Blocks.torch, 3);
+		/* 1015 */world.setBlockMetadataWithNotify(i + 18, j + 7, k + 9, 3, 2);
+		/* 1016 */setBlock(world, i + 18, j + 7, k + 17, Blocks.torch, 4);
+		/* 1017 */world.setBlockMetadataWithNotify(i + 18, j + 7, k + 17, 4, 2);
+		/* 1018 */setBlock(world, i + 19, j + 1, k + 13, Blocks.carpet, 1);
+		/* 1019 */world.setBlockMetadataWithNotify(i + 19, j + 1, k + 13, 1, 2);
+		/* 1020 */setBlock(world, i + 20, j + 4, k + 11, Blocks.torch, 3);
+		/* 1021 */world.setBlockMetadataWithNotify(i + 20, j + 4, k + 11, 3, 2);
+		/* 1022 */setBlock(world, i + 20, j + 4, k + 15, Blocks.torch, 4);
+		/* 1023 */world.setBlockMetadataWithNotify(i + 20, j + 4, k + 15, 4, 2);
+		/* 1024 */setBlock(world, i + 21, j + 2, k + 12, Blocks.sandstone, 1);
+		/* 1025 */world.setBlockMetadataWithNotify(i + 21, j + 2, k + 12, 1, 2);
+		/* 1026 */setBlock(world, i + 21, j + 2, k + 13, Blocks.sandstone, 1);
+		/* 1027 */world.setBlockMetadataWithNotify(i + 21, j + 2, k + 13, 1, 2);
+		/* 1028 */setBlock(world, i + 21, j + 2, k + 14, Blocks.sandstone, 1);
+		/* 1029 */world.setBlockMetadataWithNotify(i + 21, j + 2, k + 14, 1, 2);
+		/* 1030 */setBlock(world, i + 21, j + 3, k + 12, Blocks.sandstone, 1);
+		/* 1031 */world.setBlockMetadataWithNotify(i + 21, j + 3, k + 12, 1, 2);
+		/* 1032 */setBlock(world, i + 21, j + 3, k + 13, Blocks.sandstone, 1);
+		/* 1033 */world.setBlockMetadataWithNotify(i + 21, j + 3, k + 13, 1, 2);
+		/* 1034 */setBlock(world, i + 21, j + 3, k + 14, Blocks.sandstone, 1);
+		/* 1035 */world.setBlockMetadataWithNotify(i + 21, j + 3, k + 14, 1, 2);
+		/* 1036 */setBlock(world, i + 21, j + 4, k + 12, Blocks.sandstone, 1);
+		/* 1037 */world.setBlockMetadataWithNotify(i + 21, j + 4, k + 12, 1, 2);
+		/* 1038 */setBlock(world, i + 21, j + 4, k + 13, Blocks.sandstone, 1);
+		/* 1039 */world.setBlockMetadataWithNotify(i + 21, j + 4, k + 13, 1, 2);
+		/* 1040 */setBlock(world, i + 21, j + 4, k + 14, Blocks.sandstone, 1);
+		/* 1041 */world.setBlockMetadataWithNotify(i + 21, j + 4, k + 14, 1, 2);
+		/*      */
+		/* 1043 */return true;
+		/*      */}
 
-		return true;
-	}
-
-	protected Block[] getValidSpawnBlocks()
+	/*      */
+	/*      */protected Block[] getValidSpawnBlocks()
+	/*      */
 	{
-		return new Block[] { StarWarsMod.tatooineSand };
-	}
+		/* 1048 */return new Block[] { StarWarsMod.tatooineSand };
+		/*      */}
 
-	public boolean locationIsValidSpawn(World world, int i, int j, int k)
+	/*      */
+	/*      */public boolean locationIsValidSpawn(World world, int i, int j, int k)
+	/*      */
 	{
-		int distanceToAir = 0;
-		Block check = world.getBlock(i, j, k);
-
-		while (check != Blocks.air)
+		/* 1053 */int distanceToAir = 0;
+		/* 1054 */Block check = world.getBlock(i, j, k);
+		/*      */
+		/* 1056 */while (check != Blocks.air)
+		/*      */
 		{
-			if (distanceToAir > 3) { return false; }
-
-			distanceToAir++;
-			check = world.getBlock(i, j + distanceToAir, k);
-		}
-
-		j += distanceToAir - 1;
-
-		Block block = world.getBlock(i, j, k);
-		Block blockAbove = world.getBlock(i, j + 1, k);
-		Block blockBelow = world.getBlock(i, j - 1, k);
-
-		for (Block x : getValidSpawnBlocks())
+			/* 1058 */if (distanceToAir > 3) { return false;
+			/*      */}
+			/* 1060 */distanceToAir++;
+			/* 1061 */check = world.getBlock(i, j + distanceToAir, k);
+			/*      */}
+		/*      */
+		/* 1064 */j += distanceToAir - 1;
+		/*      */
+		/* 1066 */Block block = world.getBlock(i, j, k);
+		/* 1067 */Block blockAbove = world.getBlock(i, j + 1, k);
+		/* 1068 */Block blockBelow = world.getBlock(i, j - 1, k);
+		/*      */
+		/* 1070 */for (Block x : getValidSpawnBlocks())
+		/*      */
 		{
-			if (blockAbove != Blocks.air) { return false; }
-			if (block == x)
+			/* 1072 */if (blockAbove != Blocks.air) return false;
+			/* 1073 */if (block == x)
+			/*      */
 			{
-				return true;
-			}
-			else if (block == Blocks.snow && blockBelow == x) { return true; }
-		}
+				/* 1075 */return true;
+				/*      */}
+			/* 1077 */if ((block == Blocks.snow) && (blockBelow == x)) { return true;
+			/*      */}
+			/*      */}
+		/* 1080 */return false;
+		/*      */}
 
-		return false;
-	}
-
-	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
+	/*      */
+	/*      */public void setBlock(World world, int x, int y, int z, Block block, int metadata)
+	/*      */
 	{
-		world.setBlock(x, y, z, block, metadata, 2);
-	}
+		/* 1085 */world.setBlock(x, y, z, block, metadata, 2);
+		/*      */}
+	/*      */
 }
+
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\world\gen\WorldGenTatooineHomestead.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

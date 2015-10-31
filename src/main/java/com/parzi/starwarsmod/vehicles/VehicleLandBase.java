@@ -1,27 +1,45 @@
 package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.ai.AiFreqMove;
 
-public class VehicleLandBase extends EntityLiving
+public class VehicleLandBase extends EntityCreature
 {
-	public float vehicXOffset = 0;
-	public float vehicYOffset = 0;
-	public float vehicZOffset = 0;
-
-	public float moveModifier = 1F;
+	public static int[] mouseDxOverAFewTicks = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	public static float mouseDX = 0.0F;
+	public static float mouseDY = 0.0F;
+	public float vehicXOffset = 0.0F;
+	public float vehicYOffset = 0.0F;
+	public float vehicZOffset = 0.0F;
+	public float moveModifier = 1.0F;
+	public float frame = 0.0F;
+	private AiFreqMove moveAi;
 
 	public VehicleLandBase(World p_i1689_1_)
 	{
+		this(p_i1689_1_, false, Blocks.grass);
+	}
+
+	public VehicleLandBase(World p_i1689_1_, boolean isSentient, Block preferredBlock)
+	{
 		super(p_i1689_1_);
-		setSize(0.9F, 0.9F);
-		isImmuneToFire = true;
+		this.setSize(0.9F, 0.9F);
+		this.isImmuneToFire = true;
+		if (isSentient) this.tasks.addTask(1, this.moveAi = new AiFreqMove(this, 4.0D, 1, 100, preferredBlock));
+	}
+
+	@Override
+	protected boolean canDespawn()
+	{
+		return false;
 	}
 
 	@Override
@@ -33,13 +51,12 @@ public class VehicleLandBase extends EntityLiving
 	@Override
 	public void fall(float p1)
 	{
-		return;
 	}
 
 	@Override
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
-		playSound(StarWarsMod.MODID + ":" + getMovingSound(), 0.15F, 1.0F);
+		this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
 	}
 
 	public String getMovingSound()
@@ -47,56 +64,46 @@ public class VehicleLandBase extends EntityLiving
 		return "vehicle.default.move";
 	}
 
-	/**
-	 * Called when a player interacts with a mob. e.g. gets milk from a cow,
-	 * gets into the saddle on a pig.
-	 */
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		if (!worldObj.isRemote && (riddenByEntity == null || riddenByEntity == p_70085_1_))
+		if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == p_70085_1_))
 		{
 			p_70085_1_.mountEntity(this);
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	@Override
 	protected boolean isAIEnabled()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
 	{
-		if (riddenByEntity != null && riddenByEntity instanceof EntityLivingBase)
+		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
-			rotationPitch = riddenByEntity.rotationPitch * 0.5F;
-			setRotation(rotationYaw, rotationPitch);
-			rotationYawHead = renderYawOffset = rotationYaw;
-			p_70612_1_ = ((EntityLivingBase)riddenByEntity).moveStrafing * 0.5F;
-			p_70612_2_ = ((EntityLivingBase)riddenByEntity).moveForward * (moveModifier / 8);
-
-			if (onGround)
+			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
+			this.setRotation(this.rotationYaw, this.rotationPitch);
+			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
+			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F);
+			if (this.onGround)
 			{
-				float f2 = MathHelper.sin(rotationYaw * (float)Math.PI / 180.0F);
-				float f3 = MathHelper.cos(rotationYaw * (float)Math.PI / 180.0F);
-				motionX += -0.4F * f2 * p_70612_2_;
-				motionZ += 0.4F * f3 * p_70612_2_;
+				float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
+				float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
+				this.motionX += -0.4F * f2 * p_70612_2_;
+				this.motionZ += 0.4F * f3 * p_70612_2_;
 			}
-
-			stepHeight = 1.0F;
-			jumpMovementFactor = getAIMoveSpeed() * 0.1F;
-
-			if (!worldObj.isRemote)
+			this.stepHeight = 1.0F;
+			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
+			if (!this.worldObj.isRemote)
 			{
-				setAIMoveSpeed(p_70612_2_);
+				this.setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 			}
 		}
@@ -106,16 +113,23 @@ public class VehicleLandBase extends EntityLiving
 	public void onUpdate()
 	{
 		super.onUpdate();
-
-		moveEntityWithHeading(0, 0);
+		this.moveEntityWithHeading(0.0F, 0.0F);
+		this.frame = (float)(this.frame + 0.1D);
 	}
 
 	@Override
 	public void updateRiderPosition()
 	{
-		if (riddenByEntity != null)
+		if (this.riddenByEntity != null)
 		{
-			riddenByEntity.setPosition(posX + vehicXOffset, posY + getMountedYOffset() + riddenByEntity.getYOffset() + vehicYOffset, posZ + vehicZOffset);
+			float offset = this.vehicYOffset;
+			if (!(this.riddenByEntity instanceof EntityPlayer)) offset -= 0.5F;
+			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ + this.vehicZOffset);
 		}
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\vehicles\VehicleLandBase.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

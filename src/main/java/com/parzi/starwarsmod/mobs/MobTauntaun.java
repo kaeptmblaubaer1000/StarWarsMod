@@ -2,18 +2,14 @@ package com.parzi.starwarsmod.mobs;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -25,18 +21,18 @@ public class MobTauntaun extends EntityHorse
 	public MobTauntaun(World par1World)
 	{
 		super(par1World);
-		setSize(1F, 3F);
-		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		tasks.addTask(4, new EntityAILookIdle(this));
+		this.setSize(1.0F, 3.0F);
+		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(4, new net.minecraft.entity.ai.EntityAILookIdle(this));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
 	}
 
 	@Override
@@ -49,37 +45,21 @@ public class MobTauntaun extends EntityHorse
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
 		Block.SoundType soundtype = p_145780_4_.stepSound;
-
-		if (worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer)
-		{
-			soundtype = Blocks.snow_layer.stepSound;
-		}
-
+		if (this.worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer) soundtype = Blocks.snow_layer.stepSound;
 		if (!p_145780_4_.getMaterial().isLiquid())
 		{
-			int l = getHorseType();
-
-			if (riddenByEntity != null && l != 1 && l != 2)
+			int l = this.getHorseType();
+			if (this.riddenByEntity != null && l != 1 && l != 2)
 			{
-				++field_110285_bP;
-
-				if (field_110285_bP > 5 && field_110285_bP % 3 == 0)
-				{
-					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				}
-				else if (field_110285_bP <= 5)
-				{
-					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				}
+				this.field_110285_bP += 1;
+				if (this.field_110285_bP > 5 && this.field_110285_bP % 3 == 0)
+					this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				else if (this.field_110285_bP <= 5) this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
-			{
-				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-			}
+				this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			else
-			{
-				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-			}
+				this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 		}
 	}
 
@@ -92,32 +72,17 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		return worldObj.difficultySetting != EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(20) == 0;
+		return this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
 	}
 
 	@Override
 	public String getCommandSenderName()
 	{
-		if (hasCustomNameTag())
-		{
-			return getCustomNameTag();
-		}
-		else
-		{
-			if (isChested())
-			{
-				return "Pack-Tauntaun";
-			}
-			else
-			{
-				return "Tauntaun";
-			}
-		}
+		if (this.hasCustomNameTag()) return this.getCustomNameTag();
+		if (this.isChested()) return "Pack-Tauntaun";
+		return "Tauntaun";
 	}
 
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
 	@Override
 	protected String getDeathSound()
 	{
@@ -130,9 +95,6 @@ public class MobTauntaun extends EntityHorse
 		return 2;
 	}
 
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
 	@Override
 	protected String getHurtSound()
 	{
@@ -155,27 +117,26 @@ public class MobTauntaun extends EntityHorse
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
-
-		if (itemstack != null && itemstack.getItem() == Items.spawn_egg) { return false; }
-
+		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg) return false;
 		return super.interact(p_70085_1_);
 	}
 
 	protected boolean isValidLightLevel()
 	{
-		int i = MathHelper.floor_double(posX);
-		int j = MathHelper.floor_double(boundingBox.minY);
-		int k = MathHelper.floor_double(posZ);
-
-		return worldObj.getSavedLightValue(EnumSkyBlock.Sky, i, j, k) > 11;
+		int i = MathHelper.floor_double(this.posX);
+		int j = MathHelper.floor_double(this.boundingBox.minY);
+		int k = MathHelper.floor_double(this.posZ);
+		return this.worldObj.getSavedLightValue(net.minecraft.world.EnumSkyBlock.Sky, i, j, k) > 11;
 	}
 
 	@Override
 	public void updateRiderPosition()
 	{
-		if (riddenByEntity != null)
-		{
-			riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - 0.1F, posZ);
-		}
+		if (this.riddenByEntity != null) this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.10000000149011612D, this.posZ);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\mobs\MobTauntaun.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

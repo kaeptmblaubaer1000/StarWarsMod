@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.mobs;
 
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -9,71 +10,68 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobEwok extends EntityAnimal implements IAnimals
 {
+	private DataWatcher dw;
+
 	public MobEwok(World par1World)
 	{
 		super(par1World);
-		setSize(0.5F, 1.5F);
-		tasks.taskEntries.clear();
-		tasks.addTask(0, new EntityAISwimming(this));
-		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		tasks.addTask(4, new EntityAILookIdle(this));
-
-		if (rand.nextInt(3) == 0 || true)
+		this.setSize(0.5F, 1.5F);
+		this.dw = super.getDataWatcher();
+		this.tasks.taskEntries.clear();
+		this.tasks.addTask(0, new EntityAISwimming(this));
+		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+		this.tasks.addTask(4, new EntityAILookIdle(this));
+		if (this.rand.nextInt(3) != 0)
 		{
-			setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.ewokSpear, 1));
 		}
+		this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.ewokSpear, 1));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
 	}
 
 	@Override
 	public EntityAgeable createChild(EntityAgeable p_90011_1_)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.getDataWatcher().addObject(25, Integer.valueOf(this.rand.nextInt(3)));
+	}
+
+	protected Item func_146068_u()
+	{
+		switch (this.rand.nextInt(60))
+		{
+			case 36:
+				this.dropItem(StarWarsMod.ewokSpear, 1);
+		}
+		return Item.getItemFromBlock(net.minecraft.init.Blocks.leaves);
+	}
+
 	@Override
 	protected String getDeathSound()
 	{
 		return StarWarsMod.MODID + ":" + "mob.ewok.die";
 	}
 
-	@Override
-	protected Item getDropItem()
-	{
-		switch (rand.nextInt(60))
-		{
-			case 36:
-				dropItem(StarWarsMod.ewokSpear, 1);
-				break;
-		}
-
-		return Item.getItemFromBlock(Blocks.leaves);
-	}
-
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
 	@Override
 	protected String getHurtSound()
 	{
@@ -85,4 +83,14 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	{
 		return StarWarsMod.MODID + ":" + "mob.ewok.say";
 	}
+
+	private int getType()
+	{
+		return this.getDataWatcher().getWatchableObjectInt(25);
+	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\mobs\MobEwok.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

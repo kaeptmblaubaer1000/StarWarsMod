@@ -23,12 +23,7 @@ public class RenderDSTurret extends RenderLiving
 	public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
 	{
 		WeaponDSTurret turret = (WeaponDSTurret)p_76986_1_;
-
-		// GL11.glRotatef(turret.pitch, (float)Math.sin(turret.rotationYaw),
-		// (float)Math.cos(turret.rotationYaw), 0);
-
 		turret.setPositionAndRotation(turret.posX, turret.posY, turret.posZ, turret.rotationYaw, turret.pitch);
-
 		super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
 	}
 
@@ -41,6 +36,11 @@ public class RenderDSTurret extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		GL11.glScalef(4F, 4F, 4F);
+		GL11.glScalef(4.0F, 4.0F, 4.0F);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\RenderDSTurret.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

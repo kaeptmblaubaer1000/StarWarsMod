@@ -18,14 +18,13 @@ public class OreGenerator implements IWorldGenerator
 		switch (world.provider.dimensionId)
 		{
 			case -1:
-				generateNether(world, random, chunkX * 16, chunkZ * 16);
+				this.generateNether(world, random, chunkX * 16, chunkZ * 16);
 				break;
 			case 0:
-				generateSurface(world, random, chunkX * 16, chunkZ * 16);
+				this.generateSurface(world, random, chunkX * 16, chunkZ * 16);
 				break;
 			case 1:
-				generateEnd(world, random, chunkX * 16, chunkZ * 16);
-				break;
+				this.generateEnd(world, random, chunkX * 16, chunkZ * 16);
 		}
 	}
 
@@ -45,7 +44,6 @@ public class OreGenerator implements IWorldGenerator
 			int firstBlockYCoord = StarWarsMod.rngChromium.nextInt(64);
 			int firstBlockZCoord = chunkZ + StarWarsMod.rngChromium.nextInt(16);
 			new WorldGenMinable(StarWarsMod.chromiumOre, 4).generate(world, StarWarsMod.rngChromium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
-
 			firstBlockXCoord = chunkX + StarWarsMod.rngTitanium.nextInt(16);
 			firstBlockYCoord = StarWarsMod.rngTitanium.nextInt(64);
 			firstBlockZCoord = chunkZ + StarWarsMod.rngTitanium.nextInt(16);
@@ -53,3 +51,8 @@ public class OreGenerator implements IWorldGenerator
 		}
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\world\OreGenerator.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -23,6 +23,11 @@ public class Lumberjack
 		logger.log(level, message);
 	}
 
+	public static void log(String message)
+	{
+		info(message);
+	}
+
 	public static void warn(String message)
 	{
 		log(Level.WARN, message);

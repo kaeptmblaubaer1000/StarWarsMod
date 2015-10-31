@@ -14,50 +14,59 @@ import net.minecraft.util.StatCollector;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemMusicDisc extends ItemRecord {
-	private String name = "musicDisc";
+public class ItemMusicDisc extends ItemRecord
+{
 	private static final Map records = new HashMap();
-	public final String recordName;
 
-	public ItemMusicDisc(String songName) {
+	public static ItemMusicDisc getRecord(String par0Str)
+	{
+		return (ItemMusicDisc)records.get(par0Str);
+	}
+
+	private String name = "musicDisc";
+	public final String field_150929_a;
+
+	public ItemMusicDisc(String songName)
+	{
 		super(songName);
-		this.recordName = songName;
+		this.field_150929_a = songName;
 		this.maxStackSize = 1;
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		records.put(recordName, this);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		records.put(this.field_150929_a, this);
 	}
 
 	@Override
-	public void registerIcons(IIconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon(StarWarsMod.MODID + ":" + "record"
-				+ recordName);
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	{
+		par3List.add(this.func_150927_i());
+	}
+
+	public String func_150927_i()
+	{
+		return StatCollector.translateToLocal(this.getUnlocalizedName() + this.field_150929_a + ".desc");
 	}
 
 	@Override
-	public void addInformation(ItemStack par1ItemStack,
-			EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add(this.getRecordNameLocal());
-	}
-
-	@Override
-	// TODO: getRecordTitle()
-	public String getRecordNameLocal() {
-		return StatCollector.translateToLocal(this.getUnlocalizedName()
-				+ recordName + ".desc");
-	}
-
-	@Override
-	public EnumRarity getRarity(ItemStack itemStack) {
+	public EnumRarity getRarity(ItemStack itemStack)
+	{
 		return EnumRarity.rare;
 	}
 
-	public static ItemMusicDisc getRecord(String par0Str) {
-		return (ItemMusicDisc) records.get(par0Str);
+	@Override
+	public ResourceLocation getRecordResource(String name)
+	{
+		return new ResourceLocation(StarWarsMod.MODID + ":" + "item." + name);
 	}
 
 	@Override
-	public ResourceLocation getRecordResource(String name) {
-		return new ResourceLocation(StarWarsMod.MODID + ":" + "item." + name);
+	public void registerIcons(IIconRegister iconRegister)
+	{
+		this.itemIcon = iconRegister.registerIcon(StarWarsMod.MODID + ":" + "record" + this.field_150929_a);
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\ItemMusicDisc.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

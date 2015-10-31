@@ -10,7 +10,7 @@ public class StarWarsTab extends CreativeTabs
 	public StarWarsTab()
 	{
 		super("tabStarWars");
-		setBackgroundImageName("item_search.png");
+		this.setBackgroundImageName("item_search.png");
 	}
 
 	@Override
@@ -26,3 +26,8 @@ public class StarWarsTab extends CreativeTabs
 		return true;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\StarWarsTab.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

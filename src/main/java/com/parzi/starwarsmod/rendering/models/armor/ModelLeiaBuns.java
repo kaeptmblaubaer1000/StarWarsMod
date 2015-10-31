@@ -6,36 +6,34 @@ import net.minecraft.entity.Entity;
 
 public class ModelLeiaBuns extends ModelBiped
 {
-	// fields
 	public ModelRenderer BunR;
 	public ModelRenderer BunL;
 
 	public ModelLeiaBuns()
 	{
-		textureWidth = 64;
-		textureHeight = 32;
-
-		BunR = new ModelRenderer(this, 0, 0);
-		BunR.addBox(-5.5F, -6.5F, -2.5F, 2, 5, 5);
-		BunR.setRotationPoint(0F, 0F, 0F);
-		BunR.setTextureSize(64, 32);
-		BunR.mirror = true;
-		setRotation(BunR, 0F, 0F, 0F);
-		BunL = new ModelRenderer(this, 0, 10);
-		BunL.addBox(3.5F, -6.5F, -2.5F, 2, 5, 5);
-		BunL.setRotationPoint(0F, 0F, 0F);
-		BunL.setTextureSize(64, 32);
-		BunL.mirror = true;
-		setRotation(BunL, 0F, 0F, 0F);
+		this.textureWidth = 64;
+		this.textureHeight = 32;
+		this.BunR = new ModelRenderer(this, 0, 0);
+		this.BunR.addBox(-5.5F, -6.5F, -2.5F, 2, 5, 5);
+		this.BunR.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.BunR.setTextureSize(64, 32);
+		this.BunR.mirror = true;
+		this.setRotation(this.BunR, 0.0F, 0.0F, 0.0F);
+		this.BunL = new ModelRenderer(this, 0, 10);
+		this.BunL.addBox(3.5F, -6.5F, -2.5F, 2, 5, 5);
+		this.BunL.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.BunL.setTextureSize(64, 32);
+		this.BunL.mirror = true;
+		this.setRotation(this.BunL, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		BunR.render(f5);
-		BunL.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.BunR.render(f5);
+		this.BunL.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -50,5 +48,10 @@ public class ModelLeiaBuns extends ModelBiped
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\rendering\models\armor\ModelLeiaBuns.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

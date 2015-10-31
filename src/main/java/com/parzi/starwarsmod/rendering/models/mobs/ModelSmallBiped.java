@@ -7,69 +7,67 @@ import net.minecraft.util.MathHelper;
 
 public class ModelSmallBiped extends ModelBase
 {
-	// fields
 	ModelRenderer head;
 	ModelRenderer body;
 	ModelRenderer rightarm;
 	ModelRenderer leftarm;
 	ModelRenderer rightleg;
 	ModelRenderer leftleg;
-	float animScale = 1.0f;
+	float animScale = 1.0F;
 
 	public ModelSmallBiped()
 	{
-		textureWidth = 64;
-		textureHeight = 32;
-
-		head = new ModelRenderer(this, 0, 0);
-		head.addBox(-4F, -8F, -4F, 6, 6, 7);
-		head.setRotationPoint(1F, 10F, 0F);
-		head.setTextureSize(64, 32);
-		head.mirror = true;
-		setRotation(head, 0F, 0F, 0F);
-		body = new ModelRenderer(this, 16, 16);
-		body.addBox(-4F, 0F, -2F, 6, 8, 4);
-		body.setRotationPoint(1F, 8F, 0F);
-		body.setTextureSize(64, 32);
-		body.mirror = true;
-		setRotation(body, 0F, 0F, 0F);
-		rightarm = new ModelRenderer(this, 40, 16);
-		rightarm.addBox(-3F, -2F, -2F, 3, 9, 4);
-		rightarm.setRotationPoint(-3F, 10F, 0F);
-		rightarm.setTextureSize(64, 32);
-		rightarm.mirror = true;
-		setRotation(rightarm, 0F, 0F, 0F);
-		leftarm = new ModelRenderer(this, 40, 16);
-		leftarm.addBox(-1F, -2F, -2F, 3, 9, 4);
-		leftarm.setRotationPoint(4F, 10F, 0F);
-		leftarm.setTextureSize(64, 32);
-		leftarm.mirror = true;
-		setRotation(leftarm, 0F, 0F, 0F);
-		rightleg = new ModelRenderer(this, 0, 16);
-		rightleg.addBox(-2F, 0F, -2F, 3, 8, 4);
-		rightleg.setRotationPoint(-1F, 16F, 0F);
-		rightleg.setTextureSize(64, 32);
-		rightleg.mirror = true;
-		setRotation(rightleg, 0F, 0F, 0F);
-		leftleg = new ModelRenderer(this, 0, 16);
-		leftleg.addBox(-2F, 0F, -2F, 3, 8, 4);
-		leftleg.setRotationPoint(2F, 16F, 0F);
-		leftleg.setTextureSize(64, 32);
-		leftleg.mirror = true;
-		setRotation(leftleg, 0F, 0F, 0F);
+		this.textureWidth = 64;
+		this.textureHeight = 32;
+		this.head = new ModelRenderer(this, 0, 0);
+		this.head.addBox(-4.0F, -8.0F, -4.0F, 6, 6, 7);
+		this.head.setRotationPoint(1.0F, 10.0F, 0.0F);
+		this.head.setTextureSize(64, 32);
+		this.head.mirror = true;
+		this.setRotation(this.head, 0.0F, 0.0F, 0.0F);
+		this.body = new ModelRenderer(this, 16, 16);
+		this.body.addBox(-4.0F, 0.0F, -2.0F, 6, 8, 4);
+		this.body.setRotationPoint(1.0F, 8.0F, 0.0F);
+		this.body.setTextureSize(64, 32);
+		this.body.mirror = true;
+		this.setRotation(this.body, 0.0F, 0.0F, 0.0F);
+		this.rightarm = new ModelRenderer(this, 40, 16);
+		this.rightarm.addBox(-3.0F, -2.0F, -2.0F, 3, 9, 4);
+		this.rightarm.setRotationPoint(-3.0F, 10.0F, 0.0F);
+		this.rightarm.setTextureSize(64, 32);
+		this.rightarm.mirror = true;
+		this.setRotation(this.rightarm, 0.0F, 0.0F, 0.0F);
+		this.leftarm = new ModelRenderer(this, 40, 16);
+		this.leftarm.addBox(-1.0F, -2.0F, -2.0F, 3, 9, 4);
+		this.leftarm.setRotationPoint(4.0F, 10.0F, 0.0F);
+		this.leftarm.setTextureSize(64, 32);
+		this.leftarm.mirror = true;
+		this.setRotation(this.leftarm, 0.0F, 0.0F, 0.0F);
+		this.rightleg = new ModelRenderer(this, 0, 16);
+		this.rightleg.addBox(-2.0F, 0.0F, -2.0F, 3, 8, 4);
+		this.rightleg.setRotationPoint(-1.0F, 16.0F, 0.0F);
+		this.rightleg.setTextureSize(64, 32);
+		this.rightleg.mirror = true;
+		this.setRotation(this.rightleg, 0.0F, 0.0F, 0.0F);
+		this.leftleg = new ModelRenderer(this, 0, 16);
+		this.leftleg.addBox(-2.0F, 0.0F, -2.0F, 3, 8, 4);
+		this.leftleg.setRotationPoint(2.0F, 16.0F, 0.0F);
+		this.leftleg.setTextureSize(64, 32);
+		this.leftleg.mirror = true;
+		this.setRotation(this.leftleg, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		head.render(f5);
-		body.render(f5);
-		rightarm.render(f5);
-		leftarm.render(f5);
-		rightleg.render(f5);
-		leftleg.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.head.render(f5);
+		this.body.render(f5);
+		this.rightarm.render(f5);
+		this.leftarm.render(f5);
+		this.rightleg.render(f5);
+		this.leftleg.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -83,18 +81,21 @@ public class ModelSmallBiped extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity ent)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, ent);
-		head.rotateAngleY = f3 / (180F / (float)Math.PI);
-		head.rotateAngleX = f4 / (180F / (float)Math.PI);
-
-		rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F;
-		leftarm.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1 * 0.5F;
-		rightarm.rotateAngleZ = 0.0F;
-		leftarm.rotateAngleZ = 0.0F;
-
-		rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
-		rightleg.rotateAngleY = 0.0F;
-		leftleg.rotateAngleY = 0.0F;
+		this.head.rotateAngleY = f3 / 57.295776F;
+		this.head.rotateAngleX = f4 / 57.295776F;
+		this.rightarm.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1 * 0.5F;
+		this.leftarm.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1 * 0.5F;
+		this.rightarm.rotateAngleZ = 0.0F;
+		this.leftarm.rotateAngleZ = 0.0F;
+		this.rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1;
+		this.leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1;
+		this.rightleg.rotateAngleY = 0.0F;
+		this.leftleg.rotateAngleY = 0.0F;
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\rendering\models\mobs\ModelSmallBiped.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

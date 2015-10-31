@@ -8,24 +8,26 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorEndor extends ItemArmor
 {
-	private String[] names = new String[] { "Helmet", "Chestplate", "Leggings", "Boots" };
+	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 
-	public ArmorEndor(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorEndor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + "endor" + names[par4]);
-		setTextureName(StarWarsMod.MODID + ":" + "endor" + names[par4]);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName("starwarsmod.endor" + this.names[par4]);
+		this.setTextureName(StarWarsMod.MODID + ":" + "endor" + this.names[par4]);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.endorHelmet || stack.getItem() == StarWarsMod.endorChest || stack.getItem() == StarWarsMod.endorBoots)
-		{
-			return StarWarsMod.MODID + ":" + "textures/models/endorArmorLayer1.png";
-		}
-		else if (stack.getItem() == StarWarsMod.endorLegs) { return StarWarsMod.MODID + ":" + "textures/models/endorArmorLayer2.png"; }
+		if (stack.getItem() == StarWarsMod.endorHelmet || stack.getItem() == StarWarsMod.endorChest || stack.getItem() == StarWarsMod.endorBoots) return StarWarsMod.MODID + ":" + "textures/models/endorArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.endorLegs) return StarWarsMod.MODID + ":" + "textures/models/endorArmorLayer2.png";
 		return "";
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorEndor.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -1,36 +1,37 @@
 package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemSpawnLandspeeder extends Item
+public class ItemSpawnLandspeeder extends net.minecraft.item.Item
 {
 	private String name = "spawnLandspeeder";
 
 	public ItemSpawnLandspeeder()
 	{
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setTextureName(StarWarsMod.MODID + ":" + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		maxStackSize = 1;
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.maxStackSize = 1;
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnLandspeeder))
+		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnLandspeeder)) if (!world.isRemote)
 		{
-			if (!world.isRemote)
-			{
-				VehicLandspeeder newVehic = new VehicLandspeeder(world);
-				newVehic.setPosition(x, y + 1, z);
-				world.spawnEntityInWorld(newVehic);
-			}
+			VehicLandspeeder newVehic = new VehicLandspeeder(world);
+			newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
+			world.spawnEntityInWorld(newVehic);
 		}
 		return true;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\vehicles\ItemSpawnLandspeeder.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -20,78 +20,78 @@ public class ModelDroidProtocol extends ModelBase
 
 	public ModelDroidProtocol()
 	{
-		textureWidth = 128;
-		textureHeight = 128;
-
-		BackThing = new ModelRenderer(this, 0, 115);
-		BackThing.addBox(0F, 0F, 0F, 6, 4, 1);
-		BackThing.setRotationPoint(-3F, 2.5F, 2F);
-		BackThing.setTextureSize(64, 32);
-		BackThing.mirror = true;
-		setRotation(BackThing, 0F, 0F, 0F);
-		head = new ModelRenderer(this, 0, 0);
-		head.addBox(-3F, -7F, -3F, 6, 7, 6);
-		head.setRotationPoint(0F, 0F, 0F);
-		head.setTextureSize(64, 32);
-		head.mirror = true;
-		setRotation(head, 0F, 0F, 0F);
-		body = new ModelRenderer(this, 0, 14);
-		body.addBox(-4F, 0F, -2F, 8, 12, 4);
-		body.setRotationPoint(0F, 0F, 0F);
-		body.setTextureSize(64, 32);
-		body.mirror = true;
-		setRotation(body, 0F, 0F, 0F);
-		LeftArm1 = new ModelRenderer(this, 0, 31);
-		LeftArm1.addBox(-1F, -1F, -2F, 3, 6, 4);
-		LeftArm1.setRotationPoint(5F, 2F, 0F);
-		LeftArm1.setTextureSize(64, 32);
-		LeftArm1.mirror = true;
-		setRotation(LeftArm1, -0.2094395F, 0F, -0.6283185F);
-		rightleg = new ModelRenderer(this, 0, 42);
-		rightleg.addBox(-2F, 0F, -2F, 4, 12, 4);
-		rightleg.setRotationPoint(-2F, 12F, 0F);
-		rightleg.setTextureSize(64, 32);
-		rightleg.mirror = true;
-		setRotation(rightleg, 0F, 0F, 0F);
-		leftleg = new ModelRenderer(this, 0, 59);
-		leftleg.addBox(-2F, 0F, -2F, 4, 12, 4);
-		leftleg.setRotationPoint(2F, 12F, 0F);
-		leftleg.setTextureSize(64, 32);
-		leftleg.mirror = true;
-		setRotation(leftleg, 0F, 0F, 0F);
-		LeftArm2 = new ModelRenderer(this, 0, 76);
-		LeftArm2.addBox(2F, 1.5F, -2F, 3, 9, 4);
-		LeftArm2.setRotationPoint(5F, 2F, 0F);
-		LeftArm2.setTextureSize(64, 32);
-		LeftArm2.mirror = true;
-		setRotation(LeftArm2, -0.2094395F, 0F, 0.3141593F);
-		RightArm1 = new ModelRenderer(this, 0, 90);
-		RightArm1.addBox(-2F, -1F, -2F, 3, 6, 4);
-		RightArm1.setRotationPoint(-5F, 2F, 0F);
-		RightArm1.setTextureSize(64, 32);
-		RightArm1.mirror = true;
-		setRotation(RightArm1, -0.2094395F, 0F, 0.6283185F);
-		RightArm2 = new ModelRenderer(this, 0, 101);
-		RightArm2.addBox(-5F, 1.4F, -2F, 3, 9, 4);
-		RightArm2.setRotationPoint(-5F, 2F, 0F);
-		RightArm2.setTextureSize(64, 32);
-		RightArm2.mirror = true;
-		setRotation(RightArm2, -0.2094395F, 0F, -0.3141593F);
+		this.textureWidth = 128;
+		this.textureHeight = 128;
+		this.BackThing = new ModelRenderer(this, 0, 115);
+		this.BackThing.addBox(0.0F, 0.0F, 0.0F, 6, 4, 1);
+		this.BackThing.setRotationPoint(-3.0F, 2.5F, 2.0F);
+		this.BackThing.setTextureSize(64, 32);
+		this.BackThing.mirror = true;
+		this.setRotation(this.BackThing, 0.0F, 0.0F, 0.0F);
+		this.head = new ModelRenderer(this, 0, 0);
+		this.head.addBox(-3.0F, -7.0F, -3.0F, 6, 7, 6);
+		this.head.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.head.setTextureSize(64, 32);
+		this.head.mirror = true;
+		this.setRotation(this.head, 0.0F, 0.0F, 0.0F);
+		this.body = new ModelRenderer(this, 0, 14);
+		this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4);
+		this.body.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.body.setTextureSize(64, 32);
+		this.body.mirror = true;
+		this.setRotation(this.body, 0.0F, 0.0F, 0.0F);
+		this.LeftArm1 = new ModelRenderer(this, 0, 31);
+		this.LeftArm1.addBox(-1.0F, -1.0F, -2.0F, 3, 6, 4);
+		this.LeftArm1.setRotationPoint(5.0F, 2.0F, 0.0F);
+		this.LeftArm1.setTextureSize(64, 32);
+		this.LeftArm1.mirror = true;
+		this.setRotation(this.LeftArm1, -0.2094395F, 0.0F, -0.6283185F);
+		this.rightleg = new ModelRenderer(this, 0, 42);
+		this.rightleg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4);
+		this.rightleg.setRotationPoint(-2.0F, 12.0F, 0.0F);
+		this.rightleg.setTextureSize(64, 32);
+		this.rightleg.mirror = true;
+		this.setRotation(this.rightleg, 0.0F, 0.0F, 0.0F);
+		this.leftleg = new ModelRenderer(this, 0, 59);
+		this.leftleg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4);
+		this.leftleg.setRotationPoint(2.0F, 12.0F, 0.0F);
+		this.leftleg.setTextureSize(64, 32);
+		this.leftleg.mirror = true;
+		this.setRotation(this.leftleg, 0.0F, 0.0F, 0.0F);
+		this.LeftArm2 = new ModelRenderer(this, 0, 76);
+		this.LeftArm2.addBox(2.0F, 1.5F, -2.0F, 3, 9, 4);
+		this.LeftArm2.setRotationPoint(5.0F, 2.0F, 0.0F);
+		this.LeftArm2.setTextureSize(64, 32);
+		this.LeftArm2.mirror = true;
+		this.setRotation(this.LeftArm2, -0.2094395F, 0.0F, 0.3141593F);
+		this.RightArm1 = new ModelRenderer(this, 0, 90);
+		this.RightArm1.addBox(-2.0F, -1.0F, -2.0F, 3, 6, 4);
+		this.RightArm1.setRotationPoint(-5.0F, 2.0F, 0.0F);
+		this.RightArm1.setTextureSize(64, 32);
+		this.RightArm1.mirror = true;
+		this.setRotation(this.RightArm1, -0.2094395F, 0.0F, 0.6283185F);
+		this.RightArm2 = new ModelRenderer(this, 0, 101);
+		this.RightArm2.addBox(-5.0F, 1.4F, -2.0F, 3, 9, 4);
+		this.RightArm2.setRotationPoint(-5.0F, 2.0F, 0.0F);
+		this.RightArm2.setTextureSize(64, 32);
+		this.RightArm2.mirror = true;
+		this.setRotation(this.RightArm2, -0.2094395F, 0.0F, -0.3141593F);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		BackThing.render(f5);
-		head.render(f5);
-		body.render(f5);
-		LeftArm1.render(f5);
-		rightleg.render(f5);
-		leftleg.render(f5);
-		LeftArm2.render(f5);
-		RightArm1.render(f5);
-		RightArm2.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.BackThing.render(f5);
+		this.head.render(f5);
+		this.body.render(f5);
+		this.LeftArm1.render(f5);
+		this.rightleg.render(f5);
+		this.leftleg.render(f5);
+		this.LeftArm2.render(f5);
+		this.RightArm1.render(f5);
+		this.RightArm2.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -105,15 +105,17 @@ public class ModelDroidProtocol extends ModelBase
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-		RightArm1.rotateAngleX = MathHelper.cos(f + 94 * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F - 0.2094395F;
-		LeftArm1.rotateAngleX = MathHelper.cos(f + 94 * 0.6662F) * animScale * f1 * 0.5F - 0.2094395F;
-
-		RightArm2.rotateAngleX = MathHelper.cos(f + 94 * 0.6662F + (float)Math.PI) * animScale * f1 * 0.5F - 0.2094395F;
-		LeftArm2.rotateAngleX = MathHelper.cos(f + 94 * 0.6662F) * animScale * f1 * 0.5F - 0.2094395F;
-
-		rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * animScale * f1;
-		leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * animScale * f1;
+		this.RightArm1.rotateAngleX = MathHelper.cos(f + 62.6228F + 3.1415927F) * this.animScale * f1 * 0.5F - 0.2094395F;
+		this.LeftArm1.rotateAngleX = MathHelper.cos(f + 62.6228F) * this.animScale * f1 * 0.5F - 0.2094395F;
+		this.RightArm2.rotateAngleX = MathHelper.cos(f + 62.6228F + 3.1415927F) * this.animScale * f1 * 0.5F - 0.2094395F;
+		this.LeftArm2.rotateAngleX = MathHelper.cos(f + 62.6228F) * this.animScale * f1 * 0.5F - 0.2094395F;
+		this.rightleg.rotateAngleX = MathHelper.cos(f * 0.6662F) * this.animScale * f1;
+		this.leftleg.rotateAngleX = MathHelper.cos(f * 0.6662F + 3.1415927F) * this.animScale * f1;
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\rendering\models\mobs\ModelDroidProtocol.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

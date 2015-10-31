@@ -13,13 +13,12 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockDSTurret extends BlockContainer
 {
-
 	public BlockDSTurret()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		setBlockName(StarWarsMod.MODID + "." + "dsTurret");
-		setBlockBounds(0F, 0F, 0F, 2.5F, 2.5F, 2.5F);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setBlockName("starwarsmod.dsTurret");
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 2.5F, 2.5F, 2.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.DIAMOND);
 	}
 
@@ -47,11 +46,10 @@ public class BlockDSTurret extends BlockContainer
 		return true;
 	}
 
-	// This is the icon to use for showing the block in your hand.
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconDSTurret");
+		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconDSTurret");
 	}
 
 	@Override
@@ -60,3 +58,8 @@ public class BlockDSTurret extends BlockContainer
 		return false;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockDSTurret.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -22,38 +22,30 @@ public class BiomeEndor extends BiomeGenBase
 	public BiomeEndor(int par1)
 	{
 		super(par1);
-		heightVariation = 0.2F;
-
-		enableRain = true;
-		enableSnow = false;
-
-		spawnableMonsterList.clear();
-		spawnableCreatureList.clear();
-		spawnableCaveCreatureList.clear();
-		spawnableWaterCreatureList.clear();
-
-		theBiomeDecorator = new BiomeDecoratorEndor();
-
-		setBiomeName("Endor");
-
-		topBlock = Blocks.grass;
-		fillerBlock = Blocks.dirt;
-
-		theBiomeDecorator.treesPerChunk = 2;
+		this.heightVariation = 0.2F;
+		this.enableRain = true;
+		this.enableSnow = false;
+		this.spawnableMonsterList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.theBiomeDecorator = new BiomeDecoratorEndor();
+		this.setBiomeName("Endor");
+		this.topBlock = Blocks.grass;
+		this.fillerBlock = Blocks.dirt;
+		this.theBiomeDecorator.treesPerChunk = 2;
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int par3, int par4)
 	{
 		super.decorate(par1World, par2Random, par3, par4);
-
 		if (par2Random.nextInt(200) == 0)
 		{
 			int k = par3 + par2Random.nextInt(16) + 8;
 			int l = par4 + par2Random.nextInt(16) + 8;
 			new WorldGenEndorBase().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
 		}
-
 		int k = par3 + par2Random.nextInt(16) + 8;
 		int l = par4 + par2Random.nextInt(16) + 8;
 		switch (par2Random.nextInt(4))
@@ -69,7 +61,6 @@ public class BiomeEndor extends BiomeGenBase
 				break;
 			case 3:
 				new WorldGenEndorTree4().generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
-				break;
 		}
 	}
 
@@ -93,12 +84,17 @@ public class BiomeEndor extends BiomeGenBase
 	@Override
 	public int getBiomeFoliageColor(int p1, int p2, int p3)
 	{
-		return 0x287A28;
+		return 2652712;
 	}
 
 	@Override
 	public int getBiomeGrassColor(int p1, int p2, int p3)
 	{
-		return 0x246D24;
+		return 2387236;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\world\biome\BiomeEndor.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

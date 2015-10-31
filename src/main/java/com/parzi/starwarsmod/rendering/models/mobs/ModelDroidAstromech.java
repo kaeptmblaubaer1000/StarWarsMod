@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 
 public class ModelDroidAstromech extends ModelBase
 {
-	// fields
 	ModelRenderer head;
 	ModelRenderer body;
 	ModelRenderer rightarm;
@@ -18,72 +17,71 @@ public class ModelDroidAstromech extends ModelBase
 
 	public ModelDroidAstromech()
 	{
-		textureWidth = 64;
-		textureHeight = 64;
-
-		head = new ModelRenderer(this, 0, 0);
-		head.addBox(-4F, -8F, -4F, 8, 8, 8);
-		head.setRotationPoint(0F, 7F, 1F);
-		head.setTextureSize(64, 64);
-		head.mirror = true;
-		setRotation(head, -0.1570796F, 0F, 0F);
-		body = new ModelRenderer(this, 0, 16);
-		body.addBox(-4F, 0F, -2F, 8, 14, 8);
-		body.setRotationPoint(0F, 7F, -1F);
-		body.setTextureSize(64, 64);
-		body.mirror = true;
-		setRotation(body, -0.1570796F, 0F, 0F);
-		rightarm = new ModelRenderer(this, 0, 38);
-		rightarm.addBox(-3F, -2F, -2F, 2, 16, 4);
-		rightarm.setRotationPoint(-3F, 9F, 0.5F);
-		rightarm.setTextureSize(64, 64);
-		rightarm.mirror = true;
-		setRotation(rightarm, 0F, 0F, 0F);
-		leftarm = new ModelRenderer(this, 32, 0);
-		leftarm.addBox(-1F, -2F, -2F, 2, 16, 4);
-		leftarm.setRotationPoint(5F, 9F, 0.5F);
-		leftarm.setTextureSize(64, 64);
-		leftarm.mirror = true;
-		setRotation(leftarm, 0F, 0F, 0F);
-		FootR = new ModelRenderer(this, 12, 38);
-		FootR.addBox(0F, 0F, 0F, 4, 1, 6);
-		FootR.setRotationPoint(-7F, 23F, -2.5F);
-		FootR.setTextureSize(64, 64);
-		FootR.mirror = true;
-		setRotation(FootR, 0F, 0F, 0F);
-		FootL = new ModelRenderer(this, 12, 52);
-		FootL.addBox(0F, 0F, 0F, 4, 1, 6);
-		FootL.setRotationPoint(3F, 23F, -2.5F);
-		FootL.setTextureSize(64, 64);
-		FootL.mirror = true;
-		setRotation(FootL, 0F, 0F, 0F);
-		LegM = new ModelRenderer(this, 32, 20);
-		LegM.addBox(0F, 0F, 0F, 2, 8, 2);
-		LegM.setRotationPoint(-1F, 17F, -1F);
-		LegM.setTextureSize(64, 64);
-		LegM.mirror = true;
-		setRotation(LegM, -0.8726646F, 0F, 0F);
-		FootM = new ModelRenderer(this, 12, 45);
-		FootM.addBox(0F, 0F, 0F, 4, 1, 6);
-		FootM.setRotationPoint(-2F, 23F, -9F);
-		FootM.setTextureSize(64, 64);
-		FootM.mirror = true;
-		setRotation(FootM, 0F, 0F, 0F);
+		this.textureWidth = 64;
+		this.textureHeight = 64;
+		this.head = new ModelRenderer(this, 0, 0);
+		this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8);
+		this.head.setRotationPoint(0.0F, 7.0F, 1.0F);
+		this.head.setTextureSize(64, 64);
+		this.head.mirror = true;
+		this.setRotation(this.head, -0.1570796F, 0.0F, 0.0F);
+		this.body = new ModelRenderer(this, 0, 16);
+		this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 14, 8);
+		this.body.setRotationPoint(0.0F, 7.0F, -1.0F);
+		this.body.setTextureSize(64, 64);
+		this.body.mirror = true;
+		this.setRotation(this.body, -0.1570796F, 0.0F, 0.0F);
+		this.rightarm = new ModelRenderer(this, 0, 38);
+		this.rightarm.addBox(-3.0F, -2.0F, -2.0F, 2, 16, 4);
+		this.rightarm.setRotationPoint(-3.0F, 9.0F, 0.5F);
+		this.rightarm.setTextureSize(64, 64);
+		this.rightarm.mirror = true;
+		this.setRotation(this.rightarm, 0.0F, 0.0F, 0.0F);
+		this.leftarm = new ModelRenderer(this, 32, 0);
+		this.leftarm.addBox(-1.0F, -2.0F, -2.0F, 2, 16, 4);
+		this.leftarm.setRotationPoint(5.0F, 9.0F, 0.5F);
+		this.leftarm.setTextureSize(64, 64);
+		this.leftarm.mirror = true;
+		this.setRotation(this.leftarm, 0.0F, 0.0F, 0.0F);
+		this.FootR = new ModelRenderer(this, 12, 38);
+		this.FootR.addBox(0.0F, 0.0F, 0.0F, 4, 1, 6);
+		this.FootR.setRotationPoint(-7.0F, 23.0F, -2.5F);
+		this.FootR.setTextureSize(64, 64);
+		this.FootR.mirror = true;
+		this.setRotation(this.FootR, 0.0F, 0.0F, 0.0F);
+		this.FootL = new ModelRenderer(this, 12, 52);
+		this.FootL.addBox(0.0F, 0.0F, 0.0F, 4, 1, 6);
+		this.FootL.setRotationPoint(3.0F, 23.0F, -2.5F);
+		this.FootL.setTextureSize(64, 64);
+		this.FootL.mirror = true;
+		this.setRotation(this.FootL, 0.0F, 0.0F, 0.0F);
+		this.LegM = new ModelRenderer(this, 32, 20);
+		this.LegM.addBox(0.0F, 0.0F, 0.0F, 2, 8, 2);
+		this.LegM.setRotationPoint(-1.0F, 17.0F, -1.0F);
+		this.LegM.setTextureSize(64, 64);
+		this.LegM.mirror = true;
+		this.setRotation(this.LegM, -0.8726646F, 0.0F, 0.0F);
+		this.FootM = new ModelRenderer(this, 12, 45);
+		this.FootM.addBox(0.0F, 0.0F, 0.0F, 4, 1, 6);
+		this.FootM.setRotationPoint(-2.0F, 23.0F, -9.0F);
+		this.FootM.setTextureSize(64, 64);
+		this.FootM.mirror = true;
+		this.setRotation(this.FootM, 0.0F, 0.0F, 0.0F);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		head.render(f5);
-		body.render(f5);
-		rightarm.render(f5);
-		leftarm.render(f5);
-		FootR.render(f5);
-		FootL.render(f5);
-		FootM.render(f5);
-		LegM.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.head.render(f5);
+		this.body.render(f5);
+		this.rightarm.render(f5);
+		this.leftarm.render(f5);
+		this.FootR.render(f5);
+		this.FootL.render(f5);
+		this.FootM.render(f5);
+		this.LegM.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -98,5 +96,10 @@ public class ModelDroidAstromech extends ModelBase
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, ent);
 	}
-
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\
+ * parzi\starwarsmod\rendering\models\mobs\ModelDroidAstromech.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

@@ -8,24 +8,26 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorRebelPilot extends ItemArmor
 {
-	private String[] names = new String[] { "Helmet", "Chestplate", "Leggings", "Boots" };
+	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 
-	public ArmorRebelPilot(ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorRebelPilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		setUnlocalizedName(StarWarsMod.MODID + "." + "rebelPilot" + names[par4]);
-		setTextureName(StarWarsMod.MODID + ":" + "rebelPilot" + names[par4]);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setUnlocalizedName("starwarsmod.rebelPilot" + this.names[par4]);
+		this.setTextureName(StarWarsMod.MODID + ":" + "rebelPilot" + this.names[par4]);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.rebelPilotHelmet || stack.getItem() == StarWarsMod.rebelPilotChest || stack.getItem() == StarWarsMod.rebelPilotBoots)
-		{
-			return StarWarsMod.MODID + ":" + "textures/models/rebelPilotArmorLayer1.png";
-		}
-		else if (stack.getItem() == StarWarsMod.rebelPilotLegs) { return StarWarsMod.MODID + ":" + "textures/models/rebelPilotArmorLayer2.png"; }
+		if (stack.getItem() == StarWarsMod.rebelPilotHelmet || stack.getItem() == StarWarsMod.rebelPilotChest || stack.getItem() == StarWarsMod.rebelPilotBoots) return StarWarsMod.MODID + ":" + "textures/models/rebelPilotArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.rebelPilotLegs) return StarWarsMod.MODID + ":" + "textures/models/rebelPilotArmorLayer2.png";
 		return "";
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorRebelPilot.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

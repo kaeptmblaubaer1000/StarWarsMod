@@ -22,10 +22,10 @@ public class BlockMV extends BlockContainer
 	public BlockMV()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
-		setBlockName(StarWarsMod.MODID + "." + "moistureVaporator");
-		setBlockBounds(0F, 0F, 0F, 1F, 4F, 1F);
-		setHardness(50F);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setBlockName("starwarsmod.moistureVaporator");
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
+		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -33,26 +33,17 @@ public class BlockMV extends BlockContainer
 	public void breakBlock(World world, int x, int y, int z, Block block, int wut)
 	{
 		TileEntityMV moistureVap = (TileEntityMV)world.getTileEntity(x, y, z);
-
 		if (moistureVap != null)
 		{
 			ItemStack itemstack = moistureVap.getStackInSlot(0);
-
 			if (itemstack != null)
 			{
 				EntityItem entityitem = new EntityItem(world, x, y, z, itemstack);
-
-				if (itemstack.hasTagCompound())
-				{
-					entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
-				}
-
+				if (itemstack.hasTagCompound()) entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
 				world.spawnEntityInWorld(entityitem);
 			}
-
 			world.func_147453_f(x, y, z, block);
 		}
-
 		super.breakBlock(world, x, y, z, block, wut);
 	}
 
@@ -77,15 +68,9 @@ public class BlockMV extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		if (world.isRemote)
-		{
-			return true;
-		}
-		else
-		{
-			player.openGui(StarWarsMod.instance, 0, world, x, y, z);
-			return true;
-		}
+		if (world.isRemote) return true;
+		player.openGui(StarWarsMod.instance, 0, world, x, y, z);
+		return true;
 	}
 
 	@Override
@@ -95,16 +80,15 @@ public class BlockMV extends BlockContainer
 		if (tile instanceof TileEntityMV)
 		{
 			TileEntityMV vap = (TileEntityMV)tile;
-			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
 			vap.setFacing(l);
 		}
 	}
 
-	// This is the icon to use for showing the block in your hand.
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconMoistureVaporator");
+		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconMoistureVaporator");
 	}
 
 	@Override
@@ -113,3 +97,8 @@ public class BlockMV extends BlockContainer
 		return false;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockMV.class Java compiler
+ * version: 6 (50.0) JD-Core Version: 0.7.1
+ */

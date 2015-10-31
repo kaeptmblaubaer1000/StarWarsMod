@@ -16,14 +16,14 @@ public class ItemDebugLootGen extends Item
 
 	public ItemDebugLootGen()
 	{
-		setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		setTextureName(StarWarsMod.MODID + ":" + name);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		y = y + 1;
+		y += 1;
 		world.setBlock(x, y, z, Blocks.chest);
 		TileEntityChest chest = (TileEntityChest)world.getTileEntity(x, y, z);
 		LootGenUtils.fillLootChest(player.dimension, itemRand, chest);
@@ -31,3 +31,8 @@ public class ItemDebugLootGen extends Item
 		return true;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\ItemDebugLootGen.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */

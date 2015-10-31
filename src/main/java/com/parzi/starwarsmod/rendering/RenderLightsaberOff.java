@@ -16,45 +16,46 @@ public class RenderLightsaberOff implements IItemRenderer
 
 	public RenderLightsaberOff()
 	{
-		model = new ModelLightsaberOff();
+		this.model = new ModelLightsaberOff();
 	}
 
 	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type)
+	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type)
 	{
-		return type == ItemRenderType.EQUIPPED;
+		return type == IItemRenderer.ItemRenderType.EQUIPPED;
 	}
 
 	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
+	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
 	{
 		GL11.glPushMatrix();
-
 		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(StarWarsMod.MODID, "textures/models/lightsaberOff.png"));
-
 		GL11.glScalef(0.25F, -0.25F, 0.25F);
-
 		switch (type)
 		{
 			case INVENTORY:
 				break;
 			case EQUIPPED:
 				GL11.glTranslatef(-2.4F, -9.4F, -5.4F);
-				GL11.glRotatef(90, 1, 1, 0);
+				GL11.glRotatef(90.0F, 1.0F, 1.0F, 0.0F);
 				break;
 			case EQUIPPED_FIRST_PERSON:
 				break;
 			default:
 				break;
 		}
-		model.render(null, 0, 0, 0, 0, 0, 0.625F);
-
+		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 		GL11.glPopMatrix();
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper)
 	{
 		return true;
 	}
 }
+/*
+ * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\RenderLightsaberOff.class
+ * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
+ */
