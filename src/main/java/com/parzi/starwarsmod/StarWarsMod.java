@@ -2,7 +2,6 @@ package com.parzi.starwarsmod;
 
 import java.util.Random;
 
-import jdk.nashorn.internal.runtime.Property;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
@@ -61,6 +60,7 @@ public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.0";
+	public static final String DEV_VER = "dev8";
 
 	public static boolean IS_DEV_ENVIRONVENT = false;
 
@@ -263,6 +263,7 @@ public class StarWarsMod
 		{
 			IS_DEV_ENVIRONVENT = true;
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
+			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
 		}
 
 		instance = this;
@@ -317,11 +318,7 @@ public class StarWarsMod
 		dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
 		dimEndorId = config.get("dimensions", "endorId", 152).getInt();
 		dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
-
-		config.addCustomCategoryComment("unstable_commands", "It is NOT recommended you use these, they were only added for development purposes!");
-
-		enableFlyCommand = config.get("unstable_commands", "flyspd", false).getBoolean();
-		enableDimCommand = config.get("unstable_commands", "chgdim", false).getBoolean();
+		
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
@@ -338,16 +335,12 @@ public class StarWarsMod
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		if (enableFlyCommand)
+		if (IS_DEV_ENVIRONVENT)
 		{
 			event.registerServerCommand(new CommandFlySpeed());
-			Lumberjack.warn("Fly command enabled! This is INCOMPATIBLE with anything serverside.");
-		}
-		if (enableDimCommand)
-		{
 			event.registerServerCommand(new CommandSWDim());
-			Lumberjack.warn("Dimensional Transport command enabled! This is INCOMPATIBLE with anything serverside.");
 		}
+		
 		event.registerServerCommand(new CommandForcePoints());
 	}
 }
