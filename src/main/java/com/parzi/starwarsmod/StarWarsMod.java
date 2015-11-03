@@ -2,7 +2,9 @@ package com.parzi.starwarsmod;
 
 import java.util.Random;
 
+import jdk.nashorn.internal.runtime.Property;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -59,6 +61,8 @@ public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.0";
+
+	public static boolean IS_DEV_ENVIRONVENT;
 
 	public static Configuration config;
 
@@ -253,7 +257,13 @@ public class StarWarsMod
 	{
 		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
 
-		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.MODID);
+		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
+
+		if (Minecraft.getMinecraft().getSession().getUsername().hashCode() == 232875429)
+		{
+			IS_DEV_ENVIRONVENT = true;
+			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
+		}
 
 		instance = this;
 

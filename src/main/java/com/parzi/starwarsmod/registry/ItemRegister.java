@@ -83,6 +83,15 @@ public class ItemRegister
 {
 	public static void registerAll()
 	{
+		if (StarWarsMod.IS_DEV_ENVIRONVENT)
+		{
+			StarWarsMod.debugLootGen = new ItemDebugLootGen();
+			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
+
+			StarWarsMod.debugLandspeederNPC = new ItemDebugLandspeederNPC();
+			GameRegistry.registerItem(StarWarsMod.debugLandspeederNPC, "debugLandspeederNPC");
+		}
+
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
 		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");
 
@@ -369,12 +378,6 @@ public class ItemRegister
 
 		StarWarsMod.spawnGonk = new ItemSpawnGonk();
 		GameRegistry.registerItem(StarWarsMod.spawnGonk, "spawnGonk");
-
-		StarWarsMod.debugLootGen = new ItemDebugLootGen();
-		GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
-
-		StarWarsMod.debugLandspeederNPC = new ItemDebugLandspeederNPC();
-		GameRegistry.registerItem(StarWarsMod.debugLandspeederNPC, "debugLandspeederNPC");
 
 		StarWarsMod.imperialCredit = new ItemImperialCredit();
 		GameRegistry.registerItem(StarWarsMod.imperialCredit, "imperialCredit");
