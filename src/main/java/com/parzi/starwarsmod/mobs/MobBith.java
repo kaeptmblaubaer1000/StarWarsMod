@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.mobs;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -13,6 +14,7 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.sound.SoundCantina;
 import com.parzi.starwarsmod.utils.WeightedTradeItem;
 
 public class MobBith extends EntityVillager
@@ -23,11 +25,25 @@ public class MobBith extends EntityVillager
 	private String[] officialNames = { "Bith" };
 	private float baseRarity = 1.0F;
 	private DataWatcher dw;
+	private int bithsNear = 0;
+	private SoundCantina song;
+	//public boolean playing = false;
 
 	public MobBith(World p_i1748_1_)
 	{
 		super(p_i1748_1_);
 		this.dw = super.getDataWatcher();
+		this.song = new SoundCantina(this);
+	}
+	
+	public boolean getPlaying()
+	{
+		return this.dw.getWatchableObjectInt(26) == 1;
+	}
+	
+	public void setPlaying(boolean b)
+	{
+		this.dw.updateObject(26, Integer.valueOf(b ? 1 : 0));
 	}
 
 	@Override
@@ -49,6 +65,39 @@ public class MobBith extends EntityVillager
 	{
 		super.entityInit();
 		this.getDataWatcher().addObject(25, Integer.valueOf(0));
+		this.getDataWatcher().addObject(26, Integer.valueOf(0));
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		/*
+		bithsNear = 0;
+		boolean shouldPlay = true;
+
+		for (Object oEntity : this.worldObj.getEntitiesWithinAABB(this.getClass(), this.boundingBox.expand(8, 8, 8)))
+			if (oEntity instanceof MobBith)
+			{
+				bithsNear++;
+				shouldPlay = !((MobBith)oEntity).getPlaying() && shouldPlay;
+			}
+
+		if (bithsNear >= 5) if (!this.getPlaying() && shouldPlay)
+
+		{
+			this.playSound(StarWarsMod.MODID + ":" + "item.records.Cantina", 1, 1);
+			this.setPlaying(true);
+		}
+		else if (this.getPlaying() && !shouldPlay)
+
+		{
+			Minecraft.getMinecraft().getSoundHandler().stopSound(song);
+			this.setPlaying(false);
+		}
+		*/
+
 	}
 
 	@Override
