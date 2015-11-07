@@ -16,7 +16,7 @@ public class BlockTable extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName("starwarsmod.table");
+		this.setBlockName(StarWarsMod.MODID + "." + "table");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

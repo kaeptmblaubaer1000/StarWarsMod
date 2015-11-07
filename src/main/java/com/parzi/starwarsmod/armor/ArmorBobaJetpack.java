@@ -15,7 +15,7 @@ public class ArmorBobaJetpack extends ItemArmor
 	public ArmorBobaJetpack(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName("starwarsmod.boba" + this.names[par4]);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + "boba" + this.names[par4]);
 		this.setTextureName(StarWarsMod.MODID + ":" + "boba" + this.names[par4]);
 		this.setCreativeTab(com.parzi.starwarsmod.StarWarsMod.StarWarsTab);
 	}

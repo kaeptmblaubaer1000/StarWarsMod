@@ -13,7 +13,7 @@ public class ArmorTiePilot extends ItemArmor
 	public ArmorTiePilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName("starwarsmod.tiePilot" + this.names[par4]);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + "tiePilot" + this.names[par4]);
 		this.setTextureName(StarWarsMod.MODID + ":" + "tiePilot" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}

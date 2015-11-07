@@ -13,7 +13,7 @@ public class ArmorBoba extends ItemArmor
 	public ArmorBoba(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName("starwarsmod.boba" + this.names[par4]);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + "boba" + this.names[par4]);
 		this.setTextureName(StarWarsMod.MODID + ":" + "boba" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}

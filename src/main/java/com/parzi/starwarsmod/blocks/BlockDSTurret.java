@@ -17,7 +17,7 @@ public class BlockDSTurret extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName("starwarsmod.dsTurret");
+		this.setBlockName(StarWarsMod.MODID + "." + "dsTurret");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 2.5F, 2.5F, 2.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.DIAMOND);
 	}

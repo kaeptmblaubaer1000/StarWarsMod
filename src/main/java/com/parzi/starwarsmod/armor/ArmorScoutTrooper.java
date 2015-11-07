@@ -13,7 +13,7 @@ public class ArmorScoutTrooper extends ItemArmor
 	public ArmorScoutTrooper(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName("starwarsmod.scoutTrooper" + this.names[par4]);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + "scoutTrooper" + this.names[par4]);
 		this.setTextureName(StarWarsMod.MODID + ":" + "scoutTrooper" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
