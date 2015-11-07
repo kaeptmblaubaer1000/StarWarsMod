@@ -31,10 +31,11 @@ public class RenderMV extends TileEntitySpecialRenderer
 	{
 		GL11.glPushMatrix();
 		TileEntityMV mv = (TileEntityMV)te;
-		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.2F, (float)z + 0.5F);
+		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.8F, (float)z + 0.5F);
 		ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png");
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 		GL11.glPushMatrix();
+		GL11.glScalef(1.5F, 1.5F, 1.5F);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(mv.getFacing() * 90, 0.0F, 1.0F, 0.0F);
 		this.model.windVane1.rotateAngleY = mv.frame / 10;
