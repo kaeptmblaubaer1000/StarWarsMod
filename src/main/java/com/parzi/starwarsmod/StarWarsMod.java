@@ -294,7 +294,7 @@ public class StarWarsMod
 
 		StarWarsAchievements.registerAll();
 
-		proxy.registerRendering();
+		proxy.doSidedThings();
 
 		Lumberjack.info("=========== End Star Wars Mod init() ===========");
 	}

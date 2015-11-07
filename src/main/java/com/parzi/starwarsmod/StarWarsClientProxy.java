@@ -99,22 +99,10 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
 
-public class StarWarsClientProxy extends StarWarsCommonProxy implements IGuiHandler
+public class StarWarsClientProxy extends StarWarsCommonProxy
 {
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		return null;
-	}
-
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		return null;
-	}
-
-	@Override
-	public void registerRendering()
+	public void doSidedThings()
 	{
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
