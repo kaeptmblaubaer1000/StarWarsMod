@@ -15,6 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ArmorAddonBuns extends ItemArmor
 {
 	private String name = "leiasBuns";
+	private ModelLeiaBuns model = new ModelLeiaBuns();
 
 	public ArmorAddonBuns(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -27,20 +28,6 @@ public class ArmorAddonBuns extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
-		ModelLeiaBuns model = new ModelLeiaBuns();
-		model.BunL.showModel = armorSlot == 0;
-		model.BunR.showModel = armorSlot == 0;
-		model.BunL.rotateAngleX = model.bipedHead.rotateAngleX;
-		model.BunL.rotateAngleY = model.bipedHead.rotateAngleY;
-		model.BunR.rotateAngleX = model.bipedHead.rotateAngleX;
-		model.BunR.rotateAngleY = model.bipedHead.rotateAngleY;
-		model.bipedHead.isHidden = true;
-		model.bipedHeadwear.isHidden = true;
-		model.bipedBody.isHidden = true;
-		model.bipedRightArm.isHidden = true;
-		model.bipedLeftArm.isHidden = true;
-		model.bipedRightLeg.isHidden = true;
-		model.bipedLeftLeg.isHidden = true;
 		return model;
 	}
 

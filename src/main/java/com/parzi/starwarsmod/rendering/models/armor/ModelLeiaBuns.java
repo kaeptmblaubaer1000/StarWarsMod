@@ -25,6 +25,14 @@ public class ModelLeiaBuns extends ModelBiped
 		this.BunL.setTextureSize(64, 32);
 		this.BunL.mirror = true;
 		this.setRotation(this.BunL, 0.0F, 0.0F, 0.0F);
+
+		this.bipedHead.isHidden = true;
+		this.bipedHeadwear.isHidden = true;
+		this.bipedBody.isHidden = true;
+		this.bipedRightArm.isHidden = true;
+		this.bipedLeftArm.isHidden = true;
+		this.bipedRightLeg.isHidden = true;
+		this.bipedLeftLeg.isHidden = true;
 	}
 
 	@Override
@@ -46,6 +54,12 @@ public class ModelLeiaBuns extends ModelBiped
 	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
+		this.BunL.rotateAngleY = f3 / (180F / (float)Math.PI);
+        this.BunL.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+		this.BunR.rotateAngleY = f3 / (180F / (float)Math.PI);
+        this.BunR.rotateAngleX = f4 / (180F / (float)Math.PI);
+
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
 }
