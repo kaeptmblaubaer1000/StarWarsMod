@@ -101,14 +101,18 @@ public class StarWarsMod
 	public static Item droidHacker;
 	public static Item imperialCredit;
 	public static Item waterDroplet;
+
 	public static Item binoculars;
 	public static Item binocularsHoth;
+
 	public static Item debugLootGen;
 	public static Item debugLandspeederNPC;
+
 	public static Item chromiumDust;
 	public static Item titaniumDust;
 	public static Item titaniumChromiumDust;
 	public static Item titaniumChromiumIngot;
+
 	public static Item hyperdriveMotivator;
 	public static Item hyperdriveEngine;
 	public static Item hyperdriveEarth;
@@ -117,6 +121,7 @@ public class StarWarsMod
 	public static Item hyperdriveKashyyyk;
 	public static Item hyperdriveYavin4;
 	public static Item hyperdriveEndor;
+
 	public static Item spawnSpeederBike;
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
@@ -129,55 +134,73 @@ public class StarWarsMod
 	public static Item spawnGonk;
 	public static Item spawnSurgical;
 	public static Item spawnTreadwell;
+
 	public static Item jediRobes;
 	public static Item lightJediRobes;
+
 	public static Item recordTheme;
 	public static Item recordThrone;
 	public static Item recordBinary;
 	public static Item recordImperial;
 	public static Item recordCantina;
+
 	public static Item endorHelmet;
 	public static Item endorChest;
 	public static Item endorLegs;
 	public static Item endorBoots;
+
 	public static Item rebelPilotHelmet;
 	public static Item rebelPilotChest;
 	public static Item rebelPilotLegs;
 	public static Item rebelPilotBoots;
+
 	public static Item stormtrooperHelmet;
 	public static Item stormtrooperChest;
 	public static Item stormtrooperLegs;
 	public static Item stormtrooperBoots;
+
 	public static Item snowtrooperHelmet;
 	public static Item snowtrooperChest;
 	public static Item snowtrooperLegs;
 	public static Item snowtrooperBoots;
+
 	public static Item scoutTrooperHelmet;
 	public static Item scoutTrooperChest;
 	public static Item scoutTrooperLegs;
 	public static Item scoutTrooperBoots;
+
 	public static Item sandtrooperHelmet;
 	public static Item sandtrooperChest;
 	public static Item sandtrooperLegs;
 	public static Item sandtrooperBoots;
+
 	public static Item bobaHelmet;
 	public static Item bobaChest;
 	public static Item bobaJetpack;
 	public static Item bobaJetpackChest;
 	public static Item bobaLegs;
 	public static Item bobaBoots;
+
 	public static Item tiePilotHelmet;
 	public static Item tiePilotChest;
 	public static Item tiePilotLegs;
 	public static Item tiePilotBoots;
+
+	public static Item fleetHelmet;
+	public static Item fleetChest;
+	public static Item fleetLegs;
+	public static Item fleetBoots;
+
 	public static Item atatPilotHelmet;
 	public static Item atatPilotChest;
 	public static Item atatPilotLegs;
 	public static Item atatPilotBoots;
+
 	public static Item hothHelmet;
 	public static Item hothChest;
 	public static Item hothLegs;
 	public static Item hothBoots;
+
 	public static Item leiasBuns;
 
 	public static ItemFood banthaChop;
@@ -241,6 +264,7 @@ public class StarWarsMod
 
 	public static ArmorMaterial jediRobesMat;
 	public static ArmorMaterial endorArmorMat;
+	public static ArmorMaterial fleetArmorMat;
 	public static ArmorMaterial rebelPilotArmorMat;
 	public static ArmorMaterial stormtrooperArmorMat;
 	public static ArmorMaterial snowtrooperArmorMat;
@@ -318,7 +342,7 @@ public class StarWarsMod
 		dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
 		dimEndorId = config.get("dimensions", "endorId", 152).getInt();
 		dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
-		
+
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
@@ -340,7 +364,7 @@ public class StarWarsMod
 			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());
 		}
-		
+
 		event.registerServerCommand(new CommandForcePoints());
 	}
 }

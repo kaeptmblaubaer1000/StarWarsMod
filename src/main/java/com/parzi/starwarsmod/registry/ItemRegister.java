@@ -9,6 +9,7 @@ import com.parzi.starwarsmod.armor.ArmorHoth;
 import com.parzi.starwarsmod.armor.ArmorHothPilot;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
+import com.parzi.starwarsmod.armor.ArmorRebelFleet;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.armor.ArmorSandtrooper;
 import com.parzi.starwarsmod.armor.ArmorScoutTrooper;
@@ -262,6 +263,18 @@ public class ItemRegister
 
 		StarWarsMod.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsMod.rebelPilotBoots, "rebelPilotBoots");
+
+		StarWarsMod.fleetHelmet = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsMod.fleetHelmet, "fleetHelmet");
+
+		StarWarsMod.fleetChest = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsMod.fleetChest, "fleetChest");
+
+		StarWarsMod.fleetLegs = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsMod.fleetLegs, "fleetLegs");
+
+		StarWarsMod.fleetBoots = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsMod.fleetBoots, "fleetBoots");
 
 		StarWarsMod.atatPilotHelmet = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.atatPilotHelmet, "atatPilotHelmet");
