@@ -29,7 +29,7 @@ public class WorldProviderHoth extends WorldProvider
 	@Override
 	public IChunkProvider createChunkGenerator()
 	{
-		return new ChunkProviderGenerateHoth(this.worldObj, this.worldObj.getSeed(), false);
+		return new ChunkProviderGenerateHothFixed(this.worldObj, this.worldObj.getSeed(), false);
 	}
 
 	@Override

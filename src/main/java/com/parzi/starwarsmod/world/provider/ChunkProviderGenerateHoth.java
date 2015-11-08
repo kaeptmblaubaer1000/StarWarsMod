@@ -33,33 +33,33 @@ import cpw.mods.fml.common.eventhandler.Event;
 
 public class ChunkProviderGenerateHoth implements IChunkProvider
 {
-	private static final String		__OBFID						= "CL_00000396";
-	private Random					rand;
-	private NoiseGeneratorOctaves	field_147431_j;
-	private NoiseGeneratorOctaves	field_147432_k;
-	private NoiseGeneratorOctaves	field_147429_l;
-	private NoiseGeneratorPerlin	field_147430_m;
-	public NoiseGeneratorOctaves	noiseGen5;
-	public NoiseGeneratorOctaves	noiseGen6;
-	public NoiseGeneratorOctaves	mobSpawnerNoise;
-	private World					worldObj;
-	private final boolean			mapFeaturesEnabled;
-	private WorldType				field_147435_p;
-	private final double[]			field_147434_q;
-	private final float[]			parabolicField;
-	private double[]				stoneNoise					= new double[256];
-	private MapGenBase				caveGenerator				= new MapGenCaves();
-	private MapGenStronghold		strongholdGenerator			= new MapGenStronghold();
-	private MapGenVillage			villageGenerator			= new MapGenVillage();
-	private MapGenMineshaft			mineshaftGenerator			= new MapGenMineshaft();
-	private MapGenScatteredFeature	scatteredFeatureGenerator	= new MapGenScatteredFeature();
-	private MapGenBase				ravineGenerator				= new MapGenRavine();
-	private BiomeGenBase[]			biomesForGeneration;
-	double[]						field_147427_d;
-	double[]						field_147428_e;
-	double[]						field_147425_f;
-	double[]						field_147426_g;
-	int[][]							field_73219_j				= new int[32][32];
+	private static final String __OBFID = "CL_00000396";
+	private Random rand;
+	private NoiseGeneratorOctaves field_147431_j;
+	private NoiseGeneratorOctaves field_147432_k;
+	private NoiseGeneratorOctaves field_147429_l;
+	private NoiseGeneratorPerlin field_147430_m;
+	public NoiseGeneratorOctaves noiseGen5;
+	public NoiseGeneratorOctaves noiseGen6;
+	public NoiseGeneratorOctaves mobSpawnerNoise;
+	private World worldObj;
+	private final boolean mapFeaturesEnabled;
+	private WorldType field_147435_p;
+	private final double[] field_147434_q;
+	private final float[] parabolicField;
+	private double[] stoneNoise = new double[256];
+	private MapGenBase caveGenerator = new MapGenCaves();
+	private MapGenStronghold strongholdGenerator = new MapGenStronghold();
+	private MapGenVillage villageGenerator = new MapGenVillage();
+	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
+	private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
+	private MapGenBase ravineGenerator = new MapGenRavine();
+	private BiomeGenBase[] biomesForGeneration;
+	double[] field_147427_d;
+	double[] field_147428_e;
+	double[] field_147425_f;
+	double[] field_147426_g;
+	int[][] field_73219_j = new int[32][32];
 
 	public ChunkProviderGenerateHoth(World p_i2006_1_, long p_i2006_2_, boolean p_i2006_4_)
 	{
