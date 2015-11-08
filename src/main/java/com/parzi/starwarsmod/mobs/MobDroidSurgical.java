@@ -4,20 +4,28 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAIMate;
+import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.ai.AiFreqMove;
+import com.parzi.starwarsmod.utils.EntityUtils;
 
 public class MobDroidSurgical extends EntityTameable
 {
+	private EntityAITempt aiTempt;
+
 	public MobDroidSurgical(World par1World)
 	{
 		super(par1World);
 		this.setSize(0.5F, 2.0F);
+		this.tasks.addTask(2, this.aiSit);
+		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
 		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
 		this.tasks.addTask(6, new EntityAIMate(this, 0.8D));
 		this.tasks.addTask(7, new AiFreqMove(this, 1.0D, 40));
@@ -60,6 +68,41 @@ public class MobDroidSurgical extends EntityTameable
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+	}
+
+	@Override
+	public boolean interact(EntityPlayer par1EntityPlayer)
+	{
+		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+		if (itemstack == null) itemstack = new ItemStack(net.minecraft.init.Blocks.air);
+		if (this.isTamed())
+		{
+			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidHacker)
+			{
+				this.aiSit.setSitting(!this.isSitting());
+				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+				this.isJumping = false;
+			}
+		}
+		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
+		{
+			if (!this.worldObj.isRemote) if (this.rand.nextInt(3) == 0)
+			{
+				this.setTamed(true);
+				this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
+				this.playTameEffect(true);
+				this.aiSit.setSitting(true);
+				this.worldObj.setEntityState(this, (byte)7);
+				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+			}
+			else
+			{
+				this.playTameEffect(false);
+				this.worldObj.setEntityState(this, (byte)6);
+			}
+			return true;
+		}
+		return super.interact(par1EntityPlayer);
 	}
 
 	@Override

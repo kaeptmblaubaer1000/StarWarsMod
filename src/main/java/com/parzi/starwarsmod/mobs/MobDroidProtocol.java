@@ -2,6 +2,8 @@ package com.parzi.starwarsmod.mobs;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIFollowOwner;
+import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
@@ -11,6 +13,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.ai.AiFreqMove;
 import com.parzi.starwarsmod.utils.EntityUtils;
 
 public class MobDroidProtocol extends EntityTameable
@@ -23,9 +26,9 @@ public class MobDroidProtocol extends EntityTameable
 		this.setSize(0.75F, 2.0F);
 		this.tasks.addTask(2, this.aiSit);
 		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
-		this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(6, new net.minecraft.entity.ai.EntityAIMate(this, 0.8D));
-		this.tasks.addTask(7, new com.parzi.starwarsmod.ai.AiFreqMove(this, 0.8D, 10));
+		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		this.tasks.addTask(6, new EntityAIMate(this, 0.8D));
+		this.tasks.addTask(7, new AiFreqMove(this, 0.8D, 10));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 	}
 
