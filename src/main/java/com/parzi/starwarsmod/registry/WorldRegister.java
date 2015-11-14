@@ -6,12 +6,14 @@ import net.minecraftforge.common.DimensionManager;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.world.OreGenerator;
+import com.parzi.starwarsmod.world.biome.BiomeDagobah;
 import com.parzi.starwarsmod.world.biome.BiomeEndor;
 import com.parzi.starwarsmod.world.biome.BiomeEndorPlains;
 import com.parzi.starwarsmod.world.biome.BiomeHoth;
 import com.parzi.starwarsmod.world.biome.BiomeKashyyyk;
 import com.parzi.starwarsmod.world.biome.BiomeTatooine;
 import com.parzi.starwarsmod.world.biome.BiomeYavinFour;
+import com.parzi.starwarsmod.world.provider.WorldProviderDagobah;
 import com.parzi.starwarsmod.world.provider.WorldProviderEndor;
 import com.parzi.starwarsmod.world.provider.WorldProviderHoth;
 import com.parzi.starwarsmod.world.provider.WorldProviderKashyyyk;
@@ -30,24 +32,36 @@ public class WorldRegister
 		StarWarsMod.biomeYavin4 = new BiomeYavinFour(StarWarsMod.dimYavin4Id);
 		StarWarsMod.biomeEndor = new BiomeEndor(StarWarsMod.dimEndorId);
 		StarWarsMod.biomeEndorPlains = new BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
+		StarWarsMod.biomeDagobah = new BiomeDagobah(StarWarsMod.dimDagobahId);
+		
 		boolean registerOk = true;
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimTatooineId, WorldProviderTatooine.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimTatooineId, StarWarsMod.dimTatooineId);
+		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimHothId, WorldProviderHoth.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimHothId, StarWarsMod.dimHothId);
+		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimKashyyykId, StarWarsMod.dimKashyyykId);
+		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimYavin4Id, StarWarsMod.dimYavin4Id);
+		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimEndorId, WorldProviderEndor.class, false) && registerOk;
 		DimensionManager.registerDimension(StarWarsMod.dimEndorId, StarWarsMod.dimEndorId);
+
+		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimDagobahId, WorldProviderDagobah.class, false) && registerOk;
+		DimensionManager.registerDimension(StarWarsMod.dimDagobahId, StarWarsMod.dimDagobahId);
+		
 		if (!registerOk) throw new Exception("Unable to register dimensions!");
+		
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndorPlains);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeHoth);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeKashyyyk);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeTatooine);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeYavin4);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeDagobah);
 		GameRegistry.registerWorldGenerator(new OreGenerator(), 10);
 		Lumberjack.info("World, reporting for duty!");
 	}

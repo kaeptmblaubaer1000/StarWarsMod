@@ -123,6 +123,7 @@ public class StarWarsMod
 	public static Item hyperdriveKashyyyk;
 	public static Item hyperdriveYavin4;
 	public static Item hyperdriveEndor;
+	public static Item hyperdriveDagobah;
 
 	public static Item spawnSpeederBike;
 	public static Item spawnHothSpeederBike;
@@ -221,11 +222,13 @@ public class StarWarsMod
 	public static BiomeGenBase biomeYavin4;
 	public static BiomeGenBase biomeEndor;
 	public static BiomeGenBase biomeEndorPlains;
+	public static BiomeGenBase biomeDagobah;
 
 	public static int dimTatooineId;
 	public static int dimHothId;
 	public static int dimKashyyykId;
 	public static int dimYavin4Id;
+	public static int dimDagobahId;
 	public static int dimEndorId;
 	public static int dimEndorPlainsId;
 
@@ -344,6 +347,7 @@ public class StarWarsMod
 		dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
 		dimEndorId = config.get("dimensions", "endorId", 152).getInt();
 		dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
+		dimDagobahId = config.get("dimensions", "dagobahId", 151).getInt();
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
