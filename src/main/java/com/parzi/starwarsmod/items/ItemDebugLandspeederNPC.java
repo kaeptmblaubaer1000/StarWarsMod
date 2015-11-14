@@ -8,6 +8,10 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
+import com.parzi.starwarsmod.vehicles.VehicSentientLandspeeder;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDebugLandspeederNPC extends Item
 {
@@ -22,14 +26,9 @@ public class ItemDebugLandspeederNPC extends Item
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		VehicLandspeeder landspeeder = new VehicLandspeeder(world, true);
+		VehicSentientLandspeeder landspeeder = new VehicSentientLandspeeder(world);
 		landspeeder.setPosition(x, y + 1, z);
-		MobTatooineCommoner commoner = new MobTatooineCommoner(world);
-		commoner.setPosition(x, y + 1, z);
-		commoner.ridingEntity = landspeeder;
-		landspeeder.riddenByEntity = commoner;
 		world.spawnEntityInWorld(landspeeder);
-		world.spawnEntityInWorld(commoner);
 		System.out.println("Added Landspeeder: " + x + ", " + y + ", " + z);
 		return true;
 	}

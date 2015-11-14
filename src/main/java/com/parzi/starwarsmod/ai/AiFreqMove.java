@@ -76,7 +76,7 @@ public class AiFreqMove extends EntityAIBase
 
 	private float getBlockPathWeight(EntityLiving entity, int p_70783_1_, int p_70783_2_, int p_70783_3_)
 	{
-		return entity.worldObj.getBlock(p_70783_1_, p_70783_2_ - 1, p_70783_3_) == this.preferredBlock ? 10.0F : entity.worldObj.getLightBrightness(p_70783_1_, p_70783_2_, p_70783_3_) - 0.5F;
+		return entity.worldObj.getBlock(p_70783_1_, p_70783_2_ - 1, p_70783_3_) == this.preferredBlock ? 0.0F : entity.worldObj.getLightBrightness(p_70783_1_, p_70783_2_, p_70783_3_) - 0.5F;
 	}
 
 	@Override

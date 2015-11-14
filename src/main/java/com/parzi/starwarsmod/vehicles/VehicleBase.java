@@ -1,9 +1,14 @@
 package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -20,6 +25,8 @@ public class VehicleBase extends EntityLiving
 	{
 		super(p_i1689_1_);
 		this.setSize(0.9F, 0.9F);
+		this.tasks.taskEntries.clear();
+		this.targetTasks.taskEntries.clear();
 	}
 
 	@Override
@@ -47,7 +54,7 @@ public class VehicleBase extends EntityLiving
 	@Override
 	protected boolean isAIEnabled()
 	{
-		return true;
+		return false;
 	}
 
 	@Override

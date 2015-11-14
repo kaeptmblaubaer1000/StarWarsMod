@@ -10,12 +10,7 @@ public class VehicLandspeeder extends VehicleLandBase
 {
 	public VehicLandspeeder(World par1World)
 	{
-		this(par1World, false);
-	}
-
-	public VehicLandspeeder(World par1World, boolean isSentient)
-	{
-		super(par1World, isSentient, Blocks.grass);
+		super(par1World);
 		this.setSize(2.0F, 2.0F);
 		this.vehicYOffset = -0.3F;
 		this.moveModifier = 2.5F;

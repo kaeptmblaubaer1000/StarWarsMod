@@ -21,19 +21,12 @@ public class VehicleLandBase extends EntityCreature
 	public float vehicZOffset = 0.0F;
 	public float moveModifier = 1.0F;
 	public float frame = 0.0F;
-	private AiFreqMove moveAi;
 
 	public VehicleLandBase(World p_i1689_1_)
-	{
-		this(p_i1689_1_, false, Blocks.grass);
-	}
-
-	public VehicleLandBase(World p_i1689_1_, boolean isSentient, Block preferredBlock)
 	{
 		super(p_i1689_1_);
 		this.setSize(0.9F, 0.9F);
 		this.isImmuneToFire = true;
-		if (isSentient) this.tasks.addTask(1, this.moveAi = new AiFreqMove(this, 4.0D, 1, 100, preferredBlock));
 	}
 
 	@Override
@@ -106,6 +99,8 @@ public class VehicleLandBase extends EntityCreature
 				this.setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 			}
+		} else {
+			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		}
 	}
 

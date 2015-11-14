@@ -89,6 +89,7 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 				this.playTameEffect(true);
 				this.aiSit.setSitting(true);
 				this.worldObj.setEntityState(this, (byte)7);
+				this.entityToAttack = null;
 				this.targetTasks.taskEntries.clear();
 				this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, true));
 				this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntitySkeleton.class, 0, true));
