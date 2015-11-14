@@ -184,7 +184,7 @@ public class ChunkProviderGenerateDagobah implements IChunkProvider
                                 {
                                     p_147424_3_[j3 += short1] = Blocks.stone;
                                 }
-                                else if (k2 * 8 + l2 < b0 + 8)
+                                else if (k2 * 8 + l2 < b0 + 5)
                                 {
                                     p_147424_3_[j3 += short1] = Blocks.water;
                                 }
@@ -422,24 +422,6 @@ public class ChunkProviderGenerateDagobah implements IChunkProvider
         int k1;
         int l1;
         int i2;
-
-        if (biomegenbase != BiomeGenBase.desert && biomegenbase != BiomeGenBase.desertHills && !flag && this.rand.nextInt(4) == 0
-            && TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, LAKE))
-        {
-            k1 = k + this.rand.nextInt(16) + 8;
-            l1 = this.rand.nextInt(256);
-            i2 = l + this.rand.nextInt(16) + 8;
-            (new WorldGenLakes(Blocks.water)).generate(this.worldObj, this.rand, k1, l1, i2);
-        }
-
-        boolean doGen = TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, DUNGEON);
-        for (k1 = 0; doGen && k1 < 8; ++k1)
-        {
-            l1 = k + this.rand.nextInt(16) + 8;
-            i2 = this.rand.nextInt(256);
-            int j2 = l + this.rand.nextInt(16) + 8;
-            (new WorldGenDungeons()).generate(this.worldObj, this.rand, l1, i2, j2);
-        }
 
         biomegenbase.decorate(this.worldObj, this.rand, k, l);
         if (TerrainGen.populate(p_73153_1_, worldObj, rand, p_73153_2_, p_73153_3_, flag, ANIMALS))

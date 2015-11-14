@@ -77,13 +77,13 @@ public class WorldProviderDagobah extends WorldProvider
     @SideOnly(Side.CLIENT)
     public Vec3 getSkyColor(Entity cameraEntity, float partialTicks)
     {
-        return Vec3.createVectorHelper(0, 0.7, 0.51);
+        return Vec3.createVectorHelper(0, 0.39, 0.29);
     }
 
     @SideOnly(Side.CLIENT)
     public Vec3 getFogColor(float p_76562_1_, float p_76562_2_)
     {
-        return Vec3.createVectorHelper(0, 0.78, 0.59);
+        return Vec3.createVectorHelper(0, 0.34, 0.29);
     }
 
 	@Override

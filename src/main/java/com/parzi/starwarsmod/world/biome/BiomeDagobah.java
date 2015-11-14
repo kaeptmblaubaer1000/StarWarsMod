@@ -74,9 +74,14 @@ import com.parzi.starwarsmod.world.gen.moseisley.big.ME_58;
 
 public class BiomeDagobah extends BiomeGenBase
 {
+	BiomeDecoratorDagobah decorator;
+
 	public BiomeDagobah(int par1)
 	{
 		super(par1);
+
+		decorator = new BiomeDecoratorDagobah();
+
 		this.heightVariation = 0.2F;
 		this.enableRain = true;
 		this.enableSnow = false;
@@ -87,13 +92,16 @@ public class BiomeDagobah extends BiomeGenBase
 		this.setBiomeName("Dagobah");
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.dirt;
-		this.theBiomeDecorator.treesPerChunk = 4;
+		this.color = 0x00CC99;
+		this.waterColorMultiplier = 10;
+
+		decorator.treesPerChunk = 4;
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		super.decorate(par1World, par2Random, chunkX, chunkZ);
+		decorator.decorateChunk(par1World, par2Random, this, chunkX, chunkZ);
 	}
 
 	@Override
