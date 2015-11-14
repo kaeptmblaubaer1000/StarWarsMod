@@ -20,7 +20,8 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N', Items.quartz, 'R', Blocks.diamond_block, 'G', Blocks.glass_pane);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.containmentField, 1), "AIA", "IEI", "AIA", 'A', StarWarsMod.titaniumChromiumIngot, 'I', Items.iron_ingot, 'E', Items.ender_eye);
 
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N', Items.quartz, 'R', Blocks.diamond_block, 'G', Blocks.glass_pane);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.silverImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.imperialCredit);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.goldImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.silverImperialCredit);
 
 		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 0), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 0), 'P', StarWarsMod.plasmaEmitter);
 		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 1), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 1), 'P', StarWarsMod.plasmaEmitter);
@@ -36,6 +37,10 @@ public class RecipeRegister
 			GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
 		else
 			GameRegistry.addShapedRecipe(new ItemStack(Blocks.water, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
+		
+
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.imperialCredit, 9), StarWarsMod.silverImperialCredit);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.silverImperialCredit, 9), StarWarsMod.goldImperialCredit);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumDust, 1), StarWarsMod.titaniumDust, StarWarsMod.chromiumDust);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumIngot, 9), StarWarsMod.titaniumChromiumBlock);
