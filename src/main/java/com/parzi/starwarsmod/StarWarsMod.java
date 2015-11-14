@@ -100,6 +100,8 @@ public class StarWarsMod
 	public static Item droidCaller;
 	public static Item droidHacker;
 	public static Item imperialCredit;
+	public static Item silverImperialCredit;
+	public static Item goldImperialCredit;
 	public static Item waterDroplet;
 
 	public static Item binoculars;

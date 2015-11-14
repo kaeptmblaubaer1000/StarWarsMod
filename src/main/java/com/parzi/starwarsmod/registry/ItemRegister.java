@@ -28,14 +28,15 @@ import com.parzi.starwarsmod.items.ItemBlasterBolt;
 import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
 import com.parzi.starwarsmod.items.ItemCanron;
 import com.parzi.starwarsmod.items.ItemChasuka;
-import com.parzi.starwarsmod.items.ItemDebugLandspeederNPC;
 import com.parzi.starwarsmod.items.ItemDebugLootGen;
 import com.parzi.starwarsmod.items.ItemDewbackRibs;
 import com.parzi.starwarsmod.items.ItemDroidCaller;
 import com.parzi.starwarsmod.items.ItemDroidHacker;
+import com.parzi.starwarsmod.items.ItemGoldImperialCredit;
 import com.parzi.starwarsmod.items.ItemGorrnar;
 import com.parzi.starwarsmod.items.ItemImperialCredit;
 import com.parzi.starwarsmod.items.ItemMusicDisc;
+import com.parzi.starwarsmod.items.ItemSilverImperialCredit;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech2;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
@@ -88,9 +89,6 @@ public class ItemRegister
 		{
 			StarWarsMod.debugLootGen = new ItemDebugLootGen();
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
-
-			StarWarsMod.debugLandspeederNPC = new ItemDebugLandspeederNPC();
-			GameRegistry.registerItem(StarWarsMod.debugLandspeederNPC, "debugLandspeederNPC");
 		}
 
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
@@ -394,6 +392,12 @@ public class ItemRegister
 
 		StarWarsMod.imperialCredit = new ItemImperialCredit();
 		GameRegistry.registerItem(StarWarsMod.imperialCredit, "imperialCredit");
+
+		StarWarsMod.silverImperialCredit = new ItemSilverImperialCredit();
+		GameRegistry.registerItem(StarWarsMod.silverImperialCredit, "silverImperialCredit");
+
+		StarWarsMod.goldImperialCredit = new ItemGoldImperialCredit();
+		GameRegistry.registerItem(StarWarsMod.goldImperialCredit, "goldImperialCredit");
 
 		StarWarsMod.banthaChop = new ItemBanthaChop();
 		GameRegistry.registerItem(StarWarsMod.banthaChop, "banthaChop");

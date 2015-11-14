@@ -16,24 +16,31 @@ public class RecipeRegister
 		GameRegistry.addSmelting(StarWarsMod.hiltMetelCompound, new ItemStack(StarWarsMod.hiltMetelAlloy, 1), 0.2F);
 		GameRegistry.addSmelting(StarWarsMod.titaniumChromiumDust, new ItemStack(StarWarsMod.titaniumChromiumIngot, 2), 0.2F);
 		GameRegistry.addSmelting(StarWarsMod.banthaChop, new ItemStack(StarWarsMod.banthaChopCooked, 1), 0.2F);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1), new Object[] { "HGH", "HNH", "HRH", Character.valueOf('H'), StarWarsMod.hiltMetelAlloy, Character.valueOf('N'), Items.quartz, Character.valueOf('R'), Blocks.diamond_block, Character.valueOf('G'), Blocks.glass_pane });
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.containmentField, 1), new Object[] { "AIA", "IEI", "AIA", Character.valueOf('A'), StarWarsMod.titaniumChromiumIngot, Character.valueOf('I'), Items.iron_ingot, Character.valueOf('E'), Items.ender_eye });
-		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 0), new Object[] { "HCH", "HEH", "HPH", Character.valueOf('H'), StarWarsMod.hiltMetelAlloy, Character.valueOf('C'), StarWarsMod.containmentField, Character.valueOf('E'), new ItemStack(StarWarsMod.lightsaberCrystal, 1, 0), Character.valueOf('P'), StarWarsMod.plasmaEmitter });
-		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 1), new Object[] { "HCH", "HEH", "HPH", Character.valueOf('H'), StarWarsMod.hiltMetelAlloy, Character.valueOf('C'), StarWarsMod.containmentField, Character.valueOf('E'), new ItemStack(StarWarsMod.lightsaberCrystal, 1, 1), Character.valueOf('P'), StarWarsMod.plasmaEmitter });
-		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 2), new Object[] { "HCH", "HEH", "HPH", Character.valueOf('H'), StarWarsMod.hiltMetelAlloy, Character.valueOf('C'), StarWarsMod.containmentField, Character.valueOf('E'), new ItemStack(StarWarsMod.lightsaberCrystal, 1, 2), Character.valueOf('P'), StarWarsMod.plasmaEmitter });
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), new Object[] { "L L", "LWL", "LLL", Character.valueOf('L'), Items.leather, Character.valueOf('W'), new ItemStack(Blocks.wool, 1, 12) });
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightJediRobes, 1), new Object[] { "L L", "LWL", "LLL", Character.valueOf('L'), Items.leather, Character.valueOf('W'), new ItemStack(Blocks.wool, 1, 8) });
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.titaniumChromiumBlock, 1), new Object[] { "AAA", "AAA", "AAA", Character.valueOf('A'), StarWarsMod.titaniumChromiumIngot });
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveMotivator, 1), new Object[] { " B ", " A ", " B ", Character.valueOf('A'), Blocks.quartz_block, Character.valueOf('B'), StarWarsMod.titaniumChromiumBlock });
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveEngine, 1), new Object[] { " F ", " B ", " A ", Character.valueOf('F'), StarWarsMod.containmentField, Character.valueOf('B'), StarWarsMod.hyperdriveMotivator, Character.valueOf('A'), StarWarsMod.titaniumChromiumIngot });
+
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N', Items.quartz, 'R', Blocks.diamond_block, 'G', Blocks.glass_pane);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.containmentField, 1), "AIA", "IEI", "AIA", 'A', StarWarsMod.titaniumChromiumIngot, 'I', Items.iron_ingot, 'E', Items.ender_eye);
+
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsMod.hiltMetelAlloy, 'N', Items.quartz, 'R', Blocks.diamond_block, 'G', Blocks.glass_pane);
+
+		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 0), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 0), 'P', StarWarsMod.plasmaEmitter);
+		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 1), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 1), 'P', StarWarsMod.plasmaEmitter);
+		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaber, 1, 2), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, 2), 'P', StarWarsMod.plasmaEmitter);
+
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightJediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 8));
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.titaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.titaniumChromiumIngot);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveMotivator, 1), " B ", " A ", " B ", 'A', Blocks.quartz_block, 'B', StarWarsMod.titaniumChromiumBlock);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveEngine, 1), " F ", " B ", " A ", 'F', StarWarsMod.containmentField, 'B', StarWarsMod.hyperdriveMotivator, 'A', StarWarsMod.titaniumChromiumIngot);
+
 		if (StarWarsMod.enableBuckets)
-			GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), new Object[] { "AAA", "AAA", "AAA", Character.valueOf('A'), StarWarsMod.waterDroplet });
+			GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
 		else
-			GameRegistry.addShapedRecipe(new ItemStack(Blocks.water, 1), new Object[] { "AAA", "AAA", "AAA", Character.valueOf('A'), StarWarsMod.waterDroplet });
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumDust, 1), new Object[] { StarWarsMod.titaniumDust, StarWarsMod.chromiumDust });
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumIngot, 9), new Object[] { StarWarsMod.titaniumChromiumBlock });
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), new Object[] { StarWarsMod.hyperdriveEngine, Blocks.sand });
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.bobaJetpackChest), new Object[] { StarWarsMod.bobaChest, StarWarsMod.bobaJetpack });
+			GameRegistry.addShapedRecipe(new ItemStack(Blocks.water, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
+
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumDust, 1), StarWarsMod.titaniumDust, StarWarsMod.chromiumDust);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.titaniumChromiumIngot, 9), StarWarsMod.titaniumChromiumBlock);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.hyperdriveTatooine), StarWarsMod.hyperdriveEngine, Blocks.sand);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.bobaJetpackChest), StarWarsMod.bobaChest, StarWarsMod.bobaJetpack);
 		Lumberjack.info("Recipes, reporting for duty!");
 	}
 }
