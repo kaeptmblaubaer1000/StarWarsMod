@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenCanopyTree;
@@ -72,7 +73,7 @@ import com.parzi.starwarsmod.world.gen.moseisley.big.ME_56;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_57;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_58;
 
-public class BiomeDagobah extends BiomeGenBase
+public class BiomeDagobah extends BiomeGenSwamp
 {
 	BiomeDecoratorDagobah decorator;
 
@@ -94,7 +95,7 @@ public class BiomeDagobah extends BiomeGenBase
 		this.fillerBlock = Blocks.dirt;
 		this.color = 0x00CC99;
 		this.waterColorMultiplier = 10;
-		
+
 		this.rainfall = 1.0F;
 		this.temperature = 1.0F;
 
@@ -104,6 +105,7 @@ public class BiomeDagobah extends BiomeGenBase
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
+		super.decorate(par1World, par2Random, chunkX, chunkZ);
 		decorator.decorateChunk(par1World, par2Random, this, chunkX, chunkZ);
 	}
 

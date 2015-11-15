@@ -22,13 +22,14 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawDagobahSky extends IRenderHandler
 {
-	private static ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
+	private static ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/sun.png");
 	private static float sunSizeMod = 1.0F;
 	private static ResourceLocation lukeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/xwing.png");
 	public static int starList = GLAllocation.generateDisplayLists(3);
 	public static int glSkyList = starList + 1;
 	public static int glSkyList2 = starList + 2;
 	private static float lukeSize = 4.0F;
+	private static Vector3 lukeOffset = new Vector3(-75, 0, 0);
 
 	public DrawDagobahSky()
 	{
@@ -102,8 +103,8 @@ public class DrawDagobahSky extends IRenderHandler
 		GL11.glCallList(glSkyList);
 		GL11.glDisable(2912);
 		GL11.glDisable(3008);
-		GL11.glEnable(GL11.GL_BLEND);
-		//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glEnable(3042);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		RenderHelper.disableStandardItemLighting();
 		float f18 = world.getStarBrightness(partialTicks);
 		if (f18 > 0.0F)
@@ -175,8 +176,8 @@ public class DrawDagobahSky extends IRenderHandler
 		GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(world.getCelestialAngle(partialTicks) * 360.0F, 1.0F, 0.0F, 0.0F);
 		GL11.glDisable(3553);
-		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
-		f10 = sunSizeMod / 4.0F;
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.0F);
+		f10 = sunSizeMod / 1.0F;
 		tessellator1.startDrawingQuads();
 		tessellator1.addVertex(-f10, 100.0D, -f10);
 		tessellator1.addVertex(f10, 100.0D, -f10);
@@ -184,8 +185,8 @@ public class DrawDagobahSky extends IRenderHandler
 		tessellator1.addVertex(-f10, 100.0D, f10);
 		tessellator1.draw();
 		GL11.glEnable(3553);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		f10 = sunSizeMod;
+		GL11.glColor4f(1, 1, 1, 1.0F);
+		f10 = 15;
 		mc.renderEngine.bindTexture(sunTexture);
 		tessellator1.startDrawingQuads();
 		tessellator1.addVertexWithUV(-f10, 100.0D, -f10, 0.0D, 0.0D);
@@ -195,25 +196,25 @@ public class DrawDagobahSky extends IRenderHandler
 		tessellator1.draw();
 		GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
 		GL11.glDisable(3553);
-		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
-		//f10 = lukeSize / 3.5F;
-		//tessellator1.startDrawingQuads();
-		//tessellator1.addVertex(-f10, 99.9D, -f10);
-		//tessellator1.addVertex(f10, 99.9D, -f10);
-		//tessellator1.addVertex(f10, 99.9D, f10);
-		//tessellator1.addVertex(-f10, 99.9D, f10);
-		//tessellator1.draw();
-		//GL11.glEnable(3553);
-		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		//f10 = lukeSize;
-		//mc.renderEngine.bindTexture(lukeTexture);
-		//tessellator1.startDrawingQuads();
-		//tessellator1.addVertexWithUV(-f10, 100.0D, -f10, 0.0D, 0.0D);
-		//tessellator1.addVertexWithUV(f10, 100.0D, -f10, 1.0D, 0.0D);
-		//tessellator1.addVertexWithUV(f10, 100.0D, f10, 1.0D, 1.0D);
-		//tessellator1.addVertexWithUV(-f10, 100.0D, f10, 0.0D, 1.0D);
-		//tessellator1.draw();
-		//GL11.glDisable(3553);
+		GL11.glColor4f(0.0F, 0.0F, 0.0F, .0F);
+		f10 = lukeSize / 3.5F;
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertex(-f10 + lukeOffset.X, 99.9D + lukeOffset.Y, -f10 + lukeOffset.Z);
+		tessellator1.addVertex(f10 + lukeOffset.X, 99.9D + lukeOffset.Y, -f10 + lukeOffset.Z);
+		tessellator1.addVertex(f10 + lukeOffset.X, 99.9D + lukeOffset.Y, f10 + lukeOffset.Z);
+		tessellator1.addVertex(-f10 + lukeOffset.X, 99.9D + lukeOffset.Y, f10 + lukeOffset.Z);
+		tessellator1.draw();
+		GL11.glEnable(3553);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		f10 = lukeSize;
+		mc.renderEngine.bindTexture(lukeTexture);
+		tessellator1.startDrawingQuads();
+		tessellator1.addVertexWithUV(-f10 + lukeOffset.X, 100.0D + lukeOffset.Y, -f10 + lukeOffset.Z, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + lukeOffset.X, 100.0D + lukeOffset.Y, -f10 + lukeOffset.Z, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + lukeOffset.X, 100.0D + lukeOffset.Y, f10 + lukeOffset.Z, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + lukeOffset.X, 100.0D + lukeOffset.Y, f10 + lukeOffset.Z, 0.0D, 1.0D);
+		tessellator1.draw();
+		GL11.glDisable(3553);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);
 		GL11.glEnable(3008);

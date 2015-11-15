@@ -25,7 +25,7 @@ public class LootGenUtils
 	public static List<WeightedLoot> getLootForDim(int dimId)
 	{
 		List<WeightedLoot> loot = new java.util.ArrayList();
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, MathUtils.randomRange(1, 5)), baseRarity));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, MathUtils.randomRange(1, 6)), baseRarity));
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.leiasBuns, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordBinary, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
 		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordTheme, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
