@@ -1,3 +1,7 @@
+####################
+# Original Trilogy
+####################
+
 // Items
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy
@@ -186,7 +190,7 @@ entity.starwarsmod.sandtrooper.name=Sandtrooper
 entity.starwarsmod.bith.name=Bith
 
 // Tabs
-itemGroup.tabStarWars=Star Wars
+itemGroup.tabStarWars=Original Trilogy
 
 // Achievements
 achievement.starwarsmod.becomeJedi=No such thing as luck!
@@ -207,3 +211,20 @@ achievement.starwarsmod.travelEndor=Secret back entrance!
 achievement.starwarsmod.travelEndor.desc=Travel to Endor!
 achievement.starwarsmod.travelKashyyyk=Walking carpet!
 achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!
+
+####################
+# Sequel Trilogy
+####################
+
+// Weapons
+item.starwarsmod.sequelLightsaber.name=Lightsaber
+item.starwarsmod.sequelLightsaberOff.name=Lightsaber
+
+// Armor
+item.starwarsmod.stormtrooperHelmet_new.name=Stormtrooper Helmet
+item.starwarsmod.stormtrooperChestplate_new.name=Stormtrooper Chestplate
+item.starwarsmod.stormtrooperLeggings_new.name=Stormtrooper Leggings
+item.starwarsmod.stormtrooperBoots_new.name=Stormtrooper Boots
+
+// Tabs
+itemGroup.tabStarWarsSequel=Sequel Trilogy

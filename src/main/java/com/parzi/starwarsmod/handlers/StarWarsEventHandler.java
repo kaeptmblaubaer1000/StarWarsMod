@@ -26,6 +26,8 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.utils.Text;
+import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
@@ -53,12 +55,12 @@ public class StarWarsEventHandler
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
 		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && mc.gameSettings.thirdPersonView == 0) fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
 	}
-	
+
 	@SubscribeEvent
 	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
 	{
 		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP)
-			((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod Available: " + StarWarsMod.ONLINE_VERSION + ". Current: " + StarWarsMod.VERSION));
+			((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
 	}
 
 	@SubscribeEvent

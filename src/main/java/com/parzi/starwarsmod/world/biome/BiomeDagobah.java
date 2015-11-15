@@ -94,6 +94,9 @@ public class BiomeDagobah extends BiomeGenBase
 		this.fillerBlock = Blocks.dirt;
 		this.color = 0x00CC99;
 		this.waterColorMultiplier = 10;
+		
+		this.rainfall = 1.0F;
+		this.temperature = 1.0F;
 
 		decorator.treesPerChunk = 4;
 	}
