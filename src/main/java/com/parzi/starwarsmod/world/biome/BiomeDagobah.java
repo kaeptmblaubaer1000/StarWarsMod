@@ -82,7 +82,7 @@ public class BiomeDagobah extends BiomeGenBase
 
 		decorator = new BiomeDecoratorDagobah();
 
-		this.heightVariation = 0.2F;
+		this.heightVariation = 0.1F;
 		this.enableRain = true;
 		this.enableSnow = false;
 		this.spawnableMonsterList.clear();

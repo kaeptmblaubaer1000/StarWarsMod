@@ -184,7 +184,7 @@ public class ChunkProviderGenerateDagobah implements IChunkProvider
                                 {
                                     p_147424_3_[j3 += short1] = Blocks.stone;
                                 }
-                                else if (k2 * 8 + l2 < b0 + 5)
+                                else if (k2 * 8 + l2 < b0 + 7)
                                 {
                                     p_147424_3_[j3 += short1] = Blocks.water;
                                 }

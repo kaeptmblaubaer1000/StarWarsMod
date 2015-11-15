@@ -22,6 +22,7 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 
@@ -48,6 +49,16 @@ public class StarWarsEventHandler
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
 		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && mc.gameSettings.thirdPersonView == 0) fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
+	}
+
+	@SubscribeEvent
+	public void onFogify(EntityViewRenderEvent.FogDensity fogDensity)
+	{
+		if (fogDensity.entity.worldObj.provider.getDimensionName() == "Dagobah")
+		{
+			fogDensity.density = 0.075F;
+			fogDensity.setCanceled(true);
+		}
 	}
 
 	@SubscribeEvent

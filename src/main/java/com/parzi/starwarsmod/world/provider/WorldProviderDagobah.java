@@ -17,6 +17,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderDagobah extends WorldProvider
 {
+    /**
+     * Creates the light to brightness table
+     */
+	@Override
+    protected void generateLightBrightnessTable()
+    {
+        float f = 0.0F;
+
+        for (int i = 0; i <= 15; ++i)
+        {
+            float f1 = 1.0F - (float)i / 15.0F;
+            this.lightBrightnessTable[i] = ((1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f) / 2;
+        }
+    }
+
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
@@ -78,12 +93,6 @@ public class WorldProviderDagobah extends WorldProvider
     public Vec3 getSkyColor(Entity cameraEntity, float partialTicks)
     {
         return Vec3.createVectorHelper(0, 0.39, 0.29);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public Vec3 getFogColor(float p_76562_1_, float p_76562_2_)
-    {
-        return Vec3.createVectorHelper(0, 0.34, 0.29);
     }
 
 	@Override
