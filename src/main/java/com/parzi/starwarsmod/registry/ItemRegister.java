@@ -15,6 +15,7 @@ import com.parzi.starwarsmod.armor.ArmorSandtrooper;
 import com.parzi.starwarsmod.armor.ArmorScoutTrooper;
 import com.parzi.starwarsmod.armor.ArmorSnowtrooper;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
+import com.parzi.starwarsmod.armor.ArmorSequelStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemAcidBeets;
 import com.parzi.starwarsmod.items.ItemBanthaChop;
@@ -75,6 +76,8 @@ import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
+import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
+import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
@@ -92,20 +95,41 @@ public class ItemRegister
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
 		}
 
+		if (StarWarsMod.IS_SEQUEL_RELEASE)
+		{
+			StarWarsMod.sequelLightsaber = new ItemSequelLightsaber();
+			GameRegistry.registerItem(StarWarsMod.sequelLightsaber, "sequelLightsaber");
+
+			StarWarsMod.sequelLightsaberOff = new ItemSequelLightsaberOff();
+			GameRegistry.registerItem(StarWarsMod.sequelLightsaberOff, "sequelLightsaberOff");
+
+			StarWarsMod.stormtrooperNewHelmet = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperNewHelmet, "stormtrooperNewHelmet");
+
+			StarWarsMod.stormtrooperNewChest = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 1);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperNewChest, "stormtrooperNewChest");
+
+			StarWarsMod.stormtrooperNewLegs = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 2);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperNewLegs, "stormtrooperNewLegs");
+
+			StarWarsMod.stormtrooperNewBoots = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperNewBoots, "stormtrooperNewBoots");
+		}
+
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
 		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");
 
 		StarWarsMod.lightsaber = new ItemLightsaber();
 		GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
 
+		StarWarsMod.lightsaberOff = new ItemLightsaberOff();
+		GameRegistry.registerItem(StarWarsMod.lightsaberOff, "lightsaberOff");
+
 		StarWarsMod.binoculars = new ItemBinocularsTatooine();
 		GameRegistry.registerItem(StarWarsMod.binoculars, "binoculars");
 
 		StarWarsMod.binocularsHoth = new ItemBinocularsHoth();
 		GameRegistry.registerItem(StarWarsMod.binocularsHoth, "binocularsHoth");
-
-		StarWarsMod.lightsaberOff = new ItemLightsaberOff();
-		GameRegistry.registerItem(StarWarsMod.lightsaberOff, "lightsaberOff");
 
 		StarWarsMod.blasterPistol = new ItemBlasterPistol();
 		GameRegistry.registerItem(StarWarsMod.blasterPistol, "blasterPistol");

@@ -1,5 +1,8 @@
 package com.parzi.starwarsmod;
 
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -13,6 +16,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.apache.logging.log4j.Level;
 
+import com.ibm.icu.text.SimpleDateFormat;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandForcePoints;
@@ -27,12 +31,15 @@ import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
+import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
+import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
 import com.parzi.starwarsmod.network.TogglePlayerLightsaber;
+import com.parzi.starwarsmod.network.TogglePlayerSequelLightsaber;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
@@ -64,6 +71,8 @@ public class StarWarsMod
 
 	public static boolean IS_DEV_ENVIRONVENT = false;
 
+	public static boolean IS_SEQUEL_RELEASE = false;
+
 	public static Configuration config;
 
 	public static Random rngChromium = new Random();
@@ -78,10 +87,13 @@ public class StarWarsMod
 	public static SimpleNetworkWrapper network;
 
 	public static CreativeTabs StarWarsTab;
+	public static CreativeTabs SequelStarWarsTab;
 
 	public static ItemGaffiStick gaffiStick;
 	public static ItemLightsaber lightsaber;
 	public static ItemLightsaberOff lightsaberOff;
+	public static ItemSequelLightsaber sequelLightsaber;
+	public static ItemSequelLightsaberOff sequelLightsaberOff;
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
 	public static ItemBlasterHeavy blasterHeavy;
@@ -161,6 +173,11 @@ public class StarWarsMod
 	public static Item stormtrooperChest;
 	public static Item stormtrooperLegs;
 	public static Item stormtrooperBoots;
+
+	public static Item stormtrooperNewHelmet;
+	public static Item stormtrooperNewChest;
+	public static Item stormtrooperNewLegs;
+	public static Item stormtrooperNewBoots;
 
 	public static Item snowtrooperHelmet;
 	public static Item snowtrooperChest;
@@ -272,6 +289,7 @@ public class StarWarsMod
 	public static ArmorMaterial fleetArmorMat;
 	public static ArmorMaterial rebelPilotArmorMat;
 	public static ArmorMaterial stormtrooperArmorMat;
+	public static ArmorMaterial stormtrooperNewArmorMat;
 	public static ArmorMaterial snowtrooperArmorMat;
 	public static ArmorMaterial scoutTrooperArmorMat;
 	public static ArmorMaterial tiePilotArmorMat;
@@ -288,9 +306,15 @@ public class StarWarsMod
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
 
-		if (Minecraft.getMinecraft().getSession().getUsername().hashCode() == 232875429)
+		if (Calendar.getInstance().get(Calendar.MONTH) >= 11 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 18 && Calendar.getInstance().get(Calendar.YEAR) >= 2015)
+		{
+			IS_SEQUEL_RELEASE = true;
+		}
+
+		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
 		{
 			IS_DEV_ENVIRONVENT = true;
+			IS_SEQUEL_RELEASE = true;
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
 			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
 		}
@@ -298,6 +322,12 @@ public class StarWarsMod
 		instance = this;
 
 		StarWarsTab = new StarWarsTab();
+
+		if (IS_SEQUEL_RELEASE)
+		{
+			Lumberjack.log("Sequel update! Suck it, JJ!");
+			SequelStarWarsTab = new SequelStarWarsTab();
+		}
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
@@ -337,6 +367,7 @@ public class StarWarsMod
 		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
 		network.registerMessage(CreateBlasterBoltSpeeder.Handler.class, CreateBlasterBoltSpeeder.class, 3, Side.SERVER);
 		network.registerMessage(TogglePlayerLightsaber.Handler.class, TogglePlayerLightsaber.class, 4, Side.SERVER);
+		network.registerMessage(TogglePlayerSequelLightsaber.Handler.class, TogglePlayerSequelLightsaber.class, 5, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
