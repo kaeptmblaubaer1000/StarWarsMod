@@ -1,8 +1,9 @@
 package com.parzi.starwarsmod;
 
-import java.text.ParseException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -11,12 +12,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.config.Configuration;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Level;
 
-import com.ibm.icu.text.SimpleDateFormat;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandForcePoints;
@@ -68,6 +70,8 @@ public class StarWarsMod
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.0";
 	public static final String DEV_VER = "dev9";
+
+	public static String ONLINE_VERSION = "";
 
 	public static boolean IS_DEV_ENVIRONVENT = false;
 
@@ -317,6 +321,23 @@ public class StarWarsMod
 			IS_SEQUEL_RELEASE = true;
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
 			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
+		}
+
+		InputStream in = null;
+		try
+		{
+			in = new URL("https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md").openStream();
+			StarWarsMod.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't check version!");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
 		}
 
 		instance = this;
