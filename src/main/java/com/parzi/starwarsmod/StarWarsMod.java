@@ -146,6 +146,7 @@ public class StarWarsMod
 	public static Item hyperdriveDagobah;
 
 	public static Item spawnSpeederBike;
+	public static Item spawnJakkuSpeeder;
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
 	public static Item spawnAstromech;

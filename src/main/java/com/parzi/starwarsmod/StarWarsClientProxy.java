@@ -78,9 +78,11 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelSmallBiped;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelTauntaun;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelWookiee;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelJakkuSpeeder;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelLandspeeder;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderHothSpeederBike;
+import com.parzi.starwarsmod.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
@@ -89,6 +91,7 @@ import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
@@ -131,6 +134,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderHothSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 

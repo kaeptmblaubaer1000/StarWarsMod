@@ -81,6 +81,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
+import com.parzi.starwarsmod.vehicles.ItemSpawnJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnSpeederBike;
 
@@ -134,10 +135,10 @@ public class ItemRegister
 
 		StarWarsMod.blasterPistol = new ItemBlasterPistol();
 		GameRegistry.registerItem(StarWarsMod.blasterPistol, "blasterPistol");
-		
+
 		StarWarsMod.blasterRifle = new ItemBlasterRifle();
 		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
-		
+
 		StarWarsMod.sequelBlasterRifle = new ItemSequelBlasterRifle();
 		GameRegistry.registerItem(StarWarsMod.sequelBlasterRifle, "sequelBlasterRifle");
 
@@ -383,6 +384,9 @@ public class ItemRegister
 
 		StarWarsMod.spawnLandspeeder = new ItemSpawnLandspeeder();
 		GameRegistry.registerItem(StarWarsMod.spawnLandspeeder, "spawnLandspeeder");
+
+		StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
+		GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");
 
 		StarWarsMod.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveYavin4, "hyperdriveYavinFour");
