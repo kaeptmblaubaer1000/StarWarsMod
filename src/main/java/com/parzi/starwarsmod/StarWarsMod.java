@@ -33,6 +33,7 @@ import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
+import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
@@ -102,6 +103,7 @@ public class StarWarsMod
 	public static ItemSequelLightsaberOff sequelLightsaberOff;
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
+	public static ItemSequelBlasterRifle sequelBlasterRifle;
 	public static ItemBlasterHeavy blasterHeavy;
 	public static ItemEwokSpear ewokSpear;
 	public static ItemWookieeBowcaster bowcaster;
@@ -275,20 +277,21 @@ public class StarWarsMod
 
 	public static Block blockMV;
 	public static Block blockTable;
-	public static Block chromiumOre;
-	public static Block titaniumOre;
-	public static Block titaniumChromiumBlock;
+	public static Block blockChromiumOre;
+	public static Block blockTitaniumOre;
+	public static Block blockTitaniumChromiumBlock;
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
-	public static Block tatooineSand;
-	public static Block tatooineSandstone;
-	public static Block spaceLamp;
+	public static Block blockTatooineSand;
+	public static Block blockTatooineSandstone;
+	public static Block blockSpaceLamp;
+	public static Block blockDagobahMud;
 
-	public static Item.ToolMaterial gaffiMat;
-	public static Item.ToolMaterial ewokMat;
-	public static Item.ToolMaterial gamorreanMat;
-	public static Item.ToolMaterial plasmaMat;
-	public static Item.ToolMaterial plasmaMatOff;
+	public static Item.ToolMaterial materialGaffi;
+	public static Item.ToolMaterial materialEwok;
+	public static Item.ToolMaterial materialGamorrean;
+	public static Item.ToolMaterial materialPlasma;
+	public static Item.ToolMaterial materialPlasmaOff;
 
 	public static ArmorMaterial jediRobesMat;
 	public static ArmorMaterial endorArmorMat;

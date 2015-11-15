@@ -16,7 +16,7 @@ public class ItemGaffiStick extends ItemSword
 
 	public ItemGaffiStick()
 	{
-		super(StarWarsMod.gaffiMat);
+		super(StarWarsMod.materialGaffi);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);

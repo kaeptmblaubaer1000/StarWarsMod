@@ -18,7 +18,7 @@ public class ItemLightsaber extends ItemSword
 
 	public ItemLightsaber()
 	{
-		super(StarWarsMod.plasmaMat);
+		super(StarWarsMod.materialPlasma);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);

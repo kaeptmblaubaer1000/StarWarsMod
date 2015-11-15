@@ -10,7 +10,7 @@ public class ItemEwokSpear extends ItemSword
 
 	public ItemEwokSpear()
 	{
-		super(StarWarsMod.ewokMat);
+		super(StarWarsMod.materialEwok);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);

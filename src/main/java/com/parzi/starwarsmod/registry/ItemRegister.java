@@ -13,9 +13,9 @@ import com.parzi.starwarsmod.armor.ArmorRebelFleet;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.armor.ArmorSandtrooper;
 import com.parzi.starwarsmod.armor.ArmorScoutTrooper;
+import com.parzi.starwarsmod.armor.ArmorSequelStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorSnowtrooper;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
-import com.parzi.starwarsmod.armor.ArmorSequelStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
 import com.parzi.starwarsmod.items.ItemAcidBeets;
 import com.parzi.starwarsmod.items.ItemBanthaChop;
@@ -75,9 +75,10 @@ import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
-import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
+import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
+import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
@@ -133,6 +134,12 @@ public class ItemRegister
 
 		StarWarsMod.blasterPistol = new ItemBlasterPistol();
 		GameRegistry.registerItem(StarWarsMod.blasterPistol, "blasterPistol");
+		
+		StarWarsMod.blasterRifle = new ItemBlasterRifle();
+		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
+		
+		StarWarsMod.sequelBlasterRifle = new ItemSequelBlasterRifle();
+		GameRegistry.registerItem(StarWarsMod.sequelBlasterRifle, "sequelBlasterRifle");
 
 		StarWarsMod.blasterHeavy = new ItemBlasterHeavy();
 		GameRegistry.registerItem(StarWarsMod.blasterHeavy, "blasterHeavy");
@@ -382,9 +389,6 @@ public class ItemRegister
 
 		StarWarsMod.hyperdriveEndor = new ItemHyperdriveEndor();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveEndor, "hyperdriveEndor");
-
-		StarWarsMod.blasterRifle = new ItemBlasterRifle();
-		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
 
 		StarWarsMod.droidCaller = new ItemDroidCaller();
 		GameRegistry.registerItem(StarWarsMod.droidCaller, "droidCaller");

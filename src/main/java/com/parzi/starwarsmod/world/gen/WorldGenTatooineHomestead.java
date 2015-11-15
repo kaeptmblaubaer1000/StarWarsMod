@@ -1066,7 +1066,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 	/*      */protected Block[] getValidSpawnBlocks()
 	/*      */
 	{
-		/* 1048 */return new Block[] { StarWarsMod.tatooineSand };
+		/* 1048 */return new Block[] { StarWarsMod.blockTatooineSand };
 		/*      */}
 
 	/*      */

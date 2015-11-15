@@ -32,7 +32,7 @@ public class ItemSequelLightsaber extends ItemSword
 
 	public ItemSequelLightsaber()
 	{
-		super(StarWarsMod.plasmaMat);
+		super(StarWarsMod.materialPlasma);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 		this.setHasSubtypes(true);

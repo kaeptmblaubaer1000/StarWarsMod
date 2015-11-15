@@ -236,7 +236,7 @@ public class ChunkProviderGenerateTatooine implements IChunkProvider
 								if (d15 + d16 > 0.0D)
 									p_147424_3_[j3 += short1] = Blocks.stone;
 								else if (k2 * 8 + l2 < b0)
-									p_147424_3_[j3 += short1] = StarWarsMod.tatooineSand;
+									p_147424_3_[j3 += short1] = StarWarsMod.blockTatooineSand;
 								else
 									p_147424_3_[j3 += short1] = null;
 							d10 += d12;

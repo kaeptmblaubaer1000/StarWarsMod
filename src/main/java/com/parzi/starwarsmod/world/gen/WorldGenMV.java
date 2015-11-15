@@ -19,7 +19,7 @@ public class WorldGenMV extends WorldGenerator
 			p_76484_4_--;
 		}
 
-		if (p_76484_1_.getBlock(p_76484_3_, p_76484_4_, p_76484_5_) != StarWarsMod.tatooineSand)
+		if (p_76484_1_.getBlock(p_76484_3_, p_76484_4_, p_76484_5_) != StarWarsMod.blockTatooineSand)
 
 		{ return false; }
 

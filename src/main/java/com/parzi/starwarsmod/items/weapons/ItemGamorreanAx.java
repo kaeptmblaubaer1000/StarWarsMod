@@ -15,7 +15,7 @@ public class ItemGamorreanAx extends ItemSword
 
 	public ItemGamorreanAx()
 	{
-		super(StarWarsMod.gamorreanMat);
+		super(StarWarsMod.materialGamorrean);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);

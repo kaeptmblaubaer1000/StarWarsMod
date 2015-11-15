@@ -9,11 +9,11 @@ public class MaterialRegister
 {
 	public static void registerAll()
 	{
-		StarWarsMod.gaffiMat = EnumHelper.addToolMaterial("gaffiMat", 3, 10240, 1.0F, StarWarsMod.lightsaberDamage, 8);
-		StarWarsMod.ewokMat = EnumHelper.addToolMaterial("gaffiMat", 3, 128, 1.0F, 1.0F, 2);
-		StarWarsMod.gamorreanMat = EnumHelper.addToolMaterial("gamorreanMat", 3, 10240, 1.0F, 3.0F, 8);
-		StarWarsMod.plasmaMat = EnumHelper.addToolMaterial("plasmaMat", 3, -1, 10.0F, StarWarsMod.lightsaberDamage, 8);
-		StarWarsMod.plasmaMatOff = EnumHelper.addToolMaterial("plasmaMatOff", 3, -1, 10.0F, 0.1F, 8);
+		StarWarsMod.materialGaffi = EnumHelper.addToolMaterial("gaffiMat", 3, 10240, 1.0F, StarWarsMod.lightsaberDamage, 8);
+		StarWarsMod.materialEwok = EnumHelper.addToolMaterial("gaffiMat", 3, 128, 1.0F, 1.0F, 2);
+		StarWarsMod.materialGamorrean = EnumHelper.addToolMaterial("gamorreanMat", 3, 10240, 1.0F, 3.0F, 8);
+		StarWarsMod.materialPlasma = EnumHelper.addToolMaterial("plasmaMat", 3, -1, 10.0F, StarWarsMod.lightsaberDamage, 8);
+		StarWarsMod.materialPlasmaOff = EnumHelper.addToolMaterial("plasmaMatOff", 3, -1, 10.0F, 0.1F, 8);
 		StarWarsMod.jediRobesMat = EnumHelper.addArmorMaterial("jediRobesMat", -1, new int[] { 0, 2, 0, 0 }, 0);
 		StarWarsMod.endorArmorMat = EnumHelper.addArmorMaterial("endorArmorMat", 60, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.fleetArmorMat = EnumHelper.addArmorMaterial("endorArmorMat", 60, new int[] { 1, 4, 3, 2 }, 4);

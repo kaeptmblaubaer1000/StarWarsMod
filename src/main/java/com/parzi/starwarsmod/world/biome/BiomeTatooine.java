@@ -80,8 +80,8 @@ public class BiomeTatooine extends BiomeGenBase
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.setBiomeName("Tatooine");
-		this.topBlock = StarWarsMod.tatooineSand;
-		this.fillerBlock = StarWarsMod.tatooineSand;
+		this.topBlock = StarWarsMod.blockTatooineSand;
+		this.fillerBlock = StarWarsMod.blockTatooineSand;
 		this.biomeDecorator = new BiomeDecoratorTatooine();
 	}
 

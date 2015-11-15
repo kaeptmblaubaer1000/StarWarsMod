@@ -43,11 +43,11 @@ public class OreGenerator implements IWorldGenerator
 			int firstBlockXCoord = chunkX + StarWarsMod.rngChromium.nextInt(16);
 			int firstBlockYCoord = StarWarsMod.rngChromium.nextInt(64);
 			int firstBlockZCoord = chunkZ + StarWarsMod.rngChromium.nextInt(16);
-			new WorldGenMinable(StarWarsMod.chromiumOre, 4).generate(world, StarWarsMod.rngChromium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+			new WorldGenMinable(StarWarsMod.blockChromiumOre, 4).generate(world, StarWarsMod.rngChromium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
 			firstBlockXCoord = chunkX + StarWarsMod.rngTitanium.nextInt(16);
 			firstBlockYCoord = StarWarsMod.rngTitanium.nextInt(64);
 			firstBlockZCoord = chunkZ + StarWarsMod.rngTitanium.nextInt(16);
-			new WorldGenMinable(StarWarsMod.titaniumOre, 4).generate(world, StarWarsMod.rngTitanium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+			new WorldGenMinable(StarWarsMod.blockTitaniumOre, 4).generate(world, StarWarsMod.rngTitanium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
 		}
 	}
 }
