@@ -82,7 +82,7 @@ public class EntityBlasterRifleBolt extends EntityThrowable
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player)
 	{
-		if (player.getHeldItem() != null && player.getHeldItem().getItem() == StarWarsMod.lightsaber && player.isBlocking())
+		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber || player.getHeldItem().getItem() == StarWarsMod.sequelLightsaber) && player.isBlocking())
 		{
 			Vec3 vec3 = player.getLookVec();
 			if (vec3 != null)

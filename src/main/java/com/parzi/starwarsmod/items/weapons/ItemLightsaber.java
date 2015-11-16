@@ -77,6 +77,11 @@ public class ItemLightsaber extends ItemSword
 				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 			}
+			if (pa.inventory.mainInventory[pa.inventory.currentItem] != null && pa.inventory.mainInventory[pa.inventory.currentItem].getItem() == StarWarsMod.sequelLightsaber && pa.isBlocking() && pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.sequelLightsaber)
+			{
+				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
+				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
+			}
 		}
 		return super.hitEntity(stack, a, b);
 	}
