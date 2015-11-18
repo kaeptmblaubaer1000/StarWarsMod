@@ -358,6 +358,8 @@ public class StarWarsMod
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
+		EntityRegister.registerAll();
+
 		MaterialRegister.registerAll();
 
 		ItemRegister.registerAll();
@@ -406,6 +408,16 @@ public class StarWarsMod
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");
+
+		try
+		{
+			WorldRegister.registerAll();
+		}
+		catch (Exception e)
+		{
+			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
+			e.printStackTrace();
+		}
 	}
 
 	@EventHandler
@@ -418,18 +430,6 @@ public class StarWarsMod
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
-
-		try
-		{
-			WorldRegister.registerAll();
-		}
-		catch (Exception e)
-		{
-			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
-			e.printStackTrace();
-		}
-
-		EntityRegister.registerAll();
 	}
 }
 /*
