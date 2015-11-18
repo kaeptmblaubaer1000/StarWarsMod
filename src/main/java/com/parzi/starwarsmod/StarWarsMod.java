@@ -364,19 +364,7 @@ public class StarWarsMod
 
 		BlockRegister.registerAll();
 
-		try
-		{
-			WorldRegister.registerAll();
-		}
-		catch (Exception e)
-		{
-			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
-			e.printStackTrace();
-		}
-
 		RecipeRegister.registerAll();
-
-		EntityRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
 
@@ -430,6 +418,18 @@ public class StarWarsMod
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
+
+		try
+		{
+			WorldRegister.registerAll();
+		}
+		catch (Exception e)
+		{
+			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
+			e.printStackTrace();
+		}
+
+		EntityRegister.registerAll();
 	}
 }
 /*

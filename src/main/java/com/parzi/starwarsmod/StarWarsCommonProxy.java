@@ -1,9 +1,12 @@
 package com.parzi.starwarsmod;
 
+import com.parzi.starwarsmod.utils.Lumberjack;
+
 public class StarWarsCommonProxy
 {
 	public void doSidedThings()
 	{
+		Lumberjack.log("Server proxy loaded!");
 	}
 }
 /*

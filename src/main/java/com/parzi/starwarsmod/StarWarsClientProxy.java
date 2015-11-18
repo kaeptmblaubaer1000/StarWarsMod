@@ -87,6 +87,7 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
@@ -155,6 +156,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
 
 		RegisterGuiOverlays.registerAll();
+		
+		Lumberjack.log("Client proxy loaded!");
 	}
 }
 /*
