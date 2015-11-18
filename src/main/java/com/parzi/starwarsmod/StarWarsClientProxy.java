@@ -109,6 +109,15 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
 
+
+		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
+		{
+			StarWarsMod.IS_DEV_ENVIRONVENT = true;
+			StarWarsMod.IS_SEQUEL_RELEASE = true;
+			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
+			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
+		}
+
 		RenderingRegistry.registerEntityRenderingHandler(MobWookiee.class, new RenderWookiee(new ModelWookiee(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelSmallBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobEwok.class, new RenderEwok(new ModelSmallBiped(), 0.5F));

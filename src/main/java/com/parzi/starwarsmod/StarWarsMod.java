@@ -321,14 +321,6 @@ public class StarWarsMod
 			IS_SEQUEL_RELEASE = true;
 		}
 
-		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
-		{
-			IS_DEV_ENVIRONVENT = true;
-			IS_SEQUEL_RELEASE = true;
-			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
-			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
-		}
-
 		InputStream in = null;
 		try
 		{
@@ -338,7 +330,6 @@ public class StarWarsMod
 		catch (Exception e)
 		{
 			Lumberjack.warn("Couldn't check version!");
-			e.printStackTrace();
 		}
 		finally
 		{
@@ -349,6 +340,8 @@ public class StarWarsMod
 		instance = this;
 
 		StarWarsTab = new StarWarsTab();
+
+		proxy.doSidedThings();
 
 		if (IS_SEQUEL_RELEASE)
 		{
@@ -369,8 +362,6 @@ public class StarWarsMod
 		RecipeRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
-
-		proxy.doSidedThings();
 
 		Lumberjack.info("=========== End Star Wars Mod init() ===========");
 	}

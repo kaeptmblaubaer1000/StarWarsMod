@@ -1,21 +1,19 @@
 package com.parzi.starwarsmod.armor;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.models.armor.ModelEndorHelmet;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.armor.ModelEndorHelmet;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class ArmorEndor extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
-	private ModelEndorHelmet model = new ModelEndorHelmet();
 
 	public ArmorEndor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -30,7 +28,7 @@ public class ArmorEndor extends ItemArmor
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
 		if (armorSlot == 0)
-			return model;
+			return new ModelEndorHelmet();
 		return null;
 	}
 
