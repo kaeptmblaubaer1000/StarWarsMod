@@ -1,8 +1,5 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.world.biome.BiomeGenBase;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
@@ -32,6 +29,7 @@ import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.vehicles.VehicFlyingSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
@@ -39,6 +37,8 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class EntityRegister
 {
@@ -66,6 +66,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidTreadwell.class, "droidTreadwell");
 		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
+		EntityUtils.registerEntity(VehicFlyingSpeederBike.class, "flyingSpeederBike");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
 		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuSpeeder");
