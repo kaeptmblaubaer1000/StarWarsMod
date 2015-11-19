@@ -8,6 +8,12 @@ public class StarWarsCommonProxy
 	{
 		Lumberjack.log("Server proxy loaded!");
 	}
+
+	public void registerRendering()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

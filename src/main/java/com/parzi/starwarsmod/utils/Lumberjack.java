@@ -23,9 +23,9 @@ public class Lumberjack
 		logger.log(level, message);
 	}
 
-	public static void log(String message)
+	public static void log(Object message)
 	{
-		info(message);
+		info(String.valueOf(message));
 	}
 
 	public static void warn(String message)

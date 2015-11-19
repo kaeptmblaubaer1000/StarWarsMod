@@ -25,7 +25,7 @@ public class VehicleLandBase extends EntityCreature
 	public float vehicZOffset = 0.0F;
 	public float moveModifier = 1.0F;
 	public float frame = 0.0F;
-	private float rotationLast = 0.0F;
+	public float rotationLast = 0.0F;
 
 	public VehicleLandBase(World p_i1689_1_)
 	{

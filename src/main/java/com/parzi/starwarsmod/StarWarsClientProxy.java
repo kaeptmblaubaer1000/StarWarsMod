@@ -1,10 +1,5 @@
 package com.parzi.starwarsmod;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
@@ -91,6 +86,7 @@ import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
+import com.parzi.starwarsmod.vehicles.VehicFlyingSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
@@ -99,6 +95,10 @@ import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -117,6 +117,15 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
 			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
 		}
+
+		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
+		
+		Lumberjack.log("Client proxy loaded!");
+	}
+		
+	@Override
+	public void registerRendering()
+	{
 
 		RenderingRegistry.registerEntityRenderingHandler(MobWookiee.class, new RenderWookiee(new ModelWookiee(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelSmallBiped(), 0.5F));
@@ -143,6 +152,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderHothSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicFlyingSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));
 
@@ -162,11 +172,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new RenderBlockTable());
 
-		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
-
 		RegisterGuiOverlays.registerAll();
 		
-		Lumberjack.log("Client proxy loaded!");
+		Lumberjack.log("Rendering registered!");
 	}
 }
 /*
