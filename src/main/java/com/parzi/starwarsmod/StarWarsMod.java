@@ -337,6 +337,8 @@ public class StarWarsMod
 				IOUtils.closeQuietly(in);
 		}
 
+		proxy.doSidedThings();
+
 		instance = this;
 
 		StarWarsTab = new StarWarsTab();
@@ -346,8 +348,6 @@ public class StarWarsMod
 			Lumberjack.log("Sequel update! Suck it, JJ!");
 			SequelStarWarsTab = new SequelStarWarsTab();
 		}
-
-		proxy.doSidedThings();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 

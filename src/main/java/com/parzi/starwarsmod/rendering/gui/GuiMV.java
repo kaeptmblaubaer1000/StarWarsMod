@@ -37,13 +37,10 @@ public class GuiMV extends GuiContainer
 		this.drawTexturedModalRect(k, l, 0, 0, 175, 165);
 		int percent = (int)((float)(this.vaporator.progressTicks + 1F) / (float)this.vaporator.totalTicks * 30.0F);
 		this.drawTexturedModalRect(k + 62, l + 58 - percent, 176, 30 - percent, 9, percent);
-	}
-
-	protected void func_146979_b(int p_146979_1_, int p_146979_2_)
-	{
+		
 		String s = "Moisture Vaporator";
-		this.fontRendererObj.drawString(s, 175 / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, 71, 4210752);
+		this.fontRendererObj.drawString(s, k + (this.xSize / 2) - fontRendererObj.getStringWidth(s) / 2, l + 6, 4210752);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), k + 8, l + 71, 4210752);
 	}
 }
 /*
