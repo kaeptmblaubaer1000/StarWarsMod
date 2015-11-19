@@ -5,8 +5,12 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.S04PacketEntityEquipment;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeHooks;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.ai.AiFreqMove;
@@ -21,6 +25,7 @@ public class VehicleLandBase extends EntityCreature
 	public float vehicZOffset = 0.0F;
 	public float moveModifier = 1.0F;
 	public float frame = 0.0F;
+	private float rotationLast = 0.0F;
 
 	public VehicleLandBase(World p_i1689_1_)
 	{
@@ -28,7 +33,7 @@ public class VehicleLandBase extends EntityCreature
 		this.setSize(0.9F, 0.9F);
 		this.isImmuneToFire = true;
 	}
-	
+
 	@Override
 	protected boolean isMovementCeased()
 	{
@@ -85,7 +90,7 @@ public class VehicleLandBase extends EntityCreature
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.prevRotationYaw = this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
 			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
@@ -105,7 +110,9 @@ public class VehicleLandBase extends EntityCreature
 				this.setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 			}
-		} else {
+		}
+		else
+		{
 			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		}
 	}
@@ -115,6 +122,7 @@ public class VehicleLandBase extends EntityCreature
 	{
 		super.onUpdate();
 		this.moveEntityWithHeading(0.0F, 0.0F);
+        this.setRotation(this.rotationLast , this.rotationPitch);
 		this.frame = (float)(this.frame + 0.1D);
 	}
 
