@@ -22,30 +22,18 @@ public class VehicleLandBase extends EntityCreature
 	public float moveModifier = 1.0F;
 	public float frame = 0.0F;
 
-	private float lastPersonRotX = 0;
-	private float lastPersonRotY = 0;
-
 	public VehicleLandBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
 		this.setSize(0.9F, 0.9F);
-		this.stepHeight = 1.0F;
 		this.isImmuneToFire = true;
-		this.tasks.taskEntries.clear();
-		this.targetTasks.taskEntries.clear();
 	}
-
+	
 	@Override
-    protected boolean isMovementCeased()
-    {
-        return true;
-    }
-
-	@Override
-    public boolean canBeSteered()
-    {
-        return true;
-    }
+	protected boolean isMovementCeased()
+	{
+		return true;
+	}
 
 	@Override
 	protected boolean canDespawn()
@@ -92,25 +80,33 @@ public class VehicleLandBase extends EntityCreature
 		return false;
 	}
 
-	public void move()
+	@Override
+	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			EntityLivingBase rider = ((EntityLivingBase)this.riddenByEntity);
-
-			this.lastPersonRotX = this.rotationYaw = rider.rotationYaw;
-
+			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
+			this.setRotation(this.rotationYaw, this.rotationPitch);
+			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
+			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F);
 			if (this.onGround)
 			{
 				float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
 				float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
-				this.motionX += -0.4F * f2 * rider.moveForward;
-				this.motionZ += 0.4F * f3 * rider.moveForward;
+				this.motionX += -0.4F * f2 * p_70612_2_;
+				this.motionZ += 0.4F * f3 * p_70612_2_;
 			}
-		}
-		else
-		{
-			this.setRotation(this.lastPersonRotX, 0);
+			this.stepHeight = 1.0F;
+			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
+			if (!this.worldObj.isRemote)
+			{
+				this.setAIMoveSpeed(p_70612_2_);
+				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
+			}
+		} else {
+			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		}
 	}
 
@@ -118,10 +114,8 @@ public class VehicleLandBase extends EntityCreature
 	public void onUpdate()
 	{
 		super.onUpdate();
+		this.moveEntityWithHeading(0.0F, 0.0F);
 		this.frame = (float)(this.frame + 0.1D);
-
-		this.move();
-
 	}
 
 	@Override

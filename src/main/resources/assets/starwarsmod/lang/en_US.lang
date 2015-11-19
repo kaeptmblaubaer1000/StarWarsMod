@@ -78,6 +78,7 @@ item.starwarsmod.hyperdriveHoth.name=Hoth Hyperdrive
 item.starwarsmod.hyperdriveYavinFour.name=Yavin 4 Hyperdrive
 item.starwarsmod.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
 item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
+item.starwarsmod.hyperdriveDagobah.name=Dagobah Hyperdrive
 
 // Droid Items
 item.starwarsmod.spawnAstromech.name=Astromech Droid
