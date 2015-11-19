@@ -116,6 +116,9 @@ public class ItemRegister
 
 			StarWarsMod.stormtrooperNewBoots = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
 			GameRegistry.registerItem(StarWarsMod.stormtrooperNewBoots, "stormtrooperNewBoots");
+
+			StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
+			GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");
 		}
 
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
@@ -384,9 +387,6 @@ public class ItemRegister
 
 		StarWarsMod.spawnLandspeeder = new ItemSpawnLandspeeder();
 		GameRegistry.registerItem(StarWarsMod.spawnLandspeeder, "spawnLandspeeder");
-
-		StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
-		GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");
 
 		StarWarsMod.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveYavin4, "hyperdriveYavinFour");

@@ -341,22 +341,20 @@ public class StarWarsMod
 
 		StarWarsTab = new StarWarsTab();
 
-		proxy.doSidedThings();
-
 		if (IS_SEQUEL_RELEASE)
 		{
 			Lumberjack.log("Sequel update! Suck it, JJ!");
 			SequelStarWarsTab = new SequelStarWarsTab();
 		}
 
+		proxy.doSidedThings();
+
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-
-		EntityRegister.registerAll();
-
+		
 		MaterialRegister.registerAll();
 
 		ItemRegister.registerAll();
-
+		
 		BlockRegister.registerAll();
 
 		RecipeRegister.registerAll();
@@ -399,16 +397,6 @@ public class StarWarsMod
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");
-
-		try
-		{
-			WorldRegister.registerAll();
-		}
-		catch (Exception e)
-		{
-			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
-			e.printStackTrace();
-		}
 	}
 
 	@EventHandler
@@ -418,6 +406,18 @@ public class StarWarsMod
 		{
 			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());
+		}
+
+		try
+		{			
+			WorldRegister.registerAll();
+
+			EntityRegister.registerAll();
+		}
+		catch (Exception e)
+		{
+			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
+			e.printStackTrace();
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
