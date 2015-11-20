@@ -123,7 +123,7 @@ public class VehicleLandBase extends EntityCreature
 		super.onUpdate();
 		this.moveEntityWithHeading(0.0F, 0.0F);
         this.setRotation(this.rotationLast , this.rotationPitch);
-		this.frame = (float)(this.frame + 0.1D);
+		this.frame += 0.1F;
 	}
 
 	@Override
