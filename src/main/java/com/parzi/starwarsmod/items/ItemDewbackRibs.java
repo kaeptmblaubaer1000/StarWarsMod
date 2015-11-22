@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemDewbackRibs extends ItemFood
 {
-	private String name = "dewbackRibs";
+	public String name = "dewbackRibs";
 
 	public ItemDewbackRibs()
 	{

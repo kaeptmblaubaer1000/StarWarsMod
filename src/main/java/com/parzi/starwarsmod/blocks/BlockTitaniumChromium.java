@@ -8,7 +8,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockTitaniumChromium extends Block
 {
-	private String name = "titaniumChromiumBlock";
+	public String name = "titaniumChromiumBlock";
 
 	public BlockTitaniumChromium()
 	{

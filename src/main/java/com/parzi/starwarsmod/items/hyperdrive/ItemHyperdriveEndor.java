@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.utils.TextUtils;
 
 public class ItemHyperdriveEndor extends Item
 {
-	private String name = "hyperdriveEndor";
+	public String name = "hyperdriveEndor";
 
 	public ItemHyperdriveEndor()
 	{

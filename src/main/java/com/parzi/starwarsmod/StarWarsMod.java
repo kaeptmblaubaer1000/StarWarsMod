@@ -149,7 +149,7 @@ public class StarWarsMod
 	public static Item spawnJakkuSpeeder;
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
-	public static Item spawnFlyingSpeederBike;
+	public static Item spawnTie;
 	public static Item spawnAstromech;
 	public static Item spawnAstromech2;
 	public static Item spawnProtocol;
@@ -373,7 +373,7 @@ public class StarWarsMod
 			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
 			e.printStackTrace();
 		}
-		
+
 		proxy.registerRendering();
 
 		Lumberjack.info("=========== End Star Wars Mod init() ===========");

@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTatooineSand extends Block
 {
-	private String name = "tatooineSand";
+	public String name = "tatooineSand";
 	private int subtypes = 2;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

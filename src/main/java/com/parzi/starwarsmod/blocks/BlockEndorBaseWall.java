@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockEndorBaseWall extends Block
 {
-	private String name = "endorBaseWall";
+	public String name = "endorBaseWall";
 	private int subtypes = 6;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

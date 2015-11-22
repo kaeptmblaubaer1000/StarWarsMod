@@ -11,7 +11,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemBanthaMilk extends ItemFood
 {
-	private String name = "banthaMilk";
+	public String name = "banthaMilk";
 
 	public ItemBanthaMilk()
 	{

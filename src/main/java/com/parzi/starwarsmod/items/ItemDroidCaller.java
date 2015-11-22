@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemDroidCaller extends Item
 {
-	private String name = "droidCaller";
+	public String name = "droidCaller";
 
 	public ItemDroidCaller()
 	{

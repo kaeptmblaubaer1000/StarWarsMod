@@ -9,7 +9,7 @@ import com.parzi.starwarsmod.mobs.MobDroidProbe;
 
 public class ItemSpawnProbe extends net.minecraft.item.Item
 {
-	private String name = "spawnProbe";
+	public String name = "spawnProbe";
 
 	public ItemSpawnProbe()
 	{

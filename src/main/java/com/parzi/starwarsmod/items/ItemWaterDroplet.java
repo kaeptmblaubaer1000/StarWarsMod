@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemWaterDroplet extends Item
 {
-	private String name = "waterDroplet";
+	public String name = "waterDroplet";
 
 	public ItemWaterDroplet()
 	{

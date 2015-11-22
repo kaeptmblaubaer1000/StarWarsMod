@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.utils.TextUtils;
 
 public class ItemHyperdriveHoth extends Item
 {
-	private String name = "hyperdriveHoth";
+	public String name = "hyperdriveHoth";
 
 	public ItemHyperdriveHoth()
 	{

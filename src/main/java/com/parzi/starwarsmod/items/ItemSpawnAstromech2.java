@@ -9,7 +9,7 @@ import com.parzi.starwarsmod.mobs.MobDroidAstromech2;
 
 public class ItemSpawnAstromech2 extends net.minecraft.item.Item
 {
-	private String name = "spawnAstromech2";
+	public String name = "spawnAstromech2";
 
 	public ItemSpawnAstromech2()
 	{

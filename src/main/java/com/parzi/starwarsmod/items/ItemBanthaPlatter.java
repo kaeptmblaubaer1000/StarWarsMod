@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemBanthaPlatter extends ItemFood
 {
-	private String name = "banthaPlatter";
+	public String name = "banthaPlatter";
 
 	public ItemBanthaPlatter()
 	{

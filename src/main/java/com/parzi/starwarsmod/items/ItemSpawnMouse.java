@@ -9,7 +9,7 @@ import com.parzi.starwarsmod.mobs.MobDroidMouse;
 
 public class ItemSpawnMouse extends net.minecraft.item.Item
 {
-	private String name = "spawnMouse";
+	public String name = "spawnMouse";
 
 	public ItemSpawnMouse()
 	{

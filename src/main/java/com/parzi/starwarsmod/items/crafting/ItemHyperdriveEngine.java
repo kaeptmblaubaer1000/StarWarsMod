@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemHyperdriveEngine extends Item
 {
-	private String name = "hyperdriveEngine";
+	public String name = "hyperdriveEngine";
 
 	public ItemHyperdriveEngine()
 	{

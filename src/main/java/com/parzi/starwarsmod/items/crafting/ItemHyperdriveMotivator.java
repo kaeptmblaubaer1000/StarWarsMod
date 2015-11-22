@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemHyperdriveMotivator extends Item
 {
-	private String name = "hyperdriveMotivator";
+	public String name = "hyperdriveMotivator";
 
 	public ItemHyperdriveMotivator()
 	{

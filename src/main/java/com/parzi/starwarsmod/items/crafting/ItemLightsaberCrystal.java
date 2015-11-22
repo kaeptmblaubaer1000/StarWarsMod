@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemLightsaberCrystal extends Item
 {
-	private String name = "lightsaberCrystal";
+	public String name = "lightsaberCrystal";
 	public String[] colors = { "red", "green", "blue" };
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

@@ -9,7 +9,7 @@ import com.parzi.starwarsmod.mobs.MobDroidGNK;
 
 public class ItemSpawnGonk extends net.minecraft.item.Item
 {
-	private String name = "spawnGonk";
+	public String name = "spawnGonk";
 
 	public ItemSpawnGonk()
 	{

@@ -9,7 +9,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemGorrnar extends ItemFood
 {
-	private String name = "gorrnar";
+	public String name = "gorrnar";
 
 	public ItemGorrnar()
 	{

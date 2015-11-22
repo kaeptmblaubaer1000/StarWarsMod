@@ -10,7 +10,7 @@ import com.parzi.starwarsmod.mobs.MobDroidSurgical;
 
 public class ItemSpawnSurgical extends Item
 {
-	private String name = "spawnSurgical";
+	public String name = "spawnSurgical";
 
 	public ItemSpawnSurgical()
 	{

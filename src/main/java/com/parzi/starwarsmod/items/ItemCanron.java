@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemCanron extends ItemFood
 {
-	private String name = "canron";
+	public String name = "canron";
 
 	public ItemCanron()
 	{

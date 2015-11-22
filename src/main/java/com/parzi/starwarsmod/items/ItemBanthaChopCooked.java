@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemBanthaChopCooked extends ItemFood
 {
-	private String name = "banthaChopCooked";
+	public String name = "banthaChopCooked";
 
 	public ItemBanthaChopCooked()
 	{

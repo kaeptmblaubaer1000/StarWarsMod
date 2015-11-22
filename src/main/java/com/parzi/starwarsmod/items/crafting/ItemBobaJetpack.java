@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemBobaJetpack extends Item
 {
-	private String name = "bobaJetpack";
+	public String name = "bobaJetpack";
 
 	public ItemBobaJetpack()
 	{

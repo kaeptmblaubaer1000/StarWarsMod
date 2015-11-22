@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemBanthaHorn extends Item
 {
-	private String name = "banthaHorn";
+	public String name = "banthaHorn";
 
 	public ItemBanthaHorn()
 	{

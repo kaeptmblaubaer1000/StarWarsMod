@@ -11,7 +11,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockTitaniumOre extends Block
 {
-	private String name = "titaniumOre";
+	public String name = "titaniumOre";
 
 	public BlockTitaniumOre()
 	{

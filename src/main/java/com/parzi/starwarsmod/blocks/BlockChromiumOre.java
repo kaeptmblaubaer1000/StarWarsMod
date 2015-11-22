@@ -11,7 +11,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockChromiumOre extends Block
 {
-	private String name = "chromiumOre";
+	public String name = "chromiumOre";
 
 	public BlockChromiumOre()
 	{

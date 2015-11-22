@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class ArmorAddonBuns extends ItemArmor
 {
-	private String name = "leiasBuns";
+	public String name = "leiasBuns";
 
 	public ArmorAddonBuns(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{

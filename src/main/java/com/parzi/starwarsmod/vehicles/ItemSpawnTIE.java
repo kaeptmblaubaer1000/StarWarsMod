@@ -6,11 +6,11 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class ItemSpawnSpeederBike extends net.minecraft.item.Item
+public class ItemSpawnTIE extends net.minecraft.item.Item
 {
-	public String name = "spawnSpeederBike";
+	public String name = "spawnTIE";
 
-	public ItemSpawnSpeederBike()
+	public ItemSpawnTIE()
 	{
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
@@ -21,9 +21,9 @@ public class ItemSpawnSpeederBike extends net.minecraft.item.Item
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnSpeederBike)) if (!world.isRemote)
+		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnTie)) if (!world.isRemote)
 		{
-			VehicSpeederBike newVehic = new VehicSpeederBike(world);
+			VehicTIE newVehic = new VehicTIE(world);
 			newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
 			world.spawnEntityInWorld(newVehic);
 		}

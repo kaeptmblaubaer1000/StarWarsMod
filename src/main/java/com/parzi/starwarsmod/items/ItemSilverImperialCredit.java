@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemSilverImperialCredit extends Item
 {
-	private String name = "silverImperialCredit";
+	public String name = "silverImperialCredit";
 
 	public ItemSilverImperialCredit()
 	{

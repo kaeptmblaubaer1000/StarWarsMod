@@ -20,7 +20,7 @@ public class BlockTatooineSandstone extends Block
 {
 	public static final String[] field_150157_a = { "default", "chiseled", "smooth" };
 	private static final String[] field_150156_b = { "normal", "carved", "smooth" };
-	private String name = "tatooineSandstone";
+	public String name = "tatooineSandstone";
 	private int subtypes = 3;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;

@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemImperialCredit extends Item
 {
-	private String name = "imperialCredit";
+	public String name = "imperialCredit";
 
 	public ItemImperialCredit()
 	{

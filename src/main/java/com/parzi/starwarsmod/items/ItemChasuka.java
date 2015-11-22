@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemChasuka extends ItemFood
 {
-	private String name = "chasuka";
+	public String name = "chasuka";
 
 	public ItemChasuka()
 	{

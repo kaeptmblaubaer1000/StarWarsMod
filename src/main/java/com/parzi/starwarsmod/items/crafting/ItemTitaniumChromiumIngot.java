@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemTitaniumChromiumIngot extends Item
 {
-	private String name = "titaniumChromiumIngot";
+	public String name = "titaniumChromiumIngot";
 
 	public ItemTitaniumChromiumIngot()
 	{

@@ -10,7 +10,7 @@ import com.parzi.starwarsmod.mobs.MobDroidTreadwell;
 
 public class ItemSpawnTreadwell extends Item
 {
-	private String name = "spawnTreadwell";
+	public String name = "spawnTreadwell";
 
 	public ItemSpawnTreadwell()
 	{

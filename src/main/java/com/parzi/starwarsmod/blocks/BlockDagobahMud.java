@@ -11,7 +11,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockDagobahMud extends Block
 {
-	private String name = "dagobahMud";
+	public String name = "dagobahMud";
 
 	public BlockDagobahMud()
 	{

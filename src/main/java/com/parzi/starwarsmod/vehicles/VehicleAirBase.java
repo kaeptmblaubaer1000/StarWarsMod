@@ -27,6 +27,7 @@ public class VehicleAirBase extends EntityCreature
 	public float moveModifier = 1.0F;
 	public float frame = 0.0F;
 	public float rotationLast = 0.0F;
+	public float rotationPitchLast = 0.0F;
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
@@ -91,14 +92,14 @@ public class VehicleAirBase extends EntityCreature
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
-			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
+			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
 
-			this.prevRotationYaw = this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
-			this.prevRotationPitch = this.rotationPitch = ((EntityPlayer)this.riddenByEntity).rotationPitch;
+			this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.rotationPitchLast = this.rotationPitch = ((EntityPlayer)this.riddenByEntity).rotationPitch;
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90));
+			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
 			float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
 			float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
@@ -109,7 +110,7 @@ public class VehicleAirBase extends EntityCreature
 			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 			if (!this.worldObj.isRemote)
 			{
-				this.setAIMoveSpeed(p_70612_2_);
+				//this.setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 			}
 		}
@@ -124,9 +125,9 @@ public class VehicleAirBase extends EntityCreature
 	public void onUpdate()
 	{
 		super.onUpdate();
+		//this.updateRiderPosition();
 		this.moveEntityWithHeading(0.0F, 0.0F);
-		// this.setRotation(this.rotationLast, this.rotationPitch);
-		this.frame += 0.1F;
+		this.setRotation(this.rotationLast, this.rotationPitchLast);
 	}
 
 	@Override

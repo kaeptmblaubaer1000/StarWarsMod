@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlasterHeavy extends Item
 {
-	private String name = "blasterHeavy";
+	public String name = "blasterHeavy";
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 10;
 	public String[] versions = { "Dlt19", "T21", "Rt97c" };

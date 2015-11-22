@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemPlasmaEmitter extends Item
 {
-	private String name = "plasmaEmitter";
+	public String name = "plasmaEmitter";
 
 	public ItemPlasmaEmitter()
 	{

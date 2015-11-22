@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlasterPistol extends Item
 {
-	private String name = "blasterPistol";
+	public String name = "blasterPistol";
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 6;
 	public String[] versions = { "Dl44", "Dl18", "Dh17", "Sporting", "Dl21", "Scout", "Se14c" };

@@ -80,7 +80,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.vehicles.ItemSpawnFlyingSpeederBike;
+import com.parzi.starwarsmod.vehicles.ItemSpawnTIE;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
@@ -96,9 +96,9 @@ public class ItemRegister
 		{
 			StarWarsMod.debugLootGen = new ItemDebugLootGen();
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
-			
-			StarWarsMod.spawnFlyingSpeederBike = new ItemSpawnFlyingSpeederBike();
-			GameRegistry.registerItem(StarWarsMod.spawnFlyingSpeederBike, "spawnFlyingSpeederBike");
+
+			StarWarsMod.spawnTie = new ItemSpawnTIE();
+			GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");
 		}
 
 		if (StarWarsMod.IS_SEQUEL_RELEASE)

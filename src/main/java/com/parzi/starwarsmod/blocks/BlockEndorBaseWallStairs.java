@@ -7,7 +7,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockEndorBaseWallStairs extends BlockStairs
 {
-	private String name = "endorBaseWallStairs";
+	public String name = "endorBaseWallStairs";
 
 	public BlockEndorBaseWallStairs()
 	{

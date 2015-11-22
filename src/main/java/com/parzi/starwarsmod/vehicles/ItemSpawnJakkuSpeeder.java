@@ -8,7 +8,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemSpawnJakkuSpeeder extends net.minecraft.item.Item
 {
-	private String name = "spawnJakkuSpeeder";
+	public String name = "spawnJakkuSpeeder";
 
 	public ItemSpawnJakkuSpeeder()
 	{

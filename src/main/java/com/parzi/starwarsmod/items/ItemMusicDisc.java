@@ -23,7 +23,7 @@ public class ItemMusicDisc extends ItemRecord
 		return (ItemMusicDisc)records.get(par0Str);
 	}
 
-	private String name = "musicDisc";
+	public String name = "musicDisc";
 	public final String field_150929_a;
 
 	public ItemMusicDisc(String songName)

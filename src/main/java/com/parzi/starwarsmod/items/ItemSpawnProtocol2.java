@@ -9,7 +9,7 @@ import com.parzi.starwarsmod.mobs.MobDroidProtocol2;
 
 public class ItemSpawnProtocol2 extends net.minecraft.item.Item
 {
-	private String name = "spawnProtocol2";
+	public String name = "spawnProtocol2";
 
 	public ItemSpawnProtocol2()
 	{

@@ -18,7 +18,7 @@ import com.parzi.starwarsmod.utils.TextUtils;
 
 public class ItemWookieeBowcaster extends Item
 {
-	private String name = "bowcaster";
+	public String name = "bowcaster";
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 8;
 

@@ -29,7 +29,7 @@ import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.vehicles.VehicFlyingSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
@@ -66,7 +66,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidTreadwell.class, "droidTreadwell");
 		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
-		EntityUtils.registerEntity(VehicFlyingSpeederBike.class, "flyingSpeederBike");
+		EntityUtils.registerEntity(VehicTIE.class, "tie");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
 		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuSpeeder");

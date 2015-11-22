@@ -8,7 +8,7 @@ import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockSpaceLamp extends Block
 {
-	private String name = "spaceLamp";
+	public String name = "spaceLamp";
 
 	public BlockSpaceLamp()
 	{

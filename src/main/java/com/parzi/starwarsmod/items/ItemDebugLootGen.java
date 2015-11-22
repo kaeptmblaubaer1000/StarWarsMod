@@ -12,7 +12,7 @@ import com.parzi.starwarsmod.utils.LootGenUtils;
 
 public class ItemDebugLootGen extends Item
 {
-	private String name = "debugLootGen";
+	public String name = "debugLootGen";
 
 	public ItemDebugLootGen()
 	{

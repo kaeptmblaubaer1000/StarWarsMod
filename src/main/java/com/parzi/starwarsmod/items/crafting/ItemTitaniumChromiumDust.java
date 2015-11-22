@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemTitaniumChromiumDust extends Item
 {
-	private String name = "titaniumChromiumDust";
+	public String name = "titaniumChromiumDust";
 
 	public ItemTitaniumChromiumDust()
 	{

@@ -50,7 +50,7 @@ public class ItemBinoculars extends Item
 		return stack;
 	}
 
-	private String name = "binoculars";
+	public String name = "binoculars";
 
 	public ItemBinoculars(String type)
 	{

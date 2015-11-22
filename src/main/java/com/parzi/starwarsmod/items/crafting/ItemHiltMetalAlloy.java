@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemHiltMetalAlloy extends Item
 {
-	private String name = "hiltMetalAlloy";
+	public String name = "hiltMetalAlloy";
 
 	public ItemHiltMetalAlloy()
 	{

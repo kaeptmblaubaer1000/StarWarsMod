@@ -33,7 +33,7 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 	public static int chanceElement = 100;
 	public static Block[] plantMatter = { Blocks.dirt, Blocks.grass, Blocks.leaves, Blocks.farmland };
 	public static Block[] earthMatter = { Blocks.stone, Blocks.gravel, Blocks.coal_ore, Blocks.diamond_ore, Blocks.emerald_ore, Blocks.gold_ore, Blocks.iron_ore, Blocks.lapis_ore, Blocks.redstone_ore };
-	private String name = "lightJediRobes";
+	public String name = "lightJediRobes";
 	public PowerBase[] powers = { new ForceStep(), new ForceStride(), new ForceResist(), new ForceFeed() };
 	private IIcon halo;
 	private IIcon icon;

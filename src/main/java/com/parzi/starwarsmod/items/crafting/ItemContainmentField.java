@@ -6,7 +6,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemContainmentField extends Item
 {
-	private String name = "containmentField";
+	public String name = "containmentField";
 
 	public ItemContainmentField()
 	{

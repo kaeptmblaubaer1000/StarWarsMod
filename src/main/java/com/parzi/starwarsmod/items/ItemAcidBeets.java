@@ -10,7 +10,7 @@ import com.parzi.starwarsmod.utils.PotionList;
 
 public class ItemAcidBeets extends ItemFood
 {
-	private String name = "acidBeets";
+	public String name = "acidBeets";
 
 	public ItemAcidBeets()
 	{

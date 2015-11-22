@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.utils.TextUtils;
 
 public class ItemHyperdriveTatooine extends Item
 {
-	private String name = "hyperdriveTatooine";
+	public String name = "hyperdriveTatooine";
 
 	public ItemHyperdriveTatooine()
 	{
