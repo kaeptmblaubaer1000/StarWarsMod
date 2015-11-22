@@ -94,16 +94,16 @@ public class VehicleAirBase extends EntityCreature
 			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
 
 			this.prevRotationYaw = this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
-			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
+			this.prevRotationPitch = this.rotationPitch = ((EntityPlayer)this.riddenByEntity).rotationPitch;
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F);
+			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90));
 
 			float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
 			float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
-			this.motionX += -0.4F * f2 * p_70612_2_;
-			this.motionZ += 0.4F * f3 * p_70612_2_;
+			this.motionX += (-0.4F * f2 * p_70612_2_);
+			this.motionZ += (0.4F * f3 * p_70612_2_);
 
 			this.stepHeight = 1.0F;
 			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
@@ -125,7 +125,7 @@ public class VehicleAirBase extends EntityCreature
 	{
 		super.onUpdate();
 		this.moveEntityWithHeading(0.0F, 0.0F);
-        this.setRotation(this.rotationLast , this.rotationPitch);
+		// this.setRotation(this.rotationLast, this.rotationPitch);
 		this.frame += 0.1F;
 	}
 
