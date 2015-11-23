@@ -31,6 +31,7 @@ import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -59,6 +60,9 @@ public class StarWarsEventHandler
 
 		if (fovUpdateEvent.entity.ridingEntity instanceof VehicTIE && !StarWarsMod.renderHelper.isFirstPerson())
 			fovUpdateEvent.newfov = fovUpdateEvent.fov * 10;
+		
+		if (fovUpdateEvent.entity.ridingEntity instanceof VehicleAirBase)
+			StarWarsMod.renderHelper.setCameraMode(1);
 	}
 
 	@SubscribeEvent

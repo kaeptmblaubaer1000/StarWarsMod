@@ -33,4 +33,12 @@ public class RenderHelper
 	{
 		return this.mc.gameSettings.thirdPersonView == 0;
 	}
+
+	/**
+	 * Sets the camera mode
+	 */
+	public void setCameraMode(int mode)
+	{
+		this.mc.gameSettings.thirdPersonView = mode;
+	}
 }
