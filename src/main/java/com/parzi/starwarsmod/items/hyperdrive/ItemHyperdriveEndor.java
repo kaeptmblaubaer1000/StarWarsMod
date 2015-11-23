@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 public class ItemHyperdriveEndor extends Item
@@ -32,10 +33,18 @@ public class ItemHyperdriveEndor extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (player.isSneaking() && player.dimension != StarWarsMod.dimEndorId)
+		try
 		{
-			player.timeUntilPortal = 20;
-			StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimEndorId));
+			if (player.isSneaking() && player.dimension != StarWarsMod.dimEndorId)
+			{
+				player.timeUntilPortal = 20;
+				StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimEndorId));
+			}
+		}
+		catch (Exception e)
+		{
+			Lumberjack.log("Something went wrong @ hyperdrive.java:34");
+			e.printStackTrace();
 		}
 		return stack;
 	}

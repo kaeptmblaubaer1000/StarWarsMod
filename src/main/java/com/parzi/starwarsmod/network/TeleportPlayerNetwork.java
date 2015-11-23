@@ -21,13 +21,13 @@ public class TeleportPlayerNetwork implements IMessage
 			try
 			{
 				new TransferDim(MinecraftServer.getServer().worldServerForDimension(message.newDim)).teleport(MinecraftServer.getServer().worldServerForDimension(message.oldDim).getPlayerEntityByName(message.player));
+				MinecraftServer.getServer().worldServerForDimension(message.newDim).getPlayerEntityByName(message.player).setSneaking(false);
 			}
 			catch (Exception e)
 			{
 				Lumberjack.info("Something went very wrong.");
 				e.printStackTrace();
 			}
-			MinecraftServer.getServer().worldServerForDimension(message.newDim).getPlayerEntityByName(message.player).setSneaking(false);
 			return null;
 		}
 	}
