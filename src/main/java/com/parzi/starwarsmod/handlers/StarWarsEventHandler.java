@@ -31,8 +31,7 @@ import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-import com.parzi.starwarsmod.vehicles.VehicleLandBase;
+import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -92,17 +91,11 @@ public class StarWarsEventHandler
 	@SubscribeEvent
 	public void onMouseMoved(MouseEvent mouseEvent)
 	{
-		if (mc.thePlayer.ridingEntity instanceof VehicleLandBase)
+		if (mc.thePlayer.ridingEntity instanceof VehicleBase)
 		{
-			VehicleLandBase vehicle = (VehicleLandBase)mc.thePlayer.ridingEntity;
+			VehicleBase vehicle = (VehicleBase)mc.thePlayer.ridingEntity;
 
-			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = mouseEvent.dx * 2;
-		}
-		if (mc.thePlayer.ridingEntity instanceof VehicleAirBase)
-		{
-			VehicleAirBase vehicle = (VehicleAirBase)mc.thePlayer.ridingEntity;
-
-			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = mouseEvent.dx * 2;
+			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = (mouseEvent.dx * 2 > 10) ? 10 : mouseEvent.dx * 2;
 		}
 	}
 
