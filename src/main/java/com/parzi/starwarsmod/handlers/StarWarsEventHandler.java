@@ -93,9 +93,15 @@ public class StarWarsEventHandler
 	{
 		if (mc.thePlayer.ridingEntity instanceof VehicleBase)
 		{
+			int limit = 5;
+			
 			VehicleBase vehicle = (VehicleBase)mc.thePlayer.ridingEntity;
+			
+			int n = mouseEvent.dx;
+			if (n > limit) n = limit;
+			if (n < -limit) n = -limit;
 
-			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = (mouseEvent.dx > 5) ? 5 : mouseEvent.dx;
+			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = n;
 		}
 	}
 
