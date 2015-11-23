@@ -95,7 +95,7 @@ public class StarWarsEventHandler
 		{
 			VehicleBase vehicle = (VehicleBase)mc.thePlayer.ridingEntity;
 
-			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = (mouseEvent.dx * 2 > 10) ? 10 : mouseEvent.dx * 2;
+			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = (mouseEvent.dx > 5) ? 5 : mouseEvent.dx;
 		}
 	}
 
