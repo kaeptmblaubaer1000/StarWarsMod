@@ -18,9 +18,9 @@ import com.parzi.starwarsmod.utils.Lumberjack;
 
 public class VehicleAirBase extends EntityCreature
 {
-	public static int[] mouseDxOverAFewTicks = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	public static float mouseDX = 0.0F;
-	public static float mouseDY = 0.0F;
+	public int[] mouseDxOverAFewTicks = { 0, 0, 0, 0, 0, 0 };
+	public float mouseDX = 0.0F;
+	public float mouseDY= 0.0F;
 	public float vehicXOffset = 0.0F;
 	public float vehicYOffset = 0.0F;
 	public float vehicZOffset = 0.0F;
@@ -125,9 +125,18 @@ public class VehicleAirBase extends EntityCreature
 	public void onUpdate()
 	{
 		super.onUpdate();
-		//this.updateRiderPosition();
 		this.moveEntityWithHeading(0.0F, 0.0F);
 		this.setRotation(this.rotationLast, this.rotationPitchLast);
+
+		for (int i = 1; i < this.mouseDxOverAFewTicks.length; i++)
+			this.mouseDxOverAFewTicks[i - 1] = this.mouseDxOverAFewTicks[i];
+
+		this.mouseDxOverAFewTicks[this.mouseDxOverAFewTicks.length - 1] = 0;
+
+		for (int i = 0; i < this.mouseDxOverAFewTicks.length; i++)
+			this.mouseDX += this.mouseDxOverAFewTicks[i];
+
+		this.mouseDX /= this.mouseDxOverAFewTicks.length;
 	}
 
 	@Override

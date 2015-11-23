@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelTIE;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderTIE extends RenderLiving
@@ -34,6 +35,8 @@ public class RenderTIE extends RenderLiving
 			GL11.glTranslatef(0, -1F, 0);
 			GL11.glRotatef(vehicle.rotationPitch, 1.0F, 0.0F, 0.0F);
 			GL11.glTranslatef(0, 1F, 0);
+			GL11.glRotatef(-vehicle.mouseDX, 0.0F, 0.0F, 1.0F);
+			//Lumberjack.log(vehicle.rotationLast - vehicle.rotationYaw);
 		}
 	}
 }

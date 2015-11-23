@@ -30,6 +30,9 @@ import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicleAirBase;
+import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -54,14 +57,16 @@ public class StarWarsEventHandler
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
 		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && mc.gameSettings.thirdPersonView == 0) fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
+
+		if (fovUpdateEvent.entity.ridingEntity instanceof VehicTIE && !StarWarsMod.renderHelper.isFirstPerson())
+			fovUpdateEvent.newfov = fovUpdateEvent.fov * 10;
 	}
 
 	@SubscribeEvent
 	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
 	{
-		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP)
-			((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
-		
+		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP) ((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
+
 		if (logInEvent.entity instanceof EntityPlayer && logInEvent.world.provider.dimensionId == -100)
 		{
 			logInEvent.setCanceled(true);
@@ -87,6 +92,18 @@ public class StarWarsEventHandler
 	@SubscribeEvent
 	public void onMouseMoved(MouseEvent mouseEvent)
 	{
+		if (mc.thePlayer.ridingEntity instanceof VehicleLandBase)
+		{
+			VehicleLandBase vehicle = (VehicleLandBase)mc.thePlayer.ridingEntity;
+
+			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = mouseEvent.dx * 2;
+		}
+		if (mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+		{
+			VehicleAirBase vehicle = (VehicleAirBase)mc.thePlayer.ridingEntity;
+
+			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = mouseEvent.dx * 2;
+		}
 	}
 
 	@SubscribeEvent

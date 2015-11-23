@@ -34,6 +34,7 @@ public class RenderHothSpeederBike extends RenderLiving
 			float tx = (float)Math.sin(vehic.frame) * 0.005F;
 			float ty = (float)Math.cos(vehic.frame * 1.25F) * 0.005F;
 			GL11.glTranslatef(tx, ty, tx * ty);
+			GL11.glRotatef(-vehic.mouseDX, 0.0F, 0.0F, 1.0F);
 		}
 	}
 }
