@@ -14,9 +14,9 @@ import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderTIE extends RenderLiving
 {
-	public RenderTIE(ModelTIE modelSpeederBike, float par2)
+	public RenderTIE(ModelTIE model, float par2)
 	{
-		super(modelSpeederBike, par2);
+		super(model, par2);
 	}
 
 	@Override
