@@ -2,23 +2,6 @@ package com.parzi.starwarsmod.handlers;
 
 import java.util.Arrays;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
@@ -26,19 +9,40 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.utils.FakeClientPlayer;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.MouseEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 
 public class StarWarsEventHandler
 {
 	public static Minecraft mc = Minecraft.getMinecraft();
+	public static FakeClientPlayer fakePlayer;
 
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
@@ -53,16 +57,45 @@ public class StarWarsEventHandler
 	}
 
 	@SubscribeEvent
+	public void onRenderStuff(RenderLivingEvent.Pre event)
+	{
+		if (mc.thePlayer.ridingEntity instanceof VehicleAirBase) StarWarsMod.renderHelper.setCameraMode(1);
+
+		if (!StarWarsMod.renderHelper.isFirstPerson())
+		{
+			if (mc.thePlayer.ridingEntity instanceof VehicXWing || mc.thePlayer.ridingEntity instanceof VehicTIE)
+			{
+				// offset slightly so not looking at inside of player model:
+				Vec3 vec3 = mc.thePlayer.getLookVec();
+				double dx = vec3.xCoord * -10;
+				double dy = vec3.yCoord * -10;
+				double dz = vec3.zCoord * -10;
+
+				// set position and angles; note that posY is not altered but
+				// camera still correct:
+				mc.renderViewEntity.setLocationAndAngles(mc.thePlayer.posX + dx, mc.thePlayer.posY + dy, mc.thePlayer.posZ + dz, mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch);
+
+				// set previous values to prevent camera from freaking out:
+				fakePlayer.prevRotationPitch = mc.thePlayer.prevRotationPitch;
+				fakePlayer.prevRotationYaw = mc.thePlayer.prevRotationYaw;
+				fakePlayer.rotationYawHead = mc.thePlayer.rotationYawHead;
+				fakePlayer.prevPosX = mc.thePlayer.prevPosX + dx;
+				fakePlayer.prevPosY = mc.thePlayer.prevPosY + dy;
+				fakePlayer.prevPosZ = mc.thePlayer.prevPosZ + dz;
+				mc.renderViewEntity = fakePlayer;
+			}
+			else
+			{
+				mc.renderViewEntity = mc.thePlayer;
+			}
+		}
+	}
+
+	@SubscribeEvent
 	public void onFOVCheck(FOVUpdateEvent fovUpdateEvent)
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
 		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && mc.gameSettings.thirdPersonView == 0) fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
-
-		if (fovUpdateEvent.entity.ridingEntity instanceof VehicTIE && !StarWarsMod.renderHelper.isFirstPerson())
-			fovUpdateEvent.newfov = fovUpdateEvent.fov * 10;
-		
-		if (fovUpdateEvent.entity.ridingEntity instanceof VehicleAirBase)
-			StarWarsMod.renderHelper.setCameraMode(1);
 	}
 
 	@SubscribeEvent
@@ -70,9 +103,11 @@ public class StarWarsEventHandler
 	{
 		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP) ((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
 
-		if (logInEvent.entity instanceof EntityPlayer && logInEvent.world.provider.dimensionId == -100)
+		if (logInEvent.entity instanceof EntityPlayer)
 		{
-			logInEvent.setCanceled(true);
+			fakePlayer = new FakeClientPlayer(logInEvent.world);
+			if (logInEvent.world.provider.dimensionId == -100)
+				logInEvent.setCanceled(true);
 		}
 	}
 
@@ -98,9 +133,9 @@ public class StarWarsEventHandler
 		if (mc.thePlayer.ridingEntity instanceof VehicleBase)
 		{
 			int limit = 5;
-			
+
 			VehicleBase vehicle = (VehicleBase)mc.thePlayer.ridingEntity;
-			
+
 			int n = mouseEvent.dx;
 			if (n > limit) n = limit;
 			if (n < -limit) n = -limit;
