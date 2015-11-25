@@ -1,9 +1,7 @@
 package com.parzi.starwarsmod.handlers;
 
 import java.util.Arrays;
-import java.util.UUID;
 
-import com.mojang.authlib.GameProfile;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
@@ -11,6 +9,7 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.utils.FakeClientPlayer;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -25,7 +24,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -36,19 +34,15 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.common.util.FakePlayer;
-import net.minecraftforge.common.util.FakePlayerFactory;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.WorldEvent;
 
 public class StarWarsEventHandler
 {
 	public static Minecraft mc = Minecraft.getMinecraft();
-	public static MinecraftServer mcServer = MinecraftServer.getServer();
-	public static FakePlayer fakePlayer;
+	public static FakeClientPlayer fakePlayer;
 
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
@@ -69,7 +63,6 @@ public class StarWarsEventHandler
 
 		if (!StarWarsMod.renderHelper.isFirstPerson() && (mc.thePlayer.ridingEntity instanceof VehicXWing || mc.thePlayer.ridingEntity instanceof VehicTIE))
 		{
-			if (fakePlayer == null) fakePlayer = FakePlayerFactory.get(mcServer.worldServerForDimension(mc.thePlayer.worldObj.provider.dimensionId), new GameProfile(UUID.randomUUID(), "cameraEvent"));
 			// offset slightly so not looking at inside of player model:
 			Vec3 vec3 = mc.thePlayer.getLookVec();
 			double dx = vec3.xCoord * -10;
@@ -87,22 +80,16 @@ public class StarWarsEventHandler
 			fakePlayer.prevPosX = mc.thePlayer.prevPosX + dx;
 			fakePlayer.prevPosY = mc.thePlayer.prevPosY + dy;
 			fakePlayer.prevPosZ = mc.thePlayer.prevPosZ + dz;
-
+			
 			fakePlayer.prevCameraPitch = mc.thePlayer.prevCameraPitch;
 			fakePlayer.prevRenderYawOffset = mc.thePlayer.prevRenderYawOffset;
-
+			
 			mc.renderViewEntity = fakePlayer;
 		}
 		else
 		{
 			mc.renderViewEntity = mc.thePlayer;
 		}
-	}
-	
-	@SubscribeEvent
-	public void onWorldUnload(WorldEvent.Unload worldUnloadEvent)
-	{
-		fakePlayer = null;
 	}
 
 	@SubscribeEvent
@@ -119,6 +106,7 @@ public class StarWarsEventHandler
 
 		if (logInEvent.entity instanceof EntityPlayer)
 		{
+			fakePlayer = new FakeClientPlayer(logInEvent.world);
 			if (logInEvent.world.provider.dimensionId == -100) logInEvent.setCanceled(true);
 		}
 	}
