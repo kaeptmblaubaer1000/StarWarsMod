@@ -63,4 +63,14 @@ public class VehicleAirBase extends VehicleBase
 			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		}
 	}
+	
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		if ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ)
+		{
+			this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
+		}
+	}
 }

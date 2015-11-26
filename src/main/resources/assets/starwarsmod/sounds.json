@@ -11,6 +11,18 @@
             "vehicle/landspeeder/move"
         ]
     },
+    "vehicle.tie.move": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/tie/move"
+        ]
+    },
+    "vehicle.xwing.move": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/xwing/move"
+        ]
+    },
     "mob.ewok.say": {
         "category": "neutral",
         "sounds": [
