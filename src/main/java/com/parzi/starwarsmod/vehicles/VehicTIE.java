@@ -14,7 +14,7 @@ public class VehicTIE extends VehicleAirBase
 		this.setSize(3.0F, 7.0F);
 		this.vehicYOffset = -3F;
 		this.moveModifier = 1.75F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
 	}
 
 	@Override
