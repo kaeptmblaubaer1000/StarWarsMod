@@ -25,8 +25,7 @@ import com.parzi.starwarsmod.items.ItemBanthaMilk;
 import com.parzi.starwarsmod.items.ItemBanthaPlatter;
 import com.parzi.starwarsmod.items.ItemBinocularsHoth;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
-import com.parzi.starwarsmod.items.ItemBlasterBolt;
-import com.parzi.starwarsmod.items.ItemBlasterRifleBolt;
+import com.parzi.starwarsmod.items.ItemBolt;
 import com.parzi.starwarsmod.items.ItemCanron;
 import com.parzi.starwarsmod.items.ItemChasuka;
 import com.parzi.starwarsmod.items.ItemDebugLootGen;
@@ -174,10 +173,16 @@ public class ItemRegister
 		StarWarsMod.lightsaberCrystal = new ItemLightsaberCrystal();
 		GameRegistry.registerItem(StarWarsMod.lightsaberCrystal, "lightsaberCrystal");
 
-		StarWarsMod.blasterBolt = new ItemBlasterBolt();
+		StarWarsMod.blasterTIEBolt = new ItemBolt("blasterTIEBolt");
+		GameRegistry.registerItem(StarWarsMod.blasterTIEBolt, "blasterTIEBolt");
+		
+		StarWarsMod.blasterXWingBolt = new ItemBolt("blasterXWingBolt");
+		GameRegistry.registerItem(StarWarsMod.blasterXWingBolt, "blasterXWingBolt");
+		
+		StarWarsMod.blasterBolt = new ItemBolt("blasterBolt");
 		GameRegistry.registerItem(StarWarsMod.blasterBolt, "blasterBolt");
 
-		StarWarsMod.blasterRifleBolt = new ItemBlasterRifleBolt();
+		StarWarsMod.blasterRifleBolt = new ItemBolt("blasterRifleBolt");
 		GameRegistry.registerItem(StarWarsMod.blasterRifleBolt, "blasterRifleBolt");
 
 		StarWarsMod.ewokSpear = new ItemEwokSpear();

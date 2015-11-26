@@ -114,6 +114,8 @@ public class StarWarsMod
 	public static Item hiltMetelAlloy;
 	public static Item plasmaEmitter;
 	public static Item containmentField;
+	public static Item blasterXWingBolt;
+	public static Item blasterTIEBolt;
 	public static Item blasterBolt;
 	public static Item blasterRifleBolt;
 	public static Item banthaHorn;

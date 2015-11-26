@@ -10,6 +10,7 @@ import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
 import com.parzi.starwarsmod.handlers.StarWarsEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
@@ -175,6 +176,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterProbeBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpeederBlasterRifleBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
 		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(StarWarsMod.blasterTIEBolt));
+		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, new RenderBlasterBolt(StarWarsMod.blasterXWingBolt));
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaberOff());

@@ -17,6 +17,12 @@
             "vehicle/tie/move"
         ]
     },
+    "vehicle.tie.fire": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/tie/fire1"
+        ]
+    },
     "vehicle.xwing.move": {
         "category": "neutral",
         "sounds": [
