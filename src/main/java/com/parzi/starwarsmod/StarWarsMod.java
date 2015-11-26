@@ -37,7 +37,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
-import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
+import com.parzi.starwarsmod.network.CreateBlasterBolt;
 import com.parzi.starwarsmod.network.JediRobesBuy;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
@@ -387,7 +387,7 @@ public class StarWarsMod
 		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class, 0, Side.SERVER);
 		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
 		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
-		network.registerMessage(CreateBlasterBoltSpeeder.Handler.class, CreateBlasterBoltSpeeder.class, 3, Side.SERVER);
+		network.registerMessage(CreateBlasterBolt.Handler.class, CreateBlasterBolt.class, 3, Side.SERVER);
 		network.registerMessage(TogglePlayerLightsaber.Handler.class, TogglePlayerLightsaber.class, 4, Side.SERVER);
 		network.registerMessage(TogglePlayerSequelLightsaber.Handler.class, TogglePlayerSequelLightsaber.class, 5, Side.SERVER);
 

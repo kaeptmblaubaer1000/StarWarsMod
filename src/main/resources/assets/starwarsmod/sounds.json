@@ -23,6 +23,12 @@
             "vehicle/xwing/move"
         ]
     },
+    "vehicle.xwing.fire": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/xwing/fire1"
+        ]
+    },
     "mob.ewok.say": {
         "category": "neutral",
         "sounds": [
