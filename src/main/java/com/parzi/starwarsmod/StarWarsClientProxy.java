@@ -93,6 +93,7 @@ import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PGui;
+import com.parzi.starwarsmod.utils.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -114,7 +115,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
-
+		
+		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
 		{

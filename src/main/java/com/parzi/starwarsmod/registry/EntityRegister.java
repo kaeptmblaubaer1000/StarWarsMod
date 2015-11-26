@@ -5,6 +5,7 @@ import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntityCameraFollow;
 import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
@@ -78,6 +79,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
 		EntityUtils.registerEntity(EntityBlasterProbeBolt.class, "blasterProbeBolt");
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
+		EntityUtils.registerEntity(EntityCameraFollow.class, "cameraFollow");
 		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
 		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
 		EntityRegistry.addSpawn(MobJawa.class, 30, 1, 5, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });

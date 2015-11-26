@@ -5,21 +5,23 @@ import java.util.Arrays;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
+import com.parzi.starwarsmod.entities.EntityCameraFollow;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBoltSpeeder;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
-import com.parzi.starwarsmod.utils.FakeClientPlayer;
+import com.parzi.starwarsmod.utils.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicTIE;
-import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,22 +29,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 
 public class StarWarsEventHandler
 {
 	public static Minecraft mc = Minecraft.getMinecraft();
-	public static FakeClientPlayer fakePlayer;
 
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
@@ -57,38 +57,17 @@ public class StarWarsEventHandler
 	}
 
 	@SubscribeEvent
-	public void onRenderStuff(RenderLivingEvent.Pre event)
+	public void onRender(RenderGameOverlayEvent event)
 	{
-		if (mc.thePlayer.ridingEntity instanceof VehicleAirBase) StarWarsMod.renderHelper.setCameraMode(1);
-
-		if (!StarWarsMod.renderHelper.isFirstPerson() && (mc.thePlayer.ridingEntity instanceof VehicXWing || mc.thePlayer.ridingEntity instanceof VehicTIE))
+		if (mc.thePlayer != null && mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 		{
-			// offset slightly so not looking at inside of player model:
-			Vec3 vec3 = mc.thePlayer.getLookVec();
-			double dx = vec3.xCoord * -10;
-			double dy = vec3.yCoord * -10;
-			double dz = vec3.zCoord * -10;
+			StarWarsMod.renderHelper.setCameraMode(1);
 
-			// set position and angles; note that posY is not altered but
-			// camera still correct:
-			mc.renderViewEntity.setLocationAndAngles(mc.thePlayer.posX + dx, mc.thePlayer.posY + dy, mc.thePlayer.posZ + dz, mc.thePlayer.rotationYaw, mc.thePlayer.rotationPitch);
-
-			// set previous values to prevent camera from freaking out:
-			fakePlayer.prevRotationPitch = mc.thePlayer.prevRotationPitch;
-			fakePlayer.prevRotationYaw = mc.thePlayer.prevRotationYaw;
-			fakePlayer.rotationYawHead = mc.thePlayer.rotationYawHead;
-			fakePlayer.prevPosX = mc.thePlayer.prevPosX + dx;
-			fakePlayer.prevPosY = mc.thePlayer.prevPosY + dy;
-			fakePlayer.prevPosZ = mc.thePlayer.prevPosZ + dz;
-			
-			fakePlayer.prevCameraPitch = mc.thePlayer.prevCameraPitch;
-			fakePlayer.prevRenderYawOffset = mc.thePlayer.prevRenderYawOffset;
-			
-			mc.renderViewEntity = fakePlayer;
+			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
 		}
 		else
 		{
-			mc.renderViewEntity = mc.thePlayer;
+			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 		}
 	}
 
@@ -106,7 +85,6 @@ public class StarWarsEventHandler
 
 		if (logInEvent.entity instanceof EntityPlayer)
 		{
-			fakePlayer = new FakeClientPlayer(logInEvent.world);
 			if (logInEvent.world.provider.dimensionId == -100) logInEvent.setCanceled(true);
 		}
 	}

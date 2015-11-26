@@ -23,6 +23,12 @@ public class VehicleAirBase extends VehicleBase
 	{
 		super(p_i1689_1_);
 	}
+	
+	@Override
+	public boolean canBePushed()
+	{
+		return false;
+	}
 
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
