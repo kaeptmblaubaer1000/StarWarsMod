@@ -31,11 +31,13 @@ import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
@@ -70,7 +72,9 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
 		EntityUtils.registerEntity(VehicTIE.class, "tie");
+		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieInterceptor");
 		EntityUtils.registerEntity(VehicXWing.class, "xwing");
+		EntityUtils.registerEntity(VehicAWing.class, "awing");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
 		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuSpeeder");

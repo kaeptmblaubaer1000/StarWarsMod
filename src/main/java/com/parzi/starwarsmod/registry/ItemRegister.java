@@ -79,11 +79,13 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.starwarsmod.vehicles.ItemSpawnAWing;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnLandspeeder;
 import com.parzi.starwarsmod.vehicles.ItemSpawnSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnTIE;
+import com.parzi.starwarsmod.vehicles.ItemSpawnTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.ItemSpawnXWing;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -99,9 +101,15 @@ public class ItemRegister
 
 			StarWarsMod.spawnTie = new ItemSpawnTIE();
 			GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");
+
+			StarWarsMod.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
+			GameRegistry.registerItem(StarWarsMod.spawnTieInterceptor, "spawnTIEInterceptor");
 			
 			StarWarsMod.spawnXwing = new ItemSpawnXWing();
 			GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
+
+			StarWarsMod.spawnAwing = new ItemSpawnAWing();
+			GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
 		}
 
 		if (StarWarsMod.IS_SEQUEL_RELEASE)

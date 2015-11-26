@@ -1,10 +1,5 @@
 package com.parzi.starwarsmod;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
@@ -80,16 +75,20 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelSmallBiped;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelTauntaun;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelWookiee;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelAWing;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelJakkuSpeeder;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelLandspeeder;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelTIE;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelTIEInterceptor;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
+import com.parzi.starwarsmod.rendering.vehicles.RenderAWing;
 import com.parzi.starwarsmod.rendering.vehicles.RenderHothSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
+import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityTable;
@@ -98,16 +97,22 @@ import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
+import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicLandspeeder;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -166,7 +171,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, new RenderTIE(new ModelTIE(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, new RenderTIEInterceptor(new ModelTIEInterceptor(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, new RenderXWing(new ModelXWing(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, new RenderAWing(new ModelAWing(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 
