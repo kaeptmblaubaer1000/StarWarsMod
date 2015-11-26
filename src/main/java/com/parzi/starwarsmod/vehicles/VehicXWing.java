@@ -13,7 +13,7 @@ public class VehicXWing extends VehicleAirBase
 		super(par1World);
 		this.setSize(3.0F, 7.0F);
 		this.vehicYOffset = -3F;
-		this.moveModifier = 1F;
+		this.moveModifier = 1.3F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
 	}
 

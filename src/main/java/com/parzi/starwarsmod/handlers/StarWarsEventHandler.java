@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.handlers;
 
+import java.awt.Event;
 import java.util.Arrays;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -33,6 +34,7 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -55,13 +57,15 @@ public class StarWarsEventHandler
 	}
 
 	@SubscribeEvent
-	public void onRender(RenderGameOverlayEvent event)
+	public void onRender(RenderLivingEvent.Pre event)
 	{
 		if (mc.thePlayer != null && mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 		{
 			StarWarsMod.renderHelper.setCameraMode(1);
 
 			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
+			
+			event.setCanceled(event.entity == mc.thePlayer);
 		}
 		else
 		{
