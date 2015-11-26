@@ -23,6 +23,12 @@
             "vehicle/tie/fire1"
         ]
     },
+    "vehicle.tie.die": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/tie/explode"
+        ]
+    },
     "vehicle.xwing.move": {
         "category": "neutral",
         "sounds": [
@@ -33,6 +39,12 @@
         "category": "neutral",
         "sounds": [
             "vehicle/xwing/fire1"
+        ]
+    },
+    "vehicle.xwing.die": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/xwing/explode"
         ]
     },
     "mob.ewok.say": {
