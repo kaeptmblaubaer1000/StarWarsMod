@@ -9,9 +9,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -60,10 +62,36 @@ public class VehicleAirBase extends VehicleBase
 		}
 		else
 		{
-			this.motionY = 0;
 			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		}
 	}
+	
+	@Override
+	public void fall(float p_70069_1_)
+    {
+        p_70069_1_ = ForgeHooks.onLivingFall(this, p_70069_1_);
+        if (p_70069_1_ <= 0) return;
+        super.fall(p_70069_1_);
+        PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
+        float f1 = potioneffect != null ? (float)(potioneffect.getAmplifier() + 1) : 0.0F;
+        int i = MathHelper.ceiling_float_int(p_70069_1_ - 3.0F - f1);
+
+        if (i > 0)
+        {
+            this.playSound(this.func_146067_o(i), 1.0F, 1.0F);
+            this.attackEntityFrom(DamageSource.fall, (float)i);
+            int j = MathHelper.floor_double(this.posX);
+            int k = MathHelper.floor_double(this.posY - 0.20000000298023224D - (double)this.yOffset);
+            int l = MathHelper.floor_double(this.posZ);
+            Block block = this.worldObj.getBlock(j, k, l);
+
+            if (block.getMaterial() != Material.air)
+            {
+                Block.SoundType soundtype = block.stepSound;
+                this.playSound(soundtype.getStepResourcePath(), soundtype.getVolume() * 0.5F, soundtype.getPitch() * 0.75F);
+            }
+        }
+    }
 
 	@Override
 	public void onDeathUpdate()
