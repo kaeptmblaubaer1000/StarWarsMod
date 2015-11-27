@@ -43,6 +43,8 @@ import net.minecraftforge.event.world.BlockEvent;
 
 public class StarWarsEventHandler
 {
+	private static final ResourceLocation xwingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing.png");
+
 	public static Minecraft mc = Minecraft.getMinecraft();
 
 	@SubscribeEvent
@@ -62,11 +64,18 @@ public class StarWarsEventHandler
 	{
 		if (mc.thePlayer != null && mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 		{
-			StarWarsMod.renderHelper.setCameraMode(1);
+			if (StarWarsMod.renderHelper.isFirstPerson())
+			{
+				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 
-			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
-			
-			event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
+				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
+			}
+			else
+			{
+				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
+
+				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
+			}
 		}
 		else
 		{
@@ -153,15 +162,20 @@ public class StarWarsEventHandler
 	{
 		StarWarsMod.isOverlayOnscreen = false;
 		ItemStack item = StarWarsMod.playerHelper.getHeldItem();
-		if (item != null && StarWarsMod.renderHelper.isFirstPerson()) if (item.getItem() instanceof ItemBinoculars && ItemBinoculars.getEnabled(item))
+		if (StarWarsMod.renderHelper.isFirstPerson())
 		{
-			StarWarsMod.isOverlayOnscreen = ItemBinoculars.getEnabled(item);
-			ResourceLocation guiTexture;
-			if (item.getItem() instanceof ItemBinocularsTatooine)
-				guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
-			else
-				guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
-			StarWarsMod.pgui.renderOverlay(guiTexture);
+			if (item != null && item.getItem() instanceof ItemBinoculars && ItemBinoculars.getEnabled(item))
+			{
+				StarWarsMod.isOverlayOnscreen = ItemBinoculars.getEnabled(item);
+				ResourceLocation guiTexture;
+				if (item.getItem() instanceof ItemBinocularsTatooine)
+					guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
+				else
+					guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
+				StarWarsMod.pgui.renderOverlay(guiTexture);
+			}
+			if (mc.thePlayer.ridingEntity instanceof VehicXWing)
+				StarWarsMod.pgui.renderOverlay(xwingOverlay);
 		}
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
