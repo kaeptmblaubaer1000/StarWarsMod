@@ -22,6 +22,7 @@ item.starwarsmod.waterDroplet.name=Water Droplet
 
 // Tools
 item.starwarsmod.droidCaller.name=Droid Caller
+item.starwarsmod.droidHacker.name=Droid Hacker
 item.starwarsmod.binocularsHoth.name=TD2.3 Electrobinoculars
 item.starwarsmod.binocularsTatooine.name=MB450 Macrobinoculars
 
@@ -104,10 +105,18 @@ entity.starwarsmod.droidProbe.name=Viper Probe Droid
 item.starwarsmod.spawnHothSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnLandspeeder.name=X-34 Landspeeder
+item.starwarsmod.spawnTIE.name=TIE/LN Starfighter
+item.starwarsmod.spawnTIEInterceptor.name=TIE/IN Interceptor
+item.starwarsmod.spawnXwing.name=T-65 X-Wing Starfighter
+item.starwarsmod.spawnAwing.name=RZ-1 A-Wing Interceptor
 
 // Vehicles
 entity.starwarsmod.speederBike.name=74-Z Speeder Bike
 entity.starwarsmod.landspeeder.name=X-34 Landspeeder
+entity.starwarsmod.tie.name=TIE/LN Starfighter
+entity.starwarsmod.tieInterceptor.name=TIE/IN Interceptor
+entity.starwarsmod.xwing.name=T-65 X-Wing Starfighter
+entity.starwarsmod.awing.name=RZ-1 A-Wing Interceptor
 
 // Blocks
 tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
@@ -119,6 +128,7 @@ tile.starwarsmod.endorBaseWallStairs.name=Endor Base Wall Stairs
 tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
 tile.starwarsmod.spaceLamp.name=Space Lamp
 tile.starwarsmod.tatooineSandstone.name=Tatooine Sandstone
+tile.starwarsmod.table.name=Table
 
 // Armor
 item.starwarsmod.jediRobes.name=Jedi Robes
@@ -165,6 +175,11 @@ item.starwarsmod.rebelPilotHelmet.name=Rebel Pilot Helmet
 item.starwarsmod.rebelPilotChestplate.name=Rebel Pilot Chestplate
 item.starwarsmod.rebelPilotLeggings.name=Rebel Pilot Pants
 item.starwarsmod.rebelPilotBoots.name=Rebel Pilot Boots
+
+item.starwarsmod.rebelTrooperHelmet.name=Rebel Trooper Helmet
+item.starwarsmod.rebelTrooperChestplate.name=Rebel Trooper Chestplate
+item.starwarsmod.rebelTrooperLeggings.name=Rebel Trooper Pants
+item.starwarsmod.rebelTrooperBoots.name=Rebel Trooper Boots
 
 item.starwarsmod.atatPilotHelmet.name=AT-AT Pilot Helmet
 item.starwarsmod.atatPilotChestplate.name=AT-AT Pilot Chestplate
@@ -223,11 +238,33 @@ achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!
 item.starwarsmod.sequelLightsaber.name=Lightsaber
 item.starwarsmod.sequelLightsaberOff.name=Lightsaber
 
+// Blasters
+item.starwarsmod.blasterRifle.f11d.name=F-11D Blaster Rifle
+item.starwarsmod.blasterRifle.6.name=Definitely Canon #6
+item.starwarsmod.blasterRifle.Capt.name=Captain's Rifle
+item.starwarsmod.blasterRifle.Huttsplitter.name=Huttsplitter
+item.starwarsmod.blasterRifle.Projectile.name=Projectile Rifle
+
+item.starwarsmod.blasterPistol.6.name=Definitely Canon #4
+item.starwarsmod.blasterPistol.Officer.name=Officer's Pistol
+item.starwarsmod.blasterPistol.Se44c.name=SE-44C Blaster Pistol
+item.starwarsmod.blasterPistol.Trandoshan.name=Trandoshan Tripler SoroSuub Pistol
+item.starwarsmod.blasterPistol.TrandoshanTarget.name=Trandoshan Doubler Target Pistol
+
 // Armor
 item.starwarsmod.stormtrooperHelmet_new.name=Stormtrooper Helmet
 item.starwarsmod.stormtrooperChestplate_new.name=Stormtrooper Chestplate
 item.starwarsmod.stormtrooperLeggings_new.name=Stormtrooper Leggings
 item.starwarsmod.stormtrooperBoots_new.name=Stormtrooper Boots
+
+// Vehicle Items
+item.starwarsmod.jakkuSpeeder.name=Jakku Speeder
+
+// Vehicles
+entity.starwarsmod.jakkuSpeeder.name=Jakku Speeder
+
+// Blocks
+tile.starwarsmod.dagobahMud.name=Dagobah Mud
 
 // Tabs
 itemGroup.tabStarWarsSequel=Sequel Trilogy
