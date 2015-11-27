@@ -70,7 +70,8 @@ public class VehicleAirBase extends VehicleBase
 	public void fall(float p_70069_1_)
     {
         p_70069_1_ = ForgeHooks.onLivingFall(this, p_70069_1_);
-        if (p_70069_1_ <= 0) return;
+        Lumberjack.log(this.motionY);
+        if (p_70069_1_ <= 3 || this.motionY > -0.3F) return;
         super.fall(p_70069_1_);
         PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
         float f1 = potioneffect != null ? (float)(potioneffect.getAmplifier() + 1) : 0.0F;
