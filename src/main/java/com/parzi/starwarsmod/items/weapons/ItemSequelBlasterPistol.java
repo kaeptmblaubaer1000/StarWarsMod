@@ -16,24 +16,31 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
-import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSequelBlasterRifle extends Item
+public class ItemSequelBlasterPistol extends Item
 {
-	public String name = "sequelBlasterRifle";
+	public String name = "sequelBlasterPistol";
 	private int timeSinceLastShot = 0;
-	private int timeToRecharge = 8;
-	public String[] versions = { "F11d", "6", "Capt", "Huttsplitter", "Projectile" };
+	private int timeToRecharge = 6;
+	public String[] versions = { "4", "Officer", "Se44c", "Trandoshan", "TrandoshanTarget" };
+	/*
+	 * sequelBlasterPistol_4.png
+	 * sequelBlasterPistol_Officer.png
+	 * sequelBlasterPistol_Se44c.png
+	 * sequelBlasterPistol_Trandoshan.png
+	 * sequelBlasterPistol_TrandoshanTarget.png
+	*/
 	public int subtypes = this.versions.length;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	public ItemSequelBlasterRifle()
+	public ItemSequelBlasterPistol()
 	{
 		this.setCreativeTab(StarWarsMod.SequelStarWarsTab);
 		this.setHasSubtypes(true);
@@ -56,7 +63,7 @@ public class ItemSequelBlasterRifle extends Item
 
 	public ItemStack getMeta(String string)
 	{
-		return new ItemStack(StarWarsMod.blasterRifle, 1, this.indexOfMeta(string));
+		return new ItemStack(StarWarsMod.blasterPistol, 1, this.indexOfMeta(string));
 	}
 
 	@Override
@@ -89,23 +96,24 @@ public class ItemSequelBlasterRifle extends Item
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2) if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
-		{
-			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-		}
+			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterPistol.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		else
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
-			if (par1ItemStack.getItemDamage() == 3)
-				par1ItemStack.stackTagCompound.setInteger("timeout", this.timeToRecharge + 10);
-			else
-				par1ItemStack.stackTagCompound.setInteger("timeout", this.timeToRecharge);
+			par2World.spawnEntityInWorld(new EntityBlasterPistolBolt(par2World, entityPlayer));
+			par1ItemStack.stackTagCompound.setInteger("timeout", this.timeToRecharge);
 			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0) entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 		}
 		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
 		return par1ItemStack;
+	}
+
+	@Override
+	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
+	{
+		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
 	}
 
 	@Override
@@ -116,15 +124,16 @@ public class ItemSequelBlasterRifle extends Item
 		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft")) switch (p_77663_1_.getItemDamage())
 		{
 			case 0:
-			case 3:
 				p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
+				break;
+			case 3:
 			case 4:
-				p_77663_1_.stackTagCompound.setInteger("shotsLeft", itemRand.nextBoolean() ? 500 : 100);
+				p_77663_1_.stackTagCompound.setInteger("shotsLeft", 80);
 				break;
 			case 1:
 			case 2:
 			default:
-				p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+				p_77663_1_.stackTagCompound.setInteger("shotsLeft", 100);
 		}
 		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0) p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
 	}
@@ -140,6 +149,6 @@ public class ItemSequelBlasterRifle extends Item
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemBlasterRifle.class
+ * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemBlasterPistol.class
  * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
  */

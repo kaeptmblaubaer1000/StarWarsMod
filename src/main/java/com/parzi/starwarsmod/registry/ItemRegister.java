@@ -74,6 +74,7 @@ import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
+import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterPistol;
 import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
@@ -122,6 +123,12 @@ public class ItemRegister
 
 			StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
 			GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");
+
+			StarWarsMod.sequelBlasterRifle = new ItemSequelBlasterRifle();
+			GameRegistry.registerItem(StarWarsMod.sequelBlasterRifle, "sequelBlasterRifle");
+
+			StarWarsMod.sequelBlasterPistol = new ItemSequelBlasterPistol();
+			GameRegistry.registerItem(StarWarsMod.sequelBlasterPistol, "sequelBlasterPistol");
 		}
 
 		StarWarsMod.spawnTie = new ItemSpawnTIE();
@@ -156,9 +163,6 @@ public class ItemRegister
 
 		StarWarsMod.blasterRifle = new ItemBlasterRifle();
 		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
-
-		StarWarsMod.sequelBlasterRifle = new ItemSequelBlasterRifle();
-		GameRegistry.registerItem(StarWarsMod.sequelBlasterRifle, "sequelBlasterRifle");
 
 		StarWarsMod.blasterHeavy = new ItemBlasterHeavy();
 		GameRegistry.registerItem(StarWarsMod.blasterHeavy, "blasterHeavy");

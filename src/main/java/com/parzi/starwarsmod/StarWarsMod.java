@@ -33,6 +33,7 @@ import com.parzi.starwarsmod.items.weapons.ItemGaffiStick;
 import com.parzi.starwarsmod.items.weapons.ItemGamorreanAx;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemLightsaberOff;
+import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterPistol;
 import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
@@ -104,6 +105,7 @@ public class StarWarsMod
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
 	public static ItemSequelBlasterRifle sequelBlasterRifle;
+	public static ItemSequelBlasterPistol sequelBlasterPistol;
 	public static ItemBlasterHeavy blasterHeavy;
 	public static ItemEwokSpear ewokSpear;
 	public static ItemWookieeBowcaster bowcaster;
