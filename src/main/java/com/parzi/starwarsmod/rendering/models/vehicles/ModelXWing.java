@@ -481,7 +481,7 @@ public class ModelXWing extends ModelBase
 		Laser_Prong_1_R_Top.render(f5);
 		Laser_Prong_2_R_Top.render(f5);
 		Laser_Prong_3_R_Top.render(f5);
-		if (entity.onGround)
+		if (!entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ))
 		{
 			Landing_Gear_1.render(f5);
 			Landing_Gear_2.render(f5);

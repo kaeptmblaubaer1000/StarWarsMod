@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.starwarsmod.rendering.helper;
 
 import org.lwjgl.opengl.GL11;
 

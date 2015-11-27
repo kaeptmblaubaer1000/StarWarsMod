@@ -49,10 +49,10 @@ import com.parzi.starwarsmod.registry.ItemRegister;
 import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
+import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.tabs.SequelStarWarsTab;
 import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.PGui;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
 
