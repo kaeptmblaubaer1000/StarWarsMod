@@ -427,14 +427,6 @@ public class ModelXWing extends ModelBase
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		boolean renderGear = true;
-
-		if (entity instanceof VehicXWing)
-		{
-			VehicXWing xwing = (VehicXWing)entity;
-			renderGear = Minecraft.getMinecraft().theWorld.getBlock((int)xwing.posX, (int)xwing.posY - 1, (int)xwing.posZ) != Blocks.air;
-		}
-
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		Boby_Bottom.render(f5);
@@ -489,7 +481,7 @@ public class ModelXWing extends ModelBase
 		Laser_Prong_1_R_Top.render(f5);
 		Laser_Prong_2_R_Top.render(f5);
 		Laser_Prong_3_R_Top.render(f5);
-		if (renderGear)
+		if (entity.onGround)
 		{
 			Landing_Gear_1.render(f5);
 			Landing_Gear_2.render(f5);

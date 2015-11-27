@@ -399,14 +399,6 @@ public class ModelAWing extends ModelBase
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		boolean renderGear = true;
-
-		if (entity instanceof VehicAWing)
-		{
-			VehicAWing awing = (VehicAWing)entity;
-			renderGear = Minecraft.getMinecraft().theWorld.getBlock((int)awing.posX, (int)awing.posY - 1, (int)awing.posZ) != Blocks.air;
-		}
-
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		Main_Body.render(f5);
@@ -456,7 +448,8 @@ public class ModelAWing extends ModelBase
 		Laser_Base_R_2.render(f5);
 		Laser_R_2.render(f5);
 		Laser_Barrel_R_2.render(f5);
-		if (renderGear)
+		Body_Filler_More.render(f5);
+		if (entity.onGround)
 		{
 			Landing_Gear_1.render(f5);
 			Landing_Gear_2.render(f5);
@@ -465,7 +458,6 @@ public class ModelAWing extends ModelBase
 			Landing_Gear_5.render(f5);
 			Landing_Gear_6.render(f5);
 		}
-		Body_Filler_More.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
