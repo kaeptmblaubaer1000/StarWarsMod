@@ -18,12 +18,13 @@ import com.parzi.starwarsmod.utils.Lumberjack;
 
 public class VehicleAirBase extends VehicleBase
 {
+	String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
 	}
-	
+
 	@Override
 	public boolean canBePushed()
 	{
@@ -53,7 +54,7 @@ public class VehicleAirBase extends VehicleBase
 			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 			if (!this.worldObj.isRemote)
 			{
-				//this.setAIMoveSpeed(p_70612_2_);
+				// this.setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 			}
 		}
@@ -63,7 +64,23 @@ public class VehicleAirBase extends VehicleBase
 			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		}
 	}
-	
+
+	@Override
+	public void onDeathUpdate()
+	{
+		super.onDeathUpdate();
+		for (String comp : explosionComponents)
+		{
+			for (int i = 0; i < 20 + rand.nextInt(20); i++)
+			{
+				double motionX = rand.nextGaussian() * 0.2D;
+				double motionY = rand.nextGaussian() * 0.2D;
+				double motionZ = rand.nextGaussian() * 0.2D;
+				worldObj.spawnParticle(comp, posX + rand.nextFloat() * width * 2.0F - width, posY + 0.5D + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
+			}
+		}
+	}
+
 	@Override
 	public void onUpdate()
 	{

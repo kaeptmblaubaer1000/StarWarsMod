@@ -30,19 +30,6 @@ public class VehicAWing extends VehicleAirBase
 		if (this.hasCustomNameTag()) return this.getCustomNameTag();
 		return "RZ-1 A-Wing Interceptor";
 	}
-	
-	@Override
-	public void onDeath(DamageSource source)
-	{
-
-		for (int i = 0; i < 50; i++)
-		{
-			double motionX = rand.nextGaussian() * 0.02D;
-			double motionY = rand.nextGaussian() * 0.02D;
-			double motionZ = rand.nextGaussian() * 0.02D;
-			worldObj.spawnParticle("hugeexplode", posX + rand.nextFloat() * width * 2.0F - width, posY + 0.5D + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
-		}
-	}
 
 	@Override
 	public String getMovingSound()

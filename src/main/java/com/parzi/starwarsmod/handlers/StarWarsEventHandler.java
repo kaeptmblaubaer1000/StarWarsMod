@@ -113,7 +113,7 @@ public class StarWarsEventHandler
 	{
 		if (mc.thePlayer.ridingEntity instanceof VehicleBase)
 		{
-			int limit = 5;
+			int limit = 8;
 
 			VehicleBase vehicle = (VehicleBase)mc.thePlayer.ridingEntity;
 
