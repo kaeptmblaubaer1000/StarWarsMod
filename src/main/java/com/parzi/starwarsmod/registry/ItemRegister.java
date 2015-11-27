@@ -98,18 +98,6 @@ public class ItemRegister
 		{
 			StarWarsMod.debugLootGen = new ItemDebugLootGen();
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
-
-			StarWarsMod.spawnTie = new ItemSpawnTIE();
-			GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");
-
-			StarWarsMod.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
-			GameRegistry.registerItem(StarWarsMod.spawnTieInterceptor, "spawnTIEInterceptor");
-			
-			StarWarsMod.spawnXwing = new ItemSpawnXWing();
-			GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
-
-			StarWarsMod.spawnAwing = new ItemSpawnAWing();
-			GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
 		}
 
 		if (StarWarsMod.IS_SEQUEL_RELEASE)
@@ -135,6 +123,18 @@ public class ItemRegister
 			StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
 			GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");
 		}
+
+		StarWarsMod.spawnTie = new ItemSpawnTIE();
+		GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");
+
+		StarWarsMod.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
+		GameRegistry.registerItem(StarWarsMod.spawnTieInterceptor, "spawnTIEInterceptor");
+		
+		StarWarsMod.spawnXwing = new ItemSpawnXWing();
+		GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
+
+		StarWarsMod.spawnAwing = new ItemSpawnAWing();
+		GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
 
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
 		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");
