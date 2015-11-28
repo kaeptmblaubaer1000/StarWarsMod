@@ -3,24 +3,31 @@ package com.parzi.starwarsmod.mobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.LootGenUtils;
 import com.parzi.starwarsmod.utils.WeightedLoot;
 
-public class MobWookiee extends EntityAnimal implements IAnimals
+public class MobWookiee extends EntityMob implements IMob
 {
+	private int angerLevel;
+	private Entity angryAt;
+	
 	public MobWookiee(World par1World)
 	{
 		super(par1World);
@@ -35,13 +42,49 @@ public class MobWookiee extends EntityAnimal implements IAnimals
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
-	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
 	{
-		return null;
+		Entity entity = p_70097_1_.getEntity();
+		if (entity instanceof EntityPlayer)
+		{
+			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (int i = 0; i < list.size(); i++)
+			{
+				Entity entity1 = (Entity)list.get(i);
+				if (entity1 instanceof MobWookiee)
+				{
+					MobWookiee wook = (MobWookiee)entity1;
+					wook.becomeAngryAt(entity);
+				}
+			}
+			this.becomeAngryAt(entity);
+		}
+		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
+	}
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
+	}
+
+	private void becomeAngryAt(Entity p_70835_1_)
+	{
+		this.entityToAttack = p_70835_1_;
+		this.angerLevel = 400 + this.rand.nextInt(400);
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		this.angryAt = this.entityToAttack;
+		super.onUpdate();
 	}
 
 	@Override

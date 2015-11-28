@@ -23,8 +23,10 @@ import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -66,20 +68,23 @@ public class StarWarsEventHandler
 		{
 			if (StarWarsMod.renderHelper.isFirstPerson())
 			{
-				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+				ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+				//((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 
 				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
+				ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 15, "thirdPersonDistance");
+				//((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
 		else
 		{
-			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+			//((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 		}
 	}
 

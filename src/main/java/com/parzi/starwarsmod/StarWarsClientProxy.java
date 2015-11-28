@@ -123,7 +123,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
 		
-		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
+		//Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
 		{
