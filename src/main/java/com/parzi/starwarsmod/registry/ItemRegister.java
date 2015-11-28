@@ -50,6 +50,7 @@ import com.parzi.starwarsmod.items.ItemWaterDroplet;
 import com.parzi.starwarsmod.items.crafting.ItemBobaJetpack;
 import com.parzi.starwarsmod.items.crafting.ItemChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemContainmentField;
+import com.parzi.starwarsmod.items.crafting.ItemCustomTest;
 import com.parzi.starwarsmod.items.crafting.ItemHiltMetalAlloy;
 import com.parzi.starwarsmod.items.crafting.ItemHiltMetalCompound;
 import com.parzi.starwarsmod.items.crafting.ItemHyperdriveEngine;
@@ -99,6 +100,9 @@ public class ItemRegister
 		{
 			StarWarsMod.debugLootGen = new ItemDebugLootGen();
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
+			
+			StarWarsMod.customTest = new ItemCustomTest();
+			GameRegistry.registerItem(StarWarsMod.customTest, "customItem");
 		}
 
 		if (StarWarsMod.IS_SEQUEL_RELEASE)

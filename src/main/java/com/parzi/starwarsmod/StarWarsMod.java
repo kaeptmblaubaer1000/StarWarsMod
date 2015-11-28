@@ -111,6 +111,8 @@ public class StarWarsMod
 	public static ItemWookieeBowcaster bowcaster;
 	public static ItemGamorreanAx gamorreanAx;
 	public static ItemLightsaberCrystal lightsaberCrystal;
+	
+	public static Item customTest;
 
 	public static Item hiltMetelCompound;
 	public static Item hiltMetelAlloy;
