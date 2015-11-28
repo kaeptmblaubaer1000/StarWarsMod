@@ -43,6 +43,7 @@ public class ItemLightsaber extends ItemSword
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
 		list.add(TextUtils.makeItalic("This is the formal weapon of a Jedi Knight."));
+		list.add(TextUtils.makeItalic("Sneak + Right Click to disable."));
 	}
 
 	@Override
