@@ -36,22 +36,16 @@ public class WorldRegister
 		
 		boolean registerOk = true;
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimTatooineId, WorldProviderTatooine.class, false) && registerOk;
-		DimensionManager.registerDimension(StarWarsMod.dimTatooineId, StarWarsMod.dimTatooineId);
 		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimHothId, WorldProviderHoth.class, false) && registerOk;
-		DimensionManager.registerDimension(StarWarsMod.dimHothId, StarWarsMod.dimHothId);
 		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class, false) && registerOk;
-		DimensionManager.registerDimension(StarWarsMod.dimKashyyykId, StarWarsMod.dimKashyyykId);
 		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class, false) && registerOk;
-		DimensionManager.registerDimension(StarWarsMod.dimYavin4Id, StarWarsMod.dimYavin4Id);
 		
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimEndorId, WorldProviderEndor.class, false) && registerOk;
-		DimensionManager.registerDimension(StarWarsMod.dimEndorId, StarWarsMod.dimEndorId);
 
 		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimDagobahId, WorldProviderDagobah.class, false) && registerOk;
-		DimensionManager.registerDimension(StarWarsMod.dimDagobahId, StarWarsMod.dimDagobahId);
 		
 		if (!registerOk) throw new Exception("Unable to register dimensions!");
 		

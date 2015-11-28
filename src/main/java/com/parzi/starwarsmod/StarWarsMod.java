@@ -1,20 +1,9 @@
 package com.parzi.starwarsmod;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Level;
@@ -56,17 +45,28 @@ import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
+import com.parzi.starwarsmod.utils.WorldUtils;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, useMetadata = true)
 public class StarWarsMod
@@ -195,6 +195,11 @@ public class StarWarsMod
 	public static Item stormtrooperNewChest;
 	public static Item stormtrooperNewLegs;
 	public static Item stormtrooperNewBoots;
+
+	public static Item stormtrooperSilverNewHelmet;
+	public static Item stormtrooperSilverNewChest;
+	public static Item stormtrooperSilverNewLegs;
+	public static Item stormtrooperSilverNewBoots;
 
 	public static Item snowtrooperHelmet;
 	public static Item snowtrooperChest;
@@ -431,7 +436,25 @@ public class StarWarsMod
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
+
+		WorldUtils.registerDimension(StarWarsMod.dimTatooineId);
+		WorldUtils.registerDimension(StarWarsMod.dimHothId);		
+		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId);		
+		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id);		
+		WorldUtils.registerDimension(StarWarsMod.dimEndorId);
+		WorldUtils.registerDimension(StarWarsMod.dimDagobahId);
 	}
+	
+    @EventHandler
+    public void unregisterDims(FMLServerStoppedEvent var1)
+    {
+		WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
+		WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
+    }
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
