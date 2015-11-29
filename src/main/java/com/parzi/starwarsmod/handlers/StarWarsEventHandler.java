@@ -2,28 +2,6 @@ package com.parzi.starwarsmod.handlers;
 
 import java.util.Arrays;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.armor.ArmorJediRobes;
-import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
-import com.parzi.starwarsmod.items.ItemBinoculars;
-import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
-import com.parzi.starwarsmod.network.CreateBlasterBolt;
-import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
-import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
-import com.parzi.starwarsmod.utils.BlasterBoltType;
-import com.parzi.starwarsmod.utils.Text;
-import com.parzi.starwarsmod.utils.TextUtils;
-import com.parzi.starwarsmod.vehicles.VehicAWing;
-import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicTIE;
-import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
-import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-import com.parzi.starwarsmod.vehicles.VehicleBase;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -42,6 +20,30 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.armor.ArmorJediRobes;
+import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
+import com.parzi.starwarsmod.items.ItemBinoculars;
+import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
+import com.parzi.starwarsmod.network.CreateBlasterBolt;
+import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.utils.BlasterBoltType;
+import com.parzi.starwarsmod.utils.Text;
+import com.parzi.starwarsmod.utils.TextUtils;
+import com.parzi.starwarsmod.vehicles.VehicAWing;
+import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
+import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.starwarsmod.vehicles.VehicleAirBase;
+import com.parzi.starwarsmod.vehicles.VehicleBase;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class StarWarsEventHandler
 {
@@ -62,6 +64,7 @@ public class StarWarsEventHandler
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onRender(RenderLivingEvent.Pre event)
 	{
 		if (mc.thePlayer != null && mc.thePlayer.ridingEntity instanceof VehicleAirBase)
