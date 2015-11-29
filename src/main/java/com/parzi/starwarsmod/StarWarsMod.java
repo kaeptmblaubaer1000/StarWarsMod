@@ -5,6 +5,14 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.config.Configuration;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Level;
 
@@ -46,27 +54,26 @@ import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.utils.WorldUtils;
+import com.parzi.starwarsmod.world.provider.WorldProviderDagobah;
+import com.parzi.starwarsmod.world.provider.WorldProviderEndor;
+import com.parzi.starwarsmod.world.provider.WorldProviderHoth;
+import com.parzi.starwarsmod.world.provider.WorldProviderKashyyyk;
+import com.parzi.starwarsmod.world.provider.WorldProviderTatooine;
+import com.parzi.starwarsmod.world.provider.WorldProviderYavinFour;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, useMetadata = true)
 public class StarWarsMod
@@ -111,7 +118,7 @@ public class StarWarsMod
 	public static ItemWookieeBowcaster bowcaster;
 	public static ItemGamorreanAx gamorreanAx;
 	public static ItemLightsaberCrystal lightsaberCrystal;
-	
+
 	public static Item customTest;
 
 	public static Item hiltMetelCompound;
@@ -348,8 +355,7 @@ public class StarWarsMod
 		}
 		finally
 		{
-			if (in != null)
-				IOUtils.closeQuietly(in);
+			if (in != null) IOUtils.closeQuietly(in);
 		}
 
 		instance = this;
@@ -407,13 +413,13 @@ public class StarWarsMod
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 
-		dimTatooineId = config.get("dimensions", "tatooineId", 156).getInt();
-		dimHothId = config.get("dimensions", "hothId", 155).getInt();
-		dimKashyyykId = config.get("dimensions", "kashyyykId", 154).getInt();
-		dimYavin4Id = config.get("dimensions", "yavinFourId", 153).getInt();
-		dimEndorId = config.get("dimensions", "endorId", 152).getInt();
-		dimEndorPlainsId = config.get("dimensions", "endorPlainsId", 152).getInt();
-		dimDagobahId = config.get("dimensions", "dagobahId", 151).getInt();
+		dimTatooineId = 156;
+		dimHothId = 155;
+		dimKashyyykId = 154;
+		dimYavin4Id = 153;
+		dimEndorId = 152;
+		dimEndorPlainsId = 152;
+		dimDagobahId = 151;
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
@@ -438,25 +444,32 @@ public class StarWarsMod
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
-
-		WorldUtils.registerDimension(StarWarsMod.dimTatooineId);
-		WorldUtils.registerDimension(StarWarsMod.dimHothId);		
-		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId);		
-		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id);		
-		WorldUtils.registerDimension(StarWarsMod.dimEndorId);
-		WorldUtils.registerDimension(StarWarsMod.dimDagobahId);
 	}
-	
-    @EventHandler
-    public void unregisterDims(FMLServerStoppedEvent var1)
-    {
-		WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
-		WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
-    }
+
+	@EventHandler
+	public void serverAboutToLoad(FMLServerAboutToStartEvent event)
+	{
+		WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
+		WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
+		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
+		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
+		WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
+		WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
+	}
+
+	@EventHandler
+	public void serverUnloaded(FMLServerStoppedEvent event)
+	{
+		if (event.getSide() == Side.CLIENT)
+		{
+			WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
+			WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
+		}
+	}
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

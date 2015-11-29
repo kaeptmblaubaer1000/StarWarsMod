@@ -47,6 +47,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class StarWarsEventHandler
 {
 	private static final ResourceLocation xwingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing.png");
+	private static final ResourceLocation awingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing.png");
+	private static final ResourceLocation tieOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -70,14 +72,16 @@ public class StarWarsEventHandler
 		{
 			if (StarWarsMod.renderHelper.isFirstPerson())
 			{
-				//ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+				// ReflectionHelper.setPrivateValue(EntityRenderer.class,
+				// mc.entityRenderer, 4, "thirdPersonDistance");
 				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 
 				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				//ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 15, "thirdPersonDistance");
+				// ReflectionHelper.setPrivateValue(EntityRenderer.class,
+				// mc.entityRenderer, 15, "thirdPersonDistance");
 				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
@@ -85,7 +89,8 @@ public class StarWarsEventHandler
 		}
 		else
 		{
-			//ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+			// ReflectionHelper.setPrivateValue(EntityRenderer.class,
+			// mc.entityRenderer, 4, "thirdPersonDistance");
 			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 		}
 	}
@@ -181,8 +186,16 @@ public class StarWarsEventHandler
 					guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
 				StarWarsMod.pgui.renderOverlay(guiTexture);
 			}
-			if (mc.thePlayer.ridingEntity instanceof VehicXWing)
-				StarWarsMod.pgui.renderOverlay(xwingOverlay);
+			if (mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+			{
+				StarWarsMod.isOverlayOnscreen = true;
+				if (mc.thePlayer.ridingEntity instanceof VehicXWing)
+					StarWarsMod.pgui.renderOverlay(xwingOverlay);
+				if (mc.thePlayer.ridingEntity instanceof VehicAWing)
+					StarWarsMod.pgui.renderOverlay(awingOverlay);
+				if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
+					StarWarsMod.pgui.renderOverlay(tieOverlay);
+			}
 		}
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}

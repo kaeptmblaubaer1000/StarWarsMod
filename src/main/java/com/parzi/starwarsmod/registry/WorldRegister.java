@@ -33,22 +33,7 @@ public class WorldRegister
 		StarWarsMod.biomeEndor = new BiomeEndor(StarWarsMod.dimEndorId);
 		StarWarsMod.biomeEndorPlains = new BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
 		StarWarsMod.biomeDagobah = new BiomeDagobah(StarWarsMod.dimDagobahId);
-		
-		boolean registerOk = true;
-		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimTatooineId, WorldProviderTatooine.class, false) && registerOk;
-		
-		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimHothId, WorldProviderHoth.class, false) && registerOk;
-		
-		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class, false) && registerOk;
-		
-		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class, false) && registerOk;
-		
-		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimEndorId, WorldProviderEndor.class, false) && registerOk;
 
-		registerOk = DimensionManager.registerProviderType(StarWarsMod.dimDagobahId, WorldProviderDagobah.class, false) && registerOk;
-		
-		if (!registerOk) throw new Exception("Unable to register dimensions!");
-		
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndorPlains);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeHoth);
