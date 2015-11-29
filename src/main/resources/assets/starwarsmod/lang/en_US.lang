@@ -239,17 +239,17 @@ item.starwarsmod.sequelLightsaber.name=Lightsaber
 item.starwarsmod.sequelLightsaberOff.name=Lightsaber
 
 // Blasters
-item.starwarsmod.blasterRifle.f11d.name=F-11D Blaster Rifle
-item.starwarsmod.blasterRifle.6.name=Definitely Canon #6
-item.starwarsmod.blasterRifle.Capt.name=Captain's Rifle
-item.starwarsmod.blasterRifle.Huttsplitter.name=Huttsplitter
-item.starwarsmod.blasterRifle.Projectile.name=Projectile Rifle
+item.starwarsmod.sequelBlasterRifle.F11d.name=F-11D Blaster Rifle
+item.starwarsmod.sequelBlasterRifle.6.name=Definitely Canon #6
+item.starwarsmod.sequelBlasterRifle.Capt.name=Captain's Rifle
+item.starwarsmod.sequelBlasterRifle.Huttsplitter.name=Huttsplitter
+item.starwarsmod.sequelBlasterRifle.Projectile.name=Projectile Rifle
 
-item.starwarsmod.blasterPistol.6.name=Definitely Canon #4
-item.starwarsmod.blasterPistol.Officer.name=Officer's Pistol
-item.starwarsmod.blasterPistol.Se44c.name=SE-44C Blaster Pistol
-item.starwarsmod.blasterPistol.Trandoshan.name=Trandoshan Tripler SoroSuub Pistol
-item.starwarsmod.blasterPistol.TrandoshanTarget.name=Trandoshan Doubler Target Pistol
+item.starwarsmod.sequelBlasterPistol.4.name=Definitely Canon #4
+item.starwarsmod.sequelBlasterPistol.Officer.name=Officer's Pistol
+item.starwarsmod.sequelBlasterPistol.Se44c.name=SE-44C Blaster Pistol
+item.starwarsmod.sequelBlasterPistol.Trandoshan.name=Trandoshan Tripler SoroSuub Pistol
+item.starwarsmod.sequelBlasterPistol.TrandoshanTarget.name=Trandoshan Doubler Target Pistol
 
 // Armor
 item.starwarsmod.stormtrooperHelmet_new.name=Stormtrooper Helmet

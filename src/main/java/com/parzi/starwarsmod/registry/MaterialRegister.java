@@ -9,7 +9,7 @@ public class MaterialRegister
 {
 	public static void registerAll()
 	{
-		StarWarsMod.materialGaffi = EnumHelper.addToolMaterial("gaffiMat", 3, 10240, 1.0F, StarWarsMod.lightsaberDamage, 8);
+		StarWarsMod.materialGaffi = EnumHelper.addToolMaterial("gaffiMat", 3, 10240, 1.0F, 8, 8);
 		StarWarsMod.materialEwok = EnumHelper.addToolMaterial("gaffiMat", 3, 128, 1.0F, 1.0F, 2);
 		StarWarsMod.materialGamorrean = EnumHelper.addToolMaterial("gamorreanMat", 3, 10240, 1.0F, 3.0F, 8);
 		StarWarsMod.materialPlasma = EnumHelper.addToolMaterial("plasmaMat", 3, -1, 10.0F, StarWarsMod.lightsaberDamage, 8);
