@@ -49,8 +49,6 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
 		this.targetTasks.addTask(1, new net.minecraft.entity.ai.EntityAIHurtByTarget(this, true));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, false));
 		this.setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.sandtrooperHelmet, 1));
 		this.setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.sandtrooperChest, 1));
 		this.setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.sandtrooperLegs, 1));
