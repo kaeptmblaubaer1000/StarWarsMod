@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -28,6 +27,7 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBolt;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -41,7 +41,6 @@ import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -71,23 +70,23 @@ public class StarWarsEventHandler
 		{
 			if (StarWarsMod.renderHelper.isFirstPerson())
 			{
-				ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
-				//((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+				//ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 
 				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 15, "thirdPersonDistance");
-				//((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
+				//ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 15, "thirdPersonDistance");
+				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
 		else
 		{
-			ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
-			//((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+			//ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 		}
 	}
 
