@@ -1,32 +1,78 @@
 package com.parzi.starwarsmod.items.crafting;
 
+import java.util.HashMap;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.MathHelper;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
-public class ItemCustomTest extends Item
+public class ItemCustomTest extends ItemSword
 {
 	public String name = "customTest";
-	private IIcon[] icons;
+	private HashMap<String, IIcon> iconMap = new HashMap<String, IIcon>();
+	private String[] blades = { "blue", "green", "purple", "red", "white" };
+	private String[] hilts = { "luke_a", "luke_b", "vader" };
 
 	public ItemCustomTest()
 	{
+		super(StarWarsMod.materialPlasma);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamageForRenderPass(int damage, int renderPass)
+	public IIcon getIcon(ItemStack stack, int renderPass)
 	{
-		return this.icons[renderPass];
+		if (stack.stackTagCompound == null)
+		{
+			stack.stackTagCompound = new NBTTagCompound();
+			stack.stackTagCompound.setString("blade", "blue");
+			stack.stackTagCompound.setString("hilt", "luke_a");
+		}
+
+		if (renderPass == 0) // blade
+		{
+			return iconMap.get("blade_" + stack.stackTagCompound.getString("blade"));
+		}
+		else if (renderPass == 1) // hilt
+		{
+			return iconMap.get("hilt_" + stack.stackTagCompound.getString("hilt"));
+		}
+		return this.itemIcon;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		if (stack.stackTagCompound != null)
+		{
+			list.add("Blade: " + stack.stackTagCompound.getString("blade"));
+			list.add("Hilt: " + stack.stackTagCompound.getString("hilt"));
+		}
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		if (player.isSneaking() && stack.stackTagCompound != null)
+		{
+			stack.stackTagCompound.setString("blade", MathHelper.getRandomElement(this.itemRand, blades));
+			stack.stackTagCompound.setString("hilt", MathHelper.getRandomElement(this.itemRand, hilts));
+		}
+		return super.onItemRightClick(stack, world, player);
 	}
 
 	@Override
@@ -47,10 +93,17 @@ public class ItemCustomTest extends Item
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.icons = new IIcon[2];
-		this.itemIcon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "imperialCredit");
-		this.icons[0] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "containmentField");
-		this.icons[1] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "imperialCredit");
+		this.itemIcon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber_blue");
+
+		for (String blade : blades)
+		{
+			iconMap.put("blade_" + blade, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/blade_" + blade));
+		}
+
+		for (String hilt : hilts)
+		{
+			iconMap.put("hilt_" + hilt, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/hilt_" + hilt));
+		}
 	}
 }
 /*
