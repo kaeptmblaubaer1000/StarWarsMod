@@ -422,7 +422,10 @@
         "category": "neutral",
         "sounds": [
             "item/lightsaber/swing",
-            "item/lightsaber/swing1"
+            "item/lightsaber/swing1",
+            "item/lightsaber/swing2",
+            "item/lightsaber/swing3",
+            "item/lightsaber/swing4"
         ]
     },
     "item.lightsaber.open": {
