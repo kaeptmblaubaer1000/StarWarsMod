@@ -33,6 +33,8 @@ public class ItemBinoculars extends Item
 			stack.stackTagCompound = new NBTTagCompound();
 			setZoom(stack, 10);
 		}
+		if (!stack.stackTagCompound.hasKey("zoom"))
+			setZoom(stack, 10);
 		return stack.stackTagCompound.getInteger("zoom");
 	}
 

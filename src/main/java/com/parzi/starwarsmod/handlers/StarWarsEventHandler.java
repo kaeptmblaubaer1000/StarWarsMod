@@ -178,7 +178,7 @@ public class StarWarsEventHandler
 		{
 			if (item != null && item.getItem() instanceof ItemBinoculars && ItemBinoculars.getEnabled(item))
 			{
-				StarWarsMod.isOverlayOnscreen = ItemBinoculars.getEnabled(item);
+				StarWarsMod.isOverlayOnscreen = true;
 				ResourceLocation guiTexture;
 				if (item.getItem() instanceof ItemBinocularsTatooine)
 					guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
