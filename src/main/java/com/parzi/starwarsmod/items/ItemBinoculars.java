@@ -2,17 +2,16 @@ package com.parzi.starwarsmod.items;
 
 import java.util.List;
 
+import com.parzi.starwarsmod.StarWarsMod;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBinoculars extends Item
 {
@@ -33,8 +32,7 @@ public class ItemBinoculars extends Item
 			stack.stackTagCompound = new NBTTagCompound();
 			setZoom(stack, 10);
 		}
-		if (!stack.stackTagCompound.hasKey("zoom"))
-			setZoom(stack, 10);
+		if (!stack.stackTagCompound.hasKey("zoom")) setZoom(stack, 10);
 		return stack.stackTagCompound.getInteger("zoom");
 	}
 

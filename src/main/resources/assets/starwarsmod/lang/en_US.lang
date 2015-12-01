@@ -230,6 +230,10 @@ achievement.starwarsmod.travelEndor.desc=Travel to Endor!
 achievement.starwarsmod.travelKashyyyk=Walking carpet!
 achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!
 
+// Keys
+key.starwarsmod=Star Wars
+key.starwarsmod.shootVehicle=Shoot (from starship)
+
 ####################
 # Sequel Trilogy
 ####################

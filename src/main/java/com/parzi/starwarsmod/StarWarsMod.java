@@ -5,14 +5,6 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Level;
 
@@ -21,6 +13,7 @@ import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandForcePoints;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.handlers.GuiHandler;
+import com.parzi.starwarsmod.handlers.InputHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
@@ -44,6 +37,7 @@ import com.parzi.starwarsmod.network.TogglePlayerSequelLightsaber;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
+import com.parzi.starwarsmod.registry.KeybindRegistry;
 import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
@@ -61,11 +55,11 @@ import com.parzi.starwarsmod.world.provider.WorldProviderKashyyyk;
 import com.parzi.starwarsmod.world.provider.WorldProviderTatooine;
 import com.parzi.starwarsmod.world.provider.WorldProviderYavinFour;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
@@ -74,6 +68,14 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, useMetadata = true)
 public class StarWarsMod
@@ -331,6 +333,9 @@ public class StarWarsMod
 	public static ArmorMaterial bobaArmorMat;
 	public static ArmorMaterial leiaBunsArmorMat;
 
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShootVehicle;
+
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
@@ -382,6 +387,8 @@ public class StarWarsMod
 
 		StarWarsAchievements.registerAll();
 
+		//KeybindRegistry.registerAll();
+
 		try
 		{
 			WorldRegister.registerAll();
@@ -430,6 +437,8 @@ public class StarWarsMod
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 
 		config.save();
+
+		//FMLCommonHandler.instance().bus().register(new InputHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}
