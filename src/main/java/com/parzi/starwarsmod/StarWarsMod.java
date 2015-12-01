@@ -392,14 +392,14 @@ public class StarWarsMod
 		try
 		{
 			WorldRegister.registerAll();
-
-			EntityRegister.registerAll();
 		}
 		catch (Exception e)
 		{
 			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
 			e.printStackTrace();
 		}
+
+		EntityRegister.registerAll();
 
 		proxy.registerRendering();
 
@@ -433,7 +433,7 @@ public class StarWarsMod
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
 		enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
-		enableLightsaberStrobe = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
+		enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 
 		config.save();
