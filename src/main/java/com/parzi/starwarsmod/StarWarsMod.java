@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
@@ -413,13 +414,20 @@ public class StarWarsMod
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 
-		dimTatooineId = 156;
-		dimHothId = 155;
-		dimKashyyykId = 154;
-		dimYavin4Id = 153;
-		dimEndorId = 152;
-		dimEndorPlainsId = 152;
-		dimDagobahId = 151;
+		dimTatooineId = 2;
+		dimHothId = 3;
+		dimKashyyykId = 4;
+		dimYavin4Id = 5;
+		dimEndorId = 6;
+		dimEndorPlainsId = 7;
+		dimDagobahId = 8;
+
+		WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
+		WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
+		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
+		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
+		WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
+		WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
@@ -447,28 +455,14 @@ public class StarWarsMod
 	}
 
 	@EventHandler
-	public void serverAboutToLoad(FMLServerAboutToStartEvent event)
-	{
-		WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
-		WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
-		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
-		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
-		WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
-		WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
-	}
-
-	@EventHandler
 	public void serverUnloaded(FMLServerStoppedEvent event)
 	{
-		if (event.getSide() == Side.CLIENT)
-		{
-			WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
-			WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
-		}
+		WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
+		WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
+		WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
 	}
 }
 /*
