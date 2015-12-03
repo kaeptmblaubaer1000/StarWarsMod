@@ -29,6 +29,7 @@ import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
+import com.parzi.starwarsmod.registry.KeybindRegistry;
 import com.parzi.starwarsmod.registry.RegisterGuiOverlays;
 import com.parzi.starwarsmod.rendering.RenderBantha;
 import com.parzi.starwarsmod.rendering.RenderBith;

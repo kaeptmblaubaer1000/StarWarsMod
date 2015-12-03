@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.utils;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 
 public class PlayerHelper
 {
@@ -16,7 +17,7 @@ public class PlayerHelper
 		return net.minecraft.util.MathHelper.floor_double(this.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & div;
 	}
 
-	public net.minecraft.item.ItemStack getHeldItem()
+	public ItemStack getHeldItem()
 	{
 		return this.mc.thePlayer.inventory.getCurrentItem();
 	}
