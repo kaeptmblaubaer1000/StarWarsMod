@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -331,6 +332,9 @@ public class StarWarsMod
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;
 	public static ArmorMaterial leiaBunsArmorMat;
+
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShootVehicle;
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
