@@ -22,9 +22,12 @@ public class VehicleAirBase extends VehicleBase
 {
 	String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
 
+	public float renderPitchLast;
+
 	public VehicleAirBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
+		this.renderPitchLast = this.rotationPitch;
 	}
 
 	@Override
@@ -40,8 +43,8 @@ public class VehicleAirBase extends VehicleBase
 		{
 			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
 
-			this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
-			this.rotationPitchLast = this.rotationPitch = ((EntityPlayer)this.riddenByEntity).rotationPitch;
+			this.rotationLast = this.rotationYaw += (this.riddenByEntity.rotationYaw - this.rotationLast);
+			this.rotationPitchLast = this.rotationPitch += (((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast);
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;

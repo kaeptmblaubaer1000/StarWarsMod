@@ -6,13 +6,13 @@ import java.util.Calendar;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
@@ -23,6 +23,7 @@ import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandForcePoints;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.handlers.GuiHandler;
+import com.parzi.starwarsmod.handlers.InputHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
@@ -63,13 +64,12 @@ import com.parzi.starwarsmod.world.provider.WorldProviderKashyyyk;
 import com.parzi.starwarsmod.world.provider.WorldProviderTatooine;
 import com.parzi.starwarsmod.world.provider.WorldProviderYavinFour;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -442,6 +442,8 @@ public class StarWarsMod
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 
 		config.save();
+
+		FMLCommonHandler.instance().bus().register(new InputHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}

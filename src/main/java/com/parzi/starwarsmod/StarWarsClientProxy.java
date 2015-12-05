@@ -134,6 +134,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
 		}
 
+		KeybindRegistry.registerAll();
+
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
 
 		Lumberjack.log("Client proxy loaded!");

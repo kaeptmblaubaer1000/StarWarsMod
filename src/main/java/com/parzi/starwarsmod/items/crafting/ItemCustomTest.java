@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.MathHelper;
+import com.parzi.starwarsmod.utils.MathUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -69,8 +69,8 @@ public class ItemCustomTest extends ItemSword
 	{
 		if (player.isSneaking() && stack.stackTagCompound != null)
 		{
-			stack.stackTagCompound.setString("blade", MathHelper.getRandomElement(this.itemRand, blades));
-			stack.stackTagCompound.setString("hilt", MathHelper.getRandomElement(this.itemRand, hilts));
+			stack.stackTagCompound.setString("blade", MathUtils.getRandomElement(this.itemRand, blades));
+			stack.stackTagCompound.setString("hilt", MathUtils.getRandomElement(this.itemRand, hilts));
 		}
 		return super.onItemRightClick(stack, world, player);
 	}
