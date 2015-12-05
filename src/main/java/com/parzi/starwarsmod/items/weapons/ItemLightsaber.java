@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemLightsaber extends ItemSword
 {
 	public String name = "lightsaber";
-	private String[] colors = { "red", "green", "blue"/*, "redKyloRen"*/ };
+	private String[] colors = { "red", "green", "blue"/* , "redKyloRen" */};
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 

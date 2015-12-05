@@ -1,5 +1,10 @@
 package com.parzi.starwarsmod.network;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
+
 import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
@@ -9,10 +14,6 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
 
 public class CreateBlasterBolt implements IMessage
 {
@@ -24,9 +25,7 @@ public class CreateBlasterBolt implements IMessage
 			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			World world = player.worldObj;
 			if (message.type == BlasterBoltType.SPEEDER)
-			{
 				world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, player));
-			}
 			else if (message.type == BlasterBoltType.XWING)
 			{
 				EntityXWingBolt bolt1 = new EntityXWingBolt(world, player);
@@ -35,18 +34,15 @@ public class CreateBlasterBolt implements IMessage
 				/*
 				 * EntityXWingBolt bolt2 = new EntityXWingBolt(world, player);
 				 * world.spawnEntityInWorld(bolt2);
-				 * 
+				 *
 				 * EntityXWingBolt bolt3 = new EntityXWingBolt(world, player);
 				 * world.spawnEntityInWorld(bolt3);
-				 * 
+				 *
 				 * EntityXWingBolt bolt4 = new EntityXWingBolt(world, player);
 				 * world.spawnEntityInWorld(bolt4);
 				 */
 			}
-			else if (message.type == BlasterBoltType.TIE)
-			{
-				world.spawnEntityInWorld(new EntityTIEBolt(world, player));
-			}
+			else if (message.type == BlasterBoltType.TIE) world.spawnEntityInWorld(new EntityTIEBolt(world, player));
 			return null;
 		}
 	}

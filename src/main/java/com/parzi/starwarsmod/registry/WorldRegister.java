@@ -1,7 +1,6 @@
 package com.parzi.starwarsmod.registry;
 
 import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.DimensionManager;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -13,12 +12,6 @@ import com.parzi.starwarsmod.world.biome.BiomeHoth;
 import com.parzi.starwarsmod.world.biome.BiomeKashyyyk;
 import com.parzi.starwarsmod.world.biome.BiomeTatooine;
 import com.parzi.starwarsmod.world.biome.BiomeYavinFour;
-import com.parzi.starwarsmod.world.provider.WorldProviderDagobah;
-import com.parzi.starwarsmod.world.provider.WorldProviderEndor;
-import com.parzi.starwarsmod.world.provider.WorldProviderHoth;
-import com.parzi.starwarsmod.world.provider.WorldProviderKashyyyk;
-import com.parzi.starwarsmod.world.provider.WorldProviderTatooine;
-import com.parzi.starwarsmod.world.provider.WorldProviderYavinFour;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

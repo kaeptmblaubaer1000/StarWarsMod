@@ -9,7 +9,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
-import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,11 +34,11 @@ public class GuiMV extends GuiContainer
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, 175, 165);
-		int percent = (int)((float)(this.vaporator.progressTicks + 1F) / (float)this.vaporator.totalTicks * 30.0F);
+		int percent = (int)((this.vaporator.progressTicks + 1F) / this.vaporator.totalTicks * 30.0F);
 		this.drawTexturedModalRect(k + 62, l + 58 - percent, 176, 30 - percent, 9, percent);
-		
+
 		String s = "Moisture Vaporator";
-		this.fontRendererObj.drawString(s, k + (this.xSize / 2) - fontRendererObj.getStringWidth(s) / 2, l + 6, 4210752);
+		this.fontRendererObj.drawString(s, k + this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, l + 6, 4210752);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), k + 8, l + 71, 4210752);
 	}
 }

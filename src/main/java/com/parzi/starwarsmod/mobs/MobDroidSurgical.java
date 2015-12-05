@@ -73,6 +73,29 @@ public class MobDroidSurgical extends EntityTameable
 	}
 
 	@Override
+	protected void fall(float par1)
+	{
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return true;
+	}
+
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.surgical.die";
+	}
+
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.surgical.hit";
+	}
+
+	@Override
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
@@ -108,29 +131,6 @@ public class MobDroidSurgical extends EntityTameable
 	}
 
 	@Override
-	protected void fall(float par1)
-	{
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return true;
-	}
-
-	@Override
-	protected String getDeathSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.surgical.die";
-	}
-
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.surgical.hit";
-	}
-
-	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
@@ -143,11 +143,9 @@ public class MobDroidSurgical extends EntityTameable
 		if (this.worldObj.findNearestEntityWithinAABB(EntityPlayer.class, this.boundingBox.expand(3.0D, 3.0D, 3.0D), this) instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)this.worldObj.findNearestEntityWithinAABB(EntityPlayer.class, this.boundingBox.expand(3.0D, 3.0D, 3.0D), this);
-			
-			if (this.rand.nextInt(500) == 0)
-				this.playSound(StarWarsMod.MODID + ":" + "mob.surgical.say", 1.0F, 1.0F);
-			if (!player.isPotionActive(PotionList.REGENERATION) && this.isTamed())
-				player.addPotionEffect(new PotionEffect(PotionList.REGENERATION, 200, 2, true));
+
+			if (this.rand.nextInt(500) == 0) this.playSound(StarWarsMod.MODID + ":" + "mob.surgical.say", 1.0F, 1.0F);
+			if (!player.isPotionActive(PotionList.REGENERATION) && this.isTamed()) player.addPotionEffect(new PotionEffect(PotionList.REGENERATION, 200, 2, true));
 		}
 	}
 

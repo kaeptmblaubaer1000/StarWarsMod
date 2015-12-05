@@ -47,7 +47,7 @@ public class ItemHyperdriveEarth extends Item
 			e.printStackTrace();
 		}
 		return stack;
-		
+
 	}
 }
 /*

@@ -100,7 +100,7 @@ public class ItemRegister
 		{
 			StarWarsMod.debugLootGen = new ItemDebugLootGen();
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
-			
+
 			StarWarsMod.customTest = new ItemCustomTest();
 			GameRegistry.registerItem(StarWarsMod.customTest, "customItem");
 		}
@@ -140,7 +140,7 @@ public class ItemRegister
 
 		StarWarsMod.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
 		GameRegistry.registerItem(StarWarsMod.spawnTieInterceptor, "spawnTIEInterceptor");
-		
+
 		StarWarsMod.spawnXwing = new ItemSpawnXWing();
 		GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
 
@@ -191,10 +191,10 @@ public class ItemRegister
 
 		StarWarsMod.blasterTIEBolt = new ItemBolt("blasterTIEBolt");
 		GameRegistry.registerItem(StarWarsMod.blasterTIEBolt, "blasterTIEBolt");
-		
+
 		StarWarsMod.blasterXWingBolt = new ItemBolt("blasterXWingBolt");
 		GameRegistry.registerItem(StarWarsMod.blasterXWingBolt, "blasterXWingBolt");
-		
+
 		StarWarsMod.blasterBolt = new ItemBolt("blasterBolt");
 		GameRegistry.registerItem(StarWarsMod.blasterBolt, "blasterBolt");
 

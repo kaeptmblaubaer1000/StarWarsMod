@@ -57,10 +57,62 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	}
 
 	@Override
+	public boolean canDespawn()
+	{
+		return false;
+	}
+
+	@Override
+	public EntityAgeable createChild(EntityAgeable p_90011_1_)
+	{
+		return null;
+	}
+
+	@Override
+	public void dropFewItems(boolean par1, int par2)
+	{
+		this.dropItem(StarWarsMod.spawnProbe, 1);
+	}
+
+	@Override
+	protected void dropRareDrop(int par1)
+	{
+	}
+
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+	}
+
+	@Override
+	protected void fall(float par1)
+	{
+	}
+
+	@Override
+	public boolean getCanSpawnHere()
+	{
+		return true;
+	}
+
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.probe.die";
+	}
+
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.probe.hit";
+	}
+
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.probe.say";
 	}
 
 	@Override
@@ -109,61 +161,9 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	}
 
 	@Override
-	public boolean canDespawn()
-	{
-		return false;
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsMod.spawnProbe, 1);
-	}
-
-	@Override
-	protected void dropRareDrop(int par1)
-	{
-	}
-
-	@Override
-	protected void fall(float par1)
-	{
-	}
-
-	@Override
-	public boolean getCanSpawnHere()
-	{
-		return true;
-	}
-
-	@Override
-	protected String getDeathSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.probe.die";
-	}
-
-	@Override
-	protected String getHurtSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.probe.hit";
-	}
-
-	@Override
-	protected String getLivingSound()
-	{
-		return StarWarsMod.MODID + ":" + "mob.probe.say";
-	}
-
-	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
-	}
-
-	@Override
-	public EntityAgeable createChild(EntityAgeable p_90011_1_)
-	{
-		return null;
 	}
 }
 /*

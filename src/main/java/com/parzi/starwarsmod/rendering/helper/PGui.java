@@ -1,11 +1,7 @@
 package com.parzi.starwarsmod.rendering.helper;
 
-import org.lwjgl.opengl.GL11;
-
-import scala.Int;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -15,6 +11,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.opengl.GL11;
+
+import scala.Int;
+
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
@@ -22,9 +22,27 @@ public class PGui// extends Gui
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
+	public static int getRGB(int r, int g, int b)
+	{
+		int rgb = r;
+		rgb = (rgb << 8) + g;
+		rgb = (rgb << 8) + b;
+		return rgb;
+	}
+
+	public static int rainbowColor(int phaseMod)
+	{
+		float frequency = 0.001F;
+		float phase = Math.abs(Minecraft.getSystemTime() % Int.MaxValue() - Int.MaxValue() / 2);
+		int r = (int)(Math.sin(frequency * phase + 0 + phaseMod) * 127 + 128);
+		int g = (int)(Math.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
+		int b = (int)(Math.sin(frequency * phase + 4 + phaseMod) * 127 + 128);
+		return getRGB(r, g, b);
+	}
+
 	public PGui(Minecraft minecraft)
 	{
-		this.mc = minecraft;
+		PGui.mc = minecraft;
 	}
 
 	/**
@@ -43,8 +61,8 @@ public class PGui// extends Gui
 	 */
 	public void drawCenteredString(int x, int y, String string, int color)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
-		this.mc.fontRenderer.drawStringWithShadow(string, x - this.mc.fontRenderer.getStringWidth(string) / 2, y - this.mc.fontRenderer.FONT_HEIGHT / 2, color);
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.fontRenderer.drawStringWithShadow(string, x - PGui.mc.fontRenderer.getStringWidth(string) / 2, y - PGui.mc.fontRenderer.FONT_HEIGHT / 2, color);
 	}
 
 	/**
@@ -65,15 +83,15 @@ public class PGui// extends Gui
 	 */
 	public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.entityRenderer.setupOverlayRendering();
 		float f = 0.00390625F;
 		float f1 = 0.00390625F;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV((double)(x + 0), (double)(y + height), 1, (double)((float)(textureX + 0) * f), (double)((float)(textureY + height) * f1));
-		tessellator.addVertexWithUV((double)(x + width), (double)(y + height), 1, (double)((float)(textureX + width) * f), (double)((float)(textureY + height) * f1));
-		tessellator.addVertexWithUV((double)(x + width), (double)(y + 0), 1, (double)((float)(textureX + width) * f), (double)((float)(textureY + 0) * f1));
-		tessellator.addVertexWithUV((double)(x + 0), (double)(y + 0), 1, (double)((float)(textureX + 0) * f), (double)((float)(textureY + 0) * f1));
+		tessellator.addVertexWithUV(x + 0, y + height, 1, (textureX + 0) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x + width, y + height, 1, (textureX + width) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x + width, y + 0, 1, (textureX + width) * f, (textureY + 0) * f1);
+		tessellator.addVertexWithUV(x + 0, y + 0, 1, (textureX + 0) * f, (textureY + 0) * f1);
 		tessellator.draw();
 	}
 
@@ -93,13 +111,13 @@ public class PGui// extends Gui
 	 */
 	public void drawTexturedModelRectFromIcon(int x, int y, IIcon icon, int width, int height)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.entityRenderer.setupOverlayRendering();
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV((double)(x + 0), (double)(y + height), 1, (double)icon.getMinU(), (double)icon.getMaxV());
-		tessellator.addVertexWithUV((double)(x + width), (double)(y + height), 1, (double)icon.getMaxU(), (double)icon.getMaxV());
-		tessellator.addVertexWithUV((double)(x + width), (double)(y + 0), 1, (double)icon.getMaxU(), (double)icon.getMinV());
-		tessellator.addVertexWithUV((double)(x + 0), (double)(y + 0), 1, (double)icon.getMinU(), (double)icon.getMinV());
+		tessellator.addVertexWithUV(x + 0, y + height, 1, icon.getMinU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x + width, y + height, 1, icon.getMaxU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x + width, y + 0, 1, icon.getMaxU(), icon.getMinV());
+		tessellator.addVertexWithUV(x + 0, y + 0, 1, icon.getMinU(), icon.getMinV());
 		tessellator.draw();
 	}
 
@@ -115,11 +133,11 @@ public class PGui// extends Gui
 	 */
 	public void renderBarOnscreen(String caption, float percent, boolean xpBar)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
-		this.mc.getTextureManager().bindTexture(icons);
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.getTextureManager().bindTexture(icons);
 		GL11.glEnable(3042);
-		FontRenderer fontrenderer = this.mc.fontRenderer;
-		ScaledResolution scaledresolution = new ScaledResolution(mc, this.mc.displayWidth, this.mc.displayHeight);
+		FontRenderer fontrenderer = PGui.mc.fontRenderer;
+		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
 		int i = scaledresolution.getScaledWidth();
 		short short1 = 182;
 		int j = i / 2 - short1 / 2;
@@ -149,13 +167,13 @@ public class PGui// extends Gui
 	 */
 	public void renderHearts(int x, int y, int amount, int max, int wrap)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
-		this.mc.getTextureManager().bindTexture(icons);
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.getTextureManager().bindTexture(icons);
 		GL11.glEnable(3042);
 		int sx = x;
-		ScaledResolution scaledresolution = new ScaledResolution(mc, this.mc.displayWidth, this.mc.displayHeight);
-		int width = scaledresolution.getScaledWidth();
-		int height = scaledresolution.getScaledHeight();
+		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
+		scaledresolution.getScaledWidth();
+		scaledresolution.getScaledHeight();
 		int health = amount;
 		int healthMax = max;
 		int healthRows = MathHelper.ceiling_float_int(healthMax / 2.0F / 10.0F);
@@ -194,14 +212,14 @@ public class PGui// extends Gui
 	 */
 	public void renderItem(int x, int y, ItemStack item)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.entityRenderer.setupOverlayRendering();
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, 771);
 		GL11.glDisable(3008);
 		GL11.glDisable(2929);
 		RenderItem r = RenderItem.getInstance();
-		r.renderItemIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), item, x, y, true);
-		r.renderItemOverlayIntoGUI(this.mc.fontRenderer, this.mc.getTextureManager(), item, x, y, item.stackSize > 0 ? String.valueOf(item.stackSize) : "");
+		r.renderItemIntoGUI(PGui.mc.fontRenderer, PGui.mc.getTextureManager(), item, x, y, true);
+		r.renderItemOverlayIntoGUI(PGui.mc.fontRenderer, PGui.mc.getTextureManager(), item, x, y, item.stackSize > 0 ? String.valueOf(item.stackSize) : "");
 		GL11.glEnable(3008);
 		GL11.glEnable(32826);
 		GL11.glEnable(2929);
@@ -217,8 +235,8 @@ public class PGui// extends Gui
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
-		ScaledResolution scaledresolution = new ScaledResolution(mc, this.mc.displayWidth, this.mc.displayHeight);
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
 		int k = scaledresolution.getScaledWidth();
 		int l = scaledresolution.getScaledHeight();
 		GL11.glDisable(2929);
@@ -228,7 +246,7 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3008);
-		this.mc.getTextureManager().bindTexture(PGuiTexture);
+		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.addVertexWithUV(0.0D, l, -90.0D, 0.0D, 1.0D);
@@ -259,7 +277,7 @@ public class PGui// extends Gui
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture, int x, int y, int w, int h)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.entityRenderer.setupOverlayRendering();
 		int k = w;
 		int l = h;
 		GL11.glDisable(2929);
@@ -269,7 +287,7 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3008);
-		this.mc.getTextureManager().bindTexture(PGuiTexture);
+		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.addVertexWithUV(x, l + y, -90.0D, 0.0D, 1.0D);
@@ -298,8 +316,8 @@ public class PGui// extends Gui
 	 */
 	public void renderString(int x, int y, String string, int color)
 	{
-		this.mc.entityRenderer.setupOverlayRendering();
-		this.mc.fontRenderer.drawStringWithShadow(string, x, y, color);
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.fontRenderer.drawStringWithShadow(string, x, y, color);
 	}
 
 	/**
@@ -311,8 +329,8 @@ public class PGui// extends Gui
 	public void renderVignette(float brightness)
 	{
 		GL11.glEnable(3042);
-		this.mc.entityRenderer.setupOverlayRendering();
-		ScaledResolution scaledresolution = new ScaledResolution(mc, this.mc.displayWidth, this.mc.displayHeight);
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
 
 		int width = scaledresolution.getScaledWidth();
 		int height = scaledresolution.getScaledHeight();
@@ -328,7 +346,7 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(0, 769, 1, 0);
 		GL11.glColor4f(prevVignetteBrightness, prevVignetteBrightness, prevVignetteBrightness, 1.0F);
 
-		this.mc.getTextureManager().bindTexture(vignetteTexPath);
+		PGui.mc.getTextureManager().bindTexture(vignetteTexPath);
 
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
@@ -342,23 +360,5 @@ public class PGui// extends Gui
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glDisable(3042);
-	}
-
-	public static int getRGB(int r, int g, int b)
-	{
-		int rgb = r;
-		rgb = (rgb << 8) + g;
-		rgb = (rgb << 8) + b;
-		return rgb;
-	}
-
-	public static int rainbowColor(int phaseMod)
-	{
-		float frequency = 0.001F;
-		float phase = (Math.abs(Minecraft.getSystemTime() % Int.MaxValue() - Int.MaxValue() / 2));
-		int r = (int)(Math.sin(frequency * phase + 0 + phaseMod) * 127 + 128);
-		int g = (int)(Math.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
-		int b = (int)(Math.sin(frequency * phase + 4 + phaseMod) * 127 + 128);
-		return getRGB(r, g, b);
 	}
 }

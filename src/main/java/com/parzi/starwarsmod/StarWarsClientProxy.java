@@ -1,5 +1,10 @@
 package com.parzi.starwarsmod;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
+
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
@@ -110,10 +115,6 @@ import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {

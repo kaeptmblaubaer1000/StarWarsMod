@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.entities;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -11,6 +9,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.StarWarsMod;
 
 public class EntityXWingBolt extends EntityThrowable
 {
@@ -27,10 +27,10 @@ public class EntityXWingBolt extends EntityThrowable
 		super(par1World, par2, par4, par6);
 	}
 
-	public EntityXWingBolt(World par1World, EntityLivingBase par2EntityLivingBase, Vec3 vector)
+	public EntityXWingBolt(World par1World, EntityLivingBase par2EntityLivingBase)
 	{
 		super(par1World, par2EntityLivingBase);
-		Vec3 vec3 = vector;
+		Vec3 vec3 = par2EntityLivingBase.getLookVec();
 		double dx = vec3.xCoord * 15;
 		double dy = vec3.yCoord * 15;
 		double dz = vec3.zCoord * 15;
@@ -42,10 +42,10 @@ public class EntityXWingBolt extends EntityThrowable
 		this.sender = (EntityPlayer)par2EntityLivingBase;
 	}
 
-	public EntityXWingBolt(World par1World, EntityLivingBase par2EntityLivingBase)
+	public EntityXWingBolt(World par1World, EntityLivingBase par2EntityLivingBase, Vec3 vector)
 	{
 		super(par1World, par2EntityLivingBase);
-		Vec3 vec3 = par2EntityLivingBase.getLookVec();
+		Vec3 vec3 = vector;
 		double dx = vec3.xCoord * 15;
 		double dy = vec3.yCoord * 15;
 		double dz = vec3.zCoord * 15;
@@ -120,10 +120,10 @@ public class EntityXWingBolt extends EntityThrowable
 
 		for (int i = 0; i < 50; i++)
 		{
-			double motionX = rand.nextGaussian() * 0.02D;
-			double motionY = rand.nextGaussian() * 0.02D;
-			double motionZ = rand.nextGaussian() * 0.02D;
-			worldObj.spawnParticle("explode", posX + rand.nextFloat() * width * 2.0F - width, posY + 0.5D + rand.nextFloat() * height, posZ + rand.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
+			double motionX = this.rand.nextGaussian() * 0.02D;
+			double motionY = this.rand.nextGaussian() * 0.02D;
+			double motionZ = this.rand.nextGaussian() * 0.02D;
+			this.worldObj.spawnParticle("explode", this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
 		}
 	}
 

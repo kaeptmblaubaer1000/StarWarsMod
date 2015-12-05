@@ -12,7 +12,7 @@ public class StarWarsCommonProxy
 	public void registerRendering()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 }
 /*

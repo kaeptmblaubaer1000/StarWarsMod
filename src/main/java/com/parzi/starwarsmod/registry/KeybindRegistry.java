@@ -1,11 +1,12 @@
 package com.parzi.starwarsmod.registry;
 
+import net.minecraft.client.settings.KeyBinding;
+
 import org.lwjgl.input.Keyboard;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
-import net.minecraft.client.settings.KeyBinding;
 
 public class KeybindRegistry
 {

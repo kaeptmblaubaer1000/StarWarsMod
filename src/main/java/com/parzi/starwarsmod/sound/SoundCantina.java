@@ -1,11 +1,10 @@
 package com.parzi.starwarsmod.sound;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.mobs.MobBith;
-
 import net.minecraft.client.audio.ISound;
 import net.minecraft.util.ResourceLocation;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.mobs.MobBith;
 
 public class SoundCantina implements ISound
 {
@@ -17,15 +16,28 @@ public class SoundCantina implements ISound
 	}
 
 	@Override
-	public ResourceLocation getPositionedSoundLocation()
-	{
-		return new ResourceLocation(StarWarsMod.MODID, "item.records.Cantina");
-	}
-
-	@Override
 	public boolean canRepeat()
 	{
 		return true;
+	}
+
+	@Override
+	public AttenuationType getAttenuationType()
+	{
+		return AttenuationType.LINEAR;
+	}
+
+	@Override
+	public float getPitch()
+	{
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	public ResourceLocation getPositionedSoundLocation()
+	{
+		return new ResourceLocation(StarWarsMod.MODID, "item.records.Cantina");
 	}
 
 	@Override
@@ -41,34 +53,21 @@ public class SoundCantina implements ISound
 	}
 
 	@Override
-	public float getPitch()
-	{
-		// TODO Auto-generated method stub
-		return 1;
-	}
-
-	@Override
 	public float getXPosF()
 	{
-		return (float)player.posX;
+		return (float)this.player.posX;
 	}
 
 	@Override
 	public float getYPosF()
 	{
-		return (float)player.posY;
+		return (float)this.player.posY;
 	}
 
 	@Override
 	public float getZPosF()
 	{
-		return (float)player.posZ;
-	}
-
-	@Override
-	public AttenuationType getAttenuationType()
-	{
-		return AttenuationType.LINEAR;
+		return (float)this.player.posZ;
 	}
 
 }

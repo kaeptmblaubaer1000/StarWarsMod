@@ -1,9 +1,10 @@
 package com.parzi.starwarsmod.tabs;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
+import com.parzi.starwarsmod.StarWarsMod;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

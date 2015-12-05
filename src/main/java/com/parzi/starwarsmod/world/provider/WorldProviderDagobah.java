@@ -11,28 +11,12 @@ import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawDagobahSky;
-import com.parzi.starwarsmod.rendering.DrawTatooineSky;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderDagobah extends WorldProvider
 {
-	/**
-	 * Creates the light to brightness table
-	 */
-	@Override
-	protected void generateLightBrightnessTable()
-	{
-		float f = 0.0F;
-
-		for (int i = 0; i <= 15; ++i)
-		{
-			float f1 = 1.0F - (float)i / 15.0F;
-			this.lightBrightnessTable[i] = ((1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f) / 2;
-		}
-	}
-
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2)
 	{
@@ -56,6 +40,31 @@ public class WorldProviderDagobah extends WorldProvider
 		return new ChunkProviderGenerateDagobah(this.worldObj, this.worldObj.getSeed(), false);
 	}
 
+	/**
+	 * Returns true if the given X,Z coordinate should show environmental fog.
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean doesXZShowFog(int p_76568_1_, int p_76568_2_)
+	{
+		return true;
+	}
+
+	/**
+	 * Creates the light to brightness table
+	 */
+	@Override
+	protected void generateLightBrightnessTable()
+	{
+		float f = 0.0F;
+
+		for (int i = 0; i <= 15; ++i)
+		{
+			float f1 = 1.0F - i / 15.0F;
+			this.lightBrightnessTable[i] = ((1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f) / 2;
+		}
+	}
+
 	@Override
 	public int getAverageGroundLevel()
 	{
@@ -76,24 +85,16 @@ public class WorldProviderDagobah extends WorldProvider
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IRenderHandler getSkyRenderer()
-	{
-		return new DrawDagobahSky();
-	}
-
-	/**
-	 * Returns true if the given X,Z coordinate should show environmental fog.
-	 */
-	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int p_76568_1_, int p_76568_2_)
-	{
-		return true;
-	}
-
-	@SideOnly(Side.CLIENT)
 	public Vec3 getSkyColor(Entity cameraEntity, float partialTicks)
 	{
 		return Vec3.createVectorHelper(0, 0.39, 0.29);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IRenderHandler getSkyRenderer()
+	{
+		return new DrawDagobahSky();
 	}
 
 	@Override

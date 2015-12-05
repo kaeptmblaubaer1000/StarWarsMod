@@ -2,9 +2,7 @@ package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -13,7 +11,7 @@ public class VehicleBase extends EntityCreature
 {
 	public int[] mouseDxOverAFewTicks = { 0, 0, 0, 0, 0, 0 };
 	public float mouseDX = 0.0F;
-	public float mouseDY= 0.0F;
+	public float mouseDY = 0.0F;
 	public float vehicXOffset = 0.0F;
 	public float vehicYOffset = 0.0F;
 	public float vehicZOffset = 0.0F;
@@ -27,12 +25,6 @@ public class VehicleBase extends EntityCreature
 		super(p_i1689_1_);
 		this.setSize(1F, 1F);
 		this.isImmuneToFire = true;
-	}
-
-	@Override
-	protected boolean isMovementCeased()
-	{
-		return true;
 	}
 
 	@Override
@@ -81,6 +73,12 @@ public class VehicleBase extends EntityCreature
 	}
 
 	@Override
+	protected boolean isMovementCeased()
+	{
+		return true;
+	}
+
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -95,8 +93,8 @@ public class VehicleBase extends EntityCreature
 
 		this.mouseDxOverAFewTicks[this.mouseDxOverAFewTicks.length - 1] = 0;
 
-		for (int i = 0; i < this.mouseDxOverAFewTicks.length; i++)
-			this.mouseDX += this.mouseDxOverAFewTicks[i];
+		for (int mouseDxOverAFewTick : this.mouseDxOverAFewTicks)
+			this.mouseDX += mouseDxOverAFewTick;
 
 		this.mouseDX /= this.mouseDxOverAFewTicks.length;
 	}

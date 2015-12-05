@@ -24,6 +24,6 @@ public class PlayerHelper
 
 	public String getUsername()
 	{
-		return mc.getSession().getUsername();
+		return this.mc.getSession().getUsername();
 	}
 }

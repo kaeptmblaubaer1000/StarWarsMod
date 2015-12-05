@@ -1,15 +1,16 @@
 package com.parzi.starwarsmod.armor;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.armor.ModelLeiaBuns;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.models.armor.ModelLeiaBuns;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorAddonBuns extends ItemArmor
 {

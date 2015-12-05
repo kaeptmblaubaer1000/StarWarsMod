@@ -29,7 +29,6 @@ import com.parzi.starwarsmod.network.CreateBlasterBolt;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
@@ -42,7 +41,6 @@ import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -67,33 +65,12 @@ public class StarWarsEventHandler
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public void onRender(RenderLivingEvent.Pre event)
+	public void onFogify(EntityViewRenderEvent.FogDensity fogDensity)
 	{
-		if (mc.thePlayer != null && mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+		if (fogDensity.entity.worldObj.provider.getDimensionName() == "Dagobah")
 		{
-			if (StarWarsMod.renderHelper.isFirstPerson())
-			{
-				// ReflectionHelper.setPrivateValue(EntityRenderer.class,
-				// mc.entityRenderer, 4, "thirdPersonDistance");
-				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
-
-				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
-			}
-			else
-			{
-				// ReflectionHelper.setPrivateValue(EntityRenderer.class,
-				// mc.entityRenderer, 15, "thirdPersonDistance");
-				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
-
-				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
-			}
-		}
-		else
-		{
-			// ReflectionHelper.setPrivateValue(EntityRenderer.class,
-			// mc.entityRenderer, 4, "thirdPersonDistance");
-			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+			fogDensity.density = 0.075F;
+			fogDensity.setCanceled(true);
 		}
 	}
 
@@ -102,27 +79,6 @@ public class StarWarsEventHandler
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
 		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && mc.gameSettings.thirdPersonView == 0) fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
-	}
-
-	@SubscribeEvent
-	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
-	{
-		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP) ((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
-
-		if (logInEvent.entity instanceof EntityPlayer)
-		{
-			if (logInEvent.world.provider.dimensionId == -100) logInEvent.setCanceled(true);
-		}
-	}
-
-	@SubscribeEvent
-	public void onFogify(EntityViewRenderEvent.FogDensity fogDensity)
-	{
-		if (fogDensity.entity.worldObj.provider.getDimensionName() == "Dagobah")
-		{
-			fogDensity.density = 0.075F;
-			fogDensity.setCanceled(true);
-		}
 	}
 
 	@SubscribeEvent
@@ -151,24 +107,58 @@ public class StarWarsEventHandler
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent)
 	{
-		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
+		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null) if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 		{
-			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
+			StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
+			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+		}
+		else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
+		{
+			StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
+			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+		}
+		else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
+		{
+			StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
+			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
+	{
+		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP) ((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
+
+		if (logInEvent.entity instanceof EntityPlayer) if (logInEvent.world.provider.dimensionId == -100) logInEvent.setCanceled(true);
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onRender(RenderLivingEvent.Pre event)
+	{
+		if (mc.thePlayer != null && mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+		{
+			if (StarWarsMod.renderHelper.isFirstPerson())
 			{
-				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
-				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				// ReflectionHelper.setPrivateValue(EntityRenderer.class,
+				// mc.entityRenderer, 4, "thirdPersonDistance");
+				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+
+				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
+			else
 			{
-				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
-				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
-			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
-			{
-				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
-				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				// ReflectionHelper.setPrivateValue(EntityRenderer.class,
+				// mc.entityRenderer, 15, "thirdPersonDistance");
+				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
+
+				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
+		else
+			// ReflectionHelper.setPrivateValue(EntityRenderer.class,
+			// mc.entityRenderer, 4, "thirdPersonDistance");
+			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 	}
 
 	@SubscribeEvent

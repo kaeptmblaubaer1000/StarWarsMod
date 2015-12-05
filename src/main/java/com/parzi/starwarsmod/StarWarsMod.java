@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -343,10 +342,7 @@ public class StarWarsMod
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
 
-		if (Calendar.getInstance().get(Calendar.MONTH) >= 11 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 18 && Calendar.getInstance().get(Calendar.YEAR) >= 2015)
-		{
-			IS_SEQUEL_RELEASE = true;
-		}
+		if (Calendar.getInstance().get(Calendar.MONTH) >= 11 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 18 && Calendar.getInstance().get(Calendar.YEAR) >= 2015) IS_SEQUEL_RELEASE = true;
 
 		InputStream in = null;
 		try

@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
-import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -89,9 +88,7 @@ public class ItemSequelBlasterRifle extends Item
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2) if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
-		{
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-		}
 		else
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)

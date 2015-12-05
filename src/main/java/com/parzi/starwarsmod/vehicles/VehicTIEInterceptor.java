@@ -1,8 +1,6 @@
 package com.parzi.starwarsmod.vehicles;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -32,15 +30,15 @@ public class VehicTIEInterceptor extends VehicleAirBase
 	}
 
 	@Override
-	public String getMovingSound()
-	{
-		return "vehicle.tie.move";
-	}
-	
-	@Override
 	public String getDeathSound()
 	{
 		return StarWarsMod.MODID + ":" + "vehicle.tie.die";
+	}
+
+	@Override
+	public String getMovingSound()
+	{
+		return "vehicle.tie.move";
 	}
 }
 /*

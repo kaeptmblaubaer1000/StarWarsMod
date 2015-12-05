@@ -1,17 +1,16 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
-import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.MathUtils;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
+import com.parzi.starwarsmod.utils.MathUtils;
+import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderXWing extends RenderLiving
 {
@@ -35,12 +34,11 @@ public class RenderXWing extends RenderLiving
 			VehicleAirBase vehicle = (VehicleAirBase)entity;
 			GL11.glTranslatef(0, -1F, 0);
 			float x = MathUtils.lerp(vehicle.renderPitchLast, vehicle.rotationPitch, f);
-			if (f > 0.5F)
-				vehicle.renderPitchLast = vehicle.rotationPitch;
+			if (f > 0.5F) vehicle.renderPitchLast = vehicle.rotationPitch;
 			GL11.glRotatef(x, 1.0F, 0.0F, 0.0F);
 			GL11.glTranslatef(0, 1F, 0);
 			GL11.glRotatef(-vehicle.mouseDX, 0.0F, 0.0F, 1.0F);
-			//Lumberjack.log(vehicle.rotationLast - vehicle.rotationYaw);
+			// Lumberjack.log(vehicle.rotationLast - vehicle.rotationYaw);
 		}
 	}
 }

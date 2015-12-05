@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -12,8 +11,6 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -27,7 +24,7 @@ public class MobWookiee extends EntityMob implements IMob
 {
 	private int angerLevel;
 	private Entity angryAt;
-	
+
 	public MobWookiee(World par1World)
 	{
 		super(par1World);
@@ -68,23 +65,10 @@ public class MobWookiee extends EntityMob implements IMob
 		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
 	}
 
-	@Override
-	protected Entity findPlayerToAttack()
-	{
-		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
-	}
-
 	private void becomeAngryAt(Entity p_70835_1_)
 	{
 		this.entityToAttack = p_70835_1_;
 		this.angerLevel = 400 + this.rand.nextInt(400);
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		this.angryAt = this.entityToAttack;
-		super.onUpdate();
 	}
 
 	@Override
@@ -102,6 +86,12 @@ public class MobWookiee extends EntityMob implements IMob
 	@Override
 	protected void dropRareDrop(int par1)
 	{
+	}
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
 	}
 
 	@Override
@@ -126,6 +116,13 @@ public class MobWookiee extends EntityMob implements IMob
 	protected String getLivingSound()
 	{
 		return StarWarsMod.MODID + ":" + "mob.wookiee.say";
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		this.angryAt = this.entityToAttack;
+		super.onUpdate();
 	}
 }
 /*

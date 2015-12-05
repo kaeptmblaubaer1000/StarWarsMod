@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.helper.PGui;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

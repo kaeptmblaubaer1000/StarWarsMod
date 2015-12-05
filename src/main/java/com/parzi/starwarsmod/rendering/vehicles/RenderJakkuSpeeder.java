@@ -9,7 +9,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelJakkuSpeeder;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class RenderJakkuSpeeder extends RenderLiving

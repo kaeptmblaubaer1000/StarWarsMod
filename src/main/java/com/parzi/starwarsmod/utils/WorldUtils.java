@@ -23,19 +23,20 @@ public class WorldUtils
 	{
 		DimensionManager.registerDimension(dimId, dimId);
 		WorldServer s = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dimId);
-		Lumberjack.log("World registered for " + s.provider.getProviderForDimension(dimId).getDimensionName());
-	}
-
-	public static void unregisterDimension(int dimId)
-	{
-		DimensionManager.unregisterDimension(dimId);
+		Lumberjack.log("World registered for " + WorldProvider.getProviderForDimension(dimId).getDimensionName());
 	}
 
 	public static void registerDimension(int dimId, Class<? extends WorldProvider> class1)
 	{
 		DimensionManager.registerProviderType(dimId, class1, true);
 		DimensionManager.registerDimension(dimId, dimId);
-		//WorldServer s = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dimId);
+		// WorldServer s =
+		// FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dimId);
 		Lumberjack.log("Provider and World registered for " + dimId);
+	}
+
+	public static void unregisterDimension(int dimId)
+	{
+		DimensionManager.unregisterDimension(dimId);
 	}
 }

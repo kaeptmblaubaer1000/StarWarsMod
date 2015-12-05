@@ -9,7 +9,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
@@ -44,7 +43,7 @@ public class RenderSpeederBike extends RenderLiving
 			GL11.glTranslatef(0, -0.4F, 0);
 			GL11.glRotatef(vehicle.rotationPitch, 1.0F, 0.0F, 0.0F);
 			GL11.glTranslatef(0, 0.4F, 0);
-			GL11.glTranslatef(0, (float)((Math.abs(vehicle.rotationPitch) / 90F) / Math.PI), (float)((vehicle.rotationPitch / 90F) / Math.PI));
+			GL11.glTranslatef(0, (float)(Math.abs(vehicle.rotationPitch) / 90F / Math.PI), (float)(vehicle.rotationPitch / 90F / Math.PI));
 
 		}
 	}

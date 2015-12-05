@@ -18,7 +18,7 @@ public class BiomeDagobah extends BiomeGenSwamp
 	{
 		super(par1);
 
-		decorator = new BiomeDecoratorDagobah();
+		this.decorator = new BiomeDecoratorDagobah();
 
 		this.heightVariation = 0.1F;
 		this.enableRain = true;
@@ -36,20 +36,19 @@ public class BiomeDagobah extends BiomeGenSwamp
 		this.rainfall = 1.0F;
 		this.temperature = 1.0F;
 
-		decorator.treesPerChunk = 4;
+		this.decorator.treesPerChunk = 4;
 	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
 		super.decorate(par1World, par2Random, chunkX, chunkZ);
-		decorator.decorateChunk(par1World, par2Random, this, chunkX, chunkZ);
+		this.decorator.decorateChunk(par1World, par2Random, this, chunkX, chunkZ);
 		if (par2Random.nextBoolean())
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			if (par1World.getBlock(k, par1World.getHeightValue(k, l) - 1, l) != Blocks.water)
-				new WorldGenDagobahJungle(false, 10, 20, 3, 3).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
+			if (par1World.getBlock(k, par1World.getHeightValue(k, l) - 1, l) != Blocks.water) new WorldGenDagobahJungle(false, 10, 20, 3, 3).generate(par1World, par2Random, k, par1World.getHeightValue(k, l), l);
 		}
 	}
 

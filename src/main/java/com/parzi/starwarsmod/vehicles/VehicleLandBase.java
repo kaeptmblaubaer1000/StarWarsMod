@@ -1,19 +1,8 @@
 package com.parzi.starwarsmod.vehicles;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.play.server.S04PacketEntityEquipment;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ForgeHooks;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.ai.AiFreqMove;
 
 public class VehicleLandBase extends VehicleBase
 {
@@ -49,8 +38,6 @@ public class VehicleLandBase extends VehicleBase
 			}
 		}
 		else
-		{
 			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
-		}
 	}
 }

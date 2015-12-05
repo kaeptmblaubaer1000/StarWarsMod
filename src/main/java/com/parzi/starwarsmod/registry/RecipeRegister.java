@@ -38,7 +38,6 @@ public class RecipeRegister
 			GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
 		else
 			GameRegistry.addShapedRecipe(new ItemStack(Blocks.flowing_water, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
-		
 
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.imperialCredit, 9), StarWarsMod.silverImperialCredit);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsMod.silverImperialCredit, 9), StarWarsMod.goldImperialCredit);

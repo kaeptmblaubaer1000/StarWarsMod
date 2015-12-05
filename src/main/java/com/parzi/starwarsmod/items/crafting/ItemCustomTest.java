@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,28 +34,6 @@ public class ItemCustomTest extends ItemSword
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(ItemStack stack, int renderPass)
-	{
-		if (stack.stackTagCompound == null)
-		{
-			stack.stackTagCompound = new NBTTagCompound();
-			stack.stackTagCompound.setString("blade", "blue");
-			stack.stackTagCompound.setString("hilt", "luke_a");
-		}
-
-		if (renderPass == 0) // blade
-		{
-			return iconMap.get("blade_" + stack.stackTagCompound.getString("blade"));
-		}
-		else if (renderPass == 1) // hilt
-		{
-			return iconMap.get("hilt_" + stack.stackTagCompound.getString("hilt"));
-		}
-		return this.itemIcon;
-	}
-
-	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
 		if (stack.stackTagCompound != null)
@@ -65,14 +44,20 @@ public class ItemCustomTest extends ItemSword
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(ItemStack stack, int renderPass)
 	{
-		if (player.isSneaking() && stack.stackTagCompound != null)
+		if (stack.stackTagCompound == null)
 		{
-			stack.stackTagCompound.setString("blade", MathUtils.getRandomElement(this.itemRand, blades));
-			stack.stackTagCompound.setString("hilt", MathUtils.getRandomElement(this.itemRand, hilts));
+			stack.stackTagCompound = new NBTTagCompound();
+			stack.stackTagCompound.setString("blade", "blue");
+			stack.stackTagCompound.setString("hilt", "luke_a");
 		}
-		return super.onItemRightClick(stack, world, player);
+
+		if (renderPass == 0)
+			return this.iconMap.get("blade_" + stack.stackTagCompound.getString("blade"));
+		else if (renderPass == 1) return this.iconMap.get("hilt_" + stack.stackTagCompound.getString("hilt"));
+		return this.itemIcon;
 	}
 
 	@Override
@@ -83,10 +68,14 @@ public class ItemCustomTest extends ItemSword
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean requiresMultipleRenderPasses()
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		return true;
+		if (player.isSneaking() && stack.stackTagCompound != null)
+		{
+			stack.stackTagCompound.setString("blade", MathUtils.getRandomElement(Item.itemRand, this.blades));
+			stack.stackTagCompound.setString("hilt", MathUtils.getRandomElement(Item.itemRand, this.hilts));
+		}
+		return super.onItemRightClick(stack, world, player);
 	}
 
 	@Override
@@ -95,15 +84,18 @@ public class ItemCustomTest extends ItemSword
 	{
 		this.itemIcon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber_blue");
 
-		for (String blade : blades)
-		{
-			iconMap.put("blade_" + blade, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/blade_" + blade));
-		}
+		for (String blade : this.blades)
+			this.iconMap.put("blade_" + blade, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/blade_" + blade));
 
-		for (String hilt : hilts)
-		{
-			iconMap.put("hilt_" + hilt, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/hilt_" + hilt));
-		}
+		for (String hilt : this.hilts)
+			this.iconMap.put("hilt_" + hilt, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/hilt_" + hilt));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean requiresMultipleRenderPasses()
+	{
+		return true;
 	}
 }
 /*

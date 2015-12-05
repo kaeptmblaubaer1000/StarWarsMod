@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
-import com.parzi.starwarsmod.utils.KeyboardUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -30,12 +29,10 @@ public class ItemSequelBlasterPistol extends Item
 	private int timeToRecharge = 6;
 	public String[] versions = { "4", "Officer", "Se44c", "Trandoshan", "TrandoshanTarget" };
 	/*
-	 * sequelBlasterPistol_4.png
-	 * sequelBlasterPistol_Officer.png
-	 * sequelBlasterPistol_Se44c.png
-	 * sequelBlasterPistol_Trandoshan.png
+	 * sequelBlasterPistol_4.png sequelBlasterPistol_Officer.png
+	 * sequelBlasterPistol_Se44c.png sequelBlasterPistol_Trandoshan.png
 	 * sequelBlasterPistol_TrandoshanTarget.png
-	*/
+	 */
 	public int subtypes = this.versions.length;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
