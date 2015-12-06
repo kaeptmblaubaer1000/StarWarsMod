@@ -281,6 +281,8 @@ public class StarWarsMod
 	public static int dimEndorId;
 	public static int dimEndorPlainsId;
 
+	public static boolean isWorldRegistered = false;
+
 	public static boolean enableFlyCommand;
 	public static boolean enableDimCommand;
 	public static boolean enableCreditsOverlay;
@@ -422,12 +424,16 @@ public class StarWarsMod
 		dimEndorPlainsId = 7;
 		dimDagobahId = 8;
 
-		WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
-		WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
-		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
-		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
-		WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
-		WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
+		if (event.getSide() == Side.CLIENT)
+		{
+			WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
+			WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
+			WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
+			WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
+			WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
+			WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
+			isWorldRegistered = true;
+		}
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
@@ -454,17 +460,32 @@ public class StarWarsMod
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
+
+		if (!isWorldRegistered)
+		{
+			WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
+			WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
+			WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
+			WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
+			WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
+			WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
+			isWorldRegistered = true;
+		}
 	}
 
 	@EventHandler
 	public void serverUnloaded(FMLServerStoppedEvent event)
 	{
-		WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
-		WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
-		WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
+		if (isWorldRegistered)
+		{
+			WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
+			WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
+			WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
+			isWorldRegistered = false;
+		}
 	}
 }
 /*
