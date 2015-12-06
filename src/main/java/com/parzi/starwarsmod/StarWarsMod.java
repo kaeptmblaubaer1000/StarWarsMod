@@ -290,6 +290,9 @@ public class StarWarsMod
 	public static boolean enableBlasterFire;
 	public static boolean enableBuckets;
 	public static boolean enableLightsaber;
+	
+	public static boolean enableTabOriginal = true;
+	public static boolean enableTabSequel = true;
 
 	public static int lightsaberDamage;
 	public static boolean isOverlayOnscreen = false;
@@ -365,12 +368,18 @@ public class StarWarsMod
 
 		proxy.doSidedThings();
 
-		StarWarsTab = new StarWarsTab();
+		if (enableTabOriginal)
+			StarWarsTab = new StarWarsTab();
+		else
+			StarWarsTab = CreativeTabs.tabAllSearch;
 
 		if (IS_SEQUEL_RELEASE)
 		{
 			Lumberjack.log("Sequel update! Suck it, JJ!");
-			SequelStarWarsTab = new SequelStarWarsTab();
+			if (enableTabSequel)
+				SequelStarWarsTab = new SequelStarWarsTab();
+			else
+				SequelStarWarsTab = CreativeTabs.tabAllSearch;
 		}
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
@@ -435,6 +444,9 @@ public class StarWarsMod
 			isWorldRegistered = true;
 		}
 
+		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
+		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
+		
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
