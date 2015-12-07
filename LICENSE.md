@@ -7,7 +7,10 @@
  of this license document, but changing it is not allowed.
  
  Parzi's Star Wars Mod
+ 
  Copyright (C) 2015 Colby Newman and Weston Miller
+ 
+ 
  Star Wars references and soundtrack Copyright (C) Lucasfilm LTD.
 
 #Preamble
