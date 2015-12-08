@@ -1,7 +1,10 @@
 package com.parzi.starwarsmod.vehicles;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -21,7 +24,7 @@ public class VehicleAirBase extends VehicleBase
 	public float renderPitchLast;
 	public float renderRollLast;
 
-	public float gravity = 0.02F;
+	public float gravity = 0.015F;
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
@@ -35,6 +38,12 @@ public class VehicleAirBase extends VehicleBase
 	{
 		return false;
 	}
+
+	@Override
+    protected void collideWithNearbyEntities()
+    {
+		// do nothing
+    }
 
 	@Override
 	public void fall(float p_70069_1_)
@@ -79,10 +88,10 @@ public class VehicleAirBase extends VehicleBase
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
 			if (p_70612_2_ == 0)
-				this.gravity += 0.02F;
+				this.gravity += 0.015F;
 			else
-				this.gravity = 0.02F;
-			
+				this.gravity = 0.015F;
+
 			this.motionY -= this.gravity;
 
 			float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);

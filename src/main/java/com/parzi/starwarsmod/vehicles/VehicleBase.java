@@ -58,7 +58,7 @@ public class VehicleBase extends EntityCreature
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		if (!this.worldObj.isRemote && (this.riddenByEntity == null || this.riddenByEntity == p_70085_1_))
+		if (!this.worldObj.isRemote && this.riddenByEntity == null)
 		{
 			p_70085_1_.mountEntity(this);
 			return true;
