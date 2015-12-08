@@ -21,6 +21,8 @@ public class VehicleAirBase extends VehicleBase
 	public float renderPitchLast;
 	public float renderRollLast;
 
+	public float gravity = 0.0981F;
+
 	public VehicleAirBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
@@ -68,8 +70,6 @@ public class VehicleAirBase extends VehicleBase
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
 			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
-			
-			this.motionY -= 0.0981F;
 
 			this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
 			this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
@@ -77,6 +77,13 @@ public class VehicleAirBase extends VehicleBase
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
+
+			if (p_70612_2_ == 0)
+				this.gravity += 0.0981F;
+			else
+				this.gravity = 0.0981F;
+			
+			this.motionY -= this.gravity;
 
 			float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
 			float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
