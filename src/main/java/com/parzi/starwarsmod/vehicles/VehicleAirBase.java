@@ -21,7 +21,7 @@ public class VehicleAirBase extends VehicleBase
 	public float renderPitchLast;
 	public float renderRollLast;
 
-	public float gravity = 0.0981F;
+	public float gravity = 0.02F;
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
@@ -79,9 +79,9 @@ public class VehicleAirBase extends VehicleBase
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
 			if (p_70612_2_ == 0)
-				this.gravity += 0.0981F;
+				this.gravity += 0.02F;
 			else
-				this.gravity = 0.0981F;
+				this.gravity = 0.02F;
 			
 			this.motionY -= this.gravity;
 
