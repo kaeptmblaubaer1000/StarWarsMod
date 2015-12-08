@@ -31,7 +31,7 @@ public class RenderVehicAirBase extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		model = this.setRotations(model, entity, f);
+		this.mainModel = this.setRotations(model, entity, f);
 		GL11.glScalef(3.0F, 3.0F, 3.0F);
 		if (entity instanceof VehicleAirBase)
 		{

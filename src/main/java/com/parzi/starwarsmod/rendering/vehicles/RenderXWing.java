@@ -20,7 +20,7 @@ public class RenderXWing extends RenderVehicAirBase
 	{
 		return new ResourceLocation(StarWarsMod.MODID, "textures/models/xwing.png");
 	}
-	
+
 	@Override
 	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
 	{
