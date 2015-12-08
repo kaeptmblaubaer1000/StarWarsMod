@@ -15,14 +15,23 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderVehicAirBase extends RenderLiving
 {
+	ModelBase model;
+
 	public RenderVehicAirBase(ModelBase model, float par2)
 	{
 		super(model, par2);
+		this.model = model;
+	}
+
+	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
+	{
+		return modelBase;
 	}
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
+		model = this.setRotations(model, entity, f);
 		GL11.glScalef(3.0F, 3.0F, 3.0F);
 		if (entity instanceof VehicleAirBase)
 		{
@@ -45,7 +54,6 @@ public class RenderVehicAirBase extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -1,16 +1,12 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import net.minecraft.client.renderer.entity.RenderLiving;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
+
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
-import com.parzi.starwarsmod.utils.MathUtils;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderXWing extends RenderVehicAirBase
 {
@@ -23,6 +19,17 @@ public class RenderXWing extends RenderVehicAirBase
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return new ResourceLocation(StarWarsMod.MODID, "textures/models/xwing.png");
+	}
+	
+	@Override
+	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
+	{
+		if (modelBase instanceof ModelXWing)
+		{
+			ModelXWing model = (ModelXWing)modelBase;
+			return model;
+		}
+		return modelBase;
 	}
 }
 /*
