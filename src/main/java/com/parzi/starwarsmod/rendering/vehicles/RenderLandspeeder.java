@@ -13,6 +13,8 @@ import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class RenderLandspeeder extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/landspeeder.png");
+	
 	public RenderLandspeeder(ModelLandspeeder modelLandspeeder, float par2)
 	{
 		super(modelLandspeeder, par2);
@@ -21,7 +23,7 @@ public class RenderLandspeeder extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/landspeeder.png");
+		return texture;
 	}
 
 	@Override

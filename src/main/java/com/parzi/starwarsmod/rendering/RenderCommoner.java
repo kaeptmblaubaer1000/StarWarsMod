@@ -10,6 +10,11 @@ import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 
 public class RenderCommoner extends RenderBiped
 {
+	public static ResourceLocation weapon = new ResourceLocation(StarWarsMod.MODID, "textures/models/weaponsDealer.png");
+	public static ResourceLocation merch = new ResourceLocation(StarWarsMod.MODID, "textures/models/generalMerchant.png");
+	public static ResourceLocation corre = new ResourceLocation(StarWarsMod.MODID, "textures/models/corellian.png");
+	public static ResourceLocation texture = new ResourceLocation("textures/entity/steve.png");
+
 	public RenderCommoner(ModelBiped par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -24,14 +29,14 @@ public class RenderCommoner extends RenderBiped
 			switch (commoner.getDataWatcher().getWatchableObjectInt(25))
 			{
 				case 0:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/weaponsDealer.png");
+					return weapon;
 				case 1:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/generalMerchant.png");
+					return merch;
 				case 2:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/corellian.png");
+					return corre;
 			}
 		}
-		return new ResourceLocation("textures/entity/steve.png");
+		return texture;
 	}
 }
 /*

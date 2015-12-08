@@ -12,6 +12,8 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelGNK;
 
 public class RenderGNK extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/gnk.png");
+	
 	public RenderGNK(ModelGNK modelGNK, float par2)
 	{
 		super(modelGNK, par2);
@@ -20,7 +22,7 @@ public class RenderGNK extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/gnk.png");
+		return texture;
 	}
 
 	@Override

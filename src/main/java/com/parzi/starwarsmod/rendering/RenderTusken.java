@@ -10,6 +10,8 @@ import com.parzi.starwarsmod.mobs.MobTusken;
 
 public class RenderTusken extends RenderBiped
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/tusken.png");
+	
 	public RenderTusken(ModelBiped par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -18,7 +20,7 @@ public class RenderTusken extends RenderBiped
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/tusken.png");
+		return texture;
 	}
 
 	protected void renderCarrying(MobTusken par1MobTusken, float par2)

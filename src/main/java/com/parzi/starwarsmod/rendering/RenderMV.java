@@ -16,6 +16,8 @@ import com.parzi.starwarsmod.tileentities.TileEntityMV;
 public class RenderMV extends TileEntitySpecialRenderer
 {
 	private final ModelMV model;
+	
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png");
 
 	public RenderMV()
 	{
@@ -32,8 +34,7 @@ public class RenderMV extends TileEntitySpecialRenderer
 		GL11.glPushMatrix();
 		TileEntityMV mv = (TileEntityMV)te;
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.8F, (float)z + 0.5F);
-		ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png");
-		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
+		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		GL11.glPushMatrix();
 		GL11.glScalef(1.5F, 1.5F, 1.5F);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);

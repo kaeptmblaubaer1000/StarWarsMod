@@ -14,6 +14,8 @@ import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderTIEInterceptor extends RenderVehicAirBase
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/tieInterceptor.png");
+	
 	public RenderTIEInterceptor(ModelTIEInterceptor model, float par2)
 	{
 		super(model, par2);
@@ -22,7 +24,7 @@ public class RenderTIEInterceptor extends RenderVehicAirBase
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/tieInterceptor.png");
+		return texture;
 	}
 }
 /*

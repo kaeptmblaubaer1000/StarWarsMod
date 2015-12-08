@@ -14,6 +14,7 @@ import com.parzi.starwarsmod.rendering.models.ModelBlockTable;
 
 public class RenderBlockTable extends TileEntitySpecialRenderer
 {
+	public static ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/blockTable.png");
 	private final ModelBlockTable model;
 
 	public RenderBlockTable()
@@ -34,7 +35,6 @@ public class RenderBlockTable extends TileEntitySpecialRenderer
 	{
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
-		ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/blockTable.png");
 		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
 		GL11.glPushMatrix();
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);

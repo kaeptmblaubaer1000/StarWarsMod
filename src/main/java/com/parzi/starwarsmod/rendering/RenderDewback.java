@@ -12,6 +12,8 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelDewback;
 
 public class RenderDewback extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/dewback.png");
+	
 	public RenderDewback(ModelDewback par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -20,7 +22,7 @@ public class RenderDewback extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/dewback.png");
+		return texture;
 	}
 
 	@Override

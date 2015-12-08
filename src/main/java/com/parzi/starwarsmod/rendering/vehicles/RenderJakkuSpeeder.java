@@ -13,6 +13,8 @@ import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class RenderJakkuSpeeder extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/jakkuSpeeder.png");
+	
 	public RenderJakkuSpeeder(ModelJakkuSpeeder modelSpeederBike, float par2)
 	{
 		super(modelSpeederBike, par2);
@@ -21,7 +23,7 @@ public class RenderJakkuSpeeder extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/jakkuSpeeder.png");
+		return texture;
 	}
 
 	@Override

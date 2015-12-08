@@ -12,6 +12,9 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class OreGenerator implements IWorldGenerator
 {
+	public static WorldGenMinable chromium = new WorldGenMinable(StarWarsMod.blockChromiumOre, 4);
+	public static WorldGenMinable titanium = new WorldGenMinable(StarWarsMod.blockTitaniumOre, 4);
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -43,11 +46,11 @@ public class OreGenerator implements IWorldGenerator
 			int firstBlockXCoord = chunkX + StarWarsMod.rngChromium.nextInt(16);
 			int firstBlockYCoord = StarWarsMod.rngChromium.nextInt(64);
 			int firstBlockZCoord = chunkZ + StarWarsMod.rngChromium.nextInt(16);
-			new WorldGenMinable(StarWarsMod.blockChromiumOre, 4).generate(world, StarWarsMod.rngChromium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+			chromium.generate(world, StarWarsMod.rngChromium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
 			firstBlockXCoord = chunkX + StarWarsMod.rngTitanium.nextInt(16);
 			firstBlockYCoord = StarWarsMod.rngTitanium.nextInt(64);
 			firstBlockZCoord = chunkZ + StarWarsMod.rngTitanium.nextInt(16);
-			new WorldGenMinable(StarWarsMod.blockTitaniumOre, 4).generate(world, StarWarsMod.rngTitanium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
+			titanium.generate(world, StarWarsMod.rngTitanium, firstBlockXCoord, firstBlockYCoord, firstBlockZCoord);
 		}
 	}
 }

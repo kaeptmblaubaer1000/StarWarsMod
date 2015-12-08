@@ -9,6 +9,8 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelGamorrean;
 
 public class RenderGamorrean extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/gamorrean.png");
+	
 	public RenderGamorrean(ModelGamorrean par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -17,7 +19,7 @@ public class RenderGamorrean extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/gamorrean.png");
+		return texture;
 	}
 }
 /*

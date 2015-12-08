@@ -12,6 +12,8 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 
 public class RenderWampa extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/wampa.png");
+	
 	public RenderWampa(ModelWampa par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -20,7 +22,7 @@ public class RenderWampa extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/wampa.png");
+		return texture;
 	}
 
 	@Override

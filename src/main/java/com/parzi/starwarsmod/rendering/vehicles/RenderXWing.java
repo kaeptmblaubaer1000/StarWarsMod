@@ -10,6 +10,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderXWing extends RenderVehicAirBase
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/xwing.png");
+	
 	public RenderXWing(ModelXWing model, float par2)
 	{
 		super(model, par2);
@@ -18,7 +20,7 @@ public class RenderXWing extends RenderVehicAirBase
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/xwing.png");
+		return texture;
 	}
 
 	@Override

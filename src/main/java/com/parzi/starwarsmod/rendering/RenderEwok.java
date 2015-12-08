@@ -25,6 +25,10 @@ import com.parzi.starwarsmod.mobs.MobEwok;
 
 public class RenderEwok extends RenderLiving
 {
+	public static ResourceLocation texture1 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
+	public static ResourceLocation texture2 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok2.png");
+	public static ResourceLocation texture3 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok3.png");
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
 	public RenderEwok(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -39,14 +43,14 @@ public class RenderEwok extends RenderLiving
 			switch (ewok.getDataWatcher().getWatchableObjectInt(25))
 			{
 				case 0:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
+					return texture1;
 				case 1:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok2.png");
+					return texture2;
 				case 2:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok3.png");
+					return texture3;
 			}
 		}
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
+		return texture;
 	}
 
 	@Override

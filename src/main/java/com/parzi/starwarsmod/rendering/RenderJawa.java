@@ -10,6 +10,10 @@ import com.parzi.starwarsmod.mobs.MobJawa;
 
 public class RenderJawa extends RenderLiving
 {
+	public static ResourceLocation texture1 = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
+	public static ResourceLocation texture2 = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa2.png");
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
+	
 	public RenderJawa(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -24,12 +28,12 @@ public class RenderJawa extends RenderLiving
 			switch (commoner.getDataWatcher().getWatchableObjectInt(25))
 			{
 				case 0:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
+					return texture1;
 				case 1:
-					return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa2.png");
+					return texture2;
 			}
 		}
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
+		return texture;
 	}
 }
 /*

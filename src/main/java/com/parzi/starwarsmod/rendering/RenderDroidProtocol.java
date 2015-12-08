@@ -9,6 +9,8 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class RenderDroidProtocol extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/protocol.png");
+
 	public RenderDroidProtocol(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -17,7 +19,7 @@ public class RenderDroidProtocol extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/protocol.png");
+		return texture;
 	}
 }
 /*

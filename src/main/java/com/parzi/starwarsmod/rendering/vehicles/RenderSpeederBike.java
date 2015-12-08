@@ -14,6 +14,8 @@ import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class RenderSpeederBike extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/speederbike.png");
+	
 	public RenderSpeederBike(ModelSpeederBike modelSpeederBike, float par2)
 	{
 		super(modelSpeederBike, par2);
@@ -22,7 +24,7 @@ public class RenderSpeederBike extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/speederbike.png");
+		return texture;
 	}
 
 	@Override

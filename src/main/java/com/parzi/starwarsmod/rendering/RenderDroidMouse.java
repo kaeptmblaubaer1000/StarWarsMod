@@ -12,6 +12,8 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class RenderDroidMouse extends RenderLiving
 {
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/mouse.png");
+	
 	public RenderDroidMouse(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -20,7 +22,7 @@ public class RenderDroidMouse extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "textures/models/mouse.png");
+		return texture;
 	}
 
 	@Override
