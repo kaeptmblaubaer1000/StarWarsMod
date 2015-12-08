@@ -68,6 +68,8 @@ public class VehicleAirBase extends VehicleBase
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
 			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
+			
+			this.motionY -= 0.0981F;
 
 			this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
 			this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
