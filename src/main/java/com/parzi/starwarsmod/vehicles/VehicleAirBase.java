@@ -19,11 +19,13 @@ public class VehicleAirBase extends VehicleBase
 	String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
 
 	public float renderPitchLast;
+	public float renderRollLast;
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
 		this.renderPitchLast = this.rotationPitch;
+		this.renderRollLast = 0;
 	}
 
 	@Override

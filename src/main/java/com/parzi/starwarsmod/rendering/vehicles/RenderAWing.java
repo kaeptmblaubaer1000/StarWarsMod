@@ -12,7 +12,7 @@ import com.parzi.starwarsmod.rendering.models.vehicles.ModelAWing;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
-public class RenderAWing extends RenderLiving
+public class RenderAWing extends RenderVehicAirBase
 {
 	public RenderAWing(ModelAWing model, float par2)
 	{
@@ -23,23 +23,6 @@ public class RenderAWing extends RenderLiving
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return new ResourceLocation(StarWarsMod.MODID, "textures/models/awing.png");
-	}
-
-	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f)
-	{
-		GL11.glScalef(3.0F, 3.0F, 3.0F);
-		if (entity instanceof VehicleAirBase)
-		{
-			VehicleAirBase vehicle = (VehicleAirBase)entity;
-			GL11.glTranslatef(0, -1F, 0);
-			float x = MathUtils.lerp(vehicle.renderPitchLast, vehicle.rotationPitch, f);
-			if (f > 0.5F) vehicle.renderPitchLast = vehicle.rotationPitch;
-			GL11.glRotatef(x, 1.0F, 0.0F, 0.0F);
-			GL11.glTranslatef(0, 1F, 0);
-			GL11.glRotatef(-vehicle.mouseDX, 0.0F, 0.0F, 1.0F);
-			// Lumberjack.log(vehicle.rotationLast - vehicle.rotationYaw);
-		}
 	}
 }
 /*
