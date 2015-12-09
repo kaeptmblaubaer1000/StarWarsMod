@@ -49,7 +49,7 @@ public class VehicleAirBase extends VehicleBase
 	public void fall(float p_70069_1_)
 	{
 		p_70069_1_ = ForgeHooks.onLivingFall(this, p_70069_1_);
-		Lumberjack.log(this.motionY);
+		//Lumberjack.log(this.motionY);
 		if (p_70069_1_ <= 3 || this.motionY > -0.3F) return;
 		super.fall(p_70069_1_);
 		PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
@@ -126,6 +126,8 @@ public class VehicleAirBase extends VehicleBase
 	public void onUpdate()
 	{
 		super.onUpdate();
+		if (this.riddenByEntity == null)
+			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
 		if ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ) this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
 	}
 }
