@@ -1,10 +1,5 @@
 package com.parzi.starwarsmod;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
@@ -18,6 +13,7 @@ import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech2;
+import com.parzi.starwarsmod.mobs.MobDroidAstromechBb8;
 import com.parzi.starwarsmod.mobs.MobDroidGNK;
 import com.parzi.starwarsmod.mobs.MobDroidMouse;
 import com.parzi.starwarsmod.mobs.MobDroidProbe;
@@ -45,6 +41,7 @@ import com.parzi.starwarsmod.rendering.RenderDSTurret;
 import com.parzi.starwarsmod.rendering.RenderDewback;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech2;
+import com.parzi.starwarsmod.rendering.RenderDroidBb8;
 import com.parzi.starwarsmod.rendering.RenderDroidMouse;
 import com.parzi.starwarsmod.rendering.RenderDroidProbe;
 import com.parzi.starwarsmod.rendering.RenderDroidProtocol;
@@ -72,6 +69,7 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelBith;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDewback;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidAstromech;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidAstromech2;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidBb8;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidMouse;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidProbe;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidProtocol;
@@ -115,6 +113,10 @@ import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -162,6 +164,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech2.class, new RenderDroidAstromech2(new ModelDroidAstromech2(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromechBb8.class, new RenderDroidBb8(new ModelDroidBb8(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidProbe.class, new RenderDroidProbe(new ModelDroidProbe(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidProtocol.class, new RenderDroidProtocol(new ModelDroidProtocol(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidProtocol2.class, new RenderDroidProtocol2(new ModelDroidProtocol(), 0.5F));

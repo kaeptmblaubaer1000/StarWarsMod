@@ -39,6 +39,7 @@ import com.parzi.starwarsmod.items.ItemMusicDisc;
 import com.parzi.starwarsmod.items.ItemSilverImperialCredit;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech2;
+import com.parzi.starwarsmod.items.ItemSpawnAstromechBb8;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
 import com.parzi.starwarsmod.items.ItemSpawnMouse;
 import com.parzi.starwarsmod.items.ItemSpawnProbe;
@@ -133,6 +134,9 @@ public class ItemRegister
 
 			StarWarsMod.sequelBlasterPistol = new ItemSequelBlasterPistol();
 			GameRegistry.registerItem(StarWarsMod.sequelBlasterPistol, "sequelBlasterPistol");
+
+			StarWarsMod.spawnAstromechBb8 = new ItemSpawnAstromechBb8();
+			GameRegistry.registerItem(StarWarsMod.spawnAstromechBb8, "spawnAstromechBb8");
 		}
 
 		StarWarsMod.spawnTie = new ItemSpawnTIE();

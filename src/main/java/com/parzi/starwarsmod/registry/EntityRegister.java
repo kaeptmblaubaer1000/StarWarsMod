@@ -1,8 +1,5 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.world.biome.BiomeGenBase;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
@@ -16,6 +13,7 @@ import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech;
 import com.parzi.starwarsmod.mobs.MobDroidAstromech2;
+import com.parzi.starwarsmod.mobs.MobDroidAstromechBb8;
 import com.parzi.starwarsmod.mobs.MobDroidGNK;
 import com.parzi.starwarsmod.mobs.MobDroidMouse;
 import com.parzi.starwarsmod.mobs.MobDroidProbe;
@@ -45,6 +43,8 @@ import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class EntityRegister
 {
@@ -64,6 +64,7 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobSandtrooper.class, "sandtrooper", 0, 0);
 		EntityUtils.registerEntity(MobDroidAstromech.class, "droidAstromech");
 		EntityUtils.registerEntity(MobDroidAstromech2.class, "droidAstromech2");
+		EntityUtils.registerEntity(MobDroidAstromechBb8.class, "droidAstromechBb8");
 		EntityUtils.registerEntity(MobDroidProtocol.class, "droidProtocol");
 		EntityUtils.registerEntity(MobDroidProtocol2.class, "droidProtocol2");
 		EntityUtils.registerEntity(MobDroidProbe.class, "droidProbe");

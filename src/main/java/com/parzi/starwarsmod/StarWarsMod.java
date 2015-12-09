@@ -169,6 +169,7 @@ public class StarWarsMod
 	public static Item spawnXwing;
 	public static Item spawnAstromech;
 	public static Item spawnAstromech2;
+	public static Item spawnAstromechBb8;
 	public static Item spawnProtocol;
 	public static Item spawnProtocol2;
 	public static Item spawnProbe;
