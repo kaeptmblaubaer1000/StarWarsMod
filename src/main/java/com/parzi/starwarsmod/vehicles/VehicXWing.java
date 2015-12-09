@@ -1,12 +1,19 @@
 package com.parzi.starwarsmod.vehicles;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.entities.EntityXWingBolt;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 public class VehicXWing extends VehicleAirBase
 {
+	public List<Point> nearby = new ArrayList<Point>();
+
 	public VehicXWing(World par1World)
 	{
 		super(par1World);
@@ -39,6 +46,24 @@ public class VehicXWing extends VehicleAirBase
 	public String getMovingSound()
 	{
 		return "vehicle.xwing.move";
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		if (this.ticksExisted % 5 == 0)
+		{
+			// update radar
+			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicXWing.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
+			{
+				this.nearby.clear();
+				for (VehicXWing entity : (List<VehicXWing>)this.worldObj.getEntitiesWithinAABB(VehicXWing.class, this.boundingBox.expand(100, 50, 100)))
+				{
+					this.nearby.add(new Point((int)entity.posX, (int)entity.posZ));
+				}
+			}
+		}
 	}
 }
 /*
