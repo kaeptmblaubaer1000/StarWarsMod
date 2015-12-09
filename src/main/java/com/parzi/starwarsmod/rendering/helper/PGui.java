@@ -262,6 +262,44 @@ public class PGui// extends Gui
 	}
 
 	/**
+	 * Renders an overlay on-screen, stretching to fit
+	 *
+	 * @param PGuiTexture
+	 *            The resource to render
+	 * @param offsetX
+	 *            The x offset
+	 * @param offsetY
+	 *            The y offset
+	 */
+	public void renderOverlay(ResourceLocation PGuiTexture, int offsetX, int offsetY)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
+		int k = scaledresolution.getScaledWidth();
+		int l = scaledresolution.getScaledHeight();
+		GL11.glDisable(2929);
+		GL11.glEnable(3042);
+		GL11.glBlendFunc(770, 771);
+		GL11.glDepthMask(false);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(3008);
+		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(0.0D + offsetX, l + offsetY, -90.0D, 0.0D, 1.0D);
+		tessellator.addVertexWithUV(k + offsetX, l + offsetY, -90.0D, 1.0D, 1.0D);
+		tessellator.addVertexWithUV(k + offsetX, 0.0D + offsetY, -90.0D, 1.0D, 0.0D);
+		tessellator.addVertexWithUV(0.0D + offsetX, 0.0D + offsetY, -90.0D, 0.0D, 0.0D);
+		tessellator.draw();
+		GL11.glDepthMask(true);
+		GL11.glDisable(3042);
+		GL11.glEnable(2929);
+		GL11.glEnable(3008);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+	}
+
+	/**
 	 * Renders an overlay on-screen
 	 *
 	 * @param PGuiTexture

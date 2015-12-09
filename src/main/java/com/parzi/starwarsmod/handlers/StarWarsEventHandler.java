@@ -49,6 +49,8 @@ public class StarWarsEventHandler
 	private static final ResourceLocation xwingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing.png");
 	private static final ResourceLocation awingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing.png");
 	private static final ResourceLocation tieOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie.png");
+	private static final ResourceLocation pitchOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/pitchGague.png");
+	private static final ResourceLocation pitchZeroOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/pitchGagueZero.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -184,6 +186,8 @@ public class StarWarsEventHandler
 			if (mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 			{
 				StarWarsMod.isOverlayOnscreen = true;
+				StarWarsMod.pgui.renderOverlay(pitchOverlay, 0, (int)mc.thePlayer.rotationPitch);
+				StarWarsMod.pgui.renderOverlay(pitchZeroOverlay);
 				if (mc.thePlayer.ridingEntity instanceof VehicXWing) StarWarsMod.pgui.renderOverlay(xwingOverlay);
 				if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
 				if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor) StarWarsMod.pgui.renderOverlay(tieOverlay);
