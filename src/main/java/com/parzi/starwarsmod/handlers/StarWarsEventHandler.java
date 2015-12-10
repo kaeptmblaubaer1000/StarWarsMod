@@ -204,6 +204,7 @@ public class StarWarsEventHandler
 						{
 							StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
 						}
+						
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
