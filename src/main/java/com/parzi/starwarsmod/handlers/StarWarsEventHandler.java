@@ -199,7 +199,7 @@ public class StarWarsEventHandler
 						VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlayBack);
-						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, -((int)mc.thePlayer.rotationPitch / 5));
+						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, (int)(mc.thePlayer.rotationPitch / -5F));
 						for (Point p : xwing.nearby)
 						{
 							StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
@@ -211,7 +211,7 @@ public class StarWarsEventHandler
 				}
 			}
 		}
-		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
+		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
 }
 /*
