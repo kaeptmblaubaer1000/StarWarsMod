@@ -71,7 +71,7 @@ public class BiomeTatooine extends BiomeGenBase
 
 	public BiomeTatooine(int par1)
 	{
-		super(par1);
+		super(par1, false);
 		this.heightVariation = 0.0F;
 		this.enableRain = false;
 		this.enableSnow = false;

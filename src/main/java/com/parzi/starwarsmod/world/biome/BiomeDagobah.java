@@ -2,21 +2,21 @@ package com.parzi.starwarsmod.world.biome;
 
 import java.util.Random;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenSwamp;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.world.gen.WorldGenDagobahJungle;
 
-public class BiomeDagobah extends BiomeGenSwamp
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
+public class BiomeDagobah extends BiomeGenBase
 {
 	BiomeDecoratorDagobah decorator;
 
 	public BiomeDagobah(int par1)
 	{
-		super(par1);
+		super(par1, false);
 
 		this.decorator = new BiomeDecoratorDagobah();
 
