@@ -539,7 +539,7 @@ public class PGui// extends Gui
 	 * @param radius The radius
 	 * @param color The color
 	 */
-	public void drawFullCircle(int x, int y, double radius, int color)
+	public void drawFilledCircle(int x, int y, double radius, int color)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		float f = (float)(color >> 24 & 0xff) / 255F;
@@ -573,7 +573,7 @@ public class PGui// extends Gui
 	 * @param lineWidth The line width
 	 * @param color The color
 	 */
-	public void drawIsoscolesTriangleOutline(double x, double y, int scale, float theta, int lineWidth, int color)
+	public void drawHollowTriangle(double x, double y, int scale, float theta, int lineWidth, int color)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		GL11.glTranslated(x, y, 0);
@@ -610,7 +610,7 @@ public class PGui// extends Gui
 	 * @param theta The rotation theta
 	 * @param color The color
 	 */
-	public void drawIsoscolesTriangle(double x, double y, int scale, float theta, int color)
+	public void drawFilledTriangle(double x, double y, int scale, float theta, int color)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		GL11.glTranslated(x, y, 0);
