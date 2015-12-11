@@ -63,6 +63,10 @@ public class VehicXWing extends VehicleAirBase
 					if (entity != this)
 						this.nearby.add(new Point((int)entity.posX, (int)entity.posZ));
 				}
+				for (EntityXWingBolt entity : (List<EntityXWingBolt>)this.worldObj.getEntitiesWithinAABB(EntityXWingBolt.class, this.boundingBox.expand(100, 50, 100)))
+				{
+					this.nearby.add(new Point((int)entity.posX, (int)entity.posZ));
+				}
 			}
 		}
 	}

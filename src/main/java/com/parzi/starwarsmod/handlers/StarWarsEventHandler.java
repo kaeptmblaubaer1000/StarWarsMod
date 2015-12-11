@@ -197,19 +197,23 @@ public class StarWarsEventHandler
 					if (mc.thePlayer.ridingEntity instanceof VehicXWing)
 					{
 						VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
+						
+						float radarCenterX = event.resolution.getScaledWidth() * (107/216F);
+						float radarCenterY = event.resolution.getScaledHeight() * (119/144F);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlayBack);
 						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, (int)(mc.thePlayer.rotationPitch / -5F));
 						for (Point p : xwing.nearby)
 						{
-							StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
+							//StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
+							StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.x) / 5F), radarCenterY + ((int)(xwing.posZ - p.y) / 5F), 1, 5, 2, StarWarsMod.pgui.getRGBA(0, 208, 12, 255));
 						}
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 						
 						//drawMiniMap(mc.thePlayer.ridingEntity, -8, 8, 4);
 						
-						StarWarsMod.pgui.drawIsoscolesTriangleOutline(event.resolution.getScaledWidth() * (107/216F), event.resolution.getScaledHeight() * (119/144F), 3, mc.thePlayer.rotationYaw, 2, 0xFF00D00C);
+						StarWarsMod.pgui.drawIsoscolesTriangleOutline(radarCenterX, radarCenterY, 3, mc.thePlayer.rotationYaw, 2, StarWarsMod.pgui.getRGBA(0, 208, 12, 255));
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor) StarWarsMod.pgui.renderOverlay(tieOverlay);

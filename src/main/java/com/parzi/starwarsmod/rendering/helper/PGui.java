@@ -28,6 +28,15 @@ public class PGui// extends Gui
 		rgb = (rgb << 8) + b;
 		return rgb;
 	}
+	
+	public static int getRGBA(int r, int g, int b, int a)
+	{
+		int rgba = a;
+		rgba = (rgba << 8) + r;
+		rgba = (rgba << 8) + g;
+		rgba = (rgba << 8) + b;
+		return rgba;
+	}
 
 	/**
 	 * Draws a solid color rectangle with the specified coordinates and color.
@@ -513,9 +522,9 @@ public class PGui// extends Gui
 			GL11.glVertex2f(nx + x, ny + y);// final vertex vertex
 
 			// rotate the stuff
-			t = x;
-			x = p * x - s * y;
-			y = s * t + p * y;
+			t = nx;
+			nx = p * nx - s * ny;
+			ny = s * t + p * ny;
 		}
 		GL11.glEnd();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
