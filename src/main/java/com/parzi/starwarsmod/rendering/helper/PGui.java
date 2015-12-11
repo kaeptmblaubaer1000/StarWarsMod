@@ -637,4 +637,37 @@ public class PGui// extends Gui
 		GL11.glRotatef(-180 - theta, 0F, 0F, 1.0F);
 		GL11.glTranslated(-x, -y, 0);
 	}
+	
+	/**
+	 * Draws a line
+	 * @param x1 The start x
+	 * @param y1 The start y
+	 * @param x2 The end x
+	 * @param y2 The end y
+	 * @param lineWidth The line width
+	 * @param color The line color
+	 */
+	public void drawLine(double x1, double y1, double x2, double y2, int lineWidth, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = (float)(color >> 24 & 0xff) / 255F;
+		float f1 = (float)(color >> 16 & 0xff) / 255F;
+		float f2 = (float)(color >> 8 & 0xff) / 255F;
+		float f3 = (float)(color & 0xff) / 255F;
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glLineWidth(lineWidth);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+
+		GL11.glVertex2d(x1, y1);
+		GL11.glVertex2d(x2, y2);
+
+		GL11.glEnd();
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+	}
 }
