@@ -3,8 +3,6 @@ package com.parzi.starwarsmod.handlers;
 import java.awt.Point;
 import java.util.Arrays;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
@@ -14,7 +12,6 @@ import com.parzi.starwarsmod.network.CreateBlasterBolt;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
-import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
@@ -29,7 +26,6 @@ import com.parzi.starwarsmod.vehicles.VehicleBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
@@ -38,8 +34,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.ColorizerGrass;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.MouseEvent;
@@ -211,9 +205,11 @@ public class StarWarsEventHandler
 							StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
 						}
 
-						//drawMiniMap(mc.thePlayer.ridingEntity, -100, 100);
-
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
+						
+						//drawMiniMap(mc.thePlayer.ridingEntity, -8, 8, 4);
+						
+						StarWarsMod.pgui.drawIsoscolesTriangleOutline(event.resolution.getScaledWidth() * 0.4952F, event.resolution.getScaledHeight() * 0.8258F, 4, mc.thePlayer.rotationYaw, 2, 0xFF00D00C);
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor) StarWarsMod.pgui.renderOverlay(tieOverlay);
@@ -223,36 +219,30 @@ public class StarWarsEventHandler
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
 
-	private void drawMiniMap(Entity center, int min, int max)
+	private void drawMiniMap(Entity center, int min, int max, int pxSize)
 	{
 		for (int x = min; x < max; x++)
 		{
-			int pX = x;
 			for (int y = min; y < max; y++)
 			{
-				int pZ = y;
 
-				int bX = (int)(center.posX + pX);
-				int bZ = (int)(center.posZ + pZ);
-				int bY = center.worldObj.getHeightValue(bX, bZ) - 1;
+				int bX = (int)(center.posX + x);
+				int bZ = (int)(center.posZ + y);
+				int bY = center.worldObj.getHeightValue(bX, bZ);
 
-				// double disx = mc.thePlayer.posX - bX;
-				// double disz = mc.thePlayer.posZ - bZ;
+				/*
+				 * double disx = mc.thePlayer.posX - bX; double disz =
+				 * mc.thePlayer.posZ - bZ;
+				 * 
+				 * if ((disx - 0.5) * (disx - 0.5) + (disz - 0.5) * (disz - 0.5)
+				 * > (max) * (max)) { continue; }
+				 */
 
-				// if ((disx - 0.5) * (disx - 0.5) + (disz - 0.5) * (disz - 0.5)
-				// > (max) * (max))
-				// {
-				// continue;
-				// }
-
-				GL11.glColor4f(0, Math.min(255, bY), 255 - Math.min(255, bY), 255);
-
-				StarWarsMod.pgui.drawRect(x * 5, y * 5, (x * 5) + 5, (x * 5) + 5, StarWarsMod.pgui.getRGB(0, Math.min(255, bY), 255 - Math.min(255, bY)));
+				StarWarsMod.pgui.drawRect((x * pxSize) - (min * pxSize), (y * pxSize) - (min * pxSize), ((x * pxSize) + pxSize) - (min * pxSize), ((y * pxSize) + pxSize) - (min * pxSize), Math.min(255, bY), Math.min(255, bY), Math.min(255, bY), 255);
 			}
 		}
 	}
-	
-	
+
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
