@@ -211,7 +211,7 @@ public class StarWarsEventHandler
 							StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
 						}
 
-						drawMiniMap(mc.thePlayer.ridingEntity, -100, 100);
+						//drawMiniMap(mc.thePlayer.ridingEntity, -100, 100);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 					}
@@ -245,7 +245,7 @@ public class StarWarsEventHandler
 				// continue;
 				// }
 
-				//GL11.glColor4f(255, 255, 255, 255);
+				GL11.glColor4f(0, Math.min(255, bY), 255 - Math.min(255, bY), 255);
 
 				StarWarsMod.pgui.drawRect(x * 5, y * 5, (x * 5) + 5, (x * 5) + 5, StarWarsMod.pgui.getRGB(0, Math.min(255, bY), 255 - Math.min(255, bY)));
 			}
