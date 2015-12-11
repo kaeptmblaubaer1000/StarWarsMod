@@ -209,7 +209,7 @@ public class StarWarsEventHandler
 						
 						//drawMiniMap(mc.thePlayer.ridingEntity, -8, 8, 4);
 						
-						StarWarsMod.pgui.drawIsoscolesTriangleOutline(event.resolution.getScaledWidth() * 0.4952F, event.resolution.getScaledHeight() * 0.8258F, 4, mc.thePlayer.rotationYaw, 2, 0xFF00D00C);
+						StarWarsMod.pgui.drawIsoscolesTriangleOutline(event.resolution.getScaledWidth() * (107/216F), event.resolution.getScaledHeight() * (119/144F), 3, mc.thePlayer.rotationYaw, 2, 0xFF00D00C);
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor) StarWarsMod.pgui.renderOverlay(tieOverlay);
