@@ -118,6 +118,41 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
+    /**
+     * Draws a rectangle with a vertical gradient between the specified colors.
+     */
+    protected void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
+    {
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		
+        float f = (float)(startColor >> 24 & 255) / 255.0F;
+        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
+        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
+        float f3 = (float)(startColor & 255) / 255.0F;
+        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
+        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
+        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
+        float f7 = (float)(endColor & 255) / 255.0F;
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        GL11.glShadeModel(GL11.GL_SMOOTH);
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.setColorRGBA_F(f1, f2, f3, f);
+        tessellator.addVertex((double)right, (double)top, 0);
+        tessellator.addVertex((double)left, (double)top, 0);
+        tessellator.setColorRGBA_F(f5, f6, f7, f4);
+        tessellator.addVertex((double)left, (double)bottom, 0);
+        tessellator.addVertex((double)right, (double)bottom, 0);
+        tessellator.draw();
+        GL11.glShadeModel(GL11.GL_FLAT);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
 	public static int rainbowColor(int phaseMod)
 	{
 		float frequency = 0.001F;
@@ -670,4 +705,30 @@ public class PGui// extends Gui
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
+
+    public static void drawModalRectWithCustomSizedText(int p_146110_0_, int p_146110_1_, float p_146110_2_, float p_146110_3_, int p_146110_4_, int p_146110_5_, float p_146110_6_, float p_146110_7_)
+    {
+        float f4 = 1.0F / p_146110_6_;
+        float f5 = 1.0F / p_146110_7_;
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV((double)p_146110_0_, (double)(p_146110_1_ + p_146110_5_), 0.0D, (double)(p_146110_2_ * f4), (double)((p_146110_3_ + (float)p_146110_5_) * f5));
+        tessellator.addVertexWithUV((double)(p_146110_0_ + p_146110_4_), (double)(p_146110_1_ + p_146110_5_), 0.0D, (double)((p_146110_2_ + (float)p_146110_4_) * f4), (double)((p_146110_3_ + (float)p_146110_5_) * f5));
+        tessellator.addVertexWithUV((double)(p_146110_0_ + p_146110_4_), (double)p_146110_1_, 0.0D, (double)((p_146110_2_ + (float)p_146110_4_) * f4), (double)(p_146110_3_ * f5));
+        tessellator.addVertexWithUV((double)p_146110_0_, (double)p_146110_1_, 0.0D, (double)(p_146110_2_ * f4), (double)(p_146110_3_ * f5));
+        tessellator.draw();
+    }
+
+    public static void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
+    {
+        float f4 = 1.0F / p_152125_8_;
+        float f5 = 1.0F / p_152125_9_;
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV((double)p_152125_0_, (double)(p_152125_1_ + p_152125_7_), 0.0D, (double)(p_152125_2_ * f4), (double)((p_152125_3_ + (float)p_152125_5_) * f5));
+        tessellator.addVertexWithUV((double)(p_152125_0_ + p_152125_6_), (double)(p_152125_1_ + p_152125_7_), 0.0D, (double)((p_152125_2_ + (float)p_152125_4_) * f4), (double)((p_152125_3_ + (float)p_152125_5_) * f5));
+        tessellator.addVertexWithUV((double)(p_152125_0_ + p_152125_6_), (double)p_152125_1_, 0.0D, (double)((p_152125_2_ + (float)p_152125_4_) * f4), (double)(p_152125_3_ * f5));
+        tessellator.addVertexWithUV((double)p_152125_0_, (double)p_152125_1_, 0.0D, (double)(p_152125_2_ * f4), (double)(p_152125_3_ * f5));
+        tessellator.draw();
+    }
 }

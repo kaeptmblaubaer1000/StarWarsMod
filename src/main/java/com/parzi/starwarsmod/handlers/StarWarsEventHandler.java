@@ -56,6 +56,8 @@ public class StarWarsEventHandler
 	private static final ResourceLocation xwingOverlayBlip = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwingBlip.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
+	
+	public static int radarColor = StarWarsMod.pgui.getRGBA(0, 208, 12, 255);
 
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
@@ -205,15 +207,12 @@ public class StarWarsEventHandler
 						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, (int)(mc.thePlayer.rotationPitch / -5F));
 						for (Point p : xwing.nearby)
 						{
-							//StarWarsMod.pgui.renderOverlay(xwingOverlayBlip, (int)(xwing.posX - p.x) / 5, (int)(xwing.posZ - p.y) / 5);
-							StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.x) / 5F), radarCenterY + ((int)(xwing.posZ - p.y) / 5F), 1, 5, 2, StarWarsMod.pgui.getRGBA(0, 208, 12, 255));
+							StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.x) / 5F), radarCenterY + ((int)(xwing.posZ - p.y) / 5F), 1, 5, 2, radarColor);
 						}
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 						
-						//drawMiniMap(mc.thePlayer.ridingEntity, -8, 8, 4);
-						
-						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, mc.thePlayer.rotationYaw, 2, StarWarsMod.pgui.getRGBA(0, 208, 12, 255));
+						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, mc.thePlayer.rotationYaw, 2, radarColor);
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor) StarWarsMod.pgui.renderOverlay(tieOverlay);
