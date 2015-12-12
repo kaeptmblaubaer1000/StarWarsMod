@@ -21,8 +21,8 @@ public class MobTatooineCommoner extends EntityVillager
 {
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
-	private String[] types = { "weaponsDealer", "generalMerchant", "corellian", "bartender" };
-	private String[] officialNames = { "Weapons Dealer", "General Merchant", "Corellian", "Bartender" };
+	private String[] types = { "weaponsDealer", "generalMerchant", "corellian", "bartender", "shipDealer" };
+	private String[] officialNames = { "Weapons Dealer", "General Merchant", "Corellian", "Bartender", "Ship Dealer" };
 	private float baseRarity = 1.0F;
 	private DataWatcher dw;
 
@@ -81,13 +81,13 @@ public class MobTatooineCommoner extends EntityVillager
 		}
 		else if (type == this.indexOf(this.types, "corellian"))
 		{
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveEarth, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveEndor, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveHoth, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveKashyyyk, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveTatooine, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveYavin4, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.hyperdriveDagobah, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveEarth, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveEndor, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveHoth, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveKashyyyk, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveTatooine, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveYavin4, 1), this.baseRarity));
+			//trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveDagobah, 1), this.baseRarity));
 			for (int i = 0; i < 3; i++)
 			{
 				WeightedTradeItem item;
@@ -114,6 +114,21 @@ public class MobTatooineCommoner extends EntityVillager
 				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
 			}
 		}
+		else if (type == this.indexOf(this.types, "shipDealer"))
+		{
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.spawnTie, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.spawnAwing, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 5), new ItemStack(StarWarsMod.spawnXwing, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 5), new ItemStack(StarWarsMod.spawnTieInterceptor, 1), this.baseRarity));
+			for (int i = 0; i < 4; i++)
+			{
+				WeightedTradeItem item;
+				do
+					item = TradeUtils.getWeightedItemFromList(trades, this.rand);
+				while (this.isAlreadyTrading(item, fn));
+				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
+			}
+		}
 		return fn;
 	}
 
@@ -121,7 +136,7 @@ public class MobTatooineCommoner extends EntityVillager
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.getDataWatcher().addObject(25, Integer.valueOf(this.rand.nextInt(4)));
+		this.getDataWatcher().addObject(25, Integer.valueOf(this.rand.nextInt(5)));
 	}
 
 	@Override

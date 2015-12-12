@@ -27,7 +27,7 @@ public class ItemSequelBlasterPistol extends Item
 	public String name = "sequelBlasterPistol";
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 6;
-	public String[] versions = { "4", "Officer", "Se44c", "Trandoshan", "TrandoshanTarget" };
+	public String[] versions = { "4", "Officer", "Se44c", "TrandoshanTarget", "Huttsplitter" };
 	/*
 	 * sequelBlasterPistol_4.png sequelBlasterPistol_Officer.png
 	 * sequelBlasterPistol_Se44c.png sequelBlasterPistol_Trandoshan.png

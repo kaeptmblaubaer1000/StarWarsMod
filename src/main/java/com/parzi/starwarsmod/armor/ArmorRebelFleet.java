@@ -15,7 +15,7 @@ public class ArmorRebelFleet extends ItemArmor
 		super(par2EnumArmorMaterial, par3, par4);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + "rebelTrooper" + this.names[par4]);
 		this.setTextureName(StarWarsMod.MODID + ":" + "rebelTrooper" + this.names[par4]);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		//this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override

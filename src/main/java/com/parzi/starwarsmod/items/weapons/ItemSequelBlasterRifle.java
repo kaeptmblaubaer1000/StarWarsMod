@@ -27,7 +27,7 @@ public class ItemSequelBlasterRifle extends Item
 	public String name = "sequelBlasterRifle";
 	private int timeSinceLastShot = 0;
 	private int timeToRecharge = 8;
-	public String[] versions = { "F11d", "6", "Capt", "Huttsplitter", "Projectile" };
+	public String[] versions = { "F11d", "6", "Capt", "Projectile", "Trandoshan" };
 	public int subtypes = this.versions.length;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
@@ -88,7 +88,10 @@ public class ItemSequelBlasterRifle extends Item
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2) if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
+		{
+			if (par1ItemStack.getItemDamage() == 3) entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		}
 		else
 			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
