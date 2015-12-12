@@ -61,7 +61,7 @@ public class VehicXWing extends VehicleAirBase
 		if (this.isOpening)
 		{
 			this.sFoilPos += 1/40f;
-			this.isOpening = this.sFoilPos < 1;
+			this.isOpening = this.sFoilPos < 0.8f;
 		}
 
 		if (this.isClosing)

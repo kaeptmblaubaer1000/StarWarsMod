@@ -48,7 +48,7 @@ public class InputHandler
 				VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
 				if (xwing.sFoilPos <= 0)
 					xwing.isOpening = true;
-				if (xwing.sFoilPos >= 1)
+				if (xwing.sFoilPos >= 0.8f)
 					xwing.isClosing = true;
 			}
 		}
