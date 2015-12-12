@@ -14,6 +14,7 @@ import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.armor.ArmorSandtrooper;
 import com.parzi.starwarsmod.armor.ArmorScoutTrooper;
 import com.parzi.starwarsmod.armor.ArmorSequelStormtrooper;
+import com.parzi.starwarsmod.armor.ArmorSequelStormtrooperSilver;
 import com.parzi.starwarsmod.armor.ArmorSnowtrooper;
 import com.parzi.starwarsmod.armor.ArmorStormtrooper;
 import com.parzi.starwarsmod.armor.ArmorTiePilot;
@@ -127,6 +128,18 @@ public class ItemRegister
 
 			StarWarsMod.stormtrooperNewBoots = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
 			GameRegistry.registerItem(StarWarsMod.stormtrooperNewBoots, "stormtrooperNewBoots");
+
+			StarWarsMod.stormtrooperSilverNewHelmet = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewHelmet, "stormtrooperSilverNewHelmet");
+
+			StarWarsMod.stormtrooperSilverNewChest = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 1);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewChest, "stormtrooperSilverNewChest");
+
+			StarWarsMod.stormtrooperSilverNewLegs = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 2);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewLegs, "stormtrooperSilverNewLegs");
+
+			StarWarsMod.stormtrooperSilverNewBoots = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
+			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewBoots, "stormtrooperSilverNewBoots");
 
 			StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
 			GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");

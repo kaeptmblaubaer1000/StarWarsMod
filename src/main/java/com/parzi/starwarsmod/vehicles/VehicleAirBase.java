@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -119,9 +120,10 @@ public class VehicleAirBase extends VehicleBase
 	}
 
 	@Override
-	public void onDeathUpdate()
+	public void onDeath(DamageSource source)
 	{
-		super.onDeathUpdate();
+		super.onDeath(source);
+		if (source.getDamageType() != "fall" && source.getDamageType() != "bolt") return;
 		for (String comp : this.explosionComponents)
 			for (int i = 0; i < 20 + this.rand.nextInt(20); i++)
 			{
@@ -130,6 +132,7 @@ public class VehicleAirBase extends VehicleBase
 				double motionZ = this.rand.nextGaussian() * 0.2D;
 				this.worldObj.spawnParticle(comp, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
 			}
+		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
 	}
 
 	@Override

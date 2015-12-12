@@ -16,6 +16,7 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -24,6 +25,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
+import com.parzi.starwarsmod.armor.ArmorSequelStormtrooperSilver;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBolt;
@@ -169,6 +171,16 @@ public class StarWarsEventHandler
 			// ReflectionHelper.setPrivateValue(EntityRenderer.class,
 			// mc.entityRenderer, 4, "thirdPersonDistance");
 			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+	}
+	
+	@SubscribeEvent
+	public void onRenderSpecial(RenderPlayerEvent.Specials.Pre event)
+	{
+		if (event.entityPlayer.inventory.armorInventory[1].getItem() instanceof ArmorSequelStormtrooperSilver)
+		{
+			event.renderCape = true;
+			event.entityPlayer.getDataWatcher().updateObject(16, 1);
+		}
 	}
 
 	@SubscribeEvent

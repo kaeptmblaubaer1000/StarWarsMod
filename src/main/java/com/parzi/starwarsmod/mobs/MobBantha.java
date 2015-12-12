@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.mobs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -14,15 +15,21 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IShearable;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.LootGenUtils;
 import com.parzi.starwarsmod.utils.WeightedLoot;
 
-public class MobBantha extends EntityHorse
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class MobBantha extends EntityHorse implements IShearable
 {
 	private int field_110285_bP = 0;
+    private int sheepTimer;
 
 	public MobBantha(World par1World)
 	{
@@ -30,6 +37,8 @@ public class MobBantha extends EntityHorse
 		this.setSize(3.0F, 3.0F);
 		this.tasks.addTask(3, new EntityAIWander(this, 0.1D));
 		this.tasks.addTask(4, new net.minecraft.entity.ai.EntityAILookIdle(this));
+
+		// EntitySheep
 	}
 
 	@Override
@@ -39,6 +48,100 @@ public class MobBantha extends EntityHorse
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
 	}
+
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataWatcher.addObject(17, new Byte((byte)0));
+    }
+
+    @Override
+    public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
+    {
+        return !getSheared() && !isChild();
+    }
+
+    public void onLivingUpdate()
+    {
+        if (this.worldObj.isRemote)
+        {
+            this.sheepTimer = Math.max(0, this.sheepTimer - 1);
+        }
+
+        super.onLivingUpdate();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public float func_70894_j(float p_70894_1_)
+    {
+        return this.sheepTimer <= 0 ? 0.0F : (this.sheepTimer >= 4 && this.sheepTimer <= 36 ? 1.0F : (this.sheepTimer < 4 ? ((float)this.sheepTimer - p_70894_1_) / 4.0F : -((float)(this.sheepTimer - 40) - p_70894_1_) / 4.0F));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public float func_70890_k(float p_70890_1_)
+    {
+        if (this.sheepTimer > 4 && this.sheepTimer <= 36)
+        {
+            float f1 = ((float)(this.sheepTimer - 4) - p_70890_1_) / 32.0F;
+            return ((float)Math.PI / 5F) + ((float)Math.PI * 7F / 100F) * MathHelper.sin(f1 * 28.7F);
+        }
+        else
+        {
+            return this.sheepTimer > 0 ? ((float)Math.PI / 5F) : this.rotationPitch / (180F / (float)Math.PI);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void handleHealthUpdate(byte p_70103_1_)
+    {
+        if (p_70103_1_ == 10)
+        {
+            this.sheepTimer = 40;
+        }
+        else
+        {
+            super.handleHealthUpdate(p_70103_1_);
+        }
+    }
+
+    @Override
+    public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
+    {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        setSheared(true);
+        int i = 1 + rand.nextInt(3);
+        for (int j = 0; j < i; j++)
+        {
+            ret.add(new ItemStack(Blocks.wool, 1, 12));
+        }
+        this.playSound("mob.sheep.shear", 1.0F, 1.0F);
+        return ret;
+    }
+
+    /**
+     * returns true if a sheeps wool has been sheared
+     */
+    public boolean getSheared()
+    {
+        return (this.dataWatcher.getWatchableObjectByte(17) & 16) != 0;
+    }
+
+    /**
+     * make a sheep sheared if set to true
+     */
+    public void setSheared(boolean p_70893_1_)
+    {
+        byte b0 = this.dataWatcher.getWatchableObjectByte(17);
+
+        if (p_70893_1_)
+        {
+            this.dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 | 16)));
+        }
+        else
+        {
+            this.dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 & -17)));
+        }
+    }
 
 	@Override
 	public boolean canMateWith(EntityAnimal p_70878_1_)
