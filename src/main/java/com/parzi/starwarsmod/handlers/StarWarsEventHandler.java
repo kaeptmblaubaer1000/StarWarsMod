@@ -172,16 +172,6 @@ public class StarWarsEventHandler
 			// mc.entityRenderer, 4, "thirdPersonDistance");
 			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 	}
-	
-	@SubscribeEvent
-	public void onRenderSpecial(RenderPlayerEvent.Specials.Pre event)
-	{
-		if (event.entityPlayer.inventory.armorInventory[1].getItem() instanceof ArmorSequelStormtrooperSilver)
-		{
-			event.renderCape = true;
-			event.entityPlayer.getDataWatcher().updateObject(16, 1);
-		}
-	}
 
 	@SubscribeEvent
 	public void onRenderBar(RenderGameOverlayEvent event)
