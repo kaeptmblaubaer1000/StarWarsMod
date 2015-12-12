@@ -42,21 +42,21 @@ public class RenderDroidBb8 extends RenderLiving
 			MobDroidAstromechBb8 droid = (MobDroidAstromechBb8)entity;
 			ModelDroidBb8 model = (ModelDroidBb8)modelBase;
 			
-			model.Body_1.rotateAngleX = (float)droid.posZ;
-			model.Body_1.rotateAngleY = (float)droid.posX;
-			model.Body_1.rotateAngleZ = (float)droid.posY;
+			model.Body_1.rotateAngleX = (float)droid.posZ * 10;
+			model.Body_1.rotateAngleY = (float)droid.posX * 10;
+			model.Body_1.rotateAngleZ = (float)droid.posY * 10;
 			
-			model.Body_2.rotateAngleX = (float)droid.posZ;
-			model.Body_2.rotateAngleY = (float)droid.posX;
-			model.Body_2.rotateAngleZ = (float)droid.posY;
+			model.Body_2.rotateAngleX = (float)droid.posZ * 10;
+			model.Body_2.rotateAngleY = (float)droid.posX * 10;
+			model.Body_2.rotateAngleZ = (float)droid.posY * 10;
 			
-			model.Body_3.rotateAngleX = (float)droid.posZ;
-			model.Body_3.rotateAngleY = (float)droid.posX;
-			model.Body_3.rotateAngleZ = (float)droid.posY;
+			model.Body_3.rotateAngleX = (float)droid.posZ * 10;
+			model.Body_3.rotateAngleY = (float)droid.posX * 10;
+			model.Body_3.rotateAngleZ = (float)droid.posY * 10;
 			
-			model.Body_4.rotateAngleX = (float)droid.posZ;
-			model.Body_4.rotateAngleY = (float)droid.posX;
-			model.Body_4.rotateAngleZ = (float)droid.posY;
+			model.Body_4.rotateAngleX = (float)droid.posZ * 10;
+			model.Body_4.rotateAngleY = (float)droid.posX * 10;
+			model.Body_4.rotateAngleZ = (float)droid.posY * 10;
 
 			return model;
 		}

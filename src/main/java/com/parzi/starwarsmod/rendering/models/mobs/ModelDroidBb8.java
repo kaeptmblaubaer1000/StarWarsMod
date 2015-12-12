@@ -28,20 +28,20 @@ public class ModelDroidBb8 extends ModelBase
 		Body_1.mirror = true;
 		setRotation(Body_1, 0F, 0F, 0F);
 		Body_2 = new ModelRenderer(this, 0, 19);
-		Body_2.addBox(-3F, -1F, -3F, 6, 8, 6);
-		Body_2.setRotationPoint(0F, 17F, 0F);
+		Body_2.addBox(-3F, -4.5F, -3F, 6, 8, 6);
+		Body_2.setRotationPoint(0F, 20.5F, 0F);
 		Body_2.setTextureSize(64, 32);
 		Body_2.mirror = true;
 		setRotation(Body_2, 0F, 0F, 0F);
 		Body_3 = new ModelRenderer(this, 0, 38);
-		Body_3.addBox(-3F, 0F, -4F, 6, 6, 8);
-		Body_3.setRotationPoint(0F, 17F, 0F);
+		Body_3.addBox(-3F, -3.5F, -4F, 6, 6, 8);
+		Body_3.setRotationPoint(0F, 20.5F, 0F);
 		Body_3.setTextureSize(64, 32);
 		Body_3.mirror = true;
 		setRotation(Body_3, 0F, 0F, 0F);
 		Body_4 = new ModelRenderer(this, 0, 57);
-		Body_4.addBox(-4F, 0F, -3F, 8, 6, 6);
-		Body_4.setRotationPoint(0F, 17F, 0F);
+		Body_4.addBox(-4F, -3.5F, -3F, 8, 6, 6);
+		Body_4.setRotationPoint(0F, 20.5F, 0F);
 		Body_4.setTextureSize(64, 32);
 		Body_4.mirror = true;
 		setRotation(Body_4, 0F, 0F, 0F);
@@ -94,21 +94,19 @@ public class ModelDroidBb8 extends ModelBase
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
-		/*this.Body_1.rotateAngleX += entity.motionX;
-		this.Body_1.rotateAngleY += entity.motionY;
-		this.Body_1.rotateAngleZ += entity.motionZ;
-
-		this.Body_2.rotateAngleX += entity.motionX;
-		this.Body_2.rotateAngleY += entity.motionY;
-		this.Body_2.rotateAngleZ += entity.motionZ;
-
-		this.Body_3.rotateAngleX += entity.motionX;
-		this.Body_3.rotateAngleY += entity.motionY;
-		this.Body_3.rotateAngleZ += entity.motionZ;
-
-		this.Body_4.rotateAngleX += entity.motionX;
-		this.Body_4.rotateAngleY += entity.motionY;
-		this.Body_4.rotateAngleZ += entity.motionZ;*/
+		/*
+		 * this.Body_1.rotateAngleX += entity.motionX; this.Body_1.rotateAngleY
+		 * += entity.motionY; this.Body_1.rotateAngleZ += entity.motionZ;
+		 *
+		 * this.Body_2.rotateAngleX += entity.motionX; this.Body_2.rotateAngleY
+		 * += entity.motionY; this.Body_2.rotateAngleZ += entity.motionZ;
+		 *
+		 * this.Body_3.rotateAngleX += entity.motionX; this.Body_3.rotateAngleY
+		 * += entity.motionY; this.Body_3.rotateAngleZ += entity.motionZ;
+		 *
+		 * this.Body_4.rotateAngleX += entity.motionX; this.Body_4.rotateAngleY
+		 * += entity.motionY; this.Body_4.rotateAngleZ += entity.motionZ;
+		 */
 
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}

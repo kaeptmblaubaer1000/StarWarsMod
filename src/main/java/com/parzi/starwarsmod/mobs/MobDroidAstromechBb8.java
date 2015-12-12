@@ -25,7 +25,7 @@ public class MobDroidAstromechBb8 extends EntityTameable
 		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
 		this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
 		this.tasks.addTask(6, new net.minecraft.entity.ai.EntityAIMate(this, 0.8D));
-		this.tasks.addTask(7, new com.parzi.starwarsmod.ai.AiFreqMove(this, 0.8D, 10));
+		this.tasks.addTask(7, new com.parzi.starwarsmod.ai.AiFreqMove(this, 2D, 10));
 		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 	}
 
@@ -34,7 +34,7 @@ public class MobDroidAstromechBb8 extends EntityTameable
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.75D);
 	}
 
 	@Override
