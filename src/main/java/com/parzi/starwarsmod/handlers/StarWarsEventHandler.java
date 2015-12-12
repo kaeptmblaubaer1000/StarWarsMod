@@ -1,7 +1,25 @@
 package com.parzi.starwarsmod.handlers;
 
-import java.awt.Point;
 import java.util.Arrays;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.MouseEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
@@ -26,24 +44,6 @@ import com.parzi.starwarsmod.vehicles.VehicleBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
 
 public class StarWarsEventHandler
 {
@@ -211,6 +211,8 @@ public class StarWarsEventHandler
 								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, radarColor);
 							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
 								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer)
+								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFF564AFF);
 						}
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);

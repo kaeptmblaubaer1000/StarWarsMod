@@ -31,9 +31,9 @@ public class EntityXWingBolt extends EntityThrowable
 	{
 		super(par1World, par2EntityLivingBase);
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * 15;
-		double dy = vec3.yCoord * 15;
-		double dz = vec3.zCoord * 15;
+		double dx = vec3.xCoord * 4;
+		double dy = vec3.yCoord * 4;
+		double dz = vec3.zCoord * 4;
 
 		this.posX += dx;
 		this.posY += dy;
@@ -46,9 +46,9 @@ public class EntityXWingBolt extends EntityThrowable
 	{
 		super(par1World, par2EntityLivingBase);
 		Vec3 vec3 = vector;
-		double dx = vec3.xCoord * 15;
-		double dy = vec3.yCoord * 15;
-		double dz = vec3.zCoord * 15;
+		double dx = vec3.xCoord * 4;
+		double dy = vec3.yCoord * 4;
+		double dz = vec3.zCoord * 4;
 
 		this.posX += dx;
 		this.posY += dy;
@@ -140,9 +140,9 @@ public class EntityXWingBolt extends EntityThrowable
 		p_70186_1_ *= p_70186_7_;
 		p_70186_3_ *= p_70186_7_;
 		p_70186_5_ *= p_70186_7_;
-		this.motionX = p_70186_1_;
-		this.motionY = p_70186_3_;
-		this.motionZ = p_70186_5_;
+		this.motionX = p_70186_1_ * 2;
+		this.motionY = p_70186_3_ * 2;
+		this.motionZ = p_70186_5_ * 2;
 		float f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
 		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / 3.141592653589793D);
 		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / 3.141592653589793D);

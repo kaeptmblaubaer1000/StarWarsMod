@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -14,6 +15,9 @@ import com.parzi.starwarsmod.entities.EntityXWingBolt;
 public class VehicXWing extends VehicleAirBase
 {
 	public List<Entity> nearby = new ArrayList<Entity>();
+	public float sFoilPos = 0;
+	public boolean isOpening = false;
+	public boolean isClosing = false;
 
 	public VehicXWing(World par1World)
 	{
@@ -53,6 +57,19 @@ public class VehicXWing extends VehicleAirBase
 	public void onUpdate()
 	{
 		super.onUpdate();
+
+		if (this.isOpening)
+		{
+			this.sFoilPos += 1/40f;
+			this.isOpening = this.sFoilPos < 1;
+		}
+
+		if (this.isClosing)
+		{
+			this.sFoilPos -= 1/40f;
+			this.isClosing = this.sFoilPos > 0;
+		}
+
 		if (this.ticksExisted % 5 == 0)
 		{
 			// update radar
@@ -62,6 +79,11 @@ public class VehicXWing extends VehicleAirBase
 				for (VehicleAirBase entity : (List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)))
 				{
 					if (entity != this)
+						this.nearby.add(entity);
+				}
+				for (EntityPlayer entity : (List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100)))
+				{
+					if (!(entity.ridingEntity instanceof VehicleAirBase))
 						this.nearby.add(entity);
 				}
 				//for (EntityXWingBolt entity : (List<EntityXWingBolt>)this.worldObj.getEntitiesWithinAABB(EntityXWingBolt.class, this.boundingBox.expand(100, 50, 100)))

@@ -292,7 +292,7 @@ public class StarWarsMod
 	public static boolean enableBlasterFire;
 	public static boolean enableBuckets;
 	public static boolean enableLightsaber;
-	
+
 	public static boolean enableTabOriginal = true;
 	public static boolean enableTabSequel = true;
 
@@ -341,6 +341,8 @@ public class StarWarsMod
 
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyShootVehicle;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keySFoil;
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
@@ -405,7 +407,7 @@ public class StarWarsMod
 		RecipeRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
-		
+
 		EntityRegister.registerAll();
 
 		proxy.registerRendering();
@@ -448,7 +450,7 @@ public class StarWarsMod
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
-		
+
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();

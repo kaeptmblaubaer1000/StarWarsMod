@@ -13,6 +13,7 @@ public class KeybindRegistry
 	public static void registerAll()
 	{
 		StarWarsMod.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);
+		StarWarsMod.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
 	}
 
 	public static KeyBinding registerKeybind(String keyName, int keyCode)

@@ -40,5 +40,17 @@ public class InputHandler
 			StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.TIE));
 			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
 		}
+
+		if (StarWarsMod.keySFoil.isPressed())
+		{
+			if (mc.thePlayer.ridingEntity instanceof VehicXWing)
+			{
+				VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
+				if (xwing.sFoilPos <= 0)
+					xwing.isOpening = true;
+				if (xwing.sFoilPos >= 1)
+					xwing.isClosing = true;
+			}
+		}
 	}
 }

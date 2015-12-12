@@ -28,7 +28,7 @@ public class PGui// extends Gui
 		rgb = (rgb << 8) + b;
 		return rgb;
 	}
-	
+
 	public static int getRGBA(int r, int g, int b, int a)
 	{
 		int rgba = a;
@@ -121,10 +121,10 @@ public class PGui// extends Gui
     /**
      * Draws a rectangle with a vertical gradient between the specified colors.
      */
-    protected void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
+    public void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
     {
 		PGui.mc.entityRenderer.setupOverlayRendering();
-		
+
         float f = (float)(startColor >> 24 & 255) / 255.0F;
         float f1 = (float)(startColor >> 16 & 255) / 255.0F;
         float f2 = (float)(startColor >> 8 & 255) / 255.0F;
@@ -146,6 +146,41 @@ public class PGui// extends Gui
         tessellator.setColorRGBA_F(f5, f6, f7, f4);
         tessellator.addVertex((double)left, (double)bottom, 0);
         tessellator.addVertex((double)right, (double)bottom, 0);
+        tessellator.draw();
+        GL11.glShadeModel(GL11.GL_FLAT);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
+    /**
+     * Draws a rectangle with a vertical gradient between the specified colors.
+     */
+    public void drawGradientRectHoriz(int left, int top, int right, int bottom, int startColor, int endColor)
+    {
+		PGui.mc.entityRenderer.setupOverlayRendering();
+
+        float f = (float)(startColor >> 24 & 255) / 255.0F;
+        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
+        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
+        float f3 = (float)(startColor & 255) / 255.0F;
+        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
+        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
+        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
+        float f7 = (float)(endColor & 255) / 255.0F;
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        GL11.glShadeModel(GL11.GL_SMOOTH);
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.setColorRGBA_F(f1, f2, f3, f);
+        tessellator.addVertex((double)right, (double)top, 0);
+        tessellator.addVertex((double)right, (double)bottom, 0);
+        tessellator.setColorRGBA_F(f5, f6, f7, f4);
+        tessellator.addVertex((double)left, (double)bottom, 0);
+        tessellator.addVertex((double)left, (double)top, 0);
         tessellator.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
@@ -672,7 +707,7 @@ public class PGui// extends Gui
 		GL11.glRotatef(-180 - theta, 0F, 0F, 1.0F);
 		GL11.glTranslated(-x, -y, 0);
 	}
-	
+
 	/**
 	 * Draws a line
 	 * @param x1 The start x
