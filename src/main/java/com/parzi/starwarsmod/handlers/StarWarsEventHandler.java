@@ -56,7 +56,7 @@ public class StarWarsEventHandler
 	private static final ResourceLocation xwingOverlayBlip = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwingBlip.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
-	
+
 	public static int radarColor = StarWarsMod.pgui.getRGBA(0, 208, 12, 255);
 
 	@SubscribeEvent
@@ -199,19 +199,22 @@ public class StarWarsEventHandler
 					if (mc.thePlayer.ridingEntity instanceof VehicXWing)
 					{
 						VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
-						
+
 						float radarCenterX = event.resolution.getScaledWidth() * (107/216F);
 						float radarCenterY = event.resolution.getScaledHeight() * (119/144F);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlayBack);
 						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, (int)(mc.thePlayer.rotationPitch / -5F));
-						for (Point p : xwing.nearby)
+						for (Entity p : xwing.nearby)
 						{
-							StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.x) / 5F), radarCenterY + ((int)(xwing.posZ - p.y) / 5F), 1, 5, 2, radarColor);
+							if (p instanceof VehicXWing || p instanceof VehicAWing)
+								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, radarColor);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFFB7181F);
 						}
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
-						
+
 						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, mc.thePlayer.rotationYaw, 2, radarColor);
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
@@ -236,7 +239,7 @@ public class StarWarsEventHandler
 				/*
 				 * double disx = mc.thePlayer.posX - bX; double disz =
 				 * mc.thePlayer.posZ - bZ;
-				 * 
+				 *
 				 * if ((disx - 0.5) * (disx - 0.5) + (disz - 0.5) * (disz - 0.5)
 				 * > (max) * (max)) { continue; }
 				 */

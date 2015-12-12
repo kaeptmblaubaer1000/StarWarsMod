@@ -4,15 +4,16 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.entities.EntityXWingBolt;
-
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.entities.EntityXWingBolt;
+
 public class VehicXWing extends VehicleAirBase
 {
-	public List<Point> nearby = new ArrayList<Point>();
+	public List<Entity> nearby = new ArrayList<Entity>();
 
 	public VehicXWing(World par1World)
 	{
@@ -61,12 +62,12 @@ public class VehicXWing extends VehicleAirBase
 				for (VehicleAirBase entity : (List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)))
 				{
 					if (entity != this)
-						this.nearby.add(new Point((int)entity.posX, (int)entity.posZ));
+						this.nearby.add(entity);
 				}
-				for (EntityXWingBolt entity : (List<EntityXWingBolt>)this.worldObj.getEntitiesWithinAABB(EntityXWingBolt.class, this.boundingBox.expand(100, 50, 100)))
-				{
-					this.nearby.add(new Point((int)entity.posX, (int)entity.posZ));
-				}
+				//for (EntityXWingBolt entity : (List<EntityXWingBolt>)this.worldObj.getEntitiesWithinAABB(EntityXWingBolt.class, this.boundingBox.expand(100, 50, 100)))
+				//{
+				//	this.nearby.add(entity);
+				//}
 			}
 		}
 	}
