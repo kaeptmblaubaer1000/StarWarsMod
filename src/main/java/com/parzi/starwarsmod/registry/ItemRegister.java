@@ -40,6 +40,8 @@ import com.parzi.starwarsmod.items.ItemSilverImperialCredit;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech;
 import com.parzi.starwarsmod.items.ItemSpawnAstromech2;
 import com.parzi.starwarsmod.items.ItemSpawnAstromechBb8;
+import com.parzi.starwarsmod.items.ItemSpawnAstromechImperial;
+import com.parzi.starwarsmod.items.ItemSpawnAstromechImperial2;
 import com.parzi.starwarsmod.items.ItemSpawnGonk;
 import com.parzi.starwarsmod.items.ItemSpawnMouse;
 import com.parzi.starwarsmod.items.ItemSpawnProbe;
@@ -435,6 +437,12 @@ public class ItemRegister
 
 		StarWarsMod.spawnAstromech = new ItemSpawnAstromech();
 		GameRegistry.registerItem(StarWarsMod.spawnAstromech, "spawnAstromech");
+
+		StarWarsMod.spawnAstromechImperial = new ItemSpawnAstromechImperial();
+		GameRegistry.registerItem(StarWarsMod.spawnAstromechImperial, "spawnAstromechImperial");
+
+		StarWarsMod.spawnAstromechImperial2 = new ItemSpawnAstromechImperial2();
+		GameRegistry.registerItem(StarWarsMod.spawnAstromechImperial2, "spawnAstromechImperial2");
 
 		StarWarsMod.spawnAstromech2 = new ItemSpawnAstromech2();
 		GameRegistry.registerItem(StarWarsMod.spawnAstromech2, "spawnAstromech2");
