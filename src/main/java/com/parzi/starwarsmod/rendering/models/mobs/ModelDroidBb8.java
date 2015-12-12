@@ -7,14 +7,14 @@ import net.minecraft.entity.Entity;
 public class ModelDroidBb8 extends ModelBase
 {
 	// fields
-	ModelRenderer Body_1;
-	ModelRenderer Body_2;
-	ModelRenderer Body_3;
-	ModelRenderer Body_4;
-	ModelRenderer Body_5;
-	ModelRenderer Body_6;
-	ModelRenderer Body_7;
-	ModelRenderer Body_8;
+	public ModelRenderer Body_1;
+	public ModelRenderer Body_2;
+	public ModelRenderer Body_3;
+	public ModelRenderer Body_4;
+	public ModelRenderer Body_5;
+	public ModelRenderer Body_6;
+	public ModelRenderer Body_7;
+	public ModelRenderer Body_8;
 
 	public ModelDroidBb8()
 	{
@@ -97,19 +97,19 @@ public class ModelDroidBb8 extends ModelBase
 		/*this.Body_1.rotateAngleX += entity.motionX;
 		this.Body_1.rotateAngleY += entity.motionY;
 		this.Body_1.rotateAngleZ += entity.motionZ;
-		
+
 		this.Body_2.rotateAngleX += entity.motionX;
 		this.Body_2.rotateAngleY += entity.motionY;
 		this.Body_2.rotateAngleZ += entity.motionZ;
-		
+
 		this.Body_3.rotateAngleX += entity.motionX;
 		this.Body_3.rotateAngleY += entity.motionY;
 		this.Body_3.rotateAngleZ += entity.motionZ;
-		
+
 		this.Body_4.rotateAngleX += entity.motionX;
 		this.Body_4.rotateAngleY += entity.motionY;
 		this.Body_4.rotateAngleZ += entity.motionZ;*/
-		
+
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
 }
