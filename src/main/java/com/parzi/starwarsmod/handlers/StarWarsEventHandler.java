@@ -242,19 +242,33 @@ public class StarWarsEventHandler
 						// centerY + 6 * blipPercent, centerX + 6 * blipPercent,
 						// centerY - 6 * blipPercent, 2, radarColor);
 
-						//MovingObjectPosition p = mc.thePlayer.rayTrace(100, 1);
+						// MovingObjectPosition p = mc.thePlayer.rayTrace(100,
+						// 1);
 
-						//Lumberjack.log(mc.entityRenderer.getMouseOver(p_78473_1_););
+						// Lumberjack.log(mc.entityRenderer.getMouseOver(p_78473_1_););
 
-						Entity e = EntityUtils.getMouseOver(20, xwing, null);
+						Entity e = EntityUtils.getMouseOver(100, xwing, null);
 						Lumberjack.log(e == null ? "null" : e.getCommandSenderName());
 
-						StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, radarColor);
-						StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, radarColor);
-						StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, radarColor);
-						StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, radarColor);
+						int color = radarColor;
 
-						StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, radarColor);
+						if (e != null)
+						{
+							color = StarWarsMod.pgui.getRGBA(255, 0, 0, 255);
+							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX, centerY, 2, color);
+						}
+						else
+						{
+							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
+							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
+							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+						}
+
+						StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 
