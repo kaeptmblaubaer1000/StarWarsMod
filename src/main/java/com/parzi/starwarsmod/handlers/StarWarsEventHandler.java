@@ -16,7 +16,6 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -25,13 +24,14 @@ import net.minecraftforge.event.world.BlockEvent;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
-import com.parzi.starwarsmod.armor.ArmorSequelStormtrooperSilver;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBolt;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
+import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
@@ -60,6 +60,10 @@ public class StarWarsEventHandler
 	public static Minecraft mc = Minecraft.getMinecraft();
 
 	public static int radarColor = StarWarsMod.pgui.getRGBA(0, 208, 12, 255);
+
+	public static float blipMax = 15;
+	public static float blipFrame = blipMax;
+	public static boolean isFiring = false;
 
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
@@ -127,6 +131,8 @@ public class StarWarsEventHandler
 			{
 				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
 				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				isFiring = true;
+				blipFrame = blipMax;
 			}
 			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
 			{
@@ -202,20 +208,53 @@ public class StarWarsEventHandler
 					{
 						VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
 
-						float radarCenterX = event.resolution.getScaledWidth() * (107/216F);
-						float radarCenterY = event.resolution.getScaledHeight() * (119/144F);
+						float centerX = event.resolution.getScaledWidth() / 2f;
+						float centerY = event.resolution.getScaledHeight() / 2f;
+
+						float radarCenterX = event.resolution.getScaledWidth() * (107 / 216F);
+						float radarCenterY = event.resolution.getScaledHeight() * (119 / 144F);
+
+						float blipPercent = (blipFrame / blipMax);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlayBack);
 						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, (int)(mc.thePlayer.rotationPitch / -5F));
 						for (Entity p : xwing.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, radarColor);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, radarColor);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + ((int)(xwing.posX - p.posX) / 5F), radarCenterY + ((int)(xwing.posZ - p.posZ) / 5F), 1, 5, 2, 0xFF564AFF);
 						}
+
+						if (isFiring)
+						{
+							blipFrame -= 0.25f;
+							if (blipFrame <= 0)
+							{
+								blipFrame = blipMax;
+								isFiring = false;
+							}
+						}
+
+						// StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent,
+						// centerY - 6 * blipPercent, centerX + 6 * blipPercent,
+						// centerY + 6 * blipPercent, 2, radarColor);
+						// StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent,
+						// centerY + 6 * blipPercent, centerX + 6 * blipPercent,
+						// centerY - 6 * blipPercent, 2, radarColor);
+
+						//MovingObjectPosition p = mc.thePlayer.rayTrace(100, 1);
+
+						//Lumberjack.log(mc.entityRenderer.getMouseOver(p_78473_1_););
+
+						Entity e = EntityUtils.getMouseOver(20, xwing, null);
+						Lumberjack.log(e == null ? "null" : e.getCommandSenderName());
+
+						StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, radarColor);
+						StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, radarColor);
+						StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, radarColor);
+						StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, radarColor);
+
+						StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, radarColor);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 

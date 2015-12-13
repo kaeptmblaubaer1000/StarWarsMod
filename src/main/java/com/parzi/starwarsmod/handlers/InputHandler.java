@@ -34,6 +34,8 @@ public class InputHandler
 		{
 			StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
 			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			StarWarsEventHandler.isFiring = true;
+			StarWarsEventHandler.blipFrame = StarWarsEventHandler.blipMax;
 		}
 		else if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
 		{
