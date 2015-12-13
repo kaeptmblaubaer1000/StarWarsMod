@@ -165,7 +165,7 @@ public class StarWarsEventHandler
 				// mc.entityRenderer, 4, "thirdPersonDistance");
 				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 
-				event.setCanceled(event.entity == mc.thePlayer.ridingEntity && !(mc.thePlayer.ridingEntity instanceof VehicXWing));
+				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
 			}
 			else
 			{
