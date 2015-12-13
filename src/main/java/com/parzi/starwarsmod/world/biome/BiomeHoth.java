@@ -12,7 +12,7 @@ public class BiomeHoth extends BiomeGenBase
 {
 	public BiomeHoth(int par1)
 	{
-		super(par1, false);
+		super(par1);
 		this.heightVariation = 0.5F;
 		this.enableRain = false;
 		this.enableSnow = true;

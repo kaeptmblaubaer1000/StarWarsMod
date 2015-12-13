@@ -21,7 +21,7 @@ public class BiomeEndor extends BiomeGenBase
 {
 	public BiomeEndor(int par1)
 	{
-		super(par1, false);
+		super(par1);
 		this.heightVariation = 0.2F;
 		this.enableRain = true;
 		this.enableSnow = false;

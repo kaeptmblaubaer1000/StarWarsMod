@@ -19,7 +19,7 @@ public class BiomeYavinFour extends BiomeGenBase
 {
 	public BiomeYavinFour(int par1)
 	{
-		super(par1, false);
+		super(par1);
 		this.heightVariation = 0.25F;
 		this.enableRain = true;
 		this.enableSnow = false;

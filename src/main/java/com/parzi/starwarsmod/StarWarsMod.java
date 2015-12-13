@@ -13,6 +13,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
@@ -398,21 +400,13 @@ public class StarWarsMod
 
 		BlockRegister.registerAll();
 
-		try
-		{
-			WorldRegister.registerAll();
-		}
-		catch (Exception e)
-		{
-			Lumberjack.log(Level.FATAL, "World failed to report for duty! Cause: unable to register dimension provider. See trace below for details:");
-			e.printStackTrace();
-		}
+		EntityRegister.registerAll();
+
+		WorldRegister.registerAll();
 
 		RecipeRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
-
-		EntityRegister.registerAll();
 
 		proxy.registerRendering();
 
@@ -432,25 +426,6 @@ public class StarWarsMod
 
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-
-		dimTatooineId = 2;
-		dimHothId = 3;
-		dimKashyyykId = 4;
-		dimYavin4Id = 5;
-		dimEndorId = 6;
-		dimEndorPlainsId = 7;
-		dimDagobahId = 8;
-
-		if (event.getSide() == Side.CLIENT)
-		{
-			WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
-			WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
-			WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
-			WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
-			WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
-			WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
-			isWorldRegistered = true;
-		}
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
@@ -480,32 +455,6 @@ public class StarWarsMod
 		}
 
 		event.registerServerCommand(new CommandForcePoints());
-
-		if (!isWorldRegistered)
-		{
-			WorldUtils.registerDimension(StarWarsMod.dimTatooineId, WorldProviderTatooine.class);
-			WorldUtils.registerDimension(StarWarsMod.dimHothId, WorldProviderHoth.class);
-			WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, WorldProviderKashyyyk.class);
-			WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, WorldProviderYavinFour.class);
-			WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
-			WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
-			isWorldRegistered = true;
-		}
-	}
-
-	@EventHandler
-	public void serverUnloaded(FMLServerStoppedEvent event)
-	{
-		if (isWorldRegistered)
-		{
-			WorldUtils.unregisterDimension(StarWarsMod.dimTatooineId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimHothId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimKashyyykId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimYavin4Id);
-			WorldUtils.unregisterDimension(StarWarsMod.dimEndorId);
-			WorldUtils.unregisterDimension(StarWarsMod.dimDagobahId);
-			isWorldRegistered = false;
-		}
 	}
 }
 /*

@@ -12,7 +12,7 @@ public class BiomeEndorPlains extends BiomeGenBase
 {
 	public BiomeEndorPlains(int par1)
 	{
-		super(par1, false);
+		super(par1);
 		this.heightVariation = 0.01F;
 		this.enableRain = true;
 		this.enableSnow = false;

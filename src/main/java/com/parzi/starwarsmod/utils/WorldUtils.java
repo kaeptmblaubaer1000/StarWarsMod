@@ -4,6 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraftforge.common.DimensionManager;
 import cpw.mods.fml.common.FMLCommonHandler;
 
@@ -18,6 +21,18 @@ public class WorldUtils
 	{
 		return Minecraft.getMinecraft().theWorld.getBlock(x, y, z);
 	}
+
+    public static void removeSpawnBiome(BiomeGenBase biome)
+    {
+        if (WorldChunkManager.allowedBiomes.contains(biome))
+        {
+            WorldChunkManager.allowedBiomes.remove(biome);
+        }
+        if (WorldChunkManagerHell.allowedBiomes.contains(biome))
+        {
+            WorldChunkManagerHell.allowedBiomes.remove(biome);
+        }
+    }
 
 	public static void registerDimension(int dimId)
 	{
@@ -38,5 +53,6 @@ public class WorldUtils
 	public static void unregisterDimension(int dimId)
 	{
 		DimensionManager.unregisterDimension(dimId);
+		Lumberjack.log("Provider and World unregistered for " + dimId);
 	}
 }

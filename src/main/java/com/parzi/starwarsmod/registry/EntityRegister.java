@@ -92,17 +92,6 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "blasterXWingBolt");
 		EntityUtils.registerEntity(EntityTIEBolt.class, "blasterTIEBolt");
-		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
-		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
-		EntityRegistry.addSpawn(MobJawa.class, 30, 1, 5, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
-		EntityRegistry.addSpawn(MobTusken.class, 3, 1, 3, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
-		EntityRegistry.addSpawn(MobBantha.class, 7, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
-		EntityRegistry.addSpawn(MobDewback.class, 7, 1, 2, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeTatooine });
-		EntityRegistry.addSpawn(MobEwok.class, 10, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeEndor, StarWarsMod.biomeEndorPlains });
-		EntityRegistry.addSpawn(MobTauntaun.class, 6, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeHoth });
-		EntityRegistry.addSpawn(MobDroidProbe.class, 1, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeHoth });
-		EntityRegistry.addSpawn(MobWampa.class, 1, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { StarWarsMod.biomeHoth });
-		EntityRegistry.addSpawn(MobWookiee.class, 10, 1, 1, EnumCreatureType.creature, new BiomeGenBase[] { StarWarsMod.biomeKashyyyk });
 		Lumberjack.info("Entities, reporting for duty!");
 	}
 }
