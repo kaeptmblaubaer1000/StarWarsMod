@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -306,6 +307,8 @@ public class StarWarsMod
 	public static PlayerHelper playerHelper;
 	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
+	@SideOnly(Side.CLIENT)
+	public static FontRenderer aurebesh;
 
 	public static Block blockMV;
 	public static Block blockTable;

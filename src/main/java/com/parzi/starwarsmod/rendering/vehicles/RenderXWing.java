@@ -5,6 +5,7 @@ import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -31,7 +32,7 @@ public class RenderXWing extends RenderVehicAirBase
 		{
 			VehicXWing xwing = (VehicXWing)entity;
 			ModelXWing model = (ModelXWing)modelBase;
-			
+
 			model.Booster_L_Top.rotateAngleZ = -0.314159f * xwing.sFoilPos;
 			model.Engine_L_Top.rotateAngleZ = -0.314159f * xwing.sFoilPos;
 			model.Wing_L_Top.rotateAngleZ = -0.314159f * xwing.sFoilPos;
@@ -75,7 +76,7 @@ public class RenderXWing extends RenderVehicAirBase
 			model.Laser_Prong_1_R_Bottom.rotateAngleZ = -0.314159f * xwing.sFoilPos;
 			model.Laser_Prong_2_R_Bottom.rotateAngleZ = -0.314159f * xwing.sFoilPos;
 			model.Laser_Prong_3_R_Bottom.rotateAngleZ = -0.314159f * xwing.sFoilPos;
-			
+
 			return model;
 		}
 		return modelBase;

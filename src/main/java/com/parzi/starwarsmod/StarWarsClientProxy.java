@@ -1,7 +1,10 @@
 package com.parzi.starwarsmod;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -131,6 +134,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
+		StarWarsMod.aurebesh = new FontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation(StarWarsMod.MODID, "textures/font/aurebesh.png"), Minecraft.getMinecraft().getTextureManager(), false);
+
+		((IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager()).registerReloadListener(StarWarsMod.aurebesh);
 
 		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 

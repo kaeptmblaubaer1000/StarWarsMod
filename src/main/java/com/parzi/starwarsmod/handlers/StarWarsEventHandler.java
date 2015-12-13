@@ -65,6 +65,9 @@ public class StarWarsEventHandler
 	public static float blipFrame = blipMax;
 	public static boolean isFiring = false;
 
+	public static String lookString = "";
+	public static int lookStringPos = 0;
+
 	@SubscribeEvent
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
 	{
@@ -162,7 +165,7 @@ public class StarWarsEventHandler
 				// mc.entityRenderer, 4, "thirdPersonDistance");
 				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
 
-				event.setCanceled(event.entity == mc.thePlayer.ridingEntity);
+				event.setCanceled(event.entity == mc.thePlayer.ridingEntity && !(mc.thePlayer.ridingEntity instanceof VehicXWing));
 			}
 			else
 			{
@@ -214,6 +217,9 @@ public class StarWarsEventHandler
 						float radarCenterX = event.resolution.getScaledWidth() * (107 / 216F);
 						float radarCenterY = event.resolution.getScaledHeight() * (119 / 144F);
 
+						float textCenterX = event.resolution.getScaledWidth() * (79.5f / 216F);
+						float textCenterY = event.resolution.getScaledHeight() * (137 / 144F);
+
 						float blipPercent = (blipFrame / blipMax);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlayBack);
@@ -247,18 +253,18 @@ public class StarWarsEventHandler
 
 						// Lumberjack.log(mc.entityRenderer.getMouseOver(p_78473_1_););
 
-						Entity e = EntityUtils.getMouseOver(100, xwing, null);
-						Lumberjack.log(e == null ? "null" : e.getCommandSenderName());
+						Entity e = EntityUtils.getMouseOver(100, mc.thePlayer, xwing);
 
 						int color = radarColor;
 
 						if (e != null)
 						{
 							color = StarWarsMod.pgui.getRGBA(255, 0, 0, 255);
-							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
+							StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
 						}
 						else
 						{
@@ -266,13 +272,29 @@ public class StarWarsEventHandler
 							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
 							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
 							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+							StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
 						}
-
-						StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
 
 						StarWarsMod.pgui.renderOverlay(xwingOverlay);
 
 						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, mc.thePlayer.rotationYaw, 2, radarColor);
+
+						String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
+
+						String block = (s != "" && lookStringPos < lookString.length()) ? "\u2588" : "";
+
+						if (lookString != s)
+						{
+							lookString = s;
+							lookStringPos = 0;
+							StarWarsMod.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, StarWarsMod.pgui.getRGBA(255, 255, 0, 255), true);
+						}
+						else
+						{
+							StarWarsMod.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, StarWarsMod.pgui.getRGBA(255, 255, 0, 255), true);
+							if (mc.thePlayer.ticksExisted % 2 == 0 && event.partialTicks < 0.3f && lookStringPos < lookString.length()) lookStringPos++;
+							//if (lookStringPos > lookString.length() - StarWarsMod.rngGeneral.nextInt(8)) lookStringPos = 0;
+						}
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing) StarWarsMod.pgui.renderOverlay(awingOverlay);
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor) StarWarsMod.pgui.renderOverlay(tieOverlay);
