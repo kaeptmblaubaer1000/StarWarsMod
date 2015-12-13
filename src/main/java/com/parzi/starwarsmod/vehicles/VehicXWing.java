@@ -15,7 +15,7 @@ import com.parzi.starwarsmod.entities.EntityXWingBolt;
 public class VehicXWing extends VehicleAirBase
 {
 	public List<Entity> nearby = new ArrayList<Entity>();
-	public float sFoilPos = 0;
+	public static int SFOIL_DW = 13;
 	public boolean isOpening = false;
 	public boolean isClosing = false;
 
@@ -26,6 +26,13 @@ public class VehicXWing extends VehicleAirBase
 		this.vehicYOffset = -3F;
 		this.moveModifier = 1.3F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
+	}
+
+	@Override
+	public void entityInit()
+	{
+		super.entityInit();
+        this.dataWatcher.addObject(SFOIL_DW, Float.valueOf(0));
 	}
 
 	@Override
@@ -53,6 +60,16 @@ public class VehicXWing extends VehicleAirBase
 		return "vehicle.xwing.move";
 	}
 
+	public float getSFoil()
+	{
+		return this.dataWatcher.getWatchableObjectFloat(SFOIL_DW);
+	}
+
+	public void setSFoil(float f)
+	{
+		this.dataWatcher.updateObject(SFOIL_DW, f);
+	}
+
 	@Override
 	public void onUpdate()
 	{
@@ -60,14 +77,14 @@ public class VehicXWing extends VehicleAirBase
 
 		if (this.isOpening)
 		{
-			this.sFoilPos += 1/40f;
-			this.isOpening = this.sFoilPos < 0.8f;
+			this.setSFoil(this.getSFoil() + 1/40f);
+			this.isOpening = this.getSFoil() < 0.8f;
 		}
 
 		if (this.isClosing)
 		{
-			this.sFoilPos -= 1/40f;
-			this.isClosing = this.sFoilPos > 0;
+			this.setSFoil(this.getSFoil() - 1/40f);
+			this.isClosing = this.getSFoil() > 0;
 		}
 
 		if (this.ticksExisted % 5 == 0)
