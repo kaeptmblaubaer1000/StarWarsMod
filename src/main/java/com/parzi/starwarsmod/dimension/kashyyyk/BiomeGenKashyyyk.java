@@ -16,7 +16,7 @@ public class BiomeGenKashyyyk extends BiomeGenBase
 	{
 		super(biomeId);
 
-		this.setBiomeName("Kashyyyl");
+		this.setBiomeName("Kashyyyk");
 
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;

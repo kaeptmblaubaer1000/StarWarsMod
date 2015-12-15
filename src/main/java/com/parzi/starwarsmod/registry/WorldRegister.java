@@ -35,6 +35,7 @@ public class WorldRegister
 		StarWarsMod.biomeHoth = new BiomeGenHoth(StarWarsMod.dimHothId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeHoth);
 		StarWarsMod.biomeKashyyyk = new BiomeGenKashyyyk(StarWarsMod.dimKashyyykId);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeKashyyyk);
 		//StarWarsMod.biomeYavin4 = new BiomeYavinFour(StarWarsMod.dimYavin4Id);
 		//StarWarsMod.biomeEndor = new BiomeEndor(StarWarsMod.dimEndorId);
 		//StarWarsMod.biomeEndorPlains = new BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
