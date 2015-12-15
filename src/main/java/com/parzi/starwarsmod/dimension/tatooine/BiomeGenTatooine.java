@@ -77,6 +77,9 @@ public class BiomeGenTatooine extends BiomeGenBase
 		super(biomeId);
 		
 		this.setBiomeName("Tatooine");
+
+		this.rootHeight = 0.1f;
+		this.heightVariation = 0.0f;
 		
         this.spawnableCreatureList.clear();
         

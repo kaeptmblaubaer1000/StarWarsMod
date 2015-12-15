@@ -429,6 +429,14 @@ public class StarWarsMod
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
+		
+		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
+		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();
+		//StarWarsMod.dimKashyyykId = DimensionManager.getNextFreeDimId();
+		//StarWarsMod.dimYavin4Id = DimensionManager.getNextFreeDimId();
+		//StarWarsMod.dimEndorId = DimensionManager.getNextFreeDimId();
+		//StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
+		//StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
