@@ -11,6 +11,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 
 public class BiomeGenYavin extends BiomeGenBase
@@ -51,7 +52,7 @@ public class BiomeGenYavin extends BiomeGenBase
             int k = chunkX + par2Random.nextInt(16) + 8;
             int l = chunkZ + par2Random.nextInt(16) + 8;
             int i1 = par1World.getHeightValue(k, l);
-            WorldGenAbstractTree worldgenabstracttree = func_150567_a(par2Random);
+            WorldGenAbstractTree worldgenabstracttree = getTreeAt(par2Random, k, i1, l);
             worldgenabstracttree.setScale(1.0D, 1.0D, 1.0D);
 
             if (worldgenabstracttree.generate(par1World, par2Random, k, i1, l))
@@ -61,9 +62,9 @@ public class BiomeGenYavin extends BiomeGenBase
         }
 	}
 	
-	@Override
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+    public WorldGenAbstractTree getTreeAt(Random p_150567_1_, int x, int y, int z)
     {
+    	if (y > 80) return new WorldGenMegaJungle(true, 10, 5, 3, 3);
         switch (p_150567_1_.nextInt(3))
         {
         	case 0:
