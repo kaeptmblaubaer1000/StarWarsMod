@@ -433,7 +433,7 @@ public class StarWarsMod
 		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();
 		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
-		//StarWarsMod.dimYavin4Id = DimensionManager.getNextFreeDimId();
+		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
 		//StarWarsMod.dimEndorId = DimensionManager.getNextFreeDimId();
 		//StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
 		//StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
