@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.dimension.hoth;
+package com.parzi.starwarsmod.dimension.kashyyyk;
 
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT;
@@ -49,7 +49,7 @@ import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class BiomeChunkProviderHoth extends ChunkProviderGenerate
+public class BiomeChunkProviderKashyyyk extends ChunkProviderGenerate
 {
 	/** RNG. */
 	private Random rand;
@@ -98,7 +98,7 @@ public class BiomeChunkProviderHoth extends ChunkProviderGenerate
 		ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, RAVINE);
 	}
 
-	public BiomeChunkProviderHoth(World world, long seed, boolean features)
+	public BiomeChunkProviderKashyyyk(World world, long seed, boolean features)
 	{
 		super(world, seed, features);
 		this.worldObj = world;
@@ -190,7 +190,7 @@ public class BiomeChunkProviderHoth extends ChunkProviderGenerate
 								}
 								else if (k2 * 8 + l2 < b0)
 								{
-									p_147424_3_[j3 += short1] = Blocks.snow;
+									p_147424_3_[j3 += short1] = Blocks.water;
 								}
 								else
 								{
