@@ -50,8 +50,8 @@ public class TatooineProvider extends WorldProvider
 	@Override
 	protected void registerWorldChunkManager()
 	{
-		//this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0.0F);
-		this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
+		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0.0F);
+		//this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
 		this.dimensionId = StarWarsMod.dimTatooineId;
 	}
 
@@ -66,6 +66,12 @@ public class TatooineProvider extends WorldProvider
 
 	@Override
 	public ChunkCoordinates getEntrancePortalLocation()
+	{
+		return null;
+	}
+
+	@Override
+	public ChunkCoordinates getSpawnPoint()
 	{
 		return new ChunkCoordinates(0, this.worldObj.getHeightValue(0, 0), 0);
 	}

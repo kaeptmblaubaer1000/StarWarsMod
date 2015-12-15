@@ -15,6 +15,8 @@ import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.Ev
 import java.util.List;
 import java.util.Random;
 
+import com.parzi.starwarsmod.StarWarsMod;
+
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -186,10 +188,10 @@ public class BiomeChunkProviderTatooine extends ChunkProviderGenerate
 								{
 									p_147424_3_[j3 += short1] = Blocks.stone;
 								}
-								//else if (k2 * 8 + l2 < b0)
-								//{
-								//	p_147424_3_[j3 += short1] = Blocks.water;
-								//}
+								else if (k2 * 8 + l2 < b0)
+								{
+									p_147424_3_[j3 += short1] = StarWarsMod.blockTatooineSand;
+								}
 								else
 								{
 									p_147424_3_[j3 += short1] = null;
