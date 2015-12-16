@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.dimension.yavin;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
 
@@ -14,7 +15,7 @@ import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 
-public class BiomeGenYavin extends BiomeGenBase
+public class BiomeGenYavin extends BiomeGenPSWM
 {
 	public BiomeGenYavin(int biomeId)
 	{
@@ -62,6 +63,7 @@ public class BiomeGenYavin extends BiomeGenBase
         }
 	}
 	
+	@Override
     public WorldGenAbstractTree getTreeAt(Random p_150567_1_, int x, int y, int z)
     {
     	if (y > 80) return new WorldGenMegaJungle(true, 10, 5, 3, 3);

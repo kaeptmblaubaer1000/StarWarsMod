@@ -1,6 +1,8 @@
 package com.parzi.starwarsmod.registry;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.dimension.endor.BiomeGenEndor;
+import com.parzi.starwarsmod.dimension.endor.EndorProvider;
 import com.parzi.starwarsmod.dimension.hoth.BiomeGenHoth;
 import com.parzi.starwarsmod.dimension.hoth.HothProvider;
 import com.parzi.starwarsmod.dimension.kashyyyk.BiomeGenKashyyyk;
@@ -12,6 +14,7 @@ import com.parzi.starwarsmod.dimension.yavin.YavinProvider;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobDewback;
 import com.parzi.starwarsmod.mobs.MobDroidProbe;
+import com.parzi.starwarsmod.mobs.MobEwok;
 import com.parzi.starwarsmod.mobs.MobGamorrean;
 import com.parzi.starwarsmod.mobs.MobJawa;
 import com.parzi.starwarsmod.mobs.MobSandtrooper;
@@ -40,7 +43,8 @@ public class WorldRegister
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeKashyyyk);
 		StarWarsMod.biomeYavin4 = new BiomeGenYavin(StarWarsMod.dimYavin4Id);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeYavin4);
-		//StarWarsMod.biomeEndor = new BiomeEndor(StarWarsMod.dimEndorId);
+		StarWarsMod.biomeEndor = new BiomeGenEndor(StarWarsMod.dimEndorId);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
 		//StarWarsMod.biomeEndorPlains = new BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
 		//StarWarsMod.biomeDagobah = new BiomeDagobah(StarWarsMod.dimDagobahId);
 
@@ -48,7 +52,7 @@ public class WorldRegister
 		WorldUtils.registerDimension(StarWarsMod.dimHothId, HothProvider.class);
 		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, KashyyykProvider.class);
 		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, YavinProvider.class);
-		//WorldUtils.registerDimension(StarWarsMod.dimEndorId, WorldProviderEndor.class);
+		WorldUtils.registerDimension(StarWarsMod.dimEndorId, EndorProvider.class);
 		//WorldUtils.registerDimension(StarWarsMod.dimDagobahId, WorldProviderDagobah.class);
 
 		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
@@ -57,7 +61,7 @@ public class WorldRegister
 		EntityRegistry.addSpawn(MobTusken.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobBantha.class, 7, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobDewback.class, 7, 1, 2, EnumCreatureType.creature, StarWarsMod.biomeTatooine);
-		//EntityRegistry.addSpawn(MobEwok.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeEndor, StarWarsMod.biomeEndorPlains);
+		EntityRegistry.addSpawn(MobEwok.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeEndor);
 		EntityRegistry.addSpawn(MobTauntaun.class, 6, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeHoth);
 		EntityRegistry.addSpawn(MobDroidProbe.class, 1, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeHoth);
 		EntityRegistry.addSpawn(MobWampa.class, 1, 1, 1, EnumCreatureType.monster, StarWarsMod.biomeHoth);

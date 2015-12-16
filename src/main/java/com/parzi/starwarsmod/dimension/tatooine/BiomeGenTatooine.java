@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.dimension.tatooine;
 import java.util.Random;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
 import com.parzi.starwarsmod.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzi.starwarsmod.world.gen.WorldGenTatooineHomestead;
@@ -68,7 +69,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenDesertWells;
 
-public class BiomeGenTatooine extends BiomeGenBase
+public class BiomeGenTatooine extends BiomeGenPSWM
 {	
 	private int mosY;
 

@@ -10,6 +10,7 @@ import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.Ev
 import java.util.Random;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
 import com.parzi.starwarsmod.world.gen.WorldGenSuperTatooineHomestead;
@@ -77,7 +78,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenDesertWells;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class BiomeGenHoth extends BiomeGenBase
+public class BiomeGenHoth extends BiomeGenPSWM
 {
 	public BiomeGenHoth(int biomeId)
 	{

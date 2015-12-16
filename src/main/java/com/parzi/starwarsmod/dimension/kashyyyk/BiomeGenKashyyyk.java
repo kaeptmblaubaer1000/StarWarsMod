@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.dimension.kashyyyk;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
 
@@ -10,7 +11,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-public class BiomeGenKashyyyk extends BiomeGenBase
+public class BiomeGenKashyyyk extends BiomeGenPSWM
 {
 	public BiomeGenKashyyyk(int biomeId)
 	{
