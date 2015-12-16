@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelDewback;
 public class RenderDewback extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/dewback.png");
-	
+
 	public RenderDewback(ModelDewback par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -28,7 +28,8 @@ public class RenderDewback extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		if (!entity.isChild()) GL11.glScalef(2.5F, 2.5F, 2.5F);
+		if (!entity.isChild())
+			GL11.glScalef(2.5F, 2.5F, 2.5F);
 	}
 }
 /*
