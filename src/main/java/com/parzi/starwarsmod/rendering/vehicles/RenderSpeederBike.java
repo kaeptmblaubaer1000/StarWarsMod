@@ -9,7 +9,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class RenderSpeederBike extends RenderLiving

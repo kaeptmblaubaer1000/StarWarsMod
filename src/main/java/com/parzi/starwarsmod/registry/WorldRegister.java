@@ -71,7 +71,7 @@ public class WorldRegister
 		EntityRegistry.addSpawn(MobTauntaun.class, 6, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeHoth);
 		EntityRegistry.addSpawn(MobDroidProbe.class, 1, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeHoth);
 		EntityRegistry.addSpawn(MobWampa.class, 1, 1, 1, EnumCreatureType.monster, StarWarsMod.biomeHoth);
-		EntityRegistry.addSpawn(MobWookiee.class, 10, 1, 1, EnumCreatureType.creature, StarWarsMod.biomeKashyyyk);
+		EntityRegistry.addSpawn(MobWookiee.class, 15, 1, 3, EnumCreatureType.creature, StarWarsMod.biomeKashyyyk);
 
 		GameRegistry.registerWorldGenerator(new OreGenerator(), 10);
 

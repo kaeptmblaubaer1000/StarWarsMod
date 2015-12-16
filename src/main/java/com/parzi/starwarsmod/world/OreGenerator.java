@@ -14,7 +14,7 @@ public class OreGenerator implements IWorldGenerator
 {
 	public static WorldGenMinable chromium = new WorldGenMinable(StarWarsMod.blockChromiumOre, 4);
 	public static WorldGenMinable titanium = new WorldGenMinable(StarWarsMod.blockTitaniumOre, 4);
-	
+
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{

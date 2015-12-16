@@ -99,13 +99,13 @@ public class ModelDroidBb8 extends ModelBase
 		/*
 		 * this.Body_1.rotateAngleX += entity.motionX; this.Body_1.rotateAngleY
 		 * += entity.motionY; this.Body_1.rotateAngleZ += entity.motionZ;
-		 *
+		 * 
 		 * this.Body_2.rotateAngleX += entity.motionX; this.Body_2.rotateAngleY
 		 * += entity.motionY; this.Body_2.rotateAngleZ += entity.motionZ;
-		 *
+		 * 
 		 * this.Body_3.rotateAngleX += entity.motionX; this.Body_3.rotateAngleY
 		 * += entity.motionY; this.Body_3.rotateAngleZ += entity.motionZ;
-		 *
+		 * 
 		 * this.Body_4.rotateAngleX += entity.motionX; this.Body_4.rotateAngleY
 		 * += entity.motionY; this.Body_4.rotateAngleZ += entity.motionZ;
 		 */
