@@ -47,13 +47,15 @@ public class MobWampa extends EntityMob implements IMob
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor_double(this.boundingBox.minY);
-		if (i >= 63) return false;
+		if (i >= 63)
+			return false;
 		int j = MathHelper.floor_double(this.posX);
 		int k = MathHelper.floor_double(this.posZ);
 		int l = this.worldObj.getBlockLightValue(j, i, k);
 		byte b0 = 4;
 		b0 = 7;
-		if (this.rand.nextInt(100) < 90) return false;
+		if (this.rand.nextInt(100) < 90)
+			return false;
 		return l > this.rand.nextInt(b0) ? false : super.getCanSpawnHere();
 	}
 

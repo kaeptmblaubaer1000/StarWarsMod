@@ -35,11 +35,13 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public ItemStack decrStackSize(int slot, int decrement)
 	{
-		if (this.waterDroplets == null) return null;
+		if (this.waterDroplets == null)
+			return null;
 		if (decrement < this.waterDroplets.stackSize)
 		{
 			ItemStack take = this.waterDroplets.splitStack(decrement);
-			if (this.waterDroplets.stackSize <= 0) this.waterDroplets = null;
+			if (this.waterDroplets.stackSize <= 0)
+				this.waterDroplets = null;
 			return take;
 		}
 		ItemStack take = this.waterDroplets;
@@ -87,7 +89,8 @@ public class TileEntityMV extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlotOnClosing(int p_70304_1_)
 	{
-		if (this.waterDroplets == null) return null;
+		if (this.waterDroplets == null)
+			return null;
 		ItemStack take = this.waterDroplets;
 		this.waterDroplets = null;
 		return take;
@@ -159,7 +162,8 @@ public class TileEntityMV extends TileEntity implements IInventory
 			this.progressTicks = 1;
 			if (this.waterDroplets == null)
 				this.waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
-			else if (this.waterDroplets.stackSize < 64) this.waterDroplets.stackSize += 1;
+			else if (this.waterDroplets.stackSize < 64)
+				this.waterDroplets.stackSize += 1;
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 	}

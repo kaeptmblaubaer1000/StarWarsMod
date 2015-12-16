@@ -27,7 +27,8 @@ public class AiHuntPlayers extends EntityAIBase
 	public AiHuntPlayers(IRangedAttackMob p_i1650_1_, double p_i1650_2_, int p_i1650_4_, int p_i1650_5_, float p_i1650_6_)
 	{
 		this.rangedAttackTime = -1;
-		if (!(p_i1650_1_ instanceof EntityLivingBase)) throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
+		if (!(p_i1650_1_ instanceof EntityLivingBase))
+			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
 		this.rangedAttackEntityHost = p_i1650_1_;
 		this.entityHost = (EntityLiving)p_i1650_1_;
 		this.entityMoveSpeed = p_i1650_2_;
@@ -56,7 +57,8 @@ public class AiHuntPlayers extends EntityAIBase
 	public boolean shouldExecute()
 	{
 		EntityLivingBase entitylivingbase = this.entityHost.getAttackTarget();
-		if (entitylivingbase == null) return false;
+		if (entitylivingbase == null)
+			return false;
 		this.attackTarget = entitylivingbase;
 		return true;
 	}
@@ -74,11 +76,14 @@ public class AiHuntPlayers extends EntityAIBase
 		this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
 		if (--this.rangedAttackTime == 0)
 		{
-			if (d0 > this.field_82642_h || !flag) return;
+			if (d0 > this.field_82642_h || !flag)
+				return;
 			float f = MathHelper.sqrt_double(d0) / this.field_96562_i;
 			float f1 = f;
-			if (f < 0.1F) f1 = 0.1F;
-			if (f1 > 1.0F) f1 = 1.0F;
+			if (f < 0.1F)
+				f1 = 0.1F;
+			if (f1 > 1.0F)
+				f1 = 1.0F;
 			this.rangedAttackEntityHost.attackEntityWithRangedAttack(this.attackTarget, f1);
 			this.rangedAttackTime = MathHelper.floor_float(f * (this.maxRangedAttackTime - this.field_96561_g) + this.field_96561_g);
 		}

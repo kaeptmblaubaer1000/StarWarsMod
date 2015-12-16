@@ -47,8 +47,10 @@ public class BlockTatooineSandstone extends Block
 	{
 		if (side != 1 && (side != 0 || meta != 1 && meta != 2))
 		{
-			if (side == 0) return this.field_150160_O;
-			if (meta < 0 || meta >= this.field_150158_M.length) meta = 0;
+			if (side == 0)
+				return this.field_150160_O;
+			if (meta < 0 || meta >= this.field_150158_M.length)
+				meta = 0;
 			return this.field_150158_M[meta];
 		}
 		return this.field_150159_N;

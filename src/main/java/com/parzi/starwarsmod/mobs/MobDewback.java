@@ -46,7 +46,8 @@ public class MobDewback extends EntityHorse
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
 		Block.SoundType soundtype = p_145780_4_.stepSound;
-		if (this.worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer) soundtype = Blocks.snow_layer.stepSound;
+		if (this.worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer)
+			soundtype = Blocks.snow_layer.stepSound;
 		if (!p_145780_4_.getMaterial().isLiquid())
 		{
 			int l = this.getHorseType();
@@ -55,7 +56,8 @@ public class MobDewback extends EntityHorse
 				this.field_110285_bP += 1;
 				if (this.field_110285_bP > 5 && this.field_110285_bP % 3 == 0)
 					this.playSound("mob.horse.gallop", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				else if (this.field_110285_bP <= 5) this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				else if (this.field_110285_bP <= 5)
+					this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
 				this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
@@ -84,8 +86,10 @@ public class MobDewback extends EntityHorse
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag()) return this.getCustomNameTag();
-		if (this.isChested()) return "Pack-Dewback";
+		if (this.hasCustomNameTag())
+			return this.getCustomNameTag();
+		if (this.isChested())
+			return "Pack-Dewback";
 		return "Dewback";
 	}
 
@@ -123,7 +127,8 @@ public class MobDewback extends EntityHorse
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
-		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg) return false;
+		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
+			return false;
 		return super.interact(p_70085_1_);
 	}
 
@@ -143,7 +148,8 @@ public class MobDewback extends EntityHorse
 		float f2 = 0.5F;
 		float f3 = 1.0F;
 		this.riddenByEntity.setPosition(this.posX + f2 * f, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + f3 - 0.3499999940395355D, this.posZ - f2 * f1);
-		if (this.riddenByEntity instanceof EntityLivingBase) ((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
+		if (this.riddenByEntity instanceof EntityLivingBase)
+			((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
 	}
 }
 /*

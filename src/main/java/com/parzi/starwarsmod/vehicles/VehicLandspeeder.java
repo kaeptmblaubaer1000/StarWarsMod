@@ -32,7 +32,8 @@ public class VehicLandspeeder extends VehicleLandBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag()) return this.getCustomNameTag();
+		if (this.hasCustomNameTag())
+			return this.getCustomNameTag();
 		return "X-34 Landspeeder";
 	}
 

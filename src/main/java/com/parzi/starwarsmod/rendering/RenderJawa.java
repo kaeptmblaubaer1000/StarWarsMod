@@ -13,7 +13,7 @@ public class RenderJawa extends RenderLiving
 	public static ResourceLocation texture1 = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
 	public static ResourceLocation texture2 = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa2.png");
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
-	
+
 	public RenderJawa(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

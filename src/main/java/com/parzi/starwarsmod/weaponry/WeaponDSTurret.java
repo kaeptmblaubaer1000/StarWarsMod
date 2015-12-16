@@ -24,7 +24,8 @@ public class WeaponDSTurret extends WeaponSwivelBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag()) return this.getCustomNameTag();
+		if (this.hasCustomNameTag())
+			return this.getCustomNameTag();
 		return "SB-920 Laser Cannon";
 	}
 

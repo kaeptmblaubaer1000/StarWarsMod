@@ -35,13 +35,15 @@ public class GuiJediRobes extends GuiScreen
 		switch (guiButton.id)
 		{
 			case 1:
-				if (this.spinnerIndex > 0) this.spinnerIndex -= 1;
+				if (this.spinnerIndex > 0)
+					this.spinnerIndex -= 1;
 				break;
 			case 2:
 				this.buy();
 				break;
 			case 3:
-				if (this.spinnerIndex < this.spinner.length - 1) this.spinnerIndex += 1;
+				if (this.spinnerIndex < this.spinner.length - 1)
+					this.spinnerIndex += 1;
 				break;
 		}
 	}

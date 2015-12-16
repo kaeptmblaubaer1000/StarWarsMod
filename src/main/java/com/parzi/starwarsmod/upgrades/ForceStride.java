@@ -19,6 +19,7 @@ public class ForceStride extends PowerBase
 	@Override
 	public void doPower(World world, EntityPlayer player, ItemStack robe)
 	{
-		if (robe.stackTagCompound.getInteger(this.internalName) > 0) PotionList.addAmbientEffect(player, PotionList.SPEED, 200, robe.stackTagCompound.getInteger(this.internalName));
+		if (robe.stackTagCompound.getInteger(this.internalName) > 0)
+			PotionList.addAmbientEffect(player, PotionList.SPEED, 200, robe.stackTagCompound.getInteger(this.internalName));
 	}
 }

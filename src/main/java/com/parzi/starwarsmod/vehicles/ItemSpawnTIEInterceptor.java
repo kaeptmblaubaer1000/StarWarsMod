@@ -21,12 +21,13 @@ public class ItemSpawnTIEInterceptor extends net.minecraft.item.Item
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnTieInterceptor)) if (!world.isRemote)
-		{
-			VehicTIEInterceptor newVehic = new VehicTIEInterceptor(world);
-			newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
-			world.spawnEntityInWorld(newVehic);
-		}
+		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnTieInterceptor))
+			if (!world.isRemote)
+			{
+				VehicTIEInterceptor newVehic = new VehicTIEInterceptor(world);
+				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
+				world.spawnEntityInWorld(newVehic);
+			}
 		return true;
 	}
 }

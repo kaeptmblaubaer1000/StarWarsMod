@@ -11,7 +11,7 @@ import com.parzi.starwarsmod.mobs.MobTusken;
 public class RenderTusken extends RenderBiped
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/tusken.png");
-	
+
 	public RenderTusken(ModelBiped par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

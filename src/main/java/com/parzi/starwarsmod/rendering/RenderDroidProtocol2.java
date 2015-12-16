@@ -10,7 +10,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 public class RenderDroidProtocol2 extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/protocol2.png");
-	
+
 	public RenderDroidProtocol2(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

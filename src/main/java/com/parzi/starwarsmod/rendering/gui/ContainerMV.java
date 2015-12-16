@@ -41,23 +41,28 @@ public class ContainerMV extends Container
 			itemstack = itemstack1.copy();
 			if (slotNumber == 0)
 			{
-				if (!this.mergeItemStack(itemstack1, 1, 37, true)) return null;
+				if (!this.mergeItemStack(itemstack1, 1, 37, true))
+					return null;
 				slot.onSlotChange(itemstack1, itemstack);
 			}
 			else if (slotNumber != 1 && slotNumber != 0)
 			{
 				if (slotNumber >= 3 && slotNumber < 30)
 				{
-					if (!this.mergeItemStack(itemstack1, 28, 37, false)) return null;
+					if (!this.mergeItemStack(itemstack1, 28, 37, false))
+						return null;
 				}
-				else if (slotNumber >= 28 && slotNumber < 37 && !this.mergeItemStack(itemstack1, 3, 30, false)) return null;
+				else if (slotNumber >= 28 && slotNumber < 37 && !this.mergeItemStack(itemstack1, 3, 30, false))
+					return null;
 			}
-			else if (!this.mergeItemStack(itemstack1, 1, 37, false)) return null;
+			else if (!this.mergeItemStack(itemstack1, 1, 37, false))
+				return null;
 			if (itemstack1.stackSize == 0)
 				slot.putStack((ItemStack)null);
 			else
 				slot.onSlotChanged();
-			if (itemstack1.stackSize == itemstack.stackSize) return null;
+			if (itemstack1.stackSize == itemstack.stackSize)
+				return null;
 			slot.onPickupFromSlot(player, itemstack1);
 		}
 		return itemstack;

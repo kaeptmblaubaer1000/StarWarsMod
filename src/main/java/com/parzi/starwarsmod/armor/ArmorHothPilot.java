@@ -21,8 +21,10 @@ public class ArmorHothPilot extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.atatPilotHelmet || stack.getItem() == StarWarsMod.atatPilotChest || stack.getItem() == StarWarsMod.atatPilotBoots) return StarWarsMod.MODID + ":" + "textures/models/atatPilotArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.atatPilotLegs) return StarWarsMod.MODID + ":" + "textures/models/atatPilotArmorLayer2.png";
+		if (stack.getItem() == StarWarsMod.atatPilotHelmet || stack.getItem() == StarWarsMod.atatPilotChest || stack.getItem() == StarWarsMod.atatPilotBoots)
+			return StarWarsMod.MODID + ":" + "textures/models/atatPilotArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.atatPilotLegs)
+			return StarWarsMod.MODID + ":" + "textures/models/atatPilotArmorLayer2.png";
 		return "";
 	}
 }

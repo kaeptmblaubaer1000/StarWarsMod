@@ -70,7 +70,8 @@ public class AiFreqMove extends EntityAIBase
 				flag = true;
 			}
 		}
-		if (flag) return Vec3.createVectorHelper(k, l, i1);
+		if (flag)
+			return Vec3.createVectorHelper(k, l, i1);
 		return null;
 	}
 
@@ -82,9 +83,11 @@ public class AiFreqMove extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.entity.getRNG().nextInt(this.freq) != 0) return false;
+		if (this.entity.getRNG().nextInt(this.freq) != 0)
+			return false;
 		Vec3 vec3 = this.findRandomTarget(this.entity, this.maxDistance, 7);
-		if (vec3 == null) return false;
+		if (vec3 == null)
+			return false;
 		this.xPosition = vec3.xCoord;
 		this.yPosition = vec3.yCoord;
 		this.zPosition = vec3.zCoord;

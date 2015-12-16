@@ -18,17 +18,20 @@ public class AchievementTrigger
 			event.player.addStat(StarWarsAchievements.travelHoth, 1);
 		else if (event.toDim == StarWarsMod.dimKashyyykId)
 			event.player.addStat(StarWarsAchievements.travelKashyyyk, 1);
-		else if (event.toDim == StarWarsMod.dimYavin4Id) event.player.addStat(StarWarsAchievements.travelYavin, 1);
+		else if (event.toDim == StarWarsMod.dimYavin4Id)
+			event.player.addStat(StarWarsAchievements.travelYavin, 1);
 	}
 
 	@SubscribeEvent
 	public void onItemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
-		if (event.crafting != null) if (event.crafting.getItem() == StarWarsMod.jediRobes || event.crafting.getItem() == StarWarsMod.lightJediRobes)
-			event.player.addStat(StarWarsAchievements.becomeJedi, 1);
-		else if (event.crafting.getItem() == StarWarsMod.hyperdriveEngine)
-			event.player.addStat(StarWarsAchievements.craftHyperdrive, 1);
-		else if (event.crafting.getItem() == StarWarsMod.lightsaber) event.player.addStat(StarWarsAchievements.craftLightsaber, 1);
+		if (event.crafting != null)
+			if (event.crafting.getItem() == StarWarsMod.jediRobes || event.crafting.getItem() == StarWarsMod.lightJediRobes)
+				event.player.addStat(StarWarsAchievements.becomeJedi, 1);
+			else if (event.crafting.getItem() == StarWarsMod.hyperdriveEngine)
+				event.player.addStat(StarWarsAchievements.craftHyperdrive, 1);
+			else if (event.crafting.getItem() == StarWarsMod.lightsaber)
+				event.player.addStat(StarWarsAchievements.craftLightsaber, 1);
 	}
 }
 /*

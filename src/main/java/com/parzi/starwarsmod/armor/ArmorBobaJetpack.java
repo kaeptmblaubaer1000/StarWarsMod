@@ -23,7 +23,8 @@ public class ArmorBobaJetpack extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == com.parzi.starwarsmod.StarWarsMod.bobaJetpackChest) return StarWarsMod.MODID + ":" + "textures/models/bobaArmorLayer1.png";
+		if (stack.getItem() == com.parzi.starwarsmod.StarWarsMod.bobaJetpackChest)
+			return StarWarsMod.MODID + ":" + "textures/models/bobaArmorLayer1.png";
 		return "";
 	}
 
@@ -40,7 +41,8 @@ public class ArmorBobaJetpack extends ItemArmor
 		{
 			EntityPlayer p = (EntityPlayer)player;
 			p.capabilities.allowFlying = p.capabilities.isCreativeMode || p.inventory.armorInventory[2] != null && p.inventory.armorInventory[2].getItem() instanceof ArmorBobaJetpack;
-			if (!p.capabilities.allowFlying) p.capabilities.isFlying = false;
+			if (!p.capabilities.allowFlying)
+				p.capabilities.isFlying = false;
 		}
 	}
 }

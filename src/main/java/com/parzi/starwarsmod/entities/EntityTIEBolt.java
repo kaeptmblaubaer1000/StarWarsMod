@@ -60,7 +60,8 @@ public class EntityTIEBolt extends EntityThrowable
 	@Override
 	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
 	{
-		if (this.isEntityInvulnerable()) return false;
+		if (this.isEntityInvulnerable())
+			return false;
 		this.setBeenAttacked();
 		if (p_70097_1_.getEntity() != null)
 		{
@@ -86,7 +87,8 @@ public class EntityTIEBolt extends EntityThrowable
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player)
 	{
-		if (true) return;
+		if (true)
+			return;
 		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber || player.getHeldItem().getItem() == StarWarsMod.sequelLightsaber) && player.isBlocking())
 		{
 			Vec3 vec3 = player.getLookVec();
@@ -108,14 +110,16 @@ public class EntityTIEBolt extends EntityThrowable
 			pos.entityHit.attackEntityFrom(new DamageSource("bolt"), 16.0F);
 			pos.entityHit.setFire(8);
 		}
-		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && StarWarsMod.enableBlasterFire) this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
+		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && StarWarsMod.enableBlasterFire)
+			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 		this.setDead();
 	}
 
 	@Override
 	public void onUpdate()
 	{
-		if (this.timeAlive++ > 100) this.setDead();
+		if (this.timeAlive++ > 100)
+			this.setDead();
 		super.onUpdate();
 
 		for (int i = 0; i < 50; i++)

@@ -35,7 +35,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 	public boolean generate(World world, Random rand, int i, int j, int k)
 	/*      */
 	{
-		if (!this.locationIsValidSpawn(world, i, j, k) || !this.locationIsValidSpawn(world, i + 13, j, k) || !this.locationIsValidSpawn(world, i + 13, j, k + 15) || !this.locationIsValidSpawn(world, i, j, k + 15)) return false;
+		if (!this.locationIsValidSpawn(world, i, j, k) || !this.locationIsValidSpawn(world, i + 13, j, k) || !this.locationIsValidSpawn(world, i + 13, j, k + 15) || !this.locationIsValidSpawn(world, i, j, k + 15))
+			return false;
 		/*      */
 		/*      */
 		k -= 10;
@@ -1405,7 +1406,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 		while (check != Blocks.air)
 			/*      */
 		{
-			if (distanceToAir > 3) return false;
+			if (distanceToAir > 3)
+				return false;
 			/*      */
 			/*      */
 			distanceToAir++;
@@ -1421,11 +1423,14 @@ import cpw.mods.fml.common.IWorldGenerator;
 		for (Block x : this.getValidSpawnBlocks())
 			/*      */
 		{
-			if (blockAbove != Blocks.air) return false;
+			if (blockAbove != Blocks.air)
+				return false;
 			/*      */
-			if (block == x) return true;
+			if (block == x)
+				return true;
 			/*      */
-			if (block == Blocks.snow && blockBelow == x) return true;
+			if (block == Blocks.snow && blockBelow == x)
+				return true;
 		/*      */}
 		/*      */
 		return false;
@@ -1437,7 +1442,8 @@ import cpw.mods.fml.common.IWorldGenerator;
 	{
 		Block b1 = world.getBlock(x, y, z);
 		/*      */
-		if (b1.isAir(world, x, y, z) || b1.isLeaves(world, x, y, z)) world.setBlock(x, y, z, block, metadata, 2);
+		if (b1.isAir(world, x, y, z) || b1.isLeaves(world, x, y, z))
+			world.setBlock(x, y, z, block, metadata, 2);
 	/*      */}
 }
 /*

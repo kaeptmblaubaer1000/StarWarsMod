@@ -9,8 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobDroidAstromechBb8;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidBb8;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
-import com.parzi.starwarsmod.vehicles.VehicXWing;
 
 public class RenderDroidBb8 extends RenderLiving
 {
@@ -32,7 +30,7 @@ public class RenderDroidBb8 extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		this.mainModel = this.setRotations(model, entity, f);
+		this.mainModel = this.setRotations(this.model, entity, f);
 	}
 
 	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
@@ -41,19 +39,19 @@ public class RenderDroidBb8 extends RenderLiving
 		{
 			MobDroidAstromechBb8 droid = (MobDroidAstromechBb8)entity;
 			ModelDroidBb8 model = (ModelDroidBb8)modelBase;
-			
+
 			model.Body_1.rotateAngleX = (float)droid.posZ * 10;
 			model.Body_1.rotateAngleY = (float)droid.posX * 10;
 			model.Body_1.rotateAngleZ = (float)droid.posY * 10;
-			
+
 			model.Body_2.rotateAngleX = (float)droid.posZ * 10;
 			model.Body_2.rotateAngleY = (float)droid.posX * 10;
 			model.Body_2.rotateAngleZ = (float)droid.posY * 10;
-			
+
 			model.Body_3.rotateAngleX = (float)droid.posZ * 10;
 			model.Body_3.rotateAngleY = (float)droid.posX * 10;
 			model.Body_3.rotateAngleZ = (float)droid.posY * 10;
-			
+
 			model.Body_4.rotateAngleX = (float)droid.posZ * 10;
 			model.Body_4.rotateAngleY = (float)droid.posX * 10;
 			model.Body_4.rotateAngleZ = (float)droid.posY * 10;

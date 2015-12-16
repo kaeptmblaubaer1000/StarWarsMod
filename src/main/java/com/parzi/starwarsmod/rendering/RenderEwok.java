@@ -29,6 +29,7 @@ public class RenderEwok extends RenderLiving
 	public static ResourceLocation texture2 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok2.png");
 	public static ResourceLocation texture3 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok3.png");
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
+
 	public RenderEwok(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
@@ -87,7 +88,8 @@ public class RenderEwok extends RenderLiving
 					NBTTagCompound nbttagcompound = equippedItem.getTagCompound();
 					if (nbttagcompound.hasKey("SkullOwner", 10))
 						gameprofile = net.minecraft.nbt.NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
-					else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner"))) gameprofile = new GameProfile((java.util.UUID)null, nbttagcompound.getString("SkullOwner"));
+					else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner")))
+						gameprofile = new GameProfile((java.util.UUID)null, nbttagcompound.getString("SkullOwner"));
 				}
 				TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, equippedItem.getItemDamage(), gameprofile);
 			}
@@ -147,15 +149,16 @@ public class RenderEwok extends RenderLiving
 				GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
 			}
 			GL11.glTranslatef(0.5F, 0.25F, -1.0F);
-			if (heldItem.getItem().requiresMultipleRenderPasses()) for (int i = 0; i < heldItem.getItem().getRenderPasses(heldItem.getItemDamage()); i++)
-			{
-				int j = heldItem.getItem().getColorFromItemStack(heldItem, i);
-				float f5 = (j >> 16 & 0xFF) / 255.0F;
-				float f2 = (j >> 8 & 0xFF) / 255.0F;
-				float f3 = (j & 0xFF) / 255.0F;
-				GL11.glColor4f(f5, f2, f3, 1.0F);
-				this.renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, i);
-			}
+			if (heldItem.getItem().requiresMultipleRenderPasses())
+				for (int i = 0; i < heldItem.getItem().getRenderPasses(heldItem.getItemDamage()); i++)
+				{
+					int j = heldItem.getItem().getColorFromItemStack(heldItem, i);
+					float f5 = (j >> 16 & 0xFF) / 255.0F;
+					float f2 = (j >> 8 & 0xFF) / 255.0F;
+					float f3 = (j & 0xFF) / 255.0F;
+					GL11.glColor4f(f5, f2, f3, 1.0F);
+					this.renderManager.itemRenderer.renderItem(p_77029_1_, heldItem, i);
+				}
 			int i = heldItem.getItem().getColorFromItemStack(heldItem, 0);
 			float f4 = (i >> 16 & 0xFF) / 255.0F;
 			float f5 = (i >> 8 & 0xFF) / 255.0F;

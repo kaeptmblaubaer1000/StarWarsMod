@@ -1,17 +1,15 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
-import com.parzi.starwarsmod.utils.MathUtils;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.utils.MathUtils;
+import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderVehicAirBase extends RenderLiving
 {
@@ -23,15 +21,16 @@ public class RenderVehicAirBase extends RenderLiving
 		this.model = model;
 	}
 
-	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
+	@Override
+	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
 	{
-		return modelBase;
+		return null;
 	}
 
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		this.mainModel = this.setRotations(model, entity, f);
+		this.mainModel = this.setRotations(this.model, entity, f);
 		GL11.glScalef(3.0F, 3.0F, 3.0F);
 		if (entity instanceof VehicleAirBase)
 		{
@@ -51,9 +50,8 @@ public class RenderVehicAirBase extends RenderLiving
 		}
 	}
 
-	@Override
-	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
+	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
 	{
-		return null;
+		return modelBase;
 	}
 }

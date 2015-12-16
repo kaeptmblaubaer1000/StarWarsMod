@@ -20,7 +20,7 @@ public class ItemHyperdriveDagobah extends Item
 	{
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
-		//this.setCreativeTab(StarWarsMod.StarWarsTab);
+		// this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.maxStackSize = 1;
 	}
 

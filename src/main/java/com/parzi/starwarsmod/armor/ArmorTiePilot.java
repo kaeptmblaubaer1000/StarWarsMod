@@ -21,8 +21,10 @@ public class ArmorTiePilot extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.tiePilotHelmet || stack.getItem() == StarWarsMod.tiePilotChest || stack.getItem() == StarWarsMod.tiePilotBoots) return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.tiePilotLegs) return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer2.png";
+		if (stack.getItem() == StarWarsMod.tiePilotHelmet || stack.getItem() == StarWarsMod.tiePilotChest || stack.getItem() == StarWarsMod.tiePilotBoots)
+			return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.tiePilotLegs)
+			return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer2.png";
 		return "";
 	}
 }

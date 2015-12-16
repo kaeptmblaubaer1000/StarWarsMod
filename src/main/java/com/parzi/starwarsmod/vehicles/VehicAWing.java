@@ -25,7 +25,8 @@ public class VehicAWing extends VehicleAirBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag()) return this.getCustomNameTag();
+		if (this.hasCustomNameTag())
+			return this.getCustomNameTag();
 		return "RZ-1 A-Wing Interceptor";
 	}
 

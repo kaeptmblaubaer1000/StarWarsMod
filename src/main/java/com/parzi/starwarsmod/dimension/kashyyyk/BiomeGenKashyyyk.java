@@ -2,14 +2,13 @@ package com.parzi.starwarsmod.dimension.kashyyyk;
 
 import java.util.Random;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 public class BiomeGenKashyyyk extends BiomeGenPSWM
 {
@@ -23,6 +22,9 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 		this.heightVariation = 0.2f;
 
 		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableMonsterList.clear();
+		this.spawnableWaterCreatureList.clear();
 
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.dirt;
@@ -33,6 +35,9 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 		this.theBiomeDecorator.cactiPerChunk = -999;
 
 		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableMonsterList.clear();
+		this.spawnableWaterCreatureList.clear();
 	}
 
 	@Override
@@ -45,23 +50,21 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 			new WorldGenHothGenerator().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
-        {
-            int k = chunkX + par2Random.nextInt(16) + 8;
-            int l = chunkZ + par2Random.nextInt(16) + 8;
-            int i1 = par1World.getHeightValue(k, l);
-            WorldGenAbstractTree worldgenabstracttree = func_150567_a(par2Random);
-            worldgenabstracttree.setScale(1.0D, 1.0D, 1.0D);
+		{
+			int k = chunkX + par2Random.nextInt(16) + 8;
+			int l = chunkZ + par2Random.nextInt(16) + 8;
+			int i1 = par1World.getHeightValue(k, l);
+			WorldGenAbstractTree worldgenabstracttree = this.func_150567_a(par2Random);
+			worldgenabstracttree.setScale(1.0D, 1.0D, 1.0D);
 
-            if (worldgenabstracttree.generate(par1World, par2Random, k, i1, l))
-            {
-                worldgenabstracttree.func_150524_b(par1World, par2Random, k, i1, l);
-            }
-        }
+			if (worldgenabstracttree.generate(par1World, par2Random, k, i1, l))
+				worldgenabstracttree.func_150524_b(par1World, par2Random, k, i1, l);
+		}
 	}
-	
+
 	@Override
-    public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
-    {
-        return (WorldGenAbstractTree)new WorldGenMegaKashyyykJungle(false, 10, 20, 3, 3);
-    }
+	public WorldGenAbstractTree func_150567_a(Random p_150567_1_)
+	{
+		return new WorldGenMegaKashyyykJungle(false, 10, 20, 3, 3);
+	}
 }

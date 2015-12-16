@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.utils;
 
-import com.parzi.starwarsmod.vehicles.VehicXWing;
-
 public class TextUtils
 {
 	public static String addEffect(String p1, String effect)

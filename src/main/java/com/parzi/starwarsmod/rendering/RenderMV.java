@@ -15,9 +15,9 @@ import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 public class RenderMV extends TileEntitySpecialRenderer
 {
-	private final ModelMV model;
-	
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png");
+
+	private final ModelMV model;
 
 	public RenderMV()
 	{

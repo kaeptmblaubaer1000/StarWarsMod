@@ -10,7 +10,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 public class RenderDroidAstromech2 extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/astromech2.png");
-	
+
 	public RenderDroidAstromech2(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

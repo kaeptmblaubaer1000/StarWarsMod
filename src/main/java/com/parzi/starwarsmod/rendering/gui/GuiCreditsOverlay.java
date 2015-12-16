@@ -27,9 +27,12 @@ public class GuiCreditsOverlay extends Gui
 		for (ItemStack stack : this.mc.thePlayer.inventory.mainInventory)
 			if (stack != null && stack.getItem() != null)
 			{
-				if (stack.getItem() == StarWarsMod.imperialCredit) credits += stack.stackSize;
-				if (stack.getItem() == StarWarsMod.silverImperialCredit) credits += stack.stackSize * 9;
-				if (stack.getItem() == StarWarsMod.goldImperialCredit) credits += stack.stackSize * 81;
+				if (stack.getItem() == StarWarsMod.imperialCredit)
+					credits += stack.stackSize;
+				if (stack.getItem() == StarWarsMod.silverImperialCredit)
+					credits += stack.stackSize * 9;
+				if (stack.getItem() == StarWarsMod.goldImperialCredit)
+					credits += stack.stackSize * 81;
 			}
 		return credits;
 	}
@@ -37,7 +40,8 @@ public class GuiCreditsOverlay extends Gui
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != RenderGameOverlayEvent.ElementType.HOTBAR) return;
+		if (event.isCancelable() || event.type != RenderGameOverlayEvent.ElementType.HOTBAR)
+			return;
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + StarWarsMod.VERSION, 5, 5, 16777215);
 		StarWarsMod.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();

@@ -13,12 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.Level;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
@@ -58,13 +55,6 @@ import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
-import com.parzi.starwarsmod.utils.WorldUtils;
-import com.parzi.starwarsmod.world.provider.WorldProviderDagobah;
-import com.parzi.starwarsmod.world.provider.WorldProviderEndor;
-import com.parzi.starwarsmod.world.provider.WorldProviderHoth;
-import com.parzi.starwarsmod.world.provider.WorldProviderKashyyyk;
-import com.parzi.starwarsmod.world.provider.WorldProviderTatooine;
-import com.parzi.starwarsmod.world.provider.WorldProviderYavinFour;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -73,7 +63,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
@@ -279,6 +268,14 @@ public class StarWarsMod
 	public static BiomeGenBase biomeEndorPlains;
 	public static BiomeGenBase biomeDagobah;
 
+	public static int biomeTatooineId;
+	public static int biomeHothId;
+	public static int biomeKashyyykId;
+	public static int biomeYavin4Id;
+	public static int biomeEndorId;
+	public static int biomeEndorPlainsId;
+	public static int biomeDagobahId;
+
 	public static int dimTatooineId;
 	public static int dimHothId;
 	public static int dimKashyyykId;
@@ -357,7 +354,8 @@ public class StarWarsMod
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
 
-		if (Calendar.getInstance().get(Calendar.MONTH) >= 11 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 18 && Calendar.getInstance().get(Calendar.YEAR) >= 2015) IS_SEQUEL_RELEASE = true;
+		if (Calendar.getInstance().get(Calendar.MONTH) >= 11 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 18 && Calendar.getInstance().get(Calendar.YEAR) >= 2015)
+			IS_SEQUEL_RELEASE = true;
 
 		InputStream in = null;
 		try
@@ -371,7 +369,8 @@ public class StarWarsMod
 		}
 		finally
 		{
-			if (in != null) IOUtils.closeQuietly(in);
+			if (in != null)
+				IOUtils.closeQuietly(in);
 		}
 
 		instance = this;
@@ -429,14 +428,20 @@ public class StarWarsMod
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
-		
+
 		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();
 		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
 		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
 		StarWarsMod.dimEndorId = config.get("dimensions", "endor", 6).getInt();
-		//StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
-		//StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
+		// StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
+		// StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
+
+		StarWarsMod.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
+		StarWarsMod.biomeHothId = config.get("biomes", "hoth", 197).getInt();
+		StarWarsMod.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
+		StarWarsMod.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
+		StarWarsMod.biomeEndorId = config.get("biomes", "endor", 200).getInt();
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();

@@ -42,7 +42,8 @@ public class CreateBlasterBolt implements IMessage
 				 * world.spawnEntityInWorld(bolt4);
 				 */
 			}
-			else if (message.type == BlasterBoltType.TIE) world.spawnEntityInWorld(new EntityTIEBolt(world, player));
+			else if (message.type == BlasterBoltType.TIE)
+				world.spawnEntityInWorld(new EntityTIEBolt(world, player));
 			return null;
 		}
 	}

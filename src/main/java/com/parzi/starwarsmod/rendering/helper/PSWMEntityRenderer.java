@@ -210,27 +210,28 @@ public class PSWMEntityRenderer extends EntityRenderer
 	{
 		if (OpenGlHelper.shadersSupported)
 		{
-			if (this.theShaderGroup != null) this.theShaderGroup.deleteShaderGroup();
+			if (this.theShaderGroup != null)
+				this.theShaderGroup.deleteShaderGroup();
 
 			this.shaderIndex = (this.shaderIndex + 1) % (shaderResourceLocations.length + 1);
 
 			if (this.shaderIndex != shaderCount)
 				try
-				{
+			{
 					logger.info("Selecting effect " + shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), this.resourceManager, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-				}
-				catch (IOException ioexception)
-				{
-					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-					this.shaderIndex = shaderCount;
-				}
-				catch (JsonSyntaxException jsonsyntaxexception)
-				{
-					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
-					this.shaderIndex = shaderCount;
-				}
+			}
+			catch (IOException ioexception)
+			{
+				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+				this.shaderIndex = shaderCount;
+			}
+			catch (JsonSyntaxException jsonsyntaxexception)
+			{
+				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
+				this.shaderIndex = shaderCount;
+			}
 			else
 			{
 				this.theShaderGroup = null;
@@ -243,7 +244,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 	{
 		float f = this.mc.theWorld.getRainStrength(1.0F);
 
-		if (!this.mc.gameSettings.fancyGraphics) f /= 2.0F;
+		if (!this.mc.gameSettings.fancyGraphics)
+			f /= 2.0F;
 
 		if (f != 0.0F)
 		{
@@ -262,7 +264,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.mc.gameSettings.particleSetting == 1)
 				i1 >>= 1;
-				else if (this.mc.gameSettings.particleSetting == 2) i1 = 0;
+				else if (this.mc.gameSettings.particleSetting == 2)
+				i1 = 0;
 
 			for (int j1 = 0; j1 < i1; ++j1)
 			{
@@ -310,7 +313,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 	@Override
 	public void deactivateShader()
 	{
-		if (this.theShaderGroup != null) this.theShaderGroup.deleteShaderGroup();
+		if (this.theShaderGroup != null)
+			this.theShaderGroup.deleteShaderGroup();
 
 		this.theShaderGroup = null;
 		this.shaderIndex = shaderCount;
@@ -389,7 +393,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			Block block = ActiveRenderInfo.getBlockAtEntityViewpoint(this.mc.theWorld, entityplayer, p_78481_1_);
 
-			if (block.getMaterial() == Material.water) f1 = f1 * 60.0F / 70.0F;
+			if (block.getMaterial() == Material.water)
+				f1 = f1 * 60.0F / 70.0F;
 
 			return f1 + this.prevDebugCamFOV + (this.debugCamFOV - this.prevDebugCamFOV) * p_78481_1_;
 		}
@@ -408,84 +413,89 @@ public class PSWMEntityRenderer extends EntityRenderer
 	@Override
 	public void getMouseOver(float p_78473_1_)
 	{
-		if (this.mc.renderViewEntity != null) if (this.mc.theWorld != null)
-		{
-			this.mc.pointedEntity = null;
-			double d0 = this.mc.playerController.getBlockReachDistance();
-			this.mc.objectMouseOver = this.mc.renderViewEntity.rayTrace(d0, p_78473_1_);
-			double d1 = d0;
-			Vec3 vec3 = this.mc.renderViewEntity.getPosition(p_78473_1_);
-
-			if (this.mc.playerController.extendedReach())
+		if (this.mc.renderViewEntity != null)
+			if (this.mc.theWorld != null)
 			{
-				d0 = 6.0D;
-				d1 = 6.0D;
-			}
-			else
-			{
-				if (d0 > 3.0D) d1 = 3.0D;
+				this.mc.pointedEntity = null;
+				double d0 = this.mc.playerController.getBlockReachDistance();
+				this.mc.objectMouseOver = this.mc.renderViewEntity.rayTrace(d0, p_78473_1_);
+				double d1 = d0;
+				Vec3 vec3 = this.mc.renderViewEntity.getPosition(p_78473_1_);
 
-				d0 = d1;
-			}
-
-			if (this.mc.objectMouseOver != null) d1 = this.mc.objectMouseOver.hitVec.distanceTo(vec3);
-
-			Vec3 vec31 = this.mc.renderViewEntity.getLook(p_78473_1_);
-			Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
-			this.pointedEntity = null;
-			Vec3 vec33 = null;
-			float f1 = 1.0F;
-			List list = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f1, f1, f1));
-			double d2 = d1;
-
-			for (int i = 0; i < list.size(); ++i)
-			{
-				Entity entity = (Entity)list.get(i);
-
-				if (entity.canBeCollidedWith())
+				if (this.mc.playerController.extendedReach())
 				{
-					float f2 = entity.getCollisionBorderSize();
-					AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
-					MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
+					d0 = 6.0D;
+					d1 = 6.0D;
+				}
+				else
+				{
+					if (d0 > 3.0D)
+						d1 = 3.0D;
 
-					if (axisalignedbb.isVecInside(vec3))
-					{
-						if (0.0D < d2 || d2 == 0.0D)
-						{
-							this.pointedEntity = entity;
-							vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
-							d2 = 0.0D;
-						}
-					}
-					else if (movingobjectposition != null)
-					{
-						double d3 = vec3.distanceTo(movingobjectposition.hitVec);
+					d0 = d1;
+				}
 
-						if (d3 < d2 || d2 == 0.0D) if (entity == this.mc.renderViewEntity.ridingEntity && !entity.canRiderInteract())
+				if (this.mc.objectMouseOver != null)
+					d1 = this.mc.objectMouseOver.hitVec.distanceTo(vec3);
+
+				Vec3 vec31 = this.mc.renderViewEntity.getLook(p_78473_1_);
+				Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
+				this.pointedEntity = null;
+				Vec3 vec33 = null;
+				float f1 = 1.0F;
+				List list = this.mc.theWorld.getEntitiesWithinAABBExcludingEntity(this.mc.renderViewEntity, this.mc.renderViewEntity.boundingBox.addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f1, f1, f1));
+				double d2 = d1;
+
+				for (int i = 0; i < list.size(); ++i)
+				{
+					Entity entity = (Entity)list.get(i);
+
+					if (entity.canBeCollidedWith())
+					{
+						float f2 = entity.getCollisionBorderSize();
+						AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
+						MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
+
+						if (axisalignedbb.isVecInside(vec3))
 						{
-							if (d2 == 0.0D)
+							if (0.0D < d2 || d2 == 0.0D)
 							{
 								this.pointedEntity = entity;
-								vec33 = movingobjectposition.hitVec;
+								vec33 = movingobjectposition == null ? vec3 : movingobjectposition.hitVec;
+								d2 = 0.0D;
 							}
 						}
-						else
+						else if (movingobjectposition != null)
 						{
-							this.pointedEntity = entity;
-							vec33 = movingobjectposition.hitVec;
-							d2 = d3;
+							double d3 = vec3.distanceTo(movingobjectposition.hitVec);
+
+							if (d3 < d2 || d2 == 0.0D)
+								if (entity == this.mc.renderViewEntity.ridingEntity && !entity.canRiderInteract())
+								{
+									if (d2 == 0.0D)
+									{
+										this.pointedEntity = entity;
+										vec33 = movingobjectposition.hitVec;
+									}
+								}
+								else
+								{
+									this.pointedEntity = entity;
+									vec33 = movingobjectposition.hitVec;
+									d2 = d3;
+								}
 						}
 					}
 				}
-			}
 
-			if (this.pointedEntity != null && (d2 < d1 || this.mc.objectMouseOver == null))
-			{
-				this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity, vec33);
+				if (this.pointedEntity != null && (d2 < d1 || this.mc.objectMouseOver == null))
+				{
+					this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity, vec33);
 
-				if (this.pointedEntity instanceof EntityLivingBase || this.pointedEntity instanceof EntityItemFrame) this.mc.pointedEntity = this.pointedEntity;
+					if (this.pointedEntity instanceof EntityLivingBase || this.pointedEntity instanceof EntityItemFrame)
+						this.mc.pointedEntity = this.pointedEntity;
+				}
 			}
-		}
 	}
 
 	/**
@@ -540,18 +550,20 @@ public class PSWMEntityRenderer extends EntityRenderer
 	@Override
 	public void onResourceManagerReload(IResourceManager p_110549_1_)
 	{
-		if (this.theShaderGroup != null) this.theShaderGroup.deleteShaderGroup();
+		if (this.theShaderGroup != null)
+			this.theShaderGroup.deleteShaderGroup();
 
-		if (this.shaderIndex != shaderCount) try
-		{
-			this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), p_110549_1_, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
-			this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-		}
-		catch (IOException ioexception)
-		{
-			logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-			this.shaderIndex = shaderCount;
-		}
+		if (this.shaderIndex != shaderCount)
+			try
+			{
+				this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), p_110549_1_, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
+				this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
+			}
+			catch (IOException ioexception)
+			{
+				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+				this.shaderIndex = shaderCount;
+			}
 	}
 
 	/**
@@ -597,7 +609,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 				f6 = entitylivingbase.rotationYaw;
 				f2 = entitylivingbase.rotationPitch;
 
-				if (this.mc.gameSettings.thirdPersonView == 2) f2 += 180.0F;
+				if (this.mc.gameSettings.thirdPersonView == 2)
+					f2 += 180.0F;
 
 				double d3 = -MathHelper.sin(f6 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * d7;
 				double d4 = MathHelper.cos(f6 / 180.0F * (float)Math.PI) * MathHelper.cos(f2 / 180.0F * (float)Math.PI) * d7;
@@ -617,11 +630,13 @@ public class PSWMEntityRenderer extends EntityRenderer
 					{
 						double d6 = movingobjectposition.hitVec.distanceTo(Vec3.createVectorHelper(d0, d1, d2));
 
-						if (d6 < d7) d7 = d6;
+						if (d6 < d7)
+							d7 = d6;
 					}
 				}
 
-				if (this.mc.gameSettings.thirdPersonView == 2) GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+				if (this.mc.gameSettings.thirdPersonView == 2)
+					GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 
 				GL11.glRotatef(entitylivingbase.rotationPitch - f2, 1.0F, 0.0F, 0.0F);
 				GL11.glRotatef(entitylivingbase.rotationYaw - f6, 0.0F, 1.0F, 0.0F);
@@ -675,7 +690,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			GL11.glLoadIdentity();
 			float f1 = 0.07F;
 
-			if (this.mc.gameSettings.anaglyph) GL11.glTranslatef(-(p_78476_2_ * 2 - 1) * f1, 0.0F, 0.0F);
+			if (this.mc.gameSettings.anaglyph)
+				GL11.glTranslatef(-(p_78476_2_ * 2 - 1) * f1, 0.0F, 0.0F);
 
 			if (this.cameraZoom != 1.0D)
 			{
@@ -694,12 +710,14 @@ public class PSWMEntityRenderer extends EntityRenderer
 			GL11.glMatrixMode(GL11.GL_MODELVIEW);
 			GL11.glLoadIdentity();
 
-			if (this.mc.gameSettings.anaglyph) GL11.glTranslatef((p_78476_2_ * 2 - 1) * 0.1F, 0.0F, 0.0F);
+			if (this.mc.gameSettings.anaglyph)
+				GL11.glTranslatef((p_78476_2_ * 2 - 1) * 0.1F, 0.0F, 0.0F);
 
 			GL11.glPushMatrix();
 			this.hurtCameraEffect(p_78476_1_);
 
-			if (this.mc.gameSettings.viewBobbing) this.setupViewBobbing(p_78476_1_);
+			if (this.mc.gameSettings.viewBobbing)
+				this.setupViewBobbing(p_78476_1_);
 
 			if (this.mc.gameSettings.thirdPersonView == 0 && !this.mc.renderViewEntity.isPlayerSleeping() && !this.mc.gameSettings.hideGUI && !this.mc.playerController.enableEverythingIsScrewedUpMode())
 			{
@@ -716,7 +734,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 				this.hurtCameraEffect(p_78476_1_);
 			}
 
-			if (this.mc.gameSettings.viewBobbing) this.setupViewBobbing(p_78476_1_);
+			if (this.mc.gameSettings.viewBobbing)
+				this.setupViewBobbing(p_78476_1_);
 		}
 	}
 
@@ -772,12 +791,14 @@ public class PSWMEntityRenderer extends EntityRenderer
 			int k = MathHelper.floor_double(d1);
 			byte b0 = 5;
 
-			if (this.mc.gameSettings.fancyGraphics) b0 = 10;
+			if (this.mc.gameSettings.fancyGraphics)
+				b0 = 10;
 
 			byte b1 = -1;
 			float f5 = this.rendererUpdateCount + p_78474_1_;
 
-			if (this.mc.gameSettings.fancyGraphics) b0 = 10;
+			if (this.mc.gameSettings.fancyGraphics)
+				b0 = 10;
 
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			for (int l = i3 - b0; l <= i3 + b0; ++l)
@@ -794,14 +815,17 @@ public class PSWMEntityRenderer extends EntityRenderer
 						int l1 = l2 - b0;
 						int i2 = l2 + b0;
 
-						if (l1 < k1) l1 = k1;
+						if (l1 < k1)
+							l1 = k1;
 
-						if (i2 < k1) i2 = k1;
+						if (i2 < k1)
+							i2 = k1;
 
 						float f8 = 1.0F;
 						int j2 = k1;
 
-						if (k1 < k) j2 = k;
+						if (k1 < k)
+							j2 = k;
 
 						if (l1 != i2)
 						{
@@ -814,7 +838,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 							{
 								if (b1 != 0)
 								{
-									if (b1 >= 0) tessellator.draw();
+									if (b1 >= 0)
+										tessellator.draw();
 
 									b1 = 0;
 									this.mc.getTextureManager().bindTexture(locationRainPng);
@@ -839,7 +864,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 							{
 								if (b1 != 1)
 								{
-									if (b1 >= 0) tessellator.draw();
+									if (b1 >= 0)
+										tessellator.draw();
 
 									b1 = 1;
 									this.mc.getTextureManager().bindTexture(locationSnowPng);
@@ -866,7 +892,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 					}
 				}
 
-			if (b1 >= 0) tessellator.draw();
+			if (b1 >= 0)
+				tessellator.draw();
 
 			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glDisable(GL11.GL_BLEND);
@@ -880,14 +907,16 @@ public class PSWMEntityRenderer extends EntityRenderer
 	{
 		this.mc.mcProfiler.startSection("lightTex");
 
-		if (this.lightmapUpdateNeeded) this.updateLightmap(p_78471_1_);
+		if (this.lightmapUpdateNeeded)
+			this.updateLightmap(p_78471_1_);
 
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0.5F);
 
-		if (this.mc.renderViewEntity == null) this.mc.renderViewEntity = this.mc.thePlayer;
+		if (this.mc.renderViewEntity == null)
+			this.mc.renderViewEntity = this.mc.thePlayer;
 
 		this.mc.mcProfiler.endStartSection("pick");
 		this.getMouseOver(p_78471_1_);
@@ -932,7 +961,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			GL11.glEnable(GL11.GL_FOG);
 			this.setupFog(1, p_78471_1_);
 
-			if (this.mc.gameSettings.ambientOcclusion != 0) GL11.glShadeModel(GL11.GL_SMOOTH);
+			if (this.mc.gameSettings.ambientOcclusion != 0)
+				GL11.glShadeModel(GL11.GL_SMOOTH);
 
 			this.mc.mcProfiler.endStartSection("culling");
 			Frustrum frustrum = new Frustrum();
@@ -947,11 +977,13 @@ public class PSWMEntityRenderer extends EntityRenderer
 				{
 					long k = p_78471_2_ - System.nanoTime();
 
-					if (k < 0L || k > 1000000000L) break;
+					if (k < 0L || k > 1000000000L)
+						break;
 				}
 			}
 
-			if (entitylivingbase.posY < 128.0D) this.renderCloudsCheck(renderglobal, p_78471_1_);
+			if (entitylivingbase.posY < 128.0D)
+				this.renderCloudsCheck(renderglobal, p_78471_1_);
 
 			this.mc.mcProfiler.endStartSection("prepareterrain");
 			this.setupFog(0, p_78471_1_);
@@ -989,7 +1021,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 					entityplayer = (EntityPlayer)entitylivingbase;
 					GL11.glDisable(GL11.GL_ALPHA_TEST);
 					this.mc.mcProfiler.endStartSection("outline");
-					if (!ForgeHooksClient.onDrawBlockHighlight(renderglobal, entityplayer, this.mc.objectMouseOver, 0, entityplayer.inventory.getCurrentItem(), p_78471_1_)) renderglobal.drawSelectionBox(entityplayer, this.mc.objectMouseOver, 0, p_78471_1_);
+					if (!ForgeHooksClient.onDrawBlockHighlight(renderglobal, entityplayer, this.mc.objectMouseOver, 0, entityplayer.inventory.getCurrentItem(), p_78471_1_))
+						renderglobal.drawSelectionBox(entityplayer, this.mc.objectMouseOver, 0, p_78471_1_);
 					GL11.glEnable(GL11.GL_ALPHA_TEST);
 				}
 			}
@@ -1002,7 +1035,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 				entityplayer = (EntityPlayer)entitylivingbase;
 				GL11.glDisable(GL11.GL_ALPHA_TEST);
 				this.mc.mcProfiler.endStartSection("outline");
-				if (!ForgeHooksClient.onDrawBlockHighlight(renderglobal, entityplayer, this.mc.objectMouseOver, 0, entityplayer.inventory.getCurrentItem(), p_78471_1_)) renderglobal.drawSelectionBox(entityplayer, this.mc.objectMouseOver, 0, p_78471_1_);
+				if (!ForgeHooksClient.onDrawBlockHighlight(renderglobal, entityplayer, this.mc.objectMouseOver, 0, entityplayer.inventory.getCurrentItem(), p_78471_1_))
+					renderglobal.drawSelectionBox(entityplayer, this.mc.objectMouseOver, 0, p_78471_1_);
 				GL11.glEnable(GL11.GL_ALPHA_TEST);
 			}
 
@@ -1042,7 +1076,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			{
 				this.mc.mcProfiler.endStartSection("water");
 
-				if (this.mc.gameSettings.ambientOcclusion != 0) GL11.glShadeModel(GL11.GL_SMOOTH);
+				if (this.mc.gameSettings.ambientOcclusion != 0)
+					GL11.glShadeModel(GL11.GL_SMOOTH);
 
 				GL11.glEnable(GL11.GL_BLEND);
 				OpenGlHelper.glBlendFunc(770, 771, 1, 0);
@@ -1069,7 +1104,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 			}
 
 			if (this.debugViewDirection == 0) // Only render if render pass 0
-												// happens as well.
+				// happens as well.
 			{
 				RenderHelper.enableStandardItemLighting();
 				this.mc.mcProfiler.endStartSection("entities");
@@ -1138,7 +1173,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 		GL11.glLoadIdentity();
 		float f1 = 0.07F;
 
-		if (this.mc.gameSettings.anaglyph) GL11.glTranslatef(-(p_78479_2_ * 2 - 1) * f1, 0.0F, 0.0F);
+		if (this.mc.gameSettings.anaglyph)
+			GL11.glTranslatef(-(p_78479_2_ * 2 - 1) * f1, 0.0F, 0.0F);
 
 		if (this.cameraZoom != 1.0D)
 		{
@@ -1158,11 +1194,13 @@ public class PSWMEntityRenderer extends EntityRenderer
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 
-		if (this.mc.gameSettings.anaglyph) GL11.glTranslatef((p_78479_2_ * 2 - 1) * 0.1F, 0.0F, 0.0F);
+		if (this.mc.gameSettings.anaglyph)
+			GL11.glTranslatef((p_78479_2_ * 2 - 1) * 0.1F, 0.0F, 0.0F);
 
 		this.hurtCameraEffect(p_78479_1_);
 
-		if (this.mc.gameSettings.viewBobbing) this.setupViewBobbing(p_78479_1_);
+		if (this.mc.gameSettings.viewBobbing)
+			this.setupViewBobbing(p_78479_1_);
 
 		f2 = this.mc.thePlayer.prevTimeInPortal + (this.mc.thePlayer.timeInPortal - this.mc.thePlayer.prevTimeInPortal) * p_78479_1_;
 
@@ -1170,7 +1208,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 		{
 			byte b0 = 20;
 
-			if (this.mc.thePlayer.isPotionActive(Potion.confusion)) b0 = 7;
+			if (this.mc.thePlayer.isPotionActive(Potion.confusion))
+				b0 = 7;
 
 			float f3 = 5.0F / (f2 * f2 + 5.0F) - f2 * 0.04F;
 			f3 *= f3;
@@ -1185,15 +1224,20 @@ public class PSWMEntityRenderer extends EntityRenderer
 		{
 			int j = this.debugViewDirection - 1;
 
-			if (j == 1) GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+			if (j == 1)
+				GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
 
-			if (j == 2) GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+			if (j == 2)
+				GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 
-			if (j == 3) GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
+			if (j == 3)
+				GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
 
-			if (j == 4) GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
+			if (j == 4)
+				GL11.glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
 
-			if (j == 5) GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
+			if (j == 5)
+				GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
 		}
 	}
 
@@ -1206,7 +1250,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 		EntityLivingBase entitylivingbase = this.mc.renderViewEntity;
 		boolean flag = false;
 
-		if (entitylivingbase instanceof EntityPlayer) flag = ((EntityPlayer)entitylivingbase).capabilities.isCreativeMode;
+		if (entitylivingbase instanceof EntityPlayer)
+			flag = ((EntityPlayer)entitylivingbase).capabilities.isCreativeMode;
 
 		if (p_78468_1_ == 999)
 		{
@@ -1215,7 +1260,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			GL11.glFogf(GL11.GL_FOG_START, 0.0F);
 			GL11.glFogf(GL11.GL_FOG_END, 8.0F);
 
-			if (GLContext.getCapabilities().GL_NV_fog_distance) GL11.glFogi(34138, 34139);
+			if (GLContext.getCapabilities().GL_NV_fog_distance)
+				GL11.glFogi(34138, 34139);
 
 			GL11.glFogf(GL11.GL_FOG_START, 0.0F);
 		}
@@ -1236,7 +1282,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 				f1 = 5.0F;
 				int j = entitylivingbase.getActivePotionEffect(Potion.blindness).getDuration();
 
-				if (j < 20) f1 = 5.0F + (this.farPlaneDistance - 5.0F) * (1.0F - j / 20.0F);
+				if (j < 20)
+					f1 = 5.0F + (this.farPlaneDistance - 5.0F) * (1.0F - j / 20.0F);
 
 				GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
 
@@ -1251,7 +1298,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 					GL11.glFogf(GL11.GL_FOG_END, f1);
 				}
 
-				if (GLContext.getCapabilities().GL_NV_fog_distance) GL11.glFogi(34138, 34139);
+				if (GLContext.getCapabilities().GL_NV_fog_distance)
+					GL11.glFogi(34138, 34139);
 			}
 			else if (this.cloudFog)
 			{
@@ -1264,8 +1312,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 				if (entitylivingbase.isPotionActive(Potion.waterBreathing))
 					GL11.glFogf(GL11.GL_FOG_DENSITY, 0.05F);
-					else
-						GL11.glFogf(GL11.GL_FOG_DENSITY, 0.1F - EnchantmentHelper.getRespiration(entitylivingbase) * 0.03F);
+				else
+					GL11.glFogf(GL11.GL_FOG_DENSITY, 0.1F - EnchantmentHelper.getRespiration(entitylivingbase) * 0.03F);
 			}
 			else if (block.getMaterial() == Material.lava)
 			{
@@ -1282,14 +1330,17 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 					if (d0 < 1.0D)
 					{
-						if (d0 < 0.0D) d0 = 0.0D;
+						if (d0 < 0.0D)
+							d0 = 0.0D;
 
 						d0 *= d0;
 						float f2 = 100.0F * (float)d0;
 
-						if (f2 < 5.0F) f2 = 5.0F;
+						if (f2 < 5.0F)
+							f2 = 5.0F;
 
-						if (f1 > f2) f1 = f2;
+						if (f1 > f2)
+							f1 = f2;
 					}
 				}
 
@@ -1306,7 +1357,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 					GL11.glFogf(GL11.GL_FOG_END, f1);
 				}
 
-				if (GLContext.getCapabilities().GL_NV_fog_distance) GL11.glFogi(34138, 34139);
+				if (GLContext.getCapabilities().GL_NV_fog_distance)
+					GL11.glFogi(34138, 34139);
 
 				if (this.mc.theWorld.provider.doesXZShowFog((int)entitylivingbase.posX, (int)entitylivingbase.posZ))
 				{
@@ -1365,14 +1417,16 @@ public class PSWMEntityRenderer extends EntityRenderer
 	{
 		this.mc.mcProfiler.startSection("lightTex");
 
-		if (this.lightmapUpdateNeeded) this.updateLightmap(p_78480_1_);
+		if (this.lightmapUpdateNeeded)
+			this.updateLightmap(p_78480_1_);
 
 		this.mc.mcProfiler.endSection();
 		boolean flag = Display.isActive();
 
 		if (!flag && this.mc.gameSettings.pauseOnLostFocus && (!this.mc.gameSettings.touchscreen || !Mouse.isButtonDown(1)))
 		{
-			if (Minecraft.getSystemTime() - this.prevFrameTime > 500L) this.mc.displayInGameMenu();
+			if (Minecraft.getSystemTime() - this.prevFrameTime > 500L)
+				this.mc.displayInGameMenu();
 		}
 		else
 			this.prevFrameTime = Minecraft.getSystemTime();
@@ -1388,7 +1442,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			float f4 = this.mc.mouseHelper.deltaY * f2;
 			byte b0 = 1;
 
-			if (this.mc.gameSettings.invertMouse) b0 = -1;
+			if (this.mc.gameSettings.invertMouse)
+				b0 = -1;
 
 			if (this.mc.gameSettings.smoothCamera)
 			{
@@ -1467,7 +1522,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 				try
 				{
-					if (!MinecraftForge.EVENT_BUS.post(new DrawScreenEvent.Pre(this.mc.currentScreen, k, l, p_78480_1_))) this.mc.currentScreen.drawScreen(k, l, p_78480_1_);
+					if (!MinecraftForge.EVENT_BUS.post(new DrawScreenEvent.Pre(this.mc.currentScreen, k, l, p_78480_1_)))
+						this.mc.currentScreen.drawScreen(k, l, p_78480_1_);
 					MinecraftForge.EVENT_BUS.post(new DrawScreenEvent.Post(this.mc.currentScreen, k, l, p_78480_1_));
 				}
 				catch (Throwable throwable)
@@ -1534,7 +1590,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			Vec3 vec32 = MathHelper.sin(worldclient.getCelestialAngleRadians(p_78466_1_)) > 0.0F ? Vec3.createVectorHelper(-1.0D, 0.0D, 0.0D) : Vec3.createVectorHelper(1.0D, 0.0D, 0.0D);
 			f5 = (float)entitylivingbase.getLook(p_78466_1_).dotProduct(vec32);
 
-			if (f5 < 0.0F) f5 = 0.0F;
+			if (f5 < 0.0F)
+				f5 = 0.0F;
 
 			if (f5 > 0.0F)
 			{
@@ -1617,7 +1674,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 		if (d0 < 1.0D)
 		{
-			if (d0 < 0.0D) d0 = 0.0D;
+			if (d0 < 0.0D)
+				d0 = 0.0D;
 
 			d0 *= d0;
 			this.fogColorRed = (float)(this.fogColorRed * d0);
@@ -1642,9 +1700,11 @@ public class PSWMEntityRenderer extends EntityRenderer
 			f11 = this.getNightVisionBrightness(this.mc.thePlayer, p_78466_1_);
 			f6 = 1.0F / this.fogColorRed;
 
-			if (f6 > 1.0F / this.fogColorGreen) f6 = 1.0F / this.fogColorGreen;
+			if (f6 > 1.0F / this.fogColorGreen)
+				f6 = 1.0F / this.fogColorGreen;
 
-			if (f6 > 1.0F / this.fogColorBlue) f6 = 1.0F / this.fogColorBlue;
+			if (f6 > 1.0F / this.fogColorBlue)
+				f6 = 1.0F / this.fogColorBlue;
 
 			this.fogColorRed = this.fogColorRed * (1.0F - f11) + this.fogColorRed * f6 * f11;
 			this.fogColorGreen = this.fogColorGreen * (1.0F - f11) + this.fogColorGreen * f6 * f11;
@@ -1686,9 +1746,11 @@ public class PSWMEntityRenderer extends EntityRenderer
 		this.fovModifierHandPrev = this.fovModifierHand;
 		this.fovModifierHand += (this.fovMultiplierTemp - this.fovModifierHand) * 0.5F;
 
-		if (this.fovModifierHand > 1.5F) this.fovModifierHand = 1.5F;
+		if (this.fovModifierHand > 1.5F)
+			this.fovModifierHand = 1.5F;
 
-		if (this.fovModifierHand < 0.1F) this.fovModifierHand = 0.1F;
+		if (this.fovModifierHand < 0.1F)
+			this.fovModifierHand = 0.1F;
 	}
 
 	private void updateLightmap(float p_78472_1_)
@@ -1703,7 +1765,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 				float f2 = worldclient.provider.lightBrightnessTable[i / 16] * f1;
 				float f3 = worldclient.provider.lightBrightnessTable[i % 16] * (this.torchFlickerX * 0.1F + 1.5F);
 
-				if (worldclient.lastLightningBolt > 0) f2 = worldclient.provider.lightBrightnessTable[i / 16];
+				if (worldclient.lastLightningBolt > 0)
+					f2 = worldclient.provider.lightBrightnessTable[i / 16];
 
 				float f4 = f2 * (worldclient.getSunBrightness(1.0F) * 0.65F + 0.35F);
 				float f5 = f2 * (worldclient.getSunBrightness(1.0F) * 0.65F + 0.35F);
@@ -1739,20 +1802,25 @@ public class PSWMEntityRenderer extends EntityRenderer
 					f11 = this.getNightVisionBrightness(this.mc.thePlayer, p_78472_1_);
 					f12 = 1.0F / f8;
 
-					if (f12 > 1.0F / f9) f12 = 1.0F / f9;
+					if (f12 > 1.0F / f9)
+						f12 = 1.0F / f9;
 
-					if (f12 > 1.0F / f10) f12 = 1.0F / f10;
+					if (f12 > 1.0F / f10)
+						f12 = 1.0F / f10;
 
 					f8 = f8 * (1.0F - f11) + f8 * f12 * f11;
 					f9 = f9 * (1.0F - f11) + f9 * f12 * f11;
 					f10 = f10 * (1.0F - f11) + f10 * f12 * f11;
 				}
 
-				if (f8 > 1.0F) f8 = 1.0F;
+				if (f8 > 1.0F)
+					f8 = 1.0F;
 
-				if (f9 > 1.0F) f9 = 1.0F;
+				if (f9 > 1.0F)
+					f9 = 1.0F;
 
-				if (f10 > 1.0F) f10 = 1.0F;
+				if (f10 > 1.0F)
+					f10 = 1.0F;
 
 				f11 = this.mc.gameSettings.gammaSetting;
 				f12 = 1.0F - f8;
@@ -1768,17 +1836,23 @@ public class PSWMEntityRenderer extends EntityRenderer
 				f9 = f9 * 0.96F + 0.03F;
 				f10 = f10 * 0.96F + 0.03F;
 
-				if (f8 > 1.0F) f8 = 1.0F;
+				if (f8 > 1.0F)
+					f8 = 1.0F;
 
-				if (f9 > 1.0F) f9 = 1.0F;
+				if (f9 > 1.0F)
+					f9 = 1.0F;
 
-				if (f10 > 1.0F) f10 = 1.0F;
+				if (f10 > 1.0F)
+					f10 = 1.0F;
 
-				if (f8 < 0.0F) f8 = 0.0F;
+				if (f8 < 0.0F)
+					f8 = 0.0F;
 
-				if (f9 < 0.0F) f9 = 0.0F;
+				if (f9 < 0.0F)
+					f9 = 0.0F;
 
-				if (f10 < 0.0F) f10 = 0.0F;
+				if (f10 < 0.0F)
+					f10 = 0.0F;
 
 				short short1 = 255;
 				int j = (int)(f8 * 255.0F);
@@ -1796,9 +1870,10 @@ public class PSWMEntityRenderer extends EntityRenderer
 	 * Updates the entity renderer
 	 */
 	@Override
-	 public void updateRenderer()
+	public void updateRenderer()
 	{
-		if (OpenGlHelper.shadersSupported && ShaderLinkHelper.getStaticShaderLinkHelper() == null) ShaderLinkHelper.setNewStaticShaderLinkHelper();
+		if (OpenGlHelper.shadersSupported && ShaderLinkHelper.getStaticShaderLinkHelper() == null)
+			ShaderLinkHelper.setNewStaticShaderLinkHelper();
 
 		this.updateFovModifierHand();
 		this.updateTorchFlicker();
@@ -1822,7 +1897,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 			this.smoothCamPitch = 0.0F;
 		}
 
-		if (this.mc.renderViewEntity == null) this.mc.renderViewEntity = this.mc.thePlayer;
+		if (this.mc.renderViewEntity == null)
+			this.mc.renderViewEntity = this.mc.thePlayer;
 
 		f = this.mc.theWorld.getLightBrightness(MathHelper.floor_double(this.mc.renderViewEntity.posX), MathHelper.floor_double(this.mc.renderViewEntity.posY), MathHelper.floor_double(this.mc.renderViewEntity.posZ));
 		f1 = this.mc.gameSettings.renderDistanceChunks / 16.0F;
@@ -1837,17 +1913,21 @@ public class PSWMEntityRenderer extends EntityRenderer
 		{
 			this.bossColorModifier += 0.05F;
 
-			if (this.bossColorModifier > 1.0F) this.bossColorModifier = 1.0F;
+			if (this.bossColorModifier > 1.0F)
+				this.bossColorModifier = 1.0F;
 
 			BossStatus.hasColorModifier = false;
 		}
-		else if (this.bossColorModifier > 0.0F) this.bossColorModifier -= 0.0125F;
+		else if (this.bossColorModifier > 0.0F)
+			this.bossColorModifier -= 0.0125F;
 	}
 
 	@Override
-	 public void updateShaderGroupSize(int p_147704_1_, int p_147704_2_)
+	public void updateShaderGroupSize(int p_147704_1_, int p_147704_2_)
 	{
-		if (OpenGlHelper.shadersSupported) if (this.theShaderGroup != null) this.theShaderGroup.createBindFramebuffers(p_147704_1_, p_147704_2_);
+		if (OpenGlHelper.shadersSupported)
+			if (this.theShaderGroup != null)
+				this.theShaderGroup.createBindFramebuffers(p_147704_1_, p_147704_2_);
 	}
 
 	/**

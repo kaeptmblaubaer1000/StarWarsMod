@@ -8,7 +8,7 @@ public class RenderHelper
 
 	/**
 	 * Initiates a new RenderHelper class
-	 * 
+	 *
 	 * @param mc
 	 *            The minecraft to wrap
 	 */
@@ -19,7 +19,7 @@ public class RenderHelper
 
 	/**
 	 * Gets the camera mode
-	 * 
+	 *
 	 * @return Returns true if the camera is in 1st person mode
 	 */
 	public boolean isFirstPerson()

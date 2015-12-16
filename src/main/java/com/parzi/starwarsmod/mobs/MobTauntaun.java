@@ -45,7 +45,8 @@ public class MobTauntaun extends EntityHorse
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
 		Block.SoundType soundtype = p_145780_4_.stepSound;
-		if (this.worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer) soundtype = Blocks.snow_layer.stepSound;
+		if (this.worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer)
+			soundtype = Blocks.snow_layer.stepSound;
 		if (!p_145780_4_.getMaterial().isLiquid())
 		{
 			int l = this.getHorseType();
@@ -54,7 +55,8 @@ public class MobTauntaun extends EntityHorse
 				this.field_110285_bP += 1;
 				if (this.field_110285_bP > 5 && this.field_110285_bP % 3 == 0)
 					this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				else if (this.field_110285_bP <= 5) this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				else if (this.field_110285_bP <= 5)
+					this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
 				this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
@@ -78,8 +80,10 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag()) return this.getCustomNameTag();
-		if (this.isChested()) return "Pack-Tauntaun";
+		if (this.hasCustomNameTag())
+			return this.getCustomNameTag();
+		if (this.isChested())
+			return "Pack-Tauntaun";
 		return "Tauntaun";
 	}
 
@@ -117,7 +121,8 @@ public class MobTauntaun extends EntityHorse
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
-		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg) return false;
+		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
+			return false;
 		return super.interact(p_70085_1_);
 	}
 
@@ -132,7 +137,8 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	public void updateRiderPosition()
 	{
-		if (this.riddenByEntity != null) this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.10000000149011612D, this.posZ);
+		if (this.riddenByEntity != null)
+			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.10000000149011612D, this.posZ);
 	}
 }
 /*

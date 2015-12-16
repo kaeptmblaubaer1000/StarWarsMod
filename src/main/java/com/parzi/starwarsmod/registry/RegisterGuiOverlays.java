@@ -10,7 +10,8 @@ public class RegisterGuiOverlays
 {
 	public static void registerAll()
 	{
-		if (StarWarsMod.enableCreditsOverlay) MinecraftForge.EVENT_BUS.register(new GuiCreditsOverlay(Minecraft.getMinecraft()));
+		if (StarWarsMod.enableCreditsOverlay)
+			MinecraftForge.EVENT_BUS.register(new GuiCreditsOverlay(Minecraft.getMinecraft()));
 	}
 }
 /*

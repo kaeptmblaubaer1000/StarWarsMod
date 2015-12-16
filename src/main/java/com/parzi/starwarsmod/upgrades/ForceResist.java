@@ -19,6 +19,7 @@ public class ForceResist extends PowerBase
 	@Override
 	public void doPower(World world, EntityPlayer player, ItemStack robe)
 	{
-		if (robe.stackTagCompound.getInteger(this.internalName) > 0) PotionList.addAmbientEffect(player, PotionList.RESISTANCE, 10, robe.stackTagCompound.getInteger(this.internalName));
+		if (robe.stackTagCompound.getInteger(this.internalName) > 0)
+			PotionList.addAmbientEffect(player, PotionList.RESISTANCE, 10, robe.stackTagCompound.getInteger(this.internalName));
 	}
 }

@@ -77,7 +77,8 @@ public class WeaponSwivelBase extends EntityLiving
 	@Override
 	public void updateRiderPosition()
 	{
-		if (this.riddenByEntity != null) this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + this.vehicYOffset, this.posZ + this.vehicZOffset);
+		if (this.riddenByEntity != null)
+			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + this.vehicYOffset, this.posZ + this.vehicZOffset);
 	}
 }
 /*

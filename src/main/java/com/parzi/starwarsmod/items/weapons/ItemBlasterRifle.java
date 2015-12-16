@@ -50,7 +50,8 @@ public class ItemBlasterRifle extends Item
 			list.add(TextUtils.makeItalic("infantry weapon since before the"));
 			list.add(TextUtils.makeItalic("formation of the Galactic Republic"));
 		}
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft")) list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
+			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 	}
 
 	@Override
@@ -93,19 +94,20 @@ public class ItemBlasterRifle extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
 	{
-		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2) if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
-		{
-			if (par1ItemStack.getItemDamage() == 1)
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterEsb.use", 1.0F, 0.82F);
-			else if (par1ItemStack.getItemDamage() == 2)
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterIon.use", 1.0F, 0.82F);
-			else if (par1ItemStack.getItemDamage() == 3)
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1.0F, 0.82F);
+		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
+			{
+				if (par1ItemStack.getItemDamage() == 1)
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterEsb.use", 1.0F, 0.82F);
+				else if (par1ItemStack.getItemDamage() == 2)
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterIon.use", 1.0F, 0.82F);
+				else if (par1ItemStack.getItemDamage() == 3)
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1.0F, 0.82F);
+				else
+					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+			}
 			else
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-		}
-		else
-			entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
+				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
@@ -114,7 +116,8 @@ public class ItemBlasterRifle extends Item
 			else
 				par1ItemStack.stackTagCompound.setInteger("timeout", this.timeToRecharge);
 			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
-			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0) entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
+			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
+				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 		}
 		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
 		return par1ItemStack;
@@ -123,22 +126,26 @@ public class ItemBlasterRifle extends Item
 	@Override
 	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
 	{
-		if (!p_77663_1_.hasTagCompound()) p_77663_1_.stackTagCompound = new NBTTagCompound();
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout")) p_77663_1_.stackTagCompound.setInteger("timeout", 0);
-		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft")) switch (p_77663_1_.getItemDamage())
-		{
-			case 0:
-			case 3:
-				p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
-			case 4:
-				p_77663_1_.stackTagCompound.setInteger("shotsLeft", itemRand.nextBoolean() ? 500 : 100);
-				break;
-			case 1:
-			case 2:
-			default:
-				p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-		}
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0) p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		if (!p_77663_1_.hasTagCompound())
+			p_77663_1_.stackTagCompound = new NBTTagCompound();
+		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
+			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
+		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
+			switch (p_77663_1_.getItemDamage())
+			{
+				case 0:
+				case 3:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
+				case 4:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", itemRand.nextBoolean() ? 500 : 100);
+					break;
+				case 1:
+				case 2:
+				default:
+					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
+			}
+		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
+			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
 	}
 
 	@Override

@@ -99,7 +99,8 @@ public class MobDroidSurgical extends EntityTameable
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-		if (itemstack == null) itemstack = new ItemStack(net.minecraft.init.Blocks.air);
+		if (itemstack == null)
+			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
 		if (this.isTamed())
 		{
 			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidHacker)
@@ -111,20 +112,21 @@ public class MobDroidSurgical extends EntityTameable
 		}
 		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
-			if (!this.worldObj.isRemote) if (this.rand.nextInt(3) == 0)
-			{
-				this.setTamed(true);
-				this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-				this.playTameEffect(true);
-				this.aiSit.setSitting(true);
-				this.worldObj.setEntityState(this, (byte)7);
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-			}
-			else
-			{
-				this.playTameEffect(false);
-				this.worldObj.setEntityState(this, (byte)6);
-			}
+			if (!this.worldObj.isRemote)
+				if (this.rand.nextInt(3) == 0)
+				{
+					this.setTamed(true);
+					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					this.playTameEffect(true);
+					this.aiSit.setSitting(true);
+					this.worldObj.setEntityState(this, (byte)7);
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+				}
+				else
+				{
+					this.playTameEffect(false);
+					this.worldObj.setEntityState(this, (byte)6);
+				}
 			return true;
 		}
 		return super.interact(par1EntityPlayer);
@@ -144,8 +146,10 @@ public class MobDroidSurgical extends EntityTameable
 		{
 			EntityPlayer player = (EntityPlayer)this.worldObj.findNearestEntityWithinAABB(EntityPlayer.class, this.boundingBox.expand(3.0D, 3.0D, 3.0D), this);
 
-			if (this.rand.nextInt(500) == 0) this.playSound(StarWarsMod.MODID + ":" + "mob.surgical.say", 1.0F, 1.0F);
-			if (!player.isPotionActive(PotionList.REGENERATION) && this.isTamed()) player.addPotionEffect(new PotionEffect(PotionList.REGENERATION, 200, 2, true));
+			if (this.rand.nextInt(500) == 0)
+				this.playSound(StarWarsMod.MODID + ":" + "mob.surgical.say", 1.0F, 1.0F);
+			if (!player.isPotionActive(PotionList.REGENERATION) && this.isTamed())
+				player.addPotionEffect(new PotionEffect(PotionList.REGENERATION, 200, 2, true));
 		}
 	}
 

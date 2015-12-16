@@ -73,8 +73,10 @@ public class DrawYavinFourSky extends IRenderHandler
 	{
 		float var2 = FMLClientHandler.instance().getClient().theWorld.getCelestialAngle(par1);
 		float var3 = 1.0F - (MathHelper.sin(var2 * 3.1415927F * 2.0F) * 2.0F + 0.25F);
-		if (var3 < 0.0F) var3 = 0.0F;
-		if (var3 > 1.0F) var3 = 1.0F;
+		if (var3 < 0.0F)
+			var3 = 0.0F;
+		if (var3 > 1.0F)
+			var3 = 1.0F;
 		return var3 * var3 * 1.0F;
 	}
 

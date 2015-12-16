@@ -14,7 +14,7 @@ import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 public class RenderHothSpeederBike extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/hothspeederbike.png");
-	
+
 	public RenderHothSpeederBike(ModelSpeederBike modelSpeederBike, float par2)
 	{
 		super(modelSpeederBike, par2);

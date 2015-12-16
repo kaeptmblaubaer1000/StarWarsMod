@@ -33,20 +33,23 @@ public class ItemBinoculars extends Item
 			stack.stackTagCompound = new NBTTagCompound();
 			setZoom(stack, 10);
 		}
-		if (!stack.stackTagCompound.hasKey("zoom")) setZoom(stack, 10);
+		if (!stack.stackTagCompound.hasKey("zoom"))
+			setZoom(stack, 10);
 		return stack.stackTagCompound.getInteger("zoom");
 	}
 
 	public static ItemStack setEnabled(ItemStack stack, boolean enabled)
 	{
-		if (stack.stackTagCompound == null) stack.stackTagCompound = new NBTTagCompound();
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setBoolean("enabled", enabled);
 		return stack;
 	}
 
 	public static ItemStack setZoom(ItemStack stack, int zoom)
 	{
-		if (stack.stackTagCompound == null) stack.stackTagCompound = new NBTTagCompound();
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setInteger("zoom", zoom);
 		return stack;
 	}
@@ -93,8 +96,10 @@ public class ItemBinoculars extends Item
 	@SideOnly(Side.CLIENT)
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
-		if (!(player instanceof EntityPlayer)) return;
-		if (stack.stackTagCompound == null) this.onCreated(stack, world, (EntityPlayer)player);
+		if (!(player instanceof EntityPlayer))
+			return;
+		if (stack.stackTagCompound == null)
+			this.onCreated(stack, world, (EntityPlayer)player);
 	}
 }
 /*

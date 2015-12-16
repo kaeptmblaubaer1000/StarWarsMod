@@ -25,26 +25,26 @@ public class InputHandler
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		if (StarWarsMod.keyShootVehicle.isPressed() && mc.thePlayer.ridingEntity != null) if (mc.thePlayer.ridingEntity instanceof VehicSpeederBike || mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
-		{
-			StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.SPEEDER));
-			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-		}
-		else if (mc.thePlayer.ridingEntity instanceof VehicXWing || mc.thePlayer.ridingEntity instanceof VehicAWing)
-		{
-			StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
-			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-			StarWarsEventHandler.isFiring = true;
-			StarWarsEventHandler.blipFrame = StarWarsEventHandler.blipMax;
-		}
-		else if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
-		{
-			StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.TIE));
-			mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-		}
+		if (StarWarsMod.keyShootVehicle.isPressed() && mc.thePlayer.ridingEntity != null)
+			if (mc.thePlayer.ridingEntity instanceof VehicSpeederBike || mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
+			{
+				StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.SPEEDER));
+				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			}
+			else if (mc.thePlayer.ridingEntity instanceof VehicXWing || mc.thePlayer.ridingEntity instanceof VehicAWing)
+			{
+				StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
+				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsEventHandler.isFiring = true;
+				StarWarsEventHandler.blipFrame = StarWarsEventHandler.blipMax;
+			}
+			else if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
+			{
+				StarWarsMod.network.sendToServer(new CreateBlasterBolt(mc.thePlayer.getCommandSenderName(), mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.TIE));
+				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			}
 
 		if (StarWarsMod.keySFoil.isPressed())
-		{
 			if (mc.thePlayer.ridingEntity instanceof VehicXWing)
 			{
 				VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
@@ -53,6 +53,5 @@ public class InputHandler
 				if (xwing.getSFoil() >= 0.8f)
 					xwing.isClosing = true;
 			}
-		}
 	}
 }

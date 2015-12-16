@@ -64,19 +64,24 @@ public class AiMouseScare extends EntityAIBase
 	{
 		if (this.targetEntityClass == EntityPlayer.class)
 		{
-			if (this.theEntity instanceof EntityTameable && ((EntityTameable)this.theEntity).isTamed()) return false;
+			if (this.theEntity instanceof EntityTameable && ((EntityTameable)this.theEntity).isTamed())
+				return false;
 			this.closestLivingEntity = this.theEntity.worldObj.getClosestPlayerToEntity(this.theEntity, this.distanceFromEntity);
-			if (this.closestLivingEntity == null) return false;
+			if (this.closestLivingEntity == null)
+				return false;
 		}
 		else
 		{
 			List list = this.theEntity.worldObj.selectEntitiesWithinAABB(this.targetEntityClass, this.theEntity.boundingBox.expand(this.distanceFromEntity, 3.0D, this.distanceFromEntity), this.field_98218_a);
-			if (list.isEmpty()) return false;
+			if (list.isEmpty())
+				return false;
 			this.closestLivingEntity = (Entity)list.get(0);
 		}
 		Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.theEntity, 16, 7, Vec3.createVectorHelper(this.closestLivingEntity.posX, this.closestLivingEntity.posY, this.closestLivingEntity.posZ));
-		if (vec3 == null) return false;
-		if (this.closestLivingEntity.getDistanceSq(vec3.xCoord, vec3.yCoord, vec3.zCoord) < this.closestLivingEntity.getDistanceSqToEntity(this.theEntity)) return false;
+		if (vec3 == null)
+			return false;
+		if (this.closestLivingEntity.getDistanceSq(vec3.xCoord, vec3.yCoord, vec3.zCoord) < this.closestLivingEntity.getDistanceSqToEntity(this.theEntity))
+			return false;
 		this.entityPathEntity = this.entityPathNavigate.getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
 		return this.entityPathEntity == null ? false : this.entityPathEntity.isDestinationSame(vec3);
 	}

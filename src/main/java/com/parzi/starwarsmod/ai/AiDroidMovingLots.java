@@ -30,10 +30,13 @@ public class AiDroidMovingLots extends net.minecraft.entity.ai.EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.entity.getAge() >= 100) return false;
-		if (this.entity.getRNG().nextInt(this.freq) != 0) return false;
+		if (this.entity.getAge() >= 100)
+			return false;
+		if (this.entity.getRNG().nextInt(this.freq) != 0)
+			return false;
 		Vec3 vec3 = RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
-		if (vec3 == null) return false;
+		if (vec3 == null)
+			return false;
 		this.xPosition = vec3.xCoord;
 		this.yPosition = vec3.yCoord;
 		this.zPosition = vec3.zCoord;

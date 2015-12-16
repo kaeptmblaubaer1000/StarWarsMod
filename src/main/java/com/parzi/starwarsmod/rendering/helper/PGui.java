@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.rendering.helper;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -12,6 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import scala.Int;
 
 public class PGui// extends Gui
@@ -21,21 +22,59 @@ public class PGui// extends Gui
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
-	public static int getRGB(int r, int g, int b)
+	public static void drawModalRectWithCustomSizedText(int p_146110_0_, int p_146110_1_, float p_146110_2_, float p_146110_3_, int p_146110_4_, int p_146110_5_, float p_146110_6_, float p_146110_7_)
 	{
-		int rgb = r;
-		rgb = (rgb << 8) + g;
-		rgb = (rgb << 8) + b;
-		return rgb;
+		float f4 = 1.0F / p_146110_6_;
+		float f5 = 1.0F / p_146110_7_;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(p_146110_0_, p_146110_1_ + p_146110_5_, 0.0D, p_146110_2_ * f4, (p_146110_3_ + p_146110_5_) * f5);
+		tessellator.addVertexWithUV(p_146110_0_ + p_146110_4_, p_146110_1_ + p_146110_5_, 0.0D, (p_146110_2_ + p_146110_4_) * f4, (p_146110_3_ + p_146110_5_) * f5);
+		tessellator.addVertexWithUV(p_146110_0_ + p_146110_4_, p_146110_1_, 0.0D, (p_146110_2_ + p_146110_4_) * f4, p_146110_3_ * f5);
+		tessellator.addVertexWithUV(p_146110_0_, p_146110_1_, 0.0D, p_146110_2_ * f4, p_146110_3_ * f5);
+		tessellator.draw();
 	}
 
-	public static int getRGBA(int r, int g, int b, int a)
+	/**
+	 * Draws a solid color rectangle with the specified coordinates and color.
+	 * Args: x1, y1, x2, y2, color
+	 */
+	public static void drawRect(int x1, int y1, int x2, int y2, int color)
 	{
-		int rgba = a;
-		rgba = (rgba << 8) + r;
-		rgba = (rgba << 8) + g;
-		rgba = (rgba << 8) + b;
-		return rgba;
+		PGui.mc.entityRenderer.setupOverlayRendering();
+
+		int j1;
+
+		if (x1 < x2)
+		{
+			j1 = x1;
+			x1 = x2;
+			x2 = j1;
+		}
+
+		if (y1 < y2)
+		{
+			j1 = y1;
+			y1 = y2;
+			y2 = j1;
+		}
+		float f3 = (color >> 24 & 255) / 255.0F;
+		float f = (color >> 16 & 255) / 255.0F;
+		float f1 = (color >> 8 & 255) / 255.0F;
+		float f2 = (color & 255) / 255.0F;
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glColor4f(f, f1, f2, f3);
+		tessellator.startDrawingQuads();
+		tessellator.addVertex(x1, y2, 0.0D);
+		tessellator.addVertex(x2, y2, 0.0D);
+		tessellator.addVertex(x2, y1, 0.0D);
+		tessellator.addVertex(x1, y1, 0.0D);
+		tessellator.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
 	}
 
 	/**
@@ -67,126 +106,44 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glColor4f(r / 255f, g / 255f, b / 255f, a / 255f);
 		tessellator.startDrawingQuads();
-		tessellator.addVertex((double)x1, (double)y2, 0.0D);
-		tessellator.addVertex((double)x2, (double)y2, 0.0D);
-		tessellator.addVertex((double)x2, (double)y1, 0.0D);
-		tessellator.addVertex((double)x1, (double)y1, 0.0D);
+		tessellator.addVertex(x1, y2, 0.0D);
+		tessellator.addVertex(x2, y2, 0.0D);
+		tessellator.addVertex(x2, y1, 0.0D);
+		tessellator.addVertex(x1, y1, 0.0D);
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
-	/**
-	 * Draws a solid color rectangle with the specified coordinates and color.
-	 * Args: x1, y1, x2, y2, color
-	 */
-	public static void drawRect(int x1, int y1, int x2, int y2, int color)
+	public static void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
 	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-
-		int j1;
-
-		if (x1 < x2)
-		{
-			j1 = x1;
-			x1 = x2;
-			x2 = j1;
-		}
-
-		if (y1 < y2)
-		{
-			j1 = y1;
-			y1 = y2;
-			y2 = j1;
-		}
-		float f3 = (float)(color >> 24 & 255) / 255.0F;
-		float f = (float)(color >> 16 & 255) / 255.0F;
-		float f1 = (float)(color >> 8 & 255) / 255.0F;
-		float f2 = (float)(color & 255) / 255.0F;
+		float f4 = 1.0F / p_152125_8_;
+		float f5 = 1.0F / p_152125_9_;
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		GL11.glColor4f(f, f1, f2, f3);
 		tessellator.startDrawingQuads();
-		tessellator.addVertex((double)x1, (double)y2, 0.0D);
-		tessellator.addVertex((double)x2, (double)y2, 0.0D);
-		tessellator.addVertex((double)x2, (double)y1, 0.0D);
-		tessellator.addVertex((double)x1, (double)y1, 0.0D);
+		tessellator.addVertexWithUV(p_152125_0_, p_152125_1_ + p_152125_7_, 0.0D, p_152125_2_ * f4, (p_152125_3_ + p_152125_5_) * f5);
+		tessellator.addVertexWithUV(p_152125_0_ + p_152125_6_, p_152125_1_ + p_152125_7_, 0.0D, (p_152125_2_ + p_152125_4_) * f4, (p_152125_3_ + p_152125_5_) * f5);
+		tessellator.addVertexWithUV(p_152125_0_ + p_152125_6_, p_152125_1_, 0.0D, (p_152125_2_ + p_152125_4_) * f4, p_152125_3_ * f5);
+		tessellator.addVertexWithUV(p_152125_0_, p_152125_1_, 0.0D, p_152125_2_ * f4, p_152125_3_ * f5);
 		tessellator.draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
 	}
 
-    /**
-     * Draws a rectangle with a vertical gradient between the specified colors.
-     */
-    public void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
-    {
-		PGui.mc.entityRenderer.setupOverlayRendering();
+	public static int getRGB(int r, int g, int b)
+	{
+		int rgb = r;
+		rgb = (rgb << 8) + g;
+		rgb = (rgb << 8) + b;
+		return rgb;
+	}
 
-        float f = (float)(startColor >> 24 & 255) / 255.0F;
-        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
-        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
-        float f3 = (float)(startColor & 255) / 255.0F;
-        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
-        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
-        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
-        float f7 = (float)(endColor & 255) / 255.0F;
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex((double)right, (double)top, 0);
-        tessellator.addVertex((double)left, (double)top, 0);
-        tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex((double)left, (double)bottom, 0);
-        tessellator.addVertex((double)right, (double)bottom, 0);
-        tessellator.draw();
-        GL11.glShadeModel(GL11.GL_FLAT);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-    }
-
-    /**
-     * Draws a rectangle with a vertical gradient between the specified colors.
-     */
-    public void drawGradientRectHoriz(int left, int top, int right, int bottom, int startColor, int endColor)
-    {
-		PGui.mc.entityRenderer.setupOverlayRendering();
-
-        float f = (float)(startColor >> 24 & 255) / 255.0F;
-        float f1 = (float)(startColor >> 16 & 255) / 255.0F;
-        float f2 = (float)(startColor >> 8 & 255) / 255.0F;
-        float f3 = (float)(startColor & 255) / 255.0F;
-        float f4 = (float)(endColor >> 24 & 255) / 255.0F;
-        float f5 = (float)(endColor >> 16 & 255) / 255.0F;
-        float f6 = (float)(endColor >> 8 & 255) / 255.0F;
-        float f7 = (float)(endColor & 255) / 255.0F;
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex((double)right, (double)top, 0);
-        tessellator.addVertex((double)right, (double)bottom, 0);
-        tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex((double)left, (double)bottom, 0);
-        tessellator.addVertex((double)left, (double)top, 0);
-        tessellator.draw();
-        GL11.glShadeModel(GL11.GL_FLAT);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-    }
+	public static int getRGBA(int r, int g, int b, int a)
+	{
+		int rgba = a;
+		rgba = (rgba << 8) + r;
+		rgba = (rgba << 8) + g;
+		rgba = (rgba << 8) + b;
+		return rgba;
+	}
 
 	public static int rainbowColor(int phaseMod)
 	{
@@ -221,6 +178,291 @@ public class PGui// extends Gui
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		PGui.mc.fontRenderer.drawStringWithShadow(string, x - PGui.mc.fontRenderer.getStringWidth(string) / 2, y - PGui.mc.fontRenderer.FONT_HEIGHT / 2, color);
+	}
+
+	/**
+	 * Draws a filled circle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param radius
+	 *            The radius
+	 * @param color
+	 *            The color
+	 */
+	public void drawFilledCircle(int x, int y, double radius, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		for (int i = 0; i <= 360; i++)
+		{
+			double nx = Math.sin(i * 3.141526D / 180) * radius;
+			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			GL11.glVertex2d(nx + x, ny + y);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+	}
+
+	/**
+	 * Draws a filled isoceles triangle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param scale
+	 *            The scale
+	 * @param theta
+	 *            The rotation theta
+	 * @param color
+	 *            The color
+	 */
+	public void drawFilledTriangle(double x, double y, int scale, float theta, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		GL11.glTranslated(x, y, 0);
+		GL11.glRotatef(180 + theta, 0F, 0F, 1.0F);
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glBegin(GL11.GL_TRIANGLES);
+
+		GL11.glVertex2d(0, 1 * scale);
+		GL11.glVertex2d(1 * scale, -(1 * scale));
+		GL11.glVertex2d(-(1 * scale), -(1 * scale));
+
+		GL11.glEnd();
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glRotatef(-180 - theta, 0F, 0F, 1.0F);
+		GL11.glTranslated(-x, -y, 0);
+	}
+
+	/**
+	 * Draws a rectangle with a vertical gradient between the specified colors.
+	 */
+	public void drawGradientRect(int left, int top, int right, int bottom, int startColor, int endColor)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+
+		float f = (startColor >> 24 & 255) / 255.0F;
+		float f1 = (startColor >> 16 & 255) / 255.0F;
+		float f2 = (startColor >> 8 & 255) / 255.0F;
+		float f3 = (startColor & 255) / 255.0F;
+		float f4 = (endColor >> 24 & 255) / 255.0F;
+		float f5 = (endColor >> 16 & 255) / 255.0F;
+		float f6 = (endColor >> 8 & 255) / 255.0F;
+		float f7 = (endColor & 255) / 255.0F;
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glShadeModel(GL11.GL_SMOOTH);
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.setColorRGBA_F(f1, f2, f3, f);
+		tessellator.addVertex(right, top, 0);
+		tessellator.addVertex(left, top, 0);
+		tessellator.setColorRGBA_F(f5, f6, f7, f4);
+		tessellator.addVertex(left, bottom, 0);
+		tessellator.addVertex(right, bottom, 0);
+		tessellator.draw();
+		GL11.glShadeModel(GL11.GL_FLAT);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+	}
+
+	/**
+	 * Draws a rectangle with a vertical gradient between the specified colors.
+	 */
+	public void drawGradientRectHoriz(int left, int top, int right, int bottom, int startColor, int endColor)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+
+		float f = (startColor >> 24 & 255) / 255.0F;
+		float f1 = (startColor >> 16 & 255) / 255.0F;
+		float f2 = (startColor >> 8 & 255) / 255.0F;
+		float f3 = (startColor & 255) / 255.0F;
+		float f4 = (endColor >> 24 & 255) / 255.0F;
+		float f5 = (endColor >> 16 & 255) / 255.0F;
+		float f6 = (endColor >> 8 & 255) / 255.0F;
+		float f7 = (endColor & 255) / 255.0F;
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glShadeModel(GL11.GL_SMOOTH);
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.setColorRGBA_F(f1, f2, f3, f);
+		tessellator.addVertex(right, top, 0);
+		tessellator.addVertex(right, bottom, 0);
+		tessellator.setColorRGBA_F(f5, f6, f7, f4);
+		tessellator.addVertex(left, bottom, 0);
+		tessellator.addVertex(left, top, 0);
+		tessellator.draw();
+		GL11.glShadeModel(GL11.GL_FLAT);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+	}
+
+	/**
+	 * Draws a hollow circle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param radius
+	 *            The radius
+	 * @param segments
+	 *            The number of segments
+	 * @param lineWidth
+	 *            The width of the line
+	 * @param color
+	 *            The color
+	 */
+	public void drawHollowCircle(float x, float y, float radius, int segments, float lineWidth, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		float theta = (float)(2 * 3.1415926 / segments);
+		float p = (float)Math.cos(theta);// calculate the sine and cosine
+		float s = (float)Math.sin(theta);
+		float t;
+		GL11.glColor4f(f1, f2, f3, f);
+		float nx = radius;
+		float ny = 0;// start at angle = 0
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glLineWidth(lineWidth);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		for (int ii = 0; ii < segments; ii++)
+		{
+			GL11.glVertex2f(nx + x, ny + y);// final vertex vertex
+
+			// rotate the stuff
+			t = nx;
+			nx = p * nx - s * ny;
+			ny = s * t + p * ny;
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+	}
+
+	/**
+	 * Draws a hollow isoceles triangle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param scale
+	 *            The scale
+	 * @param theta
+	 *            The rotation theta
+	 * @param lineWidth
+	 *            The line width
+	 * @param color
+	 *            The color
+	 */
+	public void drawHollowTriangle(double x, double y, int scale, float theta, int lineWidth, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		GL11.glTranslated(x, y, 0);
+		GL11.glRotatef(180 + theta, 0F, 0F, 1.0F);
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glLineWidth(lineWidth);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+
+		GL11.glVertex2d(0, 1 * scale);
+		GL11.glVertex2d(1 * scale, -(1 * scale));
+		GL11.glVertex2d(-(1 * scale), -(1 * scale));
+
+		GL11.glEnd();
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glRotatef(-180 - theta, 0F, 0F, 1.0F);
+		GL11.glTranslated(-x, -y, 0);
+	}
+
+	/**
+	 * Draws a line
+	 *
+	 * @param x1
+	 *            The start x
+	 * @param y1
+	 *            The start y
+	 * @param x2
+	 *            The end x
+	 * @param y2
+	 *            The end y
+	 * @param lineWidth
+	 *            The line width
+	 * @param color
+	 *            The line color
+	 */
+	public void drawLine(double x1, double y1, double x2, double y2, int lineWidth, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glLineWidth(lineWidth);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+
+		GL11.glVertex2d(x1, y1);
+		GL11.glVertex2d(x2, y2);
+
+		GL11.glEnd();
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
 	}
 
 	/**
@@ -303,7 +545,8 @@ public class PGui// extends Gui
 		byte b0 = 12;
 		this.drawTexturedModalRect(j, b0, 0, xpBar ? 64 : 74, short1, 5);
 		this.drawTexturedModalRect(j, b0, 0, xpBar ? 64 : 74, short1, 5);
-		if (k > 0) this.drawTexturedModalRect(j, b0, 0, xpBar ? 69 : 79, k, 5);
+		if (k > 0)
+			this.drawTexturedModalRect(j, b0, 0, xpBar ? 69 : 79, k, 5);
 		fontrenderer.drawStringWithShadow(caption, i / 2 - fontrenderer.getStringWidth(caption) / 2, b0 - 10, 16777215);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);
@@ -345,7 +588,8 @@ public class PGui// extends Gui
 			this.drawTexturedModalRect(x, y, 16, 0, 9, 9);
 			if (i * 2 + 1 < health)
 				this.drawTexturedModalRect(x, y, MARGIN + 36, 0, 9, 9);
-			else if (i * 2 + 1 == health) this.drawTexturedModalRect(x, y, MARGIN + 45, 0, 9, 9);
+			else if (i * 2 + 1 == health)
+				this.drawTexturedModalRect(x, y, MARGIN + 45, 0, 9, 9);
 			if ((i + 1) % wrap == 0 && wrap != -1)
 			{
 				x = sx;
@@ -532,8 +776,10 @@ public class PGui// extends Gui
 		int height = scaledresolution.getScaledHeight();
 
 		brightness = 1.0F - brightness;
-		if (brightness < 0.0F) brightness = 0.0F;
-		if (brightness > 1.0F) brightness = 1.0F;
+		if (brightness < 0.0F)
+			brightness = 0.0F;
+		if (brightness > 1.0F)
+			brightness = 1.0F;
 
 		prevVignetteBrightness = (float)(prevVignetteBrightness + (brightness - prevVignetteBrightness) * 0.01D);
 
@@ -557,213 +803,4 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glDisable(3042);
 	}
-
-	/**
-	 * Draws a hollow circle
-	 * @param x The x position
-	 * @param y The y position
-	 * @param radius The radius
-	 * @param segments The number of segments
-	 * @param lineWidth The width of the line
-	 * @param color The color
-	 */
-	public void drawHollowCircle(float x, float y, float radius, int segments, float lineWidth, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		float f = (float)(color >> 24 & 0xff) / 255F;
-		float f1 = (float)(color >> 16 & 0xff) / 255F;
-		float f2 = (float)(color >> 8 & 0xff) / 255F;
-		float f3 = (float)(color & 0xff) / 255F;
-		float theta = (float)(2 * 3.1415926 / (segments));
-		float p = (float)Math.cos(theta);// calculate the sine and cosine
-		float s = (float)Math.sin(theta);
-		float t;
-		GL11.glColor4f(f1, f2, f3, f);
-		float nx = radius;
-		float ny = 0;// start at angle = 0
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glLineWidth(lineWidth);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		for (int ii = 0; ii < segments; ii++)
-		{
-			GL11.glVertex2f(nx + x, ny + y);// final vertex vertex
-
-			// rotate the stuff
-			t = nx;
-			nx = p * nx - s * ny;
-			ny = s * t + p * ny;
-		}
-		GL11.glEnd();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-	}
-
-	/**
-	 * Draws a filled circle
-	 * @param x The x position
-	 * @param y The y position
-	 * @param radius The radius
-	 * @param color The color
-	 */
-	public void drawFilledCircle(int x, int y, double radius, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		float f = (float)(color >> 24 & 0xff) / 255F;
-		float f1 = (float)(color >> 16 & 0xff) / 255F;
-		float f2 = (float)(color >> 8 & 0xff) / 255F;
-		float f3 = (float)(color & 0xff) / 255F;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glColor4f(f1, f2, f3, f);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		for (int i = 0; i <= 360; i++)
-		{
-			double nx = Math.sin((i * 3.141526D / 180)) * radius;
-			double ny = Math.cos((i * 3.141526D / 180)) * radius;
-			GL11.glVertex2d(nx + x, ny + y);
-		}
-		GL11.glEnd();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-	}
-
-	/**
-	 * Draws a hollow isoceles triangle
-	 * @param x The x position
-	 * @param y The y position
-	 * @param scale The scale
-	 * @param theta The rotation theta
-	 * @param lineWidth The line width
-	 * @param color The color
-	 */
-	public void drawHollowTriangle(double x, double y, int scale, float theta, int lineWidth, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		GL11.glTranslated(x, y, 0);
-		GL11.glRotatef(180 + theta, 0F, 0F, 1.0F);
-		float f = (float)(color >> 24 & 0xff) / 255F;
-		float f1 = (float)(color >> 16 & 0xff) / 255F;
-		float f2 = (float)(color >> 8 & 0xff) / 255F;
-		float f3 = (float)(color & 0xff) / 255F;
-		GL11.glColor4f(f1, f2, f3, f);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glLineWidth(lineWidth);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-
-		GL11.glVertex2d(0, (1 * scale));
-		GL11.glVertex2d((1 * scale), -(1 * scale));
-		GL11.glVertex2d(-(1 * scale), -(1 * scale));
-
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glRotatef(-180 - theta, 0F, 0F, 1.0F);
-		GL11.glTranslated(-x, -y, 0);
-	}
-
-	/**
-	 * Draws a filled isoceles triangle
-	 * @param x The x position
-	 * @param y The y position
-	 * @param scale The scale
-	 * @param theta The rotation theta
-	 * @param color The color
-	 */
-	public void drawFilledTriangle(double x, double y, int scale, float theta, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		GL11.glTranslated(x, y, 0);
-		GL11.glRotatef(180 + theta, 0F, 0F, 1.0F);
-		float f = (float)(color >> 24 & 0xff) / 255F;
-		float f1 = (float)(color >> 16 & 0xff) / 255F;
-		float f2 = (float)(color >> 8 & 0xff) / 255F;
-		float f3 = (float)(color & 0xff) / 255F;
-		GL11.glColor4f(f1, f2, f3, f);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glBegin(GL11.GL_TRIANGLES);
-
-		GL11.glVertex2d(0, (1 * scale));
-		GL11.glVertex2d((1 * scale), -(1 * scale));
-		GL11.glVertex2d(-(1 * scale), -(1 * scale));
-
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glRotatef(-180 - theta, 0F, 0F, 1.0F);
-		GL11.glTranslated(-x, -y, 0);
-	}
-
-	/**
-	 * Draws a line
-	 * @param x1 The start x
-	 * @param y1 The start y
-	 * @param x2 The end x
-	 * @param y2 The end y
-	 * @param lineWidth The line width
-	 * @param color The line color
-	 */
-	public void drawLine(double x1, double y1, double x2, double y2, int lineWidth, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		float f = (float)(color >> 24 & 0xff) / 255F;
-		float f1 = (float)(color >> 16 & 0xff) / 255F;
-		float f2 = (float)(color >> 8 & 0xff) / 255F;
-		float f3 = (float)(color & 0xff) / 255F;
-		GL11.glColor4f(f1, f2, f3, f);
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glLineWidth(lineWidth);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-
-		GL11.glVertex2d(x1, y1);
-		GL11.glVertex2d(x2, y2);
-
-		GL11.glEnd();
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-	}
-
-    public static void drawModalRectWithCustomSizedText(int p_146110_0_, int p_146110_1_, float p_146110_2_, float p_146110_3_, int p_146110_4_, int p_146110_5_, float p_146110_6_, float p_146110_7_)
-    {
-        float f4 = 1.0F / p_146110_6_;
-        float f5 = 1.0F / p_146110_7_;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV((double)p_146110_0_, (double)(p_146110_1_ + p_146110_5_), 0.0D, (double)(p_146110_2_ * f4), (double)((p_146110_3_ + (float)p_146110_5_) * f5));
-        tessellator.addVertexWithUV((double)(p_146110_0_ + p_146110_4_), (double)(p_146110_1_ + p_146110_5_), 0.0D, (double)((p_146110_2_ + (float)p_146110_4_) * f4), (double)((p_146110_3_ + (float)p_146110_5_) * f5));
-        tessellator.addVertexWithUV((double)(p_146110_0_ + p_146110_4_), (double)p_146110_1_, 0.0D, (double)((p_146110_2_ + (float)p_146110_4_) * f4), (double)(p_146110_3_ * f5));
-        tessellator.addVertexWithUV((double)p_146110_0_, (double)p_146110_1_, 0.0D, (double)(p_146110_2_ * f4), (double)(p_146110_3_ * f5));
-        tessellator.draw();
-    }
-
-    public static void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
-    {
-        float f4 = 1.0F / p_152125_8_;
-        float f5 = 1.0F / p_152125_9_;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV((double)p_152125_0_, (double)(p_152125_1_ + p_152125_7_), 0.0D, (double)(p_152125_2_ * f4), (double)((p_152125_3_ + (float)p_152125_5_) * f5));
-        tessellator.addVertexWithUV((double)(p_152125_0_ + p_152125_6_), (double)(p_152125_1_ + p_152125_7_), 0.0D, (double)((p_152125_2_ + (float)p_152125_4_) * f4), (double)((p_152125_3_ + (float)p_152125_5_) * f5));
-        tessellator.addVertexWithUV((double)(p_152125_0_ + p_152125_6_), (double)p_152125_1_, 0.0D, (double)((p_152125_2_ + (float)p_152125_4_) * f4), (double)(p_152125_3_ * f5));
-        tessellator.addVertexWithUV((double)p_152125_0_, (double)p_152125_1_, 0.0D, (double)(p_152125_2_ * f4), (double)(p_152125_3_ * f5));
-        tessellator.draw();
-    }
 }

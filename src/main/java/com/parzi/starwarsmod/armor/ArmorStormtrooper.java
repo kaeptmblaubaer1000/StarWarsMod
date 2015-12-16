@@ -21,8 +21,10 @@ public class ArmorStormtrooper extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.stormtrooperHelmet || stack.getItem() == StarWarsMod.stormtrooperChest || stack.getItem() == StarWarsMod.stormtrooperBoots) return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.stormtrooperLegs) return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer2.png";
+		if (stack.getItem() == StarWarsMod.stormtrooperHelmet || stack.getItem() == StarWarsMod.stormtrooperChest || stack.getItem() == StarWarsMod.stormtrooperBoots)
+			return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.stormtrooperLegs)
+			return StarWarsMod.MODID + ":" + "textures/models/stormtrooperArmorLayer2.png";
 		return "";
 	}
 }

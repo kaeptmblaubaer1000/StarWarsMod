@@ -10,7 +10,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 public class RenderDroidSurgical extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/surgical.png");
-	
+
 	public RenderDroidSurgical(ModelBase par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

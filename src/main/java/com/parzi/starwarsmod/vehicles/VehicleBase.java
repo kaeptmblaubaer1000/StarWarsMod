@@ -105,7 +105,8 @@ public class VehicleBase extends EntityCreature
 		if (this.riddenByEntity != null)
 		{
 			float offset = this.vehicYOffset;
-			if (!(this.riddenByEntity instanceof EntityPlayer)) offset -= 0.5F;
+			if (!(this.riddenByEntity instanceof EntityPlayer))
+				offset -= 0.5F;
 			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ + this.vehicZOffset);
 		}
 	}

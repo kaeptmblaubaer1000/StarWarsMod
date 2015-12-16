@@ -2,6 +2,9 @@ package com.parzi.starwarsmod.dimension.tatooine;
 
 import java.util.Random;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
@@ -62,38 +65,37 @@ import com.parzi.starwarsmod.world.gen.moseisley.big.ME_56;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_57;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_58;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenDesertWells;
-
 public class BiomeGenTatooine extends BiomeGenPSWM
-{	
+{
 	private int mosY;
 
 	public BiomeGenTatooine(int biomeId)
 	{
 		super(biomeId);
-		
+
 		this.setBiomeName("Tatooine");
 
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.0f;
-		
-        this.spawnableCreatureList.clear();
-        
-        this.topBlock = StarWarsMod.blockTatooineSand;
-        this.fillerBlock = Blocks.stone;
-        
-        this.theBiomeDecorator.treesPerChunk = -999;
-        this.theBiomeDecorator.deadBushPerChunk = -999;
-        this.theBiomeDecorator.reedsPerChunk = -999;
-        this.theBiomeDecorator.cactiPerChunk = -999;
-        
-        this.spawnableCreatureList.clear();
-    }
+
+		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableMonsterList.clear();
+		this.spawnableWaterCreatureList.clear();
+
+		this.topBlock = StarWarsMod.blockTatooineSand;
+		this.fillerBlock = Blocks.stone;
+
+		this.theBiomeDecorator.treesPerChunk = -999;
+		this.theBiomeDecorator.deadBushPerChunk = -999;
+		this.theBiomeDecorator.reedsPerChunk = -999;
+		this.theBiomeDecorator.cactiPerChunk = -999;
+
+		this.spawnableCreatureList.clear();
+		this.spawnableCaveCreatureList.clear();
+		this.spawnableMonsterList.clear();
+		this.spawnableWaterCreatureList.clear();
+	}
 
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
@@ -207,7 +209,8 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 			new ME_56().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		else if (chunkX == 160 && chunkZ == 224)
 			new ME_57().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 256) new ME_58().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 256)
+			new ME_58().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		if (par2Random.nextInt(400) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -229,5 +232,5 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 			WorldGenTatooineHomestead worldGenHomestead = new WorldGenTatooineHomestead();
 			worldGenHomestead.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
-    }
+	}
 }

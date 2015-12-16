@@ -15,7 +15,7 @@ import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 public class RenderDSTurret extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/dsTurret.png");
-	
+
 	public RenderDSTurret(ModelDSTurret par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

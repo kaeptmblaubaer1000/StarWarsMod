@@ -61,7 +61,8 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 				list.add("Terra: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("earth")), Text.COLOR_DARK_GREEN));
 				list.add("Aqua: " + TextUtils.addEffect(String.valueOf(stack.stackTagCompound.getInteger("water")), Text.COLOR_BLUE));
 				for (PowerBase power : this.powers)
-					if (stack.stackTagCompound.getInteger(power.internalName) > 0) list.add("* " + power.displayName + " level " + stack.stackTagCompound.getInteger(power.internalName));
+					if (stack.stackTagCompound.getInteger(power.internalName) > 0)
+						list.add("* " + power.displayName + " level " + stack.stackTagCompound.getInteger(power.internalName));
 			}
 			else
 				list.add("Owner not set!");
@@ -132,11 +133,15 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 	@SideOnly(Side.CLIENT)
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{
-		if (stack.stackTagCompound == null) this.onCreated(stack, world, player);
-		if (world.rand.nextInt(chanceElement) != 0) return;
-		if (this.hasMoved(stack, player)) if (this.isStandingOn(plantMatter, world, player))
-			this.incrementTagInNBT(stack, "plants");
-		else if (player.isInWater()) this.incrementTagInNBT(stack, "water");
+		if (stack.stackTagCompound == null)
+			this.onCreated(stack, world, player);
+		if (world.rand.nextInt(chanceElement) != 0)
+			return;
+		if (this.hasMoved(stack, player))
+			if (this.isStandingOn(plantMatter, world, player))
+				this.incrementTagInNBT(stack, "plants");
+			else if (player.isInWater())
+				this.incrementTagInNBT(stack, "water");
 		for (PowerBase power : this.powers)
 			power.doPower(world, player, stack);
 		this.addInformation(stack, player, stack.getTooltip(player, false), false);
@@ -167,8 +172,10 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null) player.openGui(StarWarsMod.instance, 2, world, 0, 0, 0);
-		if (stack.stackTagCompound == null) this.onCreated(stack, world, player);
+		if (world.isRemote && player.isSneaking() && stack.stackTagCompound != null)
+			player.openGui(StarWarsMod.instance, 2, world, 0, 0, 0);
+		if (stack.stackTagCompound == null)
+			this.onCreated(stack, world, player);
 		return stack;
 	}
 
@@ -176,7 +183,8 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 	@SideOnly(Side.CLIENT)
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
-		if (!(player instanceof EntityPlayer)) return;
+		if (!(player instanceof EntityPlayer))
+			return;
 		try
 		{
 			this.addInformation(stack, (EntityPlayer)player, stack.getTooltip((EntityPlayer)player, false), false);
@@ -184,11 +192,14 @@ public class ArmorLightJediRobes extends ItemArmor implements IHaloRenderItem
 		catch (Throwable localThrowable)
 		{
 		}
-		if (stack.stackTagCompound == null) this.onCreated(stack, world, (EntityPlayer)player);
+		if (stack.stackTagCompound == null)
+			this.onCreated(stack, world, (EntityPlayer)player);
 		try
 		{
-			if (net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2] == null) player.stepHeight = 0.5001F;
-			if (!(net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes) && !(net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes)) player.stepHeight = 0.5001F;
+			if (net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2] == null)
+				player.stepHeight = 0.5001F;
+			if (!(net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes) && !(net.minecraft.client.Minecraft.getMinecraft().thePlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes))
+				player.stepHeight = 0.5001F;
 		}
 		catch (Exception localException)
 		{

@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 public class RenderBantha extends RenderCow
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/bantha.png");
-	
+
 	public RenderBantha(ModelBantha par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

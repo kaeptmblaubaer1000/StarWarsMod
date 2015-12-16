@@ -64,7 +64,8 @@ public class ItemLightsaberOff extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (!stack.stackTagCompound.hasKey("timeout")) stack.stackTagCompound.setInteger("timeout", 10);
+		if (!stack.stackTagCompound.hasKey("timeout"))
+			stack.stackTagCompound.setInteger("timeout", 10);
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
@@ -77,9 +78,12 @@ public class ItemLightsaberOff extends Item
 	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
 	{
 		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_, p_77663_5_);
-		if (!p_77663_1_.hasTagCompound()) p_77663_1_.stackTagCompound = new NBTTagCompound();
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout")) p_77663_1_.stackTagCompound.setInteger("timeout", 10);
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0) p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		if (!p_77663_1_.hasTagCompound())
+			p_77663_1_.stackTagCompound = new NBTTagCompound();
+		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
+			p_77663_1_.stackTagCompound.setInteger("timeout", 10);
+		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
+			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
 	}
 
 	@Override

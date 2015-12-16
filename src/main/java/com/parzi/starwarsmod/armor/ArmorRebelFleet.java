@@ -15,14 +15,16 @@ public class ArmorRebelFleet extends ItemArmor
 		super(par2EnumArmorMaterial, par3, par4);
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + "rebelTrooper" + this.names[par4]);
 		this.setTextureName(StarWarsMod.MODID + ":" + "rebelTrooper" + this.names[par4]);
-		//this.setCreativeTab(StarWarsMod.StarWarsTab);
+		// this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.fleetHelmet || stack.getItem() == StarWarsMod.fleetChest || stack.getItem() == StarWarsMod.fleetBoots) return StarWarsMod.MODID + ":" + "textures/models/fleetArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.fleetLegs) return StarWarsMod.MODID + ":" + "textures/models/fleetArmorLayer2.png";
+		if (stack.getItem() == StarWarsMod.fleetHelmet || stack.getItem() == StarWarsMod.fleetChest || stack.getItem() == StarWarsMod.fleetBoots)
+			return StarWarsMod.MODID + ":" + "textures/models/fleetArmorLayer1.png";
+		if (stack.getItem() == StarWarsMod.fleetLegs)
+			return StarWarsMod.MODID + ":" + "textures/models/fleetArmorLayer2.png";
 		return "";
 	}
 }

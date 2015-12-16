@@ -87,7 +87,9 @@ public class MobTatooineCommoner extends EntityVillager
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveKashyyyk, 1), this.baseRarity));
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveTatooine, 1), this.baseRarity));
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveYavin4, 1), this.baseRarity));
-			//trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveDagobah, 1), this.baseRarity));
+			// trades.add(new WeightedTradeItem(new
+			// ItemStack(StarWarsMod.goldImperialCredit, 2), new
+			// ItemStack(StarWarsMod.hyperdriveDagobah, 1), this.baseRarity));
 			for (int i = 0; i < 3; i++)
 			{
 				WeightedTradeItem item;
@@ -181,7 +183,8 @@ public class MobTatooineCommoner extends EntityVillager
 	public boolean isAlreadyTrading(WeightedTradeItem item, MerchantRecipeList trades)
 	{
 		for (Object x : trades.toArray())
-			if (((MerchantRecipe)x).getItemToSell() == item.item) return true;
+			if (((MerchantRecipe)x).getItemToSell() == item.item)
+				return true;
 		return false;
 	}
 

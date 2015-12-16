@@ -1,22 +1,17 @@
 package com.parzi.starwarsmod.vehicles;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.Lumberjack;
 
 public class VehicleAirBase extends VehicleBase
 {
@@ -53,7 +48,8 @@ public class VehicleAirBase extends VehicleBase
 	{
 		p_70069_1_ = ForgeHooks.onLivingFall(this, p_70069_1_);
 		// Lumberjack.log(this.motionY);
-		if (p_70069_1_ <= 3 || this.motionY > -0.3F) return;
+		if (p_70069_1_ <= 3 || this.motionY > -0.3F)
+			return;
 		super.fall(p_70069_1_);
 		PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
 		float f1 = potioneffect != null ? (float)(potioneffect.getAmplifier() + 1) : 0.0F;
@@ -90,15 +86,18 @@ public class VehicleAirBase extends VehicleBase
 			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward;
 
-			if (this.accel < 1 && p_70612_2_ != 0) this.accel += 1 / 100f;
+			if (this.accel < 1 && p_70612_2_ != 0)
+				this.accel += 1 / 100f;
 
-			if (this.accel > 0.1f && p_70612_2_ == 0) this.accel -= 1 / 100f;
+			if (this.accel > 0.1f && p_70612_2_ == 0)
+				this.accel -= 1 / 100f;
 
-			if (this.accel < 0.1f) this.accel = 0.1f;
+			if (this.accel < 0.1f)
+				this.accel = 0.1f;
 
-			p_70612_2_ = (this.moveModifier / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F)) * (this.accel - 0.1f);
+			p_70612_2_ = this.moveModifier / 8.0F * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F)) * (this.accel - 0.1f);
 
-			if (accel < 0.5f)
+			if (this.accel < 0.5f)
 				this.gravity += 0.015F * (1 - this.accel);
 			else
 				this.gravity = 0.015F;
@@ -123,7 +122,8 @@ public class VehicleAirBase extends VehicleBase
 	public void onDeath(DamageSource source)
 	{
 		super.onDeath(source);
-		if (source.getDamageType() != "fall" && source.getDamageType() != "bolt") return;
+		if (source.getDamageType() != "fall" && source.getDamageType() != "bolt")
+			return;
 		for (String comp : this.explosionComponents)
 			for (int i = 0; i < 20 + this.rand.nextInt(20); i++)
 			{
@@ -139,7 +139,9 @@ public class VehicleAirBase extends VehicleBase
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (this.riddenByEntity == null) this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
-		if ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ) this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
+		if (this.riddenByEntity == null)
+			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
+		if ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ)
+			this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
 	}
 }

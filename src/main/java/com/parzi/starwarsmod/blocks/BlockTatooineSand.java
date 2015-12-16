@@ -37,7 +37,8 @@ public class BlockTatooineSand extends Block
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
-		if (meta < 2) return this.icons[meta];
+		if (meta < 2)
+			return this.icons[meta];
 		return this.icons[0];
 	}
 

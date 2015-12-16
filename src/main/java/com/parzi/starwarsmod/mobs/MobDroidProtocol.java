@@ -104,7 +104,8 @@ public class MobDroidProtocol extends EntityTameable
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-		if (itemstack == null) itemstack = new ItemStack(net.minecraft.init.Blocks.air);
+		if (itemstack == null)
+			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
 		if (this.isTamed())
 		{
 			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidCaller)
@@ -116,20 +117,21 @@ public class MobDroidProtocol extends EntityTameable
 		}
 		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
-			if (!this.worldObj.isRemote) if (this.rand.nextInt(3) == 0)
-			{
-				this.setTamed(true);
-				this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-				this.playTameEffect(true);
-				this.aiSit.setSitting(true);
-				this.worldObj.setEntityState(this, (byte)7);
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-			}
-			else
-			{
-				this.playTameEffect(false);
-				this.worldObj.setEntityState(this, (byte)6);
-			}
+			if (!this.worldObj.isRemote)
+				if (this.rand.nextInt(3) == 0)
+				{
+					this.setTamed(true);
+					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					this.playTameEffect(true);
+					this.aiSit.setSitting(true);
+					this.worldObj.setEntityState(this, (byte)7);
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+				}
+				else
+				{
+					this.playTameEffect(false);
+					this.worldObj.setEntityState(this, (byte)6);
+				}
 			return true;
 		}
 		return super.interact(par1EntityPlayer);
@@ -145,7 +147,8 @@ public class MobDroidProtocol extends EntityTameable
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (this.rand.nextInt(1000) == 0 && this.worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, this.boundingBox.expand(5.0D, 5.0D, 5.0D), this) instanceof MobDroidAstromech) this.playSound(StarWarsMod.MODID + ":" + "mob.protocol.r2d2rare", 1.0F, 1.0F);
+		if (this.rand.nextInt(1000) == 0 && this.worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, this.boundingBox.expand(5.0D, 5.0D, 5.0D), this) instanceof MobDroidAstromech)
+			this.playSound(StarWarsMod.MODID + ":" + "mob.protocol.r2d2rare", 1.0F, 1.0F);
 	}
 
 	@Override

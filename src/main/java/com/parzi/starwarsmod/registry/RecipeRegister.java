@@ -24,9 +24,12 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.silverImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.imperialCredit);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.goldImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.silverImperialCredit);
 
-		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.RED), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.RED), 'P', StarWarsMod.plasmaEmitter);
-		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.GREEN), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.GREEN), 'P', StarWarsMod.plasmaEmitter);
-		if (StarWarsMod.enableLightsaber) GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.BLUE), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.BLUE), 'P', StarWarsMod.plasmaEmitter);
+		if (StarWarsMod.enableLightsaber)
+			GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.RED), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.RED), 'P', StarWarsMod.plasmaEmitter);
+		if (StarWarsMod.enableLightsaber)
+			GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.GREEN), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.GREEN), 'P', StarWarsMod.plasmaEmitter);
+		if (StarWarsMod.enableLightsaber)
+			GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.BLUE), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.BLUE), 'P', StarWarsMod.plasmaEmitter);
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightJediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 8));

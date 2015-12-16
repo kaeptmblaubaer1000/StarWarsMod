@@ -119,7 +119,8 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-		if (itemstack == null) itemstack = new ItemStack(net.minecraft.init.Blocks.air);
+		if (itemstack == null)
+			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
 		if (this.isTamed())
 		{
 			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidHacker)
@@ -131,30 +132,31 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 		}
 		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
-			if (!this.worldObj.isRemote) if (this.rand.nextInt(3) == 0)
-			{
-				this.setTamed(true);
-				this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-				this.playTameEffect(true);
-				this.aiSit.setSitting(true);
-				this.worldObj.setEntityState(this, (byte)7);
-				this.entityToAttack = null;
-				this.targetTasks.taskEntries.clear();
-				this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
-				this.tasks.taskEntries.clear();
-				this.tasks.addTask(2, this.aiSit);
-				this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
-				this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-				this.tasks.addTask(1, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
-				this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-				this.tasks.addTask(3, new EntityAILookIdle(this));
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-			}
-			else
-			{
-				this.playTameEffect(false);
-				this.worldObj.setEntityState(this, (byte)6);
-			}
+			if (!this.worldObj.isRemote)
+				if (this.rand.nextInt(3) == 0)
+				{
+					this.setTamed(true);
+					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					this.playTameEffect(true);
+					this.aiSit.setSitting(true);
+					this.worldObj.setEntityState(this, (byte)7);
+					this.entityToAttack = null;
+					this.targetTasks.taskEntries.clear();
+					this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
+					this.tasks.taskEntries.clear();
+					this.tasks.addTask(2, this.aiSit);
+					this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
+					this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+					this.tasks.addTask(1, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+					this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+					this.tasks.addTask(3, new EntityAILookIdle(this));
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+				}
+				else
+				{
+					this.playTameEffect(false);
+					this.worldObj.setEntityState(this, (byte)6);
+				}
 			return true;
 		}
 		return super.interact(par1EntityPlayer);

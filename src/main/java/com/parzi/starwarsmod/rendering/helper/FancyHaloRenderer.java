@@ -24,7 +24,8 @@ public class FancyHaloRenderer implements IItemRenderer
 		if (itype instanceof IHaloRenderItem)
 		{
 			IHaloRenderItem ihri = (IHaloRenderItem)itype;
-			if (!ihri.drawHalo(item) && !ihri.drawPulseEffect(item)) return false;
+			if (!ihri.drawHalo(item) && !ihri.drawPulseEffect(item))
+				return false;
 		}
 		switch (type)
 		{

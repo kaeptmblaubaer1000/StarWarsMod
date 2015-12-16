@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 public class RenderWampa extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/wampa.png");
-	
+
 	public RenderWampa(ModelWampa par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);

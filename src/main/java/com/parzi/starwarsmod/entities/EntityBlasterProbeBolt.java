@@ -57,7 +57,8 @@ public class EntityBlasterProbeBolt extends EntityThrowable
 	@Override
 	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
 	{
-		if (this.isEntityInvulnerable()) return false;
+		if (this.isEntityInvulnerable())
+			return false;
 		this.setBeenAttacked();
 		if (p_70097_1_.getEntity() != null)
 		{
@@ -106,14 +107,16 @@ public class EntityBlasterProbeBolt extends EntityThrowable
 				pos.entityHit.attackEntityFrom(DamageSource.causeMobDamage(this.sender), 5.0F);
 			pos.entityHit.setFire(8);
 		}
-		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && StarWarsMod.enableBlasterFire) this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
+		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && StarWarsMod.enableBlasterFire)
+			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 		this.setDead();
 	}
 
 	@Override
 	public void onUpdate()
 	{
-		if (this.timeAlive++ > 100) this.setDead();
+		if (this.timeAlive++ > 100)
+			this.setDead();
 		super.onUpdate();
 	}
 }

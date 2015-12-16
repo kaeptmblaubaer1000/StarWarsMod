@@ -13,8 +13,8 @@ public class BiomeGenPSWM extends BiomeGenBase
 		super(biomeId);
 	}
 
-    public WorldGenAbstractTree getTreeAt(Random rand, int x, int y, int z)
-    {
-    	return new WorldGenForest(true, true);
-    }
+	public WorldGenAbstractTree getTreeAt(Random rand, int x, int y, int z)
+	{
+		return new WorldGenForest(true, true);
+	}
 }

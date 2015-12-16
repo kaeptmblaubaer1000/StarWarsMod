@@ -56,7 +56,8 @@ public class ItemCustomTest extends ItemSword
 
 		if (renderPass == 0)
 			return this.iconMap.get("blade_" + stack.stackTagCompound.getString("blade"));
-		else if (renderPass == 1) return this.iconMap.get("hilt_" + stack.stackTagCompound.getString("hilt"));
+		else if (renderPass == 1)
+			return this.iconMap.get("hilt_" + stack.stackTagCompound.getString("hilt"));
 		return this.itemIcon;
 	}
 
