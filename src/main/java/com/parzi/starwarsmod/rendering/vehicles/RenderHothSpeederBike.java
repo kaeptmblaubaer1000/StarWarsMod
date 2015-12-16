@@ -29,7 +29,7 @@ public class RenderHothSpeederBike extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		GL11.glScalef(2.0F, 2.0F, 2.0F);
+		GL11.glScalef(1.75F, 1.75F, 1.75F);
 		if (entity instanceof VehicleLandBase)
 		{
 			VehicleLandBase vehic = (VehicleLandBase)entity;

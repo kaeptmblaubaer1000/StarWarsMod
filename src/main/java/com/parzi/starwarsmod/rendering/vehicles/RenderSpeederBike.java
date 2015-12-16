@@ -30,7 +30,7 @@ public class RenderSpeederBike extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		GL11.glScalef(2.0F, 2.0F, 2.0F);
+		GL11.glScalef(1.75F, 1.75F, 1.75F);
 		if (entity instanceof VehicleLandBase)
 		{
 			VehicleLandBase vehic = (VehicleLandBase)entity;
@@ -38,15 +38,6 @@ public class RenderSpeederBike extends RenderLiving
 			float ty = (float)Math.cos(vehic.frame * 1.25F) * 0.005F;
 			GL11.glTranslatef(tx, ty, tx * ty);
 			GL11.glRotatef(-vehic.mouseDX, 0.0F, 0.0F, 1.0F);
-		}
-		if (entity instanceof VehicleAirBase)
-		{
-			VehicleAirBase vehicle = (VehicleAirBase)entity;
-			GL11.glTranslatef(0, -0.4F, 0);
-			GL11.glRotatef(vehicle.rotationPitch, 1.0F, 0.0F, 0.0F);
-			GL11.glTranslatef(0, 0.4F, 0);
-			GL11.glTranslatef(0, (float)(Math.abs(vehicle.rotationPitch) / 90F / Math.PI), (float)(vehicle.rotationPitch / 90F / Math.PI));
-
 		}
 	}
 }
