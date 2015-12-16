@@ -39,8 +39,7 @@ public class BlockMV extends BlockContainer
 			if (itemstack != null)
 			{
 				EntityItem entityitem = new EntityItem(world, x, y, z, itemstack);
-				if (itemstack.hasTagCompound())
-					entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+				if (itemstack.hasTagCompound()) entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
 				world.spawnEntityInWorld(entityitem);
 			}
 			world.func_147453_f(x, y, z, block);
@@ -69,9 +68,8 @@ public class BlockMV extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		if (world.isRemote)
-			return true;
-		player.openGui(StarWarsMod.instance, 0, world, x, y, z);
+		if (!world.isRemote)
+			player.openGui(StarWarsMod.instance, 0, world, x, y, z);
 		return true;
 	}
 
