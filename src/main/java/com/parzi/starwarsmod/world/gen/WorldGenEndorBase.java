@@ -48,8 +48,6 @@ import cpw.mods.fml.common.IWorldGenerator;
 	/*      */public boolean generate(World world, Random rand, int i, int j, int k)
 	/*      */
 	{
-		if ((!locationIsValidSpawn(world, i, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k + 34)) || (!locationIsValidSpawn(world, i, j, k + 34))) { return false;
-		/*      */}
 		k -= 10;
 		i -= 10;
 		/*      */
