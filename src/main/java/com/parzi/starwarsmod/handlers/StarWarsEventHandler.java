@@ -24,6 +24,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
+import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.network.CreateBlasterBolt;
@@ -318,11 +319,11 @@ public class StarWarsEventHandler
 						{
 							lookString = s;
 							lookStringPos = 0;
-							StarWarsMod.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, PGui.getRGBA(255, 255, 0, 255), true);
+							FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, PGui.getRGBA(255, 255, 0, 255), true);
 						}
 						else
 						{
-							StarWarsMod.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, PGui.getRGBA(255, 255, 0, 255), true);
+							FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, PGui.getRGBA(255, 255, 0, 255), true);
 							if (mc.thePlayer.ticksExisted % 2 == 0 && event.partialTicks < 0.3f && lookStringPos < lookString.length())
 								lookStringPos++;
 							// if (lookStringPos > lookString.length() -

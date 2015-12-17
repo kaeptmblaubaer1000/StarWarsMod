@@ -15,6 +15,7 @@ import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
+import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.handlers.StarWarsEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
@@ -134,9 +135,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
-		StarWarsMod.aurebesh = new FontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation(StarWarsMod.MODID, "textures/font/aurebesh.png"), Minecraft.getMinecraft().getTextureManager(), false);
-
-		((IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager()).registerReloadListener(StarWarsMod.aurebesh);
 
 		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
@@ -148,6 +146,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		}
 
 		KeybindRegistry.registerAll();
+		
+		FontManager.registerAll();
 
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
 
