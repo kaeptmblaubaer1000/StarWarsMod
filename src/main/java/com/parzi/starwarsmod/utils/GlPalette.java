@@ -9,6 +9,7 @@ public class GlPalette
 
 	public static int TRANSPARENT = PGui.getRGBA(0, 0, 0, 0);
 
+	// color names provided by xkcd (http://xkcd.com/color/rgb.txt)
 	public static int CLOUDY_BLUE = 0xACC2D9;
 	public static int DARK_PASTEL_GREEN = 0x56AE57;
 	public static int DUST = 0xB2996E;
