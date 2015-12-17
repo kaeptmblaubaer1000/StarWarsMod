@@ -41,7 +41,7 @@ public class BiomeGenHoth extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(10) == 0)
+		if (par2Random.nextInt(100) == 0)
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;

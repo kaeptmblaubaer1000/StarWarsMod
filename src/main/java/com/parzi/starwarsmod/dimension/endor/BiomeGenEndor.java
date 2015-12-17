@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenShrub;
 
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenBetterForest;
+import com.parzi.starwarsmod.world.gen.WorldGenEndorBase;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree1;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree2;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree3;
@@ -48,11 +49,11 @@ public class BiomeGenEndor extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(10) == 0)
+		if (par2Random.nextInt(50) == 0)
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
-			new WorldGenHothGenerator().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			new WorldGenEndorBase().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)

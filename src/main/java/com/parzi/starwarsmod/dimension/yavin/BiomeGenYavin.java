@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature.WorldGenShrub;
 
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
+import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
 
 public class BiomeGenYavin extends BiomeGenPSWM
 {
@@ -46,11 +47,11 @@ public class BiomeGenYavin extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(10) == 0)
+		if (par2Random.nextInt(75) == 0)
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
-			new WorldGenHothGenerator().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			new WorldGenYavinTempleRuins().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
