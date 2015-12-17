@@ -5,9 +5,10 @@ import com.parzi.starwarsmod.rendering.helper.PGui;
 
 public class GlPalette
 {
-	public static int RADAR_GREEN = PGui.getRGBA(0, 208, 12, 255);
-
 	public static int TRANSPARENT = PGui.getRGBA(0, 0, 0, 0);
+	
+	// pswm colors
+	public static int RADAR_GREEN = PGui.getRGBA(0, 208, 12, 255);
 
 	// color names provided by xkcd (http://xkcd.com/color/rgb.txt)
 	public static int ACID_GREEN = 0x8FFE09;
