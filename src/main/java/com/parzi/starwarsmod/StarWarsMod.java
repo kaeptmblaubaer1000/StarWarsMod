@@ -449,7 +449,6 @@ public class StarWarsMod
 		enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
 		enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
 		enableLightsaberStrobe = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
-		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 
 		config.save();
 
