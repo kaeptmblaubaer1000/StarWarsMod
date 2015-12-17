@@ -143,7 +143,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
 		{
 			StarWarsMod.IS_DEV_ENVIRONVENT = true;
-			StarWarsMod.IS_SEQUEL_RELEASE = true;
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
 			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
 		}

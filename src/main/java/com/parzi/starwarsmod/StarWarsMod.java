@@ -79,13 +79,13 @@ public class StarWarsMod
 
 	public static boolean IS_DEV_ENVIRONVENT = false;
 
-	public static boolean IS_SEQUEL_RELEASE = false;
+	public static boolean IS_SEQUEL_RELEASE = true;
 
 	public static Configuration config;
 
+	public static Random rngGeneral = new Random();
 	public static Random rngChromium = new Random();
 	public static Random rngTitanium = new Random();
-	public static Random rngGeneral = new Random();
 
 	@Mod.Instance(StarWarsMod.MODID)
 	public static StarWarsMod instance;
@@ -353,9 +353,6 @@ public class StarWarsMod
 		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
-
-		if (Calendar.getInstance().get(Calendar.MONTH) >= 11 && Calendar.getInstance().get(Calendar.DAY_OF_MONTH) >= 18 && Calendar.getInstance().get(Calendar.YEAR) >= 2015)
-			IS_SEQUEL_RELEASE = true;
 
 		InputStream in = null;
 		try
