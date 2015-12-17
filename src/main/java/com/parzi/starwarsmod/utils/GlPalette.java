@@ -10,7 +10,8 @@ public class GlPalette
 	// pswm colors
 	public static int RADAR_GREEN = PGui.getRGBA(0, 208, 12, 255);
 
-	// color names provided by xkcd (http://xkcd.com/color/rgb.txt)
+	// these 954 color names provided by xkcd (http://xkcd.com/color/rgb)
+	// thanks, randall!
 	public static int ACID_GREEN = 0x8FFE09;
 	public static int ADOBE = 0xBD6C48;
 	public static int ALGAE = 0x54AC68;
