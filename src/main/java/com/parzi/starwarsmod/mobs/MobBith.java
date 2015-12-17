@@ -117,19 +117,19 @@ public class MobBith extends EntityVillager
 
 		/*
 		 * bithsNear = 0; boolean shouldPlay = true;
-		 * 
+		 *
 		 * for (Object oEntity :
 		 * this.worldObj.getEntitiesWithinAABB(this.getClass(),
 		 * this.boundingBox.expand(8, 8, 8))) if (oEntity instanceof MobBith) {
 		 * bithsNear++; shouldPlay = !((MobBith)oEntity).getPlaying() &&
 		 * shouldPlay; }
-		 * 
+		 *
 		 * if (bithsNear >= 5) if (!this.getPlaying() && shouldPlay)
-		 * 
+		 *
 		 * { this.playSound(StarWarsMod.MODID + ":" + "item.records.Cantina", 1,
 		 * 1); this.setPlaying(true); } else if (this.getPlaying() &&
 		 * !shouldPlay)
-		 * 
+		 *
 		 * { Minecraft.getMinecraft().getSoundHandler().stopSound(song);
 		 * this.setPlaying(false); }
 		 */

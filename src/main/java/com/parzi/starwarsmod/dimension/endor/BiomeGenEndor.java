@@ -14,7 +14,6 @@ import com.parzi.starwarsmod.world.gen.WorldGenEndorTree1;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree2;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree3;
 import com.parzi.starwarsmod.world.gen.WorldGenEndorTree4;
-import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 
 public class BiomeGenEndor extends BiomeGenPSWM
 {

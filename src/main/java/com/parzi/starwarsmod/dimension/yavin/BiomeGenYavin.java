@@ -11,7 +11,6 @@ import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
-import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
 
 public class BiomeGenYavin extends BiomeGenPSWM

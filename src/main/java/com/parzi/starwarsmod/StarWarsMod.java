@@ -2,7 +2,6 @@ package com.parzi.starwarsmod;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.Random;
 
 import net.minecraft.block.Block;

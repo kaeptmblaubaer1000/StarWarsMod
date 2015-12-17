@@ -39,7 +39,8 @@ public class BlockMV extends BlockContainer
 			if (itemstack != null)
 			{
 				EntityItem entityitem = new EntityItem(world, x, y, z, itemstack);
-				if (itemstack.hasTagCompound()) entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+				if (itemstack.hasTagCompound())
+					entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
 				world.spawnEntityInWorld(entityitem);
 			}
 			world.func_147453_f(x, y, z, block);

@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
-import com.parzi.starwarsmod.world.gen.WorldGenHothGenerator;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
 
 public class BiomeGenKashyyyk extends BiomeGenPSWM

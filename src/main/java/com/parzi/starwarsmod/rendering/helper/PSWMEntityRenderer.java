@@ -217,21 +217,21 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.shaderIndex != shaderCount)
 				try
-				{
+			{
 					logger.info("Selecting effect " + shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), this.resourceManager, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-				}
-				catch (IOException ioexception)
-				{
-					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-					this.shaderIndex = shaderCount;
-				}
-				catch (JsonSyntaxException jsonsyntaxexception)
-				{
-					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
-					this.shaderIndex = shaderCount;
-				}
+			}
+			catch (IOException ioexception)
+			{
+				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+				this.shaderIndex = shaderCount;
+			}
+			catch (JsonSyntaxException jsonsyntaxexception)
+			{
+				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
+				this.shaderIndex = shaderCount;
+			}
 			else
 			{
 				this.theShaderGroup = null;
@@ -264,8 +264,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.mc.gameSettings.particleSetting == 1)
 				i1 >>= 1;
-			else if (this.mc.gameSettings.particleSetting == 2)
-					i1 = 0;
+				else if (this.mc.gameSettings.particleSetting == 2)
+				i1 = 0;
 
 			for (int j1 = 0; j1 < i1; ++j1)
 			{
@@ -555,15 +555,15 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 		if (this.shaderIndex != shaderCount)
 			try
-		{
+			{
 				this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), p_110549_1_, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
 				this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-		}
-		catch (IOException ioexception)
-		{
-			logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-			this.shaderIndex = shaderCount;
-		}
+			}
+			catch (IOException ioexception)
+			{
+				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+				this.shaderIndex = shaderCount;
+			}
 	}
 
 	/**
@@ -1104,7 +1104,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 			}
 
 			if (this.debugViewDirection == 0) // Only render if render pass 0
-			// happens as well.
+				// happens as well.
 			{
 				RenderHelper.enableStandardItemLighting();
 				this.mc.mcProfiler.endStartSection("entities");
