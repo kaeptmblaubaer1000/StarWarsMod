@@ -43,8 +43,6 @@ public class GlPalette
 	public static int BABY_POOP_GREEN = 0x8F9805;
 	public static int BABY_PUKE_GREEN = 0xB6C406;
 	public static int BABY_PURPLE = 0xCA9BF7;
-	public static int BABY_SHIT_BROWN = 0xAD900D;
-	public static int BABY_SHIT_GREEN = 0x889717;
 	public static int BANANA = 0xFFFF7E;
 	public static int BANANA_YELLOW = 0xFAFE4B;
 	public static int BARBIE_PINK = 0xFE46A5;
@@ -812,9 +810,6 @@ public class GlPalette
 	public static int SEPIA = 0x985E2B;
 	public static int SHAMROCK = 0x01B44C;
 	public static int SHAMROCK_GREEN = 0x02C14D;
-	public static int SHIT = 0x7F5F00;
-	public static int SHIT_BROWN = 0x7B5804;
-	public static int SHIT_GREEN = 0x758000;
 	public static int SHOCKING_PINK = 0xFE02A2;
 	public static int SICKLY_GREEN = 0x94B21C;
 	public static int SICKLY_YELLOW = 0xD0E429;
