@@ -273,7 +273,7 @@ public class StarWarsEventHandler
 
 						// Lumberjack.log(mc.entityRenderer.getMouseOver(p_78473_1_););
 
-						Entity e = EntityUtils.getMouseOver(100, mc.thePlayer, new Entity[] { xwing });
+						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] { xwing });
 
 						int color = GlPalette.RADAR_GREEN;
 
@@ -311,7 +311,7 @@ public class StarWarsEventHandler
 						else if (nextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
 						{
 							lookStringPos++;
-							nextTime = System.currentTimeMillis() + 250;
+							nextTime = System.currentTimeMillis() + 100;
 						}
 
 						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);

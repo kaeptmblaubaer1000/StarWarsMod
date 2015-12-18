@@ -27,7 +27,14 @@ public class EntityUtils
 		return mobId;
 	}
 
-	public static Entity getMouseOver(int distance, EntityLivingBase fromEntity, Entity[] exclude)
+	/**
+	 * Ray-traces from the given entity's POV
+	 * @param distance The range of the trace
+	 * @param fromEntity The POV entity
+	 * @param exclude The entity references to exclude (Note: not classes, but inequality between two entity pointers)
+	 * @return Returns the entity the trace hit, or null if none is hit
+	 */
+	public static Entity rayTrace(int distance, EntityLivingBase fromEntity, Entity[] exclude)
 	{
 		if (fromEntity != null)
 			if (fromEntity.worldObj != null)
