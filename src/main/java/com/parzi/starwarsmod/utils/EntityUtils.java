@@ -1,17 +1,17 @@
 package com.parzi.starwarsmod.utils;
 
+import java.util.Arrays;
 import java.util.List;
 
+import com.parzi.starwarsmod.StarWarsMod;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-
-import com.parzi.starwarsmod.StarWarsMod;
-
-import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityUtils
 {
@@ -27,7 +27,7 @@ public class EntityUtils
 		return mobId;
 	}
 
-	public static Entity getMouseOver(int distance, EntityLivingBase fromEntity, Entity exclude)
+	public static Entity getMouseOver(int distance, EntityLivingBase fromEntity, Entity[] exclude)
 	{
 		if (fromEntity != null)
 			if (fromEntity.worldObj != null)
@@ -61,7 +61,7 @@ public class EntityUtils
 						if (axisalignedbb.isVecInside(vec3))
 						{
 							if (0.0D < d2 || d2 == 0.0D)
-								if (entity != exclude)
+								if (!Arrays.asList(exclude).contains(entity))
 								{
 									pointedEntity = entity;
 									d2 = 0.0D;
@@ -72,7 +72,7 @@ public class EntityUtils
 							double d3 = vec3.distanceTo(movingobjectposition.hitVec);
 
 							if (d3 < d2 || d2 == 0.0D)
-								if (entity != exclude)
+								if (!Arrays.asList(exclude).contains(entity))
 								{
 									pointedEntity = entity;
 									d2 = d3;

@@ -252,7 +252,7 @@ public class StarWarsEventHandler
 
 						// Lumberjack.log(mc.entityRenderer.getMouseOver(p_78473_1_););
 
-						Entity e = EntityUtils.getMouseOver(100, mc.thePlayer, xwing);
+						Entity e = EntityUtils.getMouseOver(100, mc.thePlayer, new Entity[] { xwing });
 
 						int color = GlPalette.RADAR_GREEN;
 
