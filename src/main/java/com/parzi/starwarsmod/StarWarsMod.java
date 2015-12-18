@@ -72,7 +72,7 @@ public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.0";
-	public static final String DEV_VER = "dev9";
+	public static final String DEV_VER = "dev21";
 
 	public static String ONLINE_VERSION = "";
 
@@ -305,8 +305,6 @@ public class StarWarsMod
 	public static PlayerHelper playerHelper;
 	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
-	@SideOnly(Side.CLIENT)
-	public static FontRenderer aurebesh;
 
 	public static Block blockMV;
 	public static Block blockTable;
@@ -419,7 +417,7 @@ public class StarWarsMod
 		network.registerMessage(TogglePlayerLightsaber.Handler.class, TogglePlayerLightsaber.class, 4, Side.SERVER);
 		network.registerMessage(TogglePlayerSequelLightsaber.Handler.class, TogglePlayerSequelLightsaber.class, 5, Side.SERVER);
 
-		config = new Configuration(event.getSuggestedConfigurationFile());
+		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();

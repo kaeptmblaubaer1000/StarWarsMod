@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
@@ -28,6 +29,7 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.dirt;
 
+		this.theBiomeDecorator.grassPerChunk = 8;
 		this.theBiomeDecorator.treesPerChunk = 2;
 		this.theBiomeDecorator.deadBushPerChunk = -999;
 		this.theBiomeDecorator.reedsPerChunk = 3;
@@ -53,6 +55,15 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 			if (worldgenabstracttree.generate(par1World, par2Random, k, i1, l))
 				worldgenabstracttree.func_150524_b(par1World, par2Random, k, i1, l);
 		}
+
+		for (int j = 0; j < this.theBiomeDecorator.grassPerChunk; j++)
+        {
+            int k = chunkX + par2Random.nextInt(16) + 8;
+            int l = chunkZ + par2Random.nextInt(16) + 8;
+            int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
+            WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
+            worldgenerator.generate(par1World, par2Random, k, i1, l);
+        }
 	}
 
 	@Override

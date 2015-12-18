@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
 import net.minecraft.world.gen.feature.WorldGenShrub;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenBetterForest;
@@ -34,6 +35,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 		this.topBlock = Blocks.grass;
 		this.fillerBlock = Blocks.dirt;
 
+		this.theBiomeDecorator.grassPerChunk = 8;
 		this.theBiomeDecorator.treesPerChunk = 2;
 		this.theBiomeDecorator.deadBushPerChunk = -999;
 		this.theBiomeDecorator.reedsPerChunk = 3;
@@ -48,13 +50,22 @@ public class BiomeGenEndor extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(50) == 0)
+		if (par2Random.nextInt(200) == 0)
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
 			new WorldGenEndorBase().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 
+		for (int j = 0; j < this.theBiomeDecorator.grassPerChunk; j++)
+        {
+            int k = chunkX + par2Random.nextInt(16) + 8;
+            int l = chunkZ + par2Random.nextInt(16) + 8;
+            int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
+            WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
+            worldgenerator.generate(par1World, par2Random, k, i1, l);
+        }
+		
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -66,7 +77,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 				case 0:
 					new WorldGenBigTree(true).generate(par1World, par2Random, k, i1, l);
 				case 1:
-					new WorldGenBetterForest().generate(par1World, par2Random, k, i1, l, 15, 8, 0);
+					new WorldGenBetterForest().generate(par1World, par2Random, k, i1, l, 10, 8, 0);
 				case 2:
 					new WorldGenShrub(2, 0).generate(par1World, par2Random, k, i1, l);
 			}
