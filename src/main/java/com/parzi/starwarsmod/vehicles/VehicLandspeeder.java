@@ -13,6 +13,7 @@ public class VehicLandspeeder extends VehicleLandBase
 		this.setSize(2.0F, 2.0F);
 		this.vehicYOffset = -0.3F;
 		this.moveModifier = 2.5F;
+		this.tiltMax = 3;
 	}
 
 	@Override

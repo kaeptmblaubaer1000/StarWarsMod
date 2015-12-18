@@ -1,10 +1,7 @@
 package com.parzi.starwarsmod;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -76,7 +73,6 @@ import com.parzi.starwarsmod.rendering.RenderWookiee;
 import com.parzi.starwarsmod.rendering.helper.FancyHaloRenderer;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
-import com.parzi.starwarsmod.rendering.hologram.vehicle.RenderHologramXWing;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBith;
@@ -103,7 +99,6 @@ import com.parzi.starwarsmod.rendering.models.vehicles.ModelTIE;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelTIEInterceptor;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
 import com.parzi.starwarsmod.rendering.vehicles.RenderAWing;
-import com.parzi.starwarsmod.rendering.vehicles.RenderHothSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderLandspeeder;
 import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
@@ -185,7 +180,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidTreadwell.class, new RenderDroidTreadwell(new ModelDroidTreadwell(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidMouse.class, new RenderDroidMouse(new ModelDroidMouse(), 0.5F));
 
-		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderHothSpeederBike(new ModelSpeederBike(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));

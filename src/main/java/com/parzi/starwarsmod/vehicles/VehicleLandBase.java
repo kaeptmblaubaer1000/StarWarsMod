@@ -16,7 +16,7 @@ public class VehicleLandBase extends VehicleBase
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			this.prevRotationYaw = this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.rotationLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
 			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
 			this.setRotation(this.rotationYaw, this.rotationPitch);
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;

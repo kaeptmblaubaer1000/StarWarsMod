@@ -9,35 +9,26 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
-public class RenderSpeederBike extends RenderLiving
+public class RenderSpeederBike extends RenderLandBase
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/speederbike.png");
+	public static ResourceLocation hothTexture = new ResourceLocation(StarWarsMod.MODID, "textures/models/hothspeederbike.png");
 
 	public RenderSpeederBike(ModelSpeederBike modelSpeederBike, float par2)
 	{
 		super(modelSpeederBike, par2);
+		this.scale = 1.75f;
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
+		if (entity instanceof VehicHothSpeederBike)
+			return hothTexture;
 		return texture;
-	}
-
-	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f)
-	{
-		GL11.glScalef(1.75F, 1.75F, 1.75F);
-		if (entity instanceof VehicleLandBase)
-		{
-			VehicleLandBase vehic = (VehicleLandBase)entity;
-			float tx = (float)Math.sin(vehic.frame) * 0.005F;
-			float ty = (float)Math.cos(vehic.frame * 1.25F) * 0.005F;
-			GL11.glTranslatef(tx, ty, tx * ty);
-			GL11.glRotatef(-vehic.mouseDX, 0.0F, 0.0F, 1.0F);
-		}
 	}
 }
 /*

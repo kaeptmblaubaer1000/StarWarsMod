@@ -11,33 +11,20 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelJakkuSpeeder;
 import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
-public class RenderJakkuSpeeder extends RenderLiving
+public class RenderJakkuSpeeder extends RenderLandBase
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/jakkuSpeeder.png");
 
 	public RenderJakkuSpeeder(ModelJakkuSpeeder modelSpeederBike, float par2)
 	{
 		super(modelSpeederBike, par2);
+		this.scale = 3;
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return texture;
-	}
-
-	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f)
-	{
-		GL11.glScalef(3.0F, 3.0F, 3.0F);
-		if (entity instanceof VehicleLandBase)
-		{
-			VehicleLandBase vehic = (VehicleLandBase)entity;
-			float tx = (float)Math.sin(vehic.frame) * 0.005F;
-			float ty = (float)Math.cos(vehic.frame * 1.25F) * 0.005F;
-			GL11.glTranslatef(tx, ty, tx * ty);
-			GL11.glRotatef(-vehic.mouseDX, 0.0F, 0.0F, 1.0F);
-		}
 	}
 }
 /*

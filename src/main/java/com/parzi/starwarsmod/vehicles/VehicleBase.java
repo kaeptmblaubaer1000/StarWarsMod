@@ -9,9 +9,9 @@ import com.parzi.starwarsmod.StarWarsMod;
 
 public class VehicleBase extends EntityCreature
 {
-	public int[] mouseDxOverAFewTicks = { 0, 0, 0, 0, 0, 0 };
-	public float mouseDX = 0.0F;
-	public float mouseDY = 0.0F;
+	public float[] tiltTable = { 0, 0, 0, 0, 0, 0 };
+	public float tilt = 0.0F;
+	public float tiltMax = 10;
 	public float vehicXOffset = 0.0F;
 	public float vehicYOffset = 0.0F;
 	public float vehicZOffset = 0.0F;
@@ -88,15 +88,20 @@ public class VehicleBase extends EntityCreature
 
 		this.setRotation(this.rotationLast, this.rotationPitchLast);
 
-		for (int i = 1; i < this.mouseDxOverAFewTicks.length; i++)
-			this.mouseDxOverAFewTicks[i - 1] = this.mouseDxOverAFewTicks[i];
+		for (int i = 1; i < this.tiltTable.length; i++)
+			this.tiltTable[i - 1] = this.tiltTable[i];
 
-		this.mouseDxOverAFewTicks[this.mouseDxOverAFewTicks.length - 1] = 0;
+		float t = this.rotationYaw - this.prevRotationYaw;
 
-		for (int mouseDxOverAFewTick : this.mouseDxOverAFewTicks)
-			this.mouseDX += mouseDxOverAFewTick;
+		if (t > this.tiltMax) t = this.tiltMax;
+		if (t < -this.tiltMax) t = -this.tiltMax;
 
-		this.mouseDX /= this.mouseDxOverAFewTicks.length;
+		this.tiltTable[this.tiltTable.length - 1] = t;
+
+		for (float i : this.tiltTable)
+			this.tilt += i;
+
+		this.tilt /= this.tiltTable.length;
 	}
 
 	@Override

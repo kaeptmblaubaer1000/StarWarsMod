@@ -135,25 +135,6 @@ public class StarWarsEventHandler
 	}
 
 	@SubscribeEvent
-	public void onMouseMoved(MouseEvent mouseEvent)
-	{
-		if (mc.thePlayer.ridingEntity instanceof VehicleBase)
-		{
-			int limit = 8;
-
-			VehicleBase vehicle = (VehicleBase)mc.thePlayer.ridingEntity;
-
-			int n = mouseEvent.dx;
-			if (n > limit)
-				n = limit;
-			if (n < -limit)
-				n = -limit;
-
-			vehicle.mouseDxOverAFewTicks[vehicle.mouseDxOverAFewTicks.length - 1] = n;
-		}
-	}
-
-	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent)
 	{
 		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)

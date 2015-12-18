@@ -37,11 +37,11 @@ public class RenderVehicAirBase extends RenderLiving
 			VehicleAirBase vehicle = (VehicleAirBase)entity;
 			GL11.glTranslatef(0, -1F, 0);
 			float pitch = MathUtils.lerp(vehicle.renderPitchLast, vehicle.rotationPitch, f);
-			float roll = MathUtils.lerp(vehicle.renderRollLast, -vehicle.mouseDX, f);
+			float roll = MathUtils.lerp(vehicle.renderRollLast, -vehicle.tilt, f);
 			if (f > 0.5F)
 			{
 				vehicle.renderPitchLast = vehicle.rotationPitch;
-				vehicle.renderRollLast = -vehicle.mouseDX;
+				vehicle.renderRollLast = -vehicle.tilt;
 			}
 			GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F);
 			GL11.glTranslatef(0, 1F, 0);
