@@ -22,16 +22,21 @@ public class PGui// extends Gui
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
-	public static void drawModalRectWithCustomSizedText(int p_146110_0_, int p_146110_1_, float p_146110_2_, float p_146110_3_, int p_146110_4_, int p_146110_5_, float p_146110_6_, float p_146110_7_)
+	public PGui(Minecraft minecraft)
 	{
-		float f4 = 1.0F / p_146110_6_;
-		float f5 = 1.0F / p_146110_7_;
+		PGui.mc = minecraft;
+	}
+
+	public static void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
+	{
+		float f4 = 1.0F / textureWidth;
+		float f5 = 1.0F / textureHeight;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(p_146110_0_, p_146110_1_ + p_146110_5_, 0.0D, p_146110_2_ * f4, (p_146110_3_ + p_146110_5_) * f5);
-		tessellator.addVertexWithUV(p_146110_0_ + p_146110_4_, p_146110_1_ + p_146110_5_, 0.0D, (p_146110_2_ + p_146110_4_) * f4, (p_146110_3_ + p_146110_5_) * f5);
-		tessellator.addVertexWithUV(p_146110_0_ + p_146110_4_, p_146110_1_, 0.0D, (p_146110_2_ + p_146110_4_) * f4, p_146110_3_ * f5);
-		tessellator.addVertexWithUV(p_146110_0_, p_146110_1_, 0.0D, p_146110_2_ * f4, p_146110_3_ * f5);
+		tessellator.addVertexWithUV(x, y + height, 0.0D, u * f4, (v + height) * f5);
+		tessellator.addVertexWithUV(x + width, y + height, 0.0D, (u + width) * f4, (v + height) * f5);
+		tessellator.addVertexWithUV(x + width, y, 0.0D, (u + width) * f4, v * f5);
+		tessellator.addVertexWithUV(x, y, 0.0D, u * f4, v * f5);
 		tessellator.draw();
 	}
 
@@ -153,11 +158,6 @@ public class PGui// extends Gui
 		int g = (int)(Math.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
 		int b = (int)(Math.sin(frequency * phase + 4 + phaseMod) * 127 + 128);
 		return getRGB(r, g, b);
-	}
-
-	public PGui(Minecraft minecraft)
-	{
-		PGui.mc = minecraft;
 	}
 
 	/**
