@@ -76,6 +76,7 @@ import com.parzi.starwarsmod.rendering.RenderWookiee;
 import com.parzi.starwarsmod.rendering.helper.FancyHaloRenderer;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
+import com.parzi.starwarsmod.rendering.hologram.vehicle.RenderHologramXWing;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBith;
@@ -146,7 +147,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		}
 
 		KeybindRegistry.registerAll();
-		
+
 		FontManager.registerAll();
 
 		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());

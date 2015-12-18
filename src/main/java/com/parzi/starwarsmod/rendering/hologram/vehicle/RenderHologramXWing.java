@@ -1,6 +1,4 @@
-package com.parzi.starwarsmod.rendering.vehicles;
-
-import org.lwjgl.opengl.GL11;
+package com.parzi.starwarsmod.rendering.hologram.vehicle;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
@@ -8,18 +6,17 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.hologram.RenderHologramBase;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
-import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
-public class RenderXWing extends RenderVehicAirBase
+public class RenderHologramXWing extends RenderHologramBase
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/xwing.png");
 
-	public RenderXWing(ModelXWing model, float par2)
+	public RenderHologramXWing(ModelXWing model, float par2)
 	{
-		super(model, par2);
+		super(model, par2, true);
 	}
 
 	@Override
@@ -85,9 +82,3 @@ public class RenderXWing extends RenderVehicAirBase
 		return modelBase;
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\
- * parzi\starwarsmod\rendering\vehicles\RenderSpeederBike.class Java compiler
- * version: 6 (50.0) JD-Core Version: 0.7.1
- */
