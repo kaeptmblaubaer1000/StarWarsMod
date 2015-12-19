@@ -5,13 +5,19 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.utils.GlPalette;
 
 import scala.Int;
 
@@ -25,6 +31,19 @@ public class PGui// extends Gui
 	public PGui(Minecraft minecraft)
 	{
 		PGui.mc = minecraft;
+	}
+
+	public void renderEntity(Entity el)
+	{
+		//PGui.mc.entityRenderer.setupOverlayRendering();
+
+		GlPalette.glColorI(GlPalette.WHITE);
+
+		float backup = RendererLivingEntity.NAME_TAG_RANGE;
+		RendererLivingEntity.NAME_TAG_RANGE = 0.0F;
+		Render render = RenderManager.instance.getEntityRenderObject(el);
+		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
+		RendererLivingEntity.NAME_TAG_RANGE = backup;
 	}
 
 	public static void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)

@@ -7,7 +7,12 @@ import org.lwjgl.opengl.GLContext;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.client.renderer.entity.RenderDragon;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,19 +55,21 @@ import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 import com.parzi.starwarsmod.vehicles.VehicleBase;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class StarWarsEventHandler
 {
-	private static final ResourceLocation awingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing.png");
-	private static final ResourceLocation tieOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie.png");
+	private static final ResourceLocation awingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/awing.png");
+	private static final ResourceLocation tieOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie/tie.png");
 
-	private static final ResourceLocation xwingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing.png");
-	private static final ResourceLocation xwingOverlayPitch = new ResourceLocation(StarWarsMod.MODID, "textures/gui/pitchGagueConsole.png");
-	private static final ResourceLocation xwingOverlayBack = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwingBack.png");
-	private static final ResourceLocation xwingOverlayBlip = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwingBlip.png");
+	private static final ResourceLocation xwingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwing.png");
+	private static final ResourceLocation xwingOverlayPitch = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/pitchGagueConsole.png");
+	private static final ResourceLocation xwingOverlayBack1 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwingBack1.png");
+	private static final ResourceLocation xwingOverlayBack2 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwingBack2.png");
+	private static final ResourceLocation xwingOverlayBlip = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwingBlip.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -235,10 +242,19 @@ public class StarWarsEventHandler
 						float textCenterX = event.resolution.getScaledWidth() * (79.5f / 216F);
 						float textCenterY = event.resolution.getScaledHeight() * (137 / 144F);
 
+						float entiCenterX = event.resolution.getScaledWidth() * (124f / 216F);
+						float entiCenterY = event.resolution.getScaledHeight() * (107 / 144F);
+
+						float entiCenterMaxX = event.resolution.getScaledWidth() * (138f / 216F);
+						float entiCenterMaxY = event.resolution.getScaledHeight() * (135 / 144F);
+
 						float blipPercent = blipFrame / blipMax;
 
-						StarWarsMod.pgui.renderOverlay(xwingOverlayBack);
-						StarWarsMod.pgui.renderOverlay(xwingOverlayPitch, 0, (int)(mc.thePlayer.rotationPitch / -5F));
+						if ((System.currentTimeMillis() / 1000) % 2 == 0)
+							StarWarsMod.pgui.renderOverlay(xwingOverlayBack1);
+						else
+							StarWarsMod.pgui.renderOverlay(xwingOverlayBack2);
+
 						for (Entity p : xwing.nearby)
 						{
 							if (p instanceof VehicXWing || p instanceof VehicAWing)
@@ -313,6 +329,20 @@ public class StarWarsEventHandler
 						}
 
 						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
+
+						if (e != null)
+						{
+							GL11.glPushMatrix();
+							GL11.glTranslatef((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 0);
+
+							GL11.glScalef(2, 2, 2);
+
+							GL11.glRotatef(180, 0, 0, 1);
+							GL11.glRotatef((System.currentTimeMillis() / 25 % 360) - 180, 0, -1, 0);
+
+							StarWarsMod.pgui.renderEntity(e);
+							GL11.glPopMatrix();
+						}
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing)
 						StarWarsMod.pgui.renderOverlay(awingOverlay);
