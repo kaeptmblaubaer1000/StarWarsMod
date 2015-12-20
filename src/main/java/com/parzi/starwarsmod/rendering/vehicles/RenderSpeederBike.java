@@ -1,16 +1,14 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicleLandBase;
+import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderSpeederBike extends RenderLandBase
 {
@@ -21,6 +19,7 @@ public class RenderSpeederBike extends RenderLandBase
 	{
 		super(modelSpeederBike, par2);
 		this.scale = 1.75f;
+		this.model = modelSpeederBike;
 	}
 
 	@Override
@@ -29,6 +28,30 @@ public class RenderSpeederBike extends RenderLandBase
 		if (entity instanceof VehicHothSpeederBike)
 			return hothTexture;
 		return texture;
+	}
+
+	@Override
+	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
+	{
+		if (modelBase instanceof ModelSpeederBike)
+		{
+			EntityLivingBase bike = entity;
+			ModelSpeederBike model = (ModelSpeederBike)modelBase;
+
+			model.Flap_L.rotateAngleZ = bike.moveForward * 35f;
+			model.Flap_R.rotateAngleZ = bike.moveForward * 35f;
+
+			model.Handle_L_3.rotateAngleZ = bike.moveForward * -35f;
+			model.Handle_L_2.rotateAngleZ = bike.moveForward * -35f;
+			model.Handle_L_1.rotateAngleZ = bike.moveForward * -35f;
+			
+			model.Handle_R_3.rotateAngleZ = bike.moveForward * -35f;
+			model.Handle_R_2.rotateAngleZ = bike.moveForward * -35f;
+			model.Handle_R_1.rotateAngleZ = bike.moveForward * -35f;
+
+			return model;
+		}
+		return modelBase;
 	}
 }
 /*
