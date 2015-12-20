@@ -245,14 +245,14 @@ item.starwarsmod.sequelLightsaberOff.name=Lightsaber
 // Blasters
 item.starwarsmod.sequelBlasterRifle.F11d.name=F-11D Blaster Rifle
 item.starwarsmod.sequelBlasterRifle.6.name=Definitely Canon #6
-item.starwarsmod.sequelBlasterRifle.Capt.name=Captain's Rifle
+item.starwarsmod.sequelBlasterRifle.Capt.name=F-11D Captain's Rifle
 item.starwarsmod.sequelBlasterRifle.Projectile.name=Projectile Rifle
-item.starwarsmod.sequelBlasterRifle.Trandoshan.name=Trandoshan Tripler SoroSuub Rifle
+item.starwarsmod.sequelBlasterRifle.Trandoshan.name=SoroSuub Pistol with Trandoshan Tripler
 
-item.starwarsmod.sequelBlasterPistol.4.name=Definitely Canon #4
-item.starwarsmod.sequelBlasterPistol.Officer.name=Officer's Pistol
+item.starwarsmod.sequelBlasterPistol.4.name=Refurbished DH-17 Blaster Pistol
+item.starwarsmod.sequelBlasterPistol.Officer.name=SE-44C Officer's Pistol
 item.starwarsmod.sequelBlasterPistol.Se44c.name=SE-44C Blaster Pistol
-item.starwarsmod.sequelBlasterPistol.TrandoshanTarget.name=Trandoshan Doubler Target Pistol
+item.starwarsmod.sequelBlasterPistol.TrandoshanTarget.name=Target Pistol with Trandoshan Doubler
 item.starwarsmod.sequelBlasterPistol.Huttsplitter.name=Huttsplitter
 
 // Armor
@@ -262,7 +262,7 @@ item.starwarsmod.stormtrooperLeggings_new.name=Stormtrooper Leggings
 item.starwarsmod.stormtrooperBoots_new.name=Stormtrooper Boots
 
 // Vehicle Items
-item.starwarsmod.jakkuSpeeder.name=Jakku Speeder
+item.starwarsmod.spawnJakkuSpeeder.name=Jakku Speeder
 
 // Vehicles
 entity.starwarsmod.jakkuSpeeder.name=Jakku Speeder

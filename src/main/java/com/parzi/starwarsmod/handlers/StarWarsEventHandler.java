@@ -3,33 +3,6 @@ package com.parzi.starwarsmod.handlers;
 import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLContext;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderBiped;
-import net.minecraft.client.renderer.entity.RenderDragon;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
@@ -53,12 +26,30 @@ import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-import com.parzi.starwarsmod.vehicles.VehicleBase;
+import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 
 public class StarWarsEventHandler
 {
@@ -330,19 +321,35 @@ public class StarWarsEventHandler
 
 						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
 
+						GL11.glPushMatrix();
+						GL11.glColor4f(255, 255, 255, 255);
 						if (e != null)
 						{
 							GL11.glPushMatrix();
+							
 							GL11.glTranslatef((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 0);
 
-							GL11.glScalef(2, 2, 2);
+							float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
-							GL11.glRotatef(180, 0, 0, 1);
-							GL11.glRotatef((System.currentTimeMillis() / 25 % 360) - 180, 0, -1, 0);
+							if (e instanceof VehicleAirBase)
+								GL11.glScalef(scale / 16, scale / 16, scale / 16);
+							else if (e instanceof VehicleLandBase)
+								GL11.glScalef(scale / 8, scale / 8, scale / 8);
+							else
+							{
+								GL11.glTranslatef(0, -e.getEyeHeight() / 2f, 0);
+								GL11.glScalef(scale / 3, scale / 3, scale / 3);
+							}
+							
+							GL11.glRotatef(180, 0, 1/3f, 1);
+							GL11.glRotatef((System.currentTimeMillis() / 25 % 360) - 180, 0, 1, 0);
 
 							StarWarsMod.pgui.renderEntity(e);
+							
 							GL11.glPopMatrix();
 						}
+						GL11.glColor4f(255, 255, 255, 255);
+						GL11.glPopMatrix();
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicAWing)
 						StarWarsMod.pgui.renderOverlay(awingOverlay);
