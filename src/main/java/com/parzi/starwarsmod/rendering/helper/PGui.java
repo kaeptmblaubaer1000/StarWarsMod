@@ -1,20 +1,21 @@
 package com.parzi.starwarsmod.rendering.helper;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import scala.Int;
+
+import com.parzi.starwarsmod.StarWarsMod;
 
 public class PGui// extends Gui
 {
@@ -26,11 +27,6 @@ public class PGui// extends Gui
 	public PGui(Minecraft minecraft)
 	{
 		PGui.mc = minecraft;
-	}
-
-	public void renderEntity(Entity e)
-	{
-		RenderManager.instance.getEntityRenderObject(e).doRender(e, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 	}
 
 	public static void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)

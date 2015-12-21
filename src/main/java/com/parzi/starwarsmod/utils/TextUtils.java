@@ -60,4 +60,34 @@ public class TextUtils
 			return "Lil' Baby Banthy Banth";
 		return english;
 	}
+
+	public static String translateAurebeshLong(String english)
+	{
+		//         "Lil' Baby Banthy BanthLil' Baby Banthy BanthLil' Baby"
+		if (english.equalsIgnoreCase("T-65B X-Wing Starfighter"))
+			return "BETTER THAN TIE FIGHTERS, ACTUALLY";
+		if (english.equalsIgnoreCase("TIE/LN Starfighter"))
+			return "AY BREH WHAT IT DO, I SEE YOU ROLLIN IN THAT LN";
+		if (english.equalsIgnoreCase("TIE/IN Interceptor"))
+			return "YOU AREN'T BETTER THAN US YOU POINTY WING IDIOT";
+		if (english.equalsIgnoreCase("RZ-1 A-Wing Interceptor"))
+			return "ALL YOU PILOTS LOOK LIKE DRIED ANCHOVIES";
+		if (english.equalsIgnoreCase("Wampa"))
+			return "THE ILLUSIVE SWAMPA";
+		if (english.equalsIgnoreCase("Sandtrooper"))
+			return "LOOK AT THESE IDIOTS WITH DIRTY ARMOR";
+		if (english.equalsIgnoreCase("Protocol Droid"))
+			return "IT'S NOT A LIFE FORM SO DON'T SHOOT IT";
+		if (english.equalsIgnoreCase("Astromech Droid"))
+			return "MY MOM HAS ONE JUST LIKE THAT, OH WAIT";
+		if (english.equalsIgnoreCase("Jawa"))
+			return "THEIR LITTLE GLOW EYES ARE SUS AS HECK";
+		if (english.equalsIgnoreCase("Ewok"))
+			return "WATCH OUT THEY'LL EAT US IF THEY CATCH US";
+		if (english.equalsIgnoreCase("Tusken Raider"))
+			return "LOOK AT THESE IDIOTS WITH THE MASKS";
+		if (english.equalsIgnoreCase("Bantha"))
+			return "Lil' Baby Banthy Banth";
+		return english;
+	}
 }

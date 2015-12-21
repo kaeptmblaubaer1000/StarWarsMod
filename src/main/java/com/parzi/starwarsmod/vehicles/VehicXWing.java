@@ -13,7 +13,6 @@ import com.parzi.starwarsmod.StarWarsMod;
 public class VehicXWing extends VehicleAirBase
 {
 	public static int SFOIL_DW = 13;
-	public List<Entity> nearby = new ArrayList<Entity>();
 	public boolean isOpening = false;
 	public boolean isClosing = false;
 
@@ -80,18 +79,6 @@ public class VehicXWing extends VehicleAirBase
 			this.setSFoil(this.getSFoil() - 1 / 40f);
 			this.isClosing = this.getSFoil() > 0;
 		}
-
-		if (this.ticksExisted % 5 == 0) // update radar
-			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicXWing.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
-			{
-				this.nearby.clear();
-				for (VehicleAirBase entity : (List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)))
-					if (entity != this)
-						this.nearby.add(entity);
-				for (EntityPlayer entity : (List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100)))
-					if (!(entity.ridingEntity instanceof VehicleAirBase))
-						this.nearby.add(entity);
-			}
 	}
 
 	public void setSFoil(float f)

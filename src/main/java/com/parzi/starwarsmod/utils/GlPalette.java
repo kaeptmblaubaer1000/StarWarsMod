@@ -10,7 +10,10 @@ public class GlPalette
 	public static int TRANSPARENT = PGui.getRGBA(0, 0, 0, 0);
 
 	// pswm colors
-	public static int RADAR_GREEN = PGui.getRGBA(0, 208, 12, 255);
+	public static int ANALOG_GREEN = PGui.getRGBA(0, 208, 12, 255);
+	public static int ANALOG_ORANGE = PGui.getRGBA(165, 71, 0, 255);
+	public static int ANALOG_BLUE = PGui.getRGBA(90, 184, 255, 255);
+	public static int ANALOG_RED = PGui.getRGBA(255, 39, 70, 255);
 
 	// these 954 color names provided by xkcd (http://xkcd.com/color/rgb)
 	// thanks, randall!
