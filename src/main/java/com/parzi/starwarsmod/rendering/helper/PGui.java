@@ -20,7 +20,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
-	private static ResourceLocation icons = new ResourceLocation("textures/PGui/icons.png");
+	private static ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 

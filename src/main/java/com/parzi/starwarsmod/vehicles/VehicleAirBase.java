@@ -175,7 +175,7 @@ public class VehicleAirBase extends VehicleBase
 			this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
 
 		if (this.ticksExisted % 5 == 0) // update radar
-			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicXWing.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
+			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
 			{
 				this.nearby.clear();
 				for (VehicleAirBase entity : (List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)))
