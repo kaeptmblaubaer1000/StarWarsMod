@@ -119,6 +119,27 @@ public class EntityBlasterRifleBolt extends EntityThrowable
 			this.setDead();
 		super.onUpdate();
 	}
+
+	@Override
+	public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
+	{
+		float f2 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_3_ * p_70186_3_ + p_70186_5_ * p_70186_5_);
+		p_70186_1_ /= f2;
+		p_70186_3_ /= f2;
+		p_70186_5_ /= f2;
+		p_70186_1_ += 0.007499999832361937D * p_70186_8_;
+		p_70186_3_ += 0.007499999832361937D * p_70186_8_;
+		p_70186_5_ += 0.007499999832361937D * p_70186_8_;
+		p_70186_1_ *= p_70186_7_;
+		p_70186_3_ *= p_70186_7_;
+		p_70186_5_ *= p_70186_7_;
+		this.motionX = p_70186_1_ * 2;
+		this.motionY = p_70186_3_ * 2;
+		this.motionZ = p_70186_5_ * 2;
+		float f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
+		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / 3.141592653589793D);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / 3.141592653589793D);
+	}
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

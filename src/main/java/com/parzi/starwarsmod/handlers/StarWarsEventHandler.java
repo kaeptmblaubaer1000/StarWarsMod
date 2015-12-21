@@ -87,6 +87,8 @@ public class StarWarsEventHandler
 	public static char[] randomCharArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?$".toCharArray();
 	public static long randomCharNextTime = 0;
 
+	Entity lastTarget = null;
+
 	private void drawMiniMap(Entity center, int min, int max, int pxSize)
 	{
 		for (int x = min; x < max; x++)
@@ -285,6 +287,9 @@ public class StarWarsEventHandler
 
 						int color = GlPalette.ANALOG_GREEN;
 
+						if (xwing.getTargetLock())
+							color = GlPalette.ORANGE;
+
 						if (e != null)
 						{
 							color = GlPalette.RED;
@@ -397,6 +402,9 @@ public class StarWarsEventHandler
 						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] { awing });
 
 						int color = GlPalette.ANALOG_GREEN;
+						
+						if (awing.getTargetLock())
+							color = GlPalette.ORANGE;
 
 						if (e != null)
 						{
@@ -466,7 +474,12 @@ public class StarWarsEventHandler
 						{
 							GL11.glPushMatrix();
 
+							lastTarget = e;
+
 							float scale = event.resolution.getScaledWidth() * (14 / 216f);
+
+							if (e instanceof VehicleAirBase)
+								((VehicleAirBase)e).setTargetLock(true);
 
 							if (e instanceof VehicXWing)
 								VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
@@ -478,6 +491,12 @@ public class StarWarsEventHandler
 								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
 
 							GL11.glPopMatrix();
+						}
+						else if (lastTarget != null)
+						{
+							if (lastTarget instanceof VehicleAirBase)
+								((VehicleAirBase)lastTarget).setTargetLock(true);
+							lastTarget = null;
 						}
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)

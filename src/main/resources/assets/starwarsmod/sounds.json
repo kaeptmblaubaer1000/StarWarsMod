@@ -47,6 +47,12 @@
             "vehicle/xwing/explode"
         ]
     },
+    "vehicle.alarm.loop1": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/alarm/loop1"
+        ]
+    },
     "mob.ewok.say": {
         "category": "neutral",
         "sounds": [
@@ -207,6 +213,12 @@
             "mob/sandtrooper/say6",
             "mob/sandtrooper/say7",
             "mob/sandtrooper/say8"            
+        ]
+    },
+    "mob.sandtrooper.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/sandtrooper/die1"         
         ]
     },
     "mob.mouse.say": {

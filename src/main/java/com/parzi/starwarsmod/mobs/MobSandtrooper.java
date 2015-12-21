@@ -52,11 +52,22 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		this.setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.sandtrooperChest, 1));
 		this.setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.sandtrooperLegs, 1));
 		this.setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.sandtrooperBoots, 1));
-		if (this.rand.nextInt(5) == 0)
+		switch (this.rand.nextInt(4))
 		{
-			this.setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
-			this.tasks.addTask(1, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+			case 0:
+				this.setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
+				break;
+			case 1:
+				this.setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("T21"));
+				break;
+			case 2:
+				this.setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Dlt19"));
+				break;
+			case 3:
+				this.setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Rt97c"));
+				break;
 		}
+		this.tasks.addTask(1, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
 	}
 
 	@Override
@@ -82,6 +93,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 				{
 					MobSandtrooper s = (MobSandtrooper)entity1;
 					s.becomeAngryAt(entity);
+					this.angryAt = entity;
 				}
 			}
 			this.becomeAngryAt(entity);

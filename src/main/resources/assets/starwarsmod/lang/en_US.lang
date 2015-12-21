@@ -232,7 +232,8 @@ achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!
 
 // Keys
 key.starwarsmod=Star Wars
-key.starwarsmod.shootVehicle=Shoot (from starship)
+key.starwarsmod.shootVehicle=Fire Lasers (in Starfighters)
+key.starwarsmod.toggleSFoil=Toggle S Foil (in X-Wing)
 
 ####################
 # Sequel Trilogy
@@ -241,6 +242,12 @@ key.starwarsmod.shootVehicle=Shoot (from starship)
 // Weapons
 item.starwarsmod.sequelLightsaber.name=Lightsaber
 item.starwarsmod.sequelLightsaberOff.name=Lightsaber
+
+// Droid Items
+item.starwarsmod.spawnAstromechBb8.name=BB-8 Astromech Droid
+
+// Droids
+entity.starwarsmod.droidAstromechBb8.name=BB-8 Astromech Droid
 
 // Blasters
 item.starwarsmod.sequelBlasterRifle.F11d.name=F-11D Blaster Rifle
@@ -260,6 +267,11 @@ item.starwarsmod.stormtrooperHelmet_new.name=Stormtrooper Helmet
 item.starwarsmod.stormtrooperChestplate_new.name=Stormtrooper Chestplate
 item.starwarsmod.stormtrooperLeggings_new.name=Stormtrooper Leggings
 item.starwarsmod.stormtrooperBoots_new.name=Stormtrooper Boots
+
+item.starwarsmod.stormtrooperSilverHelmet_new.name=Stormtrooper Captain's Helmet
+item.starwarsmod.stormtrooperSilverChestplate_new.name=Stormtrooper Captain's Chestplate
+item.starwarsmod.stormtrooperSilverLeggings_new.name=Stormtrooper Captain's Leggings
+item.starwarsmod.stormtrooperSilverBoots_new.name=Stormtrooper Captain's Boots
 
 // Vehicle Items
 item.starwarsmod.spawnJakkuSpeeder.name=Jakku Speeder

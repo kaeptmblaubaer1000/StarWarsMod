@@ -30,11 +30,30 @@ public class VehicleAirBase extends VehicleBase
 
 	public List<Entity> nearby = new ArrayList<Entity>();
 
+	public static int TGTLOCK_DW = 14;
+
 	public VehicleAirBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
 		this.renderPitchLast = this.rotationPitch;
 		this.renderRollLast = 0;
+	}
+
+	@Override
+	public void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(TGTLOCK_DW, Integer.valueOf(0));
+	}
+
+	public void setTargetLock(boolean f)
+	{
+		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
+	}
+
+	public boolean getTargetLock()
+	{
+		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW) == 1;
 	}
 
 	@Override
@@ -85,10 +104,13 @@ public class VehicleAirBase extends VehicleBase
 		{
 			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
 
-			this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
-			this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
-			this.setRotation(this.rotationYaw, this.rotationPitch);
-			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			if (((EntityLivingBase)this.riddenByEntity).moveForward != 0)
+			{
+				this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
+				this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
+				this.setRotation(this.rotationYaw, this.rotationPitch);
+				this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			}
 			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward;
 
@@ -149,7 +171,6 @@ public class VehicleAirBase extends VehicleBase
 			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
 		if ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ)
 			this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
-
 
 		if (this.ticksExisted % 5 == 0) // update radar
 			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicXWing.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
