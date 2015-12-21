@@ -36,6 +36,7 @@ public class VehicXWing extends VehicleAirBase
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(SFOIL_DW, Float.valueOf(0));
+		this.dataWatcher.setObjectWatched(SFOIL_DW);
 	}
 
 	@Override
@@ -84,6 +85,7 @@ public class VehicXWing extends VehicleAirBase
 	public void setSFoil(float f)
 	{
 		this.dataWatcher.updateObject(SFOIL_DW, f);
+		this.dataWatcher.setObjectWatched(SFOIL_DW);
 	}
 }
 /*

@@ -44,11 +44,13 @@ public class VehicleAirBase extends VehicleBase
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(TGTLOCK_DW, Integer.valueOf(0));
+		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
 	}
 
 	public void setTargetLock(boolean f)
 	{
 		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
+		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
 	}
 
 	public boolean getTargetLock()
