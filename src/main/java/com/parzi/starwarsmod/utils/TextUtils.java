@@ -63,7 +63,6 @@ public class TextUtils
 
 	public static String translateAurebeshLong(String english)
 	{
-		//         "Lil' Baby Banthy BanthLil' Baby Banthy BanthLil' Baby"
 		if (english.equalsIgnoreCase("T-65B X-Wing Starfighter"))
 			return "BETTER THAN TIE FIGHTERS, ACTUALLY";
 		if (english.equalsIgnoreCase("TIE/LN Starfighter"))
@@ -79,7 +78,7 @@ public class TextUtils
 		if (english.equalsIgnoreCase("Protocol Droid"))
 			return "IT'S NOT A LIFE FORM SO DON'T SHOOT IT";
 		if (english.equalsIgnoreCase("Astromech Droid"))
-			return "MY MOM HAS ONE JUST LIKE THAT, OH WAIT";
+			return "YOU RUSTED BUCKET OF BOLTS!";
 		if (english.equalsIgnoreCase("Jawa"))
 			return "THEIR LITTLE GLOW EYES ARE SUS AS HECK";
 		if (english.equalsIgnoreCase("Ewok"))
