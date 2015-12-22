@@ -14,16 +14,37 @@ public class PlayerHelper
 
 	public int getHeading(int div)
 	{
-		return net.minecraft.util.MathHelper.floor_double(this.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & div;
+		try
+		{
+			return net.minecraft.util.MathHelper.floor_double(this.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & div;
+		}
+		catch (NullPointerException e)
+		{
+			return 0;
+		}
 	}
 
-	public ItemStack getHeldItem()
+	public ItemStack getHeldItemStack()
 	{
-		return this.mc.thePlayer.inventory.getCurrentItem();
+		try
+		{
+			return this.mc.thePlayer.inventory.getCurrentItem();
+		}
+		catch (NullPointerException e)
+		{
+			return null;
+		}
 	}
 
 	public String getUsername()
 	{
-		return this.mc.getSession().getUsername();
+		try
+		{
+			return this.mc.getSession().getUsername();
+		}
+		catch (NullPointerException e)
+		{
+			return "";
+		}
 	}
 }

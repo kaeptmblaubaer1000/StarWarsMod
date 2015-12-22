@@ -9,6 +9,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
@@ -170,9 +171,69 @@ public class MobTatooineCommoner extends EntityVillager
 		return this.buyingList;
 	}
 
+    /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    protected String getLivingSound()
+    {
+        return StarWarsMod.MODID + ":" + (this.isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    protected String getHurtSound()
+    {
+        return StarWarsMod.MODID + ":" + "mob.commoner.hit";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    protected String getDeathSound()
+    {
+        return StarWarsMod.MODID + ":" + "mob.commoner.die";
+    }
+
+    public void func_110297_a_(ItemStack p_110297_1_)
+    {
+        if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+        {
+            this.livingSoundTime = -this.getTalkInterval();
+
+            if (p_110297_1_ != null)
+            {
+                this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.trade", this.getSoundVolume(), this.getSoundPitch());
+            }
+            else
+            {
+                this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.notrade", this.getSoundVolume(), this.getSoundPitch());
+            }
+        }
+    }
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound p_70014_1_)
+	{
+		super.writeEntityToNBT(p_70014_1_);p_70014_1_.setInteger("type", this.getType());
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound p_70037_1_)
+	{
+		super.readEntityFromNBT(p_70037_1_);
+		if (p_70037_1_.hasKey("type"))
+			this.setType(p_70037_1_.getInteger("type"));
+	}
+
 	private int getType()
 	{
 		return this.getDataWatcher().getWatchableObjectInt(25);
+	}
+
+	private void setType(int t)
+	{
+		this.getDataWatcher().updateObject(25, Integer.valueOf(t));
 	}
 
 	private int indexOf(String[] haystack, String needle)

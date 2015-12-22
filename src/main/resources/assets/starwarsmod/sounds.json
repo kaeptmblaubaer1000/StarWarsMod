@@ -480,6 +480,12 @@
             "item/lightsaber/crash"
         ]
     },
+    "item.lightsaber.hum": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/hum1"
+        ]
+    },
     "item.lightsaber.deflect": {
         "category": "neutral",
         "sounds": [

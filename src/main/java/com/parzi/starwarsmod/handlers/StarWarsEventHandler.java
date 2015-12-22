@@ -219,7 +219,7 @@ public class StarWarsEventHandler
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		StarWarsMod.isOverlayOnscreen = false;
-		ItemStack item = StarWarsMod.playerHelper.getHeldItem();
+		ItemStack item = StarWarsMod.playerHelper.getHeldItemStack();
 		if (StarWarsMod.renderHelper.isFirstPerson())
 		{
 			if (item != null && item.getItem() instanceof ItemBinoculars && ItemBinoculars.getEnabled(item))
@@ -685,7 +685,7 @@ public class StarWarsEventHandler
 				}
 			}
 		}
-		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE))
+		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
 

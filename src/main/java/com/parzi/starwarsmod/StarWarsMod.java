@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -20,8 +19,8 @@ import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandForcePoints;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.handlers.CommonHandler;
 import com.parzi.starwarsmod.handlers.GuiHandler;
-import com.parzi.starwarsmod.handlers.InputHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterPistol;
@@ -343,6 +342,8 @@ public class StarWarsMod
 	public static KeyBinding keyShootVehicle;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keySFoil;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyDebug;
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
@@ -446,7 +447,7 @@ public class StarWarsMod
 
 		config.save();
 
-		FMLCommonHandler.instance().bus().register(new InputHandler());
+		FMLCommonHandler.instance().bus().register(new CommonHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}

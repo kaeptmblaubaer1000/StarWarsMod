@@ -12,8 +12,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderSpeederBike extends RenderLandBase
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/speederbike.png");
-	public static ResourceLocation hothTexture = new ResourceLocation(StarWarsMod.MODID, "textures/models/hothspeederbike.png");
+	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/speederBike.png");
+	public static ResourceLocation hothTexture = new ResourceLocation(StarWarsMod.MODID, "textures/models/hothSpeederBike.png");
 
 	public RenderSpeederBike(ModelSpeederBike modelSpeederBike, float par2)
 	{
@@ -44,7 +44,7 @@ public class RenderSpeederBike extends RenderLandBase
 			model.Handle_L_3.rotateAngleZ = bike.moveForward * -35f;
 			model.Handle_L_2.rotateAngleZ = bike.moveForward * -35f;
 			model.Handle_L_1.rotateAngleZ = bike.moveForward * -35f;
-			
+
 			model.Handle_R_3.rotateAngleZ = bike.moveForward * -35f;
 			model.Handle_R_2.rotateAngleZ = bike.moveForward * -35f;
 			model.Handle_R_1.rotateAngleZ = bike.moveForward * -35f;

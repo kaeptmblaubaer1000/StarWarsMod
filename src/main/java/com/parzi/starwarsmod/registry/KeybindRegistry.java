@@ -14,6 +14,8 @@ public class KeybindRegistry
 	{
 		StarWarsMod.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);
 		StarWarsMod.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
+		if (StarWarsMod.IS_DEV_ENVIRONVENT)
+			StarWarsMod.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 	}
 
 	public static KeyBinding registerKeybind(String keyName, int keyCode)

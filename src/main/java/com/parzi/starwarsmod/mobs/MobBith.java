@@ -13,7 +13,6 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.sound.SoundCantina;
 import com.parzi.starwarsmod.utils.WeightedTradeItem;
 
 public class MobBith extends EntityVillager
@@ -25,7 +24,6 @@ public class MobBith extends EntityVillager
 	private float baseRarity = 1.0F;
 	private DataWatcher dw;
 	private int bithsNear = 0;
-	private SoundCantina song;
 
 	// public boolean playing = false;
 
@@ -33,7 +31,6 @@ public class MobBith extends EntityVillager
 	{
 		super(p_i1748_1_);
 		this.dw = super.getDataWatcher();
-		this.song = new SoundCantina(this);
 	}
 
 	@Override

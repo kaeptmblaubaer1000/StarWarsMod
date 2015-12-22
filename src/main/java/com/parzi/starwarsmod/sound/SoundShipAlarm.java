@@ -6,13 +6,10 @@ import net.minecraft.util.ResourceLocation;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobBith;
 
-public class SoundCantina implements ISound
+public class SoundShipAlarm implements ISound
 {
-	private MobBith player;
-
-	public SoundCantina(MobBith player)
+	public SoundShipAlarm()
 	{
-		this.player = player;
 	}
 
 	@Override
@@ -24,26 +21,25 @@ public class SoundCantina implements ISound
 	@Override
 	public AttenuationType getAttenuationType()
 	{
-		return AttenuationType.LINEAR;
+		return AttenuationType.NONE;
 	}
 
 	@Override
 	public float getPitch()
 	{
-		// TODO Auto-generated method stub
 		return 1;
 	}
 
 	@Override
 	public ResourceLocation getPositionedSoundLocation()
 	{
-		return new ResourceLocation(StarWarsMod.MODID, "item.records.Cantina");
+		return new ResourceLocation(StarWarsMod.MODID, "vehicle.alarm.loop1");
 	}
 
 	@Override
 	public int getRepeatDelay()
 	{
-		return 5;
+		return 0;
 	}
 
 	@Override
@@ -55,19 +51,18 @@ public class SoundCantina implements ISound
 	@Override
 	public float getXPosF()
 	{
-		return (float)this.player.posX;
+		return 0;
 	}
 
 	@Override
 	public float getYPosF()
 	{
-		return (float)this.player.posY;
+		return 0;
 	}
 
 	@Override
 	public float getZPosF()
 	{
-		return (float)this.player.posZ;
+		return 0;
 	}
-
 }
