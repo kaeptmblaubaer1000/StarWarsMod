@@ -71,6 +71,7 @@ public class MobTatooineCommoner extends EntityVillager
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.imperialCredit, 5), new ItemStack(StarWarsMod.banthaHorn, 1), this.baseRarity));
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.imperialCredit, 5), new ItemStack(StarWarsMod.banthaChop, 1), this.baseRarity));
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(Items.saddle, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.binoculars, 1), this.baseRarity));
 			for (int i = 0; i < 8; i++)
 			{
 				WeightedTradeItem item;

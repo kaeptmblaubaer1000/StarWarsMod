@@ -31,9 +31,9 @@ public class EntityXWingBolt extends EntityThrowable
 	{
 		super(par1World, par2EntityLivingBase);
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * 4;
-		double dy = vec3.yCoord * 4;
-		double dz = vec3.zCoord * 4;
+		double dx = vec3.xCoord * 6;
+		double dy = vec3.yCoord * 6;
+		double dz = vec3.zCoord * 6;
 
 		this.posX += dx;
 		this.posY += dy;
@@ -46,9 +46,9 @@ public class EntityXWingBolt extends EntityThrowable
 	{
 		super(par1World, par2EntityLivingBase);
 		Vec3 vec3 = vector;
-		double dx = vec3.xCoord * 4;
-		double dy = vec3.yCoord * 4;
-		double dz = vec3.zCoord * 4;
+		double dx = vec3.xCoord * 6;
+		double dy = vec3.yCoord * 6;
+		double dz = vec3.zCoord * 6;
 
 		this.posX += dx;
 		this.posY += dy;

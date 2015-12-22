@@ -2,6 +2,8 @@ package com.parzi.starwarsmod.utils;
 
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.mobs.MobBantha;
+import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobSandtrooper;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 import com.parzi.starwarsmod.mobs.MobWookiee;
@@ -13,17 +15,23 @@ public class SpawnUtils
 		switch (type)
 		{
 			case MOSEISLEY:
-				if (world.rand.nextInt(1) == 0)
+				switch (world.rand.nextInt(2))
 				{
-					MobTatooineCommoner c = new MobTatooineCommoner(world);
-					c.setPosition(x, y, z);
-					world.spawnEntityInWorld(c);
-				}
-				else
-				{
-					MobSandtrooper c = new MobSandtrooper(world);
-					c.setPosition(x, y, z);
-					world.spawnEntityInWorld(c);
+					case 0:
+						MobTatooineCommoner c = new MobTatooineCommoner(world);
+						c.setPosition(x, y, z);
+						world.spawnEntityInWorld(c);
+						break;
+					case 1:
+						MobSandtrooper cc = new MobSandtrooper(world);
+						cc.setPosition(x, y, z);
+						world.spawnEntityInWorld(cc);
+						break;
+					case 2:
+						MobBith ccc = new MobBith(world);
+						ccc.setPosition(x, y, z);
+						world.spawnEntityInWorld(ccc);
+						break;
 				}
 				break;
 			case WOOKIETREE:

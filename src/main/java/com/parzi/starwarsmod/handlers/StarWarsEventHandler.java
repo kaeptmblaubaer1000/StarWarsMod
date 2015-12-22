@@ -527,8 +527,15 @@ public class StarWarsEventHandler
 						float arbiCenterMaxX = event.resolution.getScaledWidth() * (91 / 216F);
 						float arbiCenterMaxY = event.resolution.getScaledHeight() * (126 / 144F);
 
-						float healCenterX = event.resolution.getScaledWidth() * (65 / 216F);
-						float healCenterY = event.resolution.getScaledHeight() * (110 / 144F);
+						float healX = event.resolution.getScaledWidth() * (66 / 216F);
+						float healMaxX = event.resolution.getScaledWidth() * (78.5f / 216F);
+
+						float healY = event.resolution.getScaledHeight() * (111 / 144F);
+						float heal2Y = event.resolution.getScaledHeight() * (116 / 144F);
+						float heal3Y = event.resolution.getScaledHeight() * (121 / 144F);
+						float heal4Y = event.resolution.getScaledHeight() * (126 / 144F);
+						float heal5Y = event.resolution.getScaledHeight() * (131.5f / 144F);
+						float healMaxY = event.resolution.getScaledHeight() * (4 / 144F);
 
 						float blipPercent = blipFrame / blipMax;
 
@@ -558,23 +565,23 @@ public class StarWarsEventHandler
 
 						if (tie.getHealth() >= 20)
 						{
-							StarWarsMod.pgui.drawRect((int)healCenterX + 2, (int)healCenterY + 2, (int)healCenterX + 30, (int)healCenterY + 10, GlPalette.GREEN_APPLE);
+							StarWarsMod.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
 						}
 						if (tie.getHealth() >= 16)
 						{
-							StarWarsMod.pgui.drawRect((int)healCenterX + 2, (int)healCenterY + 11, (int)healCenterX + 30, (int)healCenterY + 19, GlPalette.YELLOW_GREEN);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
 						}
 						if (tie.getHealth() >= 8)
 						{
-							StarWarsMod.pgui.drawRect((int)healCenterX + 2, (int)healCenterY + 20, (int)healCenterX + 30, (int)healCenterY + 28, GlPalette.ORANGE);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
 						}
 						if (tie.getHealth() >= 4)
 						{
-							StarWarsMod.pgui.drawRect((int)healCenterX + 2, (int)healCenterY + 29, (int)healCenterX + 30, (int)healCenterY + 37, GlPalette.RED_ORANGE);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
 						}
 						if (tie.getHealth() >= 0)
 						{
-							StarWarsMod.pgui.drawRect((int)healCenterX + 2, (int)healCenterY + 38, (int)healCenterX + 30, (int)healCenterY + 46, GlPalette.RED);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
 						}
 
 						if (randomCharNextTime <= System.currentTimeMillis())
