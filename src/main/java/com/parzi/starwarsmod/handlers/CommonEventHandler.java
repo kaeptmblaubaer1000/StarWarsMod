@@ -5,8 +5,6 @@ import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.CreateBlasterBolt;
-import com.parzi.starwarsmod.sound.PSoundBank;
-import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -17,8 +15,6 @@ import com.parzi.starwarsmod.vehicles.VehicXWing;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -57,9 +53,5 @@ public class CommonEventHandler
 				if (xwing.getSFoil() >= 0.8f)
 					xwing.isClosing = true;
 			}
-
-		if (StarWarsMod.keyDebug.isPressed())
-		{
-		}
 	}
 }

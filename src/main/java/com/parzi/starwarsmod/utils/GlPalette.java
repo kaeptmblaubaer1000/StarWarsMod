@@ -2,7 +2,6 @@ package com.parzi.starwarsmod.utils;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 
 public class GlPalette
@@ -953,9 +952,9 @@ public class GlPalette
 
 	public static void glColorI(int rgba)
 	{
-		int alpha = (rgba >> 24) & 0xFF;
-		int red = (rgba >> 16) & 0xFF;
-		int green = (rgba >> 8) & 0xFF;
+		int alpha = rgba >> 24 & 0xFF;
+		int red = rgba >> 16 & 0xFF;
+		int green = rgba >> 8 & 0xFF;
 		int blue = rgba & 0xFF;
 		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
 	}

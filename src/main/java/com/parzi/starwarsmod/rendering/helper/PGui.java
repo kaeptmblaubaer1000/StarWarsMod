@@ -15,19 +15,12 @@ import org.lwjgl.opengl.GL11;
 
 import scala.Int;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
 	private static ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
-
-	public PGui(Minecraft minecraft)
-	{
-		PGui.mc = minecraft;
-	}
 
 	public static void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
 	{
@@ -160,6 +153,11 @@ public class PGui// extends Gui
 		int g = (int)(Math.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
 		int b = (int)(Math.sin(frequency * phase + 4 + phaseMod) * 127 + 128);
 		return getRGB(r, g, b);
+	}
+
+	public PGui(Minecraft minecraft)
+	{
+		PGui.mc = minecraft;
 	}
 
 	/**

@@ -1,15 +1,10 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelLandspeeder;
-import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 public class RenderLandspeeder extends RenderLandBase
 {

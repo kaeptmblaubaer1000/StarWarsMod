@@ -144,6 +144,20 @@ public class MobTatooineCommoner extends EntityVillager
 	}
 
 	@Override
+	public void func_110297_a_(ItemStack p_110297_1_)
+	{
+		if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+		{
+			this.livingSoundTime = -this.getTalkInterval();
+
+			if (p_110297_1_ != null)
+				this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.trade", this.getSoundVolume(), this.getSoundPitch());
+			else
+				this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.notrade", this.getSoundVolume(), this.getSoundPitch());
+		}
+	}
+
+	@Override
 	public String getCommandSenderName()
 	{
 		return this.officialNames[this.getType()];
@@ -161,6 +175,33 @@ public class MobTatooineCommoner extends EntityVillager
 		return this.getCommandSenderName();
 	}
 
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.commoner.die";
+	}
+
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.commoner.hit";
+	}
+
+	/**
+	 * Returns the sound this mob makes while it's alive.
+	 */
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + (this.isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
+	}
+
 	@Override
 	public MerchantRecipeList getRecipes(EntityPlayer p_70934_1_)
 	{
@@ -172,74 +213,15 @@ public class MobTatooineCommoner extends EntityVillager
 		return this.buyingList;
 	}
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
-    protected String getLivingSound()
-    {
-        return StarWarsMod.MODID + ":" + (this.isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
-    }
-
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
-    protected String getHurtSound()
-    {
-        return StarWarsMod.MODID + ":" + "mob.commoner.hit";
-    }
-
-    /**
-     * Returns the sound this mob makes on death.
-     */
-    protected String getDeathSound()
-    {
-        return StarWarsMod.MODID + ":" + "mob.commoner.die";
-    }
-
-    public int getTalkInterval()
-    {
-        return 400;
-    }
-
-    public void func_110297_a_(ItemStack p_110297_1_)
-    {
-        if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
-        {
-            this.livingSoundTime = -this.getTalkInterval();
-
-            if (p_110297_1_ != null)
-            {
-                this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.trade", this.getSoundVolume(), this.getSoundPitch());
-            }
-            else
-            {
-                this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.notrade", this.getSoundVolume(), this.getSoundPitch());
-            }
-        }
-    }
-
 	@Override
-	public void writeEntityToNBT(NBTTagCompound p_70014_1_)
+	public int getTalkInterval()
 	{
-		super.writeEntityToNBT(p_70014_1_);p_70014_1_.setInteger("type", this.getType());
-	}
-
-	@Override
-	public void readEntityFromNBT(NBTTagCompound p_70037_1_)
-	{
-		super.readEntityFromNBT(p_70037_1_);
-		if (p_70037_1_.hasKey("type"))
-			this.setType(p_70037_1_.getInteger("type"));
+		return 400;
 	}
 
 	private int getType()
 	{
 		return this.getDataWatcher().getWatchableObjectInt(25);
-	}
-
-	private void setType(int t)
-	{
-		this.getDataWatcher().updateObject(25, Integer.valueOf(t));
 	}
 
 	private int indexOf(String[] haystack, String needle)
@@ -256,14 +238,34 @@ public class MobTatooineCommoner extends EntityVillager
 	}
 
 	@Override
+	public void readEntityFromNBT(NBTTagCompound p_70037_1_)
+	{
+		super.readEntityFromNBT(p_70037_1_);
+		if (p_70037_1_.hasKey("type"))
+			this.setType(p_70037_1_.getInteger("type"));
+	}
+
+	@Override
 	public void setCustomer(EntityPlayer p_70932_1_)
 	{
 		this.buyingPlayer = p_70932_1_;
 	}
 
+	private void setType(int t)
+	{
+		this.getDataWatcher().updateObject(25, Integer.valueOf(t));
+	}
+
 	@Override
 	public void useRecipe(MerchantRecipe p_70933_1_)
 	{
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound p_70014_1_)
+	{
+		super.writeEntityToNBT(p_70014_1_);
+		p_70014_1_.setInteger("type", this.getType());
 	}
 }
 /*

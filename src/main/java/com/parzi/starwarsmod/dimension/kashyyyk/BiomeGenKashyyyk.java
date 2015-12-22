@@ -60,13 +60,13 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 		}
 
 		for (int j = 0; j < this.theBiomeDecorator.grassPerChunk; j++)
-        {
-            int k = chunkX + par2Random.nextInt(16) + 8;
-            int l = chunkZ + par2Random.nextInt(16) + 8;
-            int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
-            WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
-            worldgenerator.generate(par1World, par2Random, k, i1, l);
-        }
+		{
+			int k = chunkX + par2Random.nextInt(16) + 8;
+			int l = chunkZ + par2Random.nextInt(16) + 8;
+			int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
+			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
+			worldgenerator.generate(par1World, par2Random, k, i1, l);
+		}
 	}
 
 	@Override

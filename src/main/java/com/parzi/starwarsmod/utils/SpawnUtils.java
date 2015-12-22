@@ -2,7 +2,6 @@ package com.parzi.starwarsmod.utils;
 
 import net.minecraft.world.World;
 
-import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobSandtrooper;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;

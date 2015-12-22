@@ -33,52 +33,6 @@ public class MobBith extends EntityVillager
 		this.dw = super.getDataWatcher();
 	}
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
-    protected String getLivingSound()
-    {
-        return StarWarsMod.MODID + ":" + "mob.bith.say";
-    }
-
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
-    protected String getHurtSound()
-    {
-        return StarWarsMod.MODID + ":" + "mob.commoner.hit";
-    }
-
-    /**
-     * Returns the sound this mob makes on death.
-     */
-    protected String getDeathSound()
-    {
-        return StarWarsMod.MODID + ":" + "mob.commoner.die";
-    }
-
-    public int getTalkInterval()
-    {
-        return 400;
-    }
-
-    public void func_110297_a_(ItemStack p_110297_1_)
-    {
-        if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
-        {
-            this.livingSoundTime = -this.getTalkInterval();
-
-            if (p_110297_1_ != null)
-            {
-                this.playSound(StarWarsMod.MODID + ":" + "mob.bith.trade", this.getSoundVolume(), this.getSoundPitch());
-            }
-            else
-            {
-                this.playSound(StarWarsMod.MODID + ":" + "mob.bith.notrade", this.getSoundVolume(), this.getSoundPitch());
-            }
-        }
-    }
-
 	@Override
 	public EntityVillager createChild(EntityAgeable p_90011_1_)
 	{
@@ -102,6 +56,20 @@ public class MobBith extends EntityVillager
 	}
 
 	@Override
+	public void func_110297_a_(ItemStack p_110297_1_)
+	{
+		if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+		{
+			this.livingSoundTime = -this.getTalkInterval();
+
+			if (p_110297_1_ != null)
+				this.playSound(StarWarsMod.MODID + ":" + "mob.bith.trade", this.getSoundVolume(), this.getSoundPitch());
+			else
+				this.playSound(StarWarsMod.MODID + ":" + "mob.bith.notrade", this.getSoundVolume(), this.getSoundPitch());
+		}
+	}
+
+	@Override
 	public String getCommandSenderName()
 	{
 		return this.officialNames[this.getType()];
@@ -119,6 +87,33 @@ public class MobBith extends EntityVillager
 		return this.getCommandSenderName();
 	}
 
+	/**
+	 * Returns the sound this mob makes on death.
+	 */
+	@Override
+	protected String getDeathSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.commoner.die";
+	}
+
+	/**
+	 * Returns the sound this mob makes when it is hurt.
+	 */
+	@Override
+	protected String getHurtSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.commoner.hit";
+	}
+
+	/**
+	 * Returns the sound this mob makes while it's alive.
+	 */
+	@Override
+	protected String getLivingSound()
+	{
+		return StarWarsMod.MODID + ":" + "mob.bith.say";
+	}
+
 	public boolean getPlaying()
 	{
 		return this.dw.getWatchableObjectInt(26) == 1;
@@ -133,6 +128,12 @@ public class MobBith extends EntityVillager
 			this.buyingList = this.createTradesByProfession(this.buyingList, this.getType());
 		}
 		return this.buyingList;
+	}
+
+	@Override
+	public int getTalkInterval()
+	{
+		return 400;
 	}
 
 	private int getType()
@@ -160,19 +161,19 @@ public class MobBith extends EntityVillager
 
 		/*
 		 * bithsNear = 0; boolean shouldPlay = true;
-		 *
+		 * 
 		 * for (Object oEntity :
 		 * this.worldObj.getEntitiesWithinAABB(this.getClass(),
 		 * this.boundingBox.expand(8, 8, 8))) if (oEntity instanceof MobBith) {
 		 * bithsNear++; shouldPlay = !((MobBith)oEntity).getPlaying() &&
 		 * shouldPlay; }
-		 *
+		 * 
 		 * if (bithsNear >= 5) if (!this.getPlaying() && shouldPlay)
-		 *
+		 * 
 		 * { this.playSound(StarWarsMod.MODID + ":" + "item.records.Cantina", 1,
 		 * 1); this.setPlaying(true); } else if (this.getPlaying() &&
 		 * !shouldPlay)
-		 *
+		 * 
 		 * { Minecraft.getMinecraft().getSoundHandler().stopSound(song);
 		 * this.setPlaying(false); }
 		 */

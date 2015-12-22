@@ -3,15 +3,16 @@ package com.parzi.starwarsmod.utils;
 import java.util.Arrays;
 import java.util.List;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
+import com.parzi.starwarsmod.StarWarsMod;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityUtils
 {
@@ -29,9 +30,14 @@ public class EntityUtils
 
 	/**
 	 * Ray-traces from the given entity's POV
-	 * @param distance The range of the trace
-	 * @param fromEntity The POV entity
-	 * @param exclude The entity references to exclude (Note: not classes, but inequality between two entity pointers)
+	 * 
+	 * @param distance
+	 *            The range of the trace
+	 * @param fromEntity
+	 *            The POV entity
+	 * @param exclude
+	 *            The entity references to exclude (Note: not classes, but
+	 *            inequality between two entity pointers)
 	 * @return Returns the entity the trace hit, or null if none is hit
 	 */
 	public static Entity rayTrace(int distance, EntityLivingBase fromEntity, Entity[] exclude)

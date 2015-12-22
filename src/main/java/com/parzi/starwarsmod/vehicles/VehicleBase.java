@@ -93,8 +93,10 @@ public class VehicleBase extends EntityCreature
 
 		float t = this.rotationYaw - this.prevRotationYaw;
 
-		if (t > this.tiltMax) t = this.tiltMax;
-		if (t < -this.tiltMax) t = -this.tiltMax;
+		if (t > this.tiltMax)
+			t = this.tiltMax;
+		if (t < -this.tiltMax)
+			t = -this.tiltMax;
 
 		this.tiltTable[this.tiltTable.length - 1] = t;
 

@@ -22,10 +22,16 @@ public class RenderLandBase extends RenderLiving
 	}
 
 	@Override
+	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
+	{
+		return null;
+	}
+
+	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
 		this.mainModel = this.setRotations(this.model, entity, f);
-		GL11.glScalef(scale, scale, scale);
+		GL11.glScalef(this.scale, this.scale, this.scale);
 		if (entity instanceof VehicleLandBase)
 		{
 			VehicleLandBase vehic = (VehicleLandBase)entity;
@@ -34,12 +40,6 @@ public class RenderLandBase extends RenderLiving
 			GL11.glTranslatef(tx, ty, tx * ty);
 			GL11.glRotatef(-vehic.tilt, 0.0F, 0.0F, 1.0F);
 		}
-	}
-
-	@Override
-	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
-	{
-		return null;
 	}
 
 	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)

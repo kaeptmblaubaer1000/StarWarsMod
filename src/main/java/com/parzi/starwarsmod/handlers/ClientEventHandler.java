@@ -2,6 +2,24 @@ package com.parzi.starwarsmod.handlers;
 
 import java.util.Arrays;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
+
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -28,32 +46,10 @@ import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-import com.parzi.starwarsmod.vehicles.VehicleLandBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.player.AttackEntityEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
 
 public class ClientEventHandler
 {
@@ -90,12 +86,12 @@ public class ClientEventHandler
 	public static int lookStringPos = 0;
 	public static long lookStringNextTime = 0;
 
+	public static char[] randomCharArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?$".toCharArray();
+	public static long randomCharNextTime = 0;
 	String randomChar1 = "C";
 	String randomChar2 = "N";
 	String randomChar3 = "D";
 	String randomChar4 = "L";
-	public static char[] randomCharArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?$".toCharArray();
-	public static long randomCharNextTime = 0;
 
 	Entity lastTarget = null;
 
@@ -112,7 +108,7 @@ public class ClientEventHandler
 				/*
 				 * double disx = mc.thePlayer.posX - bX; double disz =
 				 * mc.thePlayer.posZ - bZ;
-				 *
+				 * 
 				 * if ((disx - 0.5) * (disx - 0.5) + (disz - 0.5) * (disz - 0.5)
 				 * > (max) * (max)) { continue; }
 				 */
@@ -243,8 +239,8 @@ public class ClientEventHandler
 
 					if (item.getItem() instanceof ItemBinocularsTatooine)
 					{
-						float centerX = event.resolution.getScaledWidth() / 2f;
-						float centerY = event.resolution.getScaledHeight() / 2f;
+						event.resolution.getScaledWidth();
+						event.resolution.getScaledHeight();
 
 						float textCenterX = event.resolution.getScaledWidth() * (578f / 900F);
 						float textCenterY = event.resolution.getScaledHeight() * (355 / 380F);
@@ -297,7 +293,7 @@ public class ClientEventHandler
 
 						float blipPercent = blipFrame / blipMax;
 
-						if ((System.currentTimeMillis() / 1000) % 2 == 0)
+						if (System.currentTimeMillis() / 1000 % 2 == 0)
 							StarWarsMod.pgui.renderOverlay(xwingOverlayBack1);
 						else
 							StarWarsMod.pgui.renderOverlay(xwingOverlayBack2);
@@ -366,7 +362,7 @@ public class ClientEventHandler
 							lookStringNextTime = System.currentTimeMillis() + 100;
 						}
 
-						StarWarsMod.pgui.renderOverlay(planetFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
+						StarWarsMod.pgui.renderOverlay(this.planetFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
 
 						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
 
@@ -415,7 +411,7 @@ public class ClientEventHandler
 
 						float blipPercent = blipFrame / blipMax;
 
-						if ((System.currentTimeMillis() / 1000) % 2 == 0)
+						if (System.currentTimeMillis() / 1000 % 2 == 0)
 							StarWarsMod.pgui.renderOverlay(awingBack);
 						else
 							StarWarsMod.pgui.renderOverlay(awingBack2);
@@ -440,7 +436,7 @@ public class ClientEventHandler
 							}
 						}
 
-						StarWarsMod.pgui.renderOverlay(planetFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
+						StarWarsMod.pgui.renderOverlay(this.planetFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
 
 						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] { awing });
 
@@ -471,19 +467,19 @@ public class ClientEventHandler
 						{
 							MathUtils.shuffleArray(randomCharArray);
 							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							randomCharNextTime = System.currentTimeMillis() + 250;
 						}
 
 						GL11.glPushMatrix();
 						GL11.glScalef(0.6f, 0.6f, 0.6f);
-						FontManager.aurebesh.drawString(randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) - 9, GlPalette.YELLOW, true);
-						FontManager.aurebesh.drawString(randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f), GlPalette.YELLOW, true);
-						FontManager.aurebesh.drawString(randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
+						FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) - 9, GlPalette.YELLOW, true);
+						FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f), GlPalette.YELLOW, true);
+						FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
 						GL11.glPopMatrix();
 
 						StarWarsMod.pgui.renderOverlay(awingPitch1, 0, (int)(awing.rotationPitch / 15) + 8);
@@ -517,7 +513,7 @@ public class ClientEventHandler
 						{
 							GL11.glPushMatrix();
 
-							lastTarget = e;
+							this.lastTarget = e;
 
 							if (e instanceof VehicleAirBase)
 								((VehicleAirBase)e).setTargetLock(true);
@@ -533,11 +529,11 @@ public class ClientEventHandler
 
 							GL11.glPopMatrix();
 						}
-						else if (lastTarget != null)
+						else if (this.lastTarget != null)
 						{
-							if (lastTarget instanceof VehicleAirBase)
-								((VehicleAirBase)lastTarget).setTargetLock(true);
-							lastTarget = null;
+							if (this.lastTarget instanceof VehicleAirBase)
+								((VehicleAirBase)this.lastTarget).setTargetLock(true);
+							this.lastTarget = null;
 						}
 					}
 					if (mc.thePlayer.ridingEntity instanceof VehicTIE || mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
@@ -550,8 +546,8 @@ public class ClientEventHandler
 						float radarCenterX = event.resolution.getScaledWidth() * (107f / 216F);
 						float radarCenterY = event.resolution.getScaledHeight() * (131f / 144F);
 
-						float textCenterX = event.resolution.getScaledWidth() * (75 / 216F);
-						float textCenterY = event.resolution.getScaledHeight() * (140.7f / 144F);
+						event.resolution.getScaledWidth();
+						event.resolution.getScaledHeight();
 
 						float entiCenterX = event.resolution.getScaledWidth() * (97 / 216F);
 						float entiCenterY = event.resolution.getScaledHeight() * (102 / 144F);
@@ -574,8 +570,6 @@ public class ClientEventHandler
 						float heal4Y = event.resolution.getScaledHeight() * (126 / 144F);
 						float heal5Y = event.resolution.getScaledHeight() * (131.5f / 144F);
 						float healMaxY = event.resolution.getScaledHeight() * (4 / 144F);
-
-						float blipPercent = blipFrame / blipMax;
 
 						StarWarsMod.pgui.renderOverlay(tieBackOverlay);
 
@@ -601,47 +595,37 @@ public class ClientEventHandler
 							}
 						}
 
-						StarWarsMod.pgui.renderOverlay(planetFromDim(tie.dimension), 0, 0);
+						StarWarsMod.pgui.renderOverlay(this.planetFromDim(tie.dimension), 0, 0);
 
 						if (tie.getHealth() >= 20)
-						{
-							StarWarsMod.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
-						}
+							PGui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
 						if (tie.getHealth() >= 16)
-						{
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
-						}
+							PGui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
 						if (tie.getHealth() >= 8)
-						{
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
-						}
+							PGui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
 						if (tie.getHealth() >= 4)
-						{
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
-						}
+							PGui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
 						if (tie.getHealth() >= 0)
-						{
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
-						}
+							PGui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
 
 						if (randomCharNextTime <= System.currentTimeMillis())
 						{
 							MathUtils.shuffleArray(randomCharArray);
 							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								randomChar4 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+								this.randomChar4 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							randomCharNextTime = System.currentTimeMillis() + 250;
 						}
 
-						FontManager.aurebesh.drawString(randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 12, GlPalette.ANALOG_RED, true);
-						FontManager.aurebesh.drawString(randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 4, GlPalette.ANALOG_RED, true);
-						FontManager.aurebesh.drawString(randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 4, GlPalette.ANALOG_RED, true);
-						FontManager.aurebesh.drawString(randomChar4, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 12, GlPalette.ANALOG_RED, true);
+						FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 12, GlPalette.ANALOG_RED, true);
+						FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 4, GlPalette.ANALOG_RED, true);
+						FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 4, GlPalette.ANALOG_RED, true);
+						FontManager.aurebesh.drawString(this.randomChar4, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 12, GlPalette.ANALOG_RED, true);
 
 						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] { tie });
 
@@ -704,7 +688,7 @@ public class ClientEventHandler
 						{
 							GL11.glPushMatrix();
 
-							lastTarget = e;
+							this.lastTarget = e;
 
 							float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
@@ -722,11 +706,11 @@ public class ClientEventHandler
 
 							GL11.glPopMatrix();
 						}
-						else if (lastTarget != null)
+						else if (this.lastTarget != null)
 						{
-							if (lastTarget instanceof VehicleAirBase)
-								((VehicleAirBase)lastTarget).setTargetLock(true);
-							lastTarget = null;
+							if (this.lastTarget instanceof VehicleAirBase)
+								((VehicleAirBase)this.lastTarget).setTargetLock(true);
+							this.lastTarget = null;
 						}
 					}
 				}

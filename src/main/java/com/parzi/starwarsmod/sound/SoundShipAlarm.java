@@ -4,7 +4,6 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.mobs.MobBith;
 
 public class SoundShipAlarm implements ISound
 {

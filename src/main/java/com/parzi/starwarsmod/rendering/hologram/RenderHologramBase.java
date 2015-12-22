@@ -1,16 +1,14 @@
 package com.parzi.starwarsmod.rendering.hologram;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.utils.GlPalette;
-import com.parzi.starwarsmod.utils.MathUtils;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.utils.GlPalette;
 
 public class RenderHologramBase extends RenderLiving
 {
@@ -38,7 +36,7 @@ public class RenderHologramBase extends RenderLiving
 		GlPalette.glColorI(GlPalette.AQUA_BLUE);
 
 		if (this.doesSpin)
-			GL11.glRotatef((System.currentTimeMillis() / 100) % 359, 0, 1, 0);
+			GL11.glRotatef(System.currentTimeMillis() / 100 % 359, 0, 1, 0);
 	}
 
 	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)

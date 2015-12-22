@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,9 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
-import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 public class RenderXWing extends RenderVehicAirBase
 {
