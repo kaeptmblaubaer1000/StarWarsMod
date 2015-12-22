@@ -19,7 +19,7 @@ import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandForcePoints;
 import com.parzi.starwarsmod.commands.CommandSWDim;
-import com.parzi.starwarsmod.handlers.CommonHandler;
+import com.parzi.starwarsmod.handlers.CommonEventHandler;
 import com.parzi.starwarsmod.handlers.GuiHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
 import com.parzi.starwarsmod.items.weapons.ItemBlasterHeavy;
@@ -447,7 +447,7 @@ public class StarWarsMod
 
 		config.save();
 
-		FMLCommonHandler.instance().bus().register(new CommonHandler());
+		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}

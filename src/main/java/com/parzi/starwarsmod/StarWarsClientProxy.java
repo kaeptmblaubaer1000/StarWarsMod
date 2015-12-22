@@ -13,7 +13,7 @@ import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
 import com.parzi.starwarsmod.font.FontManager;
-import com.parzi.starwarsmod.handlers.StarWarsEventHandler;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
@@ -142,7 +142,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		FontManager.registerAll();
 
-		MinecraftForge.EVENT_BUS.register(new StarWarsEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
 
 		Lumberjack.log("Client proxy loaded!");
 	}

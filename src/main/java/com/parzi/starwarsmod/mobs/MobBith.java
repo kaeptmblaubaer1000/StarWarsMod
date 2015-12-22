@@ -43,7 +43,7 @@ public class MobBith extends EntityVillager
 	{
 		new ArrayList();
 		MerchantRecipeList fn = new MerchantRecipeList();
-		fn.add(new MerchantRecipe(new ItemStack(StarWarsMod.imperialCredit, 64), new ItemStack(StarWarsMod.imperialCredit, 64), new ItemStack(StarWarsMod.recordCantina, 1)));
+		fn.add(new MerchantRecipe(new ItemStack(StarWarsMod.goldImperialCredit, 10), new ItemStack(StarWarsMod.recordCantina, 1)));
 		return fn;
 	}
 

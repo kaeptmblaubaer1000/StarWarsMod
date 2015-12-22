@@ -15,7 +15,7 @@ public class SpawnUtils
 		switch (type)
 		{
 			case MOSEISLEY:
-				switch (world.rand.nextInt(2))
+				switch (world.rand.nextInt(3))
 				{
 					case 0:
 						MobTatooineCommoner c = new MobTatooineCommoner(world);
