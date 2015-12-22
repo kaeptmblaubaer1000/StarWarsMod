@@ -202,6 +202,14 @@
             "mob/protocol/r2d2rare"
         ]
     },
+    "mob.sandtrooper.droid": {
+        "category": "neutral",
+        "sounds": [
+            "mob/sandtrooper/droid1",
+            "mob/sandtrooper/droid2",
+            "mob/sandtrooper/droid3"     
+        ]
+    },
     "mob.sandtrooper.say": {
         "category": "neutral",
         "sounds": [
@@ -209,10 +217,7 @@
             "mob/sandtrooper/say2",
             "mob/sandtrooper/say3",
             "mob/sandtrooper/say4",
-            "mob/sandtrooper/say5",
-            "mob/sandtrooper/say6",
-            "mob/sandtrooper/say7",
-            "mob/sandtrooper/say8"            
+            "mob/sandtrooper/say5"        
         ]
     },
     "mob.sandtrooper.die": {

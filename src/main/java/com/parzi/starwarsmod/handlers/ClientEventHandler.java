@@ -108,7 +108,7 @@ public class ClientEventHandler
 				/*
 				 * double disx = mc.thePlayer.posX - bX; double disz =
 				 * mc.thePlayer.posZ - bZ;
-				 * 
+				 *
 				 * if ((disx - 0.5) * (disx - 0.5) + (disz - 0.5) * (disz - 0.5)
 				 * > (max) * (max)) { continue; }
 				 */
@@ -247,7 +247,7 @@ public class ClientEventHandler
 
 						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] {});
 
-						String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
+						String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 						String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
 
 						if (lookString != s)

@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -165,6 +166,9 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	@Override
 	protected String getLivingSound()
 	{
+		EntityTameable e = (EntityTameable)this.worldObj.findNearestEntityWithinAABB(EntityTameable.class, this.boundingBox.expand(10.0D, 10.0D, 10.0D), this);
+		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
+			return StarWarsMod.MODID + ":" + "mob.sandtrooper.droid";
 		return StarWarsMod.MODID + ":" + "mob.sandtrooper.say";
 	}
 
