@@ -57,6 +57,11 @@ public class MobBith extends EntityVillager
         return StarWarsMod.MODID + ":" + "mob.commoner.die";
     }
 
+    public int getTalkInterval()
+    {
+        return 400;
+    }
+
     public void func_110297_a_(ItemStack p_110297_1_)
     {
         if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
