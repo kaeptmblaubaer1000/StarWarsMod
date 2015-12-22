@@ -55,7 +55,7 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotBoots, 1, 0), baseRarity / 2.0F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSpeederBike, 1, 0), baseRarity / 2.0F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnMouse, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterPistol.versions, "Scout")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Scout")), baseRarity / 1.2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2.0F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
@@ -78,7 +78,7 @@ public class LootGenUtils
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnHothSpeederBike, 1, 0), baseRarity / 3.0F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnProtocol2, 1, 0), baseRarity / 2.0F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSurgical, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl21")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl21")), baseRarity / 1.2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2.0F));
 			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));

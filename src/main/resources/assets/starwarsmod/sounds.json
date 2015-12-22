@@ -386,6 +386,64 @@
             "mob/jawa/die1"
         ]
     },
+    "mob.bith.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/bith/say1",
+            "mob/bith/say2",
+            "mob/bith/say3"
+        ]
+    },
+    "mob.bith.trade": {
+        "category": "neutral",
+        "sounds": [
+            "mob/bith/yes"
+        ]
+    },
+    "mob.commoner.say": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/say1",
+            "mob/commoner/say2",
+            "mob/commoner/say3",
+            "mob/commoner/say4",
+            "mob/commoner/say6",
+            "mob/commoner/say7"
+        ]
+    },
+    "mob.commoner.haggle": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/haggle1",
+            "mob/commoner/haggle2",
+            "mob/commoner/haggle3"
+        ]
+    },
+    "mob.commoner.trade": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/yes"
+        ]
+    },
+    "mob.commoner.notrade": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/no"
+        ]
+    },
+    "mob.commoner.hit": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/hit1"
+        ]
+    },
+    "mob.commoner.die": {
+        "category": "neutral",
+        "sounds": [
+            "mob/commoner/die1"
+        ]
+    },
+    
     "mob.wampa.say": {
         "category": "neutral",
         "sounds": [

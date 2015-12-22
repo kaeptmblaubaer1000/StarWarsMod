@@ -22,6 +22,9 @@ public class BiomeGenYavin extends BiomeGenPSWM
 
 		this.setBiomeName("Yavin Four");
 
+		this.enableRain = true;
+		this.enableSnow = false;
+
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;
 

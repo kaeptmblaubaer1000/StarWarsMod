@@ -24,6 +24,9 @@ public class BiomeGenEndor extends BiomeGenPSWM
 
 		this.setBiomeName("The Forest Moon of Endor");
 
+		this.enableRain = true;
+		this.enableSnow = false;
+
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;
 
@@ -65,7 +68,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
             WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
             worldgenerator.generate(par1World, par2Random, k, i1, l);
         }
-		
+
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;

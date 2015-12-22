@@ -18,6 +18,9 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 
 		this.setBiomeName("Kashyyyk");
 
+		this.enableRain = true;
+		this.enableSnow = false;
+
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;
 

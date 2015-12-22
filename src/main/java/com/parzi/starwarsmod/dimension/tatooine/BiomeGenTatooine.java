@@ -75,6 +75,9 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 
 		this.setBiomeName("Tatooine");
 
+		this.enableRain = false;
+		this.enableSnow = false;
+
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.0f;
 

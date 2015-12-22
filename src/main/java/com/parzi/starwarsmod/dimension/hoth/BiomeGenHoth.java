@@ -16,6 +16,9 @@ public class BiomeGenHoth extends BiomeGenPSWM
 
 		this.setBiomeName("Hoth");
 
+		this.enableRain = false;
+		this.enableSnow = true;
+
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;
 

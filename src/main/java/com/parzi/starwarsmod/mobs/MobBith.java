@@ -33,6 +33,47 @@ public class MobBith extends EntityVillager
 		this.dw = super.getDataWatcher();
 	}
 
+    /**
+     * Returns the sound this mob makes while it's alive.
+     */
+    protected String getLivingSound()
+    {
+        return StarWarsMod.MODID + ":" + "mob.bith.say";
+    }
+
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    protected String getHurtSound()
+    {
+        return StarWarsMod.MODID + ":" + "mob.commoner.hit";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    protected String getDeathSound()
+    {
+        return StarWarsMod.MODID + ":" + "mob.commoner.die";
+    }
+
+    public void func_110297_a_(ItemStack p_110297_1_)
+    {
+        if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+        {
+            this.livingSoundTime = -this.getTalkInterval();
+
+            if (p_110297_1_ != null)
+            {
+                this.playSound(StarWarsMod.MODID + ":" + "mob.bith.trade", this.getSoundVolume(), this.getSoundPitch());
+            }
+            else
+            {
+                this.playSound(StarWarsMod.MODID + ":" + "mob.bith.notrade", this.getSoundVolume(), this.getSoundPitch());
+            }
+        }
+    }
+
 	@Override
 	public EntityVillager createChild(EntityAgeable p_90011_1_)
 	{

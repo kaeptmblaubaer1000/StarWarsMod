@@ -675,7 +675,7 @@ public class PGui// extends Gui
 	 * @param offsetY
 	 *            The y offset
 	 */
-	public void renderOverlay(ResourceLocation PGuiTexture, int offsetX, int offsetY)
+	public void renderOverlay(ResourceLocation PGuiTexture, float offsetX, float offsetY)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
@@ -717,11 +717,11 @@ public class PGui// extends Gui
 	 * @param h
 	 *            The height of the overlay
 	 */
-	public void renderOverlay(ResourceLocation PGuiTexture, int x, int y, int w, int h)
+	public void renderOverlay(ResourceLocation PGuiTexture, float x, float y, float w, float h)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
-		int k = w;
-		int l = h;
+		float k = w;
+		float l = h;
 		GL11.glDisable(2929);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, 771);
