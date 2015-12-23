@@ -28,7 +28,10 @@ public class RenderTauntaun extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		GL11.glScalef(1.5F, 1.5F, 1.5F);
+		if (entity.isChild())
+			GL11.glScalef(0.8F, 0.8F, 0.8F);
+		else
+			GL11.glScalef(1.5F, 1.5F, 1.5F);
 	}
 }
 /*

@@ -61,6 +61,8 @@ import com.parzi.starwarsmod.rendering.RenderGamorrean;
 import com.parzi.starwarsmod.rendering.RenderHuman;
 import com.parzi.starwarsmod.rendering.RenderJawa;
 import com.parzi.starwarsmod.rendering.RenderLightsaber;
+import com.parzi.starwarsmod.rendering.RenderLightsaberKylo;
+import com.parzi.starwarsmod.rendering.RenderLightsaberKyloOff;
 import com.parzi.starwarsmod.rendering.RenderLightsaberOff;
 import com.parzi.starwarsmod.rendering.RenderMV;
 import com.parzi.starwarsmod.rendering.RenderTauntaun;
@@ -200,6 +202,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaberOff());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaber, new RenderLightsaberKylo());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKyloOff());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.jediRobes, new FancyHaloRenderer());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightJediRobes, new FancyHaloRenderer());
 

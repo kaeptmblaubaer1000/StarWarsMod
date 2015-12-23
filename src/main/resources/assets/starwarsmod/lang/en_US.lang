@@ -84,6 +84,8 @@ item.starwarsmod.hyperdriveDagobah.name=Dagobah Hyperdrive
 // Droid Items
 item.starwarsmod.spawnAstromech.name=Astromech Droid
 item.starwarsmod.spawnAstromech2.name=Astromech Droid
+item.starwarsmod.spawnAstromechImperial.name=Astromech Droid
+item.starwarsmod.spawnAstromechImperial2.name=Astromech Droid
 item.starwarsmod.spawnProtocol.name=Protocol Droid
 item.starwarsmod.spawnProtocol2.name=Hoth Protocol Droid
 item.starwarsmod.spawnGonk.name=GNK Power Droid
@@ -94,6 +96,8 @@ item.starwarsmod.spawnProbe.name=Viper Probe Droid
 // Droids
 entity.starwarsmod.droidAstromech.name=Astromech Droid
 entity.starwarsmod.droidAstromech2.name=Astromech Droid
+entity.starwarsmod.droidAstromechImperial.name=Astromech Droid
+entity.starwarsmod.droidAstromechImperial2.name=Astromech Droid
 entity.starwarsmod.droidProtocol.name=Protocol Droid
 entity.starwarsmod.droidProtocol2.name=Hoth Protocol Droid
 entity.starwarsmod.droidGonk.name=GNK Power Droid

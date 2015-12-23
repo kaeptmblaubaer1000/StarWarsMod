@@ -6,10 +6,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.mobs.MobDroidAstromechImperial2;
 
 public class RenderDroidAstromech2 extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/astromech2.png");
+	public static ResourceLocation textureImperial = new ResourceLocation(StarWarsMod.MODID, "textures/models/astromechImperial2.png");
 
 	public RenderDroidAstromech2(ModelBase par1ModelBase, float par2)
 	{
@@ -19,6 +21,8 @@ public class RenderDroidAstromech2 extends RenderLiving
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
+		if (entity instanceof MobDroidAstromechImperial2)
+			return textureImperial;
 		return texture;
 	}
 }

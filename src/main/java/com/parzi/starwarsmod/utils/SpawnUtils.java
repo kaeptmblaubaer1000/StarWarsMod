@@ -14,19 +14,21 @@ public class SpawnUtils
 		switch (type)
 		{
 			case MOSEISLEY:
-				switch (world.rand.nextInt(3))
+				switch (world.rand.nextInt(5))
 				{
 					case 0:
+					case 1:
 						MobTatooineCommoner c = new MobTatooineCommoner(world);
 						c.setPosition(x, y, z);
 						world.spawnEntityInWorld(c);
 						break;
-					case 1:
+					case 2:
+					case 3:
 						MobSandtrooper cc = new MobSandtrooper(world);
 						cc.setPosition(x, y, z);
 						world.spawnEntityInWorld(cc);
 						break;
-					case 2:
+					case 4:
 						MobBith ccc = new MobBith(world);
 						ccc.setPosition(x, y, z);
 						world.spawnEntityInWorld(ccc);
