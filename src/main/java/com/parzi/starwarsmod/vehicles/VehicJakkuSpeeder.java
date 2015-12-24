@@ -10,7 +10,7 @@ public class VehicJakkuSpeeder extends VehicleLandBase
 	public VehicJakkuSpeeder(World par1World)
 	{
 		super(par1World);
-		this.setSize(1.0F, 1.0F);
+		this.setSize(1.5F, 3F);
 		this.vehicYOffset = 1.5F;
 		this.moveModifier = 4.5F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
