@@ -20,7 +20,7 @@ public class MobDroidAstromechBb8 extends EntityTameable
 	public MobDroidAstromechBb8(World par1World)
 	{
 		super(par1World);
-		this.setSize(0.5F, 1.5F);
+		this.setSize(0.5F, 1F);
 		this.tasks.addTask(2, this.aiSit);
 		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
 		this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));

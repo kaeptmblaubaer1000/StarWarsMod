@@ -10,7 +10,7 @@ public class VehicSpeederBike extends VehicleLandBase
 	public VehicSpeederBike(World par1World)
 	{
 		super(par1World);
-		this.setSize(1.0F, 1.0F);
+		this.setSize(1.0F, 2.0F);
 		this.vehicYOffset = 0.4F;
 		this.moveModifier = 3.0F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
