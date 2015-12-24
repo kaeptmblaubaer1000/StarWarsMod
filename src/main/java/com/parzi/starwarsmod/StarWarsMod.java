@@ -71,7 +71,7 @@ public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.0";
-	public static final String DEV_VER = "dev24";
+	public static final String DEV_VER = "dev0";
 
 	public static String ONLINE_VERSION = "";
 
