@@ -181,7 +181,7 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
 	{
-		if (StarWarsMod.VERSION != StarWarsMod.ONLINE_VERSION && logInEvent.entity instanceof EntityPlayerSP)
+		if (!StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION) && logInEvent.entity instanceof EntityPlayerSP)
 			((EntityPlayerSP)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
 
 		if (logInEvent.entity instanceof EntityPlayer)
