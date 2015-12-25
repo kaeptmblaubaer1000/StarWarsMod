@@ -30,7 +30,7 @@ public class EntityUtils
 
 	/**
 	 * Ray-traces from the given entity's POV
-	 * 
+	 *
 	 * @param distance
 	 *            The range of the trace
 	 * @param fromEntity

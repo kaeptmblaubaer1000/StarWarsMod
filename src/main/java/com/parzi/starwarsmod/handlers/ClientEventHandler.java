@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,6 +30,7 @@ import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
 import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
+import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.CreateBlasterBolt;
 import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
 import com.parzi.starwarsmod.rendering.helper.PGui;
@@ -95,26 +98,42 @@ public class ClientEventHandler
 
 	Entity lastTarget = null;
 
-	private void drawMiniMap(Entity center, int min, int max, int pxSize)
+	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		for (int x = min; x < max; x++)
 			for (int y = min; y < max; y++)
 			{
-
 				int bX = (int)(center.posX + x);
 				int bZ = (int)(center.posZ + y);
-				int bY = center.worldObj.getHeightValue(bX, bZ);
+				int color = MinimapStore.getAt(center.worldObj, bX, bZ);
 
-				/*
-				 * double disx = mc.thePlayer.posX - bX; double disz =
-				 * mc.thePlayer.posZ - bZ;
-				 *
-				 * if ((disx - 0.5) * (disx - 0.5) + (disz - 0.5) * (disz - 0.5)
-				 * > (max) * (max)) { continue; }
-				 */
+				float f3 = (color >> 24 & 255) / 255.0F;
+				float f = (color >> 16 & 255) / 255.0F;
+				float f1 = (color >> 8 & 255) / 255.0F;
+				float f2 = (color & 255) / 255.0F;
+				GL11.glColor4f(f, f1, f2, f3);
 
-				PGui.drawRect(x * pxSize - min * pxSize, y * pxSize - min * pxSize, x * pxSize + pxSize - min * pxSize, y * pxSize + pxSize - min * pxSize, Math.min(255, bY), Math.min(255, bY), Math.min(255, bY), 255);
+				tessellator.startDrawingQuads();
+				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0.0D);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0.0D);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0.0D);
+				tessellator.addVertex((x - min) * size, (y - min) * size, 0.0D);
+				tessellator.draw();
 			}
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		StarWarsMod.pgui.drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GlPalette.BLACK);
+
+		// to use:
+		// GL11.glPushMatrix();
+		// GL11.glColor4f(255, 255, 255, 255);
+		// drawMiniMap(mc.thePlayer, -25, 25, 2);
+		// GL11.glColor4f(255, 255, 255, 255);
+		// GL11.glPopMatrix();
 	}
 
 	@SubscribeEvent

@@ -958,4 +958,9 @@ public class GlPalette
 		int blue = rgba & 0xFF;
 		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
 	}
+
+	public static int makeOpaque(int rgb)
+	{
+		return -16777216 | rgb;
+	}
 }

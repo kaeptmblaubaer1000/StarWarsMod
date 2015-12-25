@@ -18,71 +18,72 @@ public class ModelLightsaberKyloOff extends ModelBase
 
 	public ModelLightsaberKyloOff()
 	{
-		textureWidth = 64;
-		textureHeight = 32;
+		this.textureWidth = 64;
+		this.textureHeight = 32;
 
-		hilt1 = new ModelRenderer(this, 0, 0);
-		hilt1.addBox(0F, 0F, 0F, 2, 7, 2);
-		hilt1.setRotationPoint(-1F, 17F, -1F);
-		hilt1.setTextureSize(64, 32);
-		hilt1.mirror = true;
-		setRotation(hilt1, 0F, 0F, 0F);
-		hilt3 = new ModelRenderer(this, 9, 0);
-		hilt3.addBox(0F, -0.8F, 0F, 2, 1, 2);
-		hilt3.setRotationPoint(-1F, 16F, -1F);
-		hilt3.setTextureSize(64, 32);
-		hilt3.mirror = true;
-		setRotation(hilt3, 0F, 0F, 0F);
-		hilt4 = new ModelRenderer(this, 18, 0);
-		hilt4.addBox(0F, 0F, 0F, 1, 1, 1);
-		hilt4.setRotationPoint(-0.5F, 18.4F, -1.183333F);
-		hilt4.setTextureSize(64, 32);
-		hilt4.mirror = true;
-		setRotation(hilt4, 0F, 0F, 0F);
-		hilt5 = new ModelRenderer(this, 0, 10);
-		hilt5.addBox(0F, 0F, 0F, 1, 3, 1);
-		hilt5.setRotationPoint(-0.5F, 20F, -1.2F);
-		hilt5.setTextureSize(64, 32);
-		hilt5.mirror = true;
-		setRotation(hilt5, 0F, 0F, 0F);
-		hilt6 = new ModelRenderer(this, 0, 15);
-		hilt6.addBox(0F, 0F, 0F, 1, 5, 1);
-		hilt6.setRotationPoint(0.2F, 18F, -0.5F);
-		hilt6.setTextureSize(64, 32);
-		hilt6.mirror = true;
-		setRotation(hilt6, 0F, 0F, 0F);
-		hilt7 = new ModelRenderer(this, 0, 22);
-		hilt7.addBox(0F, 0F, 0F, 1, 5, 1);
-		hilt7.setRotationPoint(-0.5F, 18F, 0.2F);
-		hilt7.setTextureSize(64, 32);
-		hilt7.mirror = true;
-		setRotation(hilt7, 0F, 0F, 0F);
-		hilt8 = new ModelRenderer(this, 5, 10);
-		hilt8.addBox(0F, 0F, 0F, 1, 5, 1);
-		hilt8.setRotationPoint(-1.2F, 18F, -0.5F);
-		hilt8.setTextureSize(64, 32);
-		hilt8.mirror = true;
-		setRotation(hilt8, 0F, 0F, 0F);
-		crossguard = new ModelRenderer(this, 31, 4);
-		crossguard.addBox(0F, 0F, 0F, 5, 2, 2);
-		crossguard.setRotationPoint(-2.5F, 16F, -1F);
-		crossguard.setTextureSize(64, 32);
-		crossguard.mirror = true;
-		setRotation(crossguard, 0F, 0F, 0F);
+		this.hilt1 = new ModelRenderer(this, 0, 0);
+		this.hilt1.addBox(0F, 0F, 0F, 2, 7, 2);
+		this.hilt1.setRotationPoint(-1F, 17F, -1F);
+		this.hilt1.setTextureSize(64, 32);
+		this.hilt1.mirror = true;
+		this.setRotation(this.hilt1, 0F, 0F, 0F);
+		this.hilt3 = new ModelRenderer(this, 9, 0);
+		this.hilt3.addBox(0F, -0.8F, 0F, 2, 1, 2);
+		this.hilt3.setRotationPoint(-1F, 16F, -1F);
+		this.hilt3.setTextureSize(64, 32);
+		this.hilt3.mirror = true;
+		this.setRotation(this.hilt3, 0F, 0F, 0F);
+		this.hilt4 = new ModelRenderer(this, 18, 0);
+		this.hilt4.addBox(0F, 0F, 0F, 1, 1, 1);
+		this.hilt4.setRotationPoint(-0.5F, 18.4F, -1.183333F);
+		this.hilt4.setTextureSize(64, 32);
+		this.hilt4.mirror = true;
+		this.setRotation(this.hilt4, 0F, 0F, 0F);
+		this.hilt5 = new ModelRenderer(this, 0, 10);
+		this.hilt5.addBox(0F, 0F, 0F, 1, 3, 1);
+		this.hilt5.setRotationPoint(-0.5F, 20F, -1.2F);
+		this.hilt5.setTextureSize(64, 32);
+		this.hilt5.mirror = true;
+		this.setRotation(this.hilt5, 0F, 0F, 0F);
+		this.hilt6 = new ModelRenderer(this, 0, 15);
+		this.hilt6.addBox(0F, 0F, 0F, 1, 5, 1);
+		this.hilt6.setRotationPoint(0.2F, 18F, -0.5F);
+		this.hilt6.setTextureSize(64, 32);
+		this.hilt6.mirror = true;
+		this.setRotation(this.hilt6, 0F, 0F, 0F);
+		this.hilt7 = new ModelRenderer(this, 0, 22);
+		this.hilt7.addBox(0F, 0F, 0F, 1, 5, 1);
+		this.hilt7.setRotationPoint(-0.5F, 18F, 0.2F);
+		this.hilt7.setTextureSize(64, 32);
+		this.hilt7.mirror = true;
+		this.setRotation(this.hilt7, 0F, 0F, 0F);
+		this.hilt8 = new ModelRenderer(this, 5, 10);
+		this.hilt8.addBox(0F, 0F, 0F, 1, 5, 1);
+		this.hilt8.setRotationPoint(-1.2F, 18F, -0.5F);
+		this.hilt8.setTextureSize(64, 32);
+		this.hilt8.mirror = true;
+		this.setRotation(this.hilt8, 0F, 0F, 0F);
+		this.crossguard = new ModelRenderer(this, 31, 4);
+		this.crossguard.addBox(0F, 0F, 0F, 5, 2, 2);
+		this.crossguard.setRotationPoint(-2.5F, 16F, -1F);
+		this.crossguard.setTextureSize(64, 32);
+		this.crossguard.mirror = true;
+		this.setRotation(this.crossguard, 0F, 0F, 0F);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		hilt1.render(f5);
-		hilt3.render(f5);
-		hilt4.render(f5);
-		hilt5.render(f5);
-		hilt6.render(f5);
-		hilt7.render(f5);
-		hilt8.render(f5);
-		crossguard.render(f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.hilt1.render(f5);
+		this.hilt3.render(f5);
+		this.hilt4.render(f5);
+		this.hilt5.render(f5);
+		this.hilt6.render(f5);
+		this.hilt7.render(f5);
+		this.hilt8.render(f5);
+		this.crossguard.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -92,6 +93,7 @@ public class ModelLightsaberKyloOff extends ModelBase
 		model.rotateAngleZ = z;
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
