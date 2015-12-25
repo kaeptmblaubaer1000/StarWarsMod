@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
@@ -28,15 +29,20 @@ public class MinimapWorld
 		if (!this.map.containsKey(p))
 		{
 			Block block = this.world.getTopBlock(x, z);
-			this.map.put(p, this.getColorForMaterial(block.getMaterial()));
+			this.map.put(p, this.getColorForMaterial(block));
 		}
 		return this.map.get(p).intValue();
 	}
 
-	private int getColorForMaterial(Material m)
+	private int getColorForMaterial(Block block)
 	{
+		if (block == Blocks.water || block == Blocks.flowing_water)
+			return GlPalette.ANALOG_BLUE;
+		else if (block == Blocks.leaves)
+			return GlPalette.DARK_GREEN;
+		Material m = block.getMaterial();
 		if (m == Material.air)
-			return GlPalette.BLUE;
+			return GlPalette.STEEL_GREY;
 		else if (m == Material.anvil)
 			return GlPalette.STEEL_GREY;
 		else if (m == Material.cactus)
