@@ -380,6 +380,28 @@ public class StarWarsMod
 
 		EntityRegister.registerAll();
 
+		MaterialRegister.registerAll();
+
+		if (enableTabOriginal)
+			StarWarsTab = new StarWarsTab();
+		else
+			StarWarsTab = CreativeTabs.tabAllSearch;
+
+		if (IS_SEQUEL_RELEASE)
+		{
+			Lumberjack.log("Sequel update! Suck it, JJ!");
+			if (enableTabSequel)
+				SequelStarWarsTab = new SequelStarWarsTab();
+			else
+				SequelStarWarsTab = CreativeTabs.tabAllSearch;
+		}
+
+		ItemRegister.registerAll();
+
+		BlockRegister.registerAll();
+
+		WorldRegister.registerAll();
+
 		RecipeRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
@@ -434,28 +456,6 @@ public class StarWarsMod
 		config.save();
 
 		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
-
-		MaterialRegister.registerAll();
-
-		if (enableTabOriginal)
-			StarWarsTab = new StarWarsTab();
-		else
-			StarWarsTab = CreativeTabs.tabAllSearch;
-
-		if (IS_SEQUEL_RELEASE)
-		{
-			Lumberjack.log("Sequel update! Suck it, JJ!");
-			if (enableTabSequel)
-				SequelStarWarsTab = new SequelStarWarsTab();
-			else
-				SequelStarWarsTab = CreativeTabs.tabAllSearch;
-		}
-
-		ItemRegister.registerAll();
-
-		BlockRegister.registerAll();
-
-		WorldRegister.registerAll();
 
 		Lumberjack.info("Configuration loaded!");
 	}
