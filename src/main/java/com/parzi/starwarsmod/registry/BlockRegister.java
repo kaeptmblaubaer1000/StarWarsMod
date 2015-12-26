@@ -6,17 +6,19 @@ import com.parzi.starwarsmod.blocks.BlockDagobahMud;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
 import com.parzi.starwarsmod.blocks.BlockMV;
+import com.parzi.starwarsmod.blocks.BlockMudStairs;
+import com.parzi.starwarsmod.blocks.BlockMudTable;
 import com.parzi.starwarsmod.blocks.BlockSpaceLamp;
-import com.parzi.starwarsmod.blocks.BlockTable;
 import com.parzi.starwarsmod.blocks.BlockTatooineSand;
 import com.parzi.starwarsmod.blocks.BlockTatooineSandstone;
+import com.parzi.starwarsmod.blocks.BlockTatooineTable;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
 import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
 import com.parzi.starwarsmod.items.ItemEndorBaseWall;
 import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.items.ItemTatooineSandstone;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
-import com.parzi.starwarsmod.tileentities.TileEntityTable;
+import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -40,15 +42,19 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWall, ItemEndorBaseWall.class, "endorBaseWall");
 		StarWarsMod.blockEndorBaseWallStairs = new BlockEndorBaseWallStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWallStairs, "endorBaseWallStairs");
+		StarWarsMod.blockMudStairs = new BlockMudStairs();
+		GameRegistry.registerBlock(StarWarsMod.blockMudStairs, "mudStairs");
 		StarWarsMod.blockTatooineSand = new BlockTatooineSand();
 		GameRegistry.registerBlock(StarWarsMod.blockTatooineSand, ItemTatooineSand.class, "tatooineSand");
 		StarWarsMod.blockTatooineSandstone = new BlockTatooineSandstone();
 		GameRegistry.registerBlock(StarWarsMod.blockTatooineSandstone, ItemTatooineSandstone.class, "tatooineSandstone");
 		StarWarsMod.blockSpaceLamp = new BlockSpaceLamp();
 		GameRegistry.registerBlock(StarWarsMod.blockSpaceLamp, "spaceLamp");
-		StarWarsMod.blockTable = new BlockTable();
+		StarWarsMod.blockTable = new BlockTatooineTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
-		GameRegistry.registerTileEntity(TileEntityTable.class, "teTable");
+		StarWarsMod.blockTable2 = new BlockMudTable();
+		GameRegistry.registerBlock(StarWarsMod.blockTable2, "mudTable");
+		GameRegistry.registerTileEntity(TileEntityMudTable.class, "teMudTable");
 		Lumberjack.info("Blocks, reporting for duty!");
 	}
 }

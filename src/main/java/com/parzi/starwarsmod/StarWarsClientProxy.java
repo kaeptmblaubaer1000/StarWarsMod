@@ -43,7 +43,8 @@ import com.parzi.starwarsmod.registry.RegisterGuiOverlays;
 import com.parzi.starwarsmod.rendering.RenderBantha;
 import com.parzi.starwarsmod.rendering.RenderBith;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
-import com.parzi.starwarsmod.rendering.RenderBlockTable;
+import com.parzi.starwarsmod.rendering.RenderBlockMudTable;
+import com.parzi.starwarsmod.rendering.RenderBlockTatooineTable;
 import com.parzi.starwarsmod.rendering.RenderCommoner;
 import com.parzi.starwarsmod.rendering.RenderDSTurret;
 import com.parzi.starwarsmod.rendering.RenderDewback;
@@ -105,7 +106,8 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
-import com.parzi.starwarsmod.tileentities.TileEntityTable;
+import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
+import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
@@ -208,7 +210,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightJediRobes, new FancyHaloRenderer());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTable.class, new RenderBlockTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderBlockMudTable());
 
 		RegisterGuiOverlays.registerAll();
 

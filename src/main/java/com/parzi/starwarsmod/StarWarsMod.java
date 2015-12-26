@@ -311,11 +311,13 @@ public class StarWarsMod
 
 	public static Block blockMV;
 	public static Block blockTable;
+	public static Block blockTable2;
 	public static Block blockChromiumOre;
 	public static Block blockTitaniumOre;
 	public static Block blockTitaniumChromiumBlock;
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
+	public static Block blockMudStairs;
 	public static Block blockTatooineSand;
 	public static Block blockTatooineSandstone;
 	public static Block blockSpaceLamp;
