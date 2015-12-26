@@ -147,6 +147,7 @@ public class StarWarsMod
 	public static Item hyperdriveKashyyyk;
 	public static Item hyperdriveYavin4;
 	public static Item hyperdriveEndor;
+	public static Item hyperdriveIlum;
 	public static Item hyperdriveDagobah;
 
 	public static Item spawnSpeederBike;
@@ -265,6 +266,7 @@ public class StarWarsMod
 	public static BiomeGenBase biomeEndor;
 	public static BiomeGenBase biomeEndorPlains;
 	public static BiomeGenBase biomeDagobah;
+	public static BiomeGenBase biomeIlum;
 
 	public static int biomeTatooineId;
 	public static int biomeHothId;
@@ -273,6 +275,7 @@ public class StarWarsMod
 	public static int biomeEndorId;
 	public static int biomeEndorPlainsId;
 	public static int biomeDagobahId;
+	public static int biomeIlumId;
 
 	public static int dimTatooineId;
 	public static int dimHothId;
@@ -281,6 +284,7 @@ public class StarWarsMod
 	public static int dimDagobahId;
 	public static int dimEndorId;
 	public static int dimEndorPlainsId;
+	public static int dimIlumId;
 
 	public static boolean isWorldRegistered = false;
 
@@ -372,31 +376,9 @@ public class StarWarsMod
 
 		proxy.doSidedThings();
 
-		if (enableTabOriginal)
-			StarWarsTab = new StarWarsTab();
-		else
-			StarWarsTab = CreativeTabs.tabAllSearch;
-
-		if (IS_SEQUEL_RELEASE)
-		{
-			Lumberjack.log("Sequel update! Suck it, JJ!");
-			if (enableTabSequel)
-				SequelStarWarsTab = new SequelStarWarsTab();
-			else
-				SequelStarWarsTab = CreativeTabs.tabAllSearch;
-		}
-
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
-		MaterialRegister.registerAll();
-
-		ItemRegister.registerAll();
-
-		BlockRegister.registerAll();
-
 		EntityRegister.registerAll();
-
-		WorldRegister.registerAll();
 
 		RecipeRegister.registerAll();
 
@@ -429,6 +411,8 @@ public class StarWarsMod
 		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
 		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
 		StarWarsMod.dimEndorId = config.get("dimensions", "endor", 6).getInt();
+		StarWarsMod.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
+		StarWarsMod.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
 		// StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
 		// StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
 
@@ -437,6 +421,8 @@ public class StarWarsMod
 		StarWarsMod.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
 		StarWarsMod.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
 		StarWarsMod.biomeEndorId = config.get("biomes", "endor", 200).getInt();
+		StarWarsMod.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
+		StarWarsMod.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
@@ -448,6 +434,28 @@ public class StarWarsMod
 		config.save();
 
 		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
+
+		MaterialRegister.registerAll();
+
+		if (enableTabOriginal)
+			StarWarsTab = new StarWarsTab();
+		else
+			StarWarsTab = CreativeTabs.tabAllSearch;
+
+		if (IS_SEQUEL_RELEASE)
+		{
+			Lumberjack.log("Sequel update! Suck it, JJ!");
+			if (enableTabSequel)
+				SequelStarWarsTab = new SequelStarWarsTab();
+			else
+				SequelStarWarsTab = CreativeTabs.tabAllSearch;
+		}
+
+		ItemRegister.registerAll();
+
+		BlockRegister.registerAll();
+
+		WorldRegister.registerAll();
 
 		Lumberjack.info("Configuration loaded!");
 	}

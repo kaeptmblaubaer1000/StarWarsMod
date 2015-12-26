@@ -64,9 +64,11 @@ import com.parzi.starwarsmod.items.crafting.ItemPlasmaEmitter;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumChromiumDust;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumChromiumIngot;
 import com.parzi.starwarsmod.items.crafting.ItemTitaniumDust;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveDagobah;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveEarth;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveEndor;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveHoth;
+import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveIlum;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveKashyyyk;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveTatooine;
 import com.parzi.starwarsmod.items.hyperdrive.ItemHyperdriveYavinFour;
@@ -414,9 +416,11 @@ public class ItemRegister
 		StarWarsMod.hyperdriveTatooine = new ItemHyperdriveTatooine();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveTatooine, "hyperdriveTatooine");
 
-		// StarWarsMod.hyperdriveDagobah = new ItemHyperdriveDagobah();
-		// GameRegistry.registerItem(StarWarsMod.hyperdriveDagobah,
-		// "hyperdriveDagobah");
+		StarWarsMod.hyperdriveIlum = new ItemHyperdriveIlum();
+		GameRegistry.registerItem(StarWarsMod.hyperdriveIlum, "hyperdriveIlum");
+
+		StarWarsMod.hyperdriveDagobah = new ItemHyperdriveDagobah();
+		GameRegistry.registerItem(StarWarsMod.hyperdriveDagobah, "hyperdriveDagobah");
 
 		StarWarsMod.hyperdriveEarth = new ItemHyperdriveEarth();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveEarth, "hyperdriveEarth");

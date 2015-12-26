@@ -12,11 +12,11 @@ import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.TextUtils;
 
-public class ItemHyperdriveDagobah extends Item
+public class ItemHyperdriveIlum extends Item
 {
-	public String name = "hyperdriveDagobah";
+	public String name = "hyperdriveIlum";
 
-	public ItemHyperdriveDagobah()
+	public ItemHyperdriveIlum()
 	{
 		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
 		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
@@ -35,10 +35,10 @@ public class ItemHyperdriveDagobah extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != StarWarsMod.dimDagobahId)
+			if (player.isSneaking() && player.dimension != StarWarsMod.dimIlumId)
 			{
 				player.timeUntilPortal = 20;
-				StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimDagobahId));
+				StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimIlumId));
 			}
 		}
 		catch (Exception e)
@@ -52,6 +52,6 @@ public class ItemHyperdriveDagobah extends Item
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
  * v1.2.0-dev7.jar!\com\
- * parzi\starwarsmod\items\hyperdrive\ItemHyperdriveEndor.class Java compiler
- * version: 6 (50.0) JD-Core Version: 0.7.1
+ * parzi\starwarsmod\items\hyperdrive\ItemHyperdriveYavinFour.class Java
+ * compiler version: 6 (50.0) JD-Core Version: 0.7.1
  */

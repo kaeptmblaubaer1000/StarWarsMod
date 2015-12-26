@@ -5,10 +5,15 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.dimension.dagobah.BiomeChunkProviderDagobah;
+import com.parzi.starwarsmod.dimension.dagobah.BiomeGenDagobah;
+import com.parzi.starwarsmod.dimension.dagobah.DagobahProvider;
 import com.parzi.starwarsmod.dimension.endor.BiomeGenEndor;
 import com.parzi.starwarsmod.dimension.endor.EndorProvider;
 import com.parzi.starwarsmod.dimension.hoth.BiomeGenHoth;
 import com.parzi.starwarsmod.dimension.hoth.HothProvider;
+import com.parzi.starwarsmod.dimension.ilum.BiomeGenIlum;
+import com.parzi.starwarsmod.dimension.ilum.IlumProvider;
 import com.parzi.starwarsmod.dimension.kashyyyk.BiomeGenKashyyyk;
 import com.parzi.starwarsmod.dimension.kashyyyk.KashyyykProvider;
 import com.parzi.starwarsmod.dimension.tatooine.BiomeGenTatooine;
@@ -48,18 +53,20 @@ public class WorldRegister
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeYavin4);
 		StarWarsMod.biomeEndor = new BiomeGenEndor(StarWarsMod.biomeEndorId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
+		StarWarsMod.biomeIlum = new BiomeGenIlum(StarWarsMod.biomeIlumId);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeIlum);
 		// StarWarsMod.biomeEndorPlains = new
 		// BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
-		// StarWarsMod.biomeDagobah = new
-		// BiomeDagobah(StarWarsMod.dimDagobahId);
+		StarWarsMod.biomeDagobah = new BiomeGenDagobah(StarWarsMod.dimDagobahId);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeDagobah);
 
 		WorldUtils.registerDimension(StarWarsMod.dimTatooineId, TatooineProvider.class);
 		WorldUtils.registerDimension(StarWarsMod.dimHothId, HothProvider.class);
 		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, KashyyykProvider.class);
 		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, YavinProvider.class);
 		WorldUtils.registerDimension(StarWarsMod.dimEndorId, EndorProvider.class);
-		// WorldUtils.registerDimension(StarWarsMod.dimDagobahId,
-		// WorldProviderDagobah.class);
+		WorldUtils.registerDimension(StarWarsMod.dimIlumId, IlumProvider.class);
+		WorldUtils.registerDimension(StarWarsMod.dimDagobahId, DagobahProvider.class);
 
 		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, StarWarsMod.biomeTatooine);

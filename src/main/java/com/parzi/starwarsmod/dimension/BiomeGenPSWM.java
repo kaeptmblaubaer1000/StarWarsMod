@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.dimension;
 
 import java.util.Random;
 
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
@@ -13,7 +14,7 @@ public class BiomeGenPSWM extends BiomeGenBase
 		super(biomeId);
 	}
 
-	public WorldGenAbstractTree getTreeAt(Random rand, int x, int y, int z)
+	public WorldGenAbstractTree getTreeAt(World world, Random rand, int x, int y, int z)
 	{
 		return new WorldGenForest(true, true);
 	}

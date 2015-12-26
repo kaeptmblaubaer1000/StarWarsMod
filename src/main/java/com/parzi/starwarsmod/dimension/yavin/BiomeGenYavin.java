@@ -62,7 +62,7 @@ public class BiomeGenYavin extends BiomeGenPSWM
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			int i1 = par1World.getHeightValue(k, l);
-			WorldGenAbstractTree worldgenabstracttree = this.getTreeAt(par2Random, k, i1, l);
+			WorldGenAbstractTree worldgenabstracttree = this.getTreeAt(par1World, par2Random, k, i1, l);
 			worldgenabstracttree.setScale(1.0D, 1.0D, 1.0D);
 
 			if (worldgenabstracttree.generate(par1World, par2Random, k, i1, l))
@@ -80,7 +80,7 @@ public class BiomeGenYavin extends BiomeGenPSWM
 	}
 
 	@Override
-	public WorldGenAbstractTree getTreeAt(Random p_150567_1_, int x, int y, int z)
+	public WorldGenAbstractTree getTreeAt(World world, Random p_150567_1_, int x, int y, int z)
 	{
 		if (y > 80)
 			return new WorldGenMegaJungle(true, 10, 5, 3, 3);
