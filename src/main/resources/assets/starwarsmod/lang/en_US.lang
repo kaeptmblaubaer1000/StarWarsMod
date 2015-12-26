@@ -46,21 +46,21 @@ item.starwarsmod.gamorreanAx.name=Gamorrean Ax
 item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 
 // Blasters
-item.starwarsmod.blasterPistol.Dl44.name=DL-44 Heavy Blaster Pistol
-item.starwarsmod.blasterPistol.Dl18.name=DL-18 Blaster Pistol
-item.starwarsmod.blasterPistol.Dh17.name=DH-17 Blaster Pistol
-item.starwarsmod.blasterPistol.Sporting.name=Defender Sporting Blaster
-item.starwarsmod.blasterPistol.Dl21.name=DL-21 Blaster Pistol
+item.starwarsmod.blasterPistol.Dl44.name=BlasTech DL-44 Heavy Blaster Pistol
+item.starwarsmod.blasterPistol.Dl18.name=BlasTech DL-18 Blaster Pistol
+item.starwarsmod.blasterPistol.Dh17.name=BlasTech DH-17 Blaster Pistol
+item.starwarsmod.blasterPistol.Sporting.name=D.D.C. Defender Blaster Pistol
+item.starwarsmod.blasterPistol.Dl21.name=BlasTech DL-21 Blaster Pistol
 item.starwarsmod.blasterPistol.Scout.name=Scout Blaster Pistol
-item.starwarsmod.blasterPistol.Se14c.name=SE-14C Blaster Pistol
+item.starwarsmod.blasterPistol.Se14c.name=BlasTech SE-14C Blaster Pistol
 
-item.starwarsmod.blasterHeavy.Dlt19.name=DLT-19 Heavy Blaster Rifle
-item.starwarsmod.blasterHeavy.T21.name=T-21 Heavy Blaster Rifle
-item.starwarsmod.blasterHeavy.Rt97c.name=RT-97C Heavy Blaster Rifle
+item.starwarsmod.blasterHeavy.Dlt19.name=BlasTech DLT-19 Heavy Blaster Rifle
+item.starwarsmod.blasterHeavy.T21.name=BlasTech T-21 Heavy Blaster Rifle
+item.starwarsmod.blasterHeavy.Rt97c.name=BlasTech RT-97C Heavy Blaster Rifle
 
-item.starwarsmod.blasterRifle.A280.name=A-280 Blaster Rifle
-item.starwarsmod.blasterRifle.Esb.name=ESB Blaster Rifle
-item.starwarsmod.blasterRifle.Ionization.name=Ionization Rifle
+item.starwarsmod.blasterRifle.A280.name=BlasTech A-280 Blaster Rifle
+item.starwarsmod.blasterRifle.Esb.name=BlasTech EE-3 Carbine Rifle
+item.starwarsmod.blasterRifle.Ionization.name=Ionization Blaster
 item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
 item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
 
@@ -123,7 +123,7 @@ entity.starwarsmod.xwing.name=T-65 X-Wing Starfighter
 entity.starwarsmod.awing.name=RZ-1 A-Wing Interceptor
 
 // Blocks
-tile.starwarsmod.moistureVaporator.name=Moisture Vaporator
+tile.starwarsmod.moistureVaporator.name=GX-8 Water Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
 tile.starwarsmod.tatooineSand.name=Tatooine Sand
