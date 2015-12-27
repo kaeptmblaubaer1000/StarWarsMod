@@ -13,12 +13,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class TogglePlayerLightsaber implements IMessage
+public class PacketTogglePlayerLightsaber implements IMessage
 {
-	public static class Handler implements IMessageHandler<TogglePlayerLightsaber, IMessage>
+	public static class Handler implements IMessageHandler<PacketTogglePlayerLightsaber, IMessage>
 	{
 		@Override
-		public IMessage onMessage(TogglePlayerLightsaber message, MessageContext ctx)
+		public IMessage onMessage(PacketTogglePlayerLightsaber message, MessageContext ctx)
 		{
 			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			ItemStack cur = player.inventory.getCurrentItem();
@@ -34,11 +34,11 @@ public class TogglePlayerLightsaber implements IMessage
 	private String player;
 	private int dim;
 
-	public TogglePlayerLightsaber()
+	public PacketTogglePlayerLightsaber()
 	{
 	}
 
-	public TogglePlayerLightsaber(String player, int dim)
+	public PacketTogglePlayerLightsaber(String player, int dim)
 	{
 		this.player = player;
 		this.dim = dim;

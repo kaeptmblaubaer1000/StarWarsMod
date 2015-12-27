@@ -11,7 +11,7 @@ import net.minecraft.util.ChatComponentText;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorJediRobes;
 import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
-import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.network.PacketJediRobesSetElementInArmorInv;
 
 public class CommandForcePoints implements ICommand
 {
@@ -78,10 +78,10 @@ public class CommandForcePoints implements ICommand
 			EntityPlayerMP player = (EntityPlayerMP)icommandsender;
 			if (player.inventory.armorInventory[2] != null && (player.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes || player.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes))
 			{
-				StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("earth", 10000, player.dimension, player.getCommandSenderName()));
-				StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("animals", 10000, player.dimension, player.getCommandSenderName()));
-				StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("earth", 10000, player.dimension, player.getCommandSenderName()));
-				StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("water", 10000, player.dimension, player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketJediRobesSetElementInArmorInv("earth", 10000, player.dimension, player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketJediRobesSetElementInArmorInv("animals", 10000, player.dimension, player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketJediRobesSetElementInArmorInv("earth", 10000, player.dimension, player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketJediRobesSetElementInArmorInv("water", 10000, player.dimension, player.getCommandSenderName()));
 			}
 		}
 		catch (Exception e)

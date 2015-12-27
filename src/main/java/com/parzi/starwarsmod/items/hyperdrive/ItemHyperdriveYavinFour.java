@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
+import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.TextUtils;
 
@@ -38,7 +38,7 @@ public class ItemHyperdriveYavinFour extends Item
 			if (player.isSneaking() && player.dimension != StarWarsMod.dimYavin4Id)
 			{
 				player.timeUntilPortal = 20;
-				StarWarsMod.network.sendToServer(new TeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimYavin4Id));
+				StarWarsMod.network.sendToServer(new PacketTeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, StarWarsMod.dimYavin4Id));
 			}
 		}
 		catch (Exception e)

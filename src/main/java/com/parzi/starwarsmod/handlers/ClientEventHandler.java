@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -22,7 +21,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.event.world.ChunkEvent;
 
 import org.lwjgl.opengl.GL11;
 
@@ -33,8 +31,9 @@ import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.minimap.MinimapStore;
-import com.parzi.starwarsmod.network.CreateBlasterBolt;
-import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.network.PacketJediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
@@ -142,7 +141,7 @@ public class ClientEventHandler
 	public void onBlockBroken(BlockEvent.BreakEvent breakEvent)
 	{
 		if (breakEvent.getPlayer().inventory.armorInventory[2] != null && (breakEvent.getPlayer().inventory.armorInventory[2].getItem() instanceof ArmorJediRobes || breakEvent.getPlayer().inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes) && Arrays.asList(ArmorJediRobes.earthMatter).contains(breakEvent.block) && breakEvent.world.rand.nextInt(ArmorJediRobes.chanceElement / 10) == 0)
-			StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("earth", breakEvent.getPlayer().inventory.armorInventory[2].stackTagCompound.getInteger("earth") + 1, breakEvent.getPlayer().dimension, breakEvent.getPlayer().getCommandSenderName()));
+			StarWarsMod.network.sendToServer(new PacketJediRobesSetElementInArmorInv("earth", breakEvent.getPlayer().inventory.armorInventory[2].stackTagCompound.getInteger("earth") + 1, breakEvent.getPlayer().dimension, breakEvent.getPlayer().getCommandSenderName()));
 	}
 
 	@SubscribeEvent
@@ -173,7 +172,7 @@ public class ClientEventHandler
 	public void onMobHit(AttackEntityEvent attackEntityEvent)
 	{
 		if (attackEntityEvent.entityPlayer.inventory.armorInventory[2] != null && (attackEntityEvent.entityPlayer.inventory.armorInventory[2].getItem() instanceof ArmorJediRobes || attackEntityEvent.entityPlayer.inventory.armorInventory[2].getItem() instanceof ArmorLightJediRobes) && attackEntityEvent.entity.worldObj.rand.nextInt(ArmorJediRobes.chanceElement / 50) == 0)
-			StarWarsMod.network.sendToServer(new JediRobesSetElementInArmorInv("animals", attackEntityEvent.entityPlayer.inventory.armorInventory[2].stackTagCompound.getInteger("animals") + 1, attackEntityEvent.entityPlayer.dimension, attackEntityEvent.entityPlayer.getCommandSenderName()));
+			StarWarsMod.network.sendToServer(new PacketJediRobesSetElementInArmorInv("animals", attackEntityEvent.entityPlayer.inventory.armorInventory[2].stackTagCompound.getInteger("animals") + 1, attackEntityEvent.entityPlayer.dimension, attackEntityEvent.entityPlayer.getCommandSenderName()));
 	}
 
 	@SubscribeEvent
@@ -182,19 +181,19 @@ public class ClientEventHandler
 		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
 			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 			{
-				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
+				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
 				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
 			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
 			{
-				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
+				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
 				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 				isFiring = true;
 				blipFrame = blipMax;
 			}
 			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
 			{
-				StarWarsMod.network.sendToServer(new CreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
+				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
 				mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
 	}
@@ -343,8 +342,20 @@ public class ClientEventHandler
 
 						int color = GlPalette.ANALOG_GREEN;
 
-						// if (xwing.getTargetLock())
-						// color = GlPalette.ORANGE;
+						if (xwing.getTargetLock())
+							color = GlPalette.ORANGE;
+
+						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
+						{
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
+							lastTarget = e;
+						}
+
+						if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+						{
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
+							lastTarget = e;
+						}
 
 						if (e != null)
 						{
@@ -463,8 +474,20 @@ public class ClientEventHandler
 
 						int color = GlPalette.ANALOG_GREEN;
 
-						// if (awing.getTargetLock())
-						// color = GlPalette.ORANGE;
+						if (awing.getTargetLock())
+							color = GlPalette.ORANGE;
+
+						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
+						{
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
+							lastTarget = e;
+						}
+
+						if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+						{
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
+							lastTarget = e;
+						}
 
 						if (e != null)
 						{
@@ -652,8 +675,20 @@ public class ClientEventHandler
 
 						int color = GlPalette.ELECTRIC_BLUE;
 
-						// if (tie.getTargetLock())
-						// color = GlPalette.ORANGE;
+						if (tie.getTargetLock())
+							color = GlPalette.ORANGE;
+
+						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
+						{
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
+							lastTarget = e;
+						}
+
+						if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+						{
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
+							lastTarget = e;
+						}
 
 						if (e != null)
 						{

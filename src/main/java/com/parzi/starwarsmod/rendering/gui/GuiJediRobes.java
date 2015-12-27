@@ -55,7 +55,7 @@ public class GuiJediRobes extends GuiScreen
 			int currentEle = this.player.inventory.mainInventory[this.player.inventory.currentItem].stackTagCompound.getInteger(this.spinner[this.spinnerIndex].internalElement);
 			int neededEle = (int)Math.pow(2.0D, 6 + this.player.inventory.mainInventory[this.player.inventory.currentItem].stackTagCompound.getInteger(this.spinner[this.spinnerIndex].internalName));
 			int currentLvl = this.player.inventory.mainInventory[this.player.inventory.currentItem].stackTagCompound.getInteger(this.spinner[this.spinnerIndex].internalName);
-			StarWarsMod.network.sendToServer(new com.parzi.starwarsmod.network.JediRobesBuy(this.spinner[this.spinnerIndex].internalName, currentLvl + 1, this.spinner[this.spinnerIndex].internalElement, currentEle - neededEle, this.player.getCommandSenderName(), this.player.dimension));
+			StarWarsMod.network.sendToServer(new com.parzi.starwarsmod.network.PacketJediRobesBuy(this.spinner[this.spinnerIndex].internalName, currentLvl + 1, this.spinner[this.spinnerIndex].internalElement, currentEle - neededEle, this.player.getCommandSenderName(), this.player.dimension));
 		}
 	}
 

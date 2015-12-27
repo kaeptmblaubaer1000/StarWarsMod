@@ -5,12 +5,12 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 
-public class JediRobesBuy implements IMessage
+public class PacketJediRobesBuy implements IMessage
 {
-	public static class Handler implements IMessageHandler<JediRobesBuy, IMessage>
+	public static class Handler implements IMessageHandler<PacketJediRobesBuy, IMessage>
 	{
 		@Override
-		public IMessage onMessage(JediRobesBuy message, cpw.mods.fml.common.network.simpleimpl.MessageContext ctx)
+		public IMessage onMessage(PacketJediRobesBuy message, cpw.mods.fml.common.network.simpleimpl.MessageContext ctx)
 		{
 			net.minecraft.entity.player.EntityPlayer player = net.minecraft.server.MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			player.inventory.mainInventory[player.inventory.currentItem].stackTagCompound.setInteger(message.element, message.amt);
@@ -26,11 +26,11 @@ public class JediRobesBuy implements IMessage
 	private int dim;
 	private int amt;
 
-	public JediRobesBuy()
+	public PacketJediRobesBuy()
 	{
 	}
 
-	public JediRobesBuy(String power, int level, String element, int amt, String player, int dim)
+	public PacketJediRobesBuy(String power, int level, String element, int amt, String player, int dim)
 	{
 		this.power = power;
 		this.element = element;

@@ -15,12 +15,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class CreateBlasterBolt implements IMessage
+public class PacketCreateBlasterBolt implements IMessage
 {
-	public static class Handler implements IMessageHandler<CreateBlasterBolt, IMessage>
+	public static class Handler implements IMessageHandler<PacketCreateBlasterBolt, IMessage>
 	{
 		@Override
-		public IMessage onMessage(CreateBlasterBolt message, MessageContext ctx)
+		public IMessage onMessage(PacketCreateBlasterBolt message, MessageContext ctx)
 		{
 			EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 			World world = player.worldObj;
@@ -52,11 +52,11 @@ public class CreateBlasterBolt implements IMessage
 	private int dim;
 	private int type;
 
-	public CreateBlasterBolt()
+	public PacketCreateBlasterBolt()
 	{
 	}
 
-	public CreateBlasterBolt(String player, int dim, int type)
+	public PacketCreateBlasterBolt(String player, int dim, int type)
 	{
 		this.player = player;
 		this.dim = dim;

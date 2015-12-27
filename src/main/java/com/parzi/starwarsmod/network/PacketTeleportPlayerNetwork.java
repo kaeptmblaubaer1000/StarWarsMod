@@ -11,12 +11,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class TeleportPlayerNetwork implements IMessage
+public class PacketTeleportPlayerNetwork implements IMessage
 {
-	public static class Handler implements IMessageHandler<TeleportPlayerNetwork, IMessage>
+	public static class Handler implements IMessageHandler<PacketTeleportPlayerNetwork, IMessage>
 	{
 		@Override
-		public IMessage onMessage(TeleportPlayerNetwork message, MessageContext ctx)
+		public IMessage onMessage(PacketTeleportPlayerNetwork message, MessageContext ctx)
 		{
 			try
 			{
@@ -36,11 +36,11 @@ public class TeleportPlayerNetwork implements IMessage
 	private int oldDim;
 	private int newDim;
 
-	public TeleportPlayerNetwork()
+	public PacketTeleportPlayerNetwork()
 	{
 	}
 
-	public TeleportPlayerNetwork(String player, int oldDim, int newDim)
+	public PacketTeleportPlayerNetwork(String player, int oldDim, int newDim)
 	{
 		this.player = player;
 		this.oldDim = oldDim;

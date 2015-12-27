@@ -35,12 +35,13 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
-import com.parzi.starwarsmod.network.CreateBlasterBolt;
-import com.parzi.starwarsmod.network.JediRobesBuy;
-import com.parzi.starwarsmod.network.JediRobesSetElementInArmorInv;
-import com.parzi.starwarsmod.network.TeleportPlayerNetwork;
-import com.parzi.starwarsmod.network.TogglePlayerLightsaber;
-import com.parzi.starwarsmod.network.TogglePlayerSequelLightsaber;
+import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.network.PacketJediRobesBuy;
+import com.parzi.starwarsmod.network.PacketJediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.network.PacketShipTargetLock;
+import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
+import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
+import com.parzi.starwarsmod.network.PacketTogglePlayerSequelLightsaber;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
@@ -417,12 +418,13 @@ public class StarWarsMod
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(StarWarsMod.MODID);
-		network.registerMessage(JediRobesBuy.Handler.class, JediRobesBuy.class, 0, Side.SERVER);
-		network.registerMessage(JediRobesSetElementInArmorInv.Handler.class, JediRobesSetElementInArmorInv.class, 1, Side.SERVER);
-		network.registerMessage(TeleportPlayerNetwork.Handler.class, TeleportPlayerNetwork.class, 2, Side.SERVER);
-		network.registerMessage(CreateBlasterBolt.Handler.class, CreateBlasterBolt.class, 3, Side.SERVER);
-		network.registerMessage(TogglePlayerLightsaber.Handler.class, TogglePlayerLightsaber.class, 4, Side.SERVER);
-		network.registerMessage(TogglePlayerSequelLightsaber.Handler.class, TogglePlayerSequelLightsaber.class, 5, Side.SERVER);
+		network.registerMessage(PacketJediRobesBuy.Handler.class, PacketJediRobesBuy.class, 0, Side.SERVER);
+		network.registerMessage(PacketJediRobesSetElementInArmorInv.Handler.class, PacketJediRobesSetElementInArmorInv.class, 1, Side.SERVER);
+		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, 2, Side.SERVER);
+		network.registerMessage(PacketCreateBlasterBolt.Handler.class, PacketCreateBlasterBolt.class, 3, Side.SERVER);
+		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, 4, Side.SERVER);
+		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, 5, Side.SERVER);
+		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, 6, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();

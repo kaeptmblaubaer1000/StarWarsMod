@@ -14,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.TogglePlayerSequelLightsaber;
+import com.parzi.starwarsmod.network.PacketTogglePlayerSequelLightsaber;
 import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -68,7 +68,7 @@ public class ItemSequelLightsaberOff extends Item
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
-			StarWarsMod.network.sendToServer(new TogglePlayerSequelLightsaber(player.getCommandSenderName(), player.dimension));
+			StarWarsMod.network.sendToServer(new PacketTogglePlayerSequelLightsaber(player.getCommandSenderName(), player.dimension));
 		}
 		return stack;
 	}
