@@ -7,6 +7,7 @@ import net.minecraft.util.MathHelper;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
+import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -56,9 +57,15 @@ public class CommonEventHandler
 			{
 				VehicXWing xwing = (VehicXWing)mc.thePlayer.ridingEntity;
 				if (xwing.getSFoil() <= 0)
+				{
 					xwing.isOpening = true;
+					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(mc.thePlayer, true));
+				}
 				if (xwing.getSFoil() >= 0.8f)
+				{
 					xwing.isClosing = true;
+					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(mc.thePlayer, false));
+				}
 			}
 	}
 

@@ -66,13 +66,13 @@ public class VehicXWing extends VehicleAirBase
 
 		if (this.isOpening)
 		{
-			this.setSFoil(this.getSFoil() + 1 / 40f);
+			this.setSFoil(this.getSFoil() + 1 / 30f);
 			this.isOpening = this.getSFoil() < 0.8f;
 		}
 
 		if (this.isClosing)
 		{
-			this.setSFoil(this.getSFoil() - 1 / 40f);
+			this.setSFoil(this.getSFoil() - 1 / 30f);
 			this.isClosing = this.getSFoil() > 0;
 		}
 	}

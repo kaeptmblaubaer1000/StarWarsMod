@@ -35,6 +35,18 @@
             "vehicle/xwing/move"
         ]
     },
+    "vehicle.xwing.sfoilOpen": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/xwing/sfoilOpen"
+        ]
+    },
+    "vehicle.xwing.sfoilClose": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/xwing/sfoilClose"
+        ]
+    },
     "vehicle.xwing.fire": {
         "category": "neutral",
         "sounds": [
