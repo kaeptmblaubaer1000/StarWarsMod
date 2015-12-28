@@ -14,6 +14,7 @@ public class SoundLightsaberHum extends MovingSound
 	{
 		super(new ResourceLocation(StarWarsMod.MODID, "item.lightsaber.hum"));
 		this.repeat = true;
+		this.follow = follow;
 	}
 
 	@Override

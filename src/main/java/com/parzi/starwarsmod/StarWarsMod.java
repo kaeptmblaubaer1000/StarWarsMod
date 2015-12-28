@@ -49,6 +49,7 @@ import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.rendering.helper.PGui;
+import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.tabs.SequelStarWarsTab;
 import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -309,6 +310,15 @@ public class StarWarsMod
 	public static PlayerHelper playerHelper;
 	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
+	@SideOnly(Side.CLIENT)
+	public static PSoundBank soundBank;
+
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShootVehicle;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keySFoil;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyDebug;
 
 	public static Block blockMV;
 	public static Block blockTable;
@@ -344,13 +354,6 @@ public class StarWarsMod
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;
 	public static ArmorMaterial leiaBunsArmorMat;
-
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyShootVehicle;
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keySFoil;
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyDebug;
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)

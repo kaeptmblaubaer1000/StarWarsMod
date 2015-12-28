@@ -37,6 +37,7 @@ import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
+import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
@@ -343,7 +344,10 @@ public class ClientEventHandler
 						int color = GlPalette.ANALOG_GREEN;
 
 						if (xwing.getTargetLock())
+						{
 							color = GlPalette.ORANGE;
+							StarWarsMod.soundBank.playIfNotAlready(PSoundBank.shipAlarm);
+						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
@@ -475,7 +479,10 @@ public class ClientEventHandler
 						int color = GlPalette.ANALOG_GREEN;
 
 						if (awing.getTargetLock())
+						{
 							color = GlPalette.ORANGE;
+							StarWarsMod.soundBank.playIfNotAlready(PSoundBank.shipAlarm);
+						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
@@ -676,7 +683,10 @@ public class ClientEventHandler
 						int color = GlPalette.ELECTRIC_BLUE;
 
 						if (tie.getTargetLock())
+						{
 							color = GlPalette.ORANGE;
+							StarWarsMod.soundBank.playIfNotAlready(PSoundBank.shipAlarm);
+						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{

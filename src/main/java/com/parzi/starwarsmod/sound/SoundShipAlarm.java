@@ -1,67 +1,34 @@
 package com.parzi.starwarsmod.sound;
 
 import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.MovingSound;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
 
-public class SoundShipAlarm implements ISound
+public class SoundShipAlarm extends MovingSound
 {
-	public SoundShipAlarm()
+	EntityPlayer follow;
+
+	public SoundShipAlarm(EntityPlayer follow)
 	{
+		super(new ResourceLocation(StarWarsMod.MODID, "vehicle.alarm.loop1"));
+		this.repeat = true;
+		this.follow = follow;
 	}
 
 	@Override
-	public boolean canRepeat()
+	public void update()
 	{
-		return true;
-	}
-
-	@Override
-	public AttenuationType getAttenuationType()
-	{
-		return AttenuationType.NONE;
-	}
-
-	@Override
-	public float getPitch()
-	{
-		return 1;
-	}
-
-	@Override
-	public ResourceLocation getPositionedSoundLocation()
-	{
-		return new ResourceLocation(StarWarsMod.MODID, "vehicle.alarm.loop1");
-	}
-
-	@Override
-	public int getRepeatDelay()
-	{
-		return 0;
-	}
-
-	@Override
-	public float getVolume()
-	{
-		return 1;
-	}
-
-	@Override
-	public float getXPosF()
-	{
-		return 0;
-	}
-
-	@Override
-	public float getYPosF()
-	{
-		return 0;
-	}
-
-	@Override
-	public float getZPosF()
-	{
-		return 0;
+		if (this.follow != null && this.follow.worldObj != null && this.follow.inventory.getCurrentItem() != null && this.follow.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber)
+		{
+			this.xPosF = (float)this.follow.posX;
+			this.yPosF = (float)this.follow.posY;
+			this.zPosF = (float)this.follow.posZ;
+			this.volume = 1;
+		}
+		else
+			this.volume = 0;
 	}
 }

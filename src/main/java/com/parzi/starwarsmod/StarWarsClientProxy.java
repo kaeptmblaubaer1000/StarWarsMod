@@ -105,6 +105,7 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
+import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
@@ -132,6 +133,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
+		StarWarsMod.soundBank = new PSoundBank();
 
 		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
