@@ -1,10 +1,12 @@
 package com.parzi.starwarsmod.handlers;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -15,11 +17,16 @@ import com.parzi.starwarsmod.vehicles.VehicXWing;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class CommonEventHandler
 {
+	@SideOnly(Side.CLIENT)
+	public static Item lastItem = null;
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
@@ -53,5 +60,20 @@ public class CommonEventHandler
 				if (xwing.getSFoil() >= 0.8f)
 					xwing.isClosing = true;
 			}
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onPlayerTick(TickEvent.PlayerTickEvent event)
+	{
+		if (event.phase == Phase.START && event.side == Side.CLIENT)
+		{
+			Item i = event.player.inventory.getCurrentItem() == null ? null : event.player.inventory.getCurrentItem().getItem();
+			if (i != lastItem)
+			{
+				Minecraft.getMinecraft().getSoundHandler().playSound(new SoundLightsaberHum(event.player));
+				lastItem = i;
+			}
+		}
 	}
 }

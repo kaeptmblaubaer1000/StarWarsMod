@@ -20,6 +20,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
 import org.lwjgl.opengl.GL11;
@@ -37,7 +38,7 @@ import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
-import com.parzi.starwarsmod.sound.PSoundBank;
+import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
@@ -74,12 +75,12 @@ public class ClientEventHandler
 	private static final ResourceLocation awingPitch1 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/pitch1.png");
 	private static final ResourceLocation awingPitch2 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/pitch2.png");
 
-	private static final ResourceLocation earth = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/earth.png");
-	private static final ResourceLocation endor = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/endor.png");
-	private static final ResourceLocation hoth = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/hoth.png");
-	private static final ResourceLocation kashyyyk = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/kashyyyk.png");
-	private static final ResourceLocation yavin = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/yavin.png");
-	private static final ResourceLocation tatooine = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/tatooine.png");
+	private static final ResourceLocation earthTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/earth.png");
+	private static final ResourceLocation endorTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/endor.png");
+	private static final ResourceLocation hothTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/hoth.png");
+	private static final ResourceLocation kashyyykTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/kashyyyk.png");
+	private static final ResourceLocation yavinTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/yavin.png");
+	private static final ResourceLocation tatooineTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/tatooine.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -346,7 +347,6 @@ public class ClientEventHandler
 						if (xwing.getTargetLock())
 						{
 							color = GlPalette.ORANGE;
-							StarWarsMod.soundBank.playIfNotAlready(PSoundBank.shipAlarm);
 						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
@@ -398,7 +398,7 @@ public class ClientEventHandler
 							lookStringNextTime = System.currentTimeMillis() + 100;
 						}
 
-						StarWarsMod.pgui.renderOverlay(this.planetFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
+						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
 
 						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
 
@@ -472,7 +472,7 @@ public class ClientEventHandler
 							}
 						}
 
-						StarWarsMod.pgui.renderOverlay(this.planetFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
+						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
 
 						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] { awing });
 
@@ -481,7 +481,6 @@ public class ClientEventHandler
 						if (awing.getTargetLock())
 						{
 							color = GlPalette.ORANGE;
-							StarWarsMod.soundBank.playIfNotAlready(PSoundBank.shipAlarm);
 						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
@@ -646,7 +645,7 @@ public class ClientEventHandler
 							}
 						}
 
-						StarWarsMod.pgui.renderOverlay(this.planetFromDim(tie.dimension), 0, 0);
+						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(tie.dimension), 0, 0);
 
 						if (tie.getHealth() >= 20)
 							PGui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
@@ -685,7 +684,6 @@ public class ClientEventHandler
 						if (tie.getTargetLock())
 						{
 							color = GlPalette.ORANGE;
-							StarWarsMod.soundBank.playIfNotAlready(PSoundBank.shipAlarm);
 						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
@@ -782,24 +780,30 @@ public class ClientEventHandler
 				}
 			}
 		}
+		if (mc.thePlayer.ridingEntity == null && lastTarget instanceof VehicleAirBase)
+		{
+			StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
+			lastTarget = null;
+		}
+
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
 
-	private ResourceLocation planetFromDim(int dim)
+	private ResourceLocation planetTextureFromDim(int dim)
 	{
 		if (dim == StarWarsMod.dimEndorId)
-			return endor;
+			return endorTexture;
 		else if (dim == StarWarsMod.dimHothId)
-			return hoth;
+			return hothTexture;
 		else if (dim == StarWarsMod.dimKashyyykId)
-			return kashyyyk;
+			return kashyyykTexture;
 		else if (dim == StarWarsMod.dimTatooineId)
-			return tatooine;
+			return tatooineTexture;
 		else if (dim == StarWarsMod.dimYavin4Id)
-			return yavin;
+			return yavinTexture;
 
-		return earth;
+		return earthTexture;
 	}
 
 }
