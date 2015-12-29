@@ -4,6 +4,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.PacketShipTargetLock;
+import com.parzi.starwarsmod.network.PacketXwingSfoil;
 
 public class VehicXWing extends VehicleAirBase
 {
@@ -68,19 +70,22 @@ public class VehicXWing extends VehicleAirBase
 		{
 			this.setSFoil(this.getSFoil() + 1 / 30f);
 			this.isOpening = this.getSFoil() < 0.8f;
+			if (this.riddenByEntity != null)
+				StarWarsMod.network.sendToServer(new PacketXwingSfoil(this.riddenByEntity.getCommandSenderName(), this.getSFoil(), this.worldObj.provider.dimensionId));
 		}
 
 		if (this.isClosing)
 		{
 			this.setSFoil(this.getSFoil() - 1 / 30f);
 			this.isClosing = this.getSFoil() > 0;
+			if (this.riddenByEntity != null)
+				StarWarsMod.network.sendToServer(new PacketXwingSfoil(this.riddenByEntity.getCommandSenderName(), this.getSFoil(), this.worldObj.provider.dimensionId));
 		}
 	}
 
 	public void setSFoil(float f)
 	{
 		this.dataWatcher.updateObject(SFOIL_DW, f);
-		this.dataWatcher.setObjectWatched(SFOIL_DW);
 	}
 }
 /*

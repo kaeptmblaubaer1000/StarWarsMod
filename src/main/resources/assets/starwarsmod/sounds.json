@@ -29,6 +29,12 @@
             "vehicle/tie/explode"
         ]
     },
+    "vehicle.awing.move": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/awing/move1"
+        ]
+    },
     "vehicle.xwing.move": {
         "category": "neutral",
         "sounds": [

@@ -39,7 +39,7 @@ public class VehicAWing extends VehicleAirBase
 	@Override
 	public String getMovingSound()
 	{
-		return "vehicle.xwing.move";
+		return "vehicle.awing.move";
 	}
 }
 /*

@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.sound.SoundFlyingVehicle;
 
 public class VehicleAirBase extends VehicleBase
 {
@@ -29,6 +30,9 @@ public class VehicleAirBase extends VehicleBase
 	public float gravity = 0.015F;
 
 	public float accel = 0.1f;
+
+	public boolean wasMoving = false;
+	public boolean nowMoving = false;
 
 	public List<Entity> nearby = new ArrayList<Entity>();
 
@@ -165,8 +169,13 @@ public class VehicleAirBase extends VehicleBase
 		super.onUpdate();
 		if (this.riddenByEntity == null)
 			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
-		if ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ)
-			this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 1, 1);
+
+		nowMoving = ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ);
+
+		if (nowMoving && !wasMoving)
+			Minecraft.getMinecraft().getSoundHandler().playSound(new SoundFlyingVehicle(this, this.getMovingSound()));
+
+		wasMoving = nowMoving;
 
 		if (this.ticksExisted % 5 == 0) // update radar
 			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
