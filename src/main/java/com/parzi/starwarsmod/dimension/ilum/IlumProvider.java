@@ -20,6 +20,12 @@ public class IlumProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	private IRenderHandler skyRenderer;
 
+	@Override
+	public boolean canDoRainSnowIce(Chunk chunk)
+	{
+		return true;
+	}
+
 	/**
 	 * Returns a new chunk provider which generates chunks for this world
 	 */
@@ -36,12 +42,6 @@ public class IlumProvider extends WorldProvider
 	public String getDimensionName()
 	{
 		return dimName;
-	}
-
-	@Override
-	public boolean canDoRainSnowIce(Chunk chunk)
-	{
-		return true;
 	}
 
 	@Override

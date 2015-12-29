@@ -59,6 +59,7 @@ import com.parzi.starwarsmod.rendering.RenderDroidTreadwell;
 import com.parzi.starwarsmod.rendering.RenderEwok;
 import com.parzi.starwarsmod.rendering.RenderGNK;
 import com.parzi.starwarsmod.rendering.RenderGamorrean;
+import com.parzi.starwarsmod.rendering.RenderHangingCauldron;
 import com.parzi.starwarsmod.rendering.RenderHuman;
 import com.parzi.starwarsmod.rendering.RenderJawa;
 import com.parzi.starwarsmod.rendering.RenderLightsaber;
@@ -106,6 +107,7 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
 import com.parzi.starwarsmod.sound.PSoundBank;
+import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
@@ -214,6 +216,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderBlockMudTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingCauldron.class, new RenderHangingCauldron());
 
 		RegisterGuiOverlays.registerAll();
 

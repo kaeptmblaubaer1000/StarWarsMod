@@ -6,22 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenOcean;
-import net.minecraft.world.biome.BiomeGenSwamp;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenForest;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenShrub;
-import net.minecraft.world.gen.feature.WorldGenSwamp;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
-import com.parzi.starwarsmod.utils.GlPalette;
-import com.parzi.starwarsmod.world.gen.WorldGenBetterForest;
 import com.parzi.starwarsmod.world.gen.WorldGenDagobahSwamp;
-import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
 
 public class BiomeGenDagobah extends BiomeGenPSWM
 {
@@ -84,38 +72,36 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 
 	@Override
 	public void genTerrainBlocks(World world, Random random, Block[] blocks, byte[] bytes, int a, int b, double c)
-    {
-        double d1 = plantNoise.func_151601_a((double)a * 0.25D, (double)b * 0.25D);
+	{
+		double d1 = plantNoise.func_151601_a(a * 0.25D, b * 0.25D);
 
-        if (d1 > 0.0D)
-        {
-            int k = a & 15;
-            int l = b & 15;
-            int i1 = blocks.length / 256;
+		if (d1 > 0.0D)
+		{
+			int k = a & 15;
+			int l = b & 15;
+			int i1 = blocks.length / 256;
 
-            for (int j1 = 255; j1 >= 0; --j1)
-            {
-                int k1 = (l * 16 + k) * i1 + j1;
+			for (int j1 = 255; j1 >= 0; --j1)
+			{
+				int k1 = (l * 16 + k) * i1 + j1;
 
-                if (blocks[k1] == null || blocks[k1].getMaterial() != Material.air)
-                {
-                    if (j1 <= 75 && blocks[k1] != Blocks.water)
-                    {
-                        blocks[k1] = Blocks.water;
+				if (blocks[k1] == null || blocks[k1].getMaterial() != Material.air)
+				{
+					if (j1 <= 75 && blocks[k1] != Blocks.water)
+					{
+						blocks[k1] = Blocks.water;
 
-                        if (d1 < 0.12D)
-                        {
-                            blocks[k1 + 1] = Blocks.waterlily;
-                        }
-                    }
+						if (d1 < 0.12D)
+							blocks[k1 + 1] = Blocks.waterlily;
+					}
 
-                    break;
-                }
-            }
-        }
+					break;
+				}
+			}
+		}
 
-        this.genBiomeTerrain(world, random, blocks, bytes, a, b, c);
-    }
+		this.genBiomeTerrain(world, random, blocks, bytes, a, b, c);
+	}
 
 	@Override
 	public int getSkyColorByTemp(float n)

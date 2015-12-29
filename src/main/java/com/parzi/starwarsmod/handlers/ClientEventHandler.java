@@ -20,7 +20,6 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
 import org.lwjgl.opengl.GL11;
@@ -38,7 +37,6 @@ import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
-import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
@@ -345,20 +343,18 @@ public class ClientEventHandler
 						int color = GlPalette.ANALOG_GREEN;
 
 						if (xwing.getTargetLock())
-						{
 							color = GlPalette.ORANGE;
-						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
 							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-							lastTarget = e;
+							this.lastTarget = e;
 						}
 
-						if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+						if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
 						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
-							lastTarget = e;
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+							this.lastTarget = e;
 						}
 
 						if (e != null)
@@ -479,20 +475,18 @@ public class ClientEventHandler
 						int color = GlPalette.ANALOG_GREEN;
 
 						if (awing.getTargetLock())
-						{
 							color = GlPalette.ORANGE;
-						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
 							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-							lastTarget = e;
+							this.lastTarget = e;
 						}
 
-						if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+						if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
 						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
-							lastTarget = e;
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+							this.lastTarget = e;
 						}
 
 						if (e != null)
@@ -682,20 +676,18 @@ public class ClientEventHandler
 						int color = GlPalette.ELECTRIC_BLUE;
 
 						if (tie.getTargetLock())
-						{
 							color = GlPalette.ORANGE;
-						}
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
 							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-							lastTarget = e;
+							this.lastTarget = e;
 						}
 
-						if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+						if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
 						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
-							lastTarget = e;
+							StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+							this.lastTarget = e;
 						}
 
 						if (e != null)
@@ -780,10 +772,10 @@ public class ClientEventHandler
 				}
 			}
 		}
-		if (mc.thePlayer.ridingEntity == null && lastTarget instanceof VehicleAirBase)
+		if (mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)
 		{
-			StarWarsMod.network.sendToServer(new PacketShipTargetLock(lastTarget.riddenByEntity.getCommandSenderName(), false, lastTarget.worldObj.provider.dimensionId));
-			lastTarget = null;
+			StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+			this.lastTarget = null;
 		}
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))

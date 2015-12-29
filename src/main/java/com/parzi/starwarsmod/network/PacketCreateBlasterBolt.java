@@ -34,10 +34,10 @@ public class PacketCreateBlasterBolt implements IMessage
 				/*
 				 * EntityXWingBolt bolt2 = new EntityXWingBolt(world, player);
 				 * world.spawnEntityInWorld(bolt2);
-				 *
+				 * 
 				 * EntityXWingBolt bolt3 = new EntityXWingBolt(world, player);
 				 * world.spawnEntityInWorld(bolt3);
-				 *
+				 * 
 				 * EntityXWingBolt bolt4 = new EntityXWingBolt(world, player);
 				 * world.spawnEntityInWorld(bolt4);
 				 */

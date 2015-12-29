@@ -170,12 +170,12 @@ public class VehicleAirBase extends VehicleBase
 		if (this.riddenByEntity == null)
 			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
 
-		nowMoving = ((int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ);
+		this.nowMoving = (int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ;
 
-		if (nowMoving && !wasMoving)
+		if (this.nowMoving && !this.wasMoving)
 			Minecraft.getMinecraft().getSoundHandler().playSound(new SoundFlyingVehicle(this, this.getMovingSound()));
 
-		wasMoving = nowMoving;
+		this.wasMoving = this.nowMoving;
 
 		if (this.ticksExisted % 5 == 0) // update radar
 			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)

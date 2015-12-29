@@ -6,10 +6,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.client.IRenderHandler;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.DrawYavinFourSky;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,6 +15,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class DagobahProvider extends WorldProvider
 {
 	public static String dimName = "Dagobah";
+
+	@Override
+	public float calculateCelestialAngle(long var1, float var3)
+	{
+		return 0F;
+	}
 
 	/**
 	 * Returns a new chunk provider which generates chunks for this world
@@ -28,13 +32,20 @@ public class DagobahProvider extends WorldProvider
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean doesXZShowFog(int p_76568_1_, int p_76568_2_)
+	{
+		return true;
+	}
+
+	@Override
 	protected void generateLightBrightnessTable()
 	{
 		float f = 0.1F;
 		for (int i = 0; i <= 15; i++)
 		{
 			float f1 = 1.0F - i / 15.0F;
-			this.lightBrightnessTable[i] = ((1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f);
+			this.lightBrightnessTable[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f;
 		}
 	}
 
@@ -47,40 +58,31 @@ public class DagobahProvider extends WorldProvider
 		return dimName;
 	}
 
+	@Override
+	public ChunkCoordinates getEntrancePortalLocation()
+	{
+		return null;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3 getFogColor(float par1, float par2)
 	{
 		float f2 = MathHelper.cos(par1 * 3.1415927F * 2.0F) * 2.0F + 0.5F;
 		if (f2 < 1.5F)
-		{
 			f2 = 1.5F;
-		}
 		if (f2 > 5.0F)
-		{
 			f2 = 5.0F;
-		}
 		float f3 = 0.7529412F;
 		float f4 = 0.84705883F;
 		float f5 = 1.0F;
-		f3 *= (f2 * 0.94F + 0.06F);
-		f4 *= (f2 * 0.94F + 0.06F);
-		f5 *= (f2 * 0.91F + 0.09F);
+		f3 *= f2 * 0.94F + 0.06F;
+		f4 *= f2 * 0.94F + 0.06F;
+		f5 *= f2 * 0.91F + 0.09F;
 		f3 = 0.5F * f2;
 		f4 = 0.5F * f2;
 		f5 = 0.5F * f2;
 		return Vec3.createVectorHelper(f3, f4, f5);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int p_76568_1_, int p_76568_2_)
-	{
-		return true;
-	}
-
-	@Override
-	public ChunkCoordinates getEntrancePortalLocation()
-	{
-		return null;
 	}
 
 	@Override
@@ -111,11 +113,5 @@ public class DagobahProvider extends WorldProvider
 	public boolean shouldMapSpin(String entity, double x, double y, double z)
 	{
 		return false;
-	}
-
-	@Override
-	public float calculateCelestialAngle(long var1, float var3)
-	{
-		return 0F;
 	}
 }

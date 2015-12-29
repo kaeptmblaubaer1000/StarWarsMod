@@ -6,7 +6,6 @@ import net.minecraft.server.MinecraftServer;
 
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

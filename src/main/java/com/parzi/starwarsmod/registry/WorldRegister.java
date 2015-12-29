@@ -5,7 +5,6 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.dimension.dagobah.BiomeChunkProviderDagobah;
 import com.parzi.starwarsmod.dimension.dagobah.BiomeGenDagobah;
 import com.parzi.starwarsmod.dimension.dagobah.DagobahProvider;
 import com.parzi.starwarsmod.dimension.endor.BiomeGenEndor;

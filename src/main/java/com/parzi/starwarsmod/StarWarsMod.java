@@ -333,6 +333,9 @@ public class StarWarsMod
 	public static Block blockTatooineSandstone;
 	public static Block blockSpaceLamp;
 	public static Block blockDagobahMud;
+	public static Block blockHangingCauldron;
+	public static Block blockHangingBucket;
+	public static Block blockBasket;
 
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;
