@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -28,6 +29,12 @@ public class BlockMV extends BlockContainer
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
+
+	@Override
+    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
+    {
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
+    }
 
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int wut)

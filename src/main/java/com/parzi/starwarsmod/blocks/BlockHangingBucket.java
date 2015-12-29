@@ -8,31 +8,20 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 
-public class BlockHangingCauldron extends BlockContainer
+public class BlockHangingBucket extends BlockContainer
 {
-	public BlockHangingCauldron()
+	public BlockHangingBucket()
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + "cauldronHanging");
+		this.setBlockName(StarWarsMod.MODID + "." + "bucketHanging");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_)
-	{
-		return new TileEntityHangingCauldron();
-	}
-
-	@Override
-	public int getRenderType()
-	{
-		return -1;
 	}
 
 	@Override
@@ -40,6 +29,18 @@ public class BlockHangingCauldron extends BlockContainer
     {
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
     }
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int p_149915_2_)
+	{
+		return new TileEntityHangingBucket();
+	}
+
+	@Override
+	public int getRenderType()
+	{
+		return -1;
+	}
 
 	@Override
 	public boolean isOpaqueCube()
@@ -50,7 +51,7 @@ public class BlockHangingCauldron extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconCauldronHanging");
+		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconBucketHanging");
 	}
 
 	@Override

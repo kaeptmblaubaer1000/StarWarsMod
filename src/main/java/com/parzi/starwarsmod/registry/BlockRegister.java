@@ -1,10 +1,12 @@
 package com.parzi.starwarsmod.registry;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.blocks.BlockBasket;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockDagobahMud;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
+import com.parzi.starwarsmod.blocks.BlockHangingBucket;
 import com.parzi.starwarsmod.blocks.BlockHangingCauldron;
 import com.parzi.starwarsmod.blocks.BlockMV;
 import com.parzi.starwarsmod.blocks.BlockMudStairs;
@@ -18,6 +20,8 @@ import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
 import com.parzi.starwarsmod.items.ItemEndorBaseWall;
 import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.items.ItemTatooineSandstone;
+import com.parzi.starwarsmod.tileentities.TileEntityBasket;
+import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
@@ -36,6 +40,14 @@ public class BlockRegister
 		StarWarsMod.blockHangingCauldron = new BlockHangingCauldron();
 		GameRegistry.registerBlock(StarWarsMod.blockHangingCauldron, "hangingCauldron");
 		GameRegistry.registerTileEntity(TileEntityHangingCauldron.class, "teHangingCauldron");
+
+		StarWarsMod.blockHangingBucket = new BlockHangingBucket();
+		GameRegistry.registerBlock(StarWarsMod.blockHangingBucket, "hangingBucket");
+		GameRegistry.registerTileEntity(TileEntityHangingBucket.class, "teHangingBucket");
+
+		StarWarsMod.blockBasket = new BlockBasket();
+		GameRegistry.registerBlock(StarWarsMod.blockBasket, "basket");
+		GameRegistry.registerTileEntity(TileEntityBasket.class, "teBasket");
 
 		StarWarsMod.blockChromiumOre = new BlockChromiumOre();
 		GameRegistry.registerBlock(StarWarsMod.blockChromiumOre, "chromiumOre");

@@ -41,6 +41,7 @@ import com.parzi.starwarsmod.mobs.MobWookiee;
 import com.parzi.starwarsmod.registry.KeybindRegistry;
 import com.parzi.starwarsmod.registry.RegisterGuiOverlays;
 import com.parzi.starwarsmod.rendering.RenderBantha;
+import com.parzi.starwarsmod.rendering.RenderBasket;
 import com.parzi.starwarsmod.rendering.RenderBith;
 import com.parzi.starwarsmod.rendering.RenderBlasterBolt;
 import com.parzi.starwarsmod.rendering.RenderBlockMudTable;
@@ -59,6 +60,7 @@ import com.parzi.starwarsmod.rendering.RenderDroidTreadwell;
 import com.parzi.starwarsmod.rendering.RenderEwok;
 import com.parzi.starwarsmod.rendering.RenderGNK;
 import com.parzi.starwarsmod.rendering.RenderGamorrean;
+import com.parzi.starwarsmod.rendering.RenderHangingBucket;
 import com.parzi.starwarsmod.rendering.RenderHangingCauldron;
 import com.parzi.starwarsmod.rendering.RenderHuman;
 import com.parzi.starwarsmod.rendering.RenderJawa;
@@ -107,6 +109,8 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
 import com.parzi.starwarsmod.sound.PSoundBank;
+import com.parzi.starwarsmod.tileentities.TileEntityBasket;
+import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
@@ -217,6 +221,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderBlockMudTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingCauldron.class, new RenderHangingCauldron());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingBucket.class, new RenderHangingBucket());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBasket.class, new RenderBasket());
 
 		RegisterGuiOverlays.registerAll();
 
