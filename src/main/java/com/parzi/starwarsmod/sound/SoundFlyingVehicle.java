@@ -28,7 +28,7 @@ public class SoundFlyingVehicle extends MovingSound
 	@Override
 	public void update()
 	{
-		if (vehicle == null || vehicle.deathTime == 10 || (!this.vehicle.wasMoving && !this.vehicle.nowMoving) || !(this.vehicle.riddenByEntity instanceof EntityPlayer))
+		if (vehicle == null || !this.vehicle.nowMoving || !(this.vehicle.riddenByEntity instanceof EntityPlayer))
 			this.donePlaying = true;
 	}
 }
