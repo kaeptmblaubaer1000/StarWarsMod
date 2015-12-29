@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.sound;
 
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -27,7 +28,7 @@ public class SoundFlyingVehicle extends MovingSound
 	@Override
 	public void update()
 	{
-		if (!this.vehicle.wasMoving && !this.vehicle.nowMoving)
+		if ((!this.vehicle.wasMoving && !this.vehicle.nowMoving) || !(this.vehicle.riddenByEntity instanceof EntityPlayer))
 			this.donePlaying = true;
 	}
 }
