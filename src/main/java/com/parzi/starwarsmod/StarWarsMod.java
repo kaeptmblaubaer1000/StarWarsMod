@@ -42,6 +42,7 @@ import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
 import com.parzi.starwarsmod.network.PacketTogglePlayerSequelLightsaber;
+import com.parzi.starwarsmod.network.PacketXwingSfoil;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
@@ -431,6 +432,7 @@ public class StarWarsMod
 		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, 4, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, 5, Side.SERVER);
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, 6, Side.SERVER);
+		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, 7, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();
