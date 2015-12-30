@@ -7,8 +7,6 @@ import com.parzi.starwarsmod.armor.ArmorBobaJetpack;
 import com.parzi.starwarsmod.armor.ArmorEndor;
 import com.parzi.starwarsmod.armor.ArmorHoth;
 import com.parzi.starwarsmod.armor.ArmorHothPilot;
-import com.parzi.starwarsmod.armor.ArmorJediRobes;
-import com.parzi.starwarsmod.armor.ArmorLightJediRobes;
 import com.parzi.starwarsmod.armor.ArmorRebelFleet;
 import com.parzi.starwarsmod.armor.ArmorRebelPilot;
 import com.parzi.starwarsmod.armor.ArmorSandtrooper;
@@ -85,6 +83,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnAWing;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
@@ -251,11 +250,8 @@ public class ItemRegister
 		StarWarsMod.gorrnar = new ItemGorrnar();
 		GameRegistry.registerItem(StarWarsMod.gorrnar, "gorrnar");
 
-		StarWarsMod.jediRobes = new ArmorJediRobes(StarWarsMod.jediRobesMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.jediRobes, "jediRobes");
-
-		StarWarsMod.lightJediRobes = new ArmorLightJediRobes(StarWarsMod.jediRobesMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.lightJediRobes, "lightJediRobes");
+		StarWarsMod.jediRobes = new ArmorJediRobes();
+		GameRegistry.registerItem(StarWarsMod.jediRobes, "newJediRobes");
 
 		StarWarsMod.endorHelmet = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.endorHelmet, "endorHelmet");

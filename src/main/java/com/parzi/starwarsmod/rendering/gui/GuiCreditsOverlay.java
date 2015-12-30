@@ -40,7 +40,7 @@ public class GuiCreditsOverlay extends Gui
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent event)
 	{
-		if (event.isCancelable() || event.type != RenderGameOverlayEvent.ElementType.HOTBAR)
+		if (event.type != RenderGameOverlayEvent.ElementType.HOTBAR || !StarWarsMod.enableCreditsOverlay)
 			return;
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + StarWarsMod.VERSION, 5, 5, 16777215);
 		StarWarsMod.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));

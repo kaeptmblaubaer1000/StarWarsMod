@@ -17,7 +17,6 @@ import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
-import com.parzi.starwarsmod.commands.CommandForcePoints;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.handlers.CommonEventHandler;
 import com.parzi.starwarsmod.handlers.GuiHandler;
@@ -175,7 +174,6 @@ public class StarWarsMod
 	public static Item spawnTreadwell;
 
 	public static Item jediRobes;
-	public static Item lightJediRobes;
 
 	public static Item recordTheme;
 	public static Item recordThrone;
@@ -459,6 +457,7 @@ public class StarWarsMod
 		StarWarsMod.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 
 		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
+
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
@@ -480,8 +479,6 @@ public class StarWarsMod
 			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());
 		}
-
-		event.registerServerCommand(new CommandForcePoints());
 	}
 }
 /*

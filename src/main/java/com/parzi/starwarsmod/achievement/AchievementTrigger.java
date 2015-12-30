@@ -26,7 +26,7 @@ public class AchievementTrigger
 	public void onItemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
 		if (event.crafting != null)
-			if (event.crafting.getItem() == StarWarsMod.jediRobes || event.crafting.getItem() == StarWarsMod.lightJediRobes)
+			if (event.crafting.getItem() == StarWarsMod.jediRobes)
 				event.player.addStat(StarWarsAchievements.becomeJedi, 1);
 			else if (event.crafting.getItem() == StarWarsMod.hyperdriveEngine)
 				event.player.addStat(StarWarsAchievements.craftHyperdrive, 1);

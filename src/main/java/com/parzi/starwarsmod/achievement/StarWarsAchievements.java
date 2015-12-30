@@ -24,7 +24,7 @@ public class StarWarsAchievements
 
 	public static void registerAll()
 	{
-		becomeJedi = new StarWarsAchievement("becomeJedi", -2, -1, StarWarsMod.lightJediRobes, null);
+		becomeJedi = new StarWarsAchievement("becomeJedi", -2, -1, StarWarsMod.jediRobes, null);
 		fireBlaster = new StarWarsAchievement("fireBlaster", 2, -2, StarWarsMod.blasterRifle.getMeta("Stormtrooper"), null);
 		craftLightsaber = new StarWarsAchievement("craftLightsaber", -1, 2, new ItemStack(StarWarsMod.lightsaber, 1, 2), null);
 		craftHyperdrive = new StarWarsAchievement("craftHyperdrive", 1, 0, StarWarsMod.hyperdriveEngine, null);

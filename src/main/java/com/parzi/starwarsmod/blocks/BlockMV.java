@@ -14,6 +14,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.utils.HarvestLevel;
@@ -77,7 +78,7 @@ public class BlockMV extends BlockContainer
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
 		if (!world.isRemote)
-			player.openGui(StarWarsMod.instance, 0, world, x, y, z);
+			player.openGui(StarWarsMod.instance, StarWarsEnum.GUI_MV, world, x, y, z);
 		return true;
 	}
 
