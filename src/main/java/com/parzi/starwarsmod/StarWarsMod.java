@@ -17,6 +17,7 @@ import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
+import com.parzi.starwarsmod.commands.CommandJediRobes;
 import com.parzi.starwarsmod.commands.CommandSWDim;
 import com.parzi.starwarsmod.handlers.CommonEventHandler;
 import com.parzi.starwarsmod.handlers.GuiHandler;
@@ -36,7 +37,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketJediRobesBuy;
-import com.parzi.starwarsmod.network.PacketJediRobesSetElementInArmorInv;
+import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
@@ -72,7 +73,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "1.2.0";
+	public static final String VERSION = "1.2.5";
 	public static final String DEV_VER = "dev0";
 
 	public static String ONLINE_VERSION = "";
@@ -296,6 +297,7 @@ public class StarWarsMod
 	public static boolean enableBlasterFire;
 	public static boolean enableBuckets;
 	public static boolean enableLightsaber;
+	public static boolean beshOverride;
 
 	public static boolean enableTabOriginal = true;
 	public static boolean enableTabSequel = true;
@@ -426,7 +428,7 @@ public class StarWarsMod
 	{
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(StarWarsMod.MODID);
 		network.registerMessage(PacketJediRobesBuy.Handler.class, PacketJediRobesBuy.class, 0, Side.SERVER);
-		network.registerMessage(PacketJediRobesSetElementInArmorInv.Handler.class, PacketJediRobesSetElementInArmorInv.class, 1, Side.SERVER);
+		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, 1, Side.SERVER);
 		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, 2, Side.SERVER);
 		network.registerMessage(PacketCreateBlasterBolt.Handler.class, PacketCreateBlasterBolt.class, 3, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, 4, Side.SERVER);
@@ -439,6 +441,7 @@ public class StarWarsMod
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
+		beshOverride = config.get("core", "aurebeshInsteadOfEnglish", true).getBoolean();
 
 		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();
@@ -480,6 +483,7 @@ public class StarWarsMod
 		{
 			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());
+			event.registerServerCommand(new CommandJediRobes());
 		}
 	}
 }

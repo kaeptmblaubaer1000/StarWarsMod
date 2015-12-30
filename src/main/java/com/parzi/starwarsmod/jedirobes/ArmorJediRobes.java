@@ -61,7 +61,22 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
-		stack.stackTagCompound.setInteger("level", stack.stackTagCompound.getInteger("level") + levels);
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("level"))
+			stack.stackTagCompound.setInteger("level", stack.stackTagCompound.getInteger("level") + levels);
+		return stack;
+	}
+
+	public static ItemStack setXP(ItemStack stack, int levels)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger("xp", levels);
+		return stack;
+	}
+
+	public static ItemStack setMaxXP(ItemStack stack, int levels)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger("maxxp", levels);
 		return stack;
 	}
 
@@ -71,9 +86,25 @@ public class ArmorJediRobes extends ItemArmor
 		setupRobe(stack, player);
 	}
 
-	public int getLevel(ItemStack stack)
+	public static int getLevel(ItemStack stack)
 	{
-		return stack.stackTagCompound.getInteger("level");
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("level"))
+			return stack.stackTagCompound.getInteger("level");
+		return 0;
+	}
+
+	public static int getXP(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("xp"))
+			return stack.stackTagCompound.getInteger("xp");
+		return 0;
+	}
+
+	public static int getMaxXP(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("maxxp"))
+			return stack.stackTagCompound.getInteger("maxxp");
+		return 0;
 	}
 
 	public void setupRobe(ItemStack stack, Entity player)
@@ -86,6 +117,8 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		stack.stackTagCompound.setString("master", owner.getCommandSenderName());
 		stack.stackTagCompound.setInteger("level", 0);
+		stack.stackTagCompound.setInteger("xp", 0);
+		stack.stackTagCompound.setInteger("maxxp", 100);
 		stack.stackTagCompound.setString("side", SIDE_NONE);
 	}
 }

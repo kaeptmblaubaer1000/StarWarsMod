@@ -60,7 +60,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	public GuiScreenJediRobes(EntityPlayer player)
 	{
 		mc = Minecraft.getMinecraft();
-		this.stack = player.getEquipmentInSlot(2);
+		this.stack = player.getEquipmentInSlot(3);
 		this.player = player;
 
 		this.powers = ForceUtils.getAllPowers();
@@ -78,7 +78,8 @@ public class GuiScreenJediRobes extends GuiScreen
 		{
 			listWidth = Math.max(listWidth, getFontRenderer().getStringWidth(LangUtils.translate(power)) + 10);
 			GuiPowerListItem item = new GuiPowerListItem();
-			item.unlocalizedName = power;
+			item.localizedName = LangUtils.translate("force.power." + power);
+			item.localizedDesc = LangUtils.translate("force.power." + power + ".desc");
 			items.add(item);
 		}
 		listWidth = Math.min(listWidth, 150);
@@ -110,20 +111,36 @@ public class GuiScreenJediRobes extends GuiScreen
 	@Override
 	public void drawScreen(int p_571_1_, int p_571_2_, float p_571_3_)
 	{
-		StarWarsMod.pgui.drawRect(0, 0, this.width, this.height, GlPalette.BLACK);
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		this.drawCenteredString(this.fontRendererObj, "Jedi Apprentice " + TextUtils.makeItalic(player.getCommandSenderName()), offset, 16, 0xFFFFFF);
 		if (selectedPower != null)
 		{
 			GL11.glEnable(GL11.GL_BLEND);
-			this.drawCenteredString(this.fontRendererObj, selectedPower.unlocalizedName, offset, 35, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, selectedPower.localizedName, offset, 35, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, String.format("Current Level: %s", selectedPower.currentLevel), offset, 45, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, "Description and Use:", offset, 55, 0xDDDDDD);
-			this.drawCenteredString(this.fontRendererObj, selectedPower.unlocalizedDesc, offset, 65, 0xDDDDDD);
+			this.fontRendererObj.drawSplitString(selectedPower.localizedDesc, offset - 125, 65, 250, 0xDDDDDD);
 			GL11.glDisable(GL11.GL_BLEND);
 		}
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
+	}
+
+	public void drawBg2()
+	{
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_FOG);
+        Tessellator tessellator = Tessellator.instance;
+        this.mc.getTextureManager().bindTexture(optionsBackground);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        float f = 32.0F;
+        tessellator.startDrawingQuads();
+        tessellator.setColorOpaque_I(4210752);
+        tessellator.addVertexWithUV(0.0D, (double)this.height, 0.0D, 0.0D, (double)((float)this.height / f + 1));
+        tessellator.addVertexWithUV((double)this.width, (double)this.height, 0.0D, (double)((float)this.width / f), (double)((float)this.height / f + 1));
+        tessellator.addVertexWithUV((double)this.width, 0.0D, 0.0D, (double)((float)this.width / f), 1);
+        tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 1);
+        tessellator.draw();
 	}
 
 	Minecraft getMinecraftInstance()

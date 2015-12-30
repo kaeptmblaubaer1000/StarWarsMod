@@ -139,7 +139,6 @@ public class ClientEventHandler
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
 			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), event.orb.getXpValue());
-			Lumberjack.log("got xp:" + event.orb.getXpValue());
 		}
 	}
 

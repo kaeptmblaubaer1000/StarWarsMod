@@ -1,12 +1,23 @@
 package com.parzi.starwarsmod.rendering.gui;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.utils.GlPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -14,11 +25,14 @@ public class GuiCreditsOverlay extends Gui
 {
 	private Minecraft mc;
 	private RenderItem r;
+	private NumberFormat format;
 
 	public GuiCreditsOverlay(Minecraft mc)
 	{
 		this.mc = mc;
 		this.r = RenderItem.getInstance();
+
+		format = NumberFormat.getInstance();
 	}
 
 	public int countCredits()
@@ -42,9 +56,35 @@ public class GuiCreditsOverlay extends Gui
 	{
 		if (event.type != RenderGameOverlayEvent.ElementType.HOTBAR || !StarWarsMod.enableCreditsOverlay)
 			return;
+
+		RenderHelper.disableStandardItemLighting();
+
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + StarWarsMod.VERSION, 5, 5, 16777215);
 		StarWarsMod.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
-		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+
+		if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+
+			ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
+			NBTTagCompound tags = robes.stackTagCompound;
+
+			int xp = ArmorJediRobes.getXP(robes);
+			int maxxp = ArmorJediRobes.getMaxXP(robes);
+
+			boolean isJedi = true;
+
+			RenderHelper.disableStandardItemLighting();
+			StarWarsMod.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
+
+			GL11.glPushMatrix();
+			GL11.glScalef(0.5f, 0.5f, 0.5f);
+			RenderHelper.disableStandardItemLighting();
+			this.drawCenteredString(mc.fontRenderer, "FORCE XP: " + format.format(xp) + "/" + format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
+			GL11.glPopMatrix();
+		}
+
+		RenderHelper.disableStandardItemLighting();
 	}
 }
 /*

@@ -13,12 +13,16 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import com.parzi.starwarsmod.StarWarsMod;
+
 import scala.Int;
 
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
 	private static ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
+	private static ResourceLocation saberBars = new ResourceLocation(StarWarsMod.MODID, "textures/gui/bars.png");
+	private static ResourceLocation saber = new ResourceLocation(StarWarsMod.MODID, "textures/gui/hilt.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
@@ -496,6 +500,36 @@ public class PGui// extends Gui
 	}
 
 	/**
+	 * Draws a texture on-screen
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param textureX
+	 *            The x position of the texture
+	 * @param textureY
+	 *            The y position of the texture
+	 * @param width
+	 *            The width on-screen
+	 * @param height
+	 *            The height on-screen
+	 */
+	public void drawTexturedModalRectFloat(float x, float y, float textureX, float textureY, float width, float height)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = 0.00390625F;
+		float f1 = 0.00390625F;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(x + 0, y + height, 1, (textureX + 0) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x + width, y + height, 1, (textureX + width) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x + width, y + 0, 1, (textureX + width) * f, (textureY + 0) * f1);
+		tessellator.addVertexWithUV(x + 0, y + 0, 1, (textureX + 0) * f, (textureY + 0) * f1);
+		tessellator.draw();
+	}
+
+	/**
 	 * Draws an IIcon
 	 *
 	 * @param x
@@ -548,6 +582,35 @@ public class PGui// extends Gui
 		if (k > 0)
 			this.drawTexturedModalRect(j, b0, 0, xpBar ? 69 : 79, k, 5);
 		fontrenderer.drawStringWithShadow(caption, i / 2 - fontrenderer.getStringWidth(caption) / 2, b0 - 10, 16777215);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(3042);
+	}
+
+	/**
+	 * Renders a progress bar on-screen
+	 *
+	 * @param caption
+	 *            The string to display above the bar
+	 * @param percent
+	 *            The percentage full of the bar (0-1)
+	 * @param jedi
+	 *            True if you want to draw an XP-style bar instead of a boss bar
+	 */
+	public void renderLightsaberBarOnscreen(int x, int y, float percent, boolean jedi)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.getTextureManager().bindTexture(saberBars);
+		GL11.glEnable(3042);
+		int j = x + 25;
+		int k = (int)(percent * 100);
+		int b0 = y + 1;
+		this.drawTexturedModalRectFloat(j, b0, 0, 0, 99, 3.6f);
+		if (k > 0)
+			this.drawTexturedModalRectFloat(j, b0, 0, jedi ? 3.6f : 10.5f, k, 3.6f);
+
+		PGui.mc.getTextureManager().bindTexture(saber);
+		this.drawTexturedModalRectFloat(j - (jedi ? 25 : 24), b0 - 0.75f, 0, jedi ? 0 : 6f, 26.5f, 6);
+
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);
 	}
