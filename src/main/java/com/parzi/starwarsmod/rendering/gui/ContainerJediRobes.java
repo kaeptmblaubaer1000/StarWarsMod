@@ -14,6 +14,6 @@ public class ContainerJediRobes extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer p_75145_1_)
 	{
-		return true;
+		return p_75145_1_.isClientWorld();
 	}
 }

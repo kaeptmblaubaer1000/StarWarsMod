@@ -238,6 +238,35 @@ key.starwarsmod=Star Wars
 key.starwarsmod.shootVehicle=Fire Lasers (in Starfighters)
 key.starwarsmod.toggleSFoil=Toggle S Foil (in X-Wing)
 
+// Force
+force.power.jump=Jump
+force.power.push=Push
+force.power.pull=Pull
+force.power.defend=Defend
+force.power.disable=Disable
+force.power.deflect=Deflect
+force.power.grab=Grab
+force.power.healing=Heal
+force.power.naturalAwareness=Nature Awareness
+force.power.slow=Slow
+force.power.drainKnowledge=Drain Knowledge
+force.power.lightning=Lightning
+force.power.destruction=Destruction
+
+force.power.jump.desc=Jump
+force.power.push.desc=Push
+force.power.pull.desc=Pull
+force.power.defend.desc=Defend
+force.power.disable.desc=Disable
+force.power.deflect.desc=Deflect
+force.power.grab.desc=Grab
+force.power.healing.desc=Heal
+force.power.naturalAwareness.desc=Nature Awareness
+force.power.slow.desc=Slow
+force.power.drainKnowledge.desc=Drain Knowledge
+force.power.lightning.desc=Lightning
+force.power.destruction.desc=Destruction
+
 ####################
 # Sequel Trilogy
 ####################

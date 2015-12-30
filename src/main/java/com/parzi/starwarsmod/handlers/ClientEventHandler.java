@@ -766,7 +766,14 @@ public class ClientEventHandler
 		}
 		if (mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)
 		{
-			StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+			try
+			{
+				StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 			this.lastTarget = null;
 		}
 

@@ -54,14 +54,6 @@ public class ArmorJediRobes extends ItemArmor
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-	{
-		if (player.isSneaking() && !world.isRemote)
-			player.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, world, (int)player.posX, (int)player.posY, (int)player.posZ);
-		return stack;
-	}
-
-	@Override
 	public void onCreated(ItemStack stack, World world, EntityPlayer player)
 	{
 		setupRobe(stack, player);

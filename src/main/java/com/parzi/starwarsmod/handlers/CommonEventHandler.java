@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 
+import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
@@ -67,6 +68,9 @@ public class CommonEventHandler
 					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(mc.thePlayer, false));
 				}
 			}
+
+		if (StarWarsMod.keyRobeGui.isPressed())
+			mc.thePlayer.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, null, 0, 0, 0);
 	}
 
 	@SubscribeEvent
