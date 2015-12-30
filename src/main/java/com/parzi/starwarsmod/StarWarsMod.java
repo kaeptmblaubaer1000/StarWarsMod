@@ -441,7 +441,7 @@ public class StarWarsMod
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
-		beshOverride = config.get("core", "aurebeshInsteadOfEnglish", true).getBoolean();
+		beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
 
 		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();
