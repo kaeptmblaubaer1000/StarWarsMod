@@ -378,7 +378,7 @@ public class GuiSlotPowerList extends GuiScrollingList
 		GuiPowerListItem power = powers.get(listIndex);
 
 		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.localizedName, listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
-		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth("Current Level: " + power.currentLevel, listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
+		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth("Current Level: " + (power.power == null ? 0 : power.power.currentLevel), listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
 		// this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.getMetadata()
 		// != null ? power.getMetadata().getChildModCountString() :
 		// "Metadata not found", listWidth - 10), this.left + 3, var3 + 22,

@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
 import com.parzi.starwarsmod.utils.LangUtils;
 
@@ -11,17 +12,37 @@ public class Power
 	public String unlocalizedName = "";
 	public String unlocalizedDescription = "";
 	public int rechargeTime = 0;
+	public int costMult = 0;
+	public int baseCost = 0;
 
-	public Power(String name, int maxLevel, int rechargeTime)
+	public Power(String name)
 	{
 		this.unlocalizedName = "force.power." + name;
 		this.unlocalizedDescription = this.unlocalizedName + ".desc";
-		this.maxLevel = maxLevel;
-		this.rechargeTime = rechargeTime;
+	}
+
+	public static Power getPowerFromName(String name, int level)
+	{
+		if (name.equalsIgnoreCase("jump"))
+			return new PowerJump(level);
+		return null;
+	}
+
+	/**
+	 * Gets the XP cost of using the power at a specific level
+	 *
+	 * @param level
+	 *            The level to test
+	 * @return The cost in XP
+	 */
+	public int getCostForLevel(int level)
+	{
+		return baseCost + (costMult * level);
 	}
 
 	/**
 	 * Returns the name, translated into the player's native lang
+	 *
 	 * @return
 	 */
 	public String getLocalizedName()
@@ -31,6 +52,7 @@ public class Power
 
 	/**
 	 * Returns the description, translated into the player's native lang
+	 *
 	 * @return
 	 */
 	public String getLocalizedDesc()
@@ -40,7 +62,9 @@ public class Power
 
 	/**
 	 * Applies the power to the player, called every tick the armor is worn.
-	 * @param player The player to apply the power to
+	 *
+	 * @param player
+	 *            The player to apply the power to
 	 * @return Returns true if a power was applied, false otherwise
 	 */
 	public boolean run(EntityPlayer player)

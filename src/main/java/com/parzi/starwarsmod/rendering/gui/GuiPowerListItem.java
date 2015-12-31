@@ -1,8 +1,10 @@
 package com.parzi.starwarsmod.rendering.gui;
 
+import com.parzi.starwarsmod.jedirobes.powers.Power;
+
 public class GuiPowerListItem
 {
 	public String localizedName = "";
-	public int currentLevel = 0;
 	public String localizedDesc = "";
+	public Power power;
 }

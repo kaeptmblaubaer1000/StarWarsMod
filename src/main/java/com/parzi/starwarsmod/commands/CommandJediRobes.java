@@ -3,21 +3,15 @@ package com.parzi.starwarsmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
-import com.parzi.starwarsmod.utils.GlPalette;
-import com.parzi.starwarsmod.utils.Lumberjack;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
 
 public class CommandJediRobes implements net.minecraft.command.ICommand
 {
@@ -94,21 +88,21 @@ public class CommandJediRobes implements net.minecraft.command.ICommand
 			return;
 		}
 
-		Minecraft mc = Minecraft.getMinecraft();
+		EntityPlayer player = icommandsender.getEntityWorld().getPlayerEntityByName(icommandsender.getCommandSenderName());
 
-		if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
+		if (player != null && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
-			ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
+			ItemStack robes = player.inventory.armorItemInSlot(2);
 			NBTTagCompound tags = robes.stackTagCompound;
 
 			int xp = ArmorJediRobes.getXP(robes);
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
-			StarWarsMod.network.sendToServer(new PacketRobesNBT(key, value, mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
+			StarWarsMod.network.sendToServer(new PacketRobesNBT(key, value, player.dimension, player.getCommandSenderName()));
 
 			if (key.equalsIgnoreCase("level"))
 			{
-				StarWarsMod.network.sendToServer(new PacketRobesNBT("maxxp", value * 10, mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketRobesNBT("maxxp", value * 10, player.dimension, player.getCommandSenderName()));
 			}
 		}
 		else

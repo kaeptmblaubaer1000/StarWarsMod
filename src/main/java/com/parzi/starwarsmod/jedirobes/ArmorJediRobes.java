@@ -3,19 +3,16 @@ package com.parzi.starwarsmod.jedirobes;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.armor.ArmorBobaJetpack;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.ItemUtils;
-import com.parzi.starwarsmod.utils.KeyboardUtils;
-import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.TextUtils;
 
 public class ArmorJediRobes extends ItemArmor
 {
@@ -51,6 +48,15 @@ public class ArmorJediRobes extends ItemArmor
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{
 		setupRobe(stack, player);
+
+		for (String spower : ForceUtils.getAllPowers())
+		{
+			if (Power.getPowerFromName(spower, 0) != null && getLevelOf(stack, spower) > 0)
+			{
+				Power power = Power.getPowerFromName(spower, getLevelOf(stack, spower));
+				power.run(player);
+			}
+		}
 	}
 
 	@Override
@@ -93,6 +99,13 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
+	public static int getLevelOf(ItemStack stack, String power)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("powers"))
+			return ((NBTTagCompound)stack.stackTagCompound.getTag("powers")).getInteger(power);
+		return 0;
+	}
+
 	public static int getXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("xp"))
@@ -120,5 +133,7 @@ public class ArmorJediRobes extends ItemArmor
 		stack.stackTagCompound.setInteger("xp", 0);
 		stack.stackTagCompound.setInteger("maxxp", 100);
 		stack.stackTagCompound.setString("side", SIDE_NONE);
+		stack.stackTagCompound.setTag("powers", new NBTTagCompound());
+		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("jump", 1);
 	}
 }
