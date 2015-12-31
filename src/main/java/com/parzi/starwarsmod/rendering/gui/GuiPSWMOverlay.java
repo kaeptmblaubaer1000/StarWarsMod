@@ -1,10 +1,6 @@
 package com.parzi.starwarsmod.rendering.gui;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -15,8 +11,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
+import org.lwjgl.opengl.GL11;
+
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -79,7 +79,18 @@ public class GuiPSWMOverlay extends Gui
 
 			GL11.glPushMatrix();
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
-			RenderHelper.disableStandardItemLighting();
+
+			if (ForceUtils.activePower != null)
+				this.drawString(mc.fontRenderer, ForceUtils.activePower.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
+
+			int y = (r.getScaledHeight() - 25) * 2;
+			for (Power cooling : ForceUtils.coolingPowers)
+			{
+				StarWarsMod.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
+				this.drawString(mc.fontRenderer, cooling.getLocalizedName() + ": " + ((int)cooling.recharge) + "s", 30, y - 3, GlPalette.WHITE);
+				y -= 22;
+			}
+
 			this.drawCenteredString(mc.fontRenderer, "FORCE XP: " + format.format(xp) + "/" + format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
 			GL11.glPopMatrix();
 		}

@@ -101,8 +101,6 @@ public class ClientEventHandler
 
 	Entity lastTarget = null;
 
-	public static Power activePower;
-
 	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
 		Tessellator tessellator = Tessellator.instance;
@@ -659,15 +657,15 @@ public class ClientEventHandler
 						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(tie.dimension), 0, 0);
 
 						if (tie.getHealth() >= 20)
-							PGui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
+							StarWarsMod.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
 						if (tie.getHealth() >= 16)
-							PGui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
 						if (tie.getHealth() >= 8)
-							PGui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
 						if (tie.getHealth() >= 4)
-							PGui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
 						if (tie.getHealth() >= 0)
-							PGui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
+							StarWarsMod.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
 
 						if (randomCharNextTime <= System.currentTimeMillis())
 						{

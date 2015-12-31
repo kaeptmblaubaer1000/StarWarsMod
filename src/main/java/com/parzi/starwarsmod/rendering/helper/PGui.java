@@ -26,7 +26,7 @@ public class PGui// extends Gui
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
-	public static void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
+	public void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
 	{
 		float f4 = 1.0F / textureWidth;
 		float f5 = 1.0F / textureHeight;
@@ -43,7 +43,7 @@ public class PGui// extends Gui
 	 * Draws a solid color rectangle with the specified coordinates and color.
 	 * Args: x1, y1, x2, y2, color
 	 */
-	public static void drawRect(int x1, int y1, int x2, int y2, int color)
+	public void drawRect(int x1, int y1, int x2, int y2, int color)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 
@@ -85,7 +85,7 @@ public class PGui// extends Gui
 	 * Draws a solid color rectangle with the specified coordinates and color.
 	 * Args: x1, y1, x2, y2, color
 	 */
-	public static void drawRect(int x1, int y1, int x2, int y2, int r, int g, int b, int a)
+	public void drawRect(int x1, int y1, int x2, int y2, int r, int g, int b, int a)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 
@@ -119,7 +119,7 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
-	public static void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
+	public void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
 	{
 		float f4 = 1.0F / p_152125_8_;
 		float f5 = 1.0F / p_152125_9_;
@@ -182,6 +182,85 @@ public class PGui// extends Gui
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		PGui.mc.fontRenderer.drawStringWithShadow(string, x - PGui.mc.fontRenderer.getStringWidth(string) / 2, y - PGui.mc.fontRenderer.FONT_HEIGHT / 2, color);
+	}
+
+	/**
+	 * Draws a filled circle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param radius
+	 *            The radius
+	 * @param percent
+	 *            The percentage full of the circle
+	 * @param color
+	 *            The color
+	 */
+	public void drawLoadingCircle(int x, int y, double radius, float percent, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glVertex2d(x, y);
+		for (int i = 0; i <= 360 * percent; i++)
+		{
+			double nx = Math.sin(i * 3.141526D / 180) * radius;
+			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			GL11.glVertex2d(nx + x, ny + y);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+	}
+
+	/**
+	 * Draws a filled circle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param radius
+	 *            The radius
+	 * @param percent
+	 *            The percentage full of the circle
+	 * @param color
+	 *            The color
+	 */
+	public void drawLoadingCircleWithoutSetup(int x, int y, double radius, float percent, int color)
+	{
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glVertex2d(x, y);
+		for (int i = 0; i <= 360 * percent; i++)
+		{
+			double nx = Math.sin(i * 3.141526D / 180) * radius;
+			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			GL11.glVertex2d(nx + x, ny + y);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
 	}
 
 	/**

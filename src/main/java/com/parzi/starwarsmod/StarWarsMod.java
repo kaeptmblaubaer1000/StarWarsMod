@@ -36,8 +36,8 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
-import com.parzi.starwarsmod.network.PacketJediRobesBuy;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
+import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
@@ -429,8 +429,8 @@ public class StarWarsMod
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(StarWarsMod.MODID);
-		network.registerMessage(PacketJediRobesBuy.Handler.class, PacketJediRobesBuy.class, 0, Side.SERVER);
-		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, 1, Side.SERVER);
+		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, 0, Side.SERVER);
+		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, 1, Side.SERVER);
 		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, 2, Side.SERVER);
 		network.registerMessage(PacketCreateBlasterBolt.Handler.class, PacketCreateBlasterBolt.class, 3, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, 4, Side.SERVER);
@@ -463,7 +463,7 @@ public class StarWarsMod
 		StarWarsMod.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
 		StarWarsMod.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 
-		enableCreditsOverlay = config.get("gui", "enableCreditsOverlay", true).getBoolean();
+		enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
 
 		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();

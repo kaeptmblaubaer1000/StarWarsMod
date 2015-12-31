@@ -16,6 +16,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
+import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.LangUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -92,11 +93,12 @@ public class GuiScreenJediRobes extends GuiScreen
 		{
 			if (button.id == enableButton.id)
 			{
-				ClientEventHandler.activePower = selectedPower.power;
+				ForceUtils.activePower = selectedPower.power;
 			}
 			if (button.id == learnButton.id && selectedPower.power != null)
 			{
 				Power.getPowerFromName(selectedPower.power.name).currentLevel++;
+				StarWarsMod.network.sendToServer(new PacketRobesPowerNBT(selectedPower.power.name, Power.getPowerFromName(selectedPower.power.name).currentLevel, player.dimension, player.getCommandSenderName()));
 			}
 		}
 	}
@@ -136,7 +138,7 @@ public class GuiScreenJediRobes extends GuiScreen
 
 			if (selectedPower.power != null)
 			{
-				enableButton.enabled = selectedPower.power.currentLevel > 0 && ClientEventHandler.activePower != this.selectedPower.power;
+				enableButton.enabled = selectedPower.power.currentLevel > 0 && ForceUtils.activePower != this.selectedPower.power;
 				learnButton.enabled = canLearn(selectedPower.power);
 			}
 		}

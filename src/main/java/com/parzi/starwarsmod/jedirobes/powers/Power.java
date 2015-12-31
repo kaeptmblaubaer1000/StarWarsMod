@@ -13,8 +13,8 @@ public class Power
 	public String name = "";
 	public String unlocalizedName = "";
 	public String unlocalizedDescription = "";
-	public int rechargeTime = 0;
-	public int recharge = 0;
+	public float rechargeTime = 0;
+	public float recharge = 0;
 	public int costMult = 0;
 	public int baseCost = 0;
 

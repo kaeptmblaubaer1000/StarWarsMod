@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.handlers;
 
+import java.util.ArrayList;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,7 +10,6 @@ import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
@@ -17,7 +18,6 @@ import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
@@ -28,7 +28,6 @@ import com.parzi.starwarsmod.vehicles.VehicXWing;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -82,15 +81,17 @@ public class CommonEventHandler
 			if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 			{
 				ItemStack stack = mc.thePlayer.inventory.armorItemInSlot(2);
-				Power active = ClientEventHandler.activePower;
+				Power active = ForceUtils.activePower;
 
 				if (active != null && ArmorJediRobes.getLevelOf(stack, active.name) > 0)
 				{
 					active.currentLevel = ArmorJediRobes.getLevelOf(stack, active.name);
-					if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0)
+					if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0 && !ForceUtils.coolingPowers.contains(active))
 					{
 						StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", ArmorJediRobes.getXP(stack) - active.getCost(), mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
 						active.run(mc.thePlayer);
+						active.recharge = active.rechargeTime;
+						ForceUtils.coolingPowers.add(active);
 					}
 				}
 			}
@@ -113,32 +114,47 @@ public class CommonEventHandler
 		}
 		ClientEventHandler.lastItem = i;
 
-		if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && ClientEventHandler.lastTime <= System.currentTimeMillis())
+		if (ClientEventHandler.lastTime <= System.currentTimeMillis())
 		{
 			ClientEventHandler.lastTime = System.currentTimeMillis() + 1000;
 
-			ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
-			NBTTagCompound tags = robes.stackTagCompound;
+			ForceUtils.queueToRemove.clear();
+			for (Power cooling : ForceUtils.coolingPowers)
+			{
+				cooling.recharge--;
+				if (cooling.recharge <= 0)
+					ForceUtils.queueToRemove.add(cooling);
+			}
 
-			int level = ArmorJediRobes.getLevel(robes);
-			int xp = ArmorJediRobes.getXP(robes);
-			int maxxp = ArmorJediRobes.getMaxXP(robes);
+			for (Power remove : ForceUtils.queueToRemove)
+				ForceUtils.coolingPowers.remove(remove);
 
-			double percent = 1 + (0.1f * Math.floor(level / 10));
+			if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			{
 
-			if (percent > 6)
-				percent = 6;
+				ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
+				NBTTagCompound tags = robes.stackTagCompound;
 
-			int addition = (int)((maxxp / 100) * percent);
+				int level = ArmorJediRobes.getLevel(robes);
+				int xp = ArmorJediRobes.getXP(robes);
+				int maxxp = ArmorJediRobes.getMaxXP(robes);
 
-			int total = 0;
+				double percent = 1 + (0.1f * Math.floor(level / 10));
 
-			if (xp + addition < maxxp)
-				total = xp + addition;
-			else
-				total = maxxp;
+				if (percent > 6)
+					percent = 6;
 
-			StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", total, mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
+				int addition = (int)((maxxp / 100) * percent);
+
+				int total = 0;
+
+				if (xp + addition < maxxp)
+					total = xp + addition;
+				else
+					total = maxxp;
+
+				StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", total, mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
+			}
 		}
 	}
 }
