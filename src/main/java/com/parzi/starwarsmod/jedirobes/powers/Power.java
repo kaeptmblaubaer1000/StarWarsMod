@@ -29,6 +29,8 @@ public class Power
 	{
 		if (name.equalsIgnoreCase("jump"))
 			return ForceUtils.powerJump;
+		else if (name.equalsIgnoreCase("push"))
+			return ForceUtils.powerPush;
 		return null;
 	}
 

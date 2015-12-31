@@ -36,6 +36,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
@@ -437,6 +438,7 @@ public class StarWarsMod
 		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, 5, Side.SERVER);
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, 6, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, 7, Side.SERVER);
+		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, 7, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();

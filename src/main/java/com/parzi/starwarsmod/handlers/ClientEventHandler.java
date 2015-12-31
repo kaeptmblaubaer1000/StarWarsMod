@@ -280,7 +280,7 @@ public class ClientEventHandler
 						float textCenterX = event.resolution.getScaledWidth() * (578f / 900F);
 						float textCenterY = event.resolution.getScaledHeight() * (355 / 380F);
 
-						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[] {});
+						Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[0]);
 
 						String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 						String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";

@@ -73,6 +73,7 @@ public class GuiPSWMOverlay extends Gui
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
 			boolean isJedi = tags.hasKey("side") && tags.getString("side") != ArmorJediRobes.SIDE_SITH;
+			int guiColor = isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
 			StarWarsMod.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
@@ -81,17 +82,17 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 			if (ForceUtils.activePower != null)
-				this.drawString(mc.fontRenderer, ForceUtils.activePower.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
+				this.drawString(mc.fontRenderer, ForceUtils.activePower.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 			for (Power cooling : ForceUtils.coolingPowers)
 			{
-				StarWarsMod.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
+				StarWarsMod.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(mc.fontRenderer, cooling.getLocalizedName() + ": " + ((int)cooling.recharge) + "s", 30, y - 3, GlPalette.WHITE);
 				y -= 22;
 			}
 
-			this.drawCenteredString(mc.fontRenderer, "FORCE XP: " + format.format(xp) + "/" + format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE);
+			this.drawCenteredString(mc.fontRenderer, "FORCE XP: " + format.format(xp) + "/" + format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, guiColor);
 			GL11.glPopMatrix();
 		}
 

@@ -125,6 +125,7 @@ public class ArmorJediRobes extends ItemArmor
 		stack.stackTagCompound.setInteger("maxxp", 100);
 		stack.stackTagCompound.setString("side", SIDE_NONE);
 		stack.stackTagCompound.setTag("powers", new NBTTagCompound());
-		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("jump", 1);
+		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("jump", 0);
+		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("push", 0);
 	}
 }
