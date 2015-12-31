@@ -21,13 +21,13 @@ import com.parzi.starwarsmod.utils.GlPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class GuiCreditsOverlay extends Gui
+public class GuiPSWMOverlay extends Gui
 {
 	private Minecraft mc;
 	private RenderItem r;
 	private NumberFormat format;
 
-	public GuiCreditsOverlay(Minecraft mc)
+	public GuiPSWMOverlay(Minecraft mc)
 	{
 		this.mc = mc;
 		this.r = RenderItem.getInstance();
@@ -72,7 +72,7 @@ public class GuiCreditsOverlay extends Gui
 			int xp = ArmorJediRobes.getXP(robes);
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
-			boolean isJedi = true;
+			boolean isJedi = tags.hasKey("side") && tags.getString("side") != ArmorJediRobes.SIDE_SITH;
 
 			RenderHelper.disableStandardItemLighting();
 			StarWarsMod.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);

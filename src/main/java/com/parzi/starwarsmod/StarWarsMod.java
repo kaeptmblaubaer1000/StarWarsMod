@@ -322,6 +322,8 @@ public class StarWarsMod
 	public static KeyBinding keyDebug;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyRobeGui;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyRobePower;
 
 	public static Block blockMV;
 	public static Block blockTable;

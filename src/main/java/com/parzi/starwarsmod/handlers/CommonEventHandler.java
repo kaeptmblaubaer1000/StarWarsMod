@@ -10,11 +10,13 @@ import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
@@ -32,12 +34,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class CommonEventHandler
 {
-	@SideOnly(Side.CLIENT)
-	public static Item lastItem = null;
-
-	@SideOnly(Side.CLIENT)
-	public long lastTime = 0;
-
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
@@ -80,6 +76,25 @@ public class CommonEventHandler
 
 		if (StarWarsMod.keyRobeGui.isPressed())
 			mc.thePlayer.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, null, 0, 0, 0);
+
+		if (StarWarsMod.keyRobePower.isPressed())
+		{
+			if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			{
+				ItemStack stack = mc.thePlayer.inventory.armorItemInSlot(2);
+				Power active = ClientEventHandler.activePower;
+
+				if (active != null && ArmorJediRobes.getLevelOf(stack, active.name) > 0)
+				{
+					active.currentLevel = ArmorJediRobes.getLevelOf(stack, active.name);
+					if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0)
+					{
+						StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", ArmorJediRobes.getXP(stack) - active.getCost(), mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
+						active.run(mc.thePlayer);
+					}
+				}
+			}
+		}
 	}
 
 	@SubscribeEvent
@@ -92,15 +107,15 @@ public class CommonEventHandler
 			return;
 
 		Item i = mc.thePlayer.inventory.getCurrentItem() == null ? null : mc.thePlayer.inventory.getCurrentItem().getItem();
-		if (i != lastItem)
+		if (i != ClientEventHandler.lastItem && (i == StarWarsMod.lightsaber || i == StarWarsMod.sequelLightsaber))
 		{
 			Minecraft.getMinecraft().getSoundHandler().playSound(new SoundLightsaberHum(mc.thePlayer));
-			lastItem = i;
 		}
+		ClientEventHandler.lastItem = i;
 
-		if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && lastTime <= System.currentTimeMillis())
+		if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && ClientEventHandler.lastTime <= System.currentTimeMillis())
 		{
-			lastTime = System.currentTimeMillis() + 1000;
+			ClientEventHandler.lastTime = System.currentTimeMillis() + 1000;
 
 			ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
 			NBTTagCompound tags = robes.stackTagCompound;

@@ -3,15 +3,18 @@ package com.parzi.starwarsmod.jedirobes.powers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.LangUtils;
 
 public class Power
 {
 	public int currentLevel = 0;
 	public int maxLevel = 5;
+	public String name = "";
 	public String unlocalizedName = "";
 	public String unlocalizedDescription = "";
 	public int rechargeTime = 0;
+	public int recharge = 0;
 	public int costMult = 0;
 	public int baseCost = 0;
 
@@ -19,12 +22,13 @@ public class Power
 	{
 		this.unlocalizedName = "force.power." + name;
 		this.unlocalizedDescription = this.unlocalizedName + ".desc";
+		this.name = name;
 	}
 
-	public static Power getPowerFromName(String name, int level)
+	public static Power getPowerFromName(String name)
 	{
 		if (name.equalsIgnoreCase("jump"))
-			return new PowerJump(level);
+			return ForceUtils.powerJump;
 		return null;
 	}
 
@@ -37,7 +41,17 @@ public class Power
 	 */
 	public int getCostForLevel(int level)
 	{
-		return baseCost + (costMult * level);
+		return baseCost + (costMult * (level - 1));
+	}
+
+	/**
+	 * Gets the XP cost of using the power at a specific level
+	 *
+	 * @return The cost in XP
+	 */
+	public int getCost()
+	{
+		return baseCost + (costMult * (this.currentLevel - 1));
 	}
 
 	/**

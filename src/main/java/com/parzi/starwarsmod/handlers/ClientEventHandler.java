@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
@@ -27,6 +28,7 @@ import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
@@ -79,6 +81,9 @@ public class ClientEventHandler
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
+	public static Item lastItem = null;
+	public static long lastTime = 0;
+
 	public static float blipMax = 15;
 	public static float blipFrame = blipMax;
 	public static boolean isFiring = false;
@@ -95,6 +100,8 @@ public class ClientEventHandler
 	String randomChar4 = "L";
 
 	Entity lastTarget = null;
+
+	public static Power activePower;
 
 	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
@@ -139,7 +146,7 @@ public class ClientEventHandler
 	{
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
-			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), event.orb.getXpValue());
+			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
 		}
 	}
 

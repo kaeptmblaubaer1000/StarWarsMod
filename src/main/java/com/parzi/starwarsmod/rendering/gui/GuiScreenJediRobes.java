@@ -13,11 +13,13 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.LangUtils;
 import com.parzi.starwarsmod.utils.TextUtils;
+import com.sun.security.ntlm.Client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,7 +35,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	private String[] powers;
 
 	private GuiButton learnButton;
-	private GuiButton upgradeButton;
+	private GuiButton enableButton;
 
 	private ItemStack stack;
 	private EntityPlayer player;
@@ -62,7 +64,13 @@ public class GuiScreenJediRobes extends GuiScreen
 			GuiPowerListItem item = new GuiPowerListItem();
 			item.localizedName = LangUtils.translate("force.power." + power);
 			item.localizedDesc = LangUtils.translate("force.power." + power + ".desc");
-			item.power = Power.getPowerFromName(power, ArmorJediRobes.getLevelOf(stack, power));
+
+			if (stack != null)
+			{
+				item.power = Power.getPowerFromName(power);
+				if (item.power != null)
+					item.power.currentLevel = ArmorJediRobes.getLevelOf(stack, item.power.name);
+			}
 
 			items.add(item);
 		}
@@ -72,9 +80,9 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.registerScrollButtons(this.buttonList, 7, 8);
 
 		learnButton = new GuiButton(20, 10, this.height - 60, this.listWidth, 20, "Learn");
-		upgradeButton = new GuiButton(21, 10, this.height - 38, this.listWidth, 20, "Level Up");
+		enableButton = new GuiButton(21, 10, this.height - 38, this.listWidth, 20, "Enable");
 		this.buttonList.add(learnButton);
-		this.buttonList.add(upgradeButton);
+		this.buttonList.add(enableButton);
 	}
 
 	@Override
@@ -82,10 +90,22 @@ public class GuiScreenJediRobes extends GuiScreen
 	{
 		if (button.enabled)
 		{
-			switch (button.id)
+			if (button.id == enableButton.id)
 			{
+				ClientEventHandler.activePower = selectedPower.power;
+			}
+			if (button.id == learnButton.id && selectedPower.power != null)
+			{
+				Power.getPowerFromName(selectedPower.power.name).currentLevel++;
 			}
 		}
+	}
+
+	public boolean canLearn(Power power)
+	{
+		if (power == null)
+			return false;
+		return power.currentLevel < power.maxLevel;
 	}
 
 	public int drawLine(String line, int offset, int shifty)
@@ -108,20 +128,22 @@ public class GuiScreenJediRobes extends GuiScreen
 			GL11.glEnable(GL11.GL_BLEND);
 			this.drawCenteredString(this.fontRendererObj, selectedPower.localizedName, offset, 35, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, String.format("Current Level: %s", (selectedPower.power == null ? 0 : selectedPower.power.currentLevel)), offset, 45, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, "Description and Use:", offset, 55, 0xDDDDDD);
-			this.fontRendererObj.drawSplitString(selectedPower.localizedDesc, offset - 125, 65, 250, 0xDDDDDD);
+			this.drawCenteredString(this.fontRendererObj, String.format("XP/use: %s", (selectedPower.power == null ? 0 : selectedPower.power.getCost())), offset, 55, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, String.format("Recharge Time: %s seconds", (selectedPower.power == null ? 0 : selectedPower.power.rechargeTime)), offset, 65, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, "Description and Use:", offset, 75, 0xDDDDDD);
+			this.fontRendererObj.drawSplitString(selectedPower.localizedDesc, offset - 125, 85, 250, 0xDDDDDD);
 			GL11.glDisable(GL11.GL_BLEND);
 
 			if (selectedPower.power != null)
 			{
-				upgradeButton.enabled = selectedPower.power.currentLevel < selectedPower.power.maxLevel && selectedPower.power.currentLevel != 0;
-				learnButton.enabled = selectedPower.power.currentLevel == 0;
+				enableButton.enabled = selectedPower.power.currentLevel > 0 && ClientEventHandler.activePower != this.selectedPower.power;
+				learnButton.enabled = canLearn(selectedPower.power);
 			}
 		}
 		else
 		{
 			this.learnButton.enabled = false;
-			this.upgradeButton.enabled = false;
+			this.enableButton.enabled = false;
 		}
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}

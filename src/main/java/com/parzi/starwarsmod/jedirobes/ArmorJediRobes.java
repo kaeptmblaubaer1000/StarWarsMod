@@ -18,9 +18,9 @@ public class ArmorJediRobes extends ItemArmor
 {
 	String name = "newJediRobes";
 
-	private static String SIDE_NONE = "none";
-	private static String SIDE_JEDI = "jedi";
-	private static String SIDE_SITH = "sith";
+	public static String SIDE_NONE = "none";
+	public static String SIDE_JEDI = "jedi";
+	public static String SIDE_SITH = "sith";
 
 	public ArmorJediRobes()
 	{
@@ -48,15 +48,6 @@ public class ArmorJediRobes extends ItemArmor
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{
 		setupRobe(stack, player);
-
-		for (String spower : ForceUtils.getAllPowers())
-		{
-			if (Power.getPowerFromName(spower, 0) != null && getLevelOf(stack, spower) > 0)
-			{
-				Power power = Power.getPowerFromName(spower, getLevelOf(stack, spower));
-				power.run(player);
-			}
-		}
 	}
 
 	@Override

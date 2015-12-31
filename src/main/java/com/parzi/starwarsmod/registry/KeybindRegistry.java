@@ -15,6 +15,7 @@ public class KeybindRegistry
 		StarWarsMod.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);
 		StarWarsMod.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
 		StarWarsMod.keyRobeGui = registerKeybind("robeGui", Keyboard.KEY_V);
+		StarWarsMod.keyRobePower = registerKeybind("robePower", Keyboard.KEY_B);
 		if (StarWarsMod.IS_DEV_ENVIRONVENT)
 			StarWarsMod.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 	}
