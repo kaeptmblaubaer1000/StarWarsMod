@@ -253,19 +253,19 @@ force.power.drainKnowledge=Drain Knowledge
 force.power.lightning=Lightning
 force.power.destruction=Destruction
 
-force.power.jump.desc=ALKSJDFGHOAISDGHASIDLFHJHGLIASDJFHGKLSJADFHGLKSJDFHGKLSJDFHGLKSJDFHG AKLHJSGLKSJADHGLKSJDFHGKLSJDFHGLKSJDGFH SADJKLFGHLSKDFJGHLKSJDFHGKLSJDFHGLKSJDFHGKLJDSFHGLSKJDFGHLSDKFJGHLKJ
-force.power.push.desc=Push
-force.power.pull.desc=Pull
-force.power.defend.desc=Defend
-force.power.disable.desc=Disable
-force.power.deflect.desc=Deflect
-force.power.grab.desc=Grab
-force.power.healing.desc=Heal
-force.power.naturalAwareness.desc=Nature Awareness
-force.power.slow.desc=Slow
-force.power.drainKnowledge.desc=Drain Knowledge
-force.power.lightning.desc=Lightning
-force.power.destruction.desc=Destruction
+force.power.jump.desc=Use your knowledge of The Force to propel yourself into the air.  5 level max, Level 1 lets you jump 2 blocks, each new level lets you jump 1 block higher than the previous.
+force.power.push.desc=Use your knowledge of The Force to propel entities away from yourself.  5 level max, Level 1 lets you push 2 blocks, each new level lets you push entities 2 blocks further and slightly faster.
+force.power.pull.desc=Use your knowledge of The Force to pull entities towards yourself.  5 level max, Level 1 lets you pul 2 blocks, each new level lets you pull entities from 2 blocks further away and slightly faster.
+force.power.defend.desc=Use your knowledge of The Force to absorb damage for a short time.  No level cap, Level 1 lets you absorb 1 health point worth of damage, each new level lets you absorb 1 more health point.
+force.power.disable.desc=Use your knowledge of The Force to halt your enemies in their tracks.
+force.power.deflect.desc=Use your knowledge of The Force to deflect incoming projectiles and blaster fire.
+force.power.grab.desc=Use your knowledge of The Force to freeze entities and move them around at your will.
+force.power.healing.desc=Use your knowledge of The Light Side of The Force to heal yourself and others.
+force.power.naturalAwareness.desc=Use your knowledge of The Light Side of The Force to heal the natural world around you.
+force.power.slow.desc=Use your knowledge of The Dark Side of The Force to slow your enemie's movements.
+force.power.drainKnowledge.desc=Use your knowledge of The Dark Side of The Force to steal power from other Force users.
+force.power.lightning.desc=Use your knowledge of The Dark Side of The Force to engulf your enemies in deadly Sith Lightning.
+force.power.destruction.desc=Use your knowledge of The Dark Side of The Force to send massive explosive energy hurdling towards your enemies.
 
 ####################
 # Sequel Trilogy
