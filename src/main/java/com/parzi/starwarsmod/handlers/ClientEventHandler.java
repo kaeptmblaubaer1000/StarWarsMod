@@ -25,6 +25,9 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.glu.Quadric;
+import org.lwjgl.util.glu.Sphere;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.font.FontManager;
@@ -813,49 +816,70 @@ public class ClientEventHandler
 
 		if (e != null)
 		{
-			drawLightning(StarWarsMod.rngGeneral, mc.thePlayer.posX - 0.5, mc.thePlayer.posY - 1, mc.thePlayer.posZ - 0.5, e.posX - 0.5, e.posY + 1, e.posZ - 0.5, 10, 1f);
-			drawLightning(StarWarsMod.rngGeneral, mc.thePlayer.posX - 0.5, mc.thePlayer.posY - 1, mc.thePlayer.posZ - 0.5, e.posX - 0.5, e.posY + 1, e.posZ - 0.5, 10, 1f);
-			drawLightning(StarWarsMod.rngGeneral, mc.thePlayer.posX - 0.5, mc.thePlayer.posY - 1, mc.thePlayer.posZ - 0.5, e.posX - 0.5, e.posY + 1, e.posZ - 0.5, 10, 1f);
+			Random r = StarWarsMod.rngGeneral;
+			float posX2 = (float)e.posX;
+			float posY2 = (float)e.posY + 2;
+			float posZ2 = (float)e.posZ;
+			for (int i = 0; i < 3; i++)
+			{
+				posX2 += (r.nextInt(10) - 5) / 5f;
+				posY2 += (r.nextInt(10) - 5) / 5f;
+				posZ2 += (r.nextInt(10) - 5) / 5f;
+				drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 15, 0.5f);
+			}
 		}
-
 	}
 
-	private void drawLightning(Random r, double posX, double posY, double posZ, double posX2, double posY2, double posZ2, int displace, float curDetail)
+	private void drawLightning(Random r, float posX, float posY, float posZ, float posX2, float posY2, float posZ2, float distance, float curDetail)
 	{
-		if (displace < curDetail)
+		if (distance < curDetail)
 		{
-			double doubleX = mc.thePlayer.posX - 0.5;
-			double doubleY = mc.thePlayer.posY + 0.1;
-			double doubleZ = mc.thePlayer.posZ - 0.5;
-
 			GL11.glPushMatrix();
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
 			GL11.glEnable(GL11.GL_LINE_SMOOTH);
-			GL11.glTranslated(-doubleX, -doubleY, -doubleZ);
-			GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
-			GL11.glLineWidth(4);
-			GL11.glColor3f(0.5f, 0.5f, 1f);
+			GL11.glTranslated(-(mc.thePlayer.posX - 0.5), -(mc.thePlayer.posY - 0.5f), -(mc.thePlayer.posZ - 0.5));
+
+			GL11.glLineWidth(8);
+			GL11.glColor3f(0f, 0f, 1f);
+
 			GL11.glBegin(GL11.GL_LINES);
 			GL11.glVertex3d(posX, posY, posZ);
 			GL11.glVertex3d(posX2, posY2, posZ2);
 			GL11.glEnd();
+
+			GL11.glLineWidth(6);
+			GL11.glColor3f(0.5f, 0.5f, 1f);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glLineWidth(2);
+			GL11.glColor3f(1, 1, 1);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
 			GL11.glDisable(GL11.GL_LINE_SMOOTH);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glColor3f(1, 1, 1);
 			GL11.glPopMatrix();
 		}
 		else
 		{
-			double mid_x = (posX2 + posX) / 2;
-			double mid_y = (posY2 + posY) / 2;
-			double mid_z = (posZ2 + posZ) / 2;
-			mid_x += (r.nextDouble() / 10 - 0.1d) * displace;
-			mid_y += (r.nextDouble() / 10 - 0.1d) * displace;
-			mid_z += (r.nextDouble() / 10 - 0.1d) * displace;
-			drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, displace / 2, curDetail);
-			drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, displace / 2, curDetail);
+			float mid_x = (posX2 + posX) / 2f;
+			float mid_y = (posY2 + posY) / 2f;
+			float mid_z = (posZ2 + posZ) / 2f;
+			mid_x += ((r.nextFloat() - 0.5f) / 10f) * distance;
+			mid_y += ((r.nextFloat() - 0.5f) / 10f) * distance;
+			mid_z += ((r.nextFloat() - 0.5f) / 10f) * distance;
+			drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, distance / 2f, curDetail);
+			drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, distance / 2f, curDetail);
 		}
 	}
 
