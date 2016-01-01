@@ -26,7 +26,7 @@ public class PowerPull extends Power
 	{
 		if (this.recharge == 0)
 		{
-			Entity e = EntityUtils.rayTrace(this.currentLevel * 2, player, new Entity[0]);
+			Entity e = EntityUtils.rayTrace(this.currentLevel * 3, player, new Entity[0]);
 
 			if (e != null)
 			{
