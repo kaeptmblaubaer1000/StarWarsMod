@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerJump;
+import com.parzi.starwarsmod.jedirobes.powers.PowerPull;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPush;
 
 public class ForceUtils
@@ -14,6 +15,7 @@ public class ForceUtils
 
 	public static Power powerJump = new PowerJump(0);
 	public static Power powerPush = new PowerPush(0);
+	public static Power powerPull = new PowerPull(0);
 
 	public static String[] getAllPowers()
 	{

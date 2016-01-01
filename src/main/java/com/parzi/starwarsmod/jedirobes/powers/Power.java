@@ -31,6 +31,8 @@ public class Power
 			return ForceUtils.powerJump;
 		else if (name.equalsIgnoreCase("push"))
 			return ForceUtils.powerPush;
+		else if (name.equalsIgnoreCase("pull"))
+			return ForceUtils.powerPull;
 		return null;
 	}
 
