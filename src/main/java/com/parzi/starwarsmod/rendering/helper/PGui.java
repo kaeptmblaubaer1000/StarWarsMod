@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.Lumberjack;
 
 import scala.Int;
 
@@ -546,6 +547,30 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
+	}
+
+	public void drawLine3d(double x1, double y1, double z1, double x2, double y2, double z2, int lineWidth, int color)
+	{
+		GL11.glPushMatrix();
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_BLEND);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        GL11.glLineWidth(2.0F);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glDepthMask(false);
+		Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawing(1);
+		tessellator.setColorOpaque_I(color);
+        tessellator.addVertex(x1, y1, z1);
+        tessellator.addVertex(x2, y2, z2);
+        tessellator.draw();
+        GL11.glDepthMask(true);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glPopMatrix();
 	}
 
 	/**

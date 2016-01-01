@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.handlers;
 
+import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -17,6 +19,7 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
@@ -28,11 +31,9 @@ import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
-import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
@@ -78,6 +79,8 @@ public class ClientEventHandler
 	private static final ResourceLocation kashyyykTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/kashyyyk.png");
 	private static final ResourceLocation yavinTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/yavin.png");
 	private static final ResourceLocation tatooineTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/tatooine.png");
+
+	private static final ResourceLocation forceLightningTexture = new ResourceLocation(StarWarsMod.MODID, "textures/force/force_lightning.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -241,16 +244,15 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
+		else if (mc.entityRenderer instanceof PSWMEntityRenderer)
+		{
+			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
+		}
 		else
-			if (mc.entityRenderer instanceof PSWMEntityRenderer)
-			{
-				((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
-			}
-			else
-			{
-				ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
-				ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistanceTemp");
-			}
+		{
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistanceTemp");
+		}
 	}
 
 	@SubscribeEvent
@@ -802,6 +804,53 @@ public class ClientEventHandler
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
+	}
+
+	@SubscribeEvent
+	public void renderWorldLastEvent(RenderWorldLastEvent event)
+	{
+		Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[0]);
+
+		if (e != null)
+		{
+			drawLightning(StarWarsMod.rngGeneral, mc.thePlayer.posX - 0.5, mc.thePlayer.posY - 1, mc.thePlayer.posZ - 0.5, e.posX - 0.5, e.posY + 1, e.posZ - 0.5, 10, 1f);
+			drawLightning(StarWarsMod.rngGeneral, mc.thePlayer.posX - 0.5, mc.thePlayer.posY - 1, mc.thePlayer.posZ - 0.5, e.posX - 0.5, e.posY + 1, e.posZ - 0.5, 10, 1f);
+			drawLightning(StarWarsMod.rngGeneral, mc.thePlayer.posX - 0.5, mc.thePlayer.posY - 1, mc.thePlayer.posZ - 0.5, e.posX - 0.5, e.posY + 1, e.posZ - 0.5, 10, 1f);
+		}
+
+	}
+
+	private void drawLightning(Random r, double posX, double posY, double posZ, double posX2, double posY2, double posZ2, int displace, float curDetail)
+	{
+		if (displace < curDetail)
+		{
+			double doubleX = mc.thePlayer.posX - 0.5;
+			double doubleY = mc.thePlayer.posY + 0.1;
+			double doubleZ = mc.thePlayer.posZ - 0.5;
+
+			GL11.glPushMatrix();
+			GL11.glTranslated(-doubleX, -doubleY, -doubleZ);
+			GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
+			GL11.glLineWidth(4);
+			GL11.glColor3f(0.5f, 0.5f, 1f);
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+			GL11.glColor3f(1, 1, 1);
+			GL11.glPopMatrix();
+		}
+		else
+		{
+			double mid_x = (posX2 + posX) / 2;
+			double mid_y = (posY2 + posY) / 2;
+			double mid_z = (posZ2 + posZ) / 2;
+			mid_x += (r.nextDouble() / 10 - 0.1d) * displace;
+			mid_y += (r.nextDouble() / 10 - 0.1d) * displace;
+			mid_z += (r.nextDouble() / 10 - 0.1d) * displace;
+			drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, displace / 2, curDetail);
+			drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, displace / 2, curDetail);
+		}
 	}
 
 	private ResourceLocation planetTextureFromDim(int dim)
