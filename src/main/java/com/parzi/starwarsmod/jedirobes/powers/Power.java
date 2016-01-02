@@ -16,7 +16,15 @@ public class Power
 	public float rechargeTime = 0;
 	public float recharge = 0;
 	public int costMult = 0;
-	public int baseCost = 0;
+	public int costBase = 0;
+	public int duration = 0;
+	public int durationBase = 0;
+	public int durationMult = 0;
+	public int healthBase = 0;
+	public int healthMult = 0;
+	public int rangeBase = 0;
+	public int rangeMult = 0;
+	public boolean isDurationBased = false;
 
 	public Power(String name)
 	{
@@ -33,7 +41,75 @@ public class Power
 			return ForceUtils.powerPush;
 		else if (name.equalsIgnoreCase("pull"))
 			return ForceUtils.powerPull;
+		else if (name.equalsIgnoreCase("lightning"))
+			return ForceUtils.powerLightning;
 		return null;
+	}
+
+	/**
+	 * Gets the max damage / second of using the power at a specific level
+	 *
+	 * @param level
+	 *            The level to test
+	 * @return The max damage / second
+	 */
+	public int getRangeForLevel(int level)
+	{
+		return rangeBase + (rangeMult * (level - 1));
+	}
+
+	/**
+	 * Gets the max damage / second of using the power at a specific level
+	 *
+	 * @return The max damage / second
+	 */
+	public int getRange()
+	{
+		return rangeBase + (rangeMult * (this.currentLevel - 1));
+	}
+
+	/**
+	 * Gets the max damage / second of using the power at a specific level
+	 *
+	 * @param level
+	 *            The level to test
+	 * @return The max damage / second
+	 */
+	public int getDamageForLevel(int level)
+	{
+		return healthBase + (healthMult * (level - 1));
+	}
+
+	/**
+	 * Gets the max damage / second of using the power at a specific level
+	 *
+	 * @return The max damage / second
+	 */
+	public int getDamage()
+	{
+		return healthBase + (healthMult * (this.currentLevel - 1));
+	}
+
+	/**
+	 * Gets the max duration of using the power at a specific level
+	 *
+	 * @param level
+	 *            The level to test
+	 * @return The max duration in seconds
+	 */
+	public int getDurationForLevel(int level)
+	{
+		return durationBase + (durationMult * (level - 1));
+	}
+
+	/**
+	 * Gets the max duration of using the power at a specific level
+	 *
+	 * @return The max duration in seconds
+	 */
+	public int getDuration()
+	{
+		return durationBase + (durationMult * (this.currentLevel - 1));
 	}
 
 	/**
@@ -45,7 +121,7 @@ public class Power
 	 */
 	public int getCostForLevel(int level)
 	{
-		return baseCost + (costMult * (level - 1));
+		return costBase + (costMult * (level - 1));
 	}
 
 	/**
@@ -55,7 +131,7 @@ public class Power
 	 */
 	public int getCost()
 	{
-		return baseCost + (costMult * (this.currentLevel - 1));
+		return costBase + (costMult * (this.currentLevel - 1));
 	}
 
 	/**

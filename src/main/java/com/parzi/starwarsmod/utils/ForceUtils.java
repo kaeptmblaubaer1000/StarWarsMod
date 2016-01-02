@@ -4,18 +4,21 @@ import java.util.ArrayList;
 
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerJump;
+import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPull;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPush;
 
 public class ForceUtils
 {
 	public static Power activePower = null;
+	public static boolean isUsingDuration = false;
 	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
 	public static ArrayList<Power> queueToRemove = new ArrayList<Power>();
 
 	public static Power powerJump = new PowerJump(0);
 	public static Power powerPush = new PowerPush(0);
 	public static Power powerPull = new PowerPull(0);
+	public static Power powerLightning = new PowerLightning(0);
 
 	public static String[] getAllPowers()
 	{

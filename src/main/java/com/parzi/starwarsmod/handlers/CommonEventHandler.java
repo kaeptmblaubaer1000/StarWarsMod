@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.handlers;
 
-import java.util.ArrayList;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,12 +10,15 @@ import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
+import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
@@ -89,9 +90,17 @@ public class CommonEventHandler
 					if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0 && !ForceUtils.coolingPowers.contains(active))
 					{
 						StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", ArmorJediRobes.getXP(stack) - active.getCost(), mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
-						active.run(mc.thePlayer);
-						active.recharge = active.rechargeTime;
-						ForceUtils.coolingPowers.add(active);
+
+						if (!active.isDurationBased)
+						{
+							active.run(mc.thePlayer);
+							active.recharge = active.rechargeTime;
+							ForceUtils.coolingPowers.add(active);
+						}
+						else
+						{
+							ForceUtils.isUsingDuration = true;
+						}
 					}
 				}
 			}
@@ -131,7 +140,6 @@ public class CommonEventHandler
 
 			if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 			{
-
 				ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
 				NBTTagCompound tags = robes.stackTagCompound;
 
@@ -154,6 +162,32 @@ public class CommonEventHandler
 					total = maxxp;
 
 				StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", total, mc.thePlayer.dimension, mc.thePlayer.getCommandSenderName()));
+
+				if (ForceUtils.isUsingDuration && ForceUtils.activePower != null)
+				{
+					ForceUtils.activePower.duration++;
+
+					Lumberjack.log(ForceUtils.activePower.duration);
+
+					ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && StarWarsMod.keyRobePower.getIsKeyPressed();
+
+					if (ForceUtils.activePower.duration >= ForceUtils.activePower.getDuration() || !ForceUtils.isUsingDuration)
+					{
+						ForceUtils.activePower.duration = 0;
+						ForceUtils.isUsingDuration = false;
+						ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
+						ForceUtils.coolingPowers.add(ForceUtils.activePower);
+					}
+					else
+					{
+						if (ForceUtils.activePower.name.equals("lightning"))
+						{
+							PowerLightning power = (PowerLightning)ForceUtils.activePower;
+							if (power.getTarget() != null)
+								StarWarsMod.network.sendToServer(new PacketEntityHurt(power.getTarget().getEntityId(), power.getTarget().dimension, power.getDamage()));
+						}
+					}
+				}
 			}
 		}
 	}

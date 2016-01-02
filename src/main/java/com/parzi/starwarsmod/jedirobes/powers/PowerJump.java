@@ -12,7 +12,7 @@ public class PowerJump extends Power
 	public PowerJump(int currentLevel)
 	{
 		super("jump");
-		this.baseCost = 25;
+		this.costBase = 25;
 		this.costMult = 25;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;

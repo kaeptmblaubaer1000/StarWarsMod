@@ -13,7 +13,7 @@ public class PowerPull extends Power
 	public PowerPull(int currentLevel)
 	{
 		super("pull");
-		this.baseCost = 240;
+		this.costBase = 240;
 		this.costMult = 40;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;

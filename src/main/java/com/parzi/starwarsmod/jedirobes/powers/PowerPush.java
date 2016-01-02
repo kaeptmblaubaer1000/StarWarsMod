@@ -13,7 +13,7 @@ public class PowerPush extends Power
 	public PowerPush(int currentLevel)
 	{
 		super("push");
-		this.baseCost = 40;
+		this.costBase = 40;
 		this.costMult = 40;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;

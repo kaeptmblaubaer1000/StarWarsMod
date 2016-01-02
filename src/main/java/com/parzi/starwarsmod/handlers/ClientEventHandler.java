@@ -25,15 +25,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-import org.lwjgl.util.glu.Quadric;
-import org.lwjgl.util.glu.Sphere;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
@@ -41,7 +39,9 @@ import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -812,20 +812,29 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void renderWorldLastEvent(RenderWorldLastEvent event)
 	{
-		Entity e = EntityUtils.rayTrace(100, mc.thePlayer, new Entity[0]);
-
-		if (e != null)
+		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("lightning") && ForceUtils.isUsingDuration)
 		{
-			Random r = StarWarsMod.rngGeneral;
-			float posX2 = (float)e.posX;
-			float posY2 = (float)e.posY + 2;
-			float posZ2 = (float)e.posZ;
-			for (int i = 0; i < 3; i++)
+			PowerLightning power = (PowerLightning)ForceUtils.activePower;
+
+			if (power.duration >= power.getDuration()) return;
+
+			Entity e = EntityUtils.rayTrace(power.getRange(), mc.thePlayer, new Entity[0]);
+			power.setTarget(e);
+
+			if (e != null)
 			{
-				posX2 += (r.nextInt(10) - 5) / 5f;
-				posY2 += (r.nextInt(10) - 5) / 5f;
-				posZ2 += (r.nextInt(10) - 5) / 5f;
-				drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 15, 0.5f);
+				Random r = new Random(e.ticksExisted * 4);
+				float posX2 = (float)e.posX;
+				float posY2 = (float)e.posY + 2;
+				float posZ2 = (float)e.posZ;
+				for (int i = 0; i < 4; i++)
+				{
+					posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - ((e.boundingBox.maxX - e.posX) / 2);
+					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - ((e.boundingBox.maxY - e.posY) / 2);
+					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - ((e.boundingBox.maxZ - e.posZ) / 2);
+
+					drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
+				}
 			}
 		}
 	}
@@ -878,6 +887,7 @@ public class ClientEventHandler
 			mid_x += ((r.nextFloat() - 0.5f) / 10f) * distance;
 			mid_y += ((r.nextFloat() - 0.5f) / 10f) * distance;
 			mid_z += ((r.nextFloat() - 0.5f) / 10f) * distance;
+
 			drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, distance / 2f, curDetail);
 			drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, distance / 2f, curDetail);
 		}
