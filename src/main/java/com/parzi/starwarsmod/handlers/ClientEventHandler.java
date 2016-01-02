@@ -42,6 +42,7 @@ import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -851,23 +852,20 @@ public class ClientEventHandler
 			}
 		}
 
-		if (mc.thePlayer.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim() != "")
+		Entity e = mc.thePlayer.worldObj.getPlayerEntityByName(mc.thePlayer.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
+		if (e != null)
 		{
-			Entity e = mc.thePlayer.worldObj.getPlayerEntityByName(mc.thePlayer.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
-			if (e != null)
+			Random r = new Random(e.ticksExisted * 4);
+			float posX2 = (float)e.posX;
+			float posY2 = (float)e.posY + 2;
+			float posZ2 = (float)e.posZ;
+			for (int i = 0; i < 4; i++)
 			{
-				Random r = new Random(e.ticksExisted * 4);
-				float posX2 = (float)e.posX;
-				float posY2 = (float)e.posY + 2;
-				float posZ2 = (float)e.posZ;
-				for (int i = 0; i < 4; i++)
-				{
-					posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - ((e.boundingBox.maxX - e.posX) / 2);
-					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - ((e.boundingBox.maxY - e.posY) / 2);
-					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - ((e.boundingBox.maxZ - e.posZ) / 2);
+				posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - ((e.boundingBox.maxX - e.posX) / 2);
+				posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - ((e.boundingBox.maxY - e.posY) / 2);
+				posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - ((e.boundingBox.maxZ - e.posZ) / 2);
 
-					drawLightning(r, posX2, posY2, posZ2, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, 8, 0.15f);
-				}
+				drawLightning(r, posX2, posY2, posZ2, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, 8, 0.15f);
 			}
 		}
 	}
