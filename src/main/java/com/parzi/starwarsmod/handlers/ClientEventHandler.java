@@ -42,6 +42,7 @@ import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -91,7 +92,7 @@ public class ClientEventHandler
 	public static long lastTime = 0;
 
 	public static EntityPlayer lightningFrom = null;
-	public static EntityPlayerMP lastLightning = null;
+	public static EntityPlayer lastLightning = null;
 
 	public static float blipMax = 15;
 	public static float blipFrame = blipMax;

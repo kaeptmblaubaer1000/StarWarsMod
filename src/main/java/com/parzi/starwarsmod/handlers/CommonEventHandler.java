@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsEnum;
@@ -192,18 +193,30 @@ public class CommonEventHandler
 							{
 								mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "force.lightning", 1.0F, 1.0F);
 								StarWarsMod.network.sendToServer(new PacketEntityHurt(power.getTarget().getEntityId(), power.getTarget().dimension, power.getDamage()));
-								if (power.getTarget() instanceof EntityPlayerMP)
+								if (power.getTarget() instanceof EntityPlayer)
 								{
-									ClientEventHandler.lastLightning = (EntityPlayerMP)power.getTarget();
-									StarWarsMod.network.sendTo(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension), (EntityPlayerMP)power.getTarget());
+									try
+									{
+										ClientEventHandler.lastLightning = (EntityPlayerMP)power.getTarget();
+										StarWarsMod.network.sendTo(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension), (EntityPlayerMP)power.getTarget());
+									}
+									catch (Exception e)
+									{
+									}
 								}
 							}
 							else
 							{
-								if (ClientEventHandler.lastLightning instanceof EntityPlayerMP)
+								if (ClientEventHandler.lastLightning instanceof EntityPlayer)
 								{
-									StarWarsMod.network.sendTo(new PacketPlayerLightning(ClientEventHandler.lastLightning.getCommandSenderName(), false, ClientEventHandler.lastLightning.dimension), ClientEventHandler.lastLightning);
-									ClientEventHandler.lastLightning = null;
+									try
+									{
+										StarWarsMod.network.sendTo(new PacketPlayerLightning(ClientEventHandler.lastLightning.getCommandSenderName(), false, ClientEventHandler.lastLightning.dimension), (EntityPlayerMP)ClientEventHandler.lastLightning);
+										ClientEventHandler.lastLightning = null;
+									}
+									catch (Exception e)
+									{
+									}
 								}
 							}
 						}
