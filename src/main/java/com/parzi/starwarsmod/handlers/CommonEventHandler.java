@@ -200,8 +200,11 @@ public class CommonEventHandler
 							}
 							else
 							{
-								StarWarsMod.network.sendTo(new PacketPlayerLightning(ClientEventHandler.lastLightning.getCommandSenderName(), false, ClientEventHandler.lastLightning.dimension), ClientEventHandler.lastLightning);
-								ClientEventHandler.lastLightning = null;
+								if (ClientEventHandler.lastLightning instanceof EntityPlayerMP)
+								{
+									StarWarsMod.network.sendTo(new PacketPlayerLightning(ClientEventHandler.lastLightning.getCommandSenderName(), false, ClientEventHandler.lastLightning.dimension), ClientEventHandler.lastLightning);
+									ClientEventHandler.lastLightning = null;
+								}
 							}
 						}
 					}
