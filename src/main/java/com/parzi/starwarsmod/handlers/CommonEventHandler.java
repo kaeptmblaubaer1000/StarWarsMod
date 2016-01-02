@@ -173,6 +173,19 @@ public class CommonEventHandler
 
 					if (ForceUtils.activePower.duration >= ForceUtils.activePower.getDuration() || !ForceUtils.isUsingDuration)
 					{
+						if (ForceUtils.activePower.name.equals("lightning"))
+						{
+							PowerLightning power = (PowerLightning)ForceUtils.activePower;
+							try
+							{
+								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", mc.thePlayer.dimension));
+								ClientEventHandler.lastLightning = null;
+							}
+							catch (Exception e)
+							{
+								e.printStackTrace();
+							}
+						}
 						ForceUtils.activePower.duration = 0;
 						ForceUtils.isUsingDuration = false;
 						ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
