@@ -1,14 +1,11 @@
 package com.parzi.starwarsmod.handlers;
 
-import java.util.HashMap;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 
 import com.parzi.starwarsmod.StarWarsEnum;
@@ -19,23 +16,21 @@ import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
+import com.parzi.starwarsmod.network.PacketPlayerLightningServer;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.sun.security.ntlm.Client;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -198,7 +193,7 @@ public class CommonEventHandler
 									try
 									{
 										ClientEventHandler.lastLightning = (EntityPlayerMP)power.getTarget();
-										StarWarsMod.network.sendTo(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension), (EntityPlayerMP)power.getTarget());
+										StarWarsMod.network.sendToServer(new PacketPlayerLightningServer(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension));
 									}
 									catch (Exception e)
 									{
@@ -211,7 +206,7 @@ public class CommonEventHandler
 								{
 									try
 									{
-										StarWarsMod.network.sendTo(new PacketPlayerLightning(ClientEventHandler.lastLightning.getCommandSenderName(), false, ClientEventHandler.lastLightning.dimension), (EntityPlayerMP)ClientEventHandler.lastLightning);
+										StarWarsMod.network.sendToServer(new PacketPlayerLightningServer(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension));
 										ClientEventHandler.lastLightning = null;
 									}
 									catch (Exception e)
