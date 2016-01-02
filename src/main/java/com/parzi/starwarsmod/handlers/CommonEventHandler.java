@@ -176,14 +176,16 @@ public class CommonEventHandler
 						if (ForceUtils.activePower.name.equals("lightning"))
 						{
 							PowerLightning power = (PowerLightning)ForceUtils.activePower;
-							try
+							if (power.getTarget() instanceof EntityPlayer)
 							{
-								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", mc.thePlayer.dimension));
-								ClientEventHandler.lastLightning = null;
-							}
-							catch (Exception e)
-							{
-								e.printStackTrace();
+								try
+								{
+									StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", mc.thePlayer.dimension));
+									ClientEventHandler.lastLightning = null;
+								}
+								catch (Exception e)
+								{
+								}
 							}
 						}
 						ForceUtils.activePower.duration = 0;
@@ -209,7 +211,6 @@ public class CommonEventHandler
 									}
 									catch (Exception e)
 									{
-										e.printStackTrace();
 									}
 								}
 							}
@@ -224,7 +225,6 @@ public class CommonEventHandler
 									}
 									catch (Exception e)
 									{
-										e.printStackTrace();
 									}
 								}
 							}

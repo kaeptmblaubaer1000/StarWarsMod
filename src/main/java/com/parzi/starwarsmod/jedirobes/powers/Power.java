@@ -43,6 +43,8 @@ public class Power
 			return ForceUtils.powerPull;
 		else if (name.equalsIgnoreCase("lightning"))
 			return ForceUtils.powerLightning;
+		else if (name.equalsIgnoreCase("destruction"))
+			return ForceUtils.powerDestruction;
 		return null;
 	}
 
