@@ -38,6 +38,7 @@ import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
+import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
@@ -441,6 +442,7 @@ public class StarWarsMod
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, 7, Side.SERVER);
 		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, 8, Side.SERVER);
 		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, 9, Side.SERVER);
+		network.registerMessage(PacketPlayerLightning.Handler.class, PacketPlayerLightning.class, 10, Side.CLIENT);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();
@@ -489,8 +491,8 @@ public class StarWarsMod
 		{
 			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());
-			event.registerServerCommand(new CommandJediRobes());
 		}
+		event.registerServerCommand(new CommandJediRobes());
 	}
 }
 /*

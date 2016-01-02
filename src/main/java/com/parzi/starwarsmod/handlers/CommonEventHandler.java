@@ -1,6 +1,10 @@
 package com.parzi.starwarsmod.handlers;
 
+import java.util.HashMap;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,6 +17,7 @@ import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
+import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
@@ -25,9 +30,11 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.sun.security.ntlm.Client;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -167,8 +174,6 @@ public class CommonEventHandler
 				{
 					ForceUtils.activePower.duration++;
 
-					Lumberjack.log(ForceUtils.activePower.duration);
-
 					ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && StarWarsMod.keyRobePower.getIsKeyPressed();
 
 					if (ForceUtils.activePower.duration >= ForceUtils.activePower.getDuration() || !ForceUtils.isUsingDuration)
@@ -184,7 +189,20 @@ public class CommonEventHandler
 						{
 							PowerLightning power = (PowerLightning)ForceUtils.activePower;
 							if (power.getTarget() != null)
+							{
+								mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "force.lightning", 1.0F, 1.0F);
 								StarWarsMod.network.sendToServer(new PacketEntityHurt(power.getTarget().getEntityId(), power.getTarget().dimension, power.getDamage()));
+								if (power.getTarget() instanceof EntityPlayerMP)
+								{
+									ClientEventHandler.lastLightning = (EntityPlayerMP)power.getTarget();
+									StarWarsMod.network.sendTo(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension), (EntityPlayerMP)power.getTarget());
+								}
+							}
+							else
+							{
+								StarWarsMod.network.sendTo(new PacketPlayerLightning(ClientEventHandler.lastLightning.getCommandSenderName(), false, ClientEventHandler.lastLightning.dimension), ClientEventHandler.lastLightning);
+								ClientEventHandler.lastLightning = null;
+							}
 						}
 					}
 				}

@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -41,7 +42,6 @@ import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -89,6 +89,9 @@ public class ClientEventHandler
 
 	public static Item lastItem = null;
 	public static long lastTime = 0;
+
+	public static EntityPlayer lightningFrom = null;
+	public static EntityPlayerMP lastLightning = null;
 
 	public static float blipMax = 15;
 	public static float blipFrame = blipMax;
@@ -816,7 +819,8 @@ public class ClientEventHandler
 		{
 			PowerLightning power = (PowerLightning)ForceUtils.activePower;
 
-			if (power.duration >= power.getDuration()) return;
+			if (power.duration >= power.getDuration())
+				return;
 
 			Entity e = EntityUtils.rayTrace(power.getRange(), mc.thePlayer, new Entity[0]);
 			power.setTarget(e);
@@ -835,6 +839,23 @@ public class ClientEventHandler
 
 					drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
 				}
+			}
+		}
+
+		Entity e = lightningFrom;
+		if (e != null)
+		{
+			Random r = new Random(e.ticksExisted * 4);
+			float posX2 = (float)e.posX;
+			float posY2 = (float)e.posY + 2;
+			float posZ2 = (float)e.posZ;
+			for (int i = 0; i < 4; i++)
+			{
+				posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - ((e.boundingBox.maxX - e.posX) / 2);
+				posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - ((e.boundingBox.maxY - e.posY) / 2);
+				posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - ((e.boundingBox.maxZ - e.posZ) / 2);
+
+				drawLightning(r, posX2, posY2, posZ2, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, 8, 0.15f);
 			}
 		}
 	}

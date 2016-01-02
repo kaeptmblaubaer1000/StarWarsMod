@@ -1,4 +1,22 @@
 {
+    "force.lightning": {
+        "category": "neutral",
+        "sounds": [
+            "force/lightning"
+        ]
+    },
+    "force.push": {
+        "category": "neutral",
+        "sounds": [
+            "force/push"
+        ]
+    },
+    "force.pull": {
+        "category": "neutral",
+        "sounds": [
+            "force/pull"
+        ]
+    },
     "vehicle.speeder.move": {
         "category": "neutral",
         "sounds": [

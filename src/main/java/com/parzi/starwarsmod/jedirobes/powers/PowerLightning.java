@@ -19,7 +19,7 @@ public class PowerLightning extends Power
 		this.costMult = 80;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 6;
-		this.rechargeTime = 30;
+		this.rechargeTime = 3;
 		this.rangeBase = 4;
 		this.rangeMult = 2;
 		this.durationBase = 4;

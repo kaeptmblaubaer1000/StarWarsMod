@@ -19,7 +19,8 @@ public class PacketRobesNBT implements IMessage
 		{
 			try
 			{
-				MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player).inventory.armorInventory[2].stackTagCompound.setInteger(message.key, message.value);
+				if (MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player).capabilities.isCreativeMode)
+					MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player).inventory.armorInventory[2].stackTagCompound.setInteger(message.key, message.value);
 			}
 			catch (Exception e)
 			{
