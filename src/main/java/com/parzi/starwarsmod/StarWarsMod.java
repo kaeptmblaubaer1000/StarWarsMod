@@ -38,8 +38,6 @@ import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
-import com.parzi.starwarsmod.network.PacketPlayerLightning;
-import com.parzi.starwarsmod.network.PacketPlayerLightningServer;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
@@ -302,6 +300,7 @@ public class StarWarsMod
 	public static boolean enableBuckets;
 	public static boolean enableLightsaber;
 	public static boolean beshOverride;
+	public static int lightningDatawatcherId;
 
 	public static boolean enableTabOriginal = true;
 	public static boolean enableTabSequel = true;
@@ -443,8 +442,6 @@ public class StarWarsMod
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, 7, Side.SERVER);
 		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, 8, Side.SERVER);
 		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, 9, Side.SERVER);
-		network.registerMessage(PacketPlayerLightning.Handler.class, PacketPlayerLightning.class, 10, Side.CLIENT);
-		network.registerMessage(PacketPlayerLightningServer.Handler.class, PacketPlayerLightningServer.class, 11, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();
@@ -452,6 +449,7 @@ public class StarWarsMod
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
 		beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
+		lightningDatawatcherId = config.get("core", "lightningDatawatcherId", 27).getInt();
 
 		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();

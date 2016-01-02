@@ -15,8 +15,6 @@ import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
-import com.parzi.starwarsmod.network.PacketPlayerLightning;
-import com.parzi.starwarsmod.network.PacketPlayerLightningServer;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
@@ -192,8 +190,8 @@ public class CommonEventHandler
 								{
 									try
 									{
-										ClientEventHandler.lastLightning = (EntityPlayerMP)power.getTarget();
-										StarWarsMod.network.sendToServer(new PacketPlayerLightningServer(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension));
+										ClientEventHandler.lastLightning = (EntityPlayer)power.getTarget();
+										power.getTarget().getDataWatcher().updateObject(StarWarsMod.lightningDatawatcherId, mc.thePlayer.getCommandSenderName());
 									}
 									catch (Exception e)
 									{
@@ -206,7 +204,7 @@ public class CommonEventHandler
 								{
 									try
 									{
-										StarWarsMod.network.sendToServer(new PacketPlayerLightningServer(power.getTarget().getCommandSenderName(), true, power.getTarget().dimension));
+										power.getTarget().getDataWatcher().updateObject(StarWarsMod.lightningDatawatcherId, String.valueOf(""));
 										ClientEventHandler.lastLightning = null;
 									}
 									catch (Exception e)

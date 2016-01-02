@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,8 +14,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-
-import com.parzi.starwarsmod.sound.SoundFlyingVehicle;
 
 public class VehicleAirBase extends VehicleBase
 {
@@ -171,9 +168,6 @@ public class VehicleAirBase extends VehicleBase
 			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
 
 		this.nowMoving = (int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ;
-
-		if (this.nowMoving && !this.wasMoving)
-			Minecraft.getMinecraft().getSoundHandler().playSound(new SoundFlyingVehicle(this, this.getMovingSound()));
 
 		this.wasMoving = this.nowMoving;
 
