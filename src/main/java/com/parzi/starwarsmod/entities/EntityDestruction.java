@@ -1,10 +1,8 @@
 package com.parzi.starwarsmod.entities;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -109,7 +107,7 @@ public class EntityDestruction extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
-		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, radius, true);
+		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.radius, true);
 		this.setDead();
 	}
 

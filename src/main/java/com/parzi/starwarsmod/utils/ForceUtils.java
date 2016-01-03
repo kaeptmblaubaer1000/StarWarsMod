@@ -27,6 +27,11 @@ public class ForceUtils
 		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "healing", "naturalAwareness", "slow", "drainKnowledge", "lightning", "destruction" };
 	}
 
+	public static String[] getBasicPowers()
+	{
+		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab" };
+	}
+
 	public static String[] getJediPowers()
 	{
 		return new String[] { "healing", "naturalAwareness" };
@@ -35,10 +40,5 @@ public class ForceUtils
 	public static String[] getSithPowers()
 	{
 		return new String[] { "slow", "drainKnowledge", "lightning", "destruction" };
-	}
-
-	public static String[] getBasicPowers()
-	{
-		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab" };
 	}
 }

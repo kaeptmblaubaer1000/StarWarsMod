@@ -43,7 +43,6 @@ import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -114,6 +113,60 @@ public class ClientEventHandler
 
 	RenderJediDefense renderJediDefense = new RenderJediDefense();
 
+	private void drawLightning(Random r, float posX, float posY, float posZ, float posX2, float posY2, float posZ2, float distance, float curDetail)
+	{
+		if (distance < curDetail)
+		{
+			GL11.glPushMatrix();
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
+			GL11.glEnable(GL11.GL_LINE_SMOOTH);
+			GL11.glTranslated(-(mc.thePlayer.posX - 0.5), -(mc.thePlayer.posY - 0.5f), -(mc.thePlayer.posZ - 0.5));
+
+			GL11.glLineWidth(8);
+			GL11.glColor3f(0f, 0f, 1f);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glLineWidth(6);
+			GL11.glColor3f(0.5f, 0.5f, 1f);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glLineWidth(2);
+			GL11.glColor3f(1, 1, 1);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glDisable(GL11.GL_LINE_SMOOTH);
+			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glColor3f(1, 1, 1);
+			GL11.glPopMatrix();
+		}
+		else
+		{
+			float mid_x = (posX2 + posX) / 2f;
+			float mid_y = (posY2 + posY) / 2f;
+			float mid_z = (posZ2 + posZ) / 2f;
+			mid_x += (r.nextFloat() - 0.5f) / 10f * distance;
+			mid_y += (r.nextFloat() - 0.5f) / 10f * distance;
+			mid_z += (r.nextFloat() - 0.5f) / 10f * distance;
+
+			this.drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, distance / 2f, curDetail);
+			this.drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, distance / 2f, curDetail);
+		}
+	}
+
 	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
 		Tessellator tessellator = Tessellator.instance;
@@ -153,21 +206,10 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
-	public void onXpPickup(PlayerPickupXpEvent event)
-	{
-		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-		{
-			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
-		}
-	}
-
-	@SubscribeEvent
 	public void handleConstruction(EntityConstructing event)
 	{
 		if (event.entity instanceof EntityPlayer)
-		{
 			event.entity.getDataWatcher().addObject(StarWarsMod.lightningDatawatcherId, String.valueOf(""));
-		}
 	}
 
 	@SubscribeEvent
@@ -237,9 +279,7 @@ public class ClientEventHandler
 			if (StarWarsMod.renderHelper.isFirstPerson())
 			{
 				if (mc.entityRenderer instanceof PSWMEntityRenderer)
-				{
 					((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
-				}
 				else
 				{
 					ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
@@ -251,9 +291,7 @@ public class ClientEventHandler
 			else
 			{
 				if (mc.entityRenderer instanceof PSWMEntityRenderer)
-				{
 					((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(15);
-				}
 				else
 				{
 					ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 15, "thirdPersonDistance");
@@ -264,9 +302,7 @@ public class ClientEventHandler
 			}
 		}
 		else if (mc.entityRenderer instanceof PSWMEntityRenderer)
-		{
 			((PSWMEntityRenderer)mc.entityRenderer).setThirdPersonDistance(4);
-		}
 		else
 		{
 			ReflectionHelper.setPrivateValue(EntityRenderer.class, mc.entityRenderer, 4, "thirdPersonDistance");
@@ -826,6 +862,29 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
+	public void onXpPickup(PlayerPickupXpEvent event)
+	{
+		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+	}
+
+	private ResourceLocation planetTextureFromDim(int dim)
+	{
+		if (dim == StarWarsMod.dimEndorId)
+			return endorTexture;
+		else if (dim == StarWarsMod.dimHothId)
+			return hothTexture;
+		else if (dim == StarWarsMod.dimKashyyykId)
+			return kashyyykTexture;
+		else if (dim == StarWarsMod.dimTatooineId)
+			return tatooineTexture;
+		else if (dim == StarWarsMod.dimYavin4Id)
+			return yavinTexture;
+
+		return earthTexture;
+	}
+
+	@SubscribeEvent
 	public void renderWorldLastEvent(RenderWorldLastEvent event)
 	{
 		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("lightning") && ForceUtils.isUsingDuration)
@@ -846,16 +905,16 @@ public class ClientEventHandler
 				float posZ2 = (float)e.posZ;
 				for (int i = 0; i < 4; i++)
 				{
-					posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - ((e.boundingBox.maxX - e.posX) / 2);
-					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - ((e.boundingBox.maxY - e.posY) / 2);
-					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - ((e.boundingBox.maxZ - e.posZ) / 2);
+					posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - (e.boundingBox.maxX - e.posX) / 2;
+					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - (e.boundingBox.maxY - e.posY) / 2;
+					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - (e.boundingBox.maxZ - e.posZ) / 2;
 
-					drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
+					this.drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
 				}
 			}
 		}
 
-		renderJediDefense.onWorldRender(event);
+		// renderJediDefense.onWorldRender(event);
 
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
 		{
@@ -870,84 +929,14 @@ public class ClientEventHandler
 				float posZ2 = (float)player.posZ - 0.5f;
 				for (int i = 0; i < 4; i++)
 				{
-					posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - ((player.boundingBox.maxX - player.posX) / 2);
-					posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - ((player.boundingBox.maxY - player.posY) / 2);
-					posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - ((player.boundingBox.maxZ - player.posZ) / 2);
+					posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - (player.boundingBox.maxX - player.posX) / 2;
+					posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - (player.boundingBox.maxY - player.posY) / 2;
+					posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - (player.boundingBox.maxZ - player.posZ) / 2;
 
-					drawLightning(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
+					this.drawLightning(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
 				}
 			}
 		}
-	}
-
-	private void drawLightning(Random r, float posX, float posY, float posZ, float posX2, float posY2, float posZ2, float distance, float curDetail)
-	{
-		if (distance < curDetail)
-		{
-			GL11.glPushMatrix();
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
-			GL11.glEnable(GL11.GL_LINE_SMOOTH);
-			GL11.glTranslated(-(mc.thePlayer.posX - 0.5), -(mc.thePlayer.posY - 0.5f), -(mc.thePlayer.posZ - 0.5));
-
-			GL11.glLineWidth(8);
-			GL11.glColor3f(0f, 0f, 1f);
-
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(posX, posY, posZ);
-			GL11.glVertex3d(posX2, posY2, posZ2);
-			GL11.glEnd();
-
-			GL11.glLineWidth(6);
-			GL11.glColor3f(0.5f, 0.5f, 1f);
-
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(posX, posY, posZ);
-			GL11.glVertex3d(posX2, posY2, posZ2);
-			GL11.glEnd();
-
-			GL11.glLineWidth(2);
-			GL11.glColor3f(1, 1, 1);
-
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(posX, posY, posZ);
-			GL11.glVertex3d(posX2, posY2, posZ2);
-			GL11.glEnd();
-
-			GL11.glDisable(GL11.GL_LINE_SMOOTH);
-			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glColor3f(1, 1, 1);
-			GL11.glPopMatrix();
-		}
-		else
-		{
-			float mid_x = (posX2 + posX) / 2f;
-			float mid_y = (posY2 + posY) / 2f;
-			float mid_z = (posZ2 + posZ) / 2f;
-			mid_x += ((r.nextFloat() - 0.5f) / 10f) * distance;
-			mid_y += ((r.nextFloat() - 0.5f) / 10f) * distance;
-			mid_z += ((r.nextFloat() - 0.5f) / 10f) * distance;
-
-			drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, distance / 2f, curDetail);
-			drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, distance / 2f, curDetail);
-		}
-	}
-
-	private ResourceLocation planetTextureFromDim(int dim)
-	{
-		if (dim == StarWarsMod.dimEndorId)
-			return endorTexture;
-		else if (dim == StarWarsMod.dimHothId)
-			return hothTexture;
-		else if (dim == StarWarsMod.dimKashyyykId)
-			return kashyyykTexture;
-		else if (dim == StarWarsMod.dimTatooineId)
-			return tatooineTexture;
-		else if (dim == StarWarsMod.dimYavin4Id)
-			return yavinTexture;
-
-		return earthTexture;
 	}
 
 }

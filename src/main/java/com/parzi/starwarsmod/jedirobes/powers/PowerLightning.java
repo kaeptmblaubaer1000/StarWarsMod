@@ -1,12 +1,6 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Vec3;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
-import com.parzi.starwarsmod.utils.EntityUtils;
 
 public class PowerLightning extends Power
 {
@@ -29,13 +23,13 @@ public class PowerLightning extends Power
 		this.isDurationBased = true;
 	}
 
-	public void setTarget(Entity e)
-	{
-		this.target = e;
-	}
-
 	public Entity getTarget()
 	{
 		return this.target;
+	}
+
+	public void setTarget(Entity e)
+	{
+		this.target = e;
 	}
 }

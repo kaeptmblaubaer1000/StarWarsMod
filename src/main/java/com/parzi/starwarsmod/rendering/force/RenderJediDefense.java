@@ -2,7 +2,6 @@ package com.parzi.starwarsmod.rendering.force;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -10,7 +9,6 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.vector.Vector3f;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.GlPalette;
@@ -24,15 +22,18 @@ public class RenderJediDefense
 
 	public RenderJediDefense()
 	{
-		model = AdvancedModelLoader.loadModel(sphere);
+		this.model = AdvancedModelLoader.loadModel(sphere);
+	}
+
+	private boolean isClient(EntityPlayer player)
+	{
+		return player == Minecraft.getMinecraft().thePlayer;
 	}
 
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
-		{
-			renderPlayerShield(event, (EntityPlayer)entity);
-		}
+			this.renderPlayerShield(event, (EntityPlayer)entity);
 	}
 
 	private void renderPlayerShield(RenderWorldLastEvent event, EntityPlayer player)
@@ -41,7 +42,7 @@ public class RenderJediDefense
 
 		if (isVisible)
 		{
-			double time = Minecraft.getMinecraft().theWorld.getWorldTime();
+			Minecraft.getMinecraft().theWorld.getWorldTime();
 
 			GL11.glPushMatrix();
 			GL11.glDepthMask(false);
@@ -53,24 +54,19 @@ public class RenderJediDefense
 			Vec3 clientPosition = Minecraft.getMinecraft().thePlayer.getPosition(event.partialTicks);
 			GlPalette.glColorI(GlPalette.MEDIUM_BLUE);
 			Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-			if (!isClient(player))
+			if (!this.isClient(player))
 			{
 				GL11.glTranslated(0, player.height - 0.5, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 			}
-			else
-			{
-				if (Minecraft.getMinecraft().gameSettings.thirdPersonView > 0)
-				{
-					GL11.glEnable(GL11.GL_CULL_FACE);
-				}
-			}
+			else if (Minecraft.getMinecraft().gameSettings.thirdPersonView > 0)
+				GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glTranslated(playerPosition.xCoord - clientPosition.xCoord, playerPosition.yCoord - clientPosition.yCoord, playerPosition.zCoord - clientPosition.zCoord);
 			GL11.glTranslated(0, -0.5, 0);
 			GL11.glScaled(3, 3, 3);
 			GL11.glRotated(player.ticksExisted % 360, -1, 0, 0);
 			GL11.glRotated(player.ticksExisted % 360, 0, 0, 1);
-			model.renderAll();
+			this.model.renderAll();
 
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_CULL_FACE);
@@ -78,10 +74,5 @@ public class RenderJediDefense
 			GL11.glDepthMask(true);
 			GL11.glPopMatrix();
 		}
-	}
-
-	private boolean isClient(EntityPlayer player)
-	{
-		return player == Minecraft.getMinecraft().thePlayer;
 	}
 }

@@ -32,7 +32,7 @@ public class PowerPush extends Power
 			{
 				Vec3 lookVec = player.getLookVec();
 
-				float mult = (1 + 0.5f * this.currentLevel);
+				float mult = 1 + 0.5f * this.currentLevel;
 
 				lookVec.xCoord *= mult;
 				lookVec.yCoord *= mult;

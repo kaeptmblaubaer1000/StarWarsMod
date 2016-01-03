@@ -36,12 +36,6 @@ public class BlockHangingCauldron extends BlockContainer
 	}
 
 	@Override
-    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
-    {
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
-    }
-
-	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
@@ -57,6 +51,12 @@ public class BlockHangingCauldron extends BlockContainer
 	public boolean renderAsNormalBlock()
 	{
 		return false;
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
+	{
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 	}
 }
 /*

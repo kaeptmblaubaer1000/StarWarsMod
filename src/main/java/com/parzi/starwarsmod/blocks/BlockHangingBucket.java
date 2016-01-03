@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
-import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 
 public class BlockHangingBucket extends BlockContainer
@@ -23,12 +22,6 @@ public class BlockHangingBucket extends BlockContainer
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
-
-	@Override
-    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
-    {
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
-    }
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_)
@@ -58,6 +51,12 @@ public class BlockHangingBucket extends BlockContainer
 	public boolean renderAsNormalBlock()
 	{
 		return false;
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
+	{
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 	}
 }
 /*

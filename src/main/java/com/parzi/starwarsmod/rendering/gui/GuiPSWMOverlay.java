@@ -32,7 +32,7 @@ public class GuiPSWMOverlay extends Gui
 		this.mc = mc;
 		this.r = RenderItem.getInstance();
 
-		format = NumberFormat.getInstance();
+		this.format = NumberFormat.getInstance();
 	}
 
 	public int countCredits()
@@ -62,11 +62,11 @@ public class GuiPSWMOverlay extends Gui
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + StarWarsMod.VERSION, 5, 5, 16777215);
 		StarWarsMod.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
 
-		if (mc.thePlayer.inventory.armorItemInSlot(2) != null && mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (this.mc.thePlayer.inventory.armorItemInSlot(2) != null && this.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
-			ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+			ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
-			ItemStack robes = mc.thePlayer.inventory.armorItemInSlot(2);
+			ItemStack robes = this.mc.thePlayer.inventory.armorItemInSlot(2);
 			NBTTagCompound tags = robes.stackTagCompound;
 
 			int xp = ArmorJediRobes.getXP(robes);
@@ -82,17 +82,17 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 			if (ForceUtils.activePower != null)
-				this.drawString(mc.fontRenderer, ForceUtils.activePower.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
+				this.drawString(this.mc.fontRenderer, ForceUtils.activePower.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 			for (Power cooling : ForceUtils.coolingPowers)
 			{
 				StarWarsMod.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
-				this.drawString(mc.fontRenderer, cooling.getLocalizedName() + ": " + ((int)cooling.recharge) + "s", 30, y - 3, GlPalette.WHITE);
+				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)cooling.recharge + "s", 30, y - 3, GlPalette.WHITE);
 				y -= 22;
 			}
 
-			this.drawCenteredString(mc.fontRenderer, "FORCE XP: " + format.format(xp) + "/" + format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, guiColor);
+			this.drawCenteredString(this.mc.fontRenderer, "FORCE XP: " + this.format.format(xp) + "/" + this.format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, guiColor);
 			GL11.glPopMatrix();
 		}
 

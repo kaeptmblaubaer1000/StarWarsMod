@@ -6,7 +6,6 @@ import java.util.List;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -80,7 +79,8 @@ public class CommandJediRobes implements net.minecraft.command.ICommand
 		try
 		{
 			value = Integer.parseInt(astring[1]);
-			if (key.equalsIgnoreCase("level")) value *= 10;
+			if (key.equalsIgnoreCase("level"))
+				value *= 10;
 		}
 		catch (Exception e)
 		{
@@ -93,17 +93,13 @@ public class CommandJediRobes implements net.minecraft.command.ICommand
 		if (player != null && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
 			ItemStack robes = player.inventory.armorItemInSlot(2);
-			NBTTagCompound tags = robes.stackTagCompound;
-
-			int xp = ArmorJediRobes.getXP(robes);
-			int maxxp = ArmorJediRobes.getMaxXP(robes);
+			ArmorJediRobes.getXP(robes);
+			ArmorJediRobes.getMaxXP(robes);
 
 			StarWarsMod.network.sendToServer(new PacketRobesNBT(key, value, player.dimension, player.getCommandSenderName()));
 
 			if (key.equalsIgnoreCase("level"))
-			{
 				StarWarsMod.network.sendToServer(new PacketRobesNBT("maxxp", value * 10, player.dimension, player.getCommandSenderName()));
-			}
 		}
 		else
 		{

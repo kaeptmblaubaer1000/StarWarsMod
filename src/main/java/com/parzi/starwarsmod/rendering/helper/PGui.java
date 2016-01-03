@@ -13,10 +13,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.Lumberjack;
-
 import scala.Int;
+
+import com.parzi.starwarsmod.StarWarsMod;
 
 public class PGui// extends Gui
 {
@@ -26,112 +25,6 @@ public class PGui// extends Gui
 	private static ResourceLocation saber = new ResourceLocation(StarWarsMod.MODID, "textures/gui/hilt.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
-
-	public void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
-	{
-		float f4 = 1.0F / textureWidth;
-		float f5 = 1.0F / textureHeight;
-		Tessellator tessellator = Tessellator.instance;
-		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x, y + height, 0.0D, u * f4, (v + height) * f5);
-		tessellator.addVertexWithUV(x + width, y + height, 0.0D, (u + width) * f4, (v + height) * f5);
-		tessellator.addVertexWithUV(x + width, y, 0.0D, (u + width) * f4, v * f5);
-		tessellator.addVertexWithUV(x, y, 0.0D, u * f4, v * f5);
-		tessellator.draw();
-	}
-
-	/**
-	 * Draws a solid color rectangle with the specified coordinates and color.
-	 * Args: x1, y1, x2, y2, color
-	 */
-	public void drawRect(int x1, int y1, int x2, int y2, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-
-		int j1;
-
-		if (x1 < x2)
-		{
-			j1 = x1;
-			x1 = x2;
-			x2 = j1;
-		}
-
-		if (y1 < y2)
-		{
-			j1 = y1;
-			y1 = y2;
-			y2 = j1;
-		}
-		float f3 = (color >> 24 & 255) / 255.0F;
-		float f = (color >> 16 & 255) / 255.0F;
-		float f1 = (color >> 8 & 255) / 255.0F;
-		float f2 = (color & 255) / 255.0F;
-		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		GL11.glColor4f(f, f1, f2, f3);
-		tessellator.startDrawingQuads();
-		tessellator.addVertex(x1, y2, 0.0D);
-		tessellator.addVertex(x2, y2, 0.0D);
-		tessellator.addVertex(x2, y1, 0.0D);
-		tessellator.addVertex(x1, y1, 0.0D);
-		tessellator.draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-	}
-
-	/**
-	 * Draws a solid color rectangle with the specified coordinates and color.
-	 * Args: x1, y1, x2, y2, color
-	 */
-	public void drawRect(int x1, int y1, int x2, int y2, int r, int g, int b, int a)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-
-		int j1;
-
-		if (x1 < x2)
-		{
-			j1 = x1;
-			x1 = x2;
-			x2 = j1;
-		}
-
-		if (y1 < y2)
-		{
-			j1 = y1;
-			y1 = y2;
-			y2 = j1;
-		}
-		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		GL11.glColor4f(r / 255f, g / 255f, b / 255f, a / 255f);
-		tessellator.startDrawingQuads();
-		tessellator.addVertex(x1, y2, 0.0D);
-		tessellator.addVertex(x2, y2, 0.0D);
-		tessellator.addVertex(x2, y1, 0.0D);
-		tessellator.addVertex(x1, y1, 0.0D);
-		tessellator.draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-	}
-
-	public void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
-	{
-		float f4 = 1.0F / p_152125_8_;
-		float f5 = 1.0F / p_152125_9_;
-		Tessellator tessellator = Tessellator.instance;
-		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(p_152125_0_, p_152125_1_ + p_152125_7_, 0.0D, p_152125_2_ * f4, (p_152125_3_ + p_152125_5_) * f5);
-		tessellator.addVertexWithUV(p_152125_0_ + p_152125_6_, p_152125_1_ + p_152125_7_, 0.0D, (p_152125_2_ + p_152125_4_) * f4, (p_152125_3_ + p_152125_5_) * f5);
-		tessellator.addVertexWithUV(p_152125_0_ + p_152125_6_, p_152125_1_, 0.0D, (p_152125_2_ + p_152125_4_) * f4, p_152125_3_ * f5);
-		tessellator.addVertexWithUV(p_152125_0_, p_152125_1_, 0.0D, p_152125_2_ * f4, p_152125_3_ * f5);
-		tessellator.draw();
-	}
 
 	public static int getRGB(int r, int g, int b)
 	{
@@ -183,85 +76,6 @@ public class PGui// extends Gui
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		PGui.mc.fontRenderer.drawStringWithShadow(string, x - PGui.mc.fontRenderer.getStringWidth(string) / 2, y - PGui.mc.fontRenderer.FONT_HEIGHT / 2, color);
-	}
-
-	/**
-	 * Draws a filled circle
-	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param radius
-	 *            The radius
-	 * @param percent
-	 *            The percentage full of the circle
-	 * @param color
-	 *            The color
-	 */
-	public void drawLoadingCircle(int x, int y, double radius, float percent, int color)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		float f = (color >> 24 & 0xff) / 255F;
-		float f1 = (color >> 16 & 0xff) / 255F;
-		float f2 = (color >> 8 & 0xff) / 255F;
-		float f3 = (color & 0xff) / 255F;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glColor4f(f1, f2, f3, f);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2d(x, y);
-		for (int i = 0; i <= 360 * percent; i++)
-		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
-			GL11.glVertex2d(nx + x, ny + y);
-		}
-		GL11.glEnd();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-	}
-
-	/**
-	 * Draws a filled circle
-	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param radius
-	 *            The radius
-	 * @param percent
-	 *            The percentage full of the circle
-	 * @param color
-	 *            The color
-	 */
-	public void drawLoadingCircleWithoutSetup(int x, int y, double radius, float percent, int color)
-	{
-		float f = (color >> 24 & 0xff) / 255F;
-		float f1 = (color >> 16 & 0xff) / 255F;
-		float f2 = (color >> 8 & 0xff) / 255F;
-		float f3 = (color & 0xff) / 255F;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glBlendFunc(770, 771);
-		GL11.glColor4f(f1, f2, f3, f);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2d(x, y);
-		for (int i = 0; i <= 360 * percent; i++)
-		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
-			GL11.glVertex2d(nx + x, ny + y);
-		}
-		GL11.glEnd();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
 	}
 
 	/**
@@ -552,25 +366,210 @@ public class PGui// extends Gui
 	public void drawLine3d(double x1, double y1, double z1, double x2, double y2, double z2, int lineWidth, int color)
 	{
 		GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glMatrixMode(GL11.GL_MODELVIEW);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_BLEND);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glLineWidth(2.0F);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glDepthMask(false);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_BLEND);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glLineWidth(2.0F);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDepthMask(false);
 		Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawing(1);
+		tessellator.startDrawing(1);
 		tessellator.setColorOpaque_I(color);
-        tessellator.addVertex(x1, y1, z1);
-        tessellator.addVertex(x2, y2, z2);
-        tessellator.draw();
-        GL11.glDepthMask(true);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glPopMatrix();
+		tessellator.addVertex(x1, y1, z1);
+		tessellator.addVertex(x2, y2, z2);
+		tessellator.draw();
+		GL11.glDepthMask(true);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glPopMatrix();
+	}
+
+	/**
+	 * Draws a filled circle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param radius
+	 *            The radius
+	 * @param percent
+	 *            The percentage full of the circle
+	 * @param color
+	 *            The color
+	 */
+	public void drawLoadingCircle(int x, int y, double radius, float percent, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glVertex2d(x, y);
+		for (int i = 0; i <= 360 * percent; i++)
+		{
+			double nx = Math.sin(i * 3.141526D / 180) * radius;
+			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			GL11.glVertex2d(nx + x, ny + y);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+	}
+
+	/**
+	 * Draws a filled circle
+	 *
+	 * @param x
+	 *            The x position
+	 * @param y
+	 *            The y position
+	 * @param radius
+	 *            The radius
+	 * @param percent
+	 *            The percentage full of the circle
+	 * @param color
+	 *            The color
+	 */
+	public void drawLoadingCircleWithoutSetup(int x, int y, double radius, float percent, int color)
+	{
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glVertex2d(x, y);
+		for (int i = 0; i <= 360 * percent; i++)
+		{
+			double nx = Math.sin(i * 3.141526D / 180) * radius;
+			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			GL11.glVertex2d(nx + x, ny + y);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+	}
+
+	public void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
+	{
+		float f4 = 1.0F / textureWidth;
+		float f5 = 1.0F / textureHeight;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(x, y + height, 0.0D, u * f4, (v + height) * f5);
+		tessellator.addVertexWithUV(x + width, y + height, 0.0D, (u + width) * f4, (v + height) * f5);
+		tessellator.addVertexWithUV(x + width, y, 0.0D, (u + width) * f4, v * f5);
+		tessellator.addVertexWithUV(x, y, 0.0D, u * f4, v * f5);
+		tessellator.draw();
+	}
+
+	/**
+	 * Draws a solid color rectangle with the specified coordinates and color.
+	 * Args: x1, y1, x2, y2, color
+	 */
+	public void drawRect(int x1, int y1, int x2, int y2, int color)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+
+		int j1;
+
+		if (x1 < x2)
+		{
+			j1 = x1;
+			x1 = x2;
+			x2 = j1;
+		}
+
+		if (y1 < y2)
+		{
+			j1 = y1;
+			y1 = y2;
+			y2 = j1;
+		}
+		float f3 = (color >> 24 & 255) / 255.0F;
+		float f = (color >> 16 & 255) / 255.0F;
+		float f1 = (color >> 8 & 255) / 255.0F;
+		float f2 = (color & 255) / 255.0F;
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glColor4f(f, f1, f2, f3);
+		tessellator.startDrawingQuads();
+		tessellator.addVertex(x1, y2, 0.0D);
+		tessellator.addVertex(x2, y2, 0.0D);
+		tessellator.addVertex(x2, y1, 0.0D);
+		tessellator.addVertex(x1, y1, 0.0D);
+		tessellator.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+	}
+
+	/**
+	 * Draws a solid color rectangle with the specified coordinates and color.
+	 * Args: x1, y1, x2, y2, color
+	 */
+	public void drawRect(int x1, int y1, int x2, int y2, int r, int g, int b, int a)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+
+		int j1;
+
+		if (x1 < x2)
+		{
+			j1 = x1;
+			x1 = x2;
+			x2 = j1;
+		}
+
+		if (y1 < y2)
+		{
+			j1 = y1;
+			y1 = y2;
+			y2 = j1;
+		}
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glColor4f(r / 255f, g / 255f, b / 255f, a / 255f);
+		tessellator.startDrawingQuads();
+		tessellator.addVertex(x1, y2, 0.0D);
+		tessellator.addVertex(x2, y2, 0.0D);
+		tessellator.addVertex(x2, y1, 0.0D);
+		tessellator.addVertex(x1, y1, 0.0D);
+		tessellator.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+	}
+
+	public void drawScaledCustomSizeModalRect(int p_152125_0_, int p_152125_1_, float p_152125_2_, float p_152125_3_, int p_152125_4_, int p_152125_5_, int p_152125_6_, int p_152125_7_, float p_152125_8_, float p_152125_9_)
+	{
+		float f4 = 1.0F / p_152125_8_;
+		float f5 = 1.0F / p_152125_9_;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(p_152125_0_, p_152125_1_ + p_152125_7_, 0.0D, p_152125_2_ * f4, (p_152125_3_ + p_152125_5_) * f5);
+		tessellator.addVertexWithUV(p_152125_0_ + p_152125_6_, p_152125_1_ + p_152125_7_, 0.0D, (p_152125_2_ + p_152125_4_) * f4, (p_152125_3_ + p_152125_5_) * f5);
+		tessellator.addVertexWithUV(p_152125_0_ + p_152125_6_, p_152125_1_, 0.0D, (p_152125_2_ + p_152125_4_) * f4, p_152125_3_ * f5);
+		tessellator.addVertexWithUV(p_152125_0_, p_152125_1_, 0.0D, p_152125_2_ * f4, p_152125_3_ * f5);
+		tessellator.draw();
 	}
 
 	/**
@@ -691,35 +690,6 @@ public class PGui// extends Gui
 	}
 
 	/**
-	 * Renders a progress bar on-screen
-	 *
-	 * @param caption
-	 *            The string to display above the bar
-	 * @param percent
-	 *            The percentage full of the bar (0-1)
-	 * @param jedi
-	 *            True if you want to draw an XP-style bar instead of a boss bar
-	 */
-	public void renderLightsaberBarOnscreen(int x, int y, float percent, boolean jedi)
-	{
-		PGui.mc.entityRenderer.setupOverlayRendering();
-		PGui.mc.getTextureManager().bindTexture(saberBars);
-		GL11.glEnable(3042);
-		int j = x + 25;
-		int k = (int)(percent * 100);
-		int b0 = y + 1;
-		this.drawTexturedModalRectFloat(j, b0, 0, 0, 99, 3.6f);
-		if (k > 0)
-			this.drawTexturedModalRectFloat(j, b0, 0, jedi ? 3.6f : 10.5f, k, 3.6f);
-
-		PGui.mc.getTextureManager().bindTexture(saber);
-		this.drawTexturedModalRectFloat(j - (jedi ? 25 : 24), b0 - 0.75f, 0, jedi ? 0 : 6f, 26.5f, 6);
-
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(3042);
-	}
-
-	/**
 	 * Renders some hearts on-screen
 	 *
 	 * @param x
@@ -794,6 +764,35 @@ public class PGui// extends Gui
 		GL11.glEnable(2929);
 		GL11.glDisable(3042);
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+	}
+
+	/**
+	 * Renders a progress bar on-screen
+	 *
+	 * @param caption
+	 *            The string to display above the bar
+	 * @param percent
+	 *            The percentage full of the bar (0-1)
+	 * @param jedi
+	 *            True if you want to draw an XP-style bar instead of a boss bar
+	 */
+	public void renderLightsaberBarOnscreen(int x, int y, float percent, boolean jedi)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.getTextureManager().bindTexture(saberBars);
+		GL11.glEnable(3042);
+		int j = x + 25;
+		int k = (int)(percent * 100);
+		int b0 = y + 1;
+		this.drawTexturedModalRectFloat(j, b0, 0, 0, 99, 3.6f);
+		if (k > 0)
+			this.drawTexturedModalRectFloat(j, b0, 0, jedi ? 3.6f : 10.5f, k, 3.6f);
+
+		PGui.mc.getTextureManager().bindTexture(saber);
+		this.drawTexturedModalRectFloat(j - (jedi ? 25 : 24), b0 - 0.75f, 0, jedi ? 0 : 6f, 26.5f, 6);
+
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(3042);
 	}
 
 	/**

@@ -32,12 +32,6 @@ public class BlockMV extends BlockContainer
 	}
 
 	@Override
-    public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
-    {
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
-    }
-
-	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block, int wut)
 	{
 		TileEntityMV moistureVap = (TileEntityMV)world.getTileEntity(x, y, z);
@@ -104,6 +98,12 @@ public class BlockMV extends BlockContainer
 	public boolean renderAsNormalBlock()
 	{
 		return false;
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
+	{
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
 	}
 }
 /*

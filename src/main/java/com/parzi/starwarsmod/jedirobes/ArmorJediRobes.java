@@ -10,77 +10,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.jedirobes.powers.Power;
-import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.ItemUtils;
 
 public class ArmorJediRobes extends ItemArmor
 {
-	String name = "newJediRobes";
-
 	public static String SIDE_NONE = "none";
+
 	public static String SIDE_JEDI = "jedi";
 	public static String SIDE_SITH = "sith";
-
-	public ArmorJediRobes()
-	{
-		super(StarWarsMod.jediRobesMat, 1, 1);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + name);
-		this.setTextureName(StarWarsMod.MODID + ":" + name);
-		this.setCreativeTab(com.parzi.starwarsmod.StarWarsMod.StarWarsTab);
-	}
-
-	@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{
-		if (stack.getItem() == StarWarsMod.jediRobes)
-			return StarWarsMod.MODID + ":" + "textures/models/jediRobesLayer1.png";
-		return "";
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
-	{
-		list.add("Level " + String.valueOf((int)Math.floor(getLevel(stack) / 10)));
-	}
-
-	@Override
-	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
-	{
-		setupRobe(stack, player);
-	}
-
-	@Override
-	public void onCreated(ItemStack stack, World world, EntityPlayer player)
-	{
-		setupRobe(stack, player);
-	}
 
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("level"))
 			stack.stackTagCompound.setInteger("level", stack.stackTagCompound.getInteger("level") + levels);
 		return stack;
-	}
-
-	public static ItemStack setXP(ItemStack stack, int levels)
-	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger("xp", levels);
-		return stack;
-	}
-
-	public static ItemStack setMaxXP(ItemStack stack, int levels)
-	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger("maxxp", levels);
-		return stack;
-	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
-	{
-		setupRobe(stack, player);
 	}
 
 	public static int getLevel(ItemStack stack)
@@ -97,13 +40,6 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
-	public static int getXP(ItemStack stack)
-	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("xp"))
-			return stack.stackTagCompound.getInteger("xp");
-		return 0;
-	}
-
 	public static int getMaxXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("maxxp"))
@@ -111,10 +47,41 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
-	public void setupRobe(ItemStack stack, Entity player)
+	public static int getXP(ItemStack stack)
 	{
-		if (ItemUtils.initNBT(stack) && player instanceof EntityPlayer)
-			createTags(stack, (EntityPlayer)player);
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("xp"))
+			return stack.stackTagCompound.getInteger("xp");
+		return 0;
+	}
+
+	public static ItemStack setMaxXP(ItemStack stack, int levels)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger("maxxp", levels);
+		return stack;
+	}
+
+	public static ItemStack setXP(ItemStack stack, int levels)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger("xp", levels);
+		return stack;
+	}
+
+	String name = "newJediRobes";
+
+	public ArmorJediRobes()
+	{
+		super(StarWarsMod.jediRobesMat, 1, 1);
+		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setCreativeTab(com.parzi.starwarsmod.StarWarsMod.StarWarsTab);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
+	{
+		list.add("Level " + String.valueOf((int)Math.floor(getLevel(stack) / 10)));
 	}
 
 	public void createTags(ItemStack stack, EntityPlayer owner)
@@ -129,5 +96,37 @@ public class ArmorJediRobes extends ItemArmor
 		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("push", 0);
 		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("pull", 0);
 		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("ligntning", 0);
+	}
+
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+	{
+		if (stack.getItem() == StarWarsMod.jediRobes)
+			return StarWarsMod.MODID + ":" + "textures/models/jediRobesLayer1.png";
+		return "";
+	}
+
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
+	{
+		this.setupRobe(stack, player);
+	}
+
+	@Override
+	public void onCreated(ItemStack stack, World world, EntityPlayer player)
+	{
+		this.setupRobe(stack, player);
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
+	{
+		this.setupRobe(stack, player);
+	}
+
+	public void setupRobe(ItemStack stack, Entity player)
+	{
+		if (ItemUtils.initNBT(stack) && player instanceof EntityPlayer)
+			this.createTags(stack, (EntityPlayer)player);
 	}
 }
