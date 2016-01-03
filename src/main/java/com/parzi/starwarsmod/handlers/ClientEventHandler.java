@@ -36,6 +36,7 @@ import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
+import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
@@ -110,6 +111,8 @@ public class ClientEventHandler
 	String randomChar4 = "L";
 
 	Entity lastTarget = null;
+
+	RenderJediDefense renderJediDefense = new RenderJediDefense();
 
 	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
@@ -852,20 +855,27 @@ public class ClientEventHandler
 			}
 		}
 
-		Entity e = mc.thePlayer.worldObj.getPlayerEntityByName(mc.thePlayer.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
-		if (e != null)
-		{
-			Random r = new Random(e.ticksExisted * 4);
-			float posX2 = (float)e.posX;
-			float posY2 = (float)e.posY + 2;
-			float posZ2 = (float)e.posZ;
-			for (int i = 0; i < 4; i++)
-			{
-				posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - ((e.boundingBox.maxX - e.posX) / 2);
-				posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - ((e.boundingBox.maxY - e.posY) / 2);
-				posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - ((e.boundingBox.maxZ - e.posZ) / 2);
+		renderJediDefense.onWorldRender(event);
 
-				drawLightning(r, posX2, posY2, posZ2, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, 8, 0.15f);
+		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
+		{
+			EntityPlayer player = (EntityPlayer)entity;
+
+			Entity e = player.worldObj.getPlayerEntityByName(player.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
+			if (e != null)
+			{
+				Random r = new Random(e.ticksExisted * 4);
+				float posX2 = (float)player.posX - 0.5f;
+				float posY2 = (float)player.posY - 1;
+				float posZ2 = (float)player.posZ - 0.5f;
+				for (int i = 0; i < 4; i++)
+				{
+					posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - ((player.boundingBox.maxX - player.posX) / 2);
+					posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - ((player.boundingBox.maxY - player.posY) / 2);
+					posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - ((player.boundingBox.maxZ - player.posZ) / 2);
+
+					drawLightning(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
+				}
 			}
 		}
 	}
