@@ -39,6 +39,7 @@ import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketDestructionBolt;
 import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
+import com.parzi.starwarsmod.network.PacketEntitySetMotion;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
@@ -446,6 +447,7 @@ public class StarWarsMod
 		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, 9, Side.SERVER);
 		network.registerMessage(PacketPlayerLightning.Handler.class, PacketPlayerLightning.class, 10, Side.SERVER);
 		network.registerMessage(PacketDestructionBolt.Handler.class, PacketDestructionBolt.class, 11, Side.SERVER);
+		network.registerMessage(PacketEntitySetMotion.Handler.class, PacketEntitySetMotion.class, 12, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
 		config.load();

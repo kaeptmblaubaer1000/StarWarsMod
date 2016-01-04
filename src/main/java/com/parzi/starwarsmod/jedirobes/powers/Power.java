@@ -19,6 +19,10 @@ public class Power
 			return ForceUtils.powerLightning;
 		else if (name.equalsIgnoreCase("destruction"))
 			return ForceUtils.powerDestruction;
+		else if (name.equalsIgnoreCase("defend"))
+			return ForceUtils.powerDefend;
+		else if (name.equalsIgnoreCase("deflect"))
+			return ForceUtils.powerDeflect;
 		return null;
 	}
 

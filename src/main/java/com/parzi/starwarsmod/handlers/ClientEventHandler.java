@@ -8,7 +8,9 @@ import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -22,6 +24,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
@@ -32,11 +35,15 @@ import com.parzi.starwarsmod.font.FontManager;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
+import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
@@ -112,60 +119,7 @@ public class ClientEventHandler
 	Entity lastTarget = null;
 
 	RenderJediDefense renderJediDefense = new RenderJediDefense();
-
-	private void drawLightning(Random r, float posX, float posY, float posZ, float posX2, float posY2, float posZ2, float distance, float curDetail)
-	{
-		if (distance < curDetail)
-		{
-			GL11.glPushMatrix();
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
-			GL11.glEnable(GL11.GL_LINE_SMOOTH);
-			GL11.glTranslated(-(mc.thePlayer.posX - 0.5), -(mc.thePlayer.posY - 0.5f), -(mc.thePlayer.posZ - 0.5));
-
-			GL11.glLineWidth(8);
-			GL11.glColor3f(0f, 0f, 1f);
-
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(posX, posY, posZ);
-			GL11.glVertex3d(posX2, posY2, posZ2);
-			GL11.glEnd();
-
-			GL11.glLineWidth(6);
-			GL11.glColor3f(0.5f, 0.5f, 1f);
-
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(posX, posY, posZ);
-			GL11.glVertex3d(posX2, posY2, posZ2);
-			GL11.glEnd();
-
-			GL11.glLineWidth(2);
-			GL11.glColor3f(1, 1, 1);
-
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(posX, posY, posZ);
-			GL11.glVertex3d(posX2, posY2, posZ2);
-			GL11.glEnd();
-
-			GL11.glDisable(GL11.GL_LINE_SMOOTH);
-			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glColor3f(1, 1, 1);
-			GL11.glPopMatrix();
-		}
-		else
-		{
-			float mid_x = (posX2 + posX) / 2f;
-			float mid_y = (posY2 + posY) / 2f;
-			float mid_z = (posZ2 + posZ) / 2f;
-			mid_x += (r.nextFloat() - 0.5f) / 10f * distance;
-			mid_y += (r.nextFloat() - 0.5f) / 10f * distance;
-			mid_z += (r.nextFloat() - 0.5f) / 10f * distance;
-
-			this.drawLightning(r, posX, posY, posZ, mid_x, mid_y, mid_z, distance / 2f, curDetail);
-			this.drawLightning(r, posX2, posY2, posZ2, mid_x, mid_y, mid_z, distance / 2f, curDetail);
-		}
-	}
+	RenderSithLightning renderSithLightning = new RenderSithLightning();
 
 	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
@@ -909,36 +863,42 @@ public class ClientEventHandler
 					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - (e.boundingBox.maxY - e.posY) / 2;
 					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - (e.boundingBox.maxZ - e.posZ) / 2;
 
-					this.drawLightning(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
+					renderSithLightning.render(r, (float)mc.thePlayer.posX - 0.5f, (float)mc.thePlayer.posY - 1, (float)mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
 				}
 			}
 		}
 
-		// renderJediDefense.onWorldRender(event);
+		renderJediDefense.onWorldRender(event);
 
-		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
+		renderSithLightning.onWorldRender(event);
+	}
+
+	@SubscribeEvent
+	public void onLivingHurt(LivingHurtEvent event)
+	{
+		if (ForceUtils.activePower != null && event.entityLiving instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer)entity;
+			EntityPlayer player = (EntityPlayer)event.entityLiving;
 
-			Entity e = player.worldObj.getPlayerEntityByName(player.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
-			if (e != null)
+			if (ForceUtils.activePower.name.equals("defend") && ((PowerDefend)ForceUtils.activePower).isRunning)
 			{
-				Random r = new Random(e.ticksExisted * 4);
-				float posX2 = (float)player.posX - 0.5f;
-				float posY2 = (float)player.posY - 1;
-				float posZ2 = (float)player.posZ - 0.5f;
-				for (int i = 0; i < 4; i++)
+				PowerDefend power = (PowerDefend)ForceUtils.activePower;
+				if (power.health > event.ammount)
 				{
-					posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - (player.boundingBox.maxX - player.posX) / 2;
-					posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - (player.boundingBox.maxY - player.posY) / 2;
-					posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - (player.boundingBox.maxZ - player.posZ) / 2;
-
-					this.drawLightning(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
+					power.health -= event.ammount;
+					event.setCanceled(true);
+				}
+				else
+				{
+					event.ammount -= power.health;
+					power.health = 0;
+					power.isRunning = false;
+					power.recharge = power.rechargeTime;
+					ForceUtils.coolingPowers.add(power);
 				}
 			}
 		}
 	}
-
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

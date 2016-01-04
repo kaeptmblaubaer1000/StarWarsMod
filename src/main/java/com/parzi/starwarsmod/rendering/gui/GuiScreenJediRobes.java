@@ -67,7 +67,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	{
 		if (power == null)
 			return false;
-		return power.currentLevel < power.maxLevel;
+		return power.currentLevel < power.maxLevel || power.maxLevel == -1;
 	}
 
 	public void drawBg2()

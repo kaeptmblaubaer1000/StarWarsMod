@@ -11,11 +11,15 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
+import com.parzi.starwarsmod.utils.ForceUtils;
 
 public class RenderJediDefense
 {
-	public static final ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/force/shield.png");
+	public static final ResourceLocation textureDefend = new ResourceLocation(StarWarsMod.MODID, "textures/force/defend.png");
+	public static final ResourceLocation textureShieldSith = new ResourceLocation(StarWarsMod.MODID, "textures/force/shield_sith.png");
+	public static final ResourceLocation textureShield = new ResourceLocation(StarWarsMod.MODID, "textures/force/shield.png");
 	public static final ResourceLocation sphere = new ResourceLocation(StarWarsMod.MODID, "models/sphere.obj");
 
 	IModelCustom model;
@@ -33,10 +37,16 @@ public class RenderJediDefense
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
-			this.renderPlayerShield(event, (EntityPlayer)entity);
+		{
+			if (entity == Minecraft.getMinecraft().thePlayer && ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend") && ((PowerDefend)ForceUtils.activePower).isRunning)
+				this.renderPlayerShield(event, (EntityPlayer)entity, false);
+
+			if (entity == Minecraft.getMinecraft().thePlayer && ForceUtils.activePower != null && ForceUtils.activePower.name.equals("deflect") && ForceUtils.isUsingDuration)
+				this.renderPlayerShield(event, (EntityPlayer)entity, true);
+		}
 	}
 
-	private void renderPlayerShield(RenderWorldLastEvent event, EntityPlayer player)
+	private void renderPlayerShield(RenderWorldLastEvent event, EntityPlayer player, boolean deflect)
 	{
 		boolean isVisible = true;
 
@@ -49,11 +59,9 @@ public class RenderJediDefense
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_ALPHA_TEST);
 			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 			Vec3 playerPosition = player.getPosition(event.partialTicks);
 			Vec3 clientPosition = Minecraft.getMinecraft().thePlayer.getPosition(event.partialTicks);
-			GlPalette.glColorI(GlPalette.MEDIUM_BLUE);
-			Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+			Minecraft.getMinecraft().renderEngine.bindTexture(deflect ? textureShield : textureDefend);
 			if (!this.isClient(player))
 			{
 				GL11.glTranslated(0, player.height - 0.5, 0);
@@ -63,7 +71,8 @@ public class RenderJediDefense
 				GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glTranslated(playerPosition.xCoord - clientPosition.xCoord, playerPosition.yCoord - clientPosition.yCoord, playerPosition.zCoord - clientPosition.zCoord);
 			GL11.glTranslated(0, -0.5, 0);
-			GL11.glScaled(3, 3, 3);
+			GL11.glScalef(2.5f, 2.5f, 2.5f);
+			GL11.glColor4f(1f, 1f, 1f, 1f);
 			GL11.glRotated(player.ticksExisted % 360, -1, 0, 0);
 			GL11.glRotated(player.ticksExisted % 360, 0, 0, 1);
 			this.model.renderAll();
