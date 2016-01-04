@@ -23,6 +23,8 @@ public class Power
 			return ForceUtils.powerDefend;
 		else if (name.equalsIgnoreCase("deflect"))
 			return ForceUtils.powerDeflect;
+		else if (name.equalsIgnoreCase("naturalAwareness"))
+			return ForceUtils.powerNaturalAwareness;
 		return null;
 	}
 

@@ -99,6 +99,7 @@ public class ArmorJediRobes extends ItemArmor
 		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("destruction", 0);
 		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("defend", 0);
 		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("deflect", 0);
+		((NBTTagCompound)stack.stackTagCompound.getTag("powers")).setInteger("naturalAwareness", 0);
 	}
 
 	@Override
