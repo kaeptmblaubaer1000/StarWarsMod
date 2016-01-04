@@ -2,6 +2,11 @@ package com.parzi.starwarsmod.handlers;
 
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
+import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
+import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
@@ -9,7 +14,7 @@ import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
-import com.parzi.starwarsmod.network.PacketReturnArrow;
+import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
@@ -28,6 +33,7 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
@@ -139,12 +145,12 @@ public class CommonEventHandler
 
 		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("deflect") && ForceUtils.isUsingDuration)
 		{
-			for (Object entityObj : mc.theWorld.getEntitiesWithinAABB(EntityArrow.class, mc.thePlayer.boundingBox.expand(3, 3, 3)))
+			for (Object entityObj : mc.theWorld.getEntitiesWithinAABB(Entity.class, mc.thePlayer.boundingBox.expand(3, 3, 3)))
 			{
-				if (entityObj instanceof EntityArrow)
+				if (entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterRifleBolt || entityObj instanceof EntityBlasterHeavyBolt || entityObj instanceof EntityBlasterPistolBolt || entityObj instanceof EntityBlasterProbeBolt || entityObj instanceof EntitySpeederBlasterRifleBolt)
 				{
-					EntityArrow entity = (EntityArrow)entityObj;
-					StarWarsMod.network.sendToServer(new PacketReturnArrow(entity.getEntityId(), entity.dimension));
+					Entity entity = (Entity)entityObj;
+					StarWarsMod.network.sendToServer(new PacketReverseEntity(entity.getEntityId(), entity.dimension));
 				}
 			}
 		}

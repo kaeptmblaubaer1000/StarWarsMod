@@ -9,24 +9,23 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.server.MinecraftServer;
 
-public class PacketReturnArrow implements IMessage
+public class PacketReverseEntity implements IMessage
 {
-	public static class Handler implements IMessageHandler<PacketReturnArrow, IMessage>
+	public static class Handler implements IMessageHandler<PacketReverseEntity, IMessage>
 	{
 		@Override
-		public IMessage onMessage(PacketReturnArrow message, MessageContext ctx)
+		public IMessage onMessage(PacketReverseEntity message, MessageContext ctx)
 		{
 			try
 			{
 				Entity e = MinecraftServer.getServer().worldServerForDimension(message.dim).getEntityByID(message.entityId);
 
-				if (e instanceof EntityArrow)
+				if (e instanceof Entity)
 				{
-					EntityArrow arrow = (EntityArrow)e;
-					arrow.setDamage(0);
-					arrow.motionX = -arrow.motionX;
-					arrow.motionY = -arrow.motionY;
-					arrow.motionZ = -arrow.motionZ;
+					Entity entity = (Entity)e;
+					entity.motionX = -entity.motionX;
+					entity.motionY = -entity.motionY;
+					entity.motionZ = -entity.motionZ;
 				}
 			}
 			catch (Exception e)
@@ -40,11 +39,11 @@ public class PacketReturnArrow implements IMessage
 	private int entityId;
 	private int dim;
 
-	public PacketReturnArrow()
+	public PacketReverseEntity()
 	{
 	}
 
-	public PacketReturnArrow(int entityId, int dim)
+	public PacketReverseEntity(int entityId, int dim)
 	{
 		this.entityId = entityId;
 		this.dim = dim;
