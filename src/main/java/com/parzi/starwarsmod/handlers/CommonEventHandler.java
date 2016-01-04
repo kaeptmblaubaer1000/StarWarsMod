@@ -1,12 +1,5 @@
 package com.parzi.starwarsmod.handlers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
@@ -15,8 +8,8 @@ import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
-import com.parzi.starwarsmod.network.PacketEntitySetMotion;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
+import com.parzi.starwarsmod.network.PacketReturnArrow;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
@@ -34,6 +27,12 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 
 public class CommonEventHandler
 {
@@ -145,8 +144,7 @@ public class CommonEventHandler
 				if (entityObj instanceof EntityArrow)
 				{
 					EntityArrow entity = (EntityArrow)entityObj;
-					entity.setDamage(0);
-					StarWarsMod.network.sendToServer(new PacketEntitySetMotion(entity.getEntityId(), entity.dimension, "0,0,0"));
+					StarWarsMod.network.sendToServer(new PacketReturnArrow(entity.getEntityId(), entity.dimension));
 				}
 			}
 		}
