@@ -3,8 +3,11 @@ package com.parzi.starwarsmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.CommandEnchant;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 
@@ -12,7 +15,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 
-public class CommandJediRobes implements net.minecraft.command.ICommand
+public class CommandJediRobes extends CommandBase
 {
 	private List aliases;
 
@@ -76,19 +79,11 @@ public class CommandJediRobes implements net.minecraft.command.ICommand
 		String key = astring[0];
 		int value = 0;
 
-		try
-		{
-			value = Integer.parseInt(astring[1]);
-			if (key.equalsIgnoreCase("level"))
-				value *= 10;
-		}
-		catch (Exception e)
-		{
-			icommandsender.addChatMessage(new ChatComponentText("Value not an int! Usage: " + this.getCommandUsage(icommandsender)));
-			return;
-		}
+		value = parseInt(icommandsender, astring[1]);
+		if (key.equalsIgnoreCase("level"))
+			value *= 10;
 
-		EntityPlayer player = icommandsender.getEntityWorld().getPlayerEntityByName(icommandsender.getCommandSenderName());
+		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
 		if (player != null && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
@@ -100,11 +95,20 @@ public class CommandJediRobes implements net.minecraft.command.ICommand
 
 			if (key.equalsIgnoreCase("level"))
 				StarWarsMod.network.sendToServer(new PacketRobesNBT("maxxp", value * 10, player.dimension, player.getCommandSenderName()));
+
+			icommandsender.addChatMessage(new ChatComponentText("[Robes] Done!"));
 		}
 		else
 		{
 			icommandsender.addChatMessage(new ChatComponentText("Usage: " + this.getCommandUsage(icommandsender)));
-			icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
+			if (player == null)
+				icommandsender.addChatMessage(new ChatComponentText("Error: player is null!"));
+			else if (player.inventory.armorItemInSlot(2) == null)
+				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
+			else if (player.inventory.armorItemInSlot(2).getItem() != StarWarsMod.jediRobes)
+				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
+			else
+				icommandsender.addChatMessage(new ChatComponentText("Unknown key!"));
 			return;
 		}
 	}
