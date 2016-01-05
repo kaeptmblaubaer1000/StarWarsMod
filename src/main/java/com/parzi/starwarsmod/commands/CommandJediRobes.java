@@ -7,9 +7,8 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandGameMode;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.command.server.CommandEmote;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -23,7 +22,7 @@ public class CommandJediRobes extends CommandBase
 
     public int getRequiredPermissionLevel()
     {
-        return 1;
+        return 2;
     }
 
 	@Override
@@ -63,8 +62,6 @@ public class CommandJediRobes extends CommandBase
 				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger("maxxp", value * 10);
 				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Max XP to " + String.valueOf(value * 10) + "."));
 			}
-
-			icommandsender.addChatMessage(new ChatComponentText("[Robes] Done!"));
 		}
 		else
 		{
@@ -80,6 +77,20 @@ public class CommandJediRobes extends CommandBase
 			return;
 		}
 	}
+
+    @Override
+    public List addTabCompletionOptions(ICommandSender commandSender, String[] parameters)
+    {
+        List<String> commands = new ArrayList<String>();
+
+        if (parameters.length == 1)
+        {
+            commands.add("level");
+            commands.add("xp");
+            commands.add("maxxp");
+        }
+        return commands;
+    }
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

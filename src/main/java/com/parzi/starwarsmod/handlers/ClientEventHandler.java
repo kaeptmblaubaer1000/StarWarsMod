@@ -2,32 +2,6 @@ package com.parzi.starwarsmod.handlers;
 
 import java.util.Random;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -36,11 +10,9 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
-import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
-import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
@@ -65,6 +37,31 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class ClientEventHandler
 {
@@ -91,7 +88,7 @@ public class ClientEventHandler
 	private static final ResourceLocation yavinTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/yavin.png");
 	private static final ResourceLocation tatooineTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/tatooine.png");
 
-	private static final ResourceLocation forceLightningTexture = new ResourceLocation(StarWarsMod.MODID, "textures/force/force_lightning.png");
+	private static final ResourceLocation capeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/force/cape.png");
 
 	public static Minecraft mc = Minecraft.getMinecraft();
 
@@ -120,6 +117,8 @@ public class ClientEventHandler
 
 	RenderJediDefense renderJediDefense = new RenderJediDefense();
 	RenderSithLightning renderSithLightning = new RenderSithLightning();
+	
+	RenderPlayer rp = new RenderPlayer();
 
 	private void drawMiniMap(Entity center, int min, int max, int size)
 	{
@@ -871,6 +870,61 @@ public class ClientEventHandler
 		renderJediDefense.onWorldRender(event);
 
 		renderSithLightning.onWorldRender(event);
+	}
+	
+	@SubscribeEvent
+	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Pre event)
+	{
+		boolean cape = event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes;
+		
+		float p_77029_2_ = event.partialRenderTick;
+		
+		if (cape)
+		{
+			mc.getTextureManager().bindTexture(capeTexture);
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0.0F, 0.0F, 0.125F);
+            double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * (double)p_77029_2_ - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * (double)p_77029_2_);
+            double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * (double)p_77029_2_ - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * (double)p_77029_2_);
+            double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * (double)p_77029_2_ - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * (double)p_77029_2_);
+            float f4 = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * p_77029_2_;
+            double d1 = (double)MathHelper.sin(f4 * (float)Math.PI / 180.0F);
+            double d2 = (double)(-MathHelper.cos(f4 * (float)Math.PI / 180.0F));
+            float f5 = (float)d4 * 10.0F;
+
+            if (f5 < -6.0F)
+            {
+                f5 = -6.0F;
+            }
+
+            if (f5 > 32.0F)
+            {
+                f5 = 32.0F;
+            }
+
+            float f6 = (float)(d3 * d1 + d0 * d2) * 100.0F;
+            float f7 = (float)(d3 * d2 - d0 * d1) * 100.0F;
+
+            if (f6 < 0.0F)
+            {
+                f6 = 0.0F;
+            }
+
+            float f8 = event.entityPlayer.prevCameraYaw + (event.entityPlayer.cameraYaw - event.entityPlayer.prevCameraYaw) * p_77029_2_;
+            f5 += MathHelper.sin((event.entityPlayer.prevDistanceWalkedModified + (event.entityPlayer.distanceWalkedModified - event.entityPlayer.prevDistanceWalkedModified) * p_77029_2_) * 6.0F) * 32.0F * f8;
+
+            if (event.entityPlayer.isSneaking())
+            {
+                f5 += 25.0F;
+            }
+
+            GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+            rp.modelBipedMain.renderCloak(0.0625F);
+            GL11.glPopMatrix();
+		}
 	}
 
 	@SubscribeEvent
