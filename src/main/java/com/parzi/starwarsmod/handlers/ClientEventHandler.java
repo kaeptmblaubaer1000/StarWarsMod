@@ -873,7 +873,7 @@ public class ClientEventHandler
 	}
 	
 	@SubscribeEvent
-	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Pre event)
+	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Post event)
 	{
 		boolean cape = event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes;
 		
@@ -881,7 +881,6 @@ public class ClientEventHandler
 		
 		if (cape)
 		{
-			mc.getTextureManager().bindTexture(capeTexture);
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 0.0F, 0.125F);
             double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * (double)p_77029_2_ - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * (double)p_77029_2_);
@@ -922,6 +921,8 @@ public class ClientEventHandler
             GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
             GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
             GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+            GL11.glScalef(1, 1, 1);
+			mc.getTextureManager().bindTexture(capeTexture);
             rp.modelBipedMain.renderCloak(0.0625F);
             GL11.glPopMatrix();
 		}
