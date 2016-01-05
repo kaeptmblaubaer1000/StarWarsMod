@@ -4,6 +4,8 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.blocks.BlockBasket;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockDagobahMud;
+import com.parzi.starwarsmod.blocks.BlockDeathStar;
+import com.parzi.starwarsmod.blocks.BlockDeathStarLight;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
 import com.parzi.starwarsmod.blocks.BlockHangingBucket;
@@ -17,6 +19,8 @@ import com.parzi.starwarsmod.blocks.BlockTatooineSandstone;
 import com.parzi.starwarsmod.blocks.BlockTatooineTable;
 import com.parzi.starwarsmod.blocks.BlockTitaniumChromium;
 import com.parzi.starwarsmod.blocks.BlockTitaniumOre;
+import com.parzi.starwarsmod.items.ItemDeathStarBlock;
+import com.parzi.starwarsmod.items.ItemDeathStarLight;
 import com.parzi.starwarsmod.items.ItemEndorBaseWall;
 import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.items.ItemTatooineSandstone;
@@ -66,6 +70,12 @@ public class BlockRegister
 
 		StarWarsMod.blockEndorBaseWallStairs = new BlockEndorBaseWallStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWallStairs, "endorBaseWallStairs");
+
+		StarWarsMod.blockDeathStarBlock = new BlockDeathStar();
+		GameRegistry.registerBlock(StarWarsMod.blockDeathStarBlock, ItemDeathStarBlock.class, "deathStarBlock");
+
+		StarWarsMod.blockDeathStarLight = new BlockDeathStarLight();
+		GameRegistry.registerBlock(StarWarsMod.blockDeathStarLight, ItemDeathStarLight.class, "deathStarLight");
 
 		StarWarsMod.blockMudStairs = new BlockMudStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockMudStairs, "mudStairs");

@@ -342,6 +342,8 @@ public class StarWarsMod
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
 	public static Block blockMudStairs;
+	public static Block blockDeathStarLight;
+	public static Block blockDeathStarBlock;
 	public static Block blockTatooineSand;
 	public static Block blockTatooineSandstone;
 	public static Block blockSpaceLamp;
