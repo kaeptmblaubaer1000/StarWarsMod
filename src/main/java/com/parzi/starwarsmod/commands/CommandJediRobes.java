@@ -3,68 +3,33 @@ package com.parzi.starwarsmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandEnchant;
+import net.minecraft.command.CommandGameMode;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.command.server.CommandEmote;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-import com.parzi.starwarsmod.network.PacketRobesNBT;
-
 public class CommandJediRobes extends CommandBase
 {
-	private List aliases;
+    public String getCommandName()
+    {
+        return "robes";
+    }
 
-	public CommandJediRobes()
-	{
-		this.aliases = new ArrayList();
-		this.aliases.add("robes");
-	}
-
-	@Override
-	public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
-	{
-		return null;
-	}
-
-	@Override
-	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
-	{
-		return true;
-	}
-
-	@Override
-	public int compareTo(Object o)
-	{
-		return 0;
-	}
-
-	@Override
-	public List getCommandAliases()
-	{
-		return this.aliases;
-	}
-
-	@Override
-	public String getCommandName()
-	{
-		return "robes";
-	}
+    public int getRequiredPermissionLevel()
+    {
+        return 1;
+    }
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
 		return "robes <level|xp|maxxp> <int:value>";
-	}
-
-	@Override
-	public boolean isUsernameIndex(String[] astring, int i)
-	{
-		return false;
 	}
 
 	@Override
@@ -80,8 +45,7 @@ public class CommandJediRobes extends CommandBase
 		int value = 0;
 
 		value = parseInt(icommandsender, astring[1]);
-		if (key.equalsIgnoreCase("level"))
-			value *= 10;
+		if (key.equalsIgnoreCase("level")) value *= 10;
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
@@ -91,10 +55,14 @@ public class CommandJediRobes extends CommandBase
 			ArmorJediRobes.getXP(robes);
 			ArmorJediRobes.getMaxXP(robes);
 
-			StarWarsMod.network.sendToServer(new PacketRobesNBT(key, value, player.dimension, player.getCommandSenderName()));
+			player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(key, value);
+			icommandsender.addChatMessage(new ChatComponentText("[Robes] Set " + key + " to " + String.valueOf(value) + "."));
 
 			if (key.equalsIgnoreCase("level"))
-				StarWarsMod.network.sendToServer(new PacketRobesNBT("maxxp", value * 10, player.dimension, player.getCommandSenderName()));
+			{
+				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger("maxxp", value * 10);
+				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Max XP to " + String.valueOf(value * 10) + "."));
+			}
 
 			icommandsender.addChatMessage(new ChatComponentText("[Robes] Done!"));
 		}
