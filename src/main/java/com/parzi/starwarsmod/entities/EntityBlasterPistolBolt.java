@@ -109,9 +109,9 @@ public class EntityBlasterPistolBolt extends EntityThrowable
 		p_70186_1_ *= p_70186_7_;
 		p_70186_3_ *= p_70186_7_;
 		p_70186_5_ *= p_70186_7_;
-		this.motionX = p_70186_1_ * 4;
-		this.motionY = p_70186_3_ * 4;
-		this.motionZ = p_70186_5_ * 4;
+		this.motionX = p_70186_1_ * 3;
+		this.motionY = p_70186_3_ * 3;
+		this.motionZ = p_70186_5_ * 3;
 		float f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
 		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / 3.141592653589793D);
 		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / 3.141592653589793D);
