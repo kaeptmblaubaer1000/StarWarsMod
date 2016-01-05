@@ -46,98 +46,92 @@ public class CommonEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
-		if (StarWarsMod.keyShootVehicle.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity != null)
-			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
-			{
-				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.SPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
-			{
-				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
-				StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-				ClientEventHandler.isFiring = true;
-				ClientEventHandler.blipFrame = ClientEventHandler.blipMax;
-			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
-			{
-				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.TIE));
-				StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-			}
+		if (StarWarsMod.keyShootVehicle.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity != null) if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
+		{
+			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.SPEEDER));
+			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+		}
+		else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
+		{
+			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
+			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			ClientEventHandler.isFiring = true;
+			ClientEventHandler.blipFrame = ClientEventHandler.blipMax;
+		}
+		else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
+		{
+			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.TIE));
+			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+		}
 
-		if (StarWarsMod.keySFoil.isPressed())
-			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+		if (StarWarsMod.keySFoil.isPressed()) if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+		{
+			VehicXWing xwing = (VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity;
+			if (xwing.getSFoil() <= 0)
 			{
-				VehicXWing xwing = (VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity;
-				if (xwing.getSFoil() <= 0)
+				xwing.isOpening = true;
+				Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, true));
+			}
+			if (xwing.getSFoil() >= 0.8f)
+			{
+				xwing.isClosing = true;
+				Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, false));
+			}
+		}
+
+		if (StarWarsMod.keyRobeGui.isPressed()) StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, null, 0, 0, 0);
+
+		if (StarWarsMod.keyRobePower.isPressed()) if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
+			Power active = ForceUtils.activePower;
+
+			if (active != null && ArmorJediRobes.getLevelOf(stack, active.name) > 0)
+			{
+				active.currentLevel = ArmorJediRobes.getLevelOf(stack, active.name);
+				if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0 && !ForceUtils.coolingPowers.contains(active))
 				{
-					xwing.isOpening = true;
-					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, true));
-				}
-				if (xwing.getSFoil() >= 0.8f)
-				{
-					xwing.isClosing = true;
-					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, false));
-				}
-			}
+					StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", ArmorJediRobes.getXP(stack) - active.getCost(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
-		if (StarWarsMod.keyRobeGui.isPressed())
-			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, null, 0, 0, 0);
-
-		if (StarWarsMod.keyRobePower.isPressed())
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-			{
-				ItemStack stack = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
-				Power active = ForceUtils.activePower;
-
-				if (active != null && ArmorJediRobes.getLevelOf(stack, active.name) > 0)
-				{
-					active.currentLevel = ArmorJediRobes.getLevelOf(stack, active.name);
-					if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0 && !ForceUtils.coolingPowers.contains(active))
+					if (!active.isDurationBased)
 					{
-						StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", ArmorJediRobes.getXP(stack) - active.getCost(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-
-						if (!active.isDurationBased)
+						if (active.name.equals("defend"))
 						{
-							if (active.name.equals("defend"))
+							if (!((PowerDefend)ForceUtils.activePower).isRunning)
 							{
-								if (!((PowerDefend)ForceUtils.activePower).isRunning)
-								{
-									active.run(StarWarsMod.mc.thePlayer);
-								}
-								else
-								{
-									PowerDefend power = ((PowerDefend)ForceUtils.activePower);
-									power.health = 0;
-									power.isRunning = false;
-									power.recharge = power.rechargeTime;
-									ForceUtils.coolingPowers.add(power);
-								}
+								active.run(StarWarsMod.mc.thePlayer);
 							}
 							else
 							{
-								active.run(StarWarsMod.mc.thePlayer);
-								active.recharge = active.rechargeTime;
-								ForceUtils.coolingPowers.add(active);
+								PowerDefend power = ((PowerDefend)ForceUtils.activePower);
+								power.health = 0;
+								power.isRunning = false;
+								power.recharge = power.rechargeTime;
+								ForceUtils.coolingPowers.add(power);
 							}
 						}
 						else
-							ForceUtils.isUsingDuration = true;
+						{
+							active.run(StarWarsMod.mc.thePlayer);
+							active.recharge = active.rechargeTime;
+							ForceUtils.coolingPowers.add(active);
+						}
 					}
+					else
+						ForceUtils.isUsingDuration = true;
 				}
 			}
+		}
 	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onTick(TickEvent.ClientTickEvent event)
 	{
-		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
-			return;
+		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null) return;
 
 		Item i = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() == null ? null : StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem();
-		if (i != ClientEventHandler.lastItem && (i == StarWarsMod.lightsaber || i == StarWarsMod.sequelLightsaber))
-			Minecraft.getMinecraft().getSoundHandler().playSound(new SoundLightsaberHum(StarWarsMod.mc.thePlayer));
+		if (i != ClientEventHandler.lastItem && (i == StarWarsMod.lightsaber || i == StarWarsMod.sequelLightsaber)) Minecraft.getMinecraft().getSoundHandler().playSound(new SoundLightsaberHum(StarWarsMod.mc.thePlayer));
 		ClientEventHandler.lastItem = i;
 
 		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("deflect") && ForceUtils.isUsingDuration)
@@ -160,8 +154,7 @@ public class CommonEventHandler
 			for (Power cooling : ForceUtils.coolingPowers)
 			{
 				cooling.recharge--;
-				if (cooling.recharge <= 0)
-					ForceUtils.queueToRemove.add(cooling);
+				if (cooling.recharge <= 0) ForceUtils.queueToRemove.add(cooling);
 			}
 
 			for (Power remove : ForceUtils.queueToRemove)
@@ -176,8 +169,7 @@ public class CommonEventHandler
 
 				double percent = 1 + 0.1f * Math.floor(level / 10);
 
-				if (percent > 6)
-					percent = 6;
+				if (percent > 6) percent = 6;
 
 				int addition = (int)(maxxp / 100 * percent);
 
@@ -201,15 +193,14 @@ public class CommonEventHandler
 						if (ForceUtils.activePower.name.equals("lightning"))
 						{
 							PowerLightning power = (PowerLightning)ForceUtils.activePower;
-							if (power.getTarget() instanceof EntityPlayer)
-								try
-								{
-									StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
-									ClientEventHandler.lastLightning = null;
-								}
-								catch (Exception e)
-								{
-								}
+							if (power.getTarget() instanceof EntityPlayer) try
+							{
+								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
+								ClientEventHandler.lastLightning = null;
+							}
+							catch (Exception e)
+							{
+							}
 						}
 						ForceUtils.activePower.duration = 0;
 						ForceUtils.isUsingDuration = false;
@@ -223,25 +214,23 @@ public class CommonEventHandler
 						{
 							StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "force.lightning", 1.0F, 1.0F);
 							StarWarsMod.network.sendToServer(new PacketEntityHurt(power.getTarget().getEntityId(), power.getTarget().dimension, power.getDamage()));
-							if (power.getTarget() instanceof EntityPlayer)
-								try
-								{
-									ClientEventHandler.lastLightning = (EntityPlayer)power.getTarget();
-									StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.dimension));
-								}
-								catch (Exception e)
-								{
-								}
-						}
-						else if (ClientEventHandler.lastLightning instanceof EntityPlayer)
-							try
+							if (power.getTarget() instanceof EntityPlayer) try
 							{
-								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
-								ClientEventHandler.lastLightning = null;
+								ClientEventHandler.lastLightning = (EntityPlayer)power.getTarget();
+								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.dimension));
 							}
 							catch (Exception e)
 							{
 							}
+						}
+						else if (ClientEventHandler.lastLightning instanceof EntityPlayer) try
+						{
+							StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
+							ClientEventHandler.lastLightning = null;
+						}
+						catch (Exception e)
+						{
+						}
 					}
 				}
 			}
