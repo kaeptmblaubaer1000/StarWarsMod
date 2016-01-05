@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -97,6 +98,8 @@ public class StarWarsMod
 
 	@Mod.Instance(StarWarsMod.MODID)
 	public static StarWarsMod instance;
+	
+	public static Minecraft mc = Minecraft.getMinecraft();
 
 	@SidedProxy(clientSide = "com.parzi.starwarsmod.StarWarsClientProxy", serverSide = "com.parzi.starwarsmod.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
