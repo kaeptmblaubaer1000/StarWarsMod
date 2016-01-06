@@ -136,6 +136,10 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 	@Override
 	public void doSidedThings()
 	{
+		StarWarsMod.mc = Minecraft.getMinecraft();
+
+		StarWarsMod.clientHandler.init();
+
 		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
@@ -156,8 +160,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		if (StarWarsMod.beshOverride)
 			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
-
-		MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
 
 		Lumberjack.log("Client proxy loaded!");
 	}

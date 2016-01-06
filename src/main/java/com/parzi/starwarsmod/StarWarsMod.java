@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
@@ -20,6 +21,7 @@ import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandJediRobes;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.handlers.CommonEventHandler;
 import com.parzi.starwarsmod.handlers.GuiHandler;
 import com.parzi.starwarsmod.items.crafting.ItemLightsaberCrystal;
@@ -72,17 +74,18 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, useMetadata = true)
+@Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.5";
-	public static final String DEV_VER = "dev3";
+	public static final String DEV_VER = "dev5";
 
 	public static String ONLINE_VERSION = "";
 
@@ -98,8 +101,12 @@ public class StarWarsMod
 
 	@Mod.Instance(StarWarsMod.MODID)
 	public static StarWarsMod instance;
-	
-	public static Minecraft mc = Minecraft.getMinecraft();
+
+	@SideOnly(Side.CLIENT)
+	public static Minecraft mc;
+
+	public static ClientEventHandler clientHandler;
+	public static CommonEventHandler commonHandler;
 
 	@SidedProxy(clientSide = "com.parzi.starwarsmod.StarWarsClientProxy", serverSide = "com.parzi.starwarsmod.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
@@ -494,7 +501,9 @@ public class StarWarsMod
 
 		config.save();
 
-		FMLCommonHandler.instance().bus().register(new CommonEventHandler());
+		FMLCommonHandler.instance().bus().register(this.commonHandler = new CommonEventHandler());
+
+		MinecraftForge.EVENT_BUS.register(this.clientHandler = new ClientEventHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}

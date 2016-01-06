@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -11,6 +12,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 
 public class EntityBlasterPistolBolt extends EntityThrowable
 {
@@ -62,7 +64,22 @@ public class EntityBlasterPistolBolt extends EntityThrowable
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player)
 	{
-		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber || player.getHeldItem().getItem() == StarWarsMod.sequelLightsaber) && player.isBlocking())
+		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			ItemStack stack = player.inventory.armorItemInSlot(2);
+
+			if (ArmorJediRobes.getActive(stack).equalsIgnoreCase("deflect") && ArmorJediRobes.getUsingDuration(stack))
+			{
+				Vec3 vec3 = player.getLookVec();
+				if (vec3 != null)
+				{
+					this.motionX = vec3.xCoord;
+					this.motionY = vec3.yCoord;
+					this.motionZ = vec3.zCoord;
+				}
+			}
+		}
+		else if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber || player.getHeldItem().getItem() == StarWarsMod.sequelLightsaber) && player.isBlocking())
 		{
 			Vec3 vec3 = player.getLookVec();
 			if (vec3 != null)

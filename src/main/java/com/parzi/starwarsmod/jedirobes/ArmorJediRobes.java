@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.ItemUtils;
 
 public class ArmorJediRobes extends ItemArmor
@@ -24,6 +25,20 @@ public class ArmorJediRobes extends ItemArmor
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("level"))
 			stack.stackTagCompound.setInteger("level", stack.stackTagCompound.getInteger("level") + levels);
 		return stack;
+	}
+
+	public static String getActive(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("active"))
+			return stack.stackTagCompound.getString("active");
+		return "";
+	}
+
+	public static boolean getUsingDuration(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isUsingDuration"))
+			return stack.stackTagCompound.getBoolean("isUsingDuration");
+		return false;
 	}
 
 	public static int getLevel(ItemStack stack)
@@ -114,6 +129,9 @@ public class ArmorJediRobes extends ItemArmor
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{
 		this.setupRobe(stack, player);
+
+		stack.stackTagCompound.setString("active", (String)(ForceUtils.activePower == null ? "" : ForceUtils.activePower.name));
+		stack.stackTagCompound.setBoolean("isUsingDuration", ForceUtils.isUsingDuration);
 	}
 
 	@Override
