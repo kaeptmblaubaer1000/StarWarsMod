@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.utils.Lumberjack;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
@@ -23,7 +24,10 @@ public class PacketPlayerLightning implements IMessage
 			{
 				EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 				if (player != null)
+				{
 					player.getDataWatcher().updateObject(StarWarsMod.lightningDatawatcherId, message.lightning);
+					ArmorJediRobes.setLightningTarget(player, message.lightning);
+				}
 			}
 			catch (Exception e)
 			{

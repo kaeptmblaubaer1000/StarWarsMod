@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.ItemUtils;
 
@@ -26,6 +27,56 @@ public class ArmorJediRobes extends ItemArmor
 			stack.stackTagCompound.setInteger("level", stack.stackTagCompound.getInteger("level") + levels);
 		return stack;
 	}
+	
+	public static ItemStack getRobes(EntityPlayer player)
+	{
+		if (player == null) return null;
+		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			return player.inventory.armorItemInSlot(2);
+		}
+		return null;
+	}
+
+	public static String getLightningTarget(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null) return "";
+		return getLightningTarget(stack);
+	}
+
+	public static void setLightningTarget(EntityPlayer player, String target)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null) return;
+		setLightningTarget(stack, target);
+	}
+
+	public static String getLightningTarget(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("lightning"))
+			return stack.stackTagCompound.getString("lightning");
+		return "";
+	}
+
+	public static void setLightningTarget(ItemStack stack, String target)
+	{
+		stack.stackTagCompound.setString("lightning", target);
+	}
+
+	public static boolean getIsRunning(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isRunning"))
+			return stack.stackTagCompound.getBoolean("isRunning");
+		return false;
+	}
+
+	public static boolean getIsRunning(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null) return false;
+		return getIsRunning(stack);
+	}
 
 	public static String getActive(ItemStack stack)
 	{
@@ -34,11 +85,25 @@ public class ArmorJediRobes extends ItemArmor
 		return "";
 	}
 
+	public static String getActive(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null) return "";
+		return getActive(stack);
+	}
+
 	public static boolean getUsingDuration(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isUsingDuration"))
 			return stack.stackTagCompound.getBoolean("isUsingDuration");
 		return false;
+	}
+
+	public static boolean getUsingDuration(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null) return false;
+		return getUsingDuration(stack);
 	}
 
 	public static int getLevel(ItemStack stack)
@@ -102,6 +167,7 @@ public class ArmorJediRobes extends ItemArmor
 	public void createTags(ItemStack stack, EntityPlayer owner)
 	{
 		stack.stackTagCompound.setString("master", owner.getCommandSenderName());
+		stack.stackTagCompound.setString("lightning", "");
 		stack.stackTagCompound.setInteger("level", 0);
 		stack.stackTagCompound.setInteger("xp", 0);
 		stack.stackTagCompound.setInteger("maxxp", 100);
@@ -132,6 +198,10 @@ public class ArmorJediRobes extends ItemArmor
 
 		stack.stackTagCompound.setString("active", (String)(ForceUtils.activePower == null ? "" : ForceUtils.activePower.name));
 		stack.stackTagCompound.setBoolean("isUsingDuration", ForceUtils.isUsingDuration);
+		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend"))
+			stack.stackTagCompound.setBoolean("isRunning", ((PowerDefend)ForceUtils.activePower).isRunning);
+		else
+			stack.stackTagCompound.setBoolean("isRunning", false);
 	}
 
 	@Override

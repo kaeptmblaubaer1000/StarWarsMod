@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 
 public class RenderSithLightning
 {
@@ -27,6 +28,10 @@ public class RenderSithLightning
 			EntityPlayer player = (EntityPlayer)entity;
 
 			Entity e = player.worldObj.getPlayerEntityByName(player.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
+			
+			if (e == null)
+				e = player.worldObj.getPlayerEntityByName(ArmorJediRobes.getLightningTarget(player));
+			
 			if (e != null)
 			{
 				Random r = new Random(e.ticksExisted * 4);

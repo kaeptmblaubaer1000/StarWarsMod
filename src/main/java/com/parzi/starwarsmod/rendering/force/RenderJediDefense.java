@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
 import com.parzi.starwarsmod.utils.ForceUtils;
@@ -37,12 +38,12 @@ public class RenderJediDefense
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
-		{
-			if (entity == Minecraft.getMinecraft().thePlayer && ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend") && ((PowerDefend)ForceUtils.activePower).isRunning)
-				this.renderPlayerShield(event, (EntityPlayer)entity, false);
-
-			if (entity == Minecraft.getMinecraft().thePlayer && ForceUtils.activePower != null && ForceUtils.activePower.name.equals("deflect") && ForceUtils.isUsingDuration)
+		{			
+			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("defend") && ArmorJediRobes.getIsRunning((EntityPlayer)entity))
 				this.renderPlayerShield(event, (EntityPlayer)entity, true);
+
+			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("deflect") && ArmorJediRobes.getUsingDuration((EntityPlayer)entity))
+				this.renderPlayerShield(event, (EntityPlayer)entity, false);
 		}
 	}
 

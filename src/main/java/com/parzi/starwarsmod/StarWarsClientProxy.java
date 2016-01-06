@@ -1,10 +1,5 @@
 package com.parzi.starwarsmod;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
@@ -14,7 +9,6 @@ import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
 import com.parzi.starwarsmod.font.FontManager;
-import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
@@ -74,6 +68,7 @@ import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
 import com.parzi.starwarsmod.rendering.RenderWampa;
 import com.parzi.starwarsmod.rendering.RenderWookiee;
+import com.parzi.starwarsmod.rendering.fx.ParticleBlasterBolt;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
@@ -130,6 +125,11 @@ import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.entity.Entity;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -158,8 +158,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		FontManager.registerAll();
 
-		if (StarWarsMod.beshOverride)
-			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
+		if (StarWarsMod.beshOverride) Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
 
 		Lumberjack.log("Client proxy loaded!");
 	}
