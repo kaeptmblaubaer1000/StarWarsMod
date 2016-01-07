@@ -2,31 +2,6 @@ package com.parzi.starwarsmod.handlers;
 
 import java.util.Random;
 
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderPlayer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -45,6 +20,7 @@ import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
+import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
@@ -69,6 +45,30 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class ClientEventHandler
 {
@@ -95,7 +95,7 @@ public class ClientEventHandler
 	private static final ResourceLocation yavinTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/yavin.png");
 	private static final ResourceLocation tatooineTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/tatooine.png");
 
-	private static final ResourceLocation capeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/force/cape.png");
+	private static final ResourceLocation capeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/force/cloak.png");
 
 	public static Item lastItem = null;
 	public static long lastTime = 0;
@@ -125,7 +125,7 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	RenderSithLightning renderSithLightning;
 	@SideOnly(Side.CLIENT)
-	RenderPlayer rp;
+	ModelJediCloak modelCloak;
 
 	@SideOnly(Side.CLIENT)
 	private void drawMiniMap(Entity center, int min, int max, int size)
@@ -242,7 +242,7 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
 	{
-		if (!StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION) && logInEvent.entity.getCommandSenderName().equalsIgnoreCase(StarWarsMod.mc.thePlayer.getCommandSenderName()) && !StarWarsMod.hasShownNeedUpdate)
+		if (logInEvent.entity instanceof EntityPlayer && !StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION) && !StarWarsMod.hasShownNeedUpdate)
 		{
 			((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
 			StarWarsMod.hasShownNeedUpdate = true;
@@ -901,7 +901,8 @@ public class ClientEventHandler
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(1, 1, 1);
 			StarWarsMod.mc.getTextureManager().bindTexture(capeTexture);
-			rp.modelBipedMain.renderCloak(0.0625F);
+			//rp.modelBipedMain.renderCloak(0.0625F);
+			modelCloak.renderCape(0.0625F);
 			GL11.glPopMatrix();
 		}
 	}
@@ -948,7 +949,7 @@ public class ClientEventHandler
 	{
 		this.renderJediDefense = new RenderJediDefense();
 		this.renderSithLightning = new RenderSithLightning();
-		this.rp = new RenderPlayer();
+		this.modelCloak = new ModelJediCloak();
 	}
 }
 /*

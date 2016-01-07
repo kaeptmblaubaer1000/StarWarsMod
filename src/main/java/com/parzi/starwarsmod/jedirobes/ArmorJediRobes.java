@@ -2,7 +2,9 @@ package com.parzi.starwarsmod.jedirobes;
 
 import java.util.List;
 
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -11,8 +13,13 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
+import com.parzi.starwarsmod.rendering.models.armor.ModelLeiaBuns;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.ItemUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorJediRobes extends ItemArmor
 {
@@ -20,6 +27,17 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static String SIDE_JEDI = "jedi";
 	public static String SIDE_SITH = "sith";
+	
+	@SideOnly(Side.CLIENT)
+	public static ModelJediCloak model;
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
+	{
+		if (model == null) model = new ModelJediCloak();
+		return model;
+	}
 
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
@@ -187,7 +205,7 @@ public class ArmorJediRobes extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.jediRobes)
-			return StarWarsMod.MODID + ":" + "textures/models/jediRobesLayer1.png";
+			return StarWarsMod.MODID + ":" + "textures/force/cloak.png";
 		return "";
 	}
 
