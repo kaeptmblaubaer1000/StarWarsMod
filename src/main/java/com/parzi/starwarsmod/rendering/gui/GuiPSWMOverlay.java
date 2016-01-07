@@ -13,7 +13,9 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import org.lwjgl.opengl.GL11;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.utils.ForceUtils;
@@ -59,8 +61,8 @@ public class GuiPSWMOverlay extends Gui
 
 		RenderHelper.disableStandardItemLighting();
 
-		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + StarWarsMod.VERSION, 5, 5, 16777215);
-		StarWarsMod.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
+		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + Resources.VERSION, 5, 5, 16777215);
+		ClientEventHandler.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
 
 		if (this.mc.thePlayer.inventory.armorItemInSlot(2) != null && this.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
@@ -76,7 +78,7 @@ public class GuiPSWMOverlay extends Gui
 			int guiColor = isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
-			StarWarsMod.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
+			ClientEventHandler.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
 
 			GL11.glPushMatrix();
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
@@ -87,7 +89,7 @@ public class GuiPSWMOverlay extends Gui
 			int y = (r.getScaledHeight() - 25) * 2;
 			for (Power cooling : ForceUtils.coolingPowers)
 			{
-				StarWarsMod.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
+				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)cooling.recharge + "s", 30, y - 3, GlPalette.WHITE);
 				y -= 22;
 			}

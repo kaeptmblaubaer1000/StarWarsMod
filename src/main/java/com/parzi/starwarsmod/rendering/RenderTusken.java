@@ -5,12 +5,12 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.mobs.MobTusken;
 
 public class RenderTusken extends RenderBiped
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/tusken.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tusken.png");
 
 	public RenderTusken(ModelBiped par1ModelBase, float par2)
 	{

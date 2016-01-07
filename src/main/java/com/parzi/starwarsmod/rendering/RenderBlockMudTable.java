@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelBlockTable;
 
 public class RenderBlockMudTable extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation textures = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/blockMudTable.png");
+	public static ResourceLocation textures = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/blockMudTable.png");
 	private final ModelBlockTable model;
 
 	public RenderBlockMudTable()

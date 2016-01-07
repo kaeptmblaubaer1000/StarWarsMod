@@ -7,7 +7,7 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelLightsaberOff;
 
 public class RenderLightsaberOff implements IItemRenderer
@@ -29,7 +29,7 @@ public class RenderLightsaberOff implements IItemRenderer
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
 	{
 		GL11.glPushMatrix();
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(StarWarsMod.MODID, "textures/models/lightsaberOff.png"));
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberOff.png"));
 		GL11.glScalef(0.25F, -0.25F, 0.25F);
 		switch (type)
 		{

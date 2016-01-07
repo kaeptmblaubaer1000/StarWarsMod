@@ -7,6 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.utils.HarvestLevel;
@@ -17,7 +18,7 @@ public class BlockHangingBucket extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + "bucketHanging");
+		this.setBlockName(Resources.MODID + "." + "bucketHanging");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -44,7 +45,7 @@ public class BlockHangingBucket extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconBucketHanging");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBucketHanging");
 	}
 
 	@Override

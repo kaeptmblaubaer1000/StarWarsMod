@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.mobs;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -7,8 +9,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobGNK extends EntityLiving implements IAnimals
 {
@@ -30,13 +30,13 @@ public class MobGNK extends EntityLiving implements IAnimals
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gonk.die";
+		return Resources.MODID + ":" + "mob.gonk.die";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gonk.say";
+		return Resources.MODID + ":" + "mob.gonk.say";
 	}
 }
 /*

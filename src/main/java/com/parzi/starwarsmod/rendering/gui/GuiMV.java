@@ -7,7 +7,7 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 import cpw.mods.fml.relauncher.Side;
@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiMV extends GuiContainer
 {
-	private static final ResourceLocation guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/mv.png");
+	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/mv.png");
 	TileEntityMV vaporator;
 
 	public GuiMV(InventoryPlayer player, TileEntityMV vap)

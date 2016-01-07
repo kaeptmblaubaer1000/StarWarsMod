@@ -17,6 +17,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.ai.AiFreqMove;
 import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
@@ -52,7 +53,7 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		this.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+		this.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 		this.worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(this.worldObj, this, p_82196_1_));
 	}
 
@@ -100,19 +101,19 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.probe.die";
+		return Resources.MODID + ":" + "mob.probe.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.probe.hit";
+		return Resources.MODID + ":" + "mob.probe.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.probe.say";
+		return Resources.MODID + ":" + "mob.probe.say";
 	}
 
 	@Override

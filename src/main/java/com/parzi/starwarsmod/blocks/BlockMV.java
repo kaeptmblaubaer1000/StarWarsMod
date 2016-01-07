@@ -14,6 +14,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
@@ -25,7 +26,7 @@ public class BlockMV extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + "moistureVaporator");
+		this.setBlockName(Resources.MODID + "." + "moistureVaporator");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -91,7 +92,7 @@ public class BlockMV extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconMoistureVaporator");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconMoistureVaporator");
 	}
 
 	@Override

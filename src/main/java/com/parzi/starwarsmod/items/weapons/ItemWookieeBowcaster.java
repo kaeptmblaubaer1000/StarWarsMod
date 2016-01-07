@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
@@ -26,8 +27,8 @@ public class ItemWookieeBowcaster extends Item
 	{
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.maxStackSize = 1;
 	}
 
@@ -54,9 +55,9 @@ public class ItemWookieeBowcaster extends Item
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 			else
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
+				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
@@ -67,7 +68,7 @@ public class ItemWookieeBowcaster extends Item
 			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
 			{
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
+				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
 			}
 		}

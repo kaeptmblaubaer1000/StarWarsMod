@@ -1,15 +1,15 @@
 package com.parzi.starwarsmod.rendering;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
-
 public class RenderDroidSurgical extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/surgical.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/surgical.png");
 
 	public RenderDroidSurgical(ModelBase par1ModelBase, float par2)
 	{

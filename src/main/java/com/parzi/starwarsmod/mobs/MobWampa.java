@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.mobs;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -13,8 +15,6 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobWampa extends EntityMob implements IMob
 {
@@ -62,19 +62,19 @@ public class MobWampa extends EntityMob implements IMob
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.wampa.die";
+		return Resources.MODID + ":" + "mob.wampa.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.wampa.hit";
+		return Resources.MODID + ":" + "mob.wampa.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.wampa.say";
+		return Resources.MODID + ":" + "mob.wampa.say";
 	}
 
 	@Override

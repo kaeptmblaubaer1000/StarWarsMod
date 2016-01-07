@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 
 import cpw.mods.fml.client.GuiScrollingList;
 
@@ -56,8 +56,8 @@ public class GuiSlotPowerList extends GuiScrollingList
 		this.left = 10;
 		this.right = listWidth + this.left;
 
-		background = new ResourceLocation(StarWarsMod.MODID, "textures/gui/space.png");
-		background2 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/space2.png");
+		background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
+		background2 = new ResourceLocation(Resources.MODID, "textures/gui/space2.png");
 	}
 
 	private void applyScrollLimits()

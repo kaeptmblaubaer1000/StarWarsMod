@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.armor.ModelLeiaBuns;
 
 import cpw.mods.fml.relauncher.Side;
@@ -19,8 +19,8 @@ public class ArmorAddonBuns extends ItemArmor
 	public ArmorAddonBuns(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class ArmorAddonBuns extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		return StarWarsMod.MODID + ":" + "textures/models/leiaBunsLayer1.png";
+		return Resources.MODID + ":" + "textures/models/leiaBunsLayer1.png";
 	}
 }
 /*

@@ -15,7 +15,7 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -23,13 +23,13 @@ import cpw.mods.fml.client.FMLClientHandler;
 public class DrawTatooineSky extends IRenderHandler
 {
 	private static ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
-	private static ResourceLocation ghomrassenTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/ghomrassen.png");
+	private static ResourceLocation ghomrassenTexture = new ResourceLocation(Resources.MODID, "textures/environment/ghomrassen.png");
 	private static Vector3 ghomrassenOffset = new Vector3(0, 0, 20);
 	private static float ghomrassenSizeMod = 0.8F;
-	private static ResourceLocation guermessaTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/guermessa.png");
+	private static ResourceLocation guermessaTexture = new ResourceLocation(Resources.MODID, "textures/environment/guermessa.png");
 	private static Vector3 guermessaOffset = new Vector3(32, 0, 0);
 	private static float guermessaSizeMod = 1.75F;
-	private static ResourceLocation cheniniTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/chenini.png");
+	private static ResourceLocation cheniniTexture = new ResourceLocation(Resources.MODID, "textures/environment/chenini.png");
 	private static Vector3 cheniniOffset = new Vector3(44, 0, -4);
 	private static float cheniniSizeMod = 3.0F;
 	static int starList = GLAllocation.generateDisplayLists(3);

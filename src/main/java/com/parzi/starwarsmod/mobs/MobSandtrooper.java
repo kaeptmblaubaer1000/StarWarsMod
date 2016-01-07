@@ -24,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.LootGenUtils;
 import com.parzi.starwarsmod.utils.WeightedLoot;
@@ -107,7 +108,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	{
 		if (this.angryAt != null)
 		{
-			this.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+			this.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 			this.worldObj.spawnEntityInWorld(new com.parzi.starwarsmod.entities.EntityBlasterRifleBolt(this.worldObj, this, this.getAttackTarget()));
 		}
 	}
@@ -154,13 +155,13 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.sandtrooper.die";
+		return Resources.MODID + ":" + "mob.sandtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.sandtrooper.hit";
+		return Resources.MODID + ":" + "mob.sandtrooper.hit";
 	}
 
 	@Override
@@ -168,8 +169,8 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	{
 		EntityTameable e = (EntityTameable)this.worldObj.findNearestEntityWithinAABB(EntityTameable.class, this.boundingBox.expand(10.0D, 10.0D, 10.0D), this);
 		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
-			return StarWarsMod.MODID + ":" + "mob.sandtrooper.droid";
-		return StarWarsMod.MODID + ":" + "mob.sandtrooper.say";
+			return Resources.MODID + ":" + "mob.sandtrooper.droid";
+		return Resources.MODID + ":" + "mob.sandtrooper.say";
 	}
 
 	@Override

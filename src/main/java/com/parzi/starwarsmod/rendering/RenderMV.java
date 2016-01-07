@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 public class RenderMV extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/moistureVaporator.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/moistureVaporator.png");
 
 	private final ModelMV model;
 

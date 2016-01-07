@@ -5,14 +5,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 
 public class RenderSpeederBike extends RenderLandBase
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/speederbike.png");
-	public static ResourceLocation hothTexture = new ResourceLocation(StarWarsMod.MODID, "textures/models/hothSpeederbike.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/speederbike.png");
+	public static ResourceLocation hothTexture = new ResourceLocation(Resources.MODID, "textures/models/hothSpeederbike.png");
 
 	public RenderSpeederBike(ModelSpeederBike modelSpeederBike, float par2)
 	{

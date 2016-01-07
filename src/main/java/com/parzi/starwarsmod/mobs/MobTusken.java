@@ -24,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
@@ -95,7 +96,7 @@ public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		this.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+		this.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 		this.worldObj.spawnEntityInWorld(new com.parzi.starwarsmod.entities.EntityBlasterRifleBolt(this.worldObj, this, this.getAttackTarget()));
 	}
 
@@ -120,19 +121,19 @@ public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tusken.die";
+		return Resources.MODID + ":" + "mob.tusken.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tusken.hit";
+		return Resources.MODID + ":" + "mob.tusken.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tusken.say";
+		return Resources.MODID + ":" + "mob.tusken.say";
 	}
 
 	@Override

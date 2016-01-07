@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorSequelStormtrooper extends ItemArmor
@@ -13,8 +14,8 @@ public class ArmorSequelStormtrooper extends ItemArmor
 	public ArmorSequelStormtrooper(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "stormtrooper" + this.names[par4] + "_new");
-		this.setTextureName(StarWarsMod.MODID + ":" + "stormtrooper" + this.names[par4] + "_new");
+		this.setUnlocalizedName(Resources.MODID + "." + "stormtrooper" + this.names[par4] + "_new");
+		this.setTextureName(Resources.MODID + ":" + "stormtrooper" + this.names[par4] + "_new");
 		this.setCreativeTab(StarWarsMod.SequelStarWarsTab);
 	}
 
@@ -22,9 +23,9 @@ public class ArmorSequelStormtrooper extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.stormtrooperNewHelmet || stack.getItem() == StarWarsMod.stormtrooperNewChest || stack.getItem() == StarWarsMod.stormtrooperNewBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/sequelStormtrooperArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/sequelStormtrooperArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.stormtrooperNewLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/sequelStormtrooperArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/sequelStormtrooperArmorLayer2.png";
 		return "";
 	}
 }

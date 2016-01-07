@@ -16,6 +16,7 @@ import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
 import com.parzi.starwarsmod.font.FontManager;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
@@ -141,18 +142,18 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		StarWarsMod.clientHandler.init();
 
-		StarWarsMod.renderHelper = new RenderHelper(Minecraft.getMinecraft());
-		StarWarsMod.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
-		StarWarsMod.pgui = new PGui(Minecraft.getMinecraft());
-		StarWarsMod.soundBank = new PSoundBank();
+		ClientEventHandler.renderHelper = new RenderHelper(Minecraft.getMinecraft());
+		ClientEventHandler.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
+		ClientEventHandler.pgui = new PGui(Minecraft.getMinecraft());
+		ClientEventHandler.soundBank = new PSoundBank();
 
 		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
 		{
-			StarWarsMod.IS_DEV_ENVIRONVENT = true;
+			Resources.IS_DEV_ENVIRONVENT = true;
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
-			Lumberjack.info("Development version " + StarWarsMod.DEV_VER);
+			Lumberjack.info("Development version " + Resources.DEV_VER);
 		}
 
 		KeybindRegistry.registerAll();

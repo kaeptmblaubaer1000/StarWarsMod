@@ -5,7 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,7 +17,7 @@ public class FontManager
 
 	public static FontRenderer createFont(String file, boolean small)
 	{
-		FontRenderer renderer = new FontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation(StarWarsMod.MODID, file), Minecraft.getMinecraft().getTextureManager(), small);
+		FontRenderer renderer = new FontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation(Resources.MODID, file), Minecraft.getMinecraft().getTextureManager(), small);
 
 		((IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager()).registerReloadListener(renderer);
 

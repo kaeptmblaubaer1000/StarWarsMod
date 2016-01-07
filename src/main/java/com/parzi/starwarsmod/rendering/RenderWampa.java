@@ -7,12 +7,12 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelWampa;
 
 public class RenderWampa extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/wampa.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/wampa.png");
 
 	public RenderWampa(ModelWampa par1ModelBase, float par2)
 	{

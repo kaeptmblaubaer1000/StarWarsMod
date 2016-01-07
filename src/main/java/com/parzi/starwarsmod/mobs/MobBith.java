@@ -12,6 +12,7 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.WeightedTradeItem;
 
@@ -63,9 +64,9 @@ public class MobBith extends EntityVillager
 			this.livingSoundTime = -this.getTalkInterval();
 
 			if (p_110297_1_ != null)
-				this.playSound(StarWarsMod.MODID + ":" + "mob.bith.trade", this.getSoundVolume(), this.getSoundPitch());
+				this.playSound(Resources.MODID + ":" + "mob.bith.trade", this.getSoundVolume(), this.getSoundPitch());
 			else
-				this.playSound(StarWarsMod.MODID + ":" + "mob.bith.notrade", this.getSoundVolume(), this.getSoundPitch());
+				this.playSound(Resources.MODID + ":" + "mob.bith.notrade", this.getSoundVolume(), this.getSoundPitch());
 		}
 	}
 
@@ -93,7 +94,7 @@ public class MobBith extends EntityVillager
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.commoner.die";
+		return Resources.MODID + ":" + "mob.commoner.die";
 	}
 
 	/**
@@ -102,7 +103,7 @@ public class MobBith extends EntityVillager
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.commoner.hit";
+		return Resources.MODID + ":" + "mob.commoner.hit";
 	}
 
 	/**
@@ -111,7 +112,7 @@ public class MobBith extends EntityVillager
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.bith.say";
+		return Resources.MODID + ":" + "mob.bith.say";
 	}
 
 	public boolean getPlaying()

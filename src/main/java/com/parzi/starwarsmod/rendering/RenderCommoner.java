@@ -5,16 +5,16 @@ import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 
 public class RenderCommoner extends RenderBiped
 {
-	public static ResourceLocation weapon = new ResourceLocation(StarWarsMod.MODID, "textures/models/weaponsDealer.png");
-	public static ResourceLocation merch = new ResourceLocation(StarWarsMod.MODID, "textures/models/generalMerchant.png");
-	public static ResourceLocation corre = new ResourceLocation(StarWarsMod.MODID, "textures/models/corellian.png");
-	public static ResourceLocation ship = new ResourceLocation(StarWarsMod.MODID, "textures/models/shipDealer.png");
-	public static ResourceLocation bar = new ResourceLocation(StarWarsMod.MODID, "textures/models/bartender.png");
+	public static ResourceLocation weapon = new ResourceLocation(Resources.MODID, "textures/models/weaponsDealer.png");
+	public static ResourceLocation merch = new ResourceLocation(Resources.MODID, "textures/models/generalMerchant.png");
+	public static ResourceLocation corre = new ResourceLocation(Resources.MODID, "textures/models/corellian.png");
+	public static ResourceLocation ship = new ResourceLocation(Resources.MODID, "textures/models/shipDealer.png");
+	public static ResourceLocation bar = new ResourceLocation(Resources.MODID, "textures/models/bartender.png");
 	public static ResourceLocation texture = new ResourceLocation("textures/entity/steve.png");
 
 	public RenderCommoner(ModelBiped par1ModelBase, float par2)

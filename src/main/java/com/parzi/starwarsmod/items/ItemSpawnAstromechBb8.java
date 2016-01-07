@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobDroidAstromechBb8;
 
@@ -13,8 +14,8 @@ public class ItemSpawnAstromechBb8 extends net.minecraft.item.Item
 
 	public ItemSpawnAstromechBb8()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.SequelStarWarsTab);
 		this.maxStackSize = 1;
 	}

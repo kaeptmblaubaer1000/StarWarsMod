@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityDSTurret;
 import com.parzi.starwarsmod.utils.HarvestLevel;
@@ -17,7 +18,7 @@ public class BlockDSTurret extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + "dsTurret");
+		this.setBlockName(Resources.MODID + "." + "dsTurret");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 2.5F, 2.5F, 2.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.DIAMOND);
 	}
@@ -49,7 +50,7 @@ public class BlockDSTurret extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconDSTurret");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconDSTurret");
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.mobs;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -11,8 +13,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobTauntaun extends EntityHorse
 {
@@ -68,7 +68,7 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	protected String getAngrySoundName()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tauntaun.hit";
+		return Resources.MODID + ":" + "mob.tauntaun.hit";
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tauntaun.die";
+		return Resources.MODID + ":" + "mob.tauntaun.die";
 	}
 
 	@Override
@@ -102,13 +102,13 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tauntaun.hit";
+		return Resources.MODID + ":" + "mob.tauntaun.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.tauntaun.say";
+		return Resources.MODID + ":" + "mob.tauntaun.say";
 	}
 
 	@Override

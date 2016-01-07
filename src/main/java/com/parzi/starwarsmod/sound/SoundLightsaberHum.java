@@ -5,6 +5,7 @@ import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class SoundLightsaberHum extends MovingSound
@@ -13,7 +14,7 @@ public class SoundLightsaberHum extends MovingSound
 
 	public SoundLightsaberHum(EntityPlayer player)
 	{
-		super(new ResourceLocation(StarWarsMod.MODID, "item.lightsaber.hum"));
+		super(new ResourceLocation(Resources.MODID, "item.lightsaber.hum"));
 		this.player = player;
 		this.field_147666_i = ISound.AttenuationType.NONE;
 		this.repeat = true;

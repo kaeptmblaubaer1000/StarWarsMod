@@ -8,13 +8,13 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 public class RenderDSTurret extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/dsTurret.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/dsTurret.png");
 
 	public RenderDSTurret(ModelDSTurret par1ModelBase, float par2)
 	{

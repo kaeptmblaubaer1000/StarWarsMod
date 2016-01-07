@@ -15,13 +15,13 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawEndorSky extends IRenderHandler
 {
-	private static ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/endor.png");
+	private static ResourceLocation sunTexture = new ResourceLocation(Resources.MODID, "textures/environment/endor.png");
 	public static int starList = GLAllocation.generateDisplayLists(3);
 	public static int glSkyList = starList + 1;
 	public static int glSkyList2 = starList + 2;

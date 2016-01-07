@@ -14,6 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
@@ -37,7 +38,7 @@ public class ItemBlasterRifle extends Item
 	{
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHasSubtypes(true);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.maxStackSize = 1;
 	}
 
@@ -98,16 +99,16 @@ public class ItemBlasterRifle extends Item
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
 			{
 				if (par1ItemStack.getItemDamage() == 1)
-					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterEsb.use", 1.0F, 0.82F);
+					entityPlayer.playSound(Resources.MODID + ":" + "item.blasterEsb.use", 1.0F, 0.82F);
 				else if (par1ItemStack.getItemDamage() == 2)
-					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterIon.use", 1.0F, 0.82F);
+					entityPlayer.playSound(Resources.MODID + ":" + "item.blasterIon.use", 1.0F, 0.82F);
 				else if (par1ItemStack.getItemDamage() == 3)
-					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterCycler.use", 1.0F, 0.82F);
+					entityPlayer.playSound(Resources.MODID + ":" + "item.blasterCycler.use", 1.0F, 0.82F);
 				else
-					entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+					entityPlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 			}
 			else
-				entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
+				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
 		{
 			par2World.spawnEntityInWorld(new EntityBlasterRifleBolt(par2World, entityPlayer));
@@ -154,7 +155,7 @@ public class ItemBlasterRifle extends Item
 	{
 		this.icons = new IIcon[this.versions.length];
 		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.versions[i]);
+			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.versions[i]);
 	}
 }
 /*

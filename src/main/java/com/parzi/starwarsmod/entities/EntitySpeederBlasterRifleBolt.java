@@ -10,6 +10,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class EntitySpeederBlasterRifleBolt extends EntityThrowable
@@ -80,7 +81,7 @@ public class EntitySpeederBlasterRifleBolt extends EntityThrowable
 				this.motionY = vec3.yCoord;
 				this.motionZ = vec3.zCoord;
 			}
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+			player.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 		}
 	}
 

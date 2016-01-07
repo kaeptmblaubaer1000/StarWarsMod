@@ -10,7 +10,7 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
@@ -18,10 +18,10 @@ import com.parzi.starwarsmod.utils.ForceUtils;
 
 public class RenderJediDefense
 {
-	public static final ResourceLocation textureDefend = new ResourceLocation(StarWarsMod.MODID, "textures/force/defend.png");
-	public static final ResourceLocation textureShieldSith = new ResourceLocation(StarWarsMod.MODID, "textures/force/shield_sith.png");
-	public static final ResourceLocation textureShield = new ResourceLocation(StarWarsMod.MODID, "textures/force/shield.png");
-	public static final ResourceLocation sphere = new ResourceLocation(StarWarsMod.MODID, "models/sphere.obj");
+	public static final ResourceLocation textureDefend = new ResourceLocation(Resources.MODID, "textures/force/defend.png");
+	public static final ResourceLocation textureShieldSith = new ResourceLocation(Resources.MODID, "textures/force/shield_sith.png");
+	public static final ResourceLocation textureShield = new ResourceLocation(Resources.MODID, "textures/force/shield.png");
+	public static final ResourceLocation sphere = new ResourceLocation(Resources.MODID, "models/sphere.obj");
 
 	IModelCustom model;
 

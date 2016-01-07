@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobEwok extends EntityAnimal implements IAnimals
@@ -69,19 +70,19 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.ewok.die";
+		return Resources.MODID + ":" + "mob.ewok.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.ewok.hit";
+		return Resources.MODID + ":" + "mob.ewok.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.ewok.say";
+		return Resources.MODID + ":" + "mob.ewok.say";
 	}
 
 	private int getType()

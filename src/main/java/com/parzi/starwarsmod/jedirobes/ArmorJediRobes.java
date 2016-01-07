@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
@@ -171,8 +172,8 @@ public class ArmorJediRobes extends ItemArmor
 	public ArmorJediRobes()
 	{
 		super(StarWarsMod.jediRobesMat, 1, 1);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(com.parzi.starwarsmod.StarWarsMod.StarWarsTab);
 	}
 
@@ -205,7 +206,7 @@ public class ArmorJediRobes extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.jediRobes)
-			return StarWarsMod.MODID + ":" + "textures/force/cloak.png";
+			return Resources.MODID + ":" + "textures/force/cloak.png";
 		return "";
 	}
 

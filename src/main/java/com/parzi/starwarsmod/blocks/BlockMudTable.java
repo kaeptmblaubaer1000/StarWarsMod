@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.starwarsmod.utils.HarvestLevel;
@@ -16,7 +17,7 @@ public class BlockMudTable extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + "mudTable");
+		this.setBlockName(Resources.MODID + "." + "mudTable");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -43,7 +44,7 @@ public class BlockMudTable extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconMudTable");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconMudTable");
 	}
 
 	@Override

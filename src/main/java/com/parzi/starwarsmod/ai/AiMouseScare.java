@@ -2,6 +2,8 @@ package com.parzi.starwarsmod.ai;
 
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -12,8 +14,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.Vec3;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class AiMouseScare extends EntityAIBase
 {
@@ -89,7 +89,7 @@ public class AiMouseScare extends EntityAIBase
 	@Override
 	public void startExecuting()
 	{
-		this.theEntity.playSound(StarWarsMod.MODID + ":" + "mob.mouse.scare", 1.0F, 1.0F);
+		this.theEntity.playSound(Resources.MODID + ":" + "mob.mouse.scare", 1.0F, 1.0F);
 		this.entityPathNavigate.setPath(this.entityPathEntity, this.farSpeed);
 	}
 

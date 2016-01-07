@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.handlers;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -16,6 +17,7 @@ import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
+import com.parzi.starwarsmod.registry.KeybindRegistry;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
@@ -46,25 +48,25 @@ public class CommonEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
-		if (StarWarsMod.keyShootVehicle.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity != null) if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
+		if (KeybindRegistry.keyShootVehicle.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity != null) if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
 		{
 			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.SPEEDER));
-			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
 		}
 		else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 		{
 			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
-			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
 			ClientEventHandler.isFiring = true;
 			ClientEventHandler.blipFrame = ClientEventHandler.blipMax;
 		}
 		else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
 		{
 			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.TIE));
-			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
 		}
 
-		if (StarWarsMod.keySFoil.isPressed()) if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+		if (KeybindRegistry.keySFoil.isPressed()) if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
 		{
 			VehicXWing xwing = (VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity;
 			if (xwing.getSFoil() <= 0)
@@ -79,9 +81,9 @@ public class CommonEventHandler
 			}
 		}
 
-		if (StarWarsMod.keyRobeGui.isPressed()) StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, null, 0, 0, 0);
+		if (KeybindRegistry.keyRobeGui.isPressed()) StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, StarWarsEnum.GUI_ROBES, null, 0, 0, 0);
 
-		if (StarWarsMod.keyRobePower.isPressed()) if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (KeybindRegistry.keyRobePower.isPressed()) if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
 			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
 			Power active = ForceUtils.activePower;
@@ -186,7 +188,7 @@ public class CommonEventHandler
 				{
 					ForceUtils.activePower.duration++;
 
-					ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && StarWarsMod.keyRobePower.getIsKeyPressed();
+					ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
 
 					if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ForceUtils.isUsingDuration)
 					{
@@ -211,7 +213,7 @@ public class CommonEventHandler
 						PowerLightning power = (PowerLightning)ForceUtils.activePower;
 						if (power.getTarget() != null)
 						{
-							StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "force.lightning", 1.0F, 1.0F);
+							StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
 							StarWarsMod.network.sendToServer(new PacketEntityHurt(power.getTarget().getEntityId(), power.getTarget().dimension, power.getDamage()));
 							if (power.getTarget() instanceof EntityPlayer) try
 							{

@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.LootGenUtils;
 import com.parzi.starwarsmod.utils.WeightedLoot;
@@ -119,7 +120,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	protected String getAngrySoundName()
 	{
-		return StarWarsMod.MODID + ":" + "mob.bantha.say";
+		return Resources.MODID + ":" + "mob.bantha.say";
 	}
 
 	@Override
@@ -141,7 +142,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.bantha.die";
+		return Resources.MODID + ":" + "mob.bantha.die";
 	}
 
 	@Override
@@ -153,13 +154,13 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.bantha.hit";
+		return Resources.MODID + ":" + "mob.bantha.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.bantha.say";
+		return Resources.MODID + ":" + "mob.bantha.say";
 	}
 
 	@Override

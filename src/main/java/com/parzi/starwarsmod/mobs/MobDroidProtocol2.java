@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.EntityUtils;
 
@@ -76,19 +77,19 @@ public class MobDroidProtocol2 extends EntityTameable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.protocol.die";
+		return Resources.MODID + ":" + "mob.protocol.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.protocol.hit";
+		return Resources.MODID + ":" + "mob.protocol.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.protocol.say";
+		return Resources.MODID + ":" + "mob.protocol.say";
 	}
 
 	@Override
@@ -145,7 +146,7 @@ public class MobDroidProtocol2 extends EntityTameable
 	{
 		super.onUpdate();
 		if (this.rand.nextInt(1000) == 0 && this.worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, this.boundingBox.expand(5.0D, 5.0D, 5.0D), this) instanceof MobDroidAstromech)
-			this.playSound(StarWarsMod.MODID + ":" + "mob.protocol.r2d2rare", 1.0F, 1.0F);
+			this.playSound(Resources.MODID + ":" + "mob.protocol.r2d2rare", 1.0F, 1.0F);
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.TradeUtils;
 import com.parzi.starwarsmod.utils.WeightedTradeItem;
@@ -151,9 +152,9 @@ public class MobTatooineCommoner extends EntityVillager
 			this.livingSoundTime = -this.getTalkInterval();
 
 			if (p_110297_1_ != null)
-				this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.trade", this.getSoundVolume(), this.getSoundPitch());
+				this.playSound(Resources.MODID + ":" + "mob.commoner.trade", this.getSoundVolume(), this.getSoundPitch());
 			else
-				this.playSound(StarWarsMod.MODID + ":" + "mob.commoner.notrade", this.getSoundVolume(), this.getSoundPitch());
+				this.playSound(Resources.MODID + ":" + "mob.commoner.notrade", this.getSoundVolume(), this.getSoundPitch());
 		}
 	}
 
@@ -181,7 +182,7 @@ public class MobTatooineCommoner extends EntityVillager
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.commoner.die";
+		return Resources.MODID + ":" + "mob.commoner.die";
 	}
 
 	/**
@@ -190,7 +191,7 @@ public class MobTatooineCommoner extends EntityVillager
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.commoner.hit";
+		return Resources.MODID + ":" + "mob.commoner.hit";
 	}
 
 	/**
@@ -199,7 +200,7 @@ public class MobTatooineCommoner extends EntityVillager
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + (this.isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
+		return Resources.MODID + ":" + (this.isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
 	}
 
 	@Override

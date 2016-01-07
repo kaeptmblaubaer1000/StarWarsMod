@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorTiePilot extends ItemArmor
@@ -13,8 +14,8 @@ public class ArmorTiePilot extends ItemArmor
 	public ArmorTiePilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "tiePilot" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "tiePilot" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "tiePilot" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "tiePilot" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -22,9 +23,9 @@ public class ArmorTiePilot extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.tiePilotHelmet || stack.getItem() == StarWarsMod.tiePilotChest || stack.getItem() == StarWarsMod.tiePilotBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/tiePilotArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.tiePilotLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/tiePilotArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/tiePilotArmorLayer2.png";
 		return "";
 	}
 }

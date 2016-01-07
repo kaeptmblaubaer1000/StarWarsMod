@@ -7,12 +7,12 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelGNK;
 
 public class RenderGNK extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/gnk.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/gnk.png");
 
 	public RenderGNK(ModelGNK modelGNK, float par2)
 	{

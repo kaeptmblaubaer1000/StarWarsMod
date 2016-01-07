@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.utils.Lumberjack;
@@ -18,8 +19,8 @@ public class ItemHyperdriveDagobah extends Item
 
 	public ItemHyperdriveDagobah()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.maxStackSize = 1;
 	}

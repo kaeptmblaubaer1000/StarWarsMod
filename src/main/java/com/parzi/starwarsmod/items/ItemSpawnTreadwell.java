@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.mobs.MobDroidTreadwell;
 
@@ -14,8 +15,8 @@ public class ItemSpawnTreadwell extends Item
 
 	public ItemSpawnTreadwell()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.maxStackSize = 1;
 	}

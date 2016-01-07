@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class BlockDagobahMud extends Block
@@ -12,8 +13,8 @@ public class BlockDagobahMud extends Block
 	public BlockDagobahMud()
 	{
 		super(Material.ground);
-		this.setBlockName(StarWarsMod.MODID + "." + this.name);
-		this.setBlockTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setBlockName(Resources.MODID + "." + this.name);
+		this.setBlockTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHardness(4.0F);
 		this.setStepSound(soundTypeSand);

@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.registry;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.armor.ArmorAddonBuns;
 import com.parzi.starwarsmod.armor.ArmorBoba;
@@ -100,7 +101,7 @@ public class ItemRegister
 {
 	public static void registerAll()
 	{
-		if (StarWarsMod.IS_DEV_ENVIRONVENT)
+		if (Resources.IS_DEV_ENVIRONVENT)
 		{
 			StarWarsMod.debugLootGen = new ItemDebugLootGen();
 			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");

@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobGamorrean extends EntityMob implements net.minecraft.entity.monster.IMob
@@ -91,19 +92,19 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gamor.die";
+		return Resources.MODID + ":" + "mob.gamor.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gamor.hit";
+		return Resources.MODID + ":" + "mob.gamor.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gamor.say";
+		return Resources.MODID + ":" + "mob.gamor.say";
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorRebelFleet extends ItemArmor
@@ -13,8 +14,8 @@ public class ArmorRebelFleet extends ItemArmor
 	public ArmorRebelFleet(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "rebelTrooper" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "rebelTrooper" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "rebelTrooper" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "rebelTrooper" + this.names[par4]);
 		// this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -22,9 +23,9 @@ public class ArmorRebelFleet extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.fleetHelmet || stack.getItem() == StarWarsMod.fleetChest || stack.getItem() == StarWarsMod.fleetBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/fleetArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/fleetArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.fleetLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/fleetArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/fleetArmorLayer2.png";
 		return "";
 	}
 }

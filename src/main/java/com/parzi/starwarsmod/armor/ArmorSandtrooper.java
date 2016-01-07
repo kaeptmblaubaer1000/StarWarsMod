@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorSandtrooper extends ItemArmor
@@ -13,8 +14,8 @@ public class ArmorSandtrooper extends ItemArmor
 	public ArmorSandtrooper(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "sandtrooper" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "sandtrooper" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "sandtrooper" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "sandtrooper" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -22,9 +23,9 @@ public class ArmorSandtrooper extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.sandtrooperHelmet || stack.getItem() == StarWarsMod.sandtrooperChest || stack.getItem() == StarWarsMod.sandtrooperBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/sandtrooperArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/sandtrooperArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.sandtrooperLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/sandtrooperArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/sandtrooperArmorLayer2.png";
 		return "";
 	}
 }

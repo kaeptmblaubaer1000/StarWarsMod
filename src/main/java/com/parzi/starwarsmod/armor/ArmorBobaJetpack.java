@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.armor;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorBobaJetpack extends ItemArmor
 {
@@ -15,8 +15,8 @@ public class ArmorBobaJetpack extends ItemArmor
 	public ArmorBobaJetpack(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "boba" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "boba" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "boba" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "boba" + this.names[par4]);
 		this.setCreativeTab(com.parzi.starwarsmod.StarWarsMod.StarWarsTab);
 	}
 
@@ -24,7 +24,7 @@ public class ArmorBobaJetpack extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == com.parzi.starwarsmod.StarWarsMod.bobaJetpackChest)
-			return StarWarsMod.MODID + ":" + "textures/models/bobaArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/bobaArmorLayer1.png";
 		return "";
 	}
 

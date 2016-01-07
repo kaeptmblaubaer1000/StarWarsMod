@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.utils.LootGenUtils;
 
 public class ItemDebugLootGen extends Item
@@ -16,8 +16,8 @@ public class ItemDebugLootGen extends Item
 
 	public ItemDebugLootGen()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 	}
 
 	@Override

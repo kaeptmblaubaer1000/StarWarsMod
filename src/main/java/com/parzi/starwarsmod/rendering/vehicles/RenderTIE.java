@@ -3,12 +3,12 @@ package com.parzi.starwarsmod.rendering.vehicles;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelTIE;
 
 public class RenderTIE extends RenderVehicAirBase
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/tie.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tie.png");
 
 	public RenderTIE(ModelTIE model, float par2)
 	{

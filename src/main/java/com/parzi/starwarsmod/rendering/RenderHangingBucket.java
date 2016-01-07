@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelHangingBucket;
 
 public class RenderHangingBucket extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/hangingBucket.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/hangingBucket.png");
 
 	private final ModelHangingBucket model;
 

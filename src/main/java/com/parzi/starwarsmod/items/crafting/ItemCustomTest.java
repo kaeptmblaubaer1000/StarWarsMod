@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.MathUtils;
 
@@ -28,8 +29,8 @@ public class ItemCustomTest extends ItemSword
 	public ItemCustomTest()
 	{
 		super(StarWarsMod.materialPlasma);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -83,13 +84,13 @@ public class ItemCustomTest extends ItemSword
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber_blue");
+		this.itemIcon = par1IconRegister.registerIcon(Resources.MODID + ":" + "lightsaber_blue");
 
 		for (String blade : this.blades)
-			this.iconMap.put("blade_" + blade, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/blade_" + blade));
+			this.iconMap.put("blade_" + blade, par1IconRegister.registerIcon(Resources.MODID + ":" + "lightsaber/blade_" + blade));
 
 		for (String hilt : this.hilts)
-			this.iconMap.put("hilt_" + hilt, par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "lightsaber/hilt_" + hilt));
+			this.iconMap.put("hilt_" + hilt, par1IconRegister.registerIcon(Resources.MODID + ":" + "lightsaber/hilt_" + hilt));
 	}
 
 	@Override

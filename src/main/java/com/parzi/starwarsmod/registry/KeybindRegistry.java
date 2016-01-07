@@ -4,25 +4,38 @@ import net.minecraft.client.settings.KeyBinding;
 
 import org.lwjgl.input.Keyboard;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class KeybindRegistry
 {
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShootVehicle;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keySFoil;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyDebug;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyRobeGui;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyRobePower;
+	
 	public static void registerAll()
 	{
-		StarWarsMod.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);
-		StarWarsMod.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
-		StarWarsMod.keyRobeGui = registerKeybind("robeGui", Keyboard.KEY_V);
-		StarWarsMod.keyRobePower = registerKeybind("robePower", Keyboard.KEY_B);
-		if (StarWarsMod.IS_DEV_ENVIRONVENT)
-			StarWarsMod.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
+		KeybindRegistry.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);
+		KeybindRegistry.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
+		KeybindRegistry.keyRobeGui = registerKeybind("robeGui", Keyboard.KEY_V);
+		KeybindRegistry.keyRobePower = registerKeybind("robePower", Keyboard.KEY_B);
+		if (Resources.IS_DEV_ENVIRONVENT)
+			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 	}
 
 	public static KeyBinding registerKeybind(String keyName, int keyCode)
 	{
-		KeyBinding b = new KeyBinding("key." + StarWarsMod.MODID + "." + keyName, keyCode, "key." + StarWarsMod.MODID);
+		KeyBinding b = new KeyBinding("key." + Resources.MODID + "." + keyName, keyCode, "key." + Resources.MODID);
 		ClientRegistry.registerKeyBinding(b);
 		return b;
 	}

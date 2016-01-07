@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 import cpw.mods.fml.relauncher.Side;
@@ -58,8 +59,8 @@ public class ItemBinoculars extends Item
 
 	public ItemBinoculars(String type)
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name + type);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name + type);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name + type);
+		this.setTextureName(Resources.MODID + ":" + this.name + type);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 

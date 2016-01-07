@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorHoth extends ItemArmor
@@ -13,8 +14,8 @@ public class ArmorHoth extends ItemArmor
 	public ArmorHoth(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "hoth" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "hoth" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "hoth" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "hoth" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -22,9 +23,9 @@ public class ArmorHoth extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.hothHelmet || stack.getItem() == StarWarsMod.hothChest || stack.getItem() == StarWarsMod.hothBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/hothArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/hothArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.hothLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/hothArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/hothArmorLayer2.png";
 		return "";
 	}
 }

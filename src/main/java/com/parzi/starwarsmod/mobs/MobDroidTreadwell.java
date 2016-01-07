@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobDroidTreadwell extends EntityTameable
@@ -79,13 +80,13 @@ public class MobDroidTreadwell extends EntityTameable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.surgical.die";
+		return Resources.MODID + ":" + "mob.surgical.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.surgical.hit";
+		return Resources.MODID + ":" + "mob.surgical.hit";
 	}
 
 	@Override

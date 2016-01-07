@@ -1,11 +1,11 @@
 package com.parzi.starwarsmod.vehicles;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class VehicleBase extends EntityCreature
 {
@@ -47,7 +47,7 @@ public class VehicleBase extends EntityCreature
 	@Override
 	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
 	{
-		this.playSound(StarWarsMod.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
+		this.playSound(Resources.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
 	}
 
 	public String getMovingSound()

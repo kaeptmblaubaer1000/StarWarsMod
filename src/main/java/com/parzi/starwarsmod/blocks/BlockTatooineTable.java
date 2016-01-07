@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
 import com.parzi.starwarsmod.utils.HarvestLevel;
@@ -16,7 +17,7 @@ public class BlockTatooineTable extends BlockContainer
 	{
 		super(Material.iron);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + "table");
+		this.setBlockName(Resources.MODID + "." + "table");
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		this.setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -43,7 +44,7 @@ public class BlockTatooineTable extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(StarWarsMod.MODID + ":" + "iconTable");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconTable");
 	}
 
 	@Override

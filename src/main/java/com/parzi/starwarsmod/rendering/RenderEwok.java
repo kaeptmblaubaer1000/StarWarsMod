@@ -20,15 +20,15 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.GameProfile;
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.mobs.MobEwok;
 
 public class RenderEwok extends RenderLiving
 {
-	public static ResourceLocation texture1 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
-	public static ResourceLocation texture2 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok2.png");
-	public static ResourceLocation texture3 = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok3.png");
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/ewok.png");
+	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/ewok.png");
+	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/ewok2.png");
+	public static ResourceLocation texture3 = new ResourceLocation(Resources.MODID, "textures/models/ewok3.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/ewok.png");
 
 	public RenderEwok(ModelBase par1ModelBase, float par2)
 	{

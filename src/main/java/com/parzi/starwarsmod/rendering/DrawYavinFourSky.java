@@ -15,16 +15,16 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawYavinFourSky extends IRenderHandler
 {
-	private static ResourceLocation yavinPrimeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/yavin_prime.png");
+	private static ResourceLocation yavinPrimeTexture = new ResourceLocation(Resources.MODID, "textures/environment/yavin_prime.png");
 	private static float yavinPrimeSizeMod = 150.0F;
-	private static ResourceLocation deathStarTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/death_star.png");
+	private static ResourceLocation deathStarTexture = new ResourceLocation(Resources.MODID, "textures/environment/death_star.png");
 	public static int starList = GLAllocation.generateDisplayLists(3);
 	public static int glSkyList = starList + 1;
 	public static int glSkyList2 = starList + 2;

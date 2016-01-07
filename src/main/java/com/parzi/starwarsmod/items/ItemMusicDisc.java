@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemMusicDisc extends ItemRecord
@@ -31,7 +32,7 @@ public class ItemMusicDisc extends ItemRecord
 		super(songName);
 		this.field_150929_a = songName;
 		this.maxStackSize = 1;
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		records.put(this.field_150929_a, this);
 	}
@@ -56,13 +57,13 @@ public class ItemMusicDisc extends ItemRecord
 	@Override
 	public ResourceLocation getRecordResource(String name)
 	{
-		return new ResourceLocation(StarWarsMod.MODID + ":" + "item." + name);
+		return new ResourceLocation(Resources.MODID + ":" + "item." + name);
 	}
 
 	@Override
 	public void registerIcons(IIconRegister iconRegister)
 	{
-		this.itemIcon = iconRegister.registerIcon(StarWarsMod.MODID + ":" + "record" + this.field_150929_a);
+		this.itemIcon = iconRegister.registerIcon(Resources.MODID + ":" + "record" + this.field_150929_a);
 	}
 }
 /*

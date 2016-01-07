@@ -3,11 +3,11 @@ package com.parzi.starwarsmod.achievement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class StarWarsAchievement extends Achievement
 {
@@ -20,7 +20,7 @@ public class StarWarsAchievement extends Achievement
 
 	public StarWarsAchievement(String name, int x, int y, ItemStack icon, Achievement parent)
 	{
-		super("achievement.starwarsmod." + name, StarWarsMod.MODID + "." + name, x, y, icon, parent);
+		super("achievement.starwarsmod." + name, Resources.MODID + "." + name, x, y, icon, parent);
 		achievements.add(this);
 		this.registerStat();
 	}

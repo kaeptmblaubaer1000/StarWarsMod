@@ -1,14 +1,14 @@
 package com.parzi.starwarsmod.items;
 
-import net.minecraft.item.Item;
+import com.parzi.starwarsmod.Resources;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import net.minecraft.item.Item;
 
 public class ItemBolt extends Item
 {
 	public ItemBolt(String type)
 	{
-		this.setTextureName(StarWarsMod.MODID + ":" + type);
+		this.setTextureName(Resources.MODID + ":" + type);
 	}
 }
 /*

@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 
@@ -34,7 +35,7 @@ public class BlockTatooineSandstone extends Block
 	public BlockTatooineSandstone()
 	{
 		super(Material.ground);
-		this.setBlockName(StarWarsMod.MODID + "." + this.name);
+		this.setBlockName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHardness(0.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
@@ -70,9 +71,9 @@ public class BlockTatooineSandstone extends Block
 	{
 		this.field_150158_M = new IIcon[field_150156_b.length];
 		for (int i = 0; i < this.field_150158_M.length; i++)
-			this.field_150158_M[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + field_150156_b[i]);
-		this.field_150159_N = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_top");
-		this.field_150160_O = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_bottom");
+			this.field_150158_M[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + field_150156_b[i]);
+		this.field_150159_N = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_top");
+		this.field_150160_O = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_bottom");
 	}
 }
 /*

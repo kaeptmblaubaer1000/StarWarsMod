@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 import cpw.mods.fml.relauncher.Side;
@@ -22,7 +23,7 @@ public class ItemLightsaberCrystal extends Item
 
 	public ItemLightsaberCrystal()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
@@ -47,7 +48,7 @@ public class ItemLightsaberCrystal extends Item
 	{
 		this.icons = new IIcon[this.colors.length];
 		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.colors[i]);
+			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
 	}
 }
 /*

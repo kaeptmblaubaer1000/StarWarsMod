@@ -8,11 +8,11 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 
 public class RenderDroidMouse extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/mouse.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/mouse.png");
 
 	public RenderDroidMouse(ModelBase par1ModelBase, float par2)
 	{

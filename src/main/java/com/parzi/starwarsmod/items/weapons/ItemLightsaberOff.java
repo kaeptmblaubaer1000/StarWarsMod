@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -29,8 +30,8 @@ public class ItemLightsaberOff extends Item
 
 	public ItemLightsaberOff()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setHasSubtypes(true);
 	}
 
@@ -68,7 +69,7 @@ public class ItemLightsaberOff extends Item
 			stack.stackTagCompound.setInteger("timeout", 10);
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
+			player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
 			StarWarsMod.network.sendToServer(new PacketTogglePlayerLightsaber(player.getCommandSenderName(), player.dimension));
 		}
 		return stack;
@@ -92,7 +93,7 @@ public class ItemLightsaberOff extends Item
 	{
 		this.icons = new IIcon[this.colors.length];
 		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.colors[i]);
+			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
 	}
 }
 /*

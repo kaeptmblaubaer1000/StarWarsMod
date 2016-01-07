@@ -15,16 +15,16 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawDagobahSky extends IRenderHandler
 {
-	private static ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/sun.png");
+	private static ResourceLocation sunTexture = new ResourceLocation(Resources.MODID, "textures/environment/sun.png");
 	private static float sunSizeMod = 1.0F;
-	private static ResourceLocation lukeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/xwing.png");
+	private static ResourceLocation lukeTexture = new ResourceLocation(Resources.MODID, "textures/environment/xwing.png");
 	public static int starList = GLAllocation.generateDisplayLists(3);
 	public static int glSkyList = starList + 1;
 	public static int glSkyList2 = starList + 2;

@@ -15,15 +15,15 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawHothSky extends IRenderHandler
 {
-	private static ResourceLocation sunTexture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/hoth_sun.png");
-	private static ResourceLocation moon1Texture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/hoth_moon.png");
+	private static ResourceLocation sunTexture = new ResourceLocation(Resources.MODID, "textures/environment/hoth_sun.png");
+	private static ResourceLocation moon1Texture = new ResourceLocation(Resources.MODID, "textures/environment/hoth_moon.png");
 	private static Vector3 moon1Offset = new Vector3(-20, 0, 10);
 	private static float moon1SizeMod = 1.0F;
 	private static Vector3 moon2Offset = new Vector3(-44, 0, 0);

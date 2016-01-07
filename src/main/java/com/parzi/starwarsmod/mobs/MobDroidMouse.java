@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.ai.AiFreqMove;
 import com.parzi.starwarsmod.utils.EntityUtils;
@@ -84,19 +85,19 @@ public class MobDroidMouse extends EntityTameable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.mouse.die";
+		return Resources.MODID + ":" + "mob.mouse.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.mouse.hit";
+		return Resources.MODID + ":" + "mob.mouse.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.mouse.say";
+		return Resources.MODID + ":" + "mob.mouse.say";
 	}
 
 	@Override

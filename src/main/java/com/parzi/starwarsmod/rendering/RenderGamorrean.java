@@ -4,12 +4,12 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelGamorrean;
 
 public class RenderGamorrean extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/gamorrean.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/gamorrean.png");
 
 	public RenderGamorrean(ModelGamorrean par1ModelBase, float par2)
 	{

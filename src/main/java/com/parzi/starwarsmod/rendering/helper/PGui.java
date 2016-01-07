@@ -6,6 +6,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -15,14 +16,21 @@ import org.lwjgl.opengl.GL11;
 
 import scala.Int;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
+import com.parzi.starwarsmod.minimap.MinimapStore;
+import com.parzi.starwarsmod.utils.GlPalette;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
 	private static ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
-	private static ResourceLocation saberBars = new ResourceLocation(StarWarsMod.MODID, "textures/gui/bars.png");
-	private static ResourceLocation saber = new ResourceLocation(StarWarsMod.MODID, "textures/gui/hilt.png");
+	private static ResourceLocation saberBars = new ResourceLocation(Resources.MODID, "textures/gui/bars.png");
+	private static ResourceLocation saber = new ResourceLocation(Resources.MODID, "textures/gui/hilt.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
@@ -968,5 +976,59 @@ public class PGui// extends Gui
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glDisable(3042);
+	}
+
+	@SideOnly(Side.CLIENT)
+	private void drawMiniMap(ClientEventHandler clientEventHandler, Entity center, int min, int max, int size)
+	{
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		for (int x = min; x < max; x++)
+			for (int y = min; y < max; y++)
+			{
+				int bX = (int)(center.posX + x);
+				int bZ = (int)(center.posZ + y);
+				int color = MinimapStore.getAt(center.worldObj, bX, bZ);
+	
+				float f3 = (color >> 24 & 255) / 255.0F;
+				float f = (color >> 16 & 255) / 255.0F;
+				float f1 = (color >> 8 & 255) / 255.0F;
+				float f2 = (color & 255) / 255.0F;
+				GL11.glColor4f(f, f1, f2, f3);
+	
+				tessellator.startDrawingQuads();
+				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0.0D);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0.0D);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0.0D);
+				tessellator.addVertex((x - min) * size, (y - min) * size, 0.0D);
+				tessellator.draw();
+			}
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GlPalette.BLACK);
+	
+		// to use:
+		// GL11.glPushMatrix();
+		// GL11.glColor4f(255, 255, 255, 255);
+		// drawMiniMap(StarWarsMod.mc.thePlayer, -25, 25, 2);
+		// GL11.glColor4f(255, 255, 255, 255);
+		// GL11.glPopMatrix();
+	}
+
+	public ResourceLocation planetTextureFromDim(int dim)
+	{
+		if (dim == StarWarsMod.dimEndorId)
+			return Resources.endorTexture;
+		else if (dim == StarWarsMod.dimHothId)
+			return Resources.hothTexture;
+		else if (dim == StarWarsMod.dimKashyyykId)
+			return Resources.kashyyykTexture;
+		else if (dim == StarWarsMod.dimTatooineId)
+			return Resources.tatooineTexture;
+		else if (dim == StarWarsMod.dimYavin4Id) return Resources.yavinTexture;
+	
+		return Resources.earthTexture;
 	}
 }

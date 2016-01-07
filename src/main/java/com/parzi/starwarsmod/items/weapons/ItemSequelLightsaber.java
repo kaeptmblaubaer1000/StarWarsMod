@@ -16,6 +16,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketTogglePlayerSequelLightsaber;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -33,8 +34,8 @@ public class ItemSequelLightsaber extends ItemSword
 	public ItemSequelLightsaber()
 	{
 		super(StarWarsMod.materialPlasma);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(StarWarsMod.SequelStarWarsTab);
 	}
@@ -74,8 +75,8 @@ public class ItemSequelLightsaber extends ItemSword
 			EntityPlayer pb = (EntityPlayer)b;
 			if (pa.inventory.mainInventory[pa.inventory.currentItem] != null && pa.inventory.mainInventory[pa.inventory.currentItem].getItem() == StarWarsMod.lightsaber && pa.isBlocking() && pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.lightsaber)
 			{
-				a.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-				b.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
+				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
+				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 			}
 		}
 		return super.hitEntity(stack, a, b);
@@ -84,7 +85,7 @@ public class ItemSequelLightsaber extends ItemSword
 	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
-		entityLiving.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.swing", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		entityLiving.playSound(Resources.MODID + ":" + "item.lightsaber.swing", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
 	}
 
@@ -95,7 +96,7 @@ public class ItemSequelLightsaber extends ItemSword
 			stack.stackTagCompound.setInteger("timeout", 10);
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
 		{
-			player.playSound(StarWarsMod.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
+			player.playSound(Resources.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
 			StarWarsMod.network.sendToServer(new PacketTogglePlayerSequelLightsaber(player.getCommandSenderName(), player.dimension));
 		}
 		return super.onItemRightClick(stack, world, player);
@@ -120,9 +121,9 @@ public class ItemSequelLightsaber extends ItemSword
 		this.icons = new IIcon[this.colors.length];
 		for (int i = 0; i < this.icons.length; i++)
 			if (StarWarsMod.enableLightsaberStrobe)
-				this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.colors[i]);
+				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
 			else
-				this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + "_" + this.colors[i] + "_static");
+				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i] + "_static");
 	}
 }
 /*

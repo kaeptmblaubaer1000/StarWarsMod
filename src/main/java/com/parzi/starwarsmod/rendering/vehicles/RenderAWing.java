@@ -3,12 +3,12 @@ package com.parzi.starwarsmod.rendering.vehicles;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelAWing;
 
 public class RenderAWing extends RenderVehicAirBase
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/awing.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/awing.png");
 
 	public RenderAWing(ModelAWing model, float par2)
 	{

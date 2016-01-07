@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ArmorHothPilot extends ItemArmor
@@ -13,8 +14,8 @@ public class ArmorHothPilot extends ItemArmor
 	public ArmorHothPilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "atatPilot" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "atatPilot" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "atatPilot" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "atatPilot" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -22,9 +23,9 @@ public class ArmorHothPilot extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.atatPilotHelmet || stack.getItem() == StarWarsMod.atatPilotChest || stack.getItem() == StarWarsMod.atatPilotBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/atatPilotArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/atatPilotArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.atatPilotLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/atatPilotArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/atatPilotArmorLayer2.png";
 		return "";
 	}
 }

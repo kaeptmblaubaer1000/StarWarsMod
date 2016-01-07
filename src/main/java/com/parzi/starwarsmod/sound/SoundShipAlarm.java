@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class SoundShipAlarm extends MovingSound
@@ -14,7 +15,7 @@ public class SoundShipAlarm extends MovingSound
 
 	public SoundShipAlarm(EntityPlayer player)
 	{
-		super(new ResourceLocation(StarWarsMod.MODID, "vehicle.alarm.loop"));
+		super(new ResourceLocation(Resources.MODID, "vehicle.alarm.loop"));
 		this.player = player;
 		this.field_147666_i = ISound.AttenuationType.NONE;
 		this.repeat = true;

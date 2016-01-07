@@ -7,12 +7,12 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDewback;
 
 public class RenderDewback extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/dewback.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/dewback.png");
 
 	public RenderDewback(ModelDewback par1ModelBase, float par2)
 	{

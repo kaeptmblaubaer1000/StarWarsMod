@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.TextUtils;
 
@@ -17,8 +18,8 @@ public class ItemGaffiStick extends ItemSword
 	public ItemGaffiStick()
 	{
 		super(StarWarsMod.materialGaffi);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -31,7 +32,7 @@ public class ItemGaffiStick extends ItemSword
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
 	{
-		entityPlayer.playSound(StarWarsMod.MODID + ":" + "item.gaffi.rightclick", 1.0F, 1.0F);
+		entityPlayer.playSound(Resources.MODID + ":" + "item.gaffi.rightclick", 1.0F, 1.0F);
 		return itemStack;
 	}
 }

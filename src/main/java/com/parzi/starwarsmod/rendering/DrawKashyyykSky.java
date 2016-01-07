@@ -15,7 +15,7 @@ import net.minecraftforge.client.IRenderHandler;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.utils.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -23,7 +23,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 public class DrawKashyyykSky extends IRenderHandler
 {
 	private static ResourceLocation sunTexture = new ResourceLocation("textures/environment/sun.png");
-	private static ResourceLocation moon1Texture = new ResourceLocation(StarWarsMod.MODID, "textures/environment/kashyyyk_moon.png");
+	private static ResourceLocation moon1Texture = new ResourceLocation(Resources.MODID, "textures/environment/kashyyyk_moon.png");
 	private static Vector3 moon1Offset = new Vector3(14, 0, 10);
 	private static float moon1SizeMod = 0.8F;
 	private static Vector3 moon2Offset = new Vector3(-32, 0, 0);

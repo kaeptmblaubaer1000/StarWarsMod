@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 
@@ -26,7 +27,7 @@ public class BlockTatooineSand extends Block
 	public BlockTatooineSand()
 	{
 		super(Material.sand);
-		this.setBlockName(StarWarsMod.MODID + "." + this.name);
+		this.setBlockName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHardness(0.5F);
 		this.setHarvestLevel("shovel", HarvestLevel.WOOD);
@@ -62,7 +63,7 @@ public class BlockTatooineSand extends Block
 	{
 		this.icons = new IIcon[this.subtypes];
 		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + i);
+			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + i);
 	}
 }
 /*

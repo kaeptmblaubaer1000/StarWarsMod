@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.vehicles;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class VehicTIE extends VehicleAirBase
@@ -33,7 +34,7 @@ public class VehicTIE extends VehicleAirBase
 	@Override
 	public String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "vehicle.tie.die";
+		return Resources.MODID + ":" + "vehicle.tie.die";
 	}
 
 	@Override

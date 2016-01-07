@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.EntityUtils;
 
@@ -65,13 +66,13 @@ public class MobDroidGNK extends EntityTameable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gonk.die";
+		return Resources.MODID + ":" + "mob.gonk.die";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.gonk.say";
+		return Resources.MODID + ":" + "mob.gonk.say";
 	}
 
 	@Override

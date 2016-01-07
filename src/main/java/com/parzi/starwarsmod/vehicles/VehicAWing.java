@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.vehicles;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class VehicAWing extends VehicleAirBase
@@ -33,7 +34,7 @@ public class VehicAWing extends VehicleAirBase
 	@Override
 	public String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "vehicle.xwing.die";
+		return Resources.MODID + ":" + "vehicle.xwing.die";
 	}
 
 	@Override

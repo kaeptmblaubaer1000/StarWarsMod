@@ -1,11 +1,11 @@
 package com.parzi.starwarsmod.sound;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class SoundSFoil extends MovingSound
 {
@@ -13,7 +13,7 @@ public class SoundSFoil extends MovingSound
 
 	public SoundSFoil(EntityPlayer player, boolean opening)
 	{
-		super(new ResourceLocation(StarWarsMod.MODID, opening ? "vehicle.xwing.sfoilOpen" : "vehicle.xwing.sfoilClose"));
+		super(new ResourceLocation(Resources.MODID, opening ? "vehicle.xwing.sfoilOpen" : "vehicle.xwing.sfoilClose"));
 		this.player = player;
 		this.field_147666_i = ISound.AttenuationType.NONE;
 		this.repeat = false;

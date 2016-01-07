@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.models.armor.ModelEndorHelmet;
 
@@ -19,8 +20,8 @@ public class ArmorEndor extends ItemArmor
 	public ArmorEndor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + "endor" + this.names[par4]);
-		this.setTextureName(StarWarsMod.MODID + ":" + "endor" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "endor" + this.names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "endor" + this.names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
@@ -37,11 +38,11 @@ public class ArmorEndor extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.endorHelmet)
-			return StarWarsMod.MODID + ":" + "textures/models/endorHelmet.png";
+			return Resources.MODID + ":" + "textures/models/endorHelmet.png";
 		if (stack.getItem() == StarWarsMod.endorChest || stack.getItem() == StarWarsMod.endorBoots)
-			return StarWarsMod.MODID + ":" + "textures/models/endorArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/endorArmorLayer1.png";
 		if (stack.getItem() == StarWarsMod.endorLegs)
-			return StarWarsMod.MODID + ":" + "textures/models/endorArmorLayer2.png";
+			return Resources.MODID + ":" + "textures/models/endorArmorLayer2.png";
 		return "";
 	}
 }

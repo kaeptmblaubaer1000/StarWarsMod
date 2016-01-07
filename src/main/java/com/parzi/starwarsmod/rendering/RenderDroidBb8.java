@@ -6,13 +6,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.mobs.MobDroidAstromechBb8;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidBb8;
 
 public class RenderDroidBb8 extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/astromechBb8.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/astromechBb8.png");
 	ModelBase model;
 
 	public RenderDroidBb8(ModelBase par1ModelBase, float par2)

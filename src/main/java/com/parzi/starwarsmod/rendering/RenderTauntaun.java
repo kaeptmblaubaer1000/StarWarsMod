@@ -8,11 +8,11 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 
 public class RenderTauntaun extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/tauntaun.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tauntaun.png");
 
 	public RenderTauntaun(ModelBase par1ModelBase, float par2)
 	{

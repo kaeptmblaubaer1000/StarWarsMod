@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 
@@ -27,7 +28,7 @@ public class BlockDeathStarLight extends Block
 	public BlockDeathStarLight()
 	{
 		super(Material.rock);
-		this.setBlockName(StarWarsMod.MODID + "." + this.name);
+		this.setBlockName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -62,7 +63,7 @@ public class BlockDeathStarLight extends Block
 	{
 		this.icons = new IIcon[this.subtypes];
 		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + this.name + this.names[i]);
+			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + this.names[i]);
 	}
 }
 /*

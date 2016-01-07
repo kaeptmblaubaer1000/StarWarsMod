@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.EntityUtils;
 
@@ -81,19 +82,19 @@ public class MobDroidAstromech2 extends EntityTameable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.astromech2.die";
+		return Resources.MODID + ":" + "mob.astromech2.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.astromech2.hit";
+		return Resources.MODID + ":" + "mob.astromech2.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.astromech2.say";
+		return Resources.MODID + ":" + "mob.astromech2.say";
 	}
 
 	@Override

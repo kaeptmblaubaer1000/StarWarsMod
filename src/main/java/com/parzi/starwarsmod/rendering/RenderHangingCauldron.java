@@ -9,12 +9,12 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelHangingCauldron;
 
 public class RenderHangingCauldron extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID + ":" + "textures/blocks/hangingCauldron.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/hangingCauldron.png");
 
 	private final ModelHangingCauldron model;
 

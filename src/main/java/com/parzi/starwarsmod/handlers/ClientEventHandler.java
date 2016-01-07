@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
 import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
@@ -16,21 +17,24 @@ import com.parzi.starwarsmod.items.ItemBinocularsTatooine;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
-import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
+import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
+import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
+import com.parzi.starwarsmod.utils.PlayerHelper;
+import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
@@ -46,8 +50,6 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,31 +74,6 @@ import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class ClientEventHandler
 {
-	private static final ResourceLocation tieOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie/tie.png");
-	private static final ResourceLocation tieBackOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie/tieBack.png");
-	private static final ResourceLocation tiePitch = new ResourceLocation(StarWarsMod.MODID, "textures/gui/tie/tiePitch.png");
-
-	private static final ResourceLocation xwingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwing.png");
-	private static final ResourceLocation xwingOverlayPitch = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/pitchGagueConsole.png");
-	private static final ResourceLocation xwingOverlayBack1 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwingBack1.png");
-	private static final ResourceLocation xwingOverlayBack2 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwingBack2.png");
-	private static final ResourceLocation xwingOverlayBlip = new ResourceLocation(StarWarsMod.MODID, "textures/gui/xwing/xwingBlip.png");
-
-	private static final ResourceLocation awingOverlay = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/awing.png");
-	private static final ResourceLocation awingBack = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/awingBack.png");
-	private static final ResourceLocation awingBack2 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/awingBack2.png");
-	private static final ResourceLocation awingPitch1 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/pitch1.png");
-	private static final ResourceLocation awingPitch2 = new ResourceLocation(StarWarsMod.MODID, "textures/gui/awing/pitch2.png");
-
-	private static final ResourceLocation earthTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/earth.png");
-	private static final ResourceLocation endorTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/endor.png");
-	private static final ResourceLocation hothTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/hoth.png");
-	private static final ResourceLocation kashyyykTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/kashyyyk.png");
-	private static final ResourceLocation yavinTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/yavin.png");
-	private static final ResourceLocation tatooineTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/planets/tatooine.png");
-
-	private static final ResourceLocation capeTexture = new ResourceLocation(StarWarsMod.MODID, "textures/force/cloak.png");
-
 	public static Item lastItem = null;
 	public static long lastTime = 0;
 
@@ -111,7 +88,6 @@ public class ClientEventHandler
 	public static int lookStringPos = 0;
 	public static long lookStringNextTime = 0;
 
-	public static char[] randomCharArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?$".toCharArray();
 	public static long randomCharNextTime = 0;
 	String randomChar1 = "C";
 	String randomChar2 = "N";
@@ -120,51 +96,14 @@ public class ClientEventHandler
 
 	Entity lastTarget = null;
 
-	@SideOnly(Side.CLIENT)
 	RenderJediDefense renderJediDefense;
-	@SideOnly(Side.CLIENT)
 	RenderSithLightning renderSithLightning;
-	@SideOnly(Side.CLIENT)
 	ModelJediCloak modelCloak;
-
-	@SideOnly(Side.CLIENT)
-	private void drawMiniMap(Entity center, int min, int max, int size)
-	{
-		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		for (int x = min; x < max; x++)
-			for (int y = min; y < max; y++)
-			{
-				int bX = (int)(center.posX + x);
-				int bZ = (int)(center.posZ + y);
-				int color = MinimapStore.getAt(center.worldObj, bX, bZ);
-
-				float f3 = (color >> 24 & 255) / 255.0F;
-				float f = (color >> 16 & 255) / 255.0F;
-				float f1 = (color >> 8 & 255) / 255.0F;
-				float f2 = (color & 255) / 255.0F;
-				GL11.glColor4f(f, f1, f2, f3);
-
-				tessellator.startDrawingQuads();
-				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0.0D);
-				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0.0D);
-				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0.0D);
-				tessellator.addVertex((x - min) * size, (y - min) * size, 0.0D);
-				tessellator.draw();
-			}
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		StarWarsMod.pgui.drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GlPalette.BLACK);
-
-		// to use:
-		// GL11.glPushMatrix();
-		// GL11.glColor4f(255, 255, 255, 255);
-		// drawMiniMap(StarWarsMod.mc.thePlayer, -25, 25, 2);
-		// GL11.glColor4f(255, 255, 255, 255);
-		// GL11.glPopMatrix();
-	}
+	
+	public static PSoundBank soundBank;
+	public static PGui pgui;
+	public static PlayerHelper playerHelper;
+	public static RenderHelper renderHelper;
 
 	private void changeCameraDist(int dist)
 	{
@@ -192,14 +131,12 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void onDrawHand(RenderHandEvent renderHandEvent)
 	{
 		renderHandEvent.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void onFogify(EntityViewRenderEvent.FogDensity fogDensity)
 	{
 		if (fogDensity.entity.worldObj.provider.getDimensionName() == "Dagobah")
@@ -210,7 +147,6 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void onFOVCheck(FOVUpdateEvent fovUpdateEvent)
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
@@ -223,39 +159,38 @@ public class ClientEventHandler
 		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null) if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 		{
 			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
-			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 		}
 		else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
 		{
 			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
-			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			isFiring = true;
 			blipFrame = blipMax;
 		}
 		else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
 		{
 			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
-			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 		}
 	}
 
 	@SubscribeEvent
 	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
 	{
-		if (logInEvent.entity instanceof EntityPlayer && !StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION) && !StarWarsMod.hasShownNeedUpdate)
+		if (logInEvent.entity instanceof EntityPlayer && !Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION) && !StarWarsMod.hasShownNeedUpdate)
 		{
-			((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
+			((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(Resources.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(Resources.VERSION, Text.COLOR_YELLOW)));
 			StarWarsMod.hasShownNeedUpdate = true;
 		}
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void onRender(RenderLivingEvent.Pre event)
 	{
 		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 		{
-			if (StarWarsMod.renderHelper.isFirstPerson())
+			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
 				changeCameraDist(4);
 
@@ -273,12 +208,11 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		StarWarsMod.isOverlayOnscreen = false;
-		ItemStack item = StarWarsMod.playerHelper.getHeldItemStack();
-		if (StarWarsMod.renderHelper.isFirstPerson())
+		ItemStack item = ClientEventHandler.playerHelper.getHeldItemStack();
+		if (ClientEventHandler.renderHelper.isFirstPerson())
 		{
 			if (item != null && item.getItem() instanceof ItemBinoculars && ItemBinoculars.getEnabled(item))
 			{
@@ -287,10 +221,10 @@ public class ClientEventHandler
 				{
 					ResourceLocation guiTexture;
 					if (item.getItem() instanceof ItemBinocularsTatooine)
-						guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
+						guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
 					else
-						guiTexture = new ResourceLocation(StarWarsMod.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
-					StarWarsMod.pgui.renderOverlay(guiTexture);
+						guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
+					ClientEventHandler.pgui.renderOverlay(guiTexture);
 
 					if (item.getItem() instanceof ItemBinocularsTatooine)
 					{
@@ -349,15 +283,15 @@ public class ClientEventHandler
 						float blipPercent = blipFrame / blipMax;
 
 						if (System.currentTimeMillis() / 1000 % 2 == 0)
-							StarWarsMod.pgui.renderOverlay(xwingOverlayBack1);
+							ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack1);
 						else
-							StarWarsMod.pgui.renderOverlay(xwingOverlayBack2);
+							ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack2);
 
 						for (Entity p : xwing.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						if (isFiring)
@@ -391,24 +325,24 @@ public class ClientEventHandler
 						if (e != null)
 						{
 							color = GlPalette.RED;
-							StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
 						}
 						else
 						{
-							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
 						}
 
-						StarWarsMod.pgui.renderOverlay(xwingOverlay);
+						ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
 
-						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
+						ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
 
 						String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
@@ -425,7 +359,7 @@ public class ClientEventHandler
 							lookStringNextTime = System.currentTimeMillis() + 100;
 						}
 
-						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
+						ClientEventHandler.pgui.renderOverlay(this.pgui.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
 
 						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
 
@@ -474,15 +408,15 @@ public class ClientEventHandler
 						float blipPercent = blipFrame / blipMax;
 
 						if (System.currentTimeMillis() / 1000 % 2 == 0)
-							StarWarsMod.pgui.renderOverlay(awingBack);
+							ClientEventHandler.pgui.renderOverlay(Resources.awingBack);
 						else
-							StarWarsMod.pgui.renderOverlay(awingBack2);
+							ClientEventHandler.pgui.renderOverlay(Resources.awingBack2);
 
 						for (Entity p : awing.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						if (isFiring)
@@ -495,7 +429,7 @@ public class ClientEventHandler
 							}
 						}
 
-						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
+						ClientEventHandler.pgui.renderOverlay(this.pgui.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
 
 						Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { awing });
 
@@ -518,27 +452,27 @@ public class ClientEventHandler
 						if (e != null)
 						{
 							color = GlPalette.RED;
-							StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
+							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
 						}
 						else
 						{
-							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							StarWarsMod.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
+							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
 						}
 
 						if (randomCharNextTime <= System.currentTimeMillis())
 						{
-							MathUtils.shuffleArray(randomCharArray);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							MathUtils.shuffleArray(Resources.randomCharArray);
+							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
 							randomCharNextTime = System.currentTimeMillis() + 250;
 						}
 
@@ -549,12 +483,12 @@ public class ClientEventHandler
 						FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
 						GL11.glPopMatrix();
 
-						StarWarsMod.pgui.renderOverlay(awingPitch1, 0, (int)(awing.rotationPitch / 15) + 8);
-						StarWarsMod.pgui.renderOverlay(awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
+						ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)(awing.rotationPitch / 15) + 8);
+						ClientEventHandler.pgui.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
 
-						StarWarsMod.pgui.renderOverlay(awingOverlay);
+						ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
 
-						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
+						ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
 
 						String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
@@ -635,15 +569,15 @@ public class ClientEventHandler
 						float heal5Y = event.resolution.getScaledHeight() * (131.5f / 144F);
 						float healMaxY = event.resolution.getScaledHeight() * (4 / 144F);
 
-						StarWarsMod.pgui.renderOverlay(tieBackOverlay);
+						ClientEventHandler.pgui.renderOverlay(Resources.tieBackOverlay);
 
-						StarWarsMod.pgui.renderOverlay(tiePitch, 0, (int)(tie.rotationPitch / 5) + 18);
+						ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)(tie.rotationPitch / 5) + 18);
 
 						for (Entity p : tie.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							if (p instanceof EntityPlayer) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						if (isFiring)
@@ -656,21 +590,21 @@ public class ClientEventHandler
 							}
 						}
 
-						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(tie.dimension), 0, 0);
+						ClientEventHandler.pgui.renderOverlay(this.pgui.planetTextureFromDim(tie.dimension), 0, 0);
 
-						if (tie.getHealth() >= 20) StarWarsMod.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
-						if (tie.getHealth() >= 16) StarWarsMod.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
-						if (tie.getHealth() >= 8) StarWarsMod.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
-						if (tie.getHealth() >= 4) StarWarsMod.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
-						if (tie.getHealth() >= 0) StarWarsMod.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
+						if (tie.getHealth() >= 20) ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
+						if (tie.getHealth() >= 16) ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
+						if (tie.getHealth() >= 8) ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
+						if (tie.getHealth() >= 4) ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
+						if (tie.getHealth() >= 0) ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
 
 						if (randomCharNextTime <= System.currentTimeMillis())
 						{
-							MathUtils.shuffleArray(randomCharArray);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar4 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							MathUtils.shuffleArray(Resources.randomCharArray);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar4 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
 							randomCharNextTime = System.currentTimeMillis() + 250;
 						}
 
@@ -700,32 +634,32 @@ public class ClientEventHandler
 						if (e != null)
 						{
 							color = GlPalette.ELECTRIC_LIME;
-							StarWarsMod.pgui.drawHollowTriangle(centerX, centerY - 5, 3, 180, 2, color);
-							StarWarsMod.pgui.drawHollowTriangle(centerX - 5, centerY + 5, 3, 45, 2, color);
-							StarWarsMod.pgui.drawHollowTriangle(centerX + 5, centerY + 5, 3, 315, 2, color);
+							ClientEventHandler.pgui.drawHollowTriangle(centerX, centerY - 5, 3, 180, 2, color);
+							ClientEventHandler.pgui.drawHollowTriangle(centerX - 5, centerY + 5, 3, 45, 2, color);
+							ClientEventHandler.pgui.drawHollowTriangle(centerX + 5, centerY + 5, 3, 315, 2, color);
 
-							StarWarsMod.pgui.drawLine(centerX - 20, centerY - 20, centerX - 20, centerY - 10, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 20, centerY - 20, centerX - 10, centerY - 20, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 20, centerY - 20, centerX - 20, centerY - 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 20, centerY - 20, centerX - 10, centerY - 20, 2, color);
 
-							StarWarsMod.pgui.drawLine(centerX + 20, centerY - 20, centerX + 20, centerY - 10, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 20, centerY - 20, centerX + 10, centerY - 20, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 20, centerY - 20, centerX + 20, centerY - 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 20, centerY - 20, centerX + 10, centerY - 20, 2, color);
 
-							StarWarsMod.pgui.drawLine(centerX - 20, centerY + 20, centerX - 20, centerY + 10, 2, color);
-							StarWarsMod.pgui.drawLine(centerX - 20, centerY + 20, centerX - 10, centerY + 20, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 20, centerY + 20, centerX - 20, centerY + 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX - 20, centerY + 20, centerX - 10, centerY + 20, 2, color);
 
-							StarWarsMod.pgui.drawLine(centerX + 20, centerY + 20, centerX + 20, centerY + 10, 2, color);
-							StarWarsMod.pgui.drawLine(centerX + 20, centerY + 20, centerX + 10, centerY + 20, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 20, centerY + 20, centerX + 20, centerY + 10, 2, color);
+							ClientEventHandler.pgui.drawLine(centerX + 20, centerY + 20, centerX + 10, centerY + 20, 2, color);
 						}
 						else
 						{
-							StarWarsMod.pgui.drawHollowTriangle(centerX, centerY - 10, 3, 180, 2, color);
-							StarWarsMod.pgui.drawHollowTriangle(centerX - 10, centerY + 10, 3, 45, 2, color);
-							StarWarsMod.pgui.drawHollowTriangle(centerX + 10, centerY + 10, 3, 315, 2, color);
+							ClientEventHandler.pgui.drawHollowTriangle(centerX, centerY - 10, 3, 180, 2, color);
+							ClientEventHandler.pgui.drawHollowTriangle(centerX - 10, centerY + 10, 3, 45, 2, color);
+							ClientEventHandler.pgui.drawHollowTriangle(centerX + 10, centerY + 10, 3, 315, 2, color);
 						}
 
-						StarWarsMod.pgui.renderOverlay(tieOverlay);
+						ClientEventHandler.pgui.renderOverlay(Resources.tieOverlay);
 
-						StarWarsMod.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
+						ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
 
 						String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
@@ -798,24 +732,7 @@ public class ClientEventHandler
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes) event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
 	}
 
-	@SideOnly(Side.CLIENT)
-	private ResourceLocation planetTextureFromDim(int dim)
-	{
-		if (dim == StarWarsMod.dimEndorId)
-			return endorTexture;
-		else if (dim == StarWarsMod.dimHothId)
-			return hothTexture;
-		else if (dim == StarWarsMod.dimKashyyykId)
-			return kashyyykTexture;
-		else if (dim == StarWarsMod.dimTatooineId)
-			return tatooineTexture;
-		else if (dim == StarWarsMod.dimYavin4Id) return yavinTexture;
-
-		return earthTexture;
-	}
-
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void renderWorldLastEvent(RenderWorldLastEvent event)
 	{
 		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("lightning") && ForceUtils.isUsingDuration)
@@ -850,7 +767,6 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
 	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Post event)
 	{
 		boolean cape = event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes;
@@ -900,7 +816,7 @@ public class ClientEventHandler
 			GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(1, 1, 1);
-			StarWarsMod.mc.getTextureManager().bindTexture(capeTexture);
+			StarWarsMod.mc.getTextureManager().bindTexture(Resources.capeTexture);
 			//rp.modelBipedMain.renderCloak(0.0625F);
 			modelCloak.renderCape(0.0625F);
 			GL11.glPopMatrix();
@@ -944,7 +860,6 @@ public class ClientEventHandler
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	public void init()
 	{
 		this.renderJediDefense = new RenderJediDefense();

@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.items;
 
 import net.minecraft.item.ItemFood;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemDewbackRibs extends ItemFood
@@ -11,8 +12,8 @@ public class ItemDewbackRibs extends ItemFood
 	public ItemDewbackRibs()
 	{
 		super(8, 4.0F, false);
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 }

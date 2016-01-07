@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.items.crafting;
 
 import net.minecraft.item.Item;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemTitaniumChromiumIngot extends Item
@@ -10,8 +11,8 @@ public class ItemTitaniumChromiumIngot extends Item
 
 	public ItemTitaniumChromiumIngot()
 	{
-		this.setUnlocalizedName(StarWarsMod.MODID + "." + this.name);
-		this.setTextureName(StarWarsMod.MODID + ":" + this.name);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
+		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 }

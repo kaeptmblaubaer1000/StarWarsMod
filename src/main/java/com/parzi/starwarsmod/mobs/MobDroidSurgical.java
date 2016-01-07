@@ -13,6 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.ai.AiFreqMove;
 import com.parzi.starwarsmod.utils.EntityUtils;
@@ -86,13 +87,13 @@ public class MobDroidSurgical extends EntityTameable
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.surgical.die";
+		return Resources.MODID + ":" + "mob.surgical.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.surgical.hit";
+		return Resources.MODID + ":" + "mob.surgical.hit";
 	}
 
 	@Override
@@ -147,7 +148,7 @@ public class MobDroidSurgical extends EntityTameable
 			EntityPlayer player = (EntityPlayer)this.worldObj.findNearestEntityWithinAABB(EntityPlayer.class, this.boundingBox.expand(3.0D, 3.0D, 3.0D), this);
 
 			if (this.rand.nextInt(500) == 0)
-				this.playSound(StarWarsMod.MODID + ":" + "mob.surgical.say", 1.0F, 1.0F);
+				this.playSound(Resources.MODID + ":" + "mob.surgical.say", 1.0F, 1.0F);
 			if (!player.isPotionActive(PotionList.REGENERATION) && this.isTamed())
 				player.addPotionEffect(new PotionEffect(PotionList.REGENERATION, 200, 2, true));
 		}

@@ -6,7 +6,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -61,13 +60,9 @@ import com.parzi.starwarsmod.registry.ItemRegister;
 import com.parzi.starwarsmod.registry.MaterialRegister;
 import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
-import com.parzi.starwarsmod.rendering.helper.PGui;
-import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.tabs.SequelStarWarsTab;
 import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.PlayerHelper;
-import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
 
@@ -84,17 +79,9 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = StarWarsMod.MODID, version = StarWarsMod.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
 {
-	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "1.2.5";
-	public static final String DEV_VER = "dev6";
-
-	public static String ONLINE_VERSION = "";
-
-	public static boolean IS_DEV_ENVIRONVENT = false;
-
 	public static boolean IS_SEQUEL_RELEASE = true;
 
 	public static boolean hasShownNeedUpdate = false;
@@ -105,7 +92,7 @@ public class StarWarsMod
 	public static Random rngChromium = new Random();
 	public static Random rngTitanium = new Random();
 
-	@Mod.Instance(StarWarsMod.MODID)
+	@Mod.Instance(Resources.MODID)
 	public static StarWarsMod instance;
 
 	@SideOnly(Side.CLIENT)
@@ -329,26 +316,6 @@ public class StarWarsMod
 	public static int lightsaberDamage;
 	public static boolean isOverlayOnscreen = false;
 
-	@SideOnly(Side.CLIENT)
-	public static RenderHelper renderHelper;
-	@SideOnly(Side.CLIENT)
-	public static PlayerHelper playerHelper;
-	@SideOnly(Side.CLIENT)
-	public static PGui pgui;
-	@SideOnly(Side.CLIENT)
-	public static PSoundBank soundBank;
-
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyShootVehicle;
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keySFoil;
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyDebug;
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyRobeGui;
-	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyRobePower;
-
 	public static Block blockMV;
 	public static Block blockTable;
 	public static Block blockTable2;
@@ -395,15 +362,15 @@ public class StarWarsMod
 	{
 		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
 
-		Lumberjack.info("This is Parzi's Star Wars Mod v" + StarWarsMod.VERSION);
+		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
 
 		InputStream in = null;
 		try
 		{
 			in = new URL("https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md").openStream();
-			StarWarsMod.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
-			if (!StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION))
-				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + StarWarsMod.ONLINE_VERSION + "! Current: " + StarWarsMod.VERSION);
+			Resources.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
+			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION))
+				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
 		}
 		catch (Exception e)
 		{
@@ -456,7 +423,7 @@ public class StarWarsMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(StarWarsMod.MODID);
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID);
 		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, 0, Side.SERVER);
 		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, 1, Side.SERVER);
 		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, 2, Side.SERVER);
@@ -473,7 +440,7 @@ public class StarWarsMod
 		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, 13, Side.SERVER);
 		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, 14, Side.SERVER);
 
-		config = new Configuration(event.getSuggestedConfigurationFile(), StarWarsMod.VERSION);
+		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
 		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
@@ -519,7 +486,7 @@ public class StarWarsMod
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		if (IS_DEV_ENVIRONVENT)
+		if (Resources.IS_DEV_ENVIRONVENT)
 		{
 			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());

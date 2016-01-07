@@ -5,14 +5,14 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.mobs.MobJawa;
 
 public class RenderJawa extends RenderLiving
 {
-	public static ResourceLocation texture1 = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
-	public static ResourceLocation texture2 = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa2.png");
-	public static ResourceLocation texture = new ResourceLocation(StarWarsMod.MODID, "textures/models/jawa.png");
+	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/jawa.png");
+	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/jawa2.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/jawa.png");
 
 	public RenderJawa(ModelBase par1ModelBase, float par2)
 	{

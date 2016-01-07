@@ -8,6 +8,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.HarvestLevel;
 
@@ -23,7 +24,7 @@ public class BlockDeathStarGlass extends Block
 	{
 		super(Material.glass);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(StarWarsMod.MODID + "." + this.name );
+		this.setBlockName(Resources.MODID + "." + this.name );
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -590,22 +591,22 @@ public class BlockDeathStarGlass extends Block
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		icons[0] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass");
-		icons[1] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_1_d");
-		icons[2] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_1_u");
-		icons[3] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_1_l");
-		icons[4] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_1_r");
-		icons[5] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_2_h");
-		icons[6] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_2_v");
-		icons[7] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_2_dl");
-		icons[8] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_2_dr");
-		icons[9] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_2_ul");
-		icons[10] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_2_ur");
-		icons[11] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_3_d");
-		icons[12] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_3_u");
-		icons[13] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_3_l");
-		icons[14] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_3_r");
-		icons[15] = par1IconRegister.registerIcon(StarWarsMod.MODID + ":" + "connected/glass/glass_4");
+		icons[0] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass");
+		icons[1] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_1_d");
+		icons[2] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_1_u");
+		icons[3] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_1_l");
+		icons[4] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_1_r");
+		icons[5] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_2_h");
+		icons[6] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_2_v");
+		icons[7] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_2_dl");
+		icons[8] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_2_dr");
+		icons[9] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_2_ul");
+		icons[10] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_2_ur");
+		icons[11] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_3_d");
+		icons[12] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_3_u");
+		icons[13] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_3_l");
+		icons[14] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_3_r");
+		icons[15] = par1IconRegister.registerIcon(Resources.MODID + ":" + "connected/glass/glass_4");
 	}
 
 	@Override

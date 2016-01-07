@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.mobs;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -13,8 +15,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class MobDewback extends EntityHorse
 {
@@ -74,7 +74,7 @@ public class MobDewback extends EntityHorse
 	@Override
 	protected String getAngrySoundName()
 	{
-		return StarWarsMod.MODID + ":" + "mob.dewback.say";
+		return Resources.MODID + ":" + "mob.dewback.say";
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class MobDewback extends EntityHorse
 	@Override
 	protected String getDeathSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.dewback.die";
+		return Resources.MODID + ":" + "mob.dewback.die";
 	}
 
 	@Override
@@ -108,13 +108,13 @@ public class MobDewback extends EntityHorse
 	@Override
 	protected String getHurtSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.dewback.hit";
+		return Resources.MODID + ":" + "mob.dewback.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return StarWarsMod.MODID + ":" + "mob.dewback.say";
+		return Resources.MODID + ":" + "mob.dewback.say";
 	}
 
 	@Override
