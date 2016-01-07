@@ -53,6 +53,7 @@ import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.EntityUtils;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.MathUtils;
 import com.parzi.starwarsmod.utils.Text;
 import com.parzi.starwarsmod.utils.TextUtils;
@@ -165,11 +166,29 @@ public class ClientEventHandler
 		// GL11.glPopMatrix();
 	}
 
+	private void changeCameraDist(int dist)
+	{
+		if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
+			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(dist);
+		else
+		{
+			try
+			{
+				ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance");
+				ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp");
+			}
+			catch (Exception e)
+			{
+				Lumberjack.warn("Unable to change camera distance!");
+				e.printStackTrace();
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public void handleConstruction(EntityConstructing event)
 	{
-		if (event.entity instanceof EntityPlayer)
-			event.entity.getDataWatcher().addObject(StarWarsMod.lightningDatawatcherId, String.valueOf(""));
+		if (event.entity instanceof EntityPlayer) event.entity.getDataWatcher().addObject(StarWarsMod.lightningDatawatcherId, String.valueOf(""));
 	}
 
 	@SubscribeEvent
@@ -195,42 +214,39 @@ public class ClientEventHandler
 	public void onFOVCheck(FOVUpdateEvent fovUpdateEvent)
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
-		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && StarWarsMod.mc.gameSettings.thirdPersonView == 0)
-			fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
+		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzi.starwarsmod.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && StarWarsMod.mc.gameSettings.thirdPersonView == 0) fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
 	}
 
 	@SubscribeEvent
 	public void onPlayerInteract(PlayerInteractEvent playerInteractEvent)
 	{
-		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
-			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
-			{
-				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
-			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
-			{
-				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
-				StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
-				isFiring = true;
-				blipFrame = blipMax;
-			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
-			{
-				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
-				StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
-			}
+		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null) if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
+		{
+			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.SPEEDER));
+			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+		}
+		else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
+		{
+			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.XWING));
+			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+			isFiring = true;
+			blipFrame = blipMax;
+		}
+		else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
+		{
+			StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(playerInteractEvent.entityPlayer.getCommandSenderName(), playerInteractEvent.world.provider.dimensionId, BlasterBoltType.TIE));
+			StarWarsMod.mc.thePlayer.playSound(StarWarsMod.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+		}
 	}
 
 	@SubscribeEvent
 	public void onPlayerLogIn(EntityJoinWorldEvent logInEvent)
 	{
-		if (!StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION) && logInEvent.entity instanceof EntityPlayer)
+		if (!StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION) && logInEvent.entity.getCommandSenderName().equalsIgnoreCase(StarWarsMod.mc.thePlayer.getCommandSenderName()) && !StarWarsMod.hasShownNeedUpdate)
+		{
 			((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(StarWarsMod.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(StarWarsMod.VERSION, Text.COLOR_YELLOW)));
-
-		if (logInEvent.entity instanceof EntityPlayer)
-			if (logInEvent.world.provider.dimensionId == -100)
-				logInEvent.setCanceled(true);
+			StarWarsMod.hasShownNeedUpdate = true;
+		}
 	}
 
 	@SubscribeEvent
@@ -241,36 +257,19 @@ public class ClientEventHandler
 		{
 			if (StarWarsMod.renderHelper.isFirstPerson())
 			{
-				if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
-					((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(4);
-				else
-				{
-					ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, 4, "thirdPersonDistance");
-					ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, 4, "thirdPersonDistanceTemp");
-				}
+				changeCameraDist(4);
 
 				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
-					((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(15);
-				else
-				{
-					ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, 15, "thirdPersonDistance");
-					ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, 15, "thirdPersonDistanceTemp");
-				}
+				changeCameraDist(15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
-			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(4);
 		else
-		{
-			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, 4, "thirdPersonDistance");
-			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, 4, "thirdPersonDistanceTemp");
-		}
+			changeCameraDist(4);
 	}
 
 	@SubscribeEvent
@@ -356,12 +355,9 @@ public class ClientEventHandler
 
 						for (Entity p : xwing.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						if (isFiring)
@@ -378,8 +374,7 @@ public class ClientEventHandler
 
 						int color = GlPalette.ANALOG_GREEN;
 
-						if (xwing.getTargetLock())
-							color = GlPalette.ORANGE;
+						if (xwing.getTargetLock()) color = GlPalette.ORANGE;
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
@@ -444,8 +439,7 @@ public class ClientEventHandler
 								VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
 							else if (e instanceof VehicTIEInterceptor)
 								VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-							else if (e instanceof VehicAWing)
-								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+							else if (e instanceof VehicAWing) VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
 
 							GL11.glPopMatrix();
 						}
@@ -486,12 +480,9 @@ public class ClientEventHandler
 
 						for (Entity p : awing.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						if (isFiring)
@@ -510,8 +501,7 @@ public class ClientEventHandler
 
 						int color = GlPalette.ANALOG_GREEN;
 
-						if (awing.getTargetLock())
-							color = GlPalette.ORANGE;
+						if (awing.getTargetLock()) color = GlPalette.ORANGE;
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
@@ -546,12 +536,9 @@ public class ClientEventHandler
 						if (randomCharNextTime <= System.currentTimeMillis())
 						{
 							MathUtils.shuffleArray(randomCharArray);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							randomCharNextTime = System.currentTimeMillis() + 250;
 						}
 
@@ -595,8 +582,7 @@ public class ClientEventHandler
 
 							this.lastTarget = e;
 
-							if (e instanceof VehicleAirBase)
-								((VehicleAirBase)e).setTargetLock(true);
+							if (e instanceof VehicleAirBase) ((VehicleAirBase)e).setTargetLock(true);
 
 							if (e instanceof VehicXWing)
 								VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
@@ -604,15 +590,13 @@ public class ClientEventHandler
 								VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
 							else if (e instanceof VehicTIEInterceptor)
 								VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
-							else if (e instanceof VehicAWing)
-								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
+							else if (e instanceof VehicAWing) VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
 
 							GL11.glPopMatrix();
 						}
 						else if (this.lastTarget != null)
 						{
-							if (this.lastTarget instanceof VehicleAirBase)
-								((VehicleAirBase)this.lastTarget).setTargetLock(true);
+							if (this.lastTarget instanceof VehicleAirBase) ((VehicleAirBase)this.lastTarget).setTargetLock(true);
 							this.lastTarget = null;
 						}
 					}
@@ -657,12 +641,9 @@ public class ClientEventHandler
 
 						for (Entity p : tie.nearby)
 						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof EntityPlayer)
-								StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							if (p instanceof VehicXWing || p instanceof VehicAWing) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							if (p instanceof EntityPlayer) StarWarsMod.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						if (isFiring)
@@ -677,28 +658,19 @@ public class ClientEventHandler
 
 						StarWarsMod.pgui.renderOverlay(this.planetTextureFromDim(tie.dimension), 0, 0);
 
-						if (tie.getHealth() >= 20)
-							StarWarsMod.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
-						if (tie.getHealth() >= 16)
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
-						if (tie.getHealth() >= 8)
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
-						if (tie.getHealth() >= 4)
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
-						if (tie.getHealth() >= 0)
-							StarWarsMod.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
+						if (tie.getHealth() >= 20) StarWarsMod.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
+						if (tie.getHealth() >= 16) StarWarsMod.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
+						if (tie.getHealth() >= 8) StarWarsMod.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
+						if (tie.getHealth() >= 4) StarWarsMod.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
+						if (tie.getHealth() >= 0) StarWarsMod.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
 
 						if (randomCharNextTime <= System.currentTimeMillis())
 						{
 							MathUtils.shuffleArray(randomCharArray);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar4 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar1 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar2 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar3 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
+							if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar4 = String.valueOf(randomCharArray[StarWarsMod.rngGeneral.nextInt(randomCharArray.length)]);
 							randomCharNextTime = System.currentTimeMillis() + 250;
 						}
 
@@ -711,8 +683,7 @@ public class ClientEventHandler
 
 						int color = GlPalette.ELECTRIC_BLUE;
 
-						if (tie.getTargetLock())
-							color = GlPalette.ORANGE;
+						if (tie.getTargetLock()) color = GlPalette.ORANGE;
 
 						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 						{
@@ -784,8 +755,7 @@ public class ClientEventHandler
 
 							float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
-							if (e instanceof VehicleAirBase)
-								((VehicleAirBase)e).setTargetLock(true);
+							if (e instanceof VehicleAirBase) ((VehicleAirBase)e).setTargetLock(true);
 
 							if (e instanceof VehicXWing)
 								VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
@@ -793,15 +763,13 @@ public class ClientEventHandler
 								VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
 							else if (e instanceof VehicTIEInterceptor)
 								VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
-							else if (e instanceof VehicAWing)
-								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
+							else if (e instanceof VehicAWing) VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
 
 							GL11.glPopMatrix();
 						}
 						else if (this.lastTarget != null)
 						{
-							if (this.lastTarget instanceof VehicleAirBase)
-								((VehicleAirBase)this.lastTarget).setTargetLock(true);
+							if (this.lastTarget instanceof VehicleAirBase) ((VehicleAirBase)this.lastTarget).setTargetLock(true);
 							this.lastTarget = null;
 						}
 					}
@@ -821,15 +789,13 @@ public class ClientEventHandler
 			this.lastTarget = null;
 		}
 
-		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
-			event.setCanceled(StarWarsMod.isOverlayOnscreen);
+		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR)) event.setCanceled(StarWarsMod.isOverlayOnscreen);
 	}
 
 	@SubscribeEvent
 	public void onXpPickup(PlayerPickupXpEvent event)
 	{
-		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes) event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -843,8 +809,7 @@ public class ClientEventHandler
 			return kashyyykTexture;
 		else if (dim == StarWarsMod.dimTatooineId)
 			return tatooineTexture;
-		else if (dim == StarWarsMod.dimYavin4Id)
-			return yavinTexture;
+		else if (dim == StarWarsMod.dimYavin4Id) return yavinTexture;
 
 		return earthTexture;
 	}
@@ -857,8 +822,7 @@ public class ClientEventHandler
 		{
 			PowerLightning power = (PowerLightning)ForceUtils.activePower;
 
-			if (power.duration >= power.getDuration())
-				return;
+			if (power.duration >= power.getDuration()) return;
 
 			Entity e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
 			power.setTarget(e);

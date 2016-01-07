@@ -92,6 +92,8 @@ public class StarWarsMod
 	public static boolean IS_DEV_ENVIRONVENT = false;
 
 	public static boolean IS_SEQUEL_RELEASE = true;
+	
+	public static boolean hasShownNeedUpdate = false;
 
 	public static Configuration config;
 
