@@ -19,8 +19,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockDeathStarLight extends Block
 {
 	public String name = "deathStarLight";
-	private String[] names = { "HangarFloorSmall", "PureWhite", "HangarWallVertical" };
-	private int subtypes = 3;
+	private String[] names = { "HangarFloorSmall", "PureWhite", "HangarWallVertical", "Extra1", "Extra2" };
+	private int subtypes = names.length;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
@@ -41,6 +41,12 @@ public class BlockDeathStarLight extends Block
 	{
 		return this.icons[meta];
 	}
+
+	@Override
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)

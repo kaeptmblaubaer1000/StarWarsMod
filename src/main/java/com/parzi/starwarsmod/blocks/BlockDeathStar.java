@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.blocks;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,8 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockDeathStar extends Block
 {
 	public String name = "deathStarBlock";
-	private String[] names = { "HangarFloor", "LightHangarFloor", "HangarCrate", "CorridorFloor", "CautionFloor", "HangarWallPanel", "CorridorWallPanel", "ShieldGeneratorConsole" };
-	private int subtypes = 8;
+	private String[] names = { "HangarFloor", "LightHangarFloor", "HangarCrate", "CorridorFloor", "CautionFloor", "HangarWallPanel", "CorridorWallPanel", "ShieldGeneratorConsole", "Extra1", "Extra2", "Extra3" };
+	private int subtypes = names.length;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
@@ -33,6 +34,12 @@ public class BlockDeathStar extends Block
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		this.setStepSound(soundTypeMetal);
 	}
+
+	@Override
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)

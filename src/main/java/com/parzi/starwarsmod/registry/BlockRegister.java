@@ -5,6 +5,7 @@ import com.parzi.starwarsmod.blocks.BlockBasket;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockDagobahMud;
 import com.parzi.starwarsmod.blocks.BlockDeathStar;
+import com.parzi.starwarsmod.blocks.BlockDeathStarGlass;
 import com.parzi.starwarsmod.blocks.BlockDeathStarLight;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
@@ -76,6 +77,9 @@ public class BlockRegister
 
 		StarWarsMod.blockDeathStarLight = new BlockDeathStarLight();
 		GameRegistry.registerBlock(StarWarsMod.blockDeathStarLight, ItemDeathStarLight.class, "deathStarLight");
+
+		StarWarsMod.blockDeathStarGlass = new BlockDeathStarGlass();
+		GameRegistry.registerBlock(StarWarsMod.blockDeathStarGlass, "deathStarGlass");
 
 		StarWarsMod.blockMudStairs = new BlockMudStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockMudStairs, "mudStairs");

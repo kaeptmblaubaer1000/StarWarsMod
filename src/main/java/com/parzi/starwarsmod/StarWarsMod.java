@@ -85,7 +85,7 @@ public class StarWarsMod
 {
 	public static final String MODID = "starwarsmod";
 	public static final String VERSION = "1.2.5";
-	public static final String DEV_VER = "dev5";
+	public static final String DEV_VER = "dev6";
 
 	public static String ONLINE_VERSION = "";
 
@@ -349,6 +349,7 @@ public class StarWarsMod
 	public static Block blockChromiumOre;
 	public static Block blockTitaniumOre;
 	public static Block blockTitaniumChromiumBlock;
+	public static Block blockDeathStarGlass;
 	public static Block blockEndorBaseWall;
 	public static Block blockEndorBaseWallStairs;
 	public static Block blockMudStairs;

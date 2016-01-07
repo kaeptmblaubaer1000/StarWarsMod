@@ -34,6 +34,12 @@ public class BlockTatooineSand extends Block
 	}
 
 	@Override
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
