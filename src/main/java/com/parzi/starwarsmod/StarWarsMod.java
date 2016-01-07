@@ -8,8 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
@@ -66,6 +68,8 @@ import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.utils.PlayerHelper;
 import com.parzi.starwarsmod.utils.RenderHelper;
+import com.parzi.starwarsmod.utils.Text;
+import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -92,7 +96,7 @@ public class StarWarsMod
 	public static boolean IS_DEV_ENVIRONVENT = false;
 
 	public static boolean IS_SEQUEL_RELEASE = true;
-	
+
 	public static boolean hasShownNeedUpdate = false;
 
 	public static Configuration config;
@@ -398,6 +402,8 @@ public class StarWarsMod
 		{
 			in = new URL("https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md").openStream();
 			StarWarsMod.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
+			if (!StarWarsMod.VERSION.equalsIgnoreCase(StarWarsMod.ONLINE_VERSION))
+				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + StarWarsMod.ONLINE_VERSION + "! Current: " + StarWarsMod.VERSION);
 		}
 		catch (Exception e)
 		{
@@ -405,8 +411,7 @@ public class StarWarsMod
 		}
 		finally
 		{
-			if (in != null)
-				IOUtils.closeQuietly(in);
+			if (in != null) IOUtils.closeQuietly(in);
 		}
 
 		instance = this;
