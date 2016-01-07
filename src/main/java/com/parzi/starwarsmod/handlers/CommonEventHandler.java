@@ -192,10 +192,9 @@ public class CommonEventHandler
 					{
 						if (ForceUtils.activePower.name.equals("lightning"))
 						{
-							PowerLightning power = (PowerLightning)ForceUtils.activePower;
-							if (power.getTarget() instanceof EntityPlayer) try
+							if (ClientEventHandler.lastLightning instanceof EntityPlayer) try
 							{
-								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
+								StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
 								ClientEventHandler.lastLightning = null;
 							}
 							catch (Exception e)
@@ -217,7 +216,7 @@ public class CommonEventHandler
 							if (power.getTarget() instanceof EntityPlayer) try
 							{
 								ClientEventHandler.lastLightning = (EntityPlayer)power.getTarget();
-								StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.dimension));
+								StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), power.getTarget().getCommandSenderName(), StarWarsMod.mc.thePlayer.dimension));
 							}
 							catch (Exception e)
 							{
@@ -225,7 +224,7 @@ public class CommonEventHandler
 						}
 						else if (ClientEventHandler.lastLightning instanceof EntityPlayer) try
 						{
-							StarWarsMod.network.sendToServer(new PacketPlayerLightning(power.getTarget().getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
+							StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
 							ClientEventHandler.lastLightning = null;
 						}
 						catch (Exception e)
