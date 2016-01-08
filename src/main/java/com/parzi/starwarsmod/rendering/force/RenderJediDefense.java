@@ -37,10 +37,10 @@ public class RenderJediDefense
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
 		{
 			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("defend") && ArmorJediRobes.getIsRunning((EntityPlayer)entity))
-				this.renderPlayerShield(event, (EntityPlayer)entity, true);
+				this.renderPlayerShield(event, (EntityPlayer)entity, false);
 
 			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("deflect") && ArmorJediRobes.getUsingDuration((EntityPlayer)entity))
-				this.renderPlayerShield(event, (EntityPlayer)entity, false);
+				this.renderPlayerShield(event, (EntityPlayer)entity, true);
 		}
 	}
 

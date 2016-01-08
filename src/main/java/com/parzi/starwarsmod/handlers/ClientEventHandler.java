@@ -45,6 +45,7 @@ import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
+import com.parzi.starwarsmod.rendering.gui.GuiVehicle;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.VehicleLineDraw;
 import com.parzi.starwarsmod.sound.PSoundBank;
@@ -96,14 +97,8 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public static RenderHelper renderHelper;
 
-	String randomChar1 = "C";
-
-	String randomChar2 = "N";
-	String randomChar3 = "D";
-	String randomChar4 = "L";
-
-	Entity lastTarget = null;
-
+	@SideOnly(Side.CLIENT)
+	GuiVehicle guiVehicle;
 	@SideOnly(Side.CLIENT)
 	RenderJediDefense renderJediDefense;
 	@SideOnly(Side.CLIENT)
@@ -129,6 +124,7 @@ public class ClientEventHandler
 		this.renderJediDefense = new RenderJediDefense();
 		this.renderSithLightning = new RenderSithLightning();
 		this.modelCloak = new ModelJediCloak();
+		this.guiVehicle = new GuiVehicle();
 	}
 
 	@SubscribeEvent
@@ -297,505 +293,9 @@ public class ClientEventHandler
 					}
 				}
 			}
-			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
-			{
-				StarWarsMod.isOverlayOnscreen = true;
-				if (event.type == RenderGameOverlayEvent.ElementType.HOTBAR)
-				{
-					if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
-					{
-						VehicXWing xwing = (VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity;
-
-						float centerX = event.resolution.getScaledWidth() / 2f;
-						float centerY = event.resolution.getScaledHeight() / 2f;
-
-						float radarCenterX = event.resolution.getScaledWidth() * (107 / 216F);
-						float radarCenterY = event.resolution.getScaledHeight() * (119 / 144F);
-
-						float textCenterX = event.resolution.getScaledWidth() * (79.5f / 216F);
-						float textCenterY = event.resolution.getScaledHeight() * (137 / 144F);
-
-						float entiCenterX = event.resolution.getScaledWidth() * (124 / 216F);
-						float entiCenterY = event.resolution.getScaledHeight() * (107 / 144F);
-
-						float entiCenterMaxX = event.resolution.getScaledWidth() * (138 / 216F);
-						float entiCenterMaxY = event.resolution.getScaledHeight() * (131 / 144F);
-
-						float scale = event.resolution.getScaledWidth() * (14 / 216f);
-
-						float blipPercent = blipFrame / blipMax;
-
-						if (System.currentTimeMillis() / 1000 % 2 == 0)
-							ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack1);
-						else
-							ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack2);
-
-						for (Entity p : xwing.nearby)
-						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
-						}
-
-						if (isFiring)
-						{
-							blipFrame -= 0.25f;
-							if (blipFrame <= 0)
-							{
-								blipFrame = blipMax;
-								isFiring = false;
-							}
-						}
-
-						Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { xwing });
-
-						int color = GlPalette.ANALOG_GREEN;
-
-						if (xwing.getTargetLock())
-							color = GlPalette.ORANGE;
-
-						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-							this.lastTarget = e;
-						}
-
-						if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-							this.lastTarget = e;
-						}
-
-						if (e != null)
-						{
-							color = GlPalette.RED;
-							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
-						}
-						else
-						{
-							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
-						}
-
-						ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
-
-						ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
-
-						String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
-
-						String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
-
-						if (lookString != s)
-						{
-							lookString = s;
-							lookStringPos = 0;
-						}
-						else if (lookStringNextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
-						{
-							lookStringPos++;
-							lookStringNextTime = System.currentTimeMillis() + 100;
-						}
-
-						ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
-
-						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
-
-						if (e != null)
-						{
-							GL11.glPushMatrix();
-
-							if (e instanceof VehicXWing)
-								VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-							else if (e instanceof VehicTIE)
-								VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-							else if (e instanceof VehicTIEInterceptor)
-								VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-							else if (e instanceof VehicAWing)
-								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-
-							GL11.glPopMatrix();
-						}
-					}
-					if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
-					{
-						VehicAWing awing = (VehicAWing)StarWarsMod.mc.thePlayer.ridingEntity;
-
-						float centerX = event.resolution.getScaledWidth() / 2f;
-						float centerY = event.resolution.getScaledHeight() / 2f;
-
-						float radarCenterX = event.resolution.getScaledWidth() * (91.4f / 216F);
-						float radarCenterY = event.resolution.getScaledHeight() * (124.5f / 144F);
-
-						float textCenterX = event.resolution.getScaledWidth() * (75 / 216F);
-						float textCenterY = event.resolution.getScaledHeight() * (140.7f / 144F);
-
-						float entiCenterX = event.resolution.getScaledWidth() * (112 / 216F);
-						float entiCenterY = event.resolution.getScaledHeight() * (129 / 144F);
-
-						float entiCenterMaxX = event.resolution.getScaledWidth() * (126 / 216F);
-						float entiCenterMaxY = event.resolution.getScaledHeight() * (139 / 144F);
-
-						float arbiCenterX = event.resolution.getScaledWidth() * (128 / 216F);
-						float arbiCenterY = event.resolution.getScaledHeight() * (128 / 144F);
-
-						float arbiCenterMaxX = event.resolution.getScaledWidth() * (131 / 216F);
-						float arbiCenterMaxY = event.resolution.getScaledHeight() * (138 / 144F);
-
-						float scale = event.resolution.getScaledWidth() * (14 / 216f);
-
-						float blipPercent = blipFrame / blipMax;
-
-						if (System.currentTimeMillis() / 1000 % 2 == 0)
-							ClientEventHandler.pgui.renderOverlay(Resources.awingBack);
-						else
-							ClientEventHandler.pgui.renderOverlay(Resources.awingBack2);
-
-						for (Entity p : awing.nearby)
-						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof EntityPlayer)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
-						}
-
-						if (isFiring)
-						{
-							blipFrame -= 0.25f;
-							if (blipFrame <= 0)
-							{
-								blipFrame = blipMax;
-								isFiring = false;
-							}
-						}
-
-						ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
-
-						Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { awing });
-
-						int color = GlPalette.ANALOG_GREEN;
-
-						if (awing.getTargetLock())
-							color = GlPalette.ORANGE;
-
-						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-							this.lastTarget = e;
-						}
-
-						if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-							this.lastTarget = e;
-						}
-
-						if (e != null)
-						{
-							color = GlPalette.RED;
-							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
-						}
-						else
-						{
-							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-							ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
-						}
-
-						if (randomCharNextTime <= System.currentTimeMillis())
-						{
-							MathUtils.shuffleArray(Resources.randomCharArray);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(4) == 0)
-								this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							randomCharNextTime = System.currentTimeMillis() + 250;
-						}
-
-						GL11.glPushMatrix();
-						GL11.glScalef(0.6f, 0.6f, 0.6f);
-						FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) - 9, GlPalette.YELLOW, true);
-						FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f), GlPalette.YELLOW, true);
-						FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
-						GL11.glPopMatrix();
-
-						ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)(awing.rotationPitch / 15) + 8);
-						ClientEventHandler.pgui.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
-
-						ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
-
-						ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
-
-						String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
-
-						String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
-
-						if (lookString != s)
-						{
-							lookString = s;
-							lookStringPos = 0;
-						}
-						else if (lookStringNextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
-						{
-							lookStringPos++;
-							lookStringNextTime = System.currentTimeMillis() + 100;
-						}
-
-						GL11.glPushMatrix();
-						GL11.glScalef(0.5f, 0.5f, 0.5f);
-						FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX * 2, (int)textCenterY * 2, GlPalette.YELLOW, true);
-						GL11.glPopMatrix();
-
-						if (e != null)
-						{
-							GL11.glPushMatrix();
-
-							this.lastTarget = e;
-
-							if (e instanceof VehicleAirBase)
-								((VehicleAirBase)e).setTargetLock(true);
-
-							if (e instanceof VehicXWing)
-								VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-							else if (e instanceof VehicTIE)
-								VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
-							else if (e instanceof VehicTIEInterceptor)
-								VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
-							else if (e instanceof VehicAWing)
-								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
-
-							GL11.glPopMatrix();
-						}
-						else if (this.lastTarget != null)
-						{
-							if (this.lastTarget instanceof VehicleAirBase)
-								((VehicleAirBase)this.lastTarget).setTargetLock(true);
-							this.lastTarget = null;
-						}
-					}
-					if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
-					{
-						VehicleAirBase tie = (VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity;
-
-						float centerX = event.resolution.getScaledWidth() / 2f;
-						float centerY = event.resolution.getScaledHeight() / 2f;
-
-						float radarCenterX = event.resolution.getScaledWidth() * (107f / 216F);
-						float radarCenterY = event.resolution.getScaledHeight() * (131f / 144F);
-
-						event.resolution.getScaledWidth();
-						event.resolution.getScaledHeight();
-
-						float entiCenterX = event.resolution.getScaledWidth() * (97 / 216F);
-						float entiCenterY = event.resolution.getScaledHeight() * (102 / 144F);
-
-						float entiCenterMaxX = event.resolution.getScaledWidth() * (118 / 216F);
-						float entiCenterMaxY = event.resolution.getScaledHeight() * (117 / 144F);
-
-						float arbiCenterX = event.resolution.getScaledWidth() * (85 / 216F);
-						float arbiCenterY = event.resolution.getScaledHeight() * (102 / 144F);
-
-						float arbiCenterMaxX = event.resolution.getScaledWidth() * (91 / 216F);
-						float arbiCenterMaxY = event.resolution.getScaledHeight() * (126 / 144F);
-
-						float healX = event.resolution.getScaledWidth() * (66 / 216F);
-						float healMaxX = event.resolution.getScaledWidth() * (78.5f / 216F);
-
-						float healY = event.resolution.getScaledHeight() * (111 / 144F);
-						float heal2Y = event.resolution.getScaledHeight() * (116 / 144F);
-						float heal3Y = event.resolution.getScaledHeight() * (121 / 144F);
-						float heal4Y = event.resolution.getScaledHeight() * (126 / 144F);
-						float heal5Y = event.resolution.getScaledHeight() * (131.5f / 144F);
-						float healMaxY = event.resolution.getScaledHeight() * (4 / 144F);
-
-						ClientEventHandler.pgui.renderOverlay(Resources.tieBackOverlay);
-
-						ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)(tie.rotationPitch / 5) + 18);
-
-						for (Entity p : tie.nearby)
-						{
-							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-							if (p instanceof EntityPlayer)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
-						}
-
-						if (isFiring)
-						{
-							blipFrame -= 0.25f;
-							if (blipFrame <= 0)
-							{
-								blipFrame = blipMax;
-								isFiring = false;
-							}
-						}
-
-						ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(tie.dimension), 0, 0);
-
-						if (tie.getHealth() >= 20)
-							ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
-						if (tie.getHealth() >= 16)
-							ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
-						if (tie.getHealth() >= 8)
-							ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
-						if (tie.getHealth() >= 4)
-							ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
-						if (tie.getHealth() >= 0)
-							ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
-
-						if (randomCharNextTime <= System.currentTimeMillis())
-						{
-							MathUtils.shuffleArray(Resources.randomCharArray);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							if (StarWarsMod.rngGeneral.nextInt(5) == 0)
-								this.randomChar4 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-							randomCharNextTime = System.currentTimeMillis() + 250;
-						}
-
-						FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 12, GlPalette.ANALOG_RED, true);
-						FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 4, GlPalette.ANALOG_RED, true);
-						FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 4, GlPalette.ANALOG_RED, true);
-						FontManager.aurebesh.drawString(this.randomChar4, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 12, GlPalette.ANALOG_RED, true);
-
-						Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { tie });
-
-						int color = GlPalette.ELECTRIC_BLUE;
-
-						if (tie.getTargetLock())
-							color = GlPalette.ORANGE;
-
-						if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-							this.lastTarget = e;
-						}
-
-						if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-						{
-							StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-							this.lastTarget = e;
-						}
-
-						if (e != null)
-						{
-							color = GlPalette.ELECTRIC_LIME;
-							ClientEventHandler.pgui.drawHollowTriangle(centerX, centerY - 5, 3, 180, 2, color);
-							ClientEventHandler.pgui.drawHollowTriangle(centerX - 5, centerY + 5, 3, 45, 2, color);
-							ClientEventHandler.pgui.drawHollowTriangle(centerX + 5, centerY + 5, 3, 315, 2, color);
-
-							ClientEventHandler.pgui.drawLine(centerX - 20, centerY - 20, centerX - 20, centerY - 10, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX - 20, centerY - 20, centerX - 10, centerY - 20, 2, color);
-
-							ClientEventHandler.pgui.drawLine(centerX + 20, centerY - 20, centerX + 20, centerY - 10, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 20, centerY - 20, centerX + 10, centerY - 20, 2, color);
-
-							ClientEventHandler.pgui.drawLine(centerX - 20, centerY + 20, centerX - 20, centerY + 10, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX - 20, centerY + 20, centerX - 10, centerY + 20, 2, color);
-
-							ClientEventHandler.pgui.drawLine(centerX + 20, centerY + 20, centerX + 20, centerY + 10, 2, color);
-							ClientEventHandler.pgui.drawLine(centerX + 20, centerY + 20, centerX + 10, centerY + 20, 2, color);
-						}
-						else
-						{
-							ClientEventHandler.pgui.drawHollowTriangle(centerX, centerY - 10, 3, 180, 2, color);
-							ClientEventHandler.pgui.drawHollowTriangle(centerX - 10, centerY + 10, 3, 45, 2, color);
-							ClientEventHandler.pgui.drawHollowTriangle(centerX + 10, centerY + 10, 3, 315, 2, color);
-						}
-
-						ClientEventHandler.pgui.renderOverlay(Resources.tieOverlay);
-
-						ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
-
-						String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
-
-						String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
-
-						if (lookString != s)
-						{
-							lookString = s;
-							lookStringPos = 0;
-						}
-						else if (lookStringNextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
-						{
-							lookStringPos++;
-							lookStringNextTime = System.currentTimeMillis() + 50;
-						}
-
-						GL11.glPushMatrix();
-						GL11.glScalef(0.5f, 0.5f, 0.5f);
-						FontManager.aurebesh.drawSplitString(s.substring(0, lookStringPos) + block, (int)(centerX + 22) * 2, (int)(centerY - 20) * 2, 100, color);
-						GL11.glPopMatrix();
-
-						if (e != null)
-						{
-							GL11.glPushMatrix();
-
-							this.lastTarget = e;
-
-							float scale = event.resolution.getScaledWidth() * (14 / 216f);
-
-							if (e instanceof VehicleAirBase)
-								((VehicleAirBase)e).setTargetLock(true);
-
-							if (e instanceof VehicXWing)
-								VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
-							else if (e instanceof VehicTIE)
-								VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
-							else if (e instanceof VehicTIEInterceptor)
-								VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
-							else if (e instanceof VehicAWing)
-								VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
-
-							GL11.glPopMatrix();
-						}
-						else if (this.lastTarget != null)
-						{
-							if (this.lastTarget instanceof VehicleAirBase)
-								((VehicleAirBase)this.lastTarget).setTargetLock(true);
-							this.lastTarget = null;
-						}
-					}
-				}
-			}
 		}
-		if (StarWarsMod.mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)
-		{
-			try
-			{
-				StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-			this.lastTarget = null;
-		}
+		
+		guiVehicle.onRenderGui(event);
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
@@ -805,18 +305,14 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Post event)
 	{
-		boolean cape = event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes;
-
-		float p_77029_2_ = event.partialRenderTick;
-
-		if (cape)
+		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0.0F, -0.25F, 0.125F);
-			double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * p_77029_2_ - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * p_77029_2_);
-			double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * p_77029_2_ - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * p_77029_2_);
-			double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * p_77029_2_ - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * p_77029_2_);
-			float f4 = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * p_77029_2_;
+			double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * event.partialRenderTick - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * event.partialRenderTick);
+			double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * event.partialRenderTick - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * event.partialRenderTick);
+			double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * event.partialRenderTick - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * event.partialRenderTick);
+			float f4 = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
 			double d1 = MathHelper.sin(f4 * (float)Math.PI / 180.0F);
 			double d2 = -MathHelper.cos(f4 * (float)Math.PI / 180.0F);
 			float f5 = (float)d4 * 10.0F;
@@ -833,8 +329,8 @@ public class ClientEventHandler
 			if (f6 < 0.0F)
 				f6 = 0.0F;
 
-			float f8 = event.entityPlayer.prevCameraYaw + (event.entityPlayer.cameraYaw - event.entityPlayer.prevCameraYaw) * p_77029_2_;
-			f5 += MathHelper.sin((event.entityPlayer.prevDistanceWalkedModified + (event.entityPlayer.distanceWalkedModified - event.entityPlayer.prevDistanceWalkedModified) * p_77029_2_) * 6.0F) * 32.0F * f8;
+			float f8 = event.entityPlayer.prevCameraYaw + (event.entityPlayer.cameraYaw - event.entityPlayer.prevCameraYaw) * event.partialRenderTick;
+			f5 += MathHelper.sin((event.entityPlayer.prevDistanceWalkedModified + (event.entityPlayer.distanceWalkedModified - event.entityPlayer.prevDistanceWalkedModified) * event.partialRenderTick) * 6.0F) * 32.0F * f8;
 
 			if (event.entityPlayer.isSneaking())
 				f5 += 25.0F;
