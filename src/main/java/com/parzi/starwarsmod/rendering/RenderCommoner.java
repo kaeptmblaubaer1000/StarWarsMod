@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.rendering;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.mobs.MobTatooineCommoner;
 
 public class RenderCommoner extends RenderBiped
 {

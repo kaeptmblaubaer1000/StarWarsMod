@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.rendering.fx;
 
+import com.parzi.starwarsmod.StarWarsMod;
+
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class ParticleBlasterBolt extends EntityFX
 {

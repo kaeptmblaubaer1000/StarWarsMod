@@ -2,14 +2,14 @@ package com.parzi.starwarsmod.dimension.dagobah;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
+import com.parzi.starwarsmod.world.gen.WorldGenDagobahSwamp;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
-import com.parzi.starwarsmod.world.gen.WorldGenDagobahSwamp;
 
 public class BiomeGenDagobah extends BiomeGenPSWM
 {

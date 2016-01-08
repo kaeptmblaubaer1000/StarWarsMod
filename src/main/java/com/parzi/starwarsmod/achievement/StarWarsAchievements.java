@@ -1,13 +1,12 @@
 package com.parzi.starwarsmod.achievement;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
 
 public class StarWarsAchievements
 {

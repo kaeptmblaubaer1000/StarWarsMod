@@ -1,8 +1,5 @@
 package com.parzi.starwarsmod.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.rendering.gui.ContainerJediRobes;
 import com.parzi.starwarsmod.rendering.gui.ContainerMV;
@@ -11,6 +8,8 @@ import com.parzi.starwarsmod.rendering.gui.GuiScreenJediRobes;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {

@@ -3,11 +3,11 @@ package com.parzi.starwarsmod.achievement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
-
-import com.parzi.starwarsmod.Resources;
 
 public class StarWarsAchievement extends Achievement
 {

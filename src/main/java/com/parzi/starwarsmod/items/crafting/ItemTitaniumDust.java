@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.items.crafting;
 
-import net.minecraft.item.Item;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+
+import net.minecraft.item.Item;
 
 public class ItemTitaniumDust extends Item
 {

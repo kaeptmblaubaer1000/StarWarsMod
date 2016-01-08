@@ -1,14 +1,14 @@
 package com.parzi.starwarsmod.items;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
 
 public class ItemBanthaMilk extends ItemFood
 {

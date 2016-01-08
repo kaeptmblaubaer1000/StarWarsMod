@@ -1,5 +1,11 @@
 package com.parzi.starwarsmod.mobs;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.ai.AiFreqMove;
+import com.parzi.util.entity.EntityUtils;
+import com.parzi.util.world.PotionList;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
@@ -12,12 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.ai.AiFreqMove;
-import com.parzi.util.entity.EntityUtils;
-import com.parzi.util.world.PotionList;
 
 public class MobDroidSurgical extends EntityTameable
 {

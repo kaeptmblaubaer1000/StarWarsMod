@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.network;
 
-import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import io.netty.buffer.ByteBuf;
 
 public class PacketJediRobesBuy implements IMessage
 {

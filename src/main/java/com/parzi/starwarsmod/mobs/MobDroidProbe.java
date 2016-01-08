@@ -1,5 +1,11 @@
 package com.parzi.starwarsmod.mobs;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.ai.AiFreqMove;
+import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
+import com.parzi.util.entity.EntityUtils;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -16,12 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.ai.AiFreqMove;
-import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
-import com.parzi.util.entity.EntityUtils;
 
 public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 {

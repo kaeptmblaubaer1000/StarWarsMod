@@ -4,6 +4,7 @@
 /*      *//*      */
 import java.util.Random;
 
+import cpw.mods.fml.common.IWorldGenerator;
 /*      */
 import net.minecraft.block.Block;
 /*      */
@@ -14,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 /*      */
 import net.minecraft.world.gen.feature.WorldGenerator;
-import cpw.mods.fml.common.IWorldGenerator;
 
 /*      */
 /*      */public class WorldGenHut

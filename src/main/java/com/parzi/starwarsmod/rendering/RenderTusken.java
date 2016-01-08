@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.rendering;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.mobs.MobTusken;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.mobs.MobTusken;
 
 public class RenderTusken extends RenderBiped
 {

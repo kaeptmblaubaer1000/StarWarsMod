@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.items;
 
-import net.minecraft.item.ItemFood;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+
+import net.minecraft.item.ItemFood;
 
 public class ItemBanthaChop extends ItemFood
 {

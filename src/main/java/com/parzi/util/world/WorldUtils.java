@@ -1,15 +1,14 @@
 package com.parzi.util.world;
 
+import com.parzi.util.ui.Lumberjack;
+
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraftforge.common.DimensionManager;
-
-import com.parzi.util.ui.Lumberjack;
-
-import cpw.mods.fml.common.FMLCommonHandler;
 
 public class WorldUtils
 {

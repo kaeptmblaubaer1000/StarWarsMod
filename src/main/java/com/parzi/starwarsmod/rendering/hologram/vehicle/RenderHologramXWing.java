@@ -1,14 +1,14 @@
 package com.parzi.starwarsmod.rendering.hologram.vehicle;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.hologram.RenderHologramBase;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderHologramXWing extends RenderHologramBase
 {

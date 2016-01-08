@@ -1,8 +1,8 @@
 package com.parzi.starwarsmod.items;
 
-import net.minecraft.item.Item;
-
 import com.parzi.starwarsmod.Resources;
+
+import net.minecraft.item.Item;
 
 public class ItemBolt extends Item
 {

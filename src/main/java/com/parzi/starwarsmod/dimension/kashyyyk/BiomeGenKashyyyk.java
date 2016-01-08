@@ -2,13 +2,13 @@ package com.parzi.starwarsmod.dimension.kashyyyk;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
+import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
-import com.parzi.starwarsmod.world.gen.WorldGenMegaKashyyykJungle;
 
 public class BiomeGenKashyyyk extends BiomeGenPSWM
 {

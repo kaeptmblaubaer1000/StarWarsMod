@@ -1,11 +1,11 @@
 package com.parzi.starwarsmod.rendering;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.rendering.models.mobs.ModelGamorrean;
+
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.mobs.ModelGamorrean;
 
 public class RenderGamorrean extends RenderLiving
 {

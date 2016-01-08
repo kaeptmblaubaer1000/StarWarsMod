@@ -1,13 +1,13 @@
 package com.parzi.starwarsmod.items;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.util.world.PotionList;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.util.world.PotionList;
 
 public class ItemAcidBeets extends ItemFood
 {

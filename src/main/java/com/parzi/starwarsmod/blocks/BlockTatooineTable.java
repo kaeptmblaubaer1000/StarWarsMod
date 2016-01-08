@@ -1,15 +1,15 @@
 package com.parzi.starwarsmod.blocks;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
+import com.parzi.util.world.HarvestLevel;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
-import com.parzi.util.world.HarvestLevel;
 
 public class BlockTatooineTable extends BlockContainer
 {

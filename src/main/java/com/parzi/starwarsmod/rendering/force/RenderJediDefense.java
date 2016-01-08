@@ -1,5 +1,10 @@
 package com.parzi.starwarsmod.rendering.force;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -7,11 +12,6 @@ import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 
 public class RenderJediDefense
 {

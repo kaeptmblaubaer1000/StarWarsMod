@@ -1,11 +1,11 @@
 package com.parzi.starwarsmod.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.util.world.HarvestLevel;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 public class BlockSpaceLamp extends Block
 {

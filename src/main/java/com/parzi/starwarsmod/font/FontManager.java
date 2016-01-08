@@ -1,14 +1,13 @@
 package com.parzi.starwarsmod.font;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.util.ResourceLocation;
-
 import com.parzi.starwarsmod.Resources;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.util.ResourceLocation;
 
 public class FontManager
 {

@@ -1,16 +1,16 @@
 package com.parzi.starwarsmod.rendering;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.rendering.models.ModelHangingCauldron;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.ModelHangingCauldron;
 
 public class RenderHangingCauldron extends TileEntitySpecialRenderer
 {

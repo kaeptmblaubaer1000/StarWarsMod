@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraftforge.common.util.EnumHelper;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.util.ui.Lumberjack;
+
+import net.minecraftforge.common.util.EnumHelper;
 
 public class MaterialRegister
 {

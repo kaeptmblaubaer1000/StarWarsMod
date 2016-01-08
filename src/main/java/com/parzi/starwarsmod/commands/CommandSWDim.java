@@ -3,13 +3,13 @@ package com.parzi.starwarsmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzi.starwarsmod.world.TransferDim;
+
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
-
-import com.parzi.starwarsmod.world.TransferDim;
 
 public class CommandSWDim implements ICommand
 {

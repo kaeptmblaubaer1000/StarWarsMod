@@ -1,13 +1,13 @@
 package com.parzi.starwarsmod.items;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.mobs.MobDroidTreadwell;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.mobs.MobDroidTreadwell;
 
 public class ItemSpawnTreadwell extends Item
 {

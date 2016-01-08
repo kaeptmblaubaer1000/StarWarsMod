@@ -1,10 +1,10 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.vehicles.ModelJakkuSpeeder;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderJakkuSpeeder extends RenderLandBase
 {

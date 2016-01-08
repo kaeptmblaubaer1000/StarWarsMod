@@ -1,5 +1,11 @@
 package com.parzi.starwarsmod.blocks;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsEnum;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityMV;
+import com.parzi.util.world.HarvestLevel;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -13,12 +19,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsEnum;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.tileentities.TileEntityMV;
-import com.parzi.util.world.HarvestLevel;
 
 public class BlockMV extends BlockContainer
 {

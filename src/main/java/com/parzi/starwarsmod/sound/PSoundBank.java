@@ -1,14 +1,13 @@
 package com.parzi.starwarsmod.sound;
 
+import com.parzi.util.ui.Lumberjack;
+
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
-
-import com.parzi.util.ui.Lumberjack;
-
-import cpw.mods.fml.relauncher.ReflectionHelper;
 
 public class PSoundBank
 {

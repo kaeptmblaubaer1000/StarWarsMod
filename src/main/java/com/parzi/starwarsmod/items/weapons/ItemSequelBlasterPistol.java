@@ -3,6 +3,14 @@ package com.parzi.starwarsmod.items.weapons;
 import java.util.Arrays;
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.achievement.StarWarsAchievements;
+import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
+import com.parzi.util.ui.TextUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -13,15 +21,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.achievement.StarWarsAchievements;
-import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
-import com.parzi.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSequelBlasterPistol extends Item
 {

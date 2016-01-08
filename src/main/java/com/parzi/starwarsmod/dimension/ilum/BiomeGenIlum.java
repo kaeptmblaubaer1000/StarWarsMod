@@ -2,10 +2,10 @@ package com.parzi.starwarsmod.dimension.ilum;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 
 public class BiomeGenIlum extends BiomeGenPSWM
 {

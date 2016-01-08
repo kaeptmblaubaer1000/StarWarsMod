@@ -1,17 +1,16 @@
 package com.parzi.starwarsmod.dimension.ilum;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.rendering.DrawHothSky;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.DrawHothSky;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class IlumProvider extends WorldProvider
 {

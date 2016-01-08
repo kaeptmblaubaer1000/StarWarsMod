@@ -2,14 +2,14 @@ package com.parzi.starwarsmod.items.weapons;
 
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.util.ui.TextUtils;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.util.ui.TextUtils;
 
 public class ItemGaffiStick extends ItemSword
 {

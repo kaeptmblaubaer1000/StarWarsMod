@@ -2,6 +2,9 @@ package com.parzi.starwarsmod.dimension.yavin;
 
 import java.util.Random;
 
+import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
+import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -10,9 +13,6 @@ import net.minecraft.world.gen.feature.WorldGenForest;
 import net.minecraft.world.gen.feature.WorldGenMegaJungle;
 import net.minecraft.world.gen.feature.WorldGenShrub;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
-import com.parzi.starwarsmod.world.gen.WorldGenYavinTempleRuins;
 
 public class BiomeGenYavin extends BiomeGenPSWM
 {

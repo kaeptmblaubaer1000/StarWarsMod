@@ -3,6 +3,11 @@ package com.parzi.starwarsmod.mobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.util.entity.trade.TradeUtils;
+import com.parzi.util.entity.trade.WeightedTradeItem;
+
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -13,11 +18,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.util.entity.trade.TradeUtils;
-import com.parzi.util.entity.trade.WeightedTradeItem;
 
 public class MobTatooineCommoner extends EntityVillager
 {

@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.rendering;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.mobs.MobJawa;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.mobs.MobJawa;
 
 public class RenderJawa extends RenderLiving
 {

@@ -1,14 +1,13 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.CrystalColor;
 import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class RecipeRegister
 {

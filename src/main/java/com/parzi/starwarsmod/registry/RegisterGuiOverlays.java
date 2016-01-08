@@ -1,10 +1,10 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.gui.GuiPSWMOverlay;
+
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
 
 public class RegisterGuiOverlays
 {

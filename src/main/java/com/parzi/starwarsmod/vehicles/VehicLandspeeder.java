@@ -1,10 +1,10 @@
 package com.parzi.starwarsmod.vehicles;
 
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.world.World;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.util.vehicle.VehicleLandBase;
+
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.world.World;
 
 public class VehicLandspeeder extends VehicleLandBase
 {

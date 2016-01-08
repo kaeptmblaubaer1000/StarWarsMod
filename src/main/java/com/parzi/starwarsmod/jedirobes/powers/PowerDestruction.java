@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
-import net.minecraft.entity.player.EntityPlayer;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketDestructionBolt;
+
+import net.minecraft.entity.player.EntityPlayer;
 
 public class PowerDestruction extends Power
 {

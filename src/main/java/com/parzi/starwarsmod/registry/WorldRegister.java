@@ -1,9 +1,5 @@
 package com.parzi.starwarsmod.registry;
 
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.dimension.dagobah.BiomeGenDagobah;
 import com.parzi.starwarsmod.dimension.dagobah.DagobahProvider;
@@ -37,6 +33,9 @@ import com.parzi.util.world.WorldUtils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.MinecraftForge;
 
 public class WorldRegister
 {

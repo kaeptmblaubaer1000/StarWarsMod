@@ -3,12 +3,12 @@ package com.parzi.starwarsmod.utils;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityChest;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.util.MathUtils;
 import com.parzi.util.entity.trade.WeightedLoot;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityChest;
 
 public class LootGenUtils
 {

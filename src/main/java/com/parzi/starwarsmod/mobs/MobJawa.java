@@ -3,6 +3,11 @@ package com.parzi.starwarsmod.mobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.utils.LootGenUtils;
+import com.parzi.util.entity.trade.WeightedLoot;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -13,11 +18,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.LootGenUtils;
-import com.parzi.util.entity.trade.WeightedLoot;
 
 public class MobJawa extends EntityMob implements IMob
 {

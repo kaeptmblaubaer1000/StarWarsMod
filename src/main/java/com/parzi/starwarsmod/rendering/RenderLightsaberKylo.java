@@ -1,14 +1,14 @@
 package com.parzi.starwarsmod.rendering;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.models.ModelLightsaberKylo;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
 
 public class RenderLightsaberKylo implements IItemRenderer
 {

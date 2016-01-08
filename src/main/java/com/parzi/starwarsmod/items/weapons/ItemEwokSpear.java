@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.items.weapons;
 
-import net.minecraft.item.ItemSword;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+
+import net.minecraft.item.ItemSword;
 
 public class ItemEwokSpear extends ItemSword
 {

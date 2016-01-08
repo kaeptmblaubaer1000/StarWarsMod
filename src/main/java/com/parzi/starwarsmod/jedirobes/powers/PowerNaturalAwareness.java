@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.PacketHealBlock;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.PacketHealBlock;
 
 public class PowerNaturalAwareness extends Power
 {

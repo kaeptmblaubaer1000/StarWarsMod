@@ -2,9 +2,6 @@ package com.parzi.starwarsmod.dimension.tatooine;
 
 import java.util.Random;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.dimension.BiomeGenPSWM;
 import com.parzi.starwarsmod.world.gen.WorldGenMV;
@@ -64,6 +61,9 @@ import com.parzi.starwarsmod.world.gen.moseisley.big.ME_55;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_56;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_57;
 import com.parzi.starwarsmod.world.gen.moseisley.big.ME_58;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 
 public class BiomeGenTatooine extends BiomeGenPSWM
 {

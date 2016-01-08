@@ -1,11 +1,11 @@
 package com.parzi.util.vehicle;
 
+import com.parzi.starwarsmod.Resources;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
-import com.parzi.starwarsmod.Resources;
 
 public class VehicleBase extends EntityCreature
 {
