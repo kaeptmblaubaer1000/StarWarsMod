@@ -1,10 +1,17 @@
 package com.parzi.starwarsmod.rendering.force;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent.Specials.Post;
 
 /**
  * Jedi Robes - Weaston
@@ -162,5 +169,51 @@ public class ModelJediCloak extends ModelBiped
             this.HoodR.rotationPointY = 0.0F;
             this.HoodTop.rotationPointY = 0.0F;
         }
+	}
+
+	public void renderCloak(RenderPlayerEvent.Specials.Post event)
+	{
+		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslatef(0.0F, -0.25F, 0.125F);
+			double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * event.partialRenderTick - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * event.partialRenderTick);
+			double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * event.partialRenderTick - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * event.partialRenderTick);
+			double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * event.partialRenderTick - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * event.partialRenderTick);
+			float f4 = event.entityPlayer.prevRenderYawOffset + (event.entityPlayer.renderYawOffset - event.entityPlayer.prevRenderYawOffset) * event.partialRenderTick;
+			double d1 = MathHelper.sin(f4 * (float)Math.PI / 180.0F);
+			double d2 = -MathHelper.cos(f4 * (float)Math.PI / 180.0F);
+			float f5 = (float)d4 * 10.0F;
+
+			if (f5 < -6.0F)
+				f5 = -6.0F;
+
+			if (f5 > 32.0F)
+				f5 = 32.0F;
+
+			float f6 = (float)(d3 * d1 + d0 * d2) * 100.0F;
+			float f7 = (float)(d3 * d2 - d0 * d1) * 100.0F;
+
+			if (f6 < 0.0F)
+				f6 = 0.0F;
+
+			float f8 = event.entityPlayer.prevCameraYaw + (event.entityPlayer.cameraYaw - event.entityPlayer.prevCameraYaw) * event.partialRenderTick;
+			f5 += MathHelper.sin((event.entityPlayer.prevDistanceWalkedModified + (event.entityPlayer.distanceWalkedModified - event.entityPlayer.prevDistanceWalkedModified) * event.partialRenderTick) * 6.0F) * 32.0F * f8;
+
+			if (event.entityPlayer.isSneaking())
+				f5 += 25.0F;
+			
+			f6 *= 1.8f;
+
+			GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
+			GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+			GL11.glScalef(1, 1, 1);
+			StarWarsMod.mc.getTextureManager().bindTexture(Resources.capeTexture);
+			// rp.modelBipedMain.renderCloak(0.0625F);
+			this.renderCape(0.0625F);
+			GL11.glPopMatrix();
+		}
 	}
 }

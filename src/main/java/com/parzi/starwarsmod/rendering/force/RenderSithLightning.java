@@ -11,18 +11,43 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
+import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.util.entity.EntityUtils;
 
 public class RenderSithLightning
 {
 	Minecraft mc = Minecraft.getMinecraft();
 
-	public RenderSithLightning()
-	{
-
-	}
-
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
+		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("lightning") && ForceUtils.isUsingDuration)
+		{
+			PowerLightning power = (PowerLightning)ForceUtils.activePower;
+
+			if (power.duration >= power.getDuration())
+				return;
+
+			Entity e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
+			power.setTarget(e);
+
+			if (e != null)
+			{
+				Random r = new Random(e.ticksExisted * 4);
+				float posX2 = (float)e.posX;
+				float posY2 = (float)e.posY + 2;
+				float posZ2 = (float)e.posZ;
+				for (int i = 0; i < 4; i++)
+				{
+					posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - (e.boundingBox.maxX - e.posX) / 2;
+					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - (e.boundingBox.maxY - e.posY) / 2;
+					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - (e.boundingBox.maxZ - e.posZ) / 2;
+
+					this.render(r, (float)StarWarsMod.mc.thePlayer.posX - 0.5f, (float)StarWarsMod.mc.thePlayer.posY - 1, (float)StarWarsMod.mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
+				}
+			}
+		}
+		
 		for (Object entity : this.mc.theWorld.playerEntities)
 		{
 			EntityPlayer player = (EntityPlayer)entity;

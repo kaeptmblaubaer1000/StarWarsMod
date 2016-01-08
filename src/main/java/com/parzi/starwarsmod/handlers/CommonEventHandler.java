@@ -59,8 +59,8 @@ public class CommonEventHandler
 			{
 				StarWarsMod.network.sendToServer(new PacketCreateBlasterBolt(StarWarsMod.mc.thePlayer.getCommandSenderName(), StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId, BlasterBoltType.XWING));
 				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-				ClientEventHandler.isFiring = true;
-				ClientEventHandler.blipFrame = ClientEventHandler.blipMax;
+				ClientEventHandler.guiVehicle.isFiring = true;
+				ClientEventHandler.guiVehicle.blipFrame = ClientEventHandler.guiVehicle.blipMax;
 			}
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
 			{
