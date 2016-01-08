@@ -812,7 +812,7 @@ public class ClientEventHandler
 		if (cape)
 		{
 			GL11.glPushMatrix();
-			GL11.glTranslatef(0.0F, 0.0F, 0.125F);
+			GL11.glTranslatef(0.0F, -0.25F, 0.125F);
 			double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * p_77029_2_ - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * p_77029_2_);
 			double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * p_77029_2_ - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * p_77029_2_);
 			double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * p_77029_2_ - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * p_77029_2_);
@@ -838,6 +838,8 @@ public class ClientEventHandler
 
 			if (event.entityPlayer.isSneaking())
 				f5 += 25.0F;
+			
+			f6 *= 1.8f;
 
 			GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
 			GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
