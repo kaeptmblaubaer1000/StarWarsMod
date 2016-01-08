@@ -46,4 +46,10 @@ public class BlockDeathStarGlass extends BlockConnected
 	{
 		return false;
 	}
+
+    //@Override
+    //public int getRenderBlockPass()
+    //{
+    //    return 1;
+    //}
 }
