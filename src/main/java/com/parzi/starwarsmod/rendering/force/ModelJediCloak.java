@@ -53,7 +53,7 @@ public class ModelJediCloak extends ModelBiped
 		this.FootR.setRotationPoint(2.0F, 12.0F, 0.0F);
 		this.FootR.addBox(-2.5F, 5.0F, -2.5F, 5, 7, 5, 0.0F);
 		this.Cape = new ModelRenderer(this, 35, 0);
-		this.Cape.setRotationPoint(0.0F, 0.0F, 2.5F);
+		this.Cape.setRotationPoint(0.0F, 1.0F, -2.5F);
 		this.Cape.addBox(-4.5F, 0.0F, 1.0F, 9, 20, 1, 0.0F);
 		this.HoodBack = new ModelRenderer(this, 62, 0);
 		this.HoodBack.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -175,7 +175,7 @@ public class ModelJediCloak extends ModelBiped
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
 			GL11.glPushMatrix();
-			GL11.glTranslatef(0.0F, -0.25F, 0.125F);
+			//GL11.glTranslatef(0.0F, -0.25F, 0.125F);
 			double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * event.partialRenderTick - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * event.partialRenderTick);
 			double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * event.partialRenderTick - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * event.partialRenderTick);
 			double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * event.partialRenderTick - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * event.partialRenderTick);
