@@ -21,7 +21,7 @@ public class BlockDeathStarLight extends Block
 {
 	public String name = "deathStarLight";
 	private String[] names = { "HangarFloorSmall", "PureWhite", "HangarWallVertical", "Extra1", "Extra2" };
-	private int subtypes = names.length;
+	private int subtypes = this.names.length;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
@@ -37,17 +37,17 @@ public class BlockDeathStarLight extends Block
 	}
 
 	@Override
+	public int damageDropped(int meta)
+	{
+		return meta;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
 		return this.icons[meta];
 	}
-
-	@Override
-    public int damageDropped(int meta)
-    {
-        return meta;
-    }
 
 	@Override
 	@SideOnly(Side.CLIENT)

@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.mobs;
 
-import com.parzi.starwarsmod.Resources;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -15,6 +13,8 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.Resources;
 
 public class MobWampa extends EntityMob implements IMob
 {

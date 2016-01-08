@@ -15,7 +15,6 @@ import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
-import com.parzi.starwarsmod.rendering.models.armor.ModelLeiaBuns;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.utils.ItemUtils;
 
@@ -28,17 +27,9 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static String SIDE_JEDI = "jedi";
 	public static String SIDE_SITH = "sith";
-	
+
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak model;
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
-	{
-		if (model == null) model = new ModelJediCloak();
-		return model;
-	}
 
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
@@ -46,55 +37,13 @@ public class ArmorJediRobes extends ItemArmor
 			stack.stackTagCompound.setInteger("level", stack.stackTagCompound.getInteger("level") + levels);
 		return stack;
 	}
-	
-	public static ItemStack getRobes(EntityPlayer player)
-	{
-		if (player == null) return null;
-		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-		{
-			return player.inventory.armorItemInSlot(2);
-		}
-		return null;
-	}
 
-	public static String getLightningTarget(EntityPlayer player)
+	public static String getActive(EntityPlayer player)
 	{
 		ItemStack stack = getRobes(player);
-		if (stack == null) return "";
-		return getLightningTarget(stack);
-	}
-
-	public static void setLightningTarget(EntityPlayer player, String target)
-	{
-		ItemStack stack = getRobes(player);
-		if (stack == null) return;
-		setLightningTarget(stack, target);
-	}
-
-	public static String getLightningTarget(ItemStack stack)
-	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("lightning"))
-			return stack.stackTagCompound.getString("lightning");
-		return "";
-	}
-
-	public static void setLightningTarget(ItemStack stack, String target)
-	{
-		stack.stackTagCompound.setString("lightning", target);
-	}
-
-	public static boolean getIsRunning(ItemStack stack)
-	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isRunning"))
-			return stack.stackTagCompound.getBoolean("isRunning");
-		return false;
-	}
-
-	public static boolean getIsRunning(EntityPlayer player)
-	{
-		ItemStack stack = getRobes(player);
-		if (stack == null) return false;
-		return getIsRunning(stack);
+		if (stack == null)
+			return "";
+		return getActive(stack);
 	}
 
 	public static String getActive(ItemStack stack)
@@ -104,25 +53,19 @@ public class ArmorJediRobes extends ItemArmor
 		return "";
 	}
 
-	public static String getActive(EntityPlayer player)
+	public static boolean getIsRunning(EntityPlayer player)
 	{
 		ItemStack stack = getRobes(player);
-		if (stack == null) return "";
-		return getActive(stack);
+		if (stack == null)
+			return false;
+		return getIsRunning(stack);
 	}
 
-	public static boolean getUsingDuration(ItemStack stack)
+	public static boolean getIsRunning(ItemStack stack)
 	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isUsingDuration"))
-			return stack.stackTagCompound.getBoolean("isUsingDuration");
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isRunning"))
+			return stack.stackTagCompound.getBoolean("isRunning");
 		return false;
-	}
-
-	public static boolean getUsingDuration(EntityPlayer player)
-	{
-		ItemStack stack = getRobes(player);
-		if (stack == null) return false;
-		return getUsingDuration(stack);
 	}
 
 	public static int getLevel(ItemStack stack)
@@ -139,6 +82,21 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
+	public static String getLightningTarget(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return "";
+		return getLightningTarget(stack);
+	}
+
+	public static String getLightningTarget(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("lightning"))
+			return stack.stackTagCompound.getString("lightning");
+		return "";
+	}
+
 	public static int getMaxXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("maxxp"))
@@ -146,11 +104,48 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
+	public static ItemStack getRobes(EntityPlayer player)
+	{
+		if (player == null)
+			return null;
+		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			return player.inventory.armorItemInSlot(2);
+		return null;
+	}
+
+	public static boolean getUsingDuration(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return false;
+		return getUsingDuration(stack);
+	}
+
+	public static boolean getUsingDuration(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isUsingDuration"))
+			return stack.stackTagCompound.getBoolean("isUsingDuration");
+		return false;
+	}
+
 	public static int getXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("xp"))
 			return stack.stackTagCompound.getInteger("xp");
 		return 0;
+	}
+
+	public static void setLightningTarget(EntityPlayer player, String target)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setLightningTarget(stack, target);
+	}
+
+	public static void setLightningTarget(ItemStack stack, String target)
+	{
+		stack.stackTagCompound.setString("lightning", target);
 	}
 
 	public static ItemStack setMaxXP(ItemStack stack, int levels)
@@ -203,6 +198,15 @@ public class ArmorJediRobes extends ItemArmor
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
+	{
+		if (model == null)
+			model = new ModelJediCloak();
+		return model;
+	}
+
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack.getItem() == StarWarsMod.jediRobes)
@@ -215,7 +219,7 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		this.setupRobe(stack, player);
 
-		stack.stackTagCompound.setString("active", (String)(ForceUtils.activePower == null ? "" : ForceUtils.activePower.name));
+		stack.stackTagCompound.setString("active", ForceUtils.activePower == null ? "" : ForceUtils.activePower.name);
 		stack.stackTagCompound.setBoolean("isUsingDuration", ForceUtils.isUsingDuration);
 		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend"))
 			stack.stackTagCompound.setBoolean("isRunning", ((PowerDefend)ForceUtils.activePower).isRunning);

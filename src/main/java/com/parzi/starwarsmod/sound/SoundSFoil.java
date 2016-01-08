@@ -1,11 +1,11 @@
 package com.parzi.starwarsmod.sound;
 
-import com.parzi.starwarsmod.Resources;
-
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+
+import com.parzi.starwarsmod.Resources;
 
 public class SoundSFoil extends MovingSound
 {

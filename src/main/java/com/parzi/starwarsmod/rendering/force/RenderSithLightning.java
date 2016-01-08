@@ -23,15 +23,15 @@ public class RenderSithLightning
 
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
-		for (Object entity : mc.theWorld.playerEntities)
+		for (Object entity : this.mc.theWorld.playerEntities)
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
 			Entity e = player.worldObj.getPlayerEntityByName(player.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
-			
+
 			if (e == null)
 				e = player.worldObj.getPlayerEntityByName(ArmorJediRobes.getLightningTarget(player));
-			
+
 			if (e != null)
 			{
 				Random r = new Random(e.ticksExisted * 4);
@@ -58,7 +58,7 @@ public class RenderSithLightning
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
 			GL11.glEnable(GL11.GL_LINE_SMOOTH);
-			GL11.glTranslated(-(mc.thePlayer.posX - 0.5), -(mc.thePlayer.posY - 0.5f), -(mc.thePlayer.posZ - 0.5));
+			GL11.glTranslated(-(this.mc.thePlayer.posX - 0.5), -(this.mc.thePlayer.posY - 0.5f), -(this.mc.thePlayer.posZ - 0.5));
 
 			GL11.glLineWidth(8);
 			GL11.glColor3f(0f, 0f, 1f);

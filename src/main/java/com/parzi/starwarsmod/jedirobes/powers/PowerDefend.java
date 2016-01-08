@@ -1,12 +1,6 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Vec3;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
-import com.parzi.starwarsmod.utils.EntityUtils;
 
 public class PowerDefend extends Power
 {

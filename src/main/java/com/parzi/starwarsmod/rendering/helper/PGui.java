@@ -21,10 +21,13 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.minimap.MinimapStore;
 import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.starwarsmod.utils.Lumberjack;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
@@ -64,6 +67,23 @@ public class PGui// extends Gui
 	public PGui(Minecraft minecraft)
 	{
 		PGui.mc = minecraft;
+	}
+
+	public void changeCameraDist(ClientEventHandler clientEventHandler, int dist)
+	{
+		if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
+			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(dist);
+		else
+			try
+			{
+				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance");
+				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp");
+			}
+			catch (Exception e)
+			{
+				Lumberjack.warn("Unable to change camera distance!");
+				e.printStackTrace();
+			}
 	}
 
 	/**
@@ -474,6 +494,45 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
 	}
 
+	@SideOnly(Side.CLIENT)
+	private void drawMiniMap(ClientEventHandler clientEventHandler, Entity center, int min, int max, int size)
+	{
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		for (int x = min; x < max; x++)
+			for (int y = min; y < max; y++)
+			{
+				int bX = (int)(center.posX + x);
+				int bZ = (int)(center.posZ + y);
+				int color = MinimapStore.getAt(center.worldObj, bX, bZ);
+
+				float f3 = (color >> 24 & 255) / 255.0F;
+				float f = (color >> 16 & 255) / 255.0F;
+				float f1 = (color >> 8 & 255) / 255.0F;
+				float f2 = (color & 255) / 255.0F;
+				GL11.glColor4f(f, f1, f2, f3);
+
+				tessellator.startDrawingQuads();
+				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0.0D);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0.0D);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0.0D);
+				tessellator.addVertex((x - min) * size, (y - min) * size, 0.0D);
+				tessellator.draw();
+			}
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		this.drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GlPalette.BLACK);
+
+		// to use:
+		// GL11.glPushMatrix();
+		// GL11.glColor4f(255, 255, 255, 255);
+		// drawMiniMap(StarWarsMod.mc.thePlayer, -25, 25, 2);
+		// GL11.glColor4f(255, 255, 255, 255);
+		// GL11.glPopMatrix();
+	}
+
 	public void drawModalRectWithCustomSizedText(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
 	{
 		float f4 = 1.0F / textureWidth;
@@ -664,6 +723,22 @@ public class PGui// extends Gui
 		tessellator.addVertexWithUV(x + width, y + 0, 1, icon.getMaxU(), icon.getMinV());
 		tessellator.addVertexWithUV(x + 0, y + 0, 1, icon.getMinU(), icon.getMinV());
 		tessellator.draw();
+	}
+
+	public ResourceLocation planetTextureFromDim(int dim)
+	{
+		if (dim == StarWarsMod.dimEndorId)
+			return Resources.endorTexture;
+		else if (dim == StarWarsMod.dimHothId)
+			return Resources.hothTexture;
+		else if (dim == StarWarsMod.dimKashyyykId)
+			return Resources.kashyyykTexture;
+		else if (dim == StarWarsMod.dimTatooineId)
+			return Resources.tatooineTexture;
+		else if (dim == StarWarsMod.dimYavin4Id)
+			return Resources.yavinTexture;
+
+		return Resources.earthTexture;
 	}
 
 	/**
@@ -976,59 +1051,5 @@ public class PGui// extends Gui
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glDisable(3042);
-	}
-
-	@SideOnly(Side.CLIENT)
-	private void drawMiniMap(ClientEventHandler clientEventHandler, Entity center, int min, int max, int size)
-	{
-		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		for (int x = min; x < max; x++)
-			for (int y = min; y < max; y++)
-			{
-				int bX = (int)(center.posX + x);
-				int bZ = (int)(center.posZ + y);
-				int color = MinimapStore.getAt(center.worldObj, bX, bZ);
-	
-				float f3 = (color >> 24 & 255) / 255.0F;
-				float f = (color >> 16 & 255) / 255.0F;
-				float f1 = (color >> 8 & 255) / 255.0F;
-				float f2 = (color & 255) / 255.0F;
-				GL11.glColor4f(f, f1, f2, f3);
-	
-				tessellator.startDrawingQuads();
-				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0.0D);
-				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0.0D);
-				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0.0D);
-				tessellator.addVertex((x - min) * size, (y - min) * size, 0.0D);
-				tessellator.draw();
-			}
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GlPalette.BLACK);
-	
-		// to use:
-		// GL11.glPushMatrix();
-		// GL11.glColor4f(255, 255, 255, 255);
-		// drawMiniMap(StarWarsMod.mc.thePlayer, -25, 25, 2);
-		// GL11.glColor4f(255, 255, 255, 255);
-		// GL11.glPopMatrix();
-	}
-
-	public ResourceLocation planetTextureFromDim(int dim)
-	{
-		if (dim == StarWarsMod.dimEndorId)
-			return Resources.endorTexture;
-		else if (dim == StarWarsMod.dimHothId)
-			return Resources.hothTexture;
-		else if (dim == StarWarsMod.dimKashyyykId)
-			return Resources.kashyyykTexture;
-		else if (dim == StarWarsMod.dimTatooineId)
-			return Resources.tatooineTexture;
-		else if (dim == StarWarsMod.dimYavin4Id) return Resources.yavinTexture;
-	
-		return Resources.earthTexture;
 	}
 }

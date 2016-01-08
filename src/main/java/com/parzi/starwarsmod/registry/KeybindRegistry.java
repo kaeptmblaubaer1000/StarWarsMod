@@ -22,7 +22,7 @@ public class KeybindRegistry
 	public static KeyBinding keyRobeGui;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyRobePower;
-	
+
 	public static void registerAll()
 	{
 		KeybindRegistry.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);

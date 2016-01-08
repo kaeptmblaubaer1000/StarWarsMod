@@ -1,13 +1,12 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.PacketHealBlock;
-import com.parzi.starwarsmod.utils.Lumberjack;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.PacketHealBlock;
 
 public class PowerNaturalAwareness extends Power
 {
@@ -28,11 +27,9 @@ public class PowerNaturalAwareness extends Power
 		if (this.recharge == 0)
 		{
 			MovingObjectPosition pos = Minecraft.getMinecraft().objectMouseOver;
-			
+
 			if (pos != null && pos.typeOfHit == MovingObjectType.BLOCK)
-			{				
 				StarWarsMod.network.sendToServer(new PacketHealBlock(player.dimension, pos.blockX, pos.blockY, pos.blockZ));
-			}
 
 			return true;
 		}

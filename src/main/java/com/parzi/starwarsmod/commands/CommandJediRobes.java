@@ -3,32 +3,47 @@ package com.parzi.starwarsmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+
 public class CommandJediRobes extends CommandBase
 {
-    public String getCommandName()
-    {
-        return "robes";
-    }
+	@Override
+	public List addTabCompletionOptions(ICommandSender commandSender, String[] parameters)
+	{
+		List<String> commands = new ArrayList<String>();
 
-    public int getRequiredPermissionLevel()
-    {
-        return 2;
-    }
+		if (parameters.length == 1)
+		{
+			commands.add("level");
+			commands.add("xp");
+			commands.add("maxxp");
+		}
+		return commands;
+	}
+
+	@Override
+	public String getCommandName()
+	{
+		return "robes";
+	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
 		return "robes <level|xp|maxxp> <int:value>";
+	}
+
+	@Override
+	public int getRequiredPermissionLevel()
+	{
+		return 2;
 	}
 
 	@Override
@@ -44,7 +59,8 @@ public class CommandJediRobes extends CommandBase
 		int value = 0;
 
 		value = parseInt(icommandsender, astring[1]);
-		if (key.equalsIgnoreCase("level")) value *= 10;
+		if (key.equalsIgnoreCase("level"))
+			value *= 10;
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
@@ -77,20 +93,6 @@ public class CommandJediRobes extends CommandBase
 			return;
 		}
 	}
-
-    @Override
-    public List addTabCompletionOptions(ICommandSender commandSender, String[] parameters)
-    {
-        List<String> commands = new ArrayList<String>();
-
-        if (parameters.length == 1)
-        {
-            commands.add("level");
-            commands.add("xp");
-            commands.add("maxxp");
-        }
-        return commands;
-    }
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

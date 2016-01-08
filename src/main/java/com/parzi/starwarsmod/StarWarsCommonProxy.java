@@ -2,8 +2,6 @@ package com.parzi.starwarsmod;
 
 import com.parzi.starwarsmod.utils.Lumberjack;
 
-import net.minecraft.entity.Entity;
-
 public class StarWarsCommonProxy
 {
 	public void doSidedThings()

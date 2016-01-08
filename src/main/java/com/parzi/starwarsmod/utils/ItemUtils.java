@@ -7,7 +7,7 @@ public class ItemUtils
 {
 	/**
 	 * Initializes a stack's NBT tags, if needed.
-	 * 
+	 *
 	 * @param stack
 	 *            The stack to init
 	 * @return Returns true if the stack didn't have an NBT tag, and one was

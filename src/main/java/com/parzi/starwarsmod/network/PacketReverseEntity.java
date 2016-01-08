@@ -1,13 +1,12 @@
 package com.parzi.starwarsmod.network;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
+import net.minecraft.server.MinecraftServer;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.server.MinecraftServer;
 
 public class PacketReverseEntity implements IMessage
 {
@@ -22,7 +21,7 @@ public class PacketReverseEntity implements IMessage
 
 				if (e instanceof Entity)
 				{
-					Entity entity = (Entity)e;
+					Entity entity = e;
 					entity.motionX = -entity.motionX;
 					entity.motionY = -entity.motionY;
 					entity.motionZ = -entity.motionZ;

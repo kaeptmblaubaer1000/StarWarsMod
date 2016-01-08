@@ -1,10 +1,7 @@
 package com.parzi.starwarsmod;
 
-import net.minecraft.block.BlockColored;
-import net.minecraft.block.BlockWood;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -16,7 +13,6 @@ import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.entities.EntityTIEBolt;
 import com.parzi.starwarsmod.entities.EntityXWingBolt;
 import com.parzi.starwarsmod.font.FontManager;
-import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.mobs.MobBantha;
 import com.parzi.starwarsmod.mobs.MobBith;
 import com.parzi.starwarsmod.mobs.MobDewback;
@@ -76,7 +72,6 @@ import com.parzi.starwarsmod.rendering.RenderTauntaun;
 import com.parzi.starwarsmod.rendering.RenderTusken;
 import com.parzi.starwarsmod.rendering.RenderWampa;
 import com.parzi.starwarsmod.rendering.RenderWookiee;
-import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.rendering.helper.PSWMEntityRenderer;
 import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
 import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
@@ -110,7 +105,6 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderSpeederBike;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
-import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.tileentities.TileEntityBasket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
@@ -118,8 +112,6 @@ import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
 import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.PlayerHelper;
-import com.parzi.starwarsmod.utils.RenderHelper;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
@@ -138,16 +130,11 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 	@Override
 	public void doSidedThings()
 	{
+		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
+
 		StarWarsMod.mc = Minecraft.getMinecraft();
 
 		StarWarsMod.clientHandler.init();
-
-		ClientEventHandler.renderHelper = new RenderHelper(Minecraft.getMinecraft());
-		ClientEventHandler.playerHelper = new PlayerHelper(Minecraft.getMinecraft());
-		ClientEventHandler.pgui = new PGui(Minecraft.getMinecraft());
-		ClientEventHandler.soundBank = new PSoundBank();
-
-		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
 		{
@@ -160,7 +147,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		FontManager.registerAll();
 
-		if (StarWarsMod.beshOverride) Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
+		if (StarWarsMod.beshOverride)
+			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
 
 		Lumberjack.log("Client proxy loaded!");
 	}

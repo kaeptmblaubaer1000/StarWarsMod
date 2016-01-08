@@ -1,7 +1,5 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
-import net.minecraft.entity.Entity;
-
 public class PowerDeflect extends Power
 {
 	public PowerDeflect(int currentLevel)

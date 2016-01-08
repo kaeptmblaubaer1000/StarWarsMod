@@ -7,10 +7,8 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.item.ItemFood;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
@@ -63,8 +61,6 @@ import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.tabs.SequelStarWarsTab;
 import com.parzi.starwarsmod.tabs.StarWarsTab;
 import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.Text;
-import com.parzi.starwarsmod.utils.TextUtils;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -73,7 +69,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
@@ -378,7 +373,8 @@ public class StarWarsMod
 		}
 		finally
 		{
-			if (in != null) IOUtils.closeQuietly(in);
+			if (in != null)
+				IOUtils.closeQuietly(in);
 		}
 
 		instance = this;
@@ -476,9 +472,9 @@ public class StarWarsMod
 
 		config.save();
 
-		FMLCommonHandler.instance().bus().register(this.commonHandler = new CommonEventHandler());
+		FMLCommonHandler.instance().bus().register(StarWarsMod.commonHandler = new CommonEventHandler());
 
-		MinecraftForge.EVENT_BUS.register(this.clientHandler = new ClientEventHandler());
+		MinecraftForge.EVENT_BUS.register(StarWarsMod.clientHandler = new ClientEventHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}

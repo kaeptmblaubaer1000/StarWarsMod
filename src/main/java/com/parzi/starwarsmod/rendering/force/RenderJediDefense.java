@@ -12,9 +12,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
-import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
-import com.parzi.starwarsmod.utils.ForceUtils;
 
 public class RenderJediDefense
 {
@@ -38,7 +35,7 @@ public class RenderJediDefense
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
-		{			
+		{
 			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("defend") && ArmorJediRobes.getIsRunning((EntityPlayer)entity))
 				this.renderPlayerShield(event, (EntityPlayer)entity, true);
 

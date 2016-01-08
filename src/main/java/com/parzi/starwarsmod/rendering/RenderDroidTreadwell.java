@@ -1,11 +1,11 @@
 package com.parzi.starwarsmod.rendering;
 
-import com.parzi.starwarsmod.Resources;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
+import com.parzi.starwarsmod.Resources;
 
 public class RenderDroidTreadwell extends RenderLiving
 {

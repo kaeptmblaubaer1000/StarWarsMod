@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.armor;
 
-import com.parzi.starwarsmod.Resources;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.Resources;
 
 public class ArmorBobaJetpack extends ItemArmor
 {

@@ -35,10 +35,10 @@ public class BlockEndorBaseWall extends Block
 	}
 
 	@Override
-    public int damageDropped(int meta)
-    {
-        return meta;
-    }
+	public int damageDropped(int meta)
+	{
+		return meta;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

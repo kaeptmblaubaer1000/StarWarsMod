@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.weaponry;
 
-import com.parzi.starwarsmod.Resources;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.Resources;
 
 public class WeaponSwivelBase extends EntityLiving
 {

@@ -33,13 +33,15 @@ public class PSoundBank
 
 	public boolean isPlaying(ISound sound)
 	{
-		if (this.manager == null) return false;
+		if (this.manager == null)
+			return false;
 		return this.manager.isSoundPlaying(sound);
 	}
 
 	public void play(ISound sound)
 	{
-		if (this.manager == null) return;
+		if (this.manager == null)
+			return;
 		if (this.isPlaying(sound))
 			this.handler.stopSound(sound);
 		this.handler.playSound(sound);
@@ -47,14 +49,16 @@ public class PSoundBank
 
 	public void playIfNotAlready(ISound sound)
 	{
-		if (this.manager == null) return;
+		if (this.manager == null)
+			return;
 		if (!this.isPlaying(sound))
 			this.handler.playSound(sound);
 	}
 
 	public void stop(ISound sound)
 	{
-		if (this.manager == null) return;
+		if (this.manager == null)
+			return;
 		if (this.isPlaying(sound))
 			this.handler.stopSound(sound);
 	}
