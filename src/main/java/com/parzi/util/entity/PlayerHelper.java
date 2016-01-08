@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.entity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;

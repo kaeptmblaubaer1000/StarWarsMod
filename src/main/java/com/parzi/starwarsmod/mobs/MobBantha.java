@@ -22,7 +22,7 @@ import net.minecraftforge.common.IShearable;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.LootGenUtils;
-import com.parzi.starwarsmod.utils.WeightedLoot;
+import com.parzi.util.entity.trade.WeightedLoot;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

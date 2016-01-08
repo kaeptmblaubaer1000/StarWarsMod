@@ -16,7 +16,7 @@ import net.minecraftforge.client.IRenderHandler;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.utils.Vector3;
+import com.parzi.util.world.Vector3;
 
 import cpw.mods.fml.client.FMLClientHandler;
 

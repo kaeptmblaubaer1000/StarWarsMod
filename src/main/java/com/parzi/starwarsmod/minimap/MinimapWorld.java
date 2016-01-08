@@ -3,13 +3,13 @@ package com.parzi.starwarsmod.minimap;
 import java.awt.Point;
 import java.util.HashMap;
 
+import com.parzi.util.ui.GlPalette;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
-
-import com.parzi.starwarsmod.utils.GlPalette;
 
 public class MinimapWorld
 {

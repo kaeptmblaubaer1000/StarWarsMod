@@ -3,7 +3,7 @@ package com.parzi.starwarsmod.jedirobes.powers;
 import net.minecraft.entity.player.EntityPlayer;
 
 import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.utils.LangUtils;
+import com.parzi.util.ui.LangUtils;
 
 public class Power
 {

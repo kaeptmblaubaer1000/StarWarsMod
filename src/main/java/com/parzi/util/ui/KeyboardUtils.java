@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.ui;
 
 import org.lwjgl.input.Keyboard;
 

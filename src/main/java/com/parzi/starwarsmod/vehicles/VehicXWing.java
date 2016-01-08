@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketXwingSfoil;
+import com.parzi.util.vehicle.VehicleAirBase;
 
 public class VehicXWing extends VehicleAirBase
 {

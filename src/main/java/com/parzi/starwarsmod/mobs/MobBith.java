@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.WeightedTradeItem;
+import com.parzi.util.entity.trade.WeightedTradeItem;
 
 public class MobBith extends EntityVillager
 {

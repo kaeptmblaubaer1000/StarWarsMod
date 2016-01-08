@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.ui;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

@@ -60,7 +60,7 @@ import com.parzi.starwarsmod.registry.RecipeRegister;
 import com.parzi.starwarsmod.registry.WorldRegister;
 import com.parzi.starwarsmod.tabs.SequelStarWarsTab;
 import com.parzi.starwarsmod.tabs.StarWarsTab;
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;

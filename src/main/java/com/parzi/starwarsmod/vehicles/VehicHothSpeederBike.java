@@ -4,6 +4,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.util.vehicle.VehicleLandBase;
 
 public class VehicHothSpeederBike extends VehicleLandBase
 {

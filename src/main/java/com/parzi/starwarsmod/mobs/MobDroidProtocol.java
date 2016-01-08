@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.ai.AiFreqMove;
-import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.util.entity.EntityUtils;
 
 public class MobDroidProtocol extends EntityTameable
 {

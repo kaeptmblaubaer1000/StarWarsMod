@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.LootGenUtils;
-import com.parzi.starwarsmod.utils.WeightedLoot;
+import com.parzi.util.entity.trade.WeightedLoot;
 
 public class MobWookiee extends EntityMob implements IMob
 {

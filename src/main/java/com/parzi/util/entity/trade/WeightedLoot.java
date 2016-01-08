@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.entity.trade;
 
 import net.minecraft.item.ItemStack;
 

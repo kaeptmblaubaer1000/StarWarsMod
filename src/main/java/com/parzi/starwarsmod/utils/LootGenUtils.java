@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.util.MathUtils;
+import com.parzi.util.entity.trade.WeightedLoot;
 
 public class LootGenUtils
 {

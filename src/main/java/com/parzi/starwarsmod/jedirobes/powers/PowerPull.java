@@ -6,7 +6,7 @@ import net.minecraft.util.Vec3;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
-import com.parzi.starwarsmod.utils.EntityUtils;
+import com.parzi.util.entity.EntityUtils;
 
 public class PowerPull extends Power
 {

@@ -8,8 +8,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.utils.MathUtils;
-import com.parzi.starwarsmod.vehicles.VehicleAirBase;
+import com.parzi.util.MathUtils;
+import com.parzi.util.vehicle.VehicleAirBase;
 
 public class RenderVehicAirBase extends RenderLiving
 {

@@ -32,8 +32,6 @@ import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
-import com.parzi.starwarsmod.utils.EntityUtils;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
@@ -43,6 +41,8 @@ import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
+import com.parzi.util.entity.EntityUtils;
+import com.parzi.util.ui.Lumberjack;
 
 public class EntityRegister
 {

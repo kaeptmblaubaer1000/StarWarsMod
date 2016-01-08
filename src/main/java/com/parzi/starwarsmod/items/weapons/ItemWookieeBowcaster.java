@@ -14,8 +14,8 @@ import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
-import com.parzi.starwarsmod.utils.KeyboardUtils;
-import com.parzi.starwarsmod.utils.TextUtils;
+import com.parzi.util.ui.KeyboardUtils;
+import com.parzi.util.ui.TextUtils;
 
 public class ItemWookieeBowcaster extends Item
 {

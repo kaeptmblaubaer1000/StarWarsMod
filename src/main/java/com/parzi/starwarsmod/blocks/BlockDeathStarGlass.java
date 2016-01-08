@@ -9,7 +9,8 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.HarvestLevel;
+import com.parzi.util.block.BlockConnected;
+import com.parzi.util.world.HarvestLevel;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

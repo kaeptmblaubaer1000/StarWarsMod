@@ -8,7 +8,7 @@ import net.minecraft.item.ItemSword;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.TextUtils;
+import com.parzi.util.ui.TextUtils;
 
 public class ItemGamorreanAx extends ItemSword
 {

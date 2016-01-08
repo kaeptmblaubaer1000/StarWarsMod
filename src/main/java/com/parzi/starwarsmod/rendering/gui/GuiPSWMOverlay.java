@@ -19,7 +19,7 @@ import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.util.ui.GlPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 

@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.blocks;
+package com.parzi.util.block;
 
 import com.parzi.starwarsmod.Resources;
 

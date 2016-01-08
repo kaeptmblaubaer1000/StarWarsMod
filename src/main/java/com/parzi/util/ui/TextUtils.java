@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.ui;
 
 public class TextUtils
 {

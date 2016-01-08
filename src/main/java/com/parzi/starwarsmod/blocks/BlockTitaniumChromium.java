@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.HarvestLevel;
+import com.parzi.util.world.HarvestLevel;
 
 public class BlockTitaniumChromium extends Block
 {

@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.entity;
 
 import java.util.Arrays;
 import java.util.List;

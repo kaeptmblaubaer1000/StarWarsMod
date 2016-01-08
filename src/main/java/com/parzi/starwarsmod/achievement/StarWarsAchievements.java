@@ -5,7 +5,7 @@ import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 

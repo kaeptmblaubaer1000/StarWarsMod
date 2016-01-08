@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.ui;
 
 import net.minecraft.client.resources.I18n;
 

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
-import com.parzi.starwarsmod.utils.HarvestLevel;
+import com.parzi.util.world.HarvestLevel;
 
 public class BlockHangingCauldron extends BlockContainer
 {

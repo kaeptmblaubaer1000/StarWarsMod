@@ -16,7 +16,7 @@ import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.utils.ItemUtils;
+import com.parzi.util.world.ItemUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

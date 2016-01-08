@@ -30,7 +30,7 @@ import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

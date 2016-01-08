@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.vehicles.VehicleLandBase;
+import com.parzi.util.vehicle.VehicleLandBase;
 
 public class RenderLandBase extends RenderLiving
 {

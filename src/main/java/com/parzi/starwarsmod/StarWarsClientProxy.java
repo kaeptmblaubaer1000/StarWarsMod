@@ -111,7 +111,6 @@ import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicJakkuSpeeder;
@@ -121,6 +120,7 @@ import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;

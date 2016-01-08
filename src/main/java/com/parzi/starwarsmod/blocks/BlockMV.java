@@ -18,7 +18,7 @@ import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
-import com.parzi.starwarsmod.utils.HarvestLevel;
+import com.parzi.util.world.HarvestLevel;
 
 public class BlockMV extends BlockContainer
 {

@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.utils;
+package com.parzi.util.world;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;

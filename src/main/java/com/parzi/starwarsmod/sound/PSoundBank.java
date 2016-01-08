@@ -6,7 +6,7 @@ import net.minecraft.client.audio.MovingSound;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
 
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
 

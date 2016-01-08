@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.MathUtils;
+import com.parzi.util.MathUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

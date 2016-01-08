@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzi.starwarsmod.utils.GlPalette;
+import com.parzi.util.ui.GlPalette;
 
 public class RenderHologramBase extends RenderLiving
 {

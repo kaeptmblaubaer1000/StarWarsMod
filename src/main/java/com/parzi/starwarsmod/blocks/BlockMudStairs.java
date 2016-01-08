@@ -4,7 +4,7 @@ import net.minecraft.block.BlockStairs;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.utils.HarvestLevel;
+import com.parzi.util.world.HarvestLevel;
 
 public class BlockMudStairs extends BlockStairs
 {

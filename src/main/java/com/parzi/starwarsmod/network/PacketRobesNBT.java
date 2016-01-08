@@ -3,7 +3,7 @@ package com.parzi.starwarsmod.network;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.server.MinecraftServer;
 
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

@@ -31,9 +31,9 @@ import com.parzi.starwarsmod.mobs.MobTauntaun;
 import com.parzi.starwarsmod.mobs.MobTusken;
 import com.parzi.starwarsmod.mobs.MobWampa;
 import com.parzi.starwarsmod.mobs.MobWookiee;
-import com.parzi.starwarsmod.utils.Lumberjack;
-import com.parzi.starwarsmod.utils.WorldUtils;
 import com.parzi.starwarsmod.world.OreGenerator;
+import com.parzi.util.ui.Lumberjack;
+import com.parzi.util.world.WorldUtils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;

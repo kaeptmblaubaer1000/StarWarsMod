@@ -17,8 +17,8 @@ import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.utils.LangUtils;
-import com.parzi.starwarsmod.utils.TextUtils;
+import com.parzi.util.ui.LangUtils;
+import com.parzi.util.ui.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

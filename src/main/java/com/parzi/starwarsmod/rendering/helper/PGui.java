@@ -20,8 +20,8 @@ import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.minimap.MinimapStore;
-import com.parzi.starwarsmod.utils.GlPalette;
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.GlPalette;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;

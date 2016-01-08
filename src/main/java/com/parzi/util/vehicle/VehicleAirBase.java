@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.vehicles;
+package com.parzi.util.vehicle;
 
 import java.util.ArrayList;
 import java.util.List;

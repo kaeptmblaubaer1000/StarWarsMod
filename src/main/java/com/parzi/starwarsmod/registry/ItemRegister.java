@@ -85,7 +85,6 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-import com.parzi.starwarsmod.utils.Lumberjack;
 import com.parzi.starwarsmod.vehicles.ItemSpawnAWing;
 import com.parzi.starwarsmod.vehicles.ItemSpawnHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnJakkuSpeeder;
@@ -94,6 +93,7 @@ import com.parzi.starwarsmod.vehicles.ItemSpawnSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnTIE;
 import com.parzi.starwarsmod.vehicles.ItemSpawnTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.ItemSpawnXWing;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.utils.CrystalColor;
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

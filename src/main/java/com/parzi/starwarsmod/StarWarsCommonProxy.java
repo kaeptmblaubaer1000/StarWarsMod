@@ -1,6 +1,6 @@
 package com.parzi.starwarsmod;
 
-import com.parzi.starwarsmod.utils.Lumberjack;
+import com.parzi.util.ui.Lumberjack;
 
 public class StarWarsCommonProxy
 {

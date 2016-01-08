@@ -1,4 +1,4 @@
-package com.parzi.starwarsmod.vehicles;
+package com.parzi.util.vehicle;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
