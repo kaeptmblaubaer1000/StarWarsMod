@@ -84,7 +84,7 @@ public class BlockMV extends BlockContainer
 		if (tile instanceof TileEntityMV)
 		{
 			TileEntityMV vap = (TileEntityMV)tile;
-			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
+			int l = MathHelper.floor_double(player.rotationYaw * 8.0F / 360.0F + 0.5D) & 0x3;
 			vap.setFacing(l);
 		}
 	}

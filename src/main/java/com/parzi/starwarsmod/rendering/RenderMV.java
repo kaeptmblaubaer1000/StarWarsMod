@@ -38,7 +38,7 @@ public class RenderMV extends TileEntitySpecialRenderer
 		GL11.glPushMatrix();
 		GL11.glScalef(1.5F, 1.5F, 1.5F);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(mv.getFacing() * 90, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(mv.getFacing() * 45, 0.0F, 1.0F, 0.0F);
 		this.model.windVane1.rotateAngleY = mv.frame / 10;
 		this.model.windVane2.rotateAngleY = mv.frame / 10;
 		this.model.windVaneRod1.rotateAngleY = mv.frame / 10;
