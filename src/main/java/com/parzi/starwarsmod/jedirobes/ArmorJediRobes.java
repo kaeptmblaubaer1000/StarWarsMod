@@ -5,6 +5,7 @@ import java.util.List;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.network.PacketUpdateRobes;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.world.ItemUtils;
@@ -147,6 +148,45 @@ public class ArmorJediRobes extends ItemArmor
 		stack.stackTagCompound.setString("lightning", target);
 	}
 
+	public static void setActive(ItemStack stack, String activeName)
+	{
+		stack.stackTagCompound.setString("active", activeName);
+	}
+
+	public static void setActive(EntityPlayer player, String active)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setActive(stack, active);
+	}
+
+	public static void setRunning(ItemStack stack, boolean running)
+	{
+		stack.stackTagCompound.setBoolean("isRunning", running);
+	}
+
+	public static void setRunning(EntityPlayer player, boolean running)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setRunning(stack, running);
+	}
+
+	public static void setDuration(ItemStack stack, boolean duration)
+	{
+		stack.stackTagCompound.setBoolean("isDuration", duration);
+	}
+
+	public static void setDuration(EntityPlayer player, boolean duration)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setDuration(stack, duration);
+	}
+
 	public static ItemStack setMaxXP(ItemStack stack, int levels)
 	{
 		if (stack.stackTagCompound != null)
@@ -218,12 +258,14 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		this.setupRobe(stack, player);
 
-		stack.stackTagCompound.setString("active", ForceUtils.activePower == null ? "" : ForceUtils.activePower.name);
-		stack.stackTagCompound.setBoolean("isUsingDuration", ForceUtils.isUsingDuration);
+		if (player == null || player.getDataWatcher() == null) return;
+
+		boolean running = false;
+
 		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend"))
-			stack.stackTagCompound.setBoolean("isRunning", ((PowerDefend)ForceUtils.activePower).isRunning);
-		else
-			stack.stackTagCompound.setBoolean("isRunning", false);
+			running = ((PowerDefend)ForceUtils.activePower).isRunning;
+
+		StarWarsMod.network.sendToServer(new PacketUpdateRobes(player.getCommandSenderName(), ForceUtils.activePower == null ? "" : ForceUtils.activePower.name, ForceUtils.isUsingDuration, ForceUtils.isUsingDuration, player.dimension));
 	}
 
 	@Override
@@ -236,6 +278,9 @@ public class ArmorJediRobes extends ItemArmor
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
 		this.setupRobe(stack, player);
+
+		if (player instanceof EntityPlayer)
+			this.onArmorTick(world, (EntityPlayer)player, stack);
 	}
 
 	public void setupRobe(ItemStack stack, Entity player)

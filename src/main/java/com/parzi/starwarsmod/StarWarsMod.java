@@ -41,6 +41,7 @@ import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
 import com.parzi.starwarsmod.network.PacketTogglePlayerSequelLightsaber;
+import com.parzi.starwarsmod.network.PacketUpdateRobes;
 import com.parzi.starwarsmod.network.PacketXwingSfoil;
 import com.parzi.starwarsmod.registry.BlockRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
@@ -304,6 +305,9 @@ public class StarWarsMod
 	public static boolean enableLightsaber;
 	public static boolean beshOverride;
 	public static int lightningDatawatcherId;
+	public static int activeDatawatcherId;
+	public static int runningDatawatcherId;
+	public static int durationDatawatcherId;
 
 	public static boolean enableTabOriginal = true;
 	public static boolean enableTabSequel = true;
@@ -419,22 +423,24 @@ public class StarWarsMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID);
-		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, 0, Side.SERVER);
-		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, 1, Side.SERVER);
-		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, 2, Side.SERVER);
-		network.registerMessage(PacketCreateBlasterBolt.Handler.class, PacketCreateBlasterBolt.class, 3, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, 4, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, 5, Side.SERVER);
-		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, 6, Side.SERVER);
-		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, 7, Side.SERVER);
-		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, 8, Side.SERVER);
-		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, 9, Side.SERVER);
-		network.registerMessage(PacketPlayerLightning.Handler.class, PacketPlayerLightning.class, 10, Side.SERVER);
-		network.registerMessage(PacketDestructionBolt.Handler.class, PacketDestructionBolt.class, 11, Side.SERVER);
-		network.registerMessage(PacketEntitySetMotion.Handler.class, PacketEntitySetMotion.class, 12, Side.SERVER);
-		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, 13, Side.SERVER);
-		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, 14, Side.SERVER);
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
+		int packetId = 0;
+		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketCreateBlasterBolt.Handler.class, PacketCreateBlasterBolt.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketPlayerLightning.Handler.class, PacketPlayerLightning.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketDestructionBolt.Handler.class, PacketDestructionBolt.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketEntitySetMotion.Handler.class, PacketEntitySetMotion.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
@@ -443,6 +449,9 @@ public class StarWarsMod
 		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
 		beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
 		lightningDatawatcherId = config.get("core", "lightningDatawatcherId", 27).getInt();
+		activeDatawatcherId = config.get("core", "activeDatawatcherId", 28).getInt();
+		runningDatawatcherId = config.get("core", "runningDatawatcherId", 29).getInt();
+		durationDatawatcherId = config.get("core", "durationDatawatcherId", 30).getInt();
 
 		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();

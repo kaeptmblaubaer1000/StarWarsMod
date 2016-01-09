@@ -82,7 +82,7 @@ public class ClientEventHandler
 	public static RenderJediDefense renderJediDefense;
 	@SideOnly(Side.CLIENT)
 	public static RenderSithLightning renderSithLightning;
-	
+
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak modelCloak;
 
@@ -90,7 +90,12 @@ public class ClientEventHandler
 	public void handleConstruction(EntityConstructing event)
 	{
 		if (event.entity instanceof EntityPlayer)
+		{
 			event.entity.getDataWatcher().addObject(StarWarsMod.lightningDatawatcherId, String.valueOf(""));
+			event.entity.getDataWatcher().addObject(StarWarsMod.activeDatawatcherId, String.valueOf(""));
+			event.entity.getDataWatcher().addObject(StarWarsMod.runningDatawatcherId, Integer.valueOf(0));
+			event.entity.getDataWatcher().addObject(StarWarsMod.durationDatawatcherId, Integer.valueOf(0));
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -145,6 +150,7 @@ public class ClientEventHandler
 				if (power.health > event.ammount)
 				{
 					power.health -= event.ammount;
+					event.ammount = 0;
 					event.setCanceled(true);
 				}
 				else
@@ -233,10 +239,9 @@ public class ClientEventHandler
 		if (ClientEventHandler.renderHelper.isFirstPerson())
 		{
 			guiBinocs.onRenderGui(event);
-			
-			guiVehicle.onRenderGui(event);			
+
+			guiVehicle.onRenderGui(event);
 		}
-		
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);

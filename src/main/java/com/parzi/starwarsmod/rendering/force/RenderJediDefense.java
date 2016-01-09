@@ -3,9 +3,11 @@ package com.parzi.starwarsmod.rendering.force;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
@@ -36,10 +38,11 @@ public class RenderJediDefense
 	{
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
 		{
-			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("defend") && ArmorJediRobes.getIsRunning((EntityPlayer)entity))
+			DataWatcher dw = ((EntityPlayer)entity).getDataWatcher();
+			if (dw.getWatchableObjectString(StarWarsMod.activeDatawatcherId).equals("defend") && dw.getWatchableObjectInt(StarWarsMod.runningDatawatcherId) == 1)
 				this.renderPlayerShield(event, (EntityPlayer)entity, false);
 
-			if (ArmorJediRobes.getActive((EntityPlayer)entity).equals("deflect") && ArmorJediRobes.getUsingDuration((EntityPlayer)entity))
+			if (dw.getWatchableObjectString(StarWarsMod.activeDatawatcherId).equals("deflect") && dw.getWatchableObjectInt(StarWarsMod.durationDatawatcherId) == 1)
 				this.renderPlayerShield(event, (EntityPlayer)entity, true);
 		}
 	}
