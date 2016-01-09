@@ -3,7 +3,7 @@ package com.parzi.starwarsmod.rendering;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.ModelDSTurret;
+import com.parzi.starwarsmod.models.ModelDSTurret;
 import com.parzi.starwarsmod.weaponry.WeaponDSTurret;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,14 +19,6 @@ public class RenderDSTurret extends RenderLiving
 	public RenderDSTurret(ModelDSTurret par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
-	}
-
-	@Override
-	public void doRender(EntityLiving p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-	{
-		WeaponDSTurret turret = (WeaponDSTurret)p_76986_1_;
-		turret.setPositionAndRotation(turret.posX, turret.posY, turret.posZ, turret.rotationYaw, turret.pitch);
-		super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
 	}
 
 	@Override

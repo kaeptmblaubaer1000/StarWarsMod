@@ -93,6 +93,7 @@ import com.parzi.starwarsmod.vehicles.ItemSpawnSpeederBike;
 import com.parzi.starwarsmod.vehicles.ItemSpawnTIE;
 import com.parzi.starwarsmod.vehicles.ItemSpawnTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.ItemSpawnXWing;
+import com.parzi.starwarsmod.weaponry.ItemSpawnDSTurret;
 import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -166,6 +167,9 @@ public class ItemRegister
 
 		StarWarsMod.spawnAwing = new ItemSpawnAWing();
 		GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
+
+		StarWarsMod.spawnDsTurret = new ItemSpawnDSTurret();
+		GameRegistry.registerItem(StarWarsMod.spawnDsTurret, "spawnDsTurret");
 
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
 		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");

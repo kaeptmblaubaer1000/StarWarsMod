@@ -1,7 +1,7 @@
 package com.parzi.starwarsmod.armor;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.armor.ModelLeiaBuns;
+import com.parzi.starwarsmod.models.armor.ModelLeiaBuns;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

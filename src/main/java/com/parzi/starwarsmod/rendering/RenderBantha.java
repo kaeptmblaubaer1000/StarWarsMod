@@ -3,7 +3,7 @@ package com.parzi.starwarsmod.rendering;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.mobs.ModelBantha;
+import com.parzi.starwarsmod.models.mobs.ModelBantha;
 
 import net.minecraft.client.renderer.entity.RenderCow;
 import net.minecraft.entity.Entity;

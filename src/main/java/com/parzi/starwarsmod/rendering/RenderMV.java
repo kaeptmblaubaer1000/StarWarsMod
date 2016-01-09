@@ -3,7 +3,7 @@ package com.parzi.starwarsmod.rendering;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.ModelMV;
+import com.parzi.starwarsmod.models.ModelMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 import net.minecraft.client.Minecraft;

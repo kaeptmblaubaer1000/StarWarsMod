@@ -13,7 +13,8 @@ public class WeaponSwivelBase extends EntityLiving
 	public float vehicXOffset = 0.0F;
 	public float vehicYOffset = 0.0F;
 	public float vehicZOffset = 0.0F;
-	public float pitch;
+	public float rotationLast = 0.0F;
+	public float rotationPitchLast = 0.0F;
 
 	public WeaponSwivelBase(World p_i1689_1_)
 	{
@@ -51,19 +52,18 @@ public class WeaponSwivelBase extends EntityLiving
 	@Override
 	protected boolean isAIEnabled()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
 	{
-		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
+		if (this.riddenByEntity != null)
 		{
-			this.prevRotationYaw = this.rotationYaw = this.riddenByEntity.rotationYaw;
-			this.rotationYaw = this.riddenByEntity.rotationYaw + 180.0F;
-			this.setRotation(this.riddenByEntity.rotationYaw, this.riddenByEntity.rotationPitch);
+			this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
+			this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
+			this.setRotation(this.rotationYaw, this.rotationPitch);
 			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
-			this.pitch = this.riddenByEntity.rotationPitch;
 		}
 	}
 

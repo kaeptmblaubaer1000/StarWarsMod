@@ -3,7 +3,7 @@ package com.parzi.starwarsmod.rendering;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.ModelLightsaberKylo;
+import com.parzi.starwarsmod.models.ModelLightsaberKylo;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;

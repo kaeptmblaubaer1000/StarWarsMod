@@ -1,8 +1,8 @@
 package com.parzi.starwarsmod.rendering.hologram.vehicle;
 
 import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.models.vehicles.ModelXWing;
 import com.parzi.starwarsmod.rendering.hologram.RenderHologramBase;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelXWing;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 
 import net.minecraft.client.model.ModelBase;

@@ -17,7 +17,6 @@ public class BlockDeathStarGlass extends BlockConnected
 		super("glass", Material.glass);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		this.setStepSound(soundTypeGlass);

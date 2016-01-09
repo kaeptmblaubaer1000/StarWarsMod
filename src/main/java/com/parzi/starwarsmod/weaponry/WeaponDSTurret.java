@@ -7,6 +7,11 @@ import net.minecraft.world.World;
 
 public class WeaponDSTurret extends WeaponSwivelBase
 {
+	public float pitch = 0;
+	public float pitchLast = 0;
+	public float yaw = 0;
+	public float yawLast = 0;
+
 	public WeaponDSTurret(World par1World)
 	{
 		super(par1World);

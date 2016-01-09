@@ -1,7 +1,7 @@
 package com.parzi.starwarsmod.rendering.vehicles;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.rendering.models.vehicles.ModelAWing;
+import com.parzi.starwarsmod.models.vehicles.ModelAWing;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;

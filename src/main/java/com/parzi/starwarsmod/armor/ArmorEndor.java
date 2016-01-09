@@ -2,7 +2,7 @@ package com.parzi.starwarsmod.armor;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.rendering.models.armor.ModelEndorHelmet;
+import com.parzi.starwarsmod.models.armor.ModelEndorHelmet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

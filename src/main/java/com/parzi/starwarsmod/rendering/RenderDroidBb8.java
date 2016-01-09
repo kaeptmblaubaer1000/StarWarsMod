@@ -2,7 +2,7 @@ package com.parzi.starwarsmod.rendering;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.mobs.MobDroidAstromechBb8;
-import com.parzi.starwarsmod.rendering.models.mobs.ModelDroidBb8;
+import com.parzi.starwarsmod.models.mobs.ModelDroidBb8;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
