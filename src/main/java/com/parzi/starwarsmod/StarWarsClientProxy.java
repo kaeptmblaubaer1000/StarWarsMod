@@ -68,6 +68,7 @@ import com.parzi.starwarsmod.rendering.RenderBlockMudTable;
 import com.parzi.starwarsmod.rendering.RenderBlockTatooineTable;
 import com.parzi.starwarsmod.rendering.RenderCommoner;
 import com.parzi.starwarsmod.rendering.RenderDSTurret;
+import com.parzi.starwarsmod.rendering.RenderDeathStarDoor;
 import com.parzi.starwarsmod.rendering.RenderDewback;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech;
 import com.parzi.starwarsmod.rendering.RenderDroidAstromech2;
@@ -102,6 +103,7 @@ import com.parzi.starwarsmod.rendering.vehicles.RenderTIE;
 import com.parzi.starwarsmod.rendering.vehicles.RenderTIEInterceptor;
 import com.parzi.starwarsmod.rendering.vehicles.RenderXWing;
 import com.parzi.starwarsmod.tileentities.TileEntityBasket;
+import com.parzi.starwarsmod.tileentities.TileEntityDeathStarDoor;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
@@ -210,6 +212,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKyloOff());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderBlockMudTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingCauldron.class, new RenderHangingCauldron());

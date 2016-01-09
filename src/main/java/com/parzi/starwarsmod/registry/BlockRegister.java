@@ -5,6 +5,7 @@ import com.parzi.starwarsmod.blocks.BlockBasket;
 import com.parzi.starwarsmod.blocks.BlockChromiumOre;
 import com.parzi.starwarsmod.blocks.BlockDagobahMud;
 import com.parzi.starwarsmod.blocks.BlockDeathStar;
+import com.parzi.starwarsmod.blocks.BlockDeathStarDoor;
 import com.parzi.starwarsmod.blocks.BlockDeathStarGlass;
 import com.parzi.starwarsmod.blocks.BlockDeathStarLight;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
@@ -26,10 +27,12 @@ import com.parzi.starwarsmod.items.ItemEndorBaseWall;
 import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.items.ItemTatooineSandstone;
 import com.parzi.starwarsmod.tileentities.TileEntityBasket;
+import com.parzi.starwarsmod.tileentities.TileEntityDeathStarDoor;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
+import com.parzi.starwarsmod.tileentities.TileEntityTatooineTable;
 import com.parzi.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -41,6 +44,10 @@ public class BlockRegister
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
+
+		StarWarsMod.blockDeathStarDoor = new BlockDeathStarDoor();
+		GameRegistry.registerBlock(StarWarsMod.blockDeathStarDoor, "deathStarDoor");
+		GameRegistry.registerTileEntity(TileEntityDeathStarDoor.class, "teDeathStarDoor");
 
 		StarWarsMod.blockHangingCauldron = new BlockHangingCauldron();
 		GameRegistry.registerBlock(StarWarsMod.blockHangingCauldron, "hangingCauldron");
@@ -95,6 +102,7 @@ public class BlockRegister
 
 		StarWarsMod.blockTable = new BlockTatooineTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
+		GameRegistry.registerTileEntity(TileEntityTatooineTable.class, "teTatooineTable");
 
 		StarWarsMod.blockTable2 = new BlockMudTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable2, "mudTable");
