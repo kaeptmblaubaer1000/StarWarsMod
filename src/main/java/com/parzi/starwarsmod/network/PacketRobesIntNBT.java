@@ -9,12 +9,12 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.server.MinecraftServer;
 
-public class PacketRobesNBT implements IMessage
+public class PacketRobesIntNBT implements IMessage
 {
-	public static class Handler implements IMessageHandler<PacketRobesNBT, IMessage>
+	public static class Handler implements IMessageHandler<PacketRobesIntNBT, IMessage>
 	{
 		@Override
-		public IMessage onMessage(PacketRobesNBT message, MessageContext ctx)
+		public IMessage onMessage(PacketRobesIntNBT message, MessageContext ctx)
 		{
 			try
 			{
@@ -33,11 +33,11 @@ public class PacketRobesNBT implements IMessage
 	private int value;
 	private int dim;
 
-	public PacketRobesNBT()
+	public PacketRobesIntNBT()
 	{
 	}
 
-	public PacketRobesNBT(String element, int amt, int dim, String player)
+	public PacketRobesIntNBT(String element, int amt, int dim, String player)
 	{
 		this.key = element;
 		this.player = player;

@@ -16,7 +16,6 @@ public class ForceUtils
 {
 	public static Power activePower = null;
 	public static boolean isUsingDuration = false;
-	public static boolean isRunning = false;
 	public static int health = 0;
 	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
 	public static ArrayList<Power> queueToRemove = new ArrayList<Power>();
@@ -48,5 +47,13 @@ public class ForceUtils
 	public static String[] getSithPowers()
 	{
 		return new String[] { "slow", "drainKnowledge", "lightning", "destruction" };
+	}
+
+	public static boolean isCooling(String power)
+	{
+		for (Power p : coolingPowers)
+			if (p.name.equals(power))
+				return true;
+		return false;
 	}
 }

@@ -88,4 +88,19 @@ public class Resources
 
 	// Misc
 	public static final char[] randomCharArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?$".toCharArray();
+
+	// NBT Keys
+	public static final String nbtLevel = "level";
+	public static final String nbtActive = "active";
+	public static final String nbtIsRunning = "isRunning";
+	public static final String nbtActiveHealth = "activeHealth";
+	public static final String nbtActiveLevel = "activeLevel";
+	public static final String nbtIsUsingDuration = "isDuration";
+
+	public static final String nbtMaster = "master";
+	public static final String nbtLightning = "lightning";
+	public static final String nbtXp = "xp";
+	public static final String nbtMaxXp = "maxxp";
+	public static final String nbtSide = "side";
+	public static final String nbtPowers = "powers";
 }

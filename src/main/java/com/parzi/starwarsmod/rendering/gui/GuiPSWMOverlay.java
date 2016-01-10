@@ -2,6 +2,15 @@ package com.parzi.starwarsmod.rendering.gui;
 
 import java.text.NumberFormat;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
@@ -13,14 +22,6 @@ import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.ui.GlPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class GuiPSWMOverlay extends Gui
 {
@@ -82,8 +83,8 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPushMatrix();
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
 
-			if (ForceUtils.activePower != null)
-				this.drawString(this.mc.fontRenderer, ForceUtils.activePower.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
+			if (Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)) != null)
+				this.drawString(this.mc.fontRenderer, Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 			for (Power cooling : ForceUtils.coolingPowers)

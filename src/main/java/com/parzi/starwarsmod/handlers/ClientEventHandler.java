@@ -23,6 +23,7 @@ import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
@@ -33,7 +34,6 @@ import com.parzi.starwarsmod.rendering.gui.GuiVehicle;
 import com.parzi.starwarsmod.rendering.helper.PGui;
 import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
-import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
@@ -147,16 +147,13 @@ public class ClientEventHandler
 			Lumberjack.log("running? " + (ArmorJediRobes.getIsRunning(entityPlayer) ? "yes" : "no"));
 			Lumberjack.log("using duration? " + (ArmorJediRobes.getUsingDuration(entityPlayer) ? "yes" : "no"));
 
-			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getIsRunning(entityPlayer))
+			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getHealth(entityPlayer) > 0)
 			{
 				Lumberjack.log("defend running!");
-				PowerDefend power = (PowerDefend)ForceUtils.activePower;
+				PowerDefend power = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(entityPlayer));
 				if (ArmorJediRobes.getHealth(entityPlayer) > event.ammount)
 				{
-					if (power != null)
-						power.health -= event.ammount;
 					ArmorJediRobes.setHealth(entityPlayer, (int)(ArmorJediRobes.getHealth(entityPlayer) - event.ammount));
-					event.ammount = 0;
 					Lumberjack.log("Remaining: " + ArmorJediRobes.getHealth(entityPlayer));
 					Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
@@ -165,14 +162,6 @@ public class ClientEventHandler
 				{
 					event.ammount -= ArmorJediRobes.getHealth(entityPlayer);
 					ArmorJediRobes.setHealth(entityPlayer, 0);
-					ArmorJediRobes.setRunning(entityPlayer, false);
-					if (power != null)
-					{
-						power.health = 0;
-						power.isRunning = false;
-						power.recharge = power.rechargeTime;
-						ForceUtils.coolingPowers.add(power);
-					}
 					Lumberjack.log("Depleted shield!");
 				}
 			}
@@ -183,7 +172,6 @@ public class ClientEventHandler
 				if (event.source.isProjectile())
 				{
 					Lumberjack.log("Cancelling event!");
-					event.ammount = 0;
 					event.setCanceled(true);
 				}
 			}

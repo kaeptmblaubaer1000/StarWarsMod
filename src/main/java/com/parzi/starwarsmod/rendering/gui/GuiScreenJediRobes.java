@@ -12,9 +12,11 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
+import com.parzi.starwarsmod.network.PacketRobesIntNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketRobesStringNBT;
 import com.parzi.starwarsmod.utils.ForceUtils;
@@ -57,7 +59,10 @@ public class GuiScreenJediRobes extends GuiScreen
 			if (button.id == this.enableButton.id)
 			{
 				ForceUtils.activePower = this.selectedPower.power;
-				StarWarsMod.network.sendToServer(new PacketRobesStringNBT("active", this.selectedPower.power.name, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtActive, this.selectedPower.power.name, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveLevel, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				if (this.selectedPower.power.name.equals("defend"))
+					StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{

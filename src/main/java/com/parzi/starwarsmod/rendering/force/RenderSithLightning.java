@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
-import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.entity.EntityUtils;
 
 public class RenderSithLightning
@@ -21,9 +21,9 @@ public class RenderSithLightning
 
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
-		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("lightning") && ForceUtils.isUsingDuration)
+		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("ligntning") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 		{
-			PowerLightning power = (PowerLightning)ForceUtils.activePower;
+			PowerLightning power = (PowerLightning)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 
 			if (power.duration >= power.getDuration())
 				return;

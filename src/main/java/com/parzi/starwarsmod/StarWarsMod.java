@@ -46,7 +46,7 @@ import com.parzi.starwarsmod.network.PacketHealBlock;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
-import com.parzi.starwarsmod.network.PacketRobesNBT;
+import com.parzi.starwarsmod.network.PacketRobesIntNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketRobesStringNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
@@ -398,7 +398,7 @@ public class StarWarsMod
 	{
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
 		int packetId = 0;
-		network.registerMessage(PacketRobesNBT.Handler.class, PacketRobesNBT.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketRobesIntNBT.Handler.class, PacketRobesIntNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketCreateBlasterBolt.Handler.class, PacketCreateBlasterBolt.class, packetId++, Side.SERVER);

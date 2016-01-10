@@ -24,7 +24,7 @@ import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
-import com.parzi.starwarsmod.network.PacketRobesNBT;
+import com.parzi.starwarsmod.network.PacketRobesIntNBT;
 import com.parzi.starwarsmod.registry.KeybindRegistry;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
@@ -92,48 +92,50 @@ public class CommonEventHandler
 		if (KeybindRegistry.keyRobePower.isPressed())
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 			{
-				ItemStack stack = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
-				Power active = ForceUtils.activePower;
+				Power active = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 
-				if (active != null && ArmorJediRobes.getLevelOf(stack, active.name) > 0)
+				if (active != null && ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name) > 0)
 				{
-					active.currentLevel = ArmorJediRobes.getLevelOf(stack, active.name);
-					if (ArmorJediRobes.getXP(stack) - active.getCost() >= 0 && !ForceUtils.coolingPowers.contains(active))
+					active.currentLevel = ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name);
+					if (ArmorJediRobes.getXP(StarWarsMod.mc.thePlayer) - active.getCost() >= 0 && !ForceUtils.isCooling(active.name))
 					{
-						StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", ArmorJediRobes.getXP(stack) - active.getCost(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+						StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, ArmorJediRobes.getXP(StarWarsMod.mc.thePlayer) - active.getCost(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
 						if (!active.isDurationBased)
 						{
 							if (active.name.equals("defend"))
 							{
-								if (!((PowerDefend)ForceUtils.activePower).isRunning)
+								if (!ArmorJediRobes.getIsRunning(StarWarsMod.mc.thePlayer))
 								{
-									active.run(StarWarsMod.mc.thePlayer);
-									StarWarsMod.network.sendToServer(new PacketRobesNBT("activeHealth", active.currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-									StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT("isRunning", true, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+									if (active.run(StarWarsMod.mc.thePlayer))
+									{
+										StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, active.currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+										StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsRunning, true, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+									}
 								}
 								else
 								{
-									PowerDefend power = (PowerDefend)ForceUtils.activePower;
-									power.health = 0;
-									power.isRunning = false;
-									power.recharge = power.rechargeTime;
-									StarWarsMod.network.sendToServer(new PacketRobesNBT("activeHealth", 0, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-									StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT("isRunning", false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-									ForceUtils.coolingPowers.add(power);
+									((PowerDefend)active).health = 0;
+									((PowerDefend)active).isRunning = false;
+									((PowerDefend)active).recharge = ((PowerDefend)active).rechargeTime;
+									StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, 0, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+									StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsRunning, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+									if (!ForceUtils.isCooling("defend"))
+										ForceUtils.coolingPowers.add(active);
 								}
 							}
 							else
 							{
 								active.run(StarWarsMod.mc.thePlayer);
 								active.recharge = active.rechargeTime;
-								ForceUtils.coolingPowers.add(active);
+								if (!ForceUtils.isCooling(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)))
+									ForceUtils.coolingPowers.add(active);
 							}
 						}
 						else
 						{
 							ForceUtils.isUsingDuration = true;
-							StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT("isUsingDuration", true, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+							StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, true, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 						}
 					}
 				}
@@ -170,7 +172,7 @@ public class CommonEventHandler
 			Minecraft.getMinecraft().getSoundHandler().playSound(new SoundLightsaberHum(StarWarsMod.mc.thePlayer));
 		ClientEventHandler.lastItem = i;
 
-		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("deflect") && ForceUtils.isUsingDuration)
+		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 			for (Object entityObj : StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)))
 				if (entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterRifleBolt || entityObj instanceof EntityBlasterHeavyBolt || entityObj instanceof EntityBlasterPistolBolt || entityObj instanceof EntityBlasterProbeBolt || entityObj instanceof EntitySpeederBlasterRifleBolt)
 				{
@@ -214,18 +216,18 @@ public class CommonEventHandler
 				else
 					total = maxxp;
 
-				StarWarsMod.network.sendToServer(new PacketRobesNBT("xp", total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
-				if (ForceUtils.isUsingDuration && ForceUtils.activePower != null)
+				if (ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 				{
 					ForceUtils.activePower.duration++;
 
 					ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
-					StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT("isUsingDuration", ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+					StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
-					if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ForceUtils.isUsingDuration)
+					if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 					{
-						if (ForceUtils.activePower.name.equals("lightning"))
+						if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
 							if (ClientEventHandler.lastLightning instanceof EntityPlayer)
 								try
 								{
@@ -236,13 +238,13 @@ public class CommonEventHandler
 								{
 								}
 						ForceUtils.activePower.duration = 0;
-						StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT("isUsingDuration", false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+						StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 						ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
 						ForceUtils.coolingPowers.add(ForceUtils.activePower);
 					}
-					else if (ForceUtils.activePower.name.equals("lightning"))
+					else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
 					{
-						PowerLightning power = (PowerLightning)ForceUtils.activePower;
+						PowerLightning power = (PowerLightning)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 						if (power.getTarget() != null)
 						{
 							StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
@@ -274,6 +276,22 @@ public class CommonEventHandler
 				ForceUtils.activePower = null;
 				ForceUtils.isUsingDuration = false;
 			}
+		}
+
+		// if (ForceUtils.activePower != null &&
+		// ForceUtils.activePower.name.equals("defend") &&
+		// ((PowerDefend)ForceUtils.activePower).health <= 0 &&
+		// ((PowerDefend)ForceUtils.activePower).isRunning)
+		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("defend") && ArmorJediRobes.getHealth(StarWarsMod.mc.thePlayer) <= 0 && ArmorJediRobes.getIsRunning(StarWarsMod.mc.thePlayer))
+		{
+			PowerDefend active = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+			active.health = 0;
+			active.isRunning = false;
+			active.recharge = active.rechargeTime;
+			StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, 0, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+			StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsRunning, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+			if (!ForceUtils.isCooling("defend"))
+				ForceUtils.coolingPowers.add(active);
 		}
 	}
 }
