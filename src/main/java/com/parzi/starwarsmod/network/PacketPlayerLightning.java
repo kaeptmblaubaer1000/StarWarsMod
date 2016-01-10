@@ -1,6 +1,6 @@
 package com.parzi.starwarsmod.network;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.util.ui.Lumberjack;
 
@@ -24,7 +24,7 @@ public class PacketPlayerLightning implements IMessage
 				EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 				if (player != null)
 				{
-					player.getDataWatcher().updateObject(StarWarsMod.lightningDatawatcherId, message.lightning);
+					player.getDataWatcher().updateObject(Resources.lightningDatawatcherId, message.lightning);
 					ArmorJediRobes.setLightningTarget(player, message.lightning);
 				}
 			}

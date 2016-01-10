@@ -1,6 +1,6 @@
 package com.parzi.starwarsmod.network;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.ui.Lumberjack;
@@ -25,13 +25,13 @@ public class PacketUpdateRobes implements IMessage
 				EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 				if (player != null)
 				{
-					player.getDataWatcher().updateObject(StarWarsMod.activeDatawatcherId, message.activeName);
+					player.getDataWatcher().updateObject(Resources.activeDatawatcherId, message.activeName);
 					ArmorJediRobes.setActive(player, message.activeName);
 
-					player.getDataWatcher().updateObject(StarWarsMod.durationDatawatcherId, message.isDuration);
+					player.getDataWatcher().updateObject(Resources.durationDatawatcherId, message.isDuration);
 					ArmorJediRobes.setDuration(player, message.isDuration == 1);
 
-					player.getDataWatcher().updateObject(StarWarsMod.runningDatawatcherId, message.isRunning);
+					player.getDataWatcher().updateObject(Resources.runningDatawatcherId, message.isRunning);
 					ArmorJediRobes.setRunning(player, message.isRunning == 1);
 				}
 			}

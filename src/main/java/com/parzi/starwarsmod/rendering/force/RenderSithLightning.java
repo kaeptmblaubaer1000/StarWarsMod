@@ -2,6 +2,11 @@ package com.parzi.starwarsmod.rendering.force;
 
 import java.util.Random;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.StarWarsMod;
@@ -9,11 +14,6 @@ import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.entity.EntityUtils;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 
 public class RenderSithLightning
 {
@@ -47,15 +47,12 @@ public class RenderSithLightning
 				}
 			}
 		}
-		
+
 		for (Object entity : this.mc.theWorld.playerEntities)
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			Entity e = player.worldObj.getPlayerEntityByName(player.getDataWatcher().getWatchableObjectString(StarWarsMod.lightningDatawatcherId).trim());
-
-			if (e == null)
-				e = player.worldObj.getPlayerEntityByName(ArmorJediRobes.getLightningTarget(player));
+			Entity e = player.worldObj.getPlayerEntityByName(ArmorJediRobes.getLightningTarget(player));
 
 			if (e != null)
 			{

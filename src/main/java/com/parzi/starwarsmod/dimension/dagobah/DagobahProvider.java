@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.dagobah;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 import cpw.mods.fml.relauncher.Side;
@@ -104,7 +105,7 @@ public class DagobahProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeDagobah, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimDagobahId;
+		this.dimensionId = Resources.dimDagobahId;
 		this.hasNoSky = true;
 	}
 

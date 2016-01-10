@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.endor;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawEndorSky;
 
@@ -71,7 +72,7 @@ public class EndorProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeEndor, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimEndorId;
+		this.dimensionId = Resources.dimEndorId;
 	}
 
 	@Override

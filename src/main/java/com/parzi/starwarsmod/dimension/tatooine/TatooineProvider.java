@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.tatooine;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawTatooineSky;
 
@@ -71,7 +72,7 @@ public class TatooineProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0.0F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimTatooineId;
+		this.dimensionId = Resources.dimTatooineId;
 	}
 
 	@Override

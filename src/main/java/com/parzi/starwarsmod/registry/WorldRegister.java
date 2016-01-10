@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.registry;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.dimension.dagobah.BiomeGenDagobah;
 import com.parzi.starwarsmod.dimension.dagobah.DagobahProvider;
@@ -41,30 +42,30 @@ public class WorldRegister
 {
 	public static void registerAll()
 	{
-		StarWarsMod.biomeTatooine = new BiomeGenTatooine(StarWarsMod.biomeTatooineId);
+		StarWarsMod.biomeTatooine = new BiomeGenTatooine(Resources.biomeTatooineId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeTatooine);
-		StarWarsMod.biomeHoth = new BiomeGenHoth(StarWarsMod.biomeHothId);
+		StarWarsMod.biomeHoth = new BiomeGenHoth(Resources.biomeHothId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeHoth);
-		StarWarsMod.biomeKashyyyk = new BiomeGenKashyyyk(StarWarsMod.biomeKashyyykId);
+		StarWarsMod.biomeKashyyyk = new BiomeGenKashyyyk(Resources.biomeKashyyykId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeKashyyyk);
-		StarWarsMod.biomeYavin4 = new BiomeGenYavin(StarWarsMod.biomeYavin4Id);
+		StarWarsMod.biomeYavin4 = new BiomeGenYavin(Resources.biomeYavin4Id);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeYavin4);
-		StarWarsMod.biomeEndor = new BiomeGenEndor(StarWarsMod.biomeEndorId);
+		StarWarsMod.biomeEndor = new BiomeGenEndor(Resources.biomeEndorId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeEndor);
-		StarWarsMod.biomeIlum = new BiomeGenIlum(StarWarsMod.biomeIlumId);
+		StarWarsMod.biomeIlum = new BiomeGenIlum(Resources.biomeIlumId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeIlum);
 		// StarWarsMod.biomeEndorPlains = new
 		// BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
-		StarWarsMod.biomeDagobah = new BiomeGenDagobah(StarWarsMod.dimDagobahId);
+		StarWarsMod.biomeDagobah = new BiomeGenDagobah(Resources.dimDagobahId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeDagobah);
 
-		WorldUtils.registerDimension(StarWarsMod.dimTatooineId, TatooineProvider.class);
-		WorldUtils.registerDimension(StarWarsMod.dimHothId, HothProvider.class);
-		WorldUtils.registerDimension(StarWarsMod.dimKashyyykId, KashyyykProvider.class);
-		WorldUtils.registerDimension(StarWarsMod.dimYavin4Id, YavinProvider.class);
-		WorldUtils.registerDimension(StarWarsMod.dimEndorId, EndorProvider.class);
-		WorldUtils.registerDimension(StarWarsMod.dimIlumId, IlumProvider.class);
-		WorldUtils.registerDimension(StarWarsMod.dimDagobahId, DagobahProvider.class);
+		WorldUtils.registerDimension(Resources.dimTatooineId, TatooineProvider.class);
+		WorldUtils.registerDimension(Resources.dimHothId, HothProvider.class);
+		WorldUtils.registerDimension(Resources.dimKashyyykId, KashyyykProvider.class);
+		WorldUtils.registerDimension(Resources.dimYavin4Id, YavinProvider.class);
+		WorldUtils.registerDimension(Resources.dimEndorId, EndorProvider.class);
+		WorldUtils.registerDimension(Resources.dimIlumId, IlumProvider.class);
+		WorldUtils.registerDimension(Resources.dimDagobahId, DagobahProvider.class);
 
 		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, StarWarsMod.biomeTatooine);

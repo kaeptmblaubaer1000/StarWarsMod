@@ -93,7 +93,7 @@ public class EntitySpeederBlasterRifleBolt extends EntityThrowable
 			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(this.sender), 8.0F);
 			pos.entityHit.setFire(8);
 		}
-		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && StarWarsMod.enableBlasterFire)
+		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
 			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 		this.setDead();
 	}

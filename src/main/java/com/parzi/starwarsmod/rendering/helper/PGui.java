@@ -725,15 +725,15 @@ public class PGui// extends Gui
 
 	public ResourceLocation planetTextureFromDim(int dim)
 	{
-		if (dim == StarWarsMod.dimEndorId)
+		if (dim == Resources.dimEndorId)
 			return Resources.endorTexture;
-		else if (dim == StarWarsMod.dimHothId)
+		else if (dim == Resources.dimHothId)
 			return Resources.hothTexture;
-		else if (dim == StarWarsMod.dimKashyyykId)
+		else if (dim == Resources.dimKashyyykId)
 			return Resources.kashyyykTexture;
-		else if (dim == StarWarsMod.dimTatooineId)
+		else if (dim == Resources.dimTatooineId)
 			return Resources.tatooineTexture;
-		else if (dim == StarWarsMod.dimYavin4Id)
+		else if (dim == Resources.dimYavin4Id)
 			return Resources.yavinTexture;
 
 		return Resources.earthTexture;

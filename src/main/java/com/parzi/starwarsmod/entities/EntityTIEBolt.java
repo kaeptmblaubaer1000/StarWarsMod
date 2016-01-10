@@ -111,7 +111,7 @@ public class EntityTIEBolt extends EntityThrowable
 			pos.entityHit.attackEntityFrom(new DamageSource("bolt"), 16.0F);
 			pos.entityHit.setFire(8);
 		}
-		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && StarWarsMod.enableBlasterFire)
+		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
 			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 		this.setDead();
 	}

@@ -2,16 +2,6 @@ package com.parzi.starwarsmod.jedirobes;
 
 import java.util.List;
 
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
-import com.parzi.starwarsmod.network.PacketUpdateRobes;
-import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
-import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.util.world.ItemUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,6 +10,16 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
+import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.util.world.ItemUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorJediRobes extends ItemArmor
 {
@@ -66,6 +66,62 @@ public class ArmorJediRobes extends ItemArmor
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("isRunning"))
 			return stack.stackTagCompound.getBoolean("isRunning");
 		return false;
+	}
+
+	public static int getHealth(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return 0;
+		return getActiveLevel(stack);
+	}
+
+	public static int getHealth(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("activeHealth"))
+			return stack.stackTagCompound.getInteger("activeHealth");
+		return 0;
+	}
+
+	public static void setHealth(EntityPlayer player, int health)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setHealth(stack, health);
+	}
+
+	public static void setHealth(ItemStack stack, int health)
+	{
+		stack.stackTagCompound.setInteger("activeHealth", health);
+	}
+
+	public static int getActiveLevel(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return 0;
+		return getActiveLevel(stack);
+	}
+
+	public static int getActiveLevel(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("activeLevel"))
+			return stack.stackTagCompound.getInteger("activeLevel");
+		return 0;
+	}
+
+	public static void setActiveLevel(EntityPlayer player, int level)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setActiveLevel(stack, level);
+	}
+
+	public static void setActiveLevel(ItemStack stack, int level)
+	{
+		stack.stackTagCompound.setInteger("activeLevel", level);
 	}
 
 	public static int getLevel(ItemStack stack)
@@ -258,14 +314,34 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		this.setupRobe(stack, player);
 
-		if (player == null || player.getDataWatcher() == null) return;
+		if (player == null || player.getDataWatcher() == null)
+			return;
 
-		boolean running = false;
+		if (world.isRemote)
+		{
+			if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend"))
+			{
+				ForceUtils.isRunning = ((PowerDefend)ForceUtils.activePower).isRunning;
+				ForceUtils.health = ((PowerDefend)ForceUtils.activePower).health;
+			}
 
-		if (ForceUtils.activePower != null && ForceUtils.activePower.name.equals("defend"))
-			running = ((PowerDefend)ForceUtils.activePower).isRunning;
+			player.getDataWatcher().updateObject(Resources.activeDatawatcherId, ForceUtils.activePower == null ? "" : ForceUtils.activePower.name);
+			ArmorJediRobes.setActive(player, ForceUtils.activePower == null ? "" : ForceUtils.activePower.name);
 
-		StarWarsMod.network.sendToServer(new PacketUpdateRobes(player.getCommandSenderName(), ForceUtils.activePower == null ? "" : ForceUtils.activePower.name, ForceUtils.isUsingDuration, ForceUtils.isUsingDuration, player.dimension));
+			player.getDataWatcher().updateObject(Resources.durationDatawatcherId, ForceUtils.isUsingDuration ? 1 : 0);
+			ArmorJediRobes.setDuration(player, ForceUtils.isUsingDuration);
+
+			// player.getDataWatcher().updateObject(Resources.runningDatawatcherId,
+			// ForceUtils.isRunning ? 1 : 0);
+			// ArmorJediRobes.setRunning(player, ForceUtils.isRunning);
+
+			player.getDataWatcher().updateObject(Resources.activeLevelDatawatcherId, ForceUtils.activePower == null ? 0 : ForceUtils.activePower.currentLevel);
+			ArmorJediRobes.setActiveLevel(player, ForceUtils.activePower == null ? 0 : ForceUtils.activePower.currentLevel);
+
+			// player.getDataWatcher().updateObject(Resources.activeHealthDatawatcherId,
+			// ForceUtils.health);
+			// ArmorJediRobes.setHealth(player, ForceUtils.health);
+		}
 	}
 
 	@Override
@@ -278,9 +354,6 @@ public class ArmorJediRobes extends ItemArmor
 	public void onUpdate(ItemStack stack, World world, Entity player, int i, boolean b)
 	{
 		this.setupRobe(stack, player);
-
-		if (player instanceof EntityPlayer)
-			this.onArmorTick(world, (EntityPlayer)player, stack);
 	}
 
 	public void setupRobe(ItemStack stack, Entity player)

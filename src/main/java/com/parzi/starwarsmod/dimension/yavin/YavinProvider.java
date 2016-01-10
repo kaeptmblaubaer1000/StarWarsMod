@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.yavin;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawYavinFourSky;
 
@@ -71,7 +72,7 @@ public class YavinProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeYavin4, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimYavin4Id;
+		this.dimensionId = Resources.dimYavin4Id;
 	}
 
 	@Override

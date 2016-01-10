@@ -9,7 +9,54 @@ public class Resources
 	public static final String VERSION = "1.2.5";
 	public static final String DEV_VER = "dev6";
 	public static String ONLINE_VERSION = "";
+
 	public static boolean IS_DEV_ENVIRONVENT = false;
+
+	public static boolean IS_SEQUEL_RELEASE = true;
+
+	public static int biomeTatooineId;
+	public static int biomeHothId;
+	public static int biomeKashyyykId;
+	public static int biomeYavin4Id;
+	public static int biomeEndorId;
+	public static int biomeEndorPlainsId;
+	public static int biomeDagobahId;
+	public static int biomeIlumId;
+
+	public static int dimTatooineId;
+	public static int dimHothId;
+	public static int dimKashyyykId;
+	public static int dimYavin4Id;
+	public static int dimDagobahId;
+	public static int dimEndorId;
+	public static int dimEndorPlainsId;
+	public static int dimIlumId;
+
+	public static boolean enableCreditsOverlay;
+	public static boolean enableLightsaberStrobe;
+	public static boolean enableBlasterFire;
+	public static boolean enableBuckets;
+	public static boolean enableLightsaber;
+
+	public static boolean beshOverride;
+
+	public static int lightningDatawatcherId;
+	public static int activeDatawatcherId;
+	public static int runningDatawatcherId;
+	public static int activeLevelDatawatcherId;
+	public static int durationDatawatcherId;
+	public static int activeHealthDatawatcherId;
+
+	public static boolean enableTabOriginal = true;
+	public static boolean enableTabSequel = true;
+
+	public static int lightsaberDamage;
+
+	public static int GUI_MV = 0;
+	public static int GUI_ROBES = 1;
+
+	public static boolean enableFlyCommand;
+	public static boolean enableDimCommand;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

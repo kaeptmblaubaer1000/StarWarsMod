@@ -55,7 +55,7 @@ public class GuiPSWMOverlay extends Gui
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent event)
 	{
-		if (event.type != RenderGameOverlayEvent.ElementType.HOTBAR || !StarWarsMod.enableCreditsOverlay)
+		if (event.type != RenderGameOverlayEvent.ElementType.HOTBAR || !Resources.enableCreditsOverlay)
 			return;
 
 		RenderHelper.disableStandardItemLighting();

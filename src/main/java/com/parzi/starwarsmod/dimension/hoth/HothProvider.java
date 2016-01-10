@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.hoth;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawHothSky;
 
@@ -71,7 +72,7 @@ public class HothProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeHoth, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimHothId;
+		this.dimensionId = Resources.dimHothId;
 	}
 
 	@Override

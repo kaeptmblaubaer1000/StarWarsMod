@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.kashyyyk;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawKashyyykSky;
 
@@ -71,7 +72,7 @@ public class KashyyykProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeKashyyyk, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimKashyyykId;
+		this.dimensionId = Resources.dimKashyyykId;
 	}
 
 	@Override

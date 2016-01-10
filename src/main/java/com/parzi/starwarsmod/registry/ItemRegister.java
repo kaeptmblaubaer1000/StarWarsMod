@@ -111,7 +111,7 @@ public class ItemRegister
 			GameRegistry.registerItem(StarWarsMod.customTest, "customItem");
 		}
 
-		if (StarWarsMod.IS_SEQUEL_RELEASE)
+		if (Resources.IS_SEQUEL_RELEASE)
 		{
 			StarWarsMod.sequelLightsaber = new ItemSequelLightsaber();
 			GameRegistry.registerItem(StarWarsMod.sequelLightsaber, "sequelLightsaber");

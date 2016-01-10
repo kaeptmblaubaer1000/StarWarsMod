@@ -1,45 +1,7 @@
 package com.parzi.starwarsmod.handlers;
 
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
-import com.parzi.starwarsmod.entities.EntityBlasterPistolBolt;
-import com.parzi.starwarsmod.entities.EntityBlasterProbeBolt;
-import com.parzi.starwarsmod.entities.EntityBlasterRifleBolt;
-import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
-import com.parzi.starwarsmod.items.ItemBinoculars;
-import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
-import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
-import com.parzi.starwarsmod.network.PacketReverseEntity;
-import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
-import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
-import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
-import com.parzi.starwarsmod.rendering.gui.GuiBinocs;
-import com.parzi.starwarsmod.rendering.gui.GuiVehicle;
-import com.parzi.starwarsmod.rendering.helper.PGui;
-import com.parzi.starwarsmod.sound.PSoundBank;
-import com.parzi.starwarsmod.utils.BlasterBoltType;
-import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.starwarsmod.vehicles.VehicAWing;
-import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
-import com.parzi.starwarsmod.vehicles.VehicTIE;
-import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
-import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.parzi.util.entity.PlayerHelper;
-import com.parzi.util.ui.RenderHelper;
-import com.parzi.util.ui.Text;
-import com.parzi.util.ui.TextUtils;
-import com.parzi.util.vehicle.VehicleAirBase;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -56,6 +18,38 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.items.ItemBinoculars;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.network.PacketCreateBlasterBolt;
+import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
+import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
+import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
+import com.parzi.starwarsmod.rendering.gui.GuiBinocs;
+import com.parzi.starwarsmod.rendering.gui.GuiVehicle;
+import com.parzi.starwarsmod.rendering.helper.PGui;
+import com.parzi.starwarsmod.sound.PSoundBank;
+import com.parzi.starwarsmod.utils.BlasterBoltType;
+import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.starwarsmod.vehicles.VehicAWing;
+import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
+import com.parzi.starwarsmod.vehicles.VehicTIE;
+import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
+import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.util.entity.PlayerHelper;
+import com.parzi.util.ui.Lumberjack;
+import com.parzi.util.ui.RenderHelper;
+import com.parzi.util.ui.Text;
+import com.parzi.util.ui.TextUtils;
+import com.parzi.util.vehicle.VehicleAirBase;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ClientEventHandler
 {
@@ -91,10 +85,12 @@ public class ClientEventHandler
 	{
 		if (event.entity instanceof EntityPlayer)
 		{
-			event.entity.getDataWatcher().addObject(StarWarsMod.lightningDatawatcherId, String.valueOf(""));
-			event.entity.getDataWatcher().addObject(StarWarsMod.activeDatawatcherId, String.valueOf(""));
-			event.entity.getDataWatcher().addObject(StarWarsMod.runningDatawatcherId, Integer.valueOf(0));
-			event.entity.getDataWatcher().addObject(StarWarsMod.durationDatawatcherId, Integer.valueOf(0));
+			event.entity.getDataWatcher().addObject(Resources.lightningDatawatcherId, String.valueOf(""));
+			event.entity.getDataWatcher().addObject(Resources.activeDatawatcherId, String.valueOf(""));
+			event.entity.getDataWatcher().addObject(Resources.runningDatawatcherId, Integer.valueOf(0));
+			event.entity.getDataWatcher().addObject(Resources.durationDatawatcherId, Integer.valueOf(0));
+			event.entity.getDataWatcher().addObject(Resources.activeLevelDatawatcherId, Integer.valueOf(0));
+			event.entity.getDataWatcher().addObject(Resources.activeHealthDatawatcherId, Integer.valueOf(0));
 		}
 	}
 
@@ -142,34 +138,53 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onLivingHurt(LivingHurtEvent event)
 	{
-		if (ForceUtils.activePower != null && event.entityLiving instanceof EntityPlayer)
+		if (event.entityLiving instanceof EntityPlayer)
 		{
-			if (ForceUtils.activePower.name.equals("defend") && ((PowerDefend)ForceUtils.activePower).isRunning)
+			EntityPlayer entityPlayer = (EntityPlayer)event.entityLiving;
+
+			Lumberjack.log("damage player!");
+			Lumberjack.log("active: " + ArmorJediRobes.getActive(entityPlayer));
+			Lumberjack.log("running? " + (ArmorJediRobes.getIsRunning(entityPlayer) ? "yes" : "no"));
+			Lumberjack.log("using duration? " + (ArmorJediRobes.getUsingDuration(entityPlayer) ? "yes" : "no"));
+
+			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getIsRunning(entityPlayer))
 			{
+				Lumberjack.log("defend running!");
 				PowerDefend power = (PowerDefend)ForceUtils.activePower;
-				if (power.health > event.ammount)
+				if (ArmorJediRobes.getHealth(entityPlayer) > event.ammount)
 				{
-					power.health -= event.ammount;
+					if (power != null)
+						power.health -= event.ammount;
+					ArmorJediRobes.setHealth(entityPlayer, (int)(ArmorJediRobes.getHealth(entityPlayer) - event.ammount));
 					event.ammount = 0;
+					Lumberjack.log("Remaining: " + ArmorJediRobes.getHealth(entityPlayer));
+					Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
 				}
 				else
 				{
-					event.ammount -= power.health;
-					power.health = 0;
-					power.isRunning = false;
-					power.recharge = power.rechargeTime;
-					ForceUtils.coolingPowers.add(power);
+					event.ammount -= ArmorJediRobes.getHealth(entityPlayer);
+					ArmorJediRobes.setHealth(entityPlayer, 0);
+					ArmorJediRobes.setRunning(entityPlayer, false);
+					if (power != null)
+					{
+						power.health = 0;
+						power.isRunning = false;
+						power.recharge = power.rechargeTime;
+						ForceUtils.coolingPowers.add(power);
+					}
+					Lumberjack.log("Depleted shield!");
 				}
 			}
 
-			if (ForceUtils.activePower.name.equals("deflect") && ForceUtils.isUsingDuration)
+			if (ArmorJediRobes.getActive(entityPlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(entityPlayer))
 			{
-				Entity entityObj = event.source.getEntity();
-				if (entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterRifleBolt || entityObj instanceof EntityBlasterHeavyBolt || entityObj instanceof EntityBlasterPistolBolt || entityObj instanceof EntityBlasterProbeBolt || entityObj instanceof EntitySpeederBlasterRifleBolt)
+				Lumberjack.log("deflect running!");
+				if (event.source.isProjectile())
 				{
-					StarWarsMod.network.sendToServer(new PacketReverseEntity(entityObj.getEntityId(), entityObj.dimension));
+					Lumberjack.log("Cancelling event!");
 					event.ammount = 0;
+					event.setCanceled(true);
 				}
 			}
 		}

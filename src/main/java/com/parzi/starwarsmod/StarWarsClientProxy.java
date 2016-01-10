@@ -148,7 +148,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		FontManager.registerAll();
 
-		if (StarWarsMod.beshOverride)
+		if (Resources.beshOverride)
 			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
 
 		Lumberjack.log("Client proxy loaded!");

@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.dimension.ilum;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.DrawHothSky;
 
@@ -78,7 +79,7 @@ public class IlumProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeIlum, 1F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = StarWarsMod.dimIlumId;
+		this.dimensionId = Resources.dimIlumId;
 	}
 
 	@Override

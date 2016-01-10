@@ -1,5 +1,6 @@
 package com.parzi.starwarsmod.achievement;
 
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -10,15 +11,15 @@ public class AchievementTrigger
 	@SubscribeEvent
 	public void onDimChanged(PlayerEvent.PlayerChangedDimensionEvent event)
 	{
-		if (event.toDim == StarWarsMod.dimTatooineId)
+		if (event.toDim == Resources.dimTatooineId)
 			event.player.addStat(StarWarsAchievements.travelTatooine, 1);
-		else if (event.toDim == StarWarsMod.dimEndorId)
+		else if (event.toDim == Resources.dimEndorId)
 			event.player.addStat(StarWarsAchievements.travelEndor, 1);
-		else if (event.toDim == StarWarsMod.dimHothId)
+		else if (event.toDim == Resources.dimHothId)
 			event.player.addStat(StarWarsAchievements.travelHoth, 1);
-		else if (event.toDim == StarWarsMod.dimKashyyykId)
+		else if (event.toDim == Resources.dimKashyyykId)
 			event.player.addStat(StarWarsAchievements.travelKashyyyk, 1);
-		else if (event.toDim == StarWarsMod.dimYavin4Id)
+		else if (event.toDim == Resources.dimYavin4Id)
 			event.player.addStat(StarWarsAchievements.travelYavin, 1);
 	}
 

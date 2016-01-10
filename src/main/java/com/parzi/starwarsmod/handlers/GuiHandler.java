@@ -1,6 +1,6 @@
 package com.parzi.starwarsmod.handlers;
 
-import com.parzi.starwarsmod.StarWarsEnum;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.gui.ContainerJediRobes;
 import com.parzi.starwarsmod.rendering.gui.ContainerMV;
 import com.parzi.starwarsmod.rendering.gui.GuiMV;
@@ -16,9 +16,9 @@ public class GuiHandler implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (id == StarWarsEnum.GUI_MV)
+		if (id == Resources.GUI_MV)
 			return new GuiMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
-		if (id == StarWarsEnum.GUI_ROBES)
+		if (id == Resources.GUI_ROBES)
 			return new GuiScreenJediRobes(player);
 		return null;
 	}
@@ -26,9 +26,9 @@ public class GuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (id == StarWarsEnum.GUI_MV)
+		if (id == Resources.GUI_MV)
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
-		if (id == StarWarsEnum.GUI_ROBES)
+		if (id == Resources.GUI_ROBES)
 			return new ContainerJediRobes();
 		return null;
 	}

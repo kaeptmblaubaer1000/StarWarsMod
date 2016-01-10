@@ -1,7 +1,6 @@
 package com.parzi.starwarsmod.blocks;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsEnum;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 import com.parzi.util.world.HarvestLevel;
@@ -73,7 +72,7 @@ public class BlockMV extends BlockContainer
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
 		if (!world.isRemote)
-			player.openGui(StarWarsMod.instance, StarWarsEnum.GUI_MV, world, x, y, z);
+			player.openGui(StarWarsMod.instance, Resources.GUI_MV, world, x, y, z);
 		return true;
 	}
 

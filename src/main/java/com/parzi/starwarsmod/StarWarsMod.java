@@ -4,6 +4,16 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
 import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
@@ -35,8 +45,10 @@ import com.parzi.starwarsmod.network.PacketEntitySetMotion;
 import com.parzi.starwarsmod.network.PacketHealBlock;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
+import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
 import com.parzi.starwarsmod.network.PacketRobesNBT;
 import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
+import com.parzi.starwarsmod.network.PacketRobesStringNBT;
 import com.parzi.starwarsmod.network.PacketShipTargetLock;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.starwarsmod.network.PacketTogglePlayerLightsaber;
@@ -64,21 +76,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
 {
-	public static boolean IS_SEQUEL_RELEASE = true;
-
 	public static boolean hasShownNeedUpdate = false;
 
 	public static Configuration config;
@@ -276,43 +277,8 @@ public class StarWarsMod
 	public static BiomeGenBase biomeDagobah;
 	public static BiomeGenBase biomeIlum;
 
-	public static int biomeTatooineId;
-	public static int biomeHothId;
-	public static int biomeKashyyykId;
-	public static int biomeYavin4Id;
-	public static int biomeEndorId;
-	public static int biomeEndorPlainsId;
-	public static int biomeDagobahId;
-	public static int biomeIlumId;
-
-	public static int dimTatooineId;
-	public static int dimHothId;
-	public static int dimKashyyykId;
-	public static int dimYavin4Id;
-	public static int dimDagobahId;
-	public static int dimEndorId;
-	public static int dimEndorPlainsId;
-	public static int dimIlumId;
-
 	public static boolean isWorldRegistered = false;
 
-	public static boolean enableFlyCommand;
-	public static boolean enableDimCommand;
-	public static boolean enableCreditsOverlay;
-	public static boolean enableLightsaberStrobe;
-	public static boolean enableBlasterFire;
-	public static boolean enableBuckets;
-	public static boolean enableLightsaber;
-	public static boolean beshOverride;
-	public static int lightningDatawatcherId;
-	public static int activeDatawatcherId;
-	public static int runningDatawatcherId;
-	public static int durationDatawatcherId;
-
-	public static boolean enableTabOriginal = true;
-	public static boolean enableTabSequel = true;
-
-	public static int lightsaberDamage;
 	public static boolean isOverlayOnscreen = false;
 
 	public static Block blockMV;
@@ -384,23 +350,29 @@ public class StarWarsMod
 
 		instance = this;
 
-		proxy.doSidedThings();
-
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+
+		StarWarsMod.commonHandler = new CommonEventHandler();
+		StarWarsMod.clientHandler = new ClientEventHandler();
+
+		FMLCommonHandler.instance().bus().register(StarWarsMod.commonHandler);
+		MinecraftForge.EVENT_BUS.register(StarWarsMod.clientHandler);
+
+		proxy.doSidedThings();
 
 		EntityRegister.registerAll();
 
 		MaterialRegister.registerAll();
 
-		if (enableTabOriginal)
+		if (Resources.enableTabOriginal)
 			StarWarsTab = new StarWarsTab();
 		else
 			StarWarsTab = CreativeTabs.tabAllSearch;
 
-		if (IS_SEQUEL_RELEASE)
+		if (Resources.IS_SEQUEL_RELEASE)
 		{
 			Lumberjack.log("Sequel update! Suck it, JJ!");
-			if (enableTabSequel)
+			if (Resources.enableTabSequel)
 				SequelStarWarsTab = new SequelStarWarsTab();
 			else
 				SequelStarWarsTab = CreativeTabs.tabAllSearch;
@@ -442,49 +414,51 @@ public class StarWarsMod
 		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketRobesBooleanNBT.Handler.class, PacketRobesBooleanNBT.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
+
+		Lumberjack.log("Network registered " + String.valueOf(packetId + 1) + " packets!");
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
-		enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
-		enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
-		beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
-		lightningDatawatcherId = config.get("core", "lightningDatawatcherId", 27).getInt();
-		activeDatawatcherId = config.get("core", "activeDatawatcherId", 28).getInt();
-		runningDatawatcherId = config.get("core", "runningDatawatcherId", 29).getInt();
-		durationDatawatcherId = config.get("core", "durationDatawatcherId", 30).getInt();
+		Resources.enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
+		Resources.enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
+		Resources.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
+		Resources.lightningDatawatcherId = config.get("core", "lightningDatawatcherId", 31).getInt();
+		Resources.activeDatawatcherId = config.get("core", "activeDatawatcherId", 30).getInt();
+		Resources.runningDatawatcherId = config.get("core", "runningDatawatcherId", 29).getInt();
+		Resources.durationDatawatcherId = config.get("core", "durationDatawatcherId", 28).getInt();
+		Resources.activeLevelDatawatcherId = config.get("core", "activeLevelDatawatcherId", 27).getInt();
+		Resources.activeHealthDatawatcherId = config.get("core", "activeHealthDatawatcherId", 26).getInt();
 
-		StarWarsMod.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
-		StarWarsMod.dimHothId = config.get("dimensions", "hoth", 3).getInt();
-		StarWarsMod.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
-		StarWarsMod.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
-		StarWarsMod.dimEndorId = config.get("dimensions", "endor", 6).getInt();
-		StarWarsMod.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
-		StarWarsMod.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
+		Resources.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
+		Resources.dimHothId = config.get("dimensions", "hoth", 3).getInt();
+		Resources.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
+		Resources.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
+		Resources.dimEndorId = config.get("dimensions", "endor", 6).getInt();
+		Resources.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
+		Resources.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
 		// StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
 		// StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
 
-		StarWarsMod.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
-		StarWarsMod.biomeHothId = config.get("biomes", "hoth", 197).getInt();
-		StarWarsMod.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
-		StarWarsMod.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
-		StarWarsMod.biomeEndorId = config.get("biomes", "endor", 200).getInt();
-		StarWarsMod.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
-		StarWarsMod.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
+		Resources.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
+		Resources.biomeHothId = config.get("biomes", "hoth", 197).getInt();
+		Resources.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
+		Resources.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
+		Resources.biomeEndorId = config.get("biomes", "endor", 200).getInt();
+		Resources.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
+		Resources.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 
-		enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
+		Resources.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
 
-		lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
-		enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
-		enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
-		enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
-		enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
+		Resources.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
+		Resources.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
+		Resources.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
+		Resources.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
+		Resources.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
 
 		config.save();
-
-		FMLCommonHandler.instance().bus().register(StarWarsMod.commonHandler = new CommonEventHandler());
-
-		MinecraftForge.EVENT_BUS.register(StarWarsMod.clientHandler = new ClientEventHandler());
 
 		Lumberjack.info("Configuration loaded!");
 	}

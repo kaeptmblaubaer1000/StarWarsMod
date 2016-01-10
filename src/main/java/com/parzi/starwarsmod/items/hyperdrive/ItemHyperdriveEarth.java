@@ -2,16 +2,16 @@ package com.parzi.starwarsmod.items.hyperdrive;
 
 import java.util.List;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.network.PacketTeleportPlayerNetwork;
 import com.parzi.util.ui.Lumberjack;
 import com.parzi.util.ui.TextUtils;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ItemHyperdriveEarth extends Item
 {
@@ -36,7 +36,7 @@ public class ItemHyperdriveEarth extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != 0)
+			if (player.isSneaking() && player.dimension != 0 && !world.isRemote)
 			{
 				player.timeUntilPortal = 20;
 				StarWarsMod.network.sendToServer(new PacketTeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, 0));

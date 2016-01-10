@@ -2,18 +2,6 @@ package com.parzi.starwarsmod.rendering.gui;
 
 import java.util.ArrayList;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-import com.parzi.starwarsmod.jedirobes.powers.Power;
-import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
-import com.parzi.starwarsmod.utils.ForceUtils;
-import com.parzi.util.ui.LangUtils;
-import com.parzi.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -21,6 +9,20 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.jedirobes.powers.Power;
+import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
+import com.parzi.starwarsmod.network.PacketRobesStringNBT;
+import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.util.ui.LangUtils;
+import com.parzi.util.ui.TextUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiScreenJediRobes extends GuiScreen
@@ -53,7 +55,10 @@ public class GuiScreenJediRobes extends GuiScreen
 		if (button.enabled)
 		{
 			if (button.id == this.enableButton.id)
+			{
 				ForceUtils.activePower = this.selectedPower.power;
+				StarWarsMod.network.sendToServer(new PacketRobesStringNBT("active", this.selectedPower.power.name, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
 				Power.getPowerFromName(this.selectedPower.power.name).currentLevel++;

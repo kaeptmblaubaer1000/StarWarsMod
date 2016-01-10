@@ -125,7 +125,7 @@ public class ItemLightsaber extends ItemSword
 	{
 		this.icons = new IIcon[this.colors.length];
 		for (int i = 0; i < this.icons.length; i++)
-			if (StarWarsMod.enableLightsaberStrobe)
+			if (Resources.enableLightsaberStrobe)
 				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
 			else
 				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i] + "_static");

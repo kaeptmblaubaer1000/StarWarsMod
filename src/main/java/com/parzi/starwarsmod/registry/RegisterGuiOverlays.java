@@ -1,6 +1,6 @@
 package com.parzi.starwarsmod.registry;
 
-import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.gui.GuiPSWMOverlay;
 
 import net.minecraft.client.Minecraft;
@@ -10,7 +10,7 @@ public class RegisterGuiOverlays
 {
 	public static void registerAll()
 	{
-		if (StarWarsMod.enableCreditsOverlay)
+		if (Resources.enableCreditsOverlay)
 			MinecraftForge.EVENT_BUS.register(new GuiPSWMOverlay(Minecraft.getMinecraft()));
 	}
 }
