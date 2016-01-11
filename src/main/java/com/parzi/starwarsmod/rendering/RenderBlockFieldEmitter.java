@@ -21,7 +21,7 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 	{
 		int i = 1;
 		boolean flag = false;
-		while (i <= 20)
+		while (i <= 50)
 		{
 			if (!te.getWorldObj().isAirBlock(te.xCoord, te.yCoord + i, te.zCoord))
 			{
@@ -43,8 +43,8 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 			for (int n = 1; n < i; n++)
 			{
 				GL11.glPushMatrix();
-				GL11.glColor4f(0, 0, 1, 0.5f);
 				GL11.glTranslatef((float)x, (float)y + n, (float)z);
+				GL11.glColor3f(0, 0, 1);
 				renderCube(Tessellator.instance);
 				GL11.glPopMatrix();
 			}
