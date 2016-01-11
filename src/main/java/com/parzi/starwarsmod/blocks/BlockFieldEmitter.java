@@ -2,6 +2,7 @@ package com.parzi.starwarsmod.blocks;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityFieldEmitter;
 import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
 import com.parzi.util.world.HarvestLevel;
 
@@ -26,7 +27,7 @@ public class BlockFieldEmitter extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
-		return new TileEntityMudTable();
+		return new TileEntityFieldEmitter(world);
 	}
 
 	@Override

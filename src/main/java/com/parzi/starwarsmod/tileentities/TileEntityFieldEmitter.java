@@ -1,9 +1,14 @@
 package com.parzi.starwarsmod.tileentities;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class TileEntityFieldEmitter extends TileEntity
 {
+	public TileEntityFieldEmitter(World world)
+	{
+		this.setWorldObj(world);
+	}
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

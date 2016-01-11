@@ -3,29 +3,104 @@ package com.parzi.starwarsmod.rendering;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.models.ModelBlockTable;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityFieldEmitter;
+import com.parzi.util.ui.Lumberjack;
+import com.parzi.util.ui.RenderHelper;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 
 public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation textures = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/field.png");
-
 	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float tickTime)
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTickTime)
 	{
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
-		Minecraft.getMinecraft().renderEngine.bindTexture(textures);
+		if (StarWarsMod.mc.thePlayer.dimension != te.getWorldObj().provider.dimensionId) return;
 
-		// draw field
-		
-		GL11.glPopMatrix();
+		int i = 1;
+		boolean flag = false;
+		while (i <= 20)
+		{
+			if (!StarWarsMod.mc.thePlayer.worldObj.isAirBlock(te.xCoord, te.yCoord + i, te.zCoord))
+			{
+				flag = true;
+				break;
+			}
+			i++;
+		}
+		if (flag)
+		{
+			GL11.glPushMatrix();
+			GL11.glDepthMask(false);
+			GL11.glDisable(GL11.GL_FOG);
+			GL11.glDisable(GL11.GL_ALPHA_TEST);
+			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+
+			for (int n = 1; n < i; n++)
+			{
+				GL11.glPushMatrix();
+				GL11.glColor4f(0, 0, 1, 0.5f);
+				GL11.glTranslatef((float)x, (float)y + n, (float)z);
+				renderCube(Tessellator.instance);
+				GL11.glPopMatrix();
+			}
+
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glEnable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL11.GL_ALPHA_TEST);
+			GL11.glEnable(GL11.GL_FOG);
+			GL11.glDepthMask(true);
+			GL11.glPopMatrix();
+		}
+	}
+
+	private static void renderCube(Tessellator tes)
+	{
+		tes.startDrawingQuads();
+
+		tes.addVertex(0, 0, 0);
+		tes.addVertex(0, 1, 0);
+		tes.addVertex(1, 1, 0);
+		tes.addVertex(1, 0, 0);
+
+		tes.addVertex(0, 0, 1);
+		tes.addVertex(1, 0, 1);
+		tes.addVertex(1, 1, 1);
+		tes.addVertex(0, 1, 1);
+
+		tes.addVertex(0, 0, 0);
+		tes.addVertex(0, 0, 1);
+		tes.addVertex(0, 1, 1);
+		tes.addVertex(0, 1, 0);
+
+		tes.addVertex(1, 0, 0);
+		tes.addVertex(1, 1, 0);
+		tes.addVertex(1, 1, 1);
+		tes.addVertex(1, 0, 1);
+
+		tes.addVertex(0, 0, 0);
+		tes.addVertex(1, 0, 0);
+		tes.addVertex(1, 0, 1);
+		tes.addVertex(0, 0, 1);
+
+		tes.addVertex(0, 1, 0);
+		tes.addVertex(0, 1, 1);
+		tes.addVertex(1, 1, 1);
+		tes.addVertex(1, 1, 0);
+
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		RenderHelper.disableLightmap();
+		tes.draw();
+		RenderHelper.enableLightmap();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LIGHTING);
 	}
 }
 /*
