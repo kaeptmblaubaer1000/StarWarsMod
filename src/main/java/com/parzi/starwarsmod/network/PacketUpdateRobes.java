@@ -25,13 +25,13 @@ public class PacketUpdateRobes implements IMessage
 				EntityPlayer player = MinecraftServer.getServer().worldServerForDimension(message.dim).getPlayerEntityByName(message.player);
 				if (player != null)
 				{
-					player.getDataWatcher().updateObject(Resources.activeDatawatcherId, message.activeName);
+					//player.getDataWatcher().updateObject(Resources.activeDatawatcherId, message.activeName);
 					ArmorJediRobes.setActive(player, message.activeName);
 
-					player.getDataWatcher().updateObject(Resources.durationDatawatcherId, message.isDuration);
+					//player.getDataWatcher().updateObject(Resources.durationDatawatcherId, message.isDuration);
 					ArmorJediRobes.setDuration(player, message.isDuration == 1);
 
-					player.getDataWatcher().updateObject(Resources.runningDatawatcherId, message.isRunning);
+					//player.getDataWatcher().updateObject(Resources.runningDatawatcherId, message.isRunning);
 					ArmorJediRobes.setRunning(player, message.isRunning == 1);
 				}
 			}

@@ -10,6 +10,7 @@ import com.parzi.starwarsmod.blocks.BlockDeathStarGlass;
 import com.parzi.starwarsmod.blocks.BlockDeathStarLight;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWall;
 import com.parzi.starwarsmod.blocks.BlockEndorBaseWallStairs;
+import com.parzi.starwarsmod.blocks.BlockFieldEmitter;
 import com.parzi.starwarsmod.blocks.BlockHangingBucket;
 import com.parzi.starwarsmod.blocks.BlockHangingCauldron;
 import com.parzi.starwarsmod.blocks.BlockMV;
@@ -28,6 +29,7 @@ import com.parzi.starwarsmod.items.ItemTatooineSand;
 import com.parzi.starwarsmod.items.ItemTatooineSandstone;
 import com.parzi.starwarsmod.tileentities.TileEntityBasket;
 import com.parzi.starwarsmod.tileentities.TileEntityDeathStarDoor;
+import com.parzi.starwarsmod.tileentities.TileEntityFieldEmitter;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingBucket;
 import com.parzi.starwarsmod.tileentities.TileEntityHangingCauldron;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
@@ -44,6 +46,10 @@ public class BlockRegister
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
+
+		StarWarsMod.blockFieldEmitter = new BlockFieldEmitter();
+		GameRegistry.registerBlock(StarWarsMod.blockFieldEmitter, "fieldEmitter");
+		GameRegistry.registerTileEntity(TileEntityFieldEmitter.class, "teFieldEmitter");
 
 		StarWarsMod.blockDeathStarDoor = new BlockDeathStarDoor();
 		GameRegistry.registerBlock(StarWarsMod.blockDeathStarDoor, "deathStarDoor");

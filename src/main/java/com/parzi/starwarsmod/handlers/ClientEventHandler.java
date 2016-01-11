@@ -80,7 +80,6 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak modelCloak;
 
-	@SubscribeEvent
 	public void handleConstruction(EntityConstructing event)
 	{
 		if (event.entity instanceof EntityPlayer)
