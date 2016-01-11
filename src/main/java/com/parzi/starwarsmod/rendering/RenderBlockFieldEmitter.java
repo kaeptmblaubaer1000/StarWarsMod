@@ -19,13 +19,11 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTickTime)
 	{
-		if (StarWarsMod.mc.thePlayer.dimension != te.getWorldObj().provider.dimensionId) return;
-
 		int i = 1;
 		boolean flag = false;
 		while (i <= 20)
 		{
-			if (!StarWarsMod.mc.thePlayer.worldObj.isAirBlock(te.xCoord, te.yCoord + i, te.zCoord))
+			if (!te.getWorldObj().isAirBlock(te.xCoord, te.yCoord + i, te.zCoord))
 			{
 				flag = true;
 				break;
