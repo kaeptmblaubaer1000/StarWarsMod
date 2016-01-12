@@ -397,6 +397,7 @@ public class StarWarsMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		checkJavaVersion();
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
 		int packetId = 0;
 		network.registerMessage(PacketRobesIntNBT.Handler.class, PacketRobesIntNBT.class, packetId++, Side.SERVER);
@@ -473,6 +474,22 @@ public class StarWarsMod
 			event.registerServerCommand(new CommandSWDim());
 		}
 		event.registerServerCommand(new CommandJediRobes());
+	}
+	
+	private void checkJavaVersion()
+	{
+        String versionString = System.getProperty("java.version");
+        int pos = versionString.indexOf('.');
+        pos = versionString.indexOf('.', pos+1);
+        double version = Double.parseDouble(versionString.substring(0, pos));
+        if (version < 1.8)
+        {
+        	Lumberjack.log("+=+=+=+=+=+=+=+==+=+=+=+=+");
+			Lumberjack.warn("Parzi's Star wars Mod only supports Java 8 and above!");
+			Lumberjack.warn("It is REQUIRED to function properly!");
+			Lumberjack.warn("You are currently using: " + version);
+        	Lumberjack.log("+=+=+=+=+=+=+=+==+=+=+=+=+");
+        }
 	}
 }
 /*
