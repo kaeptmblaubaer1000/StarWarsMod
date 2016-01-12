@@ -1,18 +1,12 @@
 package com.parzi.starwarsmod.rendering;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.tileentities.TileEntityFieldEmitter;
-import com.parzi.util.ui.Lumberjack;
-import com.parzi.util.ui.RenderHelper;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.util.ui.RenderHelper;
 
 public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 {
@@ -34,25 +28,19 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 		{
 			GL11.glPushMatrix();
 			GL11.glDepthMask(false);
-			GL11.glDisable(GL11.GL_FOG);
-			GL11.glDisable(GL11.GL_ALPHA_TEST);
-			GL11.glDisable(GL11.GL_CULL_FACE);
 			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
 
 			for (int n = 1; n < i; n++)
 			{
 				GL11.glPushMatrix();
 				GL11.glTranslatef((float)x, (float)y + n, (float)z);
-				GL11.glColor3f(0, 0, 1);
+				GL11.glColor4f(0, 0, 1, 1);
 				renderCube(Tessellator.instance);
 				GL11.glPopMatrix();
 			}
 
 			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_CULL_FACE);
-			GL11.glEnable(GL11.GL_ALPHA_TEST);
-			GL11.glEnable(GL11.GL_FOG);
 			GL11.glDepthMask(true);
 			GL11.glPopMatrix();
 		}
