@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.network;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -20,6 +21,7 @@ import net.minecraft.server.MinecraftServer;
 public class Message<REQ extends Message> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
 	private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap();
+	private static final HashMap<Class, Field[]> fieldCache = new HashMap();
 
 	static
 	{
@@ -55,7 +57,8 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		try
 		{
 			Class<?> clazz = getClass();
-			for (Field f : clazz.getDeclaredFields())
+			Field[] clFields = getClassFields(clazz);
+			for (Field f : clFields)
 			{
 				Class<?> type = f.getType();
 				if (acceptField(f, type)) readField(f, type, buf);
@@ -73,7 +76,8 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		try
 		{
 			Class<?> clazz = getClass();
-			for (Field f : clazz.getDeclaredFields())
+			Field[] clFields = getClassFields(clazz);
+			for (Field f : clFields)
 			{
 				Class<?> type = f.getType();
 				if (acceptField(f, type)) writeField(f, type, buf);
@@ -82,6 +86,22 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		catch (Exception e)
 		{
 			throw new RuntimeException("Error at writing packet " + this, e);
+		}
+	}
+
+	private static Field[] getClassFields(Class<?> clazz)
+	{
+		if (fieldCache.containsValue(clazz))
+			return fieldCache.get(clazz);
+		else
+		{
+			Field[] fields = clazz.getFields();
+			Arrays.sort(fields, (Field f1, Field f2) ->
+			{
+				return f1.getName().compareTo(f2.getName());
+			});
+			fieldCache.put(clazz, fields);
+			return fields;
 		}
 	}
 

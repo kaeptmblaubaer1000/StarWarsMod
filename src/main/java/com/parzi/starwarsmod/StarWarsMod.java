@@ -10,6 +10,7 @@ import com.parzi.starwarsmod.achievement.StarWarsAchievements;
 import com.parzi.starwarsmod.commands.CommandFlySpeed;
 import com.parzi.starwarsmod.commands.CommandJediRobes;
 import com.parzi.starwarsmod.commands.CommandSWDim;
+import com.parzi.starwarsmod.exception.UserError;
 import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.handlers.CommonEventHandler;
 import com.parzi.starwarsmod.handlers.GuiHandler;
@@ -325,7 +326,7 @@ public class StarWarsMod
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;
 	public static ArmorMaterial leiaBunsArmorMat;
-	
+
 	public static DamageSource blasterDamageSource;
 
 	@EventHandler
@@ -340,8 +341,7 @@ public class StarWarsMod
 		{
 			in = new URL("https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md").openStream();
 			Resources.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
-			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION))
-				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
+			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION)) Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
 		}
 		catch (Exception e)
 		{
@@ -349,8 +349,7 @@ public class StarWarsMod
 		}
 		finally
 		{
-			if (in != null)
-				IOUtils.closeQuietly(in);
+			if (in != null) IOUtils.closeQuietly(in);
 		}
 
 		instance = this;
@@ -392,7 +391,7 @@ public class StarWarsMod
 		RecipeRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
-		
+
 		DamageSourceRegister.registerAll();
 
 		proxy.registerRendering();
@@ -401,7 +400,7 @@ public class StarWarsMod
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
+	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
 		checkJavaVersion();
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
@@ -425,7 +424,7 @@ public class StarWarsMod
 		network.registerMessage(PacketRobesBooleanNBT.Handler.class, PacketRobesBooleanNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
 
-		Lumberjack.log("Network registered " + String.valueOf(packetId + 1) + " packets!");
+		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
@@ -481,21 +480,14 @@ public class StarWarsMod
 		}
 		event.registerServerCommand(new CommandJediRobes());
 	}
-	
-	private void checkJavaVersion()
+
+	private void checkJavaVersion() throws UserError
 	{
-        String versionString = System.getProperty("java.version");
-        int pos = versionString.indexOf('.');
-        pos = versionString.indexOf('.', pos+1);
-        double version = Double.parseDouble(versionString.substring(0, pos));
-        if (version < 1.8)
-        {
-        	Lumberjack.log("+=+=+=+=+=+=+=+==+=+=+=+=+");
-			Lumberjack.warn("Parzi's Star wars Mod only supports Java 8 and above!");
-			Lumberjack.warn("It is REQUIRED to function properly!");
-			Lumberjack.warn("You are currently using: " + version);
-        	Lumberjack.log("+=+=+=+=+=+=+=+==+=+=+=+=+");
-        }
+		String versionString = System.getProperty("java.version");
+		int pos = versionString.indexOf('.');
+		pos = versionString.indexOf('.', pos + 1);
+		double version = Double.parseDouble(versionString.substring(0, pos));
+		if (version < 1.8) { throw new UserError("Parzi's Star wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version); }
 	}
 }
 /*
