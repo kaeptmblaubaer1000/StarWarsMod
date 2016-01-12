@@ -17,7 +17,6 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class Message<REQ extends Message> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
-
 	private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap();
 
 	static

@@ -21,6 +21,7 @@ import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.entities.EntityBlasterBoltBase;
 import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;

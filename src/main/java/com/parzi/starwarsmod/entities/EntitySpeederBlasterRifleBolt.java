@@ -13,118 +13,21 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntitySpeederBlasterRifleBolt extends EntityThrowable
+public class EntitySpeederBlasterRifleBolt extends EntityBlasterBoltBase
 {
-	private EntityPlayer sender;
-	private int timeAlive = 0;
-
 	public EntitySpeederBlasterRifleBolt(World par1World)
 	{
-		super(par1World);
+		super(par1World, 8.0f);
 	}
 
 	public EntitySpeederBlasterRifleBolt(World par1World, double par2, double par4, double par6)
 	{
-		super(par1World, par2, par4, par6);
+		super(par1World, par2, par4, par6, 8.0f);
 	}
 
 	public EntitySpeederBlasterRifleBolt(World par1World, EntityLivingBase par2EntityLivingBase)
 	{
-		super(par1World, par2EntityLivingBase);
-		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * 2;
-		double dy = vec3.yCoord * 2;
-		double dz = vec3.zCoord * 2;
-
-		this.posX += dx;
-		this.posY += dy;
-		this.posZ += dz;
-
-		this.sender = (EntityPlayer)par2EntityLivingBase;
-	}
-
-	@Override
-	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
-	{
-		if (this.isEntityInvulnerable())
-			return false;
-		this.setBeenAttacked();
-		if (p_70097_1_.getEntity() != null)
-		{
-			Vec3 vec3 = p_70097_1_.getEntity().getLookVec();
-			if (vec3 != null)
-			{
-				this.motionX = vec3.xCoord;
-				this.motionY = vec3.yCoord;
-				this.motionZ = vec3.zCoord;
-			}
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	protected float getGravityVelocity()
-	{
-		return 0.0F;
-	}
-
-	@Override
-	public void onCollideWithPlayer(EntityPlayer player)
-	{
-		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber || player.getHeldItem().getItem() == StarWarsMod.sequelLightsaber) && player.isBlocking())
-		{
-			Vec3 vec3 = player.getLookVec();
-			if (vec3 != null)
-			{
-				this.motionX = vec3.xCoord;
-				this.motionY = vec3.yCoord;
-				this.motionZ = vec3.zCoord;
-			}
-			player.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
-		}
-	}
-
-	@Override
-	protected void onImpact(MovingObjectPosition pos)
-	{
-		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && (pos.entityHit != this.sender || this.timeAlive > 2))
-		{
-			pos.entityHit.attackEntityFrom(DamageSource.causePlayerDamage(this.sender), 8.0F);
-			pos.entityHit.setFire(8);
-		}
-		else if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
-			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
-		this.setDead();
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		if (this.timeAlive++ > 100)
-			this.setDead();
-		super.onUpdate();
-	}
-
-	@Override
-	public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
-	{
-		float f2 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_3_ * p_70186_3_ + p_70186_5_ * p_70186_5_);
-		p_70186_1_ /= f2;
-		p_70186_3_ /= f2;
-		p_70186_5_ /= f2;
-		p_70186_1_ += 0.007499999832361937D * p_70186_8_;
-		p_70186_3_ += 0.007499999832361937D * p_70186_8_;
-		p_70186_5_ += 0.007499999832361937D * p_70186_8_;
-		p_70186_1_ *= p_70186_7_;
-		p_70186_3_ *= p_70186_7_;
-		p_70186_5_ *= p_70186_7_;
-		this.motionX = p_70186_1_ * 3;
-		this.motionY = p_70186_3_ * 3;
-		this.motionZ = p_70186_5_ * 3;
-		float f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
-		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / 3.141592653589793D);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / 3.141592653589793D);
+		super(par1World, par2EntityLivingBase, 8.0f);
 	}
 }
 /*

@@ -4,16 +4,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
@@ -56,6 +46,7 @@ import com.parzi.starwarsmod.network.PacketTogglePlayerSequelLightsaber;
 import com.parzi.starwarsmod.network.PacketUpdateRobes;
 import com.parzi.starwarsmod.network.PacketXwingSfoil;
 import com.parzi.starwarsmod.registry.BlockRegister;
+import com.parzi.starwarsmod.registry.DamageSourceRegister;
 import com.parzi.starwarsmod.registry.EntityRegister;
 import com.parzi.starwarsmod.registry.ItemRegister;
 import com.parzi.starwarsmod.registry.MaterialRegister;
@@ -76,6 +67,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -323,6 +324,8 @@ public class StarWarsMod
 	public static ArmorMaterial sandtrooperArmorMat;
 	public static ArmorMaterial bobaArmorMat;
 	public static ArmorMaterial leiaBunsArmorMat;
+	
+	public static DamageSource blasterDamageSource;
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
@@ -388,6 +391,8 @@ public class StarWarsMod
 		RecipeRegister.registerAll();
 
 		StarWarsAchievements.registerAll();
+		
+		DamageSourceRegister.registerAll();
 
 		proxy.registerRendering();
 
