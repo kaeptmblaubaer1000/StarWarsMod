@@ -12,8 +12,10 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 
 public class Message<REQ extends Message> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
@@ -32,6 +34,7 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		map(String.class, Message::readString, Message::writeString);
 		map(NBTTagCompound.class, Message::readNBT, Message::writeNBT);
 		map(ItemStack.class, Message::readItemStack, Message::writeItemStack);
+		map(EntityPlayer.class, Message::readPlayer, Message::writePlayer);
 	}
 
 	// The thing you override!
@@ -142,6 +145,19 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 	private static void writeInt(int i, ByteBuf buf)
 	{
 		buf.writeInt(i);
+	}
+
+	private static EntityPlayer readPlayer(ByteBuf buf)
+	{
+		int dim = buf.readInt();
+		String uname = ByteBufUtils.readUTF8String(buf);
+		return MinecraftServer.getServer().worldServerForDimension(dim).getPlayerEntityByName(uname);
+	}
+
+	private static void writePlayer(EntityPlayer player, ByteBuf buf)
+	{
+		buf.writeInt(player.dimension);
+		ByteBufUtils.writeUTF8String(buf, player.getCommandSenderName());
 	}
 
 	private static long readLong(ByteBuf buf)
