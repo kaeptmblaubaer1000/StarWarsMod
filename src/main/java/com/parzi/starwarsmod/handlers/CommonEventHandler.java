@@ -28,6 +28,9 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.util.ui.GuiManager;
+import com.parzi.util.ui.GuiToast;
+import com.parzi.util.ui.GuiToast.ToastPosition;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -87,6 +90,9 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
+		
+		if (KeybindRegistry.keyDebug.isPressed())
+			GuiToast.makeText("Robes level up! You are now level 10!", GuiToast.TIME_LONG).show();
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
@@ -163,6 +169,8 @@ public class CommonEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onTick(TickEvent.ClientTickEvent event)
 	{
+		GuiManager.tick();
+		
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 

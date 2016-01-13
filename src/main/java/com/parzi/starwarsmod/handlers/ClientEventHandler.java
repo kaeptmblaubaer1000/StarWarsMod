@@ -22,6 +22,7 @@ import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.util.entity.PlayerHelper;
+import com.parzi.util.ui.GuiManager;
 import com.parzi.util.ui.Lumberjack;
 import com.parzi.util.ui.RenderHelper;
 import com.parzi.util.ui.Text;
@@ -44,7 +45,6 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -79,19 +79,6 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak modelCloak;
 
-	public void handleConstruction(EntityConstructing event)
-	{
-		if (event.entity instanceof EntityPlayer)
-		{
-			event.entity.getDataWatcher().addObject(Resources.lightningDatawatcherId, String.valueOf(""));
-			event.entity.getDataWatcher().addObject(Resources.activeDatawatcherId, String.valueOf(""));
-			event.entity.getDataWatcher().addObject(Resources.runningDatawatcherId, Integer.valueOf(0));
-			event.entity.getDataWatcher().addObject(Resources.durationDatawatcherId, Integer.valueOf(0));
-			event.entity.getDataWatcher().addObject(Resources.activeLevelDatawatcherId, Integer.valueOf(0));
-			event.entity.getDataWatcher().addObject(Resources.activeHealthDatawatcherId, Integer.valueOf(0));
-		}
-	}
-
 	@SideOnly(Side.CLIENT)
 	public void init()
 	{
@@ -117,7 +104,7 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onFogify(EntityViewRenderEvent.FogDensity fogDensity)
 	{
-		if (fogDensity.entity.worldObj.provider.getDimensionName() == "Dagobah")
+		if (fogDensity.entity.dimension == Resources.dimDagobahId)
 		{
 			fogDensity.density = 0.075F;
 			fogDensity.setCanceled(true);
@@ -147,29 +134,29 @@ public class ClientEventHandler
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getHealth(entityPlayer) > 0)
 			{
-				Lumberjack.log("defend running!");
+				//Lumberjack.log("defend running!");
 				PowerDefend power = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(entityPlayer));
 				if (ArmorJediRobes.getHealth(entityPlayer) > event.ammount)
 				{
 					ArmorJediRobes.setHealth(entityPlayer, (int)(ArmorJediRobes.getHealth(entityPlayer) - event.ammount));
-					Lumberjack.log("Remaining: " + ArmorJediRobes.getHealth(entityPlayer));
-					Lumberjack.log("Cancelling event!");
+					//Lumberjack.log("Remaining: " + ArmorJediRobes.getHealth(entityPlayer));
+					//Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
 				}
 				else
 				{
 					event.ammount -= ArmorJediRobes.getHealth(entityPlayer);
 					ArmorJediRobes.setHealth(entityPlayer, 0);
-					Lumberjack.log("Depleted shield!");
+					//Lumberjack.log("Depleted shield!");
 				}
 			}
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(entityPlayer))
 			{
-				Lumberjack.log("deflect running!");
+				//Lumberjack.log("deflect running!");
 				if (event.source.isProjectile())
 				{
-					Lumberjack.log("Cancelling event!");
+					//Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
 				}
 			}
@@ -246,6 +233,8 @@ public class ClientEventHandler
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
+		
+		GuiManager.render();
 	}
 
 	@SubscribeEvent

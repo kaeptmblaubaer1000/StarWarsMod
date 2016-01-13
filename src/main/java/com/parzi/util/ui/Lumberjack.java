@@ -4,6 +4,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.parzi.util.ui.GuiToast.ToastPosition;
+
 public class Lumberjack
 {
 	public static final Logger logger = LogManager.getLogger("StarWarsMod");
