@@ -14,6 +14,8 @@ public class Resources
 
 	public static boolean IS_SEQUEL_RELEASE = true;
 
+	public static final String[] checkCompatList = { "sw_jbs", "The Star Wars Mod" };
+
 	public static int biomeTatooineId;
 	public static int biomeHothId;
 	public static int biomeKashyyykId;
