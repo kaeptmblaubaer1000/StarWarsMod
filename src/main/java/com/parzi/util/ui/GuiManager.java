@@ -22,7 +22,7 @@ public class GuiManager
 	public static void render()
 	{
 		Iterator<GuiToast> i = GuiToast.toasts.iterator();
-		
+
 		int stack = 0;
 		while (i.hasNext())
 		{
