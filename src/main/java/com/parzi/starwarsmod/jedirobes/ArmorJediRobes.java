@@ -144,18 +144,18 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
-	public static int getLightningTarget(EntityPlayer player)
+	public static int getEntityTarget(EntityPlayer player)
 	{
 		ItemStack stack = getRobes(player);
 		if (stack == null)
 			return -1;
-		return getLightningTarget(stack);
+		return getEntityTarget(stack);
 	}
 
-	public static int getLightningTarget(ItemStack stack)
+	public static int getEntityTarget(ItemStack stack)
 	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLightning))
-			return stack.stackTagCompound.getInteger(Resources.nbtLightning);
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtEntityTarget))
+			return stack.stackTagCompound.getInteger(Resources.nbtEntityTarget);
 		return -1;
 	}
 
@@ -205,7 +205,7 @@ public class ArmorJediRobes extends ItemArmor
 		return getXP(stack);
 	}
 
-	public static void setLightningTarget(EntityPlayer player, int target)
+	public static void setEntityTarget(EntityPlayer player, int target)
 	{
 		ItemStack stack = getRobes(player);
 		if (stack == null)
@@ -215,7 +215,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setLightningTarget(ItemStack stack, int target)
 	{
-		stack.stackTagCompound.setInteger(Resources.nbtLightning, target);
+		stack.stackTagCompound.setInteger(Resources.nbtEntityTarget, target);
 	}
 
 	public static void setActive(ItemStack stack, String activeName)
@@ -290,7 +290,7 @@ public class ArmorJediRobes extends ItemArmor
 	public void createTags(ItemStack stack, EntityPlayer owner)
 	{
 		stack.stackTagCompound.setString(Resources.nbtMaster, owner.getCommandSenderName());
-		stack.stackTagCompound.setString(Resources.nbtLightning, "");
+		stack.stackTagCompound.setString(Resources.nbtEntityTarget, "");
 		stack.stackTagCompound.setInteger(Resources.nbtLevel, 0);
 		stack.stackTagCompound.setInteger(Resources.nbtXp, 0);
 		stack.stackTagCompound.setInteger(Resources.nbtMaxXp, 100);
@@ -304,6 +304,7 @@ public class ArmorJediRobes extends ItemArmor
 		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("defend", 0);
 		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("deflect", 0);
 		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("naturalAwareness", 0);
+		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("grab", 0);
 	}
 
 	@Override

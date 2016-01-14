@@ -25,6 +25,8 @@ public class Power
 			return ForceUtils.powerDeflect;
 		else if (name.equalsIgnoreCase("naturalAwareness"))
 			return ForceUtils.powerNaturalAwareness;
+		else if (name.equalsIgnoreCase("grab"))
+			return ForceUtils.powerGrab;
 		return null;
 	}
 

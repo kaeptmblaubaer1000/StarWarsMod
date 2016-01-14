@@ -100,7 +100,7 @@ public class Resources
 	public static final String nbtIsUsingDuration = "isDuration";
 
 	public static final String nbtMaster = "master";
-	public static final String nbtLightning = "lightning";
+	public static final String nbtEntityTarget = "target";
 	public static final String nbtXp = "xp";
 	public static final String nbtMaxXp = "maxxp";
 	public static final String nbtSide = "side";

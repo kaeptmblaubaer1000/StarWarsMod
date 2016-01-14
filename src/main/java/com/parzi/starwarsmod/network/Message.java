@@ -13,10 +13,12 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Vec3;
 
 public class Message<REQ extends Message> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
@@ -37,6 +39,8 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		map(NBTTagCompound.class, Message::readNBT, Message::writeNBT);
 		map(ItemStack.class, Message::readItemStack, Message::writeItemStack);
 		map(EntityPlayer.class, Message::readPlayer, Message::writePlayer);
+		map(Entity.class, Message::readEntity, Message::writeEntity);
+		map(Vec3.class, Message::readVec3, Message::writeVec3);
 	}
 
 	// The thing you override!
@@ -61,7 +65,8 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 			for (Field f : clFields)
 			{
 				Class<?> type = f.getType();
-				if (acceptField(f, type)) readField(f, type, buf);
+				if (acceptField(f, type))
+					readField(f, type, buf);
 			}
 		}
 		catch (Exception e)
@@ -80,7 +85,8 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 			for (Field f : clFields)
 			{
 				Class<?> type = f.getType();
-				if (acceptField(f, type)) writeField(f, type, buf);
+				if (acceptField(f, type))
+					writeField(f, type, buf);
 			}
 		}
 		catch (Exception e)
@@ -120,14 +126,16 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 	private static Pair<Reader, Writer> getHandler(Class<?> clazz)
 	{
 		Pair<Reader, Writer> pair = handlers.get(clazz);
-		if (pair == null) throw new RuntimeException("No R/W handler for  " + clazz);
+		if (pair == null)
+			throw new RuntimeException("No R/W handler for  " + clazz);
 		return pair;
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
 	{
 		int mods = f.getModifiers();
-		if (Modifier.isFinal(mods) || Modifier.isStatic(mods) || Modifier.isTransient(mods)) return false;
+		if (Modifier.isFinal(mods) || Modifier.isStatic(mods) || Modifier.isTransient(mods))
+			return false;
 
 		return handlers.containsKey(type);
 	}
@@ -165,6 +173,31 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 	private static void writeInt(int i, ByteBuf buf)
 	{
 		buf.writeInt(i);
+	}
+
+	private static Entity readEntity(ByteBuf buf)
+	{
+		int dim = buf.readInt();
+		int id = buf.readInt();
+		return MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
+	}
+
+	private static void writeEntity(Entity entity, ByteBuf buf)
+	{
+		buf.writeInt(entity.dimension);
+		buf.writeInt(entity.getEntityId());
+	}
+
+	private static Vec3 readVec3(ByteBuf buf)
+	{
+		String vectorStr = ByteBufUtils.readUTF8String(buf);
+		String[] vecString = vectorStr.split(",");
+		return Vec3.createVectorHelper(Float.parseFloat(vecString[0]), Float.parseFloat(vecString[1]), Float.parseFloat(vecString[2]));
+	}
+
+	private static void writeVec3(Vec3 vec, ByteBuf buf)
+	{
+		ByteBufUtils.writeUTF8String(buf, String.format("%s,%s,%s", vec.xCoord, vec.yCoord, vec.zCoord));
 	}
 
 	private static EntityPlayer readPlayer(ByteBuf buf)

@@ -1,13 +1,5 @@
 package com.parzi.starwarsmod.handlers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -19,8 +11,9 @@ import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.network.MessageCreateBlasterBolt;
+import com.parzi.starwarsmod.network.MessageEntityGrab;
+import com.parzi.starwarsmod.network.MessageSetEntityTarget;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
-import com.parzi.starwarsmod.network.PacketPlayerLightning;
 import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
 import com.parzi.starwarsmod.network.PacketRobesIntNBT;
@@ -35,7 +28,9 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.ui.GuiManager;
+import com.parzi.util.ui.GuiToast;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -46,6 +41,15 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -95,12 +99,20 @@ public class CommonEventHandler
 		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();
 
 		if (KeybindRegistry.keyRobePower.isPressed())
+		{
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 			{
 				Power active = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 
 				if (active != null && ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name) > 0)
 				{
+					Entity e = EntityUtils.rayTrace(active.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
+
+					if (e != null)
+					{
+						ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
+					}
+
 					active.currentLevel = ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name);
 					if (ArmorJediRobes.getXP(StarWarsMod.mc.thePlayer) - active.getCost() >= 0 && !ForceUtils.isCooling(active.name))
 					{
@@ -145,6 +157,11 @@ public class CommonEventHandler
 					}
 				}
 			}
+		}
+		else
+		{
+			StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
+		}
 	}
 
 	@SubscribeEvent
@@ -169,8 +186,10 @@ public class CommonEventHandler
 	{
 		ArmorJediRobes.setActive(event.player, "");
 		ArmorJediRobes.setDuration(event.player, false);
-		ArmorJediRobes.setLightningTarget(event.player, -1);
+		ArmorJediRobes.setEntityTarget(event.player, -1);
 		ArmorJediRobes.setRunning(event.player, false);
+		ForceUtils.activePower = null;
+		ForceUtils.isUsingDuration = false;
 	}
 
 	@SubscribeEvent
@@ -181,6 +200,54 @@ public class CommonEventHandler
 
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
+
+		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+		{
+			Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+
+			Entity e;
+
+			if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) == -1)
+			{
+				e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
+			}
+			else
+				e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
+
+			if (e != null)
+			{
+				ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
+				if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
+				{
+					if (!e.worldObj.isRemote)
+					{
+						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer));
+					}
+					else
+					{
+						Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
+						look.xCoord *= 3;
+						look.yCoord *= 3;
+						look.zCoord *= 3;
+						look.xCoord += StarWarsMod.mc.thePlayer.posX;
+						look.yCoord += StarWarsMod.mc.thePlayer.posY;
+						look.zCoord += StarWarsMod.mc.thePlayer.posZ;
+						e.fallDistance = 0.0f;
+						e.onGround = false;
+						e.isAirBorne = true;
+						e.timeUntilPortal = 5;
+						e.setVelocity(0, 0, 0);
+						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYaw, StarWarsMod.mc.thePlayer.rotationPitch);
+						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer));
+					}
+					GuiToast.makeText(e, 20).show();
+				}
+			}
+			else
+			{
+				ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, -1);
+			}
+		}
 
 		Item i = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() == null ? null : StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem();
 		if (i != ClientEventHandler.lastItem && (i == StarWarsMod.lightsaber || i == StarWarsMod.sequelLightsaber))
@@ -242,12 +309,12 @@ public class CommonEventHandler
 
 					if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 					{
-						if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
-							if (ClientEventHandler.lastLightning instanceof EntityPlayer)
+						if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+							if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 								try
 								{
-									StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), -1, StarWarsMod.mc.thePlayer.dimension));
-									ClientEventHandler.lastLightning = null;
+									StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
+									ClientEventHandler.lastPlayerTarget = null;
 								}
 								catch (Exception e)
 								{
@@ -257,32 +324,36 @@ public class CommonEventHandler
 						ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
 						ForceUtils.coolingPowers.add(ForceUtils.activePower);
 					}
-					else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
+					else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 					{
 						Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
-						if (ArmorJediRobes.getLightningTarget(StarWarsMod.mc.thePlayer) != -1)
+						if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) != -1)
 						{
-							Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getLightningTarget(StarWarsMod.mc.thePlayer));
+							Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
+
 							if (e != null)
 							{
-								StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
-								StarWarsMod.network.sendToServer(new PacketEntityHurt(e.getEntityId(), e.dimension, power.getDamage()));
+								if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
+								{
+									StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
+									StarWarsMod.network.sendToServer(new PacketEntityHurt(e.getEntityId(), e.dimension, power.getDamage()));
+								}
 								if (e instanceof EntityPlayer)
 									try
 									{
-										ClientEventHandler.lastLightning = (EntityPlayer)e;
-										StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), e.getEntityId(), StarWarsMod.mc.thePlayer.dimension));
+										ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
+										StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
 									}
 									catch (Exception exc)
 									{
 									}
 							}
 						}
-						else if (ClientEventHandler.lastLightning instanceof EntityPlayer)
+						else if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 							try
 							{
-								StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), -1, StarWarsMod.mc.thePlayer.dimension));
-								ClientEventHandler.lastLightning = null;
+								StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
+								ClientEventHandler.lastPlayerTarget = null;
 							}
 							catch (Exception e)
 							{
@@ -302,6 +373,7 @@ public class CommonEventHandler
 		// ((PowerDefend)ForceUtils.activePower).health <= 0 &&
 		// ((PowerDefend)ForceUtils.activePower).isRunning)
 		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("defend") && ArmorJediRobes.getHealth(StarWarsMod.mc.thePlayer) <= 0 && ArmorJediRobes.getIsRunning(StarWarsMod.mc.thePlayer))
+
 		{
 			PowerDefend active = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 			active.health = 0;

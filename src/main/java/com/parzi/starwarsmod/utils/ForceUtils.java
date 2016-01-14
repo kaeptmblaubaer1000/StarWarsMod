@@ -6,6 +6,7 @@ import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDestruction;
+import com.parzi.starwarsmod.jedirobes.powers.PowerGrab;
 import com.parzi.starwarsmod.jedirobes.powers.PowerJump;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.jedirobes.powers.PowerNaturalAwareness;
@@ -28,6 +29,7 @@ public class ForceUtils
 	public static Power powerDefend = new PowerDefend(0);
 	public static Power powerDeflect = new PowerDeflect(0);
 	public static Power powerNaturalAwareness = new PowerNaturalAwareness(0);
+	public static Power powerGrab = new PowerGrab(0);
 
 	public static String[] getAllPowers()
 	{

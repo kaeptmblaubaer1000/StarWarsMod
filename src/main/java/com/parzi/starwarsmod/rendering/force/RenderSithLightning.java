@@ -34,7 +34,7 @@ public class RenderSithLightning
 
 			if (e != null)
 			{
-				ArmorJediRobes.setLightningTarget(mc.thePlayer, e.getEntityId());
+				ArmorJediRobes.setEntityTarget(mc.thePlayer, e.getEntityId());
 				Random r = new Random(e.ticksExisted * 4);
 				float posX2 = (float)e.posX;
 				float posY2 = (float)e.posY + 2;
@@ -50,7 +50,7 @@ public class RenderSithLightning
 			}
 			else
 			{
-				ArmorJediRobes.setLightningTarget(mc.thePlayer, -1);
+				ArmorJediRobes.setEntityTarget(mc.thePlayer, -1);
 			}
 
 		}
@@ -58,24 +58,27 @@ public class RenderSithLightning
 		for (Object entity : this.mc.theWorld.playerEntities)
 		{
 			EntityPlayer player = (EntityPlayer)entity;
-
-			Entity e = null;
-			if (ArmorJediRobes.getLightningTarget(player) != -1)
-				e = player.worldObj.getEntityByID(ArmorJediRobes.getLightningTarget(player));
-
-			if (e != null)
+			
+			if (ArmorJediRobes.getActive(player).equals("lightning") && ArmorJediRobes.getUsingDuration(player))
 			{
-				Random r = new Random(e.ticksExisted * 4);
-				float posX2 = (float)player.posX - 0.5f;
-				float posY2 = (float)player.posY - 1;
-				float posZ2 = (float)player.posZ - 0.5f;
-				for (int i = 0; i < 4; i++)
-				{
-					posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - (player.boundingBox.maxX - player.posX) / 2;
-					posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - (player.boundingBox.maxY - player.posY) / 2;
-					posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - (player.boundingBox.maxZ - player.posZ) / 2;
+				Entity e = null;
+				if (ArmorJediRobes.getEntityTarget(player) != -1)
+					e = player.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(player));
 
-					this.render(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
+				if (e != null)
+				{
+					Random r = new Random(e.ticksExisted * 4);
+					float posX2 = (float)player.posX - 0.5f;
+					float posY2 = (float)player.posY - 1;
+					float posZ2 = (float)player.posZ - 0.5f;
+					for (int i = 0; i < 4; i++)
+					{
+						posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - (player.boundingBox.maxX - player.posX) / 2;
+						posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - (player.boundingBox.maxY - player.posY) / 2;
+						posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - (player.boundingBox.maxZ - player.posZ) / 2;
+
+						this.render(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
+					}
 				}
 			}
 		}
@@ -120,19 +123,19 @@ public class RenderSithLightning
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glColor3f(1, 1, 1);
 			GL11.glPopMatrix();
-			 
-			//Tessellator tessellator = Tessellator.instance;
-			//GL11.glDisable(GL11.GL_TEXTURE_2D);
-			//GL11.glDisable(GL11.GL_LIGHTING);
-			//tessellator.startDrawing(3);
-			//tessellator.setColorOpaque_I(0);
 
-			//tessellator.addVertex(posX, posY, posZ);
-			//tessellator.addVertex(posX2, posY2, posZ2);
+			// Tessellator tessellator = Tessellator.instance;
+			// GL11.glDisable(GL11.GL_TEXTURE_2D);
+			// GL11.glDisable(GL11.GL_LIGHTING);
+			// tessellator.startDrawing(3);
+			// tessellator.setColorOpaque_I(0);
 
-			//tessellator.draw();
-			//GL11.glEnable(GL11.GL_LIGHTING);
-			//GL11.glEnable(GL11.GL_TEXTURE_2D);
+			// tessellator.addVertex(posX, posY, posZ);
+			// tessellator.addVertex(posX2, posY2, posZ2);
+
+			// tessellator.draw();
+			// GL11.glEnable(GL11.GL_LIGHTING);
+			// GL11.glEnable(GL11.GL_TEXTURE_2D);
 		}
 		else
 		{

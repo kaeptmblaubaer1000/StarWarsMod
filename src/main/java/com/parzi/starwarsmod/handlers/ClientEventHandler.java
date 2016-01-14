@@ -1,11 +1,13 @@
 package com.parzi.starwarsmod.handlers;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -24,7 +26,9 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
+import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.MessageCreateBlasterBolt;
+import com.parzi.starwarsmod.network.MessageEntityGrab;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
@@ -39,8 +43,10 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.entity.PlayerHelper;
 import com.parzi.util.ui.GuiManager;
+import com.parzi.util.ui.GuiToast;
 import com.parzi.util.ui.RenderHelper;
 import com.parzi.util.ui.Text;
 import com.parzi.util.ui.TextUtils;
@@ -56,7 +62,7 @@ public class ClientEventHandler
 	public static long lastTime = 0;
 
 	public static EntityPlayer lightningFrom = null;
-	public static EntityPlayer lastLightning = null;
+	public static EntityPlayer lastPlayerTarget = null;
 
 	@SideOnly(Side.CLIENT)
 	public static PSoundBank soundBank;
@@ -137,29 +143,30 @@ public class ClientEventHandler
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getHealth(entityPlayer) > 0)
 			{
-				//Lumberjack.log("defend running!");
+				// Lumberjack.log("defend running!");
 				PowerDefend power = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(entityPlayer));
 				if (ArmorJediRobes.getHealth(entityPlayer) > event.ammount)
 				{
 					ArmorJediRobes.setHealth(entityPlayer, (int)(ArmorJediRobes.getHealth(entityPlayer) - event.ammount));
-					//Lumberjack.log("Remaining: " + ArmorJediRobes.getHealth(entityPlayer));
-					//Lumberjack.log("Cancelling event!");
+					// Lumberjack.log("Remaining: " +
+					// ArmorJediRobes.getHealth(entityPlayer));
+					// Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
 				}
 				else
 				{
 					event.ammount -= ArmorJediRobes.getHealth(entityPlayer);
 					ArmorJediRobes.setHealth(entityPlayer, 0);
-					//Lumberjack.log("Depleted shield!");
+					// Lumberjack.log("Depleted shield!");
 				}
 			}
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(entityPlayer))
 			{
-				//Lumberjack.log("deflect running!");
+				// Lumberjack.log("deflect running!");
 				if (event.source.isProjectile())
 				{
-					//Lumberjack.log("Cancelling event!");
+					// Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
 				}
 			}
