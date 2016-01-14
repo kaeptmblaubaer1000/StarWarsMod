@@ -25,8 +25,6 @@ public class RenderSithLightning
 	{
 		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 		{
-			GuiToast.makeText(ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer), 1).show();
-
 			PowerLightning power = (PowerLightning)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 
 			if (power.duration >= power.getDuration())
@@ -87,18 +85,54 @@ public class RenderSithLightning
 	{
 		if (distance < curDetail)
 		{
-			Tessellator tessellator = Tessellator.instance;
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
-			GL11.glDisable(GL11.GL_LIGHTING);
-			tessellator.startDrawing(3);
-			tessellator.setColorOpaque_I(0);
+			GL11.glPushMatrix();
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
+			GL11.glEnable(GL11.GL_LINE_SMOOTH);
+			GL11.glTranslated(-(this.mc.thePlayer.posX - 0.5), -(this.mc.thePlayer.posY - 0.5f), -(this.mc.thePlayer.posZ - 0.5));
 
-			tessellator.addVertex(posX, posY, posZ);
-			tessellator.addVertex(posX2, posY2, posZ2);
+			GL11.glLineWidth(8);
+			GL11.glColor3f(0f, 0f, 1f);
 
-			tessellator.draw();
-			GL11.glEnable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glLineWidth(6);
+			GL11.glColor3f(0.5f, 0.5f, 1f);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glLineWidth(2);
+			GL11.glColor3f(1, 1, 1);
+
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex3d(posX, posY, posZ);
+			GL11.glVertex3d(posX2, posY2, posZ2);
+			GL11.glEnd();
+
+			GL11.glDisable(GL11.GL_LINE_SMOOTH);
+			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glColor3f(1, 1, 1);
+			GL11.glPopMatrix();
+			 
+			//Tessellator tessellator = Tessellator.instance;
+			//GL11.glDisable(GL11.GL_TEXTURE_2D);
+			//GL11.glDisable(GL11.GL_LIGHTING);
+			//tessellator.startDrawing(3);
+			//tessellator.setColorOpaque_I(0);
+
+			//tessellator.addVertex(posX, posY, posZ);
+			//tessellator.addVertex(posX2, posY2, posZ2);
+
+			//tessellator.draw();
+			//GL11.glEnable(GL11.GL_LIGHTING);
+			//GL11.glEnable(GL11.GL_TEXTURE_2D);
 		}
 		else
 		{
