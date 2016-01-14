@@ -1,16 +1,16 @@
 package com.parzi.starwarsmod.rendering.force;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
 
 /**
  * Jedi Robes - Weaston
@@ -168,6 +168,26 @@ public class ModelJediCloak extends ModelBiped
             this.HoodR.rotationPointY = 0.0F;
             this.HoodTop.rotationPointY = 0.0F;
         }
+
+		if (this.isRiding)
+		{
+			this.ArmL.rotateAngleX += -((float)Math.PI / 5F);
+			this.ArmR.rotateAngleX += -((float)Math.PI / 5F);
+		}
+
+		if (this.aimedBow)
+		{
+			this.bipedRightArm.rotateAngleZ = 0.0F;
+			this.bipedLeftArm.rotateAngleZ = 0.0F;
+			this.bipedRightArm.rotateAngleY = -(0.1F * 0.6F) + this.bipedHead.rotateAngleY;
+			this.bipedLeftArm.rotateAngleY = 0.1F * 0.6F + this.bipedHead.rotateAngleY + 0.4F;
+			this.bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
+			this.bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
+			this.bipedRightArm.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+			this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+			this.bipedRightArm.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
+			this.bipedLeftArm.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
+		}
 	}
 
 	public void renderCloak(RenderPlayerEvent.Specials.Post event)
@@ -201,7 +221,7 @@ public class ModelJediCloak extends ModelBiped
 
 			if (event.entityPlayer.isSneaking())
 				f5 += 25.0F;
-			
+
 			f6 *= 1.8f;
 
 			GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);

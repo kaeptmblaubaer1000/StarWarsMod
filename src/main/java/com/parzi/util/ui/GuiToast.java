@@ -2,13 +2,13 @@ package com.parzi.util.ui;
 
 import java.util.ArrayList;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiToast extends Gui
 {
@@ -30,7 +30,7 @@ public class GuiToast extends Gui
 
 	/**
 	 * Private constructor for a new toast
-	 * 
+	 *
 	 * @param text
 	 *            The text to show
 	 * @param length
@@ -54,7 +54,7 @@ public class GuiToast extends Gui
 
 	/**
 	 * Render method called by {@link GuiManager}
-	 * 
+	 *
 	 * @param stack
 	 *            The vertical stack size, for stacking
 	 */
@@ -87,7 +87,7 @@ public class GuiToast extends Gui
 
 	/**
 	 * Draws the tooltip backdrop
-	 * 
+	 *
 	 * @param x
 	 *            The x position
 	 * @param y
@@ -115,7 +115,7 @@ public class GuiToast extends Gui
 
 	/**
 	 * Creates a new toast, but doesn't show it
-	 * 
+	 *
 	 * @param text
 	 *            The text to notify the player
 	 * @param length
@@ -132,7 +132,7 @@ public class GuiToast extends Gui
 	/**
 	 * Creates a new toast in the default position (bottom right), but doesn't
 	 * show it
-	 * 
+	 *
 	 * @param text
 	 *            The text to notify the player
 	 * @param length

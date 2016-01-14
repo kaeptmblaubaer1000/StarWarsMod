@@ -5,6 +5,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
 import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
@@ -30,7 +41,7 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
 import com.parzi.starwarsmod.network.MessageCreateBlasterBolt;
-import com.parzi.starwarsmod.network.PacketDestructionBolt;
+import com.parzi.starwarsmod.network.MessageCreateDestructionBolt;
 import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketEntitySetMotion;
@@ -70,16 +81,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -406,7 +407,7 @@ public class StarWarsMod
 		checkJavaVersion();
 
 		checkCompat();
-		
+
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
 		int packetId = 0;
 		network.registerMessage(PacketRobesIntNBT.Handler.class, PacketRobesIntNBT.class, packetId++, Side.SERVER);
@@ -420,7 +421,7 @@ public class StarWarsMod
 		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketPlayerLightning.Handler.class, PacketPlayerLightning.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketDestructionBolt.Handler.class, PacketDestructionBolt.class, packetId++, Side.SERVER);
+		network.registerMessage(MessageCreateDestructionBolt.class, MessageCreateDestructionBolt.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketEntitySetMotion.Handler.class, PacketEntitySetMotion.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, packetId++, Side.SERVER);

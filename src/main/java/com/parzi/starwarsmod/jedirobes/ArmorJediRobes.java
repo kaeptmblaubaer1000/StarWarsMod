@@ -144,19 +144,19 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
-	public static String getLightningTarget(EntityPlayer player)
+	public static int getLightningTarget(EntityPlayer player)
 	{
 		ItemStack stack = getRobes(player);
 		if (stack == null)
-			return "";
+			return -1;
 		return getLightningTarget(stack);
 	}
 
-	public static String getLightningTarget(ItemStack stack)
+	public static int getLightningTarget(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLightning))
-			return stack.stackTagCompound.getString(Resources.nbtLightning);
-		return "";
+			return stack.stackTagCompound.getInteger(Resources.nbtLightning);
+		return -1;
 	}
 
 	public static int getMaxXP(ItemStack stack)
@@ -205,7 +205,7 @@ public class ArmorJediRobes extends ItemArmor
 		return getXP(stack);
 	}
 
-	public static void setLightningTarget(EntityPlayer player, String target)
+	public static void setLightningTarget(EntityPlayer player, int target)
 	{
 		ItemStack stack = getRobes(player);
 		if (stack == null)
@@ -213,9 +213,9 @@ public class ArmorJediRobes extends ItemArmor
 		setLightningTarget(stack, target);
 	}
 
-	public static void setLightningTarget(ItemStack stack, String target)
+	public static void setLightningTarget(ItemStack stack, int target)
 	{
-		stack.stackTagCompound.setString(Resources.nbtLightning, target);
+		stack.stackTagCompound.setInteger(Resources.nbtLightning, target);
 	}
 
 	public static void setActive(ItemStack stack, String activeName)

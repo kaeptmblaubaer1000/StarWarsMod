@@ -1,6 +1,9 @@
 package com.parzi.starwarsmod.network;
 
-import com.parzi.starwarsmod.Resources;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
+
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.util.ui.Lumberjack;
 
@@ -8,9 +11,6 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 
 public class PacketPlayerLightning implements IMessage
 {
@@ -38,14 +38,14 @@ public class PacketPlayerLightning implements IMessage
 	}
 
 	private String player;
-	private String lightning;
+	private int lightning;
 	private int dim;
 
 	public PacketPlayerLightning()
 	{
 	}
 
-	public PacketPlayerLightning(String player, String lightning, int dim)
+	public PacketPlayerLightning(String player, int lightning, int dim)
 	{
 		this.player = player;
 		this.lightning = lightning;
@@ -56,7 +56,7 @@ public class PacketPlayerLightning implements IMessage
 	public void fromBytes(ByteBuf buf)
 	{
 		this.player = ByteBufUtils.readUTF8String(buf);
-		this.lightning = ByteBufUtils.readUTF8String(buf);
+		this.lightning = ByteBufUtils.readVarInt(buf, 5);
 		this.dim = ByteBufUtils.readVarInt(buf, 5);
 	}
 
@@ -64,7 +64,7 @@ public class PacketPlayerLightning implements IMessage
 	public void toBytes(ByteBuf buf)
 	{
 		ByteBufUtils.writeUTF8String(buf, this.player);
-		ByteBufUtils.writeUTF8String(buf, this.lightning);
+		ByteBufUtils.writeVarInt(buf, this.lightning, 5);
 		ByteBufUtils.writeVarInt(buf, this.dim, 5);
 	}
 }

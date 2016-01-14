@@ -1,5 +1,13 @@
 package com.parzi.starwarsmod.handlers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -10,7 +18,6 @@ import com.parzi.starwarsmod.entities.EntitySpeederBlasterRifleBolt;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
-import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.MessageCreateBlasterBolt;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketPlayerLightning;
@@ -29,23 +36,16 @@ import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.util.ui.GuiManager;
-import com.parzi.util.ui.GuiToast;
-import com.parzi.util.ui.GuiToast.ToastPosition;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 
 public class CommonEventHandler
 {
@@ -90,9 +90,9 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
-		
-		if (KeybindRegistry.keyDebug.isPressed())
-			GuiToast.makeText("Robes level up! You are now level 10!", GuiToast.TIME_LONG).show();
+
+		// if (KeybindRegistry.keyDebug.isPressed())
+		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
@@ -148,20 +148,28 @@ public class CommonEventHandler
 	}
 
 	@SubscribeEvent
+	public void logOut(PlayerLoggedInEvent event)
+	{
+		resetRobes(event);
+	}
+
+	@SubscribeEvent
 	public void logOut(PlayerLoggedOutEvent event)
 	{
-		ArmorJediRobes.setActive(event.player, "");
-		ArmorJediRobes.setDuration(event.player, false);
-		ArmorJediRobes.setLightningTarget(event.player, "");
-		ArmorJediRobes.setRunning(event.player, false);
+		resetRobes(event);
 	}
 
 	@SubscribeEvent
 	public void logOut(PlayerRespawnEvent event)
 	{
+		resetRobes(event);
+	}
+
+	public void resetRobes(PlayerEvent event)
+	{
 		ArmorJediRobes.setActive(event.player, "");
 		ArmorJediRobes.setDuration(event.player, false);
-		ArmorJediRobes.setLightningTarget(event.player, "");
+		ArmorJediRobes.setLightningTarget(event.player, -1);
 		ArmorJediRobes.setRunning(event.player, false);
 	}
 
@@ -170,7 +178,7 @@ public class CommonEventHandler
 	public void onTick(TickEvent.ClientTickEvent event)
 	{
 		GuiManager.tick();
-		
+
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 
@@ -225,7 +233,7 @@ public class CommonEventHandler
 
 				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
-				if (ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
+				if (ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && ForceUtils.activePower != null)
 				{
 					ForceUtils.activePower.duration++;
 
@@ -238,7 +246,7 @@ public class CommonEventHandler
 							if (ClientEventHandler.lastLightning instanceof EntityPlayer)
 								try
 								{
-									StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
+									StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), -1, StarWarsMod.mc.thePlayer.dimension));
 									ClientEventHandler.lastLightning = null;
 								}
 								catch (Exception e)
@@ -251,25 +259,29 @@ public class CommonEventHandler
 					}
 					else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
 					{
-						PowerLightning power = (PowerLightning)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
-						if (power.getTarget() != null)
+						Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+						if (ArmorJediRobes.getLightningTarget(StarWarsMod.mc.thePlayer) != -1)
 						{
-							StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
-							StarWarsMod.network.sendToServer(new PacketEntityHurt(power.getTarget().getEntityId(), power.getTarget().dimension, power.getDamage()));
-							if (power.getTarget() instanceof EntityPlayer)
-								try
-								{
-									ClientEventHandler.lastLightning = (EntityPlayer)power.getTarget();
-									StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), power.getTarget().getCommandSenderName(), StarWarsMod.mc.thePlayer.dimension));
-								}
-								catch (Exception e)
-								{
-								}
+							Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getLightningTarget(StarWarsMod.mc.thePlayer));
+							if (e != null)
+							{
+								StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
+								StarWarsMod.network.sendToServer(new PacketEntityHurt(e.getEntityId(), e.dimension, power.getDamage()));
+								if (e instanceof EntityPlayer)
+									try
+									{
+										ClientEventHandler.lastLightning = (EntityPlayer)e;
+										StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), e.getEntityId(), StarWarsMod.mc.thePlayer.dimension));
+									}
+									catch (Exception exc)
+									{
+									}
+							}
 						}
 						else if (ClientEventHandler.lastLightning instanceof EntityPlayer)
 							try
 							{
-								StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), "", StarWarsMod.mc.thePlayer.dimension));
+								StarWarsMod.network.sendToServer(new PacketPlayerLightning(StarWarsMod.mc.thePlayer.getCommandSenderName(), -1, StarWarsMod.mc.thePlayer.dimension));
 								ClientEventHandler.lastLightning = null;
 							}
 							catch (Exception e)

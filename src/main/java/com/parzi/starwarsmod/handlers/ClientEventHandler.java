@@ -1,5 +1,23 @@
 package com.parzi.starwarsmod.handlers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.FOVUpdateEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.items.ItemBinoculars;
@@ -23,7 +41,6 @@ import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.util.entity.PlayerHelper;
 import com.parzi.util.ui.GuiManager;
-import com.parzi.util.ui.Lumberjack;
 import com.parzi.util.ui.RenderHelper;
 import com.parzi.util.ui.Text;
 import com.parzi.util.ui.TextUtils;
@@ -32,23 +49,6 @@ import com.parzi.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class ClientEventHandler
 {
@@ -127,10 +127,13 @@ public class ClientEventHandler
 		{
 			EntityPlayer entityPlayer = (EntityPlayer)event.entityLiving;
 
-			Lumberjack.log("damage player!");
-			Lumberjack.log("active: " + ArmorJediRobes.getActive(entityPlayer));
-			Lumberjack.log("running? " + (ArmorJediRobes.getIsRunning(entityPlayer) ? "yes" : "no"));
-			Lumberjack.log("using duration? " + (ArmorJediRobes.getUsingDuration(entityPlayer) ? "yes" : "no"));
+			// Lumberjack.log("damage player!");
+			// Lumberjack.log("active: " +
+			// ArmorJediRobes.getActive(entityPlayer));
+			// Lumberjack.log("running? " +
+			// (ArmorJediRobes.getIsRunning(entityPlayer) ? "yes" : "no"));
+			// Lumberjack.log("using duration? " +
+			// (ArmorJediRobes.getUsingDuration(entityPlayer) ? "yes" : "no"));
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getHealth(entityPlayer) > 0)
 			{
@@ -233,7 +236,7 @@ public class ClientEventHandler
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
-		
+
 		GuiManager.render();
 	}
 

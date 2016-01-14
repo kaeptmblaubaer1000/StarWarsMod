@@ -22,14 +22,4 @@ public class PowerLightning extends Power
 		this.healthMult = 1;
 		this.isDurationBased = true;
 	}
-
-	public Entity getTarget()
-	{
-		return this.target;
-	}
-
-	public void setTarget(Entity e)
-	{
-		this.target = e;
-	}
 }

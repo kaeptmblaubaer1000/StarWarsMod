@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.PacketDestructionBolt;
-
 import net.minecraft.entity.player.EntityPlayer;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.MessageCreateDestructionBolt;
 
 public class PowerDestruction extends Power
 {
@@ -23,7 +23,7 @@ public class PowerDestruction extends Power
 	{
 		if (this.recharge == 0)
 		{
-			StarWarsMod.network.sendToServer(new PacketDestructionBolt(player.getCommandSenderName(), player.worldObj.provider.dimensionId, 2 + 2 * this.currentLevel));
+			StarWarsMod.network.sendToServer(new MessageCreateDestructionBolt(player, 2 + 2 * this.currentLevel));
 
 			return true;
 		}
