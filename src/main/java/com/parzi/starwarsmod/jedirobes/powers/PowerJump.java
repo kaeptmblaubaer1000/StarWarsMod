@@ -33,6 +33,7 @@ public class PowerJump extends Power
 			}
 
 			player.isAirBorne = true;
+			player.fallDistance = 0.0f;
 
 			return true;
 		}

@@ -240,7 +240,6 @@ public class CommonEventHandler
 						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYaw, StarWarsMod.mc.thePlayer.rotationPitch);
 						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer));
 					}
-					GuiToast.makeText(e, 20).show();
 				}
 			}
 			else
