@@ -1,5 +1,14 @@
 package com.parzi.starwarsmod.handlers;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -18,8 +27,10 @@ import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
 import com.parzi.starwarsmod.network.PacketRobesIntNBT;
 import com.parzi.starwarsmod.registry.KeybindRegistry;
+import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
+import com.parzi.starwarsmod.sound.SoundShipMove;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
@@ -31,6 +42,7 @@ import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.ui.GuiManager;
 import com.parzi.util.ui.GuiToast;
+import com.parzi.util.vehicle.VehicleAirBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -41,18 +53,12 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
+	private static boolean wasInShip = false;
+	private static boolean isInShip = false;
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
@@ -201,6 +207,30 @@ public class CommonEventHandler
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 
+		isInShip = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase;
+
+		if (isInShip && !wasInShip)
+		{
+			GuiToast.makeText("Sound Started", 60).show();
+			String ship = "unknown";
+			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
+				ship = "awing";
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+				ship = "xwing";
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
+				ship = "tie";
+			StarWarsMod.clientHandler.soundBank.shipAlarm = new SoundShipMove(ship);
+			StarWarsMod.clientHandler.soundBank.play(PSoundBank.shipAlarm);
+		}
+
+		if (!isInShip && wasInShip)
+		{
+			GuiToast.makeText("Sound Stopped", 60).show();
+			StarWarsMod.clientHandler.soundBank.stop(PSoundBank.shipAlarm);
+		}
+
+		wasInShip = isInShip;
+
 		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 		{
 			Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
@@ -219,16 +249,19 @@ public class CommonEventHandler
 				ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
 				if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 				{
+					if (ForceUtils.distanceToEntity == -1)
+						ForceUtils.distanceToEntity = (float)Vec3.createVectorHelper(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ).distanceTo(Vec3.createVectorHelper(e.posX, e.posY, e.posZ));
+
 					if (!e.worldObj.isRemote)
 					{
-						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer));
+						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
 					}
 					else
 					{
 						Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
-						look.xCoord *= 3;
-						look.yCoord *= 3;
-						look.zCoord *= 3;
+						look.xCoord *= ForceUtils.distanceToEntity;
+						look.yCoord *= ForceUtils.distanceToEntity;
+						look.zCoord *= ForceUtils.distanceToEntity;
 						look.xCoord += StarWarsMod.mc.thePlayer.posX;
 						look.yCoord += StarWarsMod.mc.thePlayer.posY;
 						look.zCoord += StarWarsMod.mc.thePlayer.posZ;
@@ -237,14 +270,15 @@ public class CommonEventHandler
 						e.isAirBorne = true;
 						e.timeUntilPortal = 5;
 						e.setVelocity(0, 0, 0);
-						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYaw, StarWarsMod.mc.thePlayer.rotationPitch);
-						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer));
+						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
+						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
 					}
 				}
 			}
 			else
 			{
 				ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, -1);
+				ForceUtils.distanceToEntity = -1;
 			}
 		}
 

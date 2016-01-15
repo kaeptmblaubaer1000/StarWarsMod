@@ -18,6 +18,7 @@ public class ForceUtils
 	public static Power activePower = null;
 	public static boolean isUsingDuration = false;
 	public static int health = 0;
+	public static float distanceToEntity = -1;
 	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
 	public static ArrayList<Power> queueToRemove = new ArrayList<Power>();
 

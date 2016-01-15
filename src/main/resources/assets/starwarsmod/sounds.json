@@ -83,7 +83,7 @@
             "vehicle/xwing/explode"
         ]
     },
-    "vehicle.alarm.loop1": {
+    "vehicle.alarm.loop": {
         "category": "neutral",
         "sounds": [
             "vehicle/alarm/loop1"
