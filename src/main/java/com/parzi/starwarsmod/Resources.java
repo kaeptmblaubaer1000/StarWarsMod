@@ -39,15 +39,9 @@ public class Resources
 	public static boolean enableBlasterFire;
 	public static boolean enableBuckets;
 	public static boolean enableLightsaber;
+	public static boolean enableGlobalLeaderboard;
 
 	public static boolean beshOverride;
-
-	public static int lightningDatawatcherId;
-	public static int activeDatawatcherId;
-	public static int runningDatawatcherId;
-	public static int activeLevelDatawatcherId;
-	public static int durationDatawatcherId;
-	public static int activeHealthDatawatcherId;
 
 	public static boolean enableTabOriginal = true;
 	public static boolean enableTabSequel = true;

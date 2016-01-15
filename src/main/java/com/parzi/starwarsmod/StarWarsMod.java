@@ -86,6 +86,7 @@ import net.minecraftforge.common.config.Configuration;
 public class StarWarsMod
 {
 	public static boolean hasShownNeedUpdate = false;
+	public static boolean hasShownLeaderboardPart = false;
 
 	public static Configuration config;
 
@@ -438,12 +439,7 @@ public class StarWarsMod
 		Resources.enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		Resources.enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
 		Resources.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
-		Resources.lightningDatawatcherId = config.get("core", "lightningDatawatcherId", 31).getInt();
-		Resources.activeDatawatcherId = config.get("core", "activeDatawatcherId", 30).getInt();
-		Resources.runningDatawatcherId = config.get("core", "runningDatawatcherId", 29).getInt();
-		Resources.durationDatawatcherId = config.get("core", "durationDatawatcherId", 28).getInt();
-		Resources.activeLevelDatawatcherId = config.get("core", "activeLevelDatawatcherId", 27).getInt();
-		Resources.activeHealthDatawatcherId = config.get("core", "activeHealthDatawatcherId", 26).getInt();
+		Resources.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true).getBoolean();
 
 		Resources.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		Resources.dimHothId = config.get("dimensions", "hoth", 3).getInt();
