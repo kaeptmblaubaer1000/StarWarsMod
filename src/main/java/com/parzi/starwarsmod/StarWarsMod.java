@@ -339,21 +339,7 @@ public class StarWarsMod
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
 
-		InputStream in = null;
-		try
-		{
-			in = new URL("https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md").openStream();
-			Resources.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
-			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION)) Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
-		}
-		catch (Exception e)
-		{
-			Lumberjack.warn("Couldn't check version!");
-		}
-		finally
-		{
-			if (in != null) IOUtils.closeQuietly(in);
-		}
+		checkModVersion();
 
 		instance = this;
 
@@ -401,7 +387,7 @@ public class StarWarsMod
 
 		Lumberjack.info("=========== End Star Wars Mod init() ===========");
 	}
-
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
@@ -505,7 +491,31 @@ public class StarWarsMod
 		int pos = versionString.indexOf('.');
 		pos = versionString.indexOf('.', pos + 1);
 		double version = Double.parseDouble(versionString.substring(0, pos));
-		if (version < 1.8) { throw new UserError("Parzi's Star wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version); }
+		if (version < 1.8)
+		{
+			throw new UserError("Parzi's Star wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version);
+		}
+	}
+
+	private void checkModVersion()
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.remoteVersionLink).openStream();
+			Resources.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
+			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION))
+				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't check version!");
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
 	}
 }
 /*

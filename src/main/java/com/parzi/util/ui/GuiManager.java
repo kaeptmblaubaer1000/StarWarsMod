@@ -23,12 +23,12 @@ public class GuiManager
 	{
 		Iterator<GuiToast> i = GuiToast.toasts.iterator();
 
-		int stack = 0;
+		int stack = GuiToast.toasts.size() - 1;
 		while (i.hasNext())
 		{
 			GuiToast t = (GuiToast)i.next();
 			t.render(stack);
-			stack++;
+			stack--;
 		}
 	}
 }

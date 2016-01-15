@@ -1,7 +1,12 @@
 package com.parzi.starwarsmod.utils;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.commons.io.IOUtils;
+
+import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
@@ -12,6 +17,7 @@ import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.jedirobes.powers.PowerNaturalAwareness;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPull;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPush;
+import com.parzi.util.ui.Lumberjack;
 
 public class ForceUtils
 {
@@ -58,5 +64,49 @@ public class ForceUtils
 			if (p.name.equals(power))
 				return true;
 		return false;
+	}
+	
+	public static int getLeaderboardSide(String side)
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.robesLeaderboardAddLink + "?m=get&s=" + side).openStream();
+			String n = IOUtils.toString(in);
+			IOUtils.closeQuietly(in);
+			return Integer.parseInt(n);
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't get leaderboard stats!");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
+		return 0;
+	}
+	
+	public static void addLeaderboardSide(String side)
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.robesLeaderboardAddLink + "?m=add&s=" + side).openStream();
+			String n = IOUtils.toString(in);
+			IOUtils.closeQuietly(in);
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't add leaderboard stats!");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
 	}
 }

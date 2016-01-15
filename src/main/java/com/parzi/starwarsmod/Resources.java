@@ -15,6 +15,8 @@ public class Resources
 	public static boolean IS_SEQUEL_RELEASE = true;
 
 	public static final String[] checkCompatList = { "sw_jbs", "The Star Wars Mod" };
+	public static final String remoteVersionLink = "https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md";
+	public static final String robesLeaderboardAddLink = "http://parzivail.com/mods/tswm/addLeaderboard.php";
 
 	public static int biomeTatooineId;
 	public static int biomeHothId;

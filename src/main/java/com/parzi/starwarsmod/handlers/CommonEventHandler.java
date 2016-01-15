@@ -98,6 +98,12 @@ public class CommonEventHandler
 				}
 			}
 
+		//if (KeybindRegistry.keyDebug.isPressed())
+		//{
+		//	GuiToast.makeText("Jedi: " + String.valueOf(ForceUtils.getLeaderboardSide("jedi")), 100).show();
+		//	GuiToast.makeText("Sith: " + String.valueOf(ForceUtils.getLeaderboardSide("sith")), 100).show();
+		//}
+
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
 
