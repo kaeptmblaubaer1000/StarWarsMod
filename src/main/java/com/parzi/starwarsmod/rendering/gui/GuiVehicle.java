@@ -1,5 +1,9 @@
 package com.parzi.starwarsmod.rendering.gui;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
@@ -17,12 +21,6 @@ import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.ui.GlPalette;
 import com.parzi.util.ui.TextUtils;
 import com.parzi.util.vehicle.VehicleAirBase;
-import com.sun.webkit.InspectorClient;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import scala.actors.IScheduler;
 
 public class GuiVehicle
 {
@@ -101,6 +99,9 @@ public class GuiVehicle
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { xwing });
 
 					int color = GlPalette.ANALOG_GREEN;
+
+					if (e != null)
+						color = GlPalette.ANALOG_RED;
 
 					if (xwing.getTargetLock())
 						color = GlPalette.ORANGE;
@@ -260,6 +261,9 @@ public class GuiVehicle
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { awing });
 
 					int color = GlPalette.ANALOG_GREEN;
+
+					if (e != null)
+						color = GlPalette.ANALOG_RED;
 
 					if (awing.getTargetLock())
 						color = GlPalette.ORANGE;
@@ -452,6 +456,9 @@ public class GuiVehicle
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { tie });
 
 					int color = GlPalette.ELECTRIC_BLUE;
+
+					if (e != null)
+						color = GlPalette.ANALOG_GREEN;
 
 					if (tie.getTargetLock())
 						color = GlPalette.ORANGE;
