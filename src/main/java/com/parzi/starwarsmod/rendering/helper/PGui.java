@@ -1,5 +1,7 @@
 package com.parzi.starwarsmod.rendering.helper;
 
+import java.awt.Point;
+
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
@@ -23,6 +25,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import scala.Int;
 
 @SideOnly(Side.CLIENT)
@@ -34,6 +38,9 @@ public class PGui// extends Gui
 	private static ResourceLocation saber = new ResourceLocation(Resources.MODID, "textures/gui/hilt.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
+
+	private Point[] cursorFrom = { new Point(0, 2), new Point(0, 0), new Point(2, 0), new Point(8, 0), new Point(10, 0), new Point(10, 2), new Point(10, 8), new Point(10, 10), new Point(8, 10), new Point(2, 10), new Point(0, 10), new Point(0, 8) };
+	private Point[] cursorTo = { new Point(5, 4), new Point(5, 2), new Point(5, 0), new Point(6, 5), new Point(8, 5), new Point(10, 5), new Point(5, 6), new Point(5, 8), new Point(5, 10), new Point(4, 5), new Point(2, 5), new Point(0, 5) };
 
 	public static int getRGB(int r, int g, int b)
 	{
@@ -387,6 +394,86 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
+	}
+	
+	public void drawFancyCursor(RenderGameOverlayEvent event, float p, int color)
+	{
+		float centerX = event.resolution.getScaledWidth() / 2f;
+		float centerY = event.resolution.getScaledHeight() / 2f;
+
+		GL11.glPushMatrix();
+		StarWarsMod.mc.entityRenderer.setupOverlayRendering();
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GlPalette.glColorI(color);
+		GL11.glBlendFunc(770, 771);
+		GL11.glLineWidth(2);
+
+		Vec3 a = lerp(cursorFrom[0], cursorTo[0], p);
+		Vec3 b = lerp(cursorFrom[1], cursorTo[1], p);
+		Vec3 c = lerp(cursorFrom[2], cursorTo[2], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		a = lerp(cursorFrom[3], cursorTo[3], p);
+		b = lerp(cursorFrom[4], cursorTo[4], p);
+		c = lerp(cursorFrom[5], cursorTo[5], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		a = lerp(cursorFrom[6], cursorTo[6], p);
+		b = lerp(cursorFrom[7], cursorTo[7], p);
+		c = lerp(cursorFrom[8], cursorTo[8], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		a = lerp(cursorFrom[9], cursorTo[9], p);
+		b = lerp(cursorFrom[10], cursorTo[10], p);
+		c = lerp(cursorFrom[11], cursorTo[11], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glPopMatrix();
+	}
+
+	public Vec3 lerp(Point a, Point b, float f)
+	{
+		float x = (float)(a.x * 2) + f * ((float)(b.x * 2) - (float)(a.x * 2));
+		float y = (float)(a.y * 2) + f * ((float)(b.y * 2) - (float)(a.y * 2));
+		return Vec3.createVectorHelper(x, y, 0);
 	}
 
 	public void drawLine3d(double x1, double y1, double z1, double x2, double y2, double z2, int lineWidth, int color)

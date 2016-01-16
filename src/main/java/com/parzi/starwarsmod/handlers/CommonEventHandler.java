@@ -1,14 +1,5 @@
 package com.parzi.starwarsmod.handlers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -27,6 +18,8 @@ import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
 import com.parzi.starwarsmod.network.PacketRobesIntNBT;
 import com.parzi.starwarsmod.registry.KeybindRegistry;
+import com.parzi.starwarsmod.rendering.gui.AnimationCrosshairClose;
+import com.parzi.starwarsmod.rendering.gui.AnimationCrosshairOpen;
 import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
@@ -39,7 +32,9 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.util.AnimationManager;
 import com.parzi.util.entity.EntityUtils;
+import com.parzi.util.ui.GlPalette;
 import com.parzi.util.ui.GuiManager;
 import com.parzi.util.ui.GuiToast;
 import com.parzi.util.vehicle.VehicleAirBase;
@@ -53,6 +48,14 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -98,11 +101,9 @@ public class CommonEventHandler
 				}
 			}
 
-		//if (KeybindRegistry.keyDebug.isPressed())
-		//{
-		//	GuiToast.makeText("Jedi: " + String.valueOf(ForceUtils.getLeaderboardSide("jedi")), 100).show();
-		//	GuiToast.makeText("Sith: " + String.valueOf(ForceUtils.getLeaderboardSide("sith")), 100).show();
-		//}
+		if (KeybindRegistry.keyDebug.isPressed())
+		{
+		}
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
@@ -209,6 +210,8 @@ public class CommonEventHandler
 	public void onTick(TickEvent.ClientTickEvent event)
 	{
 		GuiManager.tick();
+		
+		AnimationManager.tick();
 
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;

@@ -43,6 +43,8 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
+import com.parzi.util.Animation;
+import com.parzi.util.AnimationManager;
 import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.entity.PlayerHelper;
 import com.parzi.util.ui.GuiManager;
@@ -63,6 +65,9 @@ public class ClientEventHandler
 
 	public static EntityPlayer lightningFrom = null;
 	public static EntityPlayer lastPlayerTarget = null;
+	
+	public static boolean cursorOpen = true;
+	public static boolean isCursorAnim = false;
 
 	@SideOnly(Side.CLIENT)
 	public static PSoundBank soundBank;
@@ -252,7 +257,9 @@ public class ClientEventHandler
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
 
-		GuiManager.render();
+		GuiManager.render(event);
+		
+		AnimationManager.render(event);
 	}
 
 	@SubscribeEvent

@@ -17,10 +17,12 @@ import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.ui.GlPalette;
 import com.parzi.util.ui.TextUtils;
 import com.parzi.util.vehicle.VehicleAirBase;
+import com.sun.webkit.InspectorClient;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import scala.actors.IScheduler;
 
 public class GuiVehicle
 {
@@ -35,7 +37,6 @@ public class GuiVehicle
 	public static long randomCharNextTime = 0;
 
 	String randomChar1 = "C";
-
 	String randomChar2 = "N";
 	String randomChar3 = "D";
 	String randomChar4 = "L";
@@ -79,9 +80,12 @@ public class GuiVehicle
 
 					for (Entity p : xwing.nearby)
 					{
-						if (p instanceof VehicXWing || p instanceof VehicAWing) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-						if (p instanceof EntityPlayer) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+						if (p instanceof VehicXWing || p instanceof VehicAWing)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+						if (p instanceof EntityPlayer)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
 					if (isFiring)
@@ -98,37 +102,65 @@ public class GuiVehicle
 
 					int color = GlPalette.ANALOG_GREEN;
 
-					if (xwing.getTargetLock()) color = GlPalette.ORANGE;
+					if (xwing.getTargetLock())
+						color = GlPalette.ORANGE;
+
+					if (e != null && lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-						this.lastTarget = e;
 					}
 
 					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
 					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-						this.lastTarget = e;
 					}
 
-					if (e != null)
-					{
-						color = GlPalette.RED;
-						ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
-					}
-					else
-					{
-						ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
-					}
+					this.lastTarget = e;
+
+					// if (e != null)
+					// {
+					// color = GlPalette.RED;
+					// ClientEventHandler.pgui.drawLine(centerX - 6 *
+					// blipPercent, centerY - 6 * blipPercent, centerX, centerY,
+					// 2, color);
+					// ClientEventHandler.pgui.drawLine(centerX + 6 *
+					// blipPercent, centerY - 6 * blipPercent, centerX, centerY,
+					// 2, color);
+					// ClientEventHandler.pgui.drawLine(centerX + 6 *
+					// blipPercent, centerY + 6 * blipPercent, centerX, centerY,
+					// 2, color);
+					// ClientEventHandler.pgui.drawLine(centerX - 6 *
+					// blipPercent, centerY + 6 * blipPercent, centerX, centerY,
+					// 2, color);
+					// ClientEventHandler.pgui.drawHollowCircle(centerX,
+					// centerY, blipFrame * 0.8f, 10, 2, color);
+					// }
+					// else
+					// {
+					// ClientEventHandler.pgui.drawLine(centerX - 8 *
+					// blipPercent, centerY - 8 * blipPercent, centerX - 2 *
+					// blipPercent, centerY - 2 * blipPercent, 2, color);
+					// ClientEventHandler.pgui.drawLine(centerX + 8 *
+					// blipPercent, centerY - 8 * blipPercent, centerX + 2 *
+					// blipPercent, centerY - 2 * blipPercent, 2, color);
+					// ClientEventHandler.pgui.drawLine(centerX + 8 *
+					// blipPercent, centerY + 8 * blipPercent, centerX + 2 *
+					// blipPercent, centerY + 2 * blipPercent, 2, color);
+					// ClientEventHandler.pgui.drawLine(centerX - 8 *
+					// blipPercent, centerY + 8 * blipPercent, centerX - 2 *
+					// blipPercent, centerY + 2 * blipPercent, 2, color);
+					// ClientEventHandler.pgui.drawHollowCircle(centerX,
+					// centerY, blipFrame, 10, 2, color);
+					// }
 
 					ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
 
@@ -163,7 +195,8 @@ public class GuiVehicle
 							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
 						else if (e instanceof VehicTIEInterceptor)
 							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
-						else if (e instanceof VehicAWing) VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicAWing)
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
 
 						GL11.glPopMatrix();
 					}
@@ -204,9 +237,12 @@ public class GuiVehicle
 
 					for (Entity p : awing.nearby)
 					{
-						if (p instanceof VehicXWing || p instanceof VehicAWing) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-						if (p instanceof EntityPlayer) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+						if (p instanceof VehicXWing || p instanceof VehicAWing)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+						if (p instanceof EntityPlayer)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
 					if (isFiring)
@@ -225,44 +261,39 @@ public class GuiVehicle
 
 					int color = GlPalette.ANALOG_GREEN;
 
-					if (awing.getTargetLock()) color = GlPalette.ORANGE;
+					if (awing.getTargetLock())
+						color = GlPalette.ORANGE;
+
+					if (e != null && lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-						this.lastTarget = e;
 					}
 
 					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
 					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-						this.lastTarget = e;
 					}
 
-					if (e != null)
-					{
-						color = GlPalette.RED;
-						ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY - 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX - 6 * blipPercent, centerY + 6 * blipPercent, centerX, centerY, 2, color);
-						ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame * 0.8f, 10, 2, color);
-					}
-					else
-					{
-						ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY - 8 * blipPercent, centerX - 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY - 8 * blipPercent, centerX + 2 * blipPercent, centerY - 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 8 * blipPercent, centerY + 8 * blipPercent, centerX + 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX - 8 * blipPercent, centerY + 8 * blipPercent, centerX - 2 * blipPercent, centerY + 2 * blipPercent, 2, color);
-						ClientEventHandler.pgui.drawHollowCircle(centerX, centerY, blipFrame, 10, 2, color);
-					}
+					this.lastTarget = e;
 
 					if (randomCharNextTime <= System.currentTimeMillis())
 					{
 						MathUtils.shuffleArray(Resources.randomCharArray);
-						if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-						if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-						if (StarWarsMod.rngGeneral.nextInt(4) == 0) this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(4) == 0)
+							this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(4) == 0)
+							this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(4) == 0)
+							this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
 						randomCharNextTime = System.currentTimeMillis() + 250;
 					}
 
@@ -306,7 +337,8 @@ public class GuiVehicle
 
 						this.lastTarget = e;
 
-						if (e instanceof VehicleAirBase) ((VehicleAirBase)e).setTargetLock(true);
+						if (e instanceof VehicleAirBase)
+							((VehicleAirBase)e).setTargetLock(true);
 
 						if (e instanceof VehicXWing)
 							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
@@ -314,13 +346,15 @@ public class GuiVehicle
 							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
 						else if (e instanceof VehicTIEInterceptor)
 							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
-						else if (e instanceof VehicAWing) VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
+						else if (e instanceof VehicAWing)
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
 
 						GL11.glPopMatrix();
 					}
 					else if (this.lastTarget != null)
 					{
-						if (this.lastTarget instanceof VehicleAirBase) ((VehicleAirBase)this.lastTarget).setTargetLock(true);
+						if (this.lastTarget instanceof VehicleAirBase)
+							((VehicleAirBase)this.lastTarget).setTargetLock(true);
 						this.lastTarget = null;
 					}
 				}
@@ -365,9 +399,12 @@ public class GuiVehicle
 
 					for (Entity p : tie.nearby)
 					{
-						if (p instanceof VehicXWing || p instanceof VehicAWing) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
-						if (p instanceof EntityPlayer) ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+						if (p instanceof VehicXWing || p instanceof VehicAWing)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+						if (p instanceof EntityPlayer)
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
 					if (isFiring)
@@ -382,19 +419,28 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(tie.dimension), 0, 0);
 
-					if (tie.getHealth() >= 20) ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
-					if (tie.getHealth() >= 16) ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
-					if (tie.getHealth() >= 8) ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
-					if (tie.getHealth() >= 4) ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
-					if (tie.getHealth() >= 0) ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
+					if (tie.getHealth() >= 20)
+						ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
+					if (tie.getHealth() >= 16)
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
+					if (tie.getHealth() >= 8)
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
+					if (tie.getHealth() >= 4)
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
+					if (tie.getHealth() >= 0)
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
 
 					if (randomCharNextTime <= System.currentTimeMillis())
 					{
 						MathUtils.shuffleArray(Resources.randomCharArray);
-						if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-						if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-						if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
-						if (StarWarsMod.rngGeneral.nextInt(5) == 0) this.randomChar4 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(5) == 0)
+							this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(5) == 0)
+							this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(5) == 0)
+							this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(5) == 0)
+							this.randomChar4 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
 						randomCharNextTime = System.currentTimeMillis() + 250;
 					}
 
@@ -407,45 +453,83 @@ public class GuiVehicle
 
 					int color = GlPalette.ELECTRIC_BLUE;
 
-					if (tie.getTargetLock()) color = GlPalette.ORANGE;
+					if (tie.getTargetLock())
+						color = GlPalette.ORANGE;
+
+					if (e != null && lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-						this.lastTarget = e;
 					}
 
 					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
 					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-						this.lastTarget = e;
 					}
 
-					if (e != null)
-					{
-						color = GlPalette.ELECTRIC_LIME;
-						ClientEventHandler.pgui.drawHollowTriangle(centerX, centerY - 5, 3, 180, 2, color);
-						ClientEventHandler.pgui.drawHollowTriangle(centerX - 5, centerY + 5, 3, 45, 2, color);
-						ClientEventHandler.pgui.drawHollowTriangle(centerX + 5, centerY + 5, 3, 315, 2, color);
+					this.lastTarget = e;
 
-						ClientEventHandler.pgui.drawLine(centerX - 20, centerY - 20, centerX - 20, centerY - 10, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX - 20, centerY - 20, centerX - 10, centerY - 20, 2, color);
-
-						ClientEventHandler.pgui.drawLine(centerX + 20, centerY - 20, centerX + 20, centerY - 10, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 20, centerY - 20, centerX + 10, centerY - 20, 2, color);
-
-						ClientEventHandler.pgui.drawLine(centerX - 20, centerY + 20, centerX - 20, centerY + 10, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX - 20, centerY + 20, centerX - 10, centerY + 20, 2, color);
-
-						ClientEventHandler.pgui.drawLine(centerX + 20, centerY + 20, centerX + 20, centerY + 10, 2, color);
-						ClientEventHandler.pgui.drawLine(centerX + 20, centerY + 20, centerX + 10, centerY + 20, 2, color);
-					}
-					else
-					{
-						ClientEventHandler.pgui.drawHollowTriangle(centerX, centerY - 10, 3, 180, 2, color);
-						ClientEventHandler.pgui.drawHollowTriangle(centerX - 10, centerY + 10, 3, 45, 2, color);
-						ClientEventHandler.pgui.drawHollowTriangle(centerX + 10, centerY + 10, 3, 315, 2, color);
-					}
+					/*
+					 * if (tie.getTargetLock()) color = GlPalette.ORANGE;
+					 * 
+					 * if (e instanceof VehicleAirBase && e.riddenByEntity
+					 * instanceof EntityPlayer) {
+					 * StarWarsMod.network.sendToServer(new
+					 * PacketShipTargetLock(e.riddenByEntity.
+					 * getCommandSenderName(), true,
+					 * e.worldObj.provider.dimensionId)); this.lastTarget = e; }
+					 * 
+					 * if (e == null && this.lastTarget instanceof
+					 * VehicleAirBase && this.lastTarget.riddenByEntity
+					 * instanceof EntityPlayer) {
+					 * StarWarsMod.network.sendToServer(new
+					 * PacketShipTargetLock(this.lastTarget.riddenByEntity.
+					 * getCommandSenderName(), false,
+					 * this.lastTarget.worldObj.provider.dimensionId));
+					 * this.lastTarget = e; }
+					 * 
+					 * if (e != null) { color = GlPalette.ELECTRIC_LIME;
+					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
+					 * centerY - 5, 3, 180, 2, color);
+					 * ClientEventHandler.pgui.drawHollowTriangle(centerX - 5,
+					 * centerY + 5, 3, 45, 2, color);
+					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 5,
+					 * centerY + 5, 3, 315, 2, color);
+					 * 
+					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
+					 * 20, centerX - 20, centerY - 10, 2, color);
+					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
+					 * 20, centerX - 10, centerY - 20, 2, color);
+					 * 
+					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
+					 * 20, centerX + 20, centerY - 10, 2, color);
+					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
+					 * 20, centerX + 10, centerY - 20, 2, color);
+					 * 
+					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
+					 * 20, centerX - 20, centerY + 10, 2, color);
+					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
+					 * 20, centerX - 10, centerY + 20, 2, color);
+					 * 
+					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
+					 * 20, centerX + 20, centerY + 10, 2, color);
+					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
+					 * 20, centerX + 10, centerY + 20, 2, color); } else {
+					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
+					 * centerY - 10, 3, 180, 2, color);
+					 * ClientEventHandler.pgui.drawHollowTriangle(centerX - 10,
+					 * centerY + 10, 3, 45, 2, color);
+					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 10,
+					 * centerY + 10, 3, 315, 2, color); }
+					 */
 
 					ClientEventHandler.pgui.renderOverlay(Resources.tieOverlay);
 
@@ -479,7 +563,8 @@ public class GuiVehicle
 
 						float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
-						if (e instanceof VehicleAirBase) ((VehicleAirBase)e).setTargetLock(true);
+						if (e instanceof VehicleAirBase)
+							((VehicleAirBase)e).setTargetLock(true);
 
 						if (e instanceof VehicXWing)
 							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
@@ -487,19 +572,21 @@ public class GuiVehicle
 							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
 						else if (e instanceof VehicTIEInterceptor)
 							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
-						else if (e instanceof VehicAWing) VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
+						else if (e instanceof VehicAWing)
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
 
 						GL11.glPopMatrix();
 					}
 					else if (this.lastTarget != null)
 					{
-						if (this.lastTarget instanceof VehicleAirBase) ((VehicleAirBase)this.lastTarget).setTargetLock(true);
+						if (this.lastTarget instanceof VehicleAirBase)
+							((VehicleAirBase)this.lastTarget).setTargetLock(true);
 						this.lastTarget = null;
 					}
 				}
 			}
 		}
-		
+
 		if (StarWarsMod.mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)
 		{
 			try

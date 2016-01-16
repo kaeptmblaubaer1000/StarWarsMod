@@ -1,7 +1,5 @@
 package com.parzi.util.ui;
 
-import java.util.ArrayList;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -16,9 +14,6 @@ public class GuiToast extends Gui
 	public static final int TIME_SHORT = 80;
 	/** A long timespan, 8 seconds **/
 	public static final int TIME_LONG = 160;
-	/** All active toasts **/
-	public static ArrayList<GuiToast> toasts = new ArrayList<GuiToast>();
-
 	/** How many ticks are left in it's existence **/
 	private int life = 0;
 	/** The toast's text **/
@@ -27,6 +22,7 @@ public class GuiToast extends Gui
 	private int width;
 	/** The position of the toast **/
 	private int position = ToastPosition.BOTTOM | ToastPosition.MIDDLE;
+	/** All active toasts **/
 
 	/**
 	 * Private constructor for a new toast
@@ -149,7 +145,7 @@ public class GuiToast extends Gui
 	 */
 	public void show()
 	{
-		toasts.add(this);
+		GuiManager.toasts.add(this);
 	}
 
 	/**
