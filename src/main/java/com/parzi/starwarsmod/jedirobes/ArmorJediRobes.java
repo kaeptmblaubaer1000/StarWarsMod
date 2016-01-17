@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
+import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.world.ItemUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -296,16 +297,8 @@ public class ArmorJediRobes extends ItemArmor
 		stack.stackTagCompound.setInteger(Resources.nbtMaxXp, 100);
 		stack.stackTagCompound.setString(Resources.nbtSide, SIDE_NONE);
 		stack.stackTagCompound.setTag(Resources.nbtPowers, new NBTTagCompound());
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("jump", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("push", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("pull", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("ligntning", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("destruction", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("defend", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("deflect", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("naturalAwareness", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("grab", 0);
-		((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger("disable", 0);
+		for (String p : ForceUtils.powers.keySet())
+			((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger(p, 0);
 	}
 
 	@Override

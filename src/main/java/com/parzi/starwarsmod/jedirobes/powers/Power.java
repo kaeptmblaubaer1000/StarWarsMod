@@ -9,26 +9,8 @@ public class Power
 {
 	public static Power getPowerFromName(String name)
 	{
-		if (name.equalsIgnoreCase("jump"))
-			return ForceUtils.powerJump;
-		else if (name.equalsIgnoreCase("push"))
-			return ForceUtils.powerPush;
-		else if (name.equalsIgnoreCase("pull"))
-			return ForceUtils.powerPull;
-		else if (name.equalsIgnoreCase("lightning"))
-			return ForceUtils.powerLightning;
-		else if (name.equalsIgnoreCase("destruction"))
-			return ForceUtils.powerDestruction;
-		else if (name.equalsIgnoreCase("defend"))
-			return ForceUtils.powerDefend;
-		else if (name.equalsIgnoreCase("deflect"))
-			return ForceUtils.powerDeflect;
-		else if (name.equalsIgnoreCase("naturalAwareness"))
-			return ForceUtils.powerNaturalAwareness;
-		else if (name.equalsIgnoreCase("grab"))
-			return ForceUtils.powerGrab;
-		else if (name.equalsIgnoreCase("disable"))
-			return ForceUtils.powerDisable;
+		if (ForceUtils.powers.containsKey(name))
+			return ForceUtils.powers.get(name);
 		return null;
 	}
 

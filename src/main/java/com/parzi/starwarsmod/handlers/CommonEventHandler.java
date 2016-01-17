@@ -221,6 +221,12 @@ public class CommonEventHandler
 				entry.entity.motionY = 0;
 				entry.entity.motionZ = 0;
 			}
+			else if (entry.effect.equals("slow"))
+			{
+				entry.entity.motionX = Math.min(Math.max(entry.entity.motionX, -0.01d), 0.01d);
+				entry.entity.motionY = Math.min(Math.max(entry.entity.motionY, -0.01d), 0.01d);
+				entry.entity.motionZ = Math.min(Math.max(entry.entity.motionZ, -0.01d), 0.01d);
+			}
 
 			entry.cooldownLeft--;
 
@@ -328,94 +334,49 @@ public class CommonEventHandler
 					StarWarsMod.network.sendToServer(new PacketReverseEntity(entity.getEntityId(), entity.dimension));
 				}
 
-		if (ClientEventHandler.lastTime <= System.currentTimeMillis())
+		Iterator<Power> it = ForceUtils.coolingPowers.iterator();
+		while (it.hasNext())
 		{
-			ClientEventHandler.lastTime = System.currentTimeMillis() + 1000;
+			Power cooling = it.next();
+			cooling.recharge--;
+			if (cooling.recharge <= 0)
+				it.remove();
+		}
 
-			ForceUtils.queueToRemove.clear();
-			for (Power cooling : ForceUtils.coolingPowers)
+		if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			ItemStack robes = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
+			int level = ArmorJediRobes.getLevel(robes);
+			int xp = ArmorJediRobes.getXP(robes);
+			int maxxp = ArmorJediRobes.getMaxXP(robes);
+
+			double percent = 1 + 0.1f * Math.floor(level / 10);
+
+			if (percent > 6)
+				percent = 6;
+
+			int addition = (int)(maxxp / 100 * percent);
+
+			int total = 0;
+
+			if (xp + addition < maxxp)
+				total = xp + addition;
+			else
+				total = maxxp;
+
+			StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+
+			if (ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && ForceUtils.activePower != null)
 			{
-				cooling.recharge--;
-				if (cooling.recharge <= 0)
-					ForceUtils.queueToRemove.add(cooling);
-			}
+				ForceUtils.activePower.duration++;
 
-			for (Power remove : ForceUtils.queueToRemove)
-				ForceUtils.coolingPowers.remove(remove);
+				ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
+				StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-			{
-				ItemStack robes = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
-				int level = ArmorJediRobes.getLevel(robes);
-				int xp = ArmorJediRobes.getXP(robes);
-				int maxxp = ArmorJediRobes.getMaxXP(robes);
-
-				double percent = 1 + 0.1f * Math.floor(level / 10);
-
-				if (percent > 6)
-					percent = 6;
-
-				int addition = (int)(maxxp / 100 * percent);
-
-				int total = 0;
-
-				if (xp + addition < maxxp)
-					total = xp + addition;
-				else
-					total = maxxp;
-
-				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-
-				if (ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && ForceUtils.activePower != null)
+				if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 				{
-					ForceUtils.activePower.duration++;
-
-					ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
-					StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-
-					if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
-					{
-						if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
-							if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
-								try
-								{
-									StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
-									ClientEventHandler.lastPlayerTarget = null;
-								}
-								catch (Exception e)
-								{
-								}
-						ForceUtils.activePower.duration = 0;
-						StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-						ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
-						ForceUtils.coolingPowers.add(ForceUtils.activePower);
-					}
-					else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
-					{
-						Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
-						if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) != -1)
-						{
-							Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
-
-							if (e != null)
-							{
-								if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
-								{
-									StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
-									StarWarsMod.network.sendToServer(new PacketEntityHurt(e.getEntityId(), e.dimension, power.getDamage()));
-								}
-								if (e instanceof EntityPlayer)
-									try
-									{
-										ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
-										StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
-									}
-									catch (Exception exc)
-									{
-									}
-							}
-						}
-						else if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
+					if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+						if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 							try
 							{
 								StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
@@ -424,14 +385,52 @@ public class CommonEventHandler
 							catch (Exception e)
 							{
 							}
+					ForceUtils.activePower.duration = 0;
+					StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+					ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
+					ForceUtils.coolingPowers.add(ForceUtils.activePower);
+				}
+				else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+				{
+					Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+					if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) != -1)
+					{
+						Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
+
+						if (e != null)
+						{
+							if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
+							{
+								StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
+								StarWarsMod.network.sendToServer(new PacketEntityHurt(e.getEntityId(), e.dimension, power.getDamage()));
+							}
+							if (e instanceof EntityPlayer)
+								try
+								{
+									ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
+									StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
+								}
+								catch (Exception exc)
+								{
+								}
+						}
 					}
+					else if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
+						try
+						{
+							StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
+							ClientEventHandler.lastPlayerTarget = null;
+						}
+						catch (Exception e)
+						{
+						}
 				}
 			}
-			else
-			{
-				ForceUtils.activePower = null;
-				ForceUtils.isUsingDuration = false;
-			}
+		}
+		else
+		{
+			ForceUtils.activePower = null;
+			ForceUtils.isUsingDuration = false;
 		}
 
 		// if (ForceUtils.activePower != null &&

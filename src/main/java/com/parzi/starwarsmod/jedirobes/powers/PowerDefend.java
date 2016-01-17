@@ -14,7 +14,7 @@ public class PowerDefend extends Power
 		this.costMult = 50;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 60;
-		this.rechargeTime = 10;
+		this.rechargeTime = 10 * 40; // 40 ticks/second
 		this.recharge = 0;
 	}
 

@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.rendering.gui;
 
 import java.text.NumberFormat;
+import java.util.Iterator;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -19,6 +20,7 @@ import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.starwarsmod.utils.ForceUtils.EntityCooldownEntry;
 import com.parzi.util.ui.GlPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -87,10 +89,22 @@ public class GuiPSWMOverlay extends Gui
 				this.drawString(this.mc.fontRenderer, Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
-			for (Power cooling : ForceUtils.coolingPowers)
+
+			Iterator<Power> coolingIt = ForceUtils.coolingPowers.iterator();
+			while (coolingIt.hasNext())
 			{
-				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
-				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)cooling.recharge + "s", 30, y - 3, GlPalette.WHITE);
+				Power cooling = coolingIt.next();
+				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / (float)cooling.rechargeTime, guiColor);
+				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GlPalette.WHITE);
+				y -= 22;
+			}
+
+			Iterator<EntityCooldownEntry> entryIt = ForceUtils.entitiesWithEffects.iterator();
+			while (entryIt.hasNext())
+			{
+				EntityCooldownEntry entry = entryIt.next();
+				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GlPalette.ORANGE_PINK);
+				this.drawString(this.mc.fontRenderer, entry.entity.getCommandSenderName() + " (" + entry.effect + "): " + (int)Math.ceil(entry.cooldownLeft / 40f) + "s", 30, y - 3, GlPalette.WHITE);
 				y -= 22;
 			}
 

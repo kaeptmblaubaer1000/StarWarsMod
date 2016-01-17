@@ -17,7 +17,7 @@ public class PowerPull extends Power
 		this.costMult = 40;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 5;
+		this.rechargeTime = 5 * 40; // 40 ticks/second
 		this.recharge = 0;
 	}
 

@@ -2,22 +2,23 @@ package com.parzi.starwarsmod.jedirobes.powers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Vec3;
 
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.MessageEntityAlterMotion;
+import com.parzi.starwarsmod.network.MessageAddEffectTo;
+import com.parzi.starwarsmod.utils.ForceUtils.EntityCooldownEntry;
 import com.parzi.util.entity.EntityUtils;
+import com.parzi.util.ui.GuiToast;
 
-public class PowerPush extends Power
+public class PowerSlow extends Power
 {
-	public PowerPush(int currentLevel)
+	public PowerSlow(int currentLevel)
 	{
-		super("push");
-		this.costBase = 40;
-		this.costMult = 40;
+		super("slow");
+		this.costBase = 2700;
+		this.costMult = 75;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 5 * 40; // 40 ticks/second
+		this.rechargeTime = 3 * 40; // 40 ticks/second
 		this.recharge = 0;
 	}
 
@@ -30,15 +31,8 @@ public class PowerPush extends Power
 
 			if (e != null)
 			{
-				Vec3 lookVec = player.getLookVec();
-
-				float mult = 1 + 0.5f * this.currentLevel;
-
-				lookVec.xCoord *= mult;
-				lookVec.yCoord *= mult;
-				lookVec.zCoord *= mult;
-
-				StarWarsMod.network.sendToServer(new MessageEntityAlterMotion(e, lookVec));
+				StarWarsMod.network.sendToServer(new MessageAddEffectTo(new EntityCooldownEntry(e, "slow", this.currentLevel * 40)));
+				GuiToast.makeText(e, 40).show();
 			}
 
 			return true;

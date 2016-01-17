@@ -3,6 +3,7 @@ package com.parzi.starwarsmod.utils;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import net.minecraft.entity.Entity;
 
@@ -20,6 +21,7 @@ import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.jedirobes.powers.PowerNaturalAwareness;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPull;
 import com.parzi.starwarsmod.jedirobes.powers.PowerPush;
+import com.parzi.starwarsmod.jedirobes.powers.PowerSlow;
 import com.parzi.util.ui.Lumberjack;
 
 public class ForceUtils
@@ -29,20 +31,25 @@ public class ForceUtils
 	public static int health = 0;
 	public static float distanceToEntity = -1;
 	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
-	public static ArrayList<Power> queueToRemove = new ArrayList<Power>();
 
 	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<EntityCooldownEntry>();
 
-	public static Power powerJump = new PowerJump(0);
-	public static Power powerPush = new PowerPush(0);
-	public static Power powerPull = new PowerPull(0);
-	public static Power powerLightning = new PowerLightning(0);
-	public static Power powerDestruction = new PowerDestruction(0);
-	public static Power powerDefend = new PowerDefend(0);
-	public static Power powerDeflect = new PowerDeflect(0);
-	public static Power powerNaturalAwareness = new PowerNaturalAwareness(0);
-	public static Power powerGrab = new PowerGrab(0);
-	public static Power powerDisable = new PowerDisable(0);
+	public static HashMap<String, Power> powers = new HashMap<String, Power>();
+
+	static
+	{
+		powers.put("jump", new PowerJump(0));
+		powers.put("push", new PowerPush(0));
+		powers.put("pull", new PowerPull(0));
+		powers.put("lightning", new PowerLightning(0));
+		powers.put("destruction", new PowerDestruction(0));
+		powers.put("defend", new PowerDefend(0));
+		powers.put("deflect", new PowerDeflect(0));
+		powers.put("naturalAwareness", new PowerNaturalAwareness(0));
+		powers.put("grab", new PowerGrab(0));
+		powers.put("disable", new PowerDisable(0));
+		powers.put("slow", new PowerSlow(0));
+	}
 
 	public static String[] getAllPowers()
 	{
@@ -119,12 +126,14 @@ public class ForceUtils
 	public static class EntityCooldownEntry
 	{
 		public int cooldownLeft;
+		public int cooldown;
 		public Entity entity;
 		public String effect;
 
 		public EntityCooldownEntry(Entity entity, String effect, int cooldown)
 		{
 			this.cooldownLeft = cooldown;
+			this.cooldown = cooldown;
 			this.entity = entity;
 			this.effect = effect;
 		}

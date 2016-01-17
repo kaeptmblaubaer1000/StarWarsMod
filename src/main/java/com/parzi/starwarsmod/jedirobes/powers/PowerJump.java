@@ -12,7 +12,7 @@ public class PowerJump extends Power
 		this.costMult = 25;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 3;
+		this.rechargeTime = 3 * 40; // 40 ticks/second
 		this.recharge = 0;
 	}
 

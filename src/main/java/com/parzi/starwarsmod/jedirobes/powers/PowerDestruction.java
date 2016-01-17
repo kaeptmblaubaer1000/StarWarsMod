@@ -14,7 +14,7 @@ public class PowerDestruction extends Power
 		this.costMult = 90;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 6;
+		this.rechargeTime = 6 * 40; // 40 ticks/second
 		this.recharge = 0;
 	}
 
