@@ -366,7 +366,7 @@ public class CommonEventHandler
 
 			StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 
-			if (ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && ForceUtils.activePower != null)
+			if (ForceUtils.activePower != null && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && !ForceUtils.isCooling(ForceUtils.activePower.name))
 			{
 				ForceUtils.activePower.duration++;
 

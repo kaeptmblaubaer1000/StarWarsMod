@@ -1,18 +1,19 @@
 package com.parzi.starwarsmod.mobs;
 
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.util.entity.EntityUtils;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.util.entity.EntityUtils;
 
 public class MobDroidProtocol2 extends EntityTameable
 {
@@ -103,7 +104,7 @@ public class MobDroidProtocol2 extends EntityTameable
 	{
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 		if (itemstack == null)
-			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
+			itemstack = new ItemStack(Blocks.air);
 		if (this.isTamed())
 		{
 			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidCaller)
