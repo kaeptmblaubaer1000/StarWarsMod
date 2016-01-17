@@ -5,6 +5,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
 import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.achievement.StarWarsAchievements;
@@ -29,11 +40,12 @@ import com.parzi.starwarsmod.items.weapons.ItemSequelBlasterRifle;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaber;
 import com.parzi.starwarsmod.items.weapons.ItemSequelLightsaberOff;
 import com.parzi.starwarsmod.items.weapons.ItemWookieeBowcaster;
+import com.parzi.starwarsmod.network.MessageAddEffectTo;
 import com.parzi.starwarsmod.network.MessageCreateBlasterBolt;
 import com.parzi.starwarsmod.network.MessageCreateDestructionBolt;
+import com.parzi.starwarsmod.network.MessageEntityAlterMotion;
 import com.parzi.starwarsmod.network.MessageEntityGrab;
 import com.parzi.starwarsmod.network.MessageSetEntityTarget;
-import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
 import com.parzi.starwarsmod.network.PacketEntityHurt;
 import com.parzi.starwarsmod.network.PacketEntitySetMotion;
 import com.parzi.starwarsmod.network.PacketHealBlock;
@@ -71,16 +83,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -387,7 +389,7 @@ public class StarWarsMod
 
 		Lumberjack.info("=========== End Star Wars Mod init() ===========");
 	}
-	
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
@@ -405,7 +407,7 @@ public class StarWarsMod
 		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketEntityAlterMotion.Handler.class, PacketEntityAlterMotion.class, packetId++, Side.SERVER);
+		network.registerMessage(MessageEntityAlterMotion.class, MessageEntityAlterMotion.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageSetEntityTarget.class, MessageSetEntityTarget.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageCreateDestructionBolt.class, MessageCreateDestructionBolt.class, packetId++, Side.SERVER);
@@ -416,6 +418,7 @@ public class StarWarsMod
 		network.registerMessage(PacketRobesBooleanNBT.Handler.class, PacketRobesBooleanNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageEntityGrab.class, MessageEntityGrab.class, packetId++, Side.SERVER);
+		network.registerMessage(MessageAddEffectTo.class, MessageAddEffectTo.class, packetId++, Side.SERVER);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 

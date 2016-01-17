@@ -1,24 +1,28 @@
 package com.parzi.starwarsmod.network;
 
+import io.netty.buffer.ByteBuf;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import org.apache.commons.lang3.tuple.Pair;
-
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import com.parzi.starwarsmod.utils.ForceUtils.EntityCooldownEntry;
+
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class Message<REQ extends Message> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
@@ -38,9 +42,11 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		map(String.class, Message::readString, Message::writeString);
 		map(NBTTagCompound.class, Message::readNBT, Message::writeNBT);
 		map(ItemStack.class, Message::readItemStack, Message::writeItemStack);
+
 		map(EntityPlayer.class, Message::readPlayer, Message::writePlayer);
 		map(Entity.class, Message::readEntity, Message::writeEntity);
 		map(Vec3.class, Message::readVec3, Message::writeVec3);
+		map(EntityCooldownEntry.class, Message::readEntityCooldownEntry, Message::writeEntityCooldownEntry);
 	}
 
 	// The thing you override!
@@ -188,16 +194,34 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		buf.writeInt(entity.getEntityId());
 	}
 
+	private static void writeEntityCooldownEntry(EntityCooldownEntry entry, ByteBuf buf)
+	{
+		writeEntity(entry.entity, buf);
+		ByteBufUtils.writeUTF8String(buf, entry.effect);
+		buf.writeInt(entry.cooldownLeft);
+	}
+
+	private static EntityCooldownEntry readEntityCooldownEntry(ByteBuf buf)
+	{
+		Entity e = readEntity(buf);
+		String name = ByteBufUtils.readUTF8String(buf);
+		int cooldownLeft = buf.readInt();
+		return new EntityCooldownEntry(e, name, cooldownLeft);
+	}
+
 	private static Vec3 readVec3(ByteBuf buf)
 	{
-		String vectorStr = ByteBufUtils.readUTF8String(buf);
-		String[] vecString = vectorStr.split(",");
-		return Vec3.createVectorHelper(Float.parseFloat(vecString[0]), Float.parseFloat(vecString[1]), Float.parseFloat(vecString[2]));
+		double x = buf.readDouble();
+		double y = buf.readDouble();
+		double z = buf.readDouble();
+		return Vec3.createVectorHelper(x, y, z);
 	}
 
 	private static void writeVec3(Vec3 vec, ByteBuf buf)
 	{
-		ByteBufUtils.writeUTF8String(buf, String.format("%s,%s,%s", vec.xCoord, vec.yCoord, vec.zCoord));
+		buf.writeDouble(vec.xCoord);
+		buf.writeDouble(vec.yCoord);
+		buf.writeDouble(vec.zCoord);
 	}
 
 	private static EntityPlayer readPlayer(ByteBuf buf)

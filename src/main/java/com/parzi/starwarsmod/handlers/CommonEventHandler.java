@@ -1,5 +1,16 @@
 package com.parzi.starwarsmod.handlers;
 
+import java.util.Iterator;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
 import com.parzi.starwarsmod.entities.EntityBlasterHeavyBolt;
@@ -18,14 +29,13 @@ import com.parzi.starwarsmod.network.PacketReverseEntity;
 import com.parzi.starwarsmod.network.PacketRobesBooleanNBT;
 import com.parzi.starwarsmod.network.PacketRobesIntNBT;
 import com.parzi.starwarsmod.registry.KeybindRegistry;
-import com.parzi.starwarsmod.rendering.gui.AnimationCrosshairClose;
-import com.parzi.starwarsmod.rendering.gui.AnimationCrosshairOpen;
 import com.parzi.starwarsmod.sound.PSoundBank;
 import com.parzi.starwarsmod.sound.SoundLightsaberHum;
 import com.parzi.starwarsmod.sound.SoundSFoil;
 import com.parzi.starwarsmod.sound.SoundShipMove;
 import com.parzi.starwarsmod.utils.BlasterBoltType;
 import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.starwarsmod.utils.ForceUtils.EntityCooldownEntry;
 import com.parzi.starwarsmod.vehicles.VehicAWing;
 import com.parzi.starwarsmod.vehicles.VehicHothSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
@@ -34,7 +44,6 @@ import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
 import com.parzi.util.AnimationManager;
 import com.parzi.util.entity.EntityUtils;
-import com.parzi.util.ui.GlPalette;
 import com.parzi.util.ui.GuiManager;
 import com.parzi.util.ui.GuiToast;
 import com.parzi.util.vehicle.VehicleAirBase;
@@ -48,14 +57,6 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -206,11 +207,34 @@ public class CommonEventHandler
 	}
 
 	@SubscribeEvent
+	public void onTick(TickEvent.ServerTickEvent event)
+	{
+		Iterator<EntityCooldownEntry> i = ForceUtils.entitiesWithEffects.iterator();
+
+		while (i.hasNext())
+		{
+			EntityCooldownEntry entry = i.next();
+
+			if (entry.effect.equals("disable"))
+			{
+				entry.entity.motionX = 0;
+				entry.entity.motionY = 0;
+				entry.entity.motionZ = 0;
+			}
+
+			entry.cooldownLeft--;
+
+			if (entry.cooldownLeft <= 0)
+				i.remove();
+		}
+	}
+
+	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onTick(TickEvent.ClientTickEvent event)
 	{
 		GuiManager.tick();
-		
+
 		AnimationManager.tick();
 
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)

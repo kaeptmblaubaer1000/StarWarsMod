@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 
+import net.minecraft.entity.Entity;
+
 import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.Resources;
@@ -11,6 +13,7 @@ import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDestruction;
+import com.parzi.starwarsmod.jedirobes.powers.PowerDisable;
 import com.parzi.starwarsmod.jedirobes.powers.PowerGrab;
 import com.parzi.starwarsmod.jedirobes.powers.PowerJump;
 import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
@@ -28,6 +31,8 @@ public class ForceUtils
 	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
 	public static ArrayList<Power> queueToRemove = new ArrayList<Power>();
 
+	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<EntityCooldownEntry>();
+
 	public static Power powerJump = new PowerJump(0);
 	public static Power powerPush = new PowerPush(0);
 	public static Power powerPull = new PowerPull(0);
@@ -37,6 +42,7 @@ public class ForceUtils
 	public static Power powerDeflect = new PowerDeflect(0);
 	public static Power powerNaturalAwareness = new PowerNaturalAwareness(0);
 	public static Power powerGrab = new PowerGrab(0);
+	public static Power powerDisable = new PowerDisable(0);
 
 	public static String[] getAllPowers()
 	{
@@ -65,7 +71,7 @@ public class ForceUtils
 				return true;
 		return false;
 	}
-	
+
 	public static int getLeaderboardSide(String side)
 	{
 		InputStream in = null;
@@ -88,7 +94,7 @@ public class ForceUtils
 		}
 		return 0;
 	}
-	
+
 	public static void addLeaderboardSide(String side)
 	{
 		InputStream in = null;
@@ -107,6 +113,20 @@ public class ForceUtils
 		{
 			if (in != null)
 				IOUtils.closeQuietly(in);
+		}
+	}
+
+	public static class EntityCooldownEntry
+	{
+		public int cooldownLeft;
+		public Entity entity;
+		public String effect;
+
+		public EntityCooldownEntry(Entity entity, String effect, int cooldown)
+		{
+			this.cooldownLeft = cooldown;
+			this.entity = entity;
+			this.effect = effect;
 		}
 	}
 }

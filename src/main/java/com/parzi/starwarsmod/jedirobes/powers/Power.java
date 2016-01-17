@@ -1,9 +1,9 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.ui.LangUtils;
-
-import net.minecraft.entity.player.EntityPlayer;
 
 public class Power
 {
@@ -27,6 +27,8 @@ public class Power
 			return ForceUtils.powerNaturalAwareness;
 		else if (name.equalsIgnoreCase("grab"))
 			return ForceUtils.powerGrab;
+		else if (name.equalsIgnoreCase("disable"))
+			return ForceUtils.powerDisable;
 		return null;
 	}
 

@@ -1,12 +1,12 @@
 package com.parzi.starwarsmod.jedirobes.powers;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.network.PacketEntityAlterMotion;
-import com.parzi.util.entity.EntityUtils;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
+
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.network.MessageEntityAlterMotion;
+import com.parzi.util.entity.EntityUtils;
 
 public class PowerPull extends Power
 {
@@ -38,9 +38,7 @@ public class PowerPull extends Power
 				lookVec.yCoord *= -mult;
 				lookVec.zCoord *= -mult;
 
-				String vecString = String.format("%s,%s,%s", lookVec.xCoord, lookVec.yCoord, lookVec.zCoord);
-
-				StarWarsMod.network.sendToServer(new PacketEntityAlterMotion(e.getEntityId(), e.dimension, vecString));
+				StarWarsMod.network.sendToServer(new MessageEntityAlterMotion(e, lookVec));
 			}
 
 			return true;

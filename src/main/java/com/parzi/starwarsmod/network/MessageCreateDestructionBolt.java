@@ -28,5 +28,4 @@ public class MessageCreateDestructionBolt extends Message<MessageCreateDestructi
 		this.sender.worldObj.spawnEntityInWorld(new EntityDestruction(this.sender.worldObj, this.sender, this.radius));
 		return null;
 	}
-
 }
