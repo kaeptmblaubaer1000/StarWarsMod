@@ -1,16 +1,15 @@
 package com.parzi.starwarsmod.blocks;
 
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.tileentities.TileEntityFieldEmitter;
-import com.parzi.starwarsmod.tileentities.TileEntityMudTable;
-import com.parzi.util.world.HarvestLevel;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.tileentities.TileEntityFieldEmitter;
+import com.parzi.util.world.HarvestLevel;
 
 public class BlockFieldEmitter extends BlockContainer
 {
@@ -33,7 +32,7 @@ public class BlockFieldEmitter extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconFieldEmitter");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "fieldEmitter");
 	}
 }
 /*

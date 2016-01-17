@@ -1,13 +1,11 @@
 package com.parzi.starwarsmod.handlers;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -26,9 +24,7 @@ import com.parzi.starwarsmod.items.ItemBinoculars;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
-import com.parzi.starwarsmod.jedirobes.powers.PowerLightning;
 import com.parzi.starwarsmod.network.MessageCreateBlasterBolt;
-import com.parzi.starwarsmod.network.MessageEntityGrab;
 import com.parzi.starwarsmod.rendering.force.ModelJediCloak;
 import com.parzi.starwarsmod.rendering.force.RenderJediDefense;
 import com.parzi.starwarsmod.rendering.force.RenderSithLightning;
@@ -43,12 +39,9 @@ import com.parzi.starwarsmod.vehicles.VehicSpeederBike;
 import com.parzi.starwarsmod.vehicles.VehicTIE;
 import com.parzi.starwarsmod.vehicles.VehicTIEInterceptor;
 import com.parzi.starwarsmod.vehicles.VehicXWing;
-import com.parzi.util.Animation;
 import com.parzi.util.AnimationManager;
-import com.parzi.util.entity.EntityUtils;
 import com.parzi.util.entity.PlayerHelper;
 import com.parzi.util.ui.GuiManager;
-import com.parzi.util.ui.GuiToast;
 import com.parzi.util.ui.RenderHelper;
 import com.parzi.util.ui.Text;
 import com.parzi.util.ui.TextUtils;
@@ -65,7 +58,7 @@ public class ClientEventHandler
 
 	public static EntityPlayer lightningFrom = null;
 	public static EntityPlayer lastPlayerTarget = null;
-	
+
 	public static boolean cursorOpen = true;
 	public static boolean isCursorAnim = false;
 
@@ -258,7 +251,7 @@ public class ClientEventHandler
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);
 
 		GuiManager.render(event);
-		
+
 		AnimationManager.render(event);
 	}
 
