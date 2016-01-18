@@ -210,7 +210,6 @@ public class CommonEventHandler
 	public void onTick(TickEvent.ServerTickEvent event)
 	{
 		Iterator<EntityCooldownEntry> i = ForceUtils.entitiesWithEffects.iterator();
-
 		while (i.hasNext())
 		{
 			EntityCooldownEntry entry = i.next();
@@ -223,9 +222,9 @@ public class CommonEventHandler
 			}
 			else if (entry.effect.equals("slow"))
 			{
-				entry.entity.motionX = Math.min(Math.max(entry.entity.motionX, -0.01d), 0.01d);
-				entry.entity.motionY = Math.min(Math.max(entry.entity.motionY, -0.01d), 0.01d);
-				entry.entity.motionZ = Math.min(Math.max(entry.entity.motionZ, -0.01d), 0.01d);
+				entry.entity.motionX = Math.min(Math.max(entry.entity.motionX, -0.005d), 0.005d);
+				entry.entity.motionY = Math.min(Math.max(entry.entity.motionY, -0.005d), 0.005d);
+				entry.entity.motionZ = Math.min(Math.max(entry.entity.motionZ, -0.005d), 0.005d);
 			}
 
 			entry.cooldownLeft--;

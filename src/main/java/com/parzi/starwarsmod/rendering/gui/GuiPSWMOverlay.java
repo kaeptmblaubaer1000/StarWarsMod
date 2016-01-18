@@ -99,11 +99,9 @@ public class GuiPSWMOverlay extends Gui
 				y -= 22;
 			}
 
-			Iterator<EntityCooldownEntry> entryIt = ForceUtils.entitiesWithEffects.iterator();
-			while (entryIt.hasNext())
+			for (EntityCooldownEntry entry : ForceUtils.entitiesWithEffects)
 			{
-				EntityCooldownEntry entry = entryIt.next();
-				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GlPalette.ORANGE_PINK);
+				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GlPalette.ANALOG_BLUE);
 				this.drawString(this.mc.fontRenderer, entry.entity.getCommandSenderName() + " (" + entry.effect + "): " + (int)Math.ceil(entry.cooldownLeft / 40f) + "s", 30, y - 3, GlPalette.WHITE);
 				y -= 22;
 			}

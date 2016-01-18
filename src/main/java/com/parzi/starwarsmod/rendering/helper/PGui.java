@@ -2,18 +2,6 @@ package com.parzi.starwarsmod.rendering.helper;
 
 import java.awt.Point;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzi.starwarsmod.Resources;
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.handlers.ClientEventHandler;
-import com.parzi.starwarsmod.minimap.MinimapStore;
-import com.parzi.util.ui.GlPalette;
-import com.parzi.util.ui.Lumberjack;
-
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -27,7 +15,21 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
+import org.lwjgl.opengl.GL11;
+
 import scala.Int;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
+import com.parzi.starwarsmod.minimap.MinimapStore;
+import com.parzi.util.ui.GlPalette;
+import com.parzi.util.ui.Lumberjack;
+
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PGui// extends Gui
@@ -395,7 +397,7 @@ public class PGui// extends Gui
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
 	}
-	
+
 	public void drawFancyCursor(RenderGameOverlayEvent event, float p, int color)
 	{
 		float centerX = event.resolution.getScaledWidth() / 2f;
@@ -556,6 +558,7 @@ public class PGui// extends Gui
 	 */
 	public void drawLoadingCircleWithoutSetup(int x, int y, double radius, float percent, int color)
 	{
+		GL11.glPushMatrix();
 		float f = (color >> 24 & 0xff) / 255F;
 		float f1 = (color >> 16 & 0xff) / 255F;
 		float f2 = (color >> 8 & 0xff) / 255F;
@@ -577,6 +580,7 @@ public class PGui// extends Gui
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glPopMatrix();
 	}
 
 	@SideOnly(Side.CLIENT)
