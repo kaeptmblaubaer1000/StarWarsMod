@@ -66,9 +66,9 @@ public class ForceUtils
 		}
 		else
 		{
-			if (level < 35)
+			if (level < 45)
 				s += "Acolyte";
-			else if (level < 45)
+			else if (level < 55)
 				s += "Apprentice";
 			else
 				s += "Lord";

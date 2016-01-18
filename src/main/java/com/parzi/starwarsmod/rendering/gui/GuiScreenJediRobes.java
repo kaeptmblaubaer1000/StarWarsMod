@@ -41,7 +41,6 @@ public class GuiScreenJediRobes extends GuiScreen
 
 	private GuiButton learnButton;
 	private GuiButton enableButton;
-	private GuiButton jediButton;
 
 	private ItemStack stack;
 	private EntityPlayer player;
@@ -120,7 +119,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f), ForceUtils.getTitle(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f))) + TextUtils.addEffect(this.player.getCommandSenderName(), Text.COLOR_BLUE), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f), ForceUtils.getTitle(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(stack).equals(ArmorJediRobes.SIDE_JEDI) ? Text.COLOR_BLUE : Text.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
 		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
@@ -200,10 +199,8 @@ public class GuiScreenJediRobes extends GuiScreen
 
 		this.learnButton = new GuiButton(20, 10, this.height - 60, this.listWidth, 20, "Learn");
 		this.enableButton = new GuiButton(21, 10, this.height - 38, this.listWidth, 20, "Enable");
-		this.jediButton = new GuiButtonJedi(22, 50, 50);
 		this.buttonList.add(this.learnButton);
 		this.buttonList.add(this.enableButton);
-		this.buttonList.add(this.jediButton);
 	}
 
 	/**

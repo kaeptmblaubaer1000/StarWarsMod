@@ -76,7 +76,7 @@ public class GuiPSWMOverlay extends Gui
 			int xp = ArmorJediRobes.getXP(robes);
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
-			boolean isJedi = tags.hasKey("side") && tags.getString("side") != ArmorJediRobes.SIDE_SITH;
+			boolean isJedi = ArmorJediRobes.getSide(robes).equals(ArmorJediRobes.SIDE_JEDI);
 			int guiColor = isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();

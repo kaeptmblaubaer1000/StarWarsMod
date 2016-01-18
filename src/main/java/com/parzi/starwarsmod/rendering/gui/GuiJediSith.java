@@ -1,6 +1,7 @@
 package com.parzi.starwarsmod.rendering.gui;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,11 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
+import com.parzi.starwarsmod.network.PacketRobesStringNBT;
+import com.parzi.starwarsmod.utils.ForceUtils;
+import com.parzi.util.ui.GlPalette;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -47,6 +53,42 @@ public class GuiJediSith extends GuiScreen
 
 		this.sithButton = new GuiButtonSith(2, x + 20, y + 15);
 		this.buttonList.add(this.sithButton);
+		/*
+		 * if (p_73869_2_ == 1) { this.mc.displayGuiScreen((GuiScreen)null);
+		 * this.mc.setIngameFocus(); }
+		 */
+	}
+
+	@Override
+	protected void actionPerformed(GuiButton button)
+	{
+		if (button.enabled)
+		{
+			if (button.id == this.jediButton.id)
+			{
+				ForceUtils.addLeaderboardSide("jedi");
+				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.setIngameFocus();
+				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI, player.dimension, player.getCommandSenderName()));
+			}
+			else if (button.id == this.sithButton.id)
+			{
+				ForceUtils.addLeaderboardSide("sith");
+				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.setIngameFocus();
+				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_SITH, player.dimension, player.getCommandSenderName()));
+			}
+		}
+	}
+
+	/**
+	 * Fired when a key is typed. This is the equivalent of
+	 * KeyListener.keyTyped(KeyEvent e).
+	 */
+	@Override
+	protected void keyTyped(char p_73869_1_, int p_73869_2_)
+	{
+		// don't exit on escape, force player to chose
 	}
 
 	/**
@@ -59,7 +101,21 @@ public class GuiJediSith extends GuiScreen
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
 		this.mc.getTextureManager().bindTexture(guiTexture);
-		this.drawTexturedModalRect((r.getScaledWidth() - 124) / 2, (r.getScaledHeight() - 83) / 2, 100, 0, 124, 83);
+		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
+
+		int x = (int)(r.getScaledWidth() / 2);
+		int y = (int)(r.getScaledHeight() / 2);
+		int dy = y - 80;
+		this.drawCenteredString(mc.fontRenderer, "You have a nightmare.", x, dy += 10, GlPalette.WHITE);
+		this.drawCenteredString(mc.fontRenderer, "A Dark Man speaks to you.", x, dy += 10, GlPalette.WHITE);
+		dy += 10;
+		this.drawCenteredString(mc.fontRenderer, "He wants to share his secrets.", x, dy += 10, GlPalette.LIGHT_RED);
+		this.drawCenteredString(mc.fontRenderer, "His dark knowledge.", x, dy += 10, GlPalette.RED);
+		dy += 10;
+		this.drawCenteredString(mc.fontRenderer, "Do you accept?", x, dy += 10, GlPalette.WHITE);
+
+		this.drawString(mc.fontRenderer, "Never.", x - 73, y + 19, GlPalette.WHITE);
+		this.drawString(mc.fontRenderer, "Show me.", x + 38, y + 19, GlPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
