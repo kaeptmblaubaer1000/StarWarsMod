@@ -1,15 +1,18 @@
 package com.parzi.starwarsmod.handlers;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.rendering.gui.ContainerJediRobes;
+import com.parzi.starwarsmod.rendering.gui.ContainerJediSith;
 import com.parzi.starwarsmod.rendering.gui.ContainerMV;
+import com.parzi.starwarsmod.rendering.gui.GuiJediSith;
 import com.parzi.starwarsmod.rendering.gui.GuiMV;
 import com.parzi.starwarsmod.rendering.gui.GuiScreenJediRobes;
 import com.parzi.starwarsmod.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -20,6 +23,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		if (id == Resources.GUI_ROBES)
 			return new GuiScreenJediRobes(player);
+		if (id == Resources.GUI_JEDI_SITH)
+			return new GuiJediSith(player);
 		return null;
 	}
 
@@ -30,6 +35,8 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		if (id == Resources.GUI_ROBES)
 			return new ContainerJediRobes();
+		if (id == Resources.GUI_JEDI_SITH)
+			return new ContainerJediSith();
 		return null;
 	}
 }

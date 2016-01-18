@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.network.PacketRobesIntNBT;
@@ -21,6 +23,7 @@ import com.parzi.starwarsmod.network.PacketRobesPowerNBT;
 import com.parzi.starwarsmod.network.PacketRobesStringNBT;
 import com.parzi.starwarsmod.utils.ForceUtils;
 import com.parzi.util.ui.LangUtils;
+import com.parzi.util.ui.Text;
 import com.parzi.util.ui.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
@@ -34,13 +37,16 @@ public class GuiScreenJediRobes extends GuiScreen
 	private int selected = -1;
 	private GuiPowerListItem selectedPower;
 	private int listWidth = 0;
-	private String[] powers;
+	private ArrayList<String> powers;
 
 	private GuiButton learnButton;
 	private GuiButton enableButton;
+	private GuiButton jediButton;
 
 	private ItemStack stack;
 	private EntityPlayer player;
+
+	private int points = 0;
 
 	public GuiScreenJediRobes(EntityPlayer player)
 	{
@@ -48,7 +54,9 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.stack = player.getEquipmentInSlot(3);
 		this.player = player;
 
-		this.powers = ForceUtils.getAllPowers();
+		this.powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f));
+
+		this.points = ArmorJediRobes.getPoints(stack);
 	}
 
 	@Override
@@ -68,6 +76,7 @@ public class GuiScreenJediRobes extends GuiScreen
 			{
 				Power.getPowerFromName(this.selectedPower.power.name).currentLevel++;
 				StarWarsMod.network.sendToServer(new PacketRobesPowerNBT(this.selectedPower.power.name, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, this.player.dimension, this.player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtRemainingPts, --points, player.dimension, player.getCommandSenderName()));
 			}
 		}
 	}
@@ -76,7 +85,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	{
 		if (power == null)
 			return false;
-		return power.currentLevel < power.maxLevel || power.maxLevel == -1;
+		return (power.currentLevel < power.maxLevel || power.maxLevel == -1) && points > 0;
 	}
 
 	public void drawBg2()
@@ -110,16 +119,19 @@ public class GuiScreenJediRobes extends GuiScreen
 	{
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
-		this.drawCenteredString(this.fontRendererObj, "Jedi Apprentice " + TextUtils.makeItalic(this.player.getCommandSenderName()), offset, 16, 0xFFFFFF);
+		int y = 5;
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f), ForceUtils.getTitle(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f))) + TextUtils.addEffect(this.player.getCommandSenderName(), Text.COLOR_BLUE), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", points), offset, y += 10, 0xFFFFFF);
+		y += 10;
 		if (this.selectedPower != null)
 		{
 			GL11.glEnable(GL11.GL_BLEND);
-			this.drawCenteredString(this.fontRendererObj, this.selectedPower.localizedName, offset, 35, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format("Current Level: %s", this.selectedPower.power == null ? 0 : this.selectedPower.power.currentLevel), offset, 45, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format("XP/use: %s", this.selectedPower.power == null ? 0 : this.selectedPower.power.getCost()), offset, 55, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format("Recharge Time: %s seconds", this.selectedPower.power == null ? 0 : this.selectedPower.power.rechargeTime), offset, 65, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, "Description and Use:", offset, 75, 0xDDDDDD);
-			this.fontRendererObj.drawSplitString(this.selectedPower.localizedDesc, offset - 125, 85, 250, 0xDDDDDD);
+			this.drawCenteredString(this.fontRendererObj, this.selectedPower.localizedName, offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, String.format("Current Level: %s", this.selectedPower.power == null ? 0 : this.selectedPower.power.currentLevel), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, String.format("XP/use: %s", this.selectedPower.power == null ? 0 : this.selectedPower.power.getCost()), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, String.format("Recharge Time: %s seconds", this.selectedPower.power == null ? 0 : this.selectedPower.power.rechargeTime), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, "Description and Use:", offset, y += 10, 0xDDDDDD);
+			this.fontRendererObj.drawSplitString(this.selectedPower.localizedDesc, offset - 125, y += 10, 250, 0xDDDDDD);
 			GL11.glDisable(GL11.GL_BLEND);
 
 			if (this.selectedPower.power != null)
@@ -133,6 +145,8 @@ public class GuiScreenJediRobes extends GuiScreen
 			this.learnButton.enabled = false;
 			this.enableButton.enabled = false;
 		}
+		RenderHelper.disableStandardItemLighting();
+		ClientEventHandler.pgui.renderOrderLogo(150, 17, ArmorJediRobes.getSide(stack).equals(ArmorJediRobes.SIDE_JEDI));
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
 
@@ -162,9 +176,10 @@ public class GuiScreenJediRobes extends GuiScreen
 	{
 		ArrayList<GuiPowerListItem> items = new ArrayList<GuiPowerListItem>();
 
+		this.listWidth = 100;
+
 		for (String power : this.powers)
 		{
-			this.listWidth = Math.max(this.listWidth, this.getFontRenderer().getStringWidth(LangUtils.translate(power)) + 10);
 			GuiPowerListItem item = new GuiPowerListItem();
 			item.localizedName = LangUtils.translate("force.power." + power);
 			item.localizedDesc = LangUtils.translate("force.power." + power + ".desc");
@@ -185,8 +200,10 @@ public class GuiScreenJediRobes extends GuiScreen
 
 		this.learnButton = new GuiButton(20, 10, this.height - 60, this.listWidth, 20, "Learn");
 		this.enableButton = new GuiButton(21, 10, this.height - 38, this.listWidth, 20, "Enable");
+		this.jediButton = new GuiButtonJedi(22, 50, 50);
 		this.buttonList.add(this.learnButton);
 		this.buttonList.add(this.enableButton);
+		this.buttonList.add(this.jediButton);
 	}
 
 	/**

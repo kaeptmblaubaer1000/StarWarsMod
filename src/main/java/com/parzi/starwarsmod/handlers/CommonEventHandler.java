@@ -104,6 +104,7 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyDebug.isPressed())
 		{
+			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 		}
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
@@ -349,21 +350,24 @@ public class CommonEventHandler
 			int xp = ArmorJediRobes.getXP(robes);
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
-			double percent = 1 + 0.1f * Math.floor(level / 10);
+			if (StarWarsMod.mc.thePlayer.ticksExisted % 20 == 0)
+			{
+				double percent = 1 + 0.1f * Math.floor(level / 10);
 
-			if (percent > 6)
-				percent = 6;
+				if (percent > 6)
+					percent = 6;
 
-			int addition = (int)(maxxp / 100 * percent);
+				int addition = (int)(maxxp / 100 * percent);
 
-			int total = 0;
+				int total = 0;
 
-			if (xp + addition < maxxp)
-				total = xp + addition;
-			else
-				total = maxxp;
+				if (xp + addition < maxxp)
+					total = xp + addition;
+				else
+					total = maxxp;
 
-			StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtXp, total, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+			}
 
 			if (ForceUtils.activePower != null && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && !ForceUtils.isCooling(ForceUtils.activePower.name))
 			{

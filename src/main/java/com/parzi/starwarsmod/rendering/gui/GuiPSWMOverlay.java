@@ -81,6 +81,7 @@ public class GuiPSWMOverlay extends Gui
 
 			RenderHelper.disableStandardItemLighting();
 			ClientEventHandler.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
+			ClientEventHandler.pgui.renderOrderLogo(65, 6, isJedi);
 
 			GL11.glPushMatrix();
 			GL11.glScalef(0.5f, 0.5f, 0.5f);

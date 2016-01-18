@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import org.apache.commons.io.IOUtils;
 
 import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDefend;
 import com.parzi.starwarsmod.jedirobes.powers.PowerDeflect;
@@ -51,9 +52,73 @@ public class ForceUtils
 		powers.put("slow", new PowerSlow(0));
 	}
 
+	public static String getTitle(String side, int level)
+	{
+		String s = side.equals(ArmorJediRobes.SIDE_JEDI) ? "Jedi " : "Sith ";
+		if (side.equals(ArmorJediRobes.SIDE_JEDI))
+		{
+			if (level < 5)
+				s += "Padawan";
+			else if (level < 30)
+				s += "Knight";
+			else
+				s += "Master";
+		}
+		else
+		{
+			if (level < 35)
+				s += "Acolyte";
+			else if (level < 45)
+				s += "Apprentice";
+			else
+				s += "Lord";
+		}
+		return s;
+	}
+
 	public static String[] getAllPowers()
 	{
 		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "healing", "naturalAwareness", "slow", "drainKnowledge", "lightning", "destruction" };
+	}
+
+	public static ArrayList<String> getPowersAvailableAtLevel(String side, int level)
+	{
+		ArrayList<String> r = new ArrayList<String>();
+
+		r.add("jump");
+		r.add("push");
+
+		if (level > 5)
+			r.add("pull");
+		if (level > 10)
+			r.add("defend");
+		if (level > 15)
+			r.add("disable");
+		if (level > 20)
+			r.add("deflect");
+		if (level > 25)
+			r.add("grab");
+
+		if (side.equals(ArmorJediRobes.SIDE_JEDI))
+		{
+			if (level > 30)
+				r.add("healing");
+			if (level > 35)
+				r.add("naturalAwareness");
+		}
+		else if (side.equals(ArmorJediRobes.SIDE_SITH))
+		{
+			if (level > 35)
+				r.add("slow");
+			if (level > 40)
+				r.add("drainKnowledge");
+			if (level > 45)
+				r.add("lightning");
+			if (level > 50)
+				r.add("destruction");
+		}
+
+		return r;
 	}
 
 	public static String[] getBasicPowers()

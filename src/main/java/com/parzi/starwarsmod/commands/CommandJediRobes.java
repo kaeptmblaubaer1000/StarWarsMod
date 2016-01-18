@@ -3,14 +3,15 @@ package com.parzi.starwarsmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+
+import com.parzi.starwarsmod.Resources;
+import com.parzi.starwarsmod.StarWarsMod;
+import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 
 public class CommandJediRobes extends CommandBase
 {
@@ -59,8 +60,6 @@ public class CommandJediRobes extends CommandBase
 		int value = 0;
 
 		value = parseInt(icommandsender, astring[1]);
-		if (key.equalsIgnoreCase("level"))
-			value *= 10;
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
@@ -75,8 +74,10 @@ public class CommandJediRobes extends CommandBase
 
 			if (key.equalsIgnoreCase("level"))
 			{
-				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger("maxxp", value * 10);
-				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Max XP to " + String.valueOf(value * 10) + "."));
+				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(Resources.nbtMaxXp, (value + 1) * 100);
+				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Max XP to " + String.valueOf((value + 1) * 100) + "."));
+				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(Resources.nbtRemainingPts, value);
+				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Remaining Upgrade Points to " + String.valueOf(value) + "."));
 			}
 		}
 		else

@@ -52,6 +52,7 @@ public class Resources
 
 	public static int GUI_MV = 0;
 	public static int GUI_ROBES = 1;
+	public static int GUI_JEDI_SITH = 2;
 
 	public static boolean enableFlyCommand;
 	public static boolean enableDimCommand;
@@ -101,4 +102,5 @@ public class Resources
 	public static final String nbtMaxXp = "maxxp";
 	public static final String nbtSide = "side";
 	public static final String nbtPowers = "powers";
+	public static final String nbtRemainingPts = "points";
 }

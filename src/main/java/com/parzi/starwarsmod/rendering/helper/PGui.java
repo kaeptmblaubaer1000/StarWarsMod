@@ -36,8 +36,7 @@ public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
 	private static ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
-	private static ResourceLocation saberBars = new ResourceLocation(Resources.MODID, "textures/gui/bars.png");
-	private static ResourceLocation saber = new ResourceLocation(Resources.MODID, "textures/gui/hilt.png");
+	public static ResourceLocation swIcons = new ResourceLocation(Resources.MODID, "textures/gui/icons.png");
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
@@ -951,17 +950,28 @@ public class PGui// extends Gui
 	public void renderLightsaberBarOnscreen(int x, int y, float percent, boolean jedi)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
-		PGui.mc.getTextureManager().bindTexture(saberBars);
+		PGui.mc.getTextureManager().bindTexture(swIcons);
 		GL11.glEnable(3042);
 		int j = x + 25;
 		int k = (int)(percent * 100);
 		int b0 = y + 1;
-		this.drawTexturedModalRectFloat(j, b0, 0, 0, 99, 3.6f);
+		this.drawTexturedModalRectFloat(j, b0, 0, 19, 99, 3.6f);
 		if (k > 0)
-			this.drawTexturedModalRectFloat(j, b0, 0, jedi ? 3.6f : 10.5f, k, 3.6f);
+			this.drawTexturedModalRectFloat(j, b0, 0, jedi ? 15.6f : 22.5f, k, 3.6f);
 
-		PGui.mc.getTextureManager().bindTexture(saber);
 		this.drawTexturedModalRectFloat(j - (jedi ? 25 : 24), b0 - 0.75f, 0, jedi ? 0 : 6f, 26.5f, 6);
+
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(3042);
+	}
+
+	public void renderOrderLogo(int x, int y, boolean jedi)
+	{
+		PGui.mc.entityRenderer.setupOverlayRendering();
+		PGui.mc.getTextureManager().bindTexture(swIcons);
+		GL11.glEnable(3042);
+
+		this.drawTexturedModalRectFloat(x, y, jedi ? 0 : 17, 26, 16, 16);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);

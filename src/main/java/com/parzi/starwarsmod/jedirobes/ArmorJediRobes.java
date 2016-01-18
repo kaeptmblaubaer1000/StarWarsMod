@@ -44,6 +44,20 @@ public class ArmorJediRobes extends ItemArmor
 		return 0;
 	}
 
+	public static ItemStack addPoints(ItemStack stack, int levels)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtRemainingPts))
+			stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, stack.stackTagCompound.getInteger(Resources.nbtRemainingPts) + levels);
+		return stack;
+	}
+
+	public static int getPoints(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtRemainingPts))
+			return stack.stackTagCompound.getInteger(Resources.nbtRemainingPts);
+		return 0;
+	}
+
 	public static String getActive(EntityPlayer player)
 	{
 		ItemStack stack = getRobes(player);
@@ -56,6 +70,21 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtActive))
 			return stack.stackTagCompound.getString(Resources.nbtActive);
+		return "";
+	}
+
+	public static String getSide(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return "";
+		return getSide(stack);
+	}
+
+	public static String getSide(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtSide))
+			return stack.stackTagCompound.getString(Resources.nbtSide);
 		return "";
 	}
 
@@ -294,8 +323,9 @@ public class ArmorJediRobes extends ItemArmor
 		stack.stackTagCompound.setString(Resources.nbtEntityTarget, "");
 		stack.stackTagCompound.setInteger(Resources.nbtLevel, 0);
 		stack.stackTagCompound.setInteger(Resources.nbtXp, 0);
+		stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, 0);
 		stack.stackTagCompound.setInteger(Resources.nbtMaxXp, 100);
-		stack.stackTagCompound.setString(Resources.nbtSide, SIDE_NONE);
+		stack.stackTagCompound.setString(Resources.nbtSide, SIDE_JEDI);
 		stack.stackTagCompound.setTag(Resources.nbtPowers, new NBTTagCompound());
 		for (String p : ForceUtils.powers.keySet())
 			((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setInteger(p, 0);

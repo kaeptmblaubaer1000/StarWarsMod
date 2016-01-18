@@ -266,7 +266,25 @@ public class ClientEventHandler
 	public void onXpPickup(PlayerPickupXpEvent event)
 	{
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		{
+			int currentLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
 			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+			int newLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
+			if (Math.floor(newLevels / 10f) == Math.floor(currentLevels / 10f) + 1)
+			{
+				// level up!
+				event.entityPlayer.playSound("random.levelup", 1, 1);
+				ArmorJediRobes.addPoints(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+				ArmorJediRobes.setMaxXP(event.entityPlayer.inventory.armorItemInSlot(2), (int)(Math.floor(newLevels / 10f) * 100));
+				event.entityPlayer.addChatMessage(new ChatComponentText("[Robes] Level Up! You gained an upgrade point."));
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2)) / 10f), ArmorJediRobes.getPoints(event.entityPlayer.inventory.armorItemInSlot(2)))));
+				if (Math.floor(newLevels / 10f) == 35)
+				{
+					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", Text.COLOR_DARK_GRAY)))));
+					StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
+				}
+			}
+		}
 	}
 
 	@SubscribeEvent
