@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,7 +14,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzi.starwarsmod.Resources;
 import com.parzi.starwarsmod.StarWarsMod;
-import com.parzi.starwarsmod.handlers.ClientEventHandler;
 import com.parzi.starwarsmod.jedirobes.ArmorJediRobes;
 import com.parzi.starwarsmod.jedirobes.powers.Power;
 import com.parzi.starwarsmod.network.PacketRobesIntNBT;
@@ -144,8 +142,6 @@ public class GuiScreenJediRobes extends GuiScreen
 			this.learnButton.enabled = false;
 			this.enableButton.enabled = false;
 		}
-		RenderHelper.disableStandardItemLighting();
-		ClientEventHandler.pgui.renderOrderLogo(150, 17, ArmorJediRobes.getSide(stack).equals(ArmorJediRobes.SIDE_JEDI));
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
 

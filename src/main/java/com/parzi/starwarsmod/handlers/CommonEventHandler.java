@@ -108,7 +108,12 @@ public class CommonEventHandler
 		}
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
-			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
+		{
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			{
+				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
+			}
+		}
 
 		// if (KeybindRegistry.keyDebug.isPressed())
 		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();

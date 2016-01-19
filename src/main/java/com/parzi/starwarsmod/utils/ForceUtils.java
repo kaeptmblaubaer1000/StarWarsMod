@@ -57,9 +57,9 @@ public class ForceUtils
 		String s = side.equals(ArmorJediRobes.SIDE_JEDI) ? "Jedi " : "Sith ";
 		if (side.equals(ArmorJediRobes.SIDE_JEDI))
 		{
-			if (level < 5)
+			if (level < 15)
 				s += "Padawan";
-			else if (level < 30)
+			else if (level < 35)
 				s += "Knight";
 			else
 				s += "Master";
