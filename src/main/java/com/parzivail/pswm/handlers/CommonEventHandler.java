@@ -45,7 +45,6 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
-import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.vehicle.VehicleAirBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -102,7 +101,7 @@ public class CommonEventHandler
 				}
 			}
 
-		if (KeybindRegistry.keyDebug.isPressed())
+		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 		}
