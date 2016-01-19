@@ -88,7 +88,7 @@ public class GuiJediSith extends GuiScreen
 	@Override
 	protected void keyTyped(char p_73869_1_, int p_73869_2_)
 	{
-		// don't exit on escape, force player to chose
+		// don't exit on escape, force player to choose
 	}
 
 	/**
