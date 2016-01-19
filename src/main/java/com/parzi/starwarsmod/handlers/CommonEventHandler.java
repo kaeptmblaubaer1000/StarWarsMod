@@ -255,7 +255,7 @@ public class CommonEventHandler
 
 		if (isInShip && !wasInShip)
 		{
-			GuiToast.makeText("Sound Started", 60).show();
+			//GuiToast.makeText("Sound Started", 60).show();
 			String ship = "unknown";
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 				ship = "awing";
@@ -269,7 +269,7 @@ public class CommonEventHandler
 
 		if (!isInShip && wasInShip)
 		{
-			GuiToast.makeText("Sound Stopped", 60).show();
+			//GuiToast.makeText("Sound Stopped", 60).show();
 			StarWarsMod.clientHandler.soundBank.stop(PSoundBank.shipAlarm);
 		}
 
