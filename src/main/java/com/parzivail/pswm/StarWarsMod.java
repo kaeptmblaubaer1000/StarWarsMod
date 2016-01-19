@@ -105,7 +105,7 @@ public class StarWarsMod
 	public static ClientEventHandler clientHandler;
 	public static CommonEventHandler commonHandler;
 
-	@SidedProxy(clientSide = "com.parzi.starwarsmod.StarWarsClientProxy", serverSide = "com.parzi.starwarsmod.StarWarsCommonProxy")
+	@SidedProxy(clientSide = "com.parzivail.pswm.StarWarsClientProxy", serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
 	public static SimpleNetworkWrapper network;
 
