@@ -32,7 +32,7 @@ namespace GradleBuild
                 dev++;
             fname = string.Format(fname, dev);
             Console.WriteLine("Creating jar: {0}", fname);
-            if (File.Exists(fname))
+            if (File.Exists("build/libs/starwarsmod-1.0.jar"))
                 File.Move("build/libs/starwarsmod-1.0.jar", fname);
             stopwatch.Stop();
             Console.WriteLine("Finished packing in " + ((float)stopwatch.ElapsedMilliseconds / 1000f).ToString() + "s");
