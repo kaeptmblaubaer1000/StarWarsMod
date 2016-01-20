@@ -3,15 +3,6 @@ package com.parzivail.pswm.items.weapons;
 import java.util.Arrays;
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
-import com.parzivail.util.ui.KeyboardUtils;
-import com.parzivail.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -22,6 +13,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.achievement.StarWarsAchievements;
+import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
+import com.parzivail.util.ui.KeyboardUtils;
+import com.parzivail.util.ui.TextUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlasterPistol extends Item
 {
@@ -96,7 +97,7 @@ public class ItemBlasterPistol extends Item
 	{
 		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
 			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
-				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterPistol.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+				entityPlayer.playSound(Resources.MODID + ":" + "fx.shoot." + this.versions[MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, 15)].toLowerCase(), 1.0F, 1.0F);
 			else
 				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)

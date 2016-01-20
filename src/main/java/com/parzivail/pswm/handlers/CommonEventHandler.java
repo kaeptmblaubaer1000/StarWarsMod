@@ -38,6 +38,8 @@ import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
+import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
+import com.parzivail.pswm.vehicles.VehicLandspeeder;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
@@ -45,7 +47,8 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
-import com.parzivail.util.vehicle.VehicleAirBase;
+import com.parzivail.util.ui.GuiToast;
+import com.parzivail.util.vehicle.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -250,26 +253,30 @@ public class CommonEventHandler
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 
-		isInShip = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase;
+		isInShip = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleBase;
 
 		if (isInShip && !wasInShip)
 		{
-			//GuiToast.makeText("Sound Started", 60).show();
+			GuiToast.makeText("Sound Started", 60).show();
 			String ship = "unknown";
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 				ship = "awing";
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
 				ship = "xwing";
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicLandspeeder)
+				ship = "landspeeder";
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicJakkuSpeeder)
+				ship = "speeder";
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
 				ship = "tie";
-			StarWarsMod.clientHandler.soundBank.shipAlarm = new SoundShipMove(ship);
-			StarWarsMod.clientHandler.soundBank.play(PSoundBank.shipAlarm);
+			StarWarsMod.clientHandler.soundBank.shipMove = new SoundShipMove(ship);
+			StarWarsMod.clientHandler.soundBank.play(PSoundBank.shipMove);
 		}
 
 		if (!isInShip && wasInShip)
 		{
-			//GuiToast.makeText("Sound Stopped", 60).show();
-			StarWarsMod.clientHandler.soundBank.stop(PSoundBank.shipAlarm);
+			GuiToast.makeText("Sound Stopped", 60).show();
+			StarWarsMod.clientHandler.soundBank.stop(PSoundBank.shipMove);
 		}
 
 		wasInShip = isInShip;

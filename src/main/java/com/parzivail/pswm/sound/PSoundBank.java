@@ -8,7 +8,6 @@ import net.minecraft.client.audio.SoundHandler;
 public class PSoundBank
 {
 	public static MovingSound lightsaberHum;
-	public static MovingSound shipAlarm;
 	public static MovingSound shipMove;
 	private SoundHandler handler;
 

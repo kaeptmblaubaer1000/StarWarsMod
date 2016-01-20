@@ -515,6 +515,96 @@
             "item/blasterRifle/use1"
         ]
     },
+    "fx.shoot.dl44": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dl44"
+        ]
+    },
+    "fx.shoot.dl18": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dl44"
+        ]
+    },
+    "fx.shoot.dh17": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dh17"
+        ]
+    },
+    "fx.shoot.sporting": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dl44"
+        ]
+    },
+    "fx.shoot.dl21": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dl44"
+        ]
+    },
+    "fx.shoot.scout": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dl44"
+        ]
+    },
+    "fx.shoot.se14c": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dl44"
+        ]
+    },
+    "fx.shoot.a280": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/a280"
+        ]
+    },
+    "fx.shoot.esb": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/e11"
+        ]
+    },
+    "fx.shoot.ionization": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/ion"
+        ]
+    },
+    "fx.shoot.cycler": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/cycler"
+        ]
+    },
+    "fx.shoot.stormtrooper": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/e11"
+        ]
+    },
+    "fx.shoot.dlt19": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/dlt19"
+        ]
+    },
+    "fx.shoot.t21": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/t21"
+        ]
+    },
+    "fx.shoot.rt97c": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/rt97c"
+        ]
+    },
     "item.blasterRifle.use": {
         "category": "neutral",
         "sounds": [
@@ -530,25 +620,7 @@
     "item.blasterBow.use": {
         "category": "neutral",
         "sounds": [
-            "item/blasterRifle/bowcaster"
-        ]
-    },
-    "item.blasterEsb.use": {
-        "category": "neutral",
-        "sounds": [
-            "item/blasterRifle/esb"
-        ]
-    },
-    "item.blasterIon.use": {
-        "category": "neutral",
-        "sounds": [
-            "item/blasterRifle/ion"
-        ]
-    },
-    "item.blasterCycler.use": {
-        "category": "neutral",
-        "sounds": [
-            "item/blasterRifle/tusken_use1"
+            "item/shoot/bowcaster"
         ]
     },
     "item.lightsaber.swing": {
