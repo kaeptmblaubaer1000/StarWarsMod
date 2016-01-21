@@ -93,6 +93,12 @@ public class ItemBlasterPistol extends Item
 	}
 
 	@Override
+	public boolean hasEffect(ItemStack stack, int pass)
+	{
+		return getCooldown(stack) >= 15;
+	}
+
+	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (getCooldown(stack) < 15)

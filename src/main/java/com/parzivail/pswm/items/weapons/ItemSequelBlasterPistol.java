@@ -3,14 +3,6 @@ package com.parzivail.pswm.items.weapons;
 import java.util.Arrays;
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
-import com.parzivail.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -21,6 +13,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.achievement.StarWarsAchievements;
+import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
+import com.parzivail.util.ui.TextUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSequelBlasterPistol extends Item
 {
@@ -91,55 +92,111 @@ public class ItemSequelBlasterPistol extends Item
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer entityPlayer)
+	public boolean hasEffect(ItemStack stack, int pass)
 	{
-		if (par1ItemStack.stackTagCompound.getInteger("timeout") < 2)
-			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") > 1)
-				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterPistol.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
-			else
-				entityPlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
-		if (!par2World.isRemote && par1ItemStack.stackTagCompound.getInteger("timeout") == 0)
+		return getCooldown(stack) >= 15;
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		if (getCooldown(stack) < 15)
 		{
-			par2World.spawnEntityInWorld(new EntityBlasterPistolBolt(par2World, entityPlayer));
-			par1ItemStack.stackTagCompound.setInteger("timeout", this.timeToRecharge);
-			par1ItemStack.stackTagCompound.setInteger("shotsLeft", par1ItemStack.stackTagCompound.getInteger("shotsLeft") - 1);
-			if (par1ItemStack.stackTagCompound.getInteger("shotsLeft") == 0)
-				entityPlayer.inventory.mainInventory[entityPlayer.inventory.currentItem] = null;
+			if (stack.stackTagCompound.getInteger("shotsLeft") > 1)
+				player.playSound(Resources.MODID + ":" + "fx.shoot.dl44", 1.0F, 1.0F);
+			else
+				player.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
 		}
-		entityPlayer.addStat(StarWarsAchievements.fireBlaster, 1);
-		return par1ItemStack;
+
+		if (!world.isRemote && getCooldown(stack) < 15)
+		{
+			world.spawnEntityInWorld(new EntityBlasterPistolBolt(world, player));
+
+			setCooldown(stack, getCooldown(stack) + 1);
+			setTicksSinceLastShot(stack, 0);
+
+			stack.stackTagCompound.setInteger("shotsLeft", stack.stackTagCompound.getInteger("shotsLeft") - 1);
+
+			if (stack.stackTagCompound.getInteger("shotsLeft") == 0)
+				player.inventory.mainInventory[player.inventory.currentItem] = null;
+		}
+
+		player.addStat(StarWarsAchievements.fireBlaster, 1);
+
+		return stack;
 	}
 
 	@Override
-	public void onPlayerStoppedUsing(ItemStack p_77615_1_, World p_77615_2_, EntityPlayer p_77615_3_, int p_77615_4_)
+	public void onUpdate(ItemStack stack, World world, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
 	{
-		p_77615_1_.stackTagCompound.setInteger("timeout", 0);
-	}
+		if (!world.isRemote)
+		{
+			if (!stack.hasTagCompound())
+				stack.stackTagCompound = new NBTTagCompound();
 
-	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
-	{
-		if (!p_77663_1_.hasTagCompound())
-			p_77663_1_.stackTagCompound = new NBTTagCompound();
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
-			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
-		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
-			switch (p_77663_1_.getItemDamage())
+			if (!stack.stackTagCompound.hasKey("shotsLeft"))
+				switch (stack.getItemDamage())
 			{
 				case 0:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 180);
+						stack.stackTagCompound.setInteger("shotsLeft", 180);
 					break;
 				case 3:
 				case 4:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 80);
+						stack.stackTagCompound.setInteger("shotsLeft", 80);
 					break;
 				case 1:
 				case 2:
 				default:
-					p_77663_1_.stackTagCompound.setInteger("shotsLeft", 100);
+						stack.stackTagCompound.setInteger("shotsLeft", 100);
+				}
+
+			this.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
+
+			if (getTicksSinceLastShot(stack) > 40 * ((getCooldown(stack) + 1) / 15f))
+			{
+				this.setTicksSinceLastShot(stack, 0);
+				this.setCooldown(stack, 0);
 			}
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
-			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		}
+	}
+
+	public static int getShotsLeft(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtShotsLeft))
+			return stack.stackTagCompound.getInteger(Resources.nbtShotsLeft);
+		return 0;
+	}
+
+	public static void setShotsLeft(ItemStack stack, int i)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger(Resources.nbtShotsLeft, i);
+	}
+
+	public static int getCooldown(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtCooldown))
+			return stack.stackTagCompound.getInteger(Resources.nbtCooldown);
+		return 0;
+	}
+
+	public static void setCooldown(ItemStack stack, int i)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger(Resources.nbtCooldown, i);
+	}
+
+	public static int getTicksSinceLastShot(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtTicksSince))
+			return stack.stackTagCompound.getInteger(Resources.nbtTicksSince);
+		return 0;
+	}
+
+	public static void setTicksSinceLastShot(ItemStack stack, int i)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger(Resources.nbtTicksSince, i);
 	}
 
 	@Override
