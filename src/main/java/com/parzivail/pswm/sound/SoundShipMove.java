@@ -30,7 +30,6 @@ public class SoundShipMove extends MovingSound
 		{
 			float s = (float)Math.abs(StarWarsMod.mc.thePlayer.ridingEntity.motionX);
 			s += (float)Math.abs(StarWarsMod.mc.thePlayer.ridingEntity.motionZ);
-			s /= 2;
 			s = MathHelper.clamp_float(s, 0, 1);
 			this.volume = s;
 		}
