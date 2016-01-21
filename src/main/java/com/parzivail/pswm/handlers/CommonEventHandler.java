@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
@@ -29,7 +28,6 @@ import com.parzivail.pswm.network.PacketReverseEntity;
 import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.sound.SoundLightsaberHum;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.ForceUtils;
@@ -64,7 +62,7 @@ public class CommonEventHandler
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.SPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.e11", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
 			}
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 			{

@@ -115,16 +115,16 @@ public class PGui// extends Gui
 	/**
 	 * Draws a filled circle
 	 *
-	 * @param x
+	 * @param g
 	 *            The x position
-	 * @param y
+	 * @param h
 	 *            The y position
 	 * @param radius
 	 *            The radius
 	 * @param color
 	 *            The color
 	 */
-	public void drawFilledCircle(int x, int y, double radius, int color)
+	public void drawFilledCircle(float g, float h, float radius, int color)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		float f = (color >> 24 & 0xff) / 255F;
@@ -141,7 +141,7 @@ public class PGui// extends Gui
 		{
 			double nx = Math.sin(i * 3.141526D / 180) * radius;
 			double ny = Math.cos(i * 3.141526D / 180) * radius;
-			GL11.glVertex2d(nx + x, ny + y);
+			GL11.glVertex2d(nx + g, ny + h);
 		}
 		GL11.glEnd();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -595,16 +595,18 @@ public class PGui// extends Gui
 		GL11.glEnable(GL11.GL_LINE_SMOOTH);
 		GL11.glBlendFunc(770, 771);
 		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glTranslatef(x, y, 0);
+		GL11.glRotatef(90 * percent, 0, 0, 1);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		for (int i = 0; i <= 360 * percent; i++)
+		for (int i = 0; i <= 180 * percent; i++)
 		{
 			double nx = Math.sin(i * 3.141526D / 180) * (radius * (1 - stripSize));
 			double ny = Math.cos(i * 3.141526D / 180) * (radius * (1 - stripSize));
-			GL11.glVertex2d(nx + x, ny + y);
+			GL11.glVertex2d(nx, ny);
 
 			nx = Math.sin(i * 3.141526D / 180) * radius;
 			ny = Math.cos(i * 3.141526D / 180) * radius;
-			GL11.glVertex2d(nx + x, ny + y);
+			GL11.glVertex2d(nx, ny);
 		}
 		GL11.glEnd();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);

@@ -587,6 +587,12 @@
             "item/shoot/e11"
         ]
     },
+    "fx.shoot.e11": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/e11"
+        ]
+    },
     "fx.shoot.dlt19": {
         "category": "neutral",
         "sounds": [

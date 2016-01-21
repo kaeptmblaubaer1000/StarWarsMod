@@ -22,7 +22,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
-import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
@@ -31,6 +30,7 @@ import com.parzivail.pswm.rendering.force.ModelJediCloak;
 import com.parzivail.pswm.rendering.force.RenderJediDefense;
 import com.parzivail.pswm.rendering.force.RenderSithLightning;
 import com.parzivail.pswm.rendering.gui.GuiBinocs;
+import com.parzivail.pswm.rendering.gui.GuiBlaster;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.rendering.helper.PGui;
 import com.parzivail.pswm.sound.SoundManager;
@@ -72,6 +72,8 @@ public class ClientEventHandler
 	public static RenderHelper renderHelper;
 
 	@SideOnly(Side.CLIENT)
+	public static GuiBlaster guiBlaster;
+	@SideOnly(Side.CLIENT)
 	public static GuiVehicle guiVehicle;
 	@SideOnly(Side.CLIENT)
 	public static GuiBinocs guiBinocs;
@@ -99,6 +101,7 @@ public class ClientEventHandler
 		modelCloak = new ModelJediCloak();
 		guiVehicle = new GuiVehicle();
 		guiBinocs = new GuiBinocs();
+		guiBlaster = new GuiBlaster();
 	}
 
 	@SubscribeEvent
@@ -182,7 +185,7 @@ public class ClientEventHandler
 			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.e11", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
 			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
 			{
@@ -251,17 +254,7 @@ public class ClientEventHandler
 			guiVehicle.onRenderGui(event);
 		}
 
-		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterRifle || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterPistol || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterHeavy))
-		{
-			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
-
-			pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 9, 1, 0.3f, 0xFFFFFFFF);
-
-			float p = ItemBlasterRifle.getCooldown(stack) / 15f;
-			int n = (int)(200 * (1 - p));
-
-			pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 8, p, 0.1f, PGui.getRGBA(n, n, 255, 255));
-		}
+		guiBlaster.onRenderGui(event);
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);

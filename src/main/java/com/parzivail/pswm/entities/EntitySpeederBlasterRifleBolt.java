@@ -1,20 +1,13 @@
 package com.parzivail.pswm.entities;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class EntitySpeederBlasterRifleBolt extends EntityBlasterBoltBase
 {
+	private static float extent = 3;
+
 	public EntitySpeederBlasterRifleBolt(World par1World)
 	{
 		super(par1World, 8.0f);
@@ -28,6 +21,15 @@ public class EntitySpeederBlasterRifleBolt extends EntityBlasterBoltBase
 	public EntitySpeederBlasterRifleBolt(World par1World, EntityLivingBase par2EntityLivingBase)
 	{
 		super(par1World, par2EntityLivingBase, 8.0f);
+
+		Vec3 vec3 = par2EntityLivingBase.getLookVec();
+		double dx = vec3.xCoord * this.extent;
+		double dy = vec3.yCoord * this.extent;
+		double dz = vec3.zCoord * this.extent;
+
+		this.posX += dx;
+		this.posY += dy;
+		this.posZ += dz;
 	}
 }
 /*
