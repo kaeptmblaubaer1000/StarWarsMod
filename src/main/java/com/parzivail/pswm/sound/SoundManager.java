@@ -13,7 +13,6 @@ import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.TickComparator;
 import com.parzivail.util.sound.PSoundBank;
-import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.vehicle.VehicleBase;
 
 import cpw.mods.fml.relauncher.Side;
@@ -44,7 +43,7 @@ public class SoundManager
 
 		if (inShip.changeTrue())
 		{
-			//GuiToast.makeText("Sound Started", 60).show();
+			// GuiToast.makeText("Sound Started", 60).show();
 			String ship = "unknown";
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 				ship = "awing";
@@ -62,25 +61,25 @@ public class SoundManager
 
 		if (inShip.changeFalse())
 		{
-			//GuiToast.makeText("Sound Stopped", 60).show();
+			// GuiToast.makeText("Sound Stopped", 60).show();
 			soundBank.stop(SoundManager.shipMove);
 		}
 
 		inShip.tick();
-		
+
 		holdingLightsaber.is = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber);
-		
+
 		if (holdingLightsaber.changeTrue())
 		{
 			SoundManager.lightsaberHum = new SoundLightsaberHum(StarWarsMod.mc.thePlayer);
-			soundBank.play(SoundManager.lightsaberHum);			
+			soundBank.play(SoundManager.lightsaberHum);
 		}
-		
+
 		if (holdingLightsaber.changeFalse())
 		{
-			soundBank.stop(SoundManager.lightsaberHum);			
+			soundBank.stop(SoundManager.lightsaberHum);
 		}
-		
+
 		holdingLightsaber.tick();
 	}
 }

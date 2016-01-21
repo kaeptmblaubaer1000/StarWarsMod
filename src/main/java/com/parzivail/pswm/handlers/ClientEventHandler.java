@@ -21,6 +21,8 @@ import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
+import com.parzivail.pswm.items.ItemBinocularsHoth;
+import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
@@ -122,7 +124,7 @@ public class ClientEventHandler
 	public void onFOVCheck(FOVUpdateEvent fovUpdateEvent)
 	{
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
-		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof com.parzivail.pswm.items.ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && StarWarsMod.mc.gameSettings.thirdPersonView == 0)
+		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && StarWarsMod.mc.gameSettings.thirdPersonView == 0)
 			fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
 	}
 
@@ -247,6 +249,13 @@ public class ClientEventHandler
 			guiBinocs.onRenderGui(event);
 
 			guiVehicle.onRenderGui(event);
+		}
+
+		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterRifle || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterPistol || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterHeavy))
+		{
+			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
+
+			pgui.drawLoadingCircleWithoutSetup(event.resolution.getScaledWidth() / 2, event.resolution.getScaledHeight() / 2, 8, ItemBlasterRifle.getCooldown(stack) / 15f, 0x200000FF);
 		}
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))

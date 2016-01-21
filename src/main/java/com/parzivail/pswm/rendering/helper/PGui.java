@@ -580,6 +580,7 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
 		GL11.glPopMatrix();
+		GL11.glColor4f(1, 1, 1, 1);
 	}
 
 	@SideOnly(Side.CLIENT)

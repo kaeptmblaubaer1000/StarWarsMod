@@ -59,7 +59,7 @@ item.starwarsmod.blasterHeavy.T21.name=BlasTech T-21 Heavy Blaster Rifle
 item.starwarsmod.blasterHeavy.Rt97c.name=BlasTech RT-97C Heavy Blaster Rifle
 
 item.starwarsmod.blasterRifle.A280.name=BlasTech A-280 Blaster Rifle
-item.starwarsmod.blasterRifle.Esb.name=BlasTech EE-3 Carbine Rifle
+item.starwarsmod.blasterRifle.Ee3.name=BlasTech EE-3 Carbine Rifle
 item.starwarsmod.blasterRifle.Ionization.name=Ionization Blaster
 item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
 item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
@@ -127,15 +127,16 @@ tile.starwarsmod.moistureVaporator.name=GX-8 Water Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
 tile.starwarsmod.tatooineSand.name=Tatooine Sand
-tile.starwarsmod.deathStarGlass.name=Death Star Glass
-tile.starwarsmod.deathStarBlock.name=Death Star Interior
-tile.starwarsmod.deathStarLight.name=Death Star Illumination
-tile.starwarsmod.endorBaseWall.name=Endor Base Wall
-tile.starwarsmod.endorBaseWallStairs.name=Endor Base Wall Stairs
+tile.starwarsmod.deathStarGlass.name=Base Glass
+tile.starwarsmod.deathStarBlock.name=Base Interior
+tile.starwarsmod.deathStarLight.name=Base Illumination
+tile.starwarsmod.endorBaseWall.name=Base Wall
+tile.starwarsmod.endorBaseWallStairs.name=Base Wall Stairs
 tile.starwarsmod.titaniumChromiumBlock.name=Titanium-Chromium Block
 tile.starwarsmod.spaceLamp.name=Space Lamp
 tile.starwarsmod.tatooineSandstone.name=Tatooine Sandstone
 tile.starwarsmod.table.name=Table
+tile.starwarsmod.fieldEmitter.name=Field Emitter
 
 // Armor
 item.starwarsmod.newJediRobes.name=Jedi Robes
