@@ -31,7 +31,7 @@ import com.parzivail.pswm.rendering.force.RenderSithLightning;
 import com.parzivail.pswm.rendering.gui.GuiBinocs;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.rendering.helper.PGui;
-import com.parzivail.pswm.sound.PSoundBank;
+import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
@@ -63,8 +63,6 @@ public class ClientEventHandler
 	public static boolean isCursorAnim = false;
 
 	@SideOnly(Side.CLIENT)
-	public static PSoundBank soundBank;
-	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
 	@SideOnly(Side.CLIENT)
 	public static PlayerHelper playerHelper;
@@ -84,12 +82,16 @@ public class ClientEventHandler
 	public static ModelJediCloak modelCloak;
 
 	@SideOnly(Side.CLIENT)
+	public static SoundManager soundManager;
+
+	@SideOnly(Side.CLIENT)
 	public void init()
 	{
 		renderHelper = new RenderHelper(Minecraft.getMinecraft());
 		playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		pgui = new PGui(Minecraft.getMinecraft());
-		soundBank = new PSoundBank();
+		soundManager = new SoundManager();
+		soundManager.init();
 		renderJediDefense = new RenderJediDefense();
 		renderSithLightning = new RenderSithLightning();
 		modelCloak = new ModelJediCloak();

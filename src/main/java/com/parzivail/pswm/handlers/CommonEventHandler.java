@@ -29,17 +29,13 @@ import com.parzivail.pswm.network.PacketReverseEntity;
 import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.sound.PSoundBank;
 import com.parzivail.pswm.sound.SoundLightsaberHum;
 import com.parzivail.pswm.sound.SoundSFoil;
-import com.parzivail.pswm.sound.SoundShipMove;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
-import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
-import com.parzivail.pswm.vehicles.VehicLandspeeder;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
@@ -47,8 +43,6 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
-import com.parzivail.util.ui.GuiToast;
-import com.parzivail.util.vehicle.VehicleBase;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -62,9 +56,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class CommonEventHandler
 {
-	private static boolean wasInShip = false;
-	private static boolean isInShip = false;
-
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
@@ -250,36 +241,10 @@ public class CommonEventHandler
 
 		AnimationManager.tick();
 
+		ClientEventHandler.soundManager.tick();
+
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
-
-		isInShip = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleBase;
-
-		if (isInShip && !wasInShip)
-		{
-			GuiToast.makeText("Sound Started", 60).show();
-			String ship = "unknown";
-			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
-				ship = "awing";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
-				ship = "xwing";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicLandspeeder)
-				ship = "landspeeder";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicJakkuSpeeder)
-				ship = "speeder";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
-				ship = "tie";
-			StarWarsMod.clientHandler.soundBank.shipMove = new SoundShipMove(ship);
-			StarWarsMod.clientHandler.soundBank.play(PSoundBank.shipMove);
-		}
-
-		if (!isInShip && wasInShip)
-		{
-			GuiToast.makeText("Sound Stopped", 60).show();
-			StarWarsMod.clientHandler.soundBank.stop(PSoundBank.shipMove);
-		}
-
-		wasInShip = isInShip;
 
 		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 		{

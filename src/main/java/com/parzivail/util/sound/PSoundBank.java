@@ -1,14 +1,11 @@
-package com.parzivail.pswm.sound;
+package com.parzivail.util.sound;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.MovingSound;
 import net.minecraft.client.audio.SoundHandler;
 
 public class PSoundBank
 {
-	public static MovingSound lightsaberHum;
-	public static MovingSound shipMove;
 	private SoundHandler handler;
 
 	public PSoundBank()
