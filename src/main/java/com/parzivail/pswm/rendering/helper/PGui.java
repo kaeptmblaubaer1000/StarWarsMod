@@ -515,7 +515,7 @@ public class PGui// extends Gui
 	 * @param color
 	 *            The color
 	 */
-	public void drawLoadingCircle(int x, int y, double radius, float percent, int color)
+	public void drawLoadingCircle(float x, float y, double radius, float percent, int color)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		float f = (color >> 24 & 0xff) / 255F;
@@ -555,7 +555,7 @@ public class PGui// extends Gui
 	 * @param color
 	 *            The color
 	 */
-	public void drawLoadingCircleWithoutSetup(int x, int y, double radius, float percent, int color)
+	public void drawLoadingCircleWithoutSetup(float x, float y, double radius, float percent, int color)
 	{
 		GL11.glPushMatrix();
 		float f = (color >> 24 & 0xff) / 255F;
@@ -573,6 +573,37 @@ public class PGui// extends Gui
 		{
 			double nx = Math.sin(i * 3.141526D / 180) * radius;
 			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			GL11.glVertex2d(nx + x, ny + y);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glPopMatrix();
+		GL11.glColor4f(1, 1, 1, 1);
+	}
+
+	public void drawLoadingDonutWithoutSetup(float x, float y, double radius, float percent, float stripSize, int color)
+	{
+		GL11.glPushMatrix();
+		float f = (color >> 24 & 0xff) / 255F;
+		float f1 = (color >> 16 & 0xff) / 255F;
+		float f2 = (color >> 8 & 0xff) / 255F;
+		float f3 = (color & 0xff) / 255F;
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColor4f(f1, f2, f3, f);
+		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+		for (int i = 0; i <= 360 * percent; i++)
+		{
+			double nx = Math.sin(i * 3.141526D / 180) * (radius * (1 - stripSize));
+			double ny = Math.cos(i * 3.141526D / 180) * (radius * (1 - stripSize));
+			GL11.glVertex2d(nx + x, ny + y);
+
+			nx = Math.sin(i * 3.141526D / 180) * radius;
+			ny = Math.cos(i * 3.141526D / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		GL11.glEnd();

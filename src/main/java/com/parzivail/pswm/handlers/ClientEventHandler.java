@@ -255,7 +255,12 @@ public class ClientEventHandler
 		{
 			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
 
-			pgui.drawLoadingCircleWithoutSetup(event.resolution.getScaledWidth() / 2, event.resolution.getScaledHeight() / 2, 8, ItemBlasterRifle.getCooldown(stack) / 15f, 0x200000FF);
+			pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 9, 1, 0.3f, 0xFFFFFFFF);
+
+			float p = ItemBlasterRifle.getCooldown(stack) / 15f;
+			int n = (int)(200 * (1 - p));
+
+			pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 8, p, 0.1f, PGui.getRGBA(n, n, 255, 255));
 		}
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
