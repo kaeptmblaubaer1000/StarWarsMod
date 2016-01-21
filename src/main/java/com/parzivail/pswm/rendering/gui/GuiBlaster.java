@@ -12,7 +12,7 @@ public class GuiBlaster
 {
 	public void onRenderGui(Pre event)
 	{
-		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterRifle || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterPistol || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterHeavy))
+		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterRifle || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterPistol || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.blasterHeavy || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelBlasterRifle || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelBlasterPistol))
 		{
 			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
 
