@@ -583,7 +583,7 @@ public class PGui// extends Gui
 		GL11.glColor4f(1, 1, 1, 1);
 	}
 
-	public void drawLoadingDonutWithoutSetup(float x, float y, double radius, float percent, float stripSize, int color)
+	public void drawLoadingDonutWithoutSetup(float x, float y, double radius, float percent, float stripSize, int max, int color)
 	{
 		GL11.glPushMatrix();
 		float f = (color >> 24 & 0xff) / 255F;
@@ -596,9 +596,9 @@ public class PGui// extends Gui
 		GL11.glBlendFunc(770, 771);
 		GL11.glColor4f(f1, f2, f3, f);
 		GL11.glTranslatef(x, y, 0);
-		GL11.glRotatef(90 * percent, 0, 0, 1);
+		GL11.glRotatef((max / 2f) * percent, 0, 0, 1);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		for (int i = 0; i <= 180 * percent; i++)
+		for (int i = 0; i <= max * percent; i++)
 		{
 			double nx = Math.sin(i * 3.141526D / 180) * (radius * (1 - stripSize));
 			double ny = Math.cos(i * 3.141526D / 180) * (radius * (1 - stripSize));

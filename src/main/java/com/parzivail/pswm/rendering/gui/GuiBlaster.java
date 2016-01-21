@@ -16,14 +16,12 @@ public class GuiBlaster
 		{
 			ItemStack stack = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
 
-			ClientEventHandler.pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 9, 1, 0.3f, 0xFFFFFFFF);
-			ClientEventHandler.pgui.drawFilledCircle((float)(event.resolution.getScaledWidth_double() / 2) - 7.7f, (float)(event.resolution.getScaledHeight_double() / 2), 1.38f, 0xFFFFFFFF);
-			ClientEventHandler.pgui.drawFilledCircle((float)(event.resolution.getScaledWidth_double() / 2) + 7.7f, (float)(event.resolution.getScaledHeight_double() / 2), 1.38f, 0xFFFFFFFF);
+			ClientEventHandler.pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 8.6f, 1, 0.24f, 190, 0x22FFFFFF);
 
 			float p = ItemBlasterRifle.getCooldown(stack) / 15f;
 			int n = (int)(200 * (1 - p));
 
-			ClientEventHandler.pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 8, p, 0.1f, PGui.getRGBA(n, n, 255, 255));
+			ClientEventHandler.pgui.drawLoadingDonutWithoutSetup((float)(event.resolution.getScaledWidth_double() / 2), (float)(event.resolution.getScaledHeight_double() / 2), 8, p, 0.1f, 180, PGui.getRGBA(n, n, 255, 80));
 		}
 	}
 }
