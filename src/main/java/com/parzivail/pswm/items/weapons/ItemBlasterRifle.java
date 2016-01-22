@@ -93,12 +93,6 @@ public class ItemBlasterRifle extends Item
 	}
 
 	@Override
-	public boolean hasEffect(ItemStack stack, int pass)
-	{
-		return getCooldown(stack) >= 15;
-	}
-
-	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (getCooldown(stack) < 15)
@@ -118,7 +112,7 @@ public class ItemBlasterRifle extends Item
 
 			stack.stackTagCompound.setInteger("shotsLeft", stack.stackTagCompound.getInteger("shotsLeft") - 1);
 
-			if (stack.stackTagCompound.getInteger("shotsLeft") == 0)
+			if (stack.stackTagCompound.getInteger("shotsLeft") <= 0)
 				player.inventory.mainInventory[player.inventory.currentItem] = null;
 		}
 
@@ -150,7 +144,8 @@ public class ItemBlasterRifle extends Item
 						stack.stackTagCompound.setInteger("shotsLeft", 250);
 				}
 
-			this.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
+			if (getTicksSinceLastShot(stack) <= 40 * ((getCooldown(stack) + 1) / 15f))
+				this.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
 
 			if (getTicksSinceLastShot(stack) > 40 * ((getCooldown(stack) + 1) / 15f))
 			{

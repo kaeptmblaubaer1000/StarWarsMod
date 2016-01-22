@@ -117,7 +117,7 @@ public class ItemSequelBlasterPistol extends Item
 
 			stack.stackTagCompound.setInteger("shotsLeft", stack.stackTagCompound.getInteger("shotsLeft") - 1);
 
-			if (stack.stackTagCompound.getInteger("shotsLeft") == 0)
+			if (stack.stackTagCompound.getInteger("shotsLeft") <= 0)
 				player.inventory.mainInventory[player.inventory.currentItem] = null;
 		}
 
@@ -150,7 +150,8 @@ public class ItemSequelBlasterPistol extends Item
 						stack.stackTagCompound.setInteger("shotsLeft", 100);
 				}
 
-			this.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
+			if (getTicksSinceLastShot(stack) <= 40 * ((getCooldown(stack) + 1) / 15f))
+				this.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
 
 			if (getTicksSinceLastShot(stack) > 40 * ((getCooldown(stack) + 1) / 15f))
 			{

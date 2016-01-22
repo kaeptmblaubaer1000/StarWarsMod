@@ -44,6 +44,7 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.ui.GuiManager;
+import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.RenderHelper;
 import com.parzivail.util.ui.Text;
 import com.parzivail.util.ui.TextUtils;
@@ -185,7 +186,7 @@ public class ClientEventHandler
 			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.e11", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
 			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
 			{
@@ -279,15 +280,16 @@ public class ClientEventHandler
 			int currentLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
 			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
 			int newLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
-			if (Math.floor(newLevels / 10f) == Math.floor(currentLevels / 10f) + 1)
+			Lumberjack.log(newLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2)));
+			if (Math.floor(newLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))) == Math.floor(currentLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))) + 1)
 			{
 				// level up!
 				event.entityPlayer.playSound("random.levelup", 1, 1);
 				ArmorJediRobes.addPoints(event.entityPlayer.inventory.armorItemInSlot(2), 1);
 				ArmorJediRobes.setMaxXP(event.entityPlayer.inventory.armorItemInSlot(2), (int)(Math.floor(newLevels / 10f) * 100));
 				event.entityPlayer.addChatMessage(new ChatComponentText("[Robes] Level Up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2)) / 10f), ArmorJediRobes.getPoints(event.entityPlayer.inventory.armorItemInSlot(2)))));
-				if (Math.floor(newLevels / 10f) == 35)
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2)) / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))), ArmorJediRobes.getPoints(event.entityPlayer.inventory.armorItemInSlot(2)))));
+				if (Math.floor(newLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))) == 35)
 				{
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", Text.COLOR_DARK_GRAY)))));
 					event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);

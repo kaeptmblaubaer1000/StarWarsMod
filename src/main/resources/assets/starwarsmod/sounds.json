@@ -587,6 +587,12 @@
             "item/shoot/e11"
         ]
     },
+    "fx.shoot.bike": {
+        "category": "neutral",
+        "sounds": [
+            "item/shoot/bike"
+        ]
+    },
     "fx.shoot.e11": {
         "category": "neutral",
         "sounds": [

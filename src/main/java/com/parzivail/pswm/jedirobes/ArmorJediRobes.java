@@ -30,6 +30,18 @@ public class ArmorJediRobes extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak model;
 
+	public static float getLevelMult(int level)
+	{
+		return (float)(10 + level);
+	}
+
+	public static float getLevelMult(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
+			return getLevelMult(stack.stackTagCompound.getInteger(Resources.nbtLevel) / 10);
+		return 0;
+	}
+
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
@@ -308,13 +320,13 @@ public class ArmorJediRobes extends ItemArmor
 		super(StarWarsMod.jediRobesMat, 1, 1);
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
-		this.setCreativeTab(com.parzivail.pswm.StarWarsMod.StarWarsTab);
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add("Level " + String.valueOf((int)Math.floor(getLevel(stack) / 10)));
+		list.add("Level " + String.valueOf((int)Math.floor(getLevel(stack) / ArmorJediRobes.getLevelMult(player.inventory.armorItemInSlot(2)))));
 	}
 
 	public void createTags(ItemStack stack, EntityPlayer owner)

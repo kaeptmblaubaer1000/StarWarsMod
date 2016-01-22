@@ -19,7 +19,6 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.io.IOUtils;
 
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.commands.CommandFlySpeed;
 import com.parzivail.pswm.commands.CommandJediRobes;
 import com.parzivail.pswm.commands.CommandSWDim;
 import com.parzivail.pswm.exception.UserError;
@@ -482,7 +481,6 @@ public class StarWarsMod
 	{
 		if (Resources.IS_DEV_ENVIRONVENT)
 		{
-			event.registerServerCommand(new CommandFlySpeed());
 			event.registerServerCommand(new CommandSWDim());
 		}
 		event.registerServerCommand(new CommandJediRobes());

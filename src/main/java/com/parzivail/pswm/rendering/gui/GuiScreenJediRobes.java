@@ -51,7 +51,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.stack = player.getEquipmentInSlot(3);
 		this.player = player;
 
-		this.powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f));
+		this.powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / ArmorJediRobes.getLevelMult(player.inventory.armorItemInSlot(2))));
 
 		this.points = ArmorJediRobes.getPoints(stack);
 	}
@@ -117,7 +117,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f), ForceUtils.getTitle(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / 10f))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(stack).equals(ArmorJediRobes.SIDE_JEDI) ? Text.COLOR_BLUE : Text.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(stack) / ArmorJediRobes.getLevelMult(player.inventory.armorItemInSlot(2))), ForceUtils.getTitle(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / ArmorJediRobes.getLevelMult(player.inventory.armorItemInSlot(2))))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(stack).equals(ArmorJediRobes.SIDE_JEDI) ? Text.COLOR_BLUE : Text.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
 		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
