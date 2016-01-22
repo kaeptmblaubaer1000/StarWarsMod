@@ -42,6 +42,7 @@ public class Resources
 	public static boolean enableBuckets;
 	public static boolean enableLightsaber;
 	public static boolean enableGlobalLeaderboard;
+	public static boolean enableLightsaberHum;
 
 	public static boolean beshOverride;
 

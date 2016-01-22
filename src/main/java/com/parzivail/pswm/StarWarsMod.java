@@ -451,6 +451,7 @@ public class StarWarsMod
 
 		Resources.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
 		Resources.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
+		Resources.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true).getBoolean();
 		Resources.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
 		Resources.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
 		Resources.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();

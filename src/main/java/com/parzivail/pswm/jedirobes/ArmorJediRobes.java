@@ -22,23 +22,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorJediRobes extends ItemArmor
 {
-	public static String SIDE_NONE = "none";
+	public static final String SIDE_NONE = "none";
+	public static final String SIDE_JEDI = "jedi";
+	public static final String SIDE_SITH = "sith";
 
-	public static String SIDE_JEDI = "jedi";
-	public static String SIDE_SITH = "sith";
+	public static final float POINTS_PER_LEVEL = 10;
 
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak model;
 
-	public static float getLevelMult(int level)
+	public static float getPercentForLevel(int level)
 	{
-		return (float)(10 + level);
+		int i = 100 - level;
+		i = (i < 10) ? 10 : i;
+		return i;
 	}
 
-	public static float getLevelMult(ItemStack stack)
+	public static float getPercentForLevel(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
-			return getLevelMult(stack.stackTagCompound.getInteger(Resources.nbtLevel) / 10);
+			return getPercentForLevel((int)(stack.stackTagCompound.getInteger(Resources.nbtLevel) / ArmorJediRobes.POINTS_PER_LEVEL));
 		return 0;
 	}
 
@@ -68,6 +71,19 @@ public class ArmorJediRobes extends ItemArmor
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtRemainingPts))
 			return stack.stackTagCompound.getInteger(Resources.nbtRemainingPts);
 		return 0;
+	}
+
+	public static void setPoints(EntityPlayer player, int points)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setPoints(stack, points);
+	}
+
+	public static void setPoints(ItemStack stack, int points)
+	{
+		stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, points);
 	}
 
 	public static String getActive(EntityPlayer player)
@@ -326,7 +342,7 @@ public class ArmorJediRobes extends ItemArmor
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add("Level " + String.valueOf((int)Math.floor(getLevel(stack) / ArmorJediRobes.getLevelMult(player.inventory.armorItemInSlot(2)))));
+		list.add("Level " + String.valueOf((int)Math.floor(getLevel(stack) / 10f)));
 	}
 
 	public void createTags(ItemStack stack, EntityPlayer owner)

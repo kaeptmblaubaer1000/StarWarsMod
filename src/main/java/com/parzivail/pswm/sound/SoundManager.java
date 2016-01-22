@@ -2,6 +2,7 @@ package com.parzivail.pswm.sound;
 
 import net.minecraft.client.audio.MovingSound;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
@@ -69,13 +70,13 @@ public class SoundManager
 
 		holdingLightsaber.is = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber);
 
-		if (holdingLightsaber.changeTrue())
+		if (holdingLightsaber.changeTrue() && Resources.enableLightsaberHum)
 		{
 			SoundManager.lightsaberHum = new SoundLightsaberHum(StarWarsMod.mc.thePlayer);
 			soundBank.play(SoundManager.lightsaberHum);
 		}
 
-		if (holdingLightsaber.changeFalse())
+		if (holdingLightsaber.changeFalse() && Resources.enableLightsaberHum)
 		{
 			soundBank.stop(SoundManager.lightsaberHum);
 		}

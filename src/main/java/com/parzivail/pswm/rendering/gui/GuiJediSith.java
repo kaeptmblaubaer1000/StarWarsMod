@@ -70,6 +70,7 @@ public class GuiJediSith extends GuiScreen
 				this.mc.displayGuiScreen((GuiScreen)null);
 				this.mc.setIngameFocus();
 				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI, player.dimension, player.getCommandSenderName()));
+				stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI);
 			}
 			else if (button.id == this.sithButton.id)
 			{
@@ -77,6 +78,7 @@ public class GuiJediSith extends GuiScreen
 				this.mc.displayGuiScreen((GuiScreen)null);
 				this.mc.setIngameFocus();
 				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_SITH, player.dimension, player.getCommandSenderName()));
+				stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_SITH);
 			}
 		}
 	}

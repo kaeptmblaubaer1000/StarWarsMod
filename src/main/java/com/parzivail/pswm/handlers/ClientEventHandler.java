@@ -278,18 +278,24 @@ public class ClientEventHandler
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
 			int currentLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
-			event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+			if (StarWarsMod.rngGeneral.nextInt(100) <= ArmorJediRobes.getPercentForLevel(currentLevels))
+			{
+				event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+				Lumberjack.log("XP accepted!");
+			}
+			else
+				Lumberjack.log("XP rejected!");
 			int newLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
-			Lumberjack.log(newLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2)));
-			if (Math.floor(newLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))) == Math.floor(currentLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))) + 1)
+			Lumberjack.log(newLevels / ArmorJediRobes.POINTS_PER_LEVEL);
+			if (Math.floor(newLevels / ArmorJediRobes.POINTS_PER_LEVEL) == Math.floor(currentLevels / ArmorJediRobes.POINTS_PER_LEVEL) + 1)
 			{
 				// level up!
 				event.entityPlayer.playSound("random.levelup", 1, 1);
 				ArmorJediRobes.addPoints(event.entityPlayer.inventory.armorItemInSlot(2), 1);
-				ArmorJediRobes.setMaxXP(event.entityPlayer.inventory.armorItemInSlot(2), (int)(Math.floor(newLevels / 10f) * 100));
+				ArmorJediRobes.setMaxXP(event.entityPlayer.inventory.armorItemInSlot(2), (int)(Math.floor(newLevels / ArmorJediRobes.POINTS_PER_LEVEL) * 100));
 				event.entityPlayer.addChatMessage(new ChatComponentText("[Robes] Level Up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2)) / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))), ArmorJediRobes.getPoints(event.entityPlayer.inventory.armorItemInSlot(2)))));
-				if (Math.floor(newLevels / ArmorJediRobes.getLevelMult(event.entityPlayer.inventory.armorItemInSlot(2))) == 35)
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2)) / ArmorJediRobes.POINTS_PER_LEVEL), ArmorJediRobes.getPoints(event.entityPlayer.inventory.armorItemInSlot(2)))));
+				if (Math.floor(newLevels / ArmorJediRobes.POINTS_PER_LEVEL) == 35)
 				{
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", Text.COLOR_DARK_GRAY)))));
 					event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);

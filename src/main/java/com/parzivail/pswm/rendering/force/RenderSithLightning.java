@@ -3,62 +3,29 @@ package com.parzivail.pswm.rendering.force;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.jedirobes.powers.Power;
-import com.parzivail.pswm.jedirobes.powers.PowerLightning;
-import com.parzivail.util.entity.EntityUtils;
-import com.parzivail.util.ui.GuiToast;
 
 public class RenderSithLightning
 {
 	Minecraft mc = Minecraft.getMinecraft();
 
+	private boolean isClient(EntityPlayer player)
+	{
+		return player == Minecraft.getMinecraft().thePlayer;
+	}
+
 	public void onWorldRender(RenderWorldLastEvent event)
 	{
-		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
-		{
-			PowerLightning power = (PowerLightning)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
-
-			if (power.duration >= power.getDuration())
-				return;
-
-			Entity e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
-
-			if (e != null)
-			{
-				ArmorJediRobes.setEntityTarget(mc.thePlayer, e.getEntityId());
-				Random r = new Random(e.ticksExisted * 4);
-				float posX2 = (float)e.posX;
-				float posY2 = (float)e.posY + 2;
-				float posZ2 = (float)e.posZ;
-				for (int i = 0; i < 4; i++)
-				{
-					posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.posX) - (e.boundingBox.maxX - e.posX) / 2;
-					posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.posY) - (e.boundingBox.maxY - e.posY) / 2;
-					posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.posZ) - (e.boundingBox.maxZ - e.posZ) / 2;
-
-					this.render(r, (float)StarWarsMod.mc.thePlayer.posX - 0.5f, (float)StarWarsMod.mc.thePlayer.posY - 1, (float)StarWarsMod.mc.thePlayer.posZ - 0.5f, posX2, posY2, posZ2, 8, 0.15f);
-				}
-			}
-			else
-			{
-				ArmorJediRobes.setEntityTarget(mc.thePlayer, -1);
-			}
-
-		}
-
 		for (Object entity : this.mc.theWorld.playerEntities)
 		{
 			EntityPlayer player = (EntityPlayer)entity;
-			
+
 			if (ArmorJediRobes.getActive(player).equals("lightning") && ArmorJediRobes.getUsingDuration(player))
 			{
 				Entity e = null;
@@ -68,17 +35,41 @@ public class RenderSithLightning
 				if (e != null)
 				{
 					Random r = new Random(e.ticksExisted * 4);
-					float posX2 = (float)player.posX - 0.5f;
-					float posY2 = (float)player.posY - 1;
-					float posZ2 = (float)player.posZ - 0.5f;
+					float posX2 = (float)e.posX;
+					float posY2 = (float)e.posY + 2;
+					float posZ2 = (float)e.posZ;
 					for (int i = 0; i < 4; i++)
 					{
-						posX2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxX - player.posX) - (player.boundingBox.maxX - player.posX) / 2;
-						posY2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxY - player.posY) - (player.boundingBox.maxY - player.posY) / 2;
-						posZ2 += (r.nextFloat() - 0.5f) * (player.boundingBox.maxZ - player.posZ) - (player.boundingBox.maxZ - player.posZ) / 2;
+						posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.boundingBox.minX) / 2;
+						posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.boundingBox.minY) / 2;
+						posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.boundingBox.minZ) / 2;
 
-						this.render(r, posX2, posY2, posZ2, (float)e.posX, (float)e.posY + 2, (float)e.posZ, 8, 0.15f);
+						float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
+						float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
+
+						this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f + dx), (float)player.posY - 1, (float)(player.posZ - 0.5f + dz), 8, 0.15f);
+
 					}
+
+					posX2 = (float)e.posX;
+					posY2 = (float)e.posY + 2;
+					posZ2 = (float)e.posZ;
+					for (int i = 0; i < 4; i++)
+					{
+						posX2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxX - e.boundingBox.minX) / 2;
+						posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.boundingBox.minY) / 2;
+						posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.boundingBox.minZ) / 2;
+
+						float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
+						float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
+
+						this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f - dx), (float)player.posY - 1, (float)(player.posZ - 0.5f - dz), 8, 0.15f);
+
+					}
+				}
+				else
+				{
+					ArmorJediRobes.setEntityTarget(player, -1);
 				}
 			}
 		}
