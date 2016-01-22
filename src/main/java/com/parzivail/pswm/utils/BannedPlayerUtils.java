@@ -14,7 +14,7 @@ public class BannedPlayerUtils
 		}
 	}
 	
-	public static BanEntry[] bans = {new BanEntry("Lukester2", "Lukester2 is banned from using the mod.")};
+	public static BanEntry[] bans = {new BanEntry("Lukester2", "Lukester2: We know a lot about Star Wars. Unfortunately for you, we know just as much about Java, modding, and security. Cheers!")};
 	
 	public static boolean isPlayerBanned(String player)
 	{
