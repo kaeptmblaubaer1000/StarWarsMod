@@ -1,5 +1,7 @@
 package com.parzivail.pswm.utils;
 
+import java.util.Base64;
+
 public class BannedPlayerUtils
 {
 	public static class BanEntry
@@ -9,12 +11,12 @@ public class BannedPlayerUtils
 		
 		public BanEntry(String name, String reason)
 		{
-			this.name = name;
-			this.reason = reason;
+			this.name = new String(Base64.getDecoder().decode(name));
+			this.reason = new String(Base64.getDecoder().decode(reason));
 		}
 	}
 	
-	public static BanEntry[] bans = {new BanEntry("Lukester2", "Lukester2: We know a lot about Star Wars. Unfortunately for you, we know just as much about Java, modding, and security. Cheers!")};
+	public static BanEntry[] bans = {new BanEntry("THVrZXN0ZXIy", "THVrZXN0ZXIyOiBXZSBrbm93IGEgbG90IGFib3V0IFN0YXIgV2Fycy4gVW5mb3J0dW5hdGVseSBmb3IgeW91LCB3ZSBrbm93IGp1c3QgYXMgbXVjaCBhYm91dCBKYXZhLCBtb2RkaW5nLCBhbmQgc2VjdXJpdHkuIENoZWVycyE=")};
 	
 	public static boolean isPlayerBanned(String player)
 	{
