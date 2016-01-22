@@ -37,6 +37,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static float getLevelMult(ItemStack stack)
 	{
+		if (stack == null) return 0;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
 			return getLevelMult(stack.stackTagCompound.getInteger(Resources.nbtLevel) / 10);
 		return 0;
@@ -44,6 +45,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
+		if (stack == null) return null;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
 			stack.stackTagCompound.setInteger(Resources.nbtLevel, stack.stackTagCompound.getInteger(Resources.nbtLevel) + levels);
 		return stack;
@@ -51,6 +53,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static int getLevel(ItemStack stack)
 	{
+		if (stack == null) return 0;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
 			return stack.stackTagCompound.getInteger(Resources.nbtLevel);
 		return 0;
@@ -58,6 +61,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static ItemStack addPoints(ItemStack stack, int levels)
 	{
+		if (stack == null) return null;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtRemainingPts))
 			stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, stack.stackTagCompound.getInteger(Resources.nbtRemainingPts) + levels);
 		return stack;
@@ -65,6 +69,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static int getPoints(ItemStack stack)
 	{
+		if (stack == null) return 0;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtRemainingPts))
 			return stack.stackTagCompound.getInteger(Resources.nbtRemainingPts);
 		return 0;
@@ -80,6 +85,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static String getActive(ItemStack stack)
 	{
+		if (stack == null) return null;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtActive))
 			return stack.stackTagCompound.getString(Resources.nbtActive);
 		return "";
@@ -95,6 +101,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static String getSide(ItemStack stack)
 	{
+		if (stack == null) return null;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtSide))
 			return stack.stackTagCompound.getString(Resources.nbtSide);
 		return "";
@@ -110,6 +117,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static boolean getIsRunning(ItemStack stack)
 	{
+		if (stack == null) return false;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtIsRunning))
 			return stack.stackTagCompound.getBoolean(Resources.nbtIsRunning);
 		return false;
@@ -125,6 +133,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static int getHealth(ItemStack stack)
 	{
+		if (stack == null) return 0;
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtActiveHealth))
 			return stack.stackTagCompound.getInteger(Resources.nbtActiveHealth);
 		return 0;
@@ -140,6 +149,7 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setHealth(ItemStack stack, int health)
 	{
+		if (stack == null) return;
 		stack.stackTagCompound.setInteger(Resources.nbtActiveHealth, health);
 	}
 

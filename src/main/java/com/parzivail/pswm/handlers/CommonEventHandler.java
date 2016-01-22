@@ -276,6 +276,19 @@ public class CommonEventHandler
 
 					if (!e.worldObj.isRemote)
 					{
+						Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
+						look.xCoord *= ForceUtils.distanceToEntity;
+						look.yCoord *= ForceUtils.distanceToEntity;
+						look.zCoord *= ForceUtils.distanceToEntity;
+						look.xCoord += StarWarsMod.mc.thePlayer.posX;
+						look.yCoord += StarWarsMod.mc.thePlayer.posY;
+						look.zCoord += StarWarsMod.mc.thePlayer.posZ;
+						e.fallDistance = 0.0f;
+						e.onGround = false;
+						e.isAirBorne = true;
+						e.timeUntilPortal = 5;
+						e.setVelocity(0, 0, 0);
+						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
 						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
 					}
 					else
