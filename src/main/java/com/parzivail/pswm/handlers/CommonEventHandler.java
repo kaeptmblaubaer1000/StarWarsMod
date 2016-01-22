@@ -17,6 +17,7 @@ import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
 import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
+import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
@@ -29,6 +30,7 @@ import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.sound.SoundSFoil;
+import com.parzivail.pswm.utils.BannedPlayerUtils;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
@@ -41,6 +43,7 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
+import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -176,8 +179,14 @@ public class CommonEventHandler
 	}
 
 	@SubscribeEvent
-	public void logOut(PlayerLoggedInEvent event)
+	public void logOut(PlayerLoggedInEvent event) throws UserError
 	{
+		if (BannedPlayerUtils.isPlayerBanned(event.player.getCommandSenderName()))
+		{
+			Lumberjack.warn("This is NOT an error! Do NOT post this as a crash report. Thanks!");
+			throw new UserError(BannedPlayerUtils.getBanReason(event.player.getCommandSenderName()));
+		}
+		
 		resetRobes(event);
 	}
 
@@ -267,6 +276,19 @@ public class CommonEventHandler
 
 					if (!e.worldObj.isRemote)
 					{
+						Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
+						look.xCoord *= ForceUtils.distanceToEntity;
+						look.yCoord *= ForceUtils.distanceToEntity;
+						look.zCoord *= ForceUtils.distanceToEntity;
+						look.xCoord += StarWarsMod.mc.thePlayer.posX;
+						look.yCoord += StarWarsMod.mc.thePlayer.posY;
+						look.zCoord += StarWarsMod.mc.thePlayer.posZ;
+						e.fallDistance = 0.0f;
+						e.onGround = false;
+						e.isAirBorne = true;
+						e.timeUntilPortal = 5;
+						e.setVelocity(0, 0, 0);
+						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
 						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
 					}
 					else
