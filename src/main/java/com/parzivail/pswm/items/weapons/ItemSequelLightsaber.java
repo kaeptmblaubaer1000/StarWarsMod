@@ -2,13 +2,6 @@ package com.parzivail.pswm.items.weapons;
 
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
-import com.parzivail.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,6 +15,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
+import com.parzivail.util.ui.TextUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSequelLightsaber extends ItemSword
 {
@@ -43,6 +44,8 @@ public class ItemSequelLightsaber extends ItemSword
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
 		list.add(TextUtils.makeItalic("This is the formal weapon of a Jedi Knight. Or whatever."));
+		list.add("Sneak + Right Click to disable.");
+		list.add("Block to deflect blaster bolts.");
 	}
 
 	@Override

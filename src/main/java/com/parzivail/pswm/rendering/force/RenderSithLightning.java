@@ -47,7 +47,10 @@ public class RenderSithLightning
 						float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
 						float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
 
-						this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f + dx), (float)player.posY - 1, (float)(player.posZ - 0.5f + dz), 8, 0.15f);
+						if (isClient(player))
+							this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f + dx), (float)player.posY - 1, (float)(player.posZ - 0.5f + dz), 8, 0.15f);
+						else
+							this.render(r, posX2, posY2, posZ2, (float)(player.posX + 0.5f + dx), (float)player.posY - 1, (float)(player.posZ + 0.5f + dz), 8, 0.15f);
 
 					}
 
@@ -63,7 +66,10 @@ public class RenderSithLightning
 						float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
 						float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
 
-						this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f - dx), (float)player.posY - 1, (float)(player.posZ - 0.5f - dz), 8, 0.15f);
+						if (isClient(player))
+							this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f - dx), (float)player.posY - 1, (float)(player.posZ - 0.5f - dz), 8, 0.15f);
+						else
+							this.render(r, posX2, posY2, posZ2, (float)(player.posX + 0.5f - dx), (float)player.posY - 1, (float)(player.posZ + 0.5f - dz), 8, 0.15f);
 
 					}
 				}

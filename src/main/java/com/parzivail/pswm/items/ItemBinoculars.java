@@ -2,17 +2,18 @@ package com.parzivail.pswm.items;
 
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBinoculars extends Item
 {
@@ -72,6 +73,8 @@ public class ItemBinoculars extends Item
 			list.add("Zoom Factor: " + zoom + "x");
 			boolean enabled = getEnabled(stack);
 			list.add("Enabled: " + (enabled ? "Yes" : "No"));
+			list.add("Sneak-Use to enable");
+			list.add("Use while enabled to change zoom");
 		}
 	}
 

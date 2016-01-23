@@ -80,6 +80,7 @@ item.starwarsmod.hyperdriveYavinFour.name=Yavin 4 Hyperdrive
 item.starwarsmod.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
 item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
 item.starwarsmod.hyperdriveDagobah.name=Dagobah Hyperdrive
+item.starwarsmod.hyperdriveIlum.name=Ilum Hyperdrive
 
 // Droid Items
 item.starwarsmod.spawnAstromech.name=Astromech Droid
@@ -137,6 +138,13 @@ tile.starwarsmod.spaceLamp.name=Space Lamp
 tile.starwarsmod.tatooineSandstone.name=Tatooine Sandstone
 tile.starwarsmod.table.name=Table
 tile.starwarsmod.fieldEmitter.name=Field Emitter
+tile.starwarsmod.cauldronHanging.name=Hanging Cauldron
+tile.starwarsmod.mudStairs.name=Dagobah Mud Stairs
+tile.starwarsmod.dagobahMud.name=Dagobah Mud
+tile.starwarsmod.mudTable.name=Dagobah Mud Table
+tile.starwarsmod.bucketHanging.name=Hanging Bucket
+tile.starwarsmod.basket.name=Basket
+tile.starwarsmod.deathStarDoor.name=Base Door
 
 // Armor
 item.starwarsmod.newJediRobes.name=Jedi Robes
@@ -316,7 +324,6 @@ item.starwarsmod.spawnJakkuSpeeder.name=Jakku Speeder
 entity.starwarsmod.jakkuSpeeder.name=Jakku Speeder
 
 // Blocks
-tile.starwarsmod.dagobahMud.name=Dagobah Mud
 
 // Tabs
 itemGroup.tabStarWarsSequel=Sequel Trilogy

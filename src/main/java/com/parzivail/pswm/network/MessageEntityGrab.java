@@ -26,21 +26,27 @@ public class MessageEntityGrab extends Message<MessageEntityGrab>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		Vec3 look = grabber.getLookVec();
-		look.xCoord *= this.distance;
-		look.yCoord *= this.distance;
-		look.zCoord *= this.distance;
-		look.xCoord += grabber.posX;
-		look.yCoord += grabber.posY + 2;
-		look.zCoord += grabber.posZ;
-		if (this.entity != null)
+		try
 		{
-			this.entity.fallDistance = 0.0f;
-			this.entity.onGround = false;
-			this.entity.isAirBorne = true;
-			this.entity.timeUntilPortal = 5;
-			this.entity.setVelocity(0, 0, 0);
-			this.entity.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, grabber.rotationYawHead, grabber.rotationPitch);
+			Vec3 look = grabber.getLookVec();
+			look.xCoord *= this.distance;
+			look.yCoord *= this.distance;
+			look.zCoord *= this.distance;
+			look.xCoord += grabber.posX;
+			look.yCoord += grabber.posY + 2;
+			look.zCoord += grabber.posZ;
+			if (this.entity != null)
+			{
+				this.entity.fallDistance = 0.0f;
+				this.entity.onGround = false;
+				this.entity.isAirBorne = true;
+				this.entity.timeUntilPortal = 5;
+				this.entity.setVelocity(0, 0, 0);
+				this.entity.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, grabber.rotationYawHead, grabber.rotationPitch);
+			}
+		}
+		catch (Exception e)
+		{
 		}
 
 		return null;

@@ -1,11 +1,16 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import org.lwjgl.input.Keyboard;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.registry.KeybindRegistry;
 
 public class ItemSpawnXWing extends net.minecraft.item.Item
 {
@@ -17,6 +22,13 @@ public class ItemSpawnXWing extends net.minecraft.item.Item
 		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.maxStackSize = 1;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		String s = (KeybindRegistry.keyShootVehicle.getKeyCode() <= 0) ? "UNKNOWN" : Keyboard.getKeyName(KeybindRegistry.keyShootVehicle.getKeyCode());
+		list.add(String.format("Press %s to fire lasers.", s));
 	}
 
 	@Override

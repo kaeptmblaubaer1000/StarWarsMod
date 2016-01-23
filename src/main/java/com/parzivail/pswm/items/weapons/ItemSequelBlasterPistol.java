@@ -49,7 +49,7 @@ public class ItemSequelBlasterPistol extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		list.add(TextUtils.makeItalic("Used by legion troopers or something"));
+		list.add(TextUtils.makeItalic("Used by First Order Stormtroopers or something"));
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 	}
