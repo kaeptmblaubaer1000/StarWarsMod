@@ -34,6 +34,9 @@ public class RenderSithLightning
 
 				if (e != null)
 				{
+					float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
+					float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
+
 					Random r = new Random(e.ticksExisted * 4);
 					float posX2 = (float)e.posX;
 					float posY2 = (float)e.posY + 2;
@@ -44,13 +47,10 @@ public class RenderSithLightning
 						posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.boundingBox.minY) / 2;
 						posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.boundingBox.minZ) / 2;
 
-						float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
-						float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
-
 						if (isClient(player))
-							this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f + dx), (float)player.posY - 1, (float)(player.posZ - 0.5f + dz), 8, 0.15f);
+							this.render(r, posX2 - 0.5f, posY2 - 1f, posZ2 - 0.5f, (float)(player.posX - 0.5f + dx), (float)player.posY - 1, (float)(player.posZ - 0.5f + dz), 8, 0.15f);
 						else
-							this.render(r, posX2, posY2, posZ2, (float)(player.posX + 0.5f + dx), (float)player.posY - 1, (float)(player.posZ + 0.5f + dz), 8, 0.15f);
+							this.render(r, posX2 - 0.5f, posY2 - 2.5f, posZ2 - 0.5f, (float)(player.posX + dx), (float)player.posY + 0.5f, (float)(player.posZ + dz), 8, 0.15f);
 
 					}
 
@@ -63,13 +63,10 @@ public class RenderSithLightning
 						posY2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxY - e.boundingBox.minY) / 2;
 						posZ2 += (r.nextFloat() - 0.5f) * (e.boundingBox.maxZ - e.boundingBox.minZ) / 2;
 
-						float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
-						float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
-
 						if (isClient(player))
-							this.render(r, posX2, posY2, posZ2, (float)(player.posX - 0.5f - dx), (float)player.posY - 1, (float)(player.posZ - 0.5f - dz), 8, 0.15f);
+							this.render(r, posX2 - 0.5f, posY2 - 1f, posZ2 - 0.5f, (float)(player.posX - 0.5f - dx), (float)player.posY - 1, (float)(player.posZ - 0.5f - dz), 8, 0.15f);
 						else
-							this.render(r, posX2, posY2, posZ2, (float)(player.posX + 0.5f - dx), (float)player.posY - 1, (float)(player.posZ + 0.5f - dz), 8, 0.15f);
+							this.render(r, posX2 - 0.5f, posY2 - 2.5f, posZ2 - 0.5f, (float)(player.posX + dx * 2), (float)player.posY + 0.5f, (float)(player.posZ + dz * 2), 8, 0.15f);
 
 					}
 				}
