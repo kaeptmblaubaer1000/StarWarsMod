@@ -17,7 +17,7 @@ public class PowerNaturalAwareness extends Power
 		this.costMult = 0;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 1;
-		this.rechargeTime = 1 * 40; // 40 ticks/second
+		this.rechargeTime = 1; // 40 ticks/second
 		this.recharge = 0;
 	}
 
