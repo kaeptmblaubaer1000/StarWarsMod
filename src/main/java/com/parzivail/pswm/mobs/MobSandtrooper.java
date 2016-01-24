@@ -2,6 +2,7 @@ package com.parzivail.pswm.mobs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,7 +10,8 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
@@ -30,6 +32,8 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	private int angerLevel;
 	private Entity angryAt = null;
 	private EntityAIArrowAttack aiArrow;
+	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0)).setSaved(false);
 
 	public MobSandtrooper(World par1World)
 	{
@@ -37,7 +41,6 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		this.setSize(0.5F, 1.5F);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		this.tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		this.setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.sandtrooperHelmet, 1));
 		this.setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.sandtrooperChest, 1));
 		this.setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.sandtrooperLegs, 1));
@@ -66,7 +69,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.36D);
 	}
 
 	@Override
@@ -176,6 +179,17 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	@Override
 	public void onUpdate()
 	{
+		if (this.angryAt != this.entityToAttack && !this.worldObj.isRemote)
+		{
+			IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			iattributeinstance.removeModifier(field_110190_br);
+
+			if (this.entityToAttack != null)
+			{
+				iattributeinstance.applyModifier(field_110190_br);
+			}
+		}
+
 		this.angryAt = this.entityToAttack;
 		super.onUpdate();
 	}

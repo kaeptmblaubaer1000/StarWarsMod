@@ -1,9 +1,12 @@
 package com.parzivail.pswm.mobs;
 
 import java.util.List;
+import java.util.UUID;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -17,6 +20,8 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 {
 	private int angerLevel;
 	private Entity angryAt;
+	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0)).setSaved(false);
 
 	public MobGamorrean(World par1World)
 	{
@@ -104,6 +109,17 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	@Override
 	public void onUpdate()
 	{
+		if (this.angryAt != this.entityToAttack && !this.worldObj.isRemote)
+		{
+			IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			iattributeinstance.removeModifier(field_110190_br);
+
+			if (this.entityToAttack != null)
+			{
+				iattributeinstance.applyModifier(field_110190_br);
+			}
+		}
+
 		this.angryAt = this.entityToAttack;
 		super.onUpdate();
 	}

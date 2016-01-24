@@ -56,7 +56,7 @@ public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
 	}
 
 	@Override
