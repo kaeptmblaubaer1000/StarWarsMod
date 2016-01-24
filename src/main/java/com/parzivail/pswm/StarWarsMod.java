@@ -333,6 +333,51 @@ public class StarWarsMod
 
 	public static DamageSource blasterDamageSource;
 
+	private void checkCompat() throws UserError
+	{
+		boolean flag = false;
+		ArrayList<String> m = new ArrayList<String>();
+		for (String mod : Resources.checkCompatList)
+			if (Loader.isModLoaded(mod))
+			{
+				flag = true;
+				m.add(mod);
+			}
+		if (flag)
+			throw new UserError("Parzi's Star Wars Mod is incompatible with the following mods: " + String.join(", ", m));
+	}
+
+	private void checkJavaVersion() throws UserError
+	{
+		String versionString = System.getProperty("java.version");
+		int pos = versionString.indexOf('.');
+		pos = versionString.indexOf('.', pos + 1);
+		double version = Double.parseDouble(versionString.substring(0, pos));
+		if (version < 1.8)
+			throw new UserError("Parzi's Star wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version);
+	}
+
+	private void checkModVersion()
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.remoteVersionLink).openStream();
+			Resources.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
+			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION))
+				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't check version!");
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
+	}
+
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
@@ -340,7 +385,7 @@ public class StarWarsMod
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
 
-		checkModVersion();
+		this.checkModVersion();
 
 		instance = this;
 
@@ -392,9 +437,9 @@ public class StarWarsMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
-		checkJavaVersion();
+		this.checkJavaVersion();
 
-		checkCompat();
+		this.checkCompat();
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
 		int packetId = 0;
@@ -461,63 +506,12 @@ public class StarWarsMod
 		Lumberjack.info("Configuration loaded!");
 	}
 
-	private void checkCompat() throws UserError
-	{
-		boolean flag = false;
-		ArrayList<String> m = new ArrayList<String>();
-		for (String mod : Resources.checkCompatList)
-			if (Loader.isModLoaded(mod))
-			{
-				flag = true;
-				m.add(mod);
-			}
-		if (flag)
-		{
-			throw new UserError("Parzi's Star Wars Mod is incompatible with the following mods: " + String.join(", ", m));
-		}
-	}
-
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		if (Resources.IS_DEV_ENVIRONVENT)
-		{
 			event.registerServerCommand(new CommandSWDim());
-		}
 		event.registerServerCommand(new CommandJediRobes());
-	}
-
-	private void checkJavaVersion() throws UserError
-	{
-		String versionString = System.getProperty("java.version");
-		int pos = versionString.indexOf('.');
-		pos = versionString.indexOf('.', pos + 1);
-		double version = Double.parseDouble(versionString.substring(0, pos));
-		if (version < 1.8)
-		{
-			throw new UserError("Parzi's Star wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version);
-		}
-	}
-
-	private void checkModVersion()
-	{
-		InputStream in = null;
-		try
-		{
-			in = new URL(Resources.remoteVersionLink).openStream();
-			Resources.ONLINE_VERSION = IOUtils.toString(in).replace("\n", "");
-			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION))
-				Lumberjack.log("New version of Parzi's Star Wars Mod available: " + Resources.ONLINE_VERSION + "!");
-		}
-		catch (Exception e)
-		{
-			Lumberjack.warn("Couldn't check version!");
-		}
-		finally
-		{
-			if (in != null)
-				IOUtils.closeQuietly(in);
-		}
 	}
 }
 /*

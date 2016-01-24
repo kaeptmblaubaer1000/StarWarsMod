@@ -88,114 +88,12 @@ public class ModelJediCloak extends ModelBiped
 		this.Cape.render(f5);
 	}
 
-	/**
-	 * This is a helper function from Tabula to set the rotation of model parts
-	 */
-	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
-	{
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
-	}
-
-	@Override
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-	{
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-
-		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-
-		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F;
-		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
-		this.ArmL.rotateAngleZ = 0.0F;
-		this.ArmR.rotateAngleZ = 0.0F;
-
-		this.ArmL.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-		this.ArmR.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-		this.ArmL.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
-		this.ArmR.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
-
-		if (entity instanceof EntityPlayer)
-		{
-			if (((EntityPlayer)entity).inventory.getCurrentItem() != null)
-			{
-				heldItemRight = 1;
-				this.ArmL.rotateAngleX = this.ArmL.rotateAngleX * 0.5F - ((float)Math.PI / 10F) * (float)this.heldItemRight;
-			}
-			else
-				heldItemRight = 0;
-		}
-
-		this.FootL.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.FootR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-
-		this.HoodBack.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HoodBack.rotateAngleX = f4 / (180F / (float)Math.PI);
-
-		this.HoodL.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HoodL.rotateAngleX = f4 / (180F / (float)Math.PI);
-
-		this.HoodR.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HoodR.rotateAngleX = f4 / (180F / (float)Math.PI);
-
-		this.HoodTop.rotateAngleY = f3 / (180F / (float)Math.PI);
-		this.HoodTop.rotateAngleX = f4 / (180F / (float)Math.PI);
-
-		if (entity.isSneaking())
-        {
-            this.ArmL.rotateAngleX += 0.4F;
-            this.ArmR.rotateAngleX += 0.4F;
-            this.FootL.rotationPointZ = 4.0F;
-            this.FootR.rotationPointZ = 4.0F;
-            this.FootL.rotationPointY = 9.0F;
-            this.FootR.rotationPointY = 9.0F;
-            this.HoodBack.rotationPointY = 1.0F;
-            this.HoodL.rotationPointY = 1.0F;
-            this.HoodR.rotationPointY = 1.0F;
-            this.HoodTop.rotationPointY = 1.0F;
-        }
-        else
-        {
-            this.ArmL.rotationPointZ = 0.0F;
-            this.ArmR.rotationPointZ = 0.0F;
-            this.FootL.rotationPointZ = 0.0F;
-            this.FootR.rotationPointZ = 0.0F;
-            this.FootL.rotationPointY = 12.0F;
-            this.FootR.rotationPointY = 12.0F;
-            this.HoodBack.rotationPointY = 0.0F;
-            this.HoodL.rotationPointY = 0.0F;
-            this.HoodR.rotationPointY = 0.0F;
-            this.HoodTop.rotationPointY = 0.0F;
-        }
-
-		if (this.isRiding)
-		{
-			this.ArmL.rotateAngleX += -((float)Math.PI / 5F);
-			this.ArmR.rotateAngleX += -((float)Math.PI / 5F);
-		}
-
-		if (this.aimedBow)
-		{
-			this.bipedRightArm.rotateAngleZ = 0.0F;
-			this.bipedLeftArm.rotateAngleZ = 0.0F;
-			this.bipedRightArm.rotateAngleY = -(0.1F * 0.6F) + this.bipedHead.rotateAngleY;
-			this.bipedLeftArm.rotateAngleY = 0.1F * 0.6F + this.bipedHead.rotateAngleY + 0.4F;
-			this.bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
-			this.bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
-			this.bipedRightArm.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-			this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-			this.bipedRightArm.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
-			this.bipedLeftArm.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
-		}
-	}
-
 	public void renderCloak(RenderPlayerEvent.Specials.Post event)
 	{
 		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
 			GL11.glPushMatrix();
-			//GL11.glTranslatef(0.0F, -0.25F, 0.125F);
+			// GL11.glTranslatef(0.0F, -0.25F, 0.125F);
 			double d3 = event.entityPlayer.field_71091_bM + (event.entityPlayer.field_71094_bP - event.entityPlayer.field_71091_bM) * event.partialRenderTick - (event.entityPlayer.prevPosX + (event.entityPlayer.posX - event.entityPlayer.prevPosX) * event.partialRenderTick);
 			double d4 = event.entityPlayer.field_71096_bN + (event.entityPlayer.field_71095_bQ - event.entityPlayer.field_71096_bN) * event.partialRenderTick - (event.entityPlayer.prevPosY + (event.entityPlayer.posY - event.entityPlayer.prevPosY) * event.partialRenderTick);
 			double d0 = event.entityPlayer.field_71097_bO + (event.entityPlayer.field_71085_bR - event.entityPlayer.field_71097_bO) * event.partialRenderTick - (event.entityPlayer.prevPosZ + (event.entityPlayer.posZ - event.entityPlayer.prevPosZ) * event.partialRenderTick);
@@ -233,6 +131,106 @@ public class ModelJediCloak extends ModelBiped
 			// rp.modelBipedMain.renderCloak(0.0625F);
 			this.renderCape(0.0625F);
 			GL11.glPopMatrix();
+		}
+	}
+
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	{
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
+
+	@Override
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+	{
+		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+
+		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F;
+		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
+		this.ArmL.rotateAngleZ = 0.0F;
+		this.ArmR.rotateAngleZ = 0.0F;
+
+		this.ArmL.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+		this.ArmR.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+		this.ArmL.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
+		this.ArmR.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
+
+		if (entity instanceof EntityPlayer)
+			if (((EntityPlayer)entity).inventory.getCurrentItem() != null)
+			{
+				this.heldItemRight = 1;
+				this.ArmL.rotateAngleX = this.ArmL.rotateAngleX * 0.5F - (float)Math.PI / 10F * this.heldItemRight;
+			}
+			else
+				this.heldItemRight = 0;
+
+		this.FootL.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+		this.FootR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+
+		this.HoodBack.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HoodBack.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+		this.HoodL.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HoodL.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+		this.HoodR.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HoodR.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+		this.HoodTop.rotateAngleY = f3 / (180F / (float)Math.PI);
+		this.HoodTop.rotateAngleX = f4 / (180F / (float)Math.PI);
+
+		if (entity.isSneaking())
+		{
+			this.ArmL.rotateAngleX += 0.4F;
+			this.ArmR.rotateAngleX += 0.4F;
+			this.FootL.rotationPointZ = 4.0F;
+			this.FootR.rotationPointZ = 4.0F;
+			this.FootL.rotationPointY = 9.0F;
+			this.FootR.rotationPointY = 9.0F;
+			this.HoodBack.rotationPointY = 1.0F;
+			this.HoodL.rotationPointY = 1.0F;
+			this.HoodR.rotationPointY = 1.0F;
+			this.HoodTop.rotationPointY = 1.0F;
+		}
+		else
+		{
+			this.ArmL.rotationPointZ = 0.0F;
+			this.ArmR.rotationPointZ = 0.0F;
+			this.FootL.rotationPointZ = 0.0F;
+			this.FootR.rotationPointZ = 0.0F;
+			this.FootL.rotationPointY = 12.0F;
+			this.FootR.rotationPointY = 12.0F;
+			this.HoodBack.rotationPointY = 0.0F;
+			this.HoodL.rotationPointY = 0.0F;
+			this.HoodR.rotationPointY = 0.0F;
+			this.HoodTop.rotationPointY = 0.0F;
+		}
+
+		if (this.isRiding)
+		{
+			this.ArmL.rotateAngleX += -((float)Math.PI / 5F);
+			this.ArmR.rotateAngleX += -((float)Math.PI / 5F);
+		}
+
+		if (this.aimedBow)
+		{
+			this.bipedRightArm.rotateAngleZ = 0.0F;
+			this.bipedLeftArm.rotateAngleZ = 0.0F;
+			this.bipedRightArm.rotateAngleY = -(0.1F * 0.6F) + this.bipedHead.rotateAngleY;
+			this.bipedLeftArm.rotateAngleY = 0.1F * 0.6F + this.bipedHead.rotateAngleY + 0.4F;
+			this.bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
+			this.bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
+			this.bipedRightArm.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+			this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
+			this.bipedRightArm.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
+			this.bipedLeftArm.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
 		}
 	}
 }

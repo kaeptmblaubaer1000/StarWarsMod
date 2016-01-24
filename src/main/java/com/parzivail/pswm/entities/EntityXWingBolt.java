@@ -23,9 +23,9 @@ public class EntityXWingBolt extends EntityBlasterBoltBase
 		super(par1World, par2EntityLivingBase, 16.0f);
 
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * this.extent;
-		double dy = vec3.yCoord * this.extent;
-		double dz = vec3.zCoord * this.extent;
+		double dx = vec3.xCoord * EntityXWingBolt.extent;
+		double dy = vec3.yCoord * EntityXWingBolt.extent;
+		double dz = vec3.zCoord * EntityXWingBolt.extent;
 
 		this.posX += dx;
 		this.posY += dy;
@@ -37,9 +37,9 @@ public class EntityXWingBolt extends EntityBlasterBoltBase
 		super(par1World, par2EntityLivingBase, par3EntityLivingBase, 16.0f);
 
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * this.extent;
-		double dy = vec3.yCoord * this.extent;
-		double dz = vec3.zCoord * this.extent;
+		double dx = vec3.xCoord * EntityXWingBolt.extent;
+		double dy = vec3.yCoord * EntityXWingBolt.extent;
+		double dz = vec3.zCoord * EntityXWingBolt.extent;
 
 		this.posX += dx;
 		this.posY += dy;

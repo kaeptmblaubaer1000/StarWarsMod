@@ -1,7 +1,5 @@
 package com.parzivail.pswm.mobs;
 
-import com.parzivail.pswm.Resources;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -9,6 +7,8 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
 
 public class MobGNK extends EntityLiving implements IAnimals
 {

@@ -1,12 +1,12 @@
 package com.parzivail.pswm.armor;
 
-import com.parzivail.pswm.Resources;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
 
 public class ArmorBobaJetpack extends ItemArmor
 {

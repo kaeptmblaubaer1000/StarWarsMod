@@ -1,7 +1,5 @@
 package com.parzivail.pswm.mobs;
 
-import com.parzivail.pswm.Resources;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -15,6 +13,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
 
 public class MobDewback extends EntityHorse
 {

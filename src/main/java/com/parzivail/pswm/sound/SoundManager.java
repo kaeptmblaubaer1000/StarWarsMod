@@ -61,10 +61,8 @@ public class SoundManager
 		}
 
 		if (inShip.changeFalse())
-		{
 			// GuiToast.makeText("Sound Stopped", 60).show();
 			soundBank.stop(SoundManager.shipMove);
-		}
 
 		inShip.tick();
 
@@ -77,9 +75,7 @@ public class SoundManager
 		}
 
 		if (holdingLightsaber.changeFalse() && Resources.enableLightsaberHum)
-		{
 			soundBank.stop(SoundManager.lightsaberHum);
-		}
 
 		holdingLightsaber.tick();
 	}

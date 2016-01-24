@@ -1,16 +1,17 @@
 package com.parzivail.pswm.armor;
 
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.armor.ModelEndorHelmet;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
 
 public class ArmorEndor extends ItemArmor
 {

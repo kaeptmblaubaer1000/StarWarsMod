@@ -3,15 +3,16 @@ package com.parzivail.util.entity;
 import java.util.Arrays;
 import java.util.List;
 
-import com.parzivail.pswm.StarWarsMod;
-
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
+import com.parzivail.pswm.StarWarsMod;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityUtils
 {

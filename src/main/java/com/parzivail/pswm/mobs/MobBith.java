@@ -3,10 +3,6 @@ package com.parzivail.pswm.mobs;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.entity.trade.WeightedTradeItem;
-
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -15,6 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.entity.trade.WeightedTradeItem;
 
 public class MobBith extends EntityVillager
 {
@@ -162,19 +162,19 @@ public class MobBith extends EntityVillager
 
 		/*
 		 * bithsNear = 0; boolean shouldPlay = true;
-		 *
+		 * 
 		 * for (Object oEntity :
 		 * this.worldObj.getEntitiesWithinAABB(this.getClass(),
 		 * this.boundingBox.expand(8, 8, 8))) if (oEntity instanceof MobBith) {
 		 * bithsNear++; shouldPlay = !((MobBith)oEntity).getPlaying() &&
 		 * shouldPlay; }
-		 *
+		 * 
 		 * if (bithsNear >= 5) if (!this.getPlaying() && shouldPlay)
-		 *
+		 * 
 		 * { this.playSound(StarWarsMod.MODID + ":" + "item.records.Cantina", 1,
 		 * 1); this.setPlaying(true); } else if (this.getPlaying() &&
 		 * !shouldPlay)
-		 *
+		 * 
 		 * { Minecraft.getMinecraft().getSoundHandler().stopSound(song);
 		 * this.setPlaying(false); }
 		 */

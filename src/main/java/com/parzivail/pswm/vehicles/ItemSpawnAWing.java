@@ -27,7 +27,7 @@ public class ItemSpawnAWing extends net.minecraft.item.Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		String s = (KeybindRegistry.keyShootVehicle.getKeyCode() <= 0) ? "UNKNOWN" : Keyboard.getKeyName(KeybindRegistry.keyShootVehicle.getKeyCode());
+		String s = KeybindRegistry.keyShootVehicle.getKeyCode() <= 0 ? "UNKNOWN" : Keyboard.getKeyName(KeybindRegistry.keyShootVehicle.getKeyCode());
 		list.add(String.format("Press %s to fire lasers.", s));
 	}
 

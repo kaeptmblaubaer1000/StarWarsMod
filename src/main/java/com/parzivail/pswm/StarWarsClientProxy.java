@@ -1,5 +1,9 @@
 package com.parzivail.pswm;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
+
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
@@ -120,13 +124,11 @@ import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.weaponry.WeaponDSTurret;
+import com.parzivail.util.ui.GlPalette;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -198,15 +200,42 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterPistolBolt.class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterRifleBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterHeavyBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterProbeBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySpeederBlasterRifleBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, new RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(StarWarsMod.blasterTIEBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, new RenderBlasterBolt(StarWarsMod.blasterXWingBolt));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(StarWarsMod.spawnAstromechBb8));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterPistolBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_RED));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterRifleBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_RED));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterHeavyBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_RED));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterProbeBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_RED));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySpeederBlasterRifleBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_RED));
+		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_ORANGE, 2.0f));
+		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(GlPalette.NEON_GREEN, 2.0f));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GlPalette.ELECTRIC_BLUE));
+
+		/*
+		 * RenderingRegistry.registerEntityRenderingHandler(EntityBlasterPistolBolt
+		 * .class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
+		 * RenderingRegistry
+		 * .registerEntityRenderingHandler(EntityBlasterRifleBolt.class, new
+		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		 * RenderingRegistry.registerEntityRenderingHandler
+		 * (EntityBlasterHeavyBolt.class, new
+		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		 * RenderingRegistry.registerEntityRenderingHandler
+		 * (EntityBlasterProbeBolt.class, new
+		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		 * RenderingRegistry.registerEntityRenderingHandler
+		 * (EntitySpeederBlasterRifleBolt.class, new
+		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		 * RenderingRegistry.registerEntityRenderingHandler
+		 * (EntityXWingBolt.class, new
+		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
+		 * RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class,
+		 * new RenderBlasterBolt(StarWarsMod.blasterTIEBolt));
+		 * RenderingRegistry.
+		 * registerEntityRenderingHandler(EntityXWingBolt.class, new
+		 * RenderBlasterBolt(StarWarsMod.blasterXWingBolt));
+		 * RenderingRegistry.registerEntityRenderingHandler
+		 * (EntityDestruction.class, new
+		 * RenderBlasterBolt(StarWarsMod.spawnAstromechBb8));
+		 */
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaberOff());

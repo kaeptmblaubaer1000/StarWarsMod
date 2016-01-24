@@ -1,14 +1,14 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.mobs.ModelGNK;
-
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.models.mobs.ModelGNK;
 
 public class RenderGNK extends RenderLiving
 {

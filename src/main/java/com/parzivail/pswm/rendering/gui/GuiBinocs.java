@@ -1,5 +1,10 @@
 package com.parzivail.pswm.rendering.gui;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.font.FontManager;
@@ -10,17 +15,12 @@ import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GlPalette;
 import com.parzivail.util.ui.TextUtils;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
 public class GuiBinocs
 {
 	public static String lookString = "";
 	public static int lookStringPos = 0;
 	public static long lookStringNextTime = 0;
-	
+
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		ItemStack item = ClientEventHandler.playerHelper.getHeldItemStack();

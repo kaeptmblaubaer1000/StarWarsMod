@@ -10,42 +10,6 @@ import com.parzivail.util.ui.RenderHelper;
 
 public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 {
-	@Override
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTickTime)
-	{
-		int i = 1;
-		boolean flag = false;
-		while (i <= 50)
-		{
-			if (!te.getWorldObj().isAirBlock(te.xCoord, te.yCoord + i, te.zCoord))
-			{
-				flag = true;
-				break;
-			}
-			i++;
-		}
-		if (flag)
-		{
-			GL11.glPushMatrix();
-			GL11.glDepthMask(false);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
-
-			for (int n = 1; n < i; n++)
-			{
-				GL11.glPushMatrix();
-				GL11.glTranslatef((float)x, (float)y + n, (float)z);
-				GL11.glColor4f(0, 0, 1, 1);
-				renderCube(Tessellator.instance);
-				GL11.glPopMatrix();
-			}
-
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glDepthMask(true);
-			GL11.glPopMatrix();
-		}
-	}
-
 	private static void renderCube(Tessellator tes)
 	{
 		tes.startDrawingQuads();
@@ -87,6 +51,42 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 		RenderHelper.enableLightmap();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_LIGHTING);
+	}
+
+	@Override
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTickTime)
+	{
+		int i = 1;
+		boolean flag = false;
+		while (i <= 50)
+		{
+			if (!te.getWorldObj().isAirBlock(te.xCoord, te.yCoord + i, te.zCoord))
+			{
+				flag = true;
+				break;
+			}
+			i++;
+		}
+		if (flag)
+		{
+			GL11.glPushMatrix();
+			GL11.glDepthMask(false);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
+
+			for (int n = 1; n < i; n++)
+			{
+				GL11.glPushMatrix();
+				GL11.glTranslatef((float)x, (float)y + n, (float)z);
+				GL11.glColor4f(0, 0, 1, 1);
+				renderCube(Tessellator.instance);
+				GL11.glPopMatrix();
+			}
+
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glDepthMask(true);
+			GL11.glPopMatrix();
+		}
 	}
 }
 /*

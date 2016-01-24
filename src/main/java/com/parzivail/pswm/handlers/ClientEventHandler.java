@@ -24,7 +24,6 @@ import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
-import com.parzivail.pswm.jedirobes.powers.PowerDefend;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
 import com.parzivail.pswm.rendering.force.RenderJediDefense;
@@ -149,8 +148,7 @@ public class ClientEventHandler
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getHealth(entityPlayer) > 0)
 			{
-				// Lumberjack.log("defend running!");
-				PowerDefend power = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(entityPlayer));
+				Power.getPowerFromName(ArmorJediRobes.getActive(entityPlayer));
 				if (ArmorJediRobes.getHealth(entityPlayer) > event.ammount)
 				{
 					ArmorJediRobes.setHealth(entityPlayer, (int)(ArmorJediRobes.getHealth(entityPlayer) - event.ammount));
@@ -168,14 +166,10 @@ public class ClientEventHandler
 			}
 
 			if (ArmorJediRobes.getActive(entityPlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(entityPlayer))
-			{
 				// Lumberjack.log("deflect running!");
 				if (event.source.isProjectile())
-				{
 					// Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
-				}
-			}
 		}
 	}
 
@@ -192,8 +186,8 @@ public class ClientEventHandler
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.XWING));
 				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
-				guiVehicle.isFiring = true;
-				guiVehicle.blipFrame = guiVehicle.blipMax;
+				GuiVehicle.isFiring = true;
+				GuiVehicle.blipFrame = GuiVehicle.blipMax;
 			}
 			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor)
 			{
@@ -269,7 +263,7 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Post event)
 	{
-		this.modelCloak.renderCloak(event);
+		ClientEventHandler.modelCloak.renderCloak(event);
 	}
 
 	@SubscribeEvent
@@ -308,9 +302,9 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void renderWorldLastEvent(RenderWorldLastEvent event)
 	{
-		this.renderJediDefense.onWorldRender(event);
+		ClientEventHandler.renderJediDefense.onWorldRender(event);
 
-		this.renderSithLightning.onWorldRender(event);
+		ClientEventHandler.renderSithLightning.onWorldRender(event);
 	}
 }
 /*

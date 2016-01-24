@@ -29,6 +29,7 @@ import com.parzivail.pswm.network.PacketReverseEntity;
 import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BannedPlayerUtils;
 import com.parzivail.pswm.utils.BlasterBoltType;
@@ -58,6 +59,30 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class CommonEventHandler
 {
 	@SubscribeEvent
+	public void logOut(PlayerLoggedInEvent event) throws UserError
+	{
+		if (BannedPlayerUtils.isPlayerBanned(event.player.getCommandSenderName()))
+		{
+			Lumberjack.warn("This is NOT an error! Do NOT post this as a crash report. Thanks!");
+			throw new UserError(BannedPlayerUtils.getBanReason(event.player.getCommandSenderName()));
+		}
+
+		this.resetRobes(event);
+	}
+
+	@SubscribeEvent
+	public void logOut(PlayerLoggedOutEvent event)
+	{
+		this.resetRobes(event);
+	}
+
+	@SubscribeEvent
+	public void logOut(PlayerRespawnEvent event)
+	{
+		this.resetRobes(event);
+	}
+
+	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
@@ -71,8 +96,8 @@ public class CommonEventHandler
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.XWING));
 				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
-				ClientEventHandler.guiVehicle.isFiring = true;
-				ClientEventHandler.guiVehicle.blipFrame = ClientEventHandler.guiVehicle.blipMax;
+				GuiVehicle.isFiring = true;
+				GuiVehicle.blipFrame = GuiVehicle.blipMax;
 			}
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
 			{
@@ -97,17 +122,11 @@ public class CommonEventHandler
 			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
-		{
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
-		}
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
-		{
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-			{
 				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
-			}
-		}
 
 		// if (KeybindRegistry.keyDebug.isPressed())
 		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();
@@ -123,9 +142,7 @@ public class CommonEventHandler
 					Entity e = EntityUtils.rayTrace(active.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
 
 					if (e != null)
-					{
 						ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
-					}
 
 					active.currentLevel = ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name);
 					if (ArmorJediRobes.getXP(StarWarsMod.mc.thePlayer) - active.getCost() >= 0 && !ForceUtils.isCooling(active.name))
@@ -173,71 +190,7 @@ public class CommonEventHandler
 			}
 		}
 		else
-		{
 			StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
-		}
-	}
-
-	@SubscribeEvent
-	public void logOut(PlayerLoggedInEvent event) throws UserError
-	{
-		if (BannedPlayerUtils.isPlayerBanned(event.player.getCommandSenderName()))
-		{
-			Lumberjack.warn("This is NOT an error! Do NOT post this as a crash report. Thanks!");
-			throw new UserError(BannedPlayerUtils.getBanReason(event.player.getCommandSenderName()));
-		}
-		
-		resetRobes(event);
-	}
-
-	@SubscribeEvent
-	public void logOut(PlayerLoggedOutEvent event)
-	{
-		resetRobes(event);
-	}
-
-	@SubscribeEvent
-	public void logOut(PlayerRespawnEvent event)
-	{
-		resetRobes(event);
-	}
-
-	public void resetRobes(PlayerEvent event)
-	{
-		ArmorJediRobes.setActive(event.player, "");
-		ArmorJediRobes.setDuration(event.player, false);
-		ArmorJediRobes.setEntityTarget(event.player, -1);
-		ArmorJediRobes.setRunning(event.player, false);
-		ForceUtils.activePower = null;
-		ForceUtils.isUsingDuration = false;
-	}
-
-	@SubscribeEvent
-	public void onTick(TickEvent.ServerTickEvent event)
-	{
-		Iterator<EntityCooldownEntry> i = ForceUtils.entitiesWithEffects.iterator();
-		while (i.hasNext())
-		{
-			EntityCooldownEntry entry = i.next();
-
-			if (entry.effect.equals("disable"))
-			{
-				entry.entity.motionX = 0;
-				entry.entity.motionY = 0;
-				entry.entity.motionZ = 0;
-			}
-			else if (entry.effect.equals("slow"))
-			{
-				entry.entity.motionX = Math.min(Math.max(entry.entity.motionX, -0.005d), 0.005d);
-				entry.entity.motionY = Math.min(Math.max(entry.entity.motionY, -0.005d), 0.005d);
-				entry.entity.motionZ = Math.min(Math.max(entry.entity.motionZ, -0.005d), 0.005d);
-			}
-
-			entry.cooldownLeft--;
-
-			if (entry.cooldownLeft <= 0)
-				i.remove();
-		}
 	}
 
 	@SubscribeEvent
@@ -260,9 +213,7 @@ public class CommonEventHandler
 			Entity e;
 
 			if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) == -1)
-			{
 				e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
-			}
 			else
 				e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
 
@@ -372,13 +323,13 @@ public class CommonEventHandler
 					if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 						if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 							try
-							{
+					{
 								StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 								ClientEventHandler.lastPlayerTarget = null;
-							}
-							catch (Exception e)
-							{
-							}
+					}
+					catch (Exception e)
+					{
+					}
 					ForceUtils.activePower.duration = 0;
 					StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 					ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
@@ -400,24 +351,24 @@ public class CommonEventHandler
 							}
 							if (e instanceof EntityPlayer)
 								try
-								{
+							{
 									ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
 									StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
-								}
-								catch (Exception exc)
-								{
-								}
+							}
+							catch (Exception exc)
+							{
+							}
 						}
 					}
 					else if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 						try
-						{
+					{
 							StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 							ClientEventHandler.lastPlayerTarget = null;
-						}
-						catch (Exception e)
-						{
-						}
+					}
+					catch (Exception e)
+					{
+					}
 				}
 			}
 		}
@@ -443,5 +394,43 @@ public class CommonEventHandler
 			if (!ForceUtils.isCooling("defend"))
 				ForceUtils.coolingPowers.add(active);
 		}
+	}
+
+	@SubscribeEvent
+	public void onTick(TickEvent.ServerTickEvent event)
+	{
+		Iterator<EntityCooldownEntry> i = ForceUtils.entitiesWithEffects.iterator();
+		while (i.hasNext())
+		{
+			EntityCooldownEntry entry = i.next();
+
+			if (entry.effect.equals("disable"))
+			{
+				entry.entity.motionX = 0;
+				entry.entity.motionY = 0;
+				entry.entity.motionZ = 0;
+			}
+			else if (entry.effect.equals("slow"))
+			{
+				entry.entity.motionX = Math.min(Math.max(entry.entity.motionX, -0.005d), 0.005d);
+				entry.entity.motionY = Math.min(Math.max(entry.entity.motionY, -0.005d), 0.005d);
+				entry.entity.motionZ = Math.min(Math.max(entry.entity.motionZ, -0.005d), 0.005d);
+			}
+
+			entry.cooldownLeft--;
+
+			if (entry.cooldownLeft <= 0)
+				i.remove();
+		}
+	}
+
+	public void resetRobes(PlayerEvent event)
+	{
+		ArmorJediRobes.setActive(event.player, "");
+		ArmorJediRobes.setDuration(event.player, false);
+		ArmorJediRobes.setEntityTarget(event.player, -1);
+		ArmorJediRobes.setRunning(event.player, false);
+		ForceUtils.activePower = null;
+		ForceUtils.isUsingDuration = false;
 	}
 }

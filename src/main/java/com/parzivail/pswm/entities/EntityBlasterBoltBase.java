@@ -1,9 +1,5 @@
 package com.parzivail.pswm.entities;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -16,6 +12,10 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+
 public class EntityBlasterBoltBase extends EntityThrowable
 {
 	private EntityLivingBase sender;
@@ -23,24 +23,10 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	protected float damage = 5.0f;
 	protected float speed = 3;
 
-	public EntityBlasterBoltBase(World par1World, float damage)
-	{
-		super(par1World);
-		this.damage = damage;
-	}
-
 	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
 	{
 		super(par1World, par2, par4, par6);
 		this.damage = damage;
-	}
-
-	public EntityBlasterBoltBase(World par1World, EntityLivingBase par2EntityLivingBase, float damage)
-	{
-		super(par1World, par2EntityLivingBase);
-		this.sender = par2EntityLivingBase;
-		this.damage = damage;
-		this.setThrowableHeading(par2EntityLivingBase.getLookVec().xCoord, par2EntityLivingBase.getLookVec().yCoord, par2EntityLivingBase.getLookVec().zCoord, 1.0F, 1.0F);
 	}
 
 	public EntityBlasterBoltBase(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase, float damage)
@@ -62,6 +48,20 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			this.yOffset = 0.0F;
 			this.setThrowableHeading(d0, d1, d2, 1.0F, 1.0F);
 		}
+	}
+
+	public EntityBlasterBoltBase(World par1World, EntityLivingBase par2EntityLivingBase, float damage)
+	{
+		super(par1World, par2EntityLivingBase);
+		this.sender = par2EntityLivingBase;
+		this.damage = damage;
+		this.setThrowableHeading(par2EntityLivingBase.getLookVec().xCoord, par2EntityLivingBase.getLookVec().yCoord, par2EntityLivingBase.getLookVec().zCoord, 1.0F, 1.0F);
+	}
+
+	public EntityBlasterBoltBase(World par1World, float damage)
+	{
+		super(par1World);
+		this.damage = damage;
 	}
 
 	@Override
@@ -129,17 +129,17 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
 			pos.entityHit.setFire(8);
 		}
-		else if (!worldObj.isRemote && this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
+		else if (!this.worldObj.isRemote && this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
 			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 		this.setDead();
 	}
 
 	@Override
 	public void onUpdate()
-	{	
+	{
 		super.onUpdate();
 		if (this.timeAlive++ > 100)
-			this.setDead();	
+			this.setDead();
 	}
 
 	@Override

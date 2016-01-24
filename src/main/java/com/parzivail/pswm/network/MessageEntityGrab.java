@@ -28,13 +28,13 @@ public class MessageEntityGrab extends Message<MessageEntityGrab>
 	{
 		try
 		{
-			Vec3 look = grabber.getLookVec();
+			Vec3 look = this.grabber.getLookVec();
 			look.xCoord *= this.distance;
 			look.yCoord *= this.distance;
 			look.zCoord *= this.distance;
-			look.xCoord += grabber.posX;
-			look.yCoord += grabber.posY + 2;
-			look.zCoord += grabber.posZ;
+			look.xCoord += this.grabber.posX;
+			look.yCoord += this.grabber.posY + 2;
+			look.zCoord += this.grabber.posZ;
 			if (this.entity != null)
 			{
 				this.entity.fallDistance = 0.0f;
@@ -42,7 +42,7 @@ public class MessageEntityGrab extends Message<MessageEntityGrab>
 				this.entity.isAirBorne = true;
 				this.entity.timeUntilPortal = 5;
 				this.entity.setVelocity(0, 0, 0);
-				this.entity.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, grabber.rotationYawHead, grabber.rotationPitch);
+				this.entity.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, this.grabber.rotationYawHead, this.grabber.rotationPitch);
 			}
 		}
 		catch (Exception e)

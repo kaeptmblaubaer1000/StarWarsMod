@@ -1,11 +1,5 @@
 package com.parzivail.pswm.mobs;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
-import com.parzivail.util.entity.EntityUtils;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -22,6 +16,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.util.entity.EntityUtils;
 
 public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 {

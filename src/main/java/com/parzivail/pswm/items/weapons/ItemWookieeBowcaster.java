@@ -2,13 +2,6 @@ package com.parzivail.pswm.items.weapons;
 
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
-import com.parzivail.util.ui.KeyboardUtils;
-import com.parzivail.util.ui.TextUtils;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,6 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.achievement.StarWarsAchievements;
+import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
+import com.parzivail.util.ui.KeyboardUtils;
+import com.parzivail.util.ui.TextUtils;
 
 public class ItemWookieeBowcaster extends Item
 {

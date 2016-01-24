@@ -26,11 +26,55 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlasterPistol extends Item
 {
+	public static int getCooldown(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtCooldown))
+			return stack.stackTagCompound.getInteger(Resources.nbtCooldown);
+		return 0;
+	}
+
+	public static int getShotsLeft(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtShotsLeft))
+			return stack.stackTagCompound.getInteger(Resources.nbtShotsLeft);
+		return 0;
+	}
+
+	public static int getTicksSinceLastShot(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtTicksSince))
+			return stack.stackTagCompound.getInteger(Resources.nbtTicksSince);
+		return 0;
+	}
+
+	public static void setCooldown(ItemStack stack, int i)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger(Resources.nbtCooldown, i);
+	}
+
+	public static void setShotsLeft(ItemStack stack, int i)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger(Resources.nbtShotsLeft, i);
+	}
+
+	public static void setTicksSinceLastShot(ItemStack stack, int i)
+	{
+		if (stack.stackTagCompound != null)
+			stack.stackTagCompound.setInteger(Resources.nbtTicksSince, i);
+	}
+
 	public String name = "blasterPistol";
+
 	private int timeSinceLastShot = 0;
+
 	private int timeToRecharge = 6;
+
 	public String[] versions = { "Dl44", "Dl18", "Dh17", "Sporting", "Dl21", "Scout", "Se14c" };
+
 	public int subtypes = this.versions.length;
+
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
@@ -81,6 +125,12 @@ public class ItemBlasterPistol extends Item
 		return "item.starwarsmod." + this.name + "." + this.versions[metadata];
 	}
 
+	@Override
+	public boolean hasEffect(ItemStack stack, int pass)
+	{
+		return getCooldown(stack) >= 15;
+	}
+
 	private int indexOfMeta(String needle)
 	{
 		return Arrays.asList(this.versions).indexOf(needle);
@@ -93,21 +143,13 @@ public class ItemBlasterPistol extends Item
 	}
 
 	@Override
-	public boolean hasEffect(ItemStack stack, int pass)
-	{
-		return getCooldown(stack) >= 15;
-	}
-
-	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
 		if (getCooldown(stack) < 15)
-		{
 			if (stack.stackTagCompound.getInteger("shotsLeft") > 1)
 				player.playSound(Resources.MODID + ":" + "fx.shoot." + this.versions[MathHelper.clamp_int(stack.getItemDamage(), 0, 15)].toLowerCase(), 1.0F, 1.0F);
 			else
 				player.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
-		}
 
 		if (!world.isRemote && getCooldown(stack) < 15)
 		{
@@ -137,68 +179,29 @@ public class ItemBlasterPistol extends Item
 
 			if (!stack.stackTagCompound.hasKey("shotsLeft"))
 				switch (stack.getItemDamage())
-			{
-				case 0:
+				{
+					case 0:
 						stack.stackTagCompound.setInteger("shotsLeft", 180);
-					break;
-				case 3:
-				case 4:
+						break;
+					case 3:
+					case 4:
 						stack.stackTagCompound.setInteger("shotsLeft", 80);
-					break;
-				case 1:
-				case 2:
-				default:
+						break;
+					case 1:
+					case 2:
+					default:
 						stack.stackTagCompound.setInteger("shotsLeft", 100);
 				}
 
 			if (getTicksSinceLastShot(stack) <= 40 * ((getCooldown(stack) + 1) / 15f))
-				this.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
+				ItemBlasterPistol.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
 
 			if (getTicksSinceLastShot(stack) > 40 * ((getCooldown(stack) + 1) / 15f))
 			{
-				this.setTicksSinceLastShot(stack, 0);
-				this.setCooldown(stack, 0);
+				ItemBlasterPistol.setTicksSinceLastShot(stack, 0);
+				ItemBlasterPistol.setCooldown(stack, 0);
 			}
 		}
-	}
-
-	public static int getShotsLeft(ItemStack stack)
-	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtShotsLeft))
-			return stack.stackTagCompound.getInteger(Resources.nbtShotsLeft);
-		return 0;
-	}
-
-	public static void setShotsLeft(ItemStack stack, int i)
-	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger(Resources.nbtShotsLeft, i);
-	}
-
-	public static int getCooldown(ItemStack stack)
-	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtCooldown))
-			return stack.stackTagCompound.getInteger(Resources.nbtCooldown);
-		return 0;
-	}
-
-	public static void setCooldown(ItemStack stack, int i)
-	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger(Resources.nbtCooldown, i);
-	}
-
-	public static int getTicksSinceLastShot(ItemStack stack)
-	{
-		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtTicksSince))
-			return stack.stackTagCompound.getInteger(Resources.nbtTicksSince);
-		return 0;
-	}
-
-	public static void setTicksSinceLastShot(ItemStack stack, int i)
-	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger(Resources.nbtTicksSince, i);
 	}
 
 	@Override

@@ -40,9 +40,6 @@ public class PGui// extends Gui
 	private static float prevVignetteBrightness = 1.0F;
 	private static Minecraft mc;
 
-	private Point[] cursorFrom = { new Point(0, 2), new Point(0, 0), new Point(2, 0), new Point(8, 0), new Point(10, 0), new Point(10, 2), new Point(10, 8), new Point(10, 10), new Point(8, 10), new Point(2, 10), new Point(0, 10), new Point(0, 8) };
-	private Point[] cursorTo = { new Point(5, 4), new Point(5, 2), new Point(5, 0), new Point(6, 5), new Point(8, 5), new Point(10, 5), new Point(5, 6), new Point(5, 8), new Point(5, 10), new Point(4, 5), new Point(2, 5), new Point(0, 5) };
-
 	public static int getRGB(int r, int g, int b)
 	{
 		int rgb = r;
@@ -70,6 +67,10 @@ public class PGui// extends Gui
 		return getRGB(r, g, b);
 	}
 
+	private Point[] cursorFrom = { new Point(0, 2), new Point(0, 0), new Point(2, 0), new Point(8, 0), new Point(10, 0), new Point(10, 2), new Point(10, 8), new Point(10, 10), new Point(8, 10), new Point(2, 10), new Point(0, 10), new Point(0, 8) };
+
+	private Point[] cursorTo = { new Point(5, 4), new Point(5, 2), new Point(5, 0), new Point(6, 5), new Point(8, 5), new Point(10, 5), new Point(5, 6), new Point(5, 8), new Point(5, 10), new Point(4, 5), new Point(2, 5), new Point(0, 5) };
+
 	public PGui(Minecraft minecraft)
 	{
 		PGui.mc = minecraft;
@@ -81,15 +82,15 @@ public class PGui// extends Gui
 			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(dist);
 		else
 			try
-			{
+		{
 				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance");
 				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp");
-			}
-			catch (Exception e)
-			{
-				Lumberjack.warn("Unable to change camera distance!");
-				e.printStackTrace();
-			}
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Unable to change camera distance!");
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -110,6 +111,79 @@ public class PGui// extends Gui
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		PGui.mc.fontRenderer.drawStringWithShadow(string, x - PGui.mc.fontRenderer.getStringWidth(string) / 2, y - PGui.mc.fontRenderer.FONT_HEIGHT / 2, color);
+	}
+
+	public void drawFancyCursor(RenderGameOverlayEvent event, float p, int color)
+	{
+		float centerX = event.resolution.getScaledWidth() / 2f;
+		float centerY = event.resolution.getScaledHeight() / 2f;
+
+		GL11.glPushMatrix();
+		StarWarsMod.mc.entityRenderer.setupOverlayRendering();
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+		GlPalette.glColorI(color);
+		GL11.glBlendFunc(770, 771);
+		GL11.glLineWidth(2);
+
+		Vec3 a = this.lerp(this.cursorFrom[0], this.cursorTo[0], p);
+		Vec3 b = this.lerp(this.cursorFrom[1], this.cursorTo[1], p);
+		Vec3 c = this.lerp(this.cursorFrom[2], this.cursorTo[2], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		a = this.lerp(this.cursorFrom[3], this.cursorTo[3], p);
+		b = this.lerp(this.cursorFrom[4], this.cursorTo[4], p);
+		c = this.lerp(this.cursorFrom[5], this.cursorTo[5], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		a = this.lerp(this.cursorFrom[6], this.cursorTo[6], p);
+		b = this.lerp(this.cursorFrom[7], this.cursorTo[7], p);
+		c = this.lerp(this.cursorFrom[8], this.cursorTo[8], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		a = this.lerp(this.cursorFrom[9], this.cursorTo[9], p);
+		b = this.lerp(this.cursorFrom[10], this.cursorTo[10], p);
+		c = this.lerp(this.cursorFrom[11], this.cursorTo[11], p);
+
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
+		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
+		GL11.glEnd();
+
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glPopMatrix();
 	}
 
 	/**
@@ -397,86 +471,6 @@ public class PGui// extends Gui
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 
-	public void drawFancyCursor(RenderGameOverlayEvent event, float p, int color)
-	{
-		float centerX = event.resolution.getScaledWidth() / 2f;
-		float centerY = event.resolution.getScaledHeight() / 2f;
-
-		GL11.glPushMatrix();
-		StarWarsMod.mc.entityRenderer.setupOverlayRendering();
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GlPalette.glColorI(color);
-		GL11.glBlendFunc(770, 771);
-		GL11.glLineWidth(2);
-
-		Vec3 a = lerp(cursorFrom[0], cursorTo[0], p);
-		Vec3 b = lerp(cursorFrom[1], cursorTo[1], p);
-		Vec3 c = lerp(cursorFrom[2], cursorTo[2], p);
-
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-
-		a = lerp(cursorFrom[3], cursorTo[3], p);
-		b = lerp(cursorFrom[4], cursorTo[4], p);
-		c = lerp(cursorFrom[5], cursorTo[5], p);
-
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-
-		a = lerp(cursorFrom[6], cursorTo[6], p);
-		b = lerp(cursorFrom[7], cursorTo[7], p);
-		c = lerp(cursorFrom[8], cursorTo[8], p);
-
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-
-		a = lerp(cursorFrom[9], cursorTo[9], p);
-		b = lerp(cursorFrom[10], cursorTo[10], p);
-		c = lerp(cursorFrom[11], cursorTo[11], p);
-
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + a.xCoord - 10, centerY + a.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glVertex2d(centerX + c.xCoord - 10, centerY + c.yCoord - 10);
-		GL11.glVertex2d(centerX + b.xCoord - 10, centerY + b.yCoord - 10);
-		GL11.glEnd();
-
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glColor4f(1, 1, 1, 1);
-		GL11.glPopMatrix();
-	}
-
-	public Vec3 lerp(Point a, Point b, float f)
-	{
-		float x = (float)(a.x * 2) + f * ((float)(b.x * 2) - (float)(a.x * 2));
-		float y = (float)(a.y * 2) + f * ((float)(b.y * 2) - (float)(a.y * 2));
-		return Vec3.createVectorHelper(x, y, 0);
-	}
-
 	public void drawLine3d(double x1, double y1, double z1, double x2, double y2, double z2, int lineWidth, int color)
 	{
 		GL11.glPushMatrix();
@@ -596,7 +590,7 @@ public class PGui// extends Gui
 		GL11.glBlendFunc(770, 771);
 		GL11.glColor4f(f1, f2, f3, f);
 		GL11.glTranslatef(x, y, 0);
-		GL11.glRotatef((max / 2f) * percent, 0, 0, 1);
+		GL11.glRotatef(max / 2f * percent, 0, 0, 1);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 		for (int i = 0; i <= max * percent; i++)
 		{
@@ -845,6 +839,13 @@ public class PGui// extends Gui
 		tessellator.addVertexWithUV(x + width, y + 0, 1, icon.getMaxU(), icon.getMinV());
 		tessellator.addVertexWithUV(x + 0, y + 0, 1, icon.getMinU(), icon.getMinV());
 		tessellator.draw();
+	}
+
+	public Vec3 lerp(Point a, Point b, float f)
+	{
+		float x = a.x * 2 + f * ((float)(b.x * 2) - (float)(a.x * 2));
+		float y = a.y * 2 + f * ((float)(b.y * 2) - (float)(a.y * 2));
+		return Vec3.createVectorHelper(x, y, 0);
 	}
 
 	public ResourceLocation planetTextureFromDim(int dim)

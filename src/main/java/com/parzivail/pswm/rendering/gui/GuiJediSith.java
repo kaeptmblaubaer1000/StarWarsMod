@@ -38,13 +38,64 @@ public class GuiJediSith extends GuiScreen
 		this.player = player;
 	}
 
+	@Override
+	protected void actionPerformed(GuiButton button)
+	{
+		if (button.enabled)
+			if (button.id == this.jediButton.id)
+			{
+				ForceUtils.addLeaderboardSide("jedi");
+				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.setIngameFocus();
+				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI, this.player.dimension, this.player.getCommandSenderName()));
+				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI);
+			}
+			else if (button.id == this.sithButton.id)
+			{
+				ForceUtils.addLeaderboardSide("sith");
+				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.setIngameFocus();
+				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_SITH, this.player.dimension, this.player.getCommandSenderName()));
+				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_SITH);
+			}
+	}
+
+	/**
+	 * Draws the screen and all the components in it.
+	 */
+	@Override
+	public void drawScreen(int p_571_1_, int p_571_2_, float p_571_3_)
+	{
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+
+		this.mc.getTextureManager().bindTexture(guiTexture);
+		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
+
+		int x = r.getScaledWidth() / 2;
+		int y = r.getScaledHeight() / 2;
+		int dy = y - 80;
+		this.drawCenteredString(this.mc.fontRenderer, "You have a nightmare.", x, dy += 10, GlPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, "A Dark Man speaks to you.", x, dy += 10, GlPalette.WHITE);
+		dy += 10;
+		this.drawCenteredString(this.mc.fontRenderer, "He wants to share his secrets.", x, dy += 10, GlPalette.LIGHT_RED);
+		this.drawCenteredString(this.mc.fontRenderer, "His dark knowledge.", x, dy += 10, GlPalette.RED);
+		dy += 10;
+		this.drawCenteredString(this.mc.fontRenderer, "Do you accept?", x, dy += 10, GlPalette.WHITE);
+
+		this.drawString(this.mc.fontRenderer, "Never.", x - 73, y + 19, GlPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Show me.", x + 38, y + 19, GlPalette.WHITE);
+
+		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
+	}
+
 	/**
 	 * Adds the buttons (and other controls) to the screen in question.
 	 */
 	@Override
 	public void initGui()
 	{
-		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 
@@ -59,30 +110,6 @@ public class GuiJediSith extends GuiScreen
 		 */
 	}
 
-	@Override
-	protected void actionPerformed(GuiButton button)
-	{
-		if (button.enabled)
-		{
-			if (button.id == this.jediButton.id)
-			{
-				ForceUtils.addLeaderboardSide("jedi");
-				this.mc.displayGuiScreen((GuiScreen)null);
-				this.mc.setIngameFocus();
-				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI, player.dimension, player.getCommandSenderName()));
-				stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI);
-			}
-			else if (button.id == this.sithButton.id)
-			{
-				ForceUtils.addLeaderboardSide("sith");
-				this.mc.displayGuiScreen((GuiScreen)null);
-				this.mc.setIngameFocus();
-				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_SITH, player.dimension, player.getCommandSenderName()));
-				stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_SITH);
-			}
-		}
-	}
-
 	/**
 	 * Fired when a key is typed. This is the equivalent of
 	 * KeyListener.keyTyped(KeyEvent e).
@@ -91,35 +118,6 @@ public class GuiJediSith extends GuiScreen
 	protected void keyTyped(char p_73869_1_, int p_73869_2_)
 	{
 		// don't exit on escape, force player to choose
-	}
-
-	/**
-	 * Draws the screen and all the components in it.
-	 */
-	@Override
-	public void drawScreen(int p_571_1_, int p_571_2_, float p_571_3_)
-	{
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-
-		this.mc.getTextureManager().bindTexture(guiTexture);
-		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
-
-		int x = (int)(r.getScaledWidth() / 2);
-		int y = (int)(r.getScaledHeight() / 2);
-		int dy = y - 80;
-		this.drawCenteredString(mc.fontRenderer, "You have a nightmare.", x, dy += 10, GlPalette.WHITE);
-		this.drawCenteredString(mc.fontRenderer, "A Dark Man speaks to you.", x, dy += 10, GlPalette.WHITE);
-		dy += 10;
-		this.drawCenteredString(mc.fontRenderer, "He wants to share his secrets.", x, dy += 10, GlPalette.LIGHT_RED);
-		this.drawCenteredString(mc.fontRenderer, "His dark knowledge.", x, dy += 10, GlPalette.RED);
-		dy += 10;
-		this.drawCenteredString(mc.fontRenderer, "Do you accept?", x, dy += 10, GlPalette.WHITE);
-
-		this.drawString(mc.fontRenderer, "Never.", x - 73, y + 19, GlPalette.WHITE);
-		this.drawString(mc.fontRenderer, "Show me.", x + 38, y + 19, GlPalette.WHITE);
-
-		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
 }
 /*

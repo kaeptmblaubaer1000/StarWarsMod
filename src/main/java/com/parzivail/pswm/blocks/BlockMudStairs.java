@@ -1,10 +1,10 @@
 package com.parzivail.pswm.blocks;
 
+import net.minecraft.block.BlockStairs;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
-
-import net.minecraft.block.BlockStairs;
 
 public class BlockMudStairs extends BlockStairs
 {

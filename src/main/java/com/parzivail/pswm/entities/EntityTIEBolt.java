@@ -1,15 +1,6 @@
 package com.parzivail.pswm.entities;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -32,9 +23,9 @@ public class EntityTIEBolt extends EntityBlasterBoltBase
 		super(par1World, par2EntityLivingBase, 16.0f);
 
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * this.extent;
-		double dy = vec3.yCoord * this.extent;
-		double dz = vec3.zCoord * this.extent;
+		double dx = vec3.xCoord * EntityTIEBolt.extent;
+		double dy = vec3.yCoord * EntityTIEBolt.extent;
+		double dz = vec3.zCoord * EntityTIEBolt.extent;
 
 		this.posX += dx;
 		this.posY += dy;
@@ -46,9 +37,9 @@ public class EntityTIEBolt extends EntityBlasterBoltBase
 		super(par1World, par2EntityLivingBase, par3EntityLivingBase, 16.0f);
 
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * this.extent;
-		double dy = vec3.yCoord * this.extent;
-		double dz = vec3.zCoord * this.extent;
+		double dx = vec3.xCoord * EntityTIEBolt.extent;
+		double dy = vec3.yCoord * EntityTIEBolt.extent;
+		double dz = vec3.zCoord * EntityTIEBolt.extent;
 
 		this.posX += dx;
 		this.posY += dy;

@@ -1,10 +1,9 @@
 package com.parzivail.pswm.rendering.gui;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.Animation;
-import com.parzivail.util.ui.GlPalette;
-
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class AnimationCrosshairOpen extends Animation
 {
@@ -21,8 +20,8 @@ public class AnimationCrosshairOpen extends Animation
 	public void render(RenderGameOverlayEvent event)
 	{
 		super.render(event);
-		
-		ClientEventHandler.pgui.drawFancyCursor(event, (this.length - this.tick) / (float)this.length, color);
+
+		ClientEventHandler.pgui.drawFancyCursor(event, (this.length - this.tick) / (float)this.length, this.color);
 	}
 
 	@Override

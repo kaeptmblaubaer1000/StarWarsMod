@@ -1,12 +1,13 @@
 package com.parzivail.pswm.achievement;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
+
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
 
 public class StarWarsAchievements
 {

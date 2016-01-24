@@ -1,10 +1,10 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
 
 public class RenderTIEInterceptor extends RenderVehicAirBase
 {

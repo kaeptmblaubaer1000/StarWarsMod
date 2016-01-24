@@ -2,15 +2,16 @@ package com.parzivail.pswm.rendering.gui;
 
 import java.util.ArrayList;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 
 import cpw.mods.fml.client.GuiScrollingList;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.ResourceLocation;
 
 public class GuiSlotPowerList extends GuiScrollingList
 {

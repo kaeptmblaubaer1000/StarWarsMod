@@ -1,21 +1,14 @@
 package com.parzivail.pswm.rendering.gui;
 
-import java.awt.Point;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.Animation;
-import com.parzivail.util.ui.GlPalette;
-
-import net.minecraft.util.Vec3;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class AnimationCrosshairClose extends Animation
 {
 	int color;
-	
+
 	public AnimationCrosshairClose(int color)
 	{
 		super(8, false, true);

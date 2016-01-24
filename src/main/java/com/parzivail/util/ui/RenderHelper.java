@@ -1,12 +1,26 @@
 package com.parzivail.util.ui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 
+import org.lwjgl.opengl.GL11;
+
 public class RenderHelper
 {
+	public static void disableLightmap()
+	{
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+	}
+
+	public static void enableLightmap()
+	{
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+	}
+
 	private Minecraft mc;
 
 	/**
@@ -36,19 +50,5 @@ public class RenderHelper
 	public void setCameraMode(int mode)
 	{
 		this.mc.gameSettings.thirdPersonView = mode;
-	}
-
-	public static void disableLightmap()
-	{
-		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-	}
-
-	public static void enableLightmap()
-	{
-		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
 	}
 }

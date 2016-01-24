@@ -3,13 +3,13 @@ package com.parzivail.pswm.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.parzivail.pswm.world.TransferDim;
-
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+
+import com.parzivail.pswm.world.TransferDim;
 
 public class CommandSWDim implements ICommand
 {

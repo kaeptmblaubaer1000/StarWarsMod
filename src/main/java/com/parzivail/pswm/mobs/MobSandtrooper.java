@@ -3,11 +3,6 @@ package com.parzivail.pswm.mobs;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.utils.LootGenUtils;
-import com.parzivail.util.entity.trade.WeightedLoot;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -28,6 +23,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.utils.LootGenUtils;
+import com.parzivail.util.entity.trade.WeightedLoot;
 
 public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 {

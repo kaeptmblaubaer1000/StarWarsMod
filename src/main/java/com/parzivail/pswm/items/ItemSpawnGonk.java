@@ -1,12 +1,12 @@
 package com.parzivail.pswm.items;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.mobs.MobDroidGNK;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.mobs.MobDroidGNK;
 
 public class ItemSpawnGonk extends net.minecraft.item.Item
 {

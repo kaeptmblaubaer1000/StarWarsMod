@@ -70,11 +70,11 @@ public class RenderDeathStarDoor extends TileEntitySpecialRenderer
 			door.isOpening = false;
 		}
 
-		p = ((door.isMoving) ? (door.isOpening ? p : -p) : 0);
+		p = door.isMoving ? door.isOpening ? p : -p : 0;
 
-		p = (door.progressTicks + 1 > door.totalTicks || door.progressTicks - 1 <= 0) ? 0 : p;
+		p = door.progressTicks + 1 > door.totalTicks || door.progressTicks - 1 <= 0 ? 0 : p;
 
-		float percent = (door.progressTicks + p) / (float)door.totalTicks;
+		float percent = (door.progressTicks + p) / door.totalTicks;
 
 		this.model.SplitFrontTopParent.offsetX = -3.25f * percent;
 		this.model.SplitFrontBottomParent.offsetX = 3.25f * percent;

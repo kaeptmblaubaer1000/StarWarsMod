@@ -2,6 +2,9 @@ package com.parzivail.pswm.dimension.tatooine;
 
 import java.util.Random;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenMV;
@@ -61,9 +64,6 @@ import com.parzivail.pswm.world.gen.moseisley.big.ME_55;
 import com.parzivail.pswm.world.gen.moseisley.big.ME_56;
 import com.parzivail.pswm.world.gen.moseisley.big.ME_57;
 import com.parzivail.pswm.world.gen.moseisley.big.ME_58;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
 
 public class BiomeGenTatooine extends BiomeGenPSWM
 {

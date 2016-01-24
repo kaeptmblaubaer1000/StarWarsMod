@@ -1,11 +1,5 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-
-import com.mojang.authlib.GameProfile;
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.mobs.MobEwok;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -22,6 +16,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
+
+import org.lwjgl.opengl.GL11;
+
+import com.mojang.authlib.GameProfile;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.mobs.MobEwok;
 
 public class RenderEwok extends RenderLiving
 {

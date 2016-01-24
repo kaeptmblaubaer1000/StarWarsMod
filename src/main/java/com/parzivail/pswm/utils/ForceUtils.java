@@ -27,10 +27,27 @@ import com.parzivail.util.ui.Lumberjack;
 
 public class ForceUtils
 {
+	public static class EntityCooldownEntry
+	{
+		public int cooldownLeft;
+		public int cooldown;
+		public Entity entity;
+		public String effect;
+
+		public EntityCooldownEntry(Entity entity, String effect, int cooldown)
+		{
+			this.cooldownLeft = cooldown;
+			this.cooldown = cooldown;
+			this.entity = entity;
+			this.effect = effect;
+		}
+	}
+
 	public static Power activePower = null;
 	public static boolean isUsingDuration = false;
 	public static int health = 0;
 	public static float distanceToEntity = -1;
+
 	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
 
 	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<EntityCooldownEntry>();
@@ -52,33 +69,63 @@ public class ForceUtils
 		powers.put("slow", new PowerSlow(0));
 	}
 
-	public static String getTitle(String side, int level)
+	public static void addLeaderboardSide(String side)
 	{
-		String s = side.equals(ArmorJediRobes.SIDE_JEDI) ? "Jedi " : "Sith ";
-		if (side.equals(ArmorJediRobes.SIDE_JEDI))
+		InputStream in = null;
+		try
 		{
-			if (level < 15)
-				s += "Padawan";
-			else if (level < 35)
-				s += "Knight";
-			else
-				s += "Master";
+			in = new URL(Resources.robesLeaderboardAddLink + "?m=add&s=" + side).openStream();
+			IOUtils.toString(in);
+			IOUtils.closeQuietly(in);
 		}
-		else
+		catch (Exception e)
 		{
-			if (level < 45)
-				s += "Acolyte";
-			else if (level < 55)
-				s += "Apprentice";
-			else
-				s += "Lord";
+			Lumberjack.warn("Couldn't add leaderboard stats!");
+			e.printStackTrace();
 		}
-		return s;
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
 	}
 
 	public static String[] getAllPowers()
 	{
 		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "healing", "naturalAwareness", "slow", "drainKnowledge", "lightning", "destruction" };
+	}
+
+	public static String[] getBasicPowers()
+	{
+		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab" };
+	}
+
+	public static String[] getJediPowers()
+	{
+		return new String[] { "healing", "naturalAwareness" };
+	}
+
+	public static int getLeaderboardSide(String side)
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.robesLeaderboardAddLink + "?m=get&s=" + side).openStream();
+			String n = IOUtils.toString(in);
+			IOUtils.closeQuietly(in);
+			return Integer.parseInt(n);
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't get leaderboard stats!");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
+		return 0;
 	}
 
 	public static ArrayList<String> getPowersAvailableAtLevel(String side, int level)
@@ -121,19 +168,30 @@ public class ForceUtils
 		return r;
 	}
 
-	public static String[] getBasicPowers()
-	{
-		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab" };
-	}
-
-	public static String[] getJediPowers()
-	{
-		return new String[] { "healing", "naturalAwareness" };
-	}
-
 	public static String[] getSithPowers()
 	{
 		return new String[] { "slow", "drainKnowledge", "lightning", "destruction" };
+	}
+
+	public static String getTitle(String side, int level)
+	{
+		String s = side.equals(ArmorJediRobes.SIDE_JEDI) ? "Jedi " : "Sith ";
+		if (side.equals(ArmorJediRobes.SIDE_JEDI))
+		{
+			if (level < 15)
+				s += "Padawan";
+			else if (level < 35)
+				s += "Knight";
+			else
+				s += "Master";
+		}
+		else if (level < 45)
+			s += "Acolyte";
+		else if (level < 55)
+			s += "Apprentice";
+		else
+			s += "Lord";
+		return s;
 	}
 
 	public static boolean isCooling(String power)
@@ -142,65 +200,5 @@ public class ForceUtils
 			if (p.name.equals(power))
 				return true;
 		return false;
-	}
-
-	public static int getLeaderboardSide(String side)
-	{
-		InputStream in = null;
-		try
-		{
-			in = new URL(Resources.robesLeaderboardAddLink + "?m=get&s=" + side).openStream();
-			String n = IOUtils.toString(in);
-			IOUtils.closeQuietly(in);
-			return Integer.parseInt(n);
-		}
-		catch (Exception e)
-		{
-			Lumberjack.warn("Couldn't get leaderboard stats!");
-			e.printStackTrace();
-		}
-		finally
-		{
-			if (in != null)
-				IOUtils.closeQuietly(in);
-		}
-		return 0;
-	}
-
-	public static void addLeaderboardSide(String side)
-	{
-		InputStream in = null;
-		try
-		{
-			in = new URL(Resources.robesLeaderboardAddLink + "?m=add&s=" + side).openStream();
-			String n = IOUtils.toString(in);
-			IOUtils.closeQuietly(in);
-		}
-		catch (Exception e)
-		{
-			Lumberjack.warn("Couldn't add leaderboard stats!");
-			e.printStackTrace();
-		}
-		finally
-		{
-			if (in != null)
-				IOUtils.closeQuietly(in);
-		}
-	}
-
-	public static class EntityCooldownEntry
-	{
-		public int cooldownLeft;
-		public int cooldown;
-		public Entity entity;
-		public String effect;
-
-		public EntityCooldownEntry(Entity entity, String effect, int cooldown)
-		{
-			this.cooldownLeft = cooldown;
-			this.cooldown = cooldown;
-			this.entity = entity;
-			this.effect = effect;
-		}
 	}
 }

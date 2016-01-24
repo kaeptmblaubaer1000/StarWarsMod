@@ -1,9 +1,9 @@
 package com.parzivail.pswm.items.crafting;
 
+import net.minecraft.item.Item;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-
-import net.minecraft.item.Item;
 
 public class ItemTitaniumChromiumDust extends Item
 {

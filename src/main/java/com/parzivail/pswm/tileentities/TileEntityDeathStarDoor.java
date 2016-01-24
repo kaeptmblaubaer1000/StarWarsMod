@@ -1,20 +1,13 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.StarWarsMod;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityDeathStarDoor extends TileEntity
 {
@@ -46,6 +39,22 @@ public class TileEntityDeathStarDoor extends TileEntity
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared()
+	{
+		return 262144;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getRenderBoundingBox()
+	{
+		if (this.bb == null)
+			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord - 3, this.yCoord, this.zCoord - 3, this.xCoord + 3, this.yCoord + 5, this.zCoord + 3);
+		return this.bb;
+	}
+
+	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
 	{
 		super.onDataPacket(net, packet);
@@ -68,16 +77,12 @@ public class TileEntityDeathStarDoor extends TileEntity
 	public void updateEntity()
 	{
 		if (this.progressTicks < this.totalTicks && this.isOpening)
-		{
 			this.progressTicks++;
-		}
 		else
 			this.isOpening = false;
 
 		if (this.progressTicks > 0 && this.isClosing)
-		{
 			this.progressTicks--;
-		}
 		else
 			this.isClosing = false;
 
@@ -90,22 +95,6 @@ public class TileEntityDeathStarDoor extends TileEntity
 		tag.setShort("facing", (short)this.facing);
 		super.writeToNBT(tag);
 	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getRenderBoundingBox()
-	{
-		if (this.bb == null)
-			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord - 3, this.yCoord, this.zCoord - 3, this.xCoord + 3, this.yCoord + 5, this.zCoord + 3);
-		return bb;
-	}
-
-	@Override
-    @SideOnly(Side.CLIENT)
-    public double getMaxRenderDistanceSquared()
-    {
-        return 262144;
-    }
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

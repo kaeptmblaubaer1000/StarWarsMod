@@ -2,8 +2,6 @@ package com.parzivail.pswm.ai;
 
 import java.util.List;
 
-import com.parzivail.pswm.Resources;
-
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -14,6 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.Vec3;
+
+import com.parzivail.pswm.Resources;
 
 public class AiMouseScare extends EntityAIBase
 {

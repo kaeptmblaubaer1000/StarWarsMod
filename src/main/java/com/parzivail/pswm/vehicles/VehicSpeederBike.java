@@ -1,10 +1,10 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.vehicle.VehicleLandBase;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.vehicle.VehicleLandBase;
 
 public class VehicSpeederBike extends VehicleLandBase
 {

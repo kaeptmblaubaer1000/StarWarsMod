@@ -9,7 +9,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import org.lwjgl.opengl.GL11;
@@ -71,8 +70,6 @@ public class GuiPSWMOverlay extends Gui
 			ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
 			ItemStack robes = this.mc.thePlayer.inventory.armorItemInSlot(2);
-			NBTTagCompound tags = robes.stackTagCompound;
-
 			int xp = ArmorJediRobes.getXP(robes);
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
@@ -95,7 +92,7 @@ public class GuiPSWMOverlay extends Gui
 			while (coolingIt.hasNext())
 			{
 				Power cooling = coolingIt.next();
-				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / (float)cooling.rechargeTime, guiColor);
+				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GlPalette.WHITE);
 				y -= 22;
 			}

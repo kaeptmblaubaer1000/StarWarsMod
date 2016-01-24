@@ -1,14 +1,14 @@
 package com.parzivail.pswm.items;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.utils.LootGenUtils;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.utils.LootGenUtils;
 
 public class ItemDebugLootGen extends Item
 {

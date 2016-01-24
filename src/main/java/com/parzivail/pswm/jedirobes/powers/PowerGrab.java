@@ -1,6 +1,5 @@
 package com.parzivail.pswm.jedirobes.powers;
 
-
 public class PowerGrab extends Power
 {
 	public PowerGrab(int currentLevel)

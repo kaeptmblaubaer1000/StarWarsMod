@@ -2,12 +2,6 @@ package com.parzivail.pswm.rendering;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.util.world.Vector3;
-
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GLAllocation;
@@ -18,6 +12,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.IRenderHandler;
+
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.util.world.Vector3;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class DrawYavinFourSky extends IRenderHandler
 {

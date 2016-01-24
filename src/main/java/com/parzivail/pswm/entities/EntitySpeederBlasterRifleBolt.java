@@ -23,9 +23,9 @@ public class EntitySpeederBlasterRifleBolt extends EntityBlasterBoltBase
 		super(par1World, par2EntityLivingBase, 8.0f);
 
 		Vec3 vec3 = par2EntityLivingBase.getLookVec();
-		double dx = vec3.xCoord * this.extent;
-		double dy = vec3.yCoord * this.extent;
-		double dz = vec3.zCoord * this.extent;
+		double dx = vec3.xCoord * EntitySpeederBlasterRifleBolt.extent;
+		double dy = vec3.yCoord * EntitySpeederBlasterRifleBolt.extent;
+		double dz = vec3.zCoord * EntitySpeederBlasterRifleBolt.extent;
 
 		this.posX += dx;
 		this.posY += dy;

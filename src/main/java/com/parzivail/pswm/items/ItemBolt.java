@@ -1,8 +1,8 @@
 package com.parzivail.pswm.items;
 
-import com.parzivail.pswm.Resources;
-
 import net.minecraft.item.Item;
+
+import com.parzivail.pswm.Resources;
 
 public class ItemBolt extends Item
 {

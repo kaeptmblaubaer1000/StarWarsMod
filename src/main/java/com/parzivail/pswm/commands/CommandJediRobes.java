@@ -64,9 +64,7 @@ public class CommandJediRobes extends CommandBase
 			ArmorJediRobes.getMaxXP(robes);
 
 			if (key.equalsIgnoreCase("level"))
-			{
 				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(key, (int)(value * ArmorJediRobes.POINTS_PER_LEVEL));
-			}
 			else
 				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(key, value);
 			icommandsender.addChatMessage(new ChatComponentText("[Robes] Set " + key + " to " + String.valueOf(value) + "."));

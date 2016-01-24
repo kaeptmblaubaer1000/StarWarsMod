@@ -52,8 +52,8 @@ public class GuiVehicle
 				{
 					VehicXWing xwing = (VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity;
 
-					float centerX = event.resolution.getScaledWidth() / 2f;
-					float centerY = event.resolution.getScaledHeight() / 2f;
+					event.resolution.getScaledWidth();
+					event.resolution.getScaledHeight();
 
 					float radarCenterX = event.resolution.getScaledWidth() * (107 / 216F);
 					float radarCenterY = event.resolution.getScaledHeight() * (119 / 144F);
@@ -68,8 +68,6 @@ public class GuiVehicle
 					float entiCenterMaxY = event.resolution.getScaledHeight() * (131 / 144F);
 
 					float scale = event.resolution.getScaledWidth() * (14 / 216f);
-
-					float blipPercent = blipFrame / blipMax;
 
 					if (System.currentTimeMillis() / 1000 % 2 == 0)
 						ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack1);
@@ -106,24 +104,20 @@ public class GuiVehicle
 					if (xwing.getTargetLock())
 						color = GlPalette.ORANGE;
 
-					if (e != null && lastTarget == null)
+					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && lastTarget != null)
+					if (e == null && this.lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
 						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-					}
 
 					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-					}
 
 					this.lastTarget = e;
 
@@ -206,8 +200,8 @@ public class GuiVehicle
 				{
 					VehicAWing awing = (VehicAWing)StarWarsMod.mc.thePlayer.ridingEntity;
 
-					float centerX = event.resolution.getScaledWidth() / 2f;
-					float centerY = event.resolution.getScaledHeight() / 2f;
+					event.resolution.getScaledWidth();
+					event.resolution.getScaledHeight();
 
 					float radarCenterX = event.resolution.getScaledWidth() * (91.4f / 216F);
 					float radarCenterY = event.resolution.getScaledHeight() * (124.5f / 144F);
@@ -228,8 +222,6 @@ public class GuiVehicle
 					float arbiCenterMaxY = event.resolution.getScaledHeight() * (138 / 144F);
 
 					float scale = event.resolution.getScaledWidth() * (14 / 216f);
-
-					float blipPercent = blipFrame / blipMax;
 
 					if (System.currentTimeMillis() / 1000 % 2 == 0)
 						ClientEventHandler.pgui.renderOverlay(Resources.awingBack);
@@ -268,24 +260,20 @@ public class GuiVehicle
 					if (awing.getTargetLock())
 						color = GlPalette.ORANGE;
 
-					if (e != null && lastTarget == null)
+					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && lastTarget != null)
+					if (e == null && this.lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
 						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-					}
 
 					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-					}
 
 					this.lastTarget = e;
 
@@ -463,37 +451,33 @@ public class GuiVehicle
 					if (tie.getTargetLock())
 						color = GlPalette.ORANGE;
 
-					if (e != null && lastTarget == null)
+					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && lastTarget != null)
+					if (e == null && this.lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
 						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-					}
 
 					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-					{
 						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
-					}
 
 					this.lastTarget = e;
 
 					/*
 					 * if (tie.getTargetLock()) color = GlPalette.ORANGE;
-					 * 
+					 *
 					 * if (e instanceof VehicleAirBase && e.riddenByEntity
 					 * instanceof EntityPlayer) {
 					 * StarWarsMod.network.sendToServer(new
 					 * PacketShipTargetLock(e.riddenByEntity.
 					 * getCommandSenderName(), true,
 					 * e.worldObj.provider.dimensionId)); this.lastTarget = e; }
-					 * 
+					 *
 					 * if (e == null && this.lastTarget instanceof
 					 * VehicleAirBase && this.lastTarget.riddenByEntity
 					 * instanceof EntityPlayer) {
@@ -502,7 +486,7 @@ public class GuiVehicle
 					 * getCommandSenderName(), false,
 					 * this.lastTarget.worldObj.provider.dimensionId));
 					 * this.lastTarget = e; }
-					 * 
+					 *
 					 * if (e != null) { color = GlPalette.ELECTRIC_LIME;
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
 					 * centerY - 5, 3, 180, 2, color);
@@ -510,22 +494,22 @@ public class GuiVehicle
 					 * centerY + 5, 3, 45, 2, color);
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 5,
 					 * centerY + 5, 3, 315, 2, color);
-					 * 
+					 *
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 20, centerY - 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 10, centerY - 20, 2, color);
-					 * 
+					 *
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 20, centerY - 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 10, centerY - 20, 2, color);
-					 * 
+					 *
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 20, centerY + 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 10, centerY + 20, 2, color);
-					 * 
+					 *
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
 					 * 20, centerX + 20, centerY + 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +

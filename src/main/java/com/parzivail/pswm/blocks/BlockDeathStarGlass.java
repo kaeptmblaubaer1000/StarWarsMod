@@ -1,12 +1,12 @@
 package com.parzivail.pswm.blocks;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.world.World;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.block.BlockConnected;
 import com.parzivail.util.world.HarvestLevel;
-
-import net.minecraft.block.material.Material;
-import net.minecraft.world.World;
 
 public class BlockDeathStarGlass extends BlockConnected
 {
@@ -40,9 +40,9 @@ public class BlockDeathStarGlass extends BlockConnected
 		return false;
 	}
 
-    //@Override
-    //public int getRenderBlockPass()
-    //{
-    //    return 1;
-    //}
+	// @Override
+	// public int getRenderBlockPass()
+	// {
+	// return 1;
+	// }
 }

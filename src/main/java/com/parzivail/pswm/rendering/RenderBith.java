@@ -1,11 +1,11 @@
 package com.parzivail.pswm.rendering;
 
-import com.parzivail.pswm.Resources;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+
+import com.parzivail.pswm.Resources;
 
 public class RenderBith extends RenderLiving
 {

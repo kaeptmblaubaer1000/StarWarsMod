@@ -1,10 +1,10 @@
 package com.parzivail.pswm.registry;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.rendering.gui.GuiPSWMOverlay;
-
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.rendering.gui.GuiPSWMOverlay;
 
 public class RegisterGuiOverlays
 {

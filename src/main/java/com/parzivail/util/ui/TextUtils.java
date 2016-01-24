@@ -34,6 +34,35 @@ public class TextUtils
 		return Text.UNDE + p1 + Text.RESE;
 	}
 
+	public static String[] splitIntoLine(String input, int maxCharInLine)
+	{
+
+		StringTokenizer tok = new StringTokenizer(input, " ");
+		StringBuilder output = new StringBuilder(input.length());
+		int lineLen = 0;
+		while (tok.hasMoreTokens())
+		{
+			String word = tok.nextToken();
+
+			while (word.length() > maxCharInLine)
+			{
+				output.append(word.substring(0, maxCharInLine - lineLen) + "\n");
+				word = word.substring(maxCharInLine - lineLen);
+				lineLen = 0;
+			}
+
+			if (lineLen + word.length() > maxCharInLine)
+			{
+				output.append("\n");
+				lineLen = 0;
+			}
+			output.append(word + " ");
+
+			lineLen += word.length() + 1;
+		}
+		return output.toString().split("\n");
+	}
+
 	public static String translateAurebesh(String english)
 	{
 		if (english.equalsIgnoreCase("T-65B X-Wing Starfighter"))
@@ -90,33 +119,5 @@ public class TextUtils
 		if (english.equalsIgnoreCase("Bantha"))
 			return "Lil' Baby Banthy Banth";
 		return english;
-	}
-	
-	public static String[] splitIntoLine(String input, int maxCharInLine){
-
-	    StringTokenizer tok = new StringTokenizer(input, " ");
-	    StringBuilder output = new StringBuilder(input.length());
-	    int lineLen = 0;
-	    while (tok.hasMoreTokens())
-	    {
-	        String word = tok.nextToken();
-
-	        while(word.length() > maxCharInLine)
-	        {
-	            output.append(word.substring(0, maxCharInLine-lineLen) + "\n");
-	            word = word.substring(maxCharInLine-lineLen);
-	            lineLen = 0;
-	        }
-
-	        if (lineLen + word.length() > maxCharInLine)
-	        {
-	            output.append("\n");
-	            lineLen = 0;
-	        }
-	        output.append(word + " ");
-
-	        lineLen += word.length() + 1;
-	    }
-	    return output.toString().split("\n");
 	}
 }

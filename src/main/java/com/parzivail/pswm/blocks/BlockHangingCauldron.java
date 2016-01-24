@@ -1,16 +1,16 @@
 package com.parzivail.pswm.blocks;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
-import com.parzivail.util.world.HarvestLevel;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
+import com.parzivail.util.world.HarvestLevel;
 
 public class BlockHangingCauldron extends BlockContainer
 {

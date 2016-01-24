@@ -3,13 +3,13 @@ package com.parzivail.pswm.utils;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityChest;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityChest;
 
 public class LootGenUtils
 {

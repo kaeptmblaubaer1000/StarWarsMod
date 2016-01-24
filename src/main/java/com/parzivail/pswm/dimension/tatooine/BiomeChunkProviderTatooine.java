@@ -13,9 +13,6 @@ import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.Ev
 import java.util.List;
 import java.util.Random;
 
-import com.parzivail.pswm.StarWarsMod;
-
-import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -44,6 +41,10 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+
+import com.parzivail.pswm.StarWarsMod;
+
+import cpw.mods.fml.common.eventhandler.Event.Result;
 
 public class BiomeChunkProviderTatooine extends ChunkProviderGenerate
 {

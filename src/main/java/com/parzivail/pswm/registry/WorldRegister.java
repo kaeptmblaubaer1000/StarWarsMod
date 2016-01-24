@@ -1,5 +1,9 @@
 package com.parzivail.pswm.registry;
 
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.MinecraftForge;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.dagobah.BiomeGenDagobah;
@@ -34,9 +38,6 @@ import com.parzivail.util.world.WorldUtils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.MinecraftForge;
 
 public class WorldRegister
 {

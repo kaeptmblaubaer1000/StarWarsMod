@@ -1,11 +1,11 @@
 package com.parzivail.pswm.armor;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 
 public class ArmorSandtrooper extends ItemArmor
 {

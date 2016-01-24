@@ -6,18 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLContext;
-import org.lwjgl.util.glu.Project;
-
-import com.google.gson.JsonSyntaxException;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -64,6 +52,19 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GLContext;
+import org.lwjgl.util.glu.Project;
+
+import com.google.gson.JsonSyntaxException;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class PSWMEntityRenderer extends EntityRenderer
@@ -216,21 +217,21 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.shaderIndex != shaderCount)
 				try
-			{
+				{
 					logger.info("Selecting effect " + shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), this.resourceManager, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-			}
-			catch (IOException ioexception)
-			{
-				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-				this.shaderIndex = shaderCount;
-			}
-			catch (JsonSyntaxException jsonsyntaxexception)
-			{
-				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
-				this.shaderIndex = shaderCount;
-			}
+				}
+				catch (IOException ioexception)
+				{
+					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+					this.shaderIndex = shaderCount;
+				}
+				catch (JsonSyntaxException jsonsyntaxexception)
+				{
+					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
+					this.shaderIndex = shaderCount;
+				}
 			else
 			{
 				this.theShaderGroup = null;
@@ -263,8 +264,8 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.mc.gameSettings.particleSetting == 1)
 				i1 >>= 1;
-				else if (this.mc.gameSettings.particleSetting == 2)
-				i1 = 0;
+			else if (this.mc.gameSettings.particleSetting == 2)
+					i1 = 0;
 
 			for (int j1 = 0; j1 < i1; ++j1)
 			{
@@ -554,15 +555,15 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 		if (this.shaderIndex != shaderCount)
 			try
-			{
+		{
 				this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), p_110549_1_, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
 				this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-			}
-			catch (IOException ioexception)
-			{
-				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-				this.shaderIndex = shaderCount;
-			}
+		}
+		catch (IOException ioexception)
+		{
+			logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+			this.shaderIndex = shaderCount;
+		}
 	}
 
 	/**
@@ -1103,7 +1104,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 			}
 
 			if (this.debugViewDirection == 0) // Only render if render pass 0
-				// happens as well.
+			// happens as well.
 			{
 				RenderHelper.enableStandardItemLighting();
 				this.mc.mcProfiler.endStartSection("entities");

@@ -1,7 +1,5 @@
 package com.parzivail.pswm.models;
 
-import com.parzivail.util.MathUtils;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -54,7 +52,7 @@ public class ModelDSTurret extends ModelBase
 		this.ChairSupportRight = new ModelRenderer(this, 23, 78);
 		this.ChairSupportRight.setRotationPoint(-0.5F, -0.5F, 0.0F);
 		this.ChairSupportRight.addBox(4.0F, -9.5F, -16.0F, 1, 1, 13, 0.0F);
-		this.setRotateAngle(ChairSupportRight, 0.0F, 0.12217304763960307F, 0.0F);
+		this.setRotateAngle(this.ChairSupportRight, 0.0F, 0.12217304763960307F, 0.0F);
 		this.SecondBarrel = new ModelRenderer(this, 0, 101);
 		this.SecondBarrel.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.SecondBarrel.addBox(-0.5F, -9.5F, 11.0F, 1, 1, 10, 0.0F);
@@ -67,7 +65,7 @@ public class ModelDSTurret extends ModelBase
 		this.ChairSupportLeft = new ModelRenderer(this, 23, 93);
 		this.ChairSupportLeft.setRotationPoint(0.5F, -0.5F, 0.0F);
 		this.ChairSupportLeft.addBox(-5.0F, -9.5F, -16.0F, 1, 1, 13, 0.0F);
-		this.setRotateAngle(ChairSupportLeft, 0.0F, -0.12217304763960307F, 0.0F);
+		this.setRotateAngle(this.ChairSupportLeft, 0.0F, -0.12217304763960307F, 0.0F);
 		this.SideThing = new ModelRenderer(this, 0, 71);
 		this.SideThing.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.SideThing.addBox(0.0F, -9.5F, -5.5F, 5, 4, 4, 0.0F);
@@ -101,18 +99,6 @@ public class ModelDSTurret extends ModelBase
 	}
 
 	@Override
-	public void setRotationAngles(float time, float swingMax, float f, float rotationPitch, float rotationYaw, float scale, Entity entity)
-	{
-		super.setRotationAngles(time, swingMax, f, rotationPitch, rotationYaw, scale, entity);
-
-		if (entity.riddenByEntity instanceof EntityPlayer)
-		{
-			this.UpperBase.rotateAngleY = (float)Math.PI + entity.rotationYaw / 180f * (float)Math.PI;
-			this.MainBody.rotateAngleX = -entity.rotationPitch / 180f * (float)Math.PI;
-		}
-	}
-
-	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -127,5 +113,17 @@ public class ModelDSTurret extends ModelBase
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
+	}
+
+	@Override
+	public void setRotationAngles(float time, float swingMax, float f, float rotationPitch, float rotationYaw, float scale, Entity entity)
+	{
+		super.setRotationAngles(time, swingMax, f, rotationPitch, rotationYaw, scale, entity);
+
+		if (entity.riddenByEntity instanceof EntityPlayer)
+		{
+			this.UpperBase.rotateAngleY = (float)Math.PI + entity.rotationYaw / 180f * (float)Math.PI;
+			this.MainBody.rotateAngleX = -entity.rotationPitch / 180f * (float)Math.PI;
+		}
 	}
 }

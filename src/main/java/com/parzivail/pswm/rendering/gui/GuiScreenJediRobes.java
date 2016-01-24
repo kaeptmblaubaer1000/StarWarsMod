@@ -51,9 +51,9 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.stack = player.getEquipmentInSlot(3);
 		this.player = player;
 
-		this.powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / ArmorJediRobes.POINTS_PER_LEVEL));
+		this.powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(this.stack), (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL));
 
-		this.points = ArmorJediRobes.getPoints(stack);
+		this.points = ArmorJediRobes.getPoints(this.stack);
 	}
 
 	@Override
@@ -64,9 +64,9 @@ public class GuiScreenJediRobes extends GuiScreen
 			if (button.id == this.enableButton.id)
 			{
 				ForceUtils.activePower = this.selectedPower.power;
-				ArmorJediRobes.setActive(mc.thePlayer, this.selectedPower.power.name);
-				ArmorJediRobes.setActiveLevel(mc.thePlayer, this.selectedPower.power.currentLevel);
-				ArmorJediRobes.setHealth(mc.thePlayer, this.selectedPower.power.currentLevel);
+				ArmorJediRobes.setActive(this.mc.thePlayer, this.selectedPower.power.name);
+				ArmorJediRobes.setActiveLevel(this.mc.thePlayer, this.selectedPower.power.currentLevel);
+				ArmorJediRobes.setHealth(this.mc.thePlayer, this.selectedPower.power.currentLevel);
 				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtActive, this.selectedPower.power.name, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveLevel, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
 				if (this.selectedPower.power.name.equals("defend"))
@@ -75,10 +75,10 @@ public class GuiScreenJediRobes extends GuiScreen
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
 				Power.getPowerFromName(this.selectedPower.power.name).currentLevel++;
-				ArmorJediRobes.setActiveLevel(mc.thePlayer, Power.getPowerFromName(this.selectedPower.power.name).currentLevel);
+				ArmorJediRobes.setActiveLevel(this.mc.thePlayer, Power.getPowerFromName(this.selectedPower.power.name).currentLevel);
 				StarWarsMod.network.sendToServer(new PacketRobesPowerNBT(this.selectedPower.power.name, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, this.player.dimension, this.player.getCommandSenderName()));
-				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtRemainingPts, --points, player.dimension, player.getCommandSenderName()));
-				ArmorJediRobes.setPoints(mc.thePlayer, points);
+				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtRemainingPts, --this.points, this.player.dimension, this.player.getCommandSenderName()));
+				ArmorJediRobes.setPoints(this.mc.thePlayer, this.points);
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	{
 		if (power == null)
 			return false;
-		return (power.currentLevel < power.maxLevel || power.maxLevel == -1) && points > 0;
+		return (power.currentLevel < power.maxLevel || power.maxLevel == -1) && this.points > 0;
 	}
 
 	public void drawBg2()
@@ -122,8 +122,8 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(stack) / ArmorJediRobes.POINTS_PER_LEVEL), ForceUtils.getTitle(ArmorJediRobes.getSide(stack), (int)Math.floor(ArmorJediRobes.getLevel(stack) / ArmorJediRobes.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(stack).equals(ArmorJediRobes.SIDE_JEDI) ? Text.COLOR_BLUE : Text.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
-		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", points), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL), ForceUtils.getTitle(ArmorJediRobes.getSide(this.stack), (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(this.stack).equals(ArmorJediRobes.SIDE_JEDI) ? Text.COLOR_BLUE : Text.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", this.points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
 		{

@@ -1,12 +1,11 @@
 package com.parzivail.pswm.sound;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+
+import com.parzivail.pswm.Resources;
 
 public class SoundLightsaberHum extends MovingSound
 {
@@ -28,7 +27,12 @@ public class SoundLightsaberHum extends MovingSound
 	@Override
 	public void update()
 	{
-		//if (!(this.player.inventory != null && this.player.inventory.getCurrentItem() != null && (this.player.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || this.player.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber)))
-		//	this.donePlaying = true;
+		// if (!(this.player.inventory != null &&
+		// this.player.inventory.getCurrentItem() != null &&
+		// (this.player.inventory.getCurrentItem().getItem() ==
+		// StarWarsMod.lightsaber ||
+		// this.player.inventory.getCurrentItem().getItem() ==
+		// StarWarsMod.sequelLightsaber)))
+		// this.donePlaying = true;
 	}
 }

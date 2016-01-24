@@ -17,6 +17,7 @@ public class GuiButtonJedi extends GuiButton
 	/**
 	 * Draws this button to the screen.
 	 */
+	@Override
 	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_)
 	{
 		if (this.visible)
@@ -27,9 +28,7 @@ public class GuiButtonJedi extends GuiButton
 			int k = 26;
 
 			if (flag)
-			{
 				k += 17f;
-			}
 
 			this.drawTexturedModalRect(this.xPosition, this.yPosition, 0, k, this.width, this.height);
 		}

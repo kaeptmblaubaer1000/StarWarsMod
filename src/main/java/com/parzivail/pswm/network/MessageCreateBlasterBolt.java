@@ -1,15 +1,15 @@
 package com.parzivail.pswm.network;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
 import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
 import com.parzivail.pswm.entities.EntityTIEBolt;
 import com.parzivail.pswm.entities.EntityXWingBolt;
 import com.parzivail.pswm.utils.BlasterBoltType;
-import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public class MessageCreateBlasterBolt extends Message<MessageCreateBlasterBolt>
 {
@@ -31,14 +31,14 @@ public class MessageCreateBlasterBolt extends Message<MessageCreateBlasterBolt>
 	{
 		World world = this.sender.worldObj;
 		if (this.type == BlasterBoltType.SPEEDER)
-			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, sender));
+			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, this.sender));
 		else if (this.type == BlasterBoltType.XWING)
 		{
-			EntityXWingBolt bolt1 = new EntityXWingBolt(world, sender);
+			EntityXWingBolt bolt1 = new EntityXWingBolt(world, this.sender);
 			world.spawnEntityInWorld(bolt1);
 		}
 		else if (this.type == BlasterBoltType.TIE)
-			world.spawnEntityInWorld(new EntityTIEBolt(world, sender));
+			world.spawnEntityInWorld(new EntityTIEBolt(world, this.sender));
 		return null;
 	}
 

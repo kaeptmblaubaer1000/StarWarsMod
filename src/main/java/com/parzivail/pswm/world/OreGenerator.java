@@ -2,12 +2,13 @@ package com.parzivail.pswm.world;
 
 import java.util.Random;
 
-import com.parzivail.pswm.StarWarsMod;
-
-import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+
+import com.parzivail.pswm.StarWarsMod;
+
+import cpw.mods.fml.common.IWorldGenerator;
 
 public class OreGenerator implements IWorldGenerator
 {

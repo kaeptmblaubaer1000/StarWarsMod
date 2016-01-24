@@ -2,6 +2,12 @@ package com.parzivail.pswm.dimension.endor;
 
 import java.util.Random;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenShrub;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenBetterForest;
 import com.parzivail.pswm.world.gen.WorldGenEndorBase;
@@ -9,12 +15,6 @@ import com.parzivail.pswm.world.gen.WorldGenEndorTree1;
 import com.parzivail.pswm.world.gen.WorldGenEndorTree2;
 import com.parzivail.pswm.world.gen.WorldGenEndorTree3;
 import com.parzivail.pswm.world.gen.WorldGenEndorTree4;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenBigTree;
-import net.minecraft.world.gen.feature.WorldGenShrub;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeGenEndor extends BiomeGenPSWM
 {

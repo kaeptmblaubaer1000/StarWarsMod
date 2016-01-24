@@ -2,10 +2,10 @@ package com.parzivail.pswm.dimension.ilum;
 
 import java.util.Random;
 
-import com.parzivail.pswm.dimension.BiomeGenPSWM;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import com.parzivail.pswm.dimension.BiomeGenPSWM;
 
 public class BiomeGenIlum extends BiomeGenPSWM
 {

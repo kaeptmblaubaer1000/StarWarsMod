@@ -25,9 +25,9 @@ public class MessageEntityAlterMotion extends Message<MessageEntityAlterMotion>
 	{
 		if (this.entity != null)
 		{
-			this.entity.motionX += motion.xCoord;
-			this.entity.motionY += motion.yCoord;
-			this.entity.motionZ += motion.zCoord;
+			this.entity.motionX += this.motion.xCoord;
+			this.entity.motionY += this.motion.yCoord;
+			this.entity.motionZ += this.motion.zCoord;
 		}
 		return null;
 	}

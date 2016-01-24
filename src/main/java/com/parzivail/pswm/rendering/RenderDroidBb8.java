@@ -1,14 +1,14 @@
 package com.parzivail.pswm.rendering;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.mobs.MobDroidAstromechBb8;
-import com.parzivail.pswm.models.mobs.ModelDroidBb8;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.mobs.MobDroidAstromechBb8;
+import com.parzivail.pswm.models.mobs.ModelDroidBb8;
 
 public class RenderDroidBb8 extends RenderLiving
 {
