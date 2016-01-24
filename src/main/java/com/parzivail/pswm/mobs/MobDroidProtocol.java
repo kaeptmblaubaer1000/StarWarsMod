@@ -3,9 +3,7 @@ package com.parzivail.pswm.mobs;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
-import net.minecraft.entity.ai.EntityAIMate;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,12 +23,10 @@ public class MobDroidProtocol extends EntityTameable
 	{
 		super(par1World);
 		this.setSize(0.75F, 2.0F);
-		this.tasks.addTask(2, this.aiSit);
-		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
-		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(6, new EntityAIMate(this, 0.8D));
-		this.tasks.addTask(7, new AiFreqMove(this, 0.8D, 10));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+		this.tasks.addTask(0, this.aiSit);
+		this.tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		this.tasks.addTask(2, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
+		this.tasks.addTask(3, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override

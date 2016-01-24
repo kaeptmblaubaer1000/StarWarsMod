@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
-public class AiDroidMovingLots extends net.minecraft.entity.ai.EntityAIBase
+public class AiDroidMove extends net.minecraft.entity.ai.EntityAIBase
 {
 	private EntityCreature entity;
 	private double xPosition;
@@ -13,10 +13,10 @@ public class AiDroidMovingLots extends net.minecraft.entity.ai.EntityAIBase
 	private double speed;
 	private int freq;
 
-	public AiDroidMovingLots(EntityCreature p_i1648_1_, double p_i1648_2_, int freq)
+	public AiDroidMove(EntityCreature entity, double speed, int freq)
 	{
-		this.entity = p_i1648_1_;
-		this.speed = p_i1648_2_;
+		this.entity = entity;
+		this.speed = speed;
 		this.freq = freq;
 		this.setMutexBits(1);
 	}

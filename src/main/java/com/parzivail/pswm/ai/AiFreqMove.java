@@ -20,17 +20,17 @@ public class AiFreqMove extends EntityAIBase
 	private int maxDistance = 10;
 	private Block preferredBlock = Blocks.grass;
 
-	public AiFreqMove(EntityLiving p_i1648_1_, double speed, int freq)
+	public AiFreqMove(EntityLiving entity, double speed, int freq)
 	{
-		this.entity = p_i1648_1_;
+		this.entity = entity;
 		this.speed = speed;
 		this.freq = freq;
 		this.setMutexBits(1);
 	}
 
-	public AiFreqMove(EntityLiving p_i1648_1_, double speed, int freq, int maxDist, Block preferredBlock)
+	public AiFreqMove(EntityLiving entity, double speed, int freq, int maxDist, Block preferredBlock)
 	{
-		this.entity = p_i1648_1_;
+		this.entity = entity;
 		this.speed = speed;
 		this.freq = freq;
 		this.maxDistance = maxDist;
@@ -83,15 +83,17 @@ public class AiFreqMove extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.entity.getRNG().nextInt(this.freq) != 0)
-			return false;
-		Vec3 vec3 = this.findRandomTarget(this.entity, this.maxDistance, 7);
-		if (vec3 == null)
-			return false;
-		this.xPosition = vec3.xCoord;
-		this.yPosition = vec3.yCoord;
-		this.zPosition = vec3.zCoord;
-		return true;
+		if (this.freq == 0 || this.entity.getRNG().nextInt(this.freq) != 0)
+		{
+			Vec3 vec3 = this.findRandomTarget(this.entity, this.maxDistance, this.maxDistance);
+			if (vec3 == null)
+				return false;
+			this.xPosition = vec3.xCoord;
+			this.yPosition = vec3.yCoord;
+			this.zPosition = vec3.zCoord;
+			return true;
+		}
+		return false;
 	}
 
 	@Override

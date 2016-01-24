@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
+import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAITempt;
@@ -32,13 +33,11 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	{
 		super(par1World);
 		this.setSize(1.0F, 2.0F);
-		this.tasks.addTask(2, this.aiSit);
-		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
-		this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(1, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
-		this.tasks.addTask(2, new AiFreqMove(this, 1.0D, 3));
-		this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAILookIdle(this));
+		this.tasks.addTask(0, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+		this.tasks.addTask(1, this.aiSit);
+		this.tasks.addTask(2, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
+		this.tasks.addTask(4, new AiFreqMove(this, 1, 0));
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 

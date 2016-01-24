@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +20,7 @@ import net.minecraftforge.common.IShearable;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 
@@ -36,10 +36,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	{
 		super(par1World);
 		this.setSize(3.0F, 3.0F);
-		this.tasks.addTask(3, new EntityAIWander(this, 0.1D));
-		this.tasks.addTask(4, new net.minecraft.entity.ai.EntityAILookIdle(this));
-
-		// EntitySheep
+		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override

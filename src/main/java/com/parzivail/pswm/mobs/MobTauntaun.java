@@ -2,8 +2,6 @@ package com.parzivail.pswm.mobs;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.ai.AiFreqMove;
 
 public class MobTauntaun extends EntityHorse
 {
@@ -22,9 +21,7 @@ public class MobTauntaun extends EntityHorse
 	{
 		super(par1World);
 		this.setSize(1.0F, 3.0F);
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new net.minecraft.entity.ai.EntityAILookIdle(this));
+		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override

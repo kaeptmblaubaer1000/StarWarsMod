@@ -3,18 +3,14 @@ package com.parzivail.pswm.mobs;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.IAnimals;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
 
 public class MobEwok extends EntityAnimal implements IAnimals
 {
@@ -25,14 +21,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 		super(par1World);
 		this.setSize(0.5F, 1.5F);
 		this.dw = super.getDataWatcher();
-		this.tasks.taskEntries.clear();
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
-		if (this.rand.nextInt(3) != 0)
-		{
-		}
+		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
 		this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.ewokSpear, 1));
 	}
 

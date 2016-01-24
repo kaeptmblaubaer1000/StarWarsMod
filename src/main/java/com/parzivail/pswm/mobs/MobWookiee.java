@@ -5,10 +5,6 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +14,7 @@ import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 
@@ -30,10 +27,7 @@ public class MobWookiee extends EntityMob implements IMob
 	{
 		super(par1World);
 		this.setSize(0.5F, 2.0F);
-		this.tasks.addTask(0, new EntityAISwimming(this));
-		this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(3, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(4, new EntityAILookIdle(this));
+		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override
@@ -42,7 +36,7 @@ public class MobWookiee extends EntityMob implements IMob
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
 	}
 
 	@Override

@@ -2,8 +2,8 @@ package com.parzivail.pswm.mobs;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.util.entity.EntityUtils;
 
 public class MobDroidAstromechBb8 extends EntityTameable
@@ -22,12 +23,10 @@ public class MobDroidAstromechBb8 extends EntityTameable
 	{
 		super(par1World);
 		this.setSize(0.5F, 1F);
-		this.tasks.addTask(2, this.aiSit);
-		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
-		this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(6, new net.minecraft.entity.ai.EntityAIMate(this, 0.8D));
-		this.tasks.addTask(7, new com.parzivail.pswm.ai.AiFreqMove(this, 2D, 25));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+		this.tasks.addTask(0, this.aiSit);
+		this.tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		this.tasks.addTask(2, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
+		this.tasks.addTask(3, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class MobDroidAstromechBb8 extends EntityTameable
 	{
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
 	}
 
 	@Override

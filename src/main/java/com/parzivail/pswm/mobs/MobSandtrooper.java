@@ -9,13 +9,8 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +21,7 @@ import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 
@@ -39,17 +35,9 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	{
 		super(par1World);
 		this.setSize(0.5F, 1.5F);
-		this.getNavigator().setBreakDoors(true);
-		this.getNavigator().setEnterDoors(true);
-		this.tasks.addTask(0, new net.minecraft.entity.ai.EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.7D, false));
-		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityZombie.class, 0.7D, true));
-		this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-		this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.targetTasks.addTask(1, new net.minecraft.entity.ai.EntityAIHurtByTarget(this, true));
+		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
+		this.tasks.addTask(1, new AiFreqMove(this, 1, 0));
+		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		this.setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.sandtrooperHelmet, 1));
 		this.setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.sandtrooperChest, 1));
 		this.setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.sandtrooperLegs, 1));
@@ -78,7 +66,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
 	}
 
 	@Override
