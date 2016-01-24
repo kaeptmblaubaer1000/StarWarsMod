@@ -249,6 +249,8 @@ achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!
 key.starwarsmod=Star Wars
 key.starwarsmod.shootVehicle=Fire Lasers (in Starfighters)
 key.starwarsmod.toggleSFoil=Toggle S Foil (in X-Wing)
+key.starwarsmod.robeGui=Open Jedi Robes GUI
+key.starwarsmod.robePower=Use Selected Robe Power
 
 // Force
 force.power.jump=Jump

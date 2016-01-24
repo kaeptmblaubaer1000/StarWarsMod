@@ -165,18 +165,6 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	}
 
 	@Override
-	protected boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
-	protected boolean isValidLightLevel()
-	{
-		return true;
-	}
-
-	@Override
 	public void onUpdate()
 	{
 		if (this.angryAt != this.entityToAttack && !this.worldObj.isRemote)
