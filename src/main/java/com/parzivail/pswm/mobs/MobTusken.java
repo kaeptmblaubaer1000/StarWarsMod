@@ -32,6 +32,7 @@ public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
 	public MobTusken(World par1World)
 	{
 		super(par1World);
+		this.getNavigator().setEnterDoors(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
 		this.tasks.addTask(1, new AiFreqMove(this, 1, 0));
 		this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));

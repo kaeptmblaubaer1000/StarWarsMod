@@ -39,6 +39,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	{
 		super(par1World);
 		this.setSize(0.5F, 1.5F);
+		this.getNavigator().setEnterDoors(true);
 		this.tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		this.tasks.addTask(1, new AiFreqMove(this, 1, 0));
 		this.setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.sandtrooperHelmet, 1));
@@ -69,7 +70,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.36D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D);
 	}
 
 	@Override
@@ -86,7 +87,6 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 				{
 					MobSandtrooper s = (MobSandtrooper)entity1;
 					s.becomeAngryAt(entity);
-					this.angryAt = entity;
 				}
 			}
 			this.becomeAngryAt(entity);

@@ -23,6 +23,7 @@ public class MobDroidAstromechBb8 extends EntityTameable
 	{
 		super(par1World);
 		this.setSize(0.5F, 1F);
+		this.getNavigator().setEnterDoors(true);
 		this.tasks.addTask(0, this.aiSit);
 		this.tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
 		this.tasks.addTask(2, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));

@@ -32,6 +32,7 @@ public class MobWookiee extends EntityMob implements IMob
 	{
 		super(par1World);
 		this.setSize(0.5F, 2.0F);
+		this.getNavigator().setEnterDoors(true);
 		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 
