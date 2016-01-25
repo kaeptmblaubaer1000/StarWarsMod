@@ -21,7 +21,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	private EntityLivingBase sender;
 	private int timeAlive = 0;
 	protected float damage = 5.0f;
-	protected float speed = 3;
+	protected float speed = 4.5f;
 
 	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
 	{
@@ -90,6 +90,16 @@ public class EntityBlasterBoltBase extends EntityThrowable
 		return 0.0F;
 	}
 
+	public EntityLivingBase getSender()
+	{
+		return this.sender;
+	}
+
+	public void setSender(EntityLivingBase sender)
+	{
+		this.sender = sender;
+	}
+
 	@Override
 	public void onCollideWithPlayer(EntityPlayer player)
 	{
@@ -124,14 +134,17 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
-		if (pos.typeOfHit == MovingObjectType.ENTITY && (pos.entityHit != this.sender || this.timeAlive > 2))
+		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
 		{
 			pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
 			pos.entityHit.setFire(8);
+			this.setDead();
 		}
 		else if (!this.worldObj.isRemote && this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
+		{
 			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
-		this.setDead();
+			this.setDead();
+		}
 	}
 
 	@Override

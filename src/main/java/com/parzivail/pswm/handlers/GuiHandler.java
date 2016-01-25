@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.rendering.gui.ContainerJediRobes;
+import com.parzivail.pswm.rendering.gui.ContainerClient;
 import com.parzivail.pswm.rendering.gui.ContainerJediSith;
 import com.parzivail.pswm.rendering.gui.ContainerMV;
 import com.parzivail.pswm.rendering.gui.GuiJediSith;
@@ -34,7 +34,7 @@ public class GuiHandler implements IGuiHandler
 		if (id == Resources.GUI_MV)
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		if (id == Resources.GUI_ROBES)
-			return new ContainerJediRobes();
+			return new ContainerClient();
 		if (id == Resources.GUI_JEDI_SITH)
 			return new ContainerJediSith();
 		return null;
