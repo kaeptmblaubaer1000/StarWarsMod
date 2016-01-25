@@ -115,25 +115,13 @@ public class RenderSithLightning
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glColor3f(1, 1, 1);
 			GL11.glPopMatrix();
-
-			// Tessellator tessellator = Tessellator.instance;
-			// GL11.glDisable(GL11.GL_TEXTURE_2D);
-			// GL11.glDisable(GL11.GL_LIGHTING);
-			// tessellator.startDrawing(3);
-			// tessellator.setColorOpaque_I(0);
-
-			// tessellator.addVertex(posX, posY, posZ);
-			// tessellator.addVertex(posX2, posY2, posZ2);
-
-			// tessellator.draw();
-			// GL11.glEnable(GL11.GL_LIGHTING);
-			// GL11.glEnable(GL11.GL_TEXTURE_2D);
 		}
 		else
 		{
 			float mid_x = (posX2 + posX) / 2f;
 			float mid_y = (posY2 + posY) / 2f;
 			float mid_z = (posZ2 + posZ) / 2f;
+
 			mid_x += (r.nextFloat() - 0.5f) / 10f * distance;
 			mid_y += (r.nextFloat() - 0.5f) / 10f * distance;
 			mid_z += (r.nextFloat() - 0.5f) / 10f * distance;

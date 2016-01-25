@@ -291,6 +291,7 @@ public class StarWarsMod
 	public static Block blockMV;
 	public static Block blockFieldEmitter;
 	public static Block blockDeathStarDoor;
+	public static Block blockHoloTable;
 	public static Block blockTable;
 	public static Block blockTable2;
 	public static Block blockChromiumOre;

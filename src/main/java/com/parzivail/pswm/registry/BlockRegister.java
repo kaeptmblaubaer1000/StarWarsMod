@@ -1,5 +1,6 @@
 package com.parzivail.pswm.registry;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockBasket;
 import com.parzivail.pswm.blocks.BlockChromiumOre;
@@ -13,6 +14,7 @@ import com.parzivail.pswm.blocks.BlockEndorBaseWallStairs;
 import com.parzivail.pswm.blocks.BlockFieldEmitter;
 import com.parzivail.pswm.blocks.BlockHangingBucket;
 import com.parzivail.pswm.blocks.BlockHangingCauldron;
+import com.parzivail.pswm.blocks.BlockHolotable;
 import com.parzivail.pswm.blocks.BlockMV;
 import com.parzivail.pswm.blocks.BlockMudStairs;
 import com.parzivail.pswm.blocks.BlockMudTable;
@@ -32,6 +34,7 @@ import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityFieldEmitter;
 import com.parzivail.pswm.tileentities.TileEntityHangingBucket;
 import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
+import com.parzivail.pswm.tileentities.TileEntityHoloTable;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
@@ -43,6 +46,13 @@ public class BlockRegister
 {
 	public static void registerAll()
 	{
+		if (Resources.IS_DEV_ENVIRONVENT)
+		{
+			StarWarsMod.blockHoloTable = new BlockHolotable();
+			GameRegistry.registerBlock(StarWarsMod.blockHoloTable, "holoTable");
+			GameRegistry.registerTileEntity(TileEntityHoloTable.class, "teHoloTable");
+		}
+
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");

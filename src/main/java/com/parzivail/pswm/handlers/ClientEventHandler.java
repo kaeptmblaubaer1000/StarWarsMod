@@ -257,6 +257,7 @@ public class ClientEventHandler
 		GuiManager.render(event);
 
 		AnimationManager.render(event);
+
 	}
 
 	@SubscribeEvent
