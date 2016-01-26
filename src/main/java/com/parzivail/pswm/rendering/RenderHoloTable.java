@@ -38,7 +38,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				float dx = (float)(te.xCoord - entity.posX) / -16f;
 				float dy = (float)(te.yCoord - entity.posY) / -16f;
 				float dz = (float)(te.zCoord - entity.posZ) / -16f;
-				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.31f + dy, te.zCoord + 0.5f + dz);
+				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.01f + dy, te.zCoord + 0.5f + dz);
 				GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 				GL11.glColor3f(1, 1, 1);
 				renderEntity(entity);
@@ -69,12 +69,12 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				int s = table.getSideLength() / 2;
 
 				GL11.glBegin(GL11.GL_LINE_LOOP);
-				GL11.glVertex3d(nx - s - 1, table.getMap()[i], nz - s - 1);
-				GL11.glVertex3d(nx - s, table.getMap()[i], nz - s);
+				GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord, nz - s - 1);
+				GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord, nz - s);
 				GL11.glEnd();
 				GL11.glBegin(GL11.GL_LINE_LOOP);
-				GL11.glVertex3d(nx - s - 1, table.getMap()[i], nz - s);
-				GL11.glVertex3d(nx - s, table.getMap()[i], nz - s - 1);
+				GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord, nz - s);
+				GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord, nz - s - 1);
 				GL11.glEnd();
 			}
 
