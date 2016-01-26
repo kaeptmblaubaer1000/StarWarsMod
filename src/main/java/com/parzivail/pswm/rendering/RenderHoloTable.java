@@ -11,6 +11,7 @@ import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityHoloTable;
 
 public class RenderHoloTable extends TileEntitySpecialRenderer
 {
@@ -23,7 +24,9 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 	{
 		GL11.glPushMatrix();
 
-		for (Object e : te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(50, 50, 50)))
+		TileEntityHoloTable table = (TileEntityHoloTable)te;
+
+		for (Object e : te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(table.getSideLength() / 2 - 6, table.getSideLength() / 2 - 2, table.getSideLength() / 2 - 6)))
 		{
 			if (e instanceof Entity)
 			{
@@ -33,9 +36,9 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
 				GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
 				float dx = (float)(te.xCoord - entity.posX) / -16f;
-				float dy = (float)(te.yCoord - entity.posY) / 16f;
+				float dy = (float)(te.yCoord - entity.posY) / -16f;
 				float dz = (float)(te.zCoord - entity.posZ) / -16f;
-				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1 + 1 / 16f + dy, te.zCoord + 0.5f + dz);
+				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.31f + dy, te.zCoord + 0.5f + dz);
 				GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 				GL11.glColor3f(1, 1, 1);
 				renderEntity(entity);
@@ -43,48 +46,48 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 			}
 		}
 
-		GL11.glPushMatrix();
-		Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
-		GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
-		GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 1 / 16f, te.zCoord + 0.5f);
-		GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
-
-		GL11.glEnable(GL11.GL_BLEND);
-		GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-
-		GL11.glLineWidth(0.1f);
-		GL11.glColor3f(0.5f, 0.5f, 0.5f);
-
-		for (int i = 0; i < 101; i++)
+		if (table.isMapSetup())
 		{
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(i - 50, 0, -50);
-			GL11.glVertex3d(i - 50, 0, 50);
-			GL11.glEnd();
+			GL11.glPushMatrix();
+			Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
+			GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
+			GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 0.001f, te.zCoord + 0.5f);
+			GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex3d(-50, 0, i - 50);
-			GL11.glVertex3d(50, 0, i - 50);
-			GL11.glEnd();
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
+			GL11.glEnable(GL11.GL_LINE_SMOOTH);
+
+			GL11.glLineWidth(4);
+			GL11.glColor3f(0.8f, 0.8f, 1);
+
+			for (int i = 0; i < table.getMap().length; i++)
+			{
+				int nx = i % table.getSideLength();
+				int nz = (int)Math.floor(i / table.getSideLength());
+
+				int s = table.getSideLength() / 2;
+
+				GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3d(nx - s - 1, table.getMap()[i], nz - s - 1);
+				GL11.glVertex3d(nx - s, table.getMap()[i], nz - s);
+				GL11.glEnd();
+				GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3d(nx - s - 1, table.getMap()[i], nz - s);
+				GL11.glVertex3d(nx - s, table.getMap()[i], nz - s - 1);
+				GL11.glEnd();
+			}
+
+			GL11.glDisable(GL11.GL_LINE_SMOOTH);
+			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glColor3f(1, 1, 1);
+			GL11.glPopMatrix();
 		}
-
-		GL11.glColor3f(0, 1, 0);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex3d(-50, -0.01f, 50);
-		GL11.glVertex3d(50, -0.01f, -50);
-		GL11.glVertex3d(-50, -0.01f, -50);
-		GL11.glVertex3d(-50, -0.01f, 50);
-		GL11.glVertex3d(50, -0.01f, 50);
-		GL11.glVertex3d(50, -0.01f, -50);
-		GL11.glEnd();
-
-
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glColor3f(1, 1, 1);
-		GL11.glPopMatrix();
+		else
+		{
+			table.setupMap();
+		}
 
 		GL11.glPopMatrix();
 	}

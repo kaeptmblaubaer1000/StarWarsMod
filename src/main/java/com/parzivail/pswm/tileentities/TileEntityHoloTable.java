@@ -12,9 +12,41 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class TileEntityHoloTable extends TileEntity
 {
 	AxisAlignedBB bb;
+	int[] map;
+	int sideLength = 128;
 
 	public TileEntityHoloTable()
 	{
+	}
+
+	public int[] getMap()
+	{
+		if (map == null)
+			setupMap();
+		return this.map;
+	}
+
+	public int getSideLength()
+	{
+		return this.sideLength;
+	}
+
+	public boolean isMapSetup()
+	{
+		return map != null;
+	}
+
+	public void setupMap()
+	{
+		map = new int[sideLength * sideLength];
+
+		for (int i = 0; i < map.length; i++)
+		{
+			int x = i % sideLength;
+			int z = (int)Math.floor(i / sideLength);
+
+			map[i] = this.worldObj.getHeightValue(this.xCoord + x - (sideLength / 2), this.zCoord + z - (sideLength / 2));
+		}
 	}
 
 	@Override

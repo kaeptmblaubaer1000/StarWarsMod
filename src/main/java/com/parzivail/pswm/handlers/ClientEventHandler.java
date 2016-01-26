@@ -24,6 +24,7 @@ import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
+import com.parzivail.pswm.minimap.MinimapStore;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
 import com.parzivail.pswm.rendering.force.RenderJediDefense;
@@ -64,6 +65,8 @@ public class ClientEventHandler
 	public static boolean cursorOpen = true;
 	public static boolean isCursorAnim = false;
 
+	public static MinimapStore worldStore;
+
 	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
 	@SideOnly(Side.CLIENT)
@@ -87,6 +90,11 @@ public class ClientEventHandler
 
 	@SideOnly(Side.CLIENT)
 	public static SoundManager soundManager;
+
+	public ClientEventHandler()
+	{
+		worldStore = new MinimapStore();
+	}
 
 	@SideOnly(Side.CLIENT)
 	public void init()
