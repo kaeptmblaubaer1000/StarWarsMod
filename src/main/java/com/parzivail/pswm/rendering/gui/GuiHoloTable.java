@@ -28,6 +28,8 @@ public class GuiHoloTable extends GuiScreen
 
 	private GuiButton buttonBlack;
 	private GuiButton buttonWhite;
+	private GuiButton buttonOffsetUp;
+	private GuiButton buttonOffsetDown;
 
 	private EntityPlayer player;
 	private TileEntityHoloTable table;
@@ -51,6 +53,14 @@ public class GuiHoloTable extends GuiScreen
 			{
 				table.setRGB(0.8f, 0.8f, 1);
 			}
+			else if (button.id == this.buttonOffsetUp.id)
+			{
+				table.setOffset(table.getOffset() - 1);
+			}
+			else if (button.id == this.buttonOffsetDown.id)
+			{
+				table.setOffset(table.getOffset() + 1);
+			}
 	}
 
 	/**
@@ -71,6 +81,7 @@ public class GuiHoloTable extends GuiScreen
 
 		this.drawString(this.mc.fontRenderer, "Holo Color", x - 77, y - 45, GlPalette.WHITE);
 		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x + 30, y - 45, GlPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, String.valueOf(table.getOffset()), x + 30, y - 34, GlPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
@@ -90,6 +101,12 @@ public class GuiHoloTable extends GuiScreen
 
 		this.buttonWhite = new GuiButton(1, x - 73, y - 8, 40, 20, "Light");
 		this.buttonList.add(this.buttonWhite);
+
+		this.buttonOffsetUp = new GuiButton(2, x + 30, y - 8, 20, 20, "<");
+		this.buttonList.add(this.buttonOffsetUp);
+
+		this.buttonOffsetDown = new GuiButton(3, x + 50, y - 8, 20, 20, ">");
+		this.buttonList.add(this.buttonOffsetDown);
 		/*
 		 * if (p_73869_2_ == 1) { this.mc.displayGuiScreen((GuiScreen)null);
 		 * this.mc.setIngameFocus(); }

@@ -38,7 +38,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				float dx = (float)(te.xCoord - entity.posX) / -16f;
 				float dy = (float)(te.yCoord - entity.posY) / -16f;
 				float dz = (float)(te.zCoord - entity.posZ) / -16f;
-				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.01f + dy, te.zCoord + 0.5f + dz);
+				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.01f + dy + (table.getOffset() / 16f), te.zCoord + 0.5f + dz);
 				GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 				GL11.glColor3f(1, 1, 1);
 				renderEntity(entity);
@@ -51,7 +51,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 			GL11.glPushMatrix();
 			Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
 			GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
-			GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 0.001f, te.zCoord + 0.5f);
+			GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 0.001f + (table.getOffset() / 16f), te.zCoord + 0.5f);
 			GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 
 			GL11.glEnable(GL11.GL_BLEND);
@@ -59,7 +59,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 			GL11.glEnable(GL11.GL_LINE_SMOOTH);
 
 			GL11.glLineWidth(4);
-			
+
 			Vec3 color = table.getRGB();
 			GL11.glColor3d(color.xCoord, color.yCoord, color.zCoord);
 

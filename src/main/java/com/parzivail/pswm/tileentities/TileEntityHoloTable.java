@@ -2,6 +2,7 @@ package com.parzivail.pswm.tileentities;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -15,6 +16,7 @@ public class TileEntityHoloTable extends TileEntity
 	AxisAlignedBB bb;
 	int[] map;
 	int sideLength = 128;
+	int offset = 0;
 	Vec3 rgb;
 
 	public TileEntityHoloTable()
@@ -47,6 +49,16 @@ public class TileEntityHoloTable extends TileEntity
 	public void setRGB(float r, float g, float b)
 	{
 		this.rgb = Vec3.createVectorHelper(r, g, b);
+	}
+
+	public int getOffset()
+	{
+		return this.offset;
+	}
+	
+	public void setOffset(int offset)
+	{
+		this.offset = offset;
 	}
 
 	public void setupMap()
@@ -84,6 +96,28 @@ public class TileEntityHoloTable extends TileEntity
 		if (this.bb == null)
 			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord - 3, this.yCoord, this.zCoord - 3, this.xCoord + 3, this.yCoord + 2, this.zCoord + 3);
 		return this.bb;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		this.setOffset(tag.getInteger("offset"));
+		float r = tag.getFloat("r");
+		float g = tag.getFloat("g");
+		float b = tag.getFloat("b");
+		this.setRGB(r, g, b);
+		super.readFromNBT(tag);
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		Vec3 c = this.getRGB();
+		tag.setFloat("r", (float)c.xCoord);
+		tag.setFloat("g", (float)c.yCoord);
+		tag.setFloat("b", (float)c.zCoord);
+		tag.setInteger("offset", this.getOffset());
+		super.writeToNBT(tag);
 	}
 
 	@Override
