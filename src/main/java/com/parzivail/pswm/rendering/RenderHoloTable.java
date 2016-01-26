@@ -59,7 +59,9 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 			GL11.glEnable(GL11.GL_LINE_SMOOTH);
 
 			GL11.glLineWidth(4);
-			GL11.glColor3f(0.8f, 0.8f, 1);
+			
+			Vec3 color = table.getRGB();
+			GL11.glColor3d(color.xCoord, color.yCoord, color.zCoord);
 
 			for (int i = 0; i < table.getMap().length; i++)
 			{

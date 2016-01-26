@@ -19,7 +19,7 @@ public class TileEntityHoloTable extends TileEntity
 
 	public TileEntityHoloTable()
 	{
-		this.rgb = Vec3.createVectorHelper(1, 1, 1);
+		this.rgb = Vec3.createVectorHelper(0.8f, 0.8f, 1);
 	}
 
 	public int[] getMap()

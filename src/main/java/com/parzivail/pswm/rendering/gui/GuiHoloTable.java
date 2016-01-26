@@ -45,6 +45,11 @@ public class GuiHoloTable extends GuiScreen
 		if (button.enabled)
 			if (button.id == this.buttonBlack.id)
 			{
+				table.setRGB(0, 0, 0.1f);
+			}
+			else if (button.id == this.buttonWhite.id)
+			{
+				table.setRGB(0.8f, 0.8f, 1);
 			}
 	}
 
@@ -80,10 +85,10 @@ public class GuiHoloTable extends GuiScreen
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 
-		this.buttonBlack = new GuiButton(0, x - 73, y - 30, 40, 20, "Black");
+		this.buttonBlack = new GuiButton(0, x - 73, y - 30, 40, 20, "Dark");
 		this.buttonList.add(this.buttonBlack);
 
-		this.buttonWhite = new GuiButton(0, x - 73, y - 8, 40, 20, "White");
+		this.buttonWhite = new GuiButton(1, x - 73, y - 8, 40, 20, "Light");
 		this.buttonList.add(this.buttonWhite);
 		/*
 		 * if (p_73869_2_ == 1) { this.mc.displayGuiScreen((GuiScreen)null);
