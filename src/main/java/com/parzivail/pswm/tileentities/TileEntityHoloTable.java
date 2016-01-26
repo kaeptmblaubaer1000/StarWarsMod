@@ -95,6 +95,9 @@ public class TileEntityHoloTable extends TileEntity
 	{
 		if (this.bb == null)
 			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord - 3, this.yCoord, this.zCoord - 3, this.xCoord + 3, this.yCoord + 2, this.zCoord + 3);
+		
+		this.bb.maxY = this.yCoord + (int)Math.ceil(this.getOffset() / 16f) + 2;
+		
 		return this.bb;
 	}
 

@@ -44,6 +44,7 @@ import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageCreateDestructionBolt;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.pswm.network.MessageEntityGrab;
+import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.PacketEntityHurt;
 import com.parzivail.pswm.network.PacketEntitySetMotion;
@@ -464,6 +465,7 @@ public class StarWarsMod
 		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageEntityGrab.class, MessageEntityGrab.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageAddEffectTo.class, MessageAddEffectTo.class, packetId++, Side.SERVER);
+		network.registerMessage(MessageHoloTableUpdate.class, MessageHoloTableUpdate.class, packetId++, Side.SERVER);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 

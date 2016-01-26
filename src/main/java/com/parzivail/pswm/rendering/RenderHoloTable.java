@@ -30,6 +30,8 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 		{
 			if (e instanceof Entity)
 			{
+				if (e == StarWarsMod.mc.thePlayer)
+					continue;
 				Entity entity = (Entity)e;
 				GL11.glPushMatrix();
 				// 3.125
@@ -40,6 +42,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				float dz = (float)(te.zCoord - entity.posZ) / -16f;
 				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.01f + dy + (table.getOffset() / 16f), te.zCoord + 0.5f + dz);
 				GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
+				GL11.glTranslatef(-1, 0, -1);
 				GL11.glColor3f(1, 1, 1);
 				renderEntity(entity);
 				GL11.glPopMatrix();
