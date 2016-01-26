@@ -1,22 +1,25 @@
 package com.parzivail.pswm.tileentities;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.Vec3;
 
 public class TileEntityHoloTable extends TileEntity
 {
 	AxisAlignedBB bb;
 	int[] map;
 	int sideLength = 128;
+	Vec3 rgb;
 
 	public TileEntityHoloTable()
 	{
+		this.rgb = Vec3.createVectorHelper(1, 1, 1);
 	}
 
 	public int[] getMap()
@@ -34,6 +37,16 @@ public class TileEntityHoloTable extends TileEntity
 	public boolean isMapSetup()
 	{
 		return map != null;
+	}
+
+	public Vec3 getRGB()
+	{
+		return this.rgb;
+	}
+	
+	public void setRGB(float r, float g, float b)
+	{
+		this.rgb = Vec3.createVectorHelper(r, g, b);
 	}
 
 	public void setupMap()

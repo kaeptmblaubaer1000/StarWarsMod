@@ -3,6 +3,7 @@ package com.parzivail.pswm.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -26,6 +27,14 @@ public class BlockHolotable extends BlockContainer
 	public TileEntity createNewTileEntity(World world, int p_149915_2_)
 	{
 		return new TileEntityHoloTable();
+	}
+
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
+	{
+		if (!world.isRemote)
+			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
+		return true;
 	}
 
 	@Override
