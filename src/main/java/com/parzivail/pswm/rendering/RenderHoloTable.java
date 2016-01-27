@@ -11,7 +11,7 @@ import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityHoloTable;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 
 public class RenderHoloTable extends TileEntitySpecialRenderer
 {
@@ -24,7 +24,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 	{
 		GL11.glPushMatrix();
 
-		TileEntityHoloTable table = (TileEntityHoloTable)te;
+		TileEntityHoloTableSmall table = (TileEntityHoloTableSmall)te;
 
 		for (Object e : te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(table.getSideLength() / 2 - 6, table.getSideLength() / 2 - 2, table.getSideLength() / 2 - 6)))
 		{

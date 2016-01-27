@@ -15,7 +15,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.network.PacketRobesStringNBT;
-import com.parzivail.pswm.tileentities.TileEntityHoloTable;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.GlPalette;
 
@@ -34,12 +34,12 @@ public class GuiHoloTable extends GuiScreen
 	private GuiButton buttonRefresh;
 
 	private EntityPlayer player;
-	private TileEntityHoloTable table;
+	private TileEntityHoloTableSmall table;
 	
 	int lColumn;
 	int rColumn;
 
-	public GuiHoloTable(EntityPlayer player, TileEntityHoloTable table)
+	public GuiHoloTable(EntityPlayer player, TileEntityHoloTableSmall table)
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.table = table;

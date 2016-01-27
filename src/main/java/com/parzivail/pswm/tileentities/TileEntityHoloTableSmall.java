@@ -11,15 +11,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 
-public class TileEntityHoloTable extends TileEntity
+public class TileEntityHoloTableSmall extends TileEntity
 {
 	AxisAlignedBB bb;
 	int[] map;
-	int sideLength = 128;
+	int sideLength = 64;
 	int offset = 0;
 	Vec3 rgb;
 
-	public TileEntityHoloTable()
+	public TileEntityHoloTableSmall()
 	{
 		this.rgb = Vec3.createVectorHelper(0.8f, 0.8f, 1);
 	}
@@ -109,6 +109,7 @@ public class TileEntityHoloTable extends TileEntity
 		float g = tag.getFloat("g");
 		float b = tag.getFloat("b");
 		this.setRGB(r, g, b);
+		this.sideLength = tag.getInteger("sidelength");
 		super.readFromNBT(tag);
 	}
 
@@ -120,6 +121,7 @@ public class TileEntityHoloTable extends TileEntity
 		tag.setFloat("g", (float)c.yCoord);
 		tag.setFloat("b", (float)c.zCoord);
 		tag.setInteger("offset", this.getOffset());
+		tag.setInteger("sidelength", this.sideLength);
 		super.writeToNBT(tag);
 	}
 

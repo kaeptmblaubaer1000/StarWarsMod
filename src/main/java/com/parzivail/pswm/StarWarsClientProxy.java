@@ -113,7 +113,7 @@ import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityFieldEmitter;
 import com.parzivail.pswm.tileentities.TileEntityHangingBucket;
 import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
-import com.parzivail.pswm.tileentities.TileEntityHoloTable;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
@@ -246,7 +246,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloTable.class, new RenderHoloTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloTableSmall.class, new RenderHoloTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderBlockMudTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingCauldron.class, new RenderHangingCauldron());

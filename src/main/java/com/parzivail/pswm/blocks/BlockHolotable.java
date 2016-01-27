@@ -3,17 +3,29 @@ package com.parzivail.pswm.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityHoloTable;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 import com.parzivail.util.world.HarvestLevel;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockHolotable extends BlockContainer
 {
+	@SideOnly(Side.CLIENT)
+	public IIcon topIcon;
+	
 	public BlockHolotable()
 	{
 		super(Material.iron);
@@ -24,9 +36,9 @@ public class BlockHolotable extends BlockContainer
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_)
+	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityHoloTable();
+		return new TileEntityHoloTableSmall();
 	}
 
 	@Override
@@ -36,6 +48,14 @@ public class BlockHolotable extends BlockContainer
 			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
 		return true;
 	}
+	
+    @SideOnly(Side.CLIENT)
+    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+    {
+    	if (p_149691_1_ == 1)
+    		return this.topIcon;
+        return this.blockIcon;
+    }
 
 	@Override
 	public int getRenderType()
@@ -50,9 +70,20 @@ public class BlockHolotable extends BlockContainer
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
+	{
+		metaTypes.add(new ItemStack(item, 1, 0)); // small
+		metaTypes.add(new ItemStack(item, 1, 1)); // medium
+		metaTypes.add(new ItemStack(item, 1, 2)); // large
+		metaTypes.add(new ItemStack(item, 1, 3)); // war
+	}
+
+	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconHoloTable");
+		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "holoTable");
+		this.topIcon = icon.registerIcon(Resources.MODID + ":" + "holoTable_Top");
 	}
 
 	@Override

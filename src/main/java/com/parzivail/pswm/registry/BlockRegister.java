@@ -27,6 +27,7 @@ import com.parzivail.pswm.blocks.BlockTitaniumOre;
 import com.parzivail.pswm.items.ItemDeathStarBlock;
 import com.parzivail.pswm.items.ItemDeathStarLight;
 import com.parzivail.pswm.items.ItemEndorBaseWall;
+import com.parzivail.pswm.items.ItemHolotableBlock;
 import com.parzivail.pswm.items.ItemTatooineSand;
 import com.parzivail.pswm.items.ItemTatooineSandstone;
 import com.parzivail.pswm.tileentities.TileEntityBasket;
@@ -34,7 +35,7 @@ import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityFieldEmitter;
 import com.parzivail.pswm.tileentities.TileEntityHangingBucket;
 import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
-import com.parzivail.pswm.tileentities.TileEntityHoloTable;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
@@ -49,8 +50,8 @@ public class BlockRegister
 		if (Resources.IS_DEV_ENVIRONVENT)
 		{
 			StarWarsMod.blockHoloTable = new BlockHolotable();
-			GameRegistry.registerBlock(StarWarsMod.blockHoloTable, "holoTable");
-			GameRegistry.registerTileEntity(TileEntityHoloTable.class, "teHoloTable");
+			GameRegistry.registerBlock(StarWarsMod.blockHoloTable, ItemHolotableBlock.class, "holoTable");
+			GameRegistry.registerTileEntity(TileEntityHoloTableSmall.class, "teHoloTable");
 		}
 
 		StarWarsMod.blockMV = new BlockMV();

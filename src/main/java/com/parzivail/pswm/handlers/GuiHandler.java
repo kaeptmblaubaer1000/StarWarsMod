@@ -11,7 +11,7 @@ import com.parzivail.pswm.rendering.gui.GuiHoloTable;
 import com.parzivail.pswm.rendering.gui.GuiJediSith;
 import com.parzivail.pswm.rendering.gui.GuiMV;
 import com.parzivail.pswm.rendering.gui.GuiScreenJediRobes;
-import com.parzivail.pswm.tileentities.TileEntityHoloTable;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -28,7 +28,7 @@ public class GuiHandler implements IGuiHandler
 		if (id == Resources.GUI_JEDI_SITH)
 			return new GuiJediSith(player);
 		if (id == Resources.GUI_HOLOTABLE)
-			return new GuiHoloTable(player, (TileEntityHoloTable)world.getTileEntity(x, y, z));
+			return new GuiHoloTable(player, (TileEntityHoloTableSmall)world.getTileEntity(x, y, z));
 		return null;
 	}
 
