@@ -23,6 +23,9 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float p)
 	{
 		GL11.glPushMatrix();
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		Tessellator.instance.setBrightness(240);
+		Tessellator.instance.setColorRGBA(255, 255, 255, 255);
 
 		TileEntityHoloTableSmall table = (TileEntityHoloTableSmall)te;
 
@@ -60,27 +63,48 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
 			GL11.glEnable(GL11.GL_LINE_SMOOTH);
+			GL11.glDisable(GL11.GL_CULL_FACE);
 
 			GL11.glLineWidth(4);
 
 			Vec3 color = table.getRGB();
 			GL11.glColor3d(color.xCoord, color.yCoord, color.zCoord);
 
+			boolean solid = false;
+
 			for (int i = 0; i < table.getMap().length; i++)
 			{
 				int nx = i % table.getSideLength();
 				int nz = (int)Math.floor(i / table.getSideLength());
 
+				float o = (table.getOffset() / 16f);
+
 				int s = table.getSideLength() / 2;
 
-				GL11.glBegin(GL11.GL_LINE_LOOP);
-				GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord, nz - s - 1);
-				GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord, nz - s);
-				GL11.glEnd();
-				GL11.glBegin(GL11.GL_LINE_LOOP);
-				GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord, nz - s);
-				GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord, nz - s - 1);
-				GL11.glEnd();
+				if (solid)
+				{
+					GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+					GL11.glVertex3f(nx - s, table.getMap()[i] - te.yCoord + o, nz - s);
+					GL11.glVertex3f(nx - s + 1, table.getMap()[i] - te.yCoord + o, nz - s);
+					GL11.glVertex3f(nx - s, table.getMap()[i] - te.yCoord + o, nz - s + 1);
+					GL11.glEnd();
+					GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+					GL11.glVertex3f(nx - s + 1, table.getMap()[i] - te.yCoord + o, nz - s + 1);
+					GL11.glVertex3f(nx - s + 1, table.getMap()[i] - te.yCoord + o, nz - s);
+					GL11.glVertex3f(nx - s, table.getMap()[i] - te.yCoord + o, nz - s + 1);
+					GL11.glEnd();
+				}
+				else
+				{
+					GL11.glBegin(GL11.GL_LINE_LOOP);
+					GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord + o, nz - s - 1);
+					GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord + o, nz - s);
+					GL11.glEnd();
+					GL11.glBegin(GL11.GL_LINE_LOOP);
+					GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord + o, nz - s);
+					GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord + o, nz - s - 1);
+					GL11.glEnd();
+				}
 			}
 
 			GL11.glDisable(GL11.GL_LINE_SMOOTH);
@@ -99,16 +123,8 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 
 	public static void renderEntity(Entity el)
 	{
-		Tessellator.instance.setBrightness(240);
-		GL11.glDisable(GL11.GL_BLEND);
-
 		Render render = RenderManager.instance.getEntityRenderObject(el);
 		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
-
-		GL11.glEnable(GL11.GL_BLEND);
-		Tessellator.instance.setBrightness(240);
-		Tessellator.instance.setColorRGBA(255, 255, 255, 255);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	}
 }
 /*

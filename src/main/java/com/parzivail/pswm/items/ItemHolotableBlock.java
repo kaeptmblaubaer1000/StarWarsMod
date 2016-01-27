@@ -17,7 +17,7 @@ public class ItemHolotableBlock extends ItemBlock
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return "item." + Resources.MODID + ".holoTable." + stack.getItemDamage();
+		return "tile." + Resources.MODID + ".holoTable." + stack.getItemDamage();
 	}
 
 	@Override
