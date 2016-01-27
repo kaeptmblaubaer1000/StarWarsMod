@@ -18,7 +18,7 @@ public class TileEntityHoloTableSmall extends TileEntity
 	int sideLength = 64;
 	int offset = 0;
 	Vec3 rgb;
-	int ticksUntilRefresh = 400;
+	int ticksUntilRefresh = 2400;
 
 	public TileEntityHoloTableSmall()
 	{
@@ -69,7 +69,7 @@ public class TileEntityHoloTableSmall extends TileEntity
 		if (this.ticksUntilRefresh <= 0)
 		{
 			this.setupMap();
-			this.ticksUntilRefresh = 400;
+			this.ticksUntilRefresh = 2400;
 		}
 	}
 
