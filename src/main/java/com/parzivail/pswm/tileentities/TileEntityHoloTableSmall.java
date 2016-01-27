@@ -18,6 +18,7 @@ public class TileEntityHoloTableSmall extends TileEntity
 	int sideLength = 64;
 	int offset = 0;
 	Vec3 rgb;
+	int ticksUntilRefresh = 400;
 
 	public TileEntityHoloTableSmall()
 	{
@@ -60,6 +61,17 @@ public class TileEntityHoloTableSmall extends TileEntity
 	{
 		this.offset = offset;
 	}
+	
+	@Override
+	public void updateEntity()
+	{
+		this.ticksUntilRefresh--;
+		if (this.ticksUntilRefresh <= 0)
+		{
+			this.setupMap();
+			this.ticksUntilRefresh = 400;
+		}
+	}
 
 	public void setupMap()
 	{
@@ -97,6 +109,10 @@ public class TileEntityHoloTableSmall extends TileEntity
 			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord - 3, this.yCoord, this.zCoord - 3, this.xCoord + 3, this.yCoord + 2, this.zCoord + 3);
 		
 		this.bb.maxY = this.yCoord + (int)Math.ceil(this.getOffset() / 16f) + 2;
+		this.bb.minX = this.xCoord - (int)Math.ceil(this.getSideLength() / 8f);
+		this.bb.maxX = this.xCoord + (int)Math.ceil(this.getSideLength() / 8f);
+		this.bb.minZ = this.zCoord - (int)Math.ceil(this.getSideLength() / 8f);
+		this.bb.maxZ = this.zCoord + (int)Math.ceil(this.getSideLength() / 8f);
 		
 		return this.bb;
 	}
