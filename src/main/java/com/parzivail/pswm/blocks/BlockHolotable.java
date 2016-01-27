@@ -15,7 +15,10 @@ import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableLarge;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.util.world.HarvestLevel;
 
 import cpw.mods.fml.relauncher.Side;
@@ -25,7 +28,7 @@ public class BlockHolotable extends BlockContainer
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon topIcon;
-	
+
 	public BlockHolotable()
 	{
 		super(Material.iron);
@@ -38,6 +41,12 @@ public class BlockHolotable extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
+		if (meta == 1)
+			return new TileEntityHoloTableMedium();
+		else if (meta == 2)
+			return new TileEntityHoloTableLarge();
+		else if (meta == 3)
+			return new TileEntityHoloTableWar();
 		return new TileEntityHoloTableSmall();
 	}
 
@@ -48,14 +57,14 @@ public class BlockHolotable extends BlockContainer
 			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
 		return true;
 	}
-	
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
-    {
-    	if (p_149691_1_ == 1)
-    		return this.topIcon;
-        return this.blockIcon;
-    }
+
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+	{
+		if (p_149691_1_ == 1)
+			return this.topIcon;
+		return this.blockIcon;
+	}
 
 	@Override
 	public int getRenderType()

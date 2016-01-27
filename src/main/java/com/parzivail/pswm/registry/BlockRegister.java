@@ -35,7 +35,10 @@ import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityFieldEmitter;
 import com.parzivail.pswm.tileentities.TileEntityHangingBucket;
 import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableLarge;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
@@ -51,7 +54,10 @@ public class BlockRegister
 		{
 			StarWarsMod.blockHoloTable = new BlockHolotable();
 			GameRegistry.registerBlock(StarWarsMod.blockHoloTable, ItemHolotableBlock.class, "holoTable");
-			GameRegistry.registerTileEntity(TileEntityHoloTableSmall.class, "teHoloTable");
+			GameRegistry.registerTileEntity(TileEntityHoloTableSmall.class, "teHoloTableSmall");
+			GameRegistry.registerTileEntity(TileEntityHoloTableMedium.class, "teHoloTableMedium");
+			GameRegistry.registerTileEntity(TileEntityHoloTableLarge.class, "teHoloTableLarge");
+			GameRegistry.registerTileEntity(TileEntityHoloTableWar.class, "teHoloTableWar");
 		}
 
 		StarWarsMod.blockMV = new BlockMV();
