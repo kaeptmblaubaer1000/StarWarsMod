@@ -17,8 +17,8 @@ import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageEntityGrab;
 import com.parzivail.pswm.network.MessageEntityHurt;
 import com.parzivail.pswm.network.MessageEntityReverse;
+import com.parzivail.pswm.network.MessageRobesBooleanNBT;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
-import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
@@ -157,7 +157,7 @@ public class CommonEventHandler
 									if (active.run(StarWarsMod.mc.thePlayer))
 									{
 										StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, active.currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-										StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsRunning, true, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+										StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsRunning, true));
 									}
 								}
 								else
@@ -166,7 +166,7 @@ public class CommonEventHandler
 									((PowerDefend)active).isRunning = false;
 									((PowerDefend)active).recharge = ((PowerDefend)active).rechargeTime;
 									StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, 0, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-									StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsRunning, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+									StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsRunning, false));
 									if (!ForceUtils.isCooling("defend"))
 										ForceUtils.coolingPowers.add(active);
 								}
@@ -182,7 +182,7 @@ public class CommonEventHandler
 						else
 						{
 							ForceUtils.isUsingDuration = true;
-							StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, true, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+							StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsUsingDuration, true));
 						}
 					}
 				}
@@ -315,7 +315,7 @@ public class CommonEventHandler
 				ForceUtils.activePower.duration++;
 
 				ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
-				StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed(), StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsUsingDuration, ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed()));
 
 				if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
 				{
@@ -330,7 +330,7 @@ public class CommonEventHandler
 					{
 					}
 					ForceUtils.activePower.duration = 0;
-					StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsUsingDuration, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+					StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsUsingDuration, false));
 					ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
 					ForceUtils.coolingPowers.add(ForceUtils.activePower);
 				}
@@ -389,7 +389,7 @@ public class CommonEventHandler
 			active.isRunning = false;
 			active.recharge = active.rechargeTime;
 			StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, 0, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-			StarWarsMod.network.sendToServer(new PacketRobesBooleanNBT(Resources.nbtIsRunning, false, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+			StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsRunning, false));
 			if (!ForceUtils.isCooling("defend"))
 				ForceUtils.coolingPowers.add(active);
 		}

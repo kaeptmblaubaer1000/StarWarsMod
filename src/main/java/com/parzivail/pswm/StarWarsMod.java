@@ -37,9 +37,9 @@ import com.parzivail.pswm.network.MessageEntityHurt;
 import com.parzivail.pswm.network.MessageEntityReverse;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.network.MessageHyperdrive;
+import com.parzivail.pswm.network.MessageRobesBooleanNBT;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.MessageTransmute;
-import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.network.PacketRobesPowerNBT;
 import com.parzivail.pswm.network.PacketRobesStringNBT;
@@ -452,7 +452,6 @@ public class StarWarsMod
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketRobesBooleanNBT.Handler.class, PacketRobesBooleanNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
 
 		registerMessage(MessageEntityGrab.class);
@@ -465,6 +464,7 @@ public class StarWarsMod
 		registerMessage(MessageEntityHurt.class);
 		registerMessage(MessageTransmute.class);
 		registerMessage(MessageEntityReverse.class);
+		registerMessage(MessageRobesBooleanNBT.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 
