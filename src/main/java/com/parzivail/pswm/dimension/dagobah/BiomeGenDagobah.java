@@ -64,7 +64,7 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
+			int i1 = par1World.getHeightValue(k, l);
 			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
 		}
