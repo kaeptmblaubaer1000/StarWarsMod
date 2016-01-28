@@ -1,11 +1,8 @@
 package com.parzivail.pswm.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.rendering.gui.ContainerClient;
-import com.parzivail.pswm.rendering.gui.ContainerJediSith;
+import com.parzivail.pswm.rendering.gui.ContainerHoloTable;
 import com.parzivail.pswm.rendering.gui.ContainerMV;
 import com.parzivail.pswm.rendering.gui.GuiHoloTable;
 import com.parzivail.pswm.rendering.gui.GuiJediSith;
@@ -15,6 +12,8 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -39,8 +38,10 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		if (id == Resources.GUI_ROBES)
 			return new ContainerClient();
-		if (id == Resources.GUI_JEDI_SITH || id == Resources.GUI_HOLOTABLE)
-			return new ContainerJediSith();
+		if (id == Resources.GUI_JEDI_SITH)
+			return new ContainerClient();
+		if (id == Resources.GUI_HOLOTABLE)
+			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
 		return null;
 	}
 }

@@ -2,14 +2,6 @@ package com.parzivail.pswm.handlers;
 
 import java.util.Iterator;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
@@ -23,9 +15,9 @@ import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageEntityGrab;
+import com.parzivail.pswm.network.MessageEntityHurt;
+import com.parzivail.pswm.network.MessageEntityReverse;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
-import com.parzivail.pswm.network.PacketEntityHurt;
-import com.parzivail.pswm.network.PacketReverseEntity;
 import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.registry.KeybindRegistry;
@@ -55,6 +47,13 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -273,7 +272,7 @@ public class CommonEventHandler
 				if (entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterRifleBolt || entityObj instanceof EntityBlasterHeavyBolt || entityObj instanceof EntityBlasterPistolBolt || entityObj instanceof EntityBlasterProbeBolt || entityObj instanceof EntitySpeederBlasterRifleBolt)
 				{
 					Entity entity = (Entity)entityObj;
-					StarWarsMod.network.sendToServer(new PacketReverseEntity(entity.getEntityId(), entity.dimension));
+					StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
 				}
 
 		Iterator<Power> it = ForceUtils.coolingPowers.iterator();
@@ -347,7 +346,7 @@ public class CommonEventHandler
 							if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
 							{
 								StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
-								StarWarsMod.network.sendToServer(new PacketEntityHurt(e.getEntityId(), e.dimension, power.getDamage()));
+								StarWarsMod.network.sendToServer(new MessageEntityHurt(e, power.getDamage()));
 							}
 							if (e instanceof EntityPlayer)
 								try

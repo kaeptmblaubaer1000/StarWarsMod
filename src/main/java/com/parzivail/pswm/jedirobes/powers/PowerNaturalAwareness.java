@@ -1,12 +1,12 @@
 package com.parzivail.pswm.jedirobes.powers;
 
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageTransmute;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.PacketHealBlock;
 
 public class PowerNaturalAwareness extends Power
 {
@@ -29,7 +29,7 @@ public class PowerNaturalAwareness extends Power
 			MovingObjectPosition pos = Minecraft.getMinecraft().objectMouseOver;
 
 			if (pos != null && pos.typeOfHit == MovingObjectType.BLOCK)
-				StarWarsMod.network.sendToServer(new PacketHealBlock(player.dimension, pos.blockX, pos.blockY, pos.blockZ));
+				StarWarsMod.network.sendToServer(new MessageTransmute(player.dimension, this.currentLevel, pos.blockX, pos.blockY, pos.blockZ));
 
 			return true;
 		}

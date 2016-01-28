@@ -2,6 +2,7 @@ package com.parzivail.pswm.tileentities;
 
 import java.awt.Color;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -129,6 +130,11 @@ public class TileEntityHoloTableBase extends TileEntity
 		this.setRGB(tag.getInteger("color"));
 		this.sideLength = tag.getInteger("sidelength");
 		super.readFromNBT(tag);
+	}
+	
+	public boolean isUseableByPlayer(EntityPlayer player)
+	{
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override

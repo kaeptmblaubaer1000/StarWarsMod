@@ -5,17 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.commons.io.IOUtils;
 
 import com.parzivail.pswm.achievement.StarWarsAchievements;
@@ -44,13 +33,12 @@ import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageCreateDestructionBolt;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.pswm.network.MessageEntityGrab;
+import com.parzivail.pswm.network.MessageEntityHurt;
+import com.parzivail.pswm.network.MessageEntityReverse;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
-import com.parzivail.pswm.network.PacketEntityHurt;
-import com.parzivail.pswm.network.PacketEntitySetMotion;
-import com.parzivail.pswm.network.PacketHealBlock;
-import com.parzivail.pswm.network.PacketReverseEntity;
+import com.parzivail.pswm.network.MessageTransmute;
 import com.parzivail.pswm.network.PacketRobesBooleanNBT;
 import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.network.PacketRobesPowerNBT;
@@ -83,6 +71,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -453,10 +451,6 @@ public class StarWarsMod
 		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketEntitySetMotion.Handler.class, PacketEntitySetMotion.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesBooleanNBT.Handler.class, PacketRobesBooleanNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
@@ -468,6 +462,9 @@ public class StarWarsMod
 		registerMessage(MessageCreateDestructionBolt.class);
 		registerMessage(MessageEntityAlterMotion.class);
 		registerMessage(MessageHyperdrive.class);
+		registerMessage(MessageEntityHurt.class);
+		registerMessage(MessageTransmute.class);
+		registerMessage(MessageEntityReverse.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 
@@ -486,8 +483,6 @@ public class StarWarsMod
 		Resources.dimEndorId = config.get("dimensions", "endor", 6).getInt();
 		Resources.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
 		Resources.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
-		// StarWarsMod.dimEndorPlainsId = DimensionManager.getNextFreeDimId();
-		// StarWarsMod.dimDagobahId = DimensionManager.getNextFreeDimId();
 
 		Resources.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
 		Resources.biomeHothId = config.get("biomes", "hoth", 197).getInt();
