@@ -40,6 +40,7 @@ import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageRobesBooleanNBT;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
+import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.MessageTransmute;
 import com.parzivail.pswm.network.PacketRobesPowerNBT;
@@ -47,7 +48,6 @@ import com.parzivail.pswm.network.PacketShipTargetLock;
 import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
 import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
 import com.parzivail.pswm.network.PacketUpdateRobes;
-import com.parzivail.pswm.network.PacketXwingSfoil;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.DamageSourceRegister;
 import com.parzivail.pswm.registry.EntityRegister;
@@ -449,7 +449,6 @@ public class StarWarsMod
 		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 
 		registerMessage(MessageEntityGrab.class);
@@ -466,6 +465,7 @@ public class StarWarsMod
 		registerMessage(MessageRobesIntNBT.class);
 		registerMessage(MessageRobesStringNBT.class);
 		registerMessage(MessageRobesStringNBT.class);
+		registerMessage(MessageSFoil.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 

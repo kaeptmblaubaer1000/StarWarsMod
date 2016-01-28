@@ -1,12 +1,13 @@
 package com.parzivail.pswm.vehicles;
 
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.world.World;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.PacketXwingSfoil;
+import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.util.vehicle.VehicleAirBase;
+
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class VehicXWing extends VehicleAirBase
 {
@@ -71,17 +72,16 @@ public class VehicXWing extends VehicleAirBase
 		{
 			this.setSFoil(this.getSFoil() + 1 / 30f);
 			this.isOpening = this.getSFoil() < 0.8f;
-			if (this.riddenByEntity != null)
-				StarWarsMod.network.sendToServer(new PacketXwingSfoil(this.riddenByEntity.getCommandSenderName(), this.getSFoil(), this.worldObj.provider.dimensionId));
 		}
 
 		if (this.isClosing)
 		{
 			this.setSFoil(this.getSFoil() - 1 / 30f);
 			this.isClosing = this.getSFoil() > 0;
-			if (this.riddenByEntity != null)
-				StarWarsMod.network.sendToServer(new PacketXwingSfoil(this.riddenByEntity.getCommandSenderName(), this.getSFoil(), this.worldObj.provider.dimensionId));
 		}
+		
+		if ((this.isOpening || this.isClosing) && this.riddenByEntity instanceof EntityPlayer)
+			StarWarsMod.network.sendToServer(new MessageSFoil((EntityPlayer)this.riddenByEntity, this.getSFoil()));
 	}
 
 	public void setSFoil(float f)
