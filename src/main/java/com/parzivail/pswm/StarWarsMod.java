@@ -38,11 +38,11 @@ import com.parzivail.pswm.network.MessageEntityReverse;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageRobesBooleanNBT;
+import com.parzivail.pswm.network.MessageRobesIntNBT;
+import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.MessageTransmute;
-import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.network.PacketRobesPowerNBT;
-import com.parzivail.pswm.network.PacketRobesStringNBT;
 import com.parzivail.pswm.network.PacketShipTargetLock;
 import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
 import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
@@ -444,7 +444,6 @@ public class StarWarsMod
 		this.checkCompat();
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
-		network.registerMessage(PacketRobesIntNBT.Handler.class, PacketRobesIntNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageCreateBlasterBolt.class, MessageCreateBlasterBolt.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
@@ -452,7 +451,7 @@ public class StarWarsMod
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
+		registerMessage(MessageRobesStringNBT.class);
 
 		registerMessage(MessageEntityGrab.class);
 		registerMessage(MessageAddEffectTo.class);
@@ -465,6 +464,8 @@ public class StarWarsMod
 		registerMessage(MessageTransmute.class);
 		registerMessage(MessageEntityReverse.class);
 		registerMessage(MessageRobesBooleanNBT.class);
+		registerMessage(MessageRobesIntNBT.class);
+		registerMessage(MessageRobesStringNBT.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 

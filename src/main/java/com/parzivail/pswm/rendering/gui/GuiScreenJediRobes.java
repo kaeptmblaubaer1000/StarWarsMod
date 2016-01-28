@@ -2,23 +2,15 @@ package com.parzivail.pswm.rendering.gui;
 
 import java.util.ArrayList;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
-import com.parzivail.pswm.network.PacketRobesIntNBT;
+import com.parzivail.pswm.network.MessageRobesIntNBT;
+import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.PacketRobesPowerNBT;
-import com.parzivail.pswm.network.PacketRobesStringNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Text;
@@ -26,6 +18,13 @@ import com.parzivail.util.ui.TextUtils;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 @SideOnly(Side.CLIENT)
 public class GuiScreenJediRobes extends GuiScreen
@@ -67,17 +66,17 @@ public class GuiScreenJediRobes extends GuiScreen
 				ArmorJediRobes.setActive(this.mc.thePlayer, this.selectedPower.power.name);
 				ArmorJediRobes.setActiveLevel(this.mc.thePlayer, this.selectedPower.power.currentLevel);
 				ArmorJediRobes.setHealth(this.mc.thePlayer, this.selectedPower.power.currentLevel);
-				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtActive, this.selectedPower.power.name, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
-				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveLevel, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, this.selectedPower.power.name));
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(this.selectedPower.power.name).currentLevel));
 				if (this.selectedPower.power.name.equals("defend"))
-					StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtActiveHealth, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, StarWarsMod.mc.thePlayer.dimension, StarWarsMod.mc.thePlayer.getCommandSenderName()));
+					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, Power.getPowerFromName(this.selectedPower.power.name).currentLevel));
 			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
 				Power.getPowerFromName(this.selectedPower.power.name).currentLevel++;
 				ArmorJediRobes.setActiveLevel(this.mc.thePlayer, Power.getPowerFromName(this.selectedPower.power.name).currentLevel);
 				StarWarsMod.network.sendToServer(new PacketRobesPowerNBT(this.selectedPower.power.name, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, this.player.dimension, this.player.getCommandSenderName()));
-				StarWarsMod.network.sendToServer(new PacketRobesIntNBT(Resources.nbtRemainingPts, --this.points, this.player.dimension, this.player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtRemainingPts, --this.points));
 				ArmorJediRobes.setPoints(this.mc.thePlayer, this.points);
 			}
 		}

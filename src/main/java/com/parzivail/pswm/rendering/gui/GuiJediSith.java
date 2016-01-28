@@ -1,5 +1,16 @@
 package com.parzivail.pswm.rendering.gui;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.network.MessageRobesStringNBT;
+import com.parzivail.pswm.utils.ForceUtils;
+import com.parzivail.util.ui.GlPalette;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -7,18 +18,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.network.PacketRobesStringNBT;
-import com.parzivail.pswm.utils.ForceUtils;
-import com.parzivail.util.ui.GlPalette;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiJediSith extends GuiScreen
@@ -47,7 +46,7 @@ public class GuiJediSith extends GuiScreen
 				ForceUtils.addLeaderboardSide("jedi");
 				this.mc.displayGuiScreen((GuiScreen)null);
 				this.mc.setIngameFocus();
-				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI, this.player.dimension, this.player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, ArmorJediRobes.SIDE_JEDI));
 				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI);
 			}
 			else if (button.id == this.sithButton.id)
@@ -55,7 +54,7 @@ public class GuiJediSith extends GuiScreen
 				ForceUtils.addLeaderboardSide("sith");
 				this.mc.displayGuiScreen((GuiScreen)null);
 				this.mc.setIngameFocus();
-				StarWarsMod.network.sendToServer(new PacketRobesStringNBT(Resources.nbtSide, ArmorJediRobes.SIDE_SITH, this.player.dimension, this.player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, ArmorJediRobes.SIDE_SITH));
 				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_SITH);
 			}
 	}
