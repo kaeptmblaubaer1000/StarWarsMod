@@ -77,6 +77,10 @@ public class TileEntityHoloTableBase extends TileEntity
 			this.setupMap();
 			this.ticksUntilRefresh = 2400;
 		}
+		if (this.ticksUntilRefresh % 80 == 0)
+		{
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+		}
 	}
 
 	public void setupMap()
