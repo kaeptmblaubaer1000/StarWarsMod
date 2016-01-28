@@ -32,9 +32,9 @@ public class TransferDim extends Teleporter
 	{
 	}
 
-	public void teleport(Entity entity) throws Exception
+	public void teleport(Entity entity)
 	{
-		if (entity == null || !(entity instanceof net.minecraft.entity.player.EntityPlayer))
+		if (entity == null || !(entity instanceof EntityPlayerMP))
 			return;
 		EntityPlayerMP playerMP = (EntityPlayerMP)entity;
 		double dx = this.worldserver.getSpawnPoint().posX;

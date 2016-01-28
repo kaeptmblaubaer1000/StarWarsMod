@@ -1,5 +1,7 @@
 package com.parzivail.pswm.blocks;
 
+import java.util.List;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,13 +13,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableLarge;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.util.world.HarvestLevel;
 
@@ -47,13 +47,13 @@ public class BlockHolotable extends BlockContainer
 			return new TileEntityHoloTableLarge();
 		else if (meta == 3)
 			return new TileEntityHoloTableWar();
-		return new TileEntityHoloTableSmall();
+		return new TileEntityHoloTableBase();
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		if (!world.isRemote)
+		if (!world.isRemote && player.inventory.getCurrentItem() == null)
 			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
 		return true;
 	}

@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 
-public class TileEntityHoloTableMedium extends TileEntityHoloTableSmall
+public class TileEntityHoloTableMedium extends TileEntityHoloTableBase
 {
 	public TileEntityHoloTableMedium()
 	{

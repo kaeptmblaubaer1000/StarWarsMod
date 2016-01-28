@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.PacketTeleportPlayerNetwork;
+import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.TextUtils;
 
@@ -36,10 +36,10 @@ public class ItemHyperdriveDagobah extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != Resources.dimDagobahId && !world.isRemote)
+			if (player.isSneaking() && player.dimension != Resources.dimDagobahId && world.isRemote)
 			{
 				player.timeUntilPortal = 20;
-				StarWarsMod.network.sendToServer(new PacketTeleportPlayerNetwork(player.getCommandSenderName(), player.dimension, Resources.dimDagobahId));
+				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, Resources.dimDagobahId));
 			}
 		}
 		catch (Exception e)

@@ -45,6 +45,7 @@ import com.parzivail.pswm.network.MessageCreateDestructionBolt;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.pswm.network.MessageEntityGrab;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
+import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.PacketEntityHurt;
 import com.parzivail.pswm.network.PacketEntitySetMotion;
@@ -55,7 +56,6 @@ import com.parzivail.pswm.network.PacketRobesIntNBT;
 import com.parzivail.pswm.network.PacketRobesPowerNBT;
 import com.parzivail.pswm.network.PacketRobesStringNBT;
 import com.parzivail.pswm.network.PacketShipTargetLock;
-import com.parzivail.pswm.network.PacketTeleportPlayerNetwork;
 import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
 import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
 import com.parzivail.pswm.network.PacketUpdateRobes;
@@ -91,6 +91,8 @@ public class StarWarsMod
 	public static boolean hasShownLeaderboardPart = false;
 
 	public static Configuration config;
+
+	public static int packetId = 0;
 
 	public static Random rngGeneral = new Random();
 	public static Random rngChromium = new Random();
@@ -444,28 +446,28 @@ public class StarWarsMod
 		this.checkCompat();
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
-		int packetId = 0;
 		network.registerMessage(PacketRobesIntNBT.Handler.class, PacketRobesIntNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTeleportPlayerNetwork.Handler.class, PacketTeleportPlayerNetwork.class, packetId++, Side.SERVER);
 		network.registerMessage(MessageCreateBlasterBolt.class, MessageCreateBlasterBolt.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageEntityAlterMotion.class, MessageEntityAlterMotion.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketEntityHurt.Handler.class, PacketEntityHurt.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageSetEntityTarget.class, MessageSetEntityTarget.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageCreateDestructionBolt.class, MessageCreateDestructionBolt.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketEntitySetMotion.Handler.class, PacketEntitySetMotion.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketReverseEntity.Handler.class, PacketReverseEntity.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketHealBlock.Handler.class, PacketHealBlock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesBooleanNBT.Handler.class, PacketRobesBooleanNBT.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketRobesStringNBT.Handler.class, PacketRobesStringNBT.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageEntityGrab.class, MessageEntityGrab.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageAddEffectTo.class, MessageAddEffectTo.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageHoloTableUpdate.class, MessageHoloTableUpdate.class, packetId++, Side.SERVER);
+
+		registerMessage(MessageEntityGrab.class);
+		registerMessage(MessageAddEffectTo.class);
+		registerMessage(MessageHoloTableUpdate.class);
+		registerMessage(MessageSetEntityTarget.class);
+		registerMessage(MessageCreateDestructionBolt.class);
+		registerMessage(MessageEntityAlterMotion.class);
+		registerMessage(MessageHyperdrive.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 
@@ -507,6 +509,11 @@ public class StarWarsMod
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");
+	}
+
+	public void registerMessage(Class messageHandler)
+	{
+		network.registerMessage(messageHandler, messageHandler, packetId++, Side.SERVER);
 	}
 
 	@EventHandler

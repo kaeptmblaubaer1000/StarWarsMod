@@ -5,18 +5,14 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
-import com.parzivail.pswm.network.PacketRobesStringNBT;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableSmall;
-import com.parzivail.pswm.utils.ForceUtils;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.ui.GlPalette;
 
 import cpw.mods.fml.relauncher.Side;
@@ -34,17 +30,17 @@ public class GuiHoloTable extends GuiScreen
 	private GuiButton buttonRefresh;
 
 	private EntityPlayer player;
-	private TileEntityHoloTableSmall table;
-	
+	private TileEntityHoloTableBase table;
+
 	int lColumn;
 	int rColumn;
 
-	public GuiHoloTable(EntityPlayer player, TileEntityHoloTableSmall table)
+	public GuiHoloTable(EntityPlayer player, TileEntityHoloTableBase table)
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.table = table;
 		this.player = player;
-		
+
 		rColumn = -20;
 		lColumn = 5;
 	}
@@ -55,13 +51,13 @@ public class GuiHoloTable extends GuiScreen
 		if (button.enabled)
 			if (button.id == this.buttonBlack.id)
 			{
-				table.setRGB(0, 0, 0.1f);
+				table.setRGB(0.5f, 0.5f, 0.8f);
 				table.getWorldObj().markBlockForUpdate(table.xCoord, table.yCoord, table.zCoord);
 				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(table));
 			}
 			else if (button.id == this.buttonWhite.id)
 			{
-				table.setRGB(0.8f, 0.8f, 1);
+				table.setRGB(0.7f, 0.7f, 1);
 				table.getWorldObj().markBlockForUpdate(table.xCoord, table.yCoord, table.zCoord);
 				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(table));
 			}

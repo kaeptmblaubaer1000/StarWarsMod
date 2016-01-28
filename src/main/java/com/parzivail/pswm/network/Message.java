@@ -2,6 +2,7 @@ package com.parzivail.pswm.network;
 
 import io.netty.buffer.ByteBuf;
 
+import java.awt.Color;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -57,6 +58,7 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		map(Entity.class, Message::readEntity, Message::writeEntity);
 		map(Vec3.class, Message::readVec3, Message::writeVec3);
 		map(EntityCooldownEntry.class, Message::readEntityCooldownEntry, Message::writeEntityCooldownEntry);
+		map(Color.class, Message::readColor, Message::writeColor);
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
@@ -142,6 +144,11 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		return buf.readInt();
 	}
 
+	private static Color readColor(ByteBuf buf)
+	{
+		return new Color(buf.readInt());
+	}
+
 	private static ItemStack readItemStack(ByteBuf buf)
 	{
 		return ByteBufUtils.readItemStack(buf);
@@ -223,6 +230,11 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 	private static void writeInt(int i, ByteBuf buf)
 	{
 		buf.writeInt(i);
+	}
+
+	private static void writeColor(Color c, ByteBuf buf)
+	{
+		buf.writeInt(c.getRGB());
 	}
 
 	private static void writeItemStack(ItemStack stack, ByteBuf buf)
