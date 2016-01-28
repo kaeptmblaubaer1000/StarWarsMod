@@ -451,7 +451,6 @@ public class StarWarsMod
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketXwingSfoil.Handler.class, PacketXwingSfoil.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
-		registerMessage(MessageRobesStringNBT.class);
 
 		registerMessage(MessageEntityGrab.class);
 		registerMessage(MessageAddEffectTo.class);
@@ -465,6 +464,7 @@ public class StarWarsMod
 		registerMessage(MessageEntityReverse.class);
 		registerMessage(MessageRobesBooleanNBT.class);
 		registerMessage(MessageRobesIntNBT.class);
+		registerMessage(MessageRobesStringNBT.class);
 		registerMessage(MessageRobesStringNBT.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
