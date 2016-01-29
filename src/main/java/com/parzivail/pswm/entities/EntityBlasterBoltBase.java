@@ -13,6 +13,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 
@@ -140,7 +141,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			pos.entityHit.setFire(8);
 			this.setDead();
 		}
-		else if (!this.worldObj.isRemote && this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && Resources.enableBlasterFire)
+		else if (!this.worldObj.isRemote && this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
 		{
 			this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 			this.setDead();

@@ -18,6 +18,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import org.apache.commons.io.IOUtils;
 
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.commands.CommandJediRobes;
 import com.parzivail.pswm.exception.UserError;
@@ -405,7 +406,7 @@ public class StarWarsMod
 
 		MaterialRegister.registerAll();
 
-		if (Resources.enableTabOriginal)
+		if (ConfigOptions.enableTabOriginal)
 			StarWarsTab = new StarWarsTab();
 		else
 			StarWarsTab = CreativeTabs.tabAllSearch;
@@ -413,7 +414,7 @@ public class StarWarsMod
 		if (Resources.IS_SEQUEL_RELEASE)
 		{
 			Lumberjack.log("Sequel update! Suck it, JJ!");
-			if (Resources.enableTabSequel)
+			if (ConfigOptions.enableTabSequel)
 				SequelStarWarsTab = new SequelStarWarsTab();
 			else
 				SequelStarWarsTab = CreativeTabs.tabAllSearch;
@@ -471,35 +472,35 @@ public class StarWarsMod
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
-		Resources.enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
-		Resources.enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
-		Resources.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
-		Resources.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true).getBoolean();
+		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
+		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
+		ConfigOptions.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
+		ConfigOptions.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true).getBoolean();
 
-		Resources.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
-		Resources.dimHothId = config.get("dimensions", "hoth", 3).getInt();
-		Resources.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
-		Resources.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
-		Resources.dimEndorId = config.get("dimensions", "endor", 6).getInt();
-		Resources.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
-		Resources.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
+		ConfigOptions.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
+		ConfigOptions.dimHothId = config.get("dimensions", "hoth", 3).getInt();
+		ConfigOptions.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
+		ConfigOptions.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
+		ConfigOptions.dimEndorId = config.get("dimensions", "endor", 6).getInt();
+		ConfigOptions.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
+		ConfigOptions.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
 
-		Resources.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
-		Resources.biomeHothId = config.get("biomes", "hoth", 197).getInt();
-		Resources.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
-		Resources.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
-		Resources.biomeEndorId = config.get("biomes", "endor", 200).getInt();
-		Resources.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
-		Resources.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
+		ConfigOptions.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
+		ConfigOptions.biomeHothId = config.get("biomes", "hoth", 197).getInt();
+		ConfigOptions.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
+		ConfigOptions.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
+		ConfigOptions.biomeEndorId = config.get("biomes", "endor", 200).getInt();
+		ConfigOptions.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
+		ConfigOptions.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 
-		Resources.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
+		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
 
-		Resources.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
-		Resources.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
-		Resources.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true).getBoolean();
-		Resources.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
-		Resources.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
-		Resources.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
+		ConfigOptions.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
+		ConfigOptions.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
+		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true).getBoolean();
+		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
+		ConfigOptions.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
+		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
 
 		config.save();
 

@@ -7,7 +7,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 
 import cpw.mods.fml.relauncher.Side;
@@ -106,7 +106,7 @@ public class DagobahProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeDagobah, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = Resources.dimDagobahId;
+		this.dimensionId = ConfigOptions.dimDagobahId;
 		this.hasNoSky = true;
 	}
 

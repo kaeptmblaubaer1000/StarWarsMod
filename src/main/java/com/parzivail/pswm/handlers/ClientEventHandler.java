@@ -19,6 +19,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
@@ -123,7 +124,7 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onFogify(EntityViewRenderEvent.FogDensity fogDensity)
 	{
-		if (fogDensity.entity.dimension == Resources.dimDagobahId)
+		if (fogDensity.entity.dimension == ConfigOptions.dimDagobahId)
 		{
 			fogDensity.density = 0.075F;
 			fogDensity.setCanceled(true);
@@ -214,7 +215,7 @@ public class ClientEventHandler
 				((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(Resources.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(Resources.VERSION, Text.COLOR_YELLOW)));
 				StarWarsMod.hasShownNeedUpdate = true;
 			}
-			if (Resources.enableGlobalLeaderboard && !StarWarsMod.hasShownLeaderboardPart)
+			if (ConfigOptions.enableGlobalLeaderboard && !StarWarsMod.hasShownLeaderboardPart)
 			{
 				((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("Thanks for participating in the global Jedi vs. Sith leaderboard! You can opt out at any time in the config."));
 				StarWarsMod.hasShownLeaderboardPart = true;

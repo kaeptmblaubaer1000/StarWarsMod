@@ -6,7 +6,7 @@ import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.rendering.DrawKashyyykSky;
 
@@ -73,7 +73,7 @@ public class KashyyykProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeKashyyyk, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = Resources.dimKashyyykId;
+		this.dimensionId = ConfigOptions.dimKashyyykId;
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.rendering.DrawHothSky;
 
@@ -73,7 +73,7 @@ public class HothProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeHoth, 0.2F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = Resources.dimHothId;
+		this.dimensionId = ConfigOptions.dimHothId;
 	}
 
 	@Override

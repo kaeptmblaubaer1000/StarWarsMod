@@ -3,14 +3,14 @@ package com.parzivail.pswm.registry;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.rendering.gui.GuiPSWMOverlay;
 
 public class RegisterGuiOverlays
 {
 	public static void registerAll()
 	{
-		if (Resources.enableCreditsOverlay)
+		if (ConfigOptions.enableCreditsOverlay)
 			MinecraftForge.EVENT_BUS.register(new GuiPSWMOverlay(Minecraft.getMinecraft()));
 	}
 }

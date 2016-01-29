@@ -1,12 +1,12 @@
 package com.parzivail.pswm.jedirobes.powers;
 
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageTransmute;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageTransmute;
 
 public class PowerNaturalAwareness extends Power
 {
@@ -14,9 +14,9 @@ public class PowerNaturalAwareness extends Power
 	{
 		super("naturalAwareness");
 		this.costBase = 640;
-		this.costMult = 0;
+		this.costMult = 100;
 		this.currentLevel = currentLevel;
-		this.maxLevel = 1;
+		this.maxLevel = 12;
 		this.rechargeTime = 1; // 40 ticks/second
 		this.recharge = 0;
 	}

@@ -6,7 +6,7 @@ import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.rendering.DrawTatooineSky;
 
@@ -73,7 +73,7 @@ public class TatooineProvider extends WorldProvider
 	{
 		this.worldChunkMgr = new WorldChunkManagerHell(StarWarsMod.biomeTatooine, 0.0F);
 		// this.worldChunkMgr = new ChunkManagerTatooine(this.worldObj);
-		this.dimensionId = Resources.dimTatooineId;
+		this.dimensionId = ConfigOptions.dimTatooineId;
 	}
 
 	@Override

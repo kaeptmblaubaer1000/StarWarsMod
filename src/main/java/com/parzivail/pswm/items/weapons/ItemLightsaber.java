@@ -17,6 +17,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
 import com.parzivail.util.ui.TextUtils;
@@ -127,7 +128,7 @@ public class ItemLightsaber extends ItemSword
 	{
 		this.icons = new IIcon[this.colors.length];
 		for (int i = 0; i < this.icons.length; i++)
-			if (Resources.enableLightsaberStrobe)
+			if (ConfigOptions.enableLightsaberStrobe)
 				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
 			else
 				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i] + "_static");

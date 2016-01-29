@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.util.ui.Lumberjack;
@@ -36,10 +37,10 @@ public class ItemHyperdriveKashyyyk extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != Resources.dimKashyyykId && world.isRemote)
+			if (player.isSneaking() && player.dimension != ConfigOptions.dimKashyyykId && world.isRemote)
 			{
 				player.timeUntilPortal = 20;
-				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, Resources.dimKashyyykId));
+				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimKashyyykId));
 			}
 		}
 		catch (Exception e)

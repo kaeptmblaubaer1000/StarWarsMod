@@ -4,7 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.utils.CrystalColor;
 import com.parzivail.util.ui.Lumberjack;
@@ -25,11 +25,11 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.silverImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.imperialCredit);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.goldImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.silverImperialCredit);
 
-		if (Resources.enableLightsaber)
+		if (ConfigOptions.enableLightsaber)
 			GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.RED), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.RED), 'P', StarWarsMod.plasmaEmitter);
-		if (Resources.enableLightsaber)
+		if (ConfigOptions.enableLightsaber)
 			GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.GREEN), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.GREEN), 'P', StarWarsMod.plasmaEmitter);
-		if (Resources.enableLightsaber)
+		if (ConfigOptions.enableLightsaber)
 			GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.lightsaberOff, 1, CrystalColor.BLUE), "HCH", "HEH", "HPH", 'H', StarWarsMod.hiltMetelAlloy, 'C', StarWarsMod.containmentField, 'E', new ItemStack(StarWarsMod.lightsaberCrystal, 1, CrystalColor.BLUE), 'P', StarWarsMod.plasmaEmitter);
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
@@ -37,7 +37,7 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveMotivator, 1), " B ", " A ", " B ", 'A', Blocks.quartz_block, 'B', StarWarsMod.blockTitaniumChromiumBlock);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.hyperdriveEngine, 1), " F ", " B ", " A ", 'F', StarWarsMod.containmentField, 'B', StarWarsMod.hyperdriveMotivator, 'A', StarWarsMod.titaniumChromiumIngot);
 
-		if (Resources.enableBuckets)
+		if (ConfigOptions.enableBuckets)
 			GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);
 		else
 			GameRegistry.addShapedRecipe(new ItemStack(Blocks.flowing_water, 1), "AAA", "AAA", "AAA", 'A', StarWarsMod.waterDroplet);

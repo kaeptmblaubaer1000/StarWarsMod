@@ -1,6 +1,6 @@
 package com.parzivail.pswm.achievement;
 
-import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -11,15 +11,15 @@ public class AchievementTrigger
 	@SubscribeEvent
 	public void onDimChanged(PlayerEvent.PlayerChangedDimensionEvent event)
 	{
-		if (event.toDim == Resources.dimTatooineId)
+		if (event.toDim == ConfigOptions.dimTatooineId)
 			event.player.addStat(StarWarsAchievements.travelTatooine, 1);
-		else if (event.toDim == Resources.dimEndorId)
+		else if (event.toDim == ConfigOptions.dimEndorId)
 			event.player.addStat(StarWarsAchievements.travelEndor, 1);
-		else if (event.toDim == Resources.dimHothId)
+		else if (event.toDim == ConfigOptions.dimHothId)
 			event.player.addStat(StarWarsAchievements.travelHoth, 1);
-		else if (event.toDim == Resources.dimKashyyykId)
+		else if (event.toDim == ConfigOptions.dimKashyyykId)
 			event.player.addStat(StarWarsAchievements.travelKashyyyk, 1);
-		else if (event.toDim == Resources.dimYavin4Id)
+		else if (event.toDim == ConfigOptions.dimYavin4Id)
 			event.player.addStat(StarWarsAchievements.travelYavin, 1);
 	}
 

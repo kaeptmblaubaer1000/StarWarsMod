@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraftforge.client.MinecraftForgeClient;
 
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
@@ -154,7 +155,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		FontManager.registerAll();
 
-		if (Resources.beshOverride)
+		if (ConfigOptions.beshOverride)
 			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
 
 		Lumberjack.log("Client proxy loaded!");

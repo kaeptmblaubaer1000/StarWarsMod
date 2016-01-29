@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.util.ui.Lumberjack;
@@ -36,10 +37,10 @@ public class ItemHyperdriveTatooine extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != Resources.dimTatooineId && world.isRemote)
+			if (player.isSneaking() && player.dimension != ConfigOptions.dimTatooineId && world.isRemote)
 			{
 				player.timeUntilPortal = 20;
-				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, Resources.dimTatooineId));
+				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimTatooineId));
 			}
 		}
 		catch (Exception e)

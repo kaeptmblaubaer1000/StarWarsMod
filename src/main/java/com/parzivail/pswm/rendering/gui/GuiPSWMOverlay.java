@@ -14,6 +14,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
@@ -57,7 +58,7 @@ public class GuiPSWMOverlay extends Gui
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent event)
 	{
-		if (event.type != RenderGameOverlayEvent.ElementType.HOTBAR || !Resources.enableCreditsOverlay)
+		if (event.type != RenderGameOverlayEvent.ElementType.HOTBAR || !ConfigOptions.enableCreditsOverlay)
 			return;
 
 		RenderHelper.disableStandardItemLighting();

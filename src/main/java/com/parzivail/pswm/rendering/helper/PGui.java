@@ -21,6 +21,7 @@ import org.lwjgl.opengl.GL11;
 import scala.Int;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.minimap.MinimapStore;
@@ -850,15 +851,15 @@ public class PGui// extends Gui
 
 	public ResourceLocation planetTextureFromDim(int dim)
 	{
-		if (dim == Resources.dimEndorId)
+		if (dim == ConfigOptions.dimEndorId)
 			return Resources.endorTexture;
-		else if (dim == Resources.dimHothId)
+		else if (dim == ConfigOptions.dimHothId)
 			return Resources.hothTexture;
-		else if (dim == Resources.dimKashyyykId)
+		else if (dim == ConfigOptions.dimKashyyykId)
 			return Resources.kashyyykTexture;
-		else if (dim == Resources.dimTatooineId)
+		else if (dim == ConfigOptions.dimTatooineId)
 			return Resources.tatooineTexture;
-		else if (dim == Resources.dimYavin4Id)
+		else if (dim == ConfigOptions.dimYavin4Id)
 			return Resources.yavinTexture;
 
 		return Resources.earthTexture;
