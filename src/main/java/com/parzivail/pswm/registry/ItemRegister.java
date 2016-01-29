@@ -213,17 +213,17 @@ public class ItemRegister
 		StarWarsMod.lightsaberCrystal = new ItemLightsaberCrystal();
 		GameRegistry.registerItem(StarWarsMod.lightsaberCrystal, "lightsaberCrystal");
 
-		StarWarsMod.blasterTIEBolt = new ItemBolt("blasterTIEBolt");
-		GameRegistry.registerItem(StarWarsMod.blasterTIEBolt, "blasterTIEBolt");
+		//StarWarsMod.blasterTIEBolt = new ItemBolt("blasterTIEBolt");
+		//GameRegistry.registerItem(StarWarsMod.blasterTIEBolt, "blasterTIEBolt");
 
-		StarWarsMod.blasterXWingBolt = new ItemBolt("blasterXWingBolt");
-		GameRegistry.registerItem(StarWarsMod.blasterXWingBolt, "blasterXWingBolt");
+		//StarWarsMod.blasterXWingBolt = new ItemBolt("blasterXWingBolt");
+		//GameRegistry.registerItem(StarWarsMod.blasterXWingBolt, "blasterXWingBolt");
 
-		StarWarsMod.blasterBolt = new ItemBolt("blasterBolt");
-		GameRegistry.registerItem(StarWarsMod.blasterBolt, "blasterBolt");
+		//StarWarsMod.blasterBolt = new ItemBolt("blasterBolt");
+		//GameRegistry.registerItem(StarWarsMod.blasterBolt, "blasterBolt");
 
-		StarWarsMod.blasterRifleBolt = new ItemBolt("blasterRifleBolt");
-		GameRegistry.registerItem(StarWarsMod.blasterRifleBolt, "blasterRifleBolt");
+		//StarWarsMod.blasterRifleBolt = new ItemBolt("blasterRifleBolt");
+		//GameRegistry.registerItem(StarWarsMod.blasterRifleBolt, "blasterRifleBolt");
 
 		StarWarsMod.ewokSpear = new ItemEwokSpear();
 		GameRegistry.registerItem(StarWarsMod.ewokSpear, "ewokSpear");

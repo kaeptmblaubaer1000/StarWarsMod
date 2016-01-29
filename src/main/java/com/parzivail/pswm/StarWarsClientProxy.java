@@ -148,7 +148,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		{
 			Resources.IS_DEV_ENVIRONVENT = true;
 			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
-			Lumberjack.info("Development version " + Resources.DEV_VER);
 		}
 
 		KeybindRegistry.registerAll();
@@ -164,7 +163,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 	@Override
 	public void registerRendering()
 	{
-
 		RenderingRegistry.registerEntityRenderingHandler(MobWookiee.class, new RenderWookiee(new ModelWookiee(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelSmallBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobEwok.class, new RenderEwok(new ModelSmallBiped(), 0.5F));
@@ -211,34 +209,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, new RenderBlasterBolt(GlPalette.BRIGHT_ORANGE, 2.0f));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(GlPalette.NEON_GREEN, 2.0f));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GlPalette.ELECTRIC_BLUE));
-
-		/*
-		 * RenderingRegistry.registerEntityRenderingHandler(EntityBlasterPistolBolt
-		 * .class, new RenderBlasterBolt(StarWarsMod.blasterBolt));
-		 * RenderingRegistry
-		 * .registerEntityRenderingHandler(EntityBlasterRifleBolt.class, new
-		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		 * RenderingRegistry.registerEntityRenderingHandler
-		 * (EntityBlasterHeavyBolt.class, new
-		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		 * RenderingRegistry.registerEntityRenderingHandler
-		 * (EntityBlasterProbeBolt.class, new
-		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		 * RenderingRegistry.registerEntityRenderingHandler
-		 * (EntitySpeederBlasterRifleBolt.class, new
-		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		 * RenderingRegistry.registerEntityRenderingHandler
-		 * (EntityXWingBolt.class, new
-		 * RenderBlasterBolt(StarWarsMod.blasterRifleBolt));
-		 * RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class,
-		 * new RenderBlasterBolt(StarWarsMod.blasterTIEBolt));
-		 * RenderingRegistry.
-		 * registerEntityRenderingHandler(EntityXWingBolt.class, new
-		 * RenderBlasterBolt(StarWarsMod.blasterXWingBolt));
-		 * RenderingRegistry.registerEntityRenderingHandler
-		 * (EntityDestruction.class, new
-		 * RenderBlasterBolt(StarWarsMod.spawnAstromechBb8));
-		 */
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaberOff());
