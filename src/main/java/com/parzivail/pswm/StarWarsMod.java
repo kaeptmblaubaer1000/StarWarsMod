@@ -5,11 +5,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
 import org.apache.commons.io.IOUtils;
 
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.commands.CommandJediRobes;
-import com.parzivail.pswm.commands.CommandSWDim;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.handlers.CommonEventHandler;
@@ -71,16 +81,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -356,7 +356,7 @@ public class StarWarsMod
 		pos = versionString.indexOf('.', pos + 1);
 		double version = Double.parseDouble(versionString.substring(0, pos));
 		if (version < 1.8)
-			throw new UserError("Parzi's Star wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version);
+			throw new UserError("Parzi's Star Wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version);
 	}
 
 	private void checkModVersion()
@@ -464,7 +464,6 @@ public class StarWarsMod
 		registerMessage(MessageRobesBooleanNBT.class);
 		registerMessage(MessageRobesIntNBT.class);
 		registerMessage(MessageRobesStringNBT.class);
-		registerMessage(MessageRobesStringNBT.class);
 		registerMessage(MessageSFoil.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
@@ -515,8 +514,6 @@ public class StarWarsMod
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		if (Resources.IS_DEV_ENVIRONVENT)
-			event.registerServerCommand(new CommandSWDim());
 		event.registerServerCommand(new CommandJediRobes());
 	}
 }
