@@ -52,14 +52,13 @@ public class BlockRegister
 	{
 		if (Resources.IS_DEV_ENVIRONVENT)
 		{
+			StarWarsMod.blockHoloTable = new BlockHolotable();
+			GameRegistry.registerBlock(StarWarsMod.blockHoloTable, ItemHolotableBlock.class, "holoTable");
+			GameRegistry.registerTileEntity(TileEntityHoloTableBase.class, "teHoloTableSmall");
+			GameRegistry.registerTileEntity(TileEntityHoloTableMedium.class, "teHoloTableMedium");
+			GameRegistry.registerTileEntity(TileEntityHoloTableLarge.class, "teHoloTableLarge");
+			GameRegistry.registerTileEntity(TileEntityHoloTableWar.class, "teHoloTableWar");
 		}
-
-		StarWarsMod.blockHoloTable = new BlockHolotable();
-		GameRegistry.registerBlock(StarWarsMod.blockHoloTable, ItemHolotableBlock.class, "holoTable");
-		GameRegistry.registerTileEntity(TileEntityHoloTableBase.class, "teHoloTableSmall");
-		GameRegistry.registerTileEntity(TileEntityHoloTableMedium.class, "teHoloTableMedium");
-		GameRegistry.registerTileEntity(TileEntityHoloTableLarge.class, "teHoloTableLarge");
-		GameRegistry.registerTileEntity(TileEntityHoloTableWar.class, "teHoloTableWar");
 
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
