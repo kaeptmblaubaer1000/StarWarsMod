@@ -1,11 +1,19 @@
 package com.parzivail.pswm.rendering.vehicles;
 
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderSlime;
+import net.minecraft.client.shader.ShaderGroup;
+import net.minecraft.client.util.JsonException;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.opengl.GL11;
+
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.vehicles.ModelXWing;
 import com.parzivail.pswm.vehicles.VehicXWing;
 
@@ -22,6 +30,12 @@ public class RenderXWing extends RenderVehicAirBase
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return texture;
+	}
+
+	@Override
+	public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
+	{
+		super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
 	}
 
 	@Override

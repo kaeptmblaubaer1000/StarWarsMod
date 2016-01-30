@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Lumberjack
 {
-	public static final Logger logger = LogManager.getLogger("StarWarsMod");
+	public static final Logger logger = LogManager.getLogger("PSWM");
 
 	public static void debug(String message)
 	{
