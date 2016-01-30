@@ -2,16 +2,17 @@ package com.parzivail.pswm.rendering;
 
 import java.nio.FloatBuffer;
 
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ModelBlasterBolt;
 import com.parzivail.util.ui.GlPalette;
+
+import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderBlasterBolt extends Render
 {
@@ -54,8 +55,12 @@ public class RenderBlasterBolt extends Render
 		GlPalette.glColorI(this.color);
 		GL11.glScalef(this.scale, this.scale, this.scale);
 
+        GL11.glPushAttrib(GL11.GL_LIGHTING_BIT);
+        GL11.glDisable(GL11.GL_LIGHTING);
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glPopAttrib();
+        
 		GL11.glPopMatrix();
 	}
 
