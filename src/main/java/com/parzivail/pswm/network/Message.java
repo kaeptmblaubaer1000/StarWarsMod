@@ -166,9 +166,10 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 
 	private static EntityPlayer readPlayer(ByteBuf buf)
 	{
-		int dim = buf.readInt();
-		String uname = ByteBufUtils.readUTF8String(buf);
-		return MinecraftServer.getServer().worldServerForDimension(dim).getPlayerEntityByName(uname);
+		//int dim = buf.readInt();
+		//String uname = ByteBufUtils.readUTF8String(buf);
+		//return MinecraftServer.getServer().worldServerForDimension(dim).getPlayerEntityByName(uname);
+		return (EntityPlayer)readEntity(buf);
 	}
 
 	private static short readShort(ByteBuf buf)
@@ -254,8 +255,9 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 
 	private static void writePlayer(EntityPlayer player, ByteBuf buf)
 	{
-		buf.writeInt(player.dimension);
-		ByteBufUtils.writeUTF8String(buf, player.getCommandSenderName());
+		//buf.writeInt(player.dimension);
+		//ByteBufUtils.writeUTF8String(buf, player.getCommandSenderName());
+		writeEntity(player, buf);
 	}
 
 	private static void writeShort(short s, ByteBuf buf)
