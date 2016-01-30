@@ -83,15 +83,23 @@ public class PGui// extends Gui
 			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(dist);
 		else
 			try
-		{
+			{
 				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance");
 				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp");
-		}
-		catch (Exception e)
-		{
-			Lumberjack.warn("Unable to change camera distance!");
-			e.printStackTrace();
-		}
+			}
+			catch (Exception e)
+			{
+				try
+				{
+					ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78490_B");
+					ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78491_C");
+				}
+				catch (Exception e2)
+				{
+					Lumberjack.warn("Unable to change camera distance!");
+					e.printStackTrace();
+				}
+			}
 	}
 
 	/**
