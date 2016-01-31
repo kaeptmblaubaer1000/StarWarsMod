@@ -58,9 +58,6 @@ public class EntityBlasterBoltBase extends EntityThrowable
 		super(par1World, sender);
 		this.sender = sender;
 		this.damage = damage;
-		this.posX = sender.posX;
-		this.posY = sender.posY + sender.getEyeHeight();
-		this.posZ = sender.posZ;
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
 	}
 
