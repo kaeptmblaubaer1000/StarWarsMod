@@ -617,6 +617,12 @@
             "item/shoot/rt97c"
         ]
     },
+    "fx.bolt.hit": {
+        "category": "neutral",
+        "sounds": [
+            "item/hit/sand"
+        ]
+    },
     "item.blasterRifle.use": {
         "category": "neutral",
         "sounds": [
