@@ -137,6 +137,12 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
+		if (this.sender == null || this.sender.ridingEntity == null)
+		{
+			this.setDead();
+			return;
+		}
+
 		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
 		{
 			pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
@@ -150,9 +156,6 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 			this.setDead();
 			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
-		}
-		else
-		{
 			this.playSound(Resources.MODID + ":" + "fx.bolt.hit", 1, 1);
 		}
 	}

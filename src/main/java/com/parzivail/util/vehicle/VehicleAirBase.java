@@ -15,6 +15,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
+import com.parzivail.util.ui.Lumberjack;
+
 public class VehicleAirBase extends VehicleBase
 {
 	public static int TGTLOCK_DW = 14;
@@ -26,7 +28,7 @@ public class VehicleAirBase extends VehicleBase
 
 	public float gravity = 0.015F;
 
-	public float accel = 0.1f;
+	public float move = 0f;
 
 	public boolean wasMoving = false;
 	public boolean nowMoving = false;
@@ -95,69 +97,79 @@ public class VehicleAirBase extends VehicleBase
 	}
 
 	@Override
-	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_)
+	public void moveEntityWithHeading(float strafe, float forward)
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
-			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * ((EntityLivingBase)this.riddenByEntity).moveForward * this.moveModifier;
+			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * this.move;
 
-			if (((EntityLivingBase)this.riddenByEntity).moveForward != 0)
+			if (this.move != 0)
 			{
 				this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
 				this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 				this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			}
-			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward;
+			strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
+			forward = ((EntityLivingBase)this.riddenByEntity).moveForward;
 
-			if (this.accel < 1 && p_70612_2_ != 0)
-				this.accel += 1 / 100f;
+			if (forward > 0)
+			{
+				this.move += 0.01f;
+			}
 
-			if (this.accel > 0.1f && p_70612_2_ == 0)
-				this.accel -= 1 / 100f;
+			if (forward < 0)
+			{
+				this.move -= 0.01f;
+			}
 
-			if (this.accel < 0.1f)
-				this.accel = 0.1f;
+			if (this.move < 0)
+				this.move = 0;
 
-			p_70612_2_ = this.moveModifier / 8.0F * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F)) * (this.accel - 0.1f);
+			if (this.move > this.moveModifier)
+				this.move = this.moveModifier;
 
-			if (this.accel < 0.5f)
-				this.gravity += 0.015F * (1 - this.accel);
-			else
-				this.gravity = 0.015F;
+			Lumberjack.log(this.move);
+
+			forward = (this.move / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
+
+			this.gravity = 0.015F * (this.moveModifier - this.move);
 
 			this.motionY -= this.gravity;
 
 			float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
 			float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
-			this.motionX += -0.4F * f2 * p_70612_2_;
-			this.motionZ += 0.4F * f3 * p_70612_2_;
+			this.motionX += -0.4F * f2 * forward;
+			this.motionZ += 0.4F * f3 * forward;
 
 			this.stepHeight = 1.0F;
 			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 			if (!this.worldObj.isRemote) // this.setAIMoveSpeed(p_70612_2_);
-				super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
+				super.moveEntityWithHeading(strafe, forward);
 		}
 		else
-			super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
+			super.moveEntityWithHeading(strafe, forward);
 	}
 
 	@Override
 	public void onDeath(DamageSource source)
 	{
 		super.onDeath(source);
-		if (source.getDamageType() != "fall" && source.getDamageType() != "bolt")
-			return;
-		for (String comp : this.explosionComponents)
-			for (int i = 0; i < 20 + this.rand.nextInt(20); i++)
-			{
-				double motionX = this.rand.nextGaussian() * 0.2D;
-				double motionY = this.rand.nextGaussian() * 0.2D;
-				double motionZ = this.rand.nextGaussian() * 0.2D;
-				this.worldObj.spawnParticle(comp, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
-			}
-		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
+
+		if (this.worldObj.isRemote)
+		{
+			for (String comp : this.explosionComponents)
+				for (int i = 0; i < 20 + this.rand.nextInt(20); i++)
+				{
+					double motionX = this.rand.nextGaussian() * 0.2D;
+					double motionY = this.rand.nextGaussian() * 0.2D;
+					double motionZ = this.rand.nextGaussian() * 0.2D;
+					this.worldObj.spawnParticle(comp, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
+				}
+		}
+
+		if (source.getDamageType() == "fall" || source.isProjectile())
+			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
 	}
 
 	@Override
