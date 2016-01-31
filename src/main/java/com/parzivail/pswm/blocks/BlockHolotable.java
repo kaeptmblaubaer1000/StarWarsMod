@@ -59,9 +59,9 @@ public class BlockHolotable extends BlockContainer
 	}
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+	public IIcon getIcon(int side, int meta)
 	{
-		if (p_149691_1_ == 1)
+		if (side == 1)
 			return this.topIcon;
 		return this.blockIcon;
 	}

@@ -63,16 +63,16 @@ public class VehicleAirBase extends VehicleBase
 	}
 
 	@Override
-	public void fall(float p_70069_1_)
+	public void fall(float distance)
 	{
-		p_70069_1_ = ForgeHooks.onLivingFall(this, p_70069_1_);
+		distance = ForgeHooks.onLivingFall(this, distance);
 		// Lumberjack.log(this.motionY);
-		if (p_70069_1_ <= 3 || this.motionY > -0.3F)
+		if (distance <= 3 || this.motionY > -0.3F)
 			return;
-		super.fall(p_70069_1_);
+		super.fall(distance);
 		PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
 		float f1 = potioneffect != null ? (float)(potioneffect.getAmplifier() + 1) : 0.0F;
-		int i = MathHelper.ceiling_float_int(p_70069_1_ - 3.0F - f1);
+		int i = MathHelper.ceiling_float_int(distance - 3.0F - f1);
 
 		if (i > 0)
 		{
@@ -115,12 +115,12 @@ public class VehicleAirBase extends VehicleBase
 
 			if (forward > 0)
 			{
-				this.move += 0.01f;
+				this.move += 0.05f;
 			}
 
 			if (forward < 0)
 			{
-				this.move -= 0.01f;
+				this.move -= 0.05f;
 			}
 
 			if (this.move < 0)
@@ -134,7 +134,7 @@ public class VehicleAirBase extends VehicleBase
 
 			forward = (this.move / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
-			this.gravity = 0.015F * (this.moveModifier - this.move);
+			this.gravity = (this.moveModifier - this.move) / this.moveModifier;
 
 			this.motionY -= this.gravity;
 

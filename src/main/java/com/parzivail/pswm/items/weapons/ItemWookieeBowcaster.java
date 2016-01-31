@@ -83,16 +83,16 @@ public class ItemWookieeBowcaster extends Item
 	}
 
 	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int p_77663_4_, boolean p_77663_5_)
 	{
-		if (!p_77663_1_.hasTagCompound())
-			p_77663_1_.stackTagCompound = new NBTTagCompound();
-		if (!p_77663_1_.stackTagCompound.hasKey("timeout"))
-			p_77663_1_.stackTagCompound.setInteger("timeout", 0);
-		if (!p_77663_1_.stackTagCompound.hasKey("shotsLeft"))
-			p_77663_1_.stackTagCompound.setInteger("shotsLeft", 250);
-		if (p_77663_1_.stackTagCompound.getInteger("timeout") > 0)
-			p_77663_1_.stackTagCompound.setInteger("timeout", p_77663_1_.stackTagCompound.getInteger("timeout") - 1);
+		if (!stack.hasTagCompound())
+			stack.stackTagCompound = new NBTTagCompound();
+		if (!stack.stackTagCompound.hasKey("timeout"))
+			stack.stackTagCompound.setInteger("timeout", 0);
+		if (!stack.stackTagCompound.hasKey("shotsLeft"))
+			stack.stackTagCompound.setInteger("shotsLeft", 250);
+		if (stack.stackTagCompound.getInteger("timeout") > 0)
+			stack.stackTagCompound.setInteger("timeout", stack.stackTagCompound.getInteger("timeout") - 1);
 	}
 }
 /*

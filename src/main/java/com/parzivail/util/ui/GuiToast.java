@@ -37,9 +37,9 @@ public class GuiToast extends Gui
 	 * Creates a new toast in the default position (bottom right), but doesn't
 	 * show it
 	 *
-	 * @param text
+	 * @name text
 	 *            The text to notify the player
-	 * @param length
+	 * @name length
 	 *            The timespan to show for
 	 * @return The new toast
 	 */
@@ -51,11 +51,11 @@ public class GuiToast extends Gui
 	/**
 	 * Creates a new toast, but doesn't show it
 	 *
-	 * @param text
+	 * @name text
 	 *            The text to notify the player
-	 * @param length
+	 * @name length
 	 *            The timespan to show for
-	 * @param position
+	 * @name position
 	 *            The {@link ToastPotition} of the toast
 	 * @return The new toast
 	 */
@@ -81,11 +81,11 @@ public class GuiToast extends Gui
 	/**
 	 * Private constructor for a new toast
 	 *
-	 * @param text
+	 * @name text
 	 *            The text to show
-	 * @param length
+	 * @name length
 	 *            The timespan it should be shown
-	 * @param position
+	 * @name position
 	 *            The {@link ToastPosition} of the toast
 	 */
 	private GuiToast(String text, int length, int position)
@@ -105,15 +105,15 @@ public class GuiToast extends Gui
 	/**
 	 * Draws the tooltip backdrop
 	 *
-	 * @param x
+	 * @name x
 	 *            The x position
-	 * @param y
+	 * @name y
 	 *            The y position
-	 * @param width
+	 * @name width
 	 *            The width
-	 * @param height
+	 * @name height
 	 *            The height
-	 * @param opacity
+	 * @name opacity
 	 *            The opacity (0-255)
 	 */
 	private void drawBackdrop(int x, int y, int width, int height, int opacity)
@@ -141,7 +141,7 @@ public class GuiToast extends Gui
 	/**
 	 * Render method called by {@link GuiManager}
 	 *
-	 * @param stack
+	 * @name stack
 	 *            The vertical stack size, for stacking
 	 */
 	public void render(int stack)

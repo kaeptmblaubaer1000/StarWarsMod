@@ -18,13 +18,13 @@ public class GuiButtonJedi extends GuiButton
 	 * Draws this button to the screen.
 	 */
 	@Override
-	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_)
+	public void drawButton(Minecraft mc, int mouseX, int mouseY)
 	{
 		if (this.visible)
 		{
-			p_146112_1_.getTextureManager().bindTexture(PGui.swIcons);
+			mc.getTextureManager().bindTexture(PGui.swIcons);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			boolean flag = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height;
+			boolean flag = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
 			int k = 26;
 
 			if (flag)

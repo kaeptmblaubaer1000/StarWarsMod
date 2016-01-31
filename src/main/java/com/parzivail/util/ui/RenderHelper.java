@@ -15,7 +15,7 @@ public class RenderHelper
 	/**
 	 * Initiates a new RenderHelper class
 	 *
-	 * @param mc
+	 * @name mc
 	 *            The minecraft to wrap
 	 */
 	public RenderHelper(Minecraft mc)

@@ -73,12 +73,12 @@ public class MobBantha extends EntityHorse implements IShearable
 	}
 
 	@Override
-	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+	protected void func_145780_a(int x, int y, int z, Block blockIn)
 	{
-		Block.SoundType soundtype = p_145780_4_.stepSound;
-		if (this.worldObj.getBlock(p_145780_1_, p_145780_2_ + 1, p_145780_3_) == Blocks.snow_layer)
+		Block.SoundType soundtype = blockIn.stepSound;
+		if (this.worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
 			soundtype = Blocks.snow_layer.stepSound;
-		if (!p_145780_4_.getMaterial().isLiquid())
+		if (!blockIn.getMaterial().isLiquid())
 		{
 			int l = this.getHorseType();
 			if (this.riddenByEntity != null && l != 1 && l != 2)

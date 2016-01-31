@@ -104,7 +104,7 @@ public class GuiJediSith extends GuiScreen
 		this.sithButton = new GuiButtonSith(2, x + 20, y + 15);
 		this.buttonList.add(this.sithButton);
 		/*
-		 * if (p_73869_2_ == 1) { this.mc.displayGuiScreen((GuiScreen)null);
+		 * if (keyCode == 1) { this.mc.displayGuiScreen((GuiScreen)null);
 		 * this.mc.setIngameFocus(); }
 		 */
 	}
@@ -114,7 +114,7 @@ public class GuiJediSith extends GuiScreen
 	 * KeyListener.keyTyped(KeyEvent e).
 	 */
 	@Override
-	protected void keyTyped(char p_73869_1_, int p_73869_2_)
+	protected void keyTyped(char typedChar, int keyCode)
 	{
 		// don't exit on escape, force player to choose
 	}

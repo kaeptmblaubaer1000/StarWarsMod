@@ -127,7 +127,7 @@ public class GuiHoloTable extends GuiScreen
 		this.buttonRefresh = new GuiButton(4, x + 30 + rColumn, y - 8, 68, 20, "Refresh");
 		this.buttonList.add(this.buttonRefresh);
 		/*
-		 * if (p_73869_2_ == 1) { this.mc.displayGuiScreen((GuiScreen)null);
+		 * if (keyCode == 1) { this.mc.displayGuiScreen((GuiScreen)null);
 		 * this.mc.setIngameFocus(); }
 		 */
 	}

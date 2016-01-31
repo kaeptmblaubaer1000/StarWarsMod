@@ -164,7 +164,7 @@ public class ItemBlasterRifle extends Item
 	}
 
 	@Override
-	public void onUpdate(ItemStack stack, World world, Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_)
+	public void onUpdate(ItemStack stack, World world, Entity entityIn, int p_77663_4_, boolean p_77663_5_)
 	{
 		if (!world.isRemote)
 		{

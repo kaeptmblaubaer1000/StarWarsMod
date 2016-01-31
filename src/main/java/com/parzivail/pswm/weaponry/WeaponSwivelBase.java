@@ -27,7 +27,7 @@ public class WeaponSwivelBase extends EntityLiving
 	}
 
 	@Override
-	protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
+	protected void func_145780_a(int x, int y, int z, Block blockIn)
 	{
 		this.playSound(Resources.MODID + ":" + this.getMovingSound(), 0.15F, 1.0F);
 	}

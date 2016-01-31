@@ -74,9 +74,9 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
-		Entity entity = p_70097_1_.getEntity();
+		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
 			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
@@ -91,7 +91,7 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 			}
 			this.becomeAngryAt(entity);
 		}
-		return super.attackEntityFrom(p_70097_1_, p_70097_2_);
+		return super.attackEntityFrom(source, amount);
 	}
 
 	@Override

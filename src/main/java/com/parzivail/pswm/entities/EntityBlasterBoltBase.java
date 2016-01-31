@@ -68,14 +68,14 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	}
 
 	@Override
-	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if (this.isEntityInvulnerable())
 			return false;
 		this.setBeenAttacked();
-		if (p_70097_1_.getEntity() != null)
+		if (source.getEntity() != null)
 		{
-			Vec3 vec3 = p_70097_1_.getEntity().getLookVec();
+			Vec3 vec3 = source.getEntity().getLookVec();
 			if (vec3 != null)
 			{
 				this.motionX = vec3.xCoord;

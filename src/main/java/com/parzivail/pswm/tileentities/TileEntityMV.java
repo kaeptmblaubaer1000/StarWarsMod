@@ -81,13 +81,13 @@ public class TileEntityMV extends TileEntity implements IInventory
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int p_70301_1_)
+	public ItemStack getStackInSlot(int slotIn)
 	{
 		return this.waterDroplets;
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int p_70304_1_)
+	public ItemStack getStackInSlotOnClosing(int index)
 	{
 		if (this.waterDroplets == null)
 			return null;
@@ -109,7 +109,7 @@ public class TileEntityMV extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
+	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
 		return false;
 	}

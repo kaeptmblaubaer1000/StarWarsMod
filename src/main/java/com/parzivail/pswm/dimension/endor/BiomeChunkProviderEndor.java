@@ -46,7 +46,7 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
 public class BiomeChunkProviderEndor extends ChunkProviderGenerate
 {
 	private static final String __OBFID = "CL_00000396";
-	/** RNG. */
+	
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
 	private NoiseGeneratorOctaves nouseGen2;

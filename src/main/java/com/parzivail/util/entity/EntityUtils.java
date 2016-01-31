@@ -31,11 +31,11 @@ public class EntityUtils
 	/**
 	 * Ray-traces from the given entity's POV
 	 *
-	 * @param distance
+	 * @name distance
 	 *            The range of the trace
-	 * @param fromEntity
+	 * @name fromEntity
 	 *            The POV entity
-	 * @param exclude
+	 * @name exclude
 	 *            The entity references to exclude (Note: not classes, but
 	 *            inequality between two entity pointers)
 	 * @return Returns the entity the trace hit, or null if none is hit

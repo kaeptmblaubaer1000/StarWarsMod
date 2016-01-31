@@ -204,7 +204,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	}
 
 	/**
-	 * @param var1
+	 * @name var1
 	 */
 	public void selectIndex(int var1)
 	{

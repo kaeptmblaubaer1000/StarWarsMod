@@ -239,11 +239,11 @@ public class MobTatooineCommoner extends EntityVillager
 	}
 
 	@Override
-	public void readEntityFromNBT(NBTTagCompound p_70037_1_)
+	public void readEntityFromNBT(NBTTagCompound tagCompund)
 	{
-		super.readEntityFromNBT(p_70037_1_);
-		if (p_70037_1_.hasKey("type"))
-			this.setType(p_70037_1_.getInteger("type"));
+		super.readEntityFromNBT(tagCompund);
+		if (tagCompund.hasKey("type"))
+			this.setType(tagCompund.getInteger("type"));
 	}
 
 	@Override
@@ -263,10 +263,10 @@ public class MobTatooineCommoner extends EntityVillager
 	}
 
 	@Override
-	public void writeEntityToNBT(NBTTagCompound p_70014_1_)
+	public void writeEntityToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeEntityToNBT(p_70014_1_);
-		p_70014_1_.setInteger("type", this.getType());
+		super.writeEntityToNBT(tagCompound);
+		tagCompound.setInteger("type", this.getType());
 	}
 }
 /*
