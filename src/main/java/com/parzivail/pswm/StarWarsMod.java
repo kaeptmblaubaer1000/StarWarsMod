@@ -474,6 +474,7 @@ public class StarWarsMod
 
 		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
 		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
+		ConfigOptions.enableBetaFeatures = config.get("core", "enableBetaFeatures", false).getBoolean();
 		ConfigOptions.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
 		ConfigOptions.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true).getBoolean();
 

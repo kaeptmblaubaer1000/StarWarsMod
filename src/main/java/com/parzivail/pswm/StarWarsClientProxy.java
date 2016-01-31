@@ -144,10 +144,10 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		StarWarsMod.clientHandler.init();
 
-		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston"))
+		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston") || ConfigOptions.enableBetaFeatures)
 		{
 			Resources.IS_DEV_ENVIRONVENT = true;
-			Lumberjack.info("This is a development environment! Debug mechanics implemented.");
+			Lumberjack.info("Debug/Beta mechanics implemented!");
 		}
 
 		KeybindRegistry.registerAll();

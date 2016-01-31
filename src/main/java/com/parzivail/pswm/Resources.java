@@ -35,6 +35,7 @@ public class Resources
 		public static int lightsaberDamage;
 		public static boolean enableFlyCommand;
 		public static boolean enableDimCommand;
+		public static boolean enableBetaFeatures;
 	}
 
 	// Core
