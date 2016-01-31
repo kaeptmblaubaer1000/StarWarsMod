@@ -129,7 +129,8 @@ public class VehicleAirBase extends VehicleBase
 			if (this.move > this.moveModifier)
 				this.move = this.moveModifier;
 
-			Lumberjack.log(this.move);
+			if (this.move > 0)
+				Lumberjack.log(this.move);
 
 			forward = (this.move / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
@@ -137,8 +138,8 @@ public class VehicleAirBase extends VehicleBase
 
 			this.motionY -= this.gravity;
 
-			float f2 = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);
-			float f3 = MathHelper.cos(this.rotationYaw * 3.1415927F / 180.0F);
+			float f2 = (float)Math.sin(this.rotationYaw * Math.PI / 180.0F);
+			float f3 = (float)Math.cos(this.rotationYaw * Math.PI / 180.0F);
 			this.motionX += -0.4F * f2 * forward;
 			this.motionZ += 0.4F * f3 * forward;
 
@@ -147,7 +148,7 @@ public class VehicleAirBase extends VehicleBase
 			if (!this.worldObj.isRemote) // this.setAIMoveSpeed(p_70612_2_);
 				super.moveEntityWithHeading(strafe, forward);
 		}
-		else
+		else if (!this.worldObj.isRemote)
 			super.moveEntityWithHeading(strafe, forward);
 	}
 

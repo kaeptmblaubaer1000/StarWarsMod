@@ -121,42 +121,6 @@ public class GuiVehicle
 
 					this.lastTarget = e;
 
-					// if (e != null)
-					// {
-					// color = GlPalette.RED;
-					// ClientEventHandler.pgui.drawLine(centerX - 6 *
-					// blipPercent, centerY - 6 * blipPercent, centerX, centerY,
-					// 2, color);
-					// ClientEventHandler.pgui.drawLine(centerX + 6 *
-					// blipPercent, centerY - 6 * blipPercent, centerX, centerY,
-					// 2, color);
-					// ClientEventHandler.pgui.drawLine(centerX + 6 *
-					// blipPercent, centerY + 6 * blipPercent, centerX, centerY,
-					// 2, color);
-					// ClientEventHandler.pgui.drawLine(centerX - 6 *
-					// blipPercent, centerY + 6 * blipPercent, centerX, centerY,
-					// 2, color);
-					// ClientEventHandler.pgui.drawHollowCircle(centerX,
-					// centerY, blipFrame * 0.8f, 10, 2, color);
-					// }
-					// else
-					// {
-					// ClientEventHandler.pgui.drawLine(centerX - 8 *
-					// blipPercent, centerY - 8 * blipPercent, centerX - 2 *
-					// blipPercent, centerY - 2 * blipPercent, 2, color);
-					// ClientEventHandler.pgui.drawLine(centerX + 8 *
-					// blipPercent, centerY - 8 * blipPercent, centerX + 2 *
-					// blipPercent, centerY - 2 * blipPercent, 2, color);
-					// ClientEventHandler.pgui.drawLine(centerX + 8 *
-					// blipPercent, centerY + 8 * blipPercent, centerX + 2 *
-					// blipPercent, centerY + 2 * blipPercent, 2, color);
-					// ClientEventHandler.pgui.drawLine(centerX - 8 *
-					// blipPercent, centerY + 8 * blipPercent, centerX - 2 *
-					// blipPercent, centerY + 2 * blipPercent, 2, color);
-					// ClientEventHandler.pgui.drawHollowCircle(centerX,
-					// centerY, blipFrame, 10, 2, color);
-					// }
-
 					ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
 
 					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
@@ -296,7 +260,7 @@ public class GuiVehicle
 					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
 					GL11.glPopMatrix();
 
-					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)(awing.rotationPitch / 15) + 8);
+					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)((1 - (awing.move / awing.moveModifier)) * 14));
 					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
 
 					ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
@@ -387,7 +351,7 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(Resources.tieBackOverlay);
 
-					ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)(tie.rotationPitch / 5) + 18);
+					ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)((1 - (tie.move / tie.moveModifier)) * 37));
 
 					for (Entity p : tie.nearby)
 					{

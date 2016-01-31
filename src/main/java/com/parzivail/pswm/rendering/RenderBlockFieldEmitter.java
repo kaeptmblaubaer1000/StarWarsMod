@@ -6,51 +6,13 @@ import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.RenderHelper;
 
 public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 {
-	private static void renderCube(Tessellator tes)
+	private static void renderCube(Tessellator tes, float x, float y, float z)
 	{
-		tes.startDrawingQuads();
-
-		tes.addVertex(0, 0, 0);
-		tes.addVertex(0, 1, 0);
-		tes.addVertex(1, 1, 0);
-		tes.addVertex(1, 0, 0);
-
-		tes.addVertex(0, 0, 1);
-		tes.addVertex(1, 0, 1);
-		tes.addVertex(1, 1, 1);
-		tes.addVertex(0, 1, 1);
-
-		tes.addVertex(0, 0, 0);
-		tes.addVertex(0, 0, 1);
-		tes.addVertex(0, 1, 1);
-		tes.addVertex(0, 1, 0);
-
-		tes.addVertex(1, 0, 0);
-		tes.addVertex(1, 1, 0);
-		tes.addVertex(1, 1, 1);
-		tes.addVertex(1, 0, 1);
-
-		tes.addVertex(0, 0, 0);
-		tes.addVertex(1, 0, 0);
-		tes.addVertex(1, 0, 1);
-		tes.addVertex(0, 0, 1);
-
-		tes.addVertex(0, 1, 0);
-		tes.addVertex(0, 1, 1);
-		tes.addVertex(1, 1, 1);
-		tes.addVertex(1, 1, 0);
-
-		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		RenderHelper.disableLightmap();
-		tes.draw();
-		RenderHelper.enableLightmap();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glEnable(GL11.GL_LIGHTING);
 	}
 
 	@Override
@@ -70,20 +32,64 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 		if (flag)
 		{
 			GL11.glPushMatrix();
-			GL11.glDepthMask(true);
+
+			GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!
 			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_COLOR, GL11.GL_SRC_ALPHA);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+			RenderHelper.disableLightmap();
+
+			GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_SRC_ALPHA);
+			GL11.glColor4f(0.5f, 0.5f, 1f, 0.5f);
+
+			Tessellator tes = Tessellator.instance;
+
+			tes.startDrawingQuads();
 
 			for (int n = 1; n < i; n++)
 			{
-				GL11.glPushMatrix();
-				GL11.glTranslatef((float)x, (float)y + n, (float)z);
-				GL11.glColor4f(0, 0, 1, 1);
-				renderCube(Tessellator.instance);
-				GL11.glPopMatrix();
+				float yy = (float)(y + n);
+				if (te.getWorldObj().getBlock(te.xCoord, te.yCoord, te.zCoord - 1) != StarWarsMod.blockFieldEmitter)
+				{
+					tes.addVertex(0 + x, 0 + yy, 0 + z);
+					tes.addVertex(0 + x, 1 + yy, 0 + z);
+					tes.addVertex(1 + x, 1 + yy, 0 + z);
+					tes.addVertex(1 + x, 0 + yy, 0 + z);
+				}
+
+				if (te.getWorldObj().getBlock(te.xCoord, te.yCoord, te.zCoord + 1) != StarWarsMod.blockFieldEmitter)
+				{
+					tes.addVertex(0 + x, 0 + yy, 1 + z);
+					tes.addVertex(1 + x, 0 + yy, 1 + z);
+					tes.addVertex(1 + x, 1 + yy, 1 + z);
+					tes.addVertex(0 + x, 1 + yy, 1 + z);
+				}
+
+				if (te.getWorldObj().getBlock(te.xCoord - 1, te.yCoord, te.zCoord) != StarWarsMod.blockFieldEmitter)
+				{
+					tes.addVertex(0 + x, 0 + yy, 0 + z);
+					tes.addVertex(0 + x, 0 + yy, 1 + z);
+					tes.addVertex(0 + x, 1 + yy, 1 + z);
+					tes.addVertex(0 + x, 1 + yy, 0 + z);
+				}
+
+				if (te.getWorldObj().getBlock(te.xCoord + 1, te.yCoord, te.zCoord) != StarWarsMod.blockFieldEmitter)
+				{
+					tes.addVertex(1 + x, 0 + yy, 0 + z);
+					tes.addVertex(1 + x, 1 + yy, 0 + z);
+					tes.addVertex(1 + x, 1 + yy, 1 + z);
+					tes.addVertex(1 + x, 0 + yy, 1 + z);
+				}
 			}
 
+			tes.draw();
+
+			RenderHelper.enableLightmap();
+
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glEnable(GL11.GL_LIGHTING); // end of fix
+
 			GL11.glPopMatrix();
 		}
 	}

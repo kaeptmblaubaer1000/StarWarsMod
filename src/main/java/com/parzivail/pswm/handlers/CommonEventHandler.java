@@ -2,6 +2,14 @@ package com.parzivail.pswm.handlers;
 
 import java.util.Iterator;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
@@ -47,13 +55,6 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -108,12 +109,12 @@ public class CommonEventHandler
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
 			{
 				VehicXWing xwing = (VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity;
-				if (xwing.getSFoil() <= 0)
+				if (xwing.getSFoil() <= 0.45f && !(xwing.isOpening || xwing.isClosing))
 				{
 					xwing.isOpening = true;
 					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, true));
 				}
-				if (xwing.getSFoil() >= 0.8f)
+				if (xwing.getSFoil() >= 0.55f && !(xwing.isOpening || xwing.isClosing))
 				{
 					xwing.isClosing = true;
 					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, false));
