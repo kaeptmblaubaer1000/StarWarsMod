@@ -10,12 +10,34 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderHelper
 {
+	public static void disableLightmap()
+	{
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+	}
+
+	public static void enableLightmap()
+	{
+		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
+	}
+
+	public static void renderEntity(Entity el)
+	{
+		GL11.glPushMatrix();
+		Render render = RenderManager.instance.getEntityRenderObject(el);
+		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+		GL11.glPopMatrix();
+	}
+
 	private Minecraft mc;
 
 	/**
 	 * Initiates a new RenderHelper class
 	 *
-	 * @name mc
+	 * @param mc
 	 *            The minecraft to wrap
 	 */
 	public RenderHelper(Minecraft mc)
@@ -39,27 +61,5 @@ public class RenderHelper
 	public void setCameraMode(int mode)
 	{
 		this.mc.gameSettings.thirdPersonView = mode;
-	}
-
-	public static void renderEntity(Entity el)
-	{
-		GL11.glPushMatrix();
-		Render render = RenderManager.instance.getEntityRenderObject(el);
-		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
-		GL11.glPopMatrix();
-	}
-
-	public static void disableLightmap()
-	{
-		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
-	}
-
-	public static void enableLightmap()
-	{
-		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		OpenGlHelper.setActiveTexture(OpenGlHelper.defaultTexUnit);
 	}
 }

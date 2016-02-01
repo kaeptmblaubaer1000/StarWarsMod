@@ -114,14 +114,10 @@ public class VehicleAirBase extends VehicleBase
 			forward = ((EntityLivingBase)this.riddenByEntity).moveForward;
 
 			if (forward > 0)
-			{
 				this.move += 0.05f;
-			}
 
 			if (forward < 0)
-			{
 				this.move -= 0.05f;
-			}
 
 			if (this.move < 0)
 				this.move = 0;
@@ -132,9 +128,9 @@ public class VehicleAirBase extends VehicleBase
 			if (this.move > 0)
 				Lumberjack.log(this.move);
 
-			forward = (this.move / 8.0F) * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
+			forward = this.move / 8.0F * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
-			this.gravity = (this.moveModifier - this.move) / this.moveModifier;
+			this.gravity = 0.8f * ((this.moveModifier - this.move) / this.moveModifier);
 
 			this.motionY -= this.gravity;
 
@@ -158,7 +154,6 @@ public class VehicleAirBase extends VehicleBase
 		super.onDeath(source);
 
 		if (this.worldObj.isRemote)
-		{
 			for (String comp : this.explosionComponents)
 				for (int i = 0; i < 20 + this.rand.nextInt(20); i++)
 				{
@@ -167,7 +162,6 @@ public class VehicleAirBase extends VehicleBase
 					double motionZ = this.rand.nextGaussian() * 0.2D;
 					this.worldObj.spawnParticle(comp, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
 				}
-		}
 
 		if (source.getDamageType() == "fall" || source.isProjectile())
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);

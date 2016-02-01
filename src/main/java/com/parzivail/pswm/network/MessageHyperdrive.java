@@ -26,8 +26,8 @@ public class MessageHyperdrive extends Message<MessageHyperdrive>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		new TransferDim(MinecraftServer.getServer().worldServerForDimension(destDim)).teleport(player);
-		player.setSneaking(false);
+		new TransferDim(MinecraftServer.getServer().worldServerForDimension(this.destDim)).teleport(this.player);
+		this.player.setSneaking(false);
 		return null;
 	}
 }

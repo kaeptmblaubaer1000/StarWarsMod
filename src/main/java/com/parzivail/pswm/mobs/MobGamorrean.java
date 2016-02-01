@@ -18,10 +18,10 @@ import com.parzivail.pswm.ai.AiFreqMove;
 
 public class MobGamorrean extends EntityMob implements net.minecraft.entity.monster.IMob
 {
+	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt;
-	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
-	private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0)).setSaved(false);
 
 	public MobGamorrean(World par1World)
 	{
@@ -115,9 +115,7 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 			iattributeinstance.removeModifier(field_110190_br);
 
 			if (this.entityToAttack != null)
-			{
 				iattributeinstance.applyModifier(field_110190_br);
-			}
 		}
 
 		this.angryAt = this.entityToAttack;

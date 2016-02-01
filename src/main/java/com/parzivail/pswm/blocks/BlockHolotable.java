@@ -51,13 +51,6 @@ public class BlockHolotable extends BlockContainer
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
-	{
-		if (!world.isRemote && player.inventory.getCurrentItem() == null)
-			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
-		return true;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
@@ -73,12 +66,6 @@ public class BlockHolotable extends BlockContainer
 	}
 
 	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
 	{
@@ -86,6 +73,20 @@ public class BlockHolotable extends BlockContainer
 		metaTypes.add(new ItemStack(item, 1, 1)); // medium
 		metaTypes.add(new ItemStack(item, 1, 2)); // large
 		metaTypes.add(new ItemStack(item, 1, 3)); // war
+	}
+
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
+	{
+		if (!world.isRemote && player.inventory.getCurrentItem() == null)
+			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
+		return true;
 	}
 
 	@Override

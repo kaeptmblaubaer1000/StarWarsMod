@@ -26,12 +26,6 @@ public class MobQuester extends EntityCreature
 	}
 
 	@Override
-	public boolean interact(EntityPlayer player)
-	{
-		return false;
-	}
-
-	@Override
 	protected String getDeathSound()
 	{
 		return Resources.MODID + ":" + "mob.commoner.die";
@@ -47,6 +41,12 @@ public class MobQuester extends EntityCreature
 	protected String getLivingSound()
 	{
 		return Resources.MODID + ":" + "mob.commoner.say";
+	}
+
+	@Override
+	public boolean interact(EntityPlayer player)
+	{
+		return false;
 	}
 }
 /*

@@ -16,11 +16,11 @@ import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 public class CommandJediRobes extends CommandBase
 {
 	@Override
-	public List addTabCompletionOptions(ICommandSender commandSender, String[] nameeters)
+	public List addTabCompletionOptions(ICommandSender commandSender, String[] parameters)
 	{
 		List<String> commands = new ArrayList<String>();
 
-		if (nameeters.length == 1)
+		if (parameters.length == 1)
 		{
 			commands.add("level");
 			commands.add("xp");

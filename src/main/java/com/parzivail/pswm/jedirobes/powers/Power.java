@@ -53,7 +53,7 @@ public class Power
 	/**
 	 * Gets the XP cost of using the power at a specific level
 	 *
-	 * @name level
+	 * @param level
 	 *            The level to test
 	 * @return The cost in XP
 	 */
@@ -75,7 +75,7 @@ public class Power
 	/**
 	 * Gets the max damage / second of using the power at a specific level
 	 *
-	 * @name level
+	 * @param level
 	 *            The level to test
 	 * @return The max damage / second
 	 */
@@ -97,7 +97,7 @@ public class Power
 	/**
 	 * Gets the max duration of using the power at a specific level
 	 *
-	 * @name level
+	 * @param level
 	 *            The level to test
 	 * @return The max duration in seconds
 	 */
@@ -139,7 +139,7 @@ public class Power
 	/**
 	 * Gets the max damage / second of using the power at a specific level
 	 *
-	 * @name level
+	 * @param level
 	 *            The level to test
 	 * @return The max damage / second
 	 */
@@ -151,7 +151,7 @@ public class Power
 	/**
 	 * Applies the power to the player, called every tick the armor is worn.
 	 *
-	 * @name player
+	 * @param player
 	 *            The player to apply the power to
 	 * @return Returns true if a power was applied, false otherwise
 	 */

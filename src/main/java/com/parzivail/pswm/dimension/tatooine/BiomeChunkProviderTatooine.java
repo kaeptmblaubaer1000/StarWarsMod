@@ -49,7 +49,7 @@ import cpw.mods.fml.common.eventhandler.Event.Result;
 public class BiomeChunkProviderTatooine extends ChunkProviderGenerate
 {
 	private static final String __OBFID = "CL_00000396";
-	
+
 	private Random rand;
 	private NoiseGeneratorOctaves noiseGen1;
 	private NoiseGeneratorOctaves nouseGen2;

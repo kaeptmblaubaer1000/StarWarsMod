@@ -114,6 +114,11 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		return buf.readChar();
 	}
 
+	private static Color readColor(ByteBuf buf)
+	{
+		return new Color(buf.readInt());
+	}
+
 	private static double readDouble(ByteBuf buf)
 	{
 		return buf.readDouble();
@@ -144,11 +149,6 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		return buf.readInt();
 	}
 
-	private static Color readColor(ByteBuf buf)
-	{
-		return new Color(buf.readInt());
-	}
-
 	private static ItemStack readItemStack(ByteBuf buf)
 	{
 		return ByteBufUtils.readItemStack(buf);
@@ -166,9 +166,10 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 
 	private static EntityPlayer readPlayer(ByteBuf buf)
 	{
-		//int dim = buf.readInt();
-		//String uname = ByteBufUtils.readUTF8String(buf);
-		//return MinecraftServer.getServer().worldServerForDimension(dim).getPlayerEntityByName(uname);
+		// int dim = buf.readInt();
+		// String uname = ByteBufUtils.readUTF8String(buf);
+		// return
+		// MinecraftServer.getServer().worldServerForDimension(dim).getPlayerEntityByName(uname);
 		return (EntityPlayer)readEntity(buf);
 	}
 
@@ -205,6 +206,11 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		buf.writeChar(c);
 	}
 
+	private static void writeColor(Color c, ByteBuf buf)
+	{
+		buf.writeInt(c.getRGB());
+	}
+
 	private static void writeDouble(double d, ByteBuf buf)
 	{
 		buf.writeDouble(d);
@@ -233,11 +239,6 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 		buf.writeInt(i);
 	}
 
-	private static void writeColor(Color c, ByteBuf buf)
-	{
-		buf.writeInt(c.getRGB());
-	}
-
 	private static void writeItemStack(ItemStack stack, ByteBuf buf)
 	{
 		ByteBufUtils.writeItemStack(buf, stack);
@@ -255,8 +256,8 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 
 	private static void writePlayer(EntityPlayer player, ByteBuf buf)
 	{
-		//buf.writeInt(player.dimension);
-		//ByteBufUtils.writeUTF8String(buf, player.getCommandSenderName());
+		// buf.writeInt(player.dimension);
+		// ByteBufUtils.writeUTF8String(buf, player.getCommandSenderName());
 		writeEntity(player, buf);
 	}
 

@@ -26,76 +26,6 @@ public class TileEntityHoloTableBase extends TileEntity
 		this.rgb = new Color(200, 200, 255);
 	}
 
-	public int[] getMap()
-	{
-		if (map == null)
-			setupMap();
-		return this.map;
-	}
-
-	public int getSideLength()
-	{
-		return this.sideLength;
-	}
-
-	public boolean isMapSetup()
-	{
-		return map != null;
-	}
-
-	public Color getRGB()
-	{
-		return this.rgb;
-	}
-
-	public void setRGB(float r, float g, float b)
-	{
-		this.rgb = new Color(r, g, b);
-	}
-
-	public void setRGB(int color)
-	{
-		this.rgb = new Color(color);
-	}
-
-	public int getOffset()
-	{
-		return this.offset;
-	}
-
-	public void setOffset(int offset)
-	{
-		this.offset = offset;
-	}
-
-	@Override
-	public void updateEntity()
-	{
-		this.ticksUntilRefresh--;
-		if (this.ticksUntilRefresh <= 0)
-		{
-			this.setupMap();
-			this.ticksUntilRefresh = 2400;
-		}
-		if (this.ticksUntilRefresh % 80 == 0)
-		{
-			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-		}
-	}
-
-	public void setupMap()
-	{
-		map = new int[sideLength * sideLength];
-
-		for (int i = 0; i < map.length; i++)
-		{
-			int x = i % sideLength;
-			int z = (int)Math.floor(i / sideLength);
-
-			map[i] = this.worldObj.getHeightValue(this.xCoord + x - (sideLength / 2), this.zCoord + z - (sideLength / 2));
-		}
-	}
-
 	@Override
 	public Packet getDescriptionPacket()
 	{
@@ -104,11 +34,23 @@ public class TileEntityHoloTableBase extends TileEntity
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
 	}
 
+	public int[] getMap()
+	{
+		if (this.map == null)
+			this.setupMap();
+		return this.map;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public double getMaxRenderDistanceSquared()
 	{
 		return 262144;
+	}
+
+	public int getOffset()
+	{
+		return this.offset;
 	}
 
 	@Override
@@ -127,6 +69,33 @@ public class TileEntityHoloTableBase extends TileEntity
 		return this.bb;
 	}
 
+	public Color getRGB()
+	{
+		return this.rgb;
+	}
+
+	public int getSideLength()
+	{
+		return this.sideLength;
+	}
+
+	public boolean isMapSetup()
+	{
+		return this.map != null;
+	}
+
+	public boolean isUseableByPlayer(EntityPlayer player)
+	{
+		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		super.onDataPacket(net, packet);
+		this.readFromNBT(packet.func_148857_g());
+	}
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag)
 	{
@@ -135,10 +104,46 @@ public class TileEntityHoloTableBase extends TileEntity
 		this.sideLength = tag.getInteger("sidelength");
 		super.readFromNBT(tag);
 	}
-	
-	public boolean isUseableByPlayer(EntityPlayer player)
+
+	public void setOffset(int offset)
 	{
-		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
+		this.offset = offset;
+	}
+
+	public void setRGB(float r, float g, float b)
+	{
+		this.rgb = new Color(r, g, b);
+	}
+
+	public void setRGB(int color)
+	{
+		this.rgb = new Color(color);
+	}
+
+	public void setupMap()
+	{
+		this.map = new int[this.sideLength * this.sideLength];
+
+		for (int i = 0; i < this.map.length; i++)
+		{
+			int x = i % this.sideLength;
+			int z = (int)Math.floor(i / this.sideLength);
+
+			this.map[i] = this.worldObj.getHeightValue(this.xCoord + x - this.sideLength / 2, this.zCoord + z - this.sideLength / 2);
+		}
+	}
+
+	@Override
+	public void updateEntity()
+	{
+		this.ticksUntilRefresh--;
+		if (this.ticksUntilRefresh <= 0)
+		{
+			this.setupMap();
+			this.ticksUntilRefresh = 2400;
+		}
+		if (this.ticksUntilRefresh % 80 == 0)
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 	}
 
 	@Override
@@ -148,13 +153,6 @@ public class TileEntityHoloTableBase extends TileEntity
 		tag.setInteger("offset", this.getOffset());
 		tag.setInteger("sidelength", this.sideLength);
 		super.writeToNBT(tag);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
-	{
-		super.onDataPacket(net, packet);
-		this.readFromNBT(packet.func_148857_g());
 	}
 }
 /*

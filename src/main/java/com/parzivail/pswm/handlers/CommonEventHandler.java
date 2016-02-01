@@ -323,13 +323,13 @@ public class CommonEventHandler
 					if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 						if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 							try
-					{
+							{
 								StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 								ClientEventHandler.lastPlayerTarget = null;
-					}
-					catch (Exception e)
-					{
-					}
+							}
+							catch (Exception e)
+							{
+							}
 					ForceUtils.activePower.duration = 0;
 					StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsUsingDuration, false));
 					ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
@@ -351,24 +351,24 @@ public class CommonEventHandler
 							}
 							if (e instanceof EntityPlayer)
 								try
-							{
+								{
 									ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
 									StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
-							}
-							catch (Exception exc)
-							{
-							}
+								}
+								catch (Exception exc)
+								{
+								}
 						}
 					}
 					else if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 						try
-					{
+						{
 							StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 							ClientEventHandler.lastPlayerTarget = null;
-					}
-					catch (Exception e)
-					{
-					}
+						}
+						catch (Exception e)
+						{
+						}
 				}
 			}
 		}

@@ -41,8 +41,8 @@ public class GuiHoloTable extends GuiScreen
 		this.table = table;
 		this.player = player;
 
-		rColumn = -20;
-		lColumn = 5;
+		this.rColumn = -20;
+		this.lColumn = 5;
 	}
 
 	@Override
@@ -51,32 +51,30 @@ public class GuiHoloTable extends GuiScreen
 		if (button.enabled)
 			if (button.id == this.buttonBlack.id)
 			{
-				table.setRGB(0.5f, 0.5f, 0.8f);
-				table.getWorldObj().markBlockForUpdate(table.xCoord, table.yCoord, table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(table));
+				this.table.setRGB(0.5f, 0.5f, 0.8f);
+				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
+				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
 			}
 			else if (button.id == this.buttonWhite.id)
 			{
-				table.setRGB(0.7f, 0.7f, 1);
-				table.getWorldObj().markBlockForUpdate(table.xCoord, table.yCoord, table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(table));
+				this.table.setRGB(0.7f, 0.7f, 1);
+				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
+				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
 			}
 			else if (button.id == this.buttonOffsetUp.id)
 			{
-				table.setOffset(table.getOffset() - 1);
-				table.getWorldObj().markBlockForUpdate(table.xCoord, table.yCoord, table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(table));
+				this.table.setOffset(this.table.getOffset() - 1);
+				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
+				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
 			}
 			else if (button.id == this.buttonOffsetDown.id)
 			{
-				table.setOffset(table.getOffset() + 1);
-				table.getWorldObj().markBlockForUpdate(table.xCoord, table.yCoord, table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(table));
+				this.table.setOffset(this.table.getOffset() + 1);
+				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
+				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
 			}
 			else if (button.id == this.buttonRefresh.id)
-			{
-				table.setupMap();
-			}
+				this.table.setupMap();
 	}
 
 	/**
@@ -93,11 +91,9 @@ public class GuiHoloTable extends GuiScreen
 
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
-		int dy = y - 80;
-
-		this.drawString(this.mc.fontRenderer, "Holo Color", x - 77 + lColumn, y - 45, GlPalette.WHITE);
-		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x + 30 + rColumn, y - 45, GlPalette.WHITE);
-		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(table.getOffset()), x + 63 + rColumn, y - 24, GlPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Holo Color", x - 77 + this.lColumn, y - 45, GlPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x + 30 + this.rColumn, y - 45, GlPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(this.table.getOffset()), x + 63 + this.rColumn, y - 24, GlPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
@@ -112,19 +108,19 @@ public class GuiHoloTable extends GuiScreen
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 
-		this.buttonBlack = new GuiButton(0, x - 73 + lColumn, y - 30, 40, 20, "Dark");
+		this.buttonBlack = new GuiButton(0, x - 73 + this.lColumn, y - 30, 40, 20, "Dark");
 		this.buttonList.add(this.buttonBlack);
 
-		this.buttonWhite = new GuiButton(1, x - 73 + lColumn, y - 8, 40, 20, "Light");
+		this.buttonWhite = new GuiButton(1, x - 73 + this.lColumn, y - 8, 40, 20, "Light");
 		this.buttonList.add(this.buttonWhite);
 
-		this.buttonOffsetUp = new GuiButton(2, x + 30 + rColumn, y - 30, 20, 20, "<");
+		this.buttonOffsetUp = new GuiButton(2, x + 30 + this.rColumn, y - 30, 20, 20, "<");
 		this.buttonList.add(this.buttonOffsetUp);
 
-		this.buttonOffsetDown = new GuiButton(3, x + 77 + rColumn, y - 30, 20, 20, ">");
+		this.buttonOffsetDown = new GuiButton(3, x + 77 + this.rColumn, y - 30, 20, 20, ">");
 		this.buttonList.add(this.buttonOffsetDown);
 
-		this.buttonRefresh = new GuiButton(4, x + 30 + rColumn, y - 8, 68, 20, "Refresh");
+		this.buttonRefresh = new GuiButton(4, x + 30 + this.rColumn, y - 8, 68, 20, "Refresh");
 		this.buttonList.add(this.buttonRefresh);
 		/*
 		 * if (keyCode == 1) { this.mc.displayGuiScreen((GuiScreen)null);

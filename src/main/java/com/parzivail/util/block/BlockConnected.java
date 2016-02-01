@@ -301,16 +301,16 @@ public class BlockConnected extends Block
 	/**
 	 * This is checked to see if the texture should connect to this block
 	 *
-	 * @name par2
+	 * @param par2
 	 *            x
-	 * @name par3
+	 * @param par3
 	 *            y
-	 * @name par4
+	 * @param par4
 	 *            z
-	 * @name par5
+	 * @param par5
 	 *            ID this block is asking to connect to (may be 0 if there is no
 	 *            block)
-	 * @name par6
+	 * @param par6
 	 *            Metadata of the block this block is trying to connect to
 	 * @return true if should connect
 	 */

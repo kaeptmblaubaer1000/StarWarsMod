@@ -53,7 +53,6 @@ public class MessageTransmute extends Message<MessageTransmute>
 		}
 
 		if (this.level > 1)
-		{
 			if (block == Blocks.sand)
 			{
 				ret = Blocks.clay;
@@ -64,10 +63,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.melon_block;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 2)
-		{
 			if (block == Blocks.cobblestone)
 			{
 				ret = Blocks.mossy_cobblestone;
@@ -78,10 +75,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.sand;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 3)
-		{
 			if (block == Blocks.ice)
 			{
 				ret = Blocks.snow;
@@ -92,10 +87,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.nether_brick;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 4)
-		{
 			if (block == Blocks.snow)
 			{
 				ret = Blocks.ice;
@@ -106,23 +99,17 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.brick_block;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 5)
-		{
 			if (block == Blocks.grass)
 			{
 				ret = Blocks.mycelium;
 				metadata = 0;
 			}
 			else if (block == Blocks.fence)
-			{
 				ret = Blocks.nether_brick_fence;
-			}
-		}
 
 		if (this.level > 6)
-		{
 			if (block == Blocks.redstone_block)
 			{
 				ret = Blocks.tnt;
@@ -133,10 +120,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.cake;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 7)
-		{
 			if (block == Blocks.tnt)
 			{
 				ret = Blocks.redstone_block;
@@ -147,10 +132,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.jukebox;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 8)
-		{
 			if (block == Blocks.web)
 			{
 				ret = Blocks.wool;
@@ -161,10 +144,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.lapis_ore;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 9)
-		{
 			if (block == Blocks.quartz_ore)
 			{
 				ret = Blocks.quartz_block;
@@ -175,10 +156,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.gold_ore;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 10)
-		{
 			if (block == Blocks.gold_ore)
 			{
 				ret = StarWarsMod.blockTitaniumOre;
@@ -189,10 +168,8 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.diamond_ore;
 				metadata = 0;
 			}
-		}
 
 		if (this.level > 11)
-		{
 			if (block == Blocks.diamond_ore)
 			{
 				ret = Blocks.emerald_ore;
@@ -208,7 +185,6 @@ public class MessageTransmute extends Message<MessageTransmute>
 				ret = Blocks.end_stone;
 				metadata = 0;
 			}
-		}
 
 		MinecraftServer.getServer().worldServerForDimension(this.dim).setBlock(this.x, this.y, this.z, ret);
 		MinecraftServer.getServer().worldServerForDimension(this.dim).setBlockMetadataWithNotify(this.x, this.y, this.z, metadata, 4);

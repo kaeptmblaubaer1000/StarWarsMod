@@ -260,7 +260,7 @@ public class GuiVehicle
 					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
 					GL11.glPopMatrix();
 
-					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)((1 - (awing.move / awing.moveModifier)) * 14));
+					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)((1 - awing.move / awing.moveModifier) * 14));
 					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
 
 					ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
@@ -351,7 +351,7 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(Resources.tieBackOverlay);
 
-					ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)((1 - (tie.move / tie.moveModifier)) * 37));
+					ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)((1 - tie.move / tie.moveModifier) * 37));
 
 					for (Entity p : tie.nearby)
 					{
@@ -434,14 +434,14 @@ public class GuiVehicle
 
 					/*
 					 * if (tie.getTargetLock()) color = GlPalette.ORANGE;
-					 *
+					 * 
 					 * if (e instanceof VehicleAirBase && e.riddenByEntity
 					 * instanceof EntityPlayer) {
 					 * StarWarsMod.network.sendToServer(new
 					 * PacketShipTargetLock(e.riddenByEntity.
 					 * getCommandSenderName(), true,
 					 * e.worldObj.provider.dimensionId)); this.lastTarget = e; }
-					 *
+					 * 
 					 * if (e == null && this.lastTarget instanceof
 					 * VehicleAirBase && this.lastTarget.riddenByEntity
 					 * instanceof EntityPlayer) {
@@ -450,7 +450,7 @@ public class GuiVehicle
 					 * getCommandSenderName(), false,
 					 * this.lastTarget.worldObj.provider.dimensionId));
 					 * this.lastTarget = e; }
-					 *
+					 * 
 					 * if (e != null) { color = GlPalette.ELECTRIC_LIME;
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
 					 * centerY - 5, 3, 180, 2, color);
@@ -458,22 +458,22 @@ public class GuiVehicle
 					 * centerY + 5, 3, 45, 2, color);
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 5,
 					 * centerY + 5, 3, 315, 2, color);
-					 *
+					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 20, centerY - 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 10, centerY - 20, 2, color);
-					 *
+					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 20, centerY - 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 10, centerY - 20, 2, color);
-					 *
+					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 20, centerY + 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 10, centerY + 20, 2, color);
-					 *
+					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
 					 * 20, centerX + 20, centerY + 10, 2, color);
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +

@@ -452,20 +452,20 @@ public class StarWarsMod
 		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
 		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 
-		registerMessage(MessageEntityGrab.class);
-		registerMessage(MessageAddEffectTo.class);
-		registerMessage(MessageHoloTableUpdate.class);
-		registerMessage(MessageSetEntityTarget.class);
-		registerMessage(MessageCreateDestructionBolt.class);
-		registerMessage(MessageEntityAlterMotion.class);
-		registerMessage(MessageHyperdrive.class);
-		registerMessage(MessageEntityHurt.class);
-		registerMessage(MessageTransmute.class);
-		registerMessage(MessageEntityReverse.class);
-		registerMessage(MessageRobesBooleanNBT.class);
-		registerMessage(MessageRobesIntNBT.class);
-		registerMessage(MessageRobesStringNBT.class);
-		registerMessage(MessageSFoil.class);
+		this.registerMessage(MessageEntityGrab.class);
+		this.registerMessage(MessageAddEffectTo.class);
+		this.registerMessage(MessageHoloTableUpdate.class);
+		this.registerMessage(MessageSetEntityTarget.class);
+		this.registerMessage(MessageCreateDestructionBolt.class);
+		this.registerMessage(MessageEntityAlterMotion.class);
+		this.registerMessage(MessageHyperdrive.class);
+		this.registerMessage(MessageEntityHurt.class);
+		this.registerMessage(MessageTransmute.class);
+		this.registerMessage(MessageEntityReverse.class);
+		this.registerMessage(MessageRobesBooleanNBT.class);
+		this.registerMessage(MessageRobesIntNBT.class);
+		this.registerMessage(MessageRobesStringNBT.class);
+		this.registerMessage(MessageSFoil.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 

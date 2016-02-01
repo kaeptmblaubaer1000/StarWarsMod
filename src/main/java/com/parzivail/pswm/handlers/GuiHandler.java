@@ -1,5 +1,8 @@
 package com.parzivail.pswm.handlers;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.rendering.gui.ContainerClient;
 import com.parzivail.pswm.rendering.gui.ContainerHoloTable;
@@ -12,8 +15,6 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {

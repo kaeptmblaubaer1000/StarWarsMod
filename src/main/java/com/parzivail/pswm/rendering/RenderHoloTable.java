@@ -27,7 +27,6 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 		TileEntityHoloTableBase table = (TileEntityHoloTableBase)te;
 
 		for (Object e : te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(table.getSideLength() / 2 - 6, table.getSideLength() / 2 - 2, table.getSideLength() / 2 - 6)))
-		{
 			if (e instanceof Entity)
 			{
 				if (e == StarWarsMod.mc.thePlayer)
@@ -39,21 +38,20 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				float dx = (float)(te.xCoord - entity.posX) / -16f;
 				float dy = (float)(te.yCoord - entity.posY) / -16f;
 				float dz = (float)(te.zCoord - entity.posZ) / -16f;
-				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.04f + dy + (table.getOffset() / 16f), te.zCoord + 0.5f + dz);
+				GL11.glTranslatef(te.xCoord + 0.5f + dx, te.yCoord + 1.04f + dy + table.getOffset() / 16f, te.zCoord + 0.5f + dz);
 				GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 				GL11.glTranslatef(-1, 0, -1);
 				GL11.glColor4f(1, 1, 1, 1);
 				RenderHelper.renderEntity(entity);
 				GL11.glPopMatrix();
 			}
-		}
 
 		if (table.isMapSetup())
 		{
 			GL11.glPushMatrix();
 			Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
 			GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
-			GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 0.001f + (table.getOffset() / 16f), te.zCoord + 0.5f);
+			GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 0.001f + table.getOffset() / 16f, te.zCoord + 0.5f);
 			GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
 
 			GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!
@@ -76,7 +74,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				int nx = i % table.getSideLength();
 				int nz = (int)Math.floor(i / table.getSideLength());
 
-				float o = (table.getOffset() / 16f);
+				float o = table.getOffset() / 16f;
 
 				int s = table.getSideLength() / 2;
 
@@ -113,9 +111,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 			GL11.glPopMatrix();
 		}
 		else
-		{
 			table.setupMap();
-		}
 
 		GL11.glPopMatrix();
 	}
