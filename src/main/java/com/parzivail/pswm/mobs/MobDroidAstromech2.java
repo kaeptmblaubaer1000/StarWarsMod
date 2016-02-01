@@ -100,6 +100,8 @@ public class MobDroidAstromech2 extends EntityTameable
 	@Override
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
+		if (this == null || par1EntityPlayer == null)
+			return false;
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 		if (itemstack == null)
 			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
