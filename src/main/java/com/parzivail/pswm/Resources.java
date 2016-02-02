@@ -47,7 +47,7 @@ public class Resources
 
 	public static boolean IS_SEQUEL_RELEASE = true;
 
-	public static final String[] checkCompatList = { };
+	public static final String[] checkCompatList = { }; // mod IDs
 	public static final String remoteVersionLink = "https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md";
 	public static final String robesLeaderboardAddLink = "http://parzivail.com/mods/tswm/addLeaderboard.php";
 
