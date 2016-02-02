@@ -361,7 +361,7 @@ public class StarWarsMod
 		pos = versionString.indexOf('.', pos + 1);
 		double version = Double.parseDouble(versionString.substring(0, pos));
 		if (version < 1.8)
-			throw new UserError("Parzi's Star Wars Mod only supports Java 8 and above! It is REQUIRED to function properly! You are currently using Java " + version);
+			throw new UserError("Parzi's Star Wars Mod requires Java 1.8 and above. You are currently using Java " + version);
 	}
 
 	private void checkModVersion()
