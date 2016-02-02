@@ -2,14 +2,6 @@ package com.parzivail.pswm.handlers;
 
 import java.util.Iterator;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
@@ -31,7 +23,6 @@ import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
-import com.parzivail.pswm.utils.BannedPlayerUtils;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
@@ -44,7 +35,6 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
-import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -55,18 +45,19 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
 	@SubscribeEvent
 	public void logOut(PlayerLoggedInEvent event) throws UserError
 	{
-		if (BannedPlayerUtils.isPlayerBanned(event.player.getCommandSenderName()))
-		{
-			Lumberjack.warn("This is NOT an error! Do NOT post this as a crash report. Thanks!");
-			throw new UserError(BannedPlayerUtils.getBanReason(event.player.getCommandSenderName()));
-		}
-
 		this.resetRobes(event);
 	}
 
