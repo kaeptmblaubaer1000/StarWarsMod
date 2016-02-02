@@ -347,7 +347,11 @@ public class StarWarsMod
 				m.add(mod);
 			}
 		if (flag)
-			throw new UserError("Parzi's Star Wars Mod is incompatible with the following mods: " + String.join(", ", m));
+		{
+			Lumberjack.warn("WARNING! It is known that Parzi's Star Wars Mod may be incompatible with the following mods:");
+			Lumberjack.warn("-> " + String.join(", ", m));
+			Lumberjack.warn("Please report any issues to our GitHub: https://github.com/Parzivail-Modding-Team/ParziStarWarsMod/issues");
+		}
 	}
 
 	private void checkJavaVersion() throws UserError
