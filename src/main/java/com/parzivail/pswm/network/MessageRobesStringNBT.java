@@ -1,10 +1,13 @@
 package com.parzivail.pswm.network;
 
 import net.minecraft.entity.player.EntityPlayer;
+
+import com.parzivail.util.network.PMessage;
+
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageRobesStringNBT extends Message<MessageRobesStringNBT>
+public class MessageRobesStringNBT extends PMessage<MessageRobesStringNBT>
 {
 	public EntityPlayer player;
 	public String key;

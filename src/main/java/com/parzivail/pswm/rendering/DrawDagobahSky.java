@@ -2,6 +2,11 @@ package com.parzivail.pswm.rendering;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GLAllocation;
@@ -13,13 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.IRenderHandler;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.util.world.Vector3;
-
-import cpw.mods.fml.client.FMLClientHandler;
-
 public class DrawDagobahSky extends IRenderHandler
 {
 	private static ResourceLocation sunTexture = new ResourceLocation(Resources.MODID, "textures/environment/sun.png");
@@ -29,7 +27,7 @@ public class DrawDagobahSky extends IRenderHandler
 	public static int glSkyList = starList + 1;
 	public static int glSkyList2 = starList + 2;
 	private static float lukeSize = 4.0F;
-	private static Vector3 lukeOffset = new Vector3(-75, 0, 0);
+	private static Vec3 lukeOffset = Vec3.createVectorHelper(-75, 0, 0);
 
 	public DrawDagobahSky()
 	{
@@ -201,20 +199,20 @@ public class DrawDagobahSky extends IRenderHandler
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, .0F);
 		f10 = lukeSize / 3.5F;
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertex(-f10 + lukeOffset.X, 99.9D + lukeOffset.Y, -f10 + lukeOffset.Z);
-		tessellator1.addVertex(f10 + lukeOffset.X, 99.9D + lukeOffset.Y, -f10 + lukeOffset.Z);
-		tessellator1.addVertex(f10 + lukeOffset.X, 99.9D + lukeOffset.Y, f10 + lukeOffset.Z);
-		tessellator1.addVertex(-f10 + lukeOffset.X, 99.9D + lukeOffset.Y, f10 + lukeOffset.Z);
+		tessellator1.addVertex(-f10 + lukeOffset.xCoord, 99.9D + lukeOffset.yCoord, -f10 + lukeOffset.zCoord);
+		tessellator1.addVertex(f10 + lukeOffset.xCoord, 99.9D + lukeOffset.yCoord, -f10 + lukeOffset.zCoord);
+		tessellator1.addVertex(f10 + lukeOffset.xCoord, 99.9D + lukeOffset.yCoord, f10 + lukeOffset.zCoord);
+		tessellator1.addVertex(-f10 + lukeOffset.xCoord, 99.9D + lukeOffset.yCoord, f10 + lukeOffset.zCoord);
 		tessellator1.draw();
 		GL11.glEnable(3553);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		f10 = lukeSize;
 		mc.renderEngine.bindTexture(lukeTexture);
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertexWithUV(-f10 + lukeOffset.X, 100.0D + lukeOffset.Y, -f10 + lukeOffset.Z, 0.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + lukeOffset.X, 100.0D + lukeOffset.Y, -f10 + lukeOffset.Z, 1.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + lukeOffset.X, 100.0D + lukeOffset.Y, f10 + lukeOffset.Z, 1.0D, 1.0D);
-		tessellator1.addVertexWithUV(-f10 + lukeOffset.X, 100.0D + lukeOffset.Y, f10 + lukeOffset.Z, 0.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + lukeOffset.xCoord, 100.0D + lukeOffset.yCoord, -f10 + lukeOffset.zCoord, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + lukeOffset.xCoord, 100.0D + lukeOffset.yCoord, -f10 + lukeOffset.zCoord, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + lukeOffset.xCoord, 100.0D + lukeOffset.yCoord, f10 + lukeOffset.zCoord, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + lukeOffset.xCoord, 100.0D + lukeOffset.yCoord, f10 + lukeOffset.zCoord, 0.0D, 1.0D);
 		tessellator1.draw();
 		GL11.glDisable(3553);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

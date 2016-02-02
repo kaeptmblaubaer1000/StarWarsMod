@@ -13,7 +13,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -91,9 +91,9 @@ public class GuiHoloTable extends GuiScreen
 
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
-		this.drawString(this.mc.fontRenderer, "Holo Color", x - 77 + this.lColumn, y - 45, GlPalette.WHITE);
-		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x + 30 + this.rColumn, y - 45, GlPalette.WHITE);
-		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(this.table.getOffset()), x + 63 + this.rColumn, y - 24, GlPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Holo Color", x - 77 + this.lColumn, y - 45, GLPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x + 30 + this.rColumn, y - 45, GLPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(this.table.getOffset()), x + 63 + this.rColumn, y - 24, GLPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}

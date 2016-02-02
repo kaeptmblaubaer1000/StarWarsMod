@@ -5,12 +5,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.network.PMessage;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageTransmute extends Message<MessageTransmute>
+public class MessageTransmute extends PMessage<MessageTransmute>
 {
 	public int level;
 	public int dim;

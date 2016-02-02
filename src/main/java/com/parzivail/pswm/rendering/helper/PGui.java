@@ -25,7 +25,7 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.minimap.MinimapStore;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.relauncher.ReflectionHelper;
@@ -132,7 +132,7 @@ public class PGui// extends Gui
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GlPalette.glColorI(color);
+		GLPalette.glColorI(color);
 		GL11.glBlendFunc(770, 771);
 		GL11.glLineWidth(2);
 
@@ -648,7 +648,7 @@ public class PGui// extends Gui
 			}
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
-		this.drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GlPalette.BLACK);
+		this.drawHollowTriangle((max - min) * size / 2, (max - min) * size / 2, 4, center.rotationYaw + 180, 2, GLPalette.BLACK);
 
 		// to use:
 		// GL11.glPushMatrix();

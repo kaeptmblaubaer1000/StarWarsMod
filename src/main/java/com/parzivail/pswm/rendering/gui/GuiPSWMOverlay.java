@@ -21,7 +21,7 @@ import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
@@ -75,7 +75,7 @@ public class GuiPSWMOverlay extends Gui
 			int maxxp = ArmorJediRobes.getMaxXP(robes);
 
 			boolean isJedi = ArmorJediRobes.getSide(robes).equals(ArmorJediRobes.SIDE_JEDI);
-			int guiColor = isJedi ? GlPalette.GREEN_APPLE : GlPalette.RED_ORANGE;
+			int guiColor = isJedi ? GLPalette.GREEN_APPLE : GLPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
 			ClientEventHandler.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
@@ -94,14 +94,14 @@ public class GuiPSWMOverlay extends Gui
 			{
 				Power cooling = coolingIt.next();
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
-				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GlPalette.WHITE);
+				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GLPalette.WHITE);
 				y -= 22;
 			}
 
 			for (EntityCooldownEntry entry : ForceUtils.entitiesWithEffects)
 			{
-				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GlPalette.ANALOG_BLUE);
-				this.drawString(this.mc.fontRenderer, entry.entity.getCommandSenderName() + " (" + entry.effect + "): " + (int)Math.ceil(entry.cooldownLeft / 40f) + "s", 30, y - 3, GlPalette.WHITE);
+				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GLPalette.ANALOG_BLUE);
+				this.drawString(this.mc.fontRenderer, entry.entity.getCommandSenderName() + " (" + entry.effect + "): " + (int)Math.ceil(entry.cooldownLeft / 40f) + "s", 30, y - 3, GLPalette.WHITE);
 				y -= 22;
 			}
 

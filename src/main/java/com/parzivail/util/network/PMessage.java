@@ -1,4 +1,4 @@
-package com.parzivail.pswm.network;
+package com.parzivail.util.network;
 
 import io.netty.buffer.ByteBuf;
 
@@ -25,7 +25,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class Message<REQ extends Message> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
+public class PMessage<REQ extends PMessage> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
 	public static interface Reader<T extends Object>
 	{
@@ -42,23 +42,23 @@ public class Message<REQ extends Message> implements Serializable, IMessage, IMe
 
 	static
 	{
-		map(byte.class, Message::readByte, Message::writeByte);
-		map(short.class, Message::readShort, Message::writeShort);
-		map(int.class, Message::readInt, Message::writeInt);
-		map(long.class, Message::readLong, Message::writeLong);
-		map(float.class, Message::readFloat, Message::writeFloat);
-		map(double.class, Message::readDouble, Message::writeDouble);
-		map(boolean.class, Message::readBoolean, Message::writeBoolean);
-		map(char.class, Message::readChar, Message::writeChar);
-		map(String.class, Message::readString, Message::writeString);
-		map(NBTTagCompound.class, Message::readNBT, Message::writeNBT);
-		map(ItemStack.class, Message::readItemStack, Message::writeItemStack);
+		map(byte.class, PMessage::readByte, PMessage::writeByte);
+		map(short.class, PMessage::readShort, PMessage::writeShort);
+		map(int.class, PMessage::readInt, PMessage::writeInt);
+		map(long.class, PMessage::readLong, PMessage::writeLong);
+		map(float.class, PMessage::readFloat, PMessage::writeFloat);
+		map(double.class, PMessage::readDouble, PMessage::writeDouble);
+		map(boolean.class, PMessage::readBoolean, PMessage::writeBoolean);
+		map(char.class, PMessage::readChar, PMessage::writeChar);
+		map(String.class, PMessage::readString, PMessage::writeString);
+		map(NBTTagCompound.class, PMessage::readNBT, PMessage::writeNBT);
+		map(ItemStack.class, PMessage::readItemStack, PMessage::writeItemStack);
 
-		map(EntityPlayer.class, Message::readPlayer, Message::writePlayer);
-		map(Entity.class, Message::readEntity, Message::writeEntity);
-		map(Vec3.class, Message::readVec3, Message::writeVec3);
-		map(EntityCooldownEntry.class, Message::readEntityCooldownEntry, Message::writeEntityCooldownEntry);
-		map(Color.class, Message::readColor, Message::writeColor);
+		map(EntityPlayer.class, PMessage::readPlayer, PMessage::writePlayer);
+		map(Entity.class, PMessage::readEntity, PMessage::writeEntity);
+		map(Vec3.class, PMessage::readVec3, PMessage::writeVec3);
+		map(EntityCooldownEntry.class, PMessage::readEntityCooldownEntry, PMessage::writeEntityCooldownEntry);
+		map(Color.class, PMessage::readColor, PMessage::writeColor);
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)

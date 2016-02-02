@@ -4,11 +4,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
 import com.parzivail.pswm.world.TransferDim;
+import com.parzivail.util.network.PMessage;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageHyperdrive extends Message<MessageHyperdrive>
+public class MessageHyperdrive extends PMessage<MessageHyperdrive>
 {
 	public EntityPlayer player;
 	public int destDim;

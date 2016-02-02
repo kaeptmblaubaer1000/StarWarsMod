@@ -6,11 +6,12 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
 
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
+import com.parzivail.util.network.PMessage;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
-public class MessageHoloTableUpdate extends Message<MessageHoloTableUpdate>
+public class MessageHoloTableUpdate extends PMessage<MessageHoloTableUpdate>
 {
 	public int dim;
 	public Vec3 position;

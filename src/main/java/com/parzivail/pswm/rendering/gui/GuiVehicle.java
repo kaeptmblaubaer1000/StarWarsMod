@@ -18,7 +18,7 @@ import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.entity.EntityUtils;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 
@@ -77,7 +77,7 @@ public class GuiVehicle
 					for (Entity p : xwing.nearby)
 					{
 						if (p instanceof VehicXWing || p instanceof VehicAWing)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
 						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
 						if (p instanceof EntityPlayer)
@@ -96,13 +96,13 @@ public class GuiVehicle
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { xwing });
 
-					int color = GlPalette.ANALOG_GREEN;
+					int color = GLPalette.ANALOG_GREEN;
 
 					if (e != null)
-						color = GlPalette.ANALOG_RED;
+						color = GLPalette.ANALOG_RED;
 
 					if (xwing.getTargetLock())
-						color = GlPalette.ORANGE;
+						color = GLPalette.ORANGE;
 
 					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
@@ -123,7 +123,7 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
 
-					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
+					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
 					String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
@@ -142,20 +142,20 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
 
-					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GLPalette.YELLOW, true);
 
 					if (e != null)
 					{
 						GL11.glPushMatrix();
 
 						if (e instanceof VehicXWing)
-							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
 						else if (e instanceof VehicTIE)
-							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
 						else if (e instanceof VehicTIEInterceptor)
-							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
 						else if (e instanceof VehicAWing)
-							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
 
 						GL11.glPopMatrix();
 					}
@@ -195,7 +195,7 @@ public class GuiVehicle
 					for (Entity p : awing.nearby)
 					{
 						if (p instanceof VehicXWing || p instanceof VehicAWing)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
 						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
 						if (p instanceof EntityPlayer)
@@ -216,13 +216,13 @@ public class GuiVehicle
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { awing });
 
-					int color = GlPalette.ANALOG_GREEN;
+					int color = GLPalette.ANALOG_GREEN;
 
 					if (e != null)
-						color = GlPalette.ANALOG_RED;
+						color = GLPalette.ANALOG_RED;
 
 					if (awing.getTargetLock())
-						color = GlPalette.ORANGE;
+						color = GLPalette.ORANGE;
 
 					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
@@ -255,9 +255,9 @@ public class GuiVehicle
 
 					GL11.glPushMatrix();
 					GL11.glScalef(0.6f, 0.6f, 0.6f);
-					FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) - 9, GlPalette.YELLOW, true);
-					FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f), GlPalette.YELLOW, true);
-					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GlPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) - 9, GLPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f), GLPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GLPalette.YELLOW, true);
 					GL11.glPopMatrix();
 
 					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)((1 - awing.move / awing.moveModifier) * 14));
@@ -265,7 +265,7 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
 
-					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
+					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
@@ -284,7 +284,7 @@ public class GuiVehicle
 
 					GL11.glPushMatrix();
 					GL11.glScalef(0.5f, 0.5f, 0.5f);
-					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX * 2, (int)textCenterY * 2, GlPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX * 2, (int)textCenterY * 2, GLPalette.YELLOW, true);
 					GL11.glPopMatrix();
 
 					if (e != null)
@@ -297,13 +297,13 @@ public class GuiVehicle
 							((VehicleAirBase)e).setTargetLock(true);
 
 						if (e instanceof VehicXWing)
-							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0012f * scale);
+							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
 						else if (e instanceof VehicTIE)
-							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
+							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.00085f * scale);
 						else if (e instanceof VehicTIEInterceptor)
-							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.00085f * scale);
+							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.00085f * scale);
 						else if (e instanceof VehicAWing)
-							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GlPalette.ANALOG_GREEN, 0.0009f * scale);
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0009f * scale);
 
 						GL11.glPopMatrix();
 					}
@@ -358,7 +358,7 @@ public class GuiVehicle
 						if (p instanceof VehicXWing || p instanceof VehicAWing)
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
 						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GlPalette.ANALOG_GREEN);
+							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
 						if (p instanceof EntityPlayer)
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
@@ -376,15 +376,15 @@ public class GuiVehicle
 					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(tie.dimension), 0, 0);
 
 					if (tie.getHealth() >= 20)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GlPalette.GREEN_APPLE);
+						ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GLPalette.GREEN_APPLE);
 					if (tie.getHealth() >= 16)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GlPalette.YELLOW_GREEN);
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GLPalette.YELLOW_GREEN);
 					if (tie.getHealth() >= 8)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GlPalette.ORANGE);
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GLPalette.ORANGE);
 					if (tie.getHealth() >= 4)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GlPalette.RED_ORANGE);
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GLPalette.RED_ORANGE);
 					if (tie.getHealth() >= 0)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GlPalette.RED);
+						ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GLPalette.RED);
 
 					if (randomCharNextTime <= System.currentTimeMillis())
 					{
@@ -400,20 +400,20 @@ public class GuiVehicle
 						randomCharNextTime = System.currentTimeMillis() + 250;
 					}
 
-					FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 12, GlPalette.ANALOG_RED, true);
-					FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 4, GlPalette.ANALOG_RED, true);
-					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 4, GlPalette.ANALOG_RED, true);
-					FontManager.aurebesh.drawString(this.randomChar4, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 12, GlPalette.ANALOG_RED, true);
+					FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 12, GLPalette.ANALOG_RED, true);
+					FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) - 4, GLPalette.ANALOG_RED, true);
+					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 4, GLPalette.ANALOG_RED, true);
+					FontManager.aurebesh.drawString(this.randomChar4, (int)((arbiCenterX + arbiCenterMaxX) / 2f), (int)((arbiCenterY + arbiCenterMaxY) / 2f) + 12, GLPalette.ANALOG_RED, true);
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { tie });
 
-					int color = GlPalette.ELECTRIC_BLUE;
+					int color = GLPalette.ELECTRIC_BLUE;
 
 					if (e != null)
-						color = GlPalette.ANALOG_GREEN;
+						color = GLPalette.ANALOG_GREEN;
 
 					if (tie.getTargetLock())
-						color = GlPalette.ORANGE;
+						color = GLPalette.ORANGE;
 
 					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
@@ -488,7 +488,7 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(Resources.tieOverlay);
 
-					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GlPalette.ANALOG_GREEN);
+					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
@@ -522,13 +522,13 @@ public class GuiVehicle
 							((VehicleAirBase)e).setTargetLock(true);
 
 						if (e instanceof VehicXWing)
-							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
+							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GLPalette.ANALOG_GREEN, 0.002f * scale);
 						else if (e instanceof VehicTIE)
-							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
+							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GLPalette.ANALOG_GREEN, 0.002f * scale);
 						else if (e instanceof VehicTIEInterceptor)
-							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
+							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GLPalette.ANALOG_GREEN, 0.002f * scale);
 						else if (e instanceof VehicAWing)
-							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GlPalette.ANALOG_GREEN, 0.002f * scale);
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 2, GLPalette.ANALOG_GREEN, 0.002f * scale);
 
 						GL11.glPopMatrix();
 					}

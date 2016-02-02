@@ -74,8 +74,8 @@ public class ItemCustomTest extends ItemSword
 	{
 		if (player.isSneaking() && stack.stackTagCompound != null)
 		{
-			stack.stackTagCompound.setString("blade", MathUtils.getRandomElement(Item.itemRand, this.blades));
-			stack.stackTagCompound.setString("hilt", MathUtils.getRandomElement(Item.itemRand, this.hilts));
+			stack.stackTagCompound.setString("blade", MathUtils.getRandomElement(this.blades));
+			stack.stackTagCompound.setString("hilt", MathUtils.getRandomElement(this.hilts));
 		}
 		return super.onItemRightClick(stack, world, player);
 	}

@@ -15,7 +15,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.utils.ForceUtils;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -75,16 +75,16 @@ public class GuiJediSith extends GuiScreen
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 		int dy = y - 80;
-		this.drawCenteredString(this.mc.fontRenderer, "You have a nightmare.", x, dy += 10, GlPalette.WHITE);
-		this.drawCenteredString(this.mc.fontRenderer, "A Dark Man speaks to you.", x, dy += 10, GlPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, "You have a nightmare.", x, dy += 10, GLPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, "A Dark Man speaks to you.", x, dy += 10, GLPalette.WHITE);
 		dy += 10;
-		this.drawCenteredString(this.mc.fontRenderer, "He wants to share his secrets.", x, dy += 10, GlPalette.LIGHT_RED);
-		this.drawCenteredString(this.mc.fontRenderer, "His dark knowledge.", x, dy += 10, GlPalette.RED);
+		this.drawCenteredString(this.mc.fontRenderer, "He wants to share his secrets.", x, dy += 10, GLPalette.LIGHT_RED);
+		this.drawCenteredString(this.mc.fontRenderer, "His dark knowledge.", x, dy += 10, GLPalette.RED);
 		dy += 10;
-		this.drawCenteredString(this.mc.fontRenderer, "Do you accept?", x, dy += 10, GlPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, "Do you accept?", x, dy += 10, GLPalette.WHITE);
 
-		this.drawString(this.mc.fontRenderer, "Never.", x - 73, y + 19, GlPalette.WHITE);
-		this.drawString(this.mc.fontRenderer, "Show me.", x + 38, y + 19, GlPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Never.", x - 73, y + 19, GLPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, "Show me.", x + 38, y + 19, GLPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}

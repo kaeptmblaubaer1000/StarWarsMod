@@ -39,14 +39,6 @@ public class WorldUtils
 		Lumberjack.log("Provider and World registered for " + dimId);
 	}
 
-	public static void removeSpawnBiome(BiomeGenBase biome)
-	{
-		if (WorldChunkManager.allowedBiomes.contains(biome))
-			WorldChunkManager.allowedBiomes.remove(biome);
-		if (WorldChunkManager.allowedBiomes.contains(biome))
-			WorldChunkManager.allowedBiomes.remove(biome);
-	}
-
 	public static void unregisterDimension(int dimId)
 	{
 		DimensionManager.unregisterDimension(dimId);

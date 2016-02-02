@@ -2,6 +2,11 @@ package com.parzivail.pswm.rendering;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GLAllocation;
@@ -13,13 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.IRenderHandler;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.util.world.Vector3;
-
-import cpw.mods.fml.client.FMLClientHandler;
-
 public class DrawYavinFourSky extends IRenderHandler
 {
 	private static ResourceLocation yavinPrimeTexture = new ResourceLocation(Resources.MODID, "textures/environment/yavin_prime.png");
@@ -29,7 +27,7 @@ public class DrawYavinFourSky extends IRenderHandler
 	public static int glSkyList = starList + 1;
 	public static int glSkyList2 = starList + 2;
 	private static float deathStarSize = 4.0F;
-	private static Vector3 deathStarOffset = new Vector3(-75, 0, 0);
+	private static Vec3 deathStarOffset = Vec3.createVectorHelper(-75, 0, 0);
 
 	public DrawYavinFourSky()
 	{
@@ -201,20 +199,20 @@ public class DrawYavinFourSky extends IRenderHandler
 		GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
 		f10 = deathStarSize / 3.5F;
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertex(-f10 + deathStarOffset.X, 99.9D + deathStarOffset.Y, -f10 + deathStarOffset.Z);
-		tessellator1.addVertex(f10 + deathStarOffset.X, 99.9D + deathStarOffset.Y, -f10 + deathStarOffset.Z);
-		tessellator1.addVertex(f10 + deathStarOffset.X, 99.9D + deathStarOffset.Y, f10 + deathStarOffset.Z);
-		tessellator1.addVertex(-f10 + deathStarOffset.X, 99.9D + deathStarOffset.Y, f10 + deathStarOffset.Z);
+		tessellator1.addVertex(-f10 + deathStarOffset.xCoord, 99.9D + deathStarOffset.yCoord, -f10 + deathStarOffset.zCoord);
+		tessellator1.addVertex(f10 + deathStarOffset.xCoord, 99.9D + deathStarOffset.yCoord, -f10 + deathStarOffset.zCoord);
+		tessellator1.addVertex(f10 + deathStarOffset.xCoord, 99.9D + deathStarOffset.yCoord, f10 + deathStarOffset.zCoord);
+		tessellator1.addVertex(-f10 + deathStarOffset.xCoord, 99.9D + deathStarOffset.yCoord, f10 + deathStarOffset.zCoord);
 		tessellator1.draw();
 		GL11.glEnable(3553);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		f10 = deathStarSize;
 		mc.renderEngine.bindTexture(deathStarTexture);
 		tessellator1.startDrawingQuads();
-		tessellator1.addVertexWithUV(-f10 + deathStarOffset.X, 100.0D + deathStarOffset.Y, -f10 + deathStarOffset.Z, 0.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + deathStarOffset.X, 100.0D + deathStarOffset.Y, -f10 + deathStarOffset.Z, 1.0D, 0.0D);
-		tessellator1.addVertexWithUV(f10 + deathStarOffset.X, 100.0D + deathStarOffset.Y, f10 + deathStarOffset.Z, 1.0D, 1.0D);
-		tessellator1.addVertexWithUV(-f10 + deathStarOffset.X, 100.0D + deathStarOffset.Y, f10 + deathStarOffset.Z, 0.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + deathStarOffset.xCoord, 100.0D + deathStarOffset.yCoord, -f10 + deathStarOffset.zCoord, 0.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + deathStarOffset.xCoord, 100.0D + deathStarOffset.yCoord, -f10 + deathStarOffset.zCoord, 1.0D, 0.0D);
+		tessellator1.addVertexWithUV(f10 + deathStarOffset.xCoord, 100.0D + deathStarOffset.yCoord, f10 + deathStarOffset.zCoord, 1.0D, 1.0D);
+		tessellator1.addVertexWithUV(-f10 + deathStarOffset.xCoord, 100.0D + deathStarOffset.yCoord, f10 + deathStarOffset.zCoord, 0.0D, 1.0D);
 		tessellator1.draw();
 		GL11.glDisable(3553);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

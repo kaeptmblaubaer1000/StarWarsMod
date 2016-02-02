@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.rendering.helper.PGui;
 
-public class GlPalette
+public class GLPalette
 {
 	public static int TRANSPARENT = PGui.getRGBA(0, 0, 0, 0);
 

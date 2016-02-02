@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ModelBlasterBolt;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 
 public class RenderBlasterBolt extends Render
 {
@@ -62,7 +62,7 @@ public class RenderBlasterBolt extends Render
 		GL11.glRotatef(entity.rotationPitch, -(float)Math.cos(Math.toRadians(entity.rotationYaw)), 0, (float)Math.sin(Math.toRadians(entity.rotationYaw)));
 		GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
 		this.bindEntityTexture(entity);
-		GlPalette.glColorI(this.color);
+		GLPalette.glColorI(this.color);
 		GL11.glScalef(this.scale, this.scale, this.scale);
 
 		GL11.glPushAttrib(GL11.GL_LIGHTING_BIT);

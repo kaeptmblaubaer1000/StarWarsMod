@@ -9,7 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 
 public class MinimapWorld
 {
@@ -37,74 +37,74 @@ public class MinimapWorld
 	private int getColorForMaterial(Block block)
 	{
 		if (block == Blocks.water || block == Blocks.flowing_water)
-			return GlPalette.ANALOG_BLUE;
+			return GLPalette.ANALOG_BLUE;
 		else if (block == Blocks.leaves)
-			return GlPalette.DARK_GREEN;
+			return GLPalette.DARK_GREEN;
 		Material m = block.getMaterial();
 		if (m == Material.air)
-			return GlPalette.STEEL_GREY;
+			return GLPalette.STEEL_GREY;
 		else if (m == Material.anvil)
-			return GlPalette.STEEL_GREY;
+			return GLPalette.STEEL_GREY;
 		else if (m == Material.cactus)
-			return GlPalette.GREEN;
+			return GLPalette.GREEN;
 		else if (m == Material.cake)
-			return GlPalette.LIGHT_PINK;
+			return GLPalette.LIGHT_PINK;
 		else if (m == Material.carpet)
-			return GlPalette.YELLOW;
+			return GLPalette.YELLOW;
 		else if (m == Material.circuits)
-			return GlPalette.ROSE_RED;
+			return GLPalette.ROSE_RED;
 		else if (m == Material.clay)
-			return GlPalette.CLAY;
+			return GLPalette.CLAY;
 		else if (m == Material.cloth)
-			return GlPalette.OFF_WHITE;
+			return GLPalette.OFF_WHITE;
 		else if (m == Material.coral)
-			return GlPalette.CORAL;
+			return GLPalette.CORAL;
 		else if (m == Material.craftedSnow)
-			return GlPalette.WHITE;
+			return GLPalette.WHITE;
 		else if (m == Material.dragonEgg)
-			return GlPalette.DEEP_PURPLE;
+			return GLPalette.DEEP_PURPLE;
 		else if (m == Material.fire)
-			return GlPalette.RED_ORANGE;
+			return GLPalette.RED_ORANGE;
 		else if (m == Material.glass)
-			return GlPalette.LIGHT_GREY;
+			return GLPalette.LIGHT_GREY;
 		else if (m == Material.ground)
-			return GlPalette.GRASS_GREEN;
+			return GLPalette.GRASS_GREEN;
 		else if (m == Material.ice)
-			return GlPalette.ICE;
+			return GLPalette.ICE;
 		else if (m == Material.iron)
-			return GlPalette.STEEL;
+			return GLPalette.STEEL;
 		else if (m == Material.lava)
-			return GlPalette.RED_ORANGE;
+			return GLPalette.RED_ORANGE;
 		else if (m == Material.leaves)
-			return GlPalette.GREEN_APPLE;
+			return GLPalette.GREEN_APPLE;
 		else if (m == Material.packedIce)
-			return GlPalette.ICE_BLUE;
+			return GLPalette.ICE_BLUE;
 		else if (m == Material.piston)
-			return GlPalette.TAN_BROWN;
+			return GLPalette.TAN_BROWN;
 		else if (m == Material.plants)
-			return GlPalette.LEAF_GREEN;
+			return GLPalette.LEAF_GREEN;
 		else if (m == Material.portal)
-			return GlPalette.PURPLE_PINK;
+			return GLPalette.PURPLE_PINK;
 		else if (m == Material.redstoneLight)
-			return GlPalette.ROSE_RED;
+			return GLPalette.ROSE_RED;
 		else if (m == Material.rock)
-			return GlPalette.STONE;
+			return GLPalette.STONE;
 		else if (m == Material.sand)
-			return GlPalette.LIGHT_TAN;
+			return GLPalette.LIGHT_TAN;
 		else if (m == Material.snow)
-			return GlPalette.WHITE;
+			return GLPalette.WHITE;
 		else if (m == Material.sponge)
-			return GlPalette.YELLOW_TAN;
+			return GLPalette.YELLOW_TAN;
 		else if (m == Material.tnt)
-			return GlPalette.RED_ORANGE;
+			return GLPalette.RED_ORANGE;
 		else if (m == Material.vine)
-			return GlPalette.LEAF_GREEN;
+			return GLPalette.LEAF_GREEN;
 		else if (m == Material.water)
-			return GlPalette.WATER_BLUE;
+			return GLPalette.WATER_BLUE;
 		else if (m == Material.web)
-			return GlPalette.WHITE;
+			return GLPalette.WHITE;
 		else if (m == Material.wood)
-			return GlPalette.TAN;
-		return GlPalette.GREEN;
+			return GLPalette.TAN;
+		return GLPalette.GREEN;
 	}
 }

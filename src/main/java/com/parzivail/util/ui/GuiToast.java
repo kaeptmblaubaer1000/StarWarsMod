@@ -165,7 +165,7 @@ public class GuiToast extends Gui
 		GL11.glEnable(3042);
 
 		for (int i = 0; i < this.text.length; i++)
-			fontRenderer.drawStringWithShadow(this.text[i], x + 4, y + i * (fontRenderer.FONT_HEIGHT + 1) + 4, GlPalette.WHITE);
+			fontRenderer.drawStringWithShadow(this.text[i], x + 4, y + i * (fontRenderer.FONT_HEIGHT + 1) + 4, GLPalette.WHITE);
 
 		Minecraft.getMinecraft().renderEngine.bindTexture(Gui.icons);
 		GL11.glPopMatrix();

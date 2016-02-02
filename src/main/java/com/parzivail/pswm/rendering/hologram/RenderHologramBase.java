@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 
 public class RenderHologramBase extends RenderLiving
 {
@@ -33,7 +33,7 @@ public class RenderHologramBase extends RenderLiving
 	{
 		this.mainModel = this.setRotations(this.model, entity, f);
 
-		GlPalette.glColorI(GlPalette.AQUA_BLUE);
+		GLPalette.glColorI(GLPalette.AQUA_BLUE);
 
 		if (this.doesSpin)
 			GL11.glRotatef(System.currentTimeMillis() / 100 % 359, 0, 1, 0);

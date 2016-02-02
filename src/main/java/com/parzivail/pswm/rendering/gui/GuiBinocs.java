@@ -12,7 +12,7 @@ import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsTatooine;
 import com.parzivail.util.entity.EntityUtils;
-import com.parzivail.util.ui.GlPalette;
+import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 
 public class GuiBinocs
@@ -60,7 +60,7 @@ public class GuiBinocs
 						lookStringNextTime = System.currentTimeMillis() + 50;
 					}
 
-					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GlPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GLPalette.YELLOW, true);
 				}
 			}
 		}
