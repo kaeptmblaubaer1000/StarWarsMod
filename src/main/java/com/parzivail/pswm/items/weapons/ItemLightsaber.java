@@ -100,6 +100,11 @@ public class ItemLightsaber extends ItemSword
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
+		if (stack.stackTagCompound == null)
+		{
+			stack.stackTagCompound = new NBTTagCompound();
+			stack.stackTagCompound.setInteger("timeout", 10);
+		}
 		if (!stack.stackTagCompound.hasKey("timeout"))
 			stack.stackTagCompound.setInteger("timeout", 10);
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)

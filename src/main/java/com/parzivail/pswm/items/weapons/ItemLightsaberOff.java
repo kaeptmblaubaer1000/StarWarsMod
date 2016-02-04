@@ -24,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemLightsaberOff extends Item
 {
 	public String name = "lightsaberOff";
-	private String[] colors = { "red", "green", "blue"/* , "redKyloRen" */};
+	private String[] colors = { "red", "green", "blue"/* , "redKyloRen" */ };
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
@@ -65,6 +65,11 @@ public class ItemLightsaberOff extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
+		if (stack.stackTagCompound == null)
+		{
+			stack.stackTagCompound = new NBTTagCompound();
+			stack.stackTagCompound.setInteger("timeout", 10);
+		}
 		if (!stack.stackTagCompound.hasKey("timeout"))
 			stack.stackTagCompound.setInteger("timeout", 10);
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
