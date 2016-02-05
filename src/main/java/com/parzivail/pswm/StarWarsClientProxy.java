@@ -148,6 +148,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		{
 			Resources.IS_DEV_ENVIRONVENT = true;
 			Lumberjack.info("Debug/Beta mechanics implemented!");
+			Lumberjack.info("Please be warned, beta features may not be fully implemented, or may crash!");
 		}
 
 		KeybindRegistry.registerAll();
