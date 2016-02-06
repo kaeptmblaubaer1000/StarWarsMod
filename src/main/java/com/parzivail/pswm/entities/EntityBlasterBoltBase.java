@@ -152,6 +152,12 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
+		if (this.sender == null || this.worldObj == null)
+		{
+			this.setDead();
+			return;
+		}
+
 		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
 		{
 			pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
