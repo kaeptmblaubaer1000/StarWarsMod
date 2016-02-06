@@ -71,6 +71,7 @@ public class WeaponSwivelBase extends EntityLiving
 	{
 		super.onUpdate();
 		this.moveEntityWithHeading(0.0F, 0.0F);
+		this.setRotation(0, 0);
 	}
 
 	@Override
