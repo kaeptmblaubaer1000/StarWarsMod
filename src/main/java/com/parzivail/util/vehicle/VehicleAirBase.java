@@ -15,8 +15,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-import com.parzivail.util.ui.Lumberjack;
-
 public class VehicleAirBase extends VehicleBase
 {
 	public static int TGTLOCK_DW = 14;
@@ -124,9 +122,6 @@ public class VehicleAirBase extends VehicleBase
 
 			if (this.move > this.moveModifier)
 				this.move = this.moveModifier;
-
-			if (this.move > 0)
-				Lumberjack.log(this.move);
 
 			forward = this.move / 8.0F * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
 
