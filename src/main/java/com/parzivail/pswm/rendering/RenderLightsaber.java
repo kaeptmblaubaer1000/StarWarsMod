@@ -1,8 +1,8 @@
 package com.parzivail.pswm.rendering;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
@@ -82,7 +82,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glScalef(0.055F, -0.055F, 0.055F);
 				GL11.glRotatef(-40, 0, 1, 0);
 				GL11.glRotatef(22, 0, 0, 1);
-				if (((EntityClientPlayerMP)data[1]).isBlocking())
+				if (((EntityPlayer)data[1]).isBlocking())
 				{
 					GL11.glRotatef(30, 0, 1, 0);
 					GL11.glTranslatef(-5, 0, 8);
@@ -99,7 +99,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glTranslatef(8, -23, 9);
 				GL11.glRotatef(90, 0, 0, 1);
 				GL11.glRotatef(20, 1, 0, 0);
-				if (((EntityClientPlayerMP)data[1]).isBlocking())
+				if (((EntityPlayer)data[1]).isBlocking())
 				{
 					GL11.glRotatef(-30, 0, 0, 1);
 					GL11.glRotatef(90, 1, 0, 0);
@@ -155,7 +155,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 20, StarWarsMod.rngGeneral.nextGaussian() / 10, StarWarsMod.rngGeneral.nextGaussian() / 20);
 				GL11.glRotatef(-40, 0, 1, 0);
 				GL11.glRotatef(22, 0, 0, 1);
-				if (((EntityClientPlayerMP)data[1]).isBlocking())
+				if (((EntityPlayer)data[1]).isBlocking())
 				{
 					GL11.glRotatef(30, 0, 1, 0);
 					GL11.glTranslatef(-4, 0, 8);
@@ -173,7 +173,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glTranslatef(8, -23, 9);
 				GL11.glRotatef(90, 0, 0, 1);
 				GL11.glRotatef(20, 1, 0, 0);
-				if (((EntityClientPlayerMP)data[1]).isBlocking())
+				if (((EntityPlayer)data[1]).isBlocking())
 				{
 					GL11.glRotatef(-30, 0, 0, 1);
 					GL11.glRotatef(90, 1, 0, 0);
