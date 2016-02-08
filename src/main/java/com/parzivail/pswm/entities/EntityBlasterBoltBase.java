@@ -119,24 +119,6 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	}
 
 	@Override
-	public void onCollideWithPlayer(EntityPlayer player)
-	{
-		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
-		{
-			ItemStack stack = player.inventory.armorItemInSlot(2);
-
-			if (ArmorJediRobes.getActive(stack).equalsIgnoreCase("deflect") && ArmorJediRobes.getUsingDuration(stack))
-			{
-				Vec3 vec3 = player.getLookVec();
-				if (vec3 != null)
-				{
-					this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
-				}
-			}
-		}
-	}
-
-	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
 		if (this.sender == null || this.worldObj == null)
@@ -150,7 +132,20 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			if (pos.entityHit instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
-				if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber))
+				if (entityPlayer.inventory.armorItemInSlot(2) != null && entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+				{
+					ItemStack stack = entityPlayer.inventory.armorItemInSlot(2);
+
+					if (ArmorJediRobes.getActive(stack).equalsIgnoreCase("deflect") && ArmorJediRobes.getUsingDuration(stack))
+					{
+						Vec3 vec3 = entityPlayer.getLookVec();
+						if (vec3 != null)
+						{
+							this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
+						}
+					}
+				}
+				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber))
 				{
 					Vec3 vec3 = entityPlayer.getLookVec();
 					if (vec3 != null)
