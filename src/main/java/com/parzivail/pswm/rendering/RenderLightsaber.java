@@ -48,6 +48,7 @@ public class RenderLightsaber implements IItemRenderer
 	@Override
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
 	{
+		GL11.glPushMatrix();
 		ModelBase model = this.modelVader;
 		if (item.getItemDamage() == 0)
 		{
@@ -199,6 +200,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glPopMatrix();
 				break;
 		}
+		GL11.glPopMatrix();
 	}
 
 	@Override

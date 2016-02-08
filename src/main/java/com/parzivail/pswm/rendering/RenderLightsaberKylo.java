@@ -33,6 +33,7 @@ public class RenderLightsaberKylo implements IItemRenderer
 	@Override
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
 	{
+		GL11.glPushMatrix();
 		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberKylo.png"));
 		switch (type)
 		{
@@ -156,6 +157,7 @@ public class RenderLightsaberKylo implements IItemRenderer
 				GL11.glPopMatrix();
 				break;
 		}
+		GL11.glPopMatrix();
 	}
 
 	@Override
