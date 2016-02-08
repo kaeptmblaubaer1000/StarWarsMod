@@ -68,6 +68,11 @@ public class ItemLightsaber extends ItemSword
 			par3List.add(new ItemStack(this, 1, x));
 	}
 
+	public static boolean isLightsaber(ItemStack stack)
+	{
+		return stack != null && (stack.getItem() == StarWarsMod.lightsaber || stack.getItem() == StarWarsMod.sequelLightsaber);
+	}
+
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase a, EntityLivingBase b)
 	{
@@ -75,12 +80,7 @@ public class ItemLightsaber extends ItemSword
 		{
 			EntityPlayer pa = (EntityPlayer)a;
 			EntityPlayer pb = (EntityPlayer)b;
-			if (pa.inventory.getCurrentItem() != null && pa.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber && pb.isBlocking() && pb.inventory.getCurrentItem() != null && pb.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber)
-			{
-				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-			}
-			if (pa.inventory.getCurrentItem() != null && pa.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber && pb.isBlocking() && pb.inventory.getCurrentItem() != null && pb.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber)
+			if (ItemLightsaber.isLightsaber(pa.inventory.getCurrentItem()) && pa.isBlocking() && ItemLightsaber.isLightsaber(pb.inventory.getCurrentItem()))
 			{
 				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);

@@ -130,22 +130,9 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				Vec3 vec3 = player.getLookVec();
 				if (vec3 != null)
 				{
-					this.motionX = vec3.xCoord;
-					this.motionY = vec3.yCoord;
-					this.motionZ = vec3.zCoord;
+					this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
 				}
 			}
-		}
-		else if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber || player.getHeldItem().getItem() == StarWarsMod.sequelLightsaber) && player.isBlocking())
-		{
-			Vec3 vec3 = player.getLookVec();
-			if (vec3 != null)
-			{
-				this.motionX = vec3.xCoord;
-				this.motionY = vec3.yCoord;
-				this.motionZ = vec3.zCoord;
-			}
-			player.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 		}
 	}
 
@@ -163,12 +150,27 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			if (pos.entityHit instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
-				if (!(entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber)))
+				if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber))
+				{
+					Vec3 vec3 = entityPlayer.getLookVec();
+					if (vec3 != null)
+					{
+						this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
+					}
+					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+				}
+				else
 				{
 					pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
 					pos.entityHit.setFire(8);
 					this.setDead();
 				}
+			}
+			else
+			{
+				pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
+				pos.entityHit.setFire(8);
+				this.setDead();
 			}
 		}
 

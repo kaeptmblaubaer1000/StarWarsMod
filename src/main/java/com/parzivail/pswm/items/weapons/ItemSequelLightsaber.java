@@ -75,12 +75,7 @@ public class ItemSequelLightsaber extends ItemSword
 		{
 			EntityPlayer pa = (EntityPlayer)a;
 			EntityPlayer pb = (EntityPlayer)b;
-			if (pa.inventory.getCurrentItem() != null && pa.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber && pb.isBlocking() && pb.inventory.getCurrentItem() != null && pb.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber)
-			{
-				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-			}
-			if (pa.inventory.getCurrentItem() != null && pa.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber && pb.isBlocking() && pb.inventory.getCurrentItem() != null && pb.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber)
+			if (ItemLightsaber.isLightsaber(pa.inventory.getCurrentItem()) && pa.isBlocking() && ItemLightsaber.isLightsaber(pb.inventory.getCurrentItem()))
 			{
 				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
