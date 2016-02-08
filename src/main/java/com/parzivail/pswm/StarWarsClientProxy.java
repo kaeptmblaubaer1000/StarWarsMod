@@ -94,8 +94,6 @@ import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.rendering.RenderJawa;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.RenderLightsaberKylo;
-import com.parzivail.pswm.rendering.RenderLightsaberKyloOff;
-import com.parzivail.pswm.rendering.RenderLightsaberOff;
 import com.parzivail.pswm.rendering.RenderMV;
 import com.parzivail.pswm.rendering.RenderTauntaun;
 import com.parzivail.pswm.rendering.RenderTusken;
@@ -212,9 +210,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaberOff());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaber, new RenderLightsaberKylo());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKyloOff());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKylo());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
