@@ -160,9 +160,16 @@ public class EntityBlasterBoltBase extends EntityThrowable
 
 		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
 		{
-			pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
-			pos.entityHit.setFire(8);
-			this.setDead();
+			if (pos.entityHit instanceof EntityPlayer)
+			{
+				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
+				if (!(entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber)))
+				{
+					pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
+					pos.entityHit.setFire(8);
+					this.setDead();
+				}
+			}
 		}
 
 		if (this.worldObj.isRemote)

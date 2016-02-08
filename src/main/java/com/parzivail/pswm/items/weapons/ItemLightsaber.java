@@ -38,7 +38,6 @@ public class ItemLightsaber extends ItemSword
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setHasSubtypes(true);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 
 	@Override
@@ -76,12 +75,12 @@ public class ItemLightsaber extends ItemSword
 		{
 			EntityPlayer pa = (EntityPlayer)a;
 			EntityPlayer pb = (EntityPlayer)b;
-			if (pa.inventory.mainInventory[pa.inventory.currentItem] != null && pa.inventory.mainInventory[pa.inventory.currentItem].getItem() == StarWarsMod.lightsaber && pa.isBlocking() && pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.lightsaber)
+			if (pa.inventory.getCurrentItem() != null && pa.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber && pb.isBlocking() && pb.inventory.getCurrentItem() != null && pb.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber)
 			{
 				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 			}
-			if (pa.inventory.mainInventory[pa.inventory.currentItem] != null && pa.inventory.mainInventory[pa.inventory.currentItem].getItem() == StarWarsMod.sequelLightsaber && pa.isBlocking() && pb.inventory.mainInventory[pb.inventory.currentItem] != null && pb.inventory.mainInventory[pb.inventory.currentItem].getItem() == StarWarsMod.sequelLightsaber)
+			if (pa.inventory.getCurrentItem() != null && pa.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber && pb.isBlocking() && pb.inventory.getCurrentItem() != null && pb.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber)
 			{
 				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);

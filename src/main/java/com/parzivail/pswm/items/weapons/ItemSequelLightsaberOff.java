@@ -33,6 +33,7 @@ public class ItemSequelLightsaberOff extends Item
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setHasSubtypes(true);
+		this.setCreativeTab(StarWarsMod.SequelStarWarsTab);
 	}
 
 	@Override
