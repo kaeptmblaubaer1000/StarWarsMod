@@ -116,6 +116,8 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			double motionZ = -this.motionZ * 0.02f;
 			this.worldObj.spawnParticle("blockdust_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(blockX, blockY, blockZ), this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
 		}
+		
+		this.playSound(Resources.MODID + ":" + "fx.bolt.hit", 1, 1);
 	}
 
 	@Override
@@ -175,7 +177,6 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 			this.setDead();
 			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
-			this.playSound(Resources.MODID + ":" + "fx.bolt.hit", 1, 1);
 		}
 	}
 
