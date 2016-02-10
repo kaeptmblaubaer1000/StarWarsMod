@@ -27,6 +27,7 @@ public class MessageRobesBooleanNBT extends PMessage<MessageRobesBooleanNBT>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
+		if (this.player == null || this.player.inventory == null) return null;
 		this.player.inventory.armorInventory[2].stackTagCompound.setBoolean(this.key, this.value);
 		return null;
 	}
