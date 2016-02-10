@@ -27,6 +27,7 @@ public class MessageRobesIntNBT extends PMessage<MessageRobesIntNBT>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
+		if (this.player == null || this.player.inventory == null) return null;
 		this.player.inventory.armorInventory[2].stackTagCompound.setInteger(this.key, this.value);
 		return null;
 	}
