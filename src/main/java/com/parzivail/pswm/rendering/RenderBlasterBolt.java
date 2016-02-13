@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.ModelBlasterBolt;
 import com.parzivail.util.ui.GLPalette;
 
@@ -64,6 +65,7 @@ public class RenderBlasterBolt extends Render
 		this.bindEntityTexture(entity);
 		GLPalette.glColorI(this.color);
 		GL11.glScalef(this.scale, this.scale, this.scale);
+		GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 45, StarWarsMod.rngGeneral.nextGaussian() / 45, StarWarsMod.rngGeneral.nextGaussian() / 45);
 
 		GL11.glPushAttrib(GL11.GL_LIGHTING_BIT);
 		GL11.glDisable(GL11.GL_LIGHTING);
