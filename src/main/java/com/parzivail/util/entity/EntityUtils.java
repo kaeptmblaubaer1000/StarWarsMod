@@ -11,6 +11,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 
@@ -100,18 +101,20 @@ public class EntityUtils
 
 	public static void registerEntity(Class<? extends Entity> entityClass, String entityName)
 	{
-		while (EntityList.getStringFromID(mobId) != null)
+		while (EntityList.getClassFromID(mobId) != null)
 			mobId += 1;
-		EntityRegistry.registerModEntity(entityClass, entityName, mobId, StarWarsMod.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(entityClass, entityName, mobId, StarWarsMod.instance, 80, 1, true);
 		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), entityClass);
+		Lumberjack.debug("Registered entity \"" + entityName + "\" as ID " + String.valueOf(mobId));
 	}
 
 	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
 	{
-		while (EntityList.getStringFromID(mobId) != null)
+		while (EntityList.getClassFromID(mobId) != null)
 			mobId += 1;
-		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 3, true);
+		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 1, true);
 		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), mobClass);
 		EntityList.entityEggs.put(Integer.valueOf(mobId), new EntityList.EntityEggInfo(mobId, bgColor, fgColor));
+		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + String.valueOf(mobId));
 	}
 }

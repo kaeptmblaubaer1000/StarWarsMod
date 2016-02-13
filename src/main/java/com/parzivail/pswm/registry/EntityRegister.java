@@ -1,6 +1,5 @@
 package com.parzivail.pswm.registry;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
@@ -40,7 +39,6 @@ import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
-import com.parzivail.pswm.weaponry.WeaponDSTurret;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.Lumberjack;
 
@@ -48,10 +46,10 @@ public class EntityRegister
 {
 	public static void registerAll()
 	{
-		if (Resources.IS_DEV_ENVIRONVENT)
-		{
-			EntityUtils.registerEntity(WeaponDSTurret.class, "dsTurret");
-		}
+		// if (Resources.IS_DEV_ENVIRONVENT)
+		// {
+		// EntityUtils.registerEntity(WeaponDSTurret.class, "dsTurret");
+		// }
 
 		EntityUtils.registerWithSpawnEgg(MobWookiee.class, "wookiee", 9916186, 3940362);
 		EntityUtils.registerWithSpawnEgg(MobTusken.class, "tusken", 16776627, 6184522);

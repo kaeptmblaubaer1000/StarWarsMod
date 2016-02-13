@@ -72,7 +72,7 @@ public class ItemSequelLightsaberOff extends Item
 		}
 		if (!stack.stackTagCompound.hasKey("timeout"))
 			stack.stackTagCompound.setInteger("timeout", 10);
-		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0)
+		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0 && player.worldObj.isRemote)
 		{
 			player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
 			StarWarsMod.network.sendToServer(new PacketTogglePlayerSequelLightsaber(player.getCommandSenderName(), player.dimension));

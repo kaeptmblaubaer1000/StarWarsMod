@@ -4,13 +4,16 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.parzivail.pswm.Resources;
+
 public class Lumberjack
 {
 	public static final Logger logger = LogManager.getLogger("PSWM");
 
-	public static void debug(String message)
+	public static void debug(Object message)
 	{
-		log(Level.DEBUG, message);
+		if (Resources.IS_DEV_ENVIRONVENT)
+			log(message);
 	}
 
 	public static void info(String message)
