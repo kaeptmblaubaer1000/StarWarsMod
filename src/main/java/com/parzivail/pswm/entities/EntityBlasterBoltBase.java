@@ -116,7 +116,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			double motionZ = -this.motionZ * 0.02f;
 			this.worldObj.spawnParticle("blockdust_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(blockX, blockY, blockZ), this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
 		}
-		
+
 		this.playSound(Resources.MODID + ":" + "fx.bolt.hit", 1, 1);
 	}
 
@@ -145,6 +145,12 @@ public class EntityBlasterBoltBase extends EntityThrowable
 						{
 							this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
 						}
+					}
+					else
+					{
+						pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
+						pos.entityHit.setFire(8);
+						this.setDead();
 					}
 				}
 				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber))

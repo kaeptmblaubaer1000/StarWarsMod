@@ -91,7 +91,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glScalef(0.055F, -0.055F, 0.055F);
 				GL11.glRotatef(-40, 0, 1, 0);
 				GL11.glRotatef(22, 0, 0, 1);
-				if (((EntityPlayer)data[1]).isBlocking())
+				if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
 				{
 					GL11.glRotatef(30, 0, 1, 0);
 					GL11.glTranslatef(-5, 0, 7.1f);
@@ -113,7 +113,7 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glTranslatef(8, -23, 9);
 				GL11.glRotatef(90, 0, 0, 1);
 				GL11.glRotatef(20, 1, 0, 0);
-				if (((EntityPlayer)data[1]).isBlocking())
+				if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
 				{
 					GL11.glRotatef(-30, 0, 0, 1);
 					GL11.glRotatef(90, 1, 0, 0);
@@ -175,7 +175,7 @@ public class RenderLightsaber implements IItemRenderer
 					GL11.glTranslatef(0.4f, -1.9f, 0.7f);
 					GL11.glRotatef(-40, 0, 1, 0);
 					GL11.glRotatef(22, 0, 0, 1);
-					if (((EntityPlayer)data[1]).isBlocking())
+					if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
 					{
 						GL11.glRotatef(30, 0, 1, 0);
 						GL11.glTranslatef(-4, 0, 8);
@@ -195,7 +195,7 @@ public class RenderLightsaber implements IItemRenderer
 					GL11.glTranslatef(0.4f, 0, 0.225f);
 					GL11.glRotatef(90, 0, 0, 1);
 					GL11.glRotatef(20, 1, 0, 0);
-					if (((EntityPlayer)data[1]).isBlocking())
+					if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
 					{
 						GL11.glRotatef(-30, 0, 0, 1);
 						GL11.glRotatef(90, 1, 0, 0);
