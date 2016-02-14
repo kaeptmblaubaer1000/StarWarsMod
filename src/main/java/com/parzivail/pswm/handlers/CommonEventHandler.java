@@ -1,6 +1,16 @@
 package com.parzivail.pswm.handlers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
@@ -19,6 +29,7 @@ import com.parzivail.pswm.network.MessageEntityHurt;
 import com.parzivail.pswm.network.MessageEntityReverse;
 import com.parzivail.pswm.network.MessageRobesBooleanNBT;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
+import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
@@ -45,13 +56,6 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -121,6 +125,68 @@ public class CommonEventHandler
 
 		// if (KeybindRegistry.keyDebug.isPressed())
 		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();
+
+		if (KeybindRegistry.keyRobePowerNext.isPressed())
+		{
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			{
+				String current = ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer);
+				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(StarWarsMod.mc.thePlayer), ArmorJediRobes.getLevel(StarWarsMod.mc.thePlayer));
+				int index = Arrays.asList(powers.toArray()).indexOf(current);
+				do
+				{
+					index++;
+					if (index >= powers.size())
+						index = 0;
+				}
+				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && powers.get(index) != current);
+				if (index > -1 && powers.get(index) != current)
+				{
+					if (index >= powers.size())
+						index = 0;
+					Power selectedPower = Power.getPowerFromName(powers.get(index));
+					ForceUtils.activePower = selectedPower;
+					ArmorJediRobes.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
+					ArmorJediRobes.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					ArmorJediRobes.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, selectedPower.name));
+					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(selectedPower.name).currentLevel));
+					if (selectedPower.name.equals("defend"))
+						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, Power.getPowerFromName(selectedPower.name).currentLevel));
+				}
+			}
+		}
+
+		if (KeybindRegistry.keyRobePowerPrev.isPressed())
+		{
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			{
+				String current = ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer);
+				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(StarWarsMod.mc.thePlayer), ArmorJediRobes.getLevel(StarWarsMod.mc.thePlayer));
+				int index = Arrays.asList(powers.toArray()).indexOf(current);
+				do
+				{
+					index--;
+					if (index < 0)
+						index = powers.size() - 1;
+				}
+				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && powers.get(index) != current);
+				if (index > -1 && powers.get(index) != current)
+				{
+					if (index < 0)
+						index = powers.size() - 1;
+					Power selectedPower = Power.getPowerFromName(powers.get(index));
+					ForceUtils.activePower = selectedPower;
+					ArmorJediRobes.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
+					ArmorJediRobes.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					ArmorJediRobes.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, selectedPower.name));
+					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(selectedPower.name).currentLevel));
+					if (selectedPower.name.equals("defend"))
+						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, Power.getPowerFromName(selectedPower.name).currentLevel));
+				}
+			}
+		}
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 		{

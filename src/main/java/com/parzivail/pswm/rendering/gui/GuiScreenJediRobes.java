@@ -17,8 +17,8 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
+import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
-import com.parzivail.pswm.network.PacketRobesPowerNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Text;
@@ -76,7 +76,7 @@ public class GuiScreenJediRobes extends GuiScreen
 			{
 				Power.getPowerFromName(this.selectedPower.power.name).currentLevel++;
 				ArmorJediRobes.setActiveLevel(this.mc.thePlayer, Power.getPowerFromName(this.selectedPower.power.name).currentLevel);
-				StarWarsMod.network.sendToServer(new PacketRobesPowerNBT(this.selectedPower.power.name, Power.getPowerFromName(this.selectedPower.power.name).currentLevel, this.player.dimension, this.player.getCommandSenderName()));
+				StarWarsMod.network.sendToServer(new MessageRobesPowerNBT(this.player, this.selectedPower.power.name, Power.getPowerFromName(this.selectedPower.power.name).currentLevel));
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtRemainingPts, --this.points));
 				ArmorJediRobes.setPoints(this.mc.thePlayer, this.points);
 			}
@@ -128,12 +128,12 @@ public class GuiScreenJediRobes extends GuiScreen
 		if (this.selectedPower != null)
 		{
 			GL11.glEnable(GL11.GL_BLEND);
-			this.drawCenteredString(this.fontRendererObj, this.selectedPower.localizedName, offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, TextUtils.makeUnderline(this.selectedPower.localizedName), offset, y += 10, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, String.format("Current Level: %s", this.selectedPower.power == null ? 0 : this.selectedPower.power.currentLevel), offset, y += 10, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, String.format("XP/use: %s", this.selectedPower.power == null ? 0 : this.selectedPower.power.getCost()), offset, y += 10, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format("Recharge Time: %s seconds", this.selectedPower.power == null ? 0 : this.selectedPower.power.rechargeTime), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, String.format("Recharge Time: %s seconds", this.selectedPower.power == null ? 0 : this.selectedPower.power.rechargeTime / 40f), offset, y += 10, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, "Description and Use:", offset, y += 10, 0xDDDDDD);
-			this.fontRendererObj.drawSplitString(this.selectedPower.localizedDesc, offset - 125, y += 10, 250, 0xDDDDDD);
+			this.fontRendererObj.drawSplitString(TextUtils.makeItalic(this.selectedPower.localizedDesc), offset - 125, y += 20, 250, 0xDDDDDD);
 			GL11.glDisable(GL11.GL_BLEND);
 
 			if (this.selectedPower.power != null)
@@ -170,7 +170,6 @@ public class GuiScreenJediRobes extends GuiScreen
 	/**
 	 * Adds the buttons (and other controls) to the screen in question.
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void initGui()
 	{
@@ -194,12 +193,11 @@ public class GuiScreenJediRobes extends GuiScreen
 			items.add(item);
 		}
 
-		this.listWidth = Math.min(this.listWidth, 150);
 		this.powerList = new GuiSlotPowerList(this, items, this.listWidth);
 		this.powerList.registerScrollButtons(this.buttonList, 7, 8);
 
-		this.learnButton = new GuiButton(20, 10, this.height - 60, this.listWidth, 20, "Learn");
-		this.enableButton = new GuiButton(21, 10, this.height - 38, this.listWidth, 20, "Enable");
+		this.learnButton = new GuiButton(20, 10, this.height - 60, this.listWidth, 20, "Study");
+		this.enableButton = new GuiButton(21, 10, this.height - 38, this.listWidth, 20, "Wield");
 		this.buttonList.add(this.learnButton);
 		this.buttonList.add(this.enableButton);
 	}

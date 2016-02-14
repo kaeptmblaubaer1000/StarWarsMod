@@ -16,7 +16,9 @@ import com.parzivail.pswm.jedirobes.powers.PowerDefend;
 import com.parzivail.pswm.jedirobes.powers.PowerDeflect;
 import com.parzivail.pswm.jedirobes.powers.PowerDestruction;
 import com.parzivail.pswm.jedirobes.powers.PowerDisable;
+import com.parzivail.pswm.jedirobes.powers.PowerDrainKnowledge;
 import com.parzivail.pswm.jedirobes.powers.PowerGrab;
+import com.parzivail.pswm.jedirobes.powers.PowerHeal;
 import com.parzivail.pswm.jedirobes.powers.PowerJump;
 import com.parzivail.pswm.jedirobes.powers.PowerLightning;
 import com.parzivail.pswm.jedirobes.powers.PowerNaturalAwareness;
@@ -67,6 +69,8 @@ public class ForceUtils
 		powers.put("grab", new PowerGrab(0));
 		powers.put("disable", new PowerDisable(0));
 		powers.put("slow", new PowerSlow(0));
+		powers.put("healing", new PowerHeal(0));
+		powers.put("drainKnowledge", new PowerDrainKnowledge(0));
 	}
 
 	public static void addLeaderboardSide(String side)

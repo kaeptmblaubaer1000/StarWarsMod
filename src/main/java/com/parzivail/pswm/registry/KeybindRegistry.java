@@ -22,6 +22,10 @@ public class KeybindRegistry
 	public static KeyBinding keyRobeGui;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyRobePower;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyRobePowerNext;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyRobePowerPrev;
 
 	public static void registerAll()
 	{
@@ -29,6 +33,8 @@ public class KeybindRegistry
 		KeybindRegistry.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
 		KeybindRegistry.keyRobeGui = registerKeybind("robeGui", Keyboard.KEY_V);
 		KeybindRegistry.keyRobePower = registerKeybind("robePower", Keyboard.KEY_B);
+		KeybindRegistry.keyRobePowerNext = registerKeybind("robePowerNext", Keyboard.KEY_G);
+		KeybindRegistry.keyRobePowerPrev = registerKeybind("robePowerPrev", Keyboard.KEY_H);
 		if (Resources.IS_DEV_ENVIRONVENT)
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 	}

@@ -1,6 +1,7 @@
 package com.parzivail.pswm.rendering.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,6 +11,8 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.utils.ForceUtils;
+import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.client.GuiScrollingList;
 
@@ -301,13 +304,12 @@ public class GuiSlotPowerList extends GuiScrollingList
 	protected void drawSlot(int listIndex, int var2, int var3, int var4, Tessellator var5)
 	{
 		GuiPowerListItem power = this.powers.get(listIndex);
-
-		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.localizedName, this.listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
-		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth("Current Level: " + (power.power == null ? 0 : power.power.currentLevel), this.listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
-		// this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.getMetadata()
-		// != null ? power.getMetadata().getChildModCountString() :
-		// "Metadata not found", listWidth - 10), this.left + 3, var3 + 22,
-		// 0xCCCCCC);
+		boolean hasPower = (power.power == null ? 0 : power.power.currentLevel) > 0;
+		boolean isJedi = Arrays.asList(ForceUtils.getJediPowers()).contains(power.power.name);
+		int c = isJedi ? (hasPower ? GLPalette.ANALOG_BLUE : GLPalette.BLUE) : (hasPower ? GLPalette.BRIGHT_RED : GLPalette.DARK_RED);
+		c = Arrays.asList(ForceUtils.getBasicPowers()).contains(power.power.name) ? (hasPower ? GLPalette.BRIGHT_GREEN : GLPalette.MEDIUM_GREEN) : c;
+		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.localizedName, this.listWidth - 10), this.left + 3, var3 + 2, c);
+		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth("Level " + (power.power == null ? 0 : power.power.currentLevel), this.listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
 	}
 
 	@Override

@@ -130,6 +130,14 @@ public class ArmorJediRobes extends ItemArmor
 		return false;
 	}
 
+	public static int getLevel(EntityPlayer player)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return 0;
+		return getLevel(stack);
+	}
+
 	public static int getLevel(ItemStack stack)
 	{
 		if (stack == null)
@@ -347,6 +355,14 @@ public class ArmorJediRobes extends ItemArmor
 		if (stack.stackTagCompound != null)
 			stack.stackTagCompound.setInteger(Resources.nbtXp, levels);
 		return stack;
+	}
+
+	public static void setXP(EntityPlayer player, int levels)
+	{
+		ItemStack stack = getRobes(player);
+		if (stack == null)
+			return;
+		setXP(stack, levels);
 	}
 
 	String name = "newJediRobes";

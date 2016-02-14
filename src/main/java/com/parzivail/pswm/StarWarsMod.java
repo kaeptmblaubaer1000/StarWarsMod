@@ -42,19 +42,21 @@ import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.network.MessageAddEffectTo;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageCreateDestructionBolt;
+import com.parzivail.pswm.network.MessageDrainKnowledge;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.pswm.network.MessageEntityGrab;
 import com.parzivail.pswm.network.MessageEntityHurt;
 import com.parzivail.pswm.network.MessageEntityReverse;
+import com.parzivail.pswm.network.MessageHeal;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageRobesBooleanNBT;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
+import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.MessageTransmute;
-import com.parzivail.pswm.network.PacketRobesPowerNBT;
 import com.parzivail.pswm.network.PacketShipTargetLock;
 import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
 import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
@@ -444,17 +446,13 @@ public class StarWarsMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
+		Lumberjack.info("========== Begin Star Wars Mod preInit() ==========");
+
 		this.checkJavaVersion();
 
 		this.checkCompat();
 
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
-		network.registerMessage(PacketRobesPowerNBT.Handler.class, PacketRobesPowerNBT.class, packetId++, Side.SERVER);
-		network.registerMessage(MessageCreateBlasterBolt.class, MessageCreateBlasterBolt.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 
 		this.registerMessage(MessageEntityGrab.class);
 		this.registerMessage(MessageAddEffectTo.class);
@@ -470,6 +468,15 @@ public class StarWarsMod
 		this.registerMessage(MessageRobesIntNBT.class);
 		this.registerMessage(MessageRobesStringNBT.class);
 		this.registerMessage(MessageSFoil.class);
+		this.registerMessage(MessageRobesPowerNBT.class);
+		this.registerMessage(MessageHeal.class);
+		this.registerMessage(MessageDrainKnowledge.class);
+
+		network.registerMessage(MessageCreateBlasterBolt.class, MessageCreateBlasterBolt.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
+		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 
@@ -510,11 +517,15 @@ public class StarWarsMod
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");
+
+		Lumberjack.info("=========== End Star Wars Mod preInit() ===========");
 	}
 
 	public void registerMessage(Class messageHandler)
 	{
-		network.registerMessage(messageHandler, messageHandler, packetId++, Side.SERVER);
+		network.registerMessage(messageHandler, messageHandler, packetId, Side.SERVER);
+		Lumberjack.log("Registered packet \"" + messageHandler + "\" as packet ID " + packetId);
+		packetId += 1;
 	}
 
 	@EventHandler
