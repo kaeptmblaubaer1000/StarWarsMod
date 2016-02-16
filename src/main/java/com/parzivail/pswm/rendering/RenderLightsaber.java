@@ -17,6 +17,7 @@ import com.parzivail.pswm.models.ModelLightsaberLuke2;
 import com.parzivail.pswm.models.ModelLightsaberLuke2Blade;
 import com.parzivail.pswm.models.ModelLightsaberVader;
 import com.parzivail.pswm.models.ModelLightsaberVaderBlade;
+import com.parzivail.util.ui.ShaderHelper;
 
 public class RenderLightsaber implements IItemRenderer
 {
@@ -147,6 +148,7 @@ public class RenderLightsaber implements IItemRenderer
 
 		if (item.getItem() != StarWarsMod.lightsaberOff)
 		{
+			ShaderHelper.useShader(ShaderHelper.glow);
 			model = this.modelVaderBlade;
 			if (item.getItemDamage() == 0)
 			{
@@ -224,6 +226,7 @@ public class RenderLightsaber implements IItemRenderer
 					GL11.glPopMatrix();
 					break;
 			}
+			ShaderHelper.releaseShader();
 		}
 		GL11.glPopMatrix();
 	}

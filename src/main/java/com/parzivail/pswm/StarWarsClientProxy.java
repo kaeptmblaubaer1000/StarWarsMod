@@ -127,6 +127,7 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.weaponry.WeaponDSTurret;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Lumberjack;
+import com.parzivail.util.ui.ShaderHelper;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -152,6 +153,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		KeybindRegistry.registerAll();
 
 		FontManager.registerAll();
+
+		ShaderHelper.initShaders();
 
 		if (ConfigOptions.beshOverride)
 			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;

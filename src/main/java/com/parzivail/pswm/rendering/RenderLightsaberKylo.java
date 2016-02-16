@@ -12,6 +12,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.ModelLightsaberKylo;
 import com.parzivail.pswm.models.ModelLightsaberKyloBlade;
+import com.parzivail.util.ui.ShaderHelper;
 
 public class RenderLightsaberKylo implements IItemRenderer
 {
@@ -99,6 +100,7 @@ public class RenderLightsaberKylo implements IItemRenderer
 
 		if (item.getItem() != StarWarsMod.sequelLightsaberOff)
 		{
+			ShaderHelper.useShader(ShaderHelper.glowKylo);
 			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberKyloBlade.png"));
 			switch (type)
 			{
@@ -162,6 +164,7 @@ public class RenderLightsaberKylo implements IItemRenderer
 					GL11.glPopMatrix();
 					break;
 			}
+			ShaderHelper.releaseShader();
 		}
 		GL11.glPopMatrix();
 	}
