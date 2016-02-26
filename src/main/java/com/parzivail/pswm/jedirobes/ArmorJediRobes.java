@@ -260,6 +260,10 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setActive(ItemStack stack, String activeName)
 	{
+		if (stack == null)
+			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setString(Resources.nbtActive, activeName);
 	}
 
@@ -273,6 +277,10 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setActiveLevel(ItemStack stack, int level)
 	{
+		if (stack == null)
+			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setInteger(Resources.nbtActiveLevel, level);
 	}
 
@@ -286,6 +294,10 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setDuration(ItemStack stack, boolean duration)
 	{
+		if (stack == null)
+			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setBoolean(Resources.nbtIsUsingDuration, duration);
 	}
 
@@ -309,18 +321,27 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		if (stack == null)
 			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setInteger(Resources.nbtActiveHealth, health);
 	}
 
 	public static void setLightningTarget(ItemStack stack, int target)
 	{
+		if (stack == null)
+			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setInteger(Resources.nbtEntityTarget, target);
 	}
 
 	public static ItemStack setMaxXP(ItemStack stack, int levels)
 	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger(Resources.nbtMaxXp, levels);
+		if (stack == null)
+			return null;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
+		stack.stackTagCompound.setInteger(Resources.nbtMaxXp, levels);
 		return stack;
 	}
 
@@ -334,6 +355,10 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setPoints(ItemStack stack, int points)
 	{
+		if (stack == null)
+			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, points);
 	}
 
@@ -347,13 +372,19 @@ public class ArmorJediRobes extends ItemArmor
 
 	public static void setRunning(ItemStack stack, boolean running)
 	{
+		if (stack == null)
+			return;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();
 		stack.stackTagCompound.setBoolean(Resources.nbtIsRunning, running);
 	}
 
 	public static ItemStack setXP(ItemStack stack, int levels)
 	{
-		if (stack.stackTagCompound != null)
-			stack.stackTagCompound.setInteger(Resources.nbtXp, levels);
+		if (stack == null)
+			return null;
+		if (stack.stackTagCompound == null)
+			stack.stackTagCompound = new NBTTagCompound();stack.stackTagCompound.setInteger(Resources.nbtXp, levels);
 		return stack;
 	}
 
