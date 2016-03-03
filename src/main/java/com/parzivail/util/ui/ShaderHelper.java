@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import net.minecraft.client.renderer.OpenGlHelper;
-
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexShader;
@@ -13,6 +11,9 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import java.io.File;
+
+import net.minecraft.client.renderer.OpenGlHelper;
 
 public final class ShaderHelper
 {
@@ -21,14 +22,18 @@ public final class ShaderHelper
 
 	public static int glow = 0;
 	public static int glowKylo = 0;
+	public static int wobble = 0;
+	public static int toon = 0;
 
 	public static void initShaders()
 	{
 		if (!useShaders())
 			return;
 
-		glow = createProgram(null, "/assets/" + Resources.MODID + "/shaders/glow.frag");
-		glowKylo = createProgram(null, "/assets/" + Resources.MODID + "/shaders/glowKylo.frag");
+		glow = createProgramFor("glow");
+		glowKylo = createProgramFor("glowKylo");
+		wobble = createProgramFor("wobble");
+		toon = createProgramFor("toon");
 	}
 
 	public static void useShader(int shader, ShaderCallback callback)
@@ -42,6 +47,8 @@ public final class ShaderHelper
 		{
 			int time = ARBShaderObjects.glGetUniformLocationARB(shader, "time");
 			ARBShaderObjects.glUniform1iARB(time, StarWarsMod.mc.thePlayer.ticksExisted);
+			
+			//TODO: add various uniform passthroughs for the shaders
 
 			if (callback != null)
 				callback.call(shader);
@@ -98,6 +105,21 @@ public final class ShaderHelper
 		}
 
 		return program;
+	}
+
+	private static int createProgramFor(String name)
+	{
+		String vert = null;
+		String frag = null;
+		if (ShaderHelper.class.getResourceAsStream("/assets/" + Resources.MODID + "/shaders/" + name + ".vert") != null)
+		{
+			vert = "/assets/" + Resources.MODID + "/shaders/" + name + ".vert";
+		}
+		if (ShaderHelper.class.getResourceAsStream("/assets/" + Resources.MODID + "/shaders/" + name + ".frag") != null)
+		{
+			frag = "/assets/" + Resources.MODID + "/shaders/" + name + ".frag";
+		}
+		return createProgram(vert, frag);
 	}
 
 	private static int createShader(String filename, int shaderType)

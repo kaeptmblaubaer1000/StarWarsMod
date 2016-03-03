@@ -21,6 +21,7 @@ import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.ShaderHelper;
 import com.parzivail.util.ui.Text;
 import com.parzivail.util.ui.TextUtils;
 

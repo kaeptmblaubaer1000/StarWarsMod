@@ -191,7 +191,7 @@ public class RenderLightsaber implements IItemRenderer
 					GL11.glPushMatrix();
 					GL11.glDisable(GL11.GL_CULL_FACE);
 					GL11.glScalef(0.055F, -0.055F, 0.055F);
-					GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 25, StarWarsMod.rngGeneral.nextGaussian() / 15, StarWarsMod.rngGeneral.nextGaussian() / 25);
+					//GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 25, StarWarsMod.rngGeneral.nextGaussian() / 15, StarWarsMod.rngGeneral.nextGaussian() / 25);
 					GL11.glTranslatef(8, -23, 9);
 					GL11.glScalef(0.9f, 0.9f, 0.9f);
 					GL11.glTranslatef(0.4f, 0, 0.225f);
