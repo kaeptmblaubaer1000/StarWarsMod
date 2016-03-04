@@ -3,7 +3,9 @@ package com.parzivail.util.ui;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.FloatBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexShader;
@@ -13,7 +15,12 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import java.io.File;
 
+import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiOptions;
+import net.minecraft.client.gui.GuiScreenOptionsSounds;
+import net.minecraft.client.gui.GuiVideoSettings;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.shader.ShaderManager;
 
 public final class ShaderHelper
 {
@@ -22,8 +29,7 @@ public final class ShaderHelper
 
 	public static int glow = 0;
 	public static int glowKylo = 0;
-	public static int wobble = 0;
-	public static int toon = 0;
+	public static int phosphor = 0;
 
 	public static void initShaders()
 	{
@@ -32,8 +38,7 @@ public final class ShaderHelper
 
 		glow = createProgramFor("glow");
 		glowKylo = createProgramFor("glowKylo");
-		wobble = createProgramFor("wobble");
-		toon = createProgramFor("toon");
+		phosphor = createProgramFor("sobel", "phosphor");
 	}
 
 	public static void useShader(int shader, ShaderCallback callback)
@@ -42,13 +47,47 @@ public final class ShaderHelper
 			return;
 
 		ARBShaderObjects.glUseProgramObjectARB(shader);
-
+		
 		if (shader != 0)
 		{
-			int time = ARBShaderObjects.glGetUniformLocationARB(shader, "time");
-			ARBShaderObjects.glUniform1iARB(time, StarWarsMod.mc.thePlayer.ticksExisted);
-			
-			//TODO: add various uniform passthroughs for the shaders
+			// TODO: add various uniform passthroughs for the shaders
+
+			if (shader == phosphor)
+			{
+				int projMat = ARBShaderObjects.glGetUniformLocationARB(shader, "ProjMat");
+				FloatBuffer fb = BufferUtils.createFloatBuffer(16);
+				fb.put(1.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(1.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(1.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(0.0f);
+				fb.put(1.0f);
+				ARBShaderObjects.glUniformMatrix4ARB(projMat, true, fb);
+
+				int inSize = ARBShaderObjects.glGetUniformLocationARB(shader, "InSize");
+				ARBShaderObjects.glUniform2fARB(inSize, 1, 1);
+
+				int outSize = ARBShaderObjects.glGetUniformLocationARB(shader, "OutSize");
+				ARBShaderObjects.glUniform2fARB(outSize, 1, 1);
+
+				int psphr = ARBShaderObjects.glGetUniformLocationARB(shader, "Phosphor");
+				ARBShaderObjects.glUniform3fARB(psphr, 0.3f, 0.3f, 0.3f);
+			}
+			else
+			{
+				int time = ARBShaderObjects.glGetUniformLocationARB(shader, "time");
+				ARBShaderObjects.glUniform1iARB(time, StarWarsMod.mc.thePlayer.ticksExisted);
+			}
 
 			if (callback != null)
 				callback.call(shader);
@@ -118,6 +157,21 @@ public final class ShaderHelper
 		if (ShaderHelper.class.getResourceAsStream("/assets/" + Resources.MODID + "/shaders/" + name + ".frag") != null)
 		{
 			frag = "/assets/" + Resources.MODID + "/shaders/" + name + ".frag";
+		}
+		return createProgram(vert, frag);
+	}
+
+	private static int createProgramFor(String v, String f)
+	{
+		String vert = null;
+		String frag = null;
+		if (ShaderHelper.class.getResourceAsStream("/assets/" + Resources.MODID + "/shaders/" + v + ".vert") != null)
+		{
+			vert = "/assets/" + Resources.MODID + "/shaders/" + v + ".vert";
+		}
+		if (ShaderHelper.class.getResourceAsStream("/assets/" + Resources.MODID + "/shaders/" + f + ".frag") != null)
+		{
+			frag = "/assets/" + Resources.MODID + "/shaders/" + f + ".frag";
 		}
 		return createProgram(vert, frag);
 	}
