@@ -1,18 +1,18 @@
 package com.parzivail.pswm.rendering;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberKylo;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberKyloBlade;
+import com.parzivail.util.ui.ShaderHelper;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.models.ModelLightsaberKylo;
-import com.parzivail.pswm.models.ModelLightsaberKyloBlade;
-import com.parzivail.util.ui.ShaderHelper;
 
 public class RenderLightsaberKylo implements IItemRenderer
 {

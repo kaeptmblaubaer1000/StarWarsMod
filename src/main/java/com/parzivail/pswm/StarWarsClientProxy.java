@@ -1,9 +1,5 @@
 package com.parzivail.pswm;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
@@ -100,6 +96,16 @@ import com.parzivail.pswm.rendering.RenderTusken;
 import com.parzivail.pswm.rendering.RenderWampa;
 import com.parzivail.pswm.rendering.RenderWookiee;
 import com.parzivail.pswm.rendering.helper.PSWMEntityRenderer;
+import com.parzivail.pswm.rendering.item.RenderBlasterHeavy;
+import com.parzivail.pswm.rendering.item.RenderBlasterPistol;
+import com.parzivail.pswm.rendering.item.RenderBlasterRifle;
+import com.parzivail.pswm.rendering.item.RenderBowcaster;
+import com.parzivail.pswm.rendering.item.RenderGaffi;
+import com.parzivail.pswm.rendering.item.RenderGamL;
+import com.parzivail.pswm.rendering.item.RenderGamM;
+import com.parzivail.pswm.rendering.item.RenderGamS;
+import com.parzivail.pswm.rendering.item.RenderSpear;
+import com.parzivail.pswm.rendering.item.RenderVibro;
 import com.parzivail.pswm.rendering.vehicles.RenderAWing;
 import com.parzivail.pswm.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzivail.pswm.rendering.vehicles.RenderLandspeeder;
@@ -131,6 +137,9 @@ import com.parzivail.util.ui.ShaderHelper;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -216,6 +225,17 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaber, new RenderLightsaberKylo());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKylo());
+
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterPistol, new RenderBlasterPistol());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterRifle, new RenderBlasterRifle());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterHeavy, new RenderBlasterHeavy());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.bowcaster, new RenderBowcaster());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx1, new RenderGamS());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx2, new RenderGamM());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx3, new RenderGamL());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.vibroLance, new RenderVibro());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.ewokSpear, new RenderSpear());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gaffiStick, new RenderGaffi());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());

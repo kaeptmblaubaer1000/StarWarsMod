@@ -27,7 +27,7 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	{
 		super(par1World);
 		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
-		this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx, 1));
+		this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx1, 1));
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 		switch (this.rand.nextInt(10))
 		{
 			case 0:
-				this.dropItem(StarWarsMod.gamorreanAx, 1);
+				this.dropItem(StarWarsMod.gamorreanAx1, 1);
 		}
 	}
 

@@ -11,12 +11,12 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.models.ModelLightsaberLuke1;
-import com.parzivail.pswm.models.ModelLightsaberLuke1Blade;
-import com.parzivail.pswm.models.ModelLightsaberLuke2;
-import com.parzivail.pswm.models.ModelLightsaberLuke2Blade;
-import com.parzivail.pswm.models.ModelLightsaberVader;
-import com.parzivail.pswm.models.ModelLightsaberVaderBlade;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke1;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke1Blade;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke2;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke2Blade;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberVader;
+import com.parzivail.pswm.models.weapons.melee.ModelLightsaberVaderBlade;
 import com.parzivail.util.ui.ShaderHelper;
 
 public class RenderLightsaber implements IItemRenderer

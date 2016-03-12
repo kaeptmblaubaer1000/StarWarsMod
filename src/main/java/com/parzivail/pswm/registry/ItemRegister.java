@@ -75,13 +75,16 @@ import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemEwokSpear;
 import com.parzivail.pswm.items.weapons.ItemGaffiStick;
-import com.parzivail.pswm.items.weapons.ItemGamorreanAx;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx1;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx2;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaberOff;
+import com.parzivail.pswm.items.weapons.ItemVibroLance;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.vehicles.ItemSpawnAWing;
@@ -230,8 +233,17 @@ public class ItemRegister
 		StarWarsMod.ewokSpear = new ItemEwokSpear();
 		GameRegistry.registerItem(StarWarsMod.ewokSpear, "ewokSpear");
 
-		StarWarsMod.gamorreanAx = new ItemGamorreanAx();
-		GameRegistry.registerItem(StarWarsMod.gamorreanAx, "gamorreanAx");
+		StarWarsMod.gamorreanAx1 = new ItemGamorreanAx1();
+		GameRegistry.registerItem(StarWarsMod.gamorreanAx1, "gamorreanAx");
+
+		StarWarsMod.vibroLance = new ItemVibroLance();
+		GameRegistry.registerItem(StarWarsMod.vibroLance, "vibroLance");
+
+		StarWarsMod.gamorreanAx3 = new ItemGamorreanAx3();
+		GameRegistry.registerItem(StarWarsMod.gamorreanAx3, "gamorreanAx3");
+
+		StarWarsMod.gamorreanAx2 = new ItemGamorreanAx2();
+		GameRegistry.registerItem(StarWarsMod.gamorreanAx2, "gamorreanAx2");
 
 		StarWarsMod.banthaHorn = new ItemBanthaHorn();
 		GameRegistry.registerItem(StarWarsMod.banthaHorn, "banthaHorn");
