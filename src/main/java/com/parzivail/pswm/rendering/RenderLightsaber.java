@@ -1,12 +1,5 @@
 package com.parzivail.pswm.rendering;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
@@ -18,6 +11,13 @@ import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke2Blade;
 import com.parzivail.pswm.models.weapons.melee.ModelLightsaberVader;
 import com.parzivail.pswm.models.weapons.melee.ModelLightsaberVaderBlade;
 import com.parzivail.util.ui.ShaderHelper;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
 
 public class RenderLightsaber implements IItemRenderer
 {
@@ -191,7 +191,7 @@ public class RenderLightsaber implements IItemRenderer
 					GL11.glPushMatrix();
 					GL11.glDisable(GL11.GL_CULL_FACE);
 					GL11.glScalef(0.055F, -0.055F, 0.055F);
-					//GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 25, StarWarsMod.rngGeneral.nextGaussian() / 15, StarWarsMod.rngGeneral.nextGaussian() / 25);
+					GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 25, StarWarsMod.rngGeneral.nextGaussian() / 15, StarWarsMod.rngGeneral.nextGaussian() / 25);
 					GL11.glTranslatef(8, -23, 9);
 					GL11.glScalef(0.9f, 0.9f, 0.9f);
 					GL11.glTranslatef(0.4f, 0, 0.225f);
