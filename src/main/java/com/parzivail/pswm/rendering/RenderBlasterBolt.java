@@ -2,17 +2,17 @@ package com.parzivail.pswm.rendering;
 
 import java.nio.FloatBuffer;
 
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.ModelBlasterBolt;
-import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.ShaderHelper;
+
+import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderBlasterBolt extends Render
 {
@@ -63,15 +63,14 @@ public class RenderBlasterBolt extends Render
 		GL11.glRotatef(entity.rotationPitch, -(float)Math.cos(Math.toRadians(entity.rotationYaw)), 0, (float)Math.sin(Math.toRadians(entity.rotationYaw)));
 		GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
 		this.bindEntityTexture(entity);
-		GLPalette.glColorI(this.color);
+		// GLPalette.glColorI(this.color);
 		GL11.glScalef(this.scale, this.scale, this.scale);
 		GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 45, StarWarsMod.rngGeneral.nextGaussian() / 45, StarWarsMod.rngGeneral.nextGaussian() / 45);
 
-		GL11.glPushAttrib(GL11.GL_LIGHTING_BIT);
-		GL11.glDisable(GL11.GL_LIGHTING);
+		ShaderHelper.setColor(1, 0, 0, 0.2f);
+		ShaderHelper.useShader(ShaderHelper.glowSolid);
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glPopAttrib();
+		ShaderHelper.releaseShader();
 
 		GL11.glPopMatrix();
 	}

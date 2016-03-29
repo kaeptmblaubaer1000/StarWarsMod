@@ -1,17 +1,16 @@
 package com.parzivail.pswm.rendering;
 
-import java.awt.Color;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Vec3;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.ui.RenderHelper;
+import com.parzivail.util.ui.ShaderHelper;
+
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Vec3;
 
 public class RenderHoloTable extends TileEntitySpecialRenderer
 {
@@ -48,11 +47,12 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 
 		if (table.isMapSetup())
 		{
-			GL11.glPushMatrix();
 			Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
 			GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
-			GL11.glTranslatef(te.xCoord + 0.5f, te.yCoord + 1 + 0.001f + table.getOffset() / 16f, te.zCoord + 0.5f);
+			GL11.glTranslatef(table.xCoord + 0.5f, table.yCoord + 1 + 0.001f + table.getOffset() / 16f, table.zCoord + 0.5f);
 			GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
+
+			GL11.glPushMatrix();
 
 			GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!
 			GL11.glEnable(GL11.GL_BLEND);
@@ -62,47 +62,10 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 
 			GL11.glBlendFunc(GL11.GL_SRC_COLOR, GL11.GL_ONE_MINUS_DST_COLOR);
 
-			GL11.glLineWidth(4);
-
-			Color c = table.getRGB();
-			GL11.glColor4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, 1);
-
-			boolean solid = false;
-
-			for (int i = 0; i < table.getMap().length; i++)
-			{
-				int nx = i % table.getSideLength();
-				int nz = (int)Math.floor(i / table.getSideLength());
-
-				float o = table.getOffset() / 16f;
-
-				int s = table.getSideLength() / 2;
-
-				if (solid)
-				{
-					GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-					GL11.glVertex3f(nx - s, table.getMap()[i] - te.yCoord + o, nz - s);
-					GL11.glVertex3f(nx - s + 1, table.getMap()[i] - te.yCoord + o, nz - s);
-					GL11.glVertex3f(nx - s, table.getMap()[i] - te.yCoord + o, nz - s + 1);
-					GL11.glEnd();
-					GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-					GL11.glVertex3f(nx - s + 1, table.getMap()[i] - te.yCoord + o, nz - s + 1);
-					GL11.glVertex3f(nx - s + 1, table.getMap()[i] - te.yCoord + o, nz - s);
-					GL11.glVertex3f(nx - s, table.getMap()[i] - te.yCoord + o, nz - s + 1);
-					GL11.glEnd();
-				}
-				else
-				{
-					GL11.glBegin(GL11.GL_LINE_LOOP);
-					GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord + o, nz - s - 1);
-					GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord + o, nz - s);
-					GL11.glEnd();
-					GL11.glBegin(GL11.GL_LINE_LOOP);
-					GL11.glVertex3d(nx - s - 1, table.getMap()[i] - te.yCoord + o, nz - s);
-					GL11.glVertex3d(nx - s, table.getMap()[i] - te.yCoord + o, nz - s - 1);
-					GL11.glEnd();
-				}
-			}
+			ShaderHelper.setColor(0.4f, 0.4f, 1, 0.2f);
+			ShaderHelper.useShader(ShaderHelper.glowSolid);
+			GL11.glCallList(table.getDisplayList());
+			ShaderHelper.releaseShader();
 
 			GL11.glDisable(GL11.GL_LINE_SMOOTH);
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
