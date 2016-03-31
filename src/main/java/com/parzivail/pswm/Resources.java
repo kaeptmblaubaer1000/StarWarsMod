@@ -101,6 +101,7 @@ public class Resources
 	public static final String nbtMaxXp = "maxxp";
 	public static final String nbtSide = "side";
 	public static final String nbtPowers = "powers";
+	public static final String nbtQuests = "quests";
 	public static final String nbtRemainingPts = "points";
 
 	public static final String nbtShotsLeft = "shotsLeft";

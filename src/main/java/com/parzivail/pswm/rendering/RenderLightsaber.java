@@ -148,22 +148,25 @@ public class RenderLightsaber implements IItemRenderer
 
 		if (item.getItem() != StarWarsMod.lightsaberOff)
 		{
-			ShaderHelper.useShader(ShaderHelper.glow);
+			float n = (float)((Math.sin((System.currentTimeMillis() % 10000) / 500f) + 1) / 2f) * 0.05f + 0.95f;
 			model = this.modelVaderBlade;
 			if (item.getItemDamage() == 0)
 			{
-				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberVaderBlade.png"));
+				ShaderHelper.setColor(n, 0, 0, 0.95f);
 			}
 			else if (item.getItemDamage() == 1)
 			{
-				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberLuke1Blade.png"));
+				ShaderHelper.setColor(0.4f * n, 0.4f * n, n, 0.95f);
 				model = this.modelLukeBlade;
 			}
 			else if (item.getItemDamage() == 2)
 			{
-				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberLuke2Blade.png"));
+				ShaderHelper.setColor(0, n, 0, 0.95f);
 				model = this.modelLuke2Blade;
 			}
+			ShaderHelper.useShader(ShaderHelper.glowSolid);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			switch (type)
 			{
 				case INVENTORY:
@@ -226,6 +229,7 @@ public class RenderLightsaber implements IItemRenderer
 					GL11.glPopMatrix();
 					break;
 			}
+			GL11.glDisable(GL11.GL_BLEND);
 			ShaderHelper.releaseShader();
 		}
 		GL11.glPopMatrix();

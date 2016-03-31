@@ -100,8 +100,11 @@ public class RenderLightsaberKylo implements IItemRenderer
 
 		if (item.getItem() != StarWarsMod.sequelLightsaberOff)
 		{
-			ShaderHelper.useShader(ShaderHelper.glowKylo);
-			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberKyloBlade.png"));
+			float n = (float)(StarWarsMod.rngGeneral.nextGaussian() + 1) * 0.1f + 0.8f;
+			ShaderHelper.setColor(1, 0.3f * n, 0.1f * n, 0.95f * (n / 10f + 0.9f));
+			ShaderHelper.useShader(ShaderHelper.glowSolid);
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			switch (type)
 			{
 				case INVENTORY:
@@ -164,6 +167,7 @@ public class RenderLightsaberKylo implements IItemRenderer
 					GL11.glPopMatrix();
 					break;
 			}
+			GL11.glDisable(GL11.GL_BLEND);
 			ShaderHelper.releaseShader();
 		}
 		GL11.glPopMatrix();

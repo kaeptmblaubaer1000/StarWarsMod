@@ -48,11 +48,10 @@ import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
+import com.parzivail.pswm.network.MessageShipTargetLock;
+import com.parzivail.pswm.network.MessageToggleLightsaber;
+import com.parzivail.pswm.network.MessageToggleSequelLightsaber;
 import com.parzivail.pswm.network.MessageTransmute;
-import com.parzivail.pswm.network.PacketShipTargetLock;
-import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
-import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
-import com.parzivail.pswm.network.PacketUpdateRobes;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.DamageSourceRegister;
 import com.parzivail.pswm.registry.EntityRegister;
@@ -457,34 +456,15 @@ public class StarWarsMod
 
 		this.checkCompat();
 
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
+		setupNetworking();
 
-		this.registerMessage(MessageEntityGrab.class);
-		this.registerMessage(MessageAddEffectTo.class);
-		this.registerMessage(MessageHoloTableUpdate.class);
-		this.registerMessage(MessageSetEntityTarget.class);
-		this.registerMessage(MessageCreateDestructionBolt.class);
-		this.registerMessage(MessageEntityAlterMotion.class);
-		this.registerMessage(MessageHyperdrive.class);
-		this.registerMessage(MessageEntityHurt.class);
-		this.registerMessage(MessageTransmute.class);
-		this.registerMessage(MessageEntityReverse.class);
-		this.registerMessage(MessageRobesBooleanNBT.class);
-		this.registerMessage(MessageRobesIntNBT.class);
-		this.registerMessage(MessageRobesStringNBT.class);
-		this.registerMessage(MessageSFoil.class);
-		this.registerMessage(MessageRobesPowerNBT.class);
-		this.registerMessage(MessageHeal.class);
-		this.registerMessage(MessageDrainKnowledge.class);
+		setupConfig(event);
 
-		network.registerMessage(MessageCreateBlasterBolt.class, MessageCreateBlasterBolt.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
+		Lumberjack.info("=========== End Star Wars Mod preInit() ===========");
+	}
 
-		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
-
+	private void setupConfig(FMLPreInitializationEvent event)
+	{
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
@@ -522,8 +502,35 @@ public class StarWarsMod
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");
+	}
 
-		Lumberjack.info("=========== End Star Wars Mod preInit() ===========");
+	private void setupNetworking()
+	{
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
+
+		this.registerMessage(MessageEntityGrab.class);
+		this.registerMessage(MessageAddEffectTo.class);
+		this.registerMessage(MessageHoloTableUpdate.class);
+		this.registerMessage(MessageSetEntityTarget.class);
+		this.registerMessage(MessageCreateDestructionBolt.class);
+		this.registerMessage(MessageEntityAlterMotion.class);
+		this.registerMessage(MessageHyperdrive.class);
+		this.registerMessage(MessageEntityHurt.class);
+		this.registerMessage(MessageTransmute.class);
+		this.registerMessage(MessageEntityReverse.class);
+		this.registerMessage(MessageRobesBooleanNBT.class);
+		this.registerMessage(MessageRobesIntNBT.class);
+		this.registerMessage(MessageRobesStringNBT.class);
+		this.registerMessage(MessageSFoil.class);
+		this.registerMessage(MessageRobesPowerNBT.class);
+		this.registerMessage(MessageHeal.class);
+		this.registerMessage(MessageDrainKnowledge.class);
+		this.registerMessage(MessageShipTargetLock.class);
+		this.registerMessage(MessageCreateBlasterBolt.class);
+		this.registerMessage(MessageToggleLightsaber.class);
+		this.registerMessage(MessageToggleSequelLightsaber.class);
+
+		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
 
 	public void registerMessage(Class messageHandler)

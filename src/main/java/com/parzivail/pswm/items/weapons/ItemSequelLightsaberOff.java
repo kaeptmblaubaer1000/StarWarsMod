@@ -2,6 +2,13 @@ package com.parzivail.pswm.items.weapons;
 
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageToggleSequelLightsaber;
+import com.parzivail.util.ui.TextUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,14 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
-import com.parzivail.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSequelLightsaberOff extends Item
 {
@@ -75,7 +74,7 @@ public class ItemSequelLightsaberOff extends Item
 		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0 && player.worldObj.isRemote)
 		{
 			player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
-			StarWarsMod.network.sendToServer(new PacketTogglePlayerSequelLightsaber(player.getCommandSenderName(), player.dimension));
+			StarWarsMod.network.sendToServer(new MessageToggleSequelLightsaber(player));
 		}
 		return stack;
 	}
