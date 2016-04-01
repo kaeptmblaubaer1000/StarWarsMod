@@ -1,9 +1,7 @@
 package com.parzivail.pswm.handlers;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.quest.GuiQuest;
 import com.parzivail.pswm.rendering.gui.ContainerClient;
 import com.parzivail.pswm.rendering.gui.ContainerHoloTable;
 import com.parzivail.pswm.rendering.gui.ContainerMV;
@@ -15,6 +13,8 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -23,12 +23,14 @@ public class GuiHandler implements IGuiHandler
 	{
 		if (id == Resources.GUI_MV)
 			return new GuiMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
-		if (id == Resources.GUI_ROBES)
+		else if (id == Resources.GUI_ROBES)
 			return new GuiScreenJediRobes(player);
-		if (id == Resources.GUI_JEDI_SITH)
+		else if (id == Resources.GUI_JEDI_SITH)
 			return new GuiJediSith(player);
-		if (id == Resources.GUI_HOLOTABLE)
+		else if (id == Resources.GUI_HOLOTABLE)
 			return new GuiHoloTable(player, (TileEntityHoloTableBase)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_QUESTLOG)
+			return new GuiQuest(player);
 		return null;
 	}
 
@@ -37,12 +39,14 @@ public class GuiHandler implements IGuiHandler
 	{
 		if (id == Resources.GUI_MV)
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
-		if (id == Resources.GUI_ROBES)
+		else if (id == Resources.GUI_ROBES)
 			return new ContainerClient();
-		if (id == Resources.GUI_JEDI_SITH)
+		else if (id == Resources.GUI_JEDI_SITH)
 			return new ContainerClient();
-		if (id == Resources.GUI_HOLOTABLE)
+		else if (id == Resources.GUI_HOLOTABLE)
 			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_QUESTLOG)
+			return new ContainerClient();
 		return null;
 	}
 }

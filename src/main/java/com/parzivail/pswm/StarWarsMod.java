@@ -273,6 +273,8 @@ public class StarWarsMod
 
 	public static Item leiasBuns;
 
+	public static Item questContainer;
+
 	public static ItemFood banthaChop;
 	public static ItemFood banthaChopCooked;
 	public static ItemFood banthaMilk;

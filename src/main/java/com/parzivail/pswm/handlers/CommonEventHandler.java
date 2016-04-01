@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
@@ -56,6 +48,13 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -119,12 +118,12 @@ public class CommonEventHandler
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 
+		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())
+			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, null, 0, 0, 0);
+
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
-
-		// if (KeybindRegistry.keyDebug.isPressed())
-		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
 		{

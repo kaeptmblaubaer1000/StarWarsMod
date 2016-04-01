@@ -79,7 +79,7 @@ public class RenderDH17 implements IItemRenderer
 			default:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.05F, -0.05F, 0.05F);
+				GL11.glScalef(0.08F, -0.08F, 0.08F);
 				GL11.glTranslatef(0, -8, 0);
 				GL11.glScalef(1, 1, -1);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);

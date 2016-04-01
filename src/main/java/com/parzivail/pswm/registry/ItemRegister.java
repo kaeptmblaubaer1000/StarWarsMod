@@ -35,6 +35,7 @@ import com.parzivail.pswm.items.ItemGoldImperialCredit;
 import com.parzivail.pswm.items.ItemGorrnar;
 import com.parzivail.pswm.items.ItemImperialCredit;
 import com.parzivail.pswm.items.ItemMusicDisc;
+import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.ItemSilverImperialCredit;
 import com.parzivail.pswm.items.ItemSpawnAstromech;
 import com.parzivail.pswm.items.ItemSpawnAstromech2;
@@ -114,6 +115,9 @@ public class ItemRegister
 
 			StarWarsMod.spawnDsTurret = new ItemSpawnDSTurret();
 			GameRegistry.registerItem(StarWarsMod.spawnDsTurret, "spawnDsTurret");
+
+			StarWarsMod.questContainer = new ItemQuestContainer();
+			GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
 		}
 
 		if (Resources.IS_SEQUEL_RELEASE)

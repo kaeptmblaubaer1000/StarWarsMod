@@ -15,4 +15,9 @@ public class NBTQuestTag extends NBTTagCompound
 	{
 		this.setBoolean(quest, true);
 	}
+
+	public boolean isQuestDone(String quest)
+	{
+		return this.getBoolean(quest);
+	}
 }

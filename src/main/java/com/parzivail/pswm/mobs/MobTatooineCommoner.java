@@ -3,6 +3,11 @@ package com.parzivail.pswm.mobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.entity.trade.TradeUtils;
+import com.parzivail.util.entity.trade.WeightedTradeItem;
+
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -13,11 +18,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.entity.trade.TradeUtils;
-import com.parzivail.util.entity.trade.WeightedTradeItem;
 
 public class MobTatooineCommoner extends EntityVillager
 {
@@ -51,6 +51,7 @@ public class MobTatooineCommoner extends EntityVillager
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), StarWarsMod.blasterPistol.getMeta("Dh17"), this.baseRarity));
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), StarWarsMod.blasterPistol.getMeta("Sporting"), this.baseRarity));
 			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), new ItemStack(StarWarsMod.gaffiStick, 1), this.baseRarity / 2.0F));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), new ItemStack(StarWarsMod.vibroLance, 1), this.baseRarity / 2.0F));
 			for (int i = 0; i < this.rand.nextInt(3) + 3; i++)
 			{
 				WeightedTradeItem item;

@@ -13,8 +13,8 @@ import net.minecraftforge.client.IItemRenderer;
 
 public class RenderSpear implements IItemRenderer
 {
-    private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/weapons/spear.png");
-    
+	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/weapons/spear.png");
+
 	private ModelSpear model;
 
 	public RenderSpear()
@@ -49,24 +49,40 @@ public class RenderSpear implements IItemRenderer
 				GL11.glPopMatrix();
 				break;
 			case EQUIPPED:
-				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.065F, -0.065F, 0.065F);
-				GL11.glRotatef(-40, 0, 1, 0);
-				GL11.glRotatef(22, 0, 0, 1);
-				if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
+				if (data[1] instanceof EntityPlayer)
 				{
-					GL11.glRotatef(30, 0, 1, 0);
-					GL11.glTranslatef(-4, 0, 8);
+					GL11.glPushMatrix();
+					GL11.glDisable(GL11.GL_CULL_FACE);
+					GL11.glScalef(0.065F, -0.065F, 0.065F);
+					GL11.glRotatef(-40, 0, 1, 0);
+					GL11.glRotatef(22, 0, 0, 1);
+					if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
+					{
+						GL11.glRotatef(30, 0, 1, 0);
+						GL11.glTranslatef(-4, 0, 8);
+					}
+					GL11.glTranslatef(8, 6, 2);
+					GL11.glRotatef(90, 0, 0, -1);
+					GL11.glTranslatef(22, -3, 0);
+					GL11.glRotatef(90, 0, 0, 1);
+					GL11.glRotatef(-90, 1, 0, 0);
+					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					GL11.glEnable(GL11.GL_CULL_FACE);
+					GL11.glPopMatrix();
 				}
-				GL11.glTranslatef(8, 6, 2);
-				GL11.glRotatef(90, 0, 0, -1);
-				GL11.glTranslatef(22, -3, 0);
-				GL11.glRotatef(90, 0, 0, 1);
-				GL11.glRotatef(-90, 1, 0, 0);
-				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-				GL11.glEnable(GL11.GL_CULL_FACE);
-				GL11.glPopMatrix();
+				else
+				{
+					GL11.glPushMatrix();
+					GL11.glDisable(GL11.GL_CULL_FACE);
+					GL11.glScalef(0.05F, -0.05F, 0.05F);
+					GL11.glRotatef(48, 0, 1, 0);
+					GL11.glRotatef(90, 0, 0, 1);
+					GL11.glRotatef(90, 1, 0, 0);
+					GL11.glTranslatef(-20, 13.5f, -6);
+					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					GL11.glEnable(GL11.GL_CULL_FACE);
+					GL11.glPopMatrix();
+				}
 				break;
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();

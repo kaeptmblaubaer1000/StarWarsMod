@@ -26,7 +26,7 @@ public class TileEntityHoloTableBase extends TileEntity
 
 	public TileEntityHoloTableBase()
 	{
-		this.rgb = new Color(200, 200, 255);
+		this.setRGB(0.4f, 0.4f, 1);
 	}
 
 	@Override
@@ -49,9 +49,6 @@ public class TileEntityHoloTableBase extends TileEntity
 		GL11.glNewList(displayList, GL11.GL_COMPILE);
 
 		GL11.glLineWidth(4);
-
-		Color c = this.getRGB();
-		GL11.glColor4f(c.getRed() / 255f, c.getGreen() / 255f, c.getBlue() / 255f, 1);
 
 		boolean solid = false;
 

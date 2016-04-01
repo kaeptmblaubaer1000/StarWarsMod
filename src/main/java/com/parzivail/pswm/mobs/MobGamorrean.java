@@ -3,6 +3,10 @@ package com.parzivail.pswm.mobs;
 import java.util.List;
 import java.util.UUID;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -11,10 +15,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.ai.AiFreqMove;
 
 public class MobGamorrean extends EntityMob implements net.minecraft.entity.monster.IMob
 {
@@ -27,7 +27,18 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	{
 		super(par1World);
 		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
-		this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx1, 1));
+		switch (StarWarsMod.rngGeneral.nextInt(3))
+		{
+			case 0:
+				this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx1, 1));
+				break;
+			case 1:
+				this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx2, 1));
+				break;
+			case 2:
+				this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx3, 1));
+				break;
+		}
 	}
 
 	@Override

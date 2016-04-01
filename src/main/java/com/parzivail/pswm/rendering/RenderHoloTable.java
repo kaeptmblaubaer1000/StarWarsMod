@@ -62,7 +62,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 
 			GL11.glBlendFunc(GL11.GL_SRC_COLOR, GL11.GL_ONE_MINUS_DST_COLOR);
 
-			ShaderHelper.setColor(0.4f, 0.4f, 1, 0.2f);
+			ShaderHelper.setColor(table.getRGB().getRed() / 255f, table.getRGB().getGreen() / 255f, table.getRGB().getBlue() / 255f, 0.2f);
 			ShaderHelper.useShader(ShaderHelper.glowSolid);
 			GL11.glCallList(table.getDisplayList());
 			ShaderHelper.releaseShader();
