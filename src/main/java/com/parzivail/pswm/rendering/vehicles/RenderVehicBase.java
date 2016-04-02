@@ -11,11 +11,11 @@ import org.lwjgl.opengl.GL11;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 
-public class RenderVehicAirBase extends RenderLiving
+public class RenderVehicBase extends RenderLiving
 {
 	ModelBase model;
 
-	public RenderVehicAirBase(ModelBase model, float par2)
+	public RenderVehicBase(ModelBase model, float par2)
 	{
 		super(model, par2);
 		this.model = model;

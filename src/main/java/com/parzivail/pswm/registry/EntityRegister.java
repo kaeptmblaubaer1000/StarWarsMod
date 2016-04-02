@@ -31,6 +31,7 @@ import com.parzivail.pswm.mobs.MobTauntaun;
 import com.parzivail.pswm.mobs.MobTusken;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
+import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
@@ -83,6 +84,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieInterceptor");
 		EntityUtils.registerEntity(VehicXWing.class, "xwing");
 		EntityUtils.registerEntity(VehicAWing.class, "awing");
+		EntityUtils.registerEntity(VehicATST.class, "atst");
 		EntityUtils.registerEntity(VehicSnowspeeder.class, "snowspeeder");
 		EntityUtils.registerEntity(VehicSkyhopper.class, "skyhopper");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");

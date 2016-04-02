@@ -1,4 +1,4 @@
-package starwarsmod;
+package com.parzivail.pswm.models.vehicles;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
  * AT-ST - Weaston
  * Created using Tabula 4.1.1
  */
-public class ATST extends ModelBase {
+public class ModelATST extends ModelBase {
     public ModelRenderer BodyParentMain;
     public ModelRenderer Body1;
     public ModelRenderer MainLegLParent1;
@@ -48,7 +48,7 @@ public class ATST extends ModelBase {
     public ModelRenderer Head24;
     public ModelRenderer Head25;
     public ModelRenderer LegRChild1;
-    public ModelRenderer MainLegLParent;
+	public ModelRenderer MainLegLParent; // not parent
     public ModelRenderer shape6;
     public ModelRenderer shape6_1;
     public ModelRenderer shape6_2;
@@ -56,7 +56,7 @@ public class ATST extends ModelBase {
     public ModelRenderer shape10;
     public ModelRenderer shape10_1;
 
-    public ATST() {
+    public ModelATST() {
         this.textureWidth = 512;
         this.textureHeight = 512;
         this.LegLChild7 = new ModelRenderer(this, 213, 0);
@@ -102,7 +102,7 @@ public class ATST extends ModelBase {
         this.BodyParentMain.addBox(-3.0F, -2.0F, -4.5F, 6, 4, 9, 0.0F);
         this.setRotateAngle(BodyParentMain, 0.3141592653589793F, 0.0F, 0.0F);
         this.MainLegLParent1 = new ModelRenderer(this, 105, 0);
-        this.MainLegLParent1.setRotationPoint(3.1F, 0.7F, 2.0F);
+		this.MainLegLParent1.setRotationPoint(3.1F, -0.3F, 2.0F);
         this.MainLegLParent1.addBox(-0.5F, -0.4F, -7.5F, 1, 1, 8, 0.0F);
         this.setRotateAngle(MainLegLParent1, -0.08726646259971647F, -0.17453292519943295F, 0.0F);
         this.LegLChild5 = new ModelRenderer(this, 191, 0);

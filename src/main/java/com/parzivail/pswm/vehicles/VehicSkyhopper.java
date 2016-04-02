@@ -34,7 +34,7 @@ public class VehicSkyhopper extends VehicleAirBase
 	public void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(WING_DW, Float.valueOf(0));
+		this.dataWatcher.addObject(WING_DW, Float.valueOf(0.8f));
 		this.dataWatcher.setObjectWatched(WING_DW);
 	}
 

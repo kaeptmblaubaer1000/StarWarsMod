@@ -35,7 +35,6 @@ import com.parzivail.pswm.mobs.MobTusken;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
 import com.parzivail.pswm.models.ModelDSTurret;
-import com.parzivail.pswm.models.armor.ModelJetpack;
 import com.parzivail.pswm.models.mobs.ModelBantha;
 import com.parzivail.pswm.models.mobs.ModelBith;
 import com.parzivail.pswm.models.mobs.ModelDewback;
@@ -53,6 +52,7 @@ import com.parzivail.pswm.models.mobs.ModelSmallBiped;
 import com.parzivail.pswm.models.mobs.ModelTauntaun;
 import com.parzivail.pswm.models.mobs.ModelWampa;
 import com.parzivail.pswm.models.mobs.ModelWookiee;
+import com.parzivail.pswm.models.vehicles.ModelATST;
 import com.parzivail.pswm.models.vehicles.ModelAWing;
 import com.parzivail.pswm.models.vehicles.ModelJakkuSpeeder;
 import com.parzivail.pswm.models.vehicles.ModelLandspeeder;
@@ -91,7 +91,6 @@ import com.parzivail.pswm.rendering.RenderHangingCauldron;
 import com.parzivail.pswm.rendering.RenderHoloTable;
 import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.rendering.RenderJawa;
-import com.parzivail.pswm.rendering.RenderJetpack;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.RenderLightsaberKylo;
 import com.parzivail.pswm.rendering.RenderMV;
@@ -110,6 +109,7 @@ import com.parzivail.pswm.rendering.item.RenderGamM;
 import com.parzivail.pswm.rendering.item.RenderGamS;
 import com.parzivail.pswm.rendering.item.RenderSpear;
 import com.parzivail.pswm.rendering.item.RenderVibro;
+import com.parzivail.pswm.rendering.vehicles.RenderATST;
 import com.parzivail.pswm.rendering.vehicles.RenderAWing;
 import com.parzivail.pswm.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzivail.pswm.rendering.vehicles.RenderLandspeeder;
@@ -128,6 +128,7 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
+import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
@@ -147,7 +148,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
@@ -197,8 +197,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobBith.class, new RenderBith(new ModelBith(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, new RenderJetpack(new ModelJetpack(), 0.5F));
-
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech2.class, new RenderDroidAstromech2(new ModelDroidAstromech2(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromechImperial.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
@@ -215,6 +213,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicATST.class, new RenderATST(new ModelATST(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, new RenderTIE(new ModelTIE(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, new RenderTIEInterceptor(new ModelTIEInterceptor(), 0.5F));

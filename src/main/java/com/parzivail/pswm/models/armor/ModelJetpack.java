@@ -1,13 +1,19 @@
 package com.parzivail.pswm.models.armor;
 
-import net.minecraft.client.model.ModelBase;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Z-6 Jetpack - Undefined Created using Tabula 4.1.1
  */
-public class ModelJetpack extends ModelBase
+public class ModelJetpack extends ModelBiped
 {
 	public ModelRenderer JetpackMain;
 	public ModelRenderer Jetpack1;
@@ -21,6 +27,9 @@ public class ModelJetpack extends ModelBase
 	public ModelRenderer Jetpack11;
 	public ModelRenderer Jetpack2;
 	public ModelRenderer Jetpack6;
+
+	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/bobaArmorLayer1.png");
+	private static ModelBiped armorModel = new ModelBiped(0.5f);
 
 	public ModelJetpack()
 	{
@@ -79,15 +88,29 @@ public class ModelJetpack extends ModelBase
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		this.JetpackMain.render(f5);
+
+		if (entity instanceof EntityLivingBase)
+		{
+			EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
+			StarWarsMod.mc.renderEngine.bindTexture(texture2);
+			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
+			this.armorModel.onGround = entityLivingBase.getSwingProgress(f5);
+			this.armorModel.render(entity, f, f1, f2, f3, f4, f5);
+		}
 	}
 
-	/**
-	 * This is a helper function from Tabula to set the rotation of model parts
-	 */
-	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	protected void doRotationStuff(EntityLivingBase entity, ItemStack stack)
 	{
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
+		this.armorModel.heldItemRight = stack != null ? 1 : 0;
+		this.armorModel.isSneak = entity.isSneaking();
+		this.armorModel.bipedHead.showModel = false;
+		this.armorModel.bipedHeadwear.showModel = false;
+		this.armorModel.bipedBody.showModel = true;
+		this.armorModel.bipedRightArm.showModel = true;
+		this.armorModel.bipedLeftArm.showModel = true;
+		this.armorModel.bipedRightLeg.showModel = false;
+		this.armorModel.bipedLeftLeg.showModel = false;
+		this.armorModel.isRiding = entity.isRiding();
+		this.armorModel.isChild = entity.isChild();
 	}
 }

@@ -18,6 +18,7 @@ import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.rendering.helper.PGui;
 import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
+import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import com.parzivail.pswm.vehicles.VehicSkyhopper;
@@ -191,10 +192,17 @@ public class ClientEventHandler
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SPEEDER));
 				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicATST)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.XWING));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicATST)
+				{
+					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				}
+				else
+				{
+					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				}
 				GuiVehicle.isFiring = true;
 				GuiVehicle.blipFrame = GuiVehicle.blipMax;
 			}
@@ -240,6 +248,21 @@ public class ClientEventHandler
 				ClientEventHandler.pgui.changeCameraDist(this, 15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
+			}
+		}
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
+		{
+			if (ClientEventHandler.renderHelper.isFirstPerson())
+			{
+				ClientEventHandler.pgui.changeCameraDist(this, 4);
+
+				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+			}
+			else
+			{
+				ClientEventHandler.pgui.changeCameraDist(this, 10);
+
+				event.setCanceled(event.entity.ridingEntity instanceof VehicATST);
 			}
 		}
 		else

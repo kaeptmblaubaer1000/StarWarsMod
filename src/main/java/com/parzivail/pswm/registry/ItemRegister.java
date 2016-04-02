@@ -88,6 +88,7 @@ import com.parzivail.pswm.items.weapons.ItemSequelLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemVibroLance;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.vehicles.ItemSpawnATST;
 import com.parzivail.pswm.vehicles.ItemSpawnAWing;
 import com.parzivail.pswm.vehicles.ItemSpawnHothSpeederBike;
 import com.parzivail.pswm.vehicles.ItemSpawnJakkuSpeeder;
@@ -120,6 +121,9 @@ public class ItemRegister
 
 			StarWarsMod.questContainer = new ItemQuestContainer();
 			GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
+
+			StarWarsMod.spawnAtst = new ItemSpawnATST();
+			GameRegistry.registerItem(StarWarsMod.spawnAtst, "spawnAtst");
 		}
 
 		if (Resources.IS_SEQUEL_RELEASE)
