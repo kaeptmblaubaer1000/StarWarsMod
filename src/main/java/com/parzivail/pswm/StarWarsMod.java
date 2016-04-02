@@ -182,6 +182,8 @@ public class StarWarsMod
 	public static Item spawnTieInterceptor;
 	public static Item spawnAwing;
 	public static Item spawnXwing;
+	public static Item spawnSkyhopper;
+	public static Item spawnSnowspeeder;
 	public static Item spawnDsTurret;
 	public static Item spawnAstromech;
 	public static Item spawnAstromechImperial;

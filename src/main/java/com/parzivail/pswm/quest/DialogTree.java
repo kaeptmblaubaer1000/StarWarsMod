@@ -2,14 +2,20 @@ package com.parzivail.pswm.quest;
 
 public class DialogTree
 {
-	public String npcHeader = null;
-	public Response response1 = null;
-	public Response response2 = null;
-	public Response response3 = null;
+	public String npcHeader;
+	public String response1;
+	public String response2;
+	public String response3;
 
-	public static class Response
+	public DialogTree response1DT;
+	public DialogTree response2DT;
+	public DialogTree response3DT;
+
+	public DialogTree()
 	{
-		public String text = null;
-		public DialogTree npcDialog = null;
+		npcHeader = "";
+		response1 = "";
+		response2 = "";
+		response3 = "";
 	}
 }

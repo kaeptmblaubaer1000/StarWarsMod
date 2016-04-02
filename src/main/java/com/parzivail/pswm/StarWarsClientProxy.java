@@ -55,6 +55,8 @@ import com.parzivail.pswm.models.mobs.ModelWookiee;
 import com.parzivail.pswm.models.vehicles.ModelAWing;
 import com.parzivail.pswm.models.vehicles.ModelJakkuSpeeder;
 import com.parzivail.pswm.models.vehicles.ModelLandspeeder;
+import com.parzivail.pswm.models.vehicles.ModelSkyhopper;
+import com.parzivail.pswm.models.vehicles.ModelSnowspeeder;
 import com.parzivail.pswm.models.vehicles.ModelSpeederBike;
 import com.parzivail.pswm.models.vehicles.ModelTIE;
 import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
@@ -109,6 +111,8 @@ import com.parzivail.pswm.rendering.item.RenderVibro;
 import com.parzivail.pswm.rendering.vehicles.RenderAWing;
 import com.parzivail.pswm.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzivail.pswm.rendering.vehicles.RenderLandspeeder;
+import com.parzivail.pswm.rendering.vehicles.RenderSkyhopper;
+import com.parzivail.pswm.rendering.vehicles.RenderSnowspeeder;
 import com.parzivail.pswm.rendering.vehicles.RenderSpeederBike;
 import com.parzivail.pswm.rendering.vehicles.RenderTIE;
 import com.parzivail.pswm.rendering.vehicles.RenderTIEInterceptor;
@@ -126,6 +130,8 @@ import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
 import com.parzivail.pswm.vehicles.VehicLandspeeder;
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
+import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
@@ -209,6 +215,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, new RenderTIEInterceptor(new ModelTIEInterceptor(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, new RenderXWing(new ModelXWing(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, new RenderAWing(new ModelAWing(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, new RenderSkyhopper(new ModelSkyhopper(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, new RenderSnowspeeder(new ModelSnowspeeder(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 

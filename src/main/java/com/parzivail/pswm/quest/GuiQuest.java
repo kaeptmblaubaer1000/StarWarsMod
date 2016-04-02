@@ -3,7 +3,6 @@ package com.parzivail.pswm.quest;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.quest.DialogTree.Response;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 
@@ -22,7 +21,7 @@ public class GuiQuest extends GuiScreen
 
 	private DialogTree tree;
 	private DialogTree currentTree;
-	private Response currentResponse;
+	// private Response currentResponse;
 
 	private GuiButton response1;
 	private GuiButton response2;
@@ -33,7 +32,7 @@ public class GuiQuest extends GuiScreen
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
-		this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
+		// this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
 		this.currentTree = tree;
 	}
 
@@ -43,17 +42,17 @@ public class GuiQuest extends GuiScreen
 		if (button.enabled)
 			if (button.id == this.response1.id)
 			{
-				currentTree = this.currentTree.response1.npcDialog;
+				// currentTree = this.currentTree.response1.npcDialog;
 				initGui();
 			}
 			else if (button.id == this.response2.id)
 			{
-				currentTree = this.currentTree.response2.npcDialog;
+				// currentTree = this.currentTree.response2.npcDialog;
 				initGui();
 			}
 			else if (button.id == this.response3.id)
 			{
-				currentTree = this.currentTree.response3.npcDialog;
+				// currentTree = this.currentTree.response3.npcDialog;
 				initGui();
 			}
 			else if (button.id == this.close.id)
@@ -97,29 +96,30 @@ public class GuiQuest extends GuiScreen
 
 		this.buttonList.clear();
 
-		if (currentTree.response1 != null)
-		{
-			String r1 = currentTree.response1.text;
-			this.response1 = new GuiQuestButton(0, x - 100, y - 10, 198, 20, r1);
-			this.buttonList.add(this.response1);
-		}
-		if (currentTree.response2 != null)
-		{
-			String r2 = currentTree.response2.text;
-			this.response2 = new GuiQuestButton(1, x - 100, y + 20, 198, 20, r2);
-			this.buttonList.add(this.response2);
-		}
-		if (currentTree.response3 != null)
-		{
-			String r3 = currentTree.response3.text;
-			this.response3 = new GuiQuestButton(2, x - 100, y + 50, 198, 20, r3);
-			this.buttonList.add(this.response3);
-		}
-		if (currentTree.response1 == null && currentTree.response2 == null && currentTree.response3 == null)
-		{
-			this.close = new GuiQuestButton(3, x - 24, y + 50, 48, 20, "Close");
-			this.buttonList.add(this.close);
-		}
+		// if (currentTree.response1 != null)
+		// {
+		// String r1 = currentTree.response1.text;
+		// this.response1 = new GuiQuestButton(0, x - 100, y - 10, 198, 20, r1);
+		// this.buttonList.add(this.response1);
+		// }
+		// if (currentTree.response2 != null)
+		// {
+		// String r2 = currentTree.response2.text;
+		// this.response2 = new GuiQuestButton(1, x - 100, y + 20, 198, 20, r2);
+		// this.buttonList.add(this.response2);
+		// }
+		// if (currentTree.response3 != null)
+		// {
+		// String r3 = currentTree.response3.text;
+		// this.response3 = new GuiQuestButton(2, x - 100, y + 50, 198, 20, r3);
+		// this.buttonList.add(this.response3);
+		// }
+		// if (currentTree.response1 == null && currentTree.response2 == null &&
+		// currentTree.response3 == null)
+		// {
+		// this.close = new GuiQuestButton(3, x - 24, y + 50, 48, 20, "Close");
+		// this.buttonList.add(this.close);
+		// }
 	}
 
 	@Override

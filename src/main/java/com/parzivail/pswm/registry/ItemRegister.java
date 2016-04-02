@@ -92,6 +92,8 @@ import com.parzivail.pswm.vehicles.ItemSpawnAWing;
 import com.parzivail.pswm.vehicles.ItemSpawnHothSpeederBike;
 import com.parzivail.pswm.vehicles.ItemSpawnJakkuSpeeder;
 import com.parzivail.pswm.vehicles.ItemSpawnLandspeeder;
+import com.parzivail.pswm.vehicles.ItemSpawnSkyhopper;
+import com.parzivail.pswm.vehicles.ItemSpawnSnowspeeder;
 import com.parzivail.pswm.vehicles.ItemSpawnSpeederBike;
 import com.parzivail.pswm.vehicles.ItemSpawnTIE;
 import com.parzivail.pswm.vehicles.ItemSpawnTIEInterceptor;
@@ -173,6 +175,12 @@ public class ItemRegister
 
 		StarWarsMod.spawnXwing = new ItemSpawnXWing();
 		GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
+
+		StarWarsMod.spawnSkyhopper = new ItemSpawnSkyhopper();
+		GameRegistry.registerItem(StarWarsMod.spawnSkyhopper, "spawnSkyhopper");
+
+		StarWarsMod.spawnSnowspeeder = new ItemSpawnSnowspeeder();
+		GameRegistry.registerItem(StarWarsMod.spawnSnowspeeder, "spawnSnowspeeder");
 
 		StarWarsMod.spawnAwing = new ItemSpawnAWing();
 		GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
