@@ -1,0 +1,10 @@
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\bin\Debug\CreateQuestTreesGUI.exe.config
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\bin\Debug\CreateQuestTreesGUI.exe
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\bin\Debug\CreateQuestTreesGUI.pdb
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.csprojResolveAssemblyReference.cache
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.Form1.resources
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.Properties.Resources.resources
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.csproj.GenerateResource.Cache
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.exe
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.pdb
+E:\Forge\CreateQuestTrees\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.InputForm.resources
