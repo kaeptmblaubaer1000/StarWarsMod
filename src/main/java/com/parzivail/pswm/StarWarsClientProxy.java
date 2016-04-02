@@ -35,6 +35,7 @@ import com.parzivail.pswm.mobs.MobTusken;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
 import com.parzivail.pswm.models.ModelDSTurret;
+import com.parzivail.pswm.models.armor.ModelJetpack;
 import com.parzivail.pswm.models.mobs.ModelBantha;
 import com.parzivail.pswm.models.mobs.ModelBith;
 import com.parzivail.pswm.models.mobs.ModelDewback;
@@ -90,6 +91,7 @@ import com.parzivail.pswm.rendering.RenderHangingCauldron;
 import com.parzivail.pswm.rendering.RenderHoloTable;
 import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.rendering.RenderJawa;
+import com.parzivail.pswm.rendering.RenderJetpack;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.RenderLightsaberKylo;
 import com.parzivail.pswm.rendering.RenderMV;
@@ -145,6 +147,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
@@ -193,6 +196,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobTatooineCommoner.class, new RenderCommoner(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBith.class, new RenderBith(new ModelBith(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, new RenderJetpack(new ModelJetpack(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech2.class, new RenderDroidAstromech2(new ModelDroidAstromech2(), 0.5F));

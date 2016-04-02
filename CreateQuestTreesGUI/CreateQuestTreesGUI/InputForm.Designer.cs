@@ -49,7 +49,7 @@
             this.textQuestText.Name = "textQuestText";
             this.textQuestText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textQuestText.ShortcutsEnabled = false;
-            this.textQuestText.Size = new System.Drawing.Size(868, 410);
+            this.textQuestText.Size = new System.Drawing.Size(486, 237);
             this.textQuestText.TabIndex = 0;
             // 
             // toolStrip1
@@ -60,7 +60,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(869, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(487, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -99,10 +99,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 443);
+            this.ClientSize = new System.Drawing.Size(487, 270);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.textQuestText);
             this.Font = new System.Drawing.Font("Consolas", 9.75F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "InputForm";
             this.Text = "Edit";
             this.toolStrip1.ResumeLayout(false);

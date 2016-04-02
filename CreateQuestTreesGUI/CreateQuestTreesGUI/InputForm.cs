@@ -40,6 +40,7 @@ namespace CreateQuestTreesGUI
             if (this.text.IndexOf('\u2032') > -1) this.text = this.text.Replace('\u2032', '\'');
             if (this.text.IndexOf('\u2033') > -1) this.text = this.text.Replace('\u2033', '\"');
             if (this.text.IndexOf('"') > -1) this.text = this.text.Replace("\"", "\\\"");
+            if (this.text.IndexOf("  ") > -1) this.text = this.text.Replace("  ", " ");
             cancel = false;
             this.Close();
         }

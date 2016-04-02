@@ -14,9 +14,20 @@ namespace CreateQuestTreesGUI
 {
     public partial class Form1 : Form
     {
+        ContextMenu contextMenu;
+
         public Form1()
         {
             InitializeComponent();
+            contextMenu = new ContextMenu();
+            MenuItem miNPC = new MenuItem("Add NPC Dialog", bAddNPCNode_Click);
+            contextMenu.MenuItems.Add(miNPC);
+            MenuItem miPlayer = new MenuItem("Add Player Dialog", bAddDialogNode_Click);
+            contextMenu.MenuItems.Add(miPlayer);
+            MenuItem miRemove = new MenuItem("Remove Tree", bRemoveNode_Click);
+            contextMenu.MenuItems.Add(miRemove);
+
+            questTree.ContextMenu = contextMenu;
         }
 
         private void bAddNPCNode_Click(object sender, EventArgs e)
@@ -30,6 +41,7 @@ namespace CreateQuestTreesGUI
                 TreeNode n = new TreeNode();
                 n.Name = "npc";
                 n.Text = fInput.text;
+                n.ContextMenu = contextMenu;
                 n.BackColor = Color.FromArgb(0xA4C2F4);
                 if (questTree.SelectedNode == null && questTree.Nodes.Count == 0)
                 {
@@ -45,18 +57,19 @@ namespace CreateQuestTreesGUI
 
         private void bAddDialogNode_Click(object sender, EventArgs e)
         {
-            String t = "";
-            if (Clipboard.ContainsText()) t = Clipboard.GetText();
-            InputForm fInput = new InputForm(t);
-            fInput.ShowDialog();
-            if (!fInput.cancel)
+            if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "npc" && questTree.SelectedNode.Nodes.Count < 3)
             {
-                TreeNode n = new TreeNode();
-                n.Name = "player";
-                n.Text = fInput.text;
-                n.BackColor = Color.Yellow;
-                if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "npc" && questTree.SelectedNode.Nodes.Count < 3)
+                String t = "";
+                if (Clipboard.ContainsText()) t = Clipboard.GetText();
+                InputForm fInput = new InputForm(t);
+                fInput.ShowDialog();
+                if (!fInput.cancel)
                 {
+                    TreeNode n = new TreeNode();
+                    n.Name = "player";
+                    n.Text = fInput.text;
+                    n.ContextMenu = contextMenu;
+                    n.BackColor = Color.Yellow;
                     questTree.SelectedNode.Nodes.Add(n);
                     questTree.SelectedNode.Expand();
                 }
@@ -171,6 +184,14 @@ namespace CreateQuestTreesGUI
                     AddNode(xNode, tNode);
                 }
             }
-        } 
+        }
+
+        private void questTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                questTree.SelectedNode = questTree.GetNodeAt(e.X, e.Y);
+            }
+        }
     }
 }
