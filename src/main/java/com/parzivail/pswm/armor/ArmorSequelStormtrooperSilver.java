@@ -36,11 +36,9 @@ public class ArmorSequelStormtrooperSilver extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.stormtrooperSilverNewHelmet || stack.getItem() == StarWarsMod.stormtrooperSilverNewChest || stack.getItem() == StarWarsMod.stormtrooperSilverNewBoots)
-			return Resources.MODID + ":" + "textures/models/sequelStormtrooperSilverArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.stormtrooperSilverNewLegs)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/sequelStormtrooperSilverArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/sequelStormtrooperSilverArmorLayer1.png";
 	}
 }
 /*

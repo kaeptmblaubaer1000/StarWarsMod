@@ -30,9 +30,7 @@ public class ArmorBobaJetpack extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == com.parzivail.pswm.StarWarsMod.bobaJetpackChest)
-			return Resources.MODID + ":" + "textures/models/jetpack.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/jetpack.png";
 	}
 
 	@Override

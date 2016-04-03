@@ -10,6 +10,7 @@ import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
 import com.parzivail.pswm.entities.EntityTIEBolt;
 import com.parzivail.pswm.entities.EntityXWingBolt;
 import com.parzivail.pswm.font.FontManager;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.MobBantha;
 import com.parzivail.pswm.mobs.MobBith;
 import com.parzivail.pswm.mobs.MobDewback;
@@ -233,7 +234,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(GLPalette.NEON_GREEN, 2.0f));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
+		for (ItemLightsaber i : StarWarsMod.lightsaberNew)
+			MinecraftForgeClient.registerItemRenderer(i, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaber, new RenderLightsaberKylo());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKylo());

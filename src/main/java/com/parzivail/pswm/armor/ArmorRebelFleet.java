@@ -1,7 +1,6 @@
 package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 
 import cpw.mods.fml.relauncher.Side;
@@ -36,11 +35,9 @@ public class ArmorRebelFleet extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.fleetHelmet || stack.getItem() == StarWarsMod.fleetChest || stack.getItem() == StarWarsMod.fleetBoots)
-			return Resources.MODID + ":" + "textures/models/fleetArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.fleetLegs)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/fleetArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/fleetArmorLayer1.png";
 	}
 }
 /*

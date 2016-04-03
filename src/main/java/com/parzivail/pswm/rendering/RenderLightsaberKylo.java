@@ -4,7 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberKylo;
+import com.parzivail.pswm.models.lightsabers.ModelCrossbarHilt;
 import com.parzivail.pswm.models.weapons.melee.ModelLightsaberKyloBlade;
 import com.parzivail.util.ui.ShaderHelper;
 
@@ -16,12 +16,12 @@ import net.minecraftforge.client.IItemRenderer;
 
 public class RenderLightsaberKylo implements IItemRenderer
 {
-	private ModelLightsaberKylo model;
+	private ModelCrossbarHilt model;
 	private ModelLightsaberKyloBlade modelBlade;
 
 	public RenderLightsaberKylo()
 	{
-		this.model = new ModelLightsaberKylo();
+		this.model = new ModelCrossbarHilt();
 		this.modelBlade = new ModelLightsaberKyloBlade();
 	}
 

@@ -1,21 +1,30 @@
 package com.parzivail.pswm.models.armor;
 
+import com.parzivail.pswm.StarWarsMod;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class ModelCompressionArmor extends ModelBiped
 {
 	ModelBiped _model;
 	ItemArmor armor;
 
+	ResourceLocation a;
+	ResourceLocation b;
+
 	public ModelCompressionArmor(float scale, ItemArmor item)
 	{
 		this._model = new ModelBiped(scale);
 		this.armor = item;
+
+		this.a = new ResourceLocation(armor.getArmorTexture(null, null, 2, ""));
+		this.b = new ResourceLocation(armor.getArmorTexture(null, null, 1, ""));
 	}
 
 	protected void adjust(EntityPlayer entity, ItemStack stack, float p)
@@ -27,8 +36,8 @@ public class ModelCompressionArmor extends ModelBiped
 		this._model.bipedBody.showModel = entity.inventory.armorInventory[2] != null && entity.inventory.armorInventory[2].getItem() == armor;
 		this._model.bipedRightArm.showModel = entity.inventory.armorInventory[2] != null && entity.inventory.armorInventory[2].getItem() == armor;
 		this._model.bipedLeftArm.showModel = entity.inventory.armorInventory[2] != null && entity.inventory.armorInventory[2].getItem() == armor;
-		this._model.bipedRightLeg.showModel = entity.inventory.armorInventory[1] != null && entity.inventory.armorInventory[1].getItem() == armor;
-		this._model.bipedLeftLeg.showModel = entity.inventory.armorInventory[1] != null && entity.inventory.armorInventory[1].getItem() == armor;
+		this._model.bipedRightLeg.showModel = (entity.inventory.armorInventory[1] != null && entity.inventory.armorInventory[1].getItem() == armor) || (entity.inventory.armorInventory[0] != null && entity.inventory.armorInventory[0].getItem() == armor);
+		this._model.bipedLeftLeg.showModel = (entity.inventory.armorInventory[1] != null && entity.inventory.armorInventory[1].getItem() == armor) || (entity.inventory.armorInventory[0] != null && entity.inventory.armorInventory[0].getItem() == armor);
 		this._model.isRiding = entity.isRiding();
 		this._model.isChild = entity.isChild();
 		this._model.onGround = entity.getSwingProgress(p);
@@ -51,7 +60,13 @@ public class ModelCompressionArmor extends ModelBiped
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 			this.adjust(player, player.getHeldItem(), f5);
+			StarWarsMod.mc.renderEngine.bindTexture(a);
 			this._model.render(entity, f, f1, f2, f3, f4, f5);
+			if (player.inventory.armorInventory[1] != null && player.inventory.armorInventory[1].getItem() == armor)
+			{
+				StarWarsMod.mc.renderEngine.bindTexture(b);
+				this._model.render(entity, f, f1, f2, f3, f4, f5);
+			}
 		}
 	}
 

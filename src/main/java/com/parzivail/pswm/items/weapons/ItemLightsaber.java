@@ -3,16 +3,8 @@ package com.parzivail.pswm.items.weapons;
 import java.util.List;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageToggleLightsaber;
-import com.parzivail.util.ui.TextUtils;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,125 +12,131 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class ItemLightsaber extends ItemSword
 {
-	public String name = "lightsaber";
-	private String[] colors = { "red", "green", "blue"/* , "redKyloRen" */};
-	@SideOnly(Side.CLIENT)
-	private IIcon[] icons;
+	public static final String nbtHilt = "hilt";
+	public static final String nbtBladeLength = "bladeLength";
+	public static final String nbtBladeColor = "bladeColor";
+	public static final String nbtBladeSkin = "skin";
+	public static final String nbtBladeWaterproof = "waterproof";
+	public static final String nbtBladeDistortion = "distortion";
+	public static final String nbtBladeOn = "on";
+	public static final String nbtBladeTimeout = "timeout";
 
-	public ItemLightsaber()
+	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard" };
+	public static final int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF8C00, 0xFF00E5EE, 0xFF191919 };
+	public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black" };
+
+	public int hiltIndex;
+
+	private String name = "lightsaberNew";
+
+	public ItemLightsaber(int hiltIndex)
 	{
 		super(StarWarsMod.materialPlasma);
-		this.setUnlocalizedName(Resources.MODID + "." + this.name);
-		this.setTextureName(Resources.MODID + ":" + this.name);
-		this.setHasSubtypes(true);
+		this.setUnlocalizedName(Resources.MODID + "." + this.name + "." + String.valueOf(hiltIndex));
+		this.setCreativeTab(StarWarsMod.StarWarsTab);
+
+		this.hiltIndex = hiltIndex;
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity holder, int a, boolean b)
+	{
+		super.onUpdate(stack, world, holder, a, b);
+
+		if (!stack.hasTagCompound())
+		{
+			setupNBT(this.hiltIndex, stack);
+		}
+
+		if (stack.stackTagCompound.getInteger(nbtBladeTimeout) > 0)
+			stack.stackTagCompound.setInteger(nbtBladeTimeout, stack.stackTagCompound.getInteger(nbtBladeTimeout) - 1);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		list.add(TextUtils.makeItalic("This is the formal weapon of a Jedi Knight."));
-		list.add("Sneak + Right Click to disable.");
-		list.add("Block to deflect blaster bolts.");
-	}
-
-	@Override
-	public boolean canHarvestBlock(Block block, ItemStack stack)
-	{
-		return true;
-	}
-
-	@Override
-	public IIcon getIconFromDamage(int par1)
-	{
-		return this.icons[par1];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
-		for (int x = 0; x < this.colors.length; x++)
-			par3List.add(new ItemStack(this, 1, x));
-	}
-
-	public static boolean isLightsaber(ItemStack stack)
-	{
-		return stack != null && (stack.getItem() == StarWarsMod.lightsaber || stack.getItem() == StarWarsMod.sequelLightsaber);
-	}
-
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase a, EntityLivingBase b)
-	{
-		if (a instanceof EntityPlayer && b instanceof EntityPlayer)
+		if (stack.stackTagCompound != null)
 		{
-			EntityPlayer pa = (EntityPlayer)a;
-			EntityPlayer pb = (EntityPlayer)b;
-			if (ItemLightsaber.isLightsaber(pa.inventory.getCurrentItem()) && pa.isBlocking() && ItemLightsaber.isLightsaber(pb.inventory.getCurrentItem()))
-			{
-				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
-			}
+			list.add("Hilt: " + stack.stackTagCompound.getString(nbtHilt));
 		}
-		return super.hitEntity(stack, a, b);
 	}
 
 	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
-		entityLiving.playSound(Resources.MODID + ":" + "item.lightsaber.swing", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
+		if (stack.stackTagCompound != null && stack.stackTagCompound.getBoolean(nbtBladeOn))
+			entityLiving.playSound(Resources.MODID + ":" + "item.lightsaber.swing", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
+
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	public ItemStack onItemRightClick(ItemStack stack, World p_77659_2_, EntityPlayer player)
 	{
-		if (stack.stackTagCompound == null)
+		if (stack.stackTagCompound != null && stack.stackTagCompound.getInteger(nbtBladeTimeout) <= 0 && player.isSneaking())
 		{
-			stack.stackTagCompound = new NBTTagCompound();
-			stack.stackTagCompound.setInteger("timeout", 10);
-		}
-		if (!stack.stackTagCompound.hasKey("timeout"))
-			stack.stackTagCompound.setInteger("timeout", 10);
-		if (player.isSneaking() && stack.stackTagCompound.getInteger("timeout") == 0 && player.worldObj.isRemote)
-		{
-			player.playSound(Resources.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
-			StarWarsMod.network.sendToServer(new MessageToggleLightsaber(player));
-		}
-		return super.onItemRightClick(stack, world, player);
-	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int p_77663_4_, boolean p_77663_5_)
-	{
-		super.onUpdate(stack, worldIn, entityIn, p_77663_4_, p_77663_5_);
-		if (!stack.hasTagCompound())
-			stack.stackTagCompound = new NBTTagCompound();
-		if (!stack.stackTagCompound.hasKey("timeout"))
-			stack.stackTagCompound.setInteger("timeout", 10);
-		if (stack.stackTagCompound.getInteger("timeout") > 0)
-			stack.stackTagCompound.setInteger("timeout", stack.stackTagCompound.getInteger("timeout") - 1);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
-	{
-		this.icons = new IIcon[this.colors.length];
-		for (int i = 0; i < this.icons.length; i++)
-			if (ConfigOptions.enableLightsaberStrobe)
-				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
+			if (stack.stackTagCompound.getBoolean(nbtBladeOn))
+				player.playSound(Resources.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
 			else
-				this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i] + "_static");
+				player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
+			stack.stackTagCompound.setBoolean(nbtBladeOn, !stack.stackTagCompound.getBoolean(nbtBladeOn));
+			stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
+		}
+		return super.onItemRightClick(stack, p_77659_2_, player);
+	}
+
+	private static void setupNBT(int hilt, ItemStack stack)
+	{
+		NBTTagCompound nbt = new NBTTagCompound();
+
+		nbt.setString(nbtHilt, hilts[hilt]);
+
+		if (hilt == 4)
+			nbt.setInteger(nbtBladeLength, 1);
+		else
+			nbt.setInteger(nbtBladeLength, 2);
+
+		if (hilt == 1 || hilt == 2 || hilt == 8)
+			nbt.setInteger(nbtBladeColor, 0x0000FF);
+		else if (hilt == 0 || hilt == 3 || hilt == 5 || hilt == 6 || hilt == 7 || hilt == 10)
+			nbt.setInteger(nbtBladeColor, 0xFF0000);
+		else if (hilt == 4 || hilt == 9)
+
+			nbt.setInteger(nbtBladeColor, 0x00FF00);
+		nbt.setInteger(nbtBladeSkin, 0);
+
+		nbt.setBoolean(nbtBladeWaterproof, false);
+
+		if (hilt == 10)
+			nbt.setBoolean(nbtBladeDistortion, true);
+		else
+			nbt.setBoolean(nbtBladeDistortion, false);
+
+		nbt.setBoolean(nbtBladeOn, false);
+
+		nbt.setInteger(nbtBladeTimeout, 0);
+
+		stack.stackTagCompound = nbt;
+	}
+
+	public static int colorFromName(String name)
+	{
+		for (int i = 0; i < colorName.length; i++)
+			if (colorName[i].equals(name))
+				return colorHex[i];
+		return 0;
+	}
+
+	public static String nameFromColor(int color)
+	{
+		for (int i = 0; i < colorHex.length; i++)
+			if (colorHex[i] == color)
+				return colorName[i];
+		return "";
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemLightsaber.class
- * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

@@ -80,7 +80,6 @@ import com.parzivail.pswm.items.weapons.ItemGamorreanAx1;
 import com.parzivail.pswm.items.weapons.ItemGamorreanAx2;
 import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
@@ -192,11 +191,18 @@ public class ItemRegister
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
 		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");
 
-		StarWarsMod.lightsaber = new ItemLightsaber();
-		GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
+		// StarWarsMod.lightsaber = new ItemOldLightsaber();
+		// GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
 
-		StarWarsMod.lightsaberOff = new ItemLightsaberOff();
-		GameRegistry.registerItem(StarWarsMod.lightsaberOff, "lightsaberOff");
+		for (int i = 0; i < StarWarsMod.lightsaberNew.length; i++)
+		{
+			StarWarsMod.lightsaberNew[i] = new ItemLightsaber(i);
+			GameRegistry.registerItem(StarWarsMod.lightsaberNew[i], "lightsaberNew" + String.valueOf(i));
+		}
+
+		// StarWarsMod.lightsaberOff = new ItemLightsaberOff();
+		// GameRegistry.registerItem(StarWarsMod.lightsaberOff,
+		// "lightsaberOff");
 
 		StarWarsMod.binoculars = new ItemBinocularsTatooine();
 		GameRegistry.registerItem(StarWarsMod.binoculars, "binoculars");

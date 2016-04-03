@@ -36,11 +36,9 @@ public class ArmorBoba extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.bobaHelmet || stack.getItem() == StarWarsMod.bobaChest || stack.getItem() == StarWarsMod.bobaBoots)
-			return Resources.MODID + ":" + "textures/models/bobaArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.bobaLegs || stack.getItem() == StarWarsMod.bobaJetpackChest)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/bobaArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/bobaArmorLayer1.png";
 	}
 }
 /*

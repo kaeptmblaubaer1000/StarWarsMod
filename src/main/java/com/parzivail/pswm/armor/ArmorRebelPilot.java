@@ -36,11 +36,9 @@ public class ArmorRebelPilot extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.rebelPilotHelmet || stack.getItem() == StarWarsMod.rebelPilotChest || stack.getItem() == StarWarsMod.rebelPilotBoots)
-			return Resources.MODID + ":" + "textures/models/rebelPilotArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.rebelPilotLegs)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/rebelPilotArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/rebelPilotArmorLayer1.png";
 	}
 }
 /*

@@ -41,13 +41,11 @@ public class ArmorEndor extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.endorHelmet)
+		if (slot == 3)
 			return Resources.MODID + ":" + "textures/models/endorHelmet.png";
-		if (stack.getItem() == StarWarsMod.endorChest || stack.getItem() == StarWarsMod.endorBoots)
-			return Resources.MODID + ":" + "textures/models/endorArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.endorLegs)
+		else if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/endorArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/endorArmorLayer1.png";
 	}
 }
 /*

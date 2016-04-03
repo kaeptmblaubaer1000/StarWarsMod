@@ -5,7 +5,6 @@ import com.parzivail.util.vehicle.VehicleLandBase;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -112,12 +111,6 @@ public class VehicATST extends VehicleLandBase
 				}
 				else
 					this.motionY -= 1D;
-
-				if (this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)) == Blocks.water && this.riddenByEntity != null)
-				{
-					this.motionY = 0F;
-					f2 = 0.6f;
-				}
 
 				this.motionY *= 0.9800000190734863D;
 				this.motionX *= f2;

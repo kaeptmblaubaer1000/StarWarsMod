@@ -74,7 +74,7 @@ public class ItemSequelLightsaber extends ItemSword
 		{
 			EntityPlayer pa = (EntityPlayer)a;
 			EntityPlayer pb = (EntityPlayer)b;
-			if (ItemLightsaber.isLightsaber(pa.inventory.getCurrentItem()) && pa.isBlocking() && ItemLightsaber.isLightsaber(pb.inventory.getCurrentItem()))
+			if (ItemOldLightsaber.isLightsaber(pa.inventory.getCurrentItem()) && pa.isBlocking() && ItemOldLightsaber.isLightsaber(pb.inventory.getCurrentItem()))
 			{
 				a.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);
 				b.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1.0F, 1.0F);

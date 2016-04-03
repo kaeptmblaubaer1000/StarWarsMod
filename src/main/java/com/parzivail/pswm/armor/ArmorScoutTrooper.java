@@ -36,11 +36,9 @@ public class ArmorScoutTrooper extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.scoutTrooperHelmet || stack.getItem() == StarWarsMod.scoutTrooperChest || stack.getItem() == StarWarsMod.scoutTrooperBoots)
-			return Resources.MODID + ":" + "textures/models/scoutTrooperArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.scoutTrooperLegs)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/scoutTrooperArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/scoutTrooperArmorLayer1.png";
 	}
 }
 /*

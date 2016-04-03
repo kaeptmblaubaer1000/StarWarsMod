@@ -36,6 +36,14 @@ public final class ShaderHelper
 		ShaderHelper.a = a;
 	}
 
+	public static void setLightsaberColor(int color)
+	{
+		int red = color >> 16 & 0xFF;
+		int green = color >> 8 & 0xFF;
+		int blue = color & 0xFF;
+		setColor(red / 255f, green / 255f, blue / 255f, 0.85f);
+	}
+
 	public static void initShaders()
 	{
 		if (!useShaders())

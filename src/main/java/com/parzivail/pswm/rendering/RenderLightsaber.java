@@ -1,244 +1,157 @@
 package com.parzivail.pswm.rendering;
 
+import java.util.HashMap;
+
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke1;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke1Blade;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke2;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberLuke2Blade;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberVader;
-import com.parzivail.pswm.models.weapons.melee.ModelLightsaberVaderBlade;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.pswm.models.lightsabers.ModelAncientSithHilt;
+import com.parzivail.pswm.models.lightsabers.ModelCrossbarHilt;
+import com.parzivail.pswm.models.lightsabers.ModelDookuHilt;
+import com.parzivail.pswm.models.lightsabers.ModelEzraHilt;
+import com.parzivail.pswm.models.lightsabers.ModelKananHilt;
+import com.parzivail.pswm.models.lightsabers.ModelLuke1Hilt;
+import com.parzivail.pswm.models.lightsabers.ModelLuke2Hilt;
+import com.parzivail.pswm.models.lightsabers.ModelMaulHilt;
+import com.parzivail.pswm.models.lightsabers.ModelPadawanHilt;
+import com.parzivail.pswm.models.lightsabers.ModelShotoHilt;
+import com.parzivail.pswm.models.lightsabers.ModelVader2Hilt;
+import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelDookuBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelDookuBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelDookuBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLuke2BladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLuke2BladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLuke2BladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeShort;
 import com.parzivail.util.ui.ShaderHelper;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 public class RenderLightsaber implements IItemRenderer
 {
-	private ModelLightsaberLuke1 modelLuke;
-	private ModelLightsaberLuke2 modelLuke2;
-	private ModelLightsaberVader modelVader;
+	public static final HashMap<String, IHandlesRender> models = new HashMap<>();
+	public static final HashMap<String, IHandlesRender[]> blades = new HashMap<>();
 
-	private ModelLightsaberLuke1Blade modelLukeBlade;
-	private ModelLightsaberLuke2Blade modelLuke2Blade;
-	private ModelLightsaberVaderBlade modelVaderBlade;
+	static
+	{
+		models.put("dooku", new ModelDookuHilt());
+		models.put("ezra", new ModelEzraHilt());
+		models.put("kanan", new ModelKananHilt());
+		models.put("maul", new ModelMaulHilt());
+		models.put("padawan", new ModelPadawanHilt());
+		models.put("shoto", new ModelShotoHilt());
+		models.put("doubleSith", new ModelAncientSithHilt());
+		models.put("vader2", new ModelVader2Hilt());
+		models.put("luke1", new ModelLuke1Hilt());
+		models.put("luke2", new ModelLuke2Hilt());
+		models.put("crossguard", new ModelCrossbarHilt());
+
+		blades.put("dooku", new IHandlesRender[] { new ModelDookuBladeShort(), new ModelDookuBladeMedium(), new ModelDookuBladeLong() });
+		blades.put("ezra", new IHandlesRender[] { new ModelEzraBladeShort(), new ModelEzraBladeMedium(), new ModelEzraBladeLong() });
+		blades.put("kanan", new IHandlesRender[] { new ModelKananBladeShort(), new ModelKananBladeMedium(), new ModelKananBladeLong() });
+		blades.put("maul", new IHandlesRender[] { new ModelMaulBladeShort(), new ModelMaulBladeMedium(), new ModelMaulBladeLong() });
+		blades.put("padawan", new IHandlesRender[] { new ModelPadawanBladeShort(), new ModelPadawanBladeMedium(), new ModelPadawanBladeLong() });
+		blades.put("shoto", new IHandlesRender[] { new ModelShotoBladeShort(), new ModelShotoBladeMedium(), new ModelShotoBladeLong() });
+		blades.put("doubleSith", new IHandlesRender[] { new ModelSithDoubleBladeShort(), new ModelSithDoubleBladeMedium(), new ModelSithDoubleBladeLong() });
+		blades.put("vader2", new IHandlesRender[] { new ModelVaderBladeShort(), new ModelVaderBladeMedium(), new ModelVaderBladeLong() });
+		blades.put("luke1", new IHandlesRender[] {});
+		blades.put("luke2", new IHandlesRender[] { new ModelLuke2BladeShort(), new ModelLuke2BladeMedium(), new ModelLuke2BladeLong() });
+		blades.put("crossguard", new IHandlesRender[] { new ModelCrossguardBladeShort(), new ModelCrossguardBladeMedium(), new ModelCrossguardBladeLong() });
+	}
 
 	public RenderLightsaber()
 	{
-		this.modelLuke = new ModelLightsaberLuke1();
-		this.modelLuke2 = new ModelLightsaberLuke2();
-		this.modelVader = new ModelLightsaberVader();
-
-		this.modelLukeBlade = new ModelLightsaberLuke1Blade();
-		this.modelLuke2Blade = new ModelLightsaberLuke2Blade();
-		this.modelVaderBlade = new ModelLightsaberVaderBlade();
 	}
 
 	@Override
 	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type)
 	{
+		IHandlesRender r = getHiltRendererForStack(item);
+		if (r != null)
+			return r.handleRenderType(item, type);
 		return true;
 	}
 
 	@Override
 	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
 	{
-		GL11.glPushMatrix();
-		ModelBase model = this.modelVader;
-		if (item.getItemDamage() == 0)
+		IHandlesRender r = getHiltRendererForStack(item);
+		if (r != null)
 		{
-			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberVader.png"));
-		}
-		else if (item.getItemDamage() == 1)
-		{
-			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberLuke1.png"));
-			model = this.modelLuke;
-		}
-		else if (item.getItemDamage() == 2)
-		{
-			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(Resources.MODID, "textures/models/lightsaberLuke2.png"));
-			model = this.modelLuke2;
-		}
-
-		if (item.getItemDamage() == 2 && type == type.EQUIPPED_FIRST_PERSON)
-			GL11.glTranslatef(0, -0.2f, 0);
-
-		switch (type)
-		{
-			case INVENTORY:
-				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.055F, -0.055F, 0.055F);
-				GL11.glTranslatef(-13, -6.5f, -3.5f);
-				GL11.glRotatef(25, 0, 0, 1);
-				if (item.getItemDamage() == 1)
-				{
-					GL11.glRotatef(90, 1, 0, 0);
-					GL11.glTranslatef(2, 6.5f, 2f);
-				}
-				model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-				GL11.glEnable(GL11.GL_CULL_FACE);
-				GL11.glPopMatrix();
-				break;
-			case EQUIPPED:
-				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.055F, -0.055F, 0.055F);
-				GL11.glRotatef(-40, 0, 1, 0);
-				GL11.glRotatef(22, 0, 0, 1);
-				if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
-				{
-					GL11.glRotatef(30, 0, 1, 0);
-					GL11.glTranslatef(-5, 0, 7.1f);
-				}
-				if (item.getItemDamage() == 1)
-				{
-					GL11.glTranslatef(0, -16.25f, 20);
-					GL11.glRotatef(90, 1, 0, 0);
-				}
-				GL11.glTranslatef(3, -20, 0);
-				model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-				GL11.glEnable(GL11.GL_CULL_FACE);
-				GL11.glPopMatrix();
-				break;
-			case EQUIPPED_FIRST_PERSON:
-				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.055F, -0.055F, 0.055F);
-				GL11.glTranslatef(8, -23, 9);
-				GL11.glRotatef(90, 0, 0, 1);
-				GL11.glRotatef(20, 1, 0, 0);
-				if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
-				{
-					GL11.glRotatef(-30, 0, 0, 1);
-					GL11.glRotatef(90, 1, 0, 0);
-					GL11.glTranslatef(2, 0, -10.8f);
-				}
-				else
-				{
-					GL11.glRotatef(180, 1, 0, 0);
-					GL11.glTranslatef(-4, 0, -6);
-				}
-				if (item.getItemDamage() == 1)
-				{
-					GL11.glTranslatef(0, 3.85f, 0.1f);
-					GL11.glRotatef(90, 1, 0, 0);
-				}
-				model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-				GL11.glEnable(GL11.GL_CULL_FACE);
-				GL11.glPopMatrix();
-				break;
-			default:
-				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.035F, -0.035F, 0.035F);
-				GL11.glRotatef(90, 0, 0, 1);
-				GL11.glTranslatef(-25, -2, -2);
-				model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-				GL11.glEnable(GL11.GL_CULL_FACE);
-				GL11.glPopMatrix();
-				break;
-		}
-
-		if (item.getItem() != StarWarsMod.lightsaberOff)
-		{
-			float n = (float)((Math.sin((System.currentTimeMillis() % 10000) / 500f) + 1) / 2f) * 0.05f + 0.95f;
-			model = this.modelVaderBlade;
-			if (item.getItemDamage() == 0)
+			GL11.glPushMatrix();
+			StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(item.stackTagCompound == null ? false : item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeSkin)));
+			r.renderItem(type, item, data);
+			GL11.glPopMatrix();
+			IHandlesRender rB = getBladeRendererForStack(item);
+			if (rB != null && item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn) && type != ItemRenderType.INVENTORY)
 			{
-				ShaderHelper.setColor(n, 0, 0, 0.95f);
+				GL11.glPushMatrix();
+				GL11.glEnable(GL11.GL_BLEND);
+				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+				ShaderHelper.setLightsaberColor(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+				ShaderHelper.useShader(ShaderHelper.glowSolid);
+				rB.renderItem(type, item, data);
+				ShaderHelper.releaseShader();
+				GL11.glDisable(GL11.GL_BLEND);
+				GL11.glPopMatrix();
 			}
-			else if (item.getItemDamage() == 1)
-			{
-				ShaderHelper.setColor(0.4f * n, 0.4f * n, n, 0.95f);
-				model = this.modelLukeBlade;
-			}
-			else if (item.getItemDamage() == 2)
-			{
-				ShaderHelper.setColor(0, n, 0, 0.95f);
-				model = this.modelLuke2Blade;
-			}
-			ShaderHelper.useShader(ShaderHelper.glowSolid);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			switch (type)
-			{
-				case INVENTORY:
-					break;
-				case EQUIPPED:
-					GL11.glPushMatrix();
-					GL11.glDisable(GL11.GL_CULL_FACE);
-					GL11.glScalef(0.055F, -0.055F, 0.055F);
-					GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 20, StarWarsMod.rngGeneral.nextGaussian() / 10, StarWarsMod.rngGeneral.nextGaussian() / 20);
-					GL11.glScalef(0.9f, 0.9f, 0.9f);
-					GL11.glTranslatef(0.4f, -1.9f, 0.7f);
-					GL11.glRotatef(-40, 0, 1, 0);
-					GL11.glRotatef(22, 0, 0, 1);
-					if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
-					{
-						GL11.glRotatef(30, 0, 1, 0);
-						GL11.glTranslatef(-4, 0, 8);
-					}
-					GL11.glTranslatef(5, -20, 0);
-					model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
-					break;
-				case EQUIPPED_FIRST_PERSON:
-					GL11.glPushMatrix();
-					GL11.glDisable(GL11.GL_CULL_FACE);
-					GL11.glScalef(0.055F, -0.055F, 0.055F);
-					GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 25, StarWarsMod.rngGeneral.nextGaussian() / 15, StarWarsMod.rngGeneral.nextGaussian() / 25);
-					GL11.glTranslatef(8, -23, 9);
-					GL11.glScalef(0.9f, 0.9f, 0.9f);
-					GL11.glTranslatef(0.4f, 0, 0.225f);
-					GL11.glRotatef(90, 0, 0, 1);
-					GL11.glRotatef(20, 1, 0, 0);
-					if (data[1] instanceof EntityPlayer && ((EntityPlayer)data[1]).isBlocking())
-					{
-						GL11.glRotatef(-30, 0, 0, 1);
-						GL11.glRotatef(90, 1, 0, 0);
-						GL11.glTranslatef(2, 0, -12);
-					}
-					else
-					{
-						GL11.glRotatef(180, 1, 0, 0);
-						GL11.glTranslatef(-3, 0, -6);
-					}
-					model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
-					break;
-				default:
-					GL11.glPushMatrix();
-					GL11.glDisable(GL11.GL_CULL_FACE);
-					GL11.glScalef(0.035F, -0.035F, 0.035F);
-					GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 20, StarWarsMod.rngGeneral.nextGaussian() / 10, StarWarsMod.rngGeneral.nextGaussian() / 20);
-					GL11.glRotatef(90, 0, 0, 1);
-					GL11.glTranslatef(-25, -2, -2);
-					GL11.glScalef(0.9f, 0.9f, 0.9f);
-					GL11.glTranslatef(0.225f, 0.25f, 0.225f);
-					model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
-					break;
-			}
-			GL11.glDisable(GL11.GL_BLEND);
-			ShaderHelper.releaseShader();
 		}
-		GL11.glPopMatrix();
+		else
+		{
+			r = models.get("luke2");
+			StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(false));
+			r.renderItem(type, item, data);
+		}
 	}
 
 	@Override
 	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper)
 	{
+		IHandlesRender r = getHiltRendererForStack(item);
+		if (r != null)
+			return r.shouldUseRenderHelper(type, item, helper);
 		return true;
+	}
+
+	private IHandlesRender getHiltRendererForStack(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && models.containsKey(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt)))
+			return models.get(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt));
+		else
+			return models.get(ItemLightsaber.hilts[((ItemLightsaber)stack.getItem()).hiltIndex]);
+	}
+
+	private IHandlesRender getBladeRendererForStack(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && blades.containsKey(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt)) && blades.get(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt)).length == 3)
+			return blades.get(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt))[stack.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength)];
+		else
+			return null;
 	}
 }
 /*

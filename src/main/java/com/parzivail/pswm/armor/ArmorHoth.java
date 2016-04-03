@@ -36,11 +36,9 @@ public class ArmorHoth extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.hothHelmet || stack.getItem() == StarWarsMod.hothChest || stack.getItem() == StarWarsMod.hothBoots)
-			return Resources.MODID + ":" + "textures/models/hothArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.hothLegs)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/hothArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/hothArmorLayer1.png";
 	}
 }
 /*

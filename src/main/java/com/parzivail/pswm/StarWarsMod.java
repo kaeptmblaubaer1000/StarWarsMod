@@ -25,6 +25,7 @@ import com.parzivail.pswm.items.weapons.ItemGamorreanAx2;
 import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
+import com.parzivail.pswm.items.weapons.ItemOldLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
@@ -117,7 +118,8 @@ public class StarWarsMod
 	public static CreativeTabs SequelStarWarsTab;
 
 	public static ItemGaffiStick gaffiStick;
-	public static ItemLightsaber lightsaber;
+	public static ItemOldLightsaber lightsaber;
+	public static ItemLightsaber[] lightsaberNew = new ItemLightsaber[ItemLightsaber.hilts.length];
 	public static ItemLightsaberOff lightsaberOff;
 	public static ItemSequelLightsaber sequelLightsaber;
 	public static ItemSequelLightsaberOff sequelLightsaberOff;
