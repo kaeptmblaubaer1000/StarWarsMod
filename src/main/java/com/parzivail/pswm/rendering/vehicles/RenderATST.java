@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelATST;
 import com.parzivail.pswm.vehicles.VehicATST;
+import com.parzivail.util.MathUtils;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
@@ -63,7 +64,7 @@ public class RenderATST extends RenderVehicBase
 					model.BodyParentMain.rotationPointY = 3.0f + MathHelper.sin((float)(atst.ticksExisted / 1.9f) + 4) / 5f;
 				}
 
-				model.HeadParentMain.rotateAngleY = (float)Math.toRadians(atst.rotationHead - atst.rotationYaw);
+				model.HeadParentMain.rotateAngleY = (float)Math.toRadians(MathUtils.lerp(atst.rotationHead - atst.rotationYaw, atst.rotationHead - atst.rotationYaw, partialTicks));
 				model.HeadParentMain.rotateAngleX = (float)Math.toRadians(MathHelper.clamp_float(atst.riddenByEntity.rotationPitch, -20, 20));
 			}
 

@@ -56,16 +56,18 @@ public class VehicATST extends VehicleLandBase
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
+			this.rotationYaw = this.rotationLast;
+
 			this.rotationHead = this.riddenByEntity.rotationYaw;
-			if (this.rotationHead > this.rotationLast + 45)
-				this.rotationYaw = this.rotationLast = this.rotationHead - 45;
-			else if (this.rotationHead < this.rotationLast - 45)
-				this.rotationYaw = this.rotationLast = this.rotationHead + 45;
+			if (this.rotationHead > this.rotationYaw + 45)
+				this.rotationLast = this.rotationHead - 45;
+			else if (this.rotationHead < this.rotationYaw - 45)
+				this.rotationLast = this.rotationHead + 45;
 			
-			this.rotationPitch = this.riddenByEntity.rotationPitch * 0.5F;
-			this.setRotation(this.rotationYaw, this.rotationPitch);
-			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
-			p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
+			this.rotationPitch = this.riddenByEntity.rotationPitch;
+			this.setRotation(this.rotationLast, this.rotationPitch);
+			// p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing
+			// * 0.5F;
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F);
 
 			float f2a = MathHelper.sin(this.rotationYaw * 3.1415927F / 180.0F);

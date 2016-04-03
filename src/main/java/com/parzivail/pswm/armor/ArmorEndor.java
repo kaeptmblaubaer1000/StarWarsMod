@@ -2,6 +2,7 @@ package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 import com.parzivail.pswm.models.armor.ModelEndorHelmet;
 
 import cpw.mods.fml.relauncher.Side;
@@ -17,6 +18,8 @@ public class ArmorEndor extends ItemArmor
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
 	ModelEndorHelmet h = new ModelEndorHelmet();
+	@SideOnly(Side.CLIENT)
+	ModelCompressionArmor c = new ModelCompressionArmor(0.4f, this);
 
 	public ArmorEndor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -32,7 +35,7 @@ public class ArmorEndor extends ItemArmor
 	{
 		if (armorSlot == 0)
 			return h;
-		return null;
+		return c;
 	}
 
 	@Override

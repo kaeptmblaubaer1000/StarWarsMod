@@ -1,16 +1,15 @@
 package com.parzivail.pswm.rendering.force;
 
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MathHelper;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 
 /**
  * Jedi Robes - Weaston
@@ -34,45 +33,45 @@ public class ModelJediCloak extends ModelBiped
 	{
 		this.textureWidth = 128;
 		this.textureHeight = 128;
-		this.ArmL = new ModelRenderer(this, 0, 83);
-		this.ArmL.setRotationPoint(-4.5F, 2.0F, 0.0F);
-		this.ArmL.addBox(-4.5F, -2.0F, -2.5F, 5, 10, 5, 0.0F);
+		this.bipedLeftArm = new ModelRenderer(this, 0, 83);
+		this.bipedLeftArm.setRotationPoint(-4.5F, 2.0F, 0.0F);
+		this.bipedLeftArm.addBox(-4.5F, -2.0F, -2.5F, 5, 10, 5, 0.0F);
 		this.HoodL = new ModelRenderer(this, 30, 38);
 		this.HoodL.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.HoodL.addBox(-4.5F, -8.5F, -4.5F, 1, 9, 6, 0.0F);
-		this.ArmR = new ModelRenderer(this, 0, 62);
-		this.ArmR.setRotationPoint(4.5F, 2.0F, 0.0F);
-		this.ArmR.addBox(-0.5F, -2.0F, -2.5F, 5, 10, 5, 0.0F);
+		this.bipedRightArm = new ModelRenderer(this, 0, 62);
+		this.bipedRightArm.setRotationPoint(4.5F, 2.0F, 0.0F);
+		this.bipedRightArm.addBox(-0.5F, -2.0F, -2.5F, 5, 10, 5, 0.0F);
 		this.HoodTop = new ModelRenderer(this, 30, 25);
 		this.HoodTop.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.HoodTop.addBox(-4.5F, -8.5F, -4.5F, 9, 1, 6, 0.0F);
 		this.HoodR = new ModelRenderer(this, 30, 57);
 		this.HoodR.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.HoodR.addBox(3.5F, -8.5F, -4.5F, 1, 9, 6, 0.0F);
-		this.FootR = new ModelRenderer(this, 0, 44);
-		this.FootR.setRotationPoint(2.0F, 12.0F, 0.0F);
-		this.FootR.addBox(-2.5F, 5.0F, -2.5F, 5, 7, 5, 0.0F);
-		this.Cape = new ModelRenderer(this, 35, 0);
-		this.Cape.setRotationPoint(0.0F, 1.0F, -2.5F);
-		this.Cape.addBox(-4.5F, 0.0F, 1.0F, 9, 20, 1, 0.0F);
+		this.bipedRightLeg = new ModelRenderer(this, 0, 44);
+		this.bipedRightLeg.setRotationPoint(2.0F, 12.0F, 0.0F);
+		this.bipedRightLeg.addBox(-2.5F, 5.0F, -2.5F, 5, 7, 5, 0.0F);
+		this.bipedCloak = new ModelRenderer(this, 35, 0);
+		this.bipedCloak.setRotationPoint(0.0F, 1.0F, -2.5F);
+		this.bipedCloak.addBox(-4.5F, 0.0F, 1.0F, 9, 20, 1, 0.0F);
 		this.HoodBack = new ModelRenderer(this, 62, 0);
 		this.HoodBack.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.HoodBack.addBox(-4.5F, -8.5F, 1.5F, 9, 11, 3, 0.0F);
-		this.BodyMain = new ModelRenderer(this, 0, 0);
-		this.BodyMain.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.BodyMain.addBox(-4.5F, 0.0F, -2.5F, 9, 17, 5, 0.0F);
-		this.FootL = new ModelRenderer(this, 0, 26);
-		this.FootL.setRotationPoint(-2.0F, 12.0F, 0.0F);
-		this.FootL.addBox(-2.5F, 5.0F, -2.5F, 5, 7, 5, 0.0F);
-		this.BodyMain.addChild(this.ArmL);
-		this.BodyMain.addChild(this.HoodL);
-		this.BodyMain.addChild(this.ArmR);
-		this.BodyMain.addChild(this.HoodTop);
-		this.BodyMain.addChild(this.HoodR);
-		this.BodyMain.addChild(this.FootR);
+		this.bipedBody = new ModelRenderer(this, 0, 0);
+		this.bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.bipedBody.addBox(-4.5F, 0.0F, -2.5F, 9, 17, 5, 0.0F);
+		this.bipedLeftLeg = new ModelRenderer(this, 0, 26);
+		this.bipedLeftLeg.setRotationPoint(-2.0F, 12.0F, 0.0F);
+		this.bipedLeftLeg.addBox(-2.5F, 5.0F, -2.5F, 5, 7, 5, 0.0F);
+		this.bipedBody.addChild(this.bipedLeftArm);
+		this.bipedBody.addChild(this.HoodL);
+		this.bipedBody.addChild(this.bipedRightArm);
+		this.bipedBody.addChild(this.HoodTop);
+		this.bipedBody.addChild(this.HoodR);
+		this.bipedBody.addChild(this.bipedRightLeg);
 		// this.BodyMain.addChild(this.Cape);
-		this.BodyMain.addChild(this.HoodBack);
-		this.BodyMain.addChild(this.FootL);
+		this.bipedBody.addChild(this.HoodBack);
+		this.bipedBody.addChild(this.bipedLeftLeg);
 	}
 
 	@Override
@@ -80,12 +79,14 @@ public class ModelJediCloak extends ModelBiped
 	{
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-		this.BodyMain.render(f5);
+		this.bipedLeftArm.setRotationPoint(8F, 1.5F, 0.0F);
+		this.bipedRightArm.setRotationPoint(-8F, 1.5F, 0.0F);
+		this.bipedBody.render(f5);
 	}
 
 	public void renderCape(float f5)
 	{
-		this.Cape.render(f5);
+		this.bipedCloak.render(f5);
 	}
 
 	public void renderCloak(RenderPlayerEvent.Specials.Post event)
@@ -149,31 +150,6 @@ public class ModelJediCloak extends ModelBiped
 	{
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-
-		this.ArmL.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F;
-		this.ArmR.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
-		this.ArmL.rotateAngleZ = 0.0F;
-		this.ArmR.rotateAngleZ = 0.0F;
-
-		this.ArmL.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-		this.ArmR.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-		this.ArmL.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
-		this.ArmR.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
-
-		if (entity instanceof EntityPlayer)
-			if (((EntityPlayer)entity).inventory.getCurrentItem() != null)
-			{
-				this.heldItemRight = 1;
-				this.ArmL.rotateAngleX = this.ArmL.rotateAngleX * 0.5F - (float)Math.PI / 10F * this.heldItemRight;
-			}
-			else
-				this.heldItemRight = 0;
-
-		this.FootL.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.FootR.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-
 		this.HoodBack.rotateAngleY = f3 / (180F / (float)Math.PI);
 		this.HoodBack.rotateAngleX = f4 / (180F / (float)Math.PI);
 
@@ -188,12 +164,6 @@ public class ModelJediCloak extends ModelBiped
 
 		if (entity.isSneaking())
 		{
-			this.ArmL.rotateAngleX += 0.4F;
-			this.ArmR.rotateAngleX += 0.4F;
-			this.FootL.rotationPointZ = 4.0F;
-			this.FootR.rotationPointZ = 4.0F;
-			this.FootL.rotationPointY = 9.0F;
-			this.FootR.rotationPointY = 9.0F;
 			this.HoodBack.rotationPointY = 1.0F;
 			this.HoodL.rotationPointY = 1.0F;
 			this.HoodR.rotationPointY = 1.0F;
@@ -201,36 +171,10 @@ public class ModelJediCloak extends ModelBiped
 		}
 		else
 		{
-			this.ArmL.rotationPointZ = 0.0F;
-			this.ArmR.rotationPointZ = 0.0F;
-			this.FootL.rotationPointZ = 0.0F;
-			this.FootR.rotationPointZ = 0.0F;
-			this.FootL.rotationPointY = 12.0F;
-			this.FootR.rotationPointY = 12.0F;
 			this.HoodBack.rotationPointY = 0.0F;
 			this.HoodL.rotationPointY = 0.0F;
 			this.HoodR.rotationPointY = 0.0F;
 			this.HoodTop.rotationPointY = 0.0F;
-		}
-
-		if (this.isRiding)
-		{
-			this.ArmL.rotateAngleX += -((float)Math.PI / 5F);
-			this.ArmR.rotateAngleX += -((float)Math.PI / 5F);
-		}
-
-		if (this.aimedBow)
-		{
-			this.bipedRightArm.rotateAngleZ = 0.0F;
-			this.bipedLeftArm.rotateAngleZ = 0.0F;
-			this.bipedRightArm.rotateAngleY = -(0.1F * 0.6F) + this.bipedHead.rotateAngleY;
-			this.bipedLeftArm.rotateAngleY = 0.1F * 0.6F + this.bipedHead.rotateAngleY + 0.4F;
-			this.bipedRightArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
-			this.bipedLeftArm.rotateAngleX = -((float)Math.PI / 2F) + this.bipedHead.rotateAngleX;
-			this.bipedRightArm.rotateAngleZ += MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-			this.bipedLeftArm.rotateAngleZ -= MathHelper.cos(f2 * 0.09F) * 0.05F + 0.05F;
-			this.bipedRightArm.rotateAngleX += MathHelper.sin(f2 * 0.067F) * 0.05F;
-			this.bipedLeftArm.rotateAngleX -= MathHelper.sin(f2 * 0.067F) * 0.05F;
 		}
 	}
 }
