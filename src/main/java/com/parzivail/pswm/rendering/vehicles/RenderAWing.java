@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelAWing;
 
-public class RenderAWing extends RenderVehicAirBase
+public class RenderAWing extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/awing.png");
 

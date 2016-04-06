@@ -1,12 +1,5 @@
 package com.parzivail.pswm.rendering.gui;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
@@ -17,6 +10,12 @@ import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class GuiHoloTable extends GuiScreen
@@ -51,13 +50,13 @@ public class GuiHoloTable extends GuiScreen
 		if (button.enabled)
 			if (button.id == this.buttonBlack.id)
 			{
-				this.table.setRGB(0.5f, 0.5f, 0.8f);
+				this.table.setRGB(0.2f, 0.2f, 0.4f);
 				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
 				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
 			}
 			else if (button.id == this.buttonWhite.id)
 			{
-				this.table.setRGB(0.7f, 0.7f, 1);
+				this.table.setRGB(0.4f, 0.4f, 1);
 				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
 				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
 			}

@@ -43,6 +43,9 @@ item.starwarsmod.lightsaber.name=Lightsaber
 item.starwarsmod.lightsaberOff.name=Lightsaber
 item.starwarsmod.ewokSpear.name=Ewok Spear
 item.starwarsmod.gamorreanAx.name=Gamorrean Ax
+item.starwarsmod.gamorreanAx2.name=Gamorrean Ax
+item.starwarsmod.gamorreanAx3.name=Gamorrean Staff
+item.starwarsmod.vibroLance.name=Vibro-Lance
 item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 
 // Blasters

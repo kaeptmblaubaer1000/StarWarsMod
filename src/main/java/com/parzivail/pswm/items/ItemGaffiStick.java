@@ -2,14 +2,14 @@ package com.parzivail.pswm.items;
 
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.TextUtils;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.ui.TextUtils;
 
 public class ItemGaffiStick extends ItemSword
 {
@@ -32,7 +32,9 @@ public class ItemGaffiStick extends ItemSword
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
 	{
-		entityPlayer.playSound(Resources.MODID + ":" + "item.gaffi.rightclick", 1.0F, 1.0F);
+		// entityPlayer.playSound(Resources.MODID + ":" +
+		// "item.gaffi.rightclick", 1.0F, 1.0F);
+		entityPlayer.posX += 10;
 		return itemStack;
 	}
 }

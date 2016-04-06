@@ -35,6 +35,7 @@ import com.parzivail.pswm.items.ItemGoldImperialCredit;
 import com.parzivail.pswm.items.ItemGorrnar;
 import com.parzivail.pswm.items.ItemImperialCredit;
 import com.parzivail.pswm.items.ItemMusicDisc;
+import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.ItemSilverImperialCredit;
 import com.parzivail.pswm.items.ItemSpawnAstromech;
 import com.parzivail.pswm.items.ItemSpawnAstromech2;
@@ -75,19 +76,24 @@ import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemEwokSpear;
 import com.parzivail.pswm.items.weapons.ItemGaffiStick;
-import com.parzivail.pswm.items.weapons.ItemGamorreanAx;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx1;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx2;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaberOff;
+import com.parzivail.pswm.items.weapons.ItemVibroLance;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.vehicles.ItemSpawnATST;
 import com.parzivail.pswm.vehicles.ItemSpawnAWing;
 import com.parzivail.pswm.vehicles.ItemSpawnHothSpeederBike;
 import com.parzivail.pswm.vehicles.ItemSpawnJakkuSpeeder;
 import com.parzivail.pswm.vehicles.ItemSpawnLandspeeder;
+import com.parzivail.pswm.vehicles.ItemSpawnSkyhopper;
+import com.parzivail.pswm.vehicles.ItemSpawnSnowspeeder;
 import com.parzivail.pswm.vehicles.ItemSpawnSpeederBike;
 import com.parzivail.pswm.vehicles.ItemSpawnTIE;
 import com.parzivail.pswm.vehicles.ItemSpawnTIEInterceptor;
@@ -111,6 +117,12 @@ public class ItemRegister
 
 			StarWarsMod.spawnDsTurret = new ItemSpawnDSTurret();
 			GameRegistry.registerItem(StarWarsMod.spawnDsTurret, "spawnDsTurret");
+
+			StarWarsMod.questContainer = new ItemQuestContainer();
+			GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
+
+			StarWarsMod.spawnAtst = new ItemSpawnATST();
+			GameRegistry.registerItem(StarWarsMod.spawnAtst, "spawnAtst");
 		}
 
 		if (Resources.IS_SEQUEL_RELEASE)
@@ -167,17 +179,30 @@ public class ItemRegister
 		StarWarsMod.spawnXwing = new ItemSpawnXWing();
 		GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
 
+		StarWarsMod.spawnSkyhopper = new ItemSpawnSkyhopper();
+		GameRegistry.registerItem(StarWarsMod.spawnSkyhopper, "spawnSkyhopper");
+
+		StarWarsMod.spawnSnowspeeder = new ItemSpawnSnowspeeder();
+		GameRegistry.registerItem(StarWarsMod.spawnSnowspeeder, "spawnSnowspeeder");
+
 		StarWarsMod.spawnAwing = new ItemSpawnAWing();
 		GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
 
 		StarWarsMod.gaffiStick = new ItemGaffiStick();
 		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");
 
-		StarWarsMod.lightsaber = new ItemLightsaber();
-		GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
+		// StarWarsMod.lightsaber = new ItemOldLightsaber();
+		// GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
 
-		StarWarsMod.lightsaberOff = new ItemLightsaberOff();
-		GameRegistry.registerItem(StarWarsMod.lightsaberOff, "lightsaberOff");
+		for (int i = 0; i < StarWarsMod.lightsaberNew.length; i++)
+		{
+			StarWarsMod.lightsaberNew[i] = new ItemLightsaber(i);
+			GameRegistry.registerItem(StarWarsMod.lightsaberNew[i], "lightsaberNew" + String.valueOf(i));
+		}
+
+		// StarWarsMod.lightsaberOff = new ItemLightsaberOff();
+		// GameRegistry.registerItem(StarWarsMod.lightsaberOff,
+		// "lightsaberOff");
 
 		StarWarsMod.binoculars = new ItemBinocularsTatooine();
 		GameRegistry.registerItem(StarWarsMod.binoculars, "binoculars");
@@ -230,8 +255,17 @@ public class ItemRegister
 		StarWarsMod.ewokSpear = new ItemEwokSpear();
 		GameRegistry.registerItem(StarWarsMod.ewokSpear, "ewokSpear");
 
-		StarWarsMod.gamorreanAx = new ItemGamorreanAx();
-		GameRegistry.registerItem(StarWarsMod.gamorreanAx, "gamorreanAx");
+		StarWarsMod.gamorreanAx1 = new ItemGamorreanAx1();
+		GameRegistry.registerItem(StarWarsMod.gamorreanAx1, "gamorreanAx");
+
+		StarWarsMod.vibroLance = new ItemVibroLance();
+		GameRegistry.registerItem(StarWarsMod.vibroLance, "vibroLance");
+
+		StarWarsMod.gamorreanAx3 = new ItemGamorreanAx3();
+		GameRegistry.registerItem(StarWarsMod.gamorreanAx3, "gamorreanAx3");
+
+		StarWarsMod.gamorreanAx2 = new ItemGamorreanAx2();
+		GameRegistry.registerItem(StarWarsMod.gamorreanAx2, "gamorreanAx2");
 
 		StarWarsMod.banthaHorn = new ItemBanthaHorn();
 		GameRegistry.registerItem(StarWarsMod.banthaHorn, "banthaHorn");

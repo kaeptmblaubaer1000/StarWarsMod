@@ -9,7 +9,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelXWing;
 import com.parzivail.pswm.vehicles.VehicXWing;
 
-public class RenderXWing extends RenderVehicAirBase
+public class RenderXWing extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/xwing.png");
 

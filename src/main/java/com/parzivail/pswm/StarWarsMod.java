@@ -5,17 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.commons.io.IOUtils;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
@@ -31,13 +20,17 @@ import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemEwokSpear;
 import com.parzivail.pswm.items.weapons.ItemGaffiStick;
-import com.parzivail.pswm.items.weapons.ItemGamorreanAx;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx1;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx2;
+import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
+import com.parzivail.pswm.items.weapons.ItemOldLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelLightsaberOff;
+import com.parzivail.pswm.items.weapons.ItemVibroLance;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.network.MessageAddEffectTo;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
@@ -56,11 +49,10 @@ import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
+import com.parzivail.pswm.network.MessageShipTargetLock;
+import com.parzivail.pswm.network.MessageToggleLightsaber;
+import com.parzivail.pswm.network.MessageToggleSequelLightsaber;
 import com.parzivail.pswm.network.MessageTransmute;
-import com.parzivail.pswm.network.PacketShipTargetLock;
-import com.parzivail.pswm.network.PacketTogglePlayerLightsaber;
-import com.parzivail.pswm.network.PacketTogglePlayerSequelLightsaber;
-import com.parzivail.pswm.network.PacketUpdateRobes;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.DamageSourceRegister;
 import com.parzivail.pswm.registry.EntityRegister;
@@ -84,6 +76,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemFood;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -116,7 +118,8 @@ public class StarWarsMod
 	public static CreativeTabs SequelStarWarsTab;
 
 	public static ItemGaffiStick gaffiStick;
-	public static ItemLightsaber lightsaber;
+	public static ItemOldLightsaber lightsaber;
+	public static ItemLightsaber[] lightsaberNew = new ItemLightsaber[ItemLightsaber.hilts.length];
 	public static ItemLightsaberOff lightsaberOff;
 	public static ItemSequelLightsaber sequelLightsaber;
 	public static ItemSequelLightsaberOff sequelLightsaberOff;
@@ -127,7 +130,10 @@ public class StarWarsMod
 	public static ItemBlasterHeavy blasterHeavy;
 	public static ItemEwokSpear ewokSpear;
 	public static ItemWookieeBowcaster bowcaster;
-	public static ItemGamorreanAx gamorreanAx;
+	public static ItemGamorreanAx1 gamorreanAx1;
+	public static ItemGamorreanAx2 gamorreanAx2;
+	public static ItemGamorreanAx3 gamorreanAx3;
+	public static ItemVibroLance vibroLance;
 	public static ItemLightsaberCrystal lightsaberCrystal;
 
 	public static Item customTest;
@@ -178,6 +184,9 @@ public class StarWarsMod
 	public static Item spawnTieInterceptor;
 	public static Item spawnAwing;
 	public static Item spawnXwing;
+	public static Item spawnSkyhopper;
+	public static Item spawnAtst;
+	public static Item spawnSnowspeeder;
 	public static Item spawnDsTurret;
 	public static Item spawnAstromech;
 	public static Item spawnAstromechImperial;
@@ -268,6 +277,8 @@ public class StarWarsMod
 	public static Item hothBoots;
 
 	public static Item leiasBuns;
+
+	public static Item questContainer;
 
 	public static ItemFood banthaChop;
 	public static ItemFood banthaChopCooked;
@@ -452,34 +463,15 @@ public class StarWarsMod
 
 		this.checkCompat();
 
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
+		setupNetworking();
 
-		this.registerMessage(MessageEntityGrab.class);
-		this.registerMessage(MessageAddEffectTo.class);
-		this.registerMessage(MessageHoloTableUpdate.class);
-		this.registerMessage(MessageSetEntityTarget.class);
-		this.registerMessage(MessageCreateDestructionBolt.class);
-		this.registerMessage(MessageEntityAlterMotion.class);
-		this.registerMessage(MessageHyperdrive.class);
-		this.registerMessage(MessageEntityHurt.class);
-		this.registerMessage(MessageTransmute.class);
-		this.registerMessage(MessageEntityReverse.class);
-		this.registerMessage(MessageRobesBooleanNBT.class);
-		this.registerMessage(MessageRobesIntNBT.class);
-		this.registerMessage(MessageRobesStringNBT.class);
-		this.registerMessage(MessageSFoil.class);
-		this.registerMessage(MessageRobesPowerNBT.class);
-		this.registerMessage(MessageHeal.class);
-		this.registerMessage(MessageDrainKnowledge.class);
+		setupConfig(event);
 
-		network.registerMessage(MessageCreateBlasterBolt.class, MessageCreateBlasterBolt.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerLightsaber.Handler.class, PacketTogglePlayerLightsaber.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketTogglePlayerSequelLightsaber.Handler.class, PacketTogglePlayerSequelLightsaber.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketShipTargetLock.Handler.class, PacketShipTargetLock.class, packetId++, Side.SERVER);
-		network.registerMessage(PacketUpdateRobes.Handler.class, PacketUpdateRobes.class, packetId++, Side.SERVER);
+		Lumberjack.info("=========== End Star Wars Mod preInit() ===========");
+	}
 
-		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
-
+	private void setupConfig(FMLPreInitializationEvent event)
+	{
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
@@ -517,8 +509,35 @@ public class StarWarsMod
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");
+	}
 
-		Lumberjack.info("=========== End Star Wars Mod preInit() ===========");
+	private void setupNetworking()
+	{
+		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
+
+		this.registerMessage(MessageEntityGrab.class);
+		this.registerMessage(MessageAddEffectTo.class);
+		this.registerMessage(MessageHoloTableUpdate.class);
+		this.registerMessage(MessageSetEntityTarget.class);
+		this.registerMessage(MessageCreateDestructionBolt.class);
+		this.registerMessage(MessageEntityAlterMotion.class);
+		this.registerMessage(MessageHyperdrive.class);
+		this.registerMessage(MessageEntityHurt.class);
+		this.registerMessage(MessageTransmute.class);
+		this.registerMessage(MessageEntityReverse.class);
+		this.registerMessage(MessageRobesBooleanNBT.class);
+		this.registerMessage(MessageRobesIntNBT.class);
+		this.registerMessage(MessageRobesStringNBT.class);
+		this.registerMessage(MessageSFoil.class);
+		this.registerMessage(MessageRobesPowerNBT.class);
+		this.registerMessage(MessageHeal.class);
+		this.registerMessage(MessageDrainKnowledge.class);
+		this.registerMessage(MessageShipTargetLock.class);
+		this.registerMessage(MessageCreateBlasterBolt.class);
+		this.registerMessage(MessageToggleLightsaber.class);
+		this.registerMessage(MessageToggleSequelLightsaber.class);
+
+		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
 
 	public void registerMessage(Class messageHandler)

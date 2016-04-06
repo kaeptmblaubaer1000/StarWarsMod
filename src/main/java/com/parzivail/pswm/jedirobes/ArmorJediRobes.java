@@ -2,6 +2,15 @@ package com.parzivail.pswm.jedirobes;
 
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.armor.ModelCompressionArmor;
+import com.parzivail.pswm.rendering.force.ModelJediCloak;
+import com.parzivail.pswm.utils.ForceUtils;
+import com.parzivail.util.world.ItemUtils;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,15 +19,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.rendering.force.ModelJediCloak;
-import com.parzivail.pswm.utils.ForceUtils;
-import com.parzivail.util.world.ItemUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorJediRobes extends ItemArmor
 {
@@ -29,7 +29,7 @@ public class ArmorJediRobes extends ItemArmor
 	public static final float POINTS_PER_LEVEL = 10;
 
 	@SideOnly(Side.CLIENT)
-	public static ModelJediCloak model;
+	public static ModelCompressionArmor model;
 
 	public static ItemStack addLevels(ItemStack stack, int levels)
 	{
@@ -384,7 +384,8 @@ public class ArmorJediRobes extends ItemArmor
 		if (stack == null)
 			return null;
 		if (stack.stackTagCompound == null)
-			stack.stackTagCompound = new NBTTagCompound();stack.stackTagCompound.setInteger(Resources.nbtXp, levels);
+			stack.stackTagCompound = new NBTTagCompound();
+		stack.stackTagCompound.setInteger(Resources.nbtXp, levels);
 		return stack;
 	}
 
@@ -431,7 +432,10 @@ public class ArmorJediRobes extends ItemArmor
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
 		if (model == null)
-			model = new ModelJediCloak();
+		{
+			model = new ModelCompressionArmor(0.4f, this);
+			model.setModel(new ModelJediCloak());
+		}
 		return model;
 	}
 

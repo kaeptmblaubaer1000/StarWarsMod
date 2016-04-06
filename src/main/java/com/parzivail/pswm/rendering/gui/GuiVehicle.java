@@ -1,16 +1,12 @@
 package com.parzivail.pswm.rendering.gui;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.handlers.ClientEventHandler;
-import com.parzivail.pswm.network.PacketShipTargetLock;
+import com.parzivail.pswm.network.MessageShipTargetLock;
 import com.parzivail.pswm.rendering.helper.VehicleLineDraw;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicTIE;
@@ -21,6 +17,10 @@ import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class GuiVehicle
 {
@@ -84,15 +84,7 @@ public class GuiVehicle
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
-					if (isFiring)
-					{
-						blipFrame -= 0.25f;
-						if (blipFrame <= 0)
-						{
-							blipFrame = blipMax;
-							isFiring = false;
-						}
-					}
+					updateFiring();
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { xwing });
 
@@ -113,11 +105,7 @@ public class GuiVehicle
 					if (!ClientEventHandler.isCursorAnim)
 						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
-					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-
-					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+					updateTargetLock(e);
 
 					this.lastTarget = e;
 
@@ -202,15 +190,7 @@ public class GuiVehicle
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
-					if (isFiring)
-					{
-						blipFrame -= 0.25f;
-						if (blipFrame <= 0)
-						{
-							blipFrame = blipMax;
-							isFiring = false;
-						}
-					}
+					updateFiring();
 
 					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
 
@@ -233,11 +213,7 @@ public class GuiVehicle
 					if (!ClientEventHandler.isCursorAnim)
 						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
-					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-
-					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+					updateTargetLock(e);
 
 					this.lastTarget = e;
 
@@ -363,15 +339,7 @@ public class GuiVehicle
 							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
-					if (isFiring)
-					{
-						blipFrame -= 0.25f;
-						if (blipFrame <= 0)
-						{
-							blipFrame = blipMax;
-							isFiring = false;
-						}
-					}
+					updateFiring();
 
 					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(tie.dimension), 0, 0);
 
@@ -424,11 +392,7 @@ public class GuiVehicle
 					if (!ClientEventHandler.isCursorAnim)
 						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
-					if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
-						StarWarsMod.network.sendToServer(new PacketShipTargetLock(e.riddenByEntity.getCommandSenderName(), true, e.worldObj.provider.dimensionId));
-
-					if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-						StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+					updateTargetLock(e);
 
 					this.lastTarget = e;
 
@@ -546,7 +510,7 @@ public class GuiVehicle
 		{
 			try
 			{
-				StarWarsMod.network.sendToServer(new PacketShipTargetLock(this.lastTarget.riddenByEntity.getCommandSenderName(), false, this.lastTarget.worldObj.provider.dimensionId));
+				StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)this.lastTarget.riddenByEntity, false));
 			}
 			catch (Exception e)
 			{
@@ -554,5 +518,27 @@ public class GuiVehicle
 			}
 			this.lastTarget = null;
 		}
+	}
+
+	private void updateFiring()
+	{
+		if (isFiring)
+		{
+			blipFrame -= 0.25f;
+			if (blipFrame <= 0)
+			{
+				blipFrame = blipMax;
+				isFiring = false;
+			}
+		}
+	}
+
+	private void updateTargetLock(Entity e)
+	{
+		if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
+			StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)e.riddenByEntity, true));
+
+		if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
+			StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)this.lastTarget.riddenByEntity, false));
 	}
 }

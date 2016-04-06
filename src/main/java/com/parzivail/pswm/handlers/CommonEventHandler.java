@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
@@ -37,8 +29,10 @@ import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
+import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
@@ -56,6 +50,13 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 
 public class CommonEventHandler
 {
@@ -87,10 +88,17 @@ public class CommonEventHandler
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.SPEEDER));
 				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.XWING));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
+				{
+					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				}
+				else
+				{
+					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				}
 				GuiVehicle.isFiring = true;
 				GuiVehicle.blipFrame = GuiVehicle.blipMax;
 			}
@@ -115,16 +123,30 @@ public class CommonEventHandler
 					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, false));
 				}
 			}
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
+			{
+				VehicSkyhopper skyh = (VehicSkyhopper)StarWarsMod.mc.thePlayer.ridingEntity;
+				if (skyh.getWing() <= 0.45f && !(skyh.isOpening || skyh.isClosing))
+				{
+					skyh.isOpening = true;
+					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, false));
+				}
+				if (skyh.getWing() >= 0.55f && !(skyh.isOpening || skyh.isClosing))
+				{
+					skyh.isClosing = true;
+					Minecraft.getMinecraft().getSoundHandler().playSound(new SoundSFoil(StarWarsMod.mc.thePlayer, true));
+				}
+			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 
+		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())
+			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, null, 0, 0, 0);
+
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
-
-		// if (KeybindRegistry.keyDebug.isPressed())
-		// GuiToast.makeText("X is 10\nY is 45", GuiToast.TIME_LONG).show();
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
 		{

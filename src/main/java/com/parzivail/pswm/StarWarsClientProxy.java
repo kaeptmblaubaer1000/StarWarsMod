@@ -1,9 +1,5 @@
 package com.parzivail.pswm;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.MinecraftForgeClient;
-
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
@@ -14,6 +10,7 @@ import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
 import com.parzivail.pswm.entities.EntityTIEBolt;
 import com.parzivail.pswm.entities.EntityXWingBolt;
 import com.parzivail.pswm.font.FontManager;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.MobBantha;
 import com.parzivail.pswm.mobs.MobBith;
 import com.parzivail.pswm.mobs.MobDewback;
@@ -56,9 +53,12 @@ import com.parzivail.pswm.models.mobs.ModelSmallBiped;
 import com.parzivail.pswm.models.mobs.ModelTauntaun;
 import com.parzivail.pswm.models.mobs.ModelWampa;
 import com.parzivail.pswm.models.mobs.ModelWookiee;
+import com.parzivail.pswm.models.vehicles.ModelATST;
 import com.parzivail.pswm.models.vehicles.ModelAWing;
 import com.parzivail.pswm.models.vehicles.ModelJakkuSpeeder;
 import com.parzivail.pswm.models.vehicles.ModelLandspeeder;
+import com.parzivail.pswm.models.vehicles.ModelSkyhopper;
+import com.parzivail.pswm.models.vehicles.ModelSnowspeeder;
 import com.parzivail.pswm.models.vehicles.ModelSpeederBike;
 import com.parzivail.pswm.models.vehicles.ModelTIE;
 import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
@@ -100,9 +100,22 @@ import com.parzivail.pswm.rendering.RenderTusken;
 import com.parzivail.pswm.rendering.RenderWampa;
 import com.parzivail.pswm.rendering.RenderWookiee;
 import com.parzivail.pswm.rendering.helper.PSWMEntityRenderer;
+import com.parzivail.pswm.rendering.item.RenderBlasterHeavy;
+import com.parzivail.pswm.rendering.item.RenderBlasterPistol;
+import com.parzivail.pswm.rendering.item.RenderBlasterRifle;
+import com.parzivail.pswm.rendering.item.RenderBowcaster;
+import com.parzivail.pswm.rendering.item.RenderGaffi;
+import com.parzivail.pswm.rendering.item.RenderGamL;
+import com.parzivail.pswm.rendering.item.RenderGamM;
+import com.parzivail.pswm.rendering.item.RenderGamS;
+import com.parzivail.pswm.rendering.item.RenderSpear;
+import com.parzivail.pswm.rendering.item.RenderVibro;
+import com.parzivail.pswm.rendering.vehicles.RenderATST;
 import com.parzivail.pswm.rendering.vehicles.RenderAWing;
 import com.parzivail.pswm.rendering.vehicles.RenderJakkuSpeeder;
 import com.parzivail.pswm.rendering.vehicles.RenderLandspeeder;
+import com.parzivail.pswm.rendering.vehicles.RenderSkyhopper;
+import com.parzivail.pswm.rendering.vehicles.RenderSnowspeeder;
 import com.parzivail.pswm.rendering.vehicles.RenderSpeederBike;
 import com.parzivail.pswm.rendering.vehicles.RenderTIE;
 import com.parzivail.pswm.rendering.vehicles.RenderTIEInterceptor;
@@ -116,10 +129,13 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
+import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
 import com.parzivail.pswm.vehicles.VehicLandspeeder;
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
+import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
@@ -131,6 +147,9 @@ import com.parzivail.util.ui.ShaderHelper;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -195,11 +214,14 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicATST.class, new RenderATST(new ModelATST(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, new RenderTIE(new ModelTIE(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, new RenderTIEInterceptor(new ModelTIEInterceptor(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, new RenderXWing(new ModelXWing(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, new RenderAWing(new ModelAWing(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, new RenderSkyhopper(new ModelSkyhopper(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, new RenderSnowspeeder(new ModelSnowspeeder(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 
@@ -212,10 +234,22 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(GLPalette.NEON_GREEN, 2.0f));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaber, new RenderLightsaber());
+		for (ItemLightsaber i : StarWarsMod.lightsaberNew)
+			MinecraftForgeClient.registerItemRenderer(i, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaber, new RenderLightsaberKylo());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKylo());
+
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterPistol, new RenderBlasterPistol());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterRifle, new RenderBlasterRifle());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterHeavy, new RenderBlasterHeavy());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.bowcaster, new RenderBowcaster());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx1, new RenderGamS());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx2, new RenderGamM());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx3, new RenderGamL());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.vibroLance, new RenderVibro());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.ewokSpear, new RenderSpear());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gaffiStick, new RenderGaffi());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());

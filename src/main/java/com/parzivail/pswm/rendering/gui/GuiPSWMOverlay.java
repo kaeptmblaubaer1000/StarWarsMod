@@ -3,14 +3,6 @@ package com.parzivail.pswm.rendering.gui;
 import java.text.NumberFormat;
 import java.util.Iterator;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
@@ -24,6 +16,13 @@ import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class GuiPSWMOverlay extends Gui
 {
@@ -79,7 +78,7 @@ public class GuiPSWMOverlay extends Gui
 
 			RenderHelper.disableStandardItemLighting();
 			ClientEventHandler.pgui.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
-			ClientEventHandler.pgui.renderOrderLogo(65, 6, isJedi);
+			ClientEventHandler.pgui.renderOrderLogo(70, 6, isJedi);
 
 			GL11.glPushMatrix();
 			GL11.glScalef(0.5f, 0.5f, 0.5f);

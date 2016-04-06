@@ -6,7 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
 
-public class RenderTIEInterceptor extends RenderVehicAirBase
+public class RenderTIEInterceptor extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tieInterceptor.png");
 

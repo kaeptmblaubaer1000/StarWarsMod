@@ -2,6 +2,10 @@ package com.parzivail.pswm.tileentities;
 
 import java.awt.Color;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -9,8 +13,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityHoloTableBase extends TileEntity
 {
@@ -20,10 +22,11 @@ public class TileEntityHoloTableBase extends TileEntity
 	int offset = 0;
 	Color rgb;
 	int ticksUntilRefresh = 80;
+	int displayList = -1;
 
 	public TileEntityHoloTableBase()
 	{
-		this.rgb = new Color(200, 200, 255);
+		this.setRGB(0.4f, 0.4f, 1);
 	}
 
 	@Override
@@ -32,6 +35,58 @@ public class TileEntityHoloTableBase extends TileEntity
 		NBTTagCompound tag = new NBTTagCompound();
 		this.writeToNBT(tag);
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
+	}
+
+	public int getDisplayList()
+	{
+		return this.displayList;
+	}
+
+	public void regenDisplayList()
+	{
+		if (displayList == -1)
+			displayList = GL11.glGenLists(1);
+		GL11.glNewList(displayList, GL11.GL_COMPILE);
+
+		GL11.glLineWidth(4);
+
+		boolean solid = false;
+
+		for (int i = 0; i < this.getMap().length; i++)
+		{
+			int nx = i % this.getSideLength();
+			int nz = (int)Math.floor(i / this.getSideLength());
+
+			float o = this.getOffset() / 16f;
+
+			int s = this.getSideLength() / 2;
+
+			if (solid)
+			{
+				GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+				GL11.glVertex3f(nx - s, this.getMap()[i] - this.yCoord + o, nz - s);
+				GL11.glVertex3f(nx - s + 1, this.getMap()[i] - this.yCoord + o, nz - s);
+				GL11.glVertex3f(nx - s, this.getMap()[i] - this.yCoord + o, nz - s + 1);
+				GL11.glEnd();
+				GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+				GL11.glVertex3f(nx - s + 1, this.getMap()[i] - this.yCoord + o, nz - s + 1);
+				GL11.glVertex3f(nx - s + 1, this.getMap()[i] - this.yCoord + o, nz - s);
+				GL11.glVertex3f(nx - s, this.getMap()[i] - this.yCoord + o, nz - s + 1);
+				GL11.glEnd();
+			}
+			else
+			{
+				GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3d(nx - s - 1, this.getMap()[i] - this.yCoord + o, nz - s - 1);
+				GL11.glVertex3d(nx - s, this.getMap()[i] - this.yCoord + o, nz - s);
+				GL11.glEnd();
+				GL11.glBegin(GL11.GL_LINE_LOOP);
+				GL11.glVertex3d(nx - s - 1, this.getMap()[i] - this.yCoord + o, nz - s);
+				GL11.glVertex3d(nx - s, this.getMap()[i] - this.yCoord + o, nz - s - 1);
+				GL11.glEnd();
+			}
+		}
+		GL11.glEndList();
 	}
 
 	public int[] getMap()
@@ -131,6 +186,9 @@ public class TileEntityHoloTableBase extends TileEntity
 
 			this.map[i] = this.worldObj.getHeightValue(this.xCoord + x - this.sideLength / 2, this.zCoord + z - this.sideLength / 2);
 		}
+
+		if (this.worldObj.isRemote)
+			this.regenDisplayList();
 	}
 
 	@Override

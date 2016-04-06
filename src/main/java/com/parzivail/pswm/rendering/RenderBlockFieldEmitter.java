@@ -1,13 +1,13 @@
 package com.parzivail.pswm.rendering;
 
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.ui.RenderHelper;
+import com.parzivail.util.ui.ShaderHelper;
+
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
 
 public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 {
@@ -33,14 +33,17 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 		{
 			GL11.glPushMatrix();
 
-			GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!
+			// GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-			RenderHelper.disableLightmap();
+			// RenderHelper.disableLightmap();
 
 			GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_SRC_ALPHA);
-			GL11.glColor4f(0.5f, 0.5f, 1f, 0.5f);
+			// GL11.glColor4f(0.5f, 0.5f, 1f, 0.5f);
+
+			ShaderHelper.setColor(0.5f, 0.5f, 1f, 0.3f);
+			ShaderHelper.useShader(ShaderHelper.glowSolid);
 
 			Tessellator tes = Tessellator.instance;
 
@@ -84,11 +87,11 @@ public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 
 			tes.draw();
 
-			RenderHelper.enableLightmap();
+			ShaderHelper.releaseShader();
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_LIGHTING); // end of fix
+			// GL11.glEnable(GL11.GL_LIGHTING); // end of fix
 
 			GL11.glPopMatrix();
 		}

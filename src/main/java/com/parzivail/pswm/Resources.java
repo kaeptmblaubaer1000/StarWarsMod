@@ -40,7 +40,7 @@ public class Resources
 
 	// Core
 	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "1.2.9";
+	public static final String VERSION = "1.3.0";
 	public static String ONLINE_VERSION = "";
 
 	public static boolean IS_DEV_ENVIRONVENT = false;
@@ -51,10 +51,11 @@ public class Resources
 	public static final String remoteVersionLink = "https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md";
 	public static final String robesLeaderboardAddLink = "http://parzivail.com/mods/tswm/addLeaderboard.php";
 
-	public static int GUI_MV = 0;
-	public static int GUI_ROBES = 1;
-	public static int GUI_JEDI_SITH = 2;
-	public static int GUI_HOLOTABLE = 3;
+	public static final int GUI_MV = 0;
+	public static final int GUI_ROBES = 1;
+	public static final int GUI_JEDI_SITH = 2;
+	public static final int GUI_HOLOTABLE = 3;
+	public static final int GUI_QUESTLOG = 4;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");
@@ -102,6 +103,9 @@ public class Resources
 	public static final String nbtSide = "side";
 	public static final String nbtPowers = "powers";
 	public static final String nbtRemainingPts = "points";
+
+	public static final String nbtQuests = "quests";
+	public static final String nbtOwner = "owner";
 
 	public static final String nbtShotsLeft = "shotsLeft";
 	public static final String nbtCooldown = "cooldown";

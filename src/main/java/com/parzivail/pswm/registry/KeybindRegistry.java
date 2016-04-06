@@ -1,7 +1,5 @@
 package com.parzivail.pswm.registry;
 
-import net.minecraft.client.settings.KeyBinding;
-
 import org.lwjgl.input.Keyboard;
 
 import com.parzivail.pswm.Resources;
@@ -9,6 +7,7 @@ import com.parzivail.pswm.Resources;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.settings.KeyBinding;
 
 public class KeybindRegistry
 {
@@ -26,6 +25,8 @@ public class KeybindRegistry
 	public static KeyBinding keyRobePowerNext;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyRobePowerPrev;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyQuest;
 
 	public static void registerAll()
 	{
@@ -36,7 +37,10 @@ public class KeybindRegistry
 		KeybindRegistry.keyRobePowerNext = registerKeybind("robePowerNext", Keyboard.KEY_G);
 		KeybindRegistry.keyRobePowerPrev = registerKeybind("robePowerPrev", Keyboard.KEY_H);
 		if (Resources.IS_DEV_ENVIRONVENT)
+		{
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
+			KeybindRegistry.keyQuest = registerKeybind("quest", Keyboard.KEY_B);
+		}
 	}
 
 	public static KeyBinding registerKeybind(String keyName, int keyCode)

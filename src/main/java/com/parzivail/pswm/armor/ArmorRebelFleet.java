@@ -1,15 +1,28 @@
 package com.parzivail.pswm.armor;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.models.armor.ModelCompressionArmor;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 
 public class ArmorRebelFleet extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
+	@SideOnly(Side.CLIENT)
+	ModelCompressionArmor c = new ModelCompressionArmor(0.4f, this);
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
+	{
+		return c;
+	}
 
 	public ArmorRebelFleet(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -22,11 +35,9 @@ public class ArmorRebelFleet extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.fleetHelmet || stack.getItem() == StarWarsMod.fleetChest || stack.getItem() == StarWarsMod.fleetBoots)
-			return Resources.MODID + ":" + "textures/models/fleetArmorLayer1.png";
-		if (stack.getItem() == StarWarsMod.fleetLegs)
+		if (slot == 1)
 			return Resources.MODID + ":" + "textures/models/fleetArmorLayer2.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/fleetArmorLayer1.png";
 	}
 }
 /*

@@ -1,16 +1,23 @@
 package com.parzivail.pswm.armor;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.models.armor.ModelJetpack;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-
 public class ArmorBobaJetpack extends ItemArmor
 {
 	private String[] names = { "Helmet", "JetpackChestplate", "Leggings", "Boots" };
+	@SideOnly(Side.CLIENT)
+	ModelJetpack h = new ModelJetpack();
 
 	public ArmorBobaJetpack(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -23,9 +30,16 @@ public class ArmorBobaJetpack extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == com.parzivail.pswm.StarWarsMod.bobaJetpackChest)
-			return Resources.MODID + ":" + "textures/models/bobaArmorLayer1.png";
-		return "";
+		return Resources.MODID + ":" + "textures/models/jetpack.png";
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
+	{
+		if (itemstack.getItem() == com.parzivail.pswm.StarWarsMod.bobaJetpackChest)
+			return h;
+		return null;
 	}
 
 	@Override

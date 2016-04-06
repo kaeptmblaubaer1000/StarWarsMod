@@ -3,9 +3,7 @@ package com.parzivail.util.ui;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.FloatBuffer;
 
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexShader;
@@ -13,14 +11,8 @@ import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import java.io.File;
 
-import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.client.gui.GuiOptions;
-import net.minecraft.client.gui.GuiScreenOptionsSounds;
-import net.minecraft.client.gui.GuiVideoSettings;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.shader.ShaderManager;
 
 public final class ShaderHelper
 {
@@ -29,7 +21,28 @@ public final class ShaderHelper
 
 	public static int glow = 0;
 	public static int glowKylo = 0;
-	public static int phosphor = 0;
+	public static int glowSolid = 0;
+
+	private static float r;
+	private static float g;
+	private static float b;
+	private static float a;
+
+	public static void setColor(float r, float g, float b, float a)
+	{
+		ShaderHelper.r = r;
+		ShaderHelper.g = g;
+		ShaderHelper.b = b;
+		ShaderHelper.a = a;
+	}
+
+	public static void setLightsaberColor(int color)
+	{
+		int red = color >> 16 & 0xFF;
+		int green = color >> 8 & 0xFF;
+		int blue = color & 0xFF;
+		setColor(red / 255f, green / 255f, blue / 255f, 0.85f);
+	}
 
 	public static void initShaders()
 	{
@@ -38,7 +51,7 @@ public final class ShaderHelper
 
 		glow = createProgramFor("glow");
 		glowKylo = createProgramFor("glowKylo");
-		phosphor = createProgramFor("sobel", "phosphor");
+		glowSolid = createProgramFor("glowSolid");
 	}
 
 	public static void useShader(int shader, ShaderCallback callback)
@@ -50,38 +63,19 @@ public final class ShaderHelper
 		
 		if (shader != 0)
 		{
-			// TODO: add various uniform passthroughs for the shaders
-
-			if (shader == phosphor)
+			if (shader == glowSolid)
 			{
-				int projMat = ARBShaderObjects.glGetUniformLocationARB(shader, "ProjMat");
-				FloatBuffer fb = BufferUtils.createFloatBuffer(16);
-				fb.put(1.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(1.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(1.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(0.0f);
-				fb.put(1.0f);
-				ARBShaderObjects.glUniformMatrix4ARB(projMat, true, fb);
+				int r0 = ARBShaderObjects.glGetUniformLocationARB(shader, "r");
+				ARBShaderObjects.glUniform1fARB(r0, r);
 
-				int inSize = ARBShaderObjects.glGetUniformLocationARB(shader, "InSize");
-				ARBShaderObjects.glUniform2fARB(inSize, 1, 1);
+				int g0 = ARBShaderObjects.glGetUniformLocationARB(shader, "g");
+				ARBShaderObjects.glUniform1fARB(g0, g);
 
-				int outSize = ARBShaderObjects.glGetUniformLocationARB(shader, "OutSize");
-				ARBShaderObjects.glUniform2fARB(outSize, 1, 1);
+				int b0 = ARBShaderObjects.glGetUniformLocationARB(shader, "b");
+				ARBShaderObjects.glUniform1fARB(b0, b);
 
-				int psphr = ARBShaderObjects.glGetUniformLocationARB(shader, "Phosphor");
-				ARBShaderObjects.glUniform3fARB(psphr, 0.3f, 0.3f, 0.3f);
+				int a0 = ARBShaderObjects.glGetUniformLocationARB(shader, "a");
+				ARBShaderObjects.glUniform1fARB(a0, a);
 			}
 			else
 			{
