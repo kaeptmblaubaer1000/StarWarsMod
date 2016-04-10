@@ -56,6 +56,7 @@ public class Resources
 	public static final int GUI_JEDI_SITH = 2;
 	public static final int GUI_HOLOTABLE = 3;
 	public static final int GUI_QUESTLOG = 4;
+	public static final int GUI_LSFORGE = 5;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

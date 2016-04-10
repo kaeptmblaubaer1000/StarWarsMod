@@ -26,9 +26,10 @@ public class ItemLightsaber extends ItemSword
 	public static final String nbtBladeOn = "on";
 	public static final String nbtBladeTimeout = "timeout";
 
-	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard" };
-	public static final int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF8C00, 0xFF00E5EE, 0xFF191919 };
-	public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black" };
+	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard", "malgus", "obiwan", "quigon", "revan", "starkiller" };
+	public static final int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF5A00, 0xFF00E5EE, 0xFF191919, 0xFFFF0000, 0xFF00FF00, 0xFF0000FF };
+	public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
 
 	public int hiltIndex;
 
@@ -90,28 +91,45 @@ public class ItemLightsaber extends ItemSword
 		return super.onItemRightClick(stack, p_77659_2_, player);
 	}
 
-	private static void setupNBT(int hilt, ItemStack stack)
+	public static void setupNBT(int hilt, ItemStack stack)
 	{
 		NBTTagCompound nbt = new NBTTagCompound();
 
 		nbt.setString(nbtHilt, hilts[hilt]);
 
+		/*
+		 * Blade Length (int - 0: short, 1: medium, 2: long)
+		 */
 		if (hilt == 4)
 			nbt.setInteger(nbtBladeLength, 1);
 		else
 			nbt.setInteger(nbtBladeLength, 2);
 
-		if (hilt == 1 || hilt == 2 || hilt == 8)
-			nbt.setInteger(nbtBladeColor, 0x0000FF);
-		else if (hilt == 0 || hilt == 3 || hilt == 5 || hilt == 6 || hilt == 7 || hilt == 10)
-			nbt.setInteger(nbtBladeColor, 0xFF0000);
-		else if (hilt == 4 || hilt == 9)
+		/*
+		 * Blade Color (int - 0xRRGGBB)
+		 */
+		if (hilt == 0 || hilt == 3 || hilt == 5 || hilt == 6 || hilt == 7 || hilt == 10 || hilt == 11 || hilt == 15)
+			nbt.setInteger(nbtBladeColor, 0xFF0000); // red
+		else if (hilt == 4 || hilt == 9 || hilt == 13 || hilt == 14)
+			nbt.setInteger(nbtBladeColor, 0x00FF00); // green
+		else if (hilt == 1 || hilt == 2 || hilt == 8 || hilt == 12)
+			nbt.setInteger(nbtBladeColor, 0x0000FF); // blue
+		else
+			nbt.setInteger(nbtBladeColor, 0xFFFFFF); // blue
 
-			nbt.setInteger(nbtBladeColor, 0x00FF00);
+		/*
+		 * Blade Skin (int - 0: normal, 1: alternate)
+		 */
 		nbt.setInteger(nbtBladeSkin, 0);
 
+		/*
+		 * Blade Waterproofing (boolean - true: on, false: off)
+		 */
 		nbt.setBoolean(nbtBladeWaterproof, false);
 
+		/*
+		 * Blade Distortion ["kylo rendering"] (boolean)
+		 */
 		if (hilt == 10)
 			nbt.setBoolean(nbtBladeDistortion, true);
 		else

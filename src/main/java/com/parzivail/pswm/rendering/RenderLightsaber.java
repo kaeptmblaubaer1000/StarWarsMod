@@ -12,10 +12,15 @@ import com.parzivail.pswm.models.lightsabers.ModelDookuHilt;
 import com.parzivail.pswm.models.lightsabers.ModelEzraHilt;
 import com.parzivail.pswm.models.lightsabers.ModelKananHilt;
 import com.parzivail.pswm.models.lightsabers.ModelLuke1Hilt;
-import com.parzivail.pswm.models.lightsabers.ModelLuke2Hilt;
+import com.parzivail.pswm.models.lightsabers.ModelLukeNewHilt;
+import com.parzivail.pswm.models.lightsabers.ModelMalgusHilt;
 import com.parzivail.pswm.models.lightsabers.ModelMaulHilt;
+import com.parzivail.pswm.models.lightsabers.ModelObiwanHilt;
 import com.parzivail.pswm.models.lightsabers.ModelPadawanHilt;
+import com.parzivail.pswm.models.lightsabers.ModelQuigonHilt;
+import com.parzivail.pswm.models.lightsabers.ModelRevanHilt;
 import com.parzivail.pswm.models.lightsabers.ModelShotoHilt;
+import com.parzivail.pswm.models.lightsabers.ModelStarkillerHilt;
 import com.parzivail.pswm.models.lightsabers.ModelVader2Hilt;
 import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeMedium;
@@ -29,21 +34,39 @@ import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeShort;
 import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeMedium;
 import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLuke2BladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLuke2BladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLuke2BladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLuke1BladeLong;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLuke1BladeMedium;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLuke1BladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLukeNewBladeL;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLukeNewBladeM;
+import com.parzivail.pswm.models.lightsabers.blades.ModelLukeNewBladeS;
+import com.parzivail.pswm.models.lightsabers.blades.ModelMalgusBladeL;
+import com.parzivail.pswm.models.lightsabers.blades.ModelMalgusBladeM;
+import com.parzivail.pswm.models.lightsabers.blades.ModelMalgusBladeS;
 import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeMedium;
 import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelObiwanBladeL;
+import com.parzivail.pswm.models.lightsabers.blades.ModelObiwanBladeM;
+import com.parzivail.pswm.models.lightsabers.blades.ModelObiwanBladeS;
 import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeMedium;
 import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelQuigonBladeL;
+import com.parzivail.pswm.models.lightsabers.blades.ModelQuigonBladeM;
+import com.parzivail.pswm.models.lightsabers.blades.ModelQuigonBladeS;
+import com.parzivail.pswm.models.lightsabers.blades.ModelRevanBladeL;
+import com.parzivail.pswm.models.lightsabers.blades.ModelRevanBladeM;
+import com.parzivail.pswm.models.lightsabers.blades.ModelRevanBladeS;
 import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeMedium;
 import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeShort;
 import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeMedium;
 import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeShort;
+import com.parzivail.pswm.models.lightsabers.blades.ModelStarkillerBladeL;
+import com.parzivail.pswm.models.lightsabers.blades.ModelStarkillerBladeM;
+import com.parzivail.pswm.models.lightsabers.blades.ModelStarkillerBladeS;
 import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeLong;
 import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeMedium;
 import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeShort;
@@ -68,8 +91,13 @@ public class RenderLightsaber implements IItemRenderer
 		models.put("doubleSith", new ModelAncientSithHilt());
 		models.put("vader2", new ModelVader2Hilt());
 		models.put("luke1", new ModelLuke1Hilt());
-		models.put("luke2", new ModelLuke2Hilt());
+		models.put("luke2", new ModelLukeNewHilt());
 		models.put("crossguard", new ModelCrossbarHilt());
+		models.put("malgus", new ModelMalgusHilt());
+		models.put("obiwan", new ModelObiwanHilt());
+		models.put("quigon", new ModelQuigonHilt());
+		models.put("revan", new ModelRevanHilt());
+		models.put("starkiller", new ModelStarkillerHilt());
 
 		blades.put("dooku", new IHandlesRender[] { new ModelDookuBladeShort(), new ModelDookuBladeMedium(), new ModelDookuBladeLong() });
 		blades.put("ezra", new IHandlesRender[] { new ModelEzraBladeShort(), new ModelEzraBladeMedium(), new ModelEzraBladeLong() });
@@ -79,9 +107,14 @@ public class RenderLightsaber implements IItemRenderer
 		blades.put("shoto", new IHandlesRender[] { new ModelShotoBladeShort(), new ModelShotoBladeMedium(), new ModelShotoBladeLong() });
 		blades.put("doubleSith", new IHandlesRender[] { new ModelSithDoubleBladeShort(), new ModelSithDoubleBladeMedium(), new ModelSithDoubleBladeLong() });
 		blades.put("vader2", new IHandlesRender[] { new ModelVaderBladeShort(), new ModelVaderBladeMedium(), new ModelVaderBladeLong() });
-		blades.put("luke1", new IHandlesRender[] {});
-		blades.put("luke2", new IHandlesRender[] { new ModelLuke2BladeShort(), new ModelLuke2BladeMedium(), new ModelLuke2BladeLong() });
+		blades.put("luke1", new IHandlesRender[] { new ModelLuke1BladeShort(), new ModelLuke1BladeMedium(), new ModelLuke1BladeLong() });
+		blades.put("luke2", new IHandlesRender[] { new ModelLukeNewBladeS(), new ModelLukeNewBladeM(), new ModelLukeNewBladeL() });
 		blades.put("crossguard", new IHandlesRender[] { new ModelCrossguardBladeShort(), new ModelCrossguardBladeMedium(), new ModelCrossguardBladeLong() });
+		blades.put("malgus", new IHandlesRender[] { new ModelMalgusBladeS(), new ModelMalgusBladeM(), new ModelMalgusBladeL() });
+		blades.put("obiwan", new IHandlesRender[] { new ModelObiwanBladeS(), new ModelObiwanBladeM(), new ModelObiwanBladeL() });
+		blades.put("quigon", new IHandlesRender[] { new ModelQuigonBladeS(), new ModelQuigonBladeM(), new ModelQuigonBladeL() });
+		blades.put("revan", new IHandlesRender[] { new ModelRevanBladeS(), new ModelRevanBladeM(), new ModelRevanBladeL() });
+		blades.put("starkiller", new IHandlesRender[] { new ModelStarkillerBladeS(), new ModelStarkillerBladeM(), new ModelStarkillerBladeL() });
 	}
 
 	public RenderLightsaber()
@@ -113,7 +146,10 @@ public class RenderLightsaber implements IItemRenderer
 				GL11.glPushMatrix();
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-				ShaderHelper.setLightsaberColor(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+				if (item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeDistortion))
+					ShaderHelper.setLightsaberColorDistort(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+				else
+					ShaderHelper.setLightsaberColor(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
 				ShaderHelper.useShader(ShaderHelper.glowSolid);
 				rB.renderItem(type, item, data);
 				ShaderHelper.releaseShader();
@@ -129,6 +165,15 @@ public class RenderLightsaber implements IItemRenderer
 		}
 	}
 
+	public void renderHiltItem(IHandlesRender item, boolean alt)
+	{
+		IHandlesRender r = item;
+		GL11.glPushMatrix();
+		StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(alt));
+		r.renderItem(ItemRenderType.ENTITY, null);
+		GL11.glPopMatrix();
+	}
+
 	@Override
 	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper)
 	{
@@ -138,7 +183,7 @@ public class RenderLightsaber implements IItemRenderer
 		return true;
 	}
 
-	private IHandlesRender getHiltRendererForStack(ItemStack stack)
+	public static IHandlesRender getHiltRendererForStack(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && models.containsKey(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt)))
 			return models.get(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt));
@@ -146,12 +191,91 @@ public class RenderLightsaber implements IItemRenderer
 			return models.get(ItemLightsaber.hilts[((ItemLightsaber)stack.getItem()).hiltIndex]);
 	}
 
-	private IHandlesRender getBladeRendererForStack(ItemStack stack)
+	public static IHandlesRender getBladeRendererForStack(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && blades.containsKey(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt)) && blades.get(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt)).length == 3)
 			return blades.get(stack.stackTagCompound.getString(ItemLightsaber.nbtHilt))[stack.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength)];
 		else
 			return null;
+	}
+
+	public static void applyTransformFix(String s)
+	{
+		if (s.equals("dooku"))
+		{
+			GL11.glTranslatef(0, 0.075f, 0);
+		}
+		else if (s.equals("ezra"))
+		{
+			GL11.glTranslatef(0, 0.075f, 0);
+		}
+		else if (s.equals("kanan"))
+		{
+			GL11.glTranslatef(0, 0.16f, 0);
+		}
+		else if (s.equals("maul"))
+		{
+			GL11.glScalef(0.55f, 0.55f, 0.55f);
+			GL11.glTranslatef(0, 0.15f, 0);
+		}
+		else if (s.equals("padawan"))
+		{
+			GL11.glTranslatef(0, 0.4f, 0);
+		}
+		else if (s.equals("shoto"))
+		{
+			GL11.glScalef(0.9f, 0.9f, 0.9f);
+			GL11.glTranslatef(0, 0.27f, 0);
+		}
+		else if (s.equals("doubleSith"))
+		{
+			GL11.glScalef(0.8f, 0.8f, 0.8f);
+			GL11.glTranslatef(0, -0.27f, 0);
+		}
+		else if (s.equals("vader2"))
+		{
+			GL11.glTranslatef(0, 0.17f, 0);
+			GL11.glScalef(1.4f, 1.4f, 1.4f);
+		}
+		else if (s.equals("luke1"))
+		{
+			GL11.glTranslatef(0, 0.28f, 0);
+			GL11.glScalef(1.4f, 1.4f, 1.4f);
+		}
+		else if (s.equals("luke2"))
+		{
+			GL11.glTranslatef(0, 0.25f, 0);
+		}
+		else if (s.equals("crossguard"))
+		{
+			GL11.glTranslatef(0, 0.24f, 0);
+			GL11.glScalef(1.2f, 1.2f, 1.2f);
+		}
+		else if (s.equals("malgus"))
+		{
+			GL11.glScalef(0.85f, 0.85f, 0.85f);
+			GL11.glTranslatef(0, 0.29f, 0);
+		}
+		else if (s.equals("obiwan"))
+		{
+			GL11.glScalef(0.9f, 0.9f, 0.9f);
+			GL11.glTranslatef(0, 0.27f, 0);
+		}
+		else if (s.equals("quigon"))
+		{
+			GL11.glScalef(0.9f, 0.9f, 0.9f);
+			GL11.glTranslatef(0, 0.34f, 0);
+		}
+		else if (s.equals("revan"))
+		{
+			GL11.glScalef(0.9f, 0.9f, 0.9f);
+			GL11.glTranslatef(0, 0.31f, 0);
+		}
+		else if (s.equals("starkiller"))
+		{
+			GL11.glTranslatef(0, 0.3f, 0);
+			GL11.glScalef(1.1f, 1.1f, 1.1f);
+		}
 	}
 }
 /*

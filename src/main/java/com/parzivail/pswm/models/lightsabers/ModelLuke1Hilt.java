@@ -21,9 +21,13 @@ public class ModelLuke1Hilt extends ModelBase implements IHandlesRender
 	ResourceLocation tB = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/luke1_B.png");
 
 	ModelRenderer Shape1;
+
 	ModelRenderer Shape2;
+
 	ModelRenderer Shape3;
+
 	ModelRenderer Shape4;
+
 	ModelRenderer Shape5;
 	ModelRenderer Shape6;
 	ModelRenderer Shape7;
@@ -362,6 +366,7 @@ public class ModelLuke1Hilt extends ModelBase implements IHandlesRender
 				GL11.glDisable(GL11.GL_CULL_FACE);
 				GL11.glScalef(0.035F, -0.035F, 0.035F);
 				GL11.glRotatef(90, 0, 0, 1);
+				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glTranslatef(-25, -2, -2);
 				this.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);

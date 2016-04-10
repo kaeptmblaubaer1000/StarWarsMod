@@ -139,7 +139,7 @@ public class CommonEventHandler
 			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
-			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
+			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, null, 0, 0, 0);

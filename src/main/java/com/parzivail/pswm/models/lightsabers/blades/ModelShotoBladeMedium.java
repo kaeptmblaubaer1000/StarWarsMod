@@ -14,34 +14,20 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 /**
- * ShotoHilt - Undefined
- * Created using Tabula 4.1.1
+ * ShotoHilt - Undefined Created using Tabula 4.1.1
  */
 public class ModelShotoBladeMedium extends ModelBase implements IHandlesRender
 {
-    public ModelRenderer shape1;
+	public ModelRenderer shape1;
 
-    public ModelShotoBladeMedium() {
-        this.textureWidth = 512;
-        this.textureHeight = 512;
-        this.shape1 = new ModelRenderer(this, 0, 0);
-        this.shape1.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.shape1.addBox(-122.0F, 1.5F, 1.5F, 120, 3, 3, 0.0F);
-    }
-
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.shape1.render(f5);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
+	public ModelShotoBladeMedium()
+	{
+		this.textureWidth = 512;
+		this.textureHeight = 512;
+		this.shape1 = new ModelRenderer(this, 0, 0);
+		this.shape1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.shape1.addBox(-122.0F, 1.5F, 1.5F, 120, 3, 3, 0.0F);
+	}
 
 	@Override
 	public ResourceLocation getResourceLocation(boolean alt)
@@ -56,6 +42,12 @@ public class ModelShotoBladeMedium extends ModelBase implements IHandlesRender
 	}
 
 	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		this.shape1.render(f5);
+	}
+
+	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		switch (type)
@@ -64,6 +56,7 @@ public class ModelShotoBladeMedium extends ModelBase implements IHandlesRender
 				GL11.glPushMatrix();
 				GL11.glScalef(0.03f, 0.03f, 0.03f);
 				GL11.glRotatef(-90, 0, 0, 1);
+				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glTranslatef(-40, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				GL11.glPopMatrix();
@@ -123,6 +116,16 @@ public class ModelShotoBladeMedium extends ModelBase implements IHandlesRender
 			default:
 				break;
 		}
+	}
+
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	{
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
 	}
 
 	@Override

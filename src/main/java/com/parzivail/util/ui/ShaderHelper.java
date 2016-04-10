@@ -44,6 +44,15 @@ public final class ShaderHelper
 		setColor(red / 255f, green / 255f, blue / 255f, 0.85f);
 	}
 
+	public static void setLightsaberColorDistort(int color)
+	{
+		float rN = (StarWarsMod.rngGeneral.nextFloat() * 0.4f + 0.6f);
+		int red = color >> 16 & 0xFF;
+		int green = color >> 8 & 0xFF;
+		int blue = color & 0xFF;
+		setColor(red / 255f * rN, green / 255f * rN, blue / 255f * rN, 0.85f);
+	}
+
 	public static void initShaders()
 	{
 		if (!useShaders())

@@ -208,6 +208,7 @@ public class ModelShotoHilt extends ModelBase implements IHandlesRender
 				GL11.glPushMatrix();
 				GL11.glScalef(0.03f, 0.03f, 0.03f);
 				GL11.glRotatef(-90, 0, 0, 1);
+				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glTranslatef(-40, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				GL11.glPopMatrix();

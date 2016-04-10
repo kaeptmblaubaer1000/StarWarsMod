@@ -14,39 +14,24 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 /**
- * Ancient Sith Hilt - Undefined
- * Created using Tabula 4.1.1
+ * Ancient Sith Hilt - Undefined Created using Tabula 4.1.1
  */
 public class ModelSithDoubleBladeMedium extends ModelBase implements IHandlesRender
 {
-    public ModelRenderer blade;
-    public ModelRenderer blade2;
+	public ModelRenderer blade;
+	public ModelRenderer blade2;
 
-    public ModelSithDoubleBladeMedium() {
-        this.textureWidth = 512;
-        this.textureHeight = 512;
-        this.blade2 = new ModelRenderer(this, 0, 0);
-        this.blade2.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.blade2.addBox(-158.0F, 0.5F, 0.5F, 120, 3, 3, 0.0F);
-        this.blade = new ModelRenderer(this, 0, 0);
-        this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.blade.addBox(38.0F, 0.5F, 0.5F, 120, 3, 3, 0.0F);
-    }
-
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.blade2.render(f5);
-        this.blade.render(f5);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
+	public ModelSithDoubleBladeMedium()
+	{
+		this.textureWidth = 512;
+		this.textureHeight = 512;
+		this.blade2 = new ModelRenderer(this, 0, 0);
+		this.blade2.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.blade2.addBox(-158.0F, 0.5F, 0.5F, 120, 3, 3, 0.0F);
+		this.blade = new ModelRenderer(this, 0, 0);
+		this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.blade.addBox(38.0F, 0.5F, 0.5F, 120, 3, 3, 0.0F);
+	}
 
 	@Override
 	public ResourceLocation getResourceLocation(boolean alt)
@@ -58,6 +43,13 @@ public class ModelSithDoubleBladeMedium extends ModelBase implements IHandlesRen
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		return true;
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		this.blade2.render(f5);
+		this.blade.render(f5);
 	}
 
 	@Override
@@ -129,6 +121,16 @@ public class ModelSithDoubleBladeMedium extends ModelBase implements IHandlesRen
 			default:
 				break;
 		}
+	}
+
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	{
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
 	}
 
 	@Override

@@ -30,12 +30,6 @@ public class ModelEzraBladeLong extends ModelBase implements IHandlesRender
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		this.blade.render(f5);
-	}
-
-	@Override
 	public ResourceLocation getResourceLocation(boolean alt)
 	{
 		return null;
@@ -45,6 +39,12 @@ public class ModelEzraBladeLong extends ModelBase implements IHandlesRender
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		return true;
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		this.blade.render(f5);
 	}
 
 	@Override
@@ -110,12 +110,6 @@ public class ModelEzraBladeLong extends ModelBase implements IHandlesRender
 		}
 	}
 
-	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-	{
-		return true;
-	}
-
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
 	 */
@@ -124,5 +118,11 @@ public class ModelEzraBladeLong extends ModelBase implements IHandlesRender
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
+	}
+
+	@Override
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+	{
+		return true;
 	}
 }

@@ -14,6 +14,9 @@ public class GLPalette
 	public static int ANALOG_BLUE = PGui.getRGBA(90, 184, 255, 255);
 	public static int ANALOG_RED = PGui.getRGBA(255, 39, 70, 255);
 
+	public static int SW_YELLOW = 0xFFFFD400;
+	public static int DARK_SW_YELLOW = 0xFF645300;
+
 	// these 954 color names provided by xkcd (http://xkcd.com/color/rgb)
 	// thanks, randall!
 	public static int ACID_GREEN = 0xFF8FFE09;

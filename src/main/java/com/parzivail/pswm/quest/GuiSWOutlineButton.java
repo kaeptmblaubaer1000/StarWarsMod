@@ -9,9 +9,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 
-public class GuiQuestButton extends GuiButton
+public class GuiSWOutlineButton extends GuiButton
 {
-	public GuiQuestButton(int id, int x, int y, int w, int h, String text)
+	public GuiSWOutlineButton(int id, int x, int y, int w, int h, String text)
 	{
 		super(id, x, y, w, h, text);
 	}

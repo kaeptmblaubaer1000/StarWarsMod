@@ -14,40 +14,38 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 /**
- * Duku's Hilt - Undefined
- * Created using Tabula 4.1.1
+ * Duku's Hilt - Undefined Created using Tabula 4.1.1
  */
 public class ModelDookuBladeMedium extends ModelBase implements IHandlesRender
 {
-    public ModelRenderer blade;
+	public ModelRenderer blade;
 
-    public ModelDookuBladeMedium() {
-        this.textureWidth = 512;
-        this.textureHeight = 512;
-        this.blade = new ModelRenderer(this, 0, 0);
-        this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.blade.addBox(-129.0F, 2.5F, 1.5F, 120, 3, 3, 0.0F);
-        this.setRotateAngle(blade, 0.0F, 0.0F, -0.20943951023931953F);
-    }
+	public ModelDookuBladeMedium()
+	{
+		this.textureWidth = 512;
+		this.textureHeight = 512;
+		this.blade = new ModelRenderer(this, 0, 0);
+		this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.blade.addBox(-129.0F, 2.5F, 1.5F, 120, 3, 3, 0.0F);
+		this.setRotateAngle(this.blade, 0.0F, 0.0F, -0.20943951023931953F);
+	}
 
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.blade.render(f5);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
+	@Override
+	public ResourceLocation getResourceLocation(boolean alt)
+	{
+		return null;
+	}
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		return true;
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		this.blade.render(f5);
 	}
 
 	@Override
@@ -117,15 +115,19 @@ public class ModelDookuBladeMedium extends ModelBase implements IHandlesRender
 		}
 	}
 
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	{
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
+
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
 		return true;
-	}
-
-	@Override
-	public ResourceLocation getResourceLocation(boolean alt)
-	{
-		return null;
 	}
 }

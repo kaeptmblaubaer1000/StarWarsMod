@@ -14,39 +14,24 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 /**
- * KyloLS1.tbl - TechneToTabulaImporter
- * Created using Tabula 4.1.1
+ * KyloLS1.tbl - TechneToTabulaImporter Created using Tabula 4.1.1
  */
 public class ModelCrossguardBladeShort extends ModelBase implements IHandlesRender
 {
-    public ModelRenderer shape49;
-    public ModelRenderer shape50;
+	public ModelRenderer shape49;
+	public ModelRenderer shape50;
 
-    public ModelCrossguardBladeShort() {
-        this.textureWidth = 256;
-        this.textureHeight = 128;
-        this.shape50 = new ModelRenderer(this, 0, 0);
-        this.shape50.setRotationPoint(2.0F, 0.0F, 3.0F);
-        this.shape50.addBox(-0.5F, 2.0F, -14.0F, 2, 2, 28, 0.0F);
-        this.shape49 = new ModelRenderer(this, 0, 0);
-        this.shape49.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.shape49.addBox(-102.0F, 1.5F, 1.5F, 100, 3, 3, 0.0F);
-    }
-
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.shape50.render(f5);
-        this.shape49.render(f5);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
+	public ModelCrossguardBladeShort()
+	{
+		this.textureWidth = 256;
+		this.textureHeight = 128;
+		this.shape50 = new ModelRenderer(this, 0, 0);
+		this.shape50.setRotationPoint(2.0F, 0.0F, 3.0F);
+		this.shape50.addBox(-0.5F, 2.0F, -14.0F, 2, 2, 28, 0.0F);
+		this.shape49 = new ModelRenderer(this, 0, 0);
+		this.shape49.setRotationPoint(0.0F, 0.0F, 0.0F);
+		this.shape49.addBox(-102.0F, 1.5F, 1.5F, 100, 3, 3, 0.0F);
+	}
 
 	@Override
 	public ResourceLocation getResourceLocation(boolean alt)
@@ -58,6 +43,13 @@ public class ModelCrossguardBladeShort extends ModelBase implements IHandlesRend
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		return true;
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		this.shape50.render(f5);
+		this.shape49.render(f5);
 	}
 
 	@Override
@@ -124,6 +116,16 @@ public class ModelCrossguardBladeShort extends ModelBase implements IHandlesRend
 				GL11.glPopMatrix();
 				break;
 		}
+	}
+
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z)
+	{
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
 	}
 
 	@Override
