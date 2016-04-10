@@ -138,7 +138,12 @@ public class CommonEventHandler
 				}
 			}
 
-		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
+		// if (KeybindRegistry.keyDebug != null &&
+		// KeybindRegistry.keyDebug.isPressed())
+		// StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance,
+		// Resources.GUI_LSFORGE, null, 0, 0, 0);
+
+		if (KeybindRegistry.keyLSForge.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())

@@ -258,6 +258,11 @@ key.starwarsmod.shootVehicle=Fire Lasers (in Starfighters)
 key.starwarsmod.toggleSFoil=Toggle S Foil (in X-Wing)
 key.starwarsmod.robeGui=Open Jedi Robes GUI
 key.starwarsmod.robePower=Use Selected Robe Power
+key.starwarsmod.robePowerNext=Prev. Robe Power
+key.starwarsmod.robePowerPrev=Next Robe Power
+key.starwarsmod.lsForge=Creative Lightsaber Forge
+key.starwarsmod.debug=DEBUG
+key.starwarsmod.quest=Quest Log
 
 // Force
 force.power.jump=Jump

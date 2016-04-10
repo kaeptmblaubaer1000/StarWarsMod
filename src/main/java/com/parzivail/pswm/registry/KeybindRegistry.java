@@ -27,6 +27,8 @@ public class KeybindRegistry
 	public static KeyBinding keyRobePowerPrev;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyQuest;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyLSForge;
 
 	public static void registerAll()
 	{
@@ -36,6 +38,7 @@ public class KeybindRegistry
 		KeybindRegistry.keyRobePower = registerKeybind("robePower", Keyboard.KEY_B);
 		KeybindRegistry.keyRobePowerNext = registerKeybind("robePowerNext", Keyboard.KEY_G);
 		KeybindRegistry.keyRobePowerPrev = registerKeybind("robePowerPrev", Keyboard.KEY_H);
+		KeybindRegistry.keyLSForge = registerKeybind("lsForge", Keyboard.KEY_P);
 		if (Resources.IS_DEV_ENVIRONVENT)
 		{
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
