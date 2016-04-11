@@ -963,6 +963,15 @@ public class GLPalette
 		int blue = rgba & 0xFF;
 		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
 	}
+
+	public static Color intToColor(int rgba)
+	{
+		int alpha = rgba >> 24 & 0xFF;
+		int red = rgba >> 16 & 0xFF;
+		int green = rgba >> 8 & 0xFF;
+		int blue = rgba & 0xFF;
+		return new Color(red, green, blue, 255);
+	}
 	
 	public static int colorToInt(Color c)
 	{

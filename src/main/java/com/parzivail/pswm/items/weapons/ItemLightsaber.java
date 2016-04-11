@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.MathUtils;
+import com.parzivail.util.ui.GLPalette;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,23 +34,39 @@ public class ItemLightsaber extends ItemSword
 
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard", "malgus", "obiwan", "quigon", "revan", "starkiller" };
-	public static final int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF5A00, 0xFF00E5EE, 0xFF191919, 0xFFFF0000, 0xFF00FF00, 0xFF0000FF };
-	public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
-	
-	public static final List<Color> color = new ArrayList<Color>(colorHex.length);
-	
+	public static int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF5A00, 0xFF00E5EE, 0xFF191919, 0xFFFF0000, 0xFF00FF00, 0xFF0000FF };
+	//public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
+
 	static
 	{
+		ArrayList<Integer> n = new ArrayList<>();
 		for (int i = 0; i < colorHex.length; i++)
-			color.add(new Color(colorHex[i]));
-		Collections.sort(color, new Comparator<Color>() {
-	        @Override
-	        public int compare(Color c1, Color c2) {
-	            return Float.compare(((float) c1.getRed() * 0.299f + (float) c1.getGreen() * 0.587f
-	                    + (float) c1.getBlue() * 0.114f) / 256f, ((float) c2.getRed() * 0.299f + (float) c2.getGreen()
-	                    * 0.587f + (float) c2.getBlue() * 0.114f) / 256f);
-	        }
-	    });
+			n.add(colorHex[i]);
+		Collections.sort(n, new Comparator<Integer>()
+		{
+			@Override
+			public int compare(Integer i1, Integer i2)
+			{
+				Color c1 = GLPalette.intToColor(i1);
+				Color c2 = GLPalette.intToColor(i2);
+				float[] hsb1 = Color.RGBtoHSB(c1.getRed(), c1.getGreen(), c1.getBlue(), null);
+		        float[] hsb2 = Color.RGBtoHSB(c2.getRed(), c2.getGreen(), c2.getBlue(), null);
+		        if (hsb1[0] < hsb2[0])
+		            return -1;
+		        if (hsb1[0] > hsb2[0])
+		            return 1;
+		        if (hsb1[1] < hsb2[1])
+		            return -1;
+		        if (hsb1[1] > hsb2[1])
+		            return 1;
+		        if (hsb1[2] < hsb2[2])
+		            return -1;
+		        if (hsb1[2] > hsb2[2])
+		            return 1;
+		        return 0;
+			}
+		});
+		colorHex = MathUtils.toIntArray(n);
 	}
 
 	public int hiltIndex;
@@ -82,10 +100,10 @@ public class ItemLightsaber extends ItemSword
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		//if (stack.stackTagCompound != null)
-		//{
-		//	list.add("Hilt: " + stack.stackTagCompound.getString(nbtHilt));
-		//}
+		// if (stack.stackTagCompound != null)
+		// {
+		// list.add("Hilt: " + stack.stackTagCompound.getString(nbtHilt));
+		// }
 	}
 
 	@Override
@@ -161,21 +179,5 @@ public class ItemLightsaber extends ItemSword
 		nbt.setInteger(nbtBladeTimeout, 0);
 
 		stack.stackTagCompound = nbt;
-	}
-
-	public static int colorFromName(String name)
-	{
-		for (int i = 0; i < colorName.length; i++)
-			if (colorName[i].equals(name))
-				return colorHex[i];
-		return 0;
-	}
-
-	public static String nameFromColor(int color)
-	{
-		for (int i = 0; i < colorHex.length; i++)
-			if (colorHex[i] == color)
-				return colorName[i];
-		return "";
 	}
 }

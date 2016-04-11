@@ -130,7 +130,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		{
 			OutlineButton b = new FilledColorButton(id++, x * 32 + 10, y * 32 + 40, 30, 30, ItemLightsaber.colorHex[i]);
 			b.visible = false;
-			listBBlade.put(ItemLightsaber.colorName[i], b);
+			listBBlade.put(String.valueOf(ItemLightsaber.colorHex[i]), b);
 			buttonList.add(b);
 			x++;
 			if (x >= 3)
