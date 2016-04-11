@@ -345,7 +345,7 @@ public class StarWarsMod
 
 	public static DamageSource blasterDamageSource;
 
-	private void checkCompat() throws UserError
+	private void checkCompat()
 	{
 		boolean flag = false;
 		ArrayList<String> m = new ArrayList<String>();
@@ -357,20 +357,27 @@ public class StarWarsMod
 			}
 		if (flag)
 		{
-			Lumberjack.warn("WARNING! It is known that Parzi's Star Wars Mod may be incompatible with the following mods:");
+			Lumberjack.warn("WARNING! It is known that Parzi's Star Wars Mod may have game-breaking issues when played with the following mods:");
 			Lumberjack.warn("-> " + String.join(", ", m));
 			Lumberjack.warn("Please report any issues to our GitHub: https://github.com/Parzivail-Modding-Team/ParziStarWarsMod/issues");
 		}
 	}
 
-	private void checkJavaVersion() throws UserError
+	private void checkJavaVersion()
 	{
 		String versionString = System.getProperty("java.version");
 		int pos = versionString.indexOf('.');
 		pos = versionString.indexOf('.', pos + 1);
 		double version = Double.parseDouble(versionString.substring(0, pos));
 		if (version < 1.8)
-			throw new UserError("Parzi's Star Wars Mod requires Java 1.8 and above. You are currently using Java " + version);
+		{
+			Lumberjack.log("######################################PSWM ERROR####################################");
+			Lumberjack.log("Parzi's Star Wars Mod requires Java 1.8 or above. You are currently using Java " + version);
+			Lumberjack.log("Minecraft will now halt. Download and install Java 1.8.");
+			Lumberjack.log("NOTE to MultiMC Users: make sure MultiMC is using the correct Java as default!");
+			Lumberjack.log("####################################END PSWM ERROR##################################");
+			FMLCommonHandler.instance().exitJava(0, true);
+		}
 	}
 
 	private void checkModVersion()
@@ -397,7 +404,7 @@ public class StarWarsMod
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		Lumberjack.info("========== Begin Star Wars Mod init() ==========");
+		Lumberjack.info("========== Begin Parzi's Star Wars Mod init() ==========");
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
 
@@ -447,13 +454,13 @@ public class StarWarsMod
 
 		proxy.registerRendering();
 
-		Lumberjack.info("=========== End Star Wars Mod init() ===========");
+		Lumberjack.info("=========== End Parzi's Star Wars Mod init() ===========");
 	}
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
-		Lumberjack.info("========== Begin Star Wars Mod preInit() ==========");
+		Lumberjack.info("========== Begin Parzi's Star Wars Mod preInit() ==========");
 
 		this.checkJavaVersion();
 
@@ -463,7 +470,7 @@ public class StarWarsMod
 
 		setupConfig(event);
 
-		Lumberjack.info("=========== End Star Wars Mod preInit() ===========");
+		Lumberjack.info("=========== End Parzi's Star Wars Mod preInit() ===========");
 	}
 
 	private void setupConfig(FMLPreInitializationEvent event)

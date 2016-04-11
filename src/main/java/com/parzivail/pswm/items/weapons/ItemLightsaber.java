@@ -40,6 +40,7 @@ public class ItemLightsaber extends ItemSword
 		super(StarWarsMod.materialPlasma);
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setTextureName(Resources.MODID + ":" + "blank");
 
 		this.hiltIndex = hiltIndex;
 	}
