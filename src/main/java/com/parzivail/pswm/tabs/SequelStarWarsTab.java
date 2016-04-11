@@ -4,6 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +20,7 @@ public class SequelStarWarsTab extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return StarWarsMod.sequelLightsaber;
+		return StarWarsMod.lightsaberNew[10];
 	}
 }
 /*

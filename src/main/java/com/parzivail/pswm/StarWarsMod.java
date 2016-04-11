@@ -28,8 +28,6 @@ import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemOldLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
-import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
-import com.parzivail.pswm.items.weapons.ItemSequelLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemVibroLance;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.network.MessageAddEffectTo;
@@ -52,7 +50,6 @@ import com.parzivail.pswm.network.MessageSetEntityTarget;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipTargetLock;
 import com.parzivail.pswm.network.MessageToggleLightsaber;
-import com.parzivail.pswm.network.MessageToggleSequelLightsaber;
 import com.parzivail.pswm.network.MessageTransmute;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.DamageSourceRegister;
@@ -122,8 +119,6 @@ public class StarWarsMod
 	public static ItemOldLightsaber lightsaber;
 	public static ItemLightsaber[] lightsaberNew = new ItemLightsaber[ItemLightsaber.hilts.length];
 	public static ItemLightsaberOff lightsaberOff;
-	public static ItemSequelLightsaber sequelLightsaber;
-	public static ItemSequelLightsaberOff sequelLightsaberOff;
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;
 	public static ItemSequelBlasterRifle sequelBlasterRifle;
@@ -536,7 +531,6 @@ public class StarWarsMod
 		this.registerMessage(MessageShipTargetLock.class);
 		this.registerMessage(MessageCreateBlasterBolt.class);
 		this.registerMessage(MessageToggleLightsaber.class);
-		this.registerMessage(MessageToggleSequelLightsaber.class);
 		this.registerMessage(MessageSetPlayerHolding.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");

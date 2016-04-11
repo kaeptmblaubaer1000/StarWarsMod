@@ -93,7 +93,6 @@ import com.parzivail.pswm.rendering.RenderHoloTable;
 import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.rendering.RenderJawa;
 import com.parzivail.pswm.rendering.RenderLightsaber;
-import com.parzivail.pswm.rendering.RenderLightsaberKylo;
 import com.parzivail.pswm.rendering.RenderMV;
 import com.parzivail.pswm.rendering.RenderTauntaun;
 import com.parzivail.pswm.rendering.RenderTusken;
@@ -237,8 +236,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		for (ItemLightsaber i : StarWarsMod.lightsaberNew)
 			MinecraftForgeClient.registerItemRenderer(i, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaber());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaber, new RenderLightsaberKylo());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.sequelLightsaberOff, new RenderLightsaberKylo());
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterPistol, new RenderBlasterPistol());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterRifle, new RenderBlasterRifle());

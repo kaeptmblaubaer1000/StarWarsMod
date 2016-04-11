@@ -82,8 +82,6 @@ import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
-import com.parzivail.pswm.items.weapons.ItemSequelLightsaber;
-import com.parzivail.pswm.items.weapons.ItemSequelLightsaberOff;
 import com.parzivail.pswm.items.weapons.ItemVibroLance;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
@@ -127,12 +125,6 @@ public class ItemRegister
 
 		if (Resources.IS_SEQUEL_RELEASE)
 		{
-			StarWarsMod.sequelLightsaber = new ItemSequelLightsaber();
-			GameRegistry.registerItem(StarWarsMod.sequelLightsaber, "sequelLightsaber");
-
-			StarWarsMod.sequelLightsaberOff = new ItemSequelLightsaberOff();
-			GameRegistry.registerItem(StarWarsMod.sequelLightsaberOff, "sequelLightsaberOff");
-
 			StarWarsMod.stormtrooperNewHelmet = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
 			GameRegistry.registerItem(StarWarsMod.stormtrooperNewHelmet, "stormtrooperNewHelmet");
 

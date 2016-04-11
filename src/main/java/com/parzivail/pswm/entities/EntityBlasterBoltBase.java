@@ -153,7 +153,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 						this.setDead();
 					}
 				}
-				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber || entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.sequelLightsaber))
+				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber))
 				{
 					Vec3 vec3 = entityPlayer.getLookVec();
 					if (vec3 != null)

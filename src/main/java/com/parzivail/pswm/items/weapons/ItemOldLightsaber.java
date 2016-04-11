@@ -69,7 +69,7 @@ public class ItemOldLightsaber extends ItemSword
 
 	public static boolean isLightsaber(ItemStack stack)
 	{
-		return stack != null && (stack.getItem() == StarWarsMod.lightsaber || stack.getItem() == StarWarsMod.sequelLightsaber);
+		return stack != null && (stack.getItem() == StarWarsMod.lightsaber);
 	}
 
 	@Override
