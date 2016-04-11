@@ -38,7 +38,7 @@ public class ItemLightsaber extends ItemSword
 	public ItemLightsaber(int hiltIndex)
 	{
 		super(StarWarsMod.materialPlasma);
-		this.setUnlocalizedName(Resources.MODID + "." + this.name + "." + String.valueOf(hiltIndex));
+		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 
 		this.hiltIndex = hiltIndex;
@@ -61,10 +61,10 @@ public class ItemLightsaber extends ItemSword
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		if (stack.stackTagCompound != null)
-		{
-			list.add("Hilt: " + stack.stackTagCompound.getString(nbtHilt));
-		}
+		//if (stack.stackTagCompound != null)
+		//{
+		//	list.add("Hilt: " + stack.stackTagCompound.getString(nbtHilt));
+		//}
 	}
 
 	@Override

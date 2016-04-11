@@ -442,9 +442,7 @@ public class ArmorJediRobes extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == StarWarsMod.jediRobes)
-			return Resources.MODID + ":" + "textures/force/cloak.png";
-		return "";
+		return Resources.MODID + ":" + "textures/force/cloak.png";
 	}
 
 	@Override

@@ -3,11 +3,13 @@ package com.parzivail.pswm.rendering.gui;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.util.ui.GLPalette;
 
@@ -16,10 +18,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import scala.actors.threadpool.Arrays;
@@ -47,18 +51,44 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
+	}
 
-		stackShowing = new ItemStack(StarWarsMod.lightsaberNew[0], 1);
-		ItemLightsaber.setupNBT(0, stackShowing);
-		if (player.inventory.getCurrentItem() != null)
-			stackShowing = player.inventory.getCurrentItem().copy();
-
-		renderLightsaber = new RenderLightsaber();
+	private void setButtonsFromNBT(NBTTagCompound nbt)
+	{
+		listBOptions.get("toggleBlade").selected = nbt.getBoolean(ItemLightsaber.nbtBladeOn);
+		listBOptions.get("bladeDistort").selected = nbt.getBoolean(ItemLightsaber.nbtBladeDistortion);
+		listBOptions.get("bladeWaterproof").selected = nbt.getBoolean(ItemLightsaber.nbtBladeWaterproof);
+		//listBOptions.get("bladeAltTexture").selected = nbt.getBoolean(ItemLightsaber.nbtBladeDistortion);
+		for (OutlineButton b : listBHilts.values())
+			b.selected = (b.displayString.equals(nbt.getString(ItemLightsaber.nbtHilt)));
+		int l = nbt.getInteger(ItemLightsaber.nbtBladeLength);
+		switch (l)
+		{
+			case 0:
+				listBOptions.get("bladeLength").displayString = "Blade Length: Short";
+				break;
+			case 1:
+				listBOptions.get("bladeLength").displayString = "Blade Length: Medium";
+				break;
+			case 2:
+				listBOptions.get("bladeLength").displayString = "Blade Length: Long";
+				break;
+			default:
+				break;
+		}
 	}
 
 	@Override
 	public void initGui()
 	{
+		stackShowing = new ItemStack(StarWarsMod.lightsaberNew[0], 1);
+		ItemLightsaber.setupNBT(0, stackShowing);
+		if (player.inventory.getCurrentItem() != null)
+			stackShowing = player.inventory.getCurrentItem().copy();
+		stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, true);
+
+		renderLightsaber = new RenderLightsaber();
+		
 		int id = 0;
 		bTabHilts = new OutlineButton(id++, 10, 10, 40, 20, "Hilts", true);
 		bTabBlade = new OutlineButton(id++, 60, 10, 40, 20, "Blades", false);
@@ -68,7 +98,9 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		buttonList.add(bTabBlade);
 		buttonList.add(bTabOptions);
 
-		bSave = new OutlineButton(id++, 375, 10, 40, 20, "Save", false);
+		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		
+		bSave = new OutlineButton(id++, r.getScaledWidth() - 60, 10, 40, 20, "Save", false);
 
 		buttonList.add(bSave);
 
@@ -120,21 +152,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		listBOptions.put("bladeLength", bBladeLength);
 		buttonList.add(bBladeLength);
 		y++;
-		int l = stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength);
-		switch (l)
-		{
-			case 0:
-				listBOptions.get("bladeLength").displayString = "Blade Length: Short";
-				break;
-			case 1:
-				listBOptions.get("bladeLength").displayString = "Blade Length: Medium";
-				break;
-			case 2:
-				listBOptions.get("bladeLength").displayString = "Blade Length: Long";
-				break;
-			default:
-				break;
-		}
 		OutlineButton bBladeWaterproof = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Waterproof", false);
 		bBladeWaterproof.visible = false;
 		listBOptions.put("bladeWaterproof", bBladeWaterproof);
@@ -145,6 +162,8 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		listBOptions.put("bladeDistort", bBladeDistort);
 		buttonList.add(bBladeDistort);
 		y++;
+		
+		setButtonsFromNBT(stackShowing.stackTagCompound);
 	}
 
 	@Override
@@ -161,21 +180,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, color);
 				stackShowing.stackTagCompound.setString(ItemLightsaber.nbtHilt, button.displayString);
 				stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, listBOptions.get("toggleBlade").selected);
-				int l = stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength);
-				switch (l)
-				{
-					case 0:
-						listBOptions.get("bladeLength").displayString = "Blade Length: Short";
-						break;
-					case 1:
-						listBOptions.get("bladeLength").displayString = "Blade Length: Medium";
-						break;
-					case 2:
-						listBOptions.get("bladeLength").displayString = "Blade Length: Long";
-						break;
-					default:
-						break;
-				}
 			}
 			else if (button instanceof FilledColorButton)
 			{
@@ -188,7 +192,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 			else if (button.id == bSave.id)
 			{
-				player.inventory.mainInventory[player.inventory.currentItem] = this.stackShowing;
+				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stackShowing));
 				StarWarsMod.mc.currentScreen = null;
 				StarWarsMod.mc.setIngameFocus();
 			}
@@ -261,6 +265,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 					b.visible = false;
 			}
 		}
+		setButtonsFromNBT(stackShowing.stackTagCompound);
 	}
 
 	public void drawBg2()

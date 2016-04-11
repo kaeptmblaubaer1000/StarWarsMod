@@ -49,6 +49,7 @@ import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipTargetLock;
 import com.parzivail.pswm.network.MessageToggleLightsaber;
 import com.parzivail.pswm.network.MessageToggleSequelLightsaber;
@@ -536,6 +537,7 @@ public class StarWarsMod
 		this.registerMessage(MessageCreateBlasterBolt.class);
 		this.registerMessage(MessageToggleLightsaber.class);
 		this.registerMessage(MessageToggleSequelLightsaber.class);
+		this.registerMessage(MessageSetPlayerHolding.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
