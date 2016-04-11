@@ -1,5 +1,7 @@
 package com.parzivail.util.ui;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.rendering.helper.PGui;
@@ -960,6 +962,14 @@ public class GLPalette
 		int green = rgba >> 8 & 0xFF;
 		int blue = rgba & 0xFF;
 		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
+	}
+	
+	public static int colorToInt(Color c)
+	{
+		int rgb = c.getRed();
+		rgb = (rgb << 8) + c.getGreen();
+		rgb = (rgb << 8) + c.getBlue();
+		return rgb;
 	}
 
 	public static int makeOpaque(int rgb)

@@ -1,5 +1,9 @@
 package com.parzivail.pswm.items.weapons;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.parzivail.pswm.Resources;
@@ -30,6 +34,22 @@ public class ItemLightsaber extends ItemSword
 	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard", "malgus", "obiwan", "quigon", "revan", "starkiller" };
 	public static final int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF5A00, 0xFF00E5EE, 0xFF191919, 0xFFFF0000, 0xFF00FF00, 0xFF0000FF };
 	public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
+	
+	public static final List<Color> color = new ArrayList<Color>(colorHex.length);
+	
+	static
+	{
+		for (int i = 0; i < colorHex.length; i++)
+			color.add(new Color(colorHex[i]));
+		Collections.sort(color, new Comparator<Color>() {
+	        @Override
+	        public int compare(Color c1, Color c2) {
+	            return Float.compare(((float) c1.getRed() * 0.299f + (float) c1.getGreen() * 0.587f
+	                    + (float) c1.getBlue() * 0.114f) / 256f, ((float) c2.getRed() * 0.299f + (float) c2.getGreen()
+	                    * 0.587f + (float) c2.getBlue() * 0.114f) / 256f);
+	        }
+	    });
+	}
 
 	public int hiltIndex;
 
