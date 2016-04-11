@@ -137,7 +137,7 @@ public class RenderLightsaber implements IItemRenderer
 		if (r != null)
 		{
 			GL11.glPushMatrix();
-			StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(item.stackTagCompound == null ? false : item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeSkin)));
+			StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(item.stackTagCompound == null ? false : item.stackTagCompound.getBoolean(ItemLightsaber.nbtHiltSkin)));
 			r.renderItem(type, item, data);
 			GL11.glPopMatrix();
 			IHandlesRender rB = getBladeRendererForStack(item);

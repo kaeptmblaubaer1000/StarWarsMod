@@ -20,7 +20,7 @@ public class ItemLightsaber extends ItemSword
 	public static final String nbtHilt = "hilt";
 	public static final String nbtBladeLength = "bladeLength";
 	public static final String nbtBladeColor = "bladeColor";
-	public static final String nbtBladeSkin = "skin";
+	public static final String nbtHiltSkin = "skin";
 	public static final String nbtBladeWaterproof = "waterproof";
 	public static final String nbtBladeDistortion = "distortion";
 	public static final String nbtBladeOn = "on";
@@ -120,7 +120,7 @@ public class ItemLightsaber extends ItemSword
 		/*
 		 * Blade Skin (int - 0: normal, 1: alternate)
 		 */
-		nbt.setInteger(nbtBladeSkin, 0);
+		nbt.setInteger(nbtHiltSkin, 0);
 
 		/*
 		 * Blade Waterproofing (boolean - true: on, false: off)

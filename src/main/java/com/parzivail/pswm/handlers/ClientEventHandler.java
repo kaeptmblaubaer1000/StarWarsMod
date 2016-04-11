@@ -1,14 +1,19 @@
 package com.parzivail.pswm.handlers;
 
+import org.lwjgl.opengl.GL11;
+
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.minimap.MinimapStore;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
+import com.parzivail.pswm.rendering.IHandlesRender;
+import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
 import com.parzivail.pswm.rendering.force.RenderJediDefense;
 import com.parzivail.pswm.rendering.force.RenderSithLightning;
@@ -86,6 +91,8 @@ public class ClientEventHandler
 	public static RenderJediDefense renderJediDefense;
 	@SideOnly(Side.CLIENT)
 	public static RenderSithLightning renderSithLightning;
+	@SideOnly(Side.CLIENT)
+	public static RenderLightsaber renderLightsaber;
 
 	@SideOnly(Side.CLIENT)
 	public static ModelJediCloak modelCloak;
@@ -112,6 +119,7 @@ public class ClientEventHandler
 		guiVehicle = new GuiVehicle();
 		guiBinocs = new GuiBinocs();
 		guiBlaster = new GuiBlaster();
+		renderLightsaber = new RenderLightsaber();
 	}
 
 	@SubscribeEvent
@@ -267,6 +275,37 @@ public class ClientEventHandler
 		}
 		else
 			ClientEventHandler.pgui.changeCameraDist(this, 4);
+
+		if (event.entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)event.entity;
+			for (int i = 0; i < 9; i++)
+			{
+				ItemStack inv = player.inventory.mainInventory[i];
+				if (inv != null && inv.getItem() instanceof ItemLightsaber && i != player.inventory.currentItem)
+				{
+					IHandlesRender lsRenderer = RenderLightsaber.getHiltRendererForStack(inv);
+					
+					GL11.glPushMatrix();
+					GL11.glDisable(GL11.GL_CULL_FACE);
+					
+					GL11.glScalef(0.5f, -0.5f, 0.5f);
+					GL11.glTranslatef(MathHelper.cos((float)Math.toRadians(player.renderYawOffset)), 0, MathHelper.sin((float)Math.toRadians(player.renderYawOffset)));
+					GL11.glRotatef(-player.renderYawOffset, 0, 1, 0);
+					GL11.glTranslatef(-1.5f, 1.75f, 0.3f);
+					if (player.isSneaking())
+						GL11.glTranslatef(0, -0.1f, -0.5f);
+					GL11.glScalef(0.75f, 0.75f, 0.75f);
+					
+					renderLightsaber.renderHiltItem(lsRenderer, inv.stackTagCompound.getInteger(ItemLightsaber.nbtHiltSkin) == 1);
+
+					GL11.glEnable(GL11.GL_CULL_FACE);
+					GL11.glPopMatrix();
+					break;
+				}
+			}
+		}
+
 	}
 
 	@SubscribeEvent
