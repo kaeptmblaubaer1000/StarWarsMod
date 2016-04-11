@@ -539,7 +539,7 @@ public class StarWarsMod
 	public void registerMessage(Class messageHandler)
 	{
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.SERVER);
-		Lumberjack.log("Registered packet \"" + messageHandler + "\" as packet ID " + packetId);
+		Lumberjack.debug("Registered packet \"" + messageHandler + "\" as packet ID " + packetId);
 		packetId += 1;
 	}
 

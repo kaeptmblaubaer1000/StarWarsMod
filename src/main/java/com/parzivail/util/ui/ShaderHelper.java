@@ -19,8 +19,6 @@ public final class ShaderHelper
 	private static final int VERT = ARBVertexShader.GL_VERTEX_SHADER_ARB;
 	private static final int FRAG = ARBFragmentShader.GL_FRAGMENT_SHADER_ARB;
 
-	public static int glow = 0;
-	public static int glowKylo = 0;
 	public static int glowSolid = 0;
 
 	private static float r;
@@ -58,8 +56,6 @@ public final class ShaderHelper
 		if (!useShaders())
 			return;
 
-		glow = createProgramFor("glow");
-		glowKylo = createProgramFor("glowKylo");
 		glowSolid = createProgramFor("glowSolid");
 	}
 
