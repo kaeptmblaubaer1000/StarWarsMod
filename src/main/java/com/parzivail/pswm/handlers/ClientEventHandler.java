@@ -33,6 +33,7 @@ import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.PlayerHelper;
+import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GuiManager;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.RenderHelper;
@@ -292,11 +293,96 @@ public class ClientEventHandler
 					GL11.glScalef(0.5f, -0.5f, 0.5f);
 					GL11.glTranslatef(MathHelper.cos((float)Math.toRadians(player.renderYawOffset)), 0, MathHelper.sin((float)Math.toRadians(player.renderYawOffset)));
 					GL11.glRotatef(-player.renderYawOffset, 0, 1, 0);
-					GL11.glTranslatef(-1.5f, 1.75f, 0.3f);
+					GL11.glTranslatef(-1.45f, 1.6f, 0.275f);
 					if (player.isSneaking())
 						GL11.glTranslatef(0, -0.1f, -0.5f);
-					GL11.glScalef(0.75f, 0.75f, 0.75f);
+					GL11.glScalef(0.6f, 0.6f, 0.6f);
+					GL11.glRotatef(180, 0, 1, 0);
 					
+					String s = inv.stackTagCompound.getString(ItemLightsaber.nbtHilt);
+					if (s.equals("dooku"))
+					{
+						GL11.glTranslatef(0, 0.075f, 0);
+						GL11.glRotatef(-90, 0, 1, 0);
+					}
+					else if (s.equals("ezra"))
+					{
+						GL11.glRotatef(180, 0, 1, 0);
+						GL11.glTranslatef(0, 0.075f, 0);
+					}
+					else if (s.equals("kanan"))
+					{
+						GL11.glTranslatef(0, 0.16f, 0);
+						GL11.glRotatef(90, 0, 1, 0);
+					}
+					else if (s.equals("padawan"))
+					{
+						GL11.glTranslatef(0, 0.3f, 0);
+					}
+					else if (s.equals("shoto"))
+					{
+						GL11.glRotatef(180, 0, 1, 0);
+						GL11.glTranslatef(0, 0.27f, 0);
+					}
+					else if (s.equals("vader2"))
+					{
+						GLPZ.glScalef(1.2f);
+						GL11.glTranslatef(0, 0.1f, 0);
+					}
+					else if (s.equals("luke1"))
+					{
+						GLPZ.glScalef(1.1f);
+						GL11.glTranslatef(0, 0.2f, 0);
+					}
+					else if (s.equals("luke2"))
+					{
+						GLPZ.glScalef(1.1f);
+						GL11.glTranslatef(0, 0.25f, 0);
+					}
+					else if (s.equals("crossguard"))
+					{
+						GL11.glTranslatef(0, 0.24f, 0);
+						GL11.glScalef(1.2f, 1.2f, 1.2f);
+						GL11.glRotatef(90, 0, 1, 0);
+					}
+					else if (s.equals("malgus"))
+					{
+						GL11.glScalef(0.85f, 0.85f, 0.85f);
+						GL11.glTranslatef(0, 0.29f, 0);
+						GL11.glRotatef(90, 0, 1, 0);
+					}
+					else if (s.equals("obiwan"))
+					{
+						GL11.glScalef(0.9f, 0.9f, 0.9f);
+						GL11.glTranslatef(0, 0.27f, 0);
+					}
+					else if (s.equals("quigon"))
+					{
+						GL11.glScalef(0.9f, 0.9f, 0.9f);
+						GL11.glTranslatef(0, 0.34f, 0);
+					}
+					else if (s.equals("revan"))
+					{
+						GL11.glScalef(0.9f, 0.9f, 0.9f);
+						GL11.glTranslatef(0, 0.31f, 0);
+					}
+					else if (s.equals("starkiller"))
+					{
+						GL11.glTranslatef(0, 0.3f, 0);
+						GL11.glScalef(1.1f, 1.1f, 1.1f);
+					}
+					else if (s.equals("doubleSith"))
+					{
+						GLPZ.glScalef(1.4f);
+						GL11.glTranslatef(-0.02f, -0.7f, 0.065f);
+						GL11.glRotatef(-90, 0, 1, 0);
+					}
+					else if (s.equals("maul"))
+					{
+						GLPZ.glScalef(0.95f);
+						GL11.glTranslatef(0, -0.45f, 0.05f);
+					}
+
 					renderLightsaber.renderHiltItem(lsRenderer, inv.stackTagCompound.getInteger(ItemLightsaber.nbtHiltSkin) == 1);
 
 					GL11.glEnable(GL11.GL_CULL_FACE);
