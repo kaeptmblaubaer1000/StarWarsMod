@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPalette;
 
@@ -35,10 +36,12 @@ public class ItemLightsaber extends ItemSword
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard", "malgus", "obiwan", "quigon", "revan", "starkiller" };
 	public static int[] colorHex = { 0xFFFFFF00, 0xFFFF4F89, 0xFFE066FF, 0xFFF2F2F2, 0xFF595959, 0xFFFF5A00, 0xFF00E5EE, 0xFF191919, 0xFFFF0000, 0xFF00FF00, 0xFF0000FF };
+	public static int[] colorHexNew = { 0xFFFFFF00, 0xFFFF00DC, 0xFFB20078, 0xFFFFFFFF, 0xFFA0A0A0, 0xFF202020, 0xFFFF6A00, 0xFF00CC9C, 0xFFFF0000, 0xFF00FF00, 0xFF0000FF, 0xFFFF5200 };
 	//public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
 
 	static
 	{
+		colorHex = colorHexNew;
 		ArrayList<Integer> n = new ArrayList<>();
 		for (int i = 0; i < colorHex.length; i++)
 			n.add(colorHex[i]);
@@ -126,6 +129,7 @@ public class ItemLightsaber extends ItemSword
 				player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
 			stack.stackTagCompound.setBoolean(nbtBladeOn, !stack.stackTagCompound.getBoolean(nbtBladeOn));
 			stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
+			StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
 		}
 		return super.onItemRightClick(stack, p_77659_2_, player);
 	}
