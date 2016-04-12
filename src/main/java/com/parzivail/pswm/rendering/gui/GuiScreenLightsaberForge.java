@@ -3,7 +3,6 @@ package com.parzivail.pswm.rendering.gui;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
@@ -83,7 +82,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	{
 		stackShowing = new ItemStack(StarWarsMod.lightsaberNew[0], 1);
 		ItemLightsaber.setupNBT(0, stackShowing);
-		if (player.inventory.getCurrentItem() != null)
+		if (player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemLightsaber)
 			stackShowing = player.inventory.getCurrentItem().copy();
 		stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, true);
 
