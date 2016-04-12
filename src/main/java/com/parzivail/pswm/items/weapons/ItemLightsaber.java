@@ -9,6 +9,7 @@ import java.util.List;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.util.IntColorComparator;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPalette;
 
@@ -45,30 +46,7 @@ public class ItemLightsaber extends ItemSword
 		ArrayList<Integer> n = new ArrayList<>();
 		for (int i = 0; i < colorHex.length; i++)
 			n.add(GLPalette.makeOpaque(colorHex[i]));
-		Collections.sort(n, new Comparator<Integer>()
-		{
-			@Override
-			public int compare(Integer i1, Integer i2)
-			{
-				Color c1 = GLPalette.intToColor(i1);
-				Color c2 = GLPalette.intToColor(i2);
-				float[] hsb1 = Color.RGBtoHSB(c1.getRed(), c1.getGreen(), c1.getBlue(), null);
-		        float[] hsb2 = Color.RGBtoHSB(c2.getRed(), c2.getGreen(), c2.getBlue(), null);
-		        if (hsb1[0] < hsb2[0])
-		            return -1;
-		        if (hsb1[0] > hsb2[0])
-		            return 1;
-		        if (hsb1[1] < hsb2[1])
-		            return -1;
-		        if (hsb1[1] > hsb2[1])
-		            return 1;
-		        if (hsb1[2] < hsb2[2])
-		            return -1;
-		        if (hsb1[2] > hsb2[2])
-		            return 1;
-		        return 0;
-			}
-		});
+		Collections.sort(n, new IntColorComparator());
 		colorHex = MathUtils.toIntArray(n);
 	}
 
