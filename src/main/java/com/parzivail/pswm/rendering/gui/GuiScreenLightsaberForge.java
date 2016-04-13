@@ -1,6 +1,7 @@
 package com.parzivail.pswm.rendering.gui;
 
 import java.awt.Color;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-import scala.actors.threadpool.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class GuiScreenLightsaberForge extends GuiScreen
