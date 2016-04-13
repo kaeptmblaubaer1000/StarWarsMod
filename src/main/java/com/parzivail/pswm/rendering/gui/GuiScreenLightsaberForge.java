@@ -146,17 +146,22 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			 */
 		}
 		y++;
-		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 120, 140, 255, "R");
+		OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 100, "Custom Color");
+		listBBlade.put("custLabel", custLabel);
+		buttonList.add(custLabel);
+		custLabel.visible = false;
+		y++;
+		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "R");
 		listBBlade.put("rangeR", rangeR);
 		buttonList.add(rangeR);
 		rangeR.visible = false;
 		y++;
-		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 120, 140, 255, "G");
+		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "G");
 		listBBlade.put("rangeG", rangeG);
 		buttonList.add(rangeG);
 		rangeG.visible = false;
 		y++;
-		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 120, 140, 255, "B");
+		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "B");
 		listBBlade.put("rangeB", rangeB);
 		buttonList.add(rangeB);
 		rangeB.visible = false;
