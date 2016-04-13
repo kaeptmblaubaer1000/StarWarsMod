@@ -16,15 +16,17 @@ class OutlineRange extends OutlineButton
 	public float value;
 	public boolean changeFlag;
 	public float multiplier;
-	public int colorFg = GLPalette.ANALOG_GREEN;
-	public int colorBg = GLPalette.GREY_GREEN;
+	public int colorFg = GLPalette.SW_YELLOW;
+	public int colorBg = GLPalette.DARK_SW_YELLOW;
+	private String formatter;
 
-	public OutlineRange(int id, int x, int y, int width, float multiplier, String text)
+	public OutlineRange(int id, int x, int y, int width, float multiplier, String text, String formatter)
 	{
 		super(id, x, y, width, 10, "", false);
 		this.name = text;
 		this.multiplier = multiplier;
-		this.displayString = String.format("%s: %2$.1f", this.name, this.getValue());
+		this.formatter = formatter;
+		this.displayString = String.format(this.formatter, this.name, this.getValue());
 		this.value = 0;
 	}
 
@@ -37,9 +39,23 @@ class OutlineRange extends OutlineButton
 		return 0;
 	}
 	
+	/**
+	 * Gets the modified value between 0-[multiplier]
+	 * @return
+	 */
 	public float getValue()
 	{
 		return this.value * this.multiplier;
+	}
+	
+	/**
+	 * Sets the value to the given parameter / [multiplier]
+	 * @param n A precentage between 0-[multiplier]
+	 */
+	public void setValue(float n)
+	{
+		 this.value = n / this.multiplier;
+		 this.displayString = String.format(this.formatter, this.name, this.getValue());
 	}
 
 	/**
@@ -67,7 +83,7 @@ class OutlineRange extends OutlineButton
 				if (KeyboardUtils.isShiftDown())
 					this.value = Math.round(this.value * this.multiplier) / this.multiplier;
 
-				this.displayString = String.format("%s: %2$.1f", this.name, this.getValue());
+				this.displayString = String.format(this.formatter, this.name, this.getValue());
 			}
 		}
 	}
@@ -95,7 +111,7 @@ class OutlineRange extends OutlineButton
 			if (KeyboardUtils.isShiftDown())
 				this.value = Math.round(this.value * this.multiplier) / this.multiplier;
 
-			this.displayString = String.format("%s: %2$.1f", this.name, this.getValue());
+			this.displayString = String.format(this.formatter, this.name, this.getValue());
 			this.changeFlag = true;
 			return true;
 		}

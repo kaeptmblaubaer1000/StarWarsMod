@@ -77,6 +77,11 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			default:
 				break;
 		}
+		Color c = GLPalette.intToColor(stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+
+		((OutlineRange)listBBlade.get("rangeR")).setValue(c.getRed());
+		((OutlineRange)listBBlade.get("rangeG")).setValue(c.getGreen());
+		((OutlineRange)listBBlade.get("rangeB")).setValue(c.getBlue());
 	}
 
 	@Override
@@ -127,9 +132,14 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		x = 0;
 		y = 0;
+		OutlineLabel canonLabel = new OutlineLabel(id++, x * 32 + 10, y * 32 + 40, "Presets");
+		listBBlade.put("canonLabel", canonLabel);
+		buttonList.add(canonLabel);
+		canonLabel.visible = false;
+		y++;
 		for (int i = 0; i < ItemLightsaber.colorHex.length; i++)
 		{
-			OutlineButton b = new FilledColorButton(id++, x * 32 + 10, y * 32 + 40, 30, 30, ItemLightsaber.colorHex[i]);
+			OutlineButton b = new FilledColorButton(id++, x * 32 + 10, y * 32 + 20, 30, 30, ItemLightsaber.colorHex[i]);
 			b.visible = false;
 			listBBlade.put(String.valueOf(ItemLightsaber.colorHex[i]), b);
 			buttonList.add(b);
@@ -151,17 +161,17 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		buttonList.add(custLabel);
 		custLabel.visible = false;
 		y++;
-		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "R");
+		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "R", "%s: %2$.0f");
 		listBBlade.put("rangeR", rangeR);
 		buttonList.add(rangeR);
 		rangeR.visible = false;
 		y++;
-		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "G");
+		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "G", "%s: %2$.0f");
 		listBBlade.put("rangeG", rangeG);
 		buttonList.add(rangeG);
 		rangeG.visible = false;
 		y++;
-		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "B");
+		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "B","%s: %2$.0f");
 		listBBlade.put("rangeB", rangeB);
 		buttonList.add(rangeB);
 		rangeB.visible = false;
@@ -215,18 +225,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (button instanceof FilledColorButton)
 			{
 				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ((FilledColorButton)button).color);
-
-				Color c = GLPalette.intToColor(((FilledColorButton)button).color);
-
-				((OutlineRange)listBBlade.get("rangeR")).value = c.getRed() / 255f;
-				((OutlineRange)listBBlade.get("rangeR")).displayString = String.format("%s: %2$.1f", "R", ((OutlineRange)listBBlade.get("rangeR")).getValue());
-				((OutlineRange)listBBlade.get("rangeG")).value = c.getGreen() / 255f;
-				((OutlineRange)listBBlade.get("rangeG")).displayString = String.format("%s: %2$.1f", "G", ((OutlineRange)listBBlade.get("rangeG")).getValue());
-				((OutlineRange)listBBlade.get("rangeB")).value = c.getBlue() / 255f;
-				((OutlineRange)listBBlade.get("rangeB")).displayString = String.format("%s: %2$.1f", "B", ((OutlineRange)listBBlade.get("rangeB")).getValue());
-
-				// .displayString = String.format("%s: %2$.1f", this.name,
-				// this.getValue());
 			}
 			else if (button.id == listBOptions.get("toggleBlade").id)
 			{
