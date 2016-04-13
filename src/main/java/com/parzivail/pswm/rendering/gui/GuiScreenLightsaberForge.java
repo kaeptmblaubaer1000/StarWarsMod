@@ -149,11 +149,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 				x = 0;
 				y++;
 			}
-			/*
-			 * OutlineButton b = new FilledColorButton(id++, x * 32 + 10, y * 32 + 40, 30, 30, GLPalette.colorToInt(ItemLightsaber.color.get(i)));
-			b.visible = false;
-			listBBlade.put(String.valueOf(GLPalette.colorToInt(ItemLightsaber.color.get(i))), b);
-			 */
 		}
 		y++;
 		OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 100, "Custom Color");
@@ -255,23 +250,9 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (button.id == listBOptions.get("bladeLength").id)
 			{
 				int l = stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength);
-				switch (l)
-				{
-					case 0:
-						listBOptions.get("bladeLength").displayString = "Blade Length: Medium";
-						l = 1;
-						break;
-					case 1:
-						listBOptions.get("bladeLength").displayString = "Blade Length: Long";
-						l = 2;
-						break;
-					case 2:
-						listBOptions.get("bladeLength").displayString = "Blade Length: Short";
-						l = 0;
-						break;
-					default:
-						break;
-				}
+				l++;
+				if (l >= 3)
+					l = 0;
 				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeLength, l);
 			}
 			else if (button.id == bTabHilts.id)
