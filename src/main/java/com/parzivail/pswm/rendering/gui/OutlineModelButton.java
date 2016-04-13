@@ -62,7 +62,7 @@ public class OutlineModelButton extends OutlineButton
 			if (body != null)
 			{
 				GL11.glTranslatef(this.xPosition + (this.width / 2f), this.yPosition + this.height, 10);
-				GL11.glRotatef((System.currentTimeMillis() / 10) % 360, 0, 1, 0);
+				GL11.glRotatef((System.currentTimeMillis() / 15) % 360, 0, 1, 0);
 				GL11.glScalef(20, -20, 20);
 				RenderLightsaber.applyTransformFix(this.displayString);
 				s.renderHiltItem(body, false);

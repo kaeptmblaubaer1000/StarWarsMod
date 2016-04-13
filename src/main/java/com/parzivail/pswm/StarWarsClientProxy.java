@@ -50,7 +50,7 @@ import com.parzivail.pswm.models.mobs.ModelDroidTreadwell;
 import com.parzivail.pswm.models.mobs.ModelGNK;
 import com.parzivail.pswm.models.mobs.ModelGamorrean;
 import com.parzivail.pswm.models.mobs.ModelSmallBiped;
-import com.parzivail.pswm.models.mobs.ModelTauntaun;
+import com.parzivail.pswm.models.mobs.ModelTaunNew;
 import com.parzivail.pswm.models.mobs.ModelWampa;
 import com.parzivail.pswm.models.mobs.ModelWookiee;
 import com.parzivail.pswm.models.vehicles.ModelATST;
@@ -186,7 +186,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobWookiee.class, new RenderWookiee(new ModelWookiee(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobJawa.class, new RenderJawa(new ModelSmallBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobEwok.class, new RenderEwok(new ModelSmallBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobTauntaun.class, new RenderTauntaun(new ModelTauntaun(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobTauntaun.class, new RenderTauntaun(new ModelTaunNew(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBantha.class, new RenderBantha(new ModelBantha(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobWampa.class, new RenderWampa(new ModelWampa(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTusken.class, new RenderTusken(new ModelBiped(), 0.5F));

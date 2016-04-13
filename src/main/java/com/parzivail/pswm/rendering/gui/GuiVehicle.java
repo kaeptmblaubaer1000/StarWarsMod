@@ -8,7 +8,10 @@ import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.network.MessageShipTargetLock;
 import com.parzivail.pswm.rendering.helper.VehicleLineDraw;
+import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
+import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
@@ -148,7 +151,7 @@ public class GuiVehicle
 						GL11.glPopMatrix();
 					}
 				}
-				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 				{
 					VehicAWing awing = (VehicAWing)StarWarsMod.mc.thePlayer.ridingEntity;
 
@@ -290,7 +293,7 @@ public class GuiVehicle
 						this.lastTarget = null;
 					}
 				}
-				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor)
 				{
 					VehicleAirBase tie = (VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity;
 
@@ -502,6 +505,108 @@ public class GuiVehicle
 							((VehicleAirBase)this.lastTarget).setTargetLock(true);
 						this.lastTarget = null;
 					}
+				}
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder)
+				{
+					VehicSnowspeeder vehic = (VehicSnowspeeder)StarWarsMod.mc.thePlayer.ridingEntity;
+
+					event.resolution.getScaledWidth();
+					event.resolution.getScaledHeight();
+
+					updateFiring();
+
+					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
+
+					int color = GLPalette.ANALOG_GREEN;
+
+					if (e != null)
+						color = GLPalette.ANALOG_RED;
+
+					if (vehic.getTargetLock())
+						color = GLPalette.ORANGE;
+
+					if (e != null && this.lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && this.lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+
+					updateTargetLock(e);
+
+					this.lastTarget = e;
+
+					ClientEventHandler.pgui.renderOverlay(Resources.snowspeederOverlay);
+				}
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
+				{
+					VehicSkyhopper vehic = (VehicSkyhopper)StarWarsMod.mc.thePlayer.ridingEntity;
+
+					event.resolution.getScaledWidth();
+					event.resolution.getScaledHeight();
+
+					updateFiring();
+
+					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
+
+					int color = GLPalette.ANALOG_GREEN;
+
+					if (e != null)
+						color = GLPalette.ANALOG_RED;
+
+					if (vehic.getTargetLock())
+						color = GLPalette.ORANGE;
+
+					if (e != null && this.lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && this.lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+
+					updateTargetLock(e);
+
+					this.lastTarget = e;
+
+					ClientEventHandler.pgui.renderOverlay(Resources.skyhopperOverlay);
+				}
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
+				{
+					VehicATST vehic = (VehicATST)StarWarsMod.mc.thePlayer.ridingEntity;
+
+					event.resolution.getScaledWidth();
+					event.resolution.getScaledHeight();
+
+					updateFiring();
+
+					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
+
+					int color = GLPalette.ANALOG_GREEN;
+
+					if (e != null)
+						color = GLPalette.ANALOG_RED;
+
+					// if (vehic.getTargetLock())
+					// color = GLPalette.ORANGE;
+
+					if (e != null && this.lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && this.lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+
+					updateTargetLock(e);
+
+					this.lastTarget = e;
+
+					ClientEventHandler.pgui.renderOverlay(Resources.atstOverlay);
 				}
 			}
 		}

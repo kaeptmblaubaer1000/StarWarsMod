@@ -1,9 +1,7 @@
 package com.parzivail.pswm.items.weapons;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import com.parzivail.pswm.Resources;
@@ -37,8 +35,8 @@ public class ItemLightsaber extends ItemSword
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard", "malgus", "obiwan", "quigon", "revan", "starkiller" };
 	public static int[] colorHex = { 0xFFFF00, 0xFF4F89, 0xE066FF, 0xF2F2F2, 0x595959, 0xFF5A00, 0x00E5EE, 0x191919, 0xFF0000, 0x00FF00, 0x0000FF };
-	public static int[] colorHexNew = { 0xFFFF00, 0xFF00DC, 0xA7006D, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x00DDD9, 0xFF0000, 0x00FF00, 0x0000FF, 0xFF5200 };
 	//public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
+	public static int[] colorHexNew = { 0xFFFF2B, 0xFF00DC, 0xB069DB, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF48, 0x2448DA, 0xFF5200 };
 
 	static
 	{

@@ -1,13 +1,12 @@
 package com.parzivail.pswm.achievement;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
 
 public class StarWarsAchievements
 {
@@ -26,7 +25,7 @@ public class StarWarsAchievements
 	{
 		becomeJedi = new StarWarsAchievement("becomeJedi", -2, -1, StarWarsMod.jediRobes, null);
 		fireBlaster = new StarWarsAchievement("fireBlaster", 2, -2, StarWarsMod.blasterRifle.getMeta("Stormtrooper"), null);
-		craftLightsaber = new StarWarsAchievement("craftLightsaber", -1, 2, new ItemStack(StarWarsMod.lightsaber, 1, 2), null);
+		craftLightsaber = new StarWarsAchievement("craftLightsaber", -1, 2, new ItemStack(StarWarsMod.lightsaberNew[9], 1, 2), null);
 		craftHyperdrive = new StarWarsAchievement("craftHyperdrive", 1, 0, StarWarsMod.hyperdriveEngine, null);
 		travelTatooine = new StarWarsAchievement("travelTatooine", 2, 1, StarWarsMod.hyperdriveTatooine, craftHyperdrive);
 		travelHoth = new StarWarsAchievement("travelHoth", 2, 2, StarWarsMod.hyperdriveHoth, craftHyperdrive);

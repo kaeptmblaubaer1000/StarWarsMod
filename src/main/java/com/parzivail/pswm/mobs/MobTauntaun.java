@@ -1,5 +1,8 @@
 package com.parzivail.pswm.mobs;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.ai.AiFreqMove;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -9,9 +12,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.ai.AiFreqMove;
 
 public class MobTauntaun extends EntityHorse
 {
@@ -120,6 +120,12 @@ public class MobTauntaun extends EntityHorse
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
 		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
 			return false;
+		if (!this.isTame())
+		{
+			this.setHorseTamed(true);
+			this.playLivingSound();
+			this.spawnHorseParticles(true);
+		}
 		return super.interact(p_70085_1_);
 	}
 
@@ -135,7 +141,7 @@ public class MobTauntaun extends EntityHorse
 	public void updateRiderPosition()
 	{
 		if (this.riddenByEntity != null)
-			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.10000000149011612D, this.posZ);
+			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.6f, this.posZ);
 	}
 }
 /*

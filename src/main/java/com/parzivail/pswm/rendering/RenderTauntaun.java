@@ -1,18 +1,18 @@
 package com.parzivail.pswm.rendering;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
-import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-
 public class RenderTauntaun extends RenderLiving
 {
-	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tauntaun.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/taunNew.png");
 
 	public RenderTauntaun(ModelBase par1ModelBase, float par2)
 	{
@@ -30,8 +30,7 @@ public class RenderTauntaun extends RenderLiving
 	{
 		if (entity.isChild())
 			GL11.glScalef(0.8F, 0.8F, 0.8F);
-		else
-			GL11.glScalef(1.5F, 1.5F, 1.5F);
+		GL11.glRotatef(90, 0, 1, 0);
 	}
 }
 /*

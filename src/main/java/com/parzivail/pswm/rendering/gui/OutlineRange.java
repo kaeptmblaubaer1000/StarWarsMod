@@ -9,9 +9,8 @@ import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
 
-class OutlineRange extends GuiButton
+class OutlineRange extends OutlineButton
 {
 	private String name;
 	public float value;
@@ -22,7 +21,7 @@ class OutlineRange extends GuiButton
 
 	public OutlineRange(int id, int x, int y, int width, float multiplier, String text)
 	{
-		super(id, x, y, width, 10, "");
+		super(id, x, y, width, 10, "", false);
 		this.name = text;
 		this.multiplier = multiplier;
 		this.displayString = String.format("%s: %2$.1f", this.name, this.getValue());
@@ -123,7 +122,7 @@ class OutlineRange extends GuiButton
 			Screen2D.drawRectangle(this.xPosition + (int)(this.value * (float)(this.width - 4)), this.yPosition, 4, 10, true);
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			Screen2D.drawCenteredText(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, 0.75f, GLPalette.WHITE);
+			Screen2D.drawCenteredText(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 5.5f) / 2, 0.75f, GLPalette.WHITE);
 		}
 		GL11.glPopMatrix();
 	}

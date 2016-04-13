@@ -1,5 +1,6 @@
 package com.parzivail.pswm.rendering.gui;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +58,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		listBOptions.get("toggleBlade").selected = nbt.getBoolean(ItemLightsaber.nbtBladeOn);
 		listBOptions.get("bladeDistort").selected = nbt.getBoolean(ItemLightsaber.nbtBladeDistortion);
 		listBOptions.get("bladeWaterproof").selected = nbt.getBoolean(ItemLightsaber.nbtBladeWaterproof);
+		listBOptions.get("altTexture").selected = nbt.getInteger(ItemLightsaber.nbtHiltSkin) == 1;
 		//listBOptions.get("bladeAltTexture").selected = nbt.getBoolean(ItemLightsaber.nbtBladeDistortion);
 		for (OutlineButton b : listBHilts.values())
 			b.selected = (b.displayString.equals(nbt.getString(ItemLightsaber.nbtHilt)));
@@ -143,6 +145,21 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			listBBlade.put(String.valueOf(GLPalette.colorToInt(ItemLightsaber.color.get(i))), b);
 			 */
 		}
+		y++;
+		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 120, 140, 255, "R");
+		listBBlade.put("rangeR", rangeR);
+		buttonList.add(rangeR);
+		rangeR.visible = false;
+		y++;
+		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 120, 140, 255, "G");
+		listBBlade.put("rangeG", rangeG);
+		buttonList.add(rangeG);
+		rangeG.visible = false;
+		y++;
+		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 120, 140, 255, "B");
+		listBBlade.put("rangeB", rangeB);
+		buttonList.add(rangeB);
+		rangeB.visible = false;
 
 		x = 0;
 		y = 0;
@@ -150,6 +167,11 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		bBladeToggle.visible = false;
 		listBOptions.put("toggleBlade", bBladeToggle);
 		buttonList.add(bBladeToggle);
+		y++;
+		OutlineButton bHiltAlt = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Alt Texture", false);
+		bHiltAlt.visible = false;
+		listBOptions.put("altTexture", bHiltAlt);
+		buttonList.add(bHiltAlt);
 		y++;
 		OutlineButton bBladeLength = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Blade Length", false);
 		bBladeLength.visible = false;
@@ -188,6 +210,18 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (button instanceof FilledColorButton)
 			{
 				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ((FilledColorButton)button).color);
+
+				Color c = GLPalette.intToColor(((FilledColorButton)button).color);
+
+				((OutlineRange)listBBlade.get("rangeR")).value = c.getRed() / 255f;
+				((OutlineRange)listBBlade.get("rangeR")).displayString = String.format("%s: %2$.1f", "R", ((OutlineRange)listBBlade.get("rangeR")).getValue());
+				((OutlineRange)listBBlade.get("rangeG")).value = c.getGreen() / 255f;
+				((OutlineRange)listBBlade.get("rangeG")).displayString = String.format("%s: %2$.1f", "G", ((OutlineRange)listBBlade.get("rangeG")).getValue());
+				((OutlineRange)listBBlade.get("rangeB")).value = c.getBlue() / 255f;
+				((OutlineRange)listBBlade.get("rangeB")).displayString = String.format("%s: %2$.1f", "B", ((OutlineRange)listBBlade.get("rangeB")).getValue());
+
+				// .displayString = String.format("%s: %2$.1f", this.name,
+				// this.getValue());
 			}
 			else if (button.id == listBOptions.get("toggleBlade").id)
 			{
@@ -209,6 +243,11 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			{
 				stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeDistortion, !stackShowing.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeDistortion));
 				listBOptions.get("bladeDistort").selected = stackShowing.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeDistortion);
+			}
+			else if (button.id == listBOptions.get("altTexture").id)
+			{
+				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtHiltSkin, 1 - stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtHiltSkin));
+				listBOptions.get("altTexture").selected = stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtHiltSkin) == 1;
 			}
 			else if (button.id == listBOptions.get("bladeLength").id)
 			{
@@ -292,6 +331,15 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	{
 		this.drawBg2();
 
+		if (((OutlineRange)listBBlade.get("rangeR")).changeFlag || ((OutlineRange)listBBlade.get("rangeG")).changeFlag || ((OutlineRange)listBBlade.get("rangeB")).changeFlag)
+		{
+			OutlineRange r = (OutlineRange)listBBlade.get("rangeR");
+			OutlineRange g = (OutlineRange)listBBlade.get("rangeG");
+			OutlineRange b = (OutlineRange)listBBlade.get("rangeB");
+
+			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, GLPalette.colorToInt(new Color((int)r.getValue(), (int)g.getValue(), (int)b.getValue(), 255)));
+		}
+
 		GL11.glPushMatrix();
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -302,7 +350,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		GL11.glTranslatef(290, 215, 130);
 		GL11.glScalef(130, -130, 130);
-		GL11.glRotatef((System.currentTimeMillis() / 10) % 360, 0, 1, 0);
+		GL11.glRotatef((System.currentTimeMillis() / 30) % 360, 0, 1, 0);
 
 		RenderLightsaber.applyTransformFix(this.stackShowing.stackTagCompound.getString(ItemLightsaber.nbtHilt));
 

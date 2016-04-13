@@ -75,6 +75,12 @@ public class Resources
 	public static final ResourceLocation awingPitch1 = new ResourceLocation(Resources.MODID, "textures/gui/awing/pitch1.png");
 	public static final ResourceLocation awingPitch2 = new ResourceLocation(Resources.MODID, "textures/gui/awing/pitch2.png");
 
+	public static final ResourceLocation snowspeederOverlay = new ResourceLocation(Resources.MODID, "textures/gui/snowspeeder/snowspeeder.png");
+
+	public static final ResourceLocation skyhopperOverlay = new ResourceLocation(Resources.MODID, "textures/gui/skyhopper/skyhopper.png");
+
+	public static final ResourceLocation atstOverlay = new ResourceLocation(Resources.MODID, "textures/gui/atst/atst.png");
+
 	// Planet Textures
 	public static final ResourceLocation earthTexture = new ResourceLocation(Resources.MODID, "textures/gui/planets/earth.png");
 	public static final ResourceLocation endorTexture = new ResourceLocation(Resources.MODID, "textures/gui/planets/endor.png");
