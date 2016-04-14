@@ -11,6 +11,7 @@ import com.parzivail.util.IntColorComparator;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPalette;
 
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,13 +77,14 @@ public class ItemLightsaber extends ItemSword
 		if (stack.stackTagCompound.getInteger(nbtBladeTimeout) > 0)
 			stack.stackTagCompound.setInteger(nbtBladeTimeout, stack.stackTagCompound.getInteger(nbtBladeTimeout) - 1);
 
-		if (!stack.stackTagCompound.getBoolean(nbtBladeWaterproof) && holder.isInWater() && stack.stackTagCompound.getBoolean(nbtBladeOn))
+		if (world.isRemote && !stack.stackTagCompound.getBoolean(nbtBladeWaterproof) && holder.isInsideOfMaterial(Material.water) && stack.stackTagCompound.getBoolean(nbtBladeOn))
 		{
 			stack.stackTagCompound.setBoolean(nbtBladeOn, false);
 			stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
 			if (holder instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer)holder;
+				player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
 				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
 			}
 		}
@@ -111,13 +113,21 @@ public class ItemLightsaber extends ItemSword
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.getInteger(nbtBladeTimeout) <= 0 && player.isSneaking())
 		{
-			if (stack.stackTagCompound.getBoolean(nbtBladeOn))
-				player.playSound(Resources.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
+			if (!stack.stackTagCompound.getBoolean(nbtBladeWaterproof) && player.isInsideOfMaterial(Material.water))
+			{
+				stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
+				player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
+			}
 			else
-				player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
-			stack.stackTagCompound.setBoolean(nbtBladeOn, !stack.stackTagCompound.getBoolean(nbtBladeOn));
-			stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
-			StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+			{
+				if (stack.stackTagCompound.getBoolean(nbtBladeOn))
+					player.playSound(Resources.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
+				else
+					player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
+				stack.stackTagCompound.setBoolean(nbtBladeOn, !stack.stackTagCompound.getBoolean(nbtBladeOn));
+				stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
+				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+			}
 		}
 		return super.onItemRightClick(stack, p_77659_2_, player);
 	}

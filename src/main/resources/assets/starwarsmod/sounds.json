@@ -663,6 +663,12 @@
             "item/lightsaber/close"
         ]
     },
+    "item.lightsaber.fizz": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/fizz"
+        ]
+    },
     "item.lightsaber.crash": {
         "category": "neutral",
         "sounds": [
