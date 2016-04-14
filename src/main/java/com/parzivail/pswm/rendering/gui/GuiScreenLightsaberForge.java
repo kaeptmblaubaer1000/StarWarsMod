@@ -123,7 +123,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			listBHilts.put(s, b);
 			buttonList.add(b);
 			x++;
-			if (x >= 3)
+			if (x >= 4)
 			{
 				x = 0;
 				y++;
@@ -132,7 +132,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		x = 0;
 		y = 0;
-		OutlineLabel canonLabel = new OutlineLabel(id++, x * 32 + 10, y * 32 + 40, "Presets");
+		OutlineLabel canonLabel = new OutlineLabel(id++, x * 32 + 10, y * 32 + 41, "Presets");
 		listBBlade.put("canonLabel", canonLabel);
 		buttonList.add(canonLabel);
 		canonLabel.visible = false;
@@ -151,25 +151,28 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 		}
 		y++;
-		OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 100, "Custom Color");
+		OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 94, "Custom Color");
 		listBBlade.put("custLabel", custLabel);
 		buttonList.add(custLabel);
 		custLabel.visible = false;
 		y++;
-		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "R", "%s: %2$.0f");
+		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "R", "%s: %2$.0f");
 		listBBlade.put("rangeR", rangeR);
 		buttonList.add(rangeR);
 		rangeR.visible = false;
+		rangeR.colorFg = 0xFFFF0000;
 		y++;
-		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "G", "%s: %2$.0f");
+		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "G", "%s: %2$.0f");
 		listBBlade.put("rangeG", rangeG);
 		buttonList.add(rangeG);
 		rangeG.visible = false;
+		rangeG.colorFg = 0xFF00FF48;
 		y++;
-		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 100, 140, 255, "B","%s: %2$.0f");
+		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "B", "%s: %2$.0f");
 		listBBlade.put("rangeB", rangeB);
 		buttonList.add(rangeB);
 		rangeB.visible = false;
+		rangeB.colorFg = 0xFF2448DA;
 
 		x = 0;
 		y = 0;

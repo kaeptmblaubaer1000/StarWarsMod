@@ -33,9 +33,10 @@ public class ItemLightsaber extends ItemSword
 	public static final String nbtBladeTimeout = "timeout";
 
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
-	public static final String[] hilts = { "dooku", "ezra", "kanan", "maul", "padawan", "shoto", "doubleSith", "vader2", "luke1", "luke2", "crossguard", "malgus", "obiwan", "quigon", "revan", "starkiller" };
+	public static final String[] hilts = { "obiwan", "quigon", "maul", "padawan", "dooku", "luke1", "vader2", "luke2", "crossguard", "kanan", "ezra", "revan", "malgus", "doubleSith", "starkiller", "shoto" };
 	public static int[] colorHex = { 0xFFFF00, 0xFF4F89, 0xE066FF, 0xF2F2F2, 0x595959, 0xFF5A00, 0x00E5EE, 0x191919, 0xFF0000, 0x00FF00, 0x0000FF };
-	//public static final String[] colorName = { "yellow", "pink", "purple", "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
+	// public static final String[] colorName = { "yellow", "pink", "purple",
+	// "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
 	public static int[] colorHexNew = { 0xFFFF2B, 0xFF00DC, 0xB069DB, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF48, 0x2448DA, 0xFF5200 };
 
 	static
@@ -74,6 +75,17 @@ public class ItemLightsaber extends ItemSword
 
 		if (stack.stackTagCompound.getInteger(nbtBladeTimeout) > 0)
 			stack.stackTagCompound.setInteger(nbtBladeTimeout, stack.stackTagCompound.getInteger(nbtBladeTimeout) - 1);
+
+		if (!stack.stackTagCompound.getBoolean(nbtBladeWaterproof) && holder.isInWater() && stack.stackTagCompound.getBoolean(nbtBladeOn))
+		{
+			stack.stackTagCompound.setBoolean(nbtBladeOn, false);
+			stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
+			if (holder instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer)holder;
+				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+			}
+		}
 	}
 
 	@Override
@@ -115,11 +127,12 @@ public class ItemLightsaber extends ItemSword
 		NBTTagCompound nbt = new NBTTagCompound();
 
 		nbt.setString(nbtHilt, hilts[hilt]);
+		String s = hilts[hilt];
 
 		/*
 		 * Blade Length (int - 0: short, 1: medium, 2: long)
 		 */
-		if (hilt == 4)
+		if (s.equals("padawan"))
 			nbt.setInteger(nbtBladeLength, 1);
 		else
 			nbt.setInteger(nbtBladeLength, 2);
@@ -127,12 +140,14 @@ public class ItemLightsaber extends ItemSword
 		/*
 		 * Blade Color (int - 0xRRGGBB)
 		 */
-		if (hilt == 0 || hilt == 3 || hilt == 5 || hilt == 6 || hilt == 7 || hilt == 10 || hilt == 11 || hilt == 15)
+		if (s.equals("maul") || s.equals("dooku") || s.equals("vader2") || s.equals("malgus") || s.equals("doubleSith") || s.equals("starkiller"))
 			nbt.setInteger(nbtBladeColor, 0xFF0000); // red
-		else if (hilt == 4 || hilt == 9 || hilt == 13 || hilt == 14)
-			nbt.setInteger(nbtBladeColor, 0x00FF00); // green
-		else if (hilt == 1 || hilt == 2 || hilt == 8 || hilt == 12)
-			nbt.setInteger(nbtBladeColor, 0x0000FF); // blue
+		else if (s.equals("quigon") || s.equals("padawan") || s.equals("luke2"))
+			nbt.setInteger(nbtBladeColor, 0x00FF48); // green
+		else if (s.equals("obiwan") || s.equals("luke1") || s.equals("kanan") || s.equals("ezra") || s.equals("revan") || s.equals("shoto"))
+			nbt.setInteger(nbtBladeColor, 0x2448DA); // blue
+		else if (s.equals("crossguard"))
+			nbt.setInteger(nbtBladeColor, 0xFF5200); // red-orange
 		else
 			nbt.setInteger(nbtBladeColor, 0xFFFFFF); // blue
 
@@ -149,7 +164,7 @@ public class ItemLightsaber extends ItemSword
 		/*
 		 * Blade Distortion ["kylo rendering"] (boolean)
 		 */
-		if (hilt == 10)
+		if (s.equals("crossguard"))
 			nbt.setBoolean(nbtBladeDistortion, true);
 		else
 			nbt.setBoolean(nbtBladeDistortion, false);
