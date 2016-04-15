@@ -327,6 +327,7 @@ public class StarWarsMod
 	public static Item.ToolMaterial materialGamorrean;
 	public static Item.ToolMaterial materialPlasma;
 	public static Item.ToolMaterial materialPlasmaOff;
+	public static Item.ToolMaterial materialNoDamage;
 
 	public static ArmorMaterial jediRobesMat;
 	public static ArmorMaterial endorArmorMat;
@@ -344,6 +345,7 @@ public class StarWarsMod
 	public static ArmorMaterial leiaBunsArmorMat;
 
 	public static DamageSource blasterDamageSource;
+	public static DamageSource saberDamageSource;
 
 	private void checkCompat()
 	{

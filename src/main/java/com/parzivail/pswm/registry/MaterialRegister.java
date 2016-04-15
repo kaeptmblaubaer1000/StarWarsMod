@@ -15,6 +15,7 @@ public class MaterialRegister
 		StarWarsMod.materialGamorrean = EnumHelper.addToolMaterial("gamorreanMat", 3, 10240, 1.0F, 3.0F, 8);
 		StarWarsMod.materialPlasma = EnumHelper.addToolMaterial("plasmaMat", 3, -1, 10.0F, ConfigOptions.lightsaberDamage, 8);
 		StarWarsMod.materialPlasmaOff = EnumHelper.addToolMaterial("plasmaMatOff", 3, -1, 10.0F, 0.1F, 8);
+		StarWarsMod.materialNoDamage = EnumHelper.addToolMaterial("noDamage", 3, -1, 10.0F, -4, 0);
 		StarWarsMod.jediRobesMat = EnumHelper.addArmorMaterial("jediRobesMat", -1, new int[] { 0, 2, 0, 0 }, 0);
 		StarWarsMod.endorArmorMat = EnumHelper.addArmorMaterial("endorArmorMat", 60, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.fleetArmorMat = EnumHelper.addArmorMaterial("endorArmorMat", 60, new int[] { 1, 4, 3, 2 }, 4);

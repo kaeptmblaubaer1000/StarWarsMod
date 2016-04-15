@@ -10,6 +10,7 @@ import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.util.IntColorComparator;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.Lumberjack;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -56,7 +57,7 @@ public class ItemLightsaber extends ItemSword
 
 	public ItemLightsaber(int hiltIndex)
 	{
-		super(StarWarsMod.materialPlasma);
+		super(StarWarsMod.materialNoDamage);
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setTextureName(Resources.MODID + ":" + "blank");
@@ -130,6 +131,34 @@ public class ItemLightsaber extends ItemSword
 			}
 		}
 		return super.onItemRightClick(stack, p_77659_2_, player);
+	}
+
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase victim, EntityLivingBase attacker)
+	{
+		if (victim instanceof EntityPlayer && attacker instanceof EntityPlayer)
+		{
+			EntityPlayer vPlayer = (EntityPlayer)victim;
+			EntityPlayer aPlayer = (EntityPlayer)attacker;
+			ItemStack vHolding = vPlayer.inventory.getCurrentItem();
+			ItemStack aHolding = aPlayer.inventory.getCurrentItem();
+			if (vHolding != null && vHolding.getItem() instanceof ItemLightsaber && vPlayer.isBlocking() && aHolding != null && aHolding.getItem() instanceof ItemLightsaber)
+			{
+				vPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
+				aPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
+			}
+		}
+		
+		if (stack.stackTagCompound != null)
+		{
+			float damage = stack.stackTagCompound.getBoolean(nbtBladeOn) ? 30 : 0;
+			victim.attackEntityFrom(StarWarsMod.saberDamageSource, damage);
+		}
+		else
+		{
+			victim.attackEntityFrom(StarWarsMod.saberDamageSource, 0);
+		}
+		return true;
 	}
 
 	public static void setupNBT(int hilt, ItemStack stack)

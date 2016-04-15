@@ -9,5 +9,6 @@ public class DamageSourceRegister
 	public static void registerAll()
 	{
 		StarWarsMod.blasterDamageSource = new DamageSource("blaster").setDamageBypassesArmor().setProjectile();
+		StarWarsMod.saberDamageSource = new DamageSource("saber").setDamageBypassesArmor();
 	}
 }
