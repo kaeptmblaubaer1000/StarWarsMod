@@ -12,6 +12,7 @@ import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
 import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
 import com.parzivail.pswm.exception.UserError;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
@@ -23,6 +24,7 @@ import com.parzivail.pswm.network.MessageRobesBooleanNBT;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.network.MessageSetEntityTarget;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
@@ -50,6 +52,7 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -145,6 +148,30 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyLSForge.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
+
+		if (KeybindRegistry.keyLSToggle.isPressed())
+		{
+			EntityPlayer player = StarWarsMod.mc.thePlayer;
+			ItemStack stack = player.inventory.getCurrentItem();
+			if (stack.stackTagCompound != null && stack.stackTagCompound.getInteger(ItemLightsaber.nbtBladeTimeout) <= 0)
+			{
+				if (!stack.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeWaterproof) && player.isInsideOfMaterial(Material.water))
+				{
+					stack.stackTagCompound.setInteger(ItemLightsaber.nbtBladeTimeout, 10);
+					player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
+				}
+				else
+				{
+					if (stack.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn))
+						player.playSound(Resources.MODID + ":" + "item.lightsaber.close", 1.0F, 1.0F);
+					else
+						player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
+					stack.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, !stack.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn));
+					stack.stackTagCompound.setInteger(ItemLightsaber.nbtBladeTimeout, 10);
+					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+				}
+			}
+		}
 
 		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, null, 0, 0, 0);

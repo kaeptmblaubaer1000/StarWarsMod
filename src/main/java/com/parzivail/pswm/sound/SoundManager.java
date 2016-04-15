@@ -20,6 +20,7 @@ import com.parzivail.util.vehicle.VehicleBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.MovingSound;
+import net.minecraft.item.ItemStack;
 
 public class SoundManager
 {
@@ -67,8 +68,10 @@ public class SoundManager
 			soundBank.stop(SoundManager.shipMove);
 
 		inShip.tick();
+		
+		ItemStack iLS = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
 
-		holdingLightsaber.is = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber);
+		holdingLightsaber.is = iLS != null && iLS.getItem() instanceof ItemLightsaber && iLS.stackTagCompound != null && iLS.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn);
 
 		if (holdingLightsaber.changeTrue() && ConfigOptions.enableLightsaberHum)
 		{
