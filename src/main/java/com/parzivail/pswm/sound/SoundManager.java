@@ -1,13 +1,14 @@
 package com.parzivail.pswm.sound;
 
-import net.minecraft.client.audio.MovingSound;
-
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
 import com.parzivail.pswm.vehicles.VehicLandspeeder;
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
+import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
@@ -18,6 +19,7 @@ import com.parzivail.util.vehicle.VehicleBase;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.audio.MovingSound;
 
 public class SoundManager
 {
@@ -48,7 +50,7 @@ public class SoundManager
 			String ship = "unknown";
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 				ship = "awing";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
 				ship = "xwing";
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicLandspeeder)
 				ship = "landspeeder";
@@ -66,7 +68,7 @@ public class SoundManager
 
 		inShip.tick();
 
-		holdingLightsaber.is = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber);
+		holdingLightsaber.is = StarWarsMod.mc.thePlayer.inventory.getCurrentItem() != null && (StarWarsMod.mc.thePlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber);
 
 		if (holdingLightsaber.changeTrue() && ConfigOptions.enableLightsaberHum)
 		{
