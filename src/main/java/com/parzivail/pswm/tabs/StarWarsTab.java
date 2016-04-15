@@ -1,11 +1,13 @@
 package com.parzivail.pswm.tabs;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import scala.actors.threadpool.Arrays;
 
 public class StarWarsTab extends CreativeTabs
 {
@@ -18,7 +20,7 @@ public class StarWarsTab extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return StarWarsMod.lightsaberNew[9];
+		return StarWarsMod.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("luke2")];
 	}
 }
 /*

@@ -1,13 +1,13 @@
 package com.parzivail.pswm.tabs;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import scala.actors.threadpool.Arrays;
 
 public class SequelStarWarsTab extends CreativeTabs
 {
@@ -20,7 +20,7 @@ public class SequelStarWarsTab extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return StarWarsMod.lightsaberNew[10];
+		return StarWarsMod.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("crossguard")];
 	}
 }
 /*
