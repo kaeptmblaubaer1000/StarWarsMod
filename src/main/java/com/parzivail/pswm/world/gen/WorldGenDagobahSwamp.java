@@ -3,8 +3,8 @@ package com.parzivail.pswm.world.gen;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -21,10 +21,13 @@ public class WorldGenDagobahSwamp extends WorldGenAbstractTree
     {
         int l;
 
-        for (l = random.nextInt(variation) + height; world.getBlock(x, y - 1, z).getMaterial() == Material.water; --y)
-        {
-            ;
-        }
+		// for (l = random.nextInt(variation) + height; world.getBlock(x, y - 1,
+		// z).getMaterial() == Material.water; --y)
+		// {
+		// ;
+		// }
+
+		l = random.nextInt(variation) + height;
 
         boolean flag = true;
 
@@ -57,11 +60,7 @@ public class WorldGenDagobahSwamp extends WorldGenAbstractTree
 
                             if (!(block.isAir(world, j1, i1, k1) || block.isLeaves(world, j1, i1, k1)))
                             {
-                                if (block != Blocks.water && block != Blocks.flowing_water)
-                                {
-                                    flag = false;
-                                }
-                                else if (i1 > y)
+								if (i1 > y)
                                 {
                                     flag = false;
                                 }
@@ -83,7 +82,7 @@ public class WorldGenDagobahSwamp extends WorldGenAbstractTree
             {
                 Block block1 = world.getBlock(x, y - 1, z);
 
-                boolean isSoil = block1.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockSapling)Blocks.sapling);
+				boolean isSoil = block1.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (BlockSapling)Blocks.sapling) || block1 instanceof BlockLiquid;
                 if (isSoil && y < 256 - l - 1)
                 {
                     block1.onPlantGrow(world, x, y - 1, z, x, y, z);

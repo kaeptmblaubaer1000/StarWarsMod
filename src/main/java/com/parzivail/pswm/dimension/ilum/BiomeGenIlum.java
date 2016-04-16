@@ -2,10 +2,10 @@ package com.parzivail.pswm.dimension.ilum;
 
 import java.util.Random;
 
+import com.parzivail.pswm.dimension.BiomeGenPSWM;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.dimension.BiomeGenPSWM;
 
 public class BiomeGenIlum extends BiomeGenPSWM
 {
@@ -15,10 +15,8 @@ public class BiomeGenIlum extends BiomeGenPSWM
 
 		this.setBiomeName("Ilum");
 
-		this.setDisableRain();
-		this.setEnableSnow();
-
-		this.setTemperatureRainfall(0.3f, 1f);
+		this.temperature = 0;
+		this.rainfall = 1;
 
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.8f;

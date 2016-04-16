@@ -69,6 +69,7 @@ import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveEndor;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveHoth;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveIlum;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveKashyyyk;
+import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveMustafar;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveTatooine;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveYavinFour;
 import com.parzivail.pswm.items.weapons.ItemBlasterHeavy;
@@ -444,6 +445,9 @@ public class ItemRegister
 
 		StarWarsMod.hyperdriveTatooine = new ItemHyperdriveTatooine();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveTatooine, "hyperdriveTatooine");
+
+		StarWarsMod.hyperdriveMustafar = new ItemHyperdriveMustafar();
+		GameRegistry.registerItem(StarWarsMod.hyperdriveMustafar, "hyperdriveMustafar");
 
 		StarWarsMod.hyperdriveIlum = new ItemHyperdriveIlum();
 		GameRegistry.registerItem(StarWarsMod.hyperdriveIlum, "hyperdriveIlum");

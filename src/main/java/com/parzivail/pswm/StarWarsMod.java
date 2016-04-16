@@ -171,6 +171,7 @@ public class StarWarsMod
 	public static Item hyperdriveEndor;
 	public static Item hyperdriveIlum;
 	public static Item hyperdriveDagobah;
+	public static Item hyperdriveMustafar;
 
 	public static Item spawnSpeederBike;
 	public static Item spawnJakkuSpeeder;
@@ -294,6 +295,7 @@ public class StarWarsMod
 	public static BiomeGenBase biomeEndorPlains;
 	public static BiomeGenBase biomeDagobah;
 	public static BiomeGenBase biomeIlum;
+	public static BiomeGenBase biomeMustafar;
 
 	public static boolean isWorldRegistered = false;
 
@@ -493,14 +495,16 @@ public class StarWarsMod
 		ConfigOptions.dimEndorId = config.get("dimensions", "endor", 6).getInt();
 		ConfigOptions.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
 		ConfigOptions.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
+		ConfigOptions.dimMustafarId = config.get("dimensions", "mustafar", 9).getInt();
 
+		ConfigOptions.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 		ConfigOptions.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
 		ConfigOptions.biomeHothId = config.get("biomes", "hoth", 197).getInt();
 		ConfigOptions.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
 		ConfigOptions.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
 		ConfigOptions.biomeEndorId = config.get("biomes", "endor", 200).getInt();
 		ConfigOptions.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
-		ConfigOptions.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
+		ConfigOptions.biomeMustafarId = config.get("biomes", "mustafar", 202).getInt();
 
 		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
 

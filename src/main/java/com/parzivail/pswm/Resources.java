@@ -14,11 +14,13 @@ public class Resources
 		public static int biomeEndorPlainsId;
 		public static int biomeDagobahId;
 		public static int biomeIlumId;
+		public static int biomeMustafarId;
 		public static int dimTatooineId;
 		public static int dimHothId;
 		public static int dimKashyyykId;
 		public static int dimYavin4Id;
 		public static int dimDagobahId;
+		public static int dimMustafarId;
 		public static int dimEndorId;
 		public static int dimEndorPlainsId;
 		public static int dimIlumId;

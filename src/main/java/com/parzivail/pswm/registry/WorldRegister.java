@@ -1,9 +1,5 @@
 package com.parzivail.pswm.registry;
 
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.MinecraftForge;
-
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.dagobah.BiomeGenDagobah;
@@ -16,6 +12,8 @@ import com.parzivail.pswm.dimension.ilum.BiomeGenIlum;
 import com.parzivail.pswm.dimension.ilum.IlumProvider;
 import com.parzivail.pswm.dimension.kashyyyk.BiomeGenKashyyyk;
 import com.parzivail.pswm.dimension.kashyyyk.KashyyykProvider;
+import com.parzivail.pswm.dimension.mustafar.BiomeGenMustafar;
+import com.parzivail.pswm.dimension.mustafar.MustafarProvider;
 import com.parzivail.pswm.dimension.tatooine.BiomeGenTatooine;
 import com.parzivail.pswm.dimension.tatooine.TatooineProvider;
 import com.parzivail.pswm.dimension.yavin.BiomeGenYavin;
@@ -38,6 +36,9 @@ import com.parzivail.util.world.WorldUtils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.MinecraftForge;
 
 public class WorldRegister
 {
@@ -57,8 +58,10 @@ public class WorldRegister
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeIlum);
 		// StarWarsMod.biomeEndorPlains = new
 		// BiomeEndorPlains(StarWarsMod.dimEndorPlainsId);
-		StarWarsMod.biomeDagobah = new BiomeGenDagobah(ConfigOptions.dimDagobahId);
+		StarWarsMod.biomeDagobah = new BiomeGenDagobah(ConfigOptions.biomeDagobahId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeDagobah);
+		StarWarsMod.biomeMustafar = new BiomeGenMustafar(ConfigOptions.biomeMustafarId);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeMustafar);
 
 		WorldUtils.registerDimension(ConfigOptions.dimTatooineId, TatooineProvider.class);
 		WorldUtils.registerDimension(ConfigOptions.dimHothId, HothProvider.class);
@@ -67,6 +70,7 @@ public class WorldRegister
 		WorldUtils.registerDimension(ConfigOptions.dimEndorId, EndorProvider.class);
 		WorldUtils.registerDimension(ConfigOptions.dimIlumId, IlumProvider.class);
 		WorldUtils.registerDimension(ConfigOptions.dimDagobahId, DagobahProvider.class);
+		WorldUtils.registerDimension(ConfigOptions.dimMustafarId, MustafarProvider.class);
 
 		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, StarWarsMod.biomeTatooine);

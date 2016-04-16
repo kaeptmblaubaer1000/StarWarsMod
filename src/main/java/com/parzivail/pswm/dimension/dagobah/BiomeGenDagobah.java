@@ -2,17 +2,30 @@ package com.parzivail.pswm.dimension.dagobah;
 
 import java.util.Random;
 
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
+import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_0_0;
+import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_0_1;
+import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_1_0;
+import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_1_1;
+import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_2_0;
+import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_2_1;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenDoublePlant;
+import net.minecraft.world.gen.feature.WorldGenMegaJungle;
+import net.minecraft.world.gen.feature.WorldGenTallGrass;
+import net.minecraft.world.gen.feature.WorldGenWaterlily;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import com.parzivail.pswm.dimension.BiomeGenPSWM;
-import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
 
 public class BiomeGenDagobah extends BiomeGenPSWM
 {
+	private int structureY;
+
 	public BiomeGenDagobah(int biomeId)
 	{
 		super(biomeId);
@@ -36,10 +49,12 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 		this.fillerBlock = Blocks.dirt;
 
 		this.theBiomeDecorator.grassPerChunk = 16;
-		this.theBiomeDecorator.treesPerChunk = 4;
+		this.theBiomeDecorator.treesPerChunk = 8;
 		this.theBiomeDecorator.deadBushPerChunk = -999;
 		this.theBiomeDecorator.reedsPerChunk = 3;
 		this.theBiomeDecorator.cactiPerChunk = -999;
+
+		this.theBiomeDecorator.waterlilyPerChunk = 4;
 
 		this.spawnableCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
@@ -50,14 +65,48 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
+		if (chunkX == 0 && chunkZ == 0)
 		{
-			int k = chunkX + par2Random.nextInt(16) + 8;
-			int l = chunkZ + par2Random.nextInt(16) + 8;
-			int i1 = par1World.getHeightValue(k, l);
-			WorldGenDagobahSwamp worldgenabstracttree = new WorldGenDagobahSwamp();
-			worldgenabstracttree.setScale(1.0D, 1.0D, 1.0D);
-			worldgenabstracttree.generate(par1World, par2Random, k, i1, l, 7, 25);
+			this.structureY = par1World.getHeightValue(chunkX, chunkZ);
+			while (!(par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.grass || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.dirt || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.water))
+				this.structureY--;
+			new WorldGenYodaTree_0_0().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
+		}
+		else if (chunkX == 0 && chunkZ == 32)
+			new WorldGenYodaTree_0_1().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 0)
+			new WorldGenYodaTree_1_0().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 32)
+			new WorldGenYodaTree_1_1().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 0)
+			new WorldGenYodaTree_2_0().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 32)
+			new WorldGenYodaTree_2_1().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
+
+		if (chunkX >= 0 && chunkX <= 64 && chunkZ >= 0 && chunkZ <= 64)
+		{
+			for (int x = chunkX; x < chunkX + 16; x++)
+				for (int z = chunkZ; z < chunkZ + 16; z++)
+					for (int y = this.structureY - 1; y > this.structureY - 3; y--)
+						par1World.setBlock(x, y, z, Blocks.grass);
+
+			for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
+			{
+				int k = chunkX + par2Random.nextInt(16) + 8;
+				int l = chunkZ + par2Random.nextInt(16) + 8;
+				int i1 = this.structureY;
+				switch (StarWarsMod.rngGeneral.nextInt(2))
+				{
+					case 0:
+						WorldGenDagobahSwamp worldgenabstracttree = new WorldGenDagobahSwamp();
+						worldgenabstracttree.generate(par1World, par2Random, k, i1, l, 7, 25);
+						break;
+					case 1:
+						WorldGenMegaJungle worldgenabstracttree2 = new WorldGenMegaJungle(true, 7, 25, 0, 0);
+						worldgenabstracttree2.generate(par1World, par2Random, k, i1, l);
+						break;
+				}
+			}
 		}
 
 		for (int j = 0; j < this.theBiomeDecorator.grassPerChunk; j++)
@@ -65,8 +114,68 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			int i1 = par1World.getHeightValue(k, l);
-			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
+			while (par1World.getBlock(k, i1, l) != Blocks.grass)
+			{
+				i1--;
+				if (i1 >= 20)
+				{
+					i1 = par1World.getHeightValue(k, l);
+					break;
+				}
+			}
+			WorldGenerator worldgenerator = null;
+			switch (StarWarsMod.rngGeneral.nextInt(4))
+			{
+				case 0:
+					worldgenerator = new WorldGenTallGrass(Blocks.tallgrass, 2);
+					break;
+				case 1:
+					WorldGenDoublePlant p = new WorldGenDoublePlant();
+					p.func_150548_a(2);
+					worldgenerator = p;
+					break;
+				case 2:
+					WorldGenDoublePlant p2 = new WorldGenDoublePlant();
+					p2.func_150548_a(3);
+					worldgenerator = p2;
+					break;
+				case 3:
+					worldgenerator = new WorldGenTallGrass(Blocks.tallgrass, 1);
+					break;
+			}
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
+		}
+
+		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
+		{
+			int k = chunkX + par2Random.nextInt(16) + 8;
+			int l = chunkZ + par2Random.nextInt(16) + 8;
+			int i1 = par1World.getHeightValue(k, l);
+			while (par1World.getBlock(k, i1--, l) != Blocks.grass)
+				if (i1 <= 20)
+				{
+					i1 = par1World.getHeightValue(k, l);
+					break;
+				}
+			switch (StarWarsMod.rngGeneral.nextInt(2))
+			{
+				case 0:
+					WorldGenDagobahSwamp worldgenabstracttree = new WorldGenDagobahSwamp();
+					worldgenabstracttree.generate(par1World, par2Random, k, i1, l, 7, 25);
+					break;
+				case 1:
+					WorldGenMegaJungle worldgenabstracttree2 = new WorldGenMegaJungle(true, 7, 25, 0, 0);
+					worldgenabstracttree2.generate(par1World, par2Random, k, i1, l);
+					break;
+			}
+		}
+
+		for (int j = 0; j < this.theBiomeDecorator.waterlilyPerChunk; j++)
+		{
+			int k = chunkX + par2Random.nextInt(16) + 8;
+			int l = chunkZ + par2Random.nextInt(16) + 8;
+			int i1 = par1World.getHeightValue(k, l);
+			new WorldGenWaterlily().generate(par1World, par2Random, k, i1, l);
 		}
 	}
 
@@ -106,6 +215,6 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 	@Override
 	public int getSkyColorByTemp(float n)
 	{
-		return 0x303030;
+		return super.getSkyColorByTemp(n);
 	}
 }

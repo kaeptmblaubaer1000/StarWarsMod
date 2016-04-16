@@ -21,7 +21,7 @@ public class MobTauntaun extends EntityHorse
 	{
 		super(par1World);
 		this.setSize(1.0F, 3.0F);
-		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		this.tasks.addTask(0, new AiFreqMove(this, 1.25f, 0));
 	}
 
 	@Override

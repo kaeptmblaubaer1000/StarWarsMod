@@ -1,5 +1,7 @@
 package com.parzivail.pswm.models.mobs;
 
+import org.lwjgl.opengl.GL11;
+
 import com.parzivail.pswm.mobs.MobTauntaun;
 
 import net.minecraft.client.model.ModelBase;
@@ -288,23 +290,55 @@ public class ModelTaunNew extends ModelBase
 			this.Shape52.isHidden = !hasSaddle;
 			this.Shape52_1.isHidden = !hasSaddle;
 
+			float animMult = 3.8f;
+			float m;
+
 			if (tauntaun.riddenByEntity instanceof EntityLivingBase)
 			{
 				EntityLivingBase elb = (EntityLivingBase)tauntaun.riddenByEntity;
-				this.LegParentL.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)(tauntaun.ticksExisted * elb.moveForward / 3.75f + Math.PI)) / 5f;
-				this.LegParentR.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)(tauntaun.ticksExisted * elb.moveForward / 3.75f)) / 5f;
+				m = elb.moveForward;
+				this.LegParentL.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI)) / 5f;
+				this.LegParentR.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult)) / 5f;
 
-				this.Shape29_1.rotateAngleZ = 0.6981317007977318F - MathHelper.sin((float)(tauntaun.ticksExisted * elb.moveForward / 3.75f + 1)) / 5f;
-				this.Shape29.rotateAngleZ = 0.6981317007977318F - MathHelper.sin((float)(tauntaun.ticksExisted * elb.moveForward / 3.75f + Math.PI + 1)) / 5f;
+				this.Shape29_1.rotateAngleZ = 0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI + 1)) / 5f;
+				this.Shape29.rotateAngleZ = 0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + 1)) / 5f;
+
+				this.Shape32_1.rotateAngleZ = -0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI + 1)) / 5f;
+				this.Shape32.rotateAngleZ = -0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult)) / 5f;
+
+				this.Shape33_1.rotateAngleZ = 0.3839724354387525F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult)) / 5f;
+				this.Shape33.rotateAngleZ = 0.3839724354387525F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI + 1)) / 5f;
 			}
 			else
 			{
-				this.LegParentL.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)(tauntaun.ticksExisted / 3.75f + Math.PI)) / 5f;
-				this.LegParentR.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)(tauntaun.ticksExisted / 3.75f)) / 5f;
+				m = tauntaun.getPosition(0).squareDistanceTo(tauntaun.getPosition(1)) > 0 ? 1 : 0;
+				this.LegParentL.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI)) / 5f;
+				this.LegParentR.rotateAngleZ = -0.17453292519943295F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult)) / 5f;
 
-				this.Shape29_1.rotateAngleZ = 0.6981317007977318F + MathHelper.sin((float)(tauntaun.ticksExisted / 3.75f + Math.PI + 1)) / 5f;
-				this.Shape29.rotateAngleZ = 0.6981317007977318F + MathHelper.sin((float)(tauntaun.ticksExisted / 3.75f + 1)) / 5f;
+				this.Shape29_1.rotateAngleZ = 0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI + 1)) / 5f;
+				this.Shape29.rotateAngleZ = 0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + 1)) / 5f;
+
+				this.Shape32_1.rotateAngleZ = -0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI + 1)) / 5f;
+				this.Shape32.rotateAngleZ = -0.6981317007977318F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult)) / 5f;
+
+				this.Shape33_1.rotateAngleZ = 0.3839724354387525F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult)) / 5f;
+				this.Shape33.rotateAngleZ = 0.3839724354387525F + MathHelper.sin((float)((tauntaun.ticksExisted * m) / animMult + Math.PI + 1)) / 5f;
 			}
+
+			this.TailParent.rotateAngleY = MathHelper.sin(tauntaun.ticksExisted / 10f) * 0.05f;
+			this.Shape26.rotateAngleY = MathHelper.sin(tauntaun.ticksExisted / 10f) * 0.05f;
+			this.Shape27.rotateAngleY = MathHelper.sin(tauntaun.ticksExisted / 10f) * 0.05f;
+			this.Shape45.rotateAngleY = MathHelper.sin(tauntaun.ticksExisted / 10f) * 0.05f;
+			this.Shape46.rotateAngleY = MathHelper.sin(tauntaun.ticksExisted / 10f) * 0.05f;
+
+			this.ArmParentL.rotateAngleY = MathHelper.sin(tauntaun.ticksExisted / 15f) * 0.06f;
+			this.ArmParentL.rotateAngleX = MathHelper.sin(tauntaun.ticksExisted / 15f) * 0.04f;
+			this.ArmParentR.rotateAngleY = -MathHelper.sin(tauntaun.ticksExisted / 15f) * 0.06f;
+			this.ArmParentR.rotateAngleX = -MathHelper.sin(tauntaun.ticksExisted / 15f) * 0.04f;
+
+			float yT = MathHelper.sin((tauntaun.ticksExisted * m) / (animMult / 2f)) * 0.02f;
+
+			GL11.glTranslatef(0, yT, 0);
 
 			this.MainBodyParent.render(f5);
 		}

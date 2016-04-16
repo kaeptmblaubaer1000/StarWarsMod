@@ -1,5 +1,8 @@
 package com.parzivail.pswm.handlers;
 
+import java.nio.FloatBuffer;
+
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
@@ -136,8 +139,9 @@ public class ClientEventHandler
 	{
 		if (fogDensity.entity.dimension == ConfigOptions.dimDagobahId)
 		{
-			fogDensity.density = 0.075F;
-			fogDensity.setCanceled(true);
+			FloatBuffer fogColor = BufferUtils.createFloatBuffer(4);
+			fogColor.put(0.6f).put(0.7f).put(0.6f).put(1.0f).flip();
+			GL11.glFog(GL11.GL_FOG_COLOR, fogColor);
 		}
 	}
 
@@ -286,10 +290,10 @@ public class ClientEventHandler
 				if (inv != null && inv.getItem() instanceof ItemLightsaber && i != player.inventory.currentItem)
 				{
 					IHandlesRender lsRenderer = RenderLightsaber.getHiltRendererForStack(inv);
-					
+
 					GL11.glPushMatrix();
 					GL11.glDisable(GL11.GL_CULL_FACE);
-					
+
 					GL11.glScalef(0.5f, -0.5f, 0.5f);
 					GL11.glTranslatef(MathHelper.cos((float)Math.toRadians(player.renderYawOffset)), 0, MathHelper.sin((float)Math.toRadians(player.renderYawOffset)));
 					GL11.glRotatef(-player.renderYawOffset, 0, 1, 0);
@@ -298,7 +302,7 @@ public class ClientEventHandler
 						GL11.glTranslatef(0, -0.1f, -0.5f);
 					GL11.glScalef(0.6f, 0.6f, 0.6f);
 					GL11.glRotatef(180, 0, 1, 0);
-					
+
 					String s = inv.stackTagCompound.getString(ItemLightsaber.nbtHilt);
 					if (s.equals("dooku"))
 					{

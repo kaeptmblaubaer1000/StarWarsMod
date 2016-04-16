@@ -2,11 +2,11 @@ package com.parzivail.pswm.dimension.hoth;
 
 import java.util.Random;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenHothGenerator;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
 
 public class BiomeGenHoth extends BiomeGenPSWM
 {
@@ -16,11 +16,11 @@ public class BiomeGenHoth extends BiomeGenPSWM
 
 		this.setBiomeName("Hoth");
 
-		this.enableRain = false;
-		this.enableSnow = true;
-
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;
+
+		this.temperature = 0;
+		this.rainfall = 1;
 
 		this.spawnableCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
