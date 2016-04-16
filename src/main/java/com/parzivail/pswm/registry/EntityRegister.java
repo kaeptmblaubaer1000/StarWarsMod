@@ -1,5 +1,6 @@
 package com.parzivail.pswm.registry;
 
+import com.parzivail.pswm.entities.EntityBlasterEzraBolt;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
@@ -91,6 +92,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
 		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuSpeeder");
 		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
+		EntityUtils.registerEntity(EntityBlasterEzraBolt.class, "blasterEzraBolt");
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
 		EntityUtils.registerEntity(EntityBlasterProbeBolt.class, "blasterProbeBolt");

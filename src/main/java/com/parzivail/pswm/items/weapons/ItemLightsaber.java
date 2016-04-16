@@ -10,7 +10,6 @@ import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.util.IntColorComparator;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.Lumberjack;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -33,6 +32,7 @@ public class ItemLightsaber extends ItemSword
 	public static final String nbtBladeDistortion = "distortion";
 	public static final String nbtBladeOn = "on";
 	public static final String nbtBladeTimeout = "timeout";
+	public static final String nbtBlasterTimeout = "blasterTimeout";
 
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 	public static final String[] hilts = { "obiwan", "quigon", "maul", "padawan", "dooku", "luke1", "vader2", "luke2", "crossguard", "kanan", "ezra", "revan", "malgus", "doubleSith", "starkiller", "shoto" };
@@ -77,6 +77,9 @@ public class ItemLightsaber extends ItemSword
 
 		if (stack.stackTagCompound.getInteger(nbtBladeTimeout) > 0)
 			stack.stackTagCompound.setInteger(nbtBladeTimeout, stack.stackTagCompound.getInteger(nbtBladeTimeout) - 1);
+
+		if (stack.stackTagCompound.getInteger(nbtBlasterTimeout) > 0)
+			stack.stackTagCompound.setInteger(nbtBlasterTimeout, stack.stackTagCompound.getInteger(nbtBlasterTimeout) - 1);
 
 		if (world.isRemote && !stack.stackTagCompound.getBoolean(nbtBladeWaterproof) && holder.isInsideOfMaterial(Material.water) && stack.stackTagCompound.getBoolean(nbtBladeOn))
 		{
@@ -211,6 +214,8 @@ public class ItemLightsaber extends ItemSword
 		nbt.setBoolean(nbtBladeOn, false);
 
 		nbt.setInteger(nbtBladeTimeout, 0);
+
+		nbt.setInteger(nbtBlasterTimeout, 0);
 
 		stack.stackTagCompound = nbt;
 	}

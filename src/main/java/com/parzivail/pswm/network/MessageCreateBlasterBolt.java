@@ -1,8 +1,6 @@
 package com.parzivail.pswm.network;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-
+import com.parzivail.pswm.entities.EntityBlasterEzraBolt;
 import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
 import com.parzivail.pswm.entities.EntityTIEBolt;
 import com.parzivail.pswm.entities.EntityXWingBolt;
@@ -12,6 +10,8 @@ import com.parzivail.util.network.PMessage;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 {
@@ -34,6 +34,8 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 		World world = this.sender.worldObj;
 		if (this.type == BlasterBoltType.SPEEDER)
 			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, this.sender));
+		else if (this.type == BlasterBoltType.EZRA)
+			world.spawnEntityInWorld(new EntityBlasterEzraBolt(world, this.sender));
 		else if (this.type == BlasterBoltType.XWING)
 		{
 			float yaw = this.sender.rotationYaw;

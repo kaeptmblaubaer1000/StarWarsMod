@@ -1,7 +1,5 @@
 package com.parzivail.pswm.rendering;
 
-import java.nio.FloatBuffer;
-
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
@@ -9,24 +7,13 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.ModelBlasterBolt;
 import com.parzivail.util.ui.ShaderHelper;
 
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBlasterBolt extends Render
 {
-	private static FloatBuffer colorBuffer = GLAllocation.createDirectFloatBuffer(16);
 	public static final ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/bolt.png");
-
-	private static FloatBuffer setColorBuffer(float p_74521_0_, float p_74521_1_, float p_74521_2_, float p_74521_3_)
-	{
-		colorBuffer.clear();
-		colorBuffer.put(p_74521_0_).put(p_74521_1_).put(p_74521_2_).put(p_74521_3_);
-		colorBuffer.flip();
-		/** Float buffer used to set OpenGL material colors */
-		return colorBuffer;
-	}
 
 	ModelBlasterBolt model;
 	int color;
@@ -67,7 +54,7 @@ public class RenderBlasterBolt extends Render
 		GL11.glScalef(this.scale, this.scale, this.scale);
 		GL11.glTranslated(StarWarsMod.rngGeneral.nextGaussian() / 45, StarWarsMod.rngGeneral.nextGaussian() / 45, StarWarsMod.rngGeneral.nextGaussian() / 45);
 
-		ShaderHelper.setColor(1, 0, 0, 0.2f);
+		ShaderHelper.setLightsaberColor(this.color);
 		ShaderHelper.useShader(ShaderHelper.glowSolid);
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		ShaderHelper.releaseShader();

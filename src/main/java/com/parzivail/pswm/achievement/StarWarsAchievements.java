@@ -1,12 +1,14 @@
 package com.parzivail.pswm.achievement;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import scala.actors.threadpool.Arrays;
 
 public class StarWarsAchievements
 {
@@ -20,6 +22,7 @@ public class StarWarsAchievements
 	public static Achievement travelYavin;
 	public static Achievement travelEndor;
 	public static Achievement travelKashyyyk;
+	public static Achievement ezraBlaster;
 
 	public static void registerAll()
 	{
@@ -32,6 +35,7 @@ public class StarWarsAchievements
 		travelYavin = new StarWarsAchievement("travelYavin", 2, 3, StarWarsMod.hyperdriveYavin4, craftHyperdrive);
 		travelEndor = new StarWarsAchievement("travelEndor", 2, 4, StarWarsMod.hyperdriveEndor, craftHyperdrive);
 		travelKashyyyk = new StarWarsAchievement("travelKashyyyk", 2, 5, StarWarsMod.hyperdriveKashyyyk, craftHyperdrive);
+		ezraBlaster = new StarWarsAchievement("ezraBlaster", -4, 5, StarWarsMod.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("ezra")], null);
 		page = new AchievementPage("Star Wars", StarWarsAchievement.achievements.toArray(new Achievement[StarWarsAchievement.achievements.size()]));
 		AchievementPage.registerAchievementPage(page);
 		FMLCommonHandler.instance().bus().register(new AchievementTrigger());

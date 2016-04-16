@@ -82,6 +82,7 @@ public class RenderDH17 implements IItemRenderer
 				GL11.glScalef(0.08F, -0.08F, 0.08F);
 				GL11.glTranslatef(0, -8, 0);
 				GL11.glScalef(1, 1, -1);
+				GL11.glRotatef(90, 0, 1, 0);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
