@@ -2,6 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.blocks.BlockBactaTank;
 import com.parzivail.pswm.blocks.BlockBasket;
 import com.parzivail.pswm.blocks.BlockChromiumOre;
 import com.parzivail.pswm.blocks.BlockDagobahMud;
@@ -30,6 +31,7 @@ import com.parzivail.pswm.items.ItemEndorBaseWall;
 import com.parzivail.pswm.items.ItemHolotableBlock;
 import com.parzivail.pswm.items.ItemTatooineSand;
 import com.parzivail.pswm.items.ItemTatooineSandstone;
+import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.pswm.tileentities.TileEntityBasket;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityFieldEmitter;
@@ -83,6 +85,10 @@ public class BlockRegister
 		StarWarsMod.blockBasket = new BlockBasket();
 		GameRegistry.registerBlock(StarWarsMod.blockBasket, "basket");
 		GameRegistry.registerTileEntity(TileEntityBasket.class, "teBasket");
+
+		StarWarsMod.blockBactaTank = new BlockBactaTank();
+		GameRegistry.registerBlock(StarWarsMod.blockBactaTank, "bactaTank");
+		GameRegistry.registerTileEntity(TileEntityBactaTank.class, "teBactaTank");
 
 		StarWarsMod.blockChromiumOre = new BlockChromiumOre();
 		GameRegistry.registerBlock(StarWarsMod.blockChromiumOre, "chromiumOre");

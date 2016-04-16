@@ -37,6 +37,7 @@ import com.parzivail.pswm.network.MessageDrainKnowledge;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.pswm.network.MessageEntityGrab;
 import com.parzivail.pswm.network.MessageEntityHurt;
+import com.parzivail.pswm.network.MessageEntityPosition;
 import com.parzivail.pswm.network.MessageEntityReverse;
 import com.parzivail.pswm.network.MessageHeal;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
@@ -323,6 +324,7 @@ public class StarWarsMod
 	public static Block blockHangingCauldron;
 	public static Block blockHangingBucket;
 	public static Block blockBasket;
+	public static Block blockBactaTank;
 
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;
@@ -545,6 +547,7 @@ public class StarWarsMod
 		this.registerMessage(MessageCreateBlasterBolt.class);
 		this.registerMessage(MessageToggleLightsaber.class);
 		this.registerMessage(MessageSetPlayerHolding.class);
+		this.registerMessage(MessageEntityPosition.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

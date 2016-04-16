@@ -66,6 +66,7 @@ import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
 import com.parzivail.pswm.models.vehicles.ModelXWing;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.registry.RegisterGuiOverlays;
+import com.parzivail.pswm.rendering.RenderBactaTank;
 import com.parzivail.pswm.rendering.RenderBantha;
 import com.parzivail.pswm.rendering.RenderBasket;
 import com.parzivail.pswm.rendering.RenderBith;
@@ -120,6 +121,7 @@ import com.parzivail.pswm.rendering.vehicles.RenderSpeederBike;
 import com.parzivail.pswm.rendering.vehicles.RenderTIE;
 import com.parzivail.pswm.rendering.vehicles.RenderTIEInterceptor;
 import com.parzivail.pswm.rendering.vehicles.RenderXWing;
+import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.pswm.tileentities.TileEntityBasket;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityFieldEmitter;
@@ -259,6 +261,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingBucket.class, new RenderHangingBucket());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBasket.class, new RenderBasket());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFieldEmitter.class, new RenderBlockFieldEmitter());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBactaTank.class, new RenderBactaTank());
 
 		RegisterGuiOverlays.registerAll();
 
