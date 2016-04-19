@@ -351,6 +351,14 @@ public class StarWarsMod
 	public static DamageSource blasterDamageSource;
 	public static DamageSource saberDamageSource;
 
+	public StarWarsMod()
+	{
+		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
+		this.checkJavaVersion();
+		this.checkModVersion();
+		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
+	}
+
 	private void checkCompat()
 	{
 		boolean flag = false;
@@ -382,7 +390,11 @@ public class StarWarsMod
 			Lumberjack.log("Minecraft will now halt. Download and install Java 1.8.");
 			Lumberjack.log("NOTE to MultiMC Users: make sure MultiMC is using the correct Java as default!");
 			Lumberjack.log("####################################END PSWM ERROR##################################");
-			FMLCommonHandler.instance().exitJava(0, true);
+			FMLCommonHandler.instance().exitJava(0, false);
+		}
+		else
+		{
+			Lumberjack.log("Confirmed client using Java 1.8+");
 		}
 	}
 
@@ -413,8 +425,6 @@ public class StarWarsMod
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod init() ==========");
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
-
-		this.checkModVersion();
 
 		instance = this;
 
@@ -467,8 +477,6 @@ public class StarWarsMod
 	public void preInit(FMLPreInitializationEvent event) throws UserError
 	{
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod preInit() ==========");
-
-		this.checkJavaVersion();
 
 		this.checkCompat();
 
