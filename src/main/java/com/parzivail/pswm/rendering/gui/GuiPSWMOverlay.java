@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import java.text.NumberFormat;
 import java.util.Iterator;
+import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
@@ -13,6 +14,8 @@ import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
+import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -22,6 +25,8 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class GuiPSWMOverlay extends Gui
@@ -65,9 +70,10 @@ public class GuiPSWMOverlay extends Gui
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + Resources.VERSION, 5, 5, 16777215);
 		ClientEventHandler.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
 
+		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+
 		if (this.mc.thePlayer.inventory.armorItemInSlot(2) != null && this.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
 		{
-			ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
 			ItemStack robes = this.mc.thePlayer.inventory.armorItemInSlot(2);
 			int xp = ArmorJediRobes.getXP(robes);
@@ -81,7 +87,7 @@ public class GuiPSWMOverlay extends Gui
 			ClientEventHandler.pgui.renderOrderLogo(70, 6, isJedi);
 
 			GL11.glPushMatrix();
-			GL11.glScalef(0.5f, 0.5f, 0.5f);
+			GLPZ.glScalef(0.5f);
 
 			if (Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)) != null)
 				this.drawString(this.mc.fontRenderer, Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
@@ -106,6 +112,28 @@ public class GuiPSWMOverlay extends Gui
 
 			this.drawCenteredString(this.mc.fontRenderer, "FORCE XP: " + this.format.format(xp) + "/" + this.format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, guiColor);
 			GL11.glPopMatrix();
+		}
+
+		if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
+		{
+			MovingObjectPosition mop = this.mc.objectMouseOver;
+			if (this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof IDebugProvider)
+			{
+				IDebugProvider debugProvider = (IDebugProvider)this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
+				List<String> text = debugProvider.getDebugText(this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
+
+				GL11.glPushMatrix();
+				GLPZ.glScalef(0.5f);
+
+				int y = 0;
+				for (String line : text)
+				{
+					this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
+					y++;
+				}
+
+				GL11.glPopMatrix();
+			}
 		}
 
 		RenderHelper.disableStandardItemLighting();

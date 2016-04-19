@@ -1,5 +1,14 @@
 package com.parzivail.pswm.blocks;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityMV;
+import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.world.HarvestLevel;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,12 +23,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityMV;
-import com.parzivail.util.world.HarvestLevel;
-
-public class BlockMV extends BlockContainer
+public class BlockMV extends BlockContainer implements IDebugProvider
 {
 	public BlockMV()
 	{
@@ -104,6 +108,23 @@ public class BlockMV extends BlockContainer
 	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
 	{
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
+	}
+
+	@Override
+	public List<String> getDebugText(EntityPlayer player, World world, int x, int y, int z)
+	{
+		ArrayList<String> list = new ArrayList<>();
+		
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityMV)
+		{
+			TileEntityMV vap = (TileEntityMV)tile;
+			float l = vap.progressTicks / (float)vap.totalTicks;
+			list.add(String.valueOf((int)(l * 100f)) + "%");
+			list.add(String.valueOf(vap.getStackInSlot(0).stackSize) + " droplets");
+		}
+		
+		return list;
 	}
 }
 /*
