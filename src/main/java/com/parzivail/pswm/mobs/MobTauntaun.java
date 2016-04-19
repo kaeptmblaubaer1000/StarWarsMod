@@ -20,16 +20,16 @@ public class MobTauntaun extends EntityHorse
 	public MobTauntaun(World par1World)
 	{
 		super(par1World);
-		this.setSize(1.0F, 3.0F);
-		this.tasks.addTask(0, new AiFreqMove(this, 1.25f, 0));
+		setSize(1.0F, 3.0F);
+		tasks.addTask(0, new AiFreqMove(this, 1.25f, 0));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
 	}
 
 	@Override
@@ -42,23 +42,23 @@ public class MobTauntaun extends EntityHorse
 	protected void func_145780_a(int x, int y, int z, Block blockIn)
 	{
 		Block.SoundType soundtype = blockIn.stepSound;
-		if (this.worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
+		if (worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
 			soundtype = Blocks.snow_layer.stepSound;
 		if (!blockIn.getMaterial().isLiquid())
 		{
-			int l = this.getHorseType();
-			if (this.riddenByEntity != null && l != 1 && l != 2)
+			int l = getHorseType();
+			if (riddenByEntity != null && l != 1 && l != 2)
 			{
-				this.field_110285_bP += 1;
-				if (this.field_110285_bP > 5 && this.field_110285_bP % 3 == 0)
-					this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				else if (this.field_110285_bP <= 5)
-					this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				field_110285_bP += 1;
+				if (field_110285_bP > 5 && field_110285_bP % 3 == 0)
+					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				else if (field_110285_bP <= 5)
+					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
-				this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			else
-				this.playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 		}
 	}
 
@@ -71,15 +71,15 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		return this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.rand.nextInt(20) == 0;
+		return worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(20) == 0;
 	}
 
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
-		if (this.isChested())
+		if (hasCustomNameTag())
+			return getCustomNameTag();
+		if (isChested())
 			return "Pack-Tauntaun";
 		return "Tauntaun";
 	}
@@ -120,28 +120,28 @@ public class MobTauntaun extends EntityHorse
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
 		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
 			return false;
-		if (!this.isTame())
+		if (!isTame())
 		{
-			this.setHorseTamed(true);
-			this.playLivingSound();
-			this.spawnHorseParticles(true);
+			setHorseTamed(true);
+			playLivingSound();
+			spawnHorseParticles(true);
 		}
 		return super.interact(p_70085_1_);
 	}
 
 	protected boolean isValidLightLevel()
 	{
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.boundingBox.minY);
-		int k = MathHelper.floor_double(this.posZ);
-		return this.worldObj.getSavedLightValue(net.minecraft.world.EnumSkyBlock.Sky, i, j, k) > 11;
+		int i = MathHelper.floor_double(posX);
+		int j = MathHelper.floor_double(boundingBox.minY);
+		int k = MathHelper.floor_double(posZ);
+		return worldObj.getSavedLightValue(net.minecraft.world.EnumSkyBlock.Sky, i, j, k) > 11;
 	}
 
 	@Override
 	public void updateRiderPosition()
 	{
-		if (this.riddenByEntity != null)
-			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.6f, this.posZ);
+		if (riddenByEntity != null)
+			riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - 0.6f, posZ);
 	}
 }
 /*

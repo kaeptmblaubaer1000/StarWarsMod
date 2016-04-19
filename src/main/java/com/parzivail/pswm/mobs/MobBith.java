@@ -3,6 +3,10 @@ package com.parzivail.pswm.mobs;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.entity.trade.WeightedTradeItem;
+
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -11,10 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.entity.trade.WeightedTradeItem;
 
 public class MobBith extends EntityVillager
 {
@@ -31,7 +31,7 @@ public class MobBith extends EntityVillager
 	public MobBith(World p_i1748_1_)
 	{
 		super(p_i1748_1_);
-		this.dw = super.getDataWatcher();
+		dw = super.getDataWatcher();
 	}
 
 	@Override
@@ -52,40 +52,40 @@ public class MobBith extends EntityVillager
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.getDataWatcher().addObject(25, Integer.valueOf(0));
-		this.getDataWatcher().addObject(26, Integer.valueOf(0));
+		getDataWatcher().addObject(25, Integer.valueOf(0));
+		getDataWatcher().addObject(26, Integer.valueOf(0));
 	}
 
 	@Override
 	public void func_110297_a_(ItemStack p_110297_1_)
 	{
-		if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+		if (!worldObj.isRemote && livingSoundTime > -getTalkInterval() + 20)
 		{
-			this.livingSoundTime = -this.getTalkInterval();
+			livingSoundTime = -getTalkInterval();
 
 			if (p_110297_1_ != null)
-				this.playSound(Resources.MODID + ":" + "mob.bith.trade", this.getSoundVolume(), this.getSoundPitch());
+				playSound(Resources.MODID + ":" + "mob.bith.trade", getSoundVolume(), getSoundPitch());
 			else
-				this.playSound(Resources.MODID + ":" + "mob.bith.notrade", this.getSoundVolume(), this.getSoundPitch());
+				playSound(Resources.MODID + ":" + "mob.bith.notrade", getSoundVolume(), getSoundPitch());
 		}
 	}
 
 	@Override
 	public String getCommandSenderName()
 	{
-		return this.officialNames[this.getType()];
+		return officialNames[getType()];
 	}
 
 	@Override
 	public EntityPlayer getCustomer()
 	{
-		return this.buyingPlayer;
+		return buyingPlayer;
 	}
 
 	@Override
 	public String getCustomNameTag()
 	{
-		return this.getCommandSenderName();
+		return getCommandSenderName();
 	}
 
 	/**
@@ -117,18 +117,18 @@ public class MobBith extends EntityVillager
 
 	public boolean getPlaying()
 	{
-		return this.dw.getWatchableObjectInt(26) == 1;
+		return dw.getWatchableObjectInt(26) == 1;
 	}
 
 	@Override
 	public MerchantRecipeList getRecipes(EntityPlayer p_70934_1_)
 	{
-		if (this.buyingList == null)
+		if (buyingList == null)
 		{
-			this.buyingList = new MerchantRecipeList();
-			this.buyingList = this.createTradesByProfession(this.buyingList, this.getType());
+			buyingList = new MerchantRecipeList();
+			buyingList = createTradesByProfession(buyingList, getType());
 		}
-		return this.buyingList;
+		return buyingList;
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class MobBith extends EntityVillager
 
 	private int getType()
 	{
-		return this.getDataWatcher().getWatchableObjectInt(25);
+		return getDataWatcher().getWatchableObjectInt(25);
 	}
 
 	private int indexOf(String[] haystack, String needle)
@@ -184,13 +184,13 @@ public class MobBith extends EntityVillager
 	@Override
 	public void setCustomer(EntityPlayer p_70932_1_)
 	{
-		this.buyingPlayer = p_70932_1_;
+		buyingPlayer = p_70932_1_;
 	}
 
 	@Override
 	public void setPlaying(boolean b)
 	{
-		this.dw.updateObject(26, Integer.valueOf(b ? 1 : 0));
+		dw.updateObject(26, Integer.valueOf(b ? 1 : 0));
 	}
 
 	@Override

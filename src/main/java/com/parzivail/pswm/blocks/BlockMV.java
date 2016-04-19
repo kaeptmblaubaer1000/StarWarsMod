@@ -1,6 +1,5 @@
 package com.parzivail.pswm.blocks;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.parzivail.pswm.Resources;
@@ -28,10 +27,10 @@ public class BlockMV extends BlockContainer implements IDebugProvider
 	public BlockMV()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(Resources.MODID + "." + "moistureVaporator");
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
-		this.setHardness(50.0F);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + "moistureVaporator");
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
+		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -58,6 +57,22 @@ public class BlockMV extends BlockContainer implements IDebugProvider
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
 		return new TileEntityMV();
+	}
+
+	@Override
+	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
+	{
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityMV)
+		{
+			TileEntityMV vap = (TileEntityMV)tile;
+			float l = vap.progressTicks / (float)vap.totalTicks;
+			list.add(String.valueOf((int)(l * 100f)) + "%");
+			if (vap.getStackInSlot(0) != null)
+				list.add(String.valueOf(vap.getStackInSlot(0).stackSize) + " droplets");
+		}
+
+		return list;
 	}
 
 	@Override
@@ -95,7 +110,7 @@ public class BlockMV extends BlockContainer implements IDebugProvider
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconMoistureVaporator");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconMoistureVaporator");
 	}
 
 	@Override
@@ -107,24 +122,7 @@ public class BlockMV extends BlockContainer implements IDebugProvider
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
 	{
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
-	}
-
-	@Override
-	public List<String> getDebugText(EntityPlayer player, World world, int x, int y, int z)
-	{
-		ArrayList<String> list = new ArrayList<>();
-		
-		TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityMV)
-		{
-			TileEntityMV vap = (TileEntityMV)tile;
-			float l = vap.progressTicks / (float)vap.totalTicks;
-			list.add(String.valueOf((int)(l * 100f)) + "%");
-			list.add(String.valueOf(vap.getStackInSlot(0).stackSize) + " droplets");
-		}
-		
-		return list;
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
 	}
 }
 /*

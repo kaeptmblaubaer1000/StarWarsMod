@@ -1,11 +1,11 @@
 package com.parzivail.pswm.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 public class BlockSpaceLamp extends Block
 {
@@ -14,13 +14,13 @@ public class BlockSpaceLamp extends Block
 	public BlockSpaceLamp()
 	{
 		super(Material.rock);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setBlockTextureName(Resources.MODID + ":" + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setHardness(4.0F);
+		setBlockName(Resources.MODID + "." + name);
+		setBlockTextureName(Resources.MODID + ":" + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		this.setStepSound(soundTypeStone);
-		this.setLightLevel(1.0F);
+		setStepSound(soundTypeStone);
+		setLightLevel(1.0F);
 	}
 }
 /*

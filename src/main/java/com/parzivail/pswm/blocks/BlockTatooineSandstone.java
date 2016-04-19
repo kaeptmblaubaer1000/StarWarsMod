@@ -2,6 +2,12 @@ package com.parzivail.pswm.blocks;
 
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.world.HarvestLevel;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,13 +15,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.world.HarvestLevel;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTatooineSandstone extends Block
 {
@@ -35,11 +34,11 @@ public class BlockTatooineSandstone extends Block
 	public BlockTatooineSandstone()
 	{
 		super(Material.ground);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setHardness(0.5F);
+		setBlockName(Resources.MODID + "." + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setHardness(0.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
-		this.setStepSound(soundTypeSand);
+		setStepSound(soundTypeSand);
 	}
 
 	@Override
@@ -49,19 +48,19 @@ public class BlockTatooineSandstone extends Block
 		if (side != 1 && (side != 0 || meta != 1 && meta != 2))
 		{
 			if (side == 0)
-				return this.field_150160_O;
-			if (meta < 0 || meta >= this.field_150158_M.length)
+				return field_150160_O;
+			if (meta < 0 || meta >= field_150158_M.length)
 				meta = 0;
-			return this.field_150158_M[meta];
+			return field_150158_M[meta];
 		}
-		return this.field_150159_N;
+		return field_150159_N;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
 	{
-		for (int i = 0; i < this.subtypes; i++)
+		for (int i = 0; i < subtypes; i++)
 			metaTypes.add(new ItemStack(item, 1, i));
 	}
 
@@ -69,11 +68,11 @@ public class BlockTatooineSandstone extends Block
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.field_150158_M = new IIcon[field_150156_b.length];
-		for (int i = 0; i < this.field_150158_M.length; i++)
-			this.field_150158_M[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + field_150156_b[i]);
-		this.field_150159_N = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_top");
-		this.field_150160_O = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_bottom");
+		field_150158_M = new IIcon[field_150156_b.length];
+		for (int i = 0; i < field_150158_M.length; i++)
+			field_150158_M[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + name + "_" + field_150156_b[i]);
+		field_150159_N = par1IconRegister.registerIcon(Resources.MODID + ":" + name + "_top");
+		field_150160_O = par1IconRegister.registerIcon(Resources.MODID + ":" + name + "_bottom");
 	}
 }
 /*

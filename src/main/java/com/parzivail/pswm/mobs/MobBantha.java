@@ -3,6 +3,14 @@ package com.parzivail.pswm.mobs;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.utils.LootGenUtils;
+import com.parzivail.util.entity.trade.WeightedLoot;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -18,15 +26,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.utils.LootGenUtils;
-import com.parzivail.util.entity.trade.WeightedLoot;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class MobBantha extends EntityHorse implements IShearable
 {
 	private int field_110285_bP = 0;
@@ -35,16 +34,16 @@ public class MobBantha extends EntityHorse implements IShearable
 	public MobBantha(World par1World)
 	{
 		super(par1World);
-		this.setSize(3.0F, 3.0F);
-		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		setSize(3.0F, 3.0F);
+		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
 	}
 
 	@Override
@@ -58,60 +57,60 @@ public class MobBantha extends EntityHorse implements IShearable
 	{
 		List<WeightedLoot> drop = new java.util.ArrayList();
 		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaHorn, 1), LootGenUtils.baseRarity / 1.5F));
-		if (this.isBurning())
+		if (isBurning())
 			drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaChopCooked, 1), LootGenUtils.baseRarity));
 		else
 			drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaChop, 1), LootGenUtils.baseRarity));
-		this.entityDropItem(LootGenUtils.getWeightedItemFromList(drop, this.rand), 0.0F);
+		entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0.0F);
 	}
 
 	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(17, new Byte((byte)0));
+		dataWatcher.addObject(17, new Byte((byte)0));
 	}
 
 	@Override
 	protected void func_145780_a(int x, int y, int z, Block blockIn)
 	{
 		Block.SoundType soundtype = blockIn.stepSound;
-		if (this.worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
+		if (worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
 			soundtype = Blocks.snow_layer.stepSound;
 		if (!blockIn.getMaterial().isLiquid())
 		{
-			int l = this.getHorseType();
-			if (this.riddenByEntity != null && l != 1 && l != 2)
+			int l = getHorseType();
+			if (riddenByEntity != null && l != 1 && l != 2)
 			{
-				this.field_110285_bP += 1;
-				if (this.field_110285_bP > 5 && this.field_110285_bP % 3 == 0)
-					this.playSound("mob.horse.gallop", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				else if (this.field_110285_bP <= 5)
-					this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				field_110285_bP += 1;
+				if (field_110285_bP > 5 && field_110285_bP % 3 == 0)
+					playSound("mob.horse.gallop", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				else if (field_110285_bP <= 5)
+					playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
-				this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			else
-				this.playSound("mob.horse.soft", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.horse.soft", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	public float func_70890_k(float p_70890_1_)
 	{
-		if (this.sheepTimer > 4 && this.sheepTimer <= 36)
+		if (sheepTimer > 4 && sheepTimer <= 36)
 		{
-			float f1 = (this.sheepTimer - 4 - p_70890_1_) / 32.0F;
+			float f1 = (sheepTimer - 4 - p_70890_1_) / 32.0F;
 			return (float)Math.PI / 5F + (float)Math.PI * 7F / 100F * MathHelper.sin(f1 * 28.7F);
 		}
 		else
-			return this.sheepTimer > 0 ? (float)Math.PI / 5F : this.rotationPitch / (180F / (float)Math.PI);
+			return sheepTimer > 0 ? (float)Math.PI / 5F : rotationPitch / (180F / (float)Math.PI);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public float func_70894_j(float p_70894_1_)
 	{
-		return this.sheepTimer <= 0 ? 0.0F : this.sheepTimer >= 4 && this.sheepTimer <= 36 ? 1.0F : this.sheepTimer < 4 ? (this.sheepTimer - p_70894_1_) / 4.0F : -(this.sheepTimer - 40 - p_70894_1_) / 4.0F;
+		return sheepTimer <= 0 ? 0.0F : sheepTimer >= 4 && sheepTimer <= 36 ? 1.0F : sheepTimer < 4 ? (sheepTimer - p_70894_1_) / 4.0F : -(sheepTimer - 40 - p_70894_1_) / 4.0F;
 	}
 
 	@Override
@@ -129,9 +128,9 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
-		if (this.isChested())
+		if (hasCustomNameTag())
+			return getCustomNameTag();
+		if (isChested())
 			return "Pack-Bantha";
 		return "Bantha";
 	}
@@ -171,7 +170,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	 */
 	public boolean getSheared()
 	{
-		return (this.dataWatcher.getWatchableObjectByte(17) & 16) != 0;
+		return (dataWatcher.getWatchableObjectByte(17) & 16) != 0;
 	}
 
 	@Override
@@ -179,7 +178,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	public void handleHealthUpdate(byte p_70103_1_)
 	{
 		if (p_70103_1_ == 10)
-			this.sheepTimer = 40;
+			sheepTimer = 40;
 		else
 			super.handleHealthUpdate(p_70103_1_);
 	}
@@ -204,14 +203,14 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	public boolean isShearable(ItemStack item, IBlockAccess world, int x, int y, int z)
 	{
-		return !this.getSheared() && !this.isChild();
+		return !getSheared() && !isChild();
 	}
 
 	@Override
 	public void onLivingUpdate()
 	{
-		if (this.worldObj.isRemote)
-			this.sheepTimer = Math.max(0, this.sheepTimer - 1);
+		if (worldObj.isRemote)
+			sheepTimer = Math.max(0, sheepTimer - 1);
 
 		super.onLivingUpdate();
 	}
@@ -220,11 +219,11 @@ public class MobBantha extends EntityHorse implements IShearable
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
 	{
 		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		this.setSheared(true);
-		int i = 1 + this.rand.nextInt(3);
+		setSheared(true);
+		int i = 1 + rand.nextInt(3);
 		for (int j = 0; j < i; j++)
 			ret.add(new ItemStack(Blocks.wool, 1, 12));
-		this.playSound("mob.sheep.shear", 1.0F, 1.0F);
+		playSound("mob.sheep.shear", 1.0F, 1.0F);
 		return ret;
 	}
 
@@ -240,25 +239,25 @@ public class MobBantha extends EntityHorse implements IShearable
 	 */
 	public void setSheared(boolean p_70893_1_)
 	{
-		byte b0 = this.dataWatcher.getWatchableObjectByte(17);
+		byte b0 = dataWatcher.getWatchableObjectByte(17);
 
 		if (p_70893_1_)
-			this.dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 | 16)));
+			dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 | 16)));
 		else
-			this.dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 & -17)));
+			dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 & -17)));
 	}
 
 	@Override
 	public void updateRiderPosition()
 	{
 		super.updateRiderPosition();
-		float f = MathHelper.sin(this.renderYawOffset * 3.1415927F / 180.0F);
-		float f1 = MathHelper.cos(this.renderYawOffset * 3.1415927F / 180.0F);
+		float f = MathHelper.sin(renderYawOffset * 3.1415927F / 180.0F);
+		float f1 = MathHelper.cos(renderYawOffset * 3.1415927F / 180.0F);
 		float f2 = 0.5F;
 		float f3 = 1.0F;
-		this.riddenByEntity.setPosition(this.posX + f2 * f, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + f3, this.posZ - f2 * f1);
-		if (this.riddenByEntity instanceof EntityLivingBase)
-			((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
+		riddenByEntity.setPosition(posX + f2 * f, posY + getMountedYOffset() + riddenByEntity.getYOffset() + f3, posZ - f2 * f1);
+		if (riddenByEntity instanceof EntityLivingBase)
+			((EntityLivingBase)riddenByEntity).renderYawOffset = renderYawOffset;
 	}
 }
 /*

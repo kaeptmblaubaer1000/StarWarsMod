@@ -1,5 +1,13 @@
 package com.parzivail.pswm.mobs;
 
+import java.util.List;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.util.entity.EntityUtils;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -11,49 +19,43 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
-import com.parzivail.util.entity.EntityUtils;
-
-public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
+public class MobDroidProbe extends EntityDroidBase implements IRangedAttackMob
 {
 	private EntityAIArrowAttack aiArrow;
+
 	private EntityAITempt aiTempt;
 
 	public MobDroidProbe(World par1World)
 	{
 		super(par1World);
-		this.setSize(1.0F, 2.0F);
-		this.tasks.addTask(0, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
-		this.tasks.addTask(1, this.aiSit);
-		this.tasks.addTask(2, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
-		this.tasks.addTask(4, new AiFreqMove(this, 1, 0));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		setSize(1.0F, 2.0F);
+		tasks.addTask(0, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+		tasks.addTask(1, aiSit);
+		tasks.addTask(2, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		tasks.addTask(3, aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
+		tasks.addTask(4, new AiFreqMove(this, 1, 0));
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
 	}
 
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		this.playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
-		this.worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(this.worldObj, this, p_82196_1_));
+		playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
+		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnProbe, 1);
+		dropItem(StarWarsMod.spawnProbe, 1);
 	}
 
 	@Override
@@ -83,7 +85,7 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+		dataWatcher.addObject(18, Byte.valueOf((byte)0));
 	}
 
 	@Override
@@ -104,6 +106,12 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 	}
 
 	@Override
+	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
+	{
+		return EntityUtils.getImperialDroidDebugText(this, list, player, world, x, y, z);
+	}
+
+	@Override
 	protected String getHurtSound()
 	{
 		return Resources.MODID + ":" + "mob.probe.hit";
@@ -121,41 +129,41 @@ public class MobDroidProbe extends EntityTameable implements IRangedAttackMob
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 		if (itemstack == null)
 			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
-		if (this.isTamed())
+		if (isTamed())
 		{
-			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidHacker)
+			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidHacker)
 			{
-				this.aiSit.setSitting(!this.isSitting());
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-				this.isJumping = false;
+				aiSit.setSitting(!isSitting());
+				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
+				isJumping = false;
 			}
 		}
 		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
-			if (!this.worldObj.isRemote)
-				if (this.rand.nextInt(3) == 0)
+			if (!worldObj.isRemote)
+				if (rand.nextInt(3) == 0)
 				{
-					this.setTamed(true);
-					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-					this.playTameEffect(true);
-					this.aiSit.setSitting(true);
-					this.worldObj.setEntityState(this, (byte)7);
-					this.entityToAttack = null;
-					this.targetTasks.taskEntries.clear();
-					this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
-					this.tasks.taskEntries.clear();
-					this.tasks.addTask(2, this.aiSit);
-					this.tasks.addTask(3, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
-					this.tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-					this.tasks.addTask(1, this.aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
-					this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-					this.tasks.addTask(3, new EntityAILookIdle(this));
-					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+					setTamed(true);
+					func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					playTameEffect(true);
+					aiSit.setSitting(true);
+					worldObj.setEntityState(this, (byte)7);
+					entityToAttack = null;
+					targetTasks.taskEntries.clear();
+					targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityMob.class, 0, true));
+					tasks.taskEntries.clear();
+					tasks.addTask(2, aiSit);
+					tasks.addTask(3, aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
+					tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+					tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+					tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+					tasks.addTask(3, new EntityAILookIdle(this));
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
 				}
 				else
 				{
-					this.playTameEffect(false);
-					this.worldObj.setEntityState(this, (byte)6);
+					playTameEffect(false);
+					worldObj.setEntityState(this, (byte)6);
 				}
 			return true;
 		}

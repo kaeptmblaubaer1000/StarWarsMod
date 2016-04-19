@@ -1,11 +1,11 @@
 package com.parzivail.pswm.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 public class BlockTitaniumChromium extends Block
 {
@@ -14,12 +14,12 @@ public class BlockTitaniumChromium extends Block
 	public BlockTitaniumChromium()
 	{
 		super(Material.rock);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setBlockTextureName(Resources.MODID + ":" + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setHardness(4.0F);
+		setBlockName(Resources.MODID + "." + name);
+		setBlockTextureName(Resources.MODID + ":" + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		this.setStepSound(soundTypeStone);
+		setStepSound(soundTypeStone);
 	}
 }
 /*

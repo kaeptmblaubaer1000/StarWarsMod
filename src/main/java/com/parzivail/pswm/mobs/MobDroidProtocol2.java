@@ -1,42 +1,43 @@
 package com.parzivail.pswm.mobs;
 
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIFollowOwner;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
+import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.util.entity.EntityUtils;
 
-public class MobDroidProtocol2 extends EntityTameable
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIFollowOwner;
+import net.minecraft.entity.ai.EntityAITempt;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
+
+public class MobDroidProtocol2 extends EntityDroidBase
 {
 	private EntityAITempt aiTempt;
 
 	public MobDroidProtocol2(World par1World)
 	{
 		super(par1World);
-		this.setSize(0.75F, 2.0F);
-		this.getNavigator().setEnterDoors(true);
-		this.tasks.addTask(0, this.aiSit);
-		this.tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(2, this.aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
-		this.tasks.addTask(3, new AiFreqMove(this, 1, 0));
+		setSize(0.75F, 2.0F);
+		getNavigator().setEnterDoors(true);
+		tasks.addTask(0, aiSit);
+		tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		tasks.addTask(2, aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidCaller, true));
+		tasks.addTask(3, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
 	}
 
 	@Override
@@ -54,7 +55,7 @@ public class MobDroidProtocol2 extends EntityTameable
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnProtocol2, 1);
+		dropItem(StarWarsMod.spawnProtocol2, 1);
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class MobDroidProtocol2 extends EntityTameable
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+		dataWatcher.addObject(18, Byte.valueOf((byte)0));
 	}
 
 	@Override
@@ -79,6 +80,12 @@ public class MobDroidProtocol2 extends EntityTameable
 	protected String getDeathSound()
 	{
 		return Resources.MODID + ":" + "mob.protocol.die";
+	}
+
+	@Override
+	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
+	{
+		return EntityUtils.getRebelDroidDebugText(this, list, player, world, x, y, z);
 	}
 
 	@Override
@@ -105,31 +112,31 @@ public class MobDroidProtocol2 extends EntityTameable
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 		if (itemstack == null)
 			itemstack = new ItemStack(Blocks.air);
-		if (this.isTamed())
+		if (isTamed())
 		{
-			if (par1EntityPlayer.getUniqueID().equals(this.getOwner().getUniqueID()) && !this.worldObj.isRemote && !this.isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidCaller)
+			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidCaller)
 			{
-				this.aiSit.setSitting(!this.isSitting());
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
-				this.isJumping = false;
+				aiSit.setSitting(!isSitting());
+				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
+				isJumping = false;
 			}
 		}
 		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
-			if (!this.worldObj.isRemote)
-				if (this.rand.nextInt(3) == 0)
+			if (!worldObj.isRemote)
+				if (rand.nextInt(3) == 0)
 				{
-					this.setTamed(true);
-					this.func_152115_b(par1EntityPlayer.getUniqueID().toString());
-					this.playTameEffect(true);
-					this.aiSit.setSitting(true);
-					this.worldObj.setEntityState(this, (byte)7);
-					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!this.isSitting())));
+					setTamed(true);
+					func_152115_b(par1EntityPlayer.getUniqueID().toString());
+					playTameEffect(true);
+					aiSit.setSitting(true);
+					worldObj.setEntityState(this, (byte)7);
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
 				}
 				else
 				{
-					this.playTameEffect(false);
-					this.worldObj.setEntityState(this, (byte)6);
+					playTameEffect(false);
+					worldObj.setEntityState(this, (byte)6);
 				}
 			return true;
 		}
@@ -146,36 +153,36 @@ public class MobDroidProtocol2 extends EntityTameable
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (this.rand.nextInt(1000) == 0 && this.worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, this.boundingBox.expand(5.0D, 5.0D, 5.0D), this) instanceof MobDroidAstromech)
-			this.playSound(Resources.MODID + ":" + "mob.protocol.r2d2rare", 1.0F, 1.0F);
+		if (rand.nextInt(1000) == 0 && worldObj.findNearestEntityWithinAABB(MobDroidAstromech.class, boundingBox.expand(5.0D, 5.0D, 5.0D), this) instanceof MobDroidAstromech)
+			playSound(Resources.MODID + ":" + "mob.protocol.r2d2rare", 1.0F, 1.0F);
 	}
 
 	@Override
 	public void updateAITick()
 	{
-		if (this.getMoveHelper().isUpdating())
+		if (getMoveHelper().isUpdating())
 		{
-			double d0 = this.getMoveHelper().getSpeed();
+			double d0 = getMoveHelper().getSpeed();
 			if (d0 == 0.6D)
 			{
-				this.setSneaking(true);
-				this.setSprinting(false);
+				setSneaking(true);
+				setSprinting(false);
 			}
 			else if (d0 == 1.33D)
 			{
-				this.setSneaking(false);
-				this.setSprinting(true);
+				setSneaking(false);
+				setSprinting(true);
 			}
 			else
 			{
-				this.setSneaking(false);
-				this.setSprinting(false);
+				setSneaking(false);
+				setSprinting(false);
 			}
 		}
 		else
 		{
-			this.setSneaking(false);
-			this.setSprinting(false);
+			setSneaking(false);
+			setSprinting(false);
 		}
 	}
 }

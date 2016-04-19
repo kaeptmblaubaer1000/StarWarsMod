@@ -1,10 +1,10 @@
 package com.parzivail.pswm.blocks;
 
-import net.minecraft.block.BlockStairs;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
+
+import net.minecraft.block.BlockStairs;
 
 public class BlockMudStairs extends BlockStairs
 {
@@ -13,8 +13,8 @@ public class BlockMudStairs extends BlockStairs
 	public BlockMudStairs()
 	{
 		super(StarWarsMod.blockDagobahMud, 0);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 }

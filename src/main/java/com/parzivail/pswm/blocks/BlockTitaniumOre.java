@@ -2,13 +2,13 @@ package com.parzivail.pswm.blocks;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 
 public class BlockTitaniumOre extends Block
 {
@@ -17,12 +17,12 @@ public class BlockTitaniumOre extends Block
 	public BlockTitaniumOre()
 	{
 		super(Material.rock);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setBlockTextureName(Resources.MODID + ":" + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setHardness(4.0F);
+		setBlockName(Resources.MODID + "." + name);
+		setBlockTextureName(Resources.MODID + ":" + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		this.setStepSound(soundTypeStone);
+		setStepSound(soundTypeStone);
 	}
 
 	@Override

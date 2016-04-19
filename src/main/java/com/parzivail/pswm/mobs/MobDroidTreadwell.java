@@ -1,5 +1,8 @@
 package com.parzivail.pswm.mobs;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
@@ -11,9 +14,6 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
 public class MobDroidTreadwell extends EntityTameable
 {
 	private EntityAITempt aiTempt;
@@ -21,19 +21,19 @@ public class MobDroidTreadwell extends EntityTameable
 	public MobDroidTreadwell(World par1World)
 	{
 		super(par1World);
-		this.setSize(1.0F, 1.0F);
-		this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		this.tasks.addTask(6, new EntityAIMate(this, 0.8D));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
+		setSize(1.0F, 1.0F);
+		tasks.addTask(5, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
+		tasks.addTask(6, new EntityAIMate(this, 0.8D));
+		tasks.addTask(7, new EntityAIWander(this, 1.0D));
+		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0.5D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.55D);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class MobDroidTreadwell extends EntityTameable
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnTreadwell, 1);
+		dropItem(StarWarsMod.spawnTreadwell, 1);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class MobDroidTreadwell extends EntityTameable
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(18, Byte.valueOf((byte)0));
+		dataWatcher.addObject(18, Byte.valueOf((byte)0));
 	}
 
 	@Override
@@ -98,29 +98,29 @@ public class MobDroidTreadwell extends EntityTameable
 	@Override
 	public void updateAITick()
 	{
-		if (this.getMoveHelper().isUpdating())
+		if (getMoveHelper().isUpdating())
 		{
-			double d0 = this.getMoveHelper().getSpeed();
+			double d0 = getMoveHelper().getSpeed();
 			if (d0 == 0.6D)
 			{
-				this.setSneaking(true);
-				this.setSprinting(false);
+				setSneaking(true);
+				setSprinting(false);
 			}
 			else if (d0 == 1.33D)
 			{
-				this.setSneaking(false);
-				this.setSprinting(true);
+				setSneaking(false);
+				setSprinting(true);
 			}
 			else
 			{
-				this.setSneaking(false);
-				this.setSprinting(false);
+				setSneaking(false);
+				setSprinting(false);
 			}
 		}
 		else
 		{
-			this.setSneaking(false);
-			this.setSprinting(false);
+			setSneaking(false);
+			setSprinting(false);
 		}
 	}
 }

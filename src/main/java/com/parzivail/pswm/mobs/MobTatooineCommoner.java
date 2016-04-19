@@ -31,7 +31,7 @@ public class MobTatooineCommoner extends EntityVillager
 	public MobTatooineCommoner(World p_i1748_1_)
 	{
 		super(p_i1748_1_);
-		this.dw = super.getDataWatcher();
+		dw = super.getDataWatcher();
 	}
 
 	@Override
@@ -44,53 +44,53 @@ public class MobTatooineCommoner extends EntityVillager
 	{
 		List<WeightedTradeItem> trades = new ArrayList();
 		MerchantRecipeList fn = new MerchantRecipeList();
-		if (type == this.indexOf(this.types, "weaponsDealer"))
+		if (type == indexOf(types, "weaponsDealer"))
 		{
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), StarWarsMod.blasterRifle.getMeta("A280"), this.baseRarity / 2.0F));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 8), StarWarsMod.blasterPistol.getMeta("Dl44"), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), StarWarsMod.blasterPistol.getMeta("Dh17"), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), StarWarsMod.blasterPistol.getMeta("Sporting"), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), new ItemStack(StarWarsMod.gaffiStick, 1), this.baseRarity / 2.0F));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), new ItemStack(StarWarsMod.vibroLance, 1), this.baseRarity / 2.0F));
-			for (int i = 0; i < this.rand.nextInt(3) + 3; i++)
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), StarWarsMod.blasterRifle.getMeta("A280"), baseRarity / 2.0F));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 8), StarWarsMod.blasterPistol.getMeta("Dl44"), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), StarWarsMod.blasterPistol.getMeta("Dh17"), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), StarWarsMod.blasterPistol.getMeta("Sporting"), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), new ItemStack(StarWarsMod.gaffiStick, 1), baseRarity / 2.0F));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 10), new ItemStack(StarWarsMod.vibroLance, 1), baseRarity / 2.0F));
+			for (int i = 0; i < rand.nextInt(3) + 3; i++)
 			{
 				WeightedTradeItem item;
 				do
-					item = TradeUtils.getWeightedItemFromList(trades, this.rand);
-				while (this.isAlreadyTrading(item, fn));
+					item = TradeUtils.getWeightedItemFromList(trades, rand);
+				while (isAlreadyTrading(item, fn));
 				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
 			}
 		}
-		else if (type == this.indexOf(this.types, "generalMerchant"))
+		else if (type == indexOf(types, "generalMerchant"))
 		{
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 1), new ItemStack(StarWarsMod.spawnLandspeeder, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnAstromech, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnAstromech2, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(StarWarsMod.spawnMouse, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnGonk, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnProtocol, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.blockMV, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.imperialCredit, 5), new ItemStack(StarWarsMod.banthaHorn, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.imperialCredit, 5), new ItemStack(StarWarsMod.banthaChop, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(Items.saddle, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.binoculars, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 1), new ItemStack(StarWarsMod.spawnLandspeeder, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnAstromech, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnAstromech2, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(StarWarsMod.spawnMouse, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnGonk, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.spawnProtocol, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.blockMV, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.imperialCredit, 5), new ItemStack(StarWarsMod.banthaHorn, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.imperialCredit, 5), new ItemStack(StarWarsMod.banthaChop, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(Items.saddle, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.binoculars, 1), baseRarity));
 			for (int i = 0; i < 8; i++)
 			{
 				WeightedTradeItem item;
 				do
-					item = TradeUtils.getWeightedItemFromList(trades, this.rand);
-				while (this.isAlreadyTrading(item, fn));
+					item = TradeUtils.getWeightedItemFromList(trades, rand);
+				while (isAlreadyTrading(item, fn));
 				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
 			}
 		}
-		else if (type == this.indexOf(this.types, "corellian"))
+		else if (type == indexOf(types, "corellian"))
 		{
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveEarth, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveEndor, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveHoth, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveKashyyyk, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveTatooine, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveYavin4, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveEarth, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveEndor, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveHoth, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveKashyyyk, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveTatooine, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 2), new ItemStack(StarWarsMod.hyperdriveYavin4, 1), baseRarity));
 			// trades.add(new WeightedTradeItem(new
 			// ItemStack(StarWarsMod.goldImperialCredit, 2), new
 			// ItemStack(StarWarsMod.hyperdriveDagobah, 1), this.baseRarity));
@@ -98,40 +98,40 @@ public class MobTatooineCommoner extends EntityVillager
 			{
 				WeightedTradeItem item;
 				do
-					item = TradeUtils.getWeightedItemFromList(trades, this.rand);
-				while (this.isAlreadyTrading(item, fn));
+					item = TradeUtils.getWeightedItemFromList(trades, rand);
+				while (isAlreadyTrading(item, fn));
 				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
 			}
 		}
-		else if (type == this.indexOf(this.types, "bartender"))
+		else if (type == indexOf(types, "bartender"))
 		{
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(StarWarsMod.canron, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.banthaPlatter, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 3), new ItemStack(StarWarsMod.dewbackRibs, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 1), new ItemStack(StarWarsMod.banthaChopCooked, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 1), new ItemStack(StarWarsMod.banthaMilk, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.gorrnar, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 2), new ItemStack(StarWarsMod.canron, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.banthaPlatter, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 3), new ItemStack(StarWarsMod.dewbackRibs, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 1), new ItemStack(StarWarsMod.banthaChopCooked, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 1), new ItemStack(StarWarsMod.banthaMilk, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.silverImperialCredit, 5), new ItemStack(StarWarsMod.gorrnar, 1), baseRarity));
 			for (int i = 0; i < 4; i++)
 			{
 				WeightedTradeItem item;
 				do
-					item = TradeUtils.getWeightedItemFromList(trades, this.rand);
-				while (this.isAlreadyTrading(item, fn));
+					item = TradeUtils.getWeightedItemFromList(trades, rand);
+				while (isAlreadyTrading(item, fn));
 				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
 			}
 		}
-		else if (type == this.indexOf(this.types, "shipDealer"))
+		else if (type == indexOf(types, "shipDealer"))
 		{
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.spawnTie, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.spawnAwing, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 5), new ItemStack(StarWarsMod.spawnXwing, 1), this.baseRarity));
-			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 5), new ItemStack(StarWarsMod.spawnTieInterceptor, 1), this.baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.spawnTie, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 4), new ItemStack(StarWarsMod.spawnAwing, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 5), new ItemStack(StarWarsMod.spawnXwing, 1), baseRarity));
+			trades.add(new WeightedTradeItem(new ItemStack(StarWarsMod.goldImperialCredit, 5), new ItemStack(StarWarsMod.spawnTieInterceptor, 1), baseRarity));
 			for (int i = 0; i < 4; i++)
 			{
 				WeightedTradeItem item;
 				do
-					item = TradeUtils.getWeightedItemFromList(trades, this.rand);
-				while (this.isAlreadyTrading(item, fn));
+					item = TradeUtils.getWeightedItemFromList(trades, rand);
+				while (isAlreadyTrading(item, fn));
 				fn.add(new MerchantRecipe(item.cost, item.cost2, item.item));
 			}
 		}
@@ -142,39 +142,39 @@ public class MobTatooineCommoner extends EntityVillager
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.getDataWatcher().addObject(25, Integer.valueOf(this.rand.nextInt(5)));
+		getDataWatcher().addObject(25, Integer.valueOf(rand.nextInt(5)));
 	}
 
 	@Override
 	public void func_110297_a_(ItemStack p_110297_1_)
 	{
-		if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20)
+		if (!worldObj.isRemote && livingSoundTime > -getTalkInterval() + 20)
 		{
-			this.livingSoundTime = -this.getTalkInterval();
+			livingSoundTime = -getTalkInterval();
 
 			if (p_110297_1_ != null)
-				this.playSound(Resources.MODID + ":" + "mob.commoner.trade", this.getSoundVolume(), this.getSoundPitch());
+				playSound(Resources.MODID + ":" + "mob.commoner.trade", getSoundVolume(), getSoundPitch());
 			else
-				this.playSound(Resources.MODID + ":" + "mob.commoner.notrade", this.getSoundVolume(), this.getSoundPitch());
+				playSound(Resources.MODID + ":" + "mob.commoner.notrade", getSoundVolume(), getSoundPitch());
 		}
 	}
 
 	@Override
 	public String getCommandSenderName()
 	{
-		return this.officialNames[this.getType()];
+		return officialNames[getType()];
 	}
 
 	@Override
 	public EntityPlayer getCustomer()
 	{
-		return this.buyingPlayer;
+		return buyingPlayer;
 	}
 
 	@Override
 	public String getCustomNameTag()
 	{
-		return this.getCommandSenderName();
+		return getCommandSenderName();
 	}
 
 	/**
@@ -201,18 +201,18 @@ public class MobTatooineCommoner extends EntityVillager
 	@Override
 	protected String getLivingSound()
 	{
-		return Resources.MODID + ":" + (this.isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
+		return Resources.MODID + ":" + (isTrading() ? "mob.commoner.haggle" : "mob.commoner.say");
 	}
 
 	@Override
 	public MerchantRecipeList getRecipes(EntityPlayer p_70934_1_)
 	{
-		if (this.buyingList == null)
+		if (buyingList == null)
 		{
-			this.buyingList = new MerchantRecipeList();
-			this.buyingList = this.createTradesByProfession(this.buyingList, this.getType());
+			buyingList = new MerchantRecipeList();
+			buyingList = createTradesByProfession(buyingList, getType());
 		}
-		return this.buyingList;
+		return buyingList;
 	}
 
 	@Override
@@ -223,7 +223,7 @@ public class MobTatooineCommoner extends EntityVillager
 
 	private int getType()
 	{
-		return this.getDataWatcher().getWatchableObjectInt(25);
+		return getDataWatcher().getWatchableObjectInt(25);
 	}
 
 	private int indexOf(String[] haystack, String needle)
@@ -244,18 +244,18 @@ public class MobTatooineCommoner extends EntityVillager
 	{
 		super.readEntityFromNBT(tagCompund);
 		if (tagCompund.hasKey("type"))
-			this.setType(tagCompund.getInteger("type"));
+			setType(tagCompund.getInteger("type"));
 	}
 
 	@Override
 	public void setCustomer(EntityPlayer p_70932_1_)
 	{
-		this.buyingPlayer = p_70932_1_;
+		buyingPlayer = p_70932_1_;
 	}
 
 	private void setType(int t)
 	{
-		this.getDataWatcher().updateObject(25, Integer.valueOf(t));
+		getDataWatcher().updateObject(25, Integer.valueOf(t));
 	}
 
 	@Override
@@ -267,7 +267,7 @@ public class MobTatooineCommoner extends EntityVillager
 	public void writeEntityToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeEntityToNBT(tagCompound);
-		tagCompound.setInteger("type", this.getType());
+		tagCompound.setInteger("type", getType());
 	}
 }
 /*

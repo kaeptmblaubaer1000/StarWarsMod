@@ -1,12 +1,12 @@
 package com.parzivail.pswm.blocks;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.world.World;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.block.BlockConnected;
 import com.parzivail.util.world.HarvestLevel;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.world.World;
 
 public class BlockDeathStarGlass extends BlockConnected
 {
@@ -15,11 +15,11 @@ public class BlockDeathStarGlass extends BlockConnected
 	public BlockDeathStarGlass()
 	{
 		super("glass", Material.glass);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setHardness(4.0F);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + name);
+		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		this.setStepSound(soundTypeGlass);
+		setStepSound(soundTypeGlass);
 	}
 
 	@Override

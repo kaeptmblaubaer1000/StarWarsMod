@@ -26,17 +26,17 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	public MobGamorrean(World par1World)
 	{
 		super(par1World);
-		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 		switch (StarWarsMod.rngGeneral.nextInt(3))
 		{
 			case 0:
-				this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx1, 1));
+				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx1, 1));
 				break;
 			case 1:
-				this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx2, 1));
+				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx2, 1));
 				break;
 			case 2:
-				this.setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx3, 1));
+				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx3, 1));
 				break;
 		}
 	}
@@ -45,9 +45,9 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(32.0D, 32.0D, 32.0D));
+			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 			for (int i = 0; i < list.size(); i++)
 			{
 				Entity entity1 = (Entity)list.get(i);
@@ -66,31 +66,31 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 					jawa.becomeAngryAt(entity);
 				}
 			}
-			this.becomeAngryAt(entity);
+			becomeAngryAt(entity);
 		}
 		return super.attackEntityFrom(source, amount);
 	}
 
 	private void becomeAngryAt(Entity p_70835_1_)
 	{
-		this.entityToAttack = p_70835_1_;
-		this.angerLevel = 400 + this.rand.nextInt(400);
+		entityToAttack = p_70835_1_;
+		angerLevel = 400 + rand.nextInt(400);
 	}
 
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		switch (this.rand.nextInt(10))
+		switch (rand.nextInt(10))
 		{
 			case 0:
-				this.dropItem(StarWarsMod.gamorreanAx1, 1);
+				dropItem(StarWarsMod.gamorreanAx1, 1);
 		}
 	}
 
 	@Override
 	protected Entity findPlayerToAttack()
 	{
-		return this.angerLevel == 0 ? null : super.findPlayerToAttack();
+		return angerLevel == 0 ? null : super.findPlayerToAttack();
 	}
 
 	@Override
@@ -120,16 +120,16 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 	@Override
 	public void onUpdate()
 	{
-		if (this.angryAt != this.entityToAttack && !this.worldObj.isRemote)
+		if (angryAt != entityToAttack && !worldObj.isRemote)
 		{
-			IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+			IAttributeInstance iattributeinstance = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 			iattributeinstance.removeModifier(field_110190_br);
 
-			if (this.entityToAttack != null)
+			if (entityToAttack != null)
 				iattributeinstance.applyModifier(field_110190_br);
 		}
 
-		this.angryAt = this.entityToAttack;
+		angryAt = entityToAttack;
 		super.onUpdate();
 	}
 }

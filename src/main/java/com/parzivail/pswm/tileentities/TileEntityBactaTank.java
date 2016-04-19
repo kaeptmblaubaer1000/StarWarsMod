@@ -60,6 +60,18 @@ public class TileEntityBactaTank extends TileEntity
 		}
 		super.updateEntity();
 	}
+	
+	public EntityPlayer getPlayerInside()
+	{
+		return this.playerInside;
+	}
+	
+	public int getTicksInside()
+	{
+		if (this.playerInside != null)
+			return (this.playerInside.ticksExisted - this.tickStart);
+		return 0;
+	}
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

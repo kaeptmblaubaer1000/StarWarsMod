@@ -1,25 +1,25 @@
 package com.parzivail.pswm.blocks;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityMudTable;
+import com.parzivail.util.world.HarvestLevel;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityMudTable;
-import com.parzivail.util.world.HarvestLevel;
-
 public class BlockMudTable extends BlockContainer
 {
 	public BlockMudTable()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(Resources.MODID + "." + "mudTable");
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-		this.setHardness(50.0F);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + "mudTable");
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -44,7 +44,7 @@ public class BlockMudTable extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconMudTable");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconMudTable");
 	}
 
 	@Override

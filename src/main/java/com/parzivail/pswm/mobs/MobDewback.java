@@ -1,5 +1,8 @@
 package com.parzivail.pswm.mobs;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.ai.AiFreqMove;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -12,9 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.ai.AiFreqMove;
-
 public class MobDewback extends EntityHorse
 {
 	private int field_110285_bP = 0;
@@ -22,16 +22,16 @@ public class MobDewback extends EntityHorse
 	public MobDewback(World par1World)
 	{
 		super(par1World);
-		this.setSize(2.0F, 2.0F);
-		this.tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		setSize(2.0F, 2.0F);
+		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
 	}
 
 	@Override
@@ -44,23 +44,23 @@ public class MobDewback extends EntityHorse
 	protected void func_145780_a(int x, int y, int z, Block blockIn)
 	{
 		Block.SoundType soundtype = blockIn.stepSound;
-		if (this.worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
+		if (worldObj.getBlock(x, y + 1, z) == Blocks.snow_layer)
 			soundtype = Blocks.snow_layer.stepSound;
 		if (!blockIn.getMaterial().isLiquid())
 		{
-			int l = this.getHorseType();
-			if (this.riddenByEntity != null && l != 1 && l != 2)
+			int l = getHorseType();
+			if (riddenByEntity != null && l != 1 && l != 2)
 			{
-				this.field_110285_bP += 1;
-				if (this.field_110285_bP > 5 && this.field_110285_bP % 3 == 0)
-					this.playSound("mob.horse.gallop", soundtype.getVolume() * 0.15F, soundtype.getPitch());
-				else if (this.field_110285_bP <= 5)
-					this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				field_110285_bP += 1;
+				if (field_110285_bP > 5 && field_110285_bP % 3 == 0)
+					playSound("mob.horse.gallop", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				else if (field_110285_bP <= 5)
+					playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
-				this.playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.horse.wood", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			else
-				this.playSound("mob.horse.soft", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound("mob.horse.soft", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 		}
 	}
 
@@ -84,9 +84,9 @@ public class MobDewback extends EntityHorse
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
-		if (this.isChested())
+		if (hasCustomNameTag())
+			return getCustomNameTag();
+		if (isChested())
 			return "Pack-Dewback";
 		return "Dewback";
 	}
@@ -141,13 +141,13 @@ public class MobDewback extends EntityHorse
 	public void updateRiderPosition()
 	{
 		super.updateRiderPosition();
-		float f = MathHelper.sin(this.renderYawOffset * 3.1415927F / 180.0F);
-		float f1 = MathHelper.cos(this.renderYawOffset * 3.1415927F / 180.0F);
+		float f = MathHelper.sin(renderYawOffset * 3.1415927F / 180.0F);
+		float f1 = MathHelper.cos(renderYawOffset * 3.1415927F / 180.0F);
 		float f2 = 0.5F;
 		float f3 = 1.0F;
-		this.riddenByEntity.setPosition(this.posX + f2 * f, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + f3 - 0.3499999940395355D, this.posZ - f2 * f1);
-		if (this.riddenByEntity instanceof EntityLivingBase)
-			((EntityLivingBase)this.riddenByEntity).renderYawOffset = this.renderYawOffset;
+		riddenByEntity.setPosition(posX + f2 * f, posY + getMountedYOffset() + riddenByEntity.getYOffset() + f3 - 0.3499999940395355D, posZ - f2 * f1);
+		if (riddenByEntity instanceof EntityLivingBase)
+			((EntityLivingBase)riddenByEntity).renderYawOffset = renderYawOffset;
 	}
 }
 /*

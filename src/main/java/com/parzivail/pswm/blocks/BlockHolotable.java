@@ -2,6 +2,17 @@ package com.parzivail.pswm.blocks;
 
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableLarge;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
+import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
+import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.world.HarvestLevel;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,18 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableLarge;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
-import com.parzivail.util.world.HarvestLevel;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-public class BlockHolotable extends BlockContainer
+public class BlockHolotable extends BlockContainer implements IDebugProvider
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon topIcon;
@@ -32,9 +32,9 @@ public class BlockHolotable extends BlockContainer
 	public BlockHolotable()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(Resources.MODID + "." + "holoTable");
-		this.setHardness(50.0F);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + "holoTable");
+		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -51,12 +51,26 @@ public class BlockHolotable extends BlockContainer
 	}
 
 	@Override
+	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
+	{
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityHoloTableBase)
+		{
+			TileEntityHoloTableBase t = (TileEntityHoloTableBase)tile;
+			list.add(String.valueOf(t.getOffset()) + " offset");
+			list.add(String.valueOf(t.getSideLength()) + " side length");
+		}
+
+		return list;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
 		if (side == 1)
-			return this.topIcon;
-		return this.blockIcon;
+			return topIcon;
+		return blockIcon;
 	}
 
 	@Override
@@ -92,8 +106,8 @@ public class BlockHolotable extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "holoTable");
-		this.topIcon = icon.registerIcon(Resources.MODID + ":" + "holoTable_Top");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "holoTable");
+		topIcon = icon.registerIcon(Resources.MODID + ":" + "holoTable_Top");
 	}
 
 	@Override

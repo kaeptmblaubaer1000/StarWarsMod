@@ -1,5 +1,10 @@
 package com.parzivail.pswm.blocks;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityBasket;
+import com.parzivail.util.world.HarvestLevel;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -7,20 +12,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityBasket;
-import com.parzivail.util.world.HarvestLevel;
-
 public class BlockBasket extends BlockContainer
 {
 	public BlockBasket()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(Resources.MODID + "." + "basket");
-		this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
-		this.setHardness(50.0F);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + "basket");
+		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
+		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -45,7 +45,7 @@ public class BlockBasket extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBasket");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBasket");
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class BlockBasket extends BlockContainer
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
 	{
-		this.setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
+		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
 	}
 }
 /*

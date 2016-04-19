@@ -1,10 +1,10 @@
 package com.parzivail.pswm.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 public class BlockDagobahMud extends Block
 {
@@ -13,11 +13,11 @@ public class BlockDagobahMud extends Block
 	public BlockDagobahMud()
 	{
 		super(Material.ground);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setBlockTextureName(Resources.MODID + ":" + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setHardness(4.0F);
-		this.setStepSound(soundTypeSand);
+		setBlockName(Resources.MODID + "." + name);
+		setBlockTextureName(Resources.MODID + ":" + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setHardness(4.0F);
+		setStepSound(soundTypeSand);
 	}
 }
 /*

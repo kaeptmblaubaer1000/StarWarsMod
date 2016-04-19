@@ -1,5 +1,10 @@
 package com.parzivail.pswm.blocks;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityHangingBucket;
+import com.parzivail.util.world.HarvestLevel;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -7,20 +12,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityHangingBucket;
-import com.parzivail.util.world.HarvestLevel;
-
 public class BlockHangingBucket extends BlockContainer
 {
 	public BlockHangingBucket()
 	{
 		super(Material.iron);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setBlockName(Resources.MODID + "." + "bucketHanging");
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
-		this.setHardness(50.0F);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setBlockName(Resources.MODID + "." + "bucketHanging");
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
+		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -45,7 +45,7 @@ public class BlockHangingBucket extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBucketHanging");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBucketHanging");
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class BlockHangingBucket extends BlockContainer
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
 	{
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 	}
 }
 /*

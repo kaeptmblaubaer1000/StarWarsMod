@@ -1,8 +1,8 @@
 package com.parzivail.pswm.rendering.gui;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
@@ -19,6 +19,7 @@ import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -119,14 +120,43 @@ public class GuiPSWMOverlay extends Gui
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 			if (this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof IDebugProvider)
 			{
-				IDebugProvider debugProvider = (IDebugProvider)this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
-				List<String> text = debugProvider.getDebugText(this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
+				Block block = this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
+				IDebugProvider debugProvider = (IDebugProvider)block;
+				
+				ArrayList<String> s = new ArrayList<>();
+				s.add(block.getLocalizedName());
+				
+				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
 
 				GL11.glPushMatrix();
 				GLPZ.glScalef(0.5f);
 
 				int y = 0;
-				for (String line : text)
+				for (String line : s)
+				{
+					this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
+					y++;
+				}
+
+				GL11.glPopMatrix();
+			}
+		} else if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY&& mc.gameSettings.showDebugInfo)
+		{
+			MovingObjectPosition mop = this.mc.objectMouseOver;
+			if (mop.entityHit instanceof IDebugProvider)
+			{
+				IDebugProvider debugProvider = (IDebugProvider)mop.entityHit;
+				
+				ArrayList<String> s = new ArrayList<>();
+				s.add(mop.entityHit.getCommandSenderName());
+				
+				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
+
+				GL11.glPushMatrix();
+				GLPZ.glScalef(0.5f);
+
+				int y = 0;
+				for (String line : s)
 				{
 					this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
 					y++;

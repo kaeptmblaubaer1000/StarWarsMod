@@ -2,6 +2,12 @@ package com.parzivail.pswm.blocks;
 
 import java.util.List;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.world.HarvestLevel;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,13 +15,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.world.HarvestLevel;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTatooineSand extends Block
 {
@@ -27,11 +26,11 @@ public class BlockTatooineSand extends Block
 	public BlockTatooineSand()
 	{
 		super(Material.sand);
-		this.setBlockName(Resources.MODID + "." + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
-		this.setHardness(0.5F);
+		setBlockName(Resources.MODID + "." + name);
+		setCreativeTab(StarWarsMod.StarWarsTab);
+		setHardness(0.5F);
 		this.setHarvestLevel("shovel", HarvestLevel.WOOD);
-		this.setStepSound(soundTypeSand);
+		setStepSound(soundTypeSand);
 	}
 
 	@Override
@@ -45,15 +44,15 @@ public class BlockTatooineSand extends Block
 	public IIcon getIcon(int side, int meta)
 	{
 		if (meta < 2)
-			return this.icons[meta];
-		return this.icons[0];
+			return icons[meta];
+		return icons[0];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
 	{
-		for (int i = 0; i < this.subtypes; i++)
+		for (int i = 0; i < subtypes; i++)
 			metaTypes.add(new ItemStack(item, 1, i));
 	}
 
@@ -61,9 +60,9 @@ public class BlockTatooineSand extends Block
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.icons = new IIcon[this.subtypes];
-		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + i);
+		icons = new IIcon[subtypes];
+		for (int i = 0; i < icons.length; i++)
+			icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + name + i);
 	}
 }
 /*
