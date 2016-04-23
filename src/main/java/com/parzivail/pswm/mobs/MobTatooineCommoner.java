@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.TradeUtils;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
 
@@ -19,7 +20,7 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
-public class MobTatooineCommoner extends EntityVillager
+public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 {
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;

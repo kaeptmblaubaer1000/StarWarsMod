@@ -1,14 +1,20 @@
 package com.parzivail.util;
 
 import java.util.List;
-
-import com.parzivail.pswm.StarWarsMod;
+import java.util.Random;
 
 public class MathUtils
 {
+	static Random _rand;
+
+	static
+	{
+		_rand = new Random();
+	}
+
 	public static String getRandomElement(String[] array)
 	{
-		return array[StarWarsMod.rngGeneral.nextInt(array.length)];
+		return array[_rand.nextInt(array.length)];
 	}
 
 	public static float lerp(float start, float end, float percent)
@@ -18,14 +24,19 @@ public class MathUtils
 
 	public static int randomRange(int min, int max)
 	{
-		return StarWarsMod.rngGeneral.nextInt(max - min + 1) + min;
+		return _rand.nextInt(max - min + 1) + min;
+	}
+
+	public static boolean oneIn(int n)
+	{
+		return _rand.nextInt(n) == 0;
 	}
 
 	public static void shuffleArray(char[] ar)
 	{
 		for (int i = ar.length - 1; i > 0; i--)
 		{
-			int index = StarWarsMod.rngGeneral.nextInt(i + 1);
+			int index = _rand.nextInt(i + 1);
 			char a = ar[index];
 			ar[index] = ar[i];
 			ar[i] = a;

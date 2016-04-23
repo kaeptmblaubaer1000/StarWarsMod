@@ -1,11 +1,9 @@
-package com.parzivail.pswm.rendering.gui;
+package com.parzivail.util.ui;
 
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.Screen2D;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

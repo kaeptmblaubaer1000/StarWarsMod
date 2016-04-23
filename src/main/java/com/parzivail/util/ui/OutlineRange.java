@@ -1,16 +1,12 @@
-package com.parzivail.pswm.rendering.gui;
+package com.parzivail.util.ui;
 
 import org.lwjgl.opengl.GL11;
-
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.KeyboardUtils;
-import com.parzivail.util.ui.Screen2D;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 
-class OutlineRange extends OutlineButton
+public class OutlineRange extends OutlineButton
 {
 	private String name;
 	public float value;

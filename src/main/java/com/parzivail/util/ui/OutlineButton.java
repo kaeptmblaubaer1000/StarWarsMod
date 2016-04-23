@@ -1,21 +1,19 @@
-package com.parzivail.pswm.rendering.gui;
+package com.parzivail.util.ui;
 
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.Screen2D;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
 
-public class FilledColorButton extends OutlineButton
+public class OutlineButton extends GuiButton
 {
-	int color;
+	public boolean selected;
 
-	public FilledColorButton(int id, int x, int y, int w, int h, int color)
+	public OutlineButton(int id, int x, int y, int w, int h, String text, boolean selected)
 	{
-		super(id, x, y, w, h, "", false);
-		this.color = color;
+		super(id, x, y, w, h, text);
+		this.selected = selected;
 	}
 
 	@Override
@@ -38,11 +36,17 @@ public class FilledColorButton extends OutlineButton
 				case 0:
 					textColor = GLPalette.GREY;
 					GLPalette.glColorI(GLPalette.DARK_GREY);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, true);
+					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					break;
+				case 1:
+					GLPalette.glColorI(this.selected ? GLPalette.SW_YELLOW : GLPalette.DARK_SW_YELLOW);
+					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					break;
+				case 2:
+					GLPalette.glColorI(GLPalette.SW_YELLOW);
+					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				default:
-					GLPalette.glColorI(color);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, true);
 					break;
 			}
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
