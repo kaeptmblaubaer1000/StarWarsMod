@@ -59,6 +59,7 @@ public class Resources
 	public static final int GUI_HOLOTABLE = 3;
 	public static final int GUI_QUESTLOG = 4;
 	public static final int GUI_LSFORGE = 5;
+	public static final int GUI_SCANNER = 6;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");
@@ -119,4 +120,11 @@ public class Resources
 	public static final String nbtShotsLeft = "shotsLeft";
 	public static final String nbtCooldown = "cooldown";
 	public static final String nbtTicksSince = "ticksSince";
+
+	public static final String speciesHuman = "Human";
+	public static final String speciesBith = "Bith";
+
+	public static final String allegianceNone = "None";
+	public static final String allegianceRebel = "Rebel Alliance";
+	public static final String allegianceImperial = "Galactic Empire";
 }

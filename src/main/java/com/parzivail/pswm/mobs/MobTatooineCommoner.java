@@ -270,6 +270,30 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 		super.writeEntityToNBT(tagCompound);
 		tagCompound.setInteger("type", getType());
 	}
+
+	@Override
+	public String getName()
+	{
+		return this.getCommandSenderName();
+	}
+
+	@Override
+	public String getSpecies()
+	{
+		return Resources.speciesHuman;
+	}
+
+	@Override
+	public String getAllegiance()
+	{
+		return Resources.allegianceNone;
+	}
+
+	@Override
+	public String getJob()
+	{
+		return this.getCommandSenderName();
+	}
 }
 /*
  * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod

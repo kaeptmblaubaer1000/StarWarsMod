@@ -3,42 +3,109 @@ package com.parzivail.pswm.rendering.gui;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.tileentities.TileEntityMV;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.font.FontManager;
+import com.parzivail.pswm.mobs.MobTatooineCommoner;
+import com.parzivail.util.IParziNPC;
+import com.parzivail.util.MathUtils;
+import com.parzivail.util.ui.GLPZ;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RendererLivingEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
 @SideOnly(Side.CLIENT)
-public class GuiIDScanner extends GuiContainer
+public class GuiIDScanner extends GuiScreen
 {
 	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/scanner.png");
-	TileEntityMV vaporator;
+	EntityPlayer player;
+	Entity scanned;
+	boolean fraud = false;
+	long timeInit;
 
-	public GuiIDScanner(InventoryPlayer player, TileEntityMV vap)
+	public GuiIDScanner(EntityPlayer player)
 	{
-		super(new ContainerMV(player, vap));
-		this.vaporator = vap;
+		this.mc = Minecraft.getMinecraft();
+		this.player = player;
 	}
 
-	// drawGuiContainerBackgroundLayer
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+	public void initGui()
 	{
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(guiTexture);
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, 175, 165);
-		int percent = (int)((this.vaporator.progressTicks + 1F) / this.vaporator.totalTicks * 30.0F);
-		this.drawTexturedModalRect(k + 62, l + 58 - percent, 176, 30 - percent, 9, percent);
+		this.scanned = mc.objectMouseOver.entityHit;
+		if (scanned instanceof MobTatooineCommoner && MathUtils.oneIn(10))
+		{
+			scanned = new MobTatooineCommoner(scanned.worldObj);
+			int n = 0;
+			do
+				n = StarWarsMod.rngGeneral.nextInt(5);
+			while (n == ((MobTatooineCommoner)mc.objectMouseOver.entityHit).getDataWatcher().getWatchableObjectInt(25));
 
-		String s = "Moisture Vaporator";
-		this.fontRendererObj.drawString(s, k + this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, l + 6, 4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), k + 8, l + 71, 4210752);
+			((MobTatooineCommoner)scanned).getDataWatcher().updateObject(25, Integer.valueOf(n));
+
+			fraud = true;
+		}
+		timeInit = System.currentTimeMillis();
+	}
+
+	@Override
+	public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_)
+	{
+		if (scanned instanceof IParziNPC)
+		{
+			IParziNPC parziNPC = (IParziNPC)scanned;
+
+			ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+
+			this.drawGradientRect(0, 0, this.width, this.height, 0x88000000, 0xAA000000);
+
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			this.mc.renderEngine.bindTexture(guiTexture);
+			this.drawTexturedModalRect((r.getScaledWidth() - 151) / 2, (r.getScaledHeight() - 210) / 2, 0, 0, 151, 196);
+
+			long timeOpen = System.currentTimeMillis() - timeInit;
+			int strPos = 0;
+			if (timeOpen / 10 < 100)
+				strPos = (int)(timeOpen / 10);
+			else
+				strPos = 100;
+
+			int textColor = 0x00538E;
+
+			if (fraud)
+				textColor = (System.currentTimeMillis() / 250) % 2 == 0 ? 0xFF0000 : 0xFF7777;
+
+			GL11.glPushMatrix();
+			int width = FontManager.aurebesh.getStringWidth(parziNPC.getName());
+			FontManager.aurebesh.drawString(parziNPC.getName().substring(0, (int)(parziNPC.getName().length() * (strPos / 100f))), (r.getScaledWidth() - width) / 2, (r.getScaledHeight() - 130) / 2, textColor);
+			GLPZ.glScalef(0.5f);
+			FontManager.aurebesh.drawString(parziNPC.getSpecies().substring(0, (int)(parziNPC.getSpecies().length() * (strPos / 100f))), r.getScaledWidth() + 2, r.getScaledHeight() - 85, textColor);
+			FontManager.aurebesh.drawString(parziNPC.getAllegiance().substring(0, (int)(parziNPC.getAllegiance().length() * (strPos / 100f))), r.getScaledWidth() + 2, r.getScaledHeight() - 65, textColor);
+			FontManager.aurebesh.drawString(parziNPC.getJob().substring(0, (int)(parziNPC.getJob().length() * (strPos / 100f))), r.getScaledWidth() + 2, r.getScaledHeight() - 45, textColor);
+			GL11.glPopMatrix();
+
+			GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glTranslatef(r.getScaledWidth() / 2 - 20, r.getScaledHeight() / 2 - 3, 10);
+			GLPZ.glScalef(25f);
+			GL11.glRotatef(scanned.getRotationYawHead(), 0, 1, 0);
+			GL11.glScalef(1, -1, 1);
+			float old = RendererLivingEntity.NAME_TAG_RANGE;
+			RendererLivingEntity.NAME_TAG_RANGE = 0.0F;
+			Render render = RenderManager.instance.getEntityRenderObject(scanned);
+			render.doRender(scanned, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+			RendererLivingEntity.NAME_TAG_RANGE = old;
+			GL11.glEnable(GL11.GL_LIGHTING);
+			GL11.glPopMatrix();
+		}
 	}
 }
 /*

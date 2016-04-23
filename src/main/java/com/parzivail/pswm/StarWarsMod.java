@@ -278,6 +278,8 @@ public class StarWarsMod
 
 	public static Item questContainer;
 
+	public static Item idScanner;
+
 	public static ItemFood banthaChop;
 	public static ItemFood banthaChopCooked;
 	public static ItemFood banthaMilk;

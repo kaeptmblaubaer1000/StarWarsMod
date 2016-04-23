@@ -33,6 +33,7 @@ import com.parzivail.pswm.items.ItemDroidCaller;
 import com.parzivail.pswm.items.ItemDroidHacker;
 import com.parzivail.pswm.items.ItemGoldImperialCredit;
 import com.parzivail.pswm.items.ItemGorrnar;
+import com.parzivail.pswm.items.ItemIDScanner;
 import com.parzivail.pswm.items.ItemImperialCredit;
 import com.parzivail.pswm.items.ItemMusicDisc;
 import com.parzivail.pswm.items.ItemQuestContainer;
@@ -199,6 +200,9 @@ public class ItemRegister
 
 		StarWarsMod.binoculars = new ItemBinocularsTatooine();
 		GameRegistry.registerItem(StarWarsMod.binoculars, "binoculars");
+
+		StarWarsMod.idScanner = new ItemIDScanner();
+		GameRegistry.registerItem(StarWarsMod.idScanner, "idScanner");
 
 		StarWarsMod.binocularsHoth = new ItemBinocularsHoth();
 		GameRegistry.registerItem(StarWarsMod.binocularsHoth, "binocularsHoth");

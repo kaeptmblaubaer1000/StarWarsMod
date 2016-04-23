@@ -6,6 +6,7 @@ import com.parzivail.pswm.rendering.gui.ContainerClient;
 import com.parzivail.pswm.rendering.gui.ContainerHoloTable;
 import com.parzivail.pswm.rendering.gui.ContainerMV;
 import com.parzivail.pswm.rendering.gui.GuiHoloTable;
+import com.parzivail.pswm.rendering.gui.GuiIDScanner;
 import com.parzivail.pswm.rendering.gui.GuiJediSith;
 import com.parzivail.pswm.rendering.gui.GuiMV;
 import com.parzivail.pswm.rendering.gui.GuiScreenJediRobes;
@@ -34,6 +35,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiQuest(player);
 		else if (id == Resources.GUI_LSFORGE)
 			return new GuiScreenLightsaberForge(player);
+		else if (id == Resources.GUI_SCANNER)
+			return new GuiIDScanner(player);
 		return null;
 	}
 
@@ -48,9 +51,7 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerClient();
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_QUESTLOG)
-			return new ContainerClient();
-		else if (id == Resources.GUI_LSFORGE)
+		else if (id == Resources.GUI_QUESTLOG || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER)
 			return new ContainerClient();
 		return null;
 	}

@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
 
 import net.minecraft.entity.DataWatcher;
@@ -16,7 +17,7 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
-public class MobBith extends EntityVillager
+public class MobBith extends EntityVillager implements IParziNPC
 {
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
@@ -196,6 +197,30 @@ public class MobBith extends EntityVillager
 	@Override
 	public void useRecipe(MerchantRecipe p_70933_1_)
 	{
+	}
+
+	@Override
+	public String getName()
+	{
+		return this.getCommandSenderName();
+	}
+
+	@Override
+	public String getSpecies()
+	{
+		return Resources.speciesBith;
+	}
+
+	@Override
+	public String getAllegiance()
+	{
+		return Resources.allegianceNone;
+	}
+
+	@Override
+	public String getJob()
+	{
+		return this.getCommandSenderName();
 	}
 }
 /*
