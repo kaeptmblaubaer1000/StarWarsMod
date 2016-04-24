@@ -16,7 +16,7 @@ public class BlockMudTable extends BlockContainer
 	public BlockMudTable()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "mudTable");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		setHardness(50.0F);

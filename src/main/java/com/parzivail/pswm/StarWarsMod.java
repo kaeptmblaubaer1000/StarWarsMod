@@ -61,6 +61,7 @@ import com.parzivail.pswm.registry.RecipeRegister;
 import com.parzivail.pswm.registry.WorldRegister;
 import com.parzivail.pswm.tabs.SequelStarWarsTab;
 import com.parzivail.pswm.tabs.StarWarsTab;
+import com.parzivail.pswm.tabs.StarWarsTabBlocks;
 import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -114,6 +115,7 @@ public class StarWarsMod
 	public static SimpleNetworkWrapper network;
 
 	public static CreativeTabs StarWarsTab;
+	public static CreativeTabs StarWarsTabBlocks;
 	public static CreativeTabs SequelStarWarsTab;
 
 	public static ItemGaffiStick gaffiStick;
@@ -351,6 +353,8 @@ public class StarWarsMod
 	public static Block blockTempleStoneLit;
 	public static Block blockTempleStoneSlabLit;
 
+	public static Block blockAncientJediStatue;
+
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;
 	public static Item.ToolMaterial materialGamorrean;
@@ -468,9 +472,15 @@ public class StarWarsMod
 		MaterialRegister.registerAll();
 
 		if (ConfigOptions.enableTabOriginal)
+		{
 			StarWarsTab = new StarWarsTab();
+			StarWarsTabBlocks = new StarWarsTabBlocks();
+		}
 		else
+		{
 			StarWarsTab = CreativeTabs.tabAllSearch;
+			StarWarsTabBlocks = CreativeTabs.tabAllSearch;
+		}
 
 		if (Resources.IS_SEQUEL_RELEASE)
 		{

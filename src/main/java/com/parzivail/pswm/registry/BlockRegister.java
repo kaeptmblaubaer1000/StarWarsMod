@@ -2,6 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.blocks.BlockAncientJediStatue;
 import com.parzivail.pswm.blocks.BlockBactaTank;
 import com.parzivail.pswm.blocks.BlockBasket;
 import com.parzivail.pswm.blocks.BlockDagobahMud;
@@ -43,6 +44,7 @@ import com.parzivail.pswm.items.ItemTatooineSand;
 import com.parzivail.pswm.items.ItemTatooineSandstone;
 import com.parzivail.pswm.items.ItemTempleStoneBlock;
 import com.parzivail.pswm.items.ItemTempleStoneSlabBlock;
+import com.parzivail.pswm.tileentities.TileEntityAncientJediStatue;
 import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.pswm.tileentities.TileEntityBasket;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
@@ -180,6 +182,10 @@ public class BlockRegister
 		StarWarsMod.blockTable = new BlockTatooineTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
 		GameRegistry.registerTileEntity(TileEntityTatooineTable.class, "teTatooineTable");
+
+		StarWarsMod.blockAncientJediStatue = new BlockAncientJediStatue();
+		GameRegistry.registerBlock(StarWarsMod.blockAncientJediStatue, "ancientJediStatue");
+		GameRegistry.registerTileEntity(TileEntityAncientJediStatue.class, "teAncientJediStatue");
 
 		StarWarsMod.blockTable2 = new BlockMudTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable2, "mudTable");

@@ -32,7 +32,7 @@ public class BlockHolotable extends BlockContainer implements IDebugProvider
 	public BlockHolotable()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "holoTable");
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

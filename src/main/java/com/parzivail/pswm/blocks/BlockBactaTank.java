@@ -21,7 +21,7 @@ public class BlockBactaTank extends BlockContainer implements IDebugProvider
 	public BlockBactaTank()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "bactaTank");
 		setBlockBounds(0, 0, 0, 1, 0.83f, 1);
 		setHardness(50.0F);

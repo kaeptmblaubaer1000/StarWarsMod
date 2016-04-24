@@ -15,7 +15,7 @@ public class BlockDagobahMud extends Block
 		super(Material.ground);
 		setBlockName(Resources.MODID + "." + name);
 		setBlockTextureName(Resources.MODID + ":" + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		setStepSound(soundTypeSand);
 	}

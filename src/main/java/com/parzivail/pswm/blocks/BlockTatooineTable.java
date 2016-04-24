@@ -16,7 +16,7 @@ public class BlockTatooineTable extends BlockContainer
 	public BlockTatooineTable()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "table");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		setHardness(50.0F);

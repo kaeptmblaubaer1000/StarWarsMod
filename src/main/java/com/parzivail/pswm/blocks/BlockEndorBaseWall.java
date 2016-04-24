@@ -27,7 +27,7 @@ public class BlockEndorBaseWall extends Block
 	{
 		super(Material.rock);
 		setBlockName(Resources.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		setStepSound(soundTypeMetal);

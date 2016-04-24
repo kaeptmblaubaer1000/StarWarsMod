@@ -11,7 +11,7 @@ public class BlockDeathStar extends BlockMultiTexture
 	public BlockDeathStar()
 	{
 		super("deathStarBlock", new String[] { "HangarFloor", "HangarCrate", "CorridorFloor", "CautionFloor", "HangarWallPanel", "CorridorWallPanel", "ShieldGeneratorConsole", "Extra1", "Extra2", "Extra3" }, Material.rock);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		setStepSound(soundTypeMetal);

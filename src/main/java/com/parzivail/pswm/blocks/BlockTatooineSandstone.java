@@ -35,7 +35,7 @@ public class BlockTatooineSandstone extends Block
 	{
 		super(Material.ground);
 		setBlockName(Resources.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(0.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
 		setStepSound(soundTypeSand);

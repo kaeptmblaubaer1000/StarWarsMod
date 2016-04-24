@@ -14,7 +14,7 @@ public class BlockMudStairs extends BlockStairs
 	{
 		super(StarWarsMod.blockDagobahMud, 0);
 		setBlockName(Resources.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 }

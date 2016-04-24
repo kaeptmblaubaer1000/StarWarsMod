@@ -17,7 +17,7 @@ public class BlockHangingCauldron extends BlockContainer
 	public BlockHangingCauldron()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "cauldronHanging");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		setHardness(50.0F);

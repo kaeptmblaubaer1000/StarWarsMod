@@ -30,7 +30,7 @@ public class BlockTempleStoneSlab extends BlockSlab
 		setBlockName(Resources.MODID + "." + "templeStoneSlab" + (lit ? "Lit" : ""));
 		if (lit)
 			this.setLightLevel(1);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		setStepSound(soundTypeMetal);

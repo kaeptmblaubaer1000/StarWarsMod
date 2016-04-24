@@ -14,7 +14,7 @@ public class BlockEndorBaseWallStairs extends BlockStairs
 	{
 		super(StarWarsMod.blockEndorBaseWall, 0);
 		setBlockName(Resources.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 }

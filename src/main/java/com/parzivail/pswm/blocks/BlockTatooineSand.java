@@ -27,7 +27,7 @@ public class BlockTatooineSand extends Block
 	{
 		super(Material.sand);
 		setBlockName(Resources.MODID + "." + name);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(0.5F);
 		this.setHarvestLevel("shovel", HarvestLevel.WOOD);
 		setStepSound(soundTypeSand);

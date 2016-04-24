@@ -15,7 +15,7 @@ public class BlockDeathStarGlass extends BlockConnected
 	public BlockDeathStarGlass()
 	{
 		super("glass", Material.glass);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + name);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

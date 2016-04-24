@@ -5,7 +5,6 @@ import java.util.List;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.world.HarvestLevel;
 
@@ -24,7 +23,7 @@ public class BlockDeathStarDoor extends BlockContainer implements IDebugProvider
 	public BlockDeathStarDoor()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTab);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "deathStarDoor");
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
