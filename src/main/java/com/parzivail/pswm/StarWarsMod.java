@@ -346,6 +346,9 @@ public class StarWarsMod
 	public static Block blockKeleriumOre;
 	public static Block blockRubindumOre;
 
+	public static Block blockTempleStone;
+	public static Block blockTempleStoneSlab;
+
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;
 	public static Item.ToolMaterial materialGamorrean;

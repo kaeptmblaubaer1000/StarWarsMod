@@ -22,6 +22,8 @@ import com.parzivail.pswm.blocks.BlockSpaceLamp;
 import com.parzivail.pswm.blocks.BlockTatooineSand;
 import com.parzivail.pswm.blocks.BlockTatooineSandstone;
 import com.parzivail.pswm.blocks.BlockTatooineTable;
+import com.parzivail.pswm.blocks.BlockTempleStone;
+import com.parzivail.pswm.blocks.BlockTempleStoneSlab;
 import com.parzivail.pswm.blocks.BlockTitaniumChromium;
 import com.parzivail.pswm.blocks.ore.BlockBeneOre;
 import com.parzivail.pswm.blocks.ore.BlockChromiumOre;
@@ -39,6 +41,8 @@ import com.parzivail.pswm.items.ItemEndorBaseWall;
 import com.parzivail.pswm.items.ItemHolotableBlock;
 import com.parzivail.pswm.items.ItemTatooineSand;
 import com.parzivail.pswm.items.ItemTatooineSandstone;
+import com.parzivail.pswm.items.ItemTempleStoneBlock;
+import com.parzivail.pswm.items.ItemTempleStoneSlabBlock;
 import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.pswm.tileentities.TileEntityBasket;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
@@ -112,6 +116,12 @@ public class BlockRegister
 
 		StarWarsMod.blockBeneOre = new BlockBeneOre();
 		GameRegistry.registerBlock(StarWarsMod.blockBeneOre, "blockBeneOre");
+
+		StarWarsMod.blockTempleStone = new BlockTempleStone();
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStone, ItemTempleStoneBlock.class, "blockTempleStone");
+
+		StarWarsMod.blockTempleStoneSlab = new BlockTempleStoneSlab(false);
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlab, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlab");
 
 		StarWarsMod.blockIoniteOre = new BlockIoniteOre();
 		GameRegistry.registerBlock(StarWarsMod.blockIoniteOre, "blockIoniteOre");
