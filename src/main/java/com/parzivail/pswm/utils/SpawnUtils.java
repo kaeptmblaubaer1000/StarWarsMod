@@ -3,9 +3,9 @@ package com.parzivail.pswm.utils;
 import net.minecraft.world.World;
 
 import com.parzivail.pswm.mobs.MobBith;
-import com.parzivail.pswm.mobs.MobSandtrooper;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.pswm.mobs.MobWookiee;
+import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
 
 public class SpawnUtils
 {

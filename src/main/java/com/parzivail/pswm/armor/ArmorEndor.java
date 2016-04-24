@@ -41,9 +41,9 @@ public class ArmorEndor extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (slot == 3)
+		if (slot == 0)
 			return Resources.MODID + ":" + "textures/models/endorHelmet.png";
-		else if (slot == 1)
+		else if (slot == 2)
 			return Resources.MODID + ":" + "textures/models/endorArmorLayer2.png";
 		return Resources.MODID + ":" + "textures/models/endorArmorLayer1.png";
 	}

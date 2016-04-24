@@ -4,6 +4,7 @@ import com.parzivail.pswm.StarWarsMod;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemArmor;
@@ -27,7 +28,7 @@ public class ModelCompressionArmor extends ModelBiped
 		this.b = new ResourceLocation(armor.getArmorTexture(null, null, 1, ""));
 	}
 
-	protected void adjust(EntityPlayer entity, ItemStack stack, float p)
+	protected void adjustEP(EntityPlayer entity, ItemStack stack, float p)
 	{
 		this._model.heldItemRight = stack != null ? 1 : 0;
 		this._model.isSneak = entity.isSneaking();
@@ -53,16 +54,44 @@ public class ModelCompressionArmor extends ModelBiped
 		}
 	}
 
+	protected void adjustEL(EntityLiving entity, ItemStack stack, float p)
+	{
+		this._model.heldItemRight = stack != null ? 1 : 0;
+		this._model.isSneak = entity.isSneaking();
+		this._model.bipedHead.showModel = entity.getEquipmentInSlot(3) != null && entity.getEquipmentInSlot(3).getItem() == armor;
+		this._model.bipedHeadwear.showModel = entity.getEquipmentInSlot(3) != null && entity.getEquipmentInSlot(3).getItem() == armor;
+		this._model.bipedBody.showModel = entity.getEquipmentInSlot(2) != null && entity.getEquipmentInSlot(2).getItem() == armor;
+		this._model.bipedRightArm.showModel = entity.getEquipmentInSlot(2) != null && entity.getEquipmentInSlot(2).getItem() == armor;
+		this._model.bipedLeftArm.showModel = entity.getEquipmentInSlot(2) != null && entity.getEquipmentInSlot(2).getItem() == armor;
+		this._model.bipedRightLeg.showModel = (entity.getEquipmentInSlot(1) != null && entity.getEquipmentInSlot(1).getItem() == armor) || (entity.getEquipmentInSlot(0) != null && entity.getEquipmentInSlot(0).getItem() == armor);
+		this._model.bipedLeftLeg.showModel = (entity.getEquipmentInSlot(1) != null && entity.getEquipmentInSlot(1).getItem() == armor) || (entity.getEquipmentInSlot(0) != null && entity.getEquipmentInSlot(0).getItem() == armor);
+		this._model.isRiding = entity.isRiding();
+		this._model.isChild = entity.isChild();
+		this._model.onGround = entity.getSwingProgress(p);
+	}
+
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		if (entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)entity;
-			this.adjust(player, player.getHeldItem(), f5);
+			this.adjustEP(player, player.getHeldItem(), f5);
 			StarWarsMod.mc.renderEngine.bindTexture(a);
 			this._model.render(entity, f, f1, f2, f3, f4, f5);
 			if (player.inventory.armorInventory[1] != null && player.inventory.armorInventory[1].getItem() == armor)
+			{
+				StarWarsMod.mc.renderEngine.bindTexture(b);
+				this._model.render(entity, f, f1, f2, f3, f4, f5);
+			}
+		}
+		else if (entity instanceof EntityLiving)
+		{
+			EntityLiving el = (EntityLiving)entity;
+			this.adjustEL(el, el.getEquipmentInSlot(0), f5);
+			StarWarsMod.mc.renderEngine.bindTexture(a);
+			this._model.render(entity, f, f1, f2, f3, f4, f5);
+			if (el.getEquipmentInSlot(1) != null && el.getEquipmentInSlot(1).getItem() == armor)
 			{
 				StarWarsMod.mc.renderEngine.bindTexture(b);
 				this._model.render(entity, f, f1, f2, f3, f4, f5);

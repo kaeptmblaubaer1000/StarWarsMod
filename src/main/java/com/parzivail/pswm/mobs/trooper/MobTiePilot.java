@@ -1,14 +1,13 @@
-package com.parzivail.pswm.mobs;
+package com.parzivail.pswm.mobs.trooper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.utils.LootGenUtils;
-import com.parzivail.util.entity.trade.WeightedLoot;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
+import com.parzivail.pswm.mobs.MobDroidProtocol;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,7 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
+public class MobTiePilot extends EntityMob implements IMob, IRangedAttackMob
 {
 	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
@@ -35,32 +34,17 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	private Entity angryAt = null;
 	private EntityAIArrowAttack aiArrow;
 
-	public MobSandtrooper(World par1World)
+	public MobTiePilot(World par1World)
 	{
 		super(par1World);
 		setSize(0.5F, 1.5F);
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.sandtrooperHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.sandtrooperChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.sandtrooperLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.sandtrooperBoots, 1));
-		switch (rand.nextInt(4))
-		{
-			case 0:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
-				break;
-			case 1:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("T21"));
-				break;
-			case 2:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Dlt19"));
-				break;
-			case 3:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Rt97c"));
-				break;
-		}
+		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.tiePilotHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.tiePilotChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.tiePilotLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.tiePilotBoots, 1));
 		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
 	}
 
@@ -83,9 +67,9 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 			for (int i = 0; i < list.size(); i++)
 			{
 				Entity entity1 = (Entity)list.get(i);
-				if (entity1 instanceof MobSandtrooper)
+				if (entity1 instanceof MobTiePilot)
 				{
-					MobSandtrooper s = (MobSandtrooper)entity1;
+					MobTiePilot s = (MobTiePilot)entity1;
 					s.becomeAngryAt(entity);
 				}
 			}
@@ -108,20 +92,6 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	{
 		entityToAttack = p_70835_1_;
 		angerLevel = 400 + rand.nextInt(400);
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		List<WeightedLoot> drop = new ArrayList();
-		drop.add(new WeightedLoot(StarWarsMod.blasterRifle.getMeta("Stormtrooper"), LootGenUtils.baseRarity / 2.0F));
-		drop.add(new WeightedLoot(StarWarsMod.blasterHeavy.getMeta("T21"), LootGenUtils.baseRarity / 2.0F));
-		drop.add(new WeightedLoot(StarWarsMod.blasterHeavy.getMeta("Rt97c"), LootGenUtils.baseRarity / 2.0F));
-		switch (rand.nextInt(5))
-		{
-			case 0:
-				entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0.0F);
-		}
 	}
 
 	@Override

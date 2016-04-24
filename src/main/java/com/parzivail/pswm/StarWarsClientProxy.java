@@ -30,12 +30,21 @@ import com.parzivail.pswm.mobs.MobDroidTreadwell;
 import com.parzivail.pswm.mobs.MobEwok;
 import com.parzivail.pswm.mobs.MobGamorrean;
 import com.parzivail.pswm.mobs.MobJawa;
-import com.parzivail.pswm.mobs.MobSandtrooper;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.pswm.mobs.MobTauntaun;
 import com.parzivail.pswm.mobs.MobTusken;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
+import com.parzivail.pswm.mobs.trooper.MobAtatPilot;
+import com.parzivail.pswm.mobs.trooper.MobBountyhunter;
+import com.parzivail.pswm.mobs.trooper.MobEndorRebel;
+import com.parzivail.pswm.mobs.trooper.MobHothRebel;
+import com.parzivail.pswm.mobs.trooper.MobRebelPilot;
+import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
+import com.parzivail.pswm.mobs.trooper.MobScouttrooper;
+import com.parzivail.pswm.mobs.trooper.MobSnowtrooper;
+import com.parzivail.pswm.mobs.trooper.MobStormtrooper;
+import com.parzivail.pswm.mobs.trooper.MobTiePilot;
 import com.parzivail.pswm.models.ModelDSTurret;
 import com.parzivail.pswm.models.mobs.ModelBantha;
 import com.parzivail.pswm.models.mobs.ModelBith;
@@ -198,7 +207,19 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobDewback.class, new RenderDewback(new ModelDewback(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTatooineCommoner.class, new RenderCommoner(new ModelBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBith.class, new RenderBith(new ModelBith(), 0.5F));
+
 		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobStormtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobScouttrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobSnowtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobAtatPilot.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman(new ModelBiped(), 0.5F));
+
+		RenderingRegistry.registerEntityRenderingHandler(MobEndorRebel.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobHothRebel.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilot.class, new RenderHuman(new ModelBiped(), 0.5F));
+
+		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman(new ModelBiped(), 0.5F));
 
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech2.class, new RenderDroidAstromech2(new ModelDroidAstromech2(), 0.5F));

@@ -26,12 +26,21 @@ import com.parzivail.pswm.mobs.MobDroidSurgical;
 import com.parzivail.pswm.mobs.MobEwok;
 import com.parzivail.pswm.mobs.MobGamorrean;
 import com.parzivail.pswm.mobs.MobJawa;
-import com.parzivail.pswm.mobs.MobSandtrooper;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.pswm.mobs.MobTauntaun;
 import com.parzivail.pswm.mobs.MobTusken;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
+import com.parzivail.pswm.mobs.trooper.MobAtatPilot;
+import com.parzivail.pswm.mobs.trooper.MobBountyhunter;
+import com.parzivail.pswm.mobs.trooper.MobEndorRebel;
+import com.parzivail.pswm.mobs.trooper.MobHothRebel;
+import com.parzivail.pswm.mobs.trooper.MobRebelPilot;
+import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
+import com.parzivail.pswm.mobs.trooper.MobScouttrooper;
+import com.parzivail.pswm.mobs.trooper.MobSnowtrooper;
+import com.parzivail.pswm.mobs.trooper.MobStormtrooper;
+import com.parzivail.pswm.mobs.trooper.MobTiePilot;
 import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
@@ -50,10 +59,18 @@ public class EntityRegister
 {
 	public static void registerAll()
 	{
-		// if (Resources.IS_DEV_ENVIRONVENT)
-		// {
-		// EntityUtils.registerEntity(WeaponDSTurret.class, "dsTurret");
-		// }
+		EntityUtils.registerWithSpawnEgg(MobSandtrooper.class, "sandtrooper", 0xFFFFFF, 0xFF611F);
+		EntityUtils.registerWithSpawnEgg(MobStormtrooper.class, "stormtrooper", 0xFFFFFF, 0x000000);
+		EntityUtils.registerWithSpawnEgg(MobScouttrooper.class, "scouttrooper", 0xFFFFFF, 0x003300);
+		EntityUtils.registerWithSpawnEgg(MobSnowtrooper.class, "snowtrooper", 0xF9FFD4, 0x919191);
+		EntityUtils.registerWithSpawnEgg(MobAtatPilot.class, "atatPilot", 0xFFFFFF, 0x919191);
+		EntityUtils.registerWithSpawnEgg(MobTiePilot.class, "tiePilot", 0x000000, 0x919191);
+
+		EntityUtils.registerWithSpawnEgg(MobEndorRebel.class, "endorRebel", 0x17BF3E, 0x318F47);
+		EntityUtils.registerWithSpawnEgg(MobHothRebel.class, "hothRebel", 0xF0F4FF, 0xE3EDCE);
+		EntityUtils.registerWithSpawnEgg(MobRebelPilot.class, "rebelPilot", 0xF0A646, 0xD9D8D7);
+
+		EntityUtils.registerWithSpawnEgg(MobBountyhunter.class, "bountyhunter", 0x3EA877, 0x9CBD8F);
 
 		EntityUtils.registerWithSpawnEgg(MobWookiee.class, "wookiee", 9916186, 3940362);
 		EntityUtils.registerWithSpawnEgg(MobTusken.class, "tusken", 16776627, 6184522);
@@ -66,7 +83,6 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobDewback.class, "dewback", 16753920, 5523512);
 		EntityUtils.registerWithSpawnEgg(MobTatooineCommoner.class, "commoner", 0x6AC8D8, 0x6BD67B);
 		EntityUtils.registerWithSpawnEgg(MobBith.class, "bith", 0xDBBA81, 0x000000);
-		EntityUtils.registerWithSpawnEgg(MobSandtrooper.class, "sandtrooper", 0xFFFFFF, 0xFF611F);
 		EntityUtils.registerEntity(MobDroidAstromech.class, "droidAstromech");
 		EntityUtils.registerEntity(MobDroidAstromechImperial.class, "droidAstromechImperial");
 		EntityUtils.registerEntity(MobDroidAstromechImperial2.class, "droidAstromechImperial2");
@@ -77,8 +93,6 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidProbe.class, "droidProbe");
 		EntityUtils.registerEntity(MobDroidGNK.class, "droidGonk");
 		EntityUtils.registerEntity(MobDroidSurgical.class, "droidSurgical");
-		// EntityUtils.registerEntity(MobDroidTreadwell.class,
-		// "droidTreadwell");
 		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
 		EntityUtils.registerEntity(VehicTIE.class, "tie");
