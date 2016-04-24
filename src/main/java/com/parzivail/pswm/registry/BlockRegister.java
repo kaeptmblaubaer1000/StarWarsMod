@@ -117,11 +117,17 @@ public class BlockRegister
 		StarWarsMod.blockBeneOre = new BlockBeneOre();
 		GameRegistry.registerBlock(StarWarsMod.blockBeneOre, "blockBeneOre");
 
-		StarWarsMod.blockTempleStone = new BlockTempleStone();
+		StarWarsMod.blockTempleStone = new BlockTempleStone(false);
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStone, ItemTempleStoneBlock.class, "blockTempleStone");
 
-		StarWarsMod.blockTempleStoneSlab = new BlockTempleStoneSlab(false);
+		StarWarsMod.blockTempleStoneSlab = new BlockTempleStoneSlab(false, false);
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlab, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlab");
+
+		StarWarsMod.blockTempleStoneLit = new BlockTempleStone(true);
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneLit, ItemTempleStoneBlock.class, "blockTempleStoneLit");
+
+		StarWarsMod.blockTempleStoneSlabLit = new BlockTempleStoneSlab(false, true);
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlabLit, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlabLit");
 
 		StarWarsMod.blockIoniteOre = new BlockIoniteOre();
 		GameRegistry.registerBlock(StarWarsMod.blockIoniteOre, "blockIoniteOre");

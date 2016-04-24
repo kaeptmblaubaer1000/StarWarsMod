@@ -348,6 +348,8 @@ public class StarWarsMod
 
 	public static Block blockTempleStone;
 	public static Block blockTempleStoneSlab;
+	public static Block blockTempleStoneLit;
+	public static Block blockTempleStoneSlabLit;
 
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;

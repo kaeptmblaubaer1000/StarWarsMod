@@ -24,10 +24,12 @@ public class BlockTempleStoneSlab extends BlockSlab
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
-	public BlockTempleStoneSlab(boolean p_i45431_1_)
+	public BlockTempleStoneSlab(boolean p_i45431_1_, boolean lit)
 	{
 		super(p_i45431_1_, Material.rock);
-		setBlockName(Resources.MODID + "." + "templeStoneSlab");
+		setBlockName(Resources.MODID + "." + "templeStoneSlab" + (lit ? "Lit" : ""));
+		if (lit)
+			this.setLightLevel(1);
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
