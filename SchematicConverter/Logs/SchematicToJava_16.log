@@ -1,0 +1,12 @@
+2015-06-30 11-19-32 [FINE]: Ignore Air Blocks is TRUE - removing air blocks found in the schematic from the export list.
+2015-06-30 11-19-32 [INFO]: Added F:\Forge\Mods\StarWarsMod\schematics\endor_base.schematic to the list of files to convert.
+2015-06-30 11-20-43 [INFO]: Beginning conversion of F:\Forge\Mods\StarWarsMod\schematics\endor_base.schematic (output class: endor_base)
+2015-06-30 11-20-43 [FINE]: Output file did not exist:  Creating...
+2015-06-30 11-20-43 [FINE]: Opening file output stream
+2015-06-30 11-20-43 [INFO]: Writing file header
+2015-06-30 11-20-43 [INFO]: Conditional Spawning is TRUE - writing conditional spawn code.
+2015-06-30 11-20-43 [INFO]: Writing Blocks to file
+2015-06-30 11-20-43 [INFO]: Writing deferred blocks
+2015-06-30 11-20-43 [INFO]: Writing file footer
+2015-06-30 11-20-43 [FINE]: Closing file output stream
+2015-06-30 11-20-43 [INFO]: Conversion of F:\Forge\Mods\StarWarsMod\schematics\endor_base.schematic completed successfully.

@@ -1,0 +1,14 @@
+2015-08-02 01-20-04 [FINE]: Ignore Air Blocks is TRUE - removing air blocks found in the schematic from the export list.
+2015-08-02 01-20-04 [INFO]: Added C:\Users\Colby\Documents\MCEdit\Schematics\mos eisley\3-2.schematic to the list of files to convert.
+2015-08-02 01-20-05 [INFO]: Beginning conversion of C:\Users\Colby\Documents\MCEdit\Schematics\mos eisley\3-2.schematic (output class: 32)
+2015-08-02 01-20-05 [FINE]: Opening file output stream
+2015-08-02 01-20-05 [INFO]: Writing file header
+2015-08-02 01-20-05 [INFO]: Conditional Spawning is TRUE - writing conditional spawn code.
+2015-08-02 01-20-05 [INFO]: Writing Blocks to file
+2015-08-02 01-20-05 [INFO]: Method length approaching size limit - splitting to next method.
+2015-08-02 01-20-05 [INFO]: Method length approaching size limit - splitting to next method.
+2015-08-02 01-20-05 [INFO]: Method length approaching size limit - splitting to next method.
+2015-08-02 01-20-05 [INFO]: Writing deferred blocks
+2015-08-02 01-20-05 [INFO]: Writing file footer
+2015-08-02 01-20-05 [FINE]: Closing file output stream
+2015-08-02 01-20-05 [INFO]: Conversion of C:\Users\Colby\Documents\MCEdit\Schematics\mos eisley\3-2.schematic completed successfully.

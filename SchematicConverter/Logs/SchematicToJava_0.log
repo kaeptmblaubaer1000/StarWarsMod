@@ -1,0 +1,12 @@
+2015-06-27 11-54-27 [FINE]: Ignore Air Blocks is TRUE - removing air blocks found in the schematic from the export list.
+2015-06-27 11-54-27 [INFO]: Added F:\Forge\Mods\StarWarsMod\schematics\tatooine_homestead.schematic to the list of files to convert.
+2015-06-27 11-55-18 [INFO]: Beginning conversion of F:\Forge\Mods\StarWarsMod\schematics\tatooine_homestead.schematic (output class: tatooine_homestead)
+2015-06-27 11-55-18 [FINE]: Opening file output stream
+2015-06-27 11-55-18 [INFO]: Writing file header
+2015-06-27 11-55-18 [INFO]: Conditional Spawning is TRUE - writing conditional spawn code.
+2015-06-27 11-55-18 [INFO]: Writing Blocks to file
+2015-06-27 11-55-18 [INFO]: Method length approaching size limit - splitting to next method.
+2015-06-27 11-55-18 [INFO]: Writing deferred blocks
+2015-06-27 11-55-18 [INFO]: Writing file footer
+2015-06-27 11-55-18 [FINE]: Closing file output stream
+2015-06-27 11-55-18 [INFO]: Conversion of F:\Forge\Mods\StarWarsMod\schematics\tatooine_homestead.schematic completed successfully.

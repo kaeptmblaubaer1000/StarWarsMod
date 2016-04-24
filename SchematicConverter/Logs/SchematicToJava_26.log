@@ -1,0 +1,12 @@
+2015-07-03 05-33-21 [FINE]: Ignore Air Blocks is TRUE - removing air blocks found in the schematic from the export list.
+2015-07-03 05-33-21 [INFO]: Added F:\Forge\Mods\StarWarsMod\schematics\WorldGenMysteryShrine.schematic to the list of files to convert.
+2015-07-03 05-35-11 [INFO]: Beginning conversion of F:\Forge\Mods\StarWarsMod\schematics\WorldGenMysteryShrine.schematic (output class: WorldGenMysteryShrine)
+2015-07-03 05-35-11 [FINE]: Output file did not exist:  Creating...
+2015-07-03 05-35-11 [FINE]: Opening file output stream
+2015-07-03 05-35-11 [INFO]: Writing file header
+2015-07-03 05-35-11 [INFO]: Conditional Spawning is TRUE - writing conditional spawn code.
+2015-07-03 05-35-11 [INFO]: Writing Blocks to file
+2015-07-03 05-35-11 [INFO]: Writing deferred blocks
+2015-07-03 05-35-11 [INFO]: Writing file footer
+2015-07-03 05-35-11 [FINE]: Closing file output stream
+2015-07-03 05-35-11 [INFO]: Conversion of F:\Forge\Mods\StarWarsMod\schematics\WorldGenMysteryShrine.schematic completed successfully.

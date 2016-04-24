@@ -1,0 +1,16 @@
+2015-07-19 03-47-16 [FINE]: Ignore Air Blocks is TRUE - removing air blocks found in the schematic from the export list.
+2015-07-19 03-47-16 [INFO]: Added F:\Forge\Mods\StarWarsMod\schematics\WorldGenTatooineHomestead.schematic to the list of files to convert.
+2015-07-19 03-48-03 [INFO]: Beginning conversion of F:\Forge\Mods\StarWarsMod\schematics\WorldGenTatooineHomestead.schematic (output class: WorldGenTatooineHomestead)
+2015-07-19 03-48-03 [FINE]: Output file did not exist:  Creating...
+2015-07-19 03-48-03 [FINE]: Opening file output stream
+2015-07-19 03-48-03 [INFO]: Writing file header
+2015-07-19 03-48-03 [INFO]: Conditional Spawning is TRUE - writing conditional spawn code.
+2015-07-19 03-48-03 [INFO]: Writing Blocks to file
+2015-07-19 03-48-03 [INFO]: Method length approaching size limit - splitting to next method.
+2015-07-19 03-48-03 [INFO]: Method length approaching size limit - splitting to next method.
+2015-07-19 03-48-03 [INFO]: Method length approaching size limit - splitting to next method.
+2015-07-19 03-48-03 [INFO]: Method length approaching size limit - splitting to next method.
+2015-07-19 03-48-03 [INFO]: Writing deferred blocks
+2015-07-19 03-48-03 [INFO]: Writing file footer
+2015-07-19 03-48-03 [FINE]: Closing file output stream
+2015-07-19 03-48-03 [INFO]: Conversion of F:\Forge\Mods\StarWarsMod\schematics\WorldGenTatooineHomestead.schematic completed successfully.
