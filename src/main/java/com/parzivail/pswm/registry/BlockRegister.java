@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockBactaTank;
 import com.parzivail.pswm.blocks.BlockBasket;
-import com.parzivail.pswm.blocks.BlockChromiumOre;
 import com.parzivail.pswm.blocks.BlockDagobahMud;
 import com.parzivail.pswm.blocks.BlockDeathStar;
 import com.parzivail.pswm.blocks.BlockDeathStarDoor;
@@ -24,7 +23,16 @@ import com.parzivail.pswm.blocks.BlockTatooineSand;
 import com.parzivail.pswm.blocks.BlockTatooineSandstone;
 import com.parzivail.pswm.blocks.BlockTatooineTable;
 import com.parzivail.pswm.blocks.BlockTitaniumChromium;
-import com.parzivail.pswm.blocks.BlockTitaniumOre;
+import com.parzivail.pswm.blocks.ore.BlockBeneOre;
+import com.parzivail.pswm.blocks.ore.BlockChromiumOre;
+import com.parzivail.pswm.blocks.ore.BlockCortosisOre;
+import com.parzivail.pswm.blocks.ore.BlockDolomiteOre;
+import com.parzivail.pswm.blocks.ore.BlockExoniumOre;
+import com.parzivail.pswm.blocks.ore.BlockHeliciteOre;
+import com.parzivail.pswm.blocks.ore.BlockIoniteOre;
+import com.parzivail.pswm.blocks.ore.BlockKeleriumOre;
+import com.parzivail.pswm.blocks.ore.BlockRubindumOre;
+import com.parzivail.pswm.blocks.ore.BlockTitaniumOre;
 import com.parzivail.pswm.items.ItemDeathStarBlock;
 import com.parzivail.pswm.items.ItemDeathStarLight;
 import com.parzivail.pswm.items.ItemEndorBaseWall;
@@ -89,6 +97,30 @@ public class BlockRegister
 		StarWarsMod.blockBactaTank = new BlockBactaTank();
 		GameRegistry.registerBlock(StarWarsMod.blockBactaTank, "bactaTank");
 		GameRegistry.registerTileEntity(TileEntityBactaTank.class, "teBactaTank");
+
+		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
+		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
+
+		StarWarsMod.blockDolomiteOre = new BlockDolomiteOre();
+		GameRegistry.registerBlock(StarWarsMod.blockDolomiteOre, "blockDolomiteOre");
+
+		StarWarsMod.blockExoniumOre = new BlockExoniumOre();
+		GameRegistry.registerBlock(StarWarsMod.blockExoniumOre, "blockExoniumOre");
+
+		StarWarsMod.blockHeliciteOre = new BlockHeliciteOre();
+		GameRegistry.registerBlock(StarWarsMod.blockHeliciteOre, "blockHeliciteOre");
+
+		StarWarsMod.blockBeneOre = new BlockBeneOre();
+		GameRegistry.registerBlock(StarWarsMod.blockBeneOre, "blockBeneOre");
+
+		StarWarsMod.blockIoniteOre = new BlockIoniteOre();
+		GameRegistry.registerBlock(StarWarsMod.blockIoniteOre, "blockIoniteOre");
+
+		StarWarsMod.blockKeleriumOre = new BlockKeleriumOre();
+		GameRegistry.registerBlock(StarWarsMod.blockKeleriumOre, "blockKeleriumOre");
+
+		StarWarsMod.blockRubindumOre = new BlockRubindumOre();
+		GameRegistry.registerBlock(StarWarsMod.blockRubindumOre, "blockRubindumOre");
 
 		StarWarsMod.blockChromiumOre = new BlockChromiumOre();
 		GameRegistry.registerBlock(StarWarsMod.blockChromiumOre, "chromiumOre");

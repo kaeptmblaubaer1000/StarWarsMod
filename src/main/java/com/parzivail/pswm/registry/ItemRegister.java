@@ -73,6 +73,14 @@ import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveKashyyyk;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveMustafar;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveTatooine;
 import com.parzivail.pswm.items.hyperdrive.ItemHyperdriveYavinFour;
+import com.parzivail.pswm.items.ingot.ItemBeneIngot;
+import com.parzivail.pswm.items.ingot.ItemCortosisIngot;
+import com.parzivail.pswm.items.ingot.ItemDolomiteIngot;
+import com.parzivail.pswm.items.ingot.ItemExoniumIngot;
+import com.parzivail.pswm.items.ingot.ItemHeliciteIngot;
+import com.parzivail.pswm.items.ingot.ItemIoniteIngot;
+import com.parzivail.pswm.items.ingot.ItemKeleriumIngot;
+import com.parzivail.pswm.items.ingot.ItemRubindumIngot;
 import com.parzivail.pswm.items.weapons.ItemBlasterHeavy;
 import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
@@ -203,6 +211,30 @@ public class ItemRegister
 
 		StarWarsMod.idScanner = new ItemIDScanner();
 		GameRegistry.registerItem(StarWarsMod.idScanner, "idScanner");
+
+		StarWarsMod.ingotBene = new ItemBeneIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotBene, "ingotBene");
+
+		StarWarsMod.ingotCortosis = new ItemCortosisIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotCortosis, "ingotCortosis");
+
+		StarWarsMod.ingotDolomite = new ItemDolomiteIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotDolomite, "ingotDolomite");
+
+		StarWarsMod.ingotExonium = new ItemExoniumIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotExonium, "ingotExonium");
+
+		StarWarsMod.ingotHelicite = new ItemHeliciteIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotHelicite, "ingotHelicite");
+
+		StarWarsMod.ingotIonite = new ItemIoniteIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotIonite, "ingotIonite");
+
+		StarWarsMod.ingotKelerium = new ItemKeleriumIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotKelerium, "ingotKelerium");
+
+		StarWarsMod.ingotRubindum = new ItemRubindumIngot();
+		GameRegistry.registerItem(StarWarsMod.ingotRubindum, "ingotRubindum");
 
 		StarWarsMod.binocularsHoth = new ItemBinocularsHoth();
 		GameRegistry.registerItem(StarWarsMod.binocularsHoth, "binocularsHoth");

@@ -162,6 +162,15 @@ public class StarWarsMod
 	public static Item titaniumChromiumDust;
 	public static Item titaniumChromiumIngot;
 
+	public static Item ingotCortosis;
+	public static Item ingotBene;
+	public static Item ingotDolomite;
+	public static Item ingotExonium;
+	public static Item ingotHelicite;
+	public static Item ingotIonite;
+	public static Item ingotKelerium;
+	public static Item ingotRubindum;
+
 	public static Item hyperdriveMotivator;
 	public static Item hyperdriveEngine;
 	public static Item hyperdriveEarth;
@@ -327,6 +336,15 @@ public class StarWarsMod
 	public static Block blockHangingBucket;
 	public static Block blockBasket;
 	public static Block blockBactaTank;
+
+	public static Block blockCortosisOre;
+	public static Block blockBeneOre;
+	public static Block blockDolomiteOre;
+	public static Block blockExoniumOre;
+	public static Block blockHeliciteOre;
+	public static Block blockIoniteOre;
+	public static Block blockKeleriumOre;
+	public static Block blockRubindumOre;
 
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;

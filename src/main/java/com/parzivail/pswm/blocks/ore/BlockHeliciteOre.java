@@ -1,4 +1,4 @@
-package com.parzivail.pswm.blocks;
+package com.parzivail.pswm.blocks.ore;
 
 import java.util.Random;
 
@@ -10,11 +10,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
-public class BlockChromiumOre extends Block
+public class BlockHeliciteOre extends Block
 {
-	public String name = "chromiumOre";
+	public String name = "heliciteOre";
 
-	public BlockChromiumOre()
+	public BlockHeliciteOre()
 	{
 		super(Material.rock);
 		setBlockName(Resources.MODID + "." + name);
@@ -28,7 +28,7 @@ public class BlockChromiumOre extends Block
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsMod.chromiumDust;
+		return StarWarsMod.ingotHelicite;
 	}
 }
 /*
