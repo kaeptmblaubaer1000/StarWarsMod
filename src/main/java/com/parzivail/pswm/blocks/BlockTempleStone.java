@@ -10,7 +10,7 @@ public class BlockTempleStone extends BlockMultiTexture
 {
 	public BlockTempleStone(boolean lit)
 	{
-		super("templeStone", new String[] { (lit ? "Lit" : ""), "Brick" + (lit ? "Lit" : ""), "BrickFancy" + (lit ? "Lit" : ""), "SlabTop" + (lit ? "Lit" : ""), "SlabTopDark" + (lit ? "Lit" : "") }, Material.rock);
+		super("templeStone" + (lit ? "Lit" : ""), new String[] { "", "Brick", "BrickFancy", "SlabTop", "SlabTopDark" }, Material.rock);
 		setCreativeTab(StarWarsMod.StarWarsTab);
 		if (lit)
 			this.setLightLevel(1);
