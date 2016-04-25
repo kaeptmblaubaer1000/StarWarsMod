@@ -17,9 +17,9 @@ public class ArmorEndor extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
-	ModelEndorHelmet h = new ModelEndorHelmet();
+	ModelEndorHelmet h;
 	@SideOnly(Side.CLIENT)
-	ModelCompressionArmor c = new ModelCompressionArmor(0.4f, this);
+	ModelCompressionArmor c;
 
 	public ArmorEndor(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -34,7 +34,13 @@ public class ArmorEndor extends ItemArmor
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
 		if (armorSlot == 0)
+		{
+			if (h == null)
+				h = new ModelEndorHelmet();
 			return h;
+		}
+		if (c == null)
+			c = new ModelCompressionArmor(0.4f, this);
 		return c;
 	}
 

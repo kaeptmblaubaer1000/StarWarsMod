@@ -2,6 +2,19 @@ package com.parzivail.pswm.rendering.helper;
 
 import java.awt.Point;
 
+import org.lwjgl.opengl.GL11;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
+import com.parzivail.pswm.minimap.MinimapStore;
+import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.Lumberjack;
+
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -16,23 +29,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
-import org.lwjgl.opengl.GL11;
-
-import scala.Int;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.handlers.ClientEventHandler;
-import com.parzivail.pswm.minimap.MinimapStore;
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.Lumberjack;
-
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-@SideOnly(Side.CLIENT)
 public class PGui// extends Gui
 {
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
@@ -61,7 +57,7 @@ public class PGui// extends Gui
 	public static int rainbowColor(int phaseMod)
 	{
 		float frequency = 0.001F;
-		float phase = Math.abs(Minecraft.getSystemTime() % Int.MaxValue() - Int.MaxValue() / 2);
+		float phase = Math.abs(Minecraft.getSystemTime() % Integer.MAX_VALUE - Integer.MIN_VALUE / 2);
 		int r = (int)(Math.sin(frequency * phase + 0 + phaseMod) * 127 + 128);
 		int g = (int)(Math.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
 		int b = (int)(Math.sin(frequency * phase + 4 + phaseMod) * 127 + 128);

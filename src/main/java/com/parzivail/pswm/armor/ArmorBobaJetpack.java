@@ -17,7 +17,7 @@ public class ArmorBobaJetpack extends ItemArmor
 {
 	private String[] names = { "Helmet", "JetpackChestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
-	ModelJetpack h = new ModelJetpack();
+	ModelJetpack h;
 
 	public ArmorBobaJetpack(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
@@ -38,7 +38,11 @@ public class ArmorBobaJetpack extends ItemArmor
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
 		if (itemstack.getItem() == com.parzivail.pswm.StarWarsMod.bobaJetpackChest)
+		{
+			if (h == null)
+				h = new ModelJetpack();
 			return h;
+		}
 		return null;
 	}
 

@@ -15,12 +15,14 @@ public class ArmorRebelFleet extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
-	ModelCompressionArmor c = new ModelCompressionArmor(0.4f, this);
+	ModelCompressionArmor c;
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
+		if (c == null)
+			c = new ModelCompressionArmor(0.4f, this);
 		return c;
 	}
 
