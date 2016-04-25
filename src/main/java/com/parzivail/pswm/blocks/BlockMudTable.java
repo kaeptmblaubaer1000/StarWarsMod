@@ -21,6 +21,7 @@ public class BlockMudTable extends BlockContainer
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
+		this.useNeighborBrightness = true;
 	}
 
 	@Override
