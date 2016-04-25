@@ -6,21 +6,16 @@ import com.parzivail.util.world.HarvestLevel;
 
 import net.minecraft.block.BlockStairs;
 
-public class BlockMudStairs extends BlockStairs
+public class BlockTempleStoneStairsSlabTop extends BlockStairs
 {
-	public String name = "mudStairs";
+	public String name = "templeStoneStairsSlabTop";
 
-	public BlockMudStairs()
+	public BlockTempleStoneStairsSlabTop()
 	{
-		super(StarWarsMod.blockDagobahMud, 0);
+		super(StarWarsMod.blockTempleStone, 3);
 		setBlockName(Resources.MODID + "." + name);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		this.useNeighborBrightness = true;
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockEndorBaseWallStairs.class
- * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

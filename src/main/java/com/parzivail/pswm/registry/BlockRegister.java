@@ -25,6 +25,11 @@ import com.parzivail.pswm.blocks.BlockTatooineSandstone;
 import com.parzivail.pswm.blocks.BlockTatooineTable;
 import com.parzivail.pswm.blocks.BlockTempleStone;
 import com.parzivail.pswm.blocks.BlockTempleStoneSlab;
+import com.parzivail.pswm.blocks.BlockTempleStoneStairs;
+import com.parzivail.pswm.blocks.BlockTempleStoneStairsBrick;
+import com.parzivail.pswm.blocks.BlockTempleStoneStairsFancy;
+import com.parzivail.pswm.blocks.BlockTempleStoneStairsSlabTop;
+import com.parzivail.pswm.blocks.BlockTempleStoneStairsSlabTopDark;
 import com.parzivail.pswm.blocks.BlockTitaniumChromium;
 import com.parzivail.pswm.blocks.ore.BlockBeneOre;
 import com.parzivail.pswm.blocks.ore.BlockChromiumOre;
@@ -121,6 +126,21 @@ public class BlockRegister
 
 		StarWarsMod.blockTempleStone = new BlockTempleStone(false);
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStone, ItemTempleStoneBlock.class, "blockTempleStone");
+
+		StarWarsMod.blockTempleStoneStairs = new BlockTempleStoneStairs();
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairs, "blockTempleStoneStairs");
+
+		StarWarsMod.blockTempleStoneStairsBrick = new BlockTempleStoneStairsBrick();
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairsBrick, "blockTempleStoneStairsBrick");
+
+		StarWarsMod.blockTempleStoneStairsFancy = new BlockTempleStoneStairsFancy();
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairsFancy, "blockTempleStoneStairsFancy");
+
+		StarWarsMod.blockTempleStoneStairsSlabTop = new BlockTempleStoneStairsSlabTop();
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairsSlabTop, "blockTempleStoneStairsStabTop");
+
+		StarWarsMod.blockTempleStoneStairsSlabTopDark = new BlockTempleStoneStairsSlabTopDark();
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairsSlabTopDark, "blockTempleStoneStairsSlabTopDark");
 
 		StarWarsMod.blockTempleStoneSlab = new BlockTempleStoneSlab(false, false);
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlab, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlab");
