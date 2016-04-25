@@ -130,6 +130,7 @@ item.starwarsmod.spawnXwing.name=T-65 X-Wing Starfighter
 item.starwarsmod.spawnAwing.name=RZ-1 A-Wing Interceptor
 item.starwarsmod.spawnSkyhopper.name=T-16 Skyhopper
 item.starwarsmod.spawnSnowspeeder.name=T-47 Snowspeeder
+item.starwarsmod.spawnAtst.name=AT-ST
 
 // Vehicles
 entity.starwarsmod.speederBike.name=74-Z Speeder Bike
