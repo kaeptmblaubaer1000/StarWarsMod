@@ -19,6 +19,16 @@ item.starwarsmod.titaniumDust.name=Titanium Dust
 item.starwarsmod.hyperdriveEngine.name=Hyperdrive Engine
 item.starwarsmod.hyperdriveMotivator.name=Hyperdrive Motivator
 item.starwarsmod.waterDroplet.name=Water Droplet
+item.starwarsmod.idScanner.name=ID Scanner
+item.starwarsmod.lightsaberNew.name=Lightsaber
+item.starwarsmod.cortosisIngot.name=Cortosis Ingot
+item.starwarsmod.beneIngot.name=Bene Ingot
+item.starwarsmod.dolomiteIngot.name=Dolomite Ingot
+item.starwarsmod.exoniumIngot.name=Exonium Ingot
+item.starwarsmod.ioniteIngot.name=Ionite Ingot
+item.starwarsmod.rubindumIngot.name=Rubindum Ingot
+item.starwarsmod.heliciteIngot.name=Helicite Ingot
+item.starwarsmod.keleriumIngot.name=Kelerium Ingot
 
 // Tools
 item.starwarsmod.droidCaller.name=Droid Caller
@@ -46,7 +56,6 @@ item.starwarsmod.gamorreanAx.name=Gamorrean Ax
 item.starwarsmod.gamorreanAx2.name=Gamorrean Ax
 item.starwarsmod.gamorreanAx3.name=Gamorrean Staff
 item.starwarsmod.vibroLance.name=Vibro-Lance
-item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 
 // Blasters
 item.starwarsmod.blasterPistol.Dl44.name=BlasTech DL-44 Heavy Blaster Pistol
@@ -66,6 +75,7 @@ item.starwarsmod.blasterRifle.Ee3.name=BlasTech EE-3 Carbine Rifle
 item.starwarsmod.blasterRifle.Ionization.name=Ionization Blaster
 item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
 item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
+item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 
 // Music Discs
 item.starwarsmod.musicDisc.name=Music Disc
@@ -84,6 +94,7 @@ item.starwarsmod.hyperdriveKashyyyk.name=Kashyyyk Hyperdrive
 item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
 item.starwarsmod.hyperdriveDagobah.name=Dagobah Hyperdrive
 item.starwarsmod.hyperdriveIlum.name=Ilum Hyperdrive
+item.starwarsmod.hyperdriveMustafar.name=Mustafar Hyperdrive
 
 // Droid Items
 item.starwarsmod.spawnAstromech.name=Astromech Droid
@@ -117,6 +128,8 @@ item.starwarsmod.spawnTIE.name=TIE/LN Starfighter
 item.starwarsmod.spawnTIEInterceptor.name=TIE/IN Interceptor
 item.starwarsmod.spawnXwing.name=T-65 X-Wing Starfighter
 item.starwarsmod.spawnAwing.name=RZ-1 A-Wing Interceptor
+item.starwarsmod.spawnSkyhopper.name=T-16 Skyhopper
+item.starwarsmod.spawnSnowspeeder.name=T-47 Snowspeeder
 
 // Vehicles
 entity.starwarsmod.speederBike.name=74-Z Speeder Bike
@@ -130,6 +143,14 @@ entity.starwarsmod.awing.name=RZ-1 A-Wing Interceptor
 tile.starwarsmod.moistureVaporator.name=GX-8 Water Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
+tile.starwarsmod.beneOre.name=Bene Ore
+tile.starwarsmod.exoniumOre.name=Exonium Ore
+tile.starwarsmod.cortosisOre.name=Cortosis Ore
+tile.starwarsmod.ioniteOre.name=Ionite Ore
+tile.starwarsmod.keleriumOre.name=Kelerium Ore
+tile.starwarsmod.heliciteOre.name=Helicite Ore
+tile.starwarsmod.rubindumOre.name=Rubindum Ore
+tile.starwarsmod.dolomiteOre.name=Dolomite Ore
 tile.starwarsmod.tatooineSand.name=Tatooine Sand
 tile.starwarsmod.deathStarGlass.name=Base Glass
 tile.starwarsmod.deathStarBlock.name=Base Interior
@@ -152,6 +173,12 @@ tile.starwarsmod.mudTable.name=Dagobah Mud Table
 tile.starwarsmod.bucketHanging.name=Hanging Bucket
 tile.starwarsmod.basket.name=Basket
 tile.starwarsmod.deathStarDoor.name=Base Door
+tile.starwarsmod.bactaTank.name=Bacta Tank
+tile.starwarsmod.templeStone.name=Temple Stone
+tile.starwarsmod.templeStoneSlab.name=Temple Stone Slab
+tile.starwarsmod.templeStoneLit.name=Temple Stone (Lit)
+tile.starwarsmod.templeStoneSlabLit.name=Temple Stone Slab (Lit)
+tile.starwarsmod.ancientJediStatue.name=Ancient Jedi Statue
 
 // Armor
 item.starwarsmod.newJediRobes.name=Jedi Robes
@@ -227,6 +254,15 @@ entity.starwarsmod.dewback.name=Dewback
 entity.starwarsmod.gamorrean.name=Gamorrean Guard
 entity.starwarsmod.commoner.name=Tatooine Villager
 entity.starwarsmod.sandtrooper.name=Sandtrooper
+entity.starwarsmod.stormtrooper.name=Stormtrooper
+entity.starwarsmod.scouttrooper.name=Scout Trooper
+entity.starwarsmod.snowtrooper.name=Snowtrooper
+entity.starwarsmod.atatPilot.name=AT-AT Pilot
+entity.starwarsmod.tiePilot.name=TIE Pilot
+entity.starwarsmod.endorRebel.name=Endor Rebel
+entity.starwarsmod.hothRebel.name=Hoth Rebel
+entity.starwarsmod.rebelPilot.name=Rebel Pilot
+entity.starwarsmod.bountyhunter.name=Bounty Hunter
 entity.starwarsmod.bith.name=Bith
 
 // Tabs
