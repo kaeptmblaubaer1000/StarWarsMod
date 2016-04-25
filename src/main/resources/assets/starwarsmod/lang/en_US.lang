@@ -268,6 +268,7 @@ entity.starwarsmod.bith.name=Bith
 
 // Tabs
 itemGroup.tabStarWars=Original Trilogy
+itemGroup.tabStarWarsBlocks=Original Trilogy Blocks
 
 // Achievements
 achievement.starwarsmod.becomeJedi=No such thing as luck!
