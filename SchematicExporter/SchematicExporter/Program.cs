@@ -29,7 +29,7 @@ namespace SchematicExporter
             Stopwatch totalElapse = new Stopwatch();
             totalElapse.Start();
             int files = 0;
-            foreach (String rFile in Directory.GetFiles("input/"))
+            foreach (String rFile in Directory.GetFiles("input/", "*.schematic"))
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write(Path.GetFileNameWithoutExtension(rFile).PadRight(40));

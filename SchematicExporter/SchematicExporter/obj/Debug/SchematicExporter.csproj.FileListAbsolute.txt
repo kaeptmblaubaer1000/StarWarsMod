@@ -5,3 +5,10 @@ c:\users\colby\desktop\github\SchematicExporter\SchematicExporter\bin\Debug\Sche
 c:\users\colby\desktop\github\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.exe
 c:\users\colby\desktop\github\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.pdb
 c:\users\colby\desktop\github\SchematicExporter\SchematicExporter\bin\Debug\template.java
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe.config
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.exe
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.pdb
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\template.java
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.pdb
+C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.csprojResolveAssemblyReference.cache

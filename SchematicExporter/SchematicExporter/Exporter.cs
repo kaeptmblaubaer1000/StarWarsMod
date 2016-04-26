@@ -43,6 +43,7 @@ namespace SchematicExporter
                     {
                         gen.Append(makeSetBlockLine(schematic, x, y, z));
                         numStatements++;
+                        Console.WriteLine(schematic.getBlockIdAt(x, y, z));
 
                         if (numStatements > MAX_BLOCKS_PER_GEN)
                         {
@@ -98,7 +99,7 @@ namespace SchematicExporter
 
         private static String makeGen(int genId)
         {
-            return String.Format("\tpublic boolean generate_{0}(World world, Random rand, int i, int j, int k)", genId);
+            return String.Format("\tpublic boolean generate{0}(World world, Random rand, int i, int j, int k)", genId == 0 ? "" : ("_" + genId.ToString()));
         }
 
         private static String makeCallGen(int genId)
