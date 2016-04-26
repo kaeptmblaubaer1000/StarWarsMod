@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using fNbt;
 
 namespace SchematicExporter
 {
@@ -33,6 +34,15 @@ namespace SchematicExporter
             Stopwatch s = new Stopwatch();
             s.Start();
 
+            /*
+            TAG_Compound: 4 entries {
+                TAG_String("id"): "teBasket"
+                TAG_Int("x"): 3
+                TAG_Int("y"): 0
+                TAG_Int("z"): 6
+            }
+             */
+
             gen.AppendLine(makeGen(currentGen));
             gen.AppendLine("\t{");
             for (int x = 0; x < schematic.width; x++)
@@ -43,7 +53,7 @@ namespace SchematicExporter
                     {
                         gen.Append(makeSetBlockLine(schematic, x, y, z));
                         numStatements++;
-                        Console.WriteLine(schematic.getBlockIdAt(x, y, z));
+                        //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
 
                         if (numStatements > MAX_BLOCKS_PER_GEN)
                         {
@@ -63,6 +73,18 @@ namespace SchematicExporter
             Console.ForegroundColor = ConsoleColor.Blue;
             s.Stop();
             Console.Write(Utils.millisToHRD(s.ElapsedMilliseconds).PadRight(10));
+
+            int tag = 0;
+            foreach (NbtCompound t in schematic.getTileEntities())
+            {
+                gen.Append(NBTBuilder.makeJavaNbt(String.Format("tag{0}", tag), t, null, "\t\t"));
+                int x = t["x"].IntValue;
+                int y = t["y"].IntValue;
+                int z = t["z"].IntValue;
+                gen.AppendLine(String.Format("\t\tworld.getTileEntity(i + {0}, j + {1}, k + {2}).readFromNBT(tag{3});\n", x, y, z, tag));
+
+                tag++;
+            }
 
             gen.AppendLine("\t\treturn true;");
             gen.AppendLine("\t}");
@@ -84,6 +106,7 @@ namespace SchematicExporter
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write(((currentGen * MAX_BLOCKS_PER_GEN) + numStatements).ToString().PadRight(10));
+            Console.Write(tag.ToString().PadRight(10));
             Console.Write((currentGen + 1).ToString().PadRight(10));
         }
 

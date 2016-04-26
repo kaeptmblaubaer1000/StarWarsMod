@@ -21,7 +21,7 @@ namespace SchematicExporter
         public Schematic(string fileName)
         {
             nFile = new NbtFile(fileName);
-            Console.WriteLine(nFile.RootTag);
+            //Console.WriteLine(nFile.RootTag);
             length = nFile.RootTag["Length"].IntValue;
             width = nFile.RootTag["Width"].IntValue;
             height = nFile.RootTag["Height"].IntValue;
@@ -47,6 +47,11 @@ namespace SchematicExporter
         public int getBlockMetadataAt(int x, int y, int z)
         {
             return nFile.RootTag["Data"].ByteArrayValue[(y * length + z) * width + x];
+        }
+
+        public NbtList getTileEntities()
+        {
+            return (NbtList)nFile.RootTag["TileEntities"];
         }
 
         public Block getBlockAt(int x, int y, int z)
