@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.pswm.StarWarsMod;
+{{IMPORTS}}
 
 public class {{CLASS}} extends WorldGenerator implements IWorldGenerator
 {

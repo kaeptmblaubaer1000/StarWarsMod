@@ -12,6 +12,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.mobs.EntityCow;
+
 
 public class ChestTest extends WorldGenerator implements IWorldGenerator
 {

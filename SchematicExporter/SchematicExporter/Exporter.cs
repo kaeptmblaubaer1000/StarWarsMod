@@ -28,6 +28,9 @@ namespace SchematicExporter
 
             StringBuilder gen = new StringBuilder();
             StringBuilder tiles = new StringBuilder();
+            StringBuilder imports = new StringBuilder();
+            List<String> lImports = new List<String>();
+            //com.parzivail.pswm.mobs
 
             int numStatements = 0;
             int currentGen = 0;
@@ -52,10 +55,13 @@ namespace SchematicExporter
                 int z = t["z"].IntValue;
                 if (t["id"].StringValue == "Chest")
                 {
-                    tiles.AppendLine(JavaBuilder.makeChest(ref schematic, tag, x, y, z, "\t\t"));
+                    tiles.AppendLine(JavaBuilder.makeChest(ref schematic, ref lImports, tag, x, y, z, "\t\t"));
                     tag++;
                 }
             }
+
+            foreach (String s in lImports)
+                imports.AppendLine(String.Format("import com.parzivail.pswm.mobs.{0};", s));
 
             gen.AppendLine(JavaBuilder.makeGen(currentGen));
             gen.AppendLine("\t{");
@@ -98,6 +104,7 @@ namespace SchematicExporter
             template = template.Replace("{{PACKAGE}}", options.package);
             template = template.Replace("{{CLASS}}", upperFirst(options.className));
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
+            template = template.Replace("{{IMPORTS}}", imports.ToString());
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write(((currentGen * MAX_BLOCKS_PER_GEN) + numStatements).ToString().PadRight(10));

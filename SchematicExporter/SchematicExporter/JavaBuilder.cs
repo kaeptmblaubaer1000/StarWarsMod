@@ -113,7 +113,7 @@ namespace SchematicExporter
             return sb.ToString();
         }
 
-        public static String makeChest(ref Schematic s, int chestID, int x, int y, int z, String linePrefix)
+        public static String makeChest(ref Schematic s, ref List<String> imports, int chestID, int x, int y, int z, String linePrefix)
         {
             // TileEntityChest chest = (TileEntityChest)world.getTileEntity(i + 2, j + 1, k + 3);
             // chest.setInventorySlotContents(slot, ItemStack);
@@ -169,6 +169,8 @@ namespace SchematicExporter
                             if (e != null)
                             {
                                 s.setFlagAt(x, y, z, true);
+                                if (!imports.Contains(e.getName()))
+                                    imports.Add(e.getName());
                                 return makeEntitySpawn(e, chestID, x, y, z, "\t\t");
                             }
 
