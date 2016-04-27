@@ -16,6 +16,7 @@ namespace SchematicExporter
 
         Dictionary<int, Block> blocks = new Dictionary<int, Block>();
         Dictionary<int, Item> items = new Dictionary<int, Item>();
+        Dictionary<Entity, Item> entityAssociations = new Dictionary<Entity, Item>();
 
         public IdMapper()
         {
@@ -758,6 +759,52 @@ namespace SchematicExporter
             items.Add(4386, new Item("ingotHelicite", PSWM));
             items.Add(4387, new Item("ingotKelerium", PSWM));
 
+            /*
+             * Entities
+             */
+            entityAssociations.Add(new Entity("MobSandtrooper"), getItemFromName("sandtrooperHelmet"));
+            entityAssociations.Add(new Entity("MobStormtrooper"), getItemFromName("stormtrooperHelmet"));
+            entityAssociations.Add(new Entity("MobScouttrooper"), getItemFromName("scoutTrooperHelmet"));
+            entityAssociations.Add(new Entity("MobSnowtrooper"), getItemFromName("snowtrooperHelmet"));
+            entityAssociations.Add(new Entity("MobAtatPilot"), getItemFromName("atatPilotHelmet"));
+            entityAssociations.Add(new Entity("MobTiePilot"), getItemFromName("tiePilotHelmet"));
+            entityAssociations.Add(new Entity("MobEndorRebel"), getItemFromName("endorHelmet"));
+            entityAssociations.Add(new Entity("MobHothRebel"), getItemFromName("hothHelmet"));
+            entityAssociations.Add(new Entity("MobRebelPilot"), getItemFromName("rebelPilotHelmet"));
+            entityAssociations.Add(new Entity("MobBountyhunter"), getItemFromName("bobaHelmet"));
+            entityAssociations.Add(new Entity("MobWookiee"), getItemFromName("bowcaster"));
+            entityAssociations.Add(new Entity("MobTusken"), getItemFromName("gaffiStick"));
+            entityAssociations.Add(new Entity("MobJawa"), getItemFromName("droidCaller"));
+            entityAssociations.Add(new Entity("MobEwok"), getItemFromName("leaves"));
+            entityAssociations.Add(new Entity("MobTauntaun"), getItemFromName("saddle"));
+            entityAssociations.Add(new Entity("MobBantha"), getItemFromName("banthaHorn"));
+            entityAssociations.Add(new Entity("MobWampa"), getItemFromName("")); // what for wampa?
+            entityAssociations.Add(new Entity("MobGamorrean"), getItemFromName("gamorreanAx"));
+            entityAssociations.Add(new Entity("MobDewback"), getItemFromName("dewbackRibs"));
+            entityAssociations.Add(new Entity("MobTatooineCommoner"), getItemFromName("hyperdriveEarth"));
+            entityAssociations.Add(new Entity("MobBith"), getItemFromName("recordCantina"));
+            entityAssociations.Add(new Entity("MobDroidAstromech"), getItemFromName("spawnAstromech"));
+            entityAssociations.Add(new Entity("MobDroidAstromechImperial"), getItemFromName("spawnAstromechImperial"));
+            entityAssociations.Add(new Entity("MobDroidAstromechImperial2"), getItemFromName("spawnAstromechImperial2"));
+            entityAssociations.Add(new Entity("MobDroidAstromech2"), getItemFromName("spawnAstromech2"));
+            entityAssociations.Add(new Entity("MobDroidAstromechBb8"), getItemFromName("spawnAstromechBb8"));
+            entityAssociations.Add(new Entity("MobDroidProtocol"), getItemFromName("spawnProtocol"));
+            entityAssociations.Add(new Entity("MobDroidProtocol2"), getItemFromName("spawnProtocol2"));
+            entityAssociations.Add(new Entity("MobDroidProbe"), getItemFromName("spawnProbe"));
+            entityAssociations.Add(new Entity("MobDroidGNK"), getItemFromName("spawnGonk"));
+            entityAssociations.Add(new Entity("MobDroidSurgical"), getItemFromName("spawnSurgical"));
+            entityAssociations.Add(new Entity("MobDroidMouse"), getItemFromName("spawnSurgical"));
+            entityAssociations.Add(new Entity("VehicHothSpeederBike"), getItemFromName("spawnHothSpeeder"));
+            entityAssociations.Add(new Entity("VehicTIE"), getItemFromName("spawnTIE"));
+            entityAssociations.Add(new Entity("VehicTIEInterceptor"), getItemFromName("spawnTIEInterceptor"));
+            entityAssociations.Add(new Entity("VehicXWing"), getItemFromName("spawnXwing"));
+            entityAssociations.Add(new Entity("VehicAWing"), getItemFromName("spawnAwing"));
+            entityAssociations.Add(new Entity("VehicATST"), getItemFromName("spawnAtst"));
+            entityAssociations.Add(new Entity("VehicSnowspeeder"), getItemFromName("spawnSnowspeeder"));
+            entityAssociations.Add(new Entity("VehicSkyhopper"), getItemFromName("spawnSkyhopper"));
+            entityAssociations.Add(new Entity("VehicSpeederBike"), getItemFromName("spawnSpeederBike"));
+            entityAssociations.Add(new Entity("VehicLandspeeder"), getItemFromName("spawnLandspeeder"));
+            entityAssociations.Add(new Entity("VehicJakkuSpeeder"), getItemFromName("spawnJakkuSpeeder"));
         }
 
         public Block getBlockFromId(int id)
@@ -767,6 +814,11 @@ namespace SchematicExporter
             return blocks[id];
         }
 
+        public Block getBlockFromName(String name)
+        {
+            return blocks.FirstOrDefault(x => x.Value.getName() == name).Value;
+        }
+
         public Item getItemFromId(int id)
         {
             if (blocks.ContainsKey(id)) // because items are blocks too and vice versa
@@ -774,6 +826,21 @@ namespace SchematicExporter
             if (!items.ContainsKey(id))
                 return items[0];
             return items[id];
+        }
+
+        public Entity getEntityFromName(String name)
+        {
+            return entityAssociations.FirstOrDefault(x => x.Key.getName() == name).Key;
+        }
+
+        public Entity getEntityFromAssociation(Item item)
+        {
+            return entityAssociations.FirstOrDefault(x => x.Value.getName() == item.getName()).Key;
+        }
+
+        public Item getItemFromName(String name)
+        {
+            return items.FirstOrDefault(x => x.Value.getName() == name).Value;
         }
 
         public int getIdFromItem(String itemName)

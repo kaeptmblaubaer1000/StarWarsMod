@@ -20,8 +20,8 @@ namespace SchematicExporter
                             .ToArray();
             String ret = String.Join(" ", parts); // combine the result
             if (String.IsNullOrWhiteSpace(ret))
-                return "000ms";
-            return ret;
+                return "0ms";
+            return Regex.Replace(ret, @"(0+)(\d+)", @"$2");
         }
     }
 }

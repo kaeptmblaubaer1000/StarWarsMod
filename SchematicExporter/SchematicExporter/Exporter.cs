@@ -31,8 +31,8 @@ namespace SchematicExporter
             int numStatements = 0;
             int currentGen = 0;
 
-            Stopwatch s = new Stopwatch();
-            s.Start();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
             /*
             TAG_Compound: 4 entries {
@@ -43,7 +43,7 @@ namespace SchematicExporter
             }
              */
 
-            gen.AppendLine(makeGen(currentGen));
+            gen.AppendLine(JavaBuilder.makeGen(currentGen));
             gen.AppendLine("\t{");
             for (int x = 0; x < schematic.width; x++)
             {
@@ -51,7 +51,7 @@ namespace SchematicExporter
                 {
                     for (int z = 0; z < schematic.length; z++)
                     {
-                        gen.Append(makeSetBlockLine(schematic, x, y, z));
+                        gen.Append(JavaBuilder.makeSetBlockLine(schematic, x, y, z));
                         numStatements++;
                         //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
 
@@ -59,11 +59,11 @@ namespace SchematicExporter
                         {
                             numStatements = 0;
                             currentGen++;
-                            gen.AppendLine(makeCallGen(currentGen));
+                            gen.AppendLine(JavaBuilder.makeCallGen(currentGen));
                             gen.AppendLine("\t\treturn true;");
                             gen.AppendLine("\t}");
                             gen.AppendLine();
-                            gen.AppendLine(makeGen(currentGen));
+                            gen.AppendLine(JavaBuilder.makeGen(currentGen));
                             gen.AppendLine("\t{");
                         }
                     }
@@ -71,8 +71,8 @@ namespace SchematicExporter
             }
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            s.Stop();
-            Console.Write(Utils.millisToHRD(s.ElapsedMilliseconds).PadRight(10));
+            stopwatch.Stop();
+            Console.Write(Utils.millisToHRD(stopwatch.ElapsedMilliseconds).PadRight(10));
 
             int tag = 0;
             foreach (NbtCompound t in schematic.getTileEntities())
@@ -98,34 +98,14 @@ namespace SchematicExporter
             Console.Write(((currentGen * MAX_BLOCKS_PER_GEN) + numStatements).ToString().PadRight(10));
             Console.Write(tag.ToString().PadRight(10));
             Console.Write((currentGen + 1).ToString().PadRight(10));
-            s.Restart();
+            stopwatch.Restart();
 
             using (StreamWriter w = new StreamWriter("output/" + options.fileName))
                 w.WriteLine(template);
 
-            s.Stop();
+            stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(Utils.millisToHRD(s.ElapsedMilliseconds).PadRight(10));
-        }
-
-        private static String makeSetBlockLine(Schematic s, int x, int y, int z)
-        {
-            Block b = s.getBlockAt(x, y, z);
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(String.Format("\t\tthis.setBlock(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x, y, z, b.createJavaVariable()));
-            if (s.getBlockMetadataAt(x, y, z) != 0)
-                sb.AppendLine(String.Format("\t\tworld.setBlockMetadataWithNotify(i + {0}, j + {1}, k + {2}, {3}, 2);", x, y, z, s.getBlockMetadataAt(x, y, z)));
-            return sb.ToString();
-        }
-
-        private static String makeGen(int genId)
-        {
-            return String.Format("\tpublic boolean generate{0}(World world, Random rand, int i, int j, int k)", genId == 0 ? "" : ("_" + genId.ToString()));
-        }
-
-        private static String makeCallGen(int genId)
-        {
-            return String.Format("\t\tgenerate_{0}(world, rand, i, j, k);", genId);
+            Console.Write(Utils.millisToHRD(stopwatch.ElapsedMilliseconds).PadRight(10));
         }
 
         private static string upperFirst(string s)

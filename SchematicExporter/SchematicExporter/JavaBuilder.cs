@@ -9,26 +9,47 @@ namespace SchematicExporter
 {
     class JavaBuilder
     {
-        /*
-            TAG_Compound: 7 entries {
-              TAG_Compound("droplets"): 3 entries {
-                TAG_Short("id"): 4174
-                TAG_Byte("Count"): 7
-                TAG_Short("Damage"): 0
-              }
-              TAG_Int("progress"): 505
-              TAG_Short("facing"): 0
-              TAG_String("id"): "teMoistureVaporator"
-              TAG_Int("x"): 8
-              TAG_Int("y"): 0
-              TAG_Int("z"): 8
-            }
-         */
+        public static String makeSetBlockLine(Schematic s, int x, int y, int z)
+        {
+            Block b = s.getBlockAt(x, y, z);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(String.Format("\t\tthis.setBlock(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x, y, z, b.createJavaVariable()));
+            if (s.getBlockMetadataAt(x, y, z) != 0)
+                sb.AppendLine(String.Format("\t\tworld.setBlockMetadataWithNotify(i + {0}, j + {1}, k + {2}, {3}, 2);", x, y, z, s.getBlockMetadataAt(x, y, z)));
+            return sb.ToString();
+        }
+
+        public static String makeGen(int genId)
+        {
+            return String.Format("\tpublic boolean generate{0}(World world, Random rand, int i, int j, int k)", genId == 0 ? "" : ("_" + genId.ToString()));
+        }
+
+        public static String makeCallGen(int genId)
+        {
+            return String.Format("\t\tgenerate_{0}(world, rand, i, j, k);", genId);
+        }
+
         public static String makeNbt(String nameBase, NbtCompound compound, String setTag, String linePrefix)
         {
             // world.getTileEntity(i, j, k).readFromNBT(NBTTagCompound);
             // NBTTagCompound tag = new NBTTagCompound();
             // tag.setTag("key", value);
+
+            /*
+                TAG_Compound: 7 entries {
+                  TAG_Compound("droplets"): 3 entries {
+                    TAG_Short("id"): 4174
+                    TAG_Byte("Count"): 7
+                    TAG_Short("Damage"): 0
+                  }
+                  TAG_Int("progress"): 505
+                  TAG_Short("facing"): 0
+                  TAG_String("id"): "teMoistureVaporator"
+                  TAG_Int("x"): 8
+                  TAG_Int("y"): 0
+                  TAG_Int("z"): 8
+                }
+             */
 
             StringBuilder sb = new StringBuilder();
 
@@ -128,16 +149,39 @@ namespace SchematicExporter
                     int id = itemstack["id"].ShortValue;
                     int count = itemstack["Count"].ByteValue;
                     int damage = itemstack["Damage"].ShortValue;
-                    if (slot == 0 && id == IdMapper.instance.getIdFromItem("blaze_rod")) // blaze rod in top left = randomize loot
+                    if (slot == 0)
                     {
-                        sb.Clear();
-                        sb.AppendLine(String.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
-                        break;
+                        if (id == IdMapper.instance.getIdFromItem("blaze_rod")) // blaze rod in top left = randomize loot
+                        {
+                            sb.Clear();
+                            sb.AppendLine(String.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
+                            break;
+                        }
+                        else if (id == IdMapper.instance.getIdFromItem("lever")) // lever in top left = spawn entity
+                        {
+                            //sb.Clear();
+                            //sb.AppendLine(String.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
+                            //break;
+                        }
                     }
                     //new ItemStack(item, size, meta)
                     sb.AppendLine(String.Format("{0}chest{5}.setInventorySlotContents({1}, new ItemStack({2}, {3}, {4}));", linePrefix, slot, IdMapper.instance.getItemFromId(id).createJavaVariable(), count, damage, chestID));
                 }
             }
+
+            return sb.ToString();
+        }
+
+        public static String makeEntitySpawn(Entity e, int entityID, int x, int y, int z, String linePrefix)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(String.Format("{0}if (!world.isRemote)", linePrefix));
+            sb.AppendLine(String.Format("{0}{{", linePrefix));
+            sb.AppendLine(String.Format("{0}\t{1} entity{2} = new {1}(world);", linePrefix, e.getName(), entityID));
+            sb.AppendLine(String.Format("{0}\tentity{1}.setPosition(x + 0.5D + {2}, y + {3}, z + 0.5D + {4});", linePrefix, entityID, x, y, z));
+            sb.AppendLine(String.Format("{0}\tworld.spawnEntityInWorld(entity{1});", linePrefix, entityID));
+            sb.AppendLine(String.Format("{0}}}", linePrefix));
 
             return sb.ToString();
         }
