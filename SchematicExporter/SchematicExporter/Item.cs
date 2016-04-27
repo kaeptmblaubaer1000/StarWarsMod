@@ -31,5 +31,10 @@ namespace SchematicExporter
         {
             return String.Format("{0}.{1}", this.namespacePrefix, this.name);
         }
+
+        public Block toBlock()
+        {
+            return new Block(this.name, this.namespacePrefix);
+        }
     }
 }

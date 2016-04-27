@@ -92,7 +92,7 @@ namespace SchematicExporter
             return sb.ToString();
         }
 
-        public static String makeChest(Schematic s, int x, int y, int z, String linePrefix)
+        public static String makeChest(Schematic s, int chestID, int x, int y, int z, String linePrefix)
         {
             // TileEntityChest chest = (TileEntityChest)world.getTileEntity(i + 2, j + 1, k + 3);
             // chest.setInventorySlotContents(slot, ItemStack);
@@ -118,11 +118,16 @@ namespace SchematicExporter
 
             if (c != null)
             {
-                sb.AppendLine(String.Format("{0}TileEntityChest chest = (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
+                sb.AppendLine(String.Format("{0}TileEntityChest chest{4} = (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z, chestID));
                 
                 foreach (NbtCompound itemstack in (NbtList)c["Items"])
                 {
-                    int slot = itemstack["Slot"].IntValue;
+                    int slot = itemstack["Slot"].ByteValue;
+                    int id = itemstack["id"].ShortValue;
+                    int count = itemstack["Count"].ByteValue;
+                    int damage = itemstack["Damage"].ShortValue;
+                    //new ItemStack(item, size, meta)
+                    sb.AppendLine(String.Format("{0}chest{5}.setInventorySlotContents({1}, new ItemStack({2}, {3}, {4}));", linePrefix, slot, IdMapper.instance.getItemFromId(id).createJavaVariable(), count, damage, chestID));
                 }
             }
 

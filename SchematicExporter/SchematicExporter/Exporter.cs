@@ -77,13 +77,14 @@ namespace SchematicExporter
             int tag = 0;
             foreach (NbtCompound t in schematic.getTileEntities())
             {
-                gen.Append(JavaBuilder.makeNbt(String.Format("tag{0}", tag), t, null, "\t\t"));
                 int x = t["x"].IntValue;
                 int y = t["y"].IntValue;
                 int z = t["z"].IntValue;
-                gen.AppendLine(String.Format("\t\tworld.getTileEntity(i + {0}, j + {1}, k + {2}).readFromNBT(tag{3});\n", x, y, z, tag));
-
-                tag++;
+                if (t["id"].StringValue == "Chest")
+                {
+                    gen.AppendLine(JavaBuilder.makeChest(schematic, tag, x, y, z, "\t\t"));
+                    tag++;
+                }
             }
 
             gen.AppendLine("\t\treturn true;");

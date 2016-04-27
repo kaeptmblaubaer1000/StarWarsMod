@@ -31,7 +31,7 @@ namespace SchematicExporter
             if (nFile.RootTag["AddBlocks"] != null)
                 addId = nFile.RootTag["AddBlocks"].ByteArrayValue;
 
-            Console.WriteLine(getTileEntities());
+            //Console.WriteLine(getTileEntities());
 
             for (int index = 0; index < blocks.Length; index++)
                 if ((index >> 1) < addId.Length)
