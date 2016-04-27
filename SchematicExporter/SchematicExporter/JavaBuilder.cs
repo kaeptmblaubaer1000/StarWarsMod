@@ -192,7 +192,7 @@ namespace SchematicExporter
             sb.AppendLine(String.Format("{0}if (!world.isRemote)", linePrefix));
             sb.AppendLine(String.Format("{0}{{", linePrefix));
             sb.AppendLine(String.Format("{0}\t{1} entity{2} = new {1}(world);", linePrefix, e.getName(), entityID));
-            sb.AppendLine(String.Format("{0}\tentity{1}.setPosition(x + 0.5D + {2}, y + {3}, z + 0.5D + {4});", linePrefix, entityID, x, y, z));
+            sb.AppendLine(String.Format("{0}\tentity{1}.setPosition(i + 0.5D + {2}, j + {3}, k + 0.5D + {4});", linePrefix, entityID, x, y, z));
             sb.AppendLine(String.Format("{0}\tworld.spawnEntityInWorld(entity{1});", linePrefix, entityID));
             sb.AppendLine(String.Format("{0}}}", linePrefix));
 

@@ -12,7 +12,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.mobs.EntityCow;
 
 
 public class ChestTest extends WorldGenerator implements IWorldGenerator
@@ -39,6 +38,8 @@ public class ChestTest extends WorldGenerator implements IWorldGenerator
 		this.setBlock(world, i + 1, j + 0, k + 1, Blocks.grass, 0);
 		this.setBlock(world, i + 1, j + 0, k + 2, Blocks.grass, 0);
 		this.setBlock(world, i + 1, j + 1, k + 0, Blocks.air, 0);
+		this.setBlock(world, i + 1, j + 1, k + 1, Blocks.chest, 0);
+		world.setBlockMetadataWithNotify(i + 1, j + 1, k + 1, 2, 2);
 		this.setBlock(world, i + 1, j + 1, k + 2, Blocks.air, 0);
 		this.setBlock(world, i + 2, j + 0, k + 0, Blocks.grass, 0);
 		this.setBlock(world, i + 2, j + 0, k + 1, Blocks.grass, 0);
@@ -53,12 +54,6 @@ public class ChestTest extends WorldGenerator implements IWorldGenerator
 		this.setBlock(world, i + 3, j + 1, k + 0, Blocks.air, 0);
 		this.setBlock(world, i + 3, j + 1, k + 1, Blocks.air, 0);
 		this.setBlock(world, i + 3, j + 1, k + 2, Blocks.air, 0);
-		if (!world.isRemote)
-		{
-			EntityCow entity0 = new EntityCow(world);
-			entity0.setPosition(x + 0.5D + 1, y + 1, z + 0.5D + 1);
-			world.spawnEntityInWorld(entity0);
-		}
 
 		TileEntityChest chest1 = (TileEntityChest)world.getTileEntity(i + 2, j + 1, k + 1);
 
