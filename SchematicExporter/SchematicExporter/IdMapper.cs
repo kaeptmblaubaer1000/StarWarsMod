@@ -805,8 +805,6 @@ namespace SchematicExporter
             entityAssociations.Add(new Entity("VehicSpeederBike"), getItemFromName("spawnSpeederBike"));
             entityAssociations.Add(new Entity("VehicLandspeeder"), getItemFromName("spawnLandspeeder"));
             entityAssociations.Add(new Entity("VehicJakkuSpeeder"), getItemFromName("spawnJakkuSpeeder"));
-
-            entityAssociations.Add(new Entity("EntityCow"), getItemFromName("beef"));
         }
 
         public Block getBlockFromId(int id)
