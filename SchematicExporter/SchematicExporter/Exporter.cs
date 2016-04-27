@@ -77,7 +77,7 @@ namespace SchematicExporter
             int tag = 0;
             foreach (NbtCompound t in schematic.getTileEntities())
             {
-                gen.Append(NBTBuilder.makeJavaNbt(String.Format("tag{0}", tag), t, null, "\t\t"));
+                gen.Append(JavaBuilder.makeNbt(String.Format("tag{0}", tag), t, null, "\t\t"));
                 int x = t["x"].IntValue;
                 int y = t["y"].IntValue;
                 int z = t["z"].IntValue;

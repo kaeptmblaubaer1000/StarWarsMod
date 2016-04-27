@@ -33,6 +33,7 @@ import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.network.MessageAddEffectTo;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageCreateDestructionBolt;
+import com.parzivail.pswm.network.MessageDoWorldgen;
 import com.parzivail.pswm.network.MessageDrainKnowledge;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.pswm.network.MessageEntityGrab;
@@ -597,6 +598,7 @@ public class StarWarsMod
 		this.registerMessage(MessageToggleLightsaber.class);
 		this.registerMessage(MessageSetPlayerHolding.class);
 		this.registerMessage(MessageEntityPosition.class);
+		this.registerMessage(MessageDoWorldgen.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

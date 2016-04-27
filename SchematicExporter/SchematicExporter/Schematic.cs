@@ -28,8 +28,10 @@ namespace SchematicExporter
 
             blocks = nFile.RootTag["Blocks"].ByteArrayValue.Select(x => (int)x).ToArray();
 
-            if (nFile.RootTag["AddBlocks"].HasValue)
+            if (nFile.RootTag["AddBlocks"] != null)
                 addId = nFile.RootTag["AddBlocks"].ByteArrayValue;
+
+            Console.WriteLine(getTileEntities());
 
             for (int index = 0; index < blocks.Length; index++)
                 if ((index >> 1) < addId.Length)
@@ -54,11 +56,18 @@ namespace SchematicExporter
             return (NbtList)nFile.RootTag["TileEntities"];
         }
 
+        public NbtCompound getTileEntityAt(int x, int y, int z)
+        {
+            foreach (NbtCompound c in getTileEntities())
+                if (c["x"].IntValue == x && c["y"].IntValue == y && c["z"].IntValue == z)
+                    return c;
+            return null;
+        }
+
         public Block getBlockAt(int x, int y, int z)
         {
             int id = getBlockIdAt(x, y, z);
-            int meta = getBlockMetadataAt(x, y, z);
-            return BlockMapper.instance.getBlockFromId(id, meta);
+            return IdMapper.instance.getBlockFromId(id);
         }
     }
 }

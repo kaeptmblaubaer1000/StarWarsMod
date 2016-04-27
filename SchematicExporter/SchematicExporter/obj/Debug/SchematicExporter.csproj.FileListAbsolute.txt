@@ -12,3 +12,10 @@ C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bi
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.pdb
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.csprojResolveAssemblyReference.cache
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe.config
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.exe
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.pdb
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\template.java
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.pdb
+E:\Forge\Mods\StarWarsMod\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.csprojResolveAssemblyReference.cache

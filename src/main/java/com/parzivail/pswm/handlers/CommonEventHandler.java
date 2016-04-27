@@ -18,6 +18,7 @@ import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
+import com.parzivail.pswm.network.MessageDoWorldgen;
 import com.parzivail.pswm.network.MessageEntityGrab;
 import com.parzivail.pswm.network.MessageEntityHurt;
 import com.parzivail.pswm.network.MessageEntityReverse;
@@ -40,7 +41,6 @@ import com.parzivail.pswm.vehicles.VehicSpeederBike;
 import com.parzivail.pswm.vehicles.VehicTIE;
 import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.pswm.vehicles.VehicXWing;
-import com.parzivail.pswm.world.gen.WorldGenTest;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
@@ -163,7 +163,7 @@ public class CommonEventHandler
 			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
-			new WorldGenTest().generate(StarWarsMod.mc.theWorld, StarWarsMod.rngGeneral, (int)StarWarsMod.mc.thePlayer.posX, (int)StarWarsMod.mc.thePlayer.posY, (int)StarWarsMod.mc.thePlayer.posZ);
+			StarWarsMod.network.sendToServer(new MessageDoWorldgen((int)StarWarsMod.mc.thePlayer.dimension, (int)StarWarsMod.mc.thePlayer.posX, (int)StarWarsMod.mc.thePlayer.posY, (int)StarWarsMod.mc.thePlayer.posZ));
 
 		if (KeybindRegistry.keyLSForge.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
