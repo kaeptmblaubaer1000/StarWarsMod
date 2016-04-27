@@ -16,6 +16,7 @@ namespace SchematicExporter
         public int height;
 
         private int[] blocks;
+        private bool[] blockFlags;
         private byte[] addId = new byte[0];
 
         public Schematic(string fileName)
@@ -27,6 +28,9 @@ namespace SchematicExporter
             height = nFile.RootTag["Height"].IntValue;
 
             blocks = nFile.RootTag["Blocks"].ByteArrayValue.Select(x => (int)x).ToArray();
+
+            blockFlags = new bool[blocks.Length];
+            blockFlags.Populate(false);
 
             if (nFile.RootTag["AddBlocks"] != null)
                 addId = nFile.RootTag["AddBlocks"].ByteArrayValue;
@@ -68,6 +72,16 @@ namespace SchematicExporter
         {
             int id = getBlockIdAt(x, y, z);
             return IdMapper.instance.getBlockFromId(id);
+        }
+
+        public void setFlagAt(int x, int y, int z, bool flag)
+        {
+            blockFlags[(y * length + z) * width + x] = flag;
+        }
+
+        public bool getFlagAt(int x, int y, int z)
+        {
+            return blockFlags[(y * length + z) * width + x];
         }
     }
 }

@@ -38,7 +38,7 @@ namespace SchematicExporter
                 fileElapse.Start();
                 Schematic s = new Schematic(rFile);
 
-                ExportOptions options = new ExportOptions(Path.GetFileNameWithoutExtension(rFile) + ".java", "com.parzivail.test", Path.GetFileNameWithoutExtension(rFile));
+                ExportOptions options = new ExportOptions("WorldGen" + Path.GetFileNameWithoutExtension(rFile) + ".java", "com.parzivail.test", Path.GetFileNameWithoutExtension(rFile));
 
                 Exporter.export(options, s);
                 fileElapse.Stop();

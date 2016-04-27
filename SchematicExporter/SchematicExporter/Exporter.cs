@@ -27,6 +27,7 @@ namespace SchematicExporter
             Console.ForegroundColor = ConsoleColor.Green;
 
             StringBuilder gen = new StringBuilder();
+            StringBuilder tiles = new StringBuilder();
 
             int numStatements = 0;
             int currentGen = 0;
@@ -43,6 +44,19 @@ namespace SchematicExporter
             }
              */
 
+            int tag = 0;
+            foreach (NbtCompound t in schematic.getTileEntities())
+            {
+                int x = t["x"].IntValue;
+                int y = t["y"].IntValue;
+                int z = t["z"].IntValue;
+                if (t["id"].StringValue == "Chest")
+                {
+                    tiles.AppendLine(JavaBuilder.makeChest(ref schematic, tag, x, y, z, "\t\t"));
+                    tag++;
+                }
+            }
+
             gen.AppendLine(JavaBuilder.makeGen(currentGen));
             gen.AppendLine("\t{");
             for (int x = 0; x < schematic.width; x++)
@@ -51,6 +65,8 @@ namespace SchematicExporter
                 {
                     for (int z = 0; z < schematic.length; z++)
                     {
+                        if (schematic.getFlagAt(x, y, z))
+                            continue;
                         gen.Append(JavaBuilder.makeSetBlockLine(schematic, x, y, z));
                         numStatements++;
                         //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
@@ -74,18 +90,7 @@ namespace SchematicExporter
             stopwatch.Stop();
             Console.Write(Utils.millisToHRD(stopwatch.ElapsedMilliseconds).PadRight(10));
 
-            int tag = 0;
-            foreach (NbtCompound t in schematic.getTileEntities())
-            {
-                int x = t["x"].IntValue;
-                int y = t["y"].IntValue;
-                int z = t["z"].IntValue;
-                if (t["id"].StringValue == "Chest")
-                {
-                    gen.AppendLine(JavaBuilder.makeChest(schematic, tag, x, y, z, "\t\t"));
-                    tag++;
-                }
-            }
+            gen.Append(tiles.ToString());
 
             gen.AppendLine("\t\treturn true;");
             gen.AppendLine("\t}");

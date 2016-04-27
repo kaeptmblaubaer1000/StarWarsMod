@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SchematicExporter
 {
-    class Utils
+    static class Utils
     {
         public static String millisToHRD(long millis)
         {
@@ -22,6 +22,14 @@ namespace SchematicExporter
             if (String.IsNullOrWhiteSpace(ret))
                 return "0ms";
             return Regex.Replace(ret, @"(0+)(\d+)", @"$2");
+        }
+
+        public static void Populate<T>(this T[] arr, T value)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = value;
+            }
         }
     }
 }

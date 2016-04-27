@@ -113,7 +113,7 @@ namespace SchematicExporter
             return sb.ToString();
         }
 
-        public static String makeChest(Schematic s, int chestID, int x, int y, int z, String linePrefix)
+        public static String makeChest(ref Schematic s, int chestID, int x, int y, int z, String linePrefix)
         {
             // TileEntityChest chest = (TileEntityChest)world.getTileEntity(i + 2, j + 1, k + 3);
             // chest.setInventorySlotContents(slot, ItemStack);
@@ -159,9 +159,20 @@ namespace SchematicExporter
                         }
                         else if (id == IdMapper.instance.getIdFromItem("lever")) // lever in top left = spawn entity
                         {
-                            //sb.Clear();
-                            //sb.AppendLine(String.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
-                            //break;
+                            sb.Clear();
+
+                            NbtCompound item = (NbtCompound)c["Items"][1]; // slot 2
+                            Item n = IdMapper.instance.getItemFromId(item["id"].ShortValue);
+
+                            Entity e = IdMapper.instance.getEntityFromAssociation(n);
+
+                            if (e != null)
+                            {
+                                s.setFlagAt(x, y, z, true);
+                                return makeEntitySpawn(e, chestID, x, y, z, "\t\t");
+                            }
+
+                            break;
                         }
                     }
                     //new ItemStack(item, size, meta)

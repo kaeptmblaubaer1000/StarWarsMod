@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Exporter.cs" />
     <Compile Include="ExportOptions.cs" />

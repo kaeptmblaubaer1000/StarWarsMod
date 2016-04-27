@@ -778,7 +778,7 @@ namespace SchematicExporter
             entityAssociations.Add(new Entity("MobEwok"), getItemFromName("leaves"));
             entityAssociations.Add(new Entity("MobTauntaun"), getItemFromName("saddle"));
             entityAssociations.Add(new Entity("MobBantha"), getItemFromName("banthaHorn"));
-            entityAssociations.Add(new Entity("MobWampa"), getItemFromName("")); // what for wampa?
+            entityAssociations.Add(new Entity("MobWampa"), getItemFromName("stone")); // what for wampa?
             entityAssociations.Add(new Entity("MobGamorrean"), getItemFromName("gamorreanAx"));
             entityAssociations.Add(new Entity("MobDewback"), getItemFromName("dewbackRibs"));
             entityAssociations.Add(new Entity("MobTatooineCommoner"), getItemFromName("hyperdriveEarth"));
@@ -794,17 +794,19 @@ namespace SchematicExporter
             entityAssociations.Add(new Entity("MobDroidGNK"), getItemFromName("spawnGonk"));
             entityAssociations.Add(new Entity("MobDroidSurgical"), getItemFromName("spawnSurgical"));
             entityAssociations.Add(new Entity("MobDroidMouse"), getItemFromName("spawnSurgical"));
-            entityAssociations.Add(new Entity("VehicHothSpeederBike"), getItemFromName("spawnHothSpeeder"));
+            entityAssociations.Add(new Entity("VehicHothSpeederBike"), getItemFromName("spawnHothSpeederBike"));
             entityAssociations.Add(new Entity("VehicTIE"), getItemFromName("spawnTIE"));
             entityAssociations.Add(new Entity("VehicTIEInterceptor"), getItemFromName("spawnTIEInterceptor"));
-            entityAssociations.Add(new Entity("VehicXWing"), getItemFromName("spawnXwing"));
-            entityAssociations.Add(new Entity("VehicAWing"), getItemFromName("spawnAwing"));
+            entityAssociations.Add(new Entity("VehicXWing"), getItemFromName("spawnXWing"));
+            entityAssociations.Add(new Entity("VehicAWing"), getItemFromName("spawnAWing"));
             entityAssociations.Add(new Entity("VehicATST"), getItemFromName("spawnAtst"));
             entityAssociations.Add(new Entity("VehicSnowspeeder"), getItemFromName("spawnSnowspeeder"));
             entityAssociations.Add(new Entity("VehicSkyhopper"), getItemFromName("spawnSkyhopper"));
             entityAssociations.Add(new Entity("VehicSpeederBike"), getItemFromName("spawnSpeederBike"));
             entityAssociations.Add(new Entity("VehicLandspeeder"), getItemFromName("spawnLandspeeder"));
             entityAssociations.Add(new Entity("VehicJakkuSpeeder"), getItemFromName("spawnJakkuSpeeder"));
+
+            entityAssociations.Add(new Entity("EntityCow"), getItemFromName("beef"));
         }
 
         public Block getBlockFromId(int id)
@@ -850,7 +852,7 @@ namespace SchematicExporter
 
         public int getIdFromBlock(String blockName)
         {
-            return items.FirstOrDefault(x => x.Value.getName() == blockName).Key;
+            return blocks.FirstOrDefault(x => x.Value.getName() == blockName).Key;
         }
     }
 }
