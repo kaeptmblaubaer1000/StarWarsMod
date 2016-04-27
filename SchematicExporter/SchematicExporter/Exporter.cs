@@ -94,8 +94,10 @@ namespace SchematicExporter
             template = template.Replace("{{CLASS}}", upperFirst(options.className));
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
 
-
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write(((currentGen * MAX_BLOCKS_PER_GEN) + numStatements).ToString().PadRight(10));
+            Console.Write(tag.ToString().PadRight(10));
+            Console.Write((currentGen + 1).ToString().PadRight(10));
             s.Restart();
 
             using (StreamWriter w = new StreamWriter("output/" + options.fileName))
@@ -104,11 +106,6 @@ namespace SchematicExporter
             s.Stop();
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write(Utils.millisToHRD(s.ElapsedMilliseconds).PadRight(10));
-
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write(((currentGen * MAX_BLOCKS_PER_GEN) + numStatements).ToString().PadRight(10));
-            Console.Write(tag.ToString().PadRight(10));
-            Console.Write((currentGen + 1).ToString().PadRight(10));
         }
 
         private static String makeSetBlockLine(Schematic s, int x, int y, int z)

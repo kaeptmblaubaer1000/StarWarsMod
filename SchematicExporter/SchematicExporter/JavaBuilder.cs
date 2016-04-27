@@ -96,6 +96,8 @@ namespace SchematicExporter
         {
             // TileEntityChest chest = (TileEntityChest)world.getTileEntity(i + 2, j + 1, k + 3);
             // chest.setInventorySlotContents(slot, ItemStack);
+            // LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 4, j + 1, k + 6));
+
             /*
               TAG_List("Items"): 15 entries {
               TAG_Compound: 4 entries {
@@ -126,6 +128,12 @@ namespace SchematicExporter
                     int id = itemstack["id"].ShortValue;
                     int count = itemstack["Count"].ByteValue;
                     int damage = itemstack["Damage"].ShortValue;
+                    if (slot == 0 && id == IdMapper.instance.getIdFromItem("blaze_rod")) // blaze rod in top left = randomize loot
+                    {
+                        sb.Clear();
+                        sb.AppendLine(String.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
+                        break;
+                    }
                     //new ItemStack(item, size, meta)
                     sb.AppendLine(String.Format("{0}chest{5}.setInventorySlotContents({1}, new ItemStack({2}, {3}, {4}));", linePrefix, slot, IdMapper.instance.getItemFromId(id).createJavaVariable(), count, damage, chestID));
                 }

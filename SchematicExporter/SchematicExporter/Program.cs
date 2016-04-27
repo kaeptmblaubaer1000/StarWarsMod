@@ -24,7 +24,7 @@ namespace SchematicExporter
                 Directory.CreateDirectory("output/");
                 Console.WriteLine("Created output directory");
             }
-            Console.WriteLine("{0}{1}{2}{3}{4}{5}{6}", "File".PadRight(40), "Iterate".PadRight(10), "Write".PadRight(10), "Blocks".PadRight(10), "Tiles".PadRight(10), "Methods".PadRight(10), "Total");
+            Console.WriteLine("{0}{1}{2}{3}{4}{5}{6}", "File".PadRight(40), "Iterate".PadRight(10), "Blocks".PadRight(10), "Tiles".PadRight(10), "Methods".PadRight(10), "Write".PadRight(10), "Total");
             Console.WriteLine("===============================================================================================");
             Stopwatch totalElapse = new Stopwatch();
             totalElapse.Start();

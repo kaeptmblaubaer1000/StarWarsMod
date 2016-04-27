@@ -19,6 +19,9 @@ namespace SchematicExporter
 
         public IdMapper()
         {
+            /*
+             * Blocks
+             */
             blocks.Add(0, new Block("air", BLOCKS));
             blocks.Add(1, new Block("stone", BLOCKS));
             blocks.Add(2, new Block("grass", BLOCKS));
@@ -232,6 +235,9 @@ namespace SchematicExporter
             blocks.Add(439, new Block("blockTempleStoneStairsStabTop", PSWM));
             blocks.Add(440, new Block("blockTempleStoneStairsFancy", PSWM));
 
+            /*
+             * Items
+             */
             items.Add(1, new Item("stone", ITEMS));
             items.Add(2, new Item("grass", ITEMS));
             items.Add(3, new Item("dirt", ITEMS));
@@ -763,11 +769,21 @@ namespace SchematicExporter
 
         public Item getItemFromId(int id)
         {
-            if (blocks.ContainsKey(id))
+            if (blocks.ContainsKey(id)) // because items are blocks too and vice versa
                 return getBlockFromId(id).toItem();
             if (!items.ContainsKey(id))
                 return items[0];
             return items[id];
+        }
+
+        public int getIdFromItem(String itemName)
+        {
+            return items.FirstOrDefault(x => x.Value.getName() == itemName).Key;
+        }
+
+        public int getIdFromBlock(String blockName)
+        {
+            return items.FirstOrDefault(x => x.Value.getName() == blockName).Key;
         }
     }
 }
