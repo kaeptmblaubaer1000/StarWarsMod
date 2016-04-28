@@ -37,8 +37,9 @@ namespace SchematicExporter
             StringBuilder imports = new StringBuilder();
             List<String> lImports = new List<String>();
 
-            lImports.Add("net.minecraft.block.Block");
-            lImports.Add("net.minecraft.world.World");
+            lImports.Require("net.minecraft.block.Block");
+            lImports.Require("net.minecraft.world.World");
+            lImports.Require("com.parzivail.util.world.WorldUtils");
 
             int numStatements = 0;
             int currentGen = 0;

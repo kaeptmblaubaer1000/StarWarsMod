@@ -1,5 +1,7 @@
 package com.parzivail.pswm.world.gen;
 
+import com.parzivail.util.world.WorldUtils;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
@@ -12,7 +14,7 @@ public class WorldGenTest
 
 	public void b(World world, int x, int y, int z, Block block, int metadata)
 	{
-		world.setBlock(x, y, z, block, metadata, 1 | 2);
+		WorldUtils.setBlock(world, x, y, z, block, metadata, 1 | 2);
 	}
     
     public void m(World world, int x, int y, int z, int metadata)
