@@ -37,6 +37,7 @@ import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
 import com.parzivail.pswm.mobs.trooper.MobAtatPilot;
 import com.parzivail.pswm.mobs.trooper.MobBountyhunter;
+import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.mobs.trooper.MobEndorRebel;
 import com.parzivail.pswm.mobs.trooper.MobHothRebel;
 import com.parzivail.pswm.mobs.trooper.MobRebelPilot;
@@ -106,6 +107,7 @@ import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.rendering.RenderJawa;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.RenderMV;
+import com.parzivail.pswm.rendering.RenderStaticNpc;
 import com.parzivail.pswm.rendering.RenderTauntaun;
 import com.parzivail.pswm.rendering.RenderTusken;
 import com.parzivail.pswm.rendering.RenderWampa;
@@ -141,6 +143,7 @@ import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
 import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.pswm.vehicles.VehicAWing;
@@ -223,6 +226,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman(new ModelBiped(), 0.5F));
 
+		RenderingRegistry.registerEntityRenderingHandler(MobDefaultBiped.class, new RenderHuman(new ModelBiped(), 0.5F));
+
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromech2.class, new RenderDroidAstromech2(new ModelDroidAstromech2(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidAstromechImperial.class, new RenderDroidAstromech(new ModelDroidAstromech(), 0.5F));
@@ -286,6 +291,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFieldEmitter.class, new RenderBlockFieldEmitter());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBactaTank.class, new RenderBactaTank());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientJediStatue.class, new RenderAncientJediStatue());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpc.class, new RenderStaticNpc());
 
 		RegisterGuiOverlays.registerAll();
 

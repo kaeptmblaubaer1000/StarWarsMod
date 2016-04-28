@@ -31,6 +31,7 @@ import com.parzivail.pswm.blocks.BlockTempleStoneStairsFancy;
 import com.parzivail.pswm.blocks.BlockTempleStoneStairsSlabTop;
 import com.parzivail.pswm.blocks.BlockTempleStoneStairsSlabTopDark;
 import com.parzivail.pswm.blocks.BlockTitaniumChromium;
+import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.blocks.ore.BlockBeneOre;
 import com.parzivail.pswm.blocks.ore.BlockChromiumOre;
 import com.parzivail.pswm.blocks.ore.BlockCortosisOre;
@@ -62,6 +63,7 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityMudTable;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.tileentities.TileEntityTatooineTable;
 import com.parzivail.util.ui.Lumberjack;
 
@@ -101,6 +103,10 @@ public class BlockRegister
 		StarWarsMod.blockHangingBucket = new BlockHangingBucket();
 		GameRegistry.registerBlock(StarWarsMod.blockHangingBucket, "hangingBucket");
 		GameRegistry.registerTileEntity(TileEntityHangingBucket.class, "teHangingBucket");
+
+		StarWarsMod.blockStaticNpc = new BlockNpcBase();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpc, "staticNpc");
+		GameRegistry.registerTileEntity(TileEntityStaticNpc.class, "teStaticNpc");
 
 		StarWarsMod.blockBasket = new BlockBasket();
 		GameRegistry.registerBlock(StarWarsMod.blockBasket, "basket");

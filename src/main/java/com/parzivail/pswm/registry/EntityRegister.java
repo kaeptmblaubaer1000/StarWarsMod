@@ -33,6 +33,7 @@ import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.MobWookiee;
 import com.parzivail.pswm.mobs.trooper.MobAtatPilot;
 import com.parzivail.pswm.mobs.trooper.MobBountyhunter;
+import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.mobs.trooper.MobEndorRebel;
 import com.parzivail.pswm.mobs.trooper.MobHothRebel;
 import com.parzivail.pswm.mobs.trooper.MobRebelPilot;
@@ -71,6 +72,8 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobRebelPilot.class, "rebelPilot", 0xF0A646, 0xD9D8D7);
 
 		EntityUtils.registerWithSpawnEgg(MobBountyhunter.class, "bountyhunter", 0x3EA877, 0x9CBD8F);
+
+		EntityUtils.registerEntity(MobDefaultBiped.class, "defaultBiped");
 
 		EntityUtils.registerWithSpawnEgg(MobWookiee.class, "wookiee", 9916186, 3940362);
 		EntityUtils.registerWithSpawnEgg(MobTusken.class, "tusken", 16776627, 6184522);
