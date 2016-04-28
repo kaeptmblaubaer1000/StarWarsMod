@@ -23,6 +23,12 @@ namespace SchematicExporter
 
         public static void export(ExportOptions options, Schematic schematic)
         {
+            if (!File.Exists("template.java"))
+            {
+                Console.WriteLine("Unable to locate template.java");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
             String template = File.ReadAllText("template.java");
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -30,7 +36,9 @@ namespace SchematicExporter
             StringBuilder tiles = new StringBuilder();
             StringBuilder imports = new StringBuilder();
             List<String> lImports = new List<String>();
-            //com.parzivail.pswm.mobs
+
+            lImports.Add("net.minecraft.block.Block");
+            lImports.Add("net.minecraft.world.World");
 
             int numStatements = 0;
             int currentGen = 0;
@@ -60,9 +68,6 @@ namespace SchematicExporter
                 }
             }
 
-            foreach (String s in lImports)
-                imports.AppendLine(String.Format("import {0};", s));
-
             gen.AppendLine(JavaBuilder.makeGen(currentGen));
             gen.AppendLine("\t{");
             for (int x = 0; x < schematic.width; x++)
@@ -73,7 +78,7 @@ namespace SchematicExporter
                     {
                         if (schematic.getFlagAt(x, y, z))
                             continue;
-                        gen.Append(JavaBuilder.makeSetBlockLine(schematic, x, y, z));
+                        gen.Append(JavaBuilder.makeSetBlockLine(schematic, ref lImports, x, y, z));
                         numStatements++;
                         //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
 
@@ -91,6 +96,10 @@ namespace SchematicExporter
                     }
                 }
             }
+
+            lImports.Sort();
+            foreach (String s in lImports)
+                imports.AppendLine(String.Format("import {0};", s));
 
             Console.ForegroundColor = ConsoleColor.Blue;
             stopwatch.Stop();

@@ -9,27 +9,32 @@ namespace SchematicExporter
 {
     class JavaBuilder
     {
-        public static String makeSetBlockLine(Schematic s, int x, int y, int z)
+        public static String makeSetBlockLine(Schematic s, ref List<String> imports, int x, int y, int z)
         {
             Block b = s.getBlockAt(x, y, z);
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(String.Format("\t\tthis.setBlock(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x, y, z, b.createJavaVariable()));
+            String nsp = b.getNamespacePrefix();
+            if (nsp == IdMapper.CLASS_BLOCKS)
+                imports.Require("net.minecraft.init.Blocks");
+            else if (nsp == IdMapper.CLASS_PSWM)
+                imports.Require("com.parzivail.pswm.StarWarsMod");
+            sb.AppendLine(String.Format("\t\tthis.b(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x, y, z, b.createJavaVariable()));
             if (s.getBlockMetadataAt(x, y, z) != 0)
-                sb.AppendLine(String.Format("\t\tworld.setBlockMetadataWithNotify(i + {0}, j + {1}, k + {2}, {3}, 2);", x, y, z, s.getBlockMetadataAt(x, y, z)));
+                sb.AppendLine(String.Format("\t\tthis.m(world, i + {0}, j + {1}, k + {2}, {3});", x, y, z, s.getBlockMetadataAt(x, y, z)));
             return sb.ToString();
         }
 
         public static String makeGen(int genId)
         {
-            return String.Format("\tpublic boolean generate{0}(World world, Random rand, int i, int j, int k)", genId == 0 ? "" : ("_" + genId.ToString()));
+            return String.Format("\tpublic boolean generate{0}(World world, int i, int j, int k)", genId == 0 ? "" : ("_" + genId.ToString()));
         }
 
         public static String makeCallGen(int genId)
         {
-            return String.Format("\t\tgenerate_{0}(world, rand, i, j, k);", genId);
+            return String.Format("\t\tgenerate_{0}(world, i, j, k);", genId);
         }
 
-        public static String makeNbt(String nameBase, NbtCompound compound, String setTag, String linePrefix)
+        public static String makeNbt(String nameBase, ref List<String> imports, NbtCompound compound, String setTag, String linePrefix)
         {
             // world.getTileEntity(i, j, k).readFromNBT(NBTTagCompound);
             // NBTTagCompound tag = new NBTTagCompound();
@@ -54,6 +59,7 @@ namespace SchematicExporter
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(String.Format("{0}NBTTagCompound {1} = new NBTTagCompound();", linePrefix, nameBase));
+            imports.Require("net.minecraft.nbt.NBTTagCompound");
             
             foreach (String tName in compound.Names)
             {
@@ -69,15 +75,16 @@ namespace SchematicExporter
                         sb.AppendLine(String.Format("{0}{1}.setByteArray(\"{2}\", new byte[] {3});", linePrefix, nameBase, tName, tag.ByteArrayValue));
                         break;
                     case NbtTagType.Compound:
-                        sb.Append(makeNbt(nameBase + "_nest", ((NbtCompound)tag), nameBase, linePrefix));
+                        sb.Append(makeNbt(nameBase + "_nest", ref imports, ((NbtCompound)tag), nameBase, linePrefix));
                         break;
                     case NbtTagType.List:
                         sb.AppendLine(String.Format("{0}NBTTagList {1} = new NBTTagList();", linePrefix, nameBase + "_list"));
+                        imports.Require("net.minecraft.nbt.NBTTagList");
                         int lItem = 0;
                         foreach (NbtTag tagList in (NbtList)tag)
                             if (tagList.TagType == NbtTagType.Compound)
                             {
-                                sb.AppendLine(makeNbt(nameBase + "_listItem" + lItem.ToString(), ((NbtCompound)tagList), null, linePrefix));
+                                sb.AppendLine(makeNbt(nameBase + "_listItem" + lItem.ToString(), ref imports, ((NbtCompound)tagList), null, linePrefix));
                                 sb.AppendLine(String.Format("{0}{1}_list.appendTag({2}_listItem{3});", linePrefix, nameBase, nameBase, lItem.ToString()));
                                 lItem++;
                             }
@@ -139,9 +146,10 @@ namespace SchematicExporter
 
             NbtCompound c = s.getTileEntityAt(x, y, z);
 
-            if (c != null)
+            if (c != null && ((NbtList)c["Items"]).Count > 0)
             {
                 sb.AppendLine(String.Format("{0}TileEntityChest chest{4} = (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z, chestID));
+                imports.Require("net.minecraft.tileentity.TileEntityChest");
                 
                 foreach (NbtCompound itemstack in (NbtList)c["Items"])
                 {
@@ -155,6 +163,7 @@ namespace SchematicExporter
                         {
                             sb.Clear();
                             sb.AppendLine(String.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
+                            imports.Require("com.parzivail.pswm.utils.LootGenUtils");
                             break;
                         }
                         else if (id == IdMapper.instance.getIdFromItem("lever")) // lever in top left = spawn entity
@@ -163,14 +172,12 @@ namespace SchematicExporter
 
                             NbtCompound item = (NbtCompound)c["Items"][1]; // slot 2
                             Item n = IdMapper.instance.getItemFromId(item["id"].ShortValue);
-
                             Entity e = IdMapper.instance.getEntityFromAssociation(n);
 
                             if (e != null)
                             {
                                 s.setFlagAt(x, y, z, true);
-                                if (!imports.Contains(e.getQualifiedName()))
-                                    imports.Add(e.getQualifiedName());
+                                imports.Require(e.getQualifiedName());
                                 return makeEntitySpawn(e, chestID, x, y, z, "\t\t");
                             }
 
@@ -179,6 +186,13 @@ namespace SchematicExporter
                     }
                     //new ItemStack(item, size, meta)
                     sb.AppendLine(String.Format("{0}chest{5}.setInventorySlotContents({1}, new ItemStack({2}, {3}, {4}));", linePrefix, slot, IdMapper.instance.getItemFromId(id).createJavaVariable(), count, damage, chestID));
+                    String nsp = IdMapper.instance.getItemFromId(id).getNamespacePrefix();
+                    if (nsp == IdMapper.CLASS_BLOCKS)
+                        imports.Require("net.minecraft.init.Blocks");
+                    else if (nsp == IdMapper.CLASS_ITEMS)
+                        imports.Require("net.minecraft.init.Items");
+                    else if (nsp == IdMapper.CLASS_PSWM)
+                        imports.Require("com.parzivail.pswm.StarWarsMod");
                 }
             }
 

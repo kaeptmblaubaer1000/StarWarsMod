@@ -31,5 +31,11 @@ namespace SchematicExporter
                 arr[i] = value;
             }
         }
+
+        public static void Require<T>(this List<T> list, T value)
+        {
+            if (!list.Contains(value))
+                list.Add(value);
+        }
     }
 }

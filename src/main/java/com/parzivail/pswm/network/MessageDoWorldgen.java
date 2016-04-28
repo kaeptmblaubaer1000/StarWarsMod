@@ -30,7 +30,7 @@ public class MessageDoWorldgen extends PMessage<MessageDoWorldgen>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		new WorldGenTest().generate(MinecraftServer.getServer().worldServerForDimension(this.dim), StarWarsMod.rngGeneral, x, y, z);
+		new WorldGenTest().generate(MinecraftServer.getServer().worldServerForDimension(this.dim), x, y, z);
 		return null;
 	}
 
