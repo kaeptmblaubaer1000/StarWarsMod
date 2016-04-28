@@ -20,6 +20,7 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 	public RenderStaticNpc()
 	{
 		this.biped = new RenderHuman(new ModelBiped(), 0.5f, texture);
+		biped.setRenderManager(RenderManager.instance);
 	}
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
@@ -33,8 +34,8 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 		{
 			TileEntityStaticNpc staticNpc = (TileEntityStaticNpc)te;
 			GL11.glPushMatrix();
-			GL11.glTranslatef((float)x + 0.5F, (float)y + 3.5F, (float)z + 0.5F);
-			biped.setRenderManager(RenderManager.instance); // fix concmodexc
+			GL11.glTranslated(x + 0.5f, y, z + 0.5f);
+			//GL11.glRotatef(staticNpc.getAngleToClosestPlayer(), 0, 1, 0);
 			biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
 			GL11.glPopMatrix();
 		}

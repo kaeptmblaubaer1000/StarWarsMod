@@ -16,6 +16,7 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
@@ -33,5 +34,6 @@ public class MobDefaultBiped extends EntityLiving
 	{
 		super(par1World);
 		setSize(0.5F, 1.5F);
+		this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 10, 0));
 	}
 }

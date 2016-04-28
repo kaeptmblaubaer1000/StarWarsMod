@@ -1,11 +1,15 @@
 package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
+import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 
 public class TileEntityStaticNpc extends TileEntity
 {
@@ -31,11 +35,24 @@ public class TileEntityStaticNpc extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		// List<Entity> entities =
-		// this.worldObj.getEntitiesWithinAABB(EntityPlayer.class,
-		// this.getRenderBoundingBox());
-		// for (Entity e : entities)
+		getInternalEntity().ticksExisted++;
+		EntityPlayer e = getClosestPlayer();
+		if (e != null)
+			getInternalEntity().getLookHelper().setLookPosition(e.posX, e.posY, e.posZ, 0, 0);
 		super.updateEntity();
+	}
+
+	public EntityPlayer getClosestPlayer()
+	{
+		return this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10);
+	}
+
+	public float getAngleToClosestPlayer()
+	{
+		EntityPlayer e = getClosestPlayer();
+		if (e == null)
+			return 0;
+		return (float)Math.toDegrees(Math.atan2(e.posX - (float)this.xCoord, e.posZ - (float)this.zCoord));
 	}
 
 	public MobDefaultBiped getInternalEntity()
