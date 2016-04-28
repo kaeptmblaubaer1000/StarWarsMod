@@ -169,8 +169,8 @@ namespace SchematicExporter
                             if (e != null)
                             {
                                 s.setFlagAt(x, y, z, true);
-                                if (!imports.Contains(e.getName()))
-                                    imports.Add(e.getName());
+                                if (!imports.Contains(e.getQualifiedName()))
+                                    imports.Add(e.getQualifiedName());
                                 return makeEntitySpawn(e, chestID, x, y, z, "\t\t");
                             }
 

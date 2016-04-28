@@ -1,33 +1,33 @@
-package com.parzivail.pswm.world.gen;
+package com.parzivail.test;
 
 import java.util.Random;
-
-import com.parzivail.pswm.mobs.MobDroidAstromech2;
-import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
-import com.parzivail.pswm.mobs.trooper.MobScouttrooper;
-import com.parzivail.pswm.vehicles.VehicSpeederBike;
-
-import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import cpw.mods.fml.common.IWorldGenerator;
+import com.parzivail.pswm.utils.LootGenUtils;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.mobs.trooper.MobScouttrooper;
+import com.parzivail.pswm.mobs.MobDroidAstromech2;
+import com.parzivail.pswm.vehicles.VehicSpeederBike;
+import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
 
-public class WorldGenTest extends WorldGenerator implements IWorldGenerator
+
+public class Mobs_Before_Server extends WorldGenerator implements IWorldGenerator
 {
-	public WorldGenTest()
-	{
-	}
+	public Mobs_Before_Server() { }
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
-	{
-	}
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) { }
 
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
 	{
-		world.setBlock(x, y, z, block, metadata, 1 | 2);
+		world.setBlock(x, y, z, block, metadata, 2);
 	}
 
 	public boolean generate(World world, Random rand, int i, int j, int k)

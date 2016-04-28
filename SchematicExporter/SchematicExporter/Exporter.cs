@@ -61,7 +61,7 @@ namespace SchematicExporter
             }
 
             foreach (String s in lImports)
-                imports.AppendLine(String.Format("import com.parzivail.pswm.mobs.{0};", s));
+                imports.AppendLine(String.Format("import {0};", s));
 
             gen.AppendLine(JavaBuilder.makeGen(currentGen));
             gen.AppendLine("\t{");

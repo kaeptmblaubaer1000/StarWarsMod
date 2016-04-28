@@ -23,7 +23,7 @@ public class {{CLASS}} extends WorldGenerator implements IWorldGenerator
 
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
 	{
-		world.setBlock(x, y, z, block, metadata, 2);
+		world.setBlock(x, y, z, block, metadata, 1 | 2);
 	}
 
 {{GEN_METHODS}}
