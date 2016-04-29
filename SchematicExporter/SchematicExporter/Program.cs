@@ -1,6 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
 
 namespace SchematicExporter
 {
@@ -19,8 +19,8 @@ namespace SchematicExporter
                 Directory.CreateDirectory("output/");
                 Console.WriteLine("Created output directory");
             }
-            Console.WriteLine("{0}{1}{2}{3}{4}{5}{6}", "File".PadRight(40), "Iterate".PadRight(10), "Blocks".PadRight(10), "Tiles".PadRight(10), "Methods".PadRight(10), "Write".PadRight(10), "Total");
-            Console.WriteLine("===============================================================================================");
+            Console.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}", "File".PadRight(40), "Iterate".PadRight(10), "Blocks".PadRight(10), "Tiles".PadRight(10), "Methods".PadRight(10), "Write".PadRight(10), "Total".PadRight(10), "Filesize".PadRight(10));
+            Console.WriteLine("".PadRight(110, '='));
             var totalElapse = new Stopwatch();
             totalElapse.Start();
             var files = 0;
@@ -38,7 +38,13 @@ namespace SchematicExporter
                 Exporter.Export(options, s);
                 fileElapse.Stop();
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine(Utils.MillisToHrd(fileElapse.ElapsedMilliseconds));
+                Console.Write(Utils.MillisToHrd(fileElapse.ElapsedMilliseconds).PadRight(10));
+
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                long fsLength = new FileInfo("output/" + options.FileName).Length;
+                Console.Write(Utils.SizeSuffix(fsLength).PadRight(10));
+
+                Console.WriteLine();
 
                 files++;
             }

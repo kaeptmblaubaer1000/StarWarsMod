@@ -1,15 +1,14 @@
 package com.parzivail.pswm.tileentities;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
-import com.parzivail.util.ui.Lumberjack;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 
 public class TileEntityStaticNpc extends TileEntity
 {
@@ -52,13 +51,21 @@ public class TileEntityStaticNpc extends TileEntity
 		EntityPlayer e = getClosestPlayer();
 		if (e == null)
 			return 0;
-		return (float)Math.toDegrees(Math.atan2(e.posX - (float)this.xCoord, e.posZ - (float)this.zCoord));
+		return (float)Math.toDegrees(Math.atan2(e.posX - 0.5f - (float)this.xCoord, e.posZ - 0.5f - (float)this.zCoord));
 	}
 
 	public MobDefaultBiped getInternalEntity()
 	{
 		if (internalBiped == null)
+		{
 			internalBiped = new MobDefaultBiped(this.worldObj);
+
+			internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.snowtrooperHelmet, 1));
+			internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.snowtrooperChest, 1));
+			internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.snowtrooperLegs, 1));
+			internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.snowtrooperBoots, 1));
+			internalBiped.setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
+		}
 		return internalBiped;
 	}
 }

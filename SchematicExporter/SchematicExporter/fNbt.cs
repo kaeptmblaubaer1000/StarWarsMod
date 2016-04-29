@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Text;
-using System.IO;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.IO.Compression;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
+using System.IO.Compression;
+using System.Text;
 
 namespace fNbt {
     /// <summary> A tag containing a single byte. </summary>
@@ -275,13 +275,17 @@ namespace fNbt {
             set {
                 if (tagName == null) {
                     throw new ArgumentNullException("tagName");
-                } else if (value == null) {
+                }
+                if (value == null) {
                     throw new ArgumentNullException("value");
-                } else if (value.Name != tagName) {
+                }
+                if (value.Name != tagName) {
                     throw new ArgumentException("Given tag name must match tag's actual name.");
-                } else if (value.Parent != null) {
+                }
+                if (value.Parent != null) {
                     throw new ArgumentException("A tag may only be added to one compound/list at a time.");
-                } else if (value == this) {
+                }
+                if (value == this) {
                     throw new ArgumentException("Cannot add tag to itself");
                 }
                 _tags[tagName] = value;
@@ -332,10 +336,9 @@ namespace fNbt {
             if (_tags.TryGetValue(tagName, out tempResult)) {
                 result = (T)tempResult;
                 return true;
-            } else {
-                result = null;
-                return false;
             }
+            result = null;
+            return false;
         }
 
         /// <summary> Gets the tag with the specified name. </summary>
@@ -351,10 +354,9 @@ namespace fNbt {
             if (_tags.TryGetValue(tagName, out tempResult)) {
                 result = tempResult;
                 return true;
-            } else {
-                result = null;
-                return false;
             }
+            result = null;
+            return false;
         }
 
         /// <summary> Adds all tags from the specified collection to this NbtCompound. </summary>
@@ -592,11 +594,14 @@ namespace fNbt {
         public void Add(NbtTag newTag) {
             if (newTag == null) {
                 throw new ArgumentNullException("newTag");
-            } else if (newTag == this) {
+            }
+            if (newTag == this) {
                 throw new ArgumentException("Cannot add tag to self");
-            } else if (newTag.Name == null) {
+            }
+            if (newTag.Name == null) {
                 throw new ArgumentException("Only named tags are allowed in compound tags.");
-            } else if (newTag.Parent != null) {
+            }
+            if (newTag.Parent != null) {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
             }
             _tags.Add(newTag.Name, newTag);
@@ -1059,10 +1064,12 @@ namespace fNbt {
             WriteData(writeStream);
         }
 
-        internal override void WriteData(NbtBinaryWriter writeStream) {
+        internal override void WriteData(NbtBinaryWriter writeStream)
+        {
             writeStream.Write(Value.Length);
-            for (var i = 0; i < Value.Length; i++) {
-                writeStream.Write(Value[i]);
+            foreach (int t in Value)
+            {
+                writeStream.Write(t);
             }
         }
 
@@ -1224,11 +1231,14 @@ namespace fNbt {
             set {
                 if (value == null) {
                     throw new ArgumentNullException("value");
-                } else if (value.Parent != null) {
+                }
+                if (value.Parent != null) {
                     throw new ArgumentException("A tag may only be added to one compound/list at a time.");
-                } else if (value == this || value == Parent) {
+                }
+                if (value == this || value == Parent) {
                     throw new ArgumentException("A list tag may not be added to itself or to its child tag.");
-                } else if (value.Name != null) {
+                }
+                if (value.Name != null) {
                     throw new ArgumentException("Named tag given. A list may only contain unnamed tags.");
                 }
                 if (_listType != NbtTagType.Unknown && value.TagType != _listType) {
@@ -1451,7 +1461,8 @@ namespace fNbt {
             }
             if (_listType != NbtTagType.Unknown && newTag.TagType != _listType) {
                 throw new ArgumentException("Items must be of type " + _listType);
-            } else if (newTag.Parent != null) {
+            }
+            if (newTag.Parent != null) {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
             }
             _tags.Insert(tagIndex, newTag);
@@ -1477,11 +1488,14 @@ namespace fNbt {
         public void Add(NbtTag newTag) {
             if (newTag == null) {
                 throw new ArgumentNullException("newTag");
-            } else if (newTag.Parent != null) {
+            }
+            if (newTag.Parent != null) {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
-            } else if (newTag == this || newTag == Parent) {
+            }
+            if (newTag == this || newTag == Parent) {
                 throw new ArgumentException("A list tag may not be added to itself or to its child tag.");
-            } else if (newTag.Name != null) {
+            }
+            if (newTag.Name != null) {
                 throw new ArgumentException("Named tag given. A list may only contain unnamed tags.");
             }
             if (_listType != NbtTagType.Unknown && newTag.TagType != _listType) {
@@ -1496,9 +1510,11 @@ namespace fNbt {
         }
 
         /// <summary> Removes all tags from this NbtList. </summary>
-        public void Clear() {
-            for (var i = 0; i < _tags.Count; i++) {
-                _tags[i].Parent = null;
+        public void Clear()
+        {
+            foreach (NbtTag t in _tags)
+            {
+                t.Parent = null;
             }
             _tags.Clear();
         }
@@ -1564,7 +1580,7 @@ namespace fNbt {
 
         int IList.Add(object value) {
             Add((NbtTag)value);
-            return (_tags.Count - 1);
+            return _tags.Count - 1;
         }
 
         bool IList.Contains(object value) {
@@ -1930,10 +1946,12 @@ namespace fNbt {
                 }
 
                 var parentAsCompound = Parent as NbtCompound;
-                if (parentAsCompound != null) {
+                if (parentAsCompound != null)
+                {
                     if (value == null) {
                         throw new ArgumentNullException("value", "Name of tags inside an NbtCompound may not be null.");
-                    } else if (name != null) {
+                    }
+                    if (name != null) {
                         parentAsCompound.RenameTag(name, value);
                     }
                 }
@@ -1954,9 +1972,8 @@ namespace fNbt {
                 var parentAsList = Parent as NbtList;
                 if (parentAsList != null) {
                     return parentAsList.Path + '[' + parentAsList.IndexOf(this) + ']';
-                } else {
-                    return Parent.Path + '.' + Name;
                 }
+                return Parent.Path + '.' + Name;
             }
         }
 
@@ -2000,12 +2017,12 @@ namespace fNbt {
         /// Only supported by NbtByte tags. </summary>
         /// <exception cref="InvalidCastException"> When used on a tag other than NbtByte. </exception>
         public byte ByteValue {
-            get {
+            get
+            {
                 if (TagType == NbtTagType.Byte) {
                     return ((NbtByte)this).Value;
-                } else {
-                    throw new InvalidCastException("Cannot get ByteValue from " + GetCanonicalTagName(TagType));
                 }
+                throw new InvalidCastException("Cannot get ByteValue from " + GetCanonicalTagName(TagType));
             }
         }
 
@@ -2115,12 +2132,12 @@ namespace fNbt {
         /// Only supported by NbtByteArray tags. </summary>
         /// <exception cref="InvalidCastException"> When used on a tag other than NbtByteArray. </exception>
         public byte[] ByteArrayValue {
-            get {
+            get
+            {
                 if (TagType == NbtTagType.ByteArray) {
                     return ((NbtByteArray)this).Value;
-                } else {
-                    throw new InvalidCastException("Cannot get ByteArrayValue from " + GetCanonicalTagName(TagType));
                 }
+                throw new InvalidCastException("Cannot get ByteArrayValue from " + GetCanonicalTagName(TagType));
             }
         }
 
@@ -2128,12 +2145,12 @@ namespace fNbt {
         /// Only supported by NbtIntArray tags. </summary>
         /// <exception cref="InvalidCastException"> When used on a tag other than NbtIntArray. </exception>
         public int[] IntArrayValue {
-            get {
+            get
+            {
                 if (TagType == NbtTagType.IntArray) {
                     return ((NbtIntArray)this).Value;
-                } else {
-                    throw new InvalidCastException("Cannot get IntArrayValue from " + GetCanonicalTagName(TagType));
                 }
+                throw new InvalidCastException("Cannot get IntArrayValue from " + GetCanonicalTagName(TagType));
             }
         }
 
@@ -2344,51 +2361,52 @@ namespace fNbt {
 
         public NbtBinaryReader(Stream input, bool bigEndian)
             : base(input) {
-            _swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
+            _swapNeeded = BitConverter.IsLittleEndian == bigEndian;
         }
 
         public NbtTagType ReadTagType() {
             int type = ReadByte();
             if (type < 0) {
                 throw new EndOfStreamException();
-            } else if (type > (int)NbtTagType.IntArray) {
+            }
+            if (type > (int)NbtTagType.IntArray) {
                 throw new NbtFormatException("NBT tag type out of range: " + type);
             }
             return (NbtTagType)type;
         }
 
-        public override short ReadInt16() {
+        public override short ReadInt16()
+        {
             if (_swapNeeded) {
                 return Swap(base.ReadInt16());
-            } else {
-                return base.ReadInt16();
             }
+            return base.ReadInt16();
         }
 
-        public override int ReadInt32() {
+        public override int ReadInt32()
+        {
             if (_swapNeeded) {
                 return Swap(base.ReadInt32());
-            } else {
-                return base.ReadInt32();
             }
+            return base.ReadInt32();
         }
 
-        public override long ReadInt64() {
+        public override long ReadInt64()
+        {
             if (_swapNeeded) {
                 return Swap(base.ReadInt64());
-            } else {
-                return base.ReadInt64();
             }
+            return base.ReadInt64();
         }
 
-        public override float ReadSingle() {
+        public override float ReadSingle()
+        {
             if (_swapNeeded) {
                 FillBuffer(sizeof(float));
                 Array.Reverse(_buffer, 0, sizeof(float));
                 return BitConverter.ToSingle(_buffer, 0);
-            } else {
-                return base.ReadSingle();
             }
+            return base.ReadSingle();
         }
 
         public override double ReadDouble() {
@@ -2415,19 +2433,20 @@ namespace fNbt {
                     stringBytesRead += bytesReadThisTime;
                 }
                 return Encoding.UTF8.GetString(_stringConversionBuffer, 0, length);
-            } else {
-                var stringData = ReadBytes(length);
-                if (stringData.Length < length) {
-                    throw new EndOfStreamException();
-                }
-                return Encoding.UTF8.GetString(stringData);
             }
+            var stringData = ReadBytes(length);
+            if (stringData.Length < length) {
+                throw new EndOfStreamException();
+            }
+            return Encoding.UTF8.GetString(stringData);
         }
 
-        public void Skip(int bytesToSkip) {
+        public void Skip(int bytesToSkip)
+        {
             if (bytesToSkip < 0) {
                 throw new ArgumentOutOfRangeException("bytesToSkip");
-            } else if (BaseStream.CanSeek) {
+            }
+            if (BaseStream.CanSeek) {
                 BaseStream.Position += bytesToSkip;
             } else if (bytesToSkip != 0) {
                 if (_seekBuffer == null) _seekBuffer = new byte[SeekBufferSize];
@@ -2526,7 +2545,7 @@ namespace fNbt {
             if (input == null) throw new ArgumentNullException("input");
             if (!input.CanWrite) throw new ArgumentException("Given stream must be writable", "input");
             _stream = input;
-            _swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
+            _swapNeeded = BitConverter.IsLittleEndian == bigEndian;
         }
 
         public void Write(byte value) {
@@ -2658,7 +2677,7 @@ namespace fNbt {
                 var numLeft = value.Length;
                 while (numLeft > 0) {
                     // Figure out how many chars to process this round.
-                    var charCount = (numLeft > MaxBufferedStringLength) ? MaxBufferedStringLength : numLeft;
+                    var charCount = numLeft > MaxBufferedStringLength ? MaxBufferedStringLength : numLeft;
                     int byteLen;
                     fixed (char* pChars = value) {
                         fixed (byte* pBytes = _buffer) {
@@ -2913,11 +2932,7 @@ namespace fNbt {
             FileName = null;
 
             // detect compression, based on the first byte
-            if (compression == NbtCompression.AutoDetect) {
-                FileCompression = DetectCompression(stream);
-            } else {
-                FileCompression = compression;
-            }
+            FileCompression = compression == NbtCompression.AutoDetect ? DetectCompression(stream) : compression;
 
             // prepare to count bytes read
             long startOffset = 0;
@@ -2963,9 +2978,8 @@ namespace fNbt {
             // report bytes read
             if (stream.CanSeek) {
                 return stream.Position - startOffset;
-            } else {
-                return ((ByteCountingStream)stream).BytesRead;
             }
+            return ((ByteCountingStream)stream).BytesRead;
         }
 
         /// <summary> Loads NBT data from a stream. Existing <c>RootTag</c> will be replaced </summary>
@@ -3172,9 +3186,8 @@ namespace fNbt {
 
             if (stream.CanSeek) {
                 return stream.Position - startOffset;
-            } else {
-                return ((ByteCountingStream)stream).BytesWritten;
             }
+            return ((ByteCountingStream)stream).BytesWritten;
         }
 
         #endregion
@@ -3244,12 +3257,12 @@ namespace fNbt {
 
             switch (compression) {
                 case NbtCompression.GZip:
-                    using (var decStream = new GZipStream(stream, CompressionMode.Decompress, true)) {
+                    using (var decStream = new GZipStream(stream, CompressionMode.Decompress, true))
+                    {
                         if (bufferSize > 0) {
                             return GetRootNameInternal(new BufferedStream(decStream, bufferSize), bigEndian);
-                        } else {
-                            return GetRootNameInternal(decStream, bigEndian);
                         }
+                        return GetRootNameInternal(decStream, bigEndian);
                     }
 
                 case NbtCompression.None:
@@ -3260,12 +3273,12 @@ namespace fNbt {
                         throw new InvalidDataException(WrongZLibHeaderMessage);
                     }
                     stream.ReadByte();
-                    using (var decStream = new DeflateStream(stream, CompressionMode.Decompress, true)) {
+                    using (var decStream = new DeflateStream(stream, CompressionMode.Decompress, true))
+                    {
                         if (bufferSize > 0) {
                             return GetRootNameInternal(new BufferedStream(decStream, bufferSize), bigEndian);
-                        } else {
-                            return GetRootNameInternal(decStream, bigEndian);
                         }
+                        return GetRootNameInternal(decStream, bigEndian);
                     }
 
                 default:
@@ -3278,7 +3291,8 @@ namespace fNbt {
             var firstByte = stream.ReadByte();
             if (firstByte < 0) {
                 throw new EndOfStreamException();
-            } else if (firstByte != (int)NbtTagType.Compound) {
+            }
+            if (firstByte != (int)NbtTagType.Compound) {
                 throw new NbtFormatException("Given NBT stream does not start with a TAG_Compound");
             }
             var reader = new NbtBinaryReader(stream, bigEndian);
@@ -3378,7 +3392,7 @@ namespace fNbt {
 
         /// <summary> Whether tag that we are currently on is a list element. </summary>
         public bool IsListElement {
-            get { return (ParentTagType == NbtTagType.List); }
+            get { return ParentTagType == NbtTagType.List; }
         }
 
         /// <summary> Whether current tag has a value to read. </summary>
@@ -3398,7 +3412,7 @@ namespace fNbt {
 
         /// <summary> Whether current tag has a name. </summary>
         public bool HasName {
-            get { return (TagName != null); }
+            get { return TagName != null; }
         }
 
         /// <summary> Whether this reader has reached the end of stream. </summary>
@@ -3408,12 +3422,12 @@ namespace fNbt {
 
         /// <summary> Whether the current tag is a Compound. </summary>
         public bool IsCompound {
-            get { return (TagType == NbtTagType.Compound); }
+            get { return TagType == NbtTagType.Compound; }
         }
 
         /// <summary> Whether the current tag is a List. </summary>
         public bool IsList {
-            get { return (TagType == NbtTagType.List); }
+            get { return TagType == NbtTagType.List; }
         }
 
         /// <summary> Whether the current tag has length (Lists, ByteArrays, and IntArrays have length).
@@ -3464,7 +3478,7 @@ namespace fNbt {
         /// <summary> Gets whether this NbtReader instance is in state of error.
         /// No further reading can be done from this instance if a parse error occurred. </summary>
         public bool IsInErrorState {
-            get { return (_state == NbtParseState.Error); }
+            get { return _state == NbtParseState.Error; }
         }
 
         /// <summary> Reads the next tag from the stream. </summary>
@@ -3515,13 +3529,11 @@ namespace fNbt {
                         if (SkipEndTags) {
                             TagsRead--;
                             goto case NbtParseState.AtCompoundEnd;
-                        } else {
-                            return true;
                         }
-                    } else {
-                        ReadTagHeader(true);
                         return true;
                     }
+                    ReadTagHeader(true);
+                    return true;
 
                 case NbtParseState.AtListBeginning:
                     GoDown();
@@ -3541,20 +3553,19 @@ namespace fNbt {
                             _state = NbtParseState.InList;
                             TagType = NbtTagType.List;
                             goto case NbtParseState.InList;
-                        } else if (ParentTagType == NbtTagType.Compound) {
+                        }
+                        if (ParentTagType == NbtTagType.Compound) {
                             _state = NbtParseState.InCompound;
                             goto case NbtParseState.InCompound;
-                        } else {
-                            // This should not happen unless NbtReader is bugged
-                            _state = NbtParseState.Error;
-                            throw new NbtFormatException(InvalidParentTagError);
                         }
-                    } else {
-                        if (_canSeekStream) {
-                            TagStartOffset = (int)(_reader.BaseStream.Position - _streamStartOffset);
-                        }
-                        ReadTagHeader(false);
+                        // This should not happen unless NbtReader is bugged
+                        _state = NbtParseState.Error;
+                        throw new NbtFormatException(InvalidParentTagError);
                     }
+                    if (_canSeekStream) {
+                        TagStartOffset = (int)(_reader.BaseStream.Position - _streamStartOffset);
+                    }
+                    ReadTagHeader(false);
                     return true;
 
                 case NbtParseState.AtCompoundEnd:
@@ -3563,17 +3574,18 @@ namespace fNbt {
                         _state = NbtParseState.InList;
                         TagType = NbtTagType.Compound;
                         goto case NbtParseState.InList;
-                    } else if (ParentTagType == NbtTagType.Compound) {
+                    }
+                    if (ParentTagType == NbtTagType.Compound) {
                         _state = NbtParseState.InCompound;
                         goto case NbtParseState.InCompound;
-                    } else if (ParentTagType == NbtTagType.Unknown) {
+                    }
+                    if (ParentTagType == NbtTagType.Unknown) {
                         _state = NbtParseState.AtStreamEnd;
                         return false;
-                    } else {
-                        // This should not happen unless NbtReader is bugged
-                        _state = NbtParseState.Error;
-                        throw new NbtFormatException(InvalidParentTagError);
                     }
+                    // This should not happen unless NbtReader is bugged
+                    _state = NbtParseState.Error;
+                    throw new NbtFormatException(InvalidParentTagError);
 
                 case NbtParseState.AtStreamEnd:
                     // nothing left to read!
@@ -3587,7 +3599,7 @@ namespace fNbt {
 
         private void ReadTagHeader(bool readName) {
             TagsRead++;
-            TagName = (readName ? _reader.ReadString() : null);
+            TagName = readName ? _reader.ReadString() : null;
 
             _valueCache = null;
             TagLength = 0;
@@ -3731,14 +3743,17 @@ namespace fNbt {
         public bool ReadToDescendant(string tagName) {
             if (_state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
-            } else if (_state == NbtParseState.AtStreamEnd) {
+            }
+            if (_state == NbtParseState.AtStreamEnd) {
                 return false;
             }
             var currentDepth = Depth;
-            while (ReadToFollowing()) {
+            while (ReadToFollowing())
+            {
                 if (Depth <= currentDepth) {
                     return false;
-                } else if (TagName == tagName) {
+                }
+                if (TagName == tagName) {
                     return true;
                 }
             }
@@ -3753,14 +3768,17 @@ namespace fNbt {
         public bool ReadToNextSibling() {
             if (_state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
-            } else if (_state == NbtParseState.AtStreamEnd) {
+            }
+            if (_state == NbtParseState.AtStreamEnd) {
                 return false;
             }
             var currentDepth = Depth;
-            while (ReadToFollowing()) {
+            while (ReadToFollowing())
+            {
                 if (Depth == currentDepth) {
                     return true;
-                } else if (Depth < currentDepth) {
+                }
+                if (Depth < currentDepth) {
                     return false;
                 }
             }
@@ -3790,7 +3808,8 @@ namespace fNbt {
         public int Skip() {
             if (_state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
-            } else if (_state == NbtParseState.AtStreamEnd) {
+            }
+            if (_state == NbtParseState.AtStreamEnd) {
                 return 0;
             }
             var startDepth = Depth;
@@ -3958,16 +3977,16 @@ namespace fNbt {
             if (_state == NbtParseState.AtStreamEnd) {
                 throw new EndOfStreamException();
             }
-            if (!_atValue) {
-                if (_cacheTagValues) {
+            if (!_atValue)
+            {
+                if (_cacheTagValues)
+                {
                     if (_valueCache == null) {
                         throw new InvalidOperationException("No value to read.");
-                    } else {
-                        return _valueCache;
                     }
-                } else {
-                    throw new InvalidOperationException(NoValueToReadError);
+                    return _valueCache;
                 }
+                throw new InvalidOperationException(NoValueToReadError);
             }
             _valueCache = null;
             _atValue = false;
@@ -4373,7 +4392,8 @@ namespace fNbt {
         public void EndList() {
             if (_parentType != NbtTagType.List || IsDone) {
                 throw new NbtFormatException("Not currently in a list.");
-            } else if (_listIndex < _listSize) {
+            }
+            if (_listIndex < _listSize) {
                 throw new NbtFormatException("Cannot end list: not all list elements have been written yet. " +
                                              "Expected: " + _listSize + ", written: " + _listIndex);
             }
@@ -4623,7 +4643,8 @@ namespace fNbt {
             if (dataSource == null) throw new ArgumentNullException("dataSource");
             if (!dataSource.CanRead) {
                 throw new ArgumentException("Given stream does not support reading.", "dataSource");
-            } else if (count < 0) {
+            }
+            if (count < 0) {
                 throw new ArgumentOutOfRangeException("count", "count may not be negative");
             }
             var bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
@@ -4647,9 +4668,11 @@ namespace fNbt {
             if (buffer == null) throw new ArgumentNullException("buffer");
             if (!dataSource.CanRead) {
                 throw new ArgumentException("Given stream does not support reading.", "dataSource");
-            } else if (count < 0) {
+            }
+            if (count < 0) {
                 throw new ArgumentOutOfRangeException("count", "count may not be negative");
-            } else if (buffer.Length == 0 && count > 0) {
+            }
+            if (buffer.Length == 0 && count > 0) {
                 throw new ArgumentException("buffer size must be greater than 0 when count is greater than 0", "buffer");
             }
             EnforceConstraints(null, NbtTagType.ByteArray);
@@ -4693,9 +4716,11 @@ namespace fNbt {
             if (buffer == null) throw new ArgumentNullException("buffer");
             if (!dataSource.CanRead) {
                 throw new ArgumentException("Given stream does not support reading.", "dataSource");
-            } else if (count < 0) {
+            }
+            if (count < 0) {
                 throw new ArgumentOutOfRangeException("count", "count may not be negative");
-            } else if (buffer.Length == 0 && count > 0) {
+            }
+            if (buffer.Length == 0 && count > 0) {
                 throw new ArgumentException("buffer size must be greater than 0 when count is greater than 0", "buffer");
             }
             EnforceConstraints(tagName, NbtTagType.ByteArray);
@@ -4837,10 +4862,12 @@ namespace fNbt {
             if (_parentType == NbtTagType.List) {
                 if (name != null) {
                     throw new NbtFormatException("Expecting an unnamed tag.");
-                } else if (_listType != desiredType) {
+                }
+                if (_listType != desiredType) {
                     throw new NbtFormatException("Unexpected tag type (expected: " + _listType + ", given: " +
                                                  desiredType);
-                } else if (_listIndex >= _listSize) {
+                }
+                if (_listIndex >= _listSize) {
                     throw new NbtFormatException("Given list size exceeded.");
                 }
                 _listIndex++;
@@ -4849,14 +4876,18 @@ namespace fNbt {
             }
         }
 
-        private static void CheckArray(Array data, int offset, int count) {
+        private static void CheckArray(Array data, int offset, int count)
+        {
             if (data == null) {
                 throw new ArgumentNullException("data");
-            } else if (offset < 0) {
+            }
+            if (offset < 0) {
                 throw new ArgumentOutOfRangeException("offset", "offset may not be negative.");
-            } else if (count < 0) {
+            }
+            if (count < 0) {
                 throw new ArgumentOutOfRangeException("count", "count may not be negative.");
-            } else if ((data.Length - offset) < count) {
+            }
+            if (data.Length - offset < count) {
                 throw new ArgumentException("count may not be greater than offset subtracted from the array length.");
             }
         }
@@ -4899,12 +4930,12 @@ namespace fNbt {
         private const int ChecksumModulus = 65521;
 
         public int Checksum {
-            get { return unchecked((_adler32B*65536) + _adler32A); }
+            get { return unchecked(_adler32B*65536 + _adler32A); }
         }
 
         private void UpdateChecksum(IList<byte> data, int offset, int length) {
             for (var counter = 0; counter < length; ++counter) {
-                _adler32A = (_adler32A + (data[offset + counter]))%ChecksumModulus;
+                _adler32A = (_adler32A + data[offset + counter])%ChecksumModulus;
                 _adler32B = (_adler32B + _adler32A)%ChecksumModulus;
             }
         }

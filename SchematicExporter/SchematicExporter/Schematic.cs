@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using fNbt;
 
 namespace SchematicExporter
@@ -30,6 +31,8 @@ namespace SchematicExporter
         /// <param name="fileName">The filename of the schematic</param>
         public Schematic(string fileName)
         {
+            if (!File.Exists(fileName))
+                throw new FileNotFoundException("Schematic file not found!", fileName);
             _nFile = new NbtFile(fileName);
             //Console.WriteLine(nFile.RootTag);
             Length = _nFile.RootTag["Length"].IntValue;
@@ -47,11 +50,11 @@ namespace SchematicExporter
             //Console.WriteLine(getTileEntities());
 
             for (var index = 0; index < _blocks.Length; index++)
-                if ((index >> 1) < _addId.Length)
+                if (index >> 1 < _addId.Length)
                     if ((index & 1) == 0)
-                        _blocks[index] = (((_addId[index >> 1] & 0x0F) << 8) + _blocks[index]);
+                        _blocks[index] = ((_addId[index >> 1] & 0x0F) << 8) + _blocks[index];
                     else
-                        _blocks[index] = (((_addId[index >> 1] & 0xF0) << 4) + _blocks[index]);
+                        _blocks[index] = ((_addId[index >> 1] & 0xF0) << 4) + _blocks[index];
         }
 
         /// <summary>

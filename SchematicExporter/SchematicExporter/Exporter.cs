@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System.Diagnostics;
+using System.IO;
+using System.Text;
 using fNbt;
 
 namespace SchematicExporter
@@ -55,8 +55,9 @@ namespace SchematicExporter
              */
 
             var tag = 0;
-            foreach (NbtCompound t in schematic.GetTileEntities())
+            foreach (var nbtTag in schematic.GetTileEntities())
             {
+                var t = (NbtCompound)nbtTag;
                 var x = t["x"].IntValue;
                 var y = t["y"].IntValue;
                 var z = t["z"].IntValue;
@@ -104,7 +105,7 @@ namespace SchematicExporter
             stopwatch.Stop();
             Console.Write(Utils.MillisToHrd(stopwatch.ElapsedMilliseconds).PadRight(10));
 
-            gen.Append(tiles.ToString());
+            gen.Append(tiles);
 
             gen.AppendLine("\t\treturn true;");
             gen.AppendLine("\t}");
@@ -115,7 +116,7 @@ namespace SchematicExporter
             template = template.Replace("{{IMPORTS}}", imports.ToString());
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write(((currentGen * MaxBlocksPerGen) + numStatements).ToString().PadRight(10));
+            Console.Write((currentGen * MaxBlocksPerGen + numStatements).ToString().PadRight(10));
             Console.Write(tag.ToString().PadRight(10));
             Console.Write((currentGen + 1).ToString().PadRight(10));
             stopwatch.Restart();

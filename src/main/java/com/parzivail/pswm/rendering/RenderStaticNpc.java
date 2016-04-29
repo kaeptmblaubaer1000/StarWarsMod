@@ -35,7 +35,7 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 			TileEntityStaticNpc staticNpc = (TileEntityStaticNpc)te;
 			GL11.glPushMatrix();
 			GL11.glTranslated(x + 0.5f, y, z + 0.5f);
-			//GL11.glRotatef(staticNpc.getAngleToClosestPlayer(), 0, 1, 0);
+			GL11.glRotatef(staticNpc.getAngleToClosestPlayer(), 0, 1, 0);
 			biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
 			GL11.glPopMatrix();
 		}

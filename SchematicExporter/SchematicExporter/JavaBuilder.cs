@@ -29,7 +29,7 @@ namespace SchematicExporter
 
         public static string MakeGen(int genId)
         {
-            return string.Format("\tpublic boolean generate{0}(World world, int i, int j, int k)", genId == 0 ? "" : ("_" + genId.ToString()));
+            return string.Format("\tpublic boolean generate{0}(World world, int i, int j, int k)", genId == 0 ? "" : "_" + genId);
         }
 
         public static string MakeCallGen(int genId)
@@ -78,7 +78,7 @@ namespace SchematicExporter
                         sb.AppendLine(string.Format("{0}{1}.setByteArray(\"{2}\", new byte[] {3});", linePrefix, nameBase, tName, tag.ByteArrayValue));
                         break;
                     case NbtTagType.Compound:
-                        sb.Append(MakeNbt(nameBase + "_nest", ref imports, ((NbtCompound)tag), nameBase, linePrefix));
+                        sb.Append(MakeNbt(nameBase + "_nest", ref imports, (NbtCompound)tag, nameBase, linePrefix));
                         break;
                     case NbtTagType.List:
                         sb.AppendLine(string.Format("{0}NBTTagList {1} = new NBTTagList();", linePrefix, nameBase + "_list"));
@@ -87,8 +87,8 @@ namespace SchematicExporter
                         foreach (var tagList in (NbtList)tag)
                             if (tagList.TagType == NbtTagType.Compound)
                             {
-                                sb.AppendLine(MakeNbt(nameBase + "_listItem" + lItem.ToString(), ref imports, ((NbtCompound)tagList), null, linePrefix));
-                                sb.AppendLine(string.Format("{0}{1}_list.appendTag({2}_listItem{3});", linePrefix, nameBase, nameBase, lItem.ToString()));
+                                sb.AppendLine(MakeNbt(nameBase + "_listItem" + lItem, ref imports, (NbtCompound)tagList, null, linePrefix));
+                                sb.AppendLine(string.Format("{0}{1}_list.appendTag({2}_listItem{3});", linePrefix, nameBase, nameBase, lItem));
                                 lItem++;
                             }
                         sb.AppendLine(string.Format("{0}{1}.setTag(\"{2}\", {3});", linePrefix, nameBase, tName, nameBase + "_list"));
@@ -176,7 +176,7 @@ namespace SchematicExporter
                         imports.Require("com.parzivail.pswm.utils.LootGenUtils");
                         break;
                     }
-                    else if (id == IdMapper.Instance.GetIdFromItem("lever")) // lever in top left = spawn entity
+                    if (id == IdMapper.Instance.GetIdFromItem("lever")) // lever in top left = spawn entity
                     {
                         sb.Clear();
 

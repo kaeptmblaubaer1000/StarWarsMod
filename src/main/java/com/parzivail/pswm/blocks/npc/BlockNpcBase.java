@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.world.HarvestLevel;
@@ -25,7 +24,7 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 		super(Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "staticNpc");
-		setBlockBounds(0, 0, 0, 1, 0.83f, 1);
+		setBlockBounds(0, 0, 0, 1, 1.83f, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
@@ -86,6 +85,6 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
 	{
-		setBlockBounds(0, 0, 0, 1, 0.83f, 1);
+		setBlockBounds(0, 0, 0, 1, 1.83f, 1);
 	}
 }

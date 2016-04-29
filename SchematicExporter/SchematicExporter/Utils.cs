@@ -7,6 +7,8 @@ namespace SchematicExporter
 {
     internal static class Utils
     {
+        private static readonly string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
         /// <summary>
         /// Milliseconds to Human Readable Date
         /// </summary>
@@ -47,6 +49,21 @@ namespace SchematicExporter
         {
             if (!list.Contains(value))
                 list.Add(value);
+        }
+
+        public static string SizeSuffix(long value)
+        {
+            if (value < 0) { return "-" + SizeSuffix(-value); }
+
+            int i = 0;
+            decimal dValue = (decimal)value;
+            while (Math.Round(dValue / 1024) >= 1)
+            {
+                dValue /= 1024;
+                i++;
+            }
+
+            return string.Format("{0:n1} {1}", dValue, SizeSuffixes[i]);
         }
     }
 }
