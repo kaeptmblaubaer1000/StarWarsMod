@@ -13,8 +13,9 @@ namespace SchematicExporter
         /// Milliseconds to Human Readable Date
         /// </summary>
         /// <param name="millis">Milliseconds</param>
+        /// <param name="onlyMajorUnit">True if you only want the major time unit (i.e. "2s" vs "2s 134ms")</param>
         /// <returns>Human Readable Date</returns>
-        public static string MillisToHrd(long millis)
+        public static string MillisToHrd(long millis, bool onlyMajorUnit)
         {
             var ts = TimeSpan.FromMilliseconds(millis);
             var parts = string
@@ -23,8 +24,18 @@ namespace SchematicExporter
                             .Split(':')
                             .SkipWhile(s => Regex.Match(s, @"00\w").Success) // skip zero-valued components
                             .ToArray();
-            var ret = parts.Length == 0 ? "0ms" : parts[0]; // String.Join(" ", parts); // combine the result
+            var ret = onlyMajorUnit ? parts.Length == 0 ? "0ms" : parts[0] : String.Join(" ", parts); // combine the result
             return Regex.Replace(ret, @"(0+)(\d+)", @"$2");
+        }
+
+        /// <summary>
+        /// Milliseconds to Human Readable Date
+        /// </summary>
+        /// <param name="millis">Milliseconds</param>
+        /// <returns>Human Readable Date</returns>
+        public static string MillisToHrd(long millis)
+        {
+            return MillisToHrd(millis, true);
         }
 
         /// <summary>
@@ -56,7 +67,7 @@ namespace SchematicExporter
             if (value < 0) { return "-" + SizeSuffix(-value); }
 
             int i = 0;
-            decimal dValue = (decimal)value;
+            decimal dValue = value;
             while (Math.Round(dValue / 1024) >= 1)
             {
                 dValue /= 1024;

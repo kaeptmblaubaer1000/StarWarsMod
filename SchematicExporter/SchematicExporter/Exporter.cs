@@ -21,12 +21,15 @@ namespace SchematicExporter
         /// <param name="schematic">The schematic to export</param>
         public static void Export(ExportOptions options, Schematic schematic)
         {
+            // Check if the template exists
             if (!File.Exists("template.java"))
             {
                 Console.WriteLine("Unable to locate template.java");
                 Console.ReadKey();
                 Environment.Exit(0);
             }
+            
+            // Load the java template
             var template = File.ReadAllText("template.java");
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -35,6 +38,7 @@ namespace SchematicExporter
             var imports = new StringBuilder();
             var lImports = new List<string>();
 
+            // Load primary imports
             lImports.Require("net.minecraft.block.Block");
             lImports.Require("net.minecraft.world.World");
             lImports.Require("com.parzivail.util.world.WorldUtils");
@@ -42,18 +46,11 @@ namespace SchematicExporter
             var numStatements = 0;
             var currentGen = 0;
 
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            // Start an iterate timer
+            var swIterate = new Stopwatch();
+            swIterate.Start();
 
-            /*
-            TAG_Compound: 4 entries {
-                TAG_String("id"): "teBasket"
-                TAG_Int("x"): 3
-                TAG_Int("y"): 0
-                TAG_Int("z"): 6
-            }
-             */
-
+            // Iterate over tile entities
             var tag = 0;
             foreach (var nbtTag in schematic.GetTileEntities())
             {
@@ -68,15 +65,14 @@ namespace SchematicExporter
                 }
             }
 
+            // Iterate over blocks
             gen.AppendLine(JavaBuilder.MakeGen(currentGen));
             gen.AppendLine("\t{");
             for (var x = 0; x < schematic.Width; x++)
-            {
                 for (var y = 0; y < schematic.Height; y++)
-                {
                     for (var z = 0; z < schematic.Length; z++)
                     {
-                        if (schematic.GetFlagAt(x, y, z))
+                        if (schematic.GetFlagAt(x, y, z) || (schematic.GetBlockAt(x, y, z).GetName() == "air" && Program.IgnoreAirBlocks))
                             continue;
                         gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z));
                         numStatements++;
@@ -94,22 +90,22 @@ namespace SchematicExporter
                             gen.AppendLine("\t{");
                         }
                     }
-                }
-            }
 
+            // Sort imports
             lImports.Sort();
             foreach (var s in lImports)
                 imports.AppendLine(string.Format("import {0};", s));
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            stopwatch.Stop();
-            Console.Write(Utils.MillisToHrd(stopwatch.ElapsedMilliseconds).PadRight(10));
+            swIterate.Stop();
+            Console.Write(Utils.MillisToHrd(swIterate.ElapsedMilliseconds).PadRight(10));
 
             gen.Append(tiles);
 
             gen.AppendLine("\t\treturn true;");
             gen.AppendLine("\t}");
 
+            // Replace template placeholders with true data
             template = template.Replace("{{PACKAGE}}", options.Package);
             template = template.Replace("{{CLASS}}", UpperFirst(options.ClassName));
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
@@ -119,16 +115,22 @@ namespace SchematicExporter
             Console.Write((currentGen * MaxBlocksPerGen + numStatements).ToString().PadRight(10));
             Console.Write(tag.ToString().PadRight(10));
             Console.Write((currentGen + 1).ToString().PadRight(10));
-            stopwatch.Restart();
+            swIterate.Restart();
 
+            // Write data to file
             using (var w = new StreamWriter("output/" + options.FileName))
                 w.WriteLine(template);
 
-            stopwatch.Stop();
+            swIterate.Stop();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(Utils.MillisToHrd(stopwatch.ElapsedMilliseconds).PadRight(10));
+            Console.Write(Utils.MillisToHrd(swIterate.ElapsedMilliseconds).PadRight(10));
         }
 
+        /// <summary>
+        /// Uppercase the first letter of a string
+        /// </summary>
+        /// <param name="s">The string to work on</param>
+        /// <returns>The string with the first character uppercased</returns>
         private static string UpperFirst(string s)
         {
             return char.ToUpper(s[0]) + s.Substring(1);

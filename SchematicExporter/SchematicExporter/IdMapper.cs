@@ -868,26 +868,51 @@ namespace SchematicExporter
             return _items[id];
         }
 
+        /// <summary>
+        /// Does a Name to Entity conversion
+        /// </summary>
+        /// <param name="name">The name to loop up</param>
+        /// <returns>The entity if found, or null otherwise</returns>
         public Entity GetEntityFromName(string name)
         {
             return _entityAssociations.FirstOrDefault(x => x.Key.GetName() == name).Key;
         }
 
+        /// <summary>
+        /// Does an Item to Entity conversion
+        /// </summary>
+        /// <param name="item">The item to loop up</param>
+        /// <returns>The entity if found, or null otherwise</returns>
         public Entity GetEntityFromAssociation(Item item)
         {
             return _entityAssociations.FirstOrDefault(x => x.Value.GetName() == item.GetName()).Key;
         }
 
+        /// <summary>
+        /// Does a Name to Item conversion
+        /// </summary>
+        /// <param name="name">The name to look up</param>
+        /// <returns>The item it found, or null otherwise</returns>
         public Item GetItemFromName(string name)
         {
             return _items.FirstOrDefault(x => x.Value.GetName() == name).Value;
         }
 
+        /// <summary>
+        /// Does an item Name to ID conversion
+        /// </summary>
+        /// <param name="itemName">The name to look up</param>
+        /// <returns>The ID it found, or null otherwise</returns>
         public int GetIdFromItem(string itemName)
         {
             return _items.FirstOrDefault(x => x.Value.GetName() == itemName).Key;
         }
 
+        /// <summary>
+        /// Does a block Name to ID conversion
+        /// </summary>
+        /// <param name="blockName">The name to look up</param>
+        /// <returns>The ID it found, or null otherwise</returns>
         public int GetIdFromBlock(string blockName)
         {
             return _blocks.FirstOrDefault(x => x.Value.GetName() == blockName).Key;

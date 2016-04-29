@@ -169,14 +169,14 @@ namespace SchematicExporter
                 int damage = itemstack["Damage"].ShortValue;
                 if (slot == 0)
                 {
-                    if (id == IdMapper.Instance.GetIdFromItem("blaze_rod")) // blaze rod in top left = randomize loot
+                    if (id == IdMapper.Instance.GetIdFromItem("blaze_rod") || (((NbtList)c["Items"]).Count == 0 && Program.EmptyChestNotRandom)) // blaze rod in top left = randomize loot
                     {
                         sb.Clear();
                         sb.AppendLine(string.Format("{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});", linePrefix, x, y, z));
                         imports.Require("com.parzivail.pswm.utils.LootGenUtils");
                         break;
                     }
-                    if (id == IdMapper.Instance.GetIdFromItem("lever")) // lever in top left = spawn entity
+                    else if (id == IdMapper.Instance.GetIdFromItem("lever") && !Program.IgnoreChestToEntity) // lever in top left = spawn entity
                     {
                         sb.Clear();
 
