@@ -4,6 +4,7 @@ import com.parzivail.pswm.mobs.MobDroidAstromech2;
 import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
 import com.parzivail.pswm.mobs.trooper.MobScouttrooper;
 import com.parzivail.pswm.vehicles.VehicSpeederBike;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
@@ -16,7 +17,7 @@ public class WorldGenMobs_Before_Server
 
 	public void b(World world, int x, int y, int z, Block block, int metadata)
 	{
-		world.setBlock(x, y, z, block, metadata, 1 | 2);
+		WorldUtils.setBlock(world, x, y, z, block, metadata, 1 | 2);
 	}
     
     public void m(World world, int x, int y, int z, int metadata)

@@ -77,11 +77,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Byte");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": ");
@@ -91,7 +91,7 @@ namespace fNbt {
 
     /// <summary> A tag containing an array of bytes. </summary>
     public sealed class NbtByteArray : NbtTag {
-        static readonly byte[] ZeroArray = new byte[0];
+        private static readonly byte[] ZeroArray = new byte[0];
 
         /// <summary> Type of this tag (ByteArray). </summary>
         public override NbtTagType TagType {
@@ -101,16 +101,16 @@ namespace fNbt {
         /// <summary> Value/payload of this tag (an array of bytes). Value is stored as-is and is NOT cloned. May not be <c>null</c>. </summary>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         public byte[] Value {
-            get { return bytes; }
+            get { return _bytes; }
             set {
                 if (value == null) {
                     throw new ArgumentNullException("value");
                 }
-                bytes = value;
+                _bytes = value;
             }
         }
 
-        byte[] bytes;
+        private byte[] _bytes;
 
         /// <summary> Creates an unnamed NbtByte tag, containing an empty array of bytes. </summary>
         public NbtByteArray()
@@ -128,7 +128,7 @@ namespace fNbt {
         /// <param name="tagName"> Name to assign to this tag. May be <c>null</c>. </param>
         public NbtByteArray(string tagName) {
             name = tagName;
-            bytes = ZeroArray;
+            _bytes = ZeroArray;
         }
 
         /// <summary> Creates an NbtByte tag with the given name, containing the given array of bytes. </summary>
@@ -140,7 +140,7 @@ namespace fNbt {
         public NbtByteArray(string tagName, byte[] value) {
             if (value == null) throw new ArgumentNullException("value");
             name = tagName;
-            bytes = (byte[])value.Clone();
+            _bytes = (byte[])value.Clone();
         }
 
         /// <summary> Creates a deep copy of given NbtByteArray. </summary>
@@ -150,7 +150,7 @@ namespace fNbt {
         public NbtByteArray(NbtByteArray other) {
             if (other == null) throw new ArgumentNullException("other");
             name = other.name;
-            bytes = (byte[])other.Value.Clone();
+            _bytes = (byte[])other.Value.Clone();
         }
 
         /// <summary> Gets or sets a byte at the given index. </summary>
@@ -163,7 +163,7 @@ namespace fNbt {
         }
 
         internal override bool ReadTag(NbtBinaryReader readStream) {
-            int length = readStream.ReadInt32();
+            var length = readStream.ReadInt32();
             if (length < 0) {
                 throw new NbtFormatException("Negative length given in TAG_Byte_Array");
             }
@@ -180,7 +180,7 @@ namespace fNbt {
         }
 
         internal override void SkipTag(NbtBinaryReader readStream) {
-            int length = readStream.ReadInt32();
+            var length = readStream.ReadInt32();
             if (length < 0) {
                 throw new NbtFormatException("Negative length given in TAG_Byte_Array");
             }
@@ -204,14 +204,14 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Byte_Array");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
-            sb.AppendFormat(": [{0} bytes]", bytes.Length);
+            sb.AppendFormat(": [{0} bytes]", _bytes.Length);
         }
     }
 
@@ -222,7 +222,7 @@ namespace fNbt {
             get { return NbtTagType.Compound; }
         }
 
-        readonly Dictionary<string, NbtTag> tags = new Dictionary<string, NbtTag>();
+        private readonly Dictionary<string, NbtTag> _tags = new Dictionary<string, NbtTag>();
 
         /// <summary> Creates an empty unnamed NbtByte tag. </summary>
         public NbtCompound() {}
@@ -248,7 +248,7 @@ namespace fNbt {
         public NbtCompound(string tagName, IEnumerable<NbtTag> tags) {
             if (tags == null) throw new ArgumentNullException("tags");
             name = tagName;
-            foreach (NbtTag tag in tags) {
+            foreach (var tag in tags) {
                 Add(tag);
             }
         }
@@ -259,7 +259,7 @@ namespace fNbt {
         public NbtCompound(NbtCompound other) {
             if (other == null) throw new ArgumentNullException("other");
             name = other.name;
-            foreach (NbtTag tag in other.tags.Values) {
+            foreach (var tag in other._tags.Values) {
                 Add((NbtTag)tag.Clone());
             }
         }
@@ -284,7 +284,7 @@ namespace fNbt {
                 } else if (value == this) {
                     throw new ArgumentException("Cannot add tag to itself");
                 }
-                tags[tagName] = value;
+                _tags[tagName] = value;
                 value.Parent = this;
             }
         }
@@ -298,7 +298,7 @@ namespace fNbt {
         public T Get<T>(string tagName) where T : NbtTag {
             if (tagName == null) throw new ArgumentNullException("tagName");
             NbtTag result;
-            if (tags.TryGetValue(tagName, out result)) {
+            if (_tags.TryGetValue(tagName, out result)) {
                 return (T)result;
             }
             return null;
@@ -312,7 +312,7 @@ namespace fNbt {
         public NbtTag Get(string tagName) {
             if (tagName == null) throw new ArgumentNullException("tagName");
             NbtTag result;
-            if (tags.TryGetValue(tagName, out result)) {
+            if (_tags.TryGetValue(tagName, out result)) {
                 return result;
             }
             return null;
@@ -329,7 +329,7 @@ namespace fNbt {
         public bool TryGet<T>(string tagName, out T result) where T : NbtTag {
             if (tagName == null) throw new ArgumentNullException("tagName");
             NbtTag tempResult;
-            if (tags.TryGetValue(tagName, out tempResult)) {
+            if (_tags.TryGetValue(tagName, out tempResult)) {
                 result = (T)tempResult;
                 return true;
             } else {
@@ -348,7 +348,7 @@ namespace fNbt {
         public bool TryGet(string tagName, out NbtTag result) {
             if (tagName == null) throw new ArgumentNullException("tagName");
             NbtTag tempResult;
-            if (tags.TryGetValue(tagName, out tempResult)) {
+            if (_tags.TryGetValue(tagName, out tempResult)) {
                 result = tempResult;
                 return true;
             } else {
@@ -364,7 +364,7 @@ namespace fNbt {
         /// or if a tag with the given name already exists in this NbtCompound. </exception>
         public void AddRange(IEnumerable<NbtTag> newTags) {
             if (newTags == null) throw new ArgumentNullException("newTags");
-            foreach (NbtTag tag in newTags) {
+            foreach (var tag in newTags) {
                 Add(tag);
             }
         }
@@ -375,7 +375,7 @@ namespace fNbt {
         /// <exception cref="ArgumentNullException"> <paramref name="tagName"/> is <c>null</c>. </exception>
         public bool Contains(string tagName) {
             if (tagName == null) throw new ArgumentNullException("tagName");
-            return tags.ContainsKey(tagName);
+            return _tags.ContainsKey(tagName);
         }
 
         /// <summary> Removes the tag with the specified name from this NbtCompound. </summary>
@@ -386,10 +386,10 @@ namespace fNbt {
         public bool Remove(string tagName) {
             if (tagName == null) throw new ArgumentNullException("tagName");
             NbtTag tag;
-            if (!tags.TryGetValue(tagName, out tag)) {
+            if (!_tags.TryGetValue(tagName, out tag)) {
                 return false;
             }
-            tags.Remove(tagName);
+            _tags.Remove(tagName);
             tag.Parent = null;
             return true;
         }
@@ -399,24 +399,24 @@ namespace fNbt {
             Debug.Assert(newName != null);
             Debug.Assert(newName != oldName);
             NbtTag tag;
-            if (tags.TryGetValue(newName, out tag)) {
+            if (_tags.TryGetValue(newName, out tag)) {
                 throw new ArgumentException("Cannot rename: a tag with the name already exists in this compound.");
             }
-            if (!tags.TryGetValue(oldName, out tag)) {
+            if (!_tags.TryGetValue(oldName, out tag)) {
                 throw new ArgumentException("Cannot rename: no tag found to rename.");
             }
-            tags.Remove(oldName);
-            tags.Add(newName, tag);
+            _tags.Remove(oldName);
+            _tags.Add(newName, tag);
         }
 
         /// <summary> Gets a collection containing all tag names in this NbtCompound. </summary>
         public IEnumerable<string> Names {
-            get { return tags.Keys; }
+            get { return _tags.Keys; }
         }
 
         /// <summary> Gets a collection containing all tags in this NbtCompound. </summary>
         public IEnumerable<NbtTag> Tags {
-            get { return tags.Values; }
+            get { return _tags.Values; }
         }
 
         #region Reading / Writing
@@ -428,7 +428,7 @@ namespace fNbt {
             }
 
             while (true) {
-                NbtTagType nextTag = readStream.ReadTagType();
+                var nextTag = readStream.ReadTagType();
                 NbtTag newTag;
                 switch (nextTag) {
                     case NbtTagType.End:
@@ -486,7 +486,7 @@ namespace fNbt {
                 if (newTag.ReadTag(readStream)) {
                     // ReSharper disable AssignNullToNotNullAttribute
                     // newTag.Name is never null
-                    tags.Add(newTag.Name, newTag);
+                    _tags.Add(newTag.Name, newTag);
                     // ReSharper restore AssignNullToNotNullAttribute
                 }
             }
@@ -494,7 +494,7 @@ namespace fNbt {
 
         internal override void SkipTag(NbtBinaryReader readStream) {
             while (true) {
-                NbtTagType nextTag = readStream.ReadTagType();
+                var nextTag = readStream.ReadTagType();
                 NbtTag newTag;
                 switch (nextTag) {
                     case NbtTagType.End:
@@ -560,7 +560,7 @@ namespace fNbt {
         }
 
         internal override void WriteData(NbtBinaryWriter writeStream) {
-            foreach (NbtTag tag in tags.Values) {
+            foreach (var tag in _tags.Values) {
                 tag.WriteTag(writeStream);
             }
             writeStream.Write(NbtTagType.End);
@@ -573,11 +573,11 @@ namespace fNbt {
         /// <summary> Returns an enumerator that iterates through all tags in this NbtCompound. </summary>
         /// <returns> An IEnumerator&gt;NbtTag&lt; that can be used to iterate through the collection. </returns>
         public IEnumerator<NbtTag> GetEnumerator() {
-            return tags.Values.GetEnumerator();
+            return _tags.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
-            return tags.Values.GetEnumerator();
+            return _tags.Values.GetEnumerator();
         }
 
         #endregion
@@ -599,16 +599,16 @@ namespace fNbt {
             } else if (newTag.Parent != null) {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
             }
-            tags.Add(newTag.Name, newTag);
+            _tags.Add(newTag.Name, newTag);
             newTag.Parent = this;
         }
 
         /// <summary> Removes all tags from this NbtCompound. </summary>
         public void Clear() {
-            foreach (NbtTag tag in tags.Values) {
+            foreach (var tag in _tags.Values) {
                 tag.Parent = null;
             }
-            tags.Clear();
+            _tags.Clear();
         }
 
         /// <summary> Determines whether this NbtCompound contains a specific NbtTag.
@@ -618,7 +618,7 @@ namespace fNbt {
         /// <exception cref="ArgumentNullException"> <paramref name="tag"/> is <c>null</c>. </exception>
         public bool Contains(NbtTag tag) {
             if (tag == null) throw new ArgumentNullException("tag");
-            return tags.ContainsValue(tag);
+            return _tags.ContainsValue(tag);
         }
 
         /// <summary> Copies the tags of the NbtCompound to an array, starting at a particular array index. </summary>
@@ -631,7 +631,7 @@ namespace fNbt {
         /// the number of tags in this NbtCompound is greater than the available space from arrayIndex to the end of the destination array;
         /// or type NbtTag cannot be cast automatically to the type of the destination array. </exception>
         public void CopyTo(NbtTag[] array, int arrayIndex) {
-            tags.Values.CopyTo(array, arrayIndex);
+            _tags.Values.CopyTo(array, arrayIndex);
         }
 
         /// <summary> Removes the first occurrence of a specific NbtTag from the NbtCompound.
@@ -645,8 +645,8 @@ namespace fNbt {
             if (tag == null) throw new ArgumentNullException("tag");
             if (tag.Name == null) throw new ArgumentException("Trying to remove an unnamed tag.");
             NbtTag maybeItem;
-            if (tags.TryGetValue(tag.Name, out maybeItem)) {
-                if (maybeItem == tag && tags.Remove(tag.Name)) {
+            if (_tags.TryGetValue(tag.Name, out maybeItem)) {
+                if (maybeItem == tag && _tags.Remove(tag.Name)) {
                     tag.Parent = null;
                     return true;
                 }
@@ -657,7 +657,7 @@ namespace fNbt {
         /// <summary> Gets the number of tags contained in the NbtCompound. </summary>
         /// <returns> The number of tags contained in the NbtCompound. </returns>
         public int Count {
-            get { return tags.Count; }
+            get { return _tags.Count; }
         }
 
         bool ICollection<NbtTag>.IsReadOnly {
@@ -673,7 +673,7 @@ namespace fNbt {
         }
 
         object ICollection.SyncRoot {
-            get { return (tags as ICollection).SyncRoot; }
+            get { return (_tags as ICollection).SyncRoot; }
         }
 
         bool ICollection.IsSynchronized {
@@ -687,22 +687,22 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Compound");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
-            sb.AppendFormat(": {0} entries {{", tags.Count);
+            sb.AppendFormat(": {0} entries {{", _tags.Count);
 
             if (Count > 0) {
                 sb.Append('\n');
-                foreach (NbtTag tag in tags.Values) {
+                foreach (var tag in _tags.Values) {
                     tag.PrettyPrint(sb, indentString, indentLevel + 1);
                     sb.Append('\n');
                 }
-                for (int i = 0; i < indentLevel; i++) {
+                for (var i = 0; i < indentLevel; i++) {
                     sb.Append(indentString);
                 }
             }
@@ -779,11 +779,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Double");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": ");
@@ -860,11 +860,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Float");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": ");
@@ -941,11 +941,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Int");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": ");
@@ -955,7 +955,7 @@ namespace fNbt {
 
     /// <summary> A tag containing an array of signed 32-bit integers. </summary>
     public sealed class NbtIntArray : NbtTag {
-        static readonly int[] ZeroArray = new int[0];
+        private static readonly int[] ZeroArray = new int[0];
 
         /// <summary> Type of this tag (ByteArray). </summary>
         public override NbtTagType TagType {
@@ -965,16 +965,16 @@ namespace fNbt {
         /// <summary> Value/payload of this tag (an array of signed 32-bit integers). Value is stored as-is and is NOT cloned. May not be <c>null</c>. </summary>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         public int[] Value {
-            get { return ints; }
+            get { return _ints; }
             set {
                 if (value == null) {
                     throw new ArgumentNullException("value");
                 }
-                ints = value;
+                _ints = value;
             }
         }
 
-        int[] ints;
+        private int[] _ints;
 
         /// <summary> Creates an unnamed NbtIntArray tag, containing an empty array of ints. </summary>
         public NbtIntArray()
@@ -992,7 +992,7 @@ namespace fNbt {
         /// <param name="tagName"> Name to assign to this tag. May be <c>null</c>. </param>
         public NbtIntArray(string tagName) {
             name = tagName;
-            ints = ZeroArray;
+            _ints = ZeroArray;
         }
 
         /// <summary> Creates an NbtIntArray tag with the given name, containing the given array of ints. </summary>
@@ -1004,7 +1004,7 @@ namespace fNbt {
         public NbtIntArray(string tagName, int[] value) {
             if (value == null) throw new ArgumentNullException("value");
             name = tagName;
-            ints = (int[])value.Clone();
+            _ints = (int[])value.Clone();
         }
 
         /// <summary> Creates a deep copy of given NbtIntArray. </summary>
@@ -1014,7 +1014,7 @@ namespace fNbt {
         public NbtIntArray(NbtIntArray other) {
             if (other == null) throw new ArgumentNullException("other");
             name = other.name;
-            ints = (int[])other.Value.Clone();
+            _ints = (int[])other.Value.Clone();
         }
 
         /// <summary> Gets or sets an integer at the given index. </summary>
@@ -1027,7 +1027,7 @@ namespace fNbt {
         }
 
         internal override bool ReadTag(NbtBinaryReader readStream) {
-            int length = readStream.ReadInt32();
+            var length = readStream.ReadInt32();
             if (length < 0) {
                 throw new NbtFormatException("Negative length given in TAG_Int_Array");
             }
@@ -1038,14 +1038,14 @@ namespace fNbt {
             }
 
             Value = new int[length];
-            for (int i = 0; i < length; i++) {
+            for (var i = 0; i < length; i++) {
                 Value[i] = readStream.ReadInt32();
             }
             return true;
         }
 
         internal override void SkipTag(NbtBinaryReader readStream) {
-            int length = readStream.ReadInt32();
+            var length = readStream.ReadInt32();
             if (length < 0) {
                 throw new NbtFormatException("Negative length given in TAG_Int_Array");
             }
@@ -1061,7 +1061,7 @@ namespace fNbt {
 
         internal override void WriteData(NbtBinaryWriter writeStream) {
             writeStream.Write(Value.Length);
-            for (int i = 0; i < Value.Length; i++) {
+            for (var i = 0; i < Value.Length; i++) {
                 writeStream.Write(Value[i]);
             }
         }
@@ -1071,14 +1071,14 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Int_Array");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
-            sb.AppendFormat(": [{0} ints]", ints.Length);
+            sb.AppendFormat(": [{0} ints]", _ints.Length);
         }
     }
 
@@ -1089,36 +1089,36 @@ namespace fNbt {
             get { return NbtTagType.List; }
         }
 
-        readonly List<NbtTag> tags = new List<NbtTag>();
+        private readonly List<NbtTag> _tags = new List<NbtTag>();
 
         /// <summary> Gets or sets the tag type of this list. All tags in this NbtTag must be of the same type. </summary>
         /// <exception cref="ArgumentException"> If the given NbtTagType does not match the type of existing list items (for non-empty lists). </exception>
         /// <exception cref="ArgumentOutOfRangeException"> If the given NbtTagType is a recognized tag type. </exception>
         public NbtTagType ListType {
-            get { return listType; }
+            get { return _listType; }
             set {
                 if (value == NbtTagType.End) {
                     // Empty lists may have type "End", see: https://github.com/fragmer/fNbt/issues/12
-                    if (tags.Count > 0) {
+                    if (_tags.Count > 0) {
                         throw new ArgumentException("Only empty list tags may have TagType of End.");
                     }
                 } else if (value < NbtTagType.Byte || (value > NbtTagType.IntArray && value != NbtTagType.Unknown)) {
                     throw new ArgumentOutOfRangeException("value");
                 }
-                if (tags.Count > 0) {
-                    NbtTagType actualType = tags[0].TagType;
+                if (_tags.Count > 0) {
+                    var actualType = _tags[0].TagType;
                     // We can safely assume that ALL tags have the same TagType as the first tag.
                     if (actualType != value) {
-                        string msg = String.Format("Given NbtTagType ({0}) does not match actual element type ({1})",
+                        var msg = string.Format("Given NbtTagType ({0}) does not match actual element type ({1})",
                                                    value, actualType);
                         throw new ArgumentException(msg);
                     }
                 }
-                listType = value;
+                _listType = value;
             }
         }
 
-        NbtTagType listType;
+        private NbtTagType _listType;
 
         /// <summary> Creates an unnamed NbtList with empty contents and undefined ListType. </summary>
         public NbtList()
@@ -1196,7 +1196,7 @@ namespace fNbt {
             ListType = givenListType;
 
             if (tags == null) return;
-            foreach (NbtTag tag in tags) {
+            foreach (var tag in tags) {
                 Add(tag);
             }
         }
@@ -1207,9 +1207,9 @@ namespace fNbt {
         public NbtList(NbtList other) {
             if (other == null) throw new ArgumentNullException("other");
             name = other.name;
-            listType = other.listType;
-            foreach (NbtTag tag in other.tags) {
-                tags.Add((NbtTag)tag.Clone());
+            _listType = other._listType;
+            foreach (var tag in other._tags) {
+                _tags.Add((NbtTag)tag.Clone());
             }
         }
 
@@ -1220,7 +1220,7 @@ namespace fNbt {
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> Given tag's type does not match ListType. </exception>
         public override NbtTag this[int tagIndex] {
-            get { return tags[tagIndex]; }
+            get { return _tags[tagIndex]; }
             set {
                 if (value == null) {
                     throw new ArgumentNullException("value");
@@ -1231,10 +1231,10 @@ namespace fNbt {
                 } else if (value.Name != null) {
                     throw new ArgumentException("Named tag given. A list may only contain unnamed tags.");
                 }
-                if (listType != NbtTagType.Unknown && value.TagType != listType) {
-                    throw new ArgumentException("Items must be of type " + listType);
+                if (_listType != NbtTagType.Unknown && value.TagType != _listType) {
+                    throw new ArgumentException("Items must be of type " + _listType);
                 }
-                tags[tagIndex] = value;
+                _tags[tagIndex] = value;
                 value.Parent = this;
             }
         }
@@ -1246,7 +1246,7 @@ namespace fNbt {
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="tagIndex"/> is not a valid index in the NbtList. </exception>
         /// <exception cref="InvalidCastException"> If tag could not be cast to the desired tag. </exception>
         public T Get<T>(int tagIndex) where T : NbtTag {
-            return (T)tags[tagIndex];
+            return (T)_tags[tagIndex];
         }
 
         /// <summary> Adds all tags from the specified collection to the end of this NbtList. </summary>
@@ -1255,7 +1255,7 @@ namespace fNbt {
         /// <exception cref="ArgumentException"> If given tags do not match ListType, or are of mixed types. </exception>
         public void AddRange(IEnumerable<NbtTag> newTags) {
             if (newTags == null) throw new ArgumentNullException("newTags");
-            foreach (NbtTag tag in newTags) {
+            foreach (var tag in newTags) {
                 Add(tag);
             }
         }
@@ -1266,7 +1266,7 @@ namespace fNbt {
         // ReSharper disable ReturnTypeCanBeEnumerable.Global
         public NbtTag[] ToArray() {
             // ReSharper restore ReturnTypeCanBeEnumerable.Global
-            return tags.ToArray();
+            return _tags.ToArray();
         }
 
         /// <summary> Copies all tags in this NbtList to an array, and casts it to the desired type. </summary>
@@ -1274,9 +1274,9 @@ namespace fNbt {
         /// <returns> Array of NbtTags cast to the desired type. </returns>
         /// <exception cref="InvalidCastException"> If contents of this list cannot be cast to the given type. </exception>
         public T[] ToArray<T>() where T : NbtTag {
-            var result = new T[tags.Count];
-            for (int i = 0; i < result.Length; i++) {
-                result[i] = (T)tags[i];
+            var result = new T[_tags.Count];
+            for (var i = 0; i < result.Length; i++) {
+                result[i] = (T)_tags[i];
             }
             return result;
         }
@@ -1291,12 +1291,12 @@ namespace fNbt {
 
             ListType = readStream.ReadTagType();
 
-            int length = readStream.ReadInt32();
+            var length = readStream.ReadInt32();
             if (length < 0) {
                 throw new NbtFormatException("Negative list size given.");
             }
 
-            for (int i = 0; i < length; i++) {
+            for (var i = 0; i < length; i++) {
                 NbtTag newTag;
                 switch (ListType) {
                     case NbtTagType.Byte:
@@ -1338,7 +1338,7 @@ namespace fNbt {
                 }
                 newTag.Parent = this;
                 if (newTag.ReadTag(readStream)) {
-                    tags.Add(newTag);
+                    _tags.Add(newTag);
                 }
             }
             return true;
@@ -1348,7 +1348,7 @@ namespace fNbt {
             // read list type, and make sure it's defined
             ListType = readStream.ReadTagType();
 
-            int length = readStream.ReadInt32();
+            var length = readStream.ReadInt32();
             if (length < 0) {
                 throw new NbtFormatException("Negative list size given.");
             }
@@ -1373,8 +1373,8 @@ namespace fNbt {
                     readStream.Skip(length*sizeof(double));
                     break;
                 default:
-                    for (int i = 0; i < length; i++) {
-                        switch (listType) {
+                    for (var i = 0; i < length; i++) {
+                        switch (_listType) {
                             case NbtTagType.ByteArray:
                                 new NbtByteArray().SkipTag(readStream);
                                 break;
@@ -1408,8 +1408,8 @@ namespace fNbt {
                 throw new NbtFormatException("NbtList had no elements and an Unknown ListType");
             }
             writeStream.Write(ListType);
-            writeStream.Write(tags.Count);
-            foreach (NbtTag tag in tags) {
+            writeStream.Write(_tags.Count);
+            foreach (var tag in _tags) {
                 tag.WriteData(writeStream);
             }
         }
@@ -1421,11 +1421,11 @@ namespace fNbt {
         /// <summary> Returns an enumerator that iterates through all tags in this NbtList. </summary>
         /// <returns> An IEnumerator&gt;NbtTag&lt; that can be used to iterate through the list. </returns>
         public IEnumerator<NbtTag> GetEnumerator() {
-            return tags.GetEnumerator();
+            return _tags.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
-            return tags.GetEnumerator();
+            return _tags.GetEnumerator();
         }
 
         #endregion
@@ -1437,7 +1437,7 @@ namespace fNbt {
         /// <param name="tag"> The tag to locate in this NbtList. </param>
         public int IndexOf(NbtTag tag) {
             if (tag == null) return -1;
-            return tags.IndexOf(tag);
+            return _tags.IndexOf(tag);
         }
 
         /// <summary> Inserts an item to this NbtList at the specified index. </summary>
@@ -1449,14 +1449,14 @@ namespace fNbt {
             if (newTag == null) {
                 throw new ArgumentNullException("newTag");
             }
-            if (listType != NbtTagType.Unknown && newTag.TagType != listType) {
-                throw new ArgumentException("Items must be of type " + listType);
+            if (_listType != NbtTagType.Unknown && newTag.TagType != _listType) {
+                throw new ArgumentException("Items must be of type " + _listType);
             } else if (newTag.Parent != null) {
                 throw new ArgumentException("A tag may only be added to one compound/list at a time.");
             }
-            tags.Insert(tagIndex, newTag);
-            if (listType == NbtTagType.Unknown) {
-                listType = newTag.TagType;
+            _tags.Insert(tagIndex, newTag);
+            if (_listType == NbtTagType.Unknown) {
+                _listType = newTag.TagType;
             }
             newTag.Parent = this;
         }
@@ -1465,8 +1465,8 @@ namespace fNbt {
         /// <param name="index"> The zero-based index of the item to remove. </param>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="index"/> is not a valid index in the NbtList. </exception>
         public void RemoveAt(int index) {
-            NbtTag tag = this[index];
-            tags.RemoveAt(index);
+            var tag = this[index];
+            _tags.RemoveAt(index);
             tag.Parent = null;
         }
 
@@ -1484,23 +1484,23 @@ namespace fNbt {
             } else if (newTag.Name != null) {
                 throw new ArgumentException("Named tag given. A list may only contain unnamed tags.");
             }
-            if (listType != NbtTagType.Unknown && newTag.TagType != listType) {
-                throw new ArgumentException("Items in this list must be of type " + listType + ". Given type: " +
+            if (_listType != NbtTagType.Unknown && newTag.TagType != _listType) {
+                throw new ArgumentException("Items in this list must be of type " + _listType + ". Given type: " +
                                             newTag.TagType);
             }
-            tags.Add(newTag);
+            _tags.Add(newTag);
             newTag.Parent = this;
-            if (listType == NbtTagType.Unknown) {
-                listType = newTag.TagType;
+            if (_listType == NbtTagType.Unknown) {
+                _listType = newTag.TagType;
             }
         }
 
         /// <summary> Removes all tags from this NbtList. </summary>
         public void Clear() {
-            for (int i = 0; i < tags.Count; i++) {
-                tags[i].Parent = null;
+            for (var i = 0; i < _tags.Count; i++) {
+                _tags[i].Parent = null;
             }
-            tags.Clear();
+            _tags.Clear();
         }
 
         /// <summary> Determines whether this NbtList contains a specific tag. </summary>
@@ -1508,7 +1508,7 @@ namespace fNbt {
         /// <param name="item"> The tag to locate in this NbtList. </param>
         public bool Contains(NbtTag item) {
             if (item == null) throw new ArgumentNullException("item");
-            return tags.Contains(item);
+            return _tags.Contains(item);
         }
 
         /// <summary> Copies the tags of this NbtList to an array, starting at a particular array index. </summary>
@@ -1521,7 +1521,7 @@ namespace fNbt {
         /// the number of tags in this NbtList is greater than the available space from arrayIndex to the end of the destination array;
         /// or type NbtTag cannot be cast automatically to the type of the destination array. </exception>
         public void CopyTo(NbtTag[] array, int arrayIndex) {
-            tags.CopyTo(array, arrayIndex);
+            _tags.CopyTo(array, arrayIndex);
         }
 
         /// <summary> Removes the first occurrence of a specific NbtTag from the NbtCompound.
@@ -1532,7 +1532,7 @@ namespace fNbt {
         /// <exception cref="ArgumentNullException"> <paramref name="tag"/> is <c>null</c>. </exception>
         public bool Remove(NbtTag tag) {
             if (tag == null) throw new ArgumentNullException("tag");
-            if (!tags.Remove(tag)) {
+            if (!_tags.Remove(tag)) {
                 return false;
             }
             tag.Parent = null;
@@ -1542,7 +1542,7 @@ namespace fNbt {
         /// <summary> Gets the number of tags contained in the NbtList. </summary>
         /// <returns> The number of tags contained in the NbtList. </returns>
         public int Count {
-            get { return tags.Count; }
+            get { return _tags.Count; }
         }
 
         bool ICollection<NbtTag>.IsReadOnly {
@@ -1558,21 +1558,21 @@ namespace fNbt {
         }
 
         object IList.this[int tagIndex] {
-            get { return tags[tagIndex]; }
+            get { return _tags[tagIndex]; }
             set { this[tagIndex] = (NbtTag)value; }
         }
 
         int IList.Add(object value) {
             Add((NbtTag)value);
-            return (tags.Count - 1);
+            return (_tags.Count - 1);
         }
 
         bool IList.Contains(object value) {
-            return tags.Contains((NbtTag)value);
+            return _tags.Contains((NbtTag)value);
         }
 
         int IList.IndexOf(object value) {
-            return tags.IndexOf((NbtTag)value);
+            return _tags.IndexOf((NbtTag)value);
         }
 
         void IList.Insert(int index, object value) {
@@ -1588,7 +1588,7 @@ namespace fNbt {
         }
 
         object ICollection.SyncRoot {
-            get { return (tags as ICollection).SyncRoot; }
+            get { return (_tags as ICollection).SyncRoot; }
         }
 
         bool ICollection.IsSynchronized {
@@ -1606,22 +1606,22 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_List");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
-            sb.AppendFormat(": {0} entries {{", tags.Count);
+            sb.AppendFormat(": {0} entries {{", _tags.Count);
 
             if (Count > 0) {
                 sb.Append('\n');
-                foreach (NbtTag tag in tags) {
+                foreach (var tag in _tags) {
                     tag.PrettyPrint(sb, indentString, indentLevel + 1);
                     sb.Append('\n');
                 }
-                for (int i = 0; i < indentLevel; i++) {
+                for (var i = 0; i < indentLevel; i++) {
                     sb.Append(indentString);
                 }
             }
@@ -1702,11 +1702,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Long");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": ");
@@ -1787,11 +1787,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_Short");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": ");
@@ -1808,16 +1808,16 @@ namespace fNbt {
 
         /// <summary> Value/payload of this tag (a single string). May not be <c>null</c>. </summary>
         public string Value {
-            get { return stringVal; }
+            get { return _stringVal; }
             set {
                 if (value == null) {
                     throw new ArgumentNullException("value");
                 }
-                stringVal = value;
+                _stringVal = value;
             }
         }
 
-        string stringVal = "";
+        private string _stringVal = "";
 
         /// <summary> Creates an unnamed NbtString tag with the default value (empty string). </summary>
         public NbtString() {}
@@ -1880,11 +1880,11 @@ namespace fNbt {
         }
 
         internal override void PrettyPrint(StringBuilder sb, string indentString, int indentLevel) {
-            for (int i = 0; i < indentLevel; i++) {
+            for (var i = 0; i < indentLevel; i++) {
                 sb.Append(indentString);
             }
             sb.Append("TAG_String");
-            if (!String.IsNullOrEmpty(Name)) {
+            if (!string.IsNullOrEmpty(Name)) {
                 sb.AppendFormat("(\"{0}\")", Name);
             }
             sb.Append(": \"");
@@ -2230,92 +2230,94 @@ namespace fNbt {
         /// <summary> String to use for indentation in NbtTag's and NbtFile's ToString() methods by default. </summary>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is <c>null</c>. </exception>
         public static string DefaultIndentString {
-            get { return defaultIndentString; }
+            get { return _defaultIndentString; }
             set {
                 if (value == null) throw new ArgumentNullException("value");
-                defaultIndentString = value;
+                _defaultIndentString = value;
             }
         }
 
-        static string defaultIndentString = "  ";
+        private static string _defaultIndentString = "  ";
     }
 
     // Class used to count bytes read-from/written-to non-seekable streams.
     internal class ByteCountingStream : Stream {
-        readonly Stream baseStream;
+        private readonly Stream _baseStream;
 
         // These are necessary to avoid counting bytes twice if ReadByte/WriteByte call Read/Write internally.
-        bool readingOneByte, writingOneByte;
+        private bool _readingOneByte;
+        private bool _writingOneByte;
 
         // These are necessary to avoid counting bytes twice if Read/Write call ReadByte/WriteByte internally.
-        bool readingManyBytes, writingManyBytes;
+        private bool _readingManyBytes;
+        private bool _writingManyBytes;
 
         public ByteCountingStream(Stream stream) {
             Debug.Assert(stream != null);
-            baseStream = stream;
+            _baseStream = stream;
         }
 
         public override void Flush() {
-            baseStream.Flush();
+            _baseStream.Flush();
         }
 
         public override long Seek(long offset, SeekOrigin origin) {
-            return baseStream.Seek(offset, origin);
+            return _baseStream.Seek(offset, origin);
         }
 
         public override void SetLength(long value) {
-            baseStream.SetLength(value);
+            _baseStream.SetLength(value);
         }
 
         public override int Read(byte[] buffer, int offset, int count) {
-            readingManyBytes = true;
-            int bytesActuallyRead = baseStream.Read(buffer, offset, count);
-            readingManyBytes = false;
-            if (!readingOneByte) BytesRead += bytesActuallyRead;
+            _readingManyBytes = true;
+            var bytesActuallyRead = _baseStream.Read(buffer, offset, count);
+            _readingManyBytes = false;
+            if (!_readingOneByte) BytesRead += bytesActuallyRead;
             return bytesActuallyRead;
         }
 
         public override void Write(byte[] buffer, int offset, int count) {
-            writingManyBytes = true;
-            baseStream.Write(buffer, offset, count);
-            writingManyBytes = false;
-            if (!writingOneByte) BytesWritten += count;
+            _writingManyBytes = true;
+            _baseStream.Write(buffer, offset, count);
+            _writingManyBytes = false;
+            if (!_writingOneByte) BytesWritten += count;
         }
 
         public override int ReadByte() {
-            readingOneByte = true;
-            int value = base.ReadByte();
-            readingOneByte = false;
-            if (value >= 0 && !readingManyBytes) BytesRead++;
+            _readingOneByte = true;
+            var value = base.ReadByte();
+            _readingOneByte = false;
+            if (value >= 0 && !_readingManyBytes) BytesRead++;
             return value;
         }
 
         public override void WriteByte(byte value) {
-            writingOneByte = true;
+            _writingOneByte = true;
             base.WriteByte(value);
-            writingOneByte = false;
-            if (!writingManyBytes) BytesWritten++;
+            _writingOneByte = false;
+            if (!_writingManyBytes) BytesWritten++;
         }
 
         public override bool CanRead {
-            get { return baseStream.CanRead; }
+            get { return _baseStream.CanRead; }
         }
 
         public override bool CanSeek {
-            get { return baseStream.CanSeek; }
+            get { return _baseStream.CanSeek; }
         }
 
         public override bool CanWrite {
-            get { return baseStream.CanWrite; }
+            get { return _baseStream.CanWrite; }
         }
 
         public override long Length {
-            get { return baseStream.Length; }
+            get { return _baseStream.Length; }
         }
 
         public override long Position {
-            get { return baseStream.Position; }
-            set { baseStream.Position = value; }
+            get { return _baseStream.Position; }
+            set { _baseStream.Position = value; }
         }
 
         public long BytesRead { get; private set; }
@@ -2333,16 +2335,16 @@ namespace fNbt {
     /// <summary> BinaryReader wrapper that takes care of reading primitives from an NBT stream,
     /// while taking care of endianness, string encoding, and skipping. </summary>
     internal sealed class NbtBinaryReader : BinaryReader {
-        readonly byte[] buffer = new byte[sizeof(double)];
+        private readonly byte[] _buffer = new byte[sizeof(double)];
 
-        byte[] seekBuffer;
-        const int SeekBufferSize = 8*1024;
-        readonly bool swapNeeded;
-        readonly byte[] stringConversionBuffer = new byte[64];
+        private byte[] _seekBuffer;
+        private const int SeekBufferSize = 8*1024;
+        private readonly bool _swapNeeded;
+        private readonly byte[] _stringConversionBuffer = new byte[64];
 
         public NbtBinaryReader(Stream input, bool bigEndian)
             : base(input) {
-            swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
+            _swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
         }
 
         public NbtTagType ReadTagType() {
@@ -2356,7 +2358,7 @@ namespace fNbt {
         }
 
         public override short ReadInt16() {
-            if (swapNeeded) {
+            if (_swapNeeded) {
                 return Swap(base.ReadInt16());
             } else {
                 return base.ReadInt16();
@@ -2364,7 +2366,7 @@ namespace fNbt {
         }
 
         public override int ReadInt32() {
-            if (swapNeeded) {
+            if (_swapNeeded) {
                 return Swap(base.ReadInt32());
             } else {
                 return base.ReadInt32();
@@ -2372,7 +2374,7 @@ namespace fNbt {
         }
 
         public override long ReadInt64() {
-            if (swapNeeded) {
+            if (_swapNeeded) {
                 return Swap(base.ReadInt64());
             } else {
                 return base.ReadInt64();
@@ -2380,41 +2382,41 @@ namespace fNbt {
         }
 
         public override float ReadSingle() {
-            if (swapNeeded) {
+            if (_swapNeeded) {
                 FillBuffer(sizeof(float));
-                Array.Reverse(buffer, 0, sizeof(float));
-                return BitConverter.ToSingle(buffer, 0);
+                Array.Reverse(_buffer, 0, sizeof(float));
+                return BitConverter.ToSingle(_buffer, 0);
             } else {
                 return base.ReadSingle();
             }
         }
 
         public override double ReadDouble() {
-            if (swapNeeded) {
+            if (_swapNeeded) {
                 FillBuffer(sizeof(double));
-                Array.Reverse(buffer);
-                return BitConverter.ToDouble(buffer, 0);
+                Array.Reverse(_buffer);
+                return BitConverter.ToDouble(_buffer, 0);
             }
             return base.ReadDouble();
         }
 
         public override string ReadString() {
-            short length = ReadInt16();
+            var length = ReadInt16();
             if (length < 0) {
                 throw new NbtFormatException("Negative string length given!");
             }
-            if (length < stringConversionBuffer.Length) {
-                int stringBytesRead = 0;
+            if (length < _stringConversionBuffer.Length) {
+                var stringBytesRead = 0;
                 while (stringBytesRead < length) {
-                    int bytesReadThisTime = BaseStream.Read(stringConversionBuffer, stringBytesRead, length);
+                    var bytesReadThisTime = BaseStream.Read(_stringConversionBuffer, stringBytesRead, length);
                     if (bytesReadThisTime == 0) {
                         throw new EndOfStreamException();
                     }
                     stringBytesRead += bytesReadThisTime;
                 }
-                return Encoding.UTF8.GetString(stringConversionBuffer, 0, length);
+                return Encoding.UTF8.GetString(_stringConversionBuffer, 0, length);
             } else {
-                byte[] stringData = ReadBytes(length);
+                var stringData = ReadBytes(length);
                 if (stringData.Length < length) {
                     throw new EndOfStreamException();
                 }
@@ -2428,11 +2430,11 @@ namespace fNbt {
             } else if (BaseStream.CanSeek) {
                 BaseStream.Position += bytesToSkip;
             } else if (bytesToSkip != 0) {
-                if (seekBuffer == null) seekBuffer = new byte[SeekBufferSize];
-                int bytesSkipped = 0;
+                if (_seekBuffer == null) _seekBuffer = new byte[SeekBufferSize];
+                var bytesSkipped = 0;
                 while (bytesSkipped < bytesToSkip) {
-                    int bytesToRead = Math.Min(SeekBufferSize, bytesToSkip - bytesSkipped);
-                    int bytesReadThisTime = BaseStream.Read(seekBuffer, 0, bytesToRead);
+                    var bytesToRead = Math.Min(SeekBufferSize, bytesToSkip - bytesSkipped);
+                    var bytesReadThisTime = BaseStream.Read(_seekBuffer, 0, bytesToRead);
                     if (bytesReadThisTime == 0) {
                         throw new EndOfStreamException();
                     }
@@ -2441,17 +2443,17 @@ namespace fNbt {
             }
         }
 
-        new void FillBuffer(int numBytes) {
-            int offset = 0;
+        private new void FillBuffer(int numBytes) {
+            var offset = 0;
             do {
-                int num = BaseStream.Read(buffer, offset, numBytes - offset);
+                var num = BaseStream.Read(_buffer, offset, numBytes - offset);
                 if (num == 0) throw new EndOfStreamException();
                 offset += num;
             } while (offset < numBytes);
         }
 
         public void SkipString() {
-            short length = ReadInt16();
+            var length = ReadInt16();
             if (length < 0) {
                 throw new NbtFormatException("Negative string length given!");
             }
@@ -2459,14 +2461,14 @@ namespace fNbt {
         }
 
         [DebuggerStepThrough]
-        static short Swap(short v) {
+        private static short Swap(short v) {
             unchecked {
                 return (short)((v >> 8) & 0x00FF | (v << 8) & 0xFF00);
             }
         }
 
         [DebuggerStepThrough]
-        static int Swap(int v) {
+        private static int Swap(int v) {
             unchecked {
                 var v2 = (uint)v;
                 return
@@ -2477,7 +2479,7 @@ namespace fNbt {
         }
 
         [DebuggerStepThrough]
-        static long Swap(long v) {
+        private static long Swap(long v) {
             unchecked {
                 return (Swap((int)v) & uint.MaxValue) << 32 | Swap((int)(v >> 32)) & uint.MaxValue;
             }
@@ -2494,144 +2496,144 @@ namespace fNbt {
         public const int MaxWriteChunk = 512*1024*1024;
 
         // Encoding can be shared among all instances of NbtBinaryWriter, because it is stateless.
-        static readonly UTF8Encoding Encoding = new UTF8Encoding(false, true);
+        private static readonly UTF8Encoding Encoding = new UTF8Encoding(false, true);
 
         // Each instance has to have its own encoder, because it does maintain state.
-        readonly Encoder encoder = Encoding.GetEncoder();
+        private readonly Encoder _encoder = Encoding.GetEncoder();
 
         public Stream BaseStream {
             get {
-                stream.Flush();
-                return stream;
+                _stream.Flush();
+                return _stream;
             }
         }
 
-        readonly Stream stream;
+        private readonly Stream _stream;
 
         // Buffer used for temporary conversion
-        const int BufferSize = 256;
+        private const int BufferSize = 256;
 
         // UTF8 characters use at most 4 bytes each.
-        const int MaxBufferedStringLength = BufferSize/4;
+        private const int MaxBufferedStringLength = BufferSize/4;
 
         // Each NbtBinaryWriter needs to have its own instance of the buffer.
-        readonly byte[] buffer = new byte[BufferSize];
+        private readonly byte[] _buffer = new byte[BufferSize];
 
         // Swap is only needed is endianness of the runtime differs from desired NBT stream
-        readonly bool swapNeeded;
+        private readonly bool _swapNeeded;
 
         public NbtBinaryWriter(Stream input, bool bigEndian) {
             if (input == null) throw new ArgumentNullException("input");
             if (!input.CanWrite) throw new ArgumentException("Given stream must be writable", "input");
-            stream = input;
-            swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
+            _stream = input;
+            _swapNeeded = (BitConverter.IsLittleEndian == bigEndian);
         }
 
         public void Write(byte value) {
-            stream.WriteByte(value);
+            _stream.WriteByte(value);
         }
 
         public void Write(NbtTagType value) {
-            stream.WriteByte((byte)value);
+            _stream.WriteByte((byte)value);
         }
 
         public void Write(short value) {
             unchecked {
-                if (swapNeeded) {
-                    buffer[0] = (byte)(value >> 8);
-                    buffer[1] = (byte)value;
+                if (_swapNeeded) {
+                    _buffer[0] = (byte)(value >> 8);
+                    _buffer[1] = (byte)value;
                 } else {
-                    buffer[0] = (byte)value;
-                    buffer[1] = (byte)(value >> 8);
+                    _buffer[0] = (byte)value;
+                    _buffer[1] = (byte)(value >> 8);
                 }
             }
-            stream.Write(buffer, 0, 2);
+            _stream.Write(_buffer, 0, 2);
         }
 
         public void Write(int value) {
             unchecked {
-                if (swapNeeded) {
-                    buffer[0] = (byte)(value >> 24);
-                    buffer[1] = (byte)(value >> 16);
-                    buffer[2] = (byte)(value >> 8);
-                    buffer[3] = (byte)value;
+                if (_swapNeeded) {
+                    _buffer[0] = (byte)(value >> 24);
+                    _buffer[1] = (byte)(value >> 16);
+                    _buffer[2] = (byte)(value >> 8);
+                    _buffer[3] = (byte)value;
                 } else {
-                    buffer[0] = (byte)value;
-                    buffer[1] = (byte)(value >> 8);
-                    buffer[2] = (byte)(value >> 16);
-                    buffer[3] = (byte)(value >> 24);
+                    _buffer[0] = (byte)value;
+                    _buffer[1] = (byte)(value >> 8);
+                    _buffer[2] = (byte)(value >> 16);
+                    _buffer[3] = (byte)(value >> 24);
                 }
             }
-            stream.Write(buffer, 0, 4);
+            _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(long value) {
             unchecked {
-                if (swapNeeded) {
-                    buffer[0] = (byte)(value >> 56);
-                    buffer[1] = (byte)(value >> 48);
-                    buffer[2] = (byte)(value >> 40);
-                    buffer[3] = (byte)(value >> 32);
-                    buffer[4] = (byte)(value >> 24);
-                    buffer[5] = (byte)(value >> 16);
-                    buffer[6] = (byte)(value >> 8);
-                    buffer[7] = (byte)value;
+                if (_swapNeeded) {
+                    _buffer[0] = (byte)(value >> 56);
+                    _buffer[1] = (byte)(value >> 48);
+                    _buffer[2] = (byte)(value >> 40);
+                    _buffer[3] = (byte)(value >> 32);
+                    _buffer[4] = (byte)(value >> 24);
+                    _buffer[5] = (byte)(value >> 16);
+                    _buffer[6] = (byte)(value >> 8);
+                    _buffer[7] = (byte)value;
                 } else {
-                    buffer[0] = (byte)value;
-                    buffer[1] = (byte)(value >> 8);
-                    buffer[2] = (byte)(value >> 16);
-                    buffer[3] = (byte)(value >> 24);
-                    buffer[4] = (byte)(value >> 32);
-                    buffer[5] = (byte)(value >> 40);
-                    buffer[6] = (byte)(value >> 48);
-                    buffer[7] = (byte)(value >> 56);
+                    _buffer[0] = (byte)value;
+                    _buffer[1] = (byte)(value >> 8);
+                    _buffer[2] = (byte)(value >> 16);
+                    _buffer[3] = (byte)(value >> 24);
+                    _buffer[4] = (byte)(value >> 32);
+                    _buffer[5] = (byte)(value >> 40);
+                    _buffer[6] = (byte)(value >> 48);
+                    _buffer[7] = (byte)(value >> 56);
                 }
             }
-            stream.Write(buffer, 0, 8);
+            _stream.Write(_buffer, 0, 8);
         }
 
         public void Write(float value) {
             ulong tmpValue = *(uint*)&value;
             unchecked {
-                if (swapNeeded) {
-                    buffer[0] = (byte)(tmpValue >> 24);
-                    buffer[1] = (byte)(tmpValue >> 16);
-                    buffer[2] = (byte)(tmpValue >> 8);
-                    buffer[3] = (byte)tmpValue;
+                if (_swapNeeded) {
+                    _buffer[0] = (byte)(tmpValue >> 24);
+                    _buffer[1] = (byte)(tmpValue >> 16);
+                    _buffer[2] = (byte)(tmpValue >> 8);
+                    _buffer[3] = (byte)tmpValue;
                 } else {
-                    buffer[0] = (byte)tmpValue;
-                    buffer[1] = (byte)(tmpValue >> 8);
-                    buffer[2] = (byte)(tmpValue >> 16);
-                    buffer[3] = (byte)(tmpValue >> 24);
+                    _buffer[0] = (byte)tmpValue;
+                    _buffer[1] = (byte)(tmpValue >> 8);
+                    _buffer[2] = (byte)(tmpValue >> 16);
+                    _buffer[3] = (byte)(tmpValue >> 24);
                 }
             }
-            stream.Write(buffer, 0, 4);
+            _stream.Write(_buffer, 0, 4);
         }
 
         public void Write(double value) {
-            ulong tmpValue = *(ulong*)&value;
+            var tmpValue = *(ulong*)&value;
             unchecked {
-                if (swapNeeded) {
-                    buffer[0] = (byte)(tmpValue >> 56);
-                    buffer[1] = (byte)(tmpValue >> 48);
-                    buffer[2] = (byte)(tmpValue >> 40);
-                    buffer[3] = (byte)(tmpValue >> 32);
-                    buffer[4] = (byte)(tmpValue >> 24);
-                    buffer[5] = (byte)(tmpValue >> 16);
-                    buffer[6] = (byte)(tmpValue >> 8);
-                    buffer[7] = (byte)tmpValue;
+                if (_swapNeeded) {
+                    _buffer[0] = (byte)(tmpValue >> 56);
+                    _buffer[1] = (byte)(tmpValue >> 48);
+                    _buffer[2] = (byte)(tmpValue >> 40);
+                    _buffer[3] = (byte)(tmpValue >> 32);
+                    _buffer[4] = (byte)(tmpValue >> 24);
+                    _buffer[5] = (byte)(tmpValue >> 16);
+                    _buffer[6] = (byte)(tmpValue >> 8);
+                    _buffer[7] = (byte)tmpValue;
                 } else {
-                    buffer[0] = (byte)tmpValue;
-                    buffer[1] = (byte)(tmpValue >> 8);
-                    buffer[2] = (byte)(tmpValue >> 16);
-                    buffer[3] = (byte)(tmpValue >> 24);
-                    buffer[4] = (byte)(tmpValue >> 32);
-                    buffer[5] = (byte)(tmpValue >> 40);
-                    buffer[6] = (byte)(tmpValue >> 48);
-                    buffer[7] = (byte)(tmpValue >> 56);
+                    _buffer[0] = (byte)tmpValue;
+                    _buffer[1] = (byte)(tmpValue >> 8);
+                    _buffer[2] = (byte)(tmpValue >> 16);
+                    _buffer[3] = (byte)(tmpValue >> 24);
+                    _buffer[4] = (byte)(tmpValue >> 32);
+                    _buffer[5] = (byte)(tmpValue >> 40);
+                    _buffer[6] = (byte)(tmpValue >> 48);
+                    _buffer[7] = (byte)(tmpValue >> 56);
                 }
             }
-            stream.Write(buffer, 0, 8);
+            _stream.Write(_buffer, 0, 8);
         }
 
         // Based on BinaryWriter.Write(String)
@@ -2641,30 +2643,30 @@ namespace fNbt {
             }
 
             // Write out string length (as number of bytes)
-            int numBytes = Encoding.GetByteCount(value);
+            var numBytes = Encoding.GetByteCount(value);
             Write((short)numBytes);
 
             if (numBytes <= BufferSize) {
                 // If the string fits entirely in the buffer, encode and write it as one
-                Encoding.GetBytes(value, 0, value.Length, buffer, 0);
-                stream.Write(buffer, 0, numBytes);
+                Encoding.GetBytes(value, 0, value.Length, _buffer, 0);
+                _stream.Write(_buffer, 0, numBytes);
             } else {
                 // Aggressively try to not allocate memory in this loop for runtime performance reasons.
                 // Use an Encoder to write out the string correctly (handling surrogates crossing buffer
                 // boundaries properly).  
-                int charStart = 0;
-                int numLeft = value.Length;
+                var charStart = 0;
+                var numLeft = value.Length;
                 while (numLeft > 0) {
                     // Figure out how many chars to process this round.
-                    int charCount = (numLeft > MaxBufferedStringLength) ? MaxBufferedStringLength : numLeft;
+                    var charCount = (numLeft > MaxBufferedStringLength) ? MaxBufferedStringLength : numLeft;
                     int byteLen;
                     fixed (char* pChars = value) {
-                        fixed (byte* pBytes = buffer) {
-                            byteLen = encoder.GetBytes(pChars + charStart, charCount, pBytes, BufferSize,
+                        fixed (byte* pBytes = _buffer) {
+                            byteLen = _encoder.GetBytes(pChars + charStart, charCount, pBytes, BufferSize,
                                                        charCount == numLeft);
                         }
                     }
-                    stream.Write(buffer, 0, byteLen);
+                    _stream.Write(_buffer, 0, byteLen);
                     charStart += charCount;
                     numLeft -= charCount;
                 }
@@ -2672,10 +2674,10 @@ namespace fNbt {
         }
 
         public void Write(byte[] data, int offset, int count) {
-            int written = 0;
+            var written = 0;
             while (written < count) {
-                int toWrite = Math.Min(MaxWriteChunk, count - written);
-                stream.Write(data, offset + written, toWrite);
+                var toWrite = Math.Min(MaxWriteChunk, count - written);
+                _stream.Write(data, offset + written, toWrite);
                 written += toWrite;
             }
         }
@@ -2699,10 +2701,10 @@ namespace fNbt {
     /// <summary> Represents a complete NBT file. </summary>
     public sealed class NbtFile {
         // Size of buffers that are used to avoid frequent reads from / writes to compressed streams
-        const int WriteBufferSize = 8*1024;
+        private const int WriteBufferSize = 8*1024;
 
         // Size of buffers used for reading to/from files
-        const int FileStreamBufferSize = 64*1024;
+        private const int FileStreamBufferSize = 64*1024;
 
         /// <summary> Gets the file name used for most recent loading/saving of this file.
         /// May be <c>null</c>, if this <c>NbtFile</c> instance has not been loaded from, or saved to, a file. </summary>
@@ -2715,15 +2717,15 @@ namespace fNbt {
         /// <summary> Root tag of this file. Must be a named CompoundTag. Defaults to an empty-named tag. </summary>
         /// <exception cref="ArgumentException"> If given tag is unnamed. </exception>
         public NbtCompound RootTag {
-            get { return rootTag; }
+            get { return _rootTag; }
             set {
                 if (value == null) throw new ArgumentNullException("value");
                 if (value.Name == null) throw new ArgumentException("Root tag must be named.");
-                rootTag = value;
+                _rootTag = value;
             }
         }
 
-        NbtCompound rootTag;
+        private NbtCompound _rootTag;
 
         /// <summary> Whether new NbtFiles should default to big-endian encoding (default: true). </summary>
         public static bool BigEndianByDefault { get; set; }
@@ -2735,31 +2737,31 @@ namespace fNbt {
         /// Set to 0 to disable buffering by default. </summary>
         /// <exception cref="ArgumentOutOfRangeException"> value is negative. </exception>
         public static int DefaultBufferSize {
-            get { return defaultBufferSize; }
+            get { return _defaultBufferSize; }
             set {
                 if (value < 0) {
                     throw new ArgumentOutOfRangeException("value", value, "DefaultBufferSize cannot be negative.");
                 }
-                defaultBufferSize = value;
+                _defaultBufferSize = value;
             }
         }
 
-        static int defaultBufferSize = 8*1024;
+        private static int _defaultBufferSize = 8*1024;
 
         /// <summary> Gets or sets the size of internal buffer used for reading files and streams.
         /// Initialized to value of <c>DefaultBufferSize</c> property. </summary>
         /// <exception cref="ArgumentOutOfRangeException"> value is negative. </exception>
         public int BufferSize {
-            get { return bufferSize; }
+            get { return _bufferSize; }
             set {
                 if (value < 0) {
                     throw new ArgumentOutOfRangeException("value", value, "BufferSize cannot be negative.");
                 }
-                bufferSize = value;
+                _bufferSize = value;
             }
         }
 
-        int bufferSize;
+        private int _bufferSize;
 
         #region Constructors
 
@@ -2773,7 +2775,7 @@ namespace fNbt {
         public NbtFile() {
             BigEndian = BigEndianByDefault;
             BufferSize = DefaultBufferSize;
-            rootTag = new NbtCompound("");
+            _rootTag = new NbtCompound("");
         }
 
         /// <summary> Creates a new NBT file with the given root tag. </summary>
@@ -2928,8 +2930,8 @@ namespace fNbt {
             switch (FileCompression) {
                 case NbtCompression.GZip:
                     using (var decStream = new GZipStream(stream, CompressionMode.Decompress, true)) {
-                        if (bufferSize > 0) {
-                            LoadFromStreamInternal(new BufferedStream(decStream, bufferSize), selector);
+                        if (_bufferSize > 0) {
+                            LoadFromStreamInternal(new BufferedStream(decStream, _bufferSize), selector);
                         } else {
                             LoadFromStreamInternal(decStream, selector);
                         }
@@ -2946,8 +2948,8 @@ namespace fNbt {
                     }
                     stream.ReadByte();
                     using (var decStream = new DeflateStream(stream, CompressionMode.Decompress, true)) {
-                        if (bufferSize > 0) {
-                            LoadFromStreamInternal(new BufferedStream(decStream, bufferSize), selector);
+                        if (_bufferSize > 0) {
+                            LoadFromStreamInternal(new BufferedStream(decStream, _bufferSize), selector);
                         } else {
                             LoadFromStreamInternal(decStream, selector);
                         }
@@ -2980,12 +2982,12 @@ namespace fNbt {
             return LoadFromStream(stream, compression, null);
         }
 
-        static NbtCompression DetectCompression(Stream stream) {
+        private static NbtCompression DetectCompression(Stream stream) {
             NbtCompression compression;
             if (!stream.CanSeek) {
                 throw new NotSupportedException("Cannot auto-detect compression on a stream that's not seekable.");
             }
-            int firstByte = stream.ReadByte();
+            var firstByte = stream.ReadByte();
             switch (firstByte) {
                 case -1:
                     throw new EndOfStreamException();
@@ -3011,9 +3013,9 @@ namespace fNbt {
             return compression;
         }
 
-        void LoadFromStreamInternal(Stream stream, TagSelector tagSelector) {
+        private void LoadFromStreamInternal(Stream stream, TagSelector tagSelector) {
             // Make sure the first byte in this file is the tag for a TAG_Compound
-            int firstByte = stream.ReadByte();
+            var firstByte = stream.ReadByte();
             if (firstByte < 0) {
                 throw new EndOfStreamException();
             }
@@ -3118,7 +3120,7 @@ namespace fNbt {
                     throw new ArgumentOutOfRangeException("compression");
             }
 
-            if (rootTag.Name == null) {
+            if (_rootTag.Name == null) {
                 // This may trigger if root tag has been renamed
                 throw new NbtFormatException(
                     "Cannot save NbtFile: Root tag is not named. Its name may be an empty string, but not null.");
@@ -3142,7 +3144,7 @@ namespace fNbt {
                         bufferedStream.Flush();
                         checksum = compressStream.Checksum;
                     }
-                    byte[] checksumBytes = BitConverter.GetBytes(checksum);
+                    var checksumBytes = BitConverter.GetBytes(checksum);
                     if (BitConverter.IsLittleEndian) {
                         // Adler32 checksum is big-endian
                         Array.Reverse(checksumBytes);
@@ -3187,7 +3189,7 @@ namespace fNbt {
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="IOException"> If an I/O error occurred while reading the file. </exception>
         public static string ReadRootTagName(string fileName) {
-            return ReadRootTagName(fileName, NbtCompression.AutoDetect, BigEndianByDefault, defaultBufferSize);
+            return ReadRootTagName(fileName, NbtCompression.AutoDetect, BigEndianByDefault, _defaultBufferSize);
         }
 
         /// <summary> Reads the root name from the given NBT file. </summary>
@@ -3213,7 +3215,7 @@ namespace fNbt {
             if (bufferSize < 0) {
                 throw new ArgumentOutOfRangeException("bufferSize", bufferSize, "DefaultBufferSize cannot be negative.");
             }
-            using (FileStream readFileStream = File.OpenRead(fileName)) {
+            using (var readFileStream = File.OpenRead(fileName)) {
                 return ReadRootTagName(readFileStream, compression, bigEndian, bufferSize);
             }
         }
@@ -3271,9 +3273,9 @@ namespace fNbt {
             }
         }
 
-        static string GetRootNameInternal(Stream stream, bool bigEndian) {
+        private static string GetRootNameInternal(Stream stream, bool bigEndian) {
             Debug.Assert(stream != null);
-            int firstByte = stream.ReadByte();
+            var firstByte = stream.ReadByte();
             if (firstByte < 0) {
                 throw new EndOfStreamException();
             } else if (firstByte != (int)NbtTagType.Compound) {
@@ -3298,7 +3300,7 @@ namespace fNbt {
             return RootTag.ToString(indentString);
         }
 
-        const string WrongZLibHeaderMessage = "Unrecognized ZLib header. Expected 0x78";
+        private const string WrongZLibHeaderMessage = "Unrecognized ZLib header. Expected 0x78";
     }
 
     /// <summary> Exception thrown when a format violation is detected while
@@ -3323,13 +3325,13 @@ namespace fNbt {
     /// <summary> Represents a reader that provides fast, non-cached, forward-only access to NBT data.
     /// Each instance of NbtReader reads one complete file. </summary>
     public class NbtReader {
-        NbtParseState state = NbtParseState.AtStreamBeginning;
-        readonly NbtBinaryReader reader;
-        Stack<NbtReaderNode> nodes;
-        readonly long streamStartOffset;
-        bool atValue;
-        object valueCache;
-        readonly bool canSeekStream;
+        private NbtParseState _state = NbtParseState.AtStreamBeginning;
+        private readonly NbtBinaryReader _reader;
+        private Stack<NbtReaderNode> _nodes;
+        private readonly long _streamStartOffset;
+        private bool _atValue;
+        private object _valueCache;
+        private readonly bool _canSeekStream;
 
         /// <summary> Initializes a new instance of the NbtReader class. </summary>
         /// <param name="stream"> Stream to read from. </param>
@@ -3351,12 +3353,12 @@ namespace fNbt {
             ParentTagType = NbtTagType.Unknown;
             TagType = NbtTagType.Unknown;
 
-            canSeekStream = stream.CanSeek;
-            if (canSeekStream) {
-                streamStartOffset = stream.Position;
+            _canSeekStream = stream.CanSeek;
+            if (_canSeekStream) {
+                _streamStartOffset = stream.Position;
             }
 
-            reader = new NbtBinaryReader(stream, bigEndian);
+            _reader = new NbtBinaryReader(stream, bigEndian);
         }
 
         /// <summary> Gets the name of the root tag of this NBT stream. </summary>
@@ -3401,7 +3403,7 @@ namespace fNbt {
 
         /// <summary> Whether this reader has reached the end of stream. </summary>
         public bool IsAtStreamEnd {
-            get { return state == NbtParseState.AtStreamEnd; }
+            get { return _state == NbtParseState.AtStreamEnd; }
         }
 
         /// <summary> Whether the current tag is a Compound. </summary>
@@ -3431,7 +3433,7 @@ namespace fNbt {
 
         /// <summary> Gets the Stream from which data is being read. </summary>
         public Stream BaseStream {
-            get { return reader.BaseStream; }
+            get { return _reader.BaseStream; }
         }
 
         /// <summary> Gets the number of bytes from the beginning of the stream to the beginning of this tag.
@@ -3462,7 +3464,7 @@ namespace fNbt {
         /// <summary> Gets whether this NbtReader instance is in state of error.
         /// No further reading can be done from this instance if a parse error occurred. </summary>
         public bool IsInErrorState {
-            get { return (state == NbtParseState.Error); }
+            get { return (_state == NbtParseState.Error); }
         }
 
         /// <summary> Reads the next tag from the stream. </summary>
@@ -3470,13 +3472,13 @@ namespace fNbt {
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         public bool ReadToFollowing() {
-            switch (state) {
+            switch (_state) {
                 case NbtParseState.AtStreamBeginning:
                     // set state to error in case reader.ReadTagType throws.
-                    state = NbtParseState.Error;
+                    _state = NbtParseState.Error;
                     // read first tag, make sure it's a compound
-                    if (reader.ReadTagType() != NbtTagType.Compound) {
-                        state = NbtParseState.Error;
+                    if (_reader.ReadTagType() != NbtTagType.Compound) {
+                        _state = NbtParseState.Error;
                         throw new NbtFormatException("Given NBT stream does not start with a TAG_Compound");
                     }
                     Depth = 1;
@@ -3488,28 +3490,28 @@ namespace fNbt {
 
                 case NbtParseState.AtCompoundBeginning:
                     GoDown();
-                    state = NbtParseState.InCompound;
+                    _state = NbtParseState.InCompound;
                     goto case NbtParseState.InCompound;
 
                 case NbtParseState.InCompound:
-                    if (atValue) {
+                    if (_atValue) {
                         SkipValue();
                     }
                     // Read next tag, check if we've hit the end
-                    if (canSeekStream) {
-                        TagStartOffset = (int)(reader.BaseStream.Position - streamStartOffset);
+                    if (_canSeekStream) {
+                        TagStartOffset = (int)(_reader.BaseStream.Position - _streamStartOffset);
                     }
 
-                    NbtParseState oldState = state;
+                    var oldState = _state;
                     // set state to error in case reader.ReadTagType throws.
-                    state = NbtParseState.Error;
-                    TagType = reader.ReadTagType();
-                    state = oldState;
+                    _state = NbtParseState.Error;
+                    TagType = _reader.ReadTagType();
+                    _state = oldState;
 
                     if (TagType == NbtTagType.End) {
                         TagName = null;
                         TagsRead++;
-                        state = NbtParseState.AtCompoundEnd;
+                        _state = NbtParseState.AtCompoundEnd;
                         if (SkipEndTags) {
                             TagsRead--;
                             goto case NbtParseState.AtCompoundEnd;
@@ -3525,31 +3527,31 @@ namespace fNbt {
                     GoDown();
                     ListIndex = -1;
                     TagType = ListType;
-                    state = NbtParseState.InList;
+                    _state = NbtParseState.InList;
                     goto case NbtParseState.InList;
 
                 case NbtParseState.InList:
-                    if (atValue) {
+                    if (_atValue) {
                         SkipValue();
                     }
                     ListIndex++;
                     if (ListIndex >= ParentTagLength) {
                         GoUp();
                         if (ParentTagType == NbtTagType.List) {
-                            state = NbtParseState.InList;
+                            _state = NbtParseState.InList;
                             TagType = NbtTagType.List;
                             goto case NbtParseState.InList;
                         } else if (ParentTagType == NbtTagType.Compound) {
-                            state = NbtParseState.InCompound;
+                            _state = NbtParseState.InCompound;
                             goto case NbtParseState.InCompound;
                         } else {
                             // This should not happen unless NbtReader is bugged
-                            state = NbtParseState.Error;
+                            _state = NbtParseState.Error;
                             throw new NbtFormatException(InvalidParentTagError);
                         }
                     } else {
-                        if (canSeekStream) {
-                            TagStartOffset = (int)(reader.BaseStream.Position - streamStartOffset);
+                        if (_canSeekStream) {
+                            TagStartOffset = (int)(_reader.BaseStream.Position - _streamStartOffset);
                         }
                         ReadTagHeader(false);
                     }
@@ -3558,18 +3560,18 @@ namespace fNbt {
                 case NbtParseState.AtCompoundEnd:
                     GoUp();
                     if (ParentTagType == NbtTagType.List) {
-                        state = NbtParseState.InList;
+                        _state = NbtParseState.InList;
                         TagType = NbtTagType.Compound;
                         goto case NbtParseState.InList;
                     } else if (ParentTagType == NbtTagType.Compound) {
-                        state = NbtParseState.InCompound;
+                        _state = NbtParseState.InCompound;
                         goto case NbtParseState.InCompound;
                     } else if (ParentTagType == NbtTagType.Unknown) {
-                        state = NbtParseState.AtStreamEnd;
+                        _state = NbtParseState.AtStreamEnd;
                         return false;
                     } else {
                         // This should not happen unless NbtReader is bugged
-                        state = NbtParseState.Error;
+                        _state = NbtParseState.Error;
                         throw new NbtFormatException(InvalidParentTagError);
                     }
 
@@ -3583,13 +3585,13 @@ namespace fNbt {
             }
         }
 
-        void ReadTagHeader(bool readName) {
+        private void ReadTagHeader(bool readName) {
             TagsRead++;
-            TagName = (readName ? reader.ReadString() : null);
+            TagName = (readName ? _reader.ReadString() : null);
 
-            valueCache = null;
+            _valueCache = null;
             TagLength = 0;
-            atValue = false;
+            _atValue = false;
             ListType = NbtTagType.Unknown;
 
             switch (TagType) {
@@ -3600,39 +3602,39 @@ namespace fNbt {
                 case NbtTagType.Float:
                 case NbtTagType.Double:
                 case NbtTagType.String:
-                    atValue = true;
+                    _atValue = true;
                     break;
 
                 case NbtTagType.IntArray:
                 case NbtTagType.ByteArray:
-                    TagLength = reader.ReadInt32();
-                    atValue = true;
+                    TagLength = _reader.ReadInt32();
+                    _atValue = true;
                     break;
 
                 case NbtTagType.List:
                     // Setting state to error in case reader throws
-                    state = NbtParseState.Error;
-                    ListType = reader.ReadTagType();
-                    TagLength = reader.ReadInt32();
+                    _state = NbtParseState.Error;
+                    ListType = _reader.ReadTagType();
+                    TagLength = _reader.ReadInt32();
                     if (TagLength < 0) {
                         throw new NbtFormatException("Negative tag length given: " + TagLength);
                     }
-                    state = NbtParseState.AtListBeginning;
+                    _state = NbtParseState.AtListBeginning;
                     break;
 
                 case NbtTagType.Compound:
-                    state = NbtParseState.AtCompoundBeginning;
+                    _state = NbtParseState.AtCompoundBeginning;
                     break;
 
                 default:
-                    state = NbtParseState.Error;
+                    _state = NbtParseState.Error;
                     throw new NbtFormatException("Trying to read tag of unknown type.");
             }
         }
 
         // Goes one step down the NBT file's hierarchy, preserving current state
-        void GoDown() {
-            if (nodes == null) nodes = new Stack<NbtReaderNode>();
+        private void GoDown() {
+            if (_nodes == null) _nodes = new Stack<NbtReaderNode>();
             var newNode = new NbtReaderNode {
                 ListIndex = ListIndex,
                 ParentTagLength = ParentTagLength,
@@ -3640,7 +3642,7 @@ namespace fNbt {
                 ParentTagType = ParentTagType,
                 ListType = ListType
             };
-            nodes.Push(newNode);
+            _nodes.Push(newNode);
 
             ParentName = TagName;
             ParentTagType = TagType;
@@ -3652,8 +3654,8 @@ namespace fNbt {
         }
 
         // Goes one step up the NBT file's hierarchy, restoring previous state
-        void GoUp() {
-            NbtReaderNode oldNode = nodes.Pop();
+        private void GoUp() {
+            var oldNode = _nodes.Pop();
 
             ParentName = oldNode.ParentName;
             ParentTagType = oldNode.ParentTagType;
@@ -3665,44 +3667,44 @@ namespace fNbt {
             Depth--;
         }
 
-        void SkipValue() {
+        private void SkipValue() {
             // Make sure to check for "atValue" before calling this method
             switch (TagType) {
                 case NbtTagType.Byte:
-                    reader.ReadByte();
+                    _reader.ReadByte();
                     break;
 
                 case NbtTagType.Short:
-                    reader.ReadInt16();
+                    _reader.ReadInt16();
                     break;
 
                 case NbtTagType.Float:
                 case NbtTagType.Int:
-                    reader.ReadInt32();
+                    _reader.ReadInt32();
                     break;
 
                 case NbtTagType.Double:
                 case NbtTagType.Long:
-                    reader.ReadInt64();
+                    _reader.ReadInt64();
                     break;
 
                 case NbtTagType.ByteArray:
-                    reader.Skip(TagLength);
+                    _reader.Skip(TagLength);
                     break;
 
                 case NbtTagType.IntArray:
-                    reader.Skip(sizeof(int)*TagLength);
+                    _reader.Skip(sizeof(int)*TagLength);
                     break;
 
                 case NbtTagType.String:
-                    reader.SkipString();
+                    _reader.SkipString();
                     break;
 
                 default:
                     throw new InvalidOperationException(NonValueTagError);
             }
-            atValue = false;
-            valueCache = null;
+            _atValue = false;
+            _valueCache = null;
         }
 
         /// <summary> Reads until a tag with the specified name is found. 
@@ -3727,12 +3729,12 @@ namespace fNbt {
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         public bool ReadToDescendant(string tagName) {
-            if (state == NbtParseState.Error) {
+            if (_state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
-            } else if (state == NbtParseState.AtStreamEnd) {
+            } else if (_state == NbtParseState.AtStreamEnd) {
                 return false;
             }
-            int currentDepth = Depth;
+            var currentDepth = Depth;
             while (ReadToFollowing()) {
                 if (Depth <= currentDepth) {
                     return false;
@@ -3749,12 +3751,12 @@ namespace fNbt {
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         public bool ReadToNextSibling() {
-            if (state == NbtParseState.Error) {
+            if (_state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
-            } else if (state == NbtParseState.AtStreamEnd) {
+            } else if (_state == NbtParseState.AtStreamEnd) {
                 return false;
             }
-            int currentDepth = Depth;
+            var currentDepth = Depth;
             while (ReadToFollowing()) {
                 if (Depth == currentDepth) {
                     return true;
@@ -3786,13 +3788,13 @@ namespace fNbt {
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         public int Skip() {
-            if (state == NbtParseState.Error) {
+            if (_state == NbtParseState.Error) {
                 throw new InvalidReaderStateException(ErroneousStateError);
-            } else if (state == NbtParseState.AtStreamEnd) {
+            } else if (_state == NbtParseState.AtStreamEnd) {
                 return 0;
             }
-            int startDepth = Depth;
-            int skipped = 0;
+            var startDepth = Depth;
+            var skipped = 0;
             // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
             while (ReadToFollowing() && Depth >= startDepth) {
                 skipped++;
@@ -3809,7 +3811,7 @@ namespace fNbt {
         /// <exception cref="EndOfStreamException"> End of stream has been reached (no more tags can be read). </exception>
         /// <exception cref="InvalidOperationException"> Tag value has already been read, and CacheTagValues is false. </exception>
         public NbtTag ReadAsTag() {
-            switch (state) {
+            switch (_state) {
                 case NbtParseState.Error:
                     throw new InvalidReaderStateException(ErroneousStateError);
 
@@ -3828,8 +3830,8 @@ namespace fNbt {
                 parent = new NbtCompound(TagName);
             } else if (TagType == NbtTagType.List) {
                 parent = new NbtList(TagName, ListType);
-            } else if (atValue) {
-                NbtTag result = ReadValueAsTag();
+            } else if (_atValue) {
+                var result = ReadValueAsTag();
                 ReadToFollowing();
                 // if we're at a value tag, there are no child tags to read
                 return result;
@@ -3838,8 +3840,8 @@ namespace fNbt {
                 throw new InvalidOperationException(NoValueToReadError);
             }
 
-            int startingDepth = Depth;
-            int parentDepth = Depth;
+            var startingDepth = Depth;
+            var parentDepth = Depth;
 
             do {
                 ReadToFollowing();
@@ -3870,7 +3872,7 @@ namespace fNbt {
             return parent;
         }
 
-        void AddToParent(NbtTag thisTag, NbtTag parent) {
+        private void AddToParent(NbtTag thisTag, NbtTag parent) {
             var parentAsList = parent as NbtList;
             if (parentAsList != null) {
                 parentAsList.Add(thisTag);
@@ -3885,36 +3887,36 @@ namespace fNbt {
             }
         }
 
-        NbtTag ReadValueAsTag() {
-            if (!atValue) {
+        private NbtTag ReadValueAsTag() {
+            if (!_atValue) {
                 // Should never happen
                 throw new InvalidOperationException(NoValueToReadError);
             }
-            atValue = false;
+            _atValue = false;
             switch (TagType) {
                 case NbtTagType.Byte:
-                    return new NbtByte(TagName, reader.ReadByte());
+                    return new NbtByte(TagName, _reader.ReadByte());
 
                 case NbtTagType.Short:
-                    return new NbtShort(TagName, reader.ReadInt16());
+                    return new NbtShort(TagName, _reader.ReadInt16());
 
                 case NbtTagType.Int:
-                    return new NbtInt(TagName, reader.ReadInt32());
+                    return new NbtInt(TagName, _reader.ReadInt32());
 
                 case NbtTagType.Long:
-                    return new NbtLong(TagName, reader.ReadInt64());
+                    return new NbtLong(TagName, _reader.ReadInt64());
 
                 case NbtTagType.Float:
-                    return new NbtFloat(TagName, reader.ReadSingle());
+                    return new NbtFloat(TagName, _reader.ReadSingle());
 
                 case NbtTagType.Double:
-                    return new NbtDouble(TagName, reader.ReadDouble());
+                    return new NbtDouble(TagName, _reader.ReadDouble());
 
                 case NbtTagType.String:
-                    return new NbtString(TagName, reader.ReadString());
+                    return new NbtString(TagName, _reader.ReadString());
 
                 case NbtTagType.ByteArray:
-                    byte[] value = reader.ReadBytes(TagLength);
+                    var value = _reader.ReadBytes(TagLength);
                     if (value.Length < TagLength) {
                         throw new EndOfStreamException();
                     }
@@ -3922,8 +3924,8 @@ namespace fNbt {
 
                 case NbtTagType.IntArray:
                     var ints = new int[TagLength];
-                    for (int i = 0; i < TagLength; i++) {
-                        ints[i] = reader.ReadInt32();
+                    for (var i = 0; i < TagLength; i++) {
+                        ints[i] = _reader.ReadInt32();
                     }
                     return new NbtIntArray(TagName, ints);
 
@@ -3953,50 +3955,50 @@ namespace fNbt {
         /// <exception cref="InvalidOperationException"> Value has already been read, or there is no value to read. </exception>
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         public object ReadValue() {
-            if (state == NbtParseState.AtStreamEnd) {
+            if (_state == NbtParseState.AtStreamEnd) {
                 throw new EndOfStreamException();
             }
-            if (!atValue) {
-                if (cacheTagValues) {
-                    if (valueCache == null) {
+            if (!_atValue) {
+                if (_cacheTagValues) {
+                    if (_valueCache == null) {
                         throw new InvalidOperationException("No value to read.");
                     } else {
-                        return valueCache;
+                        return _valueCache;
                     }
                 } else {
                     throw new InvalidOperationException(NoValueToReadError);
                 }
             }
-            valueCache = null;
-            atValue = false;
+            _valueCache = null;
+            _atValue = false;
             object value;
             switch (TagType) {
                 case NbtTagType.Byte:
-                    value = reader.ReadByte();
+                    value = _reader.ReadByte();
                     break;
 
                 case NbtTagType.Short:
-                    value = reader.ReadInt16();
+                    value = _reader.ReadInt16();
                     break;
 
                 case NbtTagType.Float:
-                    value = reader.ReadSingle();
+                    value = _reader.ReadSingle();
                     break;
 
                 case NbtTagType.Int:
-                    value = reader.ReadInt32();
+                    value = _reader.ReadInt32();
                     break;
 
                 case NbtTagType.Double:
-                    value = reader.ReadDouble();
+                    value = _reader.ReadDouble();
                     break;
 
                 case NbtTagType.Long:
-                    value = reader.ReadInt64();
+                    value = _reader.ReadInt64();
                     break;
 
                 case NbtTagType.ByteArray:
-                    byte[] valueArr = reader.ReadBytes(TagLength);
+                    var valueArr = _reader.ReadBytes(TagLength);
                     if (valueArr.Length < TagLength) {
                         throw new EndOfStreamException();
                     }
@@ -4005,20 +4007,20 @@ namespace fNbt {
 
                 case NbtTagType.IntArray:
                     var intValue = new int[TagLength];
-                    for (int i = 0; i < TagLength; i++) {
-                        intValue[i] = reader.ReadInt32();
+                    for (var i = 0; i < TagLength; i++) {
+                        intValue[i] = _reader.ReadInt32();
                     }
                     value = intValue;
                     break;
 
                 case NbtTagType.String:
-                    value = reader.ReadString();
+                    value = _reader.ReadString();
                     break;
 
                 default:
                     throw new InvalidOperationException(NonValueTagError);
             }
-            valueCache = cacheTagValues ? value : null;
+            _valueCache = _cacheTagValues ? value : null;
             return value;
         }
 
@@ -4034,7 +4036,7 @@ namespace fNbt {
         /// <exception cref="InvalidReaderStateException"> If NbtReader cannot recover from a previous parsing error. </exception>
         /// <exception cref="NbtFormatException"> If an error occurred while parsing data in NBT format. </exception>
         public T[] ReadListAsArray<T>() {
-            switch (state) {
+            switch (_state) {
                 case NbtParseState.AtStreamEnd:
                     throw new EndOfStreamException();
                 case NbtParseState.Error:
@@ -4043,7 +4045,7 @@ namespace fNbt {
                     GoDown();
                     ListIndex = 0;
                     TagType = ListType;
-                    state = NbtParseState.InList;
+                    _state = NbtParseState.InList;
                     break;
                 case NbtParseState.InList:
                     break;
@@ -4051,13 +4053,13 @@ namespace fNbt {
                     throw new InvalidOperationException("ReadListAsArray may only be used on List tags.");
             }
 
-            int elementsToRead = ParentTagLength - ListIndex;
+            var elementsToRead = ParentTagLength - ListIndex;
 
             // special handling for reading byte arrays (as byte arrays)
             if (ListType == NbtTagType.Byte && typeof(T) == typeof(byte)) {
                 TagsRead += elementsToRead;
                 ListIndex = ParentTagLength - 1;
-                T[] val = (T[])(object)reader.ReadBytes(elementsToRead);
+                var val = (T[])(object)_reader.ReadBytes(elementsToRead);
                 if (val.Length < elementsToRead) {
                     throw new EndOfStreamException();
                 }
@@ -4068,44 +4070,44 @@ namespace fNbt {
             var result = new T[elementsToRead];
             switch (ListType) {
                 case NbtTagType.Byte:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadByte(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadByte(), typeof(T));
                     }
                     break;
 
                 case NbtTagType.Short:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadInt16(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadInt16(), typeof(T));
                     }
                     break;
 
                 case NbtTagType.Int:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadInt32(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadInt32(), typeof(T));
                     }
                     break;
 
                 case NbtTagType.Long:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadInt64(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadInt64(), typeof(T));
                     }
                     break;
 
                 case NbtTagType.Float:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadSingle(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadSingle(), typeof(T));
                     }
                     break;
 
                 case NbtTagType.Double:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadDouble(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadDouble(), typeof(T));
                     }
                     break;
 
                 case NbtTagType.String:
-                    for (int i = 0; i < elementsToRead; i++) {
-                        result[i] = (T)Convert.ChangeType(reader.ReadString(), typeof(T));
+                    for (var i = 0; i < elementsToRead; i++) {
+                        result[i] = (T)Convert.ChangeType(_reader.ReadString(), typeof(T));
                     }
                     break;
 
@@ -4124,16 +4126,16 @@ namespace fNbt {
         /// <summary> Parsing option: Whether NbtReader should save a copy of the most recently read tag's value.
         /// Unless CacheTagValues is <c>true</c>, tag values can only be read once. Default is <c>false</c>. </summary>
         public bool CacheTagValues {
-            get { return cacheTagValues; }
+            get { return _cacheTagValues; }
             set {
-                cacheTagValues = value;
-                if (!cacheTagValues) {
-                    valueCache = null;
+                _cacheTagValues = value;
+                if (!_cacheTagValues) {
+                    _valueCache = null;
                 }
             }
         }
 
-        bool cacheTagValues;
+        private bool _cacheTagValues;
 
         /// <summary> Returns a String that represents the tag currently being read by this NbtReader instance.
         /// Prints current tag's depth, ordinal number, type, name, and size (for arrays and lists). Does not print value.
@@ -4158,7 +4160,7 @@ namespace fNbt {
         public string ToString(bool includeValue, string indentString) {
             if (indentString == null) throw new ArgumentNullException("indentString");
             var sb = new StringBuilder();
-            for (int i = 0; i < Depth; i++) {
+            for (var i = 0; i < Depth; i++) {
                 sb.Append(indentString);
             }
             sb.Append('#').Append(TagsRead).Append(". ").Append(TagType);
@@ -4169,17 +4171,20 @@ namespace fNbt {
                 sb.Append('[').Append(TagLength).Append(']');
             }
             sb.Append(' ').Append(TagName);
-            if (includeValue && (atValue || HasValue && cacheTagValues) && TagType != NbtTagType.IntArray &&
+            if (includeValue && (_atValue || HasValue && _cacheTagValues) && TagType != NbtTagType.IntArray &&
                 TagType != NbtTagType.ByteArray) {
                 sb.Append(" = ").Append(ReadValue());
             }
             return sb.ToString();
         }
 
-        const string NoValueToReadError = "Value aready read, or no value to read.",
-            NonValueTagError = "Trying to read value of a non-value tag.",
-            InvalidParentTagError = "Parent tag is neither a Compound nor a List.",
-            ErroneousStateError = "NbtReader is in an erroneous state!";
+        private const string NoValueToReadError = "Value aready read, or no value to read.";
+
+        private const string NonValueTagError = "Trying to read value of a non-value tag.";
+
+        private const string InvalidParentTagError = "Parent tag is neither a Compound nor a List.";
+
+        private const string ErroneousStateError = "NbtReader is in an erroneous state!";
     }
 
     // Represents state of a node in the NBT file tree, used by NbtReader
@@ -4238,14 +4243,14 @@ namespace fNbt {
     /// NbtWriter enforces all constraints of the NBT file format
     /// EXCEPT checking for duplicate tag names within a compound. </summary>
     public sealed class NbtWriter {
-        const int MaxStreamCopyBufferSize = 8*1024;
+        private const int MaxStreamCopyBufferSize = 8*1024;
 
-        readonly NbtBinaryWriter writer;
-        NbtTagType listType;
-        NbtTagType parentType;
-        int listIndex;
-        int listSize;
-        Stack<NbtWriterNode> nodes;
+        private readonly NbtBinaryWriter _writer;
+        private NbtTagType _listType;
+        private NbtTagType _parentType;
+        private int _listIndex;
+        private int _listSize;
+        private Stack<NbtWriterNode> _nodes;
 
         /// <summary> Initializes a new instance of the NbtWriter class. </summary>
         /// <param name="stream"> Stream to write to. </param>
@@ -4253,7 +4258,7 @@ namespace fNbt {
         /// <remarks> Assumes that data in the stream should be Big-Endian encoded. </remarks>
         /// <exception cref="ArgumentNullException"> <paramref name="stream"/> or <paramref name="rootTagName"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> <paramref name="stream"/> is not writable. </exception>
-        public NbtWriter(Stream stream, String rootTagName)
+        public NbtWriter(Stream stream, string rootTagName)
             : this(stream, rootTagName, true) {}
 
         /// <summary> Initializes a new instance of the NbtWriter class. </summary>
@@ -4262,12 +4267,12 @@ namespace fNbt {
         /// <param name="bigEndian"> Whether NBT data should be in Big-Endian encoding. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="stream"/> or <paramref name="rootTagName"/> is <c>null</c>. </exception>
         /// <exception cref="ArgumentException"> <paramref name="stream"/> is not writable. </exception>
-        public NbtWriter(Stream stream, String rootTagName, bool bigEndian) {
+        public NbtWriter(Stream stream, string rootTagName, bool bigEndian) {
             if (rootTagName == null) throw new ArgumentNullException("rootTagName");
-            writer = new NbtBinaryWriter(stream, bigEndian);
-            writer.Write((byte)NbtTagType.Compound);
-            writer.Write(rootTagName);
-            parentType = NbtTagType.Compound;
+            _writer = new NbtBinaryWriter(stream, bigEndian);
+            _writer.Write((byte)NbtTagType.Compound);
+            _writer.Write(rootTagName);
+            _parentType = NbtTagType.Compound;
         }
 
         /// <summary> Gets whether the root tag has been closed.
@@ -4276,7 +4281,7 @@ namespace fNbt {
 
         /// <summary> Gets the underlying stream of the NbtWriter. </summary>
         public Stream BaseStream {
-            get { return writer.BaseStream; }
+            get { return _writer.BaseStream; }
         }
 
         #region Compounds and Lists
@@ -4294,22 +4299,22 @@ namespace fNbt {
         /// <param name="tagName"> Name to give to this compound tag. May not be null. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed compound tag was expected -OR- a tag of a different type was expected. </exception>
-        public void BeginCompound(String tagName) {
+        public void BeginCompound(string tagName) {
             EnforceConstraints(tagName, NbtTagType.Compound);
             GoDown(NbtTagType.Compound);
 
-            writer.Write((byte)NbtTagType.Compound);
-            writer.Write(tagName);
+            _writer.Write((byte)NbtTagType.Compound);
+            _writer.Write(tagName);
         }
 
         /// <summary> Ends a compound tag. </summary>
         /// <exception cref="NbtFormatException"> Not currently in a compound. </exception>
         public void EndCompound() {
-            if (IsDone || parentType != NbtTagType.Compound) {
+            if (IsDone || _parentType != NbtTagType.Compound) {
                 throw new NbtFormatException("Not currently in a compound.");
             }
             GoUp();
-            writer.Write(NbtTagType.End);
+            _writer.Write(NbtTagType.End);
         }
 
         /// <summary> Begins an unnamed list tag. </summary>
@@ -4329,11 +4334,11 @@ namespace fNbt {
             }
             EnforceConstraints(null, NbtTagType.List);
             GoDown(NbtTagType.List);
-            listType = elementType;
-            listSize = size;
+            _listType = elementType;
+            _listSize = size;
 
-            writer.Write((byte)elementType);
-            writer.Write(size);
+            _writer.Write((byte)elementType);
+            _writer.Write(size);
         }
 
         /// <summary> Begins an unnamed list tag. </summary>
@@ -4344,7 +4349,7 @@ namespace fNbt {
         /// an unnamed list tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="size"/> is negative -OR-
         /// <paramref name="elementType"/> is not a valid NbtTagType. </exception>
-        public void BeginList(String tagName, NbtTagType elementType, int size) {
+        public void BeginList(string tagName, NbtTagType elementType, int size) {
             if (size < 0) {
                 throw new ArgumentOutOfRangeException("size", "List size may not be negative.");
             }
@@ -4353,24 +4358,24 @@ namespace fNbt {
             }
             EnforceConstraints(tagName, NbtTagType.List);
             GoDown(NbtTagType.List);
-            listType = elementType;
-            listSize = size;
+            _listType = elementType;
+            _listSize = size;
 
-            writer.Write((byte)NbtTagType.List);
-            writer.Write(tagName);
-            writer.Write((byte)elementType);
-            writer.Write(size);
+            _writer.Write((byte)NbtTagType.List);
+            _writer.Write(tagName);
+            _writer.Write((byte)elementType);
+            _writer.Write(size);
         }
 
         /// <summary> Ends a list tag. </summary>
         /// <exception cref="NbtFormatException"> Not currently in a list -OR-
         /// not all list elements have been written yet. </exception>
         public void EndList() {
-            if (parentType != NbtTagType.List || IsDone) {
+            if (_parentType != NbtTagType.List || IsDone) {
                 throw new NbtFormatException("Not currently in a list.");
-            } else if (listIndex < listSize) {
+            } else if (_listIndex < _listSize) {
                 throw new NbtFormatException("Cannot end list: not all list elements have been written yet. " +
-                                             "Expected: " + listSize + ", written: " + listIndex);
+                                             "Expected: " + _listSize + ", written: " + _listIndex);
             }
             GoUp();
         }
@@ -4386,7 +4391,7 @@ namespace fNbt {
         /// the size of a parent list has been exceeded. </exception>
         public void WriteByte(byte value) {
             EnforceConstraints(null, NbtTagType.Byte);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed byte tag. </summary>
@@ -4394,11 +4399,11 @@ namespace fNbt {
         /// <param name="value"> The unsigned byte to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed byte tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteByte(String tagName, byte value) {
+        public void WriteByte(string tagName, byte value) {
             EnforceConstraints(tagName, NbtTagType.Byte);
-            writer.Write((byte)NbtTagType.Byte);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.Byte);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed double tag. </summary>
@@ -4408,7 +4413,7 @@ namespace fNbt {
         /// the size of a parent list has been exceeded. </exception>
         public void WriteDouble(double value) {
             EnforceConstraints(null, NbtTagType.Double);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed byte tag. </summary>
@@ -4416,11 +4421,11 @@ namespace fNbt {
         /// <param name="value"> The unsigned byte to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed byte tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteDouble(String tagName, double value) {
+        public void WriteDouble(string tagName, double value) {
             EnforceConstraints(tagName, NbtTagType.Double);
-            writer.Write((byte)NbtTagType.Double);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.Double);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed float tag. </summary>
@@ -4430,7 +4435,7 @@ namespace fNbt {
         /// the size of a parent list has been exceeded. </exception>
         public void WriteFloat(float value) {
             EnforceConstraints(null, NbtTagType.Float);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed float tag. </summary>
@@ -4438,11 +4443,11 @@ namespace fNbt {
         /// <param name="value"> The four-byte floating-point value to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed float tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteFloat(String tagName, float value) {
+        public void WriteFloat(string tagName, float value) {
             EnforceConstraints(tagName, NbtTagType.Float);
-            writer.Write((byte)NbtTagType.Float);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.Float);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed int tag. </summary>
@@ -4452,7 +4457,7 @@ namespace fNbt {
         /// the size of a parent list has been exceeded. </exception>
         public void WriteInt(int value) {
             EnforceConstraints(null, NbtTagType.Int);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed int tag. </summary>
@@ -4460,11 +4465,11 @@ namespace fNbt {
         /// <param name="value"> The four-byte signed integer to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed int tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteInt(String tagName, int value) {
+        public void WriteInt(string tagName, int value) {
             EnforceConstraints(tagName, NbtTagType.Int);
-            writer.Write((byte)NbtTagType.Int);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.Int);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed long tag. </summary>
@@ -4474,7 +4479,7 @@ namespace fNbt {
         /// the size of a parent list has been exceeded. </exception>
         public void WriteLong(long value) {
             EnforceConstraints(null, NbtTagType.Long);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed long tag. </summary>
@@ -4482,11 +4487,11 @@ namespace fNbt {
         /// <param name="value"> The eight-byte signed integer to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed long tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteLong(String tagName, long value) {
+        public void WriteLong(string tagName, long value) {
             EnforceConstraints(tagName, NbtTagType.Long);
-            writer.Write((byte)NbtTagType.Long);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.Long);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed short tag. </summary>
@@ -4496,7 +4501,7 @@ namespace fNbt {
         /// the size of a parent list has been exceeded. </exception>
         public void WriteShort(short value) {
             EnforceConstraints(null, NbtTagType.Short);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed short tag. </summary>
@@ -4504,11 +4509,11 @@ namespace fNbt {
         /// <param name="value"> The two-byte signed integer to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed short tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteShort(String tagName, short value) {
+        public void WriteShort(string tagName, short value) {
             EnforceConstraints(tagName, NbtTagType.Short);
-            writer.Write((byte)NbtTagType.Short);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.Short);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed string tag. </summary>
@@ -4516,10 +4521,10 @@ namespace fNbt {
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// a named string tag was expected -OR- a tag of a different type was expected -OR-
         /// the size of a parent list has been exceeded. </exception>
-        public void WriteString(String value) {
+        public void WriteString(string value) {
             if (value == null) throw new ArgumentNullException("value");
             EnforceConstraints(null, NbtTagType.String);
-            writer.Write(value);
+            _writer.Write(value);
         }
 
         /// <summary> Writes an unnamed string tag. </summary>
@@ -4527,12 +4532,12 @@ namespace fNbt {
         /// <param name="value"> The string to write. </param>
         /// <exception cref="NbtFormatException"> No more tags can be written -OR-
         /// an unnamed string tag was expected -OR- a tag of a different type was expected. </exception>
-        public void WriteString(String tagName, String value) {
+        public void WriteString(string tagName, string value) {
             if (value == null) throw new ArgumentNullException("value");
             EnforceConstraints(tagName, NbtTagType.String);
-            writer.Write((byte)NbtTagType.String);
-            writer.Write(tagName);
-            writer.Write(value);
+            _writer.Write((byte)NbtTagType.String);
+            _writer.Write(tagName);
+            _writer.Write(value);
         }
 
         #endregion
@@ -4565,8 +4570,8 @@ namespace fNbt {
         public void WriteByteArray(byte[] data, int offset, int count) {
             CheckArray(data, offset, count);
             EnforceConstraints(null, NbtTagType.ByteArray);
-            writer.Write(count);
-            writer.Write(data, offset, count);
+            _writer.Write(count);
+            _writer.Write(data, offset, count);
         }
 
         /// <summary> Writes a named byte array tag, copying data from an array. </summary>
@@ -4576,7 +4581,7 @@ namespace fNbt {
         /// an unnamed byte array tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="tagName"/> or
         /// <paramref name="data"/> is null </exception>
-        public void WriteByteArray(String tagName, byte[] data) {
+        public void WriteByteArray(string tagName, byte[] data) {
             if (data == null) throw new ArgumentNullException("data");
             WriteByteArray(tagName, data, 0, data.Length);
         }
@@ -4594,13 +4599,13 @@ namespace fNbt {
         /// <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteByteArray(String tagName, byte[] data, int offset, int count) {
+        public void WriteByteArray(string tagName, byte[] data, int offset, int count) {
             CheckArray(data, offset, count);
             EnforceConstraints(tagName, NbtTagType.ByteArray);
-            writer.Write((byte)NbtTagType.ByteArray);
-            writer.Write(tagName);
-            writer.Write(count);
-            writer.Write(data, offset, count);
+            _writer.Write((byte)NbtTagType.ByteArray);
+            _writer.Write(tagName);
+            _writer.Write(count);
+            _writer.Write(data, offset, count);
         }
 
         /// <summary> Writes an unnamed byte array tag, copying data from a stream. </summary>
@@ -4621,7 +4626,7 @@ namespace fNbt {
             } else if (count < 0) {
                 throw new ArgumentOutOfRangeException("count", "count may not be negative");
             }
-            int bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
+            var bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
             var streamCopyBuffer = new byte[bufferSize];
             WriteByteArray(dataSource, count, streamCopyBuffer);
         }
@@ -4662,12 +4667,12 @@ namespace fNbt {
         /// <exception cref="ArgumentOutOfRangeException"> <paramref name="count"/> is negative. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         /// <exception cref="ArgumentException"> Given stream does not support reading. </exception>
-        public void WriteByteArray(String tagName, Stream dataSource, int count) {
+        public void WriteByteArray(string tagName, Stream dataSource, int count) {
             if (dataSource == null) throw new ArgumentNullException("dataSource");
             if (count < 0) {
                 throw new ArgumentOutOfRangeException("count", "count may not be negative");
             }
-            int bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
+            var bufferSize = Math.Min(count, MaxStreamCopyBufferSize);
             var streamCopyBuffer = new byte[bufferSize];
             WriteByteArray(tagName, dataSource, count, streamCopyBuffer);
         }
@@ -4683,7 +4688,7 @@ namespace fNbt {
         /// <exception cref="ArgumentNullException"> <paramref name="dataSource"/> is null. </exception>
         /// <exception cref="ArgumentException"> Given stream does not support reading -OR-
         /// <paramref name="buffer"/> size is 0. </exception>
-        public void WriteByteArray(String tagName, Stream dataSource, int count, byte[] buffer) {
+        public void WriteByteArray(string tagName, Stream dataSource, int count, byte[] buffer) {
             if (dataSource == null) throw new ArgumentNullException("dataSource");
             if (buffer == null) throw new ArgumentNullException("buffer");
             if (!dataSource.CanRead) {
@@ -4694,8 +4699,8 @@ namespace fNbt {
                 throw new ArgumentException("buffer size must be greater than 0 when count is greater than 0", "buffer");
             }
             EnforceConstraints(tagName, NbtTagType.ByteArray);
-            writer.Write((byte)NbtTagType.ByteArray);
-            writer.Write(tagName);
+            _writer.Write((byte)NbtTagType.ByteArray);
+            _writer.Write(tagName);
             WriteByteArrayFromStreamImpl(dataSource, count, buffer);
         }
 
@@ -4725,9 +4730,9 @@ namespace fNbt {
         public void WriteIntArray(int[] data, int offset, int count) {
             CheckArray(data, offset, count);
             EnforceConstraints(null, NbtTagType.IntArray);
-            writer.Write(count);
-            for (int i = offset; i < count; i++) {
-                writer.Write(data[i]);
+            _writer.Write(count);
+            for (var i = offset; i < count; i++) {
+                _writer.Write(data[i]);
             }
         }
 
@@ -4738,7 +4743,7 @@ namespace fNbt {
         /// an unnamed int array tag was expected -OR- a tag of a different type was expected. </exception>
         /// <exception cref="ArgumentNullException"> <paramref name="tagName"/> or
         /// <paramref name="data"/> is null </exception>
-        public void WriteIntArray(String tagName, int[] data) {
+        public void WriteIntArray(string tagName, int[] data) {
             if (data == null) throw new ArgumentNullException("data");
             WriteIntArray(tagName, data, 0, data.Length);
         }
@@ -4756,14 +4761,14 @@ namespace fNbt {
         /// <paramref name="data"/> is null </exception>
         /// <exception cref="ArgumentException"> <paramref name="count"/> is greater than
         /// <paramref name="offset"/> subtracted from the array length. </exception>
-        public void WriteIntArray(String tagName, int[] data, int offset, int count) {
+        public void WriteIntArray(string tagName, int[] data, int offset, int count) {
             CheckArray(data, offset, count);
             EnforceConstraints(tagName, NbtTagType.IntArray);
-            writer.Write((byte)NbtTagType.IntArray);
-            writer.Write(tagName);
-            writer.Write(count);
-            for (int i = offset; i < count; i++) {
-                writer.Write(data[i]);
+            _writer.Write((byte)NbtTagType.IntArray);
+            _writer.Write(tagName);
+            _writer.Write(count);
+            for (var i = offset; i < count; i++) {
+                _writer.Write(data[i]);
             }
         }
 
@@ -4779,9 +4784,9 @@ namespace fNbt {
             if (tag == null) throw new ArgumentNullException("tag");
             EnforceConstraints(tag.Name, tag.TagType);
             if (tag.Name != null) {
-                tag.WriteTag(writer);
+                tag.WriteTag(_writer);
             } else {
-                tag.WriteData(writer);
+                tag.WriteData(_writer);
             }
         }
 
@@ -4795,56 +4800,56 @@ namespace fNbt {
             }
         }
 
-        void GoDown(NbtTagType thisType) {
-            if (nodes == null) {
-                nodes = new Stack<NbtWriterNode>();
+        private void GoDown(NbtTagType thisType) {
+            if (_nodes == null) {
+                _nodes = new Stack<NbtWriterNode>();
             }
             var newNode = new NbtWriterNode {
-                ParentType = parentType,
-                ListType = listType,
-                ListSize = listSize,
-                ListIndex = listIndex
+                ParentType = _parentType,
+                ListType = _listType,
+                ListSize = _listSize,
+                ListIndex = _listIndex
             };
-            nodes.Push(newNode);
+            _nodes.Push(newNode);
 
-            parentType = thisType;
-            listType = NbtTagType.Unknown;
-            listSize = 0;
-            listIndex = 0;
+            _parentType = thisType;
+            _listType = NbtTagType.Unknown;
+            _listSize = 0;
+            _listIndex = 0;
         }
 
-        void GoUp() {
-            if (nodes == null || nodes.Count == 0) {
+        private void GoUp() {
+            if (_nodes == null || _nodes.Count == 0) {
                 IsDone = true;
             } else {
-                NbtWriterNode oldNode = nodes.Pop();
-                parentType = oldNode.ParentType;
-                listType = oldNode.ListType;
-                listSize = oldNode.ListSize;
-                listIndex = oldNode.ListIndex;
+                var oldNode = _nodes.Pop();
+                _parentType = oldNode.ParentType;
+                _listType = oldNode.ListType;
+                _listSize = oldNode.ListSize;
+                _listIndex = oldNode.ListIndex;
             }
         }
 
-        void EnforceConstraints(String name, NbtTagType desiredType) {
+        private void EnforceConstraints(string name, NbtTagType desiredType) {
             if (IsDone) {
                 throw new NbtFormatException("Cannot write any more tags: root tag has been closed.");
             }
-            if (parentType == NbtTagType.List) {
+            if (_parentType == NbtTagType.List) {
                 if (name != null) {
                     throw new NbtFormatException("Expecting an unnamed tag.");
-                } else if (listType != desiredType) {
-                    throw new NbtFormatException("Unexpected tag type (expected: " + listType + ", given: " +
+                } else if (_listType != desiredType) {
+                    throw new NbtFormatException("Unexpected tag type (expected: " + _listType + ", given: " +
                                                  desiredType);
-                } else if (listIndex >= listSize) {
+                } else if (_listIndex >= _listSize) {
                     throw new NbtFormatException("Given list size exceeded.");
                 }
-                listIndex++;
+                _listIndex++;
             } else if (name == null) {
                 throw new NbtFormatException("Expecting a named tag.");
             }
         }
 
-        static void CheckArray(Array data, int offset, int count) {
+        private static void CheckArray(Array data, int offset, int count) {
             if (data == null) {
                 throw new ArgumentNullException("data");
             } else if (offset < 0) {
@@ -4856,16 +4861,16 @@ namespace fNbt {
             }
         }
 
-        void WriteByteArrayFromStreamImpl(Stream dataSource, int count, byte[] buffer) {
+        private void WriteByteArrayFromStreamImpl(Stream dataSource, int count, byte[] buffer) {
             Debug.Assert(dataSource != null);
             Debug.Assert(buffer != null);
-            writer.Write(count);
-            int maxBytesToWrite = Math.Min(buffer.Length, NbtBinaryWriter.MaxWriteChunk);
-            int bytesWritten = 0;
+            _writer.Write(count);
+            var maxBytesToWrite = Math.Min(buffer.Length, NbtBinaryWriter.MaxWriteChunk);
+            var bytesWritten = 0;
             while (bytesWritten < count) {
-                int bytesToRead = Math.Min(count - bytesWritten, maxBytesToWrite);
-                int bytesRead = dataSource.Read(buffer, 0, bytesToRead);
-                writer.Write(buffer, 0, bytesRead);
+                var bytesToRead = Math.Min(count - bytesWritten, maxBytesToWrite);
+                var bytesRead = dataSource.Read(buffer, 0, bytesToRead);
+                _writer.Write(buffer, 0, bytesRead);
                 bytesWritten += bytesRead;
             }
         }
@@ -4888,18 +4893,19 @@ namespace fNbt {
     /// <summary> DeflateStream wrapper that calculates Adler32 checksum of the written data,
     /// to allow writing ZLib header (RFC-1950). </summary>
     internal sealed class ZLibStream : DeflateStream {
-        int adler32A = 1, adler32B;
+        private int _adler32A = 1;
+        private int _adler32B;
 
-        const int ChecksumModulus = 65521;
+        private const int ChecksumModulus = 65521;
 
         public int Checksum {
-            get { return unchecked((adler32B*65536) + adler32A); }
+            get { return unchecked((_adler32B*65536) + _adler32A); }
         }
 
-        void UpdateChecksum(IList<byte> data, int offset, int length) {
-            for (int counter = 0; counter < length; ++counter) {
-                adler32A = (adler32A + (data[offset + counter]))%ChecksumModulus;
-                adler32B = (adler32B + adler32A)%ChecksumModulus;
+        private void UpdateChecksum(IList<byte> data, int offset, int length) {
+            for (var counter = 0; counter < length; ++counter) {
+                _adler32A = (_adler32A + (data[offset + counter]))%ChecksumModulus;
+                _adler32B = (_adler32B + _adler32A)%ChecksumModulus;
             }
         }
 

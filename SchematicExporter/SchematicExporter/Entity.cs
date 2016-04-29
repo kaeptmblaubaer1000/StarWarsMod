@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchematicExporter
+﻿namespace SchematicExporter
 {
-    class Entity
+    internal class Entity
     {
-        String jClass;
-        String package;
+        private readonly string _jClass;
+        private readonly string _package;
 
-        public Entity(String jClass, String package)
+        public Entity(string jClass, string package)
         {
-            this.jClass = jClass;
-            this.package = package;
+            _jClass = jClass;
+            _package = package;
         }
 
-        public String getName()
+        public string GetName()
         {
-            return this.jClass;
+            return _jClass;
         }
 
-        public String getPackage()
+        public string GetPackage()
         {
-            return this.package;
+            return _package;
         }
 
-        public String getQualifiedName()
+        public string GetQualifiedName()
         {
-            return this.package + "." + this.jClass;
+            return _package + "." + _jClass;
         }
     }
 }

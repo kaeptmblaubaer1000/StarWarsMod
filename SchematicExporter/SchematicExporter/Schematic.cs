@@ -1,87 +1,141 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using fNbt;
 
 namespace SchematicExporter
 {
-    class Schematic
+    internal class Schematic
     {
-        NbtFile nFile;
+        private readonly NbtFile _nFile;
 
-        public int length;
-        public int width;
-        public int height;
+        /// <summary>
+        /// Length of the schematic, in blocks
+        /// </summary>
+        public int Length;
+        /// <summary>
+        /// Width of the schematic, in blocks
+        /// </summary>
+        public int Width;
+        /// <summary>
+        /// Height of the schematic, in blocks
+        /// </summary>
+        public int Height;
 
-        private int[] blocks;
-        private bool[] blockFlags;
-        private byte[] addId = new byte[0];
+        private readonly int[] _blocks;
+        private readonly bool[] _blockFlags;
+        private readonly byte[] _addId = new byte[0];
 
+        /// <summary>
+        /// Creates a new Schematic from the given file
+        /// </summary>
+        /// <param name="fileName">The filename of the schematic</param>
         public Schematic(string fileName)
         {
-            nFile = new NbtFile(fileName);
+            _nFile = new NbtFile(fileName);
             //Console.WriteLine(nFile.RootTag);
-            length = nFile.RootTag["Length"].IntValue;
-            width = nFile.RootTag["Width"].IntValue;
-            height = nFile.RootTag["Height"].IntValue;
+            Length = _nFile.RootTag["Length"].IntValue;
+            Width = _nFile.RootTag["Width"].IntValue;
+            Height = _nFile.RootTag["Height"].IntValue;
 
-            blocks = nFile.RootTag["Blocks"].ByteArrayValue.Select(x => (int)x).ToArray();
+            _blocks = _nFile.RootTag["Blocks"].ByteArrayValue.Select(x => (int)x).ToArray();
 
-            blockFlags = new bool[blocks.Length];
-            blockFlags.Populate(false);
+            _blockFlags = new bool[_blocks.Length];
+            _blockFlags.Populate(false);
 
-            if (nFile.RootTag["AddBlocks"] != null)
-                addId = nFile.RootTag["AddBlocks"].ByteArrayValue;
+            if (_nFile.RootTag["AddBlocks"] != null)
+                _addId = _nFile.RootTag["AddBlocks"].ByteArrayValue;
 
             //Console.WriteLine(getTileEntities());
 
-            for (int index = 0; index < blocks.Length; index++)
-                if ((index >> 1) < addId.Length)
+            for (var index = 0; index < _blocks.Length; index++)
+                if ((index >> 1) < _addId.Length)
                     if ((index & 1) == 0)
-                        blocks[index] = (((addId[index >> 1] & 0x0F) << 8) + blocks[index]);
+                        _blocks[index] = (((_addId[index >> 1] & 0x0F) << 8) + _blocks[index]);
                     else
-                        blocks[index] = (((addId[index >> 1] & 0xF0) << 4) + blocks[index]);
+                        _blocks[index] = (((_addId[index >> 1] & 0xF0) << 4) + _blocks[index]);
         }
 
-        public int getBlockIdAt(int x, int y, int z)
+        /// <summary>
+        /// Gets the block ID at the position
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="z">Z</param>
+        /// <returns>The block ID at XYZ</returns>
+        public int GetBlockIdAt(int x, int y, int z)
         {
-            return blocks[(y * length + z) * width + x];
+            return _blocks[(y * Length + z) * Width + x];
         }
 
-        public int getBlockMetadataAt(int x, int y, int z)
+        /// <summary>
+        /// Gets the block metadata at the position
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="z">Z</param>
+        /// <returns>The block metadata at XYZ</returns>
+        public int GetBlockMetadataAt(int x, int y, int z)
         {
-            return nFile.RootTag["Data"].ByteArrayValue[(y * length + z) * width + x];
+            return _nFile.RootTag["Data"].ByteArrayValue[(y * Length + z) * Width + x];
         }
 
-        public NbtList getTileEntities()
+        /// <summary>
+        /// Gets the tile entities
+        /// </summary>
+        /// <returns>A NbtList of tile entities</returns>
+        public NbtList GetTileEntities()
         {
-            return (NbtList)nFile.RootTag["TileEntities"];
+            return (NbtList)_nFile.RootTag["TileEntities"];
         }
 
-        public NbtCompound getTileEntityAt(int x, int y, int z)
+        /// <summary>
+        /// Gets the tile entity at the position
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="z">Z</param>
+        /// <returns>A NbtCompound that represents the tile entity</returns>
+        public NbtCompound GetTileEntityAt(int x, int y, int z)
         {
-            foreach (NbtCompound c in getTileEntities())
-                if (c["x"].IntValue == x && c["y"].IntValue == y && c["z"].IntValue == z)
-                    return c;
-            return null;
+            return GetTileEntities().Cast<NbtCompound>().FirstOrDefault(c => c["x"].IntValue == x && c["y"].IntValue == y && c["z"].IntValue == z);
         }
 
-        public Block getBlockAt(int x, int y, int z)
+        /// <summary>
+        /// Gets the block at the position
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="z">Z</param>
+        /// <returns>The block at the position</returns>
+        public Block GetBlockAt(int x, int y, int z)
         {
-            int id = getBlockIdAt(x, y, z);
-            return IdMapper.instance.getBlockFromId(id);
+            var id = GetBlockIdAt(x, y, z);
+            return IdMapper.Instance.GetBlockFromId(id);
         }
 
-        public void setFlagAt(int x, int y, int z, bool flag)
+        /// <summary>
+        /// Sets the block flag at the position
+        /// A true flag indicates that the block will not be included in the generation output
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="z">Z</param>
+        /// <param name="flag">Block flag</param>
+        public void SetFlagAt(int x, int y, int z, bool flag)
         {
-            blockFlags[(y * length + z) * width + x] = flag;
+            _blockFlags[(y * Length + z) * Width + x] = flag;
         }
 
-        public bool getFlagAt(int x, int y, int z)
+        /// <summary>
+        /// Gets the block flag at the position
+        /// A true flag indicates that the block will not be included in the generation output
+        /// </summary>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="z">Z</param>
+        /// <returns>The block flag</returns>
+        public bool GetFlagAt(int x, int y, int z)
         {
-            return blockFlags[(y * length + z) * width + x];
+            return _blockFlags[(y * Length + z) * Width + x];
         }
     }
 }

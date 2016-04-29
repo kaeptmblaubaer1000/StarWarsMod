@@ -1,40 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchematicExporter
+﻿namespace SchematicExporter
 {
-    class Block
+    internal class Block
     {
-        String name;
-        String namespacePrefix;
+        private readonly string _name;
+        private readonly string _namespacePrefix;
 
-        public Block(String name, String namespacePrefix)
+        public Block(string name, string namespacePrefix)
         {
-            this.name = name;
-            this.namespacePrefix = namespacePrefix;
+            _name = name;
+            _namespacePrefix = namespacePrefix;
         }
 
-        public String getName()
+        public string GetName()
         {
-            return this.name;
+            return _name;
         }
 
-        public String getNamespacePrefix()
+        public string GetNamespacePrefix()
         {
-            return this.namespacePrefix;
+            return _namespacePrefix;
         }
 
-        public String createJavaVariable()
+        public string CreateJavaVariable()
         {
-            return String.Format("{0}.{1}", this.namespacePrefix, this.name);
+            return string.Format("{0}.{1}", _namespacePrefix, _name);
         }
 
-        public Item toItem()
+        public Item ToItem()
         {
-            return new Item(this.name, this.namespacePrefix);
+            return new Item(_name, _namespacePrefix);
         }
     }
 }

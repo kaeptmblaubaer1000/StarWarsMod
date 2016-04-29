@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
 using fNbt;
 
 namespace SchematicExporter
 {
-    class Exporter
+    internal class Exporter
     {
-        public const int MAX_BLOCKS_PER_GEN = 500;
-        /*
-         * public boolean generate(World world, Random rand, int i, int j, int k)
-	     * {
-		 *      this.setBlock(world, i + 0, j + 0, k + 0, Blocks.air, 0);
-         * }
-         * 
-		 * world.setBlockMetadataWithNotify(i + 12, j + 5, k + 4, 1, 2); // x, y, z, metadata, flag
-         */
+        /// <summary>
+        /// Maximum blocks/lines per generation statement
+        /// </summary>
+        public const int MaxBlocksPerGen = 500;
 
-        public static void export(ExportOptions options, Schematic schematic)
+        /// <summary>
+        /// Exports the given schematic following the given export options
+        /// </summary>
+        /// <param name="options">The export options</param>
+        /// <param name="schematic">The schematic to export</param>
+        public static void Export(ExportOptions options, Schematic schematic)
         {
             if (!File.Exists("template.java"))
             {
@@ -29,22 +27,22 @@ namespace SchematicExporter
                 Console.ReadKey();
                 Environment.Exit(0);
             }
-            String template = File.ReadAllText("template.java");
+            var template = File.ReadAllText("template.java");
             Console.ForegroundColor = ConsoleColor.Green;
 
-            StringBuilder gen = new StringBuilder();
-            StringBuilder tiles = new StringBuilder();
-            StringBuilder imports = new StringBuilder();
-            List<String> lImports = new List<String>();
+            var gen = new StringBuilder();
+            var tiles = new StringBuilder();
+            var imports = new StringBuilder();
+            var lImports = new List<string>();
 
             lImports.Require("net.minecraft.block.Block");
             lImports.Require("net.minecraft.world.World");
             lImports.Require("com.parzivail.util.world.WorldUtils");
 
-            int numStatements = 0;
-            int currentGen = 0;
+            var numStatements = 0;
+            var currentGen = 0;
 
-            Stopwatch stopwatch = new Stopwatch();
+            var stopwatch = new Stopwatch();
             stopwatch.Start();
 
             /*
@@ -56,42 +54,42 @@ namespace SchematicExporter
             }
              */
 
-            int tag = 0;
-            foreach (NbtCompound t in schematic.getTileEntities())
+            var tag = 0;
+            foreach (NbtCompound t in schematic.GetTileEntities())
             {
-                int x = t["x"].IntValue;
-                int y = t["y"].IntValue;
-                int z = t["z"].IntValue;
+                var x = t["x"].IntValue;
+                var y = t["y"].IntValue;
+                var z = t["z"].IntValue;
                 if (t["id"].StringValue == "Chest")
                 {
-                    tiles.AppendLine(JavaBuilder.makeChest(ref schematic, ref lImports, tag, x, y, z, "\t\t"));
+                    tiles.AppendLine(JavaBuilder.MakeChest(ref schematic, ref lImports, tag, x, y, z, "\t\t"));
                     tag++;
                 }
             }
 
-            gen.AppendLine(JavaBuilder.makeGen(currentGen));
+            gen.AppendLine(JavaBuilder.MakeGen(currentGen));
             gen.AppendLine("\t{");
-            for (int x = 0; x < schematic.width; x++)
+            for (var x = 0; x < schematic.Width; x++)
             {
-                for (int y = 0; y < schematic.height; y++)
+                for (var y = 0; y < schematic.Height; y++)
                 {
-                    for (int z = 0; z < schematic.length; z++)
+                    for (var z = 0; z < schematic.Length; z++)
                     {
-                        if (schematic.getFlagAt(x, y, z))
+                        if (schematic.GetFlagAt(x, y, z))
                             continue;
-                        gen.Append(JavaBuilder.makeSetBlockLine(schematic, ref lImports, x, y, z));
+                        gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z));
                         numStatements++;
                         //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
 
-                        if (numStatements > MAX_BLOCKS_PER_GEN)
+                        if (numStatements > MaxBlocksPerGen)
                         {
                             numStatements = 0;
                             currentGen++;
-                            gen.AppendLine(JavaBuilder.makeCallGen(currentGen));
+                            gen.AppendLine(JavaBuilder.MakeCallGen(currentGen));
                             gen.AppendLine("\t\treturn true;");
                             gen.AppendLine("\t}");
                             gen.AppendLine();
-                            gen.AppendLine(JavaBuilder.makeGen(currentGen));
+                            gen.AppendLine(JavaBuilder.MakeGen(currentGen));
                             gen.AppendLine("\t{");
                         }
                     }
@@ -99,38 +97,38 @@ namespace SchematicExporter
             }
 
             lImports.Sort();
-            foreach (String s in lImports)
-                imports.AppendLine(String.Format("import {0};", s));
+            foreach (var s in lImports)
+                imports.AppendLine(string.Format("import {0};", s));
 
             Console.ForegroundColor = ConsoleColor.Blue;
             stopwatch.Stop();
-            Console.Write(Utils.millisToHRD(stopwatch.ElapsedMilliseconds).PadRight(10));
+            Console.Write(Utils.MillisToHrd(stopwatch.ElapsedMilliseconds).PadRight(10));
 
             gen.Append(tiles.ToString());
 
             gen.AppendLine("\t\treturn true;");
             gen.AppendLine("\t}");
 
-            template = template.Replace("{{PACKAGE}}", options.package);
-            template = template.Replace("{{CLASS}}", upperFirst(options.className));
+            template = template.Replace("{{PACKAGE}}", options.Package);
+            template = template.Replace("{{CLASS}}", UpperFirst(options.ClassName));
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
             template = template.Replace("{{IMPORTS}}", imports.ToString());
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write(((currentGen * MAX_BLOCKS_PER_GEN) + numStatements).ToString().PadRight(10));
+            Console.Write(((currentGen * MaxBlocksPerGen) + numStatements).ToString().PadRight(10));
             Console.Write(tag.ToString().PadRight(10));
             Console.Write((currentGen + 1).ToString().PadRight(10));
             stopwatch.Restart();
 
-            using (StreamWriter w = new StreamWriter("output/" + options.fileName))
+            using (var w = new StreamWriter("output/" + options.FileName))
                 w.WriteLine(template);
 
             stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(Utils.millisToHRD(stopwatch.ElapsedMilliseconds).PadRight(10));
+            Console.Write(Utils.MillisToHrd(stopwatch.ElapsedMilliseconds).PadRight(10));
         }
 
-        private static string upperFirst(string s)
+        private static string UpperFirst(string s)
         {
             return char.ToUpper(s[0]) + s.Substring(1);
         }

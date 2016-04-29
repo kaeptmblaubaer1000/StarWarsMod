@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchematicExporter
+﻿namespace SchematicExporter
 {
-    struct ExportOptions
+    internal struct ExportOptions
     {
-        public String fileName;
-        public String package;
-        public String className;
+        public string FileName;
+        public string Package;
+        public string ClassName;
 
-        public ExportOptions(String fileName, String package, String className)
+        public ExportOptions(string fileName, string package, string className)
         {
-            this.fileName = fileName;
-            this.package = package;
-            this.className = className;
+            FileName = fileName;
+            Package = package;
+            ClassName = className;
         }
     }
 }

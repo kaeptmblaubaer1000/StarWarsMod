@@ -1,37 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace SchematicExporter
 {
-    static class Utils
+    internal static class Utils
     {
-        public static String millisToHRD(long millis)
+        /// <summary>
+        /// Milliseconds to Human Readable Date
+        /// </summary>
+        /// <param name="millis">Milliseconds</param>
+        /// <returns>Human Readable Date</returns>
+        public static string MillisToHrd(long millis)
         {
-            TimeSpan ts = TimeSpan.FromMilliseconds(millis);
-            String[] parts = String
+            var ts = TimeSpan.FromMilliseconds(millis);
+            var parts = string
                             .Format("{0:D2}d:{1:D2}h:{2:D2}m:{3:D2}s:{4:D3}ms",
                                 ts.Days, ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds)
                             .Split(':')
                             .SkipWhile(s => Regex.Match(s, @"00\w").Success) // skip zero-valued components
                             .ToArray();
-            String ret = String.Join(" ", parts); // combine the result
-            if (String.IsNullOrWhiteSpace(ret))
-                return "0ms";
+            var ret = parts.Length == 0 ? "0ms" : parts[0]; // String.Join(" ", parts); // combine the result
             return Regex.Replace(ret, @"(0+)(\d+)", @"$2");
         }
 
+        /// <summary>
+        /// Populates an array with a value
+        /// </summary>
+        /// <typeparam name="T">The array type</typeparam>
+        /// <param name="arr">The array</param>
+        /// <param name="value">The value to populate with</param>
         public static void Populate<T>(this T[] arr, T value)
         {
-            for (int i = 0; i < arr.Length; i++)
-            {
+            for (var i = 0; i < arr.Length; i++)
                 arr[i] = value;
-            }
         }
 
+        /// <summary>
+        /// Puts an item in a list if it isn't present
+        /// </summary>
+        /// <typeparam name="T">The list type</typeparam>
+        /// <param name="list">The list</param>
+        /// <param name="value">The value to add, if necessary</param>
         public static void Require<T>(this List<T> list, T value)
         {
             if (!list.Contains(value))
