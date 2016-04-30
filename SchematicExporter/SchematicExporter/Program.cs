@@ -1,48 +1,52 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace SchematicExporter
 {
     internal class Program
     {
-        public static bool EmptyChestNotRandom = false;
-        public static bool IgnoreAirBlocks = false;
-        public static bool IgnoreChestToEntity = false;
+        public static bool EmptyChestRandom;
+        public static bool IgnoreAirBlocks;
+        public static bool IgnoreChestToEntity;
 
         private static void Main(string[] args)
         {
+            EmptyChestRandom = false;
+            IgnoreAirBlocks = false;
+            IgnoreChestToEntity = false;
+
+            Console.ForegroundColor = ConsoleColor.White;
+
             if (args.Length > 0)
             {
-                var p = string.Join(" ", args);
-
-                var match = Regex.Match(p, @"--ignore (?:(.+?)(?: |$))+");
-
-                if (match.Success)
+                foreach (var s in args)
                 {
-                    foreach (Capture c in match.Groups[0].Captures)
+                    switch (s)
                     {
-                        switch (c.Value)
-                        {
-                            case "chestempty":
-                                EmptyChestNotRandom = true;
-                                break;
-                            case "air":
-                                IgnoreAirBlocks = true;
-                                break;
-                            case "chententity":
-                                IgnoreChestToEntity = true;
-                                break;
-                            default:
-                                Console.WriteLine("Invalid argument: \"{0}\"", c.Value);
-                                break;
-                        }
+                        case "--emptyloot":
+                            EmptyChestRandom = true;
+                            Console.WriteLine("Custom Setting: empty chests will be filled with random loot");
+                            Console.WriteLine();
+                            break;
+                        case "--ignoreair":
+                            IgnoreAirBlocks = true;
+                            Console.WriteLine("Custom Setting: air blocks will not be exported");
+                            Console.WriteLine();
+                            break;
+                        case "--nochestentity":
+                            IgnoreChestToEntity = true;
+                            Console.WriteLine(
+                                "Custom Setting: chests with entity selectors inside will not export as entities");
+                            Console.WriteLine();
+                            break;
+                        default:
+                            Console.WriteLine("Invalid argument: \"{0}\"", s);
+                            Console.WriteLine();
+                            break;
                     }
                 }
             }
-
-            Console.ForegroundColor = ConsoleColor.White;
             /*
              * Check I/O directories
              */

@@ -174,7 +174,18 @@ namespace SchematicExporter
 
             var c = s.GetTileEntityAt(x, y, z);
 
-            if (c == null || ((NbtList) c["Items"]).Count <= 0) return sb.ToString();
+            if (c == null) return sb.ToString();
+
+            if (((NbtList)c["Items"]).Count == 0 && Program.EmptyChestRandom)
+            {
+                sb.Clear();
+                sb.AppendLine(
+                    string.Format(
+                        "{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3}));",
+                        linePrefix, x, y, z));
+                imports.Require("com.parzivail.pswm.utils.LootGenUtils");
+                return sb.ToString();
+            }
 
             sb.AppendLine(
                 string.Format(
@@ -191,8 +202,7 @@ namespace SchematicExporter
                 int damage = itemstack["Damage"].ShortValue;
                 if (slot == 0)
                 {
-                    if (id == IdMapper.Instance.GetIdFromItem("blaze_rod") ||
-                        (((NbtList) c["Items"]).Count == 0 && Program.EmptyChestNotRandom))
+                    if (id == IdMapper.Instance.GetIdFromItem("blaze_rod"))
                         // blaze rod in top left = randomize loot
                     {
                         sb.Clear();

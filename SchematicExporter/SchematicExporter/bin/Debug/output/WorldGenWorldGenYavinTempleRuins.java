@@ -1,5 +1,6 @@
 package com.parzivail.test;
 
+import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -53052,13 +53053,21 @@ public class WorldGenWorldGenYavinTempleRuins
 		this.b(world, i + 47, j + 19, k + 45, Blocks.air, 0);
 		this.b(world, i + 47, j + 19, k + 46, Blocks.air, 0);
 		this.b(world, i + 47, j + 19, k + 47, Blocks.air, 0);
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 11, j + 0, k + 24);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 11, j + 0, k + 23);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 24, j + 0, k + 11);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 23, j + 0, k + 11);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 24, j + 0, k + 36);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 23, j + 0, k + 36);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 36, j + 0, k + 24);
 
+		LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 36, j + 0, k + 23);
 
 		return true;
 	}
