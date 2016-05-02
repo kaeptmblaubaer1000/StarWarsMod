@@ -40,8 +40,16 @@ namespace SchematicExporter
                                 "Custom Setting: chests with entity selectors inside will not export as entities");
                             Console.WriteLine();
                             break;
+                        case "--help":
+                            Console.WriteLine("Available arguments:");
+                            Console.WriteLine("~ --emptyloot\tempty chests will be filled with random loot");
+                            Console.WriteLine("~ --ignoreair\tCustom Setting: air blocks will not be exported");
+                            Console.WriteLine("~ --nochestentity\tchests with entity selectors inside will not export as entities");
+                            Environment.Exit(0);
+                            break;
                         default:
                             Console.WriteLine("Invalid argument: \"{0}\"", s);
+                            Console.WriteLine("Use \"--help\" for a list of available arguments");
                             Console.WriteLine();
                             break;
                     }

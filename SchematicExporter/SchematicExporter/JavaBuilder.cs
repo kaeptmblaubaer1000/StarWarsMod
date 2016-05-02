@@ -206,7 +206,7 @@ namespace SchematicExporter
                         // blaze rod in top left = randomize loot
                     {
                         sb.Clear();
-                        sb.AppendLine(
+                        sb.Append(
                             string.Format(
                                 "{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});",
                                 linePrefix, x, y, z));

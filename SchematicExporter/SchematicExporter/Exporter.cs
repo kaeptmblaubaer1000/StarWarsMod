@@ -60,7 +60,7 @@ namespace SchematicExporter
                 var z = t["z"].IntValue;
                 if (t["id"].StringValue == "Chest")
                 {
-                    tiles.AppendLine(JavaBuilder.MakeChest(ref schematic, ref lImports, tag, x, y, z, "\t\t"));
+                    tiles.Append(JavaBuilder.MakeChest(ref schematic, ref lImports, tag, x, y, z, "\t\t"));
                     tag++;
                 }
             }
