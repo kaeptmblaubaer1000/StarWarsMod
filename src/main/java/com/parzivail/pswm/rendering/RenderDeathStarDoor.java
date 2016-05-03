@@ -1,17 +1,15 @@
 package com.parzivail.pswm.rendering;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.models.ModelDeathStarDoor;
+import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelDeathStarDoor;
-import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 
 public class RenderDeathStarDoor extends TileEntitySpecialRenderer
 {
@@ -82,7 +80,7 @@ public class RenderDeathStarDoor extends TileEntitySpecialRenderer
 		this.model.SplitMiddleTopParent.offsetX = -3.25f * percent;
 		this.model.SplitMiddleBottomParent.offsetX = 3.25f * percent;
 
-		this.model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
+		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
 	}
 }

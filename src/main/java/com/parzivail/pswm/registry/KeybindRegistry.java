@@ -1,13 +1,11 @@
 package com.parzivail.pswm.registry;
 
-import org.lwjgl.input.Keyboard;
-
 import com.parzivail.pswm.Resources;
-
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.settings.KeyBinding;
+import org.lwjgl.input.Keyboard;
 
 public class KeybindRegistry
 {

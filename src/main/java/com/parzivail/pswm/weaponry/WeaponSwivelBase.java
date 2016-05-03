@@ -1,11 +1,10 @@
 package com.parzivail.pswm.weaponry;
 
+import com.parzivail.pswm.Resources;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
 
 public class WeaponSwivelBase extends EntityLiving
 {

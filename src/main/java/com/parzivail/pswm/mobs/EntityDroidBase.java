@@ -1,7 +1,6 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.util.IDebugProvider;
-
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.world.World;
 

@@ -1,14 +1,13 @@
 package com.parzivail.pswm.items;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 
 public class ItemBanthaMilk extends ItemFood
 {

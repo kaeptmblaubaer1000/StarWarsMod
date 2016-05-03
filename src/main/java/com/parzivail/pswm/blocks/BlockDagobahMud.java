@@ -2,7 +2,6 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

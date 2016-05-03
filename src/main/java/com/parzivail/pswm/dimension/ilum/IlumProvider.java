@@ -1,18 +1,16 @@
 package com.parzivail.pswm.dimension.ilum;
 
+import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.rendering.DrawHothSky;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-
-import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.rendering.DrawHothSky;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class IlumProvider extends WorldProvider
 {

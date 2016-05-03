@@ -1,16 +1,14 @@
 package com.parzivail.pswm.vehicles;
 
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import org.lwjgl.input.Keyboard;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
+
+import java.util.List;
 
 public class ItemSpawnHothSpeederBike extends net.minecraft.item.Item
 {

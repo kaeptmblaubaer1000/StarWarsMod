@@ -1,10 +1,9 @@
 package com.parzivail.util.ui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class OutlineRange extends OutlineButton
 {
@@ -34,24 +33,26 @@ public class OutlineRange extends OutlineButton
 	{
 		return 0;
 	}
-	
+
 	/**
 	 * Gets the modified value between 0-[multiplier]
+	 *
 	 * @return
 	 */
 	public float getValue()
 	{
 		return this.value * this.multiplier;
 	}
-	
+
 	/**
 	 * Sets the value to the given parameter / [multiplier]
+	 *
 	 * @param n A precentage between 0-[multiplier]
 	 */
 	public void setValue(float n)
 	{
-		 this.value = n / this.multiplier;
-		 this.displayString = String.format(this.formatter, this.name, this.getValue());
+		this.value = n / this.multiplier;
+		this.displayString = String.format(this.formatter, this.name, this.getValue());
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class OutlineRange extends OutlineButton
 				{
 					this.value = 1.0F;
 				}
-				
+
 				if (KeyboardUtils.isShiftDown())
 					this.value = Math.round(this.value * this.multiplier) / this.multiplier;
 
@@ -103,7 +104,7 @@ public class OutlineRange extends OutlineButton
 			{
 				this.value = 1.0F;
 			}
-			
+
 			if (KeyboardUtils.isShiftDown())
 				this.value = Math.round(this.value * this.multiplier) / this.multiplier;
 

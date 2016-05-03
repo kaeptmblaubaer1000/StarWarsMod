@@ -1,9 +1,9 @@
 package com.parzivail.util;
 
-import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public interface IDebugProvider
 {

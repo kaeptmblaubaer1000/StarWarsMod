@@ -1,15 +1,14 @@
 package com.parzivail.pswm.items;
 
-import java.util.List;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.TextUtils;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemGaffiStick extends ItemSword
 {

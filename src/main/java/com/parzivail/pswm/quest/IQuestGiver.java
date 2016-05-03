@@ -4,5 +4,5 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public interface IQuestGiver
 {
-	public abstract void showQuest(EntityPlayer player);
+	void showQuest(EntityPlayer player);
 }

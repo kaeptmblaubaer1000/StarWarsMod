@@ -1,10 +1,9 @@
 package com.parzivail.pswm.items;
 
+import com.parzivail.pswm.Resources;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-
-import com.parzivail.pswm.Resources;
 
 public class ItemHolotableBlock extends ItemBlock
 {

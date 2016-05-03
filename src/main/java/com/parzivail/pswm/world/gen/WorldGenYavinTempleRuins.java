@@ -1,59 +1,29 @@
 package com.parzivail.pswm.world.gen;
 
-
+import com.parzivail.pswm.utils.LootGenUtils;
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-
-
-
-import net.minecraft.block.Block;
-
-import net.minecraft.init.Blocks;
-
-import net.minecraft.tileentity.TileEntityChest;
-
-import net.minecraft.world.World;
-
-import net.minecraft.world.chunk.IChunkProvider;
-
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-
-
-import com.parzivail.pswm.utils.LootGenUtils;
-
-
-
-import cpw.mods.fml.common.IWorldGenerator;
-
-
-
-
-
-
-
-
-
-
-
-
-public class WorldGenYavinTempleRuins
-extends WorldGenerator
-implements IWorldGenerator
+public class WorldGenYavinTempleRuins extends WorldGenerator implements IWorldGenerator
 
 {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 	}
 
-	
 	public boolean generate(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		k -= 10;
 		i -= 10;
-		
+
 		setBlock(world, i + 0, j + 0, k + 20, Blocks.stonebrick, 0);
 		setBlock(world, i + 0, j + 0, k + 21, Blocks.stonebrick, 0);
 		setBlock(world, i + 0, j + 0, k + 26, Blocks.stonebrick, 0);
@@ -1554,14 +1524,13 @@ implements IWorldGenerator
 		setBlock(world, i + 23, j + 3, k + 11, Blocks.stonebrick, 0);
 		setBlock(world, i + 23, j + 3, k + 42, Blocks.stonebrick, 0);
 		setBlock(world, i + 23, j + 4, k + 6, Blocks.stonebrick, 0);
-		
+
 		generate2(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate2(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 23, j + 4, k + 11, Blocks.stonebrick, 0);
 		setBlock(world, i + 23, j + 4, k + 41, Blocks.stonebrick, 0);
@@ -3305,10 +3274,10 @@ implements IWorldGenerator
 		setBlock(world, i + 11, j + 0, k + 24, Blocks.chest, 5);
 		world.setBlockMetadataWithNotify(i + 11, j + 0, k + 24, 5, 2);
 		if (world.rand.nextBoolean())
-		
+
 		{
 			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 11, j + 0, k + 24));
-			}
+		}
 		setBlock(world, i + 11, j + 0, k + 25, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 11, j + 0, k + 25, 2, 2);
 		setBlock(world, i + 11, j + 0, k + 26, Blocks.stonebrick, 2);
@@ -4463,14 +4432,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 14, j + 4, k + 11, 2, 2);
 		setBlock(world, i + 14, j + 4, k + 12, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 14, j + 4, k + 12, 2, 2);
-		
+
 		generate3(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate3(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 14, j + 4, k + 13, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 14, j + 4, k + 13, 2, 2);
@@ -7474,14 +7442,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 19, j + 9, k + 19, 2, 2);
 		setBlock(world, i + 19, j + 9, k + 20, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 19, j + 9, k + 20, 2, 2);
-		
+
 		generate4(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate4(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 19, j + 9, k + 21, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 19, j + 9, k + 21, 2, 2);
@@ -8922,10 +8889,10 @@ implements IWorldGenerator
 		setBlock(world, i + 23, j + 0, k + 36, Blocks.chest, 2);
 		world.setBlockMetadataWithNotify(i + 23, j + 0, k + 36, 2, 2);
 		if (world.rand.nextBoolean())
-		
+
 		{
 			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 23, j + 0, k + 36));
-			}
+		}
 		setBlock(world, i + 23, j + 0, k + 46, Blocks.stone_brick_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 23, j + 0, k + 46, 3, 2);
 		setBlock(world, i + 23, j + 1, k + 2, Blocks.stone_brick_stairs, 2);
@@ -9239,10 +9206,10 @@ implements IWorldGenerator
 		setBlock(world, i + 24, j + 0, k + 36, Blocks.chest, 2);
 		world.setBlockMetadataWithNotify(i + 24, j + 0, k + 36, 2, 2);
 		if (world.rand.nextBoolean())
-		
+
 		{
 			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 24, j + 0, k + 36));
-			}
+		}
 		setBlock(world, i + 24, j + 0, k + 46, Blocks.stone_brick_stairs, 3);
 		world.setBlockMetadataWithNotify(i + 24, j + 0, k + 46, 3, 2);
 		setBlock(world, i + 24, j + 1, k + 2, Blocks.stone_brick_stairs, 2);
@@ -9797,14 +9764,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 25, j + 12, k + 16, 1, 2);
 		setBlock(world, i + 25, j + 12, k + 17, Blocks.stonebrick, 1);
 		world.setBlockMetadataWithNotify(i + 25, j + 12, k + 17, 1, 2);
-		
+
 		generate8(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate5(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 27, j + 10, k + 16, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 27, j + 10, k + 16, 2, 2);
@@ -11494,14 +11460,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 30, j + 6, k + 26, 2, 2);
 		setBlock(world, i + 30, j + 6, k + 27, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 30, j + 6, k + 27, 2, 2);
-		
+
 		generate6(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate6(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 30, j + 6, k + 28, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 30, j + 6, k + 28, 2, 2);
@@ -13753,14 +13718,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 34, j + 6, k + 28, 1, 2);
 		setBlock(world, i + 34, j + 6, k + 32, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 34, j + 6, k + 32, 2, 2);
-		
+
 		generate7(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate7(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 34, j + 6, k + 33, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 34, j + 6, k + 33, 2, 2);
@@ -14315,10 +14279,10 @@ implements IWorldGenerator
 		setBlock(world, i + 36, j + 0, k + 24, Blocks.chest, 4);
 		world.setBlockMetadataWithNotify(i + 36, j + 0, k + 24, 4, 2);
 		if (world.rand.nextBoolean())
-		
+
 		{
 			LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + 36, j + 0, k + 24));
-			}
+		}
 		setBlock(world, i + 36, j + 0, k + 25, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 36, j + 0, k + 25, 2, 2);
 		setBlock(world, i + 36, j + 0, k + 26, Blocks.stonebrick, 2);
@@ -15091,13 +15055,12 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 46, j + 0, k + 24, 1, 2);
 		setBlock(world, i + 46, j + 0, k + 25, Blocks.stone_brick_stairs, 1);
 		world.setBlockMetadataWithNotify(i + 46, j + 0, k + 25, 1, 2);
-		
-		return true;
-		}
 
-	
+		return true;
+	}
+
 	public boolean generate8(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 25, j + 12, k + 19, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 25, j + 12, k + 19, 2, 2);
@@ -15849,68 +15812,70 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 27, j + 10, k + 14, 2, 2);
 		setBlock(world, i + 27, j + 10, k + 15, Blocks.stonebrick, 2);
 		world.setBlockMetadataWithNotify(i + 27, j + 10, k + 15, 2, 2);
-		
+
 		generate5(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	protected Block[] getValidSpawnBlocks()
-	
+
 	{
 		return new Block[] { Blocks.grass, Blocks.dirt, Blocks.stone, Blocks.cobblestone, Blocks.sand, Blocks.gravel };
-		}
+	}
 
-	
 	public boolean locationIsValidSpawn(World world, int i, int j, int k)
-	
+
 	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
-		
+
 		while (check != Blocks.air)
-		
+
 		{
-			if (distanceToAir > 1) { return false;
+			if (distanceToAir > 1)
+			{
+				return false;
 			}
 			distanceToAir++;
 			check = world.getBlock(i, j + distanceToAir, k);
-			}
-		
+		}
+
 		j += distanceToAir - 1;
-		
+
 		Block block = world.getBlock(i, j, k);
 		Block blockAbove = world.getBlock(i, j + 1, k);
 		Block blockBelow = world.getBlock(i, j - 1, k);
-		
+
 		for (Block x : getValidSpawnBlocks())
-		
+
 		{
-			if (blockAbove != Blocks.air) return false;
+			if (blockAbove != Blocks.air)
+				return false;
 			if (block == x)
-			
+
 			{
 				return true;
-				}
-			if ((block == Blocks.snow) && (blockBelow == x)) { return true;
 			}
+			if ((block == Blocks.snow) && (blockBelow == x))
+			{
+				return true;
 			}
-		return false;
 		}
+		return false;
+	}
 
-	
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
-	
+
 	{
 		Block b1 = world.getBlock(x, y, z);
-		
+
 		if ((b1.isAir(world, x, y, z)) || (b1.isLeaves(world, x, y, z)))
-		
+
 		{
 			world.setBlock(x, y, z, block, metadata, 2);
-			}
 		}
-	
+	}
+
 }
 
 /*

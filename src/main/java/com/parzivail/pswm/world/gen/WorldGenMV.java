@@ -1,11 +1,10 @@
 package com.parzivail.pswm.world.gen;
 
-import java.util.Random;
-
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import com.parzivail.pswm.StarWarsMod;
+import java.util.Random;
 
 public class WorldGenMV extends WorldGenerator
 
@@ -21,7 +20,9 @@ public class WorldGenMV extends WorldGenerator
 
 		if (p_76484_1_.getBlock(p_76484_3_, p_76484_4_, p_76484_5_) != StarWarsMod.blockTatooineSand)
 
-		{ return false; }
+		{
+			return false;
+		}
 
 		p_76484_1_.setBlock(p_76484_3_, p_76484_4_ + 1, p_76484_5_, StarWarsMod.blockMV, 0, 2);
 		return true;

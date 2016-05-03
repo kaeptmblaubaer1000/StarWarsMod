@@ -1,11 +1,8 @@
 package com.parzivail.pswm.rendering.helper;
 
-import java.io.IOException;
-import java.nio.FloatBuffer;
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.Callable;
-
+import com.google.gson.JsonSyntaxException;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -16,14 +13,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityRainFX;
 import net.minecraft.client.particle.EntitySmokeFX;
-import net.minecraft.client.renderer.ActiveRenderInfo;
-import net.minecraft.client.renderer.EntityRenderer;
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.culling.ClippingHelperImpl;
 import net.minecraft.client.renderer.culling.Frustrum;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -40,19 +30,12 @@ import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MouseFilter;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ReportedException;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.common.MinecraftForge;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Mouse;
@@ -61,10 +44,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 import org.lwjgl.util.glu.Project;
 
-import com.google.gson.JsonSyntaxException;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.io.IOException;
+import java.nio.FloatBuffer;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Callable;
 
 @SideOnly(Side.CLIENT)
 public class PSWMEntityRenderer extends EntityRenderer
@@ -73,46 +57,74 @@ public class PSWMEntityRenderer extends EntityRenderer
 	private static final ResourceLocation locationRainPng = new ResourceLocation("textures/environment/rain.png");
 	private static final ResourceLocation locationSnowPng = new ResourceLocation("textures/environment/snow.png");
 	public static boolean anaglyphEnable;
-	/** Anaglyph field (0=R, 1=GB) */
+	/**
+	 * Anaglyph field (0=R, 1=GB)
+	 */
 	public static int anaglyphField;
 	private static final ResourceLocation[] shaderResourceLocations = new ResourceLocation[] { new ResourceLocation("shaders/post/notch.json"), new ResourceLocation("shaders/post/fxaa.json"), new ResourceLocation("shaders/post/art.json"), new ResourceLocation("shaders/post/bumpy.json"), new ResourceLocation("shaders/post/blobs2.json"), new ResourceLocation("shaders/post/pencil.json"), new ResourceLocation("shaders/post/color_convolve.json"), new ResourceLocation("shaders/post/deconverge.json"), new ResourceLocation("shaders/post/flip.json"), new ResourceLocation("shaders/post/invert.json"), new ResourceLocation("shaders/post/ntsc.json"), new ResourceLocation("shaders/post/outline.json"), new ResourceLocation("shaders/post/phosphor.json"), new ResourceLocation("shaders/post/scan_pincushion.json"), new ResourceLocation("shaders/post/sobel.json"), new ResourceLocation("shaders/post/bits.json"), new ResourceLocation("shaders/post/desaturate.json"), new ResourceLocation("shaders/post/green.json"), new ResourceLocation("shaders/post/blur.json"), new ResourceLocation("shaders/post/wobble.json"), new ResourceLocation("shaders/post/blobs.json"), new ResourceLocation("shaders/post/antialias.json") };
 	public static final int shaderCount = shaderResourceLocations.length;
 	private static final String __OBFID = "CL_00000947";
-	/** A reference to the Minecraft object. */
+	/**
+	 * A reference to the Minecraft object.
+	 */
 	private Minecraft mc;
 	private float farPlaneDistance;
 	public final ItemRenderer itemRenderer;
 	private final MapItemRenderer theMapItemRenderer;
-	/** Entity renderer update count */
+	/**
+	 * Entity renderer update count
+	 */
 	private int rendererUpdateCount;
-	/** Pointed entity */
+	/**
+	 * Pointed entity
+	 */
 	private Entity pointedEntity;
 	private MouseFilter mouseFilterXAxis = new MouseFilter();
 	private MouseFilter mouseFilterYAxis = new MouseFilter();
-	/** Mouse filter dummy 1 */
+	/**
+	 * Mouse filter dummy 1
+	 */
 	private MouseFilter mouseFilterDummy1 = new MouseFilter();
-	/** Mouse filter dummy 2 */
+	/**
+	 * Mouse filter dummy 2
+	 */
 	private MouseFilter mouseFilterDummy2 = new MouseFilter();
-	/** Mouse filter dummy 3 */
+	/**
+	 * Mouse filter dummy 3
+	 */
 	private MouseFilter mouseFilterDummy3 = new MouseFilter();
-	/** Mouse filter dummy 4 */
+	/**
+	 * Mouse filter dummy 4
+	 */
 	private MouseFilter mouseFilterDummy4 = new MouseFilter();
 	private float thirdPersonDistance = 4.0F;
-	/** Third person distance temp */
+	/**
+	 * Third person distance temp
+	 */
 	private float thirdPersonDistanceTemp = 4.0F;
 	private float debugCamYaw;
 	private float prevDebugCamYaw;
 	private float debugCamPitch;
 	private float prevDebugCamPitch;
-	/** Smooth cam yaw */
+	/**
+	 * Smooth cam yaw
+	 */
 	private float smoothCamYaw;
-	/** Smooth cam pitch */
+	/**
+	 * Smooth cam pitch
+	 */
 	private float smoothCamPitch;
-	/** Smooth cam filter X */
+	/**
+	 * Smooth cam filter X
+	 */
 	private float smoothCamFilterX;
-	/** Smooth cam filter Y */
+	/**
+	 * Smooth cam filter Y
+	 */
 	private float smoothCamFilterY;
-	/** Smooth cam partial ticks */
+	/**
+	 * Smooth cam partial ticks
+	 */
 	private float smoothCamPartialTicks;
 	private float debugCamFOV;
 	private float prevDebugCamFOV;
@@ -129,15 +141,23 @@ public class PSWMEntityRenderer extends EntityRenderer
 	 */
 	private final int[] lightmapColors;
 	private final ResourceLocation locationLightMap;
-	/** FOV modifier hand */
+	/**
+	 * FOV modifier hand
+	 */
 	private float fovModifierHand;
-	/** FOV modifier hand prev */
+	/**
+	 * FOV modifier hand prev
+	 */
 	private float fovModifierHandPrev;
-	/** FOV multiplier temp */
+	/**
+	 * FOV multiplier temp
+	 */
 	private float fovMultiplierTemp;
 	private float bossColorModifier;
 	private float bossColorModifierPrev;
-	/** Cloud fog mode */
+	/**
+	 * Cloud fog mode
+	 */
 	private boolean cloudFog;
 	private final IResourceManager resourceManager;
 	public ShaderGroup theShaderGroup;
@@ -145,41 +165,71 @@ public class PSWMEntityRenderer extends EntityRenderer
 	private double cameraZoom;
 	private double cameraYaw;
 	private double cameraPitch;
-	/** Previous frame time in milliseconds */
+	/**
+	 * Previous frame time in milliseconds
+	 */
 	private long prevFrameTime;
-	/** End time of last render (ns) */
+	/**
+	 * End time of last render (ns)
+	 */
 	private long renderEndNanoTime;
 	/**
 	 * Is set, updateCameraAndRender() calls updateLightmap(); set by
 	 * updateTorchFlicker()
 	 */
 	private boolean lightmapUpdateNeeded;
-	/** Torch flicker X */
+	/**
+	 * Torch flicker X
+	 */
 	float torchFlickerX;
-	/** Torch flicker DX */
+	/**
+	 * Torch flicker DX
+	 */
 	float torchFlickerDX;
-	/** Torch flicker Y */
+	/**
+	 * Torch flicker Y
+	 */
 	float torchFlickerY;
-	/** Torch flicker DY */
+	/**
+	 * Torch flicker DY
+	 */
 	float torchFlickerDY;
 	private Random random;
-	/** Rain sound counter */
+	/**
+	 * Rain sound counter
+	 */
 	private int rainSoundCounter;
-	/** Rain X coords */
+	/**
+	 * Rain X coords
+	 */
 	float[] rainXCoords;
-	/** Rain Y coords */
+	/**
+	 * Rain Y coords
+	 */
 	float[] rainYCoords;
-	/** Fog color buffer */
+	/**
+	 * Fog color buffer
+	 */
 	FloatBuffer fogColorBuffer;
-	/** red component of the fog color */
+	/**
+	 * red component of the fog color
+	 */
 	float fogColorRed;
-	/** green component of the fog color */
+	/**
+	 * green component of the fog color
+	 */
 	float fogColorGreen;
-	/** blue component of the fog color */
+	/**
+	 * blue component of the fog color
+	 */
 	float fogColorBlue;
-	/** Fog color 2 */
+	/**
+	 * Fog color 2
+	 */
 	private float fogColor2;
-	/** Fog color 1 */
+	/**
+	 * Fog color 1
+	 */
 	private float fogColor1;
 	/**
 	 * Debug view direction (0=OFF, 1=Front, 2=Right, 3=Back, 4=Left,
@@ -217,21 +267,21 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.shaderIndex != shaderCount)
 				try
-			{
+				{
 					logger.info("Selecting effect " + shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup = new ShaderGroup(this.mc.getTextureManager(), this.resourceManager, this.mc.getFramebuffer(), shaderResourceLocations[this.shaderIndex]);
 					this.theShaderGroup.createBindFramebuffers(this.mc.displayWidth, this.mc.displayHeight);
-			}
-			catch (IOException ioexception)
-			{
-				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
-				this.shaderIndex = shaderCount;
-			}
-			catch (JsonSyntaxException jsonsyntaxexception)
-			{
-				logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
-				this.shaderIndex = shaderCount;
-			}
+				}
+				catch (IOException ioexception)
+				{
+					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], ioexception);
+					this.shaderIndex = shaderCount;
+				}
+				catch (JsonSyntaxException jsonsyntaxexception)
+				{
+					logger.warn("Failed to load shader: " + shaderResourceLocations[this.shaderIndex], jsonsyntaxexception);
+					this.shaderIndex = shaderCount;
+				}
 			else
 			{
 				this.theShaderGroup = null;
@@ -264,7 +314,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 
 			if (this.mc.gameSettings.particleSetting == 1)
 				i1 >>= 1;
-				else if (this.mc.gameSettings.particleSetting == 2)
+			else if (this.mc.gameSettings.particleSetting == 2)
 				i1 = 0;
 
 			for (int j1 = 0; j1 < i1; ++j1)
@@ -1104,7 +1154,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 			}
 
 			if (this.debugViewDirection == 0) // Only render if render pass 0
-				// happens as well.
+			// happens as well.
 			{
 				RenderHelper.enableStandardItemLighting();
 				this.mc.mcProfiler.endStartSection("entities");
@@ -1547,7 +1597,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 						@Override
 						public String call()
 						{
-							return String.format("Scaled: (%d, %d). Absolute: (%d, %d)", new Object[] { Integer.valueOf(k), Integer.valueOf(l), Integer.valueOf(Mouse.getX()), Integer.valueOf(Mouse.getY()) });
+							return String.format("Scaled: (%d, %d). Absolute: (%d, %d)", Integer.valueOf(k), Integer.valueOf(l), Integer.valueOf(Mouse.getX()), Integer.valueOf(Mouse.getY()));
 						}
 					});
 					crashreportcategory.addCrashSectionCallable("Screen size", new Callable()
@@ -1557,7 +1607,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 						@Override
 						public String call()
 						{
-							return String.format("Scaled: (%d, %d). Absolute: (%d, %d). Scale factor of %d", new Object[] { Integer.valueOf(scaledresolution.getScaledWidth()), Integer.valueOf(scaledresolution.getScaledHeight()), Integer.valueOf(PSWMEntityRenderer.this.mc.displayWidth), Integer.valueOf(PSWMEntityRenderer.this.mc.displayHeight), Integer.valueOf(scaledresolution.getScaleFactor()) });
+							return String.format("Scaled: (%d, %d). Absolute: (%d, %d). Scale factor of %d", Integer.valueOf(scaledresolution.getScaledWidth()), Integer.valueOf(scaledresolution.getScaledHeight()), Integer.valueOf(PSWMEntityRenderer.this.mc.displayWidth), Integer.valueOf(PSWMEntityRenderer.this.mc.displayHeight), Integer.valueOf(scaledresolution.getScaleFactor()));
 						}
 					});
 					throw new ReportedException(crashreport);

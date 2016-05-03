@@ -1,10 +1,9 @@
 package com.parzivail.util.ui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import org.lwjgl.opengl.GL11;
 
 public class OutlineButton extends GuiButton
 {
@@ -26,7 +25,7 @@ public class OutlineButton extends GuiButton
 			this.field_146123_n = mX >= this.xPosition && mY >= this.yPosition && mX < this.xPosition + this.width && mY < this.yPosition + this.height;
 			int k = this.getHoverState(this.field_146123_n);
 			this.mouseDragged(mc, mX, mY);
-			
+
 			int textColor = GLPalette.WHITE;
 
 			GL11.glDisable(GL11.GL_TEXTURE_2D);

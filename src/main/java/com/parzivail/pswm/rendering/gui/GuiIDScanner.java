@@ -1,7 +1,5 @@
 package com.parzivail.pswm.rendering.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.font.FontManager;
@@ -9,7 +7,6 @@ import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPZ;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -21,6 +18,7 @@ import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class GuiIDScanner extends GuiScreen
@@ -47,9 +45,9 @@ public class GuiIDScanner extends GuiScreen
 			int n = 0;
 			do
 				n = StarWarsMod.rngGeneral.nextInt(5);
-			while (n == ((MobTatooineCommoner)mc.objectMouseOver.entityHit).getDataWatcher().getWatchableObjectInt(25));
+			while (n == mc.objectMouseOver.entityHit.getDataWatcher().getWatchableObjectInt(25));
 
-			((MobTatooineCommoner)scanned).getDataWatcher().updateObject(25, Integer.valueOf(n));
+			scanned.getDataWatcher().updateObject(25, Integer.valueOf(n));
 
 			fraud = true;
 		}

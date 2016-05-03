@@ -1,16 +1,14 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.ui.RenderHelper;
 import com.parzivail.util.ui.ShaderHelper;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
+import org.lwjgl.opengl.GL11;
 
 public class RenderHoloTable extends TileEntitySpecialRenderer
 {

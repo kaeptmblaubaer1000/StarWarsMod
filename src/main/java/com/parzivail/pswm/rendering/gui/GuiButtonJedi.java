@@ -1,11 +1,9 @@
 package com.parzivail.pswm.rendering.gui;
 
+import com.parzivail.pswm.rendering.helper.PGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-
 import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.rendering.helper.PGui;
 
 public class GuiButtonJedi extends GuiButton
 {

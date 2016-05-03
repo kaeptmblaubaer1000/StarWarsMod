@@ -8,10 +8,9 @@ public class ItemUtils
 	/**
 	 * Initializes a stack's NBT tags, if needed.
 	 *
-	 * @param stack
-	 *            The stack to init
+	 * @param stack The stack to init
 	 * @return Returns true if the stack didn't have an NBT tag, and one was
-	 *         created, false in any other case
+	 * created, false in any other case
 	 */
 	public static boolean initNBT(ItemStack stack)
 	{

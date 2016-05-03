@@ -1,9 +1,9 @@
 package com.parzivail.pswm.rendering.item;
 
-import java.util.HashMap;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+
+import java.util.HashMap;
 
 public class RenderBlasterHeavy implements IItemRenderer
 {

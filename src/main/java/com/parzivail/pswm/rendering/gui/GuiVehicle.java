@@ -1,29 +1,21 @@
 package com.parzivail.pswm.rendering.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.network.MessageShipTargetLock;
 import com.parzivail.pswm.rendering.helper.VehicleLineDraw;
-import com.parzivail.pswm.vehicles.VehicATST;
-import com.parzivail.pswm.vehicles.VehicAWing;
-import com.parzivail.pswm.vehicles.VehicSkyhopper;
-import com.parzivail.pswm.vehicles.VehicSnowspeeder;
-import com.parzivail.pswm.vehicles.VehicTIE;
-import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
-import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import org.lwjgl.opengl.GL11;
 
 public class GuiVehicle
 {

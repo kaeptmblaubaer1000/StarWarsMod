@@ -1,13 +1,5 @@
 package com.parzivail.pswm.dimension.mustafar;
 
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_CAVE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.FIRE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA;
-
-import java.util.List;
-import java.util.Random;
-
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -24,11 +16,7 @@ import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.WorldGenFire;
-import net.minecraft.world.gen.feature.WorldGenFlowers;
-import net.minecraft.world.gen.feature.WorldGenGlowStone2;
-import net.minecraft.world.gen.feature.WorldGenHellLava;
-import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
@@ -36,14 +24,26 @@ import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+import java.util.List;
+import java.util.Random;
+
+import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_BRIDGE;
+import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.NETHER_CAVE;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.FIRE;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.NETHER_LAVA;
+
 public class BiomeChunkProviderMustafar implements IChunkProvider
 {
 	private Random hellRNG;
-	/** A NoiseGeneratorOctaves used in generating nether terrain */
+	/**
+	 * A NoiseGeneratorOctaves used in generating nether terrain
+	 */
 	private NoiseGeneratorOctaves netherNoiseGen1;
 	private NoiseGeneratorOctaves netherNoiseGen2;
 	private NoiseGeneratorOctaves netherNoiseGen3;
-	/** Determines whether slowsand or gravel can be generated at a location */
+	/**
+	 * Determines whether slowsand or gravel can be generated at a location
+	 */
 	private NoiseGeneratorOctaves slowsandGravelNoiseGen;
 	/**
 	 * Determines whether something other than nettherack can be generated at a
@@ -52,7 +52,9 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 	private NoiseGeneratorOctaves netherrackExculsivityNoiseGen;
 	public NoiseGeneratorOctaves netherNoiseGen6;
 	public NoiseGeneratorOctaves netherNoiseGen7;
-	/** Is the world that the nether is getting generated. */
+	/**
+	 * Is the world that the nether is getting generated.
+	 */
 	private World worldObj;
 	private double[] noiseField;
 	public MapGenNetherBridge genNetherBridge = new MapGenNetherBridge();
@@ -81,27 +83,27 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 	}
 
 	public BiomeChunkProviderMustafar(World p_i2005_1_, long p_i2005_2_)
-    {
-        this.worldObj = p_i2005_1_;
-        this.hellRNG = new Random(p_i2005_2_);
-        this.netherNoiseGen1 = new NoiseGeneratorOctaves(this.hellRNG, 16);
-        this.netherNoiseGen2 = new NoiseGeneratorOctaves(this.hellRNG, 16);
-        this.netherNoiseGen3 = new NoiseGeneratorOctaves(this.hellRNG, 8);
-        this.slowsandGravelNoiseGen = new NoiseGeneratorOctaves(this.hellRNG, 4);
-        this.netherrackExculsivityNoiseGen = new NoiseGeneratorOctaves(this.hellRNG, 4);
-        this.netherNoiseGen6 = new NoiseGeneratorOctaves(this.hellRNG, 10);
-        this.netherNoiseGen7 = new NoiseGeneratorOctaves(this.hellRNG, 16);
+	{
+		this.worldObj = p_i2005_1_;
+		this.hellRNG = new Random(p_i2005_2_);
+		this.netherNoiseGen1 = new NoiseGeneratorOctaves(this.hellRNG, 16);
+		this.netherNoiseGen2 = new NoiseGeneratorOctaves(this.hellRNG, 16);
+		this.netherNoiseGen3 = new NoiseGeneratorOctaves(this.hellRNG, 8);
+		this.slowsandGravelNoiseGen = new NoiseGeneratorOctaves(this.hellRNG, 4);
+		this.netherrackExculsivityNoiseGen = new NoiseGeneratorOctaves(this.hellRNG, 4);
+		this.netherNoiseGen6 = new NoiseGeneratorOctaves(this.hellRNG, 10);
+		this.netherNoiseGen7 = new NoiseGeneratorOctaves(this.hellRNG, 16);
 
-        NoiseGenerator[] noiseGens = {netherNoiseGen1, netherNoiseGen2, netherNoiseGen3, slowsandGravelNoiseGen, netherrackExculsivityNoiseGen, netherNoiseGen6, netherNoiseGen7};
-        noiseGens = TerrainGen.getModdedNoiseGenerators(p_i2005_1_, this.hellRNG, noiseGens);
-        this.netherNoiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
-        this.netherNoiseGen2 = (NoiseGeneratorOctaves)noiseGens[1];
-        this.netherNoiseGen3 = (NoiseGeneratorOctaves)noiseGens[2];
-        this.slowsandGravelNoiseGen = (NoiseGeneratorOctaves)noiseGens[3];
-        this.netherrackExculsivityNoiseGen = (NoiseGeneratorOctaves)noiseGens[4];
-        this.netherNoiseGen6 = (NoiseGeneratorOctaves)noiseGens[5];
-        this.netherNoiseGen7 = (NoiseGeneratorOctaves)noiseGens[6];
-    }
+		NoiseGenerator[] noiseGens = { netherNoiseGen1, netherNoiseGen2, netherNoiseGen3, slowsandGravelNoiseGen, netherrackExculsivityNoiseGen, netherNoiseGen6, netherNoiseGen7 };
+		noiseGens = TerrainGen.getModdedNoiseGenerators(p_i2005_1_, this.hellRNG, noiseGens);
+		this.netherNoiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
+		this.netherNoiseGen2 = (NoiseGeneratorOctaves)noiseGens[1];
+		this.netherNoiseGen3 = (NoiseGeneratorOctaves)noiseGens[2];
+		this.slowsandGravelNoiseGen = (NoiseGeneratorOctaves)noiseGens[3];
+		this.netherrackExculsivityNoiseGen = (NoiseGeneratorOctaves)noiseGens[4];
+		this.netherNoiseGen6 = (NoiseGeneratorOctaves)noiseGens[5];
+		this.netherNoiseGen7 = (NoiseGeneratorOctaves)noiseGens[6];
+	}
 
 	public void func_147419_a(int p_147419_1_, int p_147419_2_, Block[] p_147419_3_)
 	{
@@ -178,7 +180,7 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 	}
 
 	@Deprecated // You should provide meatadata and biome data in the below
-				// method
+	// method
 	public void func_147418_b(int p_147418_1_, int p_147418_2_, Block[] p_147418_3_)
 	{
 		replaceBiomeBlocks(p_147418_1_, p_147418_2_, p_147418_3_, new byte[p_147418_3_.length], null);
@@ -300,15 +302,15 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 		this.hellRNG.setSeed((long)p_73154_1_ * 341873128712L + (long)p_73154_2_ * 132897987541L);
 		Block[] ablock = new Block[32768];
 		byte[] meta = new byte[ablock.length];
-		BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, p_73154_1_ * 16, p_73154_2_ * 16, 16, 16); // Forge
-																																									// Move
-																																									// up
-																																									// to
-																																									// allow
-																																									// for
-																																									// passing
-																																									// to
-																																									// replaceBiomeBlocks
+		BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(null, p_73154_1_ * 16, p_73154_2_ * 16, 16, 16); // Forge
+		// Move
+		// up
+		// to
+		// allow
+		// for
+		// passing
+		// to
+		// replaceBiomeBlocks
 		this.func_147419_a(p_73154_1_, p_73154_2_, ablock);
 		this.replaceBiomeBlocks(p_73154_1_, p_73154_2_, ablock, meta, abiomegenbase);
 		this.netherCaveGenerator.func_151539_a(this, this.worldObj, p_73154_1_, p_73154_2_, ablock);
@@ -632,6 +634,6 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 
 	public void recreateStructures(int p_82695_1_, int p_82695_2_)
 	{
-		this.genNetherBridge.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, (Block[])null);
+		this.genNetherBridge.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, null);
 	}
 }

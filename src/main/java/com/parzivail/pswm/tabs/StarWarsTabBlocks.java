@@ -1,7 +1,6 @@
 package com.parzivail.pswm.tabs;
 
 import com.parzivail.pswm.StarWarsMod;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;

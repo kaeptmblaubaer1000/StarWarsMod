@@ -1,24 +1,11 @@
 package com.parzivail.pswm.rendering.gui;
 
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.rendering.RenderLightsaber;
-import com.parzivail.util.ui.FilledColorButton;
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.OutlineButton;
-import com.parzivail.util.ui.OutlineLabel;
-import com.parzivail.util.ui.OutlineRange;
-import com.parzivail.util.ui.OutlineModelButton;
-
+import com.parzivail.util.ui.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -32,6 +19,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class GuiScreenLightsaberForge extends GuiScreen
@@ -99,7 +92,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, true);
 
 		renderLightsaber = new RenderLightsaber();
-		
+
 		int id = 0;
 		bTabHilts = new OutlineButton(id++, 10, 10, 40, 20, "Hilts", true);
 		bTabBlade = new OutlineButton(id++, 60, 10, 40, 20, "Blades", false);
@@ -110,7 +103,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		buttonList.add(bTabOptions);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-		
+
 		bSave = new OutlineButton(id++, r.getScaledWidth() - 60, 10, 40, 20, "Save", false);
 
 		buttonList.add(bSave);
@@ -206,7 +199,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		listBOptions.put("bladeDistort", bBladeDistort);
 		buttonList.add(bBladeDistort);
 		y++;
-		
+
 		setButtonsFromNBT(stackShowing.stackTagCompound);
 	}
 

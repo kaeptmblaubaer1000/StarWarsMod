@@ -1,15 +1,13 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelSkyhopper;
 import com.parzivail.pswm.vehicles.VehicSkyhopper;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderSkyhopper extends RenderVehicBase
 {

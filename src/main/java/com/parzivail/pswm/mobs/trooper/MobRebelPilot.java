@@ -1,14 +1,10 @@
 package com.parzivail.pswm.mobs.trooper;
 
-import java.util.List;
-import java.util.UUID;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -25,6 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.UUID;
 
 public class MobRebelPilot extends EntityMob implements IMob, IRangedAttackMob
 {

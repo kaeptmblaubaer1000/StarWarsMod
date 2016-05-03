@@ -1,79 +1,15 @@
 package com.parzivail.pswm.rendering;
 
-import java.util.HashMap;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.models.lightsabers.ModelAncientSithHilt;
-import com.parzivail.pswm.models.lightsabers.ModelCrossbarHilt;
-import com.parzivail.pswm.models.lightsabers.ModelDookuHilt;
-import com.parzivail.pswm.models.lightsabers.ModelEzraHilt;
-import com.parzivail.pswm.models.lightsabers.ModelKananHilt;
-import com.parzivail.pswm.models.lightsabers.ModelLuke1Hilt;
-import com.parzivail.pswm.models.lightsabers.ModelLukeNewHilt;
-import com.parzivail.pswm.models.lightsabers.ModelMalgusHilt;
-import com.parzivail.pswm.models.lightsabers.ModelMaulHilt;
-import com.parzivail.pswm.models.lightsabers.ModelObiwanHilt;
-import com.parzivail.pswm.models.lightsabers.ModelPadawanHilt;
-import com.parzivail.pswm.models.lightsabers.ModelQuigonHilt;
-import com.parzivail.pswm.models.lightsabers.ModelRevanHilt;
-import com.parzivail.pswm.models.lightsabers.ModelShotoHilt;
-import com.parzivail.pswm.models.lightsabers.ModelStarkillerHilt;
-import com.parzivail.pswm.models.lightsabers.ModelVader2Hilt;
-import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelCrossguardBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelDookuBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelDookuBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelDookuBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelEzraBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelKananBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLuke1BladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLuke1BladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLuke1BladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLukeNewBladeL;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLukeNewBladeM;
-import com.parzivail.pswm.models.lightsabers.blades.ModelLukeNewBladeS;
-import com.parzivail.pswm.models.lightsabers.blades.ModelMalgusBladeL;
-import com.parzivail.pswm.models.lightsabers.blades.ModelMalgusBladeM;
-import com.parzivail.pswm.models.lightsabers.blades.ModelMalgusBladeS;
-import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelMaulBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelObiwanBladeL;
-import com.parzivail.pswm.models.lightsabers.blades.ModelObiwanBladeM;
-import com.parzivail.pswm.models.lightsabers.blades.ModelObiwanBladeS;
-import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelPadawanBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelQuigonBladeL;
-import com.parzivail.pswm.models.lightsabers.blades.ModelQuigonBladeM;
-import com.parzivail.pswm.models.lightsabers.blades.ModelQuigonBladeS;
-import com.parzivail.pswm.models.lightsabers.blades.ModelRevanBladeL;
-import com.parzivail.pswm.models.lightsabers.blades.ModelRevanBladeM;
-import com.parzivail.pswm.models.lightsabers.blades.ModelRevanBladeS;
-import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelShotoBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelSithDoubleBladeShort;
-import com.parzivail.pswm.models.lightsabers.blades.ModelStarkillerBladeL;
-import com.parzivail.pswm.models.lightsabers.blades.ModelStarkillerBladeM;
-import com.parzivail.pswm.models.lightsabers.blades.ModelStarkillerBladeS;
-import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeLong;
-import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeMedium;
-import com.parzivail.pswm.models.lightsabers.blades.ModelVaderBladeShort;
+import com.parzivail.pswm.models.lightsabers.*;
+import com.parzivail.pswm.models.lightsabers.blades.*;
 import com.parzivail.util.ui.ShaderHelper;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
+
+import java.util.HashMap;
 
 public class RenderLightsaber implements IItemRenderer
 {
@@ -137,7 +73,7 @@ public class RenderLightsaber implements IItemRenderer
 		if (r != null)
 		{
 			GL11.glPushMatrix();
-			StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(item.stackTagCompound == null ? false : item.stackTagCompound.getBoolean(ItemLightsaber.nbtHiltSkin)));
+			StarWarsMod.mc.renderEngine.bindTexture(r.getResourceLocation(item.stackTagCompound != null && item.stackTagCompound.getBoolean(ItemLightsaber.nbtHiltSkin)));
 			r.renderItem(type, item, data);
 			GL11.glPopMatrix();
 			IHandlesRender rB = getBladeRendererForStack(item);

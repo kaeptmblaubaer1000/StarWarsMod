@@ -1,21 +1,18 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ModelAncientJediStatue;
 import com.parzivail.pswm.tileentities.TileEntityAncientJediStatue;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.ShaderHelper;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 public class RenderAncientJediStatue extends TileEntitySpecialRenderer
 {
@@ -37,7 +34,7 @@ public class RenderAncientJediStatue extends TileEntitySpecialRenderer
 	{
 		int cap = GL12.GL_RESCALE_NORMAL;
 		GL11.glPushMatrix();
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(cap);
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		GL11.glTranslated(x + 0.5f, y + 19.2f, z + 0.5f);
@@ -45,7 +42,7 @@ public class RenderAncientJediStatue extends TileEntitySpecialRenderer
 		GL11.glRotatef(((TileEntityAncientJediStatue)te).getFacing() * 22.5f, 0, 1, 0);
 		GLPZ.glScalef(16f);
 		GL11.glColor4f(1, 1, 1, 1);
-		this.model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
+		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GLPZ.glScalef(0.3f);
 		GL11.glScalef(1, -1, 1);
 		GL11.glDisable(GL11.GL_CULL_FACE);

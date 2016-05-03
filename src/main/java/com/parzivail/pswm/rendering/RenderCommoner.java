@@ -1,12 +1,11 @@
 package com.parzivail.pswm.rendering;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.mobs.MobTatooineCommoner;
 
 public class RenderCommoner extends RenderBiped
 {

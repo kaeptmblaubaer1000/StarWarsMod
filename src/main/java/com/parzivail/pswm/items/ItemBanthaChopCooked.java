@@ -1,9 +1,8 @@
 package com.parzivail.pswm.items;
 
-import net.minecraft.item.ItemFood;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.item.ItemFood;
 
 public class ItemBanthaChopCooked extends ItemFood
 {

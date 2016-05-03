@@ -1,18 +1,6 @@
 package com.parzivail.pswm.dimension.yavin;
 
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVINE;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.SCATTERED_FEATURE;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.STRONGHOLD;
-import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.VILLAGE;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
-import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ICE;
-
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -26,13 +14,7 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderGenerate;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.NoiseGenerator;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraft.world.gen.structure.MapGenStronghold;
@@ -41,7 +23,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import cpw.mods.fml.common.eventhandler.Event.Result;
+
+import java.util.List;
+import java.util.Random;
+
+import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.*;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.*;
 
 public class BiomeChunkProviderYavin extends ChunkProviderGenerate
 {
@@ -52,30 +39,48 @@ public class BiomeChunkProviderYavin extends ChunkProviderGenerate
 	private NoiseGeneratorOctaves nouseGen2;
 	private NoiseGeneratorOctaves noiseGen3;
 	private NoiseGeneratorPerlin noiseGen4;
-	/** A NoiseGeneratorOctaves used in generating terrain */
+	/**
+	 * A NoiseGeneratorOctaves used in generating terrain
+	 */
 	public NoiseGeneratorOctaves noiseGen5;
-	/** A NoiseGeneratorOctaves used in generating terrain */
+	/**
+	 * A NoiseGeneratorOctaves used in generating terrain
+	 */
 	public NoiseGeneratorOctaves noiseGen6;
 	public NoiseGeneratorOctaves mobSpawnerNoise;
-	/** Reference to the World object. */
+	/**
+	 * Reference to the World object.
+	 */
 	private World worldObj;
-	/** are map structures going to be generated (e.g. strongholds) */
+	/**
+	 * are map structures going to be generated (e.g. strongholds)
+	 */
 	private final boolean mapFeaturesEnabled;
 	private WorldType terrainType;
 	private final double[] field_147434_q;
 	private final float[] parabolicField;
 	private double[] stoneNoise = new double[256];
 	private MapGenBase caveGenerator = new MapGenCaves();
-	/** Holds Stronghold Generator */
+	/**
+	 * Holds Stronghold Generator
+	 */
 	private MapGenStronghold strongholdGenerator = new MapGenStronghold();
-	/** Holds Village Generator */
+	/**
+	 * Holds Village Generator
+	 */
 	private MapGenVillage villageGenerator = new MapGenVillage();
-	/** Holds Mineshaft Generator */
+	/**
+	 * Holds Mineshaft Generator
+	 */
 	private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
 	private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
-	/** Holds ravine generator */
+	/**
+	 * Holds ravine generator
+	 */
 	private MapGenBase ravineGenerator = new MapGenRavine();
-	/** The biomes that are used to generate the chunk */
+	/**
+	 * The biomes that are used to generate the chunk
+	 */
 	private BiomeGenBase[] biomesForGeneration;
 	double[] field_147427_d;
 	double[] field_147428_e;
@@ -452,10 +457,10 @@ public class BiomeChunkProviderYavin extends ChunkProviderGenerate
 	{
 		if (this.mapFeaturesEnabled)
 		{
-			this.mineshaftGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, (Block[])null);
-			this.villageGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, (Block[])null);
-			this.strongholdGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, (Block[])null);
-			this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, (Block[])null);
+			this.mineshaftGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, null);
+			this.villageGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, null);
+			this.strongholdGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, null);
+			this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, p_82695_1_, p_82695_2_, null);
 		}
 	}
 

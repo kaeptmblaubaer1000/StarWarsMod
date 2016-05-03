@@ -1,8 +1,7 @@
 package com.parzivail.pswm.registry;
 
-import net.minecraft.util.DamageSource;
-
 import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.util.DamageSource;
 
 public class DamageSourceRegister
 {

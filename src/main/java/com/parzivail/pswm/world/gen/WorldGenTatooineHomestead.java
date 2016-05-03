@@ -1,63 +1,34 @@
 package com.parzivail.pswm.world.gen;
 
-
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.utils.LootGenUtils;
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-
-
-
-import net.minecraft.block.Block;
-
-import net.minecraft.init.Blocks;
-
-import net.minecraft.tileentity.TileEntityChest;
-
-import net.minecraft.world.World;
-
-import net.minecraft.world.chunk.IChunkProvider;
-
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-
-
-
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.utils.LootGenUtils;
-
-
-
-import cpw.mods.fml.common.IWorldGenerator;
-
-
-
-
-
-
-
-
-
-
-
-
-public class WorldGenTatooineHomestead
-extends WorldGenerator
-implements IWorldGenerator
+public class WorldGenTatooineHomestead extends WorldGenerator implements IWorldGenerator
 
 {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 	}
 
-	
 	public boolean generate(World world, Random rand, int i, int j, int k)
-	
+
 	{
-		if ((!locationIsValidSpawn(world, i, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k + 25)) || (!locationIsValidSpawn(world, i, j, k + 25))) { return false;
+		if ((!locationIsValidSpawn(world, i, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k)) || (!locationIsValidSpawn(world, i + 23, j, k + 25)) || (!locationIsValidSpawn(world, i, j, k + 25)))
+		{
+			return false;
 		}
 		k -= 10;
 		i -= 10;
-		
+
 		setBlock(world, i + 0, j + 0, k + 11, Blocks.sandstone, 0);
 		setBlock(world, i + 0, j + 0, k + 12, Blocks.sandstone, 0);
 		setBlock(world, i + 0, j + 0, k + 13, Blocks.sandstone, 0);
@@ -1063,61 +1034,63 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 21, j + 4, k + 13, 1, 2);
 		setBlock(world, i + 21, j + 4, k + 14, Blocks.sandstone, 1);
 		world.setBlockMetadataWithNotify(i + 21, j + 4, k + 14, 1, 2);
-		
-		return true;
-		}
 
-	
+		return true;
+	}
+
 	protected Block[] getValidSpawnBlocks()
-	
+
 	{
 		return new Block[] { StarWarsMod.blockTatooineSand };
-		}
+	}
 
-	
 	public boolean locationIsValidSpawn(World world, int i, int j, int k)
-	
+
 	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
-		
+
 		while (check != Blocks.air)
-		
+
 		{
-			if (distanceToAir > 3) { return false;
+			if (distanceToAir > 3)
+			{
+				return false;
 			}
 			distanceToAir++;
 			check = world.getBlock(i, j + distanceToAir, k);
-			}
-		
+		}
+
 		j += distanceToAir - 1;
-		
+
 		Block block = world.getBlock(i, j, k);
 		Block blockAbove = world.getBlock(i, j + 1, k);
 		Block blockBelow = world.getBlock(i, j - 1, k);
-		
+
 		for (Block x : getValidSpawnBlocks())
-		
+
 		{
-			if (blockAbove != Blocks.air) return false;
+			if (blockAbove != Blocks.air)
+				return false;
 			if (block == x)
-			
+
 			{
 				return true;
-				}
-			if ((block == Blocks.snow) && (blockBelow == x)) { return true;
 			}
+			if ((block == Blocks.snow) && (blockBelow == x))
+			{
+				return true;
 			}
-		return false;
 		}
+		return false;
+	}
 
-	
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
-	
+
 	{
 		world.setBlock(x, y, z, block, metadata, 2);
-		}
-	
+	}
+
 }
 
 /*

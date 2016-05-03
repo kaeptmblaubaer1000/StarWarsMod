@@ -1,13 +1,12 @@
 package com.parzivail.pswm.items;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.mobs.MobDroidSurgical;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.mobs.MobDroidSurgical;
 
 public class ItemSpawnSurgical extends Item
 {

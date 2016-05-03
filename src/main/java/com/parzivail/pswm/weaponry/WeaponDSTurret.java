@@ -1,9 +1,8 @@
 package com.parzivail.pswm.weaponry;
 
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.StarWarsMod;
 
 public class WeaponDSTurret extends WeaponSwivelBase
 {

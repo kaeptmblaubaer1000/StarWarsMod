@@ -1,14 +1,13 @@
 package com.parzivail.pswm.dimension.kashyyyk;
 
-import java.util.Random;
-
+import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.gen.WorldGenMegaKashyyykJungle;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import com.parzivail.pswm.dimension.BiomeGenPSWM;
-import com.parzivail.pswm.world.gen.WorldGenMegaKashyyykJungle;
+import java.util.Random;
 
 public class BiomeGenKashyyyk extends BiomeGenPSWM
 {

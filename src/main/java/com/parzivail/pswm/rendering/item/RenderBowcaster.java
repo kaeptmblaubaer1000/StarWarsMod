@@ -1,19 +1,17 @@
 package com.parzivail.pswm.rendering.item;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.weapons.ModelBowcaster;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderBowcaster implements IItemRenderer
 {
-    private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/weapons/bowcaster.png");
-    
+	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/weapons/bowcaster.png");
+
 	private ModelBowcaster model;
 
 	public RenderBowcaster()

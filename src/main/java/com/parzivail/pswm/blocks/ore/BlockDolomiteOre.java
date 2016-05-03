@@ -1,14 +1,13 @@
 package com.parzivail.pswm.blocks.ore;
 
-import java.util.Random;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+
+import java.util.Random;
 
 public class BlockDolomiteOre extends Block
 {

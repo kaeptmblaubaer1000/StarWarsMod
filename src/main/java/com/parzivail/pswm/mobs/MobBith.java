@@ -1,13 +1,9 @@
 package com.parzivail.pswm.mobs;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
-
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -16,6 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MobBith extends EntityVillager implements IParziNPC
 {

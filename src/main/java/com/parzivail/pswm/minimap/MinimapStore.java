@@ -1,8 +1,8 @@
 package com.parzivail.pswm.minimap;
 
-import java.util.HashMap;
-
 import net.minecraft.world.World;
+
+import java.util.HashMap;
 
 public class MinimapStore
 {

@@ -1,12 +1,8 @@
 package com.parzivail.pswm.quest;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.quest.rebel.Quest0Welcome;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -15,6 +11,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class GuiQuest extends GuiScreen
@@ -31,7 +28,7 @@ public class GuiQuest extends GuiScreen
 	private GuiButton response2;
 	private GuiButton response3;
 	private GuiButton close;
-	
+
 	String questId;
 
 	public GuiQuest(EntityPlayer player, String questId)
@@ -40,9 +37,9 @@ public class GuiQuest extends GuiScreen
 		this.player = player;
 		// this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
 		this.currentTree = tree;
-		
+
 		this.questId = questId;
-		
+
 		if (this.tree != null && this.tree.action != null)
 			this.tree.action.accept(player);
 	}
@@ -68,7 +65,7 @@ public class GuiQuest extends GuiScreen
 			}
 			else if (button.id == this.close.id)
 			{
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
 			}
 	}
@@ -85,7 +82,6 @@ public class GuiQuest extends GuiScreen
 		this.mc.getTextureManager().bindTexture(guiTexture);
 		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
 
-		
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 		int yy = 0;

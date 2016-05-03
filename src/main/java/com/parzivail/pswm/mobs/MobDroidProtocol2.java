@@ -1,12 +1,9 @@
 package com.parzivail.pswm.mobs;
 
-import java.util.List;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.util.entity.EntityUtils;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
@@ -16,6 +13,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class MobDroidProtocol2 extends EntityDroidBase
 {

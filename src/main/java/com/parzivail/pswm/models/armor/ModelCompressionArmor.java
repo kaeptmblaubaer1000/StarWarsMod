@@ -1,7 +1,6 @@
 package com.parzivail.pswm.models.armor;
 
 import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

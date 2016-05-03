@@ -1,5 +1,7 @@
 package com.parzivail.pswm.rendering.force;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -7,11 +9,7 @@ import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-
 import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 
 public class RenderJediDefense
 {

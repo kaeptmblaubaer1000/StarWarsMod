@@ -1,7 +1,6 @@
 package com.parzivail.pswm.ai;
 
-import java.util.List;
-
+import com.parzivail.pswm.Resources;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -13,7 +12,7 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.util.Vec3;
 
-import com.parzivail.pswm.Resources;
+import java.util.List;
 
 public class AiMouseScare extends EntityAIBase
 {
@@ -83,7 +82,7 @@ public class AiMouseScare extends EntityAIBase
 		if (this.closestLivingEntity.getDistanceSq(vec3.xCoord, vec3.yCoord, vec3.zCoord) < this.closestLivingEntity.getDistanceSqToEntity(this.theEntity))
 			return false;
 		this.entityPathEntity = this.entityPathNavigate.getPathToXYZ(vec3.xCoord, vec3.yCoord, vec3.zCoord);
-		return this.entityPathEntity == null ? false : this.entityPathEntity.isDestinationSame(vec3);
+		return this.entityPathEntity != null && this.entityPathEntity.isDestinationSame(vec3);
 	}
 
 	@Override

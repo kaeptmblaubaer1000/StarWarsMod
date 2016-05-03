@@ -1,13 +1,12 @@
 package com.parzivail.pswm.achievement;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.parzivail.pswm.Resources;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 
-import com.parzivail.pswm.Resources;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StarWarsAchievement extends Achievement
 {

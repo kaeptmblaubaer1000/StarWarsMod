@@ -1,12 +1,12 @@
 package com.parzivail.pswm.world.gen;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenHugeTrees;
+
+import java.util.Random;
 
 public class WorldGenMegaKashyyykJungle extends WorldGenHugeTrees
 {
@@ -30,7 +30,10 @@ public class WorldGenMegaKashyyykJungle extends WorldGenHugeTrees
 	{
 		int l = func_150533_a(p_76484_2_) + 32;
 
-		if (!func_150537_a(p_76484_1_, p_76484_2_, p_76484_3_, p_76484_4_, p_76484_5_, l)) { return false; }
+		if (!func_150537_a(p_76484_1_, p_76484_2_, p_76484_3_, p_76484_4_, p_76484_5_, l))
+		{
+			return false;
+		}
 
 		func_150543_c(p_76484_1_, p_76484_3_, p_76484_5_, p_76484_4_ + l, 2, p_76484_2_);
 

@@ -1,6 +1,5 @@
 package com.parzivail.pswm.tileentities;
 
-
 public class TileEntityHoloTableMedium extends TileEntityHoloTableBase
 {
 	public TileEntityHoloTableMedium()

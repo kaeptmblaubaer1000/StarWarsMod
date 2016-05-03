@@ -1,15 +1,13 @@
 package com.parzivail.util.block;
 
+import com.parzivail.pswm.Resources;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-
-import com.parzivail.pswm.Resources;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockConnected extends Block
 {
@@ -301,17 +299,12 @@ public class BlockConnected extends Block
 	/**
 	 * This is checked to see if the texture should connect to this block
 	 *
-	 * @param par2
-	 *            x
-	 * @param par3
-	 *            y
-	 * @param par4
-	 *            z
-	 * @param par5
-	 *            ID this block is asking to connect to (may be 0 if there is no
-	 *            block)
-	 * @param par6
-	 *            Metadata of the block this block is trying to connect to
+	 * @param par2 x
+	 * @param par3 y
+	 * @param par4 z
+	 * @param par5 ID this block is asking to connect to (may be 0 if there is no
+	 *             block)
+	 * @param par6 Metadata of the block this block is trying to connect to
 	 * @return true if should connect
 	 */
 	public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6)

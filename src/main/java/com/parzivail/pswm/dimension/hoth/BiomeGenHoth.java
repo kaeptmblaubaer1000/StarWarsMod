@@ -1,12 +1,11 @@
 package com.parzivail.pswm.dimension.hoth;
 
-import java.util.Random;
-
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenHothGenerator;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BiomeGenHoth extends BiomeGenPSWM
 {

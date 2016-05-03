@@ -3,7 +3,6 @@ package com.parzivail.pswm.vehicles;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.vehicle.VehicleAirBase;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 

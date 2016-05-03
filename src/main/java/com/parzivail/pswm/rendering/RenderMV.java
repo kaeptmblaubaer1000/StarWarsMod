@@ -1,17 +1,14 @@
 package com.parzivail.pswm.rendering;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ModelMV;
 import com.parzivail.pswm.tileentities.TileEntityMV;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 
 public class RenderMV extends TileEntitySpecialRenderer
 {
@@ -43,7 +40,7 @@ public class RenderMV extends TileEntitySpecialRenderer
 		this.model.windVane2.rotateAngleY = mv.frame / 10;
 		this.model.windVaneRod1.rotateAngleY = mv.frame / 10;
 		this.model.windVaneRod2.rotateAngleY = mv.frame / 10;
-		this.model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
+		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}

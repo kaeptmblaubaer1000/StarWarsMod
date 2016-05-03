@@ -1,12 +1,11 @@
 package com.parzivail.pswm.jedirobes.powers;
 
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageTransmute;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageTransmute;
 
 public class PowerNaturalAwareness extends Power
 {

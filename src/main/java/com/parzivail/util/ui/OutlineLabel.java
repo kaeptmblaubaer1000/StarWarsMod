@@ -1,10 +1,8 @@
 package com.parzivail.util.ui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
+import org.lwjgl.opengl.GL11;
 
 public class OutlineLabel extends OutlineButton
 {
@@ -20,7 +18,7 @@ public class OutlineLabel extends OutlineButton
 		if (this.visible)
 		{
 			FontRenderer fontrenderer = mc.fontRenderer;
-			
+
 			int textColor = GLPalette.WHITE;
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);

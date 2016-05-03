@@ -1,15 +1,13 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicSnowspeeder;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderSnowspeeder extends RenderVehicBase
 {

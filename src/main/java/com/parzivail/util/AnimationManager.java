@@ -1,13 +1,15 @@
 package com.parzivail.util;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
 public class AnimationManager
 {
-	/** All active animations **/
+	/**
+	 * All active animations
+	 **/
 	public static ArrayList<Animation> animations = new ArrayList<Animation>();
 
 	public static void render(RenderGameOverlayEvent event)

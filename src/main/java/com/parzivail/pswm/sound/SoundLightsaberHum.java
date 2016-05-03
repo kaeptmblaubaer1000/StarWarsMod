@@ -1,11 +1,10 @@
 package com.parzivail.pswm.sound;
 
+import com.parzivail.pswm.Resources;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzivail.pswm.Resources;
 
 public class SoundLightsaberHum extends MovingSound
 {

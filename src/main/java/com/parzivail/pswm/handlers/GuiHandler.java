@@ -2,19 +2,10 @@ package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.quest.GuiQuest;
-import com.parzivail.pswm.rendering.gui.ContainerClient;
-import com.parzivail.pswm.rendering.gui.ContainerHoloTable;
-import com.parzivail.pswm.rendering.gui.ContainerMV;
-import com.parzivail.pswm.rendering.gui.GuiHoloTable;
-import com.parzivail.pswm.rendering.gui.GuiIDScanner;
-import com.parzivail.pswm.rendering.gui.GuiJediSith;
-import com.parzivail.pswm.rendering.gui.GuiMV;
-import com.parzivail.pswm.rendering.gui.GuiScreenJediRobes;
-import com.parzivail.pswm.rendering.gui.GuiScreenLightsaberForge;
+import com.parzivail.pswm.rendering.gui.*;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
-
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

@@ -1,15 +1,10 @@
 package com.parzivail.pswm.mobs;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -20,6 +15,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class MobWookiee extends EntityMob implements IMob
 {

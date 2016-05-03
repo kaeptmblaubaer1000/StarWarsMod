@@ -1,13 +1,15 @@
 package com.parzivail.util.ui;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
 public class GuiManager
 {
-	/** All active toasts **/
+	/**
+	 * All active toasts
+	 **/
 	public static ArrayList<GuiToast> toasts = new ArrayList<GuiToast>();
 
 	public static void render(RenderGameOverlayEvent event)

@@ -1,50 +1,25 @@
 package com.parzivail.pswm.handlers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
-import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
-import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
-import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
-import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
+import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
-import com.parzivail.pswm.network.MessageCreateBlasterBolt;
-import com.parzivail.pswm.network.MessageDoWorldgen;
-import com.parzivail.pswm.network.MessageEntityGrab;
-import com.parzivail.pswm.network.MessageEntityHurt;
-import com.parzivail.pswm.network.MessageEntityReverse;
-import com.parzivail.pswm.network.MessageRobesBooleanNBT;
-import com.parzivail.pswm.network.MessageRobesIntNBT;
-import com.parzivail.pswm.network.MessageRobesStringNBT;
-import com.parzivail.pswm.network.MessageSetEntityTarget;
-import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
-import com.parzivail.pswm.vehicles.VehicATST;
-import com.parzivail.pswm.vehicles.VehicAWing;
-import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
-import com.parzivail.pswm.vehicles.VehicSkyhopper;
-import com.parzivail.pswm.vehicles.VehicSpeederBike;
-import com.parzivail.pswm.vehicles.VehicTIE;
-import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
-import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiManager;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -63,6 +38,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class CommonEventHandler
 {
@@ -163,7 +142,7 @@ public class CommonEventHandler
 			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
-			StarWarsMod.network.sendToServer(new MessageDoWorldgen((int)StarWarsMod.mc.thePlayer.dimension, (int)StarWarsMod.mc.thePlayer.posX, (int)StarWarsMod.mc.thePlayer.posY, (int)StarWarsMod.mc.thePlayer.posZ));
+			StarWarsMod.network.sendToServer(new MessageDoWorldgen(StarWarsMod.mc.thePlayer.dimension, (int)StarWarsMod.mc.thePlayer.posX, (int)StarWarsMod.mc.thePlayer.posY, (int)StarWarsMod.mc.thePlayer.posZ));
 
 		if (KeybindRegistry.keyLSForge.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);

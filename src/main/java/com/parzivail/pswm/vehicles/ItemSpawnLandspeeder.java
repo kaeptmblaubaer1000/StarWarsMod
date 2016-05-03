@@ -1,11 +1,10 @@
 package com.parzivail.pswm.vehicles;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 
 public class ItemSpawnLandspeeder extends net.minecraft.item.Item
 {

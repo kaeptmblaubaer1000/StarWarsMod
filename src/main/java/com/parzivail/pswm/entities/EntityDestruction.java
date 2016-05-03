@@ -1,5 +1,7 @@
 package com.parzivail.pswm.entities;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -8,9 +10,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 
 public class EntityDestruction extends EntityThrowable
 {

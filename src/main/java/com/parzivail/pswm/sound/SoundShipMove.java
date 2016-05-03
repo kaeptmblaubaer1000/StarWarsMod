@@ -1,13 +1,12 @@
 package com.parzivail.pswm.sound;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.vehicle.VehicleAirBase;
 
 public class SoundShipMove extends MovingSound
 {

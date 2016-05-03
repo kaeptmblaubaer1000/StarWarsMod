@@ -1,9 +1,7 @@
 package com.parzivail.pswm.items;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -12,8 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemMusicDisc extends ItemRecord
 {

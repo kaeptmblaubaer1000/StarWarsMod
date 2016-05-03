@@ -1,15 +1,13 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.ModelBlasterBolt;
 import com.parzivail.util.ui.ShaderHelper;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderBlasterBolt extends Render
 {

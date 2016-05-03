@@ -1,9 +1,8 @@
 package com.parzivail.pswm.items.weapons;
 
-import net.minecraft.item.ItemSword;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.item.ItemSword;
 
 public class ItemEwokSpear extends ItemSword
 {

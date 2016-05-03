@@ -2,7 +2,6 @@ package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,19 +14,19 @@ public class TileEntityStaticNpc extends TileEntity
 {
 	AxisAlignedBB bb;
 	MobDefaultBiped internalBiped;
-	
+
 	public TileEntityStaticNpc()
 	{
 		this.setId("UNKNOWN");
 	}
-	
+
 	String id = "";
-	
+
 	public String getId()
 	{
 		return id;
 	}
-	
+
 	public void setId(String id)
 	{
 		this.id = id;
@@ -71,14 +70,14 @@ public class TileEntityStaticNpc extends TileEntity
 			return 0;
 		return (float)Math.toDegrees(Math.atan2(e.posX - 0.5f - (float)this.xCoord, e.posZ - 0.5f - (float)this.zCoord));
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound p_145839_1_)
 	{
 		this.setId(p_145839_1_.getString("quest-id"));
 		super.readFromNBT(p_145839_1_);
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{

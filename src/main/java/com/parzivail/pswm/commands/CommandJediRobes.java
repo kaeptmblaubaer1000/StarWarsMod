@@ -1,17 +1,16 @@
 package com.parzivail.pswm.commands;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandJediRobes extends CommandBase
 {

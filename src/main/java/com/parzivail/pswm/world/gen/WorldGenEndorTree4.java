@@ -1,48 +1,31 @@
 package com.parzivail.pswm.world.gen;
 
-
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-
-import net.minecraft.block.Block;
-
-import net.minecraft.init.Blocks;
-
-import net.minecraft.world.World;
-
-import net.minecraft.world.chunk.IChunkProvider;
-
-import net.minecraft.world.gen.feature.WorldGenerator;
-import cpw.mods.fml.common.IWorldGenerator;
-
-
-
-
-
-
-
-
-
-
-public class WorldGenEndorTree4
-extends WorldGenerator
-implements IWorldGenerator
+public class WorldGenEndorTree4 extends WorldGenerator implements IWorldGenerator
 
 {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 	}
 
-	
 	public boolean generate(World world, Random rand, int i, int j, int k)
-	
+
 	{
-		if ((!locationIsValidSpawn(world, i, j, k)) || (!locationIsValidSpawn(world, i + 15, j, k)) || (!locationIsValidSpawn(world, i + 15, j, k + 15)) || (!locationIsValidSpawn(world, i, j, k + 15))) { return false;
+		if ((!locationIsValidSpawn(world, i, j, k)) || (!locationIsValidSpawn(world, i + 15, j, k)) || (!locationIsValidSpawn(world, i + 15, j, k + 15)) || (!locationIsValidSpawn(world, i, j, k + 15)))
+		{
+			return false;
 		}
 		k -= 10;
 		i -= 10;
-		
+
 		setBlock(world, i + 0, j + 3, k + 13, Blocks.log, 0);
 		setBlock(world, i + 0, j + 3, k + 14, Blocks.log, 0);
 		setBlock(world, i + 0, j + 3, k + 15, Blocks.log, 0);
@@ -1543,14 +1526,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 1, j + 40, k + 3, 4, 2);
 		setBlock(world, i + 1, j + 41, k + 1, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 1, j + 41, k + 1, 4, 2);
-		
+
 		generate2(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate2(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 1, j + 41, k + 2, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 1, j + 41, k + 2, 4, 2);
@@ -3052,14 +3034,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 7, j + 30, k + 4, 12, 2);
 		setBlock(world, i + 7, j + 30, k + 5, Blocks.leaves, 12);
 		world.setBlockMetadataWithNotify(i + 7, j + 30, k + 5, 12, 2);
-		
+
 		generate3(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate3(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 7, j + 30, k + 6, Blocks.leaves, 12);
 		world.setBlockMetadataWithNotify(i + 7, j + 30, k + 6, 12, 2);
@@ -4561,14 +4542,13 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 13, j + 45, k + 1, 4, 2);
 		setBlock(world, i + 13, j + 45, k + 2, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 13, j + 45, k + 2, 4, 2);
-		
+
 		generate4(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate4(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 13, j + 45, k + 3, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 13, j + 45, k + 3, 4, 2);
@@ -4916,67 +4896,69 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 15, j + 51, k + 3, 4, 2);
 		setBlock(world, i + 15, j + 51, k + 10, Blocks.leaves, 4);
 		world.setBlockMetadataWithNotify(i + 15, j + 51, k + 10, 4, 2);
-		
-		return true;
-		}
 
-	
+		return true;
+	}
+
 	protected Block[] getValidSpawnBlocks()
-	
+
 	{
 		return new Block[] { Blocks.grass, Blocks.dirt };
-		}
+	}
 
-	
 	public boolean locationIsValidSpawn(World world, int i, int j, int k)
-	
+
 	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
-		
+
 		while (check != Blocks.air)
-		
+
 		{
-			if (distanceToAir > 5) { return false;
+			if (distanceToAir > 5)
+			{
+				return false;
 			}
 			distanceToAir++;
 			check = world.getBlock(i, j + distanceToAir, k);
-			}
-		
+		}
+
 		j += distanceToAir - 1;
-		
+
 		Block block = world.getBlock(i, j, k);
 		Block blockAbove = world.getBlock(i, j + 1, k);
 		Block blockBelow = world.getBlock(i, j - 1, k);
-		
+
 		for (Block x : getValidSpawnBlocks())
-		
+
 		{
-			if ((blockAbove != Blocks.air) && (blockAbove != Blocks.grass) && (blockAbove != Blocks.dirt)) return false;
+			if ((blockAbove != Blocks.air) && (blockAbove != Blocks.grass) && (blockAbove != Blocks.dirt))
+				return false;
 			if (block == x)
-			
+
 			{
 				return true;
-				}
-			if ((block == Blocks.snow) && (blockBelow == x)) { return true;
 			}
+			if ((block == Blocks.snow) && (blockBelow == x))
+			{
+				return true;
 			}
-		return false;
 		}
+		return false;
+	}
 
-	
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
-	
+
 	{
 		Block b1 = world.getBlock(x, y, z);
-		
+
 		if ((b1.isAir(world, x, y, z)) || (b1.isLeaves(world, x, y, z)))
-		
+
 		{
 			world.setBlock(x, y, z, block, metadata, 2);
-			}
 		}
-	
+	}
+
 }
 
 /*

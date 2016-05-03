@@ -1,9 +1,8 @@
 package com.parzivail.pswm.rendering.gui;
 
+import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-
-import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 
 public class ContainerHoloTable extends Container
 {

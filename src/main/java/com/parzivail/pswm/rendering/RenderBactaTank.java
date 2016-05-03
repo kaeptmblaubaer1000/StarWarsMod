@@ -1,17 +1,14 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ModelBactaTank;
 import com.parzivail.util.ui.GLPZ;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 
 public class RenderBactaTank extends TileEntitySpecialRenderer
 {
@@ -36,7 +33,7 @@ public class RenderBactaTank extends TileEntitySpecialRenderer
 		GL11.glTranslated(x + 0.5f, y + 1.3f, z + 0.5f);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GLPZ.glScalef(1.1f);
-		this.model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
+		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
 	}
 }

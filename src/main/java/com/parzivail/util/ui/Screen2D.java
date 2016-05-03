@@ -1,13 +1,13 @@
 package com.parzivail.util.ui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.FontRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class Screen2D
 {
 	/**
 	 * Draws a rectangle
+	 *
 	 * @param x
 	 * @param y
 	 * @param w
@@ -31,6 +31,7 @@ public class Screen2D
 
 	/**
 	 * Draws a line
+	 *
 	 * @param sx
 	 * @param sy
 	 * @param ex
@@ -48,6 +49,7 @@ public class Screen2D
 
 	/**
 	 * Draws a filled circle
+	 *
 	 * @param x
 	 * @param y
 	 * @param radius
@@ -68,6 +70,7 @@ public class Screen2D
 
 	/**
 	 * Draws a circle
+	 *
 	 * @param x
 	 * @param y
 	 * @param radius
@@ -88,6 +91,7 @@ public class Screen2D
 
 	/**
 	 * Draws a dashed circle
+	 *
 	 * @param x
 	 * @param y
 	 * @param radius
@@ -112,6 +116,7 @@ public class Screen2D
 
 	/**
 	 * Draws a pie piece circle thing
+	 *
 	 * @param x
 	 * @param y
 	 * @param radius
@@ -134,6 +139,7 @@ public class Screen2D
 
 	/**
 	 * Draws a pie piece donut thing
+	 *
 	 * @param x
 	 * @param y
 	 * @param radius
@@ -160,6 +166,7 @@ public class Screen2D
 
 	/**
 	 * Draws a LOS message
+	 *
 	 * @param font
 	 * @param x
 	 * @param y
@@ -191,6 +198,7 @@ public class Screen2D
 
 	/**
 	 * Draws a No Signal message
+	 *
 	 * @param font
 	 * @param x
 	 * @param y
@@ -222,6 +230,7 @@ public class Screen2D
 
 	/**
 	 * Draws some text
+	 *
 	 * @param font
 	 * @param s
 	 * @param x
@@ -242,6 +251,7 @@ public class Screen2D
 
 	/**
 	 * Draws some centered text
+	 *
 	 * @param font
 	 * @param s
 	 * @param x
@@ -262,6 +272,7 @@ public class Screen2D
 
 	/**
 	 * Double wrapper for {@link Screen2D::drawLine}
+	 *
 	 * @param x1
 	 * @param y1
 	 * @param x2

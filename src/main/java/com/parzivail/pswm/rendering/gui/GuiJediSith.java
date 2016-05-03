@@ -1,5 +1,13 @@
 package com.parzivail.pswm.rendering.gui;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.network.MessageRobesStringNBT;
+import com.parzivail.pswm.utils.ForceUtils;
+import com.parzivail.util.ui.GLPalette;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -7,18 +15,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.network.MessageRobesStringNBT;
-import com.parzivail.pswm.utils.ForceUtils;
-import com.parzivail.util.ui.GLPalette;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class GuiJediSith extends GuiScreen
@@ -45,7 +42,7 @@ public class GuiJediSith extends GuiScreen
 			if (button.id == this.jediButton.id)
 			{
 				ForceUtils.addLeaderboardSide("jedi");
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
 				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, ArmorJediRobes.SIDE_JEDI));
 				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI);
@@ -53,7 +50,7 @@ public class GuiJediSith extends GuiScreen
 			else if (button.id == this.sithButton.id)
 			{
 				ForceUtils.addLeaderboardSide("sith");
-				this.mc.displayGuiScreen((GuiScreen)null);
+				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
 				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, ArmorJediRobes.SIDE_SITH));
 				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_SITH);

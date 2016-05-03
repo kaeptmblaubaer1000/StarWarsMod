@@ -3,7 +3,6 @@ package com.parzivail.pswm.blocks;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

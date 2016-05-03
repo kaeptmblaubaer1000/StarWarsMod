@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-
 import org.lwjgl.opengl.GL11;
 
 public class RenderHelper
@@ -37,8 +36,7 @@ public class RenderHelper
 	/**
 	 * Initiates a new RenderHelper class
 	 *
-	 * @param mc
-	 *            The minecraft to wrap
+	 * @param mc The minecraft to wrap
 	 */
 	public RenderHelper(Minecraft mc)
 	{

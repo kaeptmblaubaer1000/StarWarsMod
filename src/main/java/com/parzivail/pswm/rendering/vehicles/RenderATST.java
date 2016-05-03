@@ -1,17 +1,15 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelATST;
 import com.parzivail.pswm.vehicles.VehicATST;
 import com.parzivail.util.MathUtils;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderATST extends RenderVehicBase
 {
@@ -55,13 +53,13 @@ public class RenderATST extends RenderVehicBase
 				EntityLivingBase elb = (EntityLivingBase)atst.riddenByEntity;
 				if (atst.getDistanceSq(atst.prevPosX, atst.prevPosY, atst.prevPosZ) > 0f)
 				{
-					model.MainLegLParent1.rotateAngleX = -0.08726646259971647F + MathHelper.sin((float)(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f)) / 5f;
-					model.LegLChild1.rotateAngleX = -0.4886921905584123F + -MathHelper.sin((float)(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f) + 1) / 5f;
+					model.MainLegLParent1.rotateAngleX = -0.08726646259971647F + MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f) / 5f;
+					model.LegLChild1.rotateAngleX = -0.4886921905584123F + -MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f + 1) / 5f;
 
-					model.MainLegRParent.rotateAngleX = -0.08726646259971647F + MathHelper.sin((float)(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f) + 3) / 5f;
-					model.LegRChild1.rotateAngleX = -0.4886921905584123F + -MathHelper.sin((float)(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f) + 4) / 5f;
+					model.MainLegRParent.rotateAngleX = -0.08726646259971647F + MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f + 3) / 5f;
+					model.LegRChild1.rotateAngleX = -0.4886921905584123F + -MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f + 4) / 5f;
 
-					model.BodyParentMain.rotationPointY = 3.0f + MathHelper.sin((float)(atst.ticksExisted / 1.9f) + 4) / 5f;
+					model.BodyParentMain.rotationPointY = 3.0f + MathHelper.sin(atst.ticksExisted / 1.9f + 4) / 5f;
 				}
 
 				model.HeadParentMain.rotateAngleY = (float)Math.toRadians(MathUtils.lerp(atst.rotationHead - atst.rotationYaw, atst.rotationHead - atst.rotationYaw, partialTicks));
