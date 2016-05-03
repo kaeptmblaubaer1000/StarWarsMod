@@ -13,6 +13,7 @@ import com.parzivail.pswm.rendering.gui.GuiScreenJediRobes;
 import com.parzivail.pswm.rendering.gui.GuiScreenLightsaberForge;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +33,7 @@ public class GuiHandler implements IGuiHandler
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new GuiHoloTable(player, (TileEntityHoloTableBase)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_QUESTLOG)
-			return new GuiQuest(player);
+			return new GuiQuest(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)).getId());
 		else if (id == Resources.GUI_LSFORGE)
 			return new GuiScreenLightsaberForge(player);
 		else if (id == Resources.GUI_SCANNER)

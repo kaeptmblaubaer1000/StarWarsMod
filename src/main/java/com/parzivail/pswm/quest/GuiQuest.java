@@ -3,6 +3,7 @@ package com.parzivail.pswm.quest;
 import org.lwjgl.opengl.GL11;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.quest.rebel.Quest0Welcome;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 
@@ -31,16 +32,19 @@ public class GuiQuest extends GuiScreen
 	private GuiButton response3;
 	private GuiButton close;
 	
-	String questGiver;
+	String questId;
 
-	public GuiQuest(EntityPlayer player)
+	public GuiQuest(EntityPlayer player, String questId)
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
 		// this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
 		this.currentTree = tree;
 		
-		// TODO: make the questGiver populated with the NBT tag "id"'s value of the quest block tile entity
+		this.questId = questId;
+		
+		if (this.tree != null && this.tree.action != null)
+			this.tree.action.accept(player);
 	}
 
 	@Override
@@ -81,10 +85,12 @@ public class GuiQuest extends GuiScreen
 		this.mc.getTextureManager().bindTexture(guiTexture);
 		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
 
+		
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 		int yy = 0;
-		String[] words = TextUtils.splitIntoLine(currentTree.npcHeader, 40);
+		this.drawCenteredString(fontRendererObj, questId, x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
+		String[] words = TextUtils.splitIntoLine("blah blah blah", 40); //currentTree.npcHeader
 		for (String line : words)
 			this.drawCenteredString(this.mc.fontRenderer, line, x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
 

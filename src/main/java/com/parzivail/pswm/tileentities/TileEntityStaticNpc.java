@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -14,6 +15,23 @@ public class TileEntityStaticNpc extends TileEntity
 {
 	AxisAlignedBB bb;
 	MobDefaultBiped internalBiped;
+	
+	public TileEntityStaticNpc()
+	{
+		this.setId("UNKNOWN");
+	}
+	
+	String id = "";
+	
+	public String getId()
+	{
+		return id;
+	}
+	
+	public void setId(String id)
+	{
+		this.id = id;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -52,6 +70,20 @@ public class TileEntityStaticNpc extends TileEntity
 		if (e == null)
 			return 0;
 		return (float)Math.toDegrees(Math.atan2(e.posX - 0.5f - (float)this.xCoord, e.posZ - 0.5f - (float)this.zCoord));
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound p_145839_1_)
+	{
+		this.setId(p_145839_1_.getString("quest-id"));
+		super.readFromNBT(p_145839_1_);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound p_145841_1_)
+	{
+		super.writeToNBT(p_145841_1_);
+		p_145841_1_.setString("quest-id", getId());
 	}
 
 	public MobDefaultBiped getInternalEntity()
