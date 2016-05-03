@@ -55,6 +55,14 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 	}
 
 	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ)
+	{
+		if (!world.isRemote)
+			player.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, world, x, y, z);
+		return true;
+	}
+
+	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
@@ -79,7 +87,7 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int x, int y, int z)
 	{
-		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 0.83f, z + 1);
+		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1.83f, z + 1);
 	}
 
 	@Override

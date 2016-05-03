@@ -6,6 +6,8 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,6 +15,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
+@SideOnly(Side.CLIENT)
 public class GuiQuest extends GuiScreen
 {
 	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/icons3.png");
@@ -27,6 +30,8 @@ public class GuiQuest extends GuiScreen
 	private GuiButton response2;
 	private GuiButton response3;
 	private GuiButton close;
+	
+	String questGiver;
 
 	public GuiQuest(EntityPlayer player)
 	{
@@ -34,6 +39,8 @@ public class GuiQuest extends GuiScreen
 		this.player = player;
 		// this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
 		this.currentTree = tree;
+		
+		// TODO: make the questGiver populated with the NBT tag "id"'s value of the quest block tile entity
 	}
 
 	@Override
