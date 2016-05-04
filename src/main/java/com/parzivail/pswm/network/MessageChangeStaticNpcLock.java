@@ -31,6 +31,7 @@ public class MessageChangeStaticNpcLock extends PMessage<MessageChangeStaticNpcL
 		TileEntityStaticNpc te = (TileEntityStaticNpc)world.getTileEntity((int)position.xCoord, (int)position.yCoord, (int)position.zCoord);
 
 		te.setLocked(value);
+		te.markDirty();
 
 		Lumberjack.log(te.getLocked());
 
