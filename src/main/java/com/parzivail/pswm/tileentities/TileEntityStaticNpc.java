@@ -15,12 +15,12 @@ public class TileEntityStaticNpc extends TileEntity
 	AxisAlignedBB bb;
 	MobDefaultBiped internalBiped;
 
+	String id = "";
+
 	public TileEntityStaticNpc()
 	{
 		this.setId("no-faction:no-quest:default-skin");
 	}
-
-	String id = "";
 
 	public String getId()
 	{
