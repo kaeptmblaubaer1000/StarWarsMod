@@ -7,7 +7,6 @@ import com.parzivail.pswm.entities.EntityXWingBolt;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.network.PMessage;
-
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.player.EntityPlayer;

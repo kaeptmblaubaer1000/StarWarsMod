@@ -2,7 +2,6 @@ package com.parzivail.pswm.models.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -94,23 +93,23 @@ public class ModelJetpack extends ModelBiped
 			EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
 			StarWarsMod.mc.renderEngine.bindTexture(texture2);
 			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
-			this.armorModel.onGround = entityLivingBase.getSwingProgress(f5);
-			this.armorModel.render(entity, f, f1, f2, f3, f4, f5);
+			armorModel.onGround = entityLivingBase.getSwingProgress(f5);
+			armorModel.render(entity, f, f1, f2, f3, f4, f5);
 		}
 	}
 
 	protected void doRotationStuff(EntityLivingBase entity, ItemStack stack)
 	{
-		this.armorModel.heldItemRight = stack != null ? 1 : 0;
-		this.armorModel.isSneak = entity.isSneaking();
-		this.armorModel.bipedHead.showModel = false;
-		this.armorModel.bipedHeadwear.showModel = false;
-		this.armorModel.bipedBody.showModel = true;
-		this.armorModel.bipedRightArm.showModel = true;
-		this.armorModel.bipedLeftArm.showModel = true;
-		this.armorModel.bipedRightLeg.showModel = false;
-		this.armorModel.bipedLeftLeg.showModel = false;
-		this.armorModel.isRiding = entity.isRiding();
-		this.armorModel.isChild = entity.isChild();
+		armorModel.heldItemRight = stack != null ? 1 : 0;
+		armorModel.isSneak = entity.isSneaking();
+		armorModel.bipedHead.showModel = false;
+		armorModel.bipedHeadwear.showModel = false;
+		armorModel.bipedBody.showModel = true;
+		armorModel.bipedRightArm.showModel = true;
+		armorModel.bipedLeftArm.showModel = true;
+		armorModel.bipedRightLeg.showModel = false;
+		armorModel.bipedLeftLeg.showModel = false;
+		armorModel.isRiding = entity.isRiding();
+		armorModel.isChild = entity.isChild();
 	}
 }

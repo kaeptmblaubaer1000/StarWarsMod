@@ -2,7 +2,6 @@ package com.parzivail.pswm.quest.rebel;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
-
 import net.minecraft.entity.player.EntityPlayer;
 
 public class Quest0Welcome extends Quest

@@ -1,12 +1,10 @@
 package com.parzivail.pswm.models;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.util.ui.ShaderHelper;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Bacta Tank - Weaston Created using Tabula 4.1.1

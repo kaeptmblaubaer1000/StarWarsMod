@@ -1,7 +1,5 @@
 package com.parzivail.pswm.tileentities;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -9,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+
+import java.util.List;
 
 public class TileEntityBactaTank extends TileEntity
 {
@@ -60,12 +60,12 @@ public class TileEntityBactaTank extends TileEntity
 		}
 		super.updateEntity();
 	}
-	
+
 	public EntityPlayer getPlayerInside()
 	{
 		return this.playerInside;
 	}
-	
+
 	public int getTicksInside()
 	{
 		if (this.playerInside != null)

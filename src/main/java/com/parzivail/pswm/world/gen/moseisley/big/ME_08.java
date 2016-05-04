@@ -1,55 +1,26 @@
 package com.parzivail.pswm.world.gen.moseisley.big;
 
-
-
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.utils.NPCType;
 import com.parzivail.pswm.utils.SpawnUtils;
-
-
-
 import cpw.mods.fml.common.IWorldGenerator;
-
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-
-
-import net.minecraft.block.Block;
-
-import net.minecraft.init.Blocks;
-
-import net.minecraft.world.World;
-
-import net.minecraft.world.chunk.IChunkProvider;
-
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-
-
-
-
-
-
-
-
-
-
-
-public class ME_08
-extends WorldGenerator
-implements IWorldGenerator
+public class ME_08 extends WorldGenerator implements IWorldGenerator
 
 {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 	}
 
-	
 	public boolean generate(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 0, j + 0, k + 0, StarWarsMod.blockTatooineSand, 0);
 		setBlock(world, i + 0, j + 0, k + 1, StarWarsMod.blockTatooineSand, 0);
@@ -1551,14 +1522,13 @@ implements IWorldGenerator
 		setBlock(world, i + 3, j + 14, k + 3, Blocks.air, 0);
 		setBlock(world, i + 3, j + 14, k + 4, Blocks.air, 0);
 		setBlock(world, i + 3, j + 14, k + 5, Blocks.air, 0);
-		
+
 		generate2(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate10(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 25, j + 4, k + 3, Blocks.stone_slab, 9);
 		world.setBlockMetadataWithNotify(i + 25, j + 4, k + 3, 9, 2);
@@ -1722,13 +1692,12 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 27, j + 7, k + 10, 1, 2);
 		setBlock(world, i + 27, j + 7, k + 11, Blocks.stone_slab, 1);
 		world.setBlockMetadataWithNotify(i + 27, j + 7, k + 11, 1, 2);
-		
-		return true;
-		}
 
-	
+		return true;
+	}
+
 	public boolean generate2(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 3, j + 14, k + 6, Blocks.air, 0);
 		setBlock(world, i + 3, j + 14, k + 7, Blocks.air, 0);
@@ -3231,14 +3200,13 @@ implements IWorldGenerator
 		setBlock(world, i + 7, j + 8, k + 13, Blocks.air, 0);
 		setBlock(world, i + 7, j + 8, k + 14, Blocks.air, 0);
 		setBlock(world, i + 7, j + 8, k + 15, Blocks.air, 0);
-		
+
 		generate3(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate3(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 7, j + 8, k + 16, Blocks.air, 0);
 		setBlock(world, i + 7, j + 8, k + 17, Blocks.air, 0);
@@ -4744,14 +4712,13 @@ implements IWorldGenerator
 		setBlock(world, i + 11, j + 2, k + 4, Blocks.air, 0);
 		setBlock(world, i + 11, j + 2, k + 5, Blocks.air, 0);
 		setBlock(world, i + 11, j + 2, k + 9, Blocks.sandstone, 0);
-		
+
 		generate4(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate4(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 11, j + 2, k + 10, Blocks.air, 0);
 		setBlock(world, i + 11, j + 2, k + 11, Blocks.air, 0);
@@ -6257,14 +6224,13 @@ implements IWorldGenerator
 		setBlock(world, i + 14, j + 20, k + 8, Blocks.air, 0);
 		setBlock(world, i + 14, j + 20, k + 9, Blocks.air, 0);
 		setBlock(world, i + 14, j + 20, k + 10, Blocks.air, 0);
-		
+
 		generate5(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate5(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 14, j + 20, k + 11, Blocks.air, 0);
 		setBlock(world, i + 14, j + 20, k + 12, Blocks.air, 0);
@@ -7770,14 +7736,13 @@ implements IWorldGenerator
 		setBlock(world, i + 18, j + 16, k + 11, Blocks.air, 0);
 		setBlock(world, i + 18, j + 16, k + 12, Blocks.air, 0);
 		setBlock(world, i + 18, j + 16, k + 13, Blocks.air, 0);
-		
+
 		generate6(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate6(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 18, j + 16, k + 14, Blocks.air, 0);
 		setBlock(world, i + 18, j + 16, k + 15, Blocks.air, 0);
@@ -9280,14 +9245,13 @@ implements IWorldGenerator
 		setBlock(world, i + 22, j + 11, k + 1, Blocks.air, 0);
 		setBlock(world, i + 22, j + 11, k + 2, Blocks.air, 0);
 		setBlock(world, i + 22, j + 11, k + 3, Blocks.air, 0);
-		
+
 		generate7(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate7(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 22, j + 11, k + 4, Blocks.air, 0);
 		setBlock(world, i + 22, j + 11, k + 5, Blocks.air, 0);
@@ -10792,14 +10756,13 @@ implements IWorldGenerator
 		setBlock(world, i + 26, j + 6, k + 13, Blocks.air, 0);
 		setBlock(world, i + 26, j + 6, k + 14, Blocks.air, 0);
 		setBlock(world, i + 26, j + 6, k + 15, Blocks.air, 0);
-		
+
 		generate8(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate8(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 26, j + 6, k + 16, Blocks.air, 0);
 		setBlock(world, i + 26, j + 6, k + 17, Blocks.air, 0);
@@ -12301,14 +12264,13 @@ implements IWorldGenerator
 		setBlock(world, i + 29, j + 22, k + 9, Blocks.air, 0);
 		setBlock(world, i + 29, j + 22, k + 10, Blocks.air, 0);
 		setBlock(world, i + 29, j + 22, k + 11, Blocks.air, 0);
-		
+
 		generate9(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate9(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		setBlock(world, i + 29, j + 22, k + 12, Blocks.air, 0);
 		setBlock(world, i + 29, j + 22, k + 13, Blocks.air, 0);
@@ -13810,20 +13772,19 @@ implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 25, j + 4, k + 0, 1, 2);
 		setBlock(world, i + 25, j + 4, k + 2, Blocks.sandstone_stairs, 7);
 		world.setBlockMetadataWithNotify(i + 25, j + 4, k + 2, 7, 2);
-		
+
 		generate10(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
-	
+
 	{
 		world.getBlock(x, y, z);
-		
+
 		world.setBlock(x, y, z, block, metadata, 2);
-		}
-	
+	}
+
 }
 
 /*

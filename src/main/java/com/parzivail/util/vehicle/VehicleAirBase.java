@@ -1,8 +1,5 @@
 package com.parzivail.util.vehicle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -14,6 +11,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleAirBase extends VehicleBase
 {

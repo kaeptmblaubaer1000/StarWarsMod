@@ -2,7 +2,6 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -50,7 +49,7 @@ public class MobWampa extends EntityMob implements IMob
 		b0 = 7;
 		if (rand.nextInt(100) < 90)
 			return false;
-		return l > rand.nextInt(b0) ? false : super.getCanSpawnHere();
+		return l <= rand.nextInt(b0) && super.getCanSpawnHere();
 	}
 
 	@Override

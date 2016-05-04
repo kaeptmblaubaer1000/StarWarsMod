@@ -1,26 +1,16 @@
 package com.parzivail.pswm.dimension.dagobah;
 
-import java.util.Random;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
-import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_0_0;
-import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_0_1;
-import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_1_0;
-import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_1_1;
-import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_2_0;
-import com.parzivail.pswm.world.gen.yodatree.WorldGenYodaTree_2_1;
-
+import com.parzivail.pswm.world.gen.yodatree.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenDoublePlant;
-import net.minecraft.world.gen.feature.WorldGenMegaJungle;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenWaterlily;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.*;
+
+import java.util.Random;
 
 public class BiomeGenDagobah extends BiomeGenPSWM
 {

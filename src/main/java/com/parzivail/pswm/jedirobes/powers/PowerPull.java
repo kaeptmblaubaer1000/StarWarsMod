@@ -1,12 +1,11 @@
 package com.parzivail.pswm.jedirobes.powers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Vec3;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.util.entity.EntityUtils;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.Vec3;
 
 public class PowerPull extends Power
 {

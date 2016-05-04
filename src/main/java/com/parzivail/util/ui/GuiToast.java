@@ -5,7 +5,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
-
 import org.lwjgl.opengl.GL11;
 
 public class GuiToast extends Gui
@@ -16,31 +15,43 @@ public class GuiToast extends Gui
 	// "if ((position & ToastPosition.BOTTOM) == ToastPosition.BOTTOM) { ... }"
 	public class ToastPosition
 	{
-		/** Top Discriminator **/
+		/**
+		 * Top Discriminator
+		 **/
 		public static final int TOP = 1;
-		/** Bottom Discriminator **/
+		/**
+		 * Bottom Discriminator
+		 **/
 		public static final int BOTTOM = 2;
-		/** Left Discriminator **/
+		/**
+		 * Left Discriminator
+		 **/
 		public static final int LEFT = 4;
-		/** Middle Discriminator **/
+		/**
+		 * Middle Discriminator
+		 **/
 		public static final int MIDDLE = 8;
-		/** Right Discriminator **/
+		/**
+		 * Right Discriminator
+		 **/
 		public static final int RIGHT = 16;
 	}
 
-	/** A short timespan, 4 seconds **/
+	/**
+	 * A short timespan, 4 seconds
+	 **/
 	public static final int TIME_SHORT = 80;
-	/** A long timespan, 8 seconds **/
+	/**
+	 * A long timespan, 8 seconds
+	 **/
 	public static final int TIME_LONG = 160;
 
 	/**
 	 * Creates a new toast in the default position (bottom right), but doesn't
 	 * show it
 	 *
-	 * @param text
-	 *            The text to notify the player
-	 * @param length
-	 *            The timespan to show for
+	 * @param text   The text to notify the player
+	 * @param length The timespan to show for
 	 * @return The new toast
 	 */
 	public static GuiToast makeText(Object text, int length)
@@ -51,12 +62,9 @@ public class GuiToast extends Gui
 	/**
 	 * Creates a new toast, but doesn't show it
 	 *
-	 * @param text
-	 *            The text to notify the player
-	 * @param length
-	 *            The timespan to show for
-	 * @param position
-	 *            The {@link ToastPotition} of the toast
+	 * @param text     The text to notify the player
+	 * @param length   The timespan to show for
+	 * @param position The {@link ToastPotition} of the toast
 	 * @return The new toast
 	 */
 	public static GuiToast makeText(Object text, int length, int position)
@@ -64,16 +72,24 @@ public class GuiToast extends Gui
 		return new GuiToast(String.valueOf(text), length, position);
 	}
 
-	/** How many ticks are left in it's existence **/
+	/**
+	 * How many ticks are left in it's existence
+	 **/
 	private int life = 0;
 
-	/** The toast's text **/
+	/**
+	 * The toast's text
+	 **/
 	private String[] text;
 
-	/** The width og the toast **/
+	/**
+	 * The width og the toast
+	 **/
 	private int width;
 
-	/** The position of the toast **/
+	/**
+	 * The position of the toast
+	 **/
 	private int position = ToastPosition.BOTTOM | ToastPosition.MIDDLE;
 
 	/** All active toasts **/
@@ -81,12 +97,9 @@ public class GuiToast extends Gui
 	/**
 	 * Private constructor for a new toast
 	 *
-	 * @param text
-	 *            The text to show
-	 * @param length
-	 *            The timespan it should be shown
-	 * @param position
-	 *            The {@link ToastPosition} of the toast
+	 * @param text     The text to show
+	 * @param length   The timespan it should be shown
+	 * @param position The {@link ToastPosition} of the toast
 	 */
 	private GuiToast(String text, int length, int position)
 	{
@@ -105,16 +118,11 @@ public class GuiToast extends Gui
 	/**
 	 * Draws the tooltip backdrop
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param width
-	 *            The width
-	 * @param height
-	 *            The height
-	 * @param opacity
-	 *            The opacity (0-255)
+	 * @param x       The x position
+	 * @param y       The y position
+	 * @param width   The width
+	 * @param height  The height
+	 * @param opacity The opacity (0-255)
 	 */
 	private void drawBackdrop(int x, int y, int width, int height, int opacity)
 	{
@@ -141,8 +149,7 @@ public class GuiToast extends Gui
 	/**
 	 * Render method called by {@link GuiManager}
 	 *
-	 * @param stack
-	 *            The vertical stack size, for stacking
+	 * @param stack The vertical stack size, for stacking
 	 */
 	public void render(int stack)
 	{

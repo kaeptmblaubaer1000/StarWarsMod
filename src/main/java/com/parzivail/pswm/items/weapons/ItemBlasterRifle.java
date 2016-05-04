@@ -1,8 +1,13 @@
 package com.parzivail.pswm.items.weapons;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.achievement.StarWarsAchievements;
+import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
+import com.parzivail.util.ui.KeyboardUtils;
+import com.parzivail.util.ui.TextUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -14,15 +19,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
-import com.parzivail.util.ui.KeyboardUtils;
-import com.parzivail.util.ui.TextUtils;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Arrays;
+import java.util.List;
 
 public class ItemBlasterRifle extends Item
 {

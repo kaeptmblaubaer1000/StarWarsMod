@@ -1,29 +1,25 @@
 package com.parzivail.util.network;
 
+import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-
-import java.awt.Color;
-import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.HashMap;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
-
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
-
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import java.awt.*;
+import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class PMessage<REQ extends PMessage> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
@@ -31,6 +27,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	{
 		public T read(ByteBuf buf);
 	}
+
 	public static interface Writer<T extends Object>
 	{
 		public void write(T t, ByteBuf buf);
@@ -77,8 +74,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		else
 		{
 			Field[] fields = clazz.getFields();
-			Arrays.sort(fields, (Field f1, Field f2) ->
-			{
+			Arrays.sort(fields, (Field f1, Field f2) -> {
 				return f1.getName().compareTo(f2.getName());
 			});
 			fieldCache.put(clazz, fields);

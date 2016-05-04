@@ -1,31 +1,16 @@
 package com.parzivail.pswm.utils;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedirobes.powers.*;
+import com.parzivail.util.ui.Lumberjack;
+import net.minecraft.entity.Entity;
+import org.apache.commons.io.IOUtils;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import net.minecraft.entity.Entity;
-
-import org.apache.commons.io.IOUtils;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.jedirobes.powers.Power;
-import com.parzivail.pswm.jedirobes.powers.PowerDefend;
-import com.parzivail.pswm.jedirobes.powers.PowerDeflect;
-import com.parzivail.pswm.jedirobes.powers.PowerDestruction;
-import com.parzivail.pswm.jedirobes.powers.PowerDisable;
-import com.parzivail.pswm.jedirobes.powers.PowerDrainKnowledge;
-import com.parzivail.pswm.jedirobes.powers.PowerGrab;
-import com.parzivail.pswm.jedirobes.powers.PowerHeal;
-import com.parzivail.pswm.jedirobes.powers.PowerJump;
-import com.parzivail.pswm.jedirobes.powers.PowerLightning;
-import com.parzivail.pswm.jedirobes.powers.PowerNaturalAwareness;
-import com.parzivail.pswm.jedirobes.powers.PowerPull;
-import com.parzivail.pswm.jedirobes.powers.PowerPush;
-import com.parzivail.pswm.jedirobes.powers.PowerSlow;
-import com.parzivail.util.ui.Lumberjack;
 
 public class ForceUtils
 {

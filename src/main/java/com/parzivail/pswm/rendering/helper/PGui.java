@@ -1,9 +1,5 @@
 package com.parzivail.pswm.rendering.helper;
 
-import java.awt.Point;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
@@ -11,7 +7,6 @@ import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.minimap.MinimapStore;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Lumberjack;
-
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,6 +23,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class PGui// extends Gui
 {
@@ -79,38 +77,33 @@ public class PGui// extends Gui
 			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(dist);
 		else
 			try
-		{
+			{
 				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance");
 				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp");
-		}
-		catch (Exception e)
-		{
-			try
-			{
-				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78490_B");
-				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78491_C");
 			}
-			catch (Exception e2)
+			catch (Exception e)
 			{
-				Lumberjack.warn("Unable to change camera distance!");
-				e.printStackTrace();
+				try
+				{
+					ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78490_B");
+					ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78491_C");
+				}
+				catch (Exception e2)
+				{
+					Lumberjack.warn("Unable to change camera distance!");
+					e.printStackTrace();
+				}
 			}
-		}
 	}
 
 	/**
 	 * Draws center-aligned text
 	 *
-	 * @param fontRendererIn
-	 *            The font renderer
-	 * @param text
-	 *            The text to draw
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param color
-	 *            The color
+	 * @param fontRendererIn The font renderer
+	 * @param text           The text to draw
+	 * @param x              The x position
+	 * @param y              The y position
+	 * @param color          The color
 	 */
 	public void drawCenteredString(int x, int y, String string, int color)
 	{
@@ -194,14 +187,10 @@ public class PGui// extends Gui
 	/**
 	 * Draws a filled circle
 	 *
-	 * @param g
-	 *            The x position
-	 * @param h
-	 *            The y position
-	 * @param radius
-	 *            The radius
-	 * @param color
-	 *            The color
+	 * @param g      The x position
+	 * @param h      The y position
+	 * @param radius The radius
+	 * @param color  The color
 	 */
 	public void drawFilledCircle(float g, float h, float radius, int color)
 	{
@@ -231,16 +220,11 @@ public class PGui// extends Gui
 	/**
 	 * Draws a filled isoceles triangle
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param scale
-	 *            The scale
-	 * @param theta
-	 *            The rotation theta
-	 * @param color
-	 *            The color
+	 * @param x     The x position
+	 * @param y     The y position
+	 * @param scale The scale
+	 * @param theta The rotation theta
+	 * @param color The color
 	 */
 	public void drawFilledTriangle(double x, double y, int scale, float theta, int color)
 	{
@@ -343,18 +327,12 @@ public class PGui// extends Gui
 	/**
 	 * Draws a hollow circle
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param radius
-	 *            The radius
-	 * @param segments
-	 *            The number of segments
-	 * @param lineWidth
-	 *            The width of the line
-	 * @param color
-	 *            The color
+	 * @param x         The x position
+	 * @param y         The y position
+	 * @param radius    The radius
+	 * @param segments  The number of segments
+	 * @param lineWidth The width of the line
+	 * @param color     The color
 	 */
 	public void drawHollowCircle(float x, float y, float radius, int segments, float lineWidth, int color)
 	{
@@ -394,18 +372,12 @@ public class PGui// extends Gui
 	/**
 	 * Draws a hollow isoceles triangle
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param scale
-	 *            The scale
-	 * @param theta
-	 *            The rotation theta
-	 * @param lineWidth
-	 *            The line width
-	 * @param color
-	 *            The color
+	 * @param x         The x position
+	 * @param y         The y position
+	 * @param scale     The scale
+	 * @param theta     The rotation theta
+	 * @param lineWidth The line width
+	 * @param color     The color
 	 */
 	public void drawHollowTriangle(double x, double y, int scale, float theta, int lineWidth, int color)
 	{
@@ -439,18 +411,12 @@ public class PGui// extends Gui
 	/**
 	 * Draws a line
 	 *
-	 * @param x1
-	 *            The start x
-	 * @param y1
-	 *            The start y
-	 * @param x2
-	 *            The end x
-	 * @param y2
-	 *            The end y
-	 * @param lineWidth
-	 *            The line width
-	 * @param color
-	 *            The line color
+	 * @param x1        The start x
+	 * @param y1        The start y
+	 * @param x2        The end x
+	 * @param y2        The end y
+	 * @param lineWidth The line width
+	 * @param color     The line color
 	 */
 	public void drawLine(double x1, double y1, double x2, double y2, int lineWidth, int color)
 	{
@@ -503,16 +469,11 @@ public class PGui// extends Gui
 	/**
 	 * Draws a filled circle
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param radius
-	 *            The radius
-	 * @param percent
-	 *            The percentage full of the circle
-	 * @param color
-	 *            The color
+	 * @param x       The x position
+	 * @param y       The y position
+	 * @param radius  The radius
+	 * @param percent The percentage full of the circle
+	 * @param color   The color
 	 */
 	public void drawLoadingCircle(float x, float y, double radius, float percent, int color)
 	{
@@ -543,16 +504,11 @@ public class PGui// extends Gui
 	/**
 	 * Draws a filled circle
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param radius
-	 *            The radius
-	 * @param percent
-	 *            The percentage full of the circle
-	 * @param color
-	 *            The color
+	 * @param x       The x position
+	 * @param y       The y position
+	 * @param radius  The radius
+	 * @param percent The percentage full of the circle
+	 * @param color   The color
 	 */
 	public void drawLoadingCircleWithoutSetup(float x, float y, double radius, float percent, int color)
 	{
@@ -763,18 +719,12 @@ public class PGui// extends Gui
 	/**
 	 * Draws a texture on-screen
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param textureX
-	 *            The x position of the texture
-	 * @param textureY
-	 *            The y position of the texture
-	 * @param width
-	 *            The width on-screen
-	 * @param height
-	 *            The height on-screen
+	 * @param x        The x position
+	 * @param y        The y position
+	 * @param textureX The x position of the texture
+	 * @param textureY The y position of the texture
+	 * @param width    The width on-screen
+	 * @param height   The height on-screen
 	 */
 	public void drawTexturedModalRect(int x, int y, int textureX, int textureY, int width, int height)
 	{
@@ -793,18 +743,12 @@ public class PGui// extends Gui
 	/**
 	 * Draws a texture on-screen
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param textureX
-	 *            The x position of the texture
-	 * @param textureY
-	 *            The y position of the texture
-	 * @param width
-	 *            The width on-screen
-	 * @param height
-	 *            The height on-screen
+	 * @param x        The x position
+	 * @param y        The y position
+	 * @param textureX The x position of the texture
+	 * @param textureY The y position of the texture
+	 * @param width    The width on-screen
+	 * @param height   The height on-screen
 	 */
 	public void drawTexturedModalRectFloat(float x, float y, float textureX, float textureY, float width, float height)
 	{
@@ -823,16 +767,11 @@ public class PGui// extends Gui
 	/**
 	 * Draws an IIcon
 	 *
-	 * @param x
-	 *            The x position
-	 * @param y
-	 *            The y position
-	 * @param icon
-	 *            The icon to draw
-	 * @param width
-	 *            The width of the icon
-	 * @param height
-	 *            The height of the icon
+	 * @param x      The x position
+	 * @param y      The y position
+	 * @param icon   The icon to draw
+	 * @param width  The width of the icon
+	 * @param height The height of the icon
 	 */
 	public void drawTexturedModelRectFromIcon(int x, int y, IIcon icon, int width, int height)
 	{
@@ -872,12 +811,9 @@ public class PGui// extends Gui
 	/**
 	 * Renders a progress bar on-screen
 	 *
-	 * @param caption
-	 *            The string to display above the bar
-	 * @param percent
-	 *            The percentage full of the bar (0-1)
-	 * @param xpBar
-	 *            True if you want to draw an XP-style bar instead of a boss bar
+	 * @param caption The string to display above the bar
+	 * @param percent The percentage full of the bar (0-1)
+	 * @param xpBar   True if you want to draw an XP-style bar instead of a boss bar
 	 */
 	public void renderBarOnscreen(String caption, float percent, boolean xpBar)
 	{
@@ -903,16 +839,11 @@ public class PGui// extends Gui
 	/**
 	 * Renders some hearts on-screen
 	 *
-	 * @param x
-	 *            The x position of the hearts
-	 * @param y
-	 *            The y position of the hearts
-	 * @param amount
-	 *            The amount of full hearts, in half hearts
-	 * @param max
-	 *            The maximum number of hearts displayed, in half hearts
-	 * @param wrap
-	 *            The amount of hearts per row, -1 for infinite
+	 * @param x      The x position of the hearts
+	 * @param y      The y position of the hearts
+	 * @param amount The amount of full hearts, in half hearts
+	 * @param max    The maximum number of hearts displayed, in half hearts
+	 * @param wrap   The amount of hearts per row, -1 for infinite
 	 */
 	public void renderHearts(int x, int y, int amount, int max, int wrap)
 	{
@@ -952,13 +883,10 @@ public class PGui// extends Gui
 	/**
 	 * Renders an item on-screen
 	 *
-	 * @param x
-	 *            The x position of the item
-	 * @param y
-	 *            The y position of the item
-	 * @param item
-	 *            The item to render (stackSize == 0 ? don't render text :
-	 *            render stack size)
+	 * @param x    The x position of the item
+	 * @param y    The y position of the item
+	 * @param item The item to render (stackSize == 0 ? don't render text :
+	 *             render stack size)
 	 */
 	public void renderItem(int x, int y, ItemStack item)
 	{
@@ -980,12 +908,9 @@ public class PGui// extends Gui
 	/**
 	 * Renders a progress bar on-screen
 	 *
-	 * @param caption
-	 *            The string to display above the bar
-	 * @param percent
-	 *            The percentage full of the bar (0-1)
-	 * @param jedi
-	 *            True if you want to draw an XP-style bar instead of a boss bar
+	 * @param caption The string to display above the bar
+	 * @param percent The percentage full of the bar (0-1)
+	 * @param jedi    True if you want to draw an XP-style bar instead of a boss bar
 	 */
 	public void renderLightsaberBarOnscreen(int x, int y, float percent, boolean jedi)
 	{
@@ -1020,8 +945,7 @@ public class PGui// extends Gui
 	/**
 	 * Renders an overlay on-screen, stretching to fit
 	 *
-	 * @param PGuiTexture
-	 *            The resource to render
+	 * @param PGuiTexture The resource to render
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture)
 	{
@@ -1054,12 +978,9 @@ public class PGui// extends Gui
 	/**
 	 * Renders an overlay on-screen, stretching to fit
 	 *
-	 * @param PGuiTexture
-	 *            The resource to render
-	 * @param offsetX
-	 *            The x offset
-	 * @param offsetY
-	 *            The y offset
+	 * @param PGuiTexture The resource to render
+	 * @param offsetX     The x offset
+	 * @param offsetY     The y offset
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture, float offsetX, float offsetY)
 	{
@@ -1092,16 +1013,11 @@ public class PGui// extends Gui
 	/**
 	 * Renders an overlay on-screen
 	 *
-	 * @param PGuiTexture
-	 *            The resource to render
-	 * @param x
-	 *            The x position of the overlay
-	 * @param y
-	 *            The y position of the overlay
-	 * @param w
-	 *            The width of the overlay
-	 * @param h
-	 *            The height of the overlay
+	 * @param PGuiTexture The resource to render
+	 * @param x           The x position of the overlay
+	 * @param y           The y position of the overlay
+	 * @param w           The width of the overlay
+	 * @param h           The height of the overlay
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture, float x, float y, float w, float h)
 	{
@@ -1133,14 +1049,10 @@ public class PGui// extends Gui
 	/**
 	 * Renders a string on-screen
 	 *
-	 * @param x
-	 *            The x position of the string
-	 * @param y
-	 *            The y position of the string
-	 * @param string
-	 *            The string to render
-	 * @param color
-	 *            The color of the string
+	 * @param x      The x position of the string
+	 * @param y      The y position of the string
+	 * @param string The string to render
+	 * @param color  The color of the string
 	 */
 	public void renderString(int x, int y, String string, int color)
 	{
@@ -1151,8 +1063,7 @@ public class PGui// extends Gui
 	/**
 	 * Renders a vignette on-screen
 	 *
-	 * @param brightness
-	 *            The brightness (0-1)
+	 * @param brightness The brightness (0-1)
 	 */
 	public void renderVignette(float brightness)
 	{

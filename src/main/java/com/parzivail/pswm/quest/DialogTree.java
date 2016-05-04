@@ -1,9 +1,8 @@
 package com.parzivail.pswm.quest;
 
-import java.util.function.Consumer;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.function.Consumer;
 
 public class DialogTree
 {
@@ -17,9 +16,9 @@ public class DialogTree
 	public DialogTree response3DT;
 
 	public Consumer<EntityPlayer> action; // adds the ability to make actions
-											// happen when trees are followed
-											// i.e. get weapons or set variables
-											// Usage: action = Class::method;
+	// happen when trees are followed
+	// i.e. get weapons or set variables
+	// Usage: action = Class::method;
 
 	public DialogTree()
 	{

@@ -2,7 +2,6 @@ package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.vehicle.VehicleLandBase;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.MathHelper;
@@ -62,7 +61,7 @@ public class VehicATST extends VehicleLandBase
 				this.rotationLast = this.rotationHead - 45;
 			else if (this.rotationHead < this.rotationYaw - 45)
 				this.rotationLast = this.rotationHead + 45;
-			
+
 			this.rotationPitch = this.riddenByEntity.rotationPitch;
 			this.setRotation(this.rotationLast, this.rotationPitch);
 			// p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing

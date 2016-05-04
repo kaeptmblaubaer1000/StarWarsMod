@@ -1,10 +1,5 @@
 package com.parzivail.pswm.handlers;
 
-import java.nio.FloatBuffer;
-
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
@@ -26,24 +21,11 @@ import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.rendering.helper.PGui;
 import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
-import com.parzivail.pswm.vehicles.VehicATST;
-import com.parzivail.pswm.vehicles.VehicAWing;
-import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
-import com.parzivail.pswm.vehicles.VehicSkyhopper;
-import com.parzivail.pswm.vehicles.VehicSpeederBike;
-import com.parzivail.pswm.vehicles.VehicTIE;
-import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
-import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.AnimationManager;
 import com.parzivail.util.entity.PlayerHelper;
-import com.parzivail.util.ui.GLPZ;
-import com.parzivail.util.ui.GuiManager;
-import com.parzivail.util.ui.Lumberjack;
-import com.parzivail.util.ui.RenderHelper;
-import com.parzivail.util.ui.Text;
-import com.parzivail.util.ui.TextUtils;
+import com.parzivail.util.ui.*;
 import com.parzivail.util.vehicle.VehicleAirBase;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -53,17 +35,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+
+import java.nio.FloatBuffer;
 
 public class ClientEventHandler
 {

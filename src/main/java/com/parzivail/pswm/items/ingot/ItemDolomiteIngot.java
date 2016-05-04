@@ -2,7 +2,6 @@ package com.parzivail.pswm.items.ingot;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.item.Item;
 
 public class ItemDolomiteIngot extends Item

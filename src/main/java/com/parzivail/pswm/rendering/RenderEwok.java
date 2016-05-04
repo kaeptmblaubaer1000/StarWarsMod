@@ -1,5 +1,8 @@
 package com.parzivail.pswm.rendering;
 
+import com.mojang.authlib.GameProfile;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.mobs.MobEwok;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -16,12 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
-
 import org.lwjgl.opengl.GL11;
-
-import com.mojang.authlib.GameProfile;
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.mobs.MobEwok;
 
 public class RenderEwok extends RenderLiving
 {
@@ -89,7 +87,7 @@ public class RenderEwok extends RenderLiving
 					if (nbttagcompound.hasKey("SkullOwner", 10))
 						gameprofile = net.minecraft.nbt.NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
 					else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner")))
-						gameprofile = new GameProfile((java.util.UUID)null, nbttagcompound.getString("SkullOwner"));
+						gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
 				}
 				TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, equippedItem.getItemDamage(), gameprofile);
 			}

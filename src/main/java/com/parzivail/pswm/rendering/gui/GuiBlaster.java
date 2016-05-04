@@ -1,12 +1,11 @@
 package com.parzivail.pswm.rendering.gui;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.rendering.helper.PGui;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 
 public class GuiBlaster
 {

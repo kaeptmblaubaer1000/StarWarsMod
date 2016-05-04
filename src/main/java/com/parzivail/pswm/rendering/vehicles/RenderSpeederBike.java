@@ -1,13 +1,12 @@
 package com.parzivail.pswm.rendering.vehicles;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.models.vehicles.ModelSpeederBike;
+import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.vehicles.ModelSpeederBike;
-import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
 
 public class RenderSpeederBike extends RenderLandBase
 {

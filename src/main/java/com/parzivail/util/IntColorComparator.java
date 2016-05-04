@@ -1,9 +1,9 @@
 package com.parzivail.util;
 
-import java.awt.Color;
-import java.util.Comparator;
-
 import com.parzivail.util.ui.GLPalette;
+
+import java.awt.*;
+import java.util.Comparator;
 
 public class IntColorComparator implements Comparator<Integer>
 {

@@ -1,15 +1,14 @@
 package com.parzivail.pswm.achievement;
 
-import java.util.Arrays;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.util.ui.Lumberjack;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+
+import java.util.Arrays;
 
 public class StarWarsAchievements
 {

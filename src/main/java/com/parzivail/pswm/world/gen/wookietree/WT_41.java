@@ -1,103 +1,83 @@
 package com.parzivail.pswm.world.gen.wookietree;
 
-
-
-
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.pswm.utils.NPCType;
 import com.parzivail.pswm.utils.SpawnUtils;
-
-
-
 import cpw.mods.fml.common.IWorldGenerator;
-
-
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-
-
-import net.minecraft.block.Block;
-
-import net.minecraft.init.Blocks;
-
-import net.minecraft.tileentity.TileEntityChest;
-
-import net.minecraft.world.World;
-
-import net.minecraft.world.WorldProvider;
-
-import net.minecraft.world.chunk.IChunkProvider;
-
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-
-public class WT_41
-extends WorldGenerator implements IWorldGenerator
+public class WT_41 extends WorldGenerator implements IWorldGenerator
 
 {
 	protected Block[] getValidSpawnBlocks()
-	
+
 	{
 		return new Block[0];
-		}
+	}
 
-	
 	public boolean locationIsValidSpawn(World world, int i, int j, int k)
-	
+
 	{
 		int distanceToAir = 0;
 		Block check = world.getBlock(i, j, k);
-		
+
 		while (check != Blocks.air)
 		{
-			if (distanceToAir > 3) { return false;
+			if (distanceToAir > 3)
+			{
+				return false;
 			}
-			
+
 			distanceToAir++;
 			check = world.getBlock(i, j + distanceToAir, k);
-			}
-		
+		}
+
 		j += distanceToAir - 1;
-		
+
 		Block block = world.getBlock(i, j, k);
 		Block blockAbove = world.getBlock(i, j + 1, k);
 		Block blockBelow = world.getBlock(i, j - 1, k);
-		
+
 		for (Block x : getValidSpawnBlocks())
 		{
-			if (blockAbove != Blocks.air) { return false;
+			if (blockAbove != Blocks.air)
+			{
+				return false;
 			}
-			if (block == x) return true;
-			if ((block == Blocks.snow) && (blockBelow == x)) { return true;
+			if (block == x)
+				return true;
+			if ((block == Blocks.snow) && (blockBelow == x))
+			{
+				return true;
 			}
-			}
-		
-		return false;
 		}
 
-	
-	
-	
+		return false;
+	}
+
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 	}
 
-	
-	
 	public void setBlock(World world, int x, int y, int z, Block block, int metadata)
-	
+
 	{
 		world.setBlock(x, y, z, block, metadata, 2);
-		}
+	}
 
-	
 	public boolean generate(World world, Random rand, int i, int j, int k)
-	
+
 	{
 		k -= 10;
 		i -= 10;
-		
+
 		setBlock(world, i + 0, j + 44, k + 3, Blocks.fence, 0);
 		setBlock(world, i + 0, j + 44, k + 4, Blocks.fence, 0);
 		setBlock(world, i + 0, j + 44, k + 5, Blocks.fence, 0);
@@ -1598,12 +1578,11 @@ extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 4, j + 25, k + 3, 1, 2);
 		setBlock(world, i + 4, j + 25, k + 4, Blocks.log, 1);
 		world.setBlockMetadataWithNotify(i + 4, j + 25, k + 4, 1, 2);
-		
+
 		generate2(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate2(World world, Random rand, int i, int j, int k)
 	{
 		setBlock(world, i + 4, j + 25, k + 5, Blocks.log, 1);
@@ -3107,12 +3086,11 @@ extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 7, j + 27, k + 8, 1, 2);
 		setBlock(world, i + 7, j + 27, k + 9, Blocks.log, 1);
 		world.setBlockMetadataWithNotify(i + 7, j + 27, k + 9, 1, 2);
-		
+
 		generate3(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate3(World world, Random rand, int i, int j, int k)
 	{
 		setBlock(world, i + 7, j + 27, k + 10, Blocks.planks, 5);
@@ -4617,12 +4595,11 @@ extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 10, j + 30, k + 3, 1, 2);
 		setBlock(world, i + 10, j + 30, k + 11, Blocks.torch, 2);
 		world.setBlockMetadataWithNotify(i + 10, j + 30, k + 11, 2, 2);
-		
+
 		generate4(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate4(World world, Random rand, int i, int j, int k)
 	{
 		setBlock(world, i + 10, j + 31, k + 8, Blocks.log, 1);
@@ -6125,12 +6102,11 @@ extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 16, j + 31, k + 5, 1, 2);
 		setBlock(world, i + 16, j + 31, k + 6, Blocks.log, 1);
 		world.setBlockMetadataWithNotify(i + 16, j + 31, k + 6, 1, 2);
-		
+
 		generate5(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate5(World world, Random rand, int i, int j, int k)
 	{
 		setBlock(world, i + 16, j + 31, k + 7, Blocks.log, 1);
@@ -7633,12 +7609,11 @@ extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 28, j + 25, k + 23, 1, 2);
 		setBlock(world, i + 28, j + 25, k + 24, Blocks.log, 1);
 		world.setBlockMetadataWithNotify(i + 28, j + 25, k + 24, 1, 2);
-		
+
 		generate6(world, rand, i, j, k);
 		return true;
-		}
+	}
 
-	
 	public boolean generate6(World world, Random rand, int i, int j, int k)
 	{
 		setBlock(world, i + 28, j + 25, k + 25, Blocks.log, 1);
@@ -8687,10 +8662,10 @@ extends WorldGenerator implements IWorldGenerator
 		world.setBlockMetadataWithNotify(i + 31, j + 51, k + 22, 1, 2);
 		setBlock(world, i + 31, j + 51, k + 23, Blocks.log, 1);
 		world.setBlockMetadataWithNotify(i + 31, j + 51, k + 23, 1, 2);
-		
+
 		return true;
-		}
-	
+	}
+
 }
 
 /*

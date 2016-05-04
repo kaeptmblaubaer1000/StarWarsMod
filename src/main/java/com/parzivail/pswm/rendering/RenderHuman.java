@@ -14,7 +14,7 @@ public class RenderHuman extends RenderBiped
 	{
 		super(par1ModelBase, par2);
 	}
-	
+
 	public RenderHuman(ModelBiped par1ModelBase, float par2, ResourceLocation overrideTexture)
 	{
 		super(par1ModelBase, par2);

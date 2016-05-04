@@ -44,7 +44,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
-@Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = Resources.MODID,
+     version = Resources.VERSION,
+     name = "Parzi's Star Wars Mod",
+     acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
 {
 	public static boolean hasShownNeedUpdate = false;
@@ -67,7 +70,8 @@ public class StarWarsMod
 	public static ClientEventHandler clientHandler;
 	public static CommonEventHandler commonHandler;
 
-	@SidedProxy(clientSide = "com.parzivail.pswm.StarWarsClientProxy", serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
+	@SidedProxy(clientSide = "com.parzivail.pswm.StarWarsClientProxy",
+	            serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
 	public static SimpleNetworkWrapper network;
 
@@ -114,7 +118,6 @@ public class StarWarsMod
 	public static Item binocularsHoth;
 
 	public static Item debugLootGen;
-	public static Item debugLandspeederNPC;
 
 	public static Item chromiumDust;
 	public static Item titaniumDust;
@@ -268,8 +271,6 @@ public class StarWarsMod
 	public static BiomeGenBase biomeIlum;
 	public static BiomeGenBase biomeMustafar;
 
-	public static boolean isWorldRegistered = false;
-
 	public static boolean isOverlayOnscreen = false;
 
 	public static Block blockMV;
@@ -356,7 +357,7 @@ public class StarWarsMod
 	private void checkCompat()
 	{
 		boolean flag = false;
-		ArrayList<String> m = new ArrayList<String>();
+		ArrayList<String> m = new ArrayList<>();
 		for (String mod : Resources.checkCompatList)
 			if (Loader.isModLoaded(mod))
 			{
@@ -419,8 +420,6 @@ public class StarWarsMod
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod init() ==========");
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
-
-		//test addition
 
 		instance = this;
 

@@ -1,7 +1,6 @@
 package com.parzivail.util.world;
 
 import com.parzivail.util.ui.Lumberjack;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -43,12 +42,12 @@ public class WorldUtils
 		DimensionManager.unregisterDimension(dimId);
 		Lumberjack.log("Provider and World unregistered for " + dimId);
 	}
-	
+
 	/**
-     * Sets the block ID and metadata at a given location. Args: X, Y, Z, new block ID, new metadata, flags. Flag 1 will
-     * cause a block update. Flag 2 will send the change to clients (you almost always want this). Flag 4 prevents the
-     * block from being re-rendered, if this is a client world. Flags can be added together.
-     */
+	 * Sets the block ID and metadata at a given location. Args: X, Y, Z, new block ID, new metadata, flags. Flag 1 will
+	 * cause a block update. Flag 2 will send the change to clients (you almost always want this). Flag 4 prevents the
+	 * block from being re-rendered, if this is a client world. Flags can be added together.
+	 */
 	public static boolean setBlock(World world, int x, int y, int z, Block block, int metadata, int flags)
 	{
 		if (x >= -30000000 && z >= -30000000 && x < 30000000 && z < 30000000)

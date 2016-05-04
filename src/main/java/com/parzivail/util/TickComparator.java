@@ -5,12 +5,13 @@ package com.parzivail.util;
  * starting or stopping things, or events, based on what a player's doing
  *
  * @author Colby
- *
  */
 public class TickComparator
 {
 	private boolean was = false;
-	/** Set this every tick to whatever you're checking **/
+	/**
+	 * Set this every tick to whatever you're checking
+	 **/
 	public boolean is = false;
 
 	/**

@@ -1,11 +1,10 @@
 package com.parzivail.pswm.jedirobes.powers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageDrainKnowledge;
 import com.parzivail.util.entity.EntityUtils;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class PowerDrainKnowledge extends Power
 {

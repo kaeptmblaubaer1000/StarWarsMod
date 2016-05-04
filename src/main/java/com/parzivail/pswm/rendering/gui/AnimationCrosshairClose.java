@@ -1,9 +1,8 @@
 package com.parzivail.pswm.rendering.gui;
 
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.Animation;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class AnimationCrosshairClose extends Animation
 {

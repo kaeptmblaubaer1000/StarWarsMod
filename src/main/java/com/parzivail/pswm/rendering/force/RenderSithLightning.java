@@ -1,15 +1,13 @@
 package com.parzivail.pswm.rendering.force;
 
-import java.util.Random;
-
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
-
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import java.util.Random;
 
 public class RenderSithLightning
 {

@@ -1,19 +1,17 @@
 package com.parzivail.pswm.rendering.item;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.weapons.ModelDL21;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderDL21 implements IItemRenderer
 {
-    private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/weapons/dl21.png");
-    
+	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/weapons/dl21.png");
+
 	private ModelDL21 model;
 
 	public RenderDL21()

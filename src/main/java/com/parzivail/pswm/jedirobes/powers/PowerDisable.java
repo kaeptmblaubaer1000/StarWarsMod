@@ -1,13 +1,12 @@
 package com.parzivail.pswm.jedirobes.powers;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageAddEffectTo;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GuiToast;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class PowerDisable extends Power
 {

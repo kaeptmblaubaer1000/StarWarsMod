@@ -1,10 +1,9 @@
 package com.parzivail.pswm.registry;
 
-import net.minecraftforge.common.util.EnumHelper;
-
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.Lumberjack;
+import net.minecraftforge.common.util.EnumHelper;
 
 public class MaterialRegister
 {

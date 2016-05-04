@@ -1,9 +1,8 @@
 package com.parzivail.pswm.rendering.fx;
 
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.StarWarsMod;
 
 public class ParticleBlasterBolt extends EntityFX
 {

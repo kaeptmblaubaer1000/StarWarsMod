@@ -1,13 +1,11 @@
 package com.parzivail.pswm.rendering;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.ShaderHelper;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import org.lwjgl.opengl.GL11;
 
 public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
 {

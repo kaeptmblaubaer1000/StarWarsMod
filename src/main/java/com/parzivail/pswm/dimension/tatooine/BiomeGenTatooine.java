@@ -1,69 +1,15 @@
 package com.parzivail.pswm.dimension.tatooine;
 
-import java.util.Random;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenMV;
 import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_00;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_01;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_02;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_03;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_04;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_05;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_06;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_07;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_08;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_10;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_11;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_12;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_13;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_14;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_15;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_16;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_17;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_18;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_20;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_21;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_22;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_23;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_24;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_25;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_26;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_27;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_28;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_30;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_31;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_32;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_33;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_34;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_35;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_36;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_37;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_38;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_40;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_41;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_42;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_43;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_44;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_45;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_46;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_47;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_48;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_50;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_51;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_52;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_53;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_54;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_55;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_56;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_57;
-import com.parzivail.pswm.world.gen.moseisley.big.ME_58;
+import com.parzivail.pswm.world.gen.moseisley.big.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BiomeGenTatooine extends BiomeGenPSWM
 {

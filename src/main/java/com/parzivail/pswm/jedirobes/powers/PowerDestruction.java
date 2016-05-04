@@ -1,9 +1,8 @@
 package com.parzivail.pswm.jedirobes.powers;
 
-import net.minecraft.entity.player.EntityPlayer;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageCreateDestructionBolt;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class PowerDestruction extends Power
 {

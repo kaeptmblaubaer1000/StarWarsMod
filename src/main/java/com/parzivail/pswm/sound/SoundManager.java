@@ -3,20 +3,10 @@ package com.parzivail.pswm.sound;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.vehicles.VehicAWing;
-import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
-import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
-import com.parzivail.pswm.vehicles.VehicLandspeeder;
-import com.parzivail.pswm.vehicles.VehicSkyhopper;
-import com.parzivail.pswm.vehicles.VehicSnowspeeder;
-import com.parzivail.pswm.vehicles.VehicSpeederBike;
-import com.parzivail.pswm.vehicles.VehicTIE;
-import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
-import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.TickComparator;
 import com.parzivail.util.sound.PSoundBank;
 import com.parzivail.util.vehicle.VehicleBase;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.MovingSound;
@@ -68,7 +58,7 @@ public class SoundManager
 			soundBank.stop(SoundManager.shipMove);
 
 		inShip.tick();
-		
+
 		ItemStack iLS = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
 
 		holdingLightsaber.is = iLS != null && iLS.getItem() instanceof ItemLightsaber && iLS.stackTagCompound != null && iLS.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn);

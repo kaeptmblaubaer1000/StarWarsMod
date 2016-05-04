@@ -1,10 +1,9 @@
 package com.parzivail.util.ui;
 
+import com.parzivail.pswm.Resources;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.parzivail.pswm.Resources;
 
 public class Lumberjack
 {

@@ -1,23 +1,23 @@
 package com.parzivail.pswm.world.gen;
 
 import com.parzivail.util.world.WorldUtils;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.world.World;
 
-
 public class WorldGenTest
 {
-	public WorldGenTest() { }
+	public WorldGenTest()
+	{
+	}
 
 	public void b(World world, int x, int y, int z, Block block, int metadata)
 	{
 		WorldUtils.setBlock(world, x, y, z, block, metadata, 1 | 2);
 	}
-    
-    public void m(World world, int x, int y, int z, int metadata)
+
+	public void m(World world, int x, int y, int z, int metadata)
 	{
 		world.setBlockMetadataWithNotify(x, y, z, metadata, 1 | 2);
 	}

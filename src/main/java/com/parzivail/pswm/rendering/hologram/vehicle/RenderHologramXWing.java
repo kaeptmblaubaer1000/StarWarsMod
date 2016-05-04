@@ -1,14 +1,13 @@
 package com.parzivail.pswm.rendering.hologram.vehicle;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelXWing;
 import com.parzivail.pswm.rendering.hologram.RenderHologramBase;
 import com.parzivail.pswm.vehicles.VehicXWing;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderHologramXWing extends RenderHologramBase
 {

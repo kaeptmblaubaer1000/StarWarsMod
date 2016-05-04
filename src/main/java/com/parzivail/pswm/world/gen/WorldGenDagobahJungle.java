@@ -1,17 +1,12 @@
 package com.parzivail.pswm.world.gen;
 
-import java.util.Random;
-
-import com.parzivail.pswm.StarWarsMod;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenHugeTrees;
-import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 public class WorldGenDagobahJungle extends WorldGenHugeTrees
 {

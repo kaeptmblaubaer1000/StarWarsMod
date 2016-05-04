@@ -1,12 +1,8 @@
 package com.parzivail.pswm.blocks;
 
-import java.util.List;
-import java.util.Random;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSlab;
@@ -17,6 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockTempleStoneSlab extends BlockSlab
 {
@@ -53,7 +52,7 @@ public class BlockTempleStoneSlab extends BlockSlab
 		this.icons = new IIcon[names.length + 1];
 		for (int i = 0; i < names.length; i++)
 		{
-			icons[i] = p_149651_1_.registerIcon(Resources.MODID + ":" + this.names[i]);
+			icons[i] = p_149651_1_.registerIcon(Resources.MODID + ":" + names[i]);
 		}
 
 		icons[names.length] = p_149651_1_.registerIcon(Resources.MODID + ":" + "templeStoneSlabTopDark");

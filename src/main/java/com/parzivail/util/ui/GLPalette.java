@@ -1,10 +1,9 @@
 package com.parzivail.util.ui;
 
-import java.awt.Color;
-
+import com.parzivail.pswm.rendering.helper.PGui;
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.pswm.rendering.helper.PGui;
+import java.awt.*;
 
 public class GLPalette
 {
@@ -972,7 +971,7 @@ public class GLPalette
 		int blue = rgba & 0xFF;
 		return new Color(red, green, blue, 255);
 	}
-	
+
 	public static int colorToInt(Color c)
 	{
 		int rgb = c.getRed();

@@ -1,10 +1,7 @@
 package com.parzivail.pswm.models.lightsabers;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.rendering.IHandlesRender;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -13,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
+import org.lwjgl.opengl.GL11;
 
 /**
  * StarkillerHilt - Undefined Created using Tabula 4.1.1

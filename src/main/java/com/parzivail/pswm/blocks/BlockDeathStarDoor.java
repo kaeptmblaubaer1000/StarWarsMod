@@ -1,13 +1,10 @@
 package com.parzivail.pswm.blocks;
 
-import java.util.List;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.world.HarvestLevel;
-
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,6 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class BlockDeathStarDoor extends BlockContainer implements IDebugProvider
 {

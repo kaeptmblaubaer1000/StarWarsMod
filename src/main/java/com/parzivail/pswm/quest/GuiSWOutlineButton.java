@@ -1,13 +1,11 @@
 package com.parzivail.pswm.quest;
 
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import org.lwjgl.opengl.GL11;
 
 public class GuiSWOutlineButton extends GuiButton
 {

@@ -1,5 +1,9 @@
 package com.parzivail.pswm.entities;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +16,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 
 public class EntityBlasterBoltBase extends EntityThrowable
 {

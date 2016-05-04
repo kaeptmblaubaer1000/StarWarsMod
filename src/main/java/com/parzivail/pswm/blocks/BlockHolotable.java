@@ -1,7 +1,5 @@
 package com.parzivail.pswm.blocks;
 
-import java.util.List;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
@@ -10,7 +8,6 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.world.HarvestLevel;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -23,6 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class BlockHolotable extends BlockContainer implements IDebugProvider
 {

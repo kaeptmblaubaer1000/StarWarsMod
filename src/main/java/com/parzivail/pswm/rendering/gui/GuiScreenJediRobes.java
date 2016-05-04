@@ -1,17 +1,5 @@
 package com.parzivail.pswm.rendering.gui;
 
-import java.util.ArrayList;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
@@ -21,12 +9,20 @@ import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.ui.ShaderHelper;
 import com.parzivail.util.ui.Text;
 import com.parzivail.util.ui.TextUtils;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class GuiScreenJediRobes extends GuiScreen

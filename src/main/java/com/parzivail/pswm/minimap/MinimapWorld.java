@@ -1,15 +1,14 @@
 package com.parzivail.pswm.minimap;
 
-import java.awt.Point;
-import java.util.HashMap;
-
+import com.parzivail.util.ui.GLPalette;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldServer;
 
-import com.parzivail.util.ui.GLPalette;
+import java.awt.*;
+import java.util.HashMap;
 
 public class MinimapWorld
 {

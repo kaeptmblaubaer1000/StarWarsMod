@@ -1,11 +1,11 @@
 package com.parzivail.pswm.dimension;
 
-import java.util.Random;
-
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenForest;
+
+import java.util.Random;
 
 public class BiomeGenPSWM extends BiomeGenBase
 {

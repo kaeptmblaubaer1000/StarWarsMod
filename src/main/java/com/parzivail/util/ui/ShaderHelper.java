@@ -1,18 +1,16 @@
 package com.parzivail.util.ui;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.client.renderer.OpenGlHelper;
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexShader;
 import org.lwjgl.opengl.GL11;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-
-import net.minecraft.client.renderer.OpenGlHelper;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public final class ShaderHelper
 {
@@ -65,7 +63,7 @@ public final class ShaderHelper
 			return;
 
 		ARBShaderObjects.glUseProgramObjectARB(shader);
-		
+
 		if (shader != 0)
 		{
 			if (shader == glowSolid)

@@ -1,14 +1,12 @@
 package com.parzivail.pswm.rendering.hologram;
 
+import com.parzivail.util.ui.GLPalette;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
-import com.parzivail.util.ui.GLPalette;
 
 public class RenderHologramBase extends RenderLiving
 {

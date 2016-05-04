@@ -1,13 +1,12 @@
 package com.parzivail.pswm.rendering.gui;
 
+import com.parzivail.pswm.tileentities.TileEntityMV;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
-
-import com.parzivail.pswm.tileentities.TileEntityMV;
 
 public class ContainerMV extends Container
 {
@@ -58,7 +57,7 @@ public class ContainerMV extends Container
 			else if (!this.mergeItemStack(itemstack1, 1, 37, false))
 				return null;
 			if (itemstack1.stackSize == 0)
-				slot.putStack((ItemStack)null);
+				slot.putStack(null);
 			else
 				slot.onSlotChanged();
 			if (itemstack1.stackSize == itemstack.stackSize)

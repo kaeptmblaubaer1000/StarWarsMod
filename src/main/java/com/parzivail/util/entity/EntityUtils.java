@@ -1,12 +1,8 @@
 package com.parzivail.util.entity;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.EntityDroidBase;
 import com.parzivail.util.ui.Lumberjack;
-
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -17,6 +13,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class EntityUtils
 {
 	private static int mobId = 300;
@@ -25,24 +24,24 @@ public class EntityUtils
 	{
 		return isSitting ? "Restrained" : "Unrestrained";
 	}
-	
+
 	public static List<String> getRebelDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		list.add(droid.isTamed() ? "Owned" : "For Sale");
 		if (droid.getOwner() != null)
 			list.add("Owner: " + droid.getOwner().getCommandSenderName());
 		list.add(droid.isSitting() ? "Restrained" : "Unrestrained");
-		
+
 		return list;
 	}
-	
+
 	public static List<String> getImperialDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		list.add(droid.isTamed() ? "Hacked" : "Employed");
 		if (droid.getOwner() != null)
 			list.add("Hacker: " + droid.getOwner().getCommandSenderName());
 		list.add(droid.isSitting() ? "Restrained" : "Unrestrained");
-		
+
 		return list;
 	}
 
@@ -54,13 +53,10 @@ public class EntityUtils
 	/**
 	 * Ray-traces from the given entity's POV
 	 *
-	 * @param distance
-	 *            The range of the trace
-	 * @param fromEntity
-	 *            The POV entity
-	 * @param exclude
-	 *            The entity references to exclude (Note: not classes, but
-	 *            inequality between two entity pointers)
+	 * @param distance   The range of the trace
+	 * @param fromEntity The POV entity
+	 * @param exclude    The entity references to exclude (Note: not classes, but
+	 *                   inequality between two entity pointers)
 	 * @return Returns the entity the trace hit, or null if none is hit
 	 */
 	public static Entity rayTrace(int distance, EntityLivingBase fromEntity, Entity[] exclude)

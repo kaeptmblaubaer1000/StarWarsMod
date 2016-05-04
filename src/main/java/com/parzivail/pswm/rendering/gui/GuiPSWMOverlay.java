@@ -1,11 +1,5 @@
 package com.parzivail.pswm.rendering.gui;
 
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.lwjgl.opengl.GL11;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
@@ -17,7 +11,6 @@ import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -29,6 +22,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import org.lwjgl.opengl.GL11;
+
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GuiPSWMOverlay extends Gui
 {
@@ -122,10 +120,10 @@ public class GuiPSWMOverlay extends Gui
 			{
 				Block block = this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
 				IDebugProvider debugProvider = (IDebugProvider)block;
-				
+
 				ArrayList<String> s = new ArrayList<>();
 				s.add(block.getLocalizedName());
-				
+
 				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
 
 				GL11.glPushMatrix();
@@ -140,16 +138,17 @@ public class GuiPSWMOverlay extends Gui
 
 				GL11.glPopMatrix();
 			}
-		} else if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY&& mc.gameSettings.showDebugInfo)
+		}
+		else if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 			if (mop.entityHit instanceof IDebugProvider)
 			{
 				IDebugProvider debugProvider = (IDebugProvider)mop.entityHit;
-				
+
 				ArrayList<String> s = new ArrayList<>();
 				s.add(mop.entityHit.getCommandSenderName());
-				
+
 				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
 
 				GL11.glPushMatrix();

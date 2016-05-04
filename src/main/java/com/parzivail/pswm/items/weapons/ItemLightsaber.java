@@ -1,16 +1,11 @@
 package com.parzivail.pswm.items.weapons;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.util.IntColorComparator;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.GLPalette;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,6 +16,10 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ItemLightsaber extends ItemSword
 {
@@ -151,7 +150,7 @@ public class ItemLightsaber extends ItemSword
 				aPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
 			}
 		}
-		
+
 		if (stack.stackTagCompound != null)
 		{
 			float damage = stack.stackTagCompound.getBoolean(nbtBladeOn) ? 30 : 0;
