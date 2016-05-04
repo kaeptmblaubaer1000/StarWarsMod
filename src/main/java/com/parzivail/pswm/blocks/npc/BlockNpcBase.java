@@ -69,6 +69,7 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 			{
 				TileEntityStaticNpc t = (TileEntityStaticNpc)tile;
 				t.setLocked(!t.getLocked());
+				// TODO: send to server
 			}
 		}
 		else
