@@ -1,12 +1,5 @@
 package com.parzivail.pswm;
 
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.apache.commons.io.IOUtils;
-
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.commands.CommandJediRobes;
@@ -15,56 +8,13 @@ import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.handlers.CommonEventHandler;
 import com.parzivail.pswm.handlers.GuiHandler;
 import com.parzivail.pswm.items.crafting.ItemLightsaberCrystal;
-import com.parzivail.pswm.items.weapons.ItemBlasterHeavy;
-import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
-import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
-import com.parzivail.pswm.items.weapons.ItemEwokSpear;
-import com.parzivail.pswm.items.weapons.ItemGaffiStick;
-import com.parzivail.pswm.items.weapons.ItemGamorreanAx1;
-import com.parzivail.pswm.items.weapons.ItemGamorreanAx2;
-import com.parzivail.pswm.items.weapons.ItemGamorreanAx3;
-import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.items.weapons.ItemLightsaberOff;
-import com.parzivail.pswm.items.weapons.ItemOldLightsaber;
-import com.parzivail.pswm.items.weapons.ItemSequelBlasterPistol;
-import com.parzivail.pswm.items.weapons.ItemSequelBlasterRifle;
-import com.parzivail.pswm.items.weapons.ItemVibroLance;
-import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
-import com.parzivail.pswm.network.MessageAddEffectTo;
-import com.parzivail.pswm.network.MessageCreateBlasterBolt;
-import com.parzivail.pswm.network.MessageCreateDestructionBolt;
-import com.parzivail.pswm.network.MessageDoWorldgen;
-import com.parzivail.pswm.network.MessageDrainKnowledge;
-import com.parzivail.pswm.network.MessageEntityAlterMotion;
-import com.parzivail.pswm.network.MessageEntityGrab;
-import com.parzivail.pswm.network.MessageEntityHurt;
-import com.parzivail.pswm.network.MessageEntityPosition;
-import com.parzivail.pswm.network.MessageEntityReverse;
-import com.parzivail.pswm.network.MessageHeal;
-import com.parzivail.pswm.network.MessageHoloTableUpdate;
-import com.parzivail.pswm.network.MessageHyperdrive;
-import com.parzivail.pswm.network.MessageRobesBooleanNBT;
-import com.parzivail.pswm.network.MessageRobesIntNBT;
-import com.parzivail.pswm.network.MessageRobesPowerNBT;
-import com.parzivail.pswm.network.MessageRobesStringNBT;
-import com.parzivail.pswm.network.MessageSFoil;
-import com.parzivail.pswm.network.MessageSetEntityTarget;
-import com.parzivail.pswm.network.MessageSetPlayerHolding;
-import com.parzivail.pswm.network.MessageShipTargetLock;
-import com.parzivail.pswm.network.MessageToggleLightsaber;
-import com.parzivail.pswm.network.MessageTransmute;
-import com.parzivail.pswm.registry.BlockRegister;
-import com.parzivail.pswm.registry.DamageSourceRegister;
-import com.parzivail.pswm.registry.EntityRegister;
-import com.parzivail.pswm.registry.ItemRegister;
-import com.parzivail.pswm.registry.MaterialRegister;
-import com.parzivail.pswm.registry.RecipeRegister;
-import com.parzivail.pswm.registry.WorldRegister;
+import com.parzivail.pswm.items.weapons.*;
+import com.parzivail.pswm.network.*;
+import com.parzivail.pswm.registry.*;
 import com.parzivail.pswm.tabs.SequelStarWarsTab;
 import com.parzivail.pswm.tabs.StarWarsTab;
 import com.parzivail.pswm.tabs.StarWarsTabBlocks;
 import com.parzivail.util.ui.Lumberjack;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -87,6 +37,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import org.apache.commons.io.IOUtils;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Random;
 
 @Mod(modid = Resources.MODID, version = Resources.VERSION, name = "Parzi's Star Wars Mod", acceptedMinecraftVersions = "[1.7.10]")
 public class StarWarsMod
@@ -463,6 +419,8 @@ public class StarWarsMod
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod init() ==========");
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
+
+		//test addition
 
 		instance = this;
 
