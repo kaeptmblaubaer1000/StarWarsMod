@@ -63,14 +63,13 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ)
 	{
-		if (player.isSneaking())
+		if (player.isSneaking() && !world.isRemote)
 		{
 			TileEntity tile = world.getTileEntity(x, y, z);
 			if (tile instanceof TileEntityStaticNpc)
 			{
 				TileEntityStaticNpc t = (TileEntityStaticNpc)tile;
 				StarWarsMod.network.sendToServer(new MessageChangeStaticNpcLock(t, !t.getLocked()));
-				Lumberjack.log(t.getLocked());
 			}
 		}
 		else
