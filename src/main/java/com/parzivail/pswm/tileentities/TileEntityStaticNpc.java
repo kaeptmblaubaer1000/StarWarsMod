@@ -17,7 +17,7 @@ public class TileEntityStaticNpc extends TileEntity
 
 	public TileEntityStaticNpc()
 	{
-		this.setId("UNKNOWN");
+		this.setId("no-faction:no-quest:default-skin");
 	}
 
 	String id = "";
