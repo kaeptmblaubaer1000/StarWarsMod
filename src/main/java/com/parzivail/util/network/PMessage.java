@@ -56,6 +56,8 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(Vec3.class, PMessage::readVec3, PMessage::writeVec3);
 		map(EntityCooldownEntry.class, PMessage::readEntityCooldownEntry, PMessage::writeEntityCooldownEntry);
 		map(Color.class, PMessage::readColor, PMessage::writeColor);
+
+		// TODO: add world read/write
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
