@@ -2,6 +2,7 @@ package com.parzivail.pswm.blocks.npc;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageChangeStaticNpcLock;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.ui.Lumberjack;
@@ -68,8 +69,7 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 			if (tile instanceof TileEntityStaticNpc)
 			{
 				TileEntityStaticNpc t = (TileEntityStaticNpc)tile;
-				t.setLocked(!t.getLocked());
-				// TODO: send to server
+				StarWarsMod.network.sendToServer(new MessageChangeStaticNpcLock(t, !t.getLocked()));
 			}
 		}
 		else
