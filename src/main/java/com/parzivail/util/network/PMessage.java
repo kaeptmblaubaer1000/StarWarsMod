@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.*;
@@ -56,8 +57,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(Vec3.class, PMessage::readVec3, PMessage::writeVec3);
 		map(EntityCooldownEntry.class, PMessage::readEntityCooldownEntry, PMessage::writeEntityCooldownEntry);
 		map(Color.class, PMessage::readColor, PMessage::writeColor);
-
-		// TODO: add world read/write
+		map(World.class, PMessage::readWorld, PMessage::writeWorld);
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
@@ -187,6 +187,17 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		double y = buf.readDouble();
 		double z = buf.readDouble();
 		return Vec3.createVectorHelper(x, y, z);
+	}
+
+	private static World readWorld(ByteBuf buf)
+	{
+		int dim = buf.readInt();
+		return MinecraftServer.getServer().worldServerForDimension(dim);
+	}
+
+	private static void writeWorld(World w, ByteBuf buf)
+	{
+		buf.writeInt(w.provider.dimensionId);
 	}
 
 	private static void writeBoolean(boolean b, ByteBuf buf)

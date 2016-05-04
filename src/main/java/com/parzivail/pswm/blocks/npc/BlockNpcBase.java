@@ -70,6 +70,7 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 			{
 				TileEntityStaticNpc t = (TileEntityStaticNpc)tile;
 				StarWarsMod.network.sendToServer(new MessageChangeStaticNpcLock(t, !t.getLocked()));
+				Lumberjack.log(t.getLocked());
 			}
 		}
 		else
