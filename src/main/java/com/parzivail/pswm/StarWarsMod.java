@@ -564,6 +564,7 @@ public class StarWarsMod
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
 
+	@SuppressWarnings("unchecked")
 	public void registerMessage(Class messageHandler)
 	{
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.SERVER);

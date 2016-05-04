@@ -15,6 +15,9 @@ public class TileEntityStaticNpc extends TileEntity
 	AxisAlignedBB bb;
 	MobDefaultBiped internalBiped;
 
+	boolean locked = false;
+	int facing = 0;
+
 	String id = "";
 
 	public TileEntityStaticNpc()
@@ -30,6 +33,26 @@ public class TileEntityStaticNpc extends TileEntity
 	public void setId(String id)
 	{
 		this.id = id;
+	}
+
+	public int getFacing()
+	{
+		return facing;
+	}
+
+	public void setFacing(int facing)
+	{
+		this.facing = facing;
+	}
+
+	public boolean getLocked()
+	{
+		return locked;
+	}
+
+	public void setLocked(boolean locked)
+	{
+		this.locked = locked;
 	}
 
 	@Override
