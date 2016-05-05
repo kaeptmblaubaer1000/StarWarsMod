@@ -2,9 +2,9 @@ package com.parzivail.pswm.blocks.npc;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageChangeStaticNpcLock;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.ui.KeyboardUtils;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.BlockContainer;
@@ -63,20 +63,8 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ)
 	{
-		if (player.isSneaking() && !world.isRemote)
-		{
-			TileEntity tile = world.getTileEntity(x, y, z);
-			if (tile instanceof TileEntityStaticNpc)
-			{
-				TileEntityStaticNpc t = (TileEntityStaticNpc)tile;
-				StarWarsMod.network.sendToServer(new MessageChangeStaticNpcLock(t, !t.getLocked()));
-			}
-		}
-		else
-		{
-			if (!world.isRemote)
+		if (!world.isRemote)
 				player.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, world, x, y, z);
-		}
 		return true;
 	}
 
@@ -87,9 +75,11 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityStaticNpc)
 		{
 			TileEntityStaticNpc tile1 = (TileEntityStaticNpc)tile;
-			int l = MathHelper.floor_double(player.rotationYaw % 360 / 90f + 0.5f);
+			int l = Math.abs(MathHelper.floor_double(player.rotationYaw % 360 / 90f + 0.5f));
 			tile1.setFacing(l);
+			tile1.setLocked(KeyboardUtils.isControlDown());
 			Lumberjack.log("placed at " + String.valueOf(tile1.getFacing()));
+			Lumberjack.log("locked: " + String.valueOf(tile1.getLocked()));
 		}
 	}
 

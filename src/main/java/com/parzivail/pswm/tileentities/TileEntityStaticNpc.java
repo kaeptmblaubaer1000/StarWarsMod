@@ -97,19 +97,19 @@ public class TileEntityStaticNpc extends TileEntity
 	@Override
 	public void readFromNBT(NBTTagCompound p_145839_1_)
 	{
+		super.readFromNBT(p_145839_1_);
 		this.setId(p_145839_1_.getString("quest-id"));
 		this.setFacing(p_145839_1_.getInteger("facing"));
 		this.setLocked(p_145839_1_.getBoolean("locked"));
-		super.readFromNBT(p_145839_1_);
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{
-		super.writeToNBT(p_145841_1_);
 		p_145841_1_.setString("quest-id", getId());
 		p_145841_1_.setInteger("facing", getFacing());
 		p_145841_1_.setBoolean("locked", getLocked());
+		super.writeToNBT(p_145841_1_);
 	}
 
 	public MobDefaultBiped getInternalEntity()
