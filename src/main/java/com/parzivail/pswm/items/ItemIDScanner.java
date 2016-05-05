@@ -24,7 +24,7 @@ public class ItemIDScanner extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (StarWarsMod.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && player.isSneaking() && !world.isRemote)
+		if (world.isRemote && StarWarsMod.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && player.isSneaking())
 		{
 			Entity e = StarWarsMod.mc.objectMouseOver.entityHit;
 			if (e instanceof IParziNPC)
