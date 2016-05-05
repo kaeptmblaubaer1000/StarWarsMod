@@ -15,13 +15,13 @@ public class DialogTree
 	public DialogTree response2DT;
 	public DialogTree response3DT;
 
-	public Consumer<EntityPlayer> action; // adds the ability to make actions
-	// happen when trees are followed
-	// i.e. get weapons or set variables
-	// Usage: action = Class::method;
-	// or action = entityPlayer -> {
-	//     [...]
-	// };
+	/**
+	 * Consumer that should be run when the dialog tree is selected.
+	 * Adds the ability to make actions
+	 * happen when trees are followed
+	 * i.e. get weapons or set variables
+	 */
+	public Consumer<EntityPlayer> action;
 
 	public DialogTree()
 	{
@@ -29,5 +29,16 @@ public class DialogTree
 		response1 = "";
 		response2 = "";
 		response3 = "";
+	}
+
+	public boolean hasAction()
+	{
+		return action != null;
+	}
+
+	public void doAction(EntityPlayer player)
+	{
+		if (hasAction())
+			action.accept(player);
 	}
 }

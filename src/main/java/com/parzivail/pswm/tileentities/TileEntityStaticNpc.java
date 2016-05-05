@@ -2,6 +2,7 @@ package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
+import com.parzivail.pswm.quest.QuestNpcUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +23,7 @@ public class TileEntityStaticNpc extends TileEntity
 
 	public TileEntityStaticNpc()
 	{
-		this.setId("no-faction:no-quest:default-skin");
+		this.setId(QuestNpcUtils.makeNpcId("welcome0", "rebel", "defaultSkin"));
 	}
 
 	public String getId()
