@@ -19,6 +19,9 @@ public class DialogTree
 	// happen when trees are followed
 	// i.e. get weapons or set variables
 	// Usage: action = Class::method;
+	// or action = entityPlayer -> {
+	//     [...]
+	// };
 
 	public DialogTree()
 	{
