@@ -57,6 +57,9 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockBactaTank, "bactaTank");
 		GameRegistry.registerTileEntity(TileEntityBactaTank.class, "teBactaTank");
 
+		StarWarsMod.blockMultiHeight = new BlockMultiHeight();
+		GameRegistry.registerBlock(StarWarsMod.blockMultiHeight, ItemMultiHeightBlock.class, "blockMultiHeight");
+
 		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
 		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
 
