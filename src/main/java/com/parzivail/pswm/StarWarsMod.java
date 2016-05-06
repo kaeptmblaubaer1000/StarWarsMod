@@ -251,6 +251,8 @@ public class StarWarsMod
 
 	public static Item idScanner;
 
+	public static Item slopeWizard;
+
 	public static ItemFood banthaChop;
 	public static ItemFood banthaChopCooked;
 	public static ItemFood banthaMilk;

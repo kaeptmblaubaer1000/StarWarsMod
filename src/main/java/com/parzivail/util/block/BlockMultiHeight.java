@@ -12,8 +12,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class BlockMultiHeight extends Block
 {
 	public String name = "multiHeight";
@@ -78,20 +76,10 @@ public class BlockMultiHeight extends Block
 		world.setBlockToAir(x, y, z);
 	}
 
-	public int quantityDropped(Random random)
-	{
-		return 1;
-	}
-
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
 	{
 		return side == 1 || super.shouldSideBeRendered(blockAccess, x, y, z, side);
-	}
-
-	public int quantityDropped(int meta, int fortune, Random random)
-	{
-		return (meta & 15) + 1;
 	}
 
 	public boolean isReplaceable(IBlockAccess world, int x, int y, int z)

@@ -34,6 +34,9 @@ public class ItemRegister
 			StarWarsMod.questContainer = new ItemQuestContainer();
 			GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
 
+			StarWarsMod.slopeWizard = new ItemSlopeWizard();
+			GameRegistry.registerItem(StarWarsMod.slopeWizard, "slopeWizard");
+
 			StarWarsMod.spawnAtst = new ItemSpawnATST();
 			GameRegistry.registerItem(StarWarsMod.spawnAtst, "spawnAtst");
 		}
