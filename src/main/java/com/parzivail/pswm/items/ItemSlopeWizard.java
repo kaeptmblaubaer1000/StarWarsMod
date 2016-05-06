@@ -2,6 +2,7 @@ package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,25 @@ public class ItemSlopeWizard extends Item
 		if (stack.stackTagCompound == null)
 			stack.stackTagCompound = new NBTTagCompound();
 
+		if (player.isSneaking())
+		{
+			Block block = world.getBlock(x, y, z);
+			if (block == StarWarsMod.blockTempleStone || block == StarWarsMod.blockTempleStoneLit || block == StarWarsMod.blockTempleStoneMH)
+			{
+				stack.stackTagCompound.setString("blockUsing", Resources.MODID + ":" + "blockTempleStoneMH");
+				if (!world.isRemote)
+					player.addChatComponentMessage(new ChatComponentText(String.format("Changed block to %s", stack.stackTagCompound.getString("blockUsing"))));
+				return super.onItemUse(stack, player, world, x, y, z, side, sX, sY, sZ);
+			}
+		}
+
+		Block blockUsing = StarWarsMod.blockTempleStoneMH;
+
+		if (stack.stackTagCompound.hasKey("blockUsing") && Block.getBlockFromName(stack.stackTagCompound.getString("blockUsing")) != null)
+		{
+			blockUsing = Block.getBlockFromName(stack.stackTagCompound.getString("blockUsing"));
+		}
+
 		if (stack.stackTagCompound.getIntArray("firstPos").length == 0)
 		{
 			stack.stackTagCompound.setIntArray("firstPos", new int[] { x, y, z });
@@ -46,6 +66,13 @@ public class ItemSlopeWizard extends Item
 				double rise = Math.max(aY, y) - Math.min(aY, y);
 				double run = Math.max(z, aZ) - Math.min(z, aZ);
 				double slope = rise / run;
+
+				if (!world.isRemote && slope > 1)
+				{
+					player.addChatComponentMessage(new ChatComponentText("Slopes over 45 deg. don't work!"));
+
+					return super.onItemUse(stack, player, world, x, y, z, side, sX, sY, sZ);
+				}
 
 				if (z > aZ)
 				{
@@ -71,7 +98,7 @@ public class ItemSlopeWizard extends Item
 				}
 
 				if (!world.isRemote)
-					player.addChatComponentMessage(new ChatComponentText(String.format("Created Z-dir slope from Y=%s to Y=%s (M=%s)", y, aY, slope)));
+					player.addChatComponentMessage(new ChatComponentText(String.format("Created Z-dir slope from Y=%s to Y=%s", y, aY)));
 			}
 			else if (aZ == z)
 			{
@@ -79,6 +106,13 @@ public class ItemSlopeWizard extends Item
 				double rise = Math.max(aY, y) - Math.min(aY, y);
 				double run = Math.max(x, aX) - Math.min(x, aX);
 				double slope = rise / run;
+
+				if (!world.isRemote && slope > 1)
+				{
+					player.addChatComponentMessage(new ChatComponentText("Slopes over 45 deg. don't work!"));
+
+					return super.onItemUse(stack, player, world, x, y, z, side, sX, sY, sZ);
+				}
 
 				if (x > aX)
 				{
@@ -104,7 +138,7 @@ public class ItemSlopeWizard extends Item
 				}
 
 				if (!world.isRemote)
-					player.addChatComponentMessage(new ChatComponentText(String.format("Created X-dir slope from Y=%s to Y=%s (M=%s)", y, aY, slope)));
+					player.addChatComponentMessage(new ChatComponentText(String.format("Created X-dir slope from Y=%s to Y=%s", y, aY)));
 			}
 			else
 			{
