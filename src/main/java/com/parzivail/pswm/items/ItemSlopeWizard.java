@@ -51,22 +51,22 @@ public class ItemSlopeWizard extends Item
 				{
 					for (int zz = aZ; zz <= z; zz++)
 					{
-						int nY = getBaseBlockY(slope, zz - aZ);
-						int rY = Math.min(aY, y) + nY;
+						int nY = getBaseBlockY(-slope, zz - aZ);
+						int rY = Math.max(aY, y) + nY;
 						world.setBlock(x, rY, zz, StarWarsMod.blockTempleStone, 0, 2);
-						world.setBlock(x, rY + 1, zz, StarWarsMod.blockTempleStoneMH, getVarHeightY(slope, zz - aZ), 2);
-						world.setBlockMetadataWithNotify(x, rY + 1, zz, getVarHeightY(slope, zz - aZ), 2);
+						world.setBlock(x, rY + 1, zz, StarWarsMod.blockTempleStoneMH, getVarHeightY(-slope, zz - aZ), 2);
+						world.setBlockMetadataWithNotify(x, rY + 1, zz, getVarHeightY(-slope, zz - aZ), 2);
 					}
 				}
 				else
 				{
 					for (int zz = aZ; zz >= z; zz--)
 					{
-						int nY = getBaseBlockY(-slope, zz - z);
-						int rY = Math.max(aY, y) + nY;
+						int nY = getBaseBlockY(slope, zz - z);
+						int rY = Math.min(aY, y) + nY;
 						world.setBlock(x, rY, zz, StarWarsMod.blockTempleStone, 0, 2);
-						world.setBlock(x, rY + 1, zz, StarWarsMod.blockTempleStoneMH, getVarHeightY(-slope, zz - aZ), 2);
-						world.setBlockMetadataWithNotify(x, rY + 1, zz, getVarHeightY(-slope, zz - aZ), 2);
+						world.setBlock(x, rY + 1, zz, StarWarsMod.blockTempleStoneMH, getVarHeightY(slope, zz - aZ), 2);
+						world.setBlockMetadataWithNotify(x, rY + 1, zz, getVarHeightY(slope, zz - aZ), 2);
 					}
 				}
 
