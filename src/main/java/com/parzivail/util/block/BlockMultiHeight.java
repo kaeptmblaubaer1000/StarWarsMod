@@ -1,4 +1,4 @@
-package com.parzivail.pswm.blocks;
+package com.parzivail.util.block;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
@@ -17,14 +17,17 @@ import java.util.Random;
 public class BlockMultiHeight extends Block
 {
 	public String name = "multiHeight";
+	private String texture;
 
-	public BlockMultiHeight()
+	public BlockMultiHeight(String texture)
 	{
 		super(Material.rock);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		this.setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + name);
+		setBlockName(Resources.MODID + "." + name + "." + texture);
 		this.setBlockBoundsFromHeight(0);
+
+		this.texture = texture;
 
 		// TODO: make this have a helper item to specify two places and make a slope between them
 	}
@@ -32,12 +35,12 @@ public class BlockMultiHeight extends Block
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register)
 	{
-		this.blockIcon = register.registerIcon(Resources.MODID + ":" + "templeStone");
+		this.blockIcon = register.registerIcon(Resources.MODID + ":" + this.texture);
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
-		int l = world.getBlockMetadata(x, y, z) & 15;
+		int l = (world.getBlockMetadata(x, y, z) & 15) + 1;
 		float f = 1 / 16f;
 		return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)((float)y + (float)l * f), (double)z + this.maxZ);
 	}

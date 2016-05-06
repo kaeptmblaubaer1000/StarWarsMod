@@ -1,6 +1,5 @@
-package com.parzivail.pswm.items;
+package com.parzivail.util.block;
 
-import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlockWithMetadata;
@@ -35,7 +34,7 @@ public class ItemMultiHeightBlock extends ItemBlockWithMetadata
 		{
 			Block block = world.getBlock(x, y, z);
 
-			if (block == StarWarsMod.blockMultiHeight)
+			if (block instanceof BlockMultiHeight)
 			{
 				int i1 = world.getBlockMetadata(x, y, z);
 				int j1 = i1 & 15;

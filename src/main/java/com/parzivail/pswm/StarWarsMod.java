@@ -311,7 +311,7 @@ public class StarWarsMod
 	public static Block blockTempleStoneLit;
 	public static Block blockTempleStoneSlabLit;
 
-	public static Block blockMultiHeight;
+	public static Block blockTempleStoneMH;
 
 	public static Block blockTempleStoneStairs;
 	public static Block blockTempleStoneStairsBrick;

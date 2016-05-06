@@ -7,6 +7,8 @@ import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.blocks.ore.*;
 import com.parzivail.pswm.items.*;
 import com.parzivail.pswm.tileentities.*;
+import com.parzivail.util.block.BlockMultiHeight;
+import com.parzivail.util.block.ItemMultiHeightBlock;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -57,8 +59,8 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockBactaTank, "bactaTank");
 		GameRegistry.registerTileEntity(TileEntityBactaTank.class, "teBactaTank");
 
-		StarWarsMod.blockMultiHeight = new BlockMultiHeight();
-		GameRegistry.registerBlock(StarWarsMod.blockMultiHeight, ItemMultiHeightBlock.class, "blockMultiHeight");
+		StarWarsMod.blockTempleStoneMH = new BlockMultiHeight("templeStone");
+		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneMH, ItemMultiHeightBlock.class, "blockTempleStoneMH");
 
 		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
 		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
