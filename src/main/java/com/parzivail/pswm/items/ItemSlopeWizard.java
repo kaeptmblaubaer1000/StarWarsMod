@@ -42,25 +42,32 @@ public class ItemSlopeWizard extends Item
 
 			if (aX == x)
 			{
-				//going in z direction
-				double rise = y - aY;
-				double run = z - aZ;
+				// going in x direction
+				double rise = Math.max(aY, y) - Math.min(aY, y);
+				double run = Math.max(z, aZ) - Math.min(z, aZ);
 				double slope = rise / run;
 
 				if (z > aZ)
 				{
-					int t = z;
-					z = aZ;
-					aZ = t;
+					for (int zz = aZ; zz <= z; zz++)
+					{
+						int nY = getBaseBlockY(slope, zz - aZ);
+						int rY = Math.min(aY, y) + nY;
+						world.setBlock(x, rY, zz, StarWarsMod.blockTempleStone, 0, 2);
+						world.setBlock(x, rY + 1, zz, StarWarsMod.blockTempleStoneMH, getVarHeightY(slope, zz - aZ), 2);
+						world.setBlockMetadataWithNotify(x, rY + 1, zz, getVarHeightY(slope, zz - aZ), 2);
+					}
 				}
-				for (int nZ = 0; nZ <= (aZ - z); nZ++)
+				else
 				{
-					world.setBlock(x, getBaseBlockY(slope, nZ) + y, z + nZ, StarWarsMod.blockTempleStone);
-					world.setBlock(x, getBaseBlockY(slope, nZ) + y + 1, z + nZ, StarWarsMod.blockTempleStoneMH, getVarHeightY(slope, nZ), 1 | 2);
-					world.setBlockMetadataWithNotify(x, getBaseBlockY(slope, nZ) + y + 1, z + nZ, getVarHeightY(slope, nZ), 1 | 2);
-
-					if (!world.isRemote)
-						player.addChatComponentMessage(new ChatComponentText(String.format("Created block at %s,%s,%s", x, getBaseBlockY(slope, nZ), z + nZ)));
+					for (int zz = aZ; zz >= z; zz--)
+					{
+						int nY = getBaseBlockY(-slope, zz - z);
+						int rY = Math.max(aY, y) + nY;
+						world.setBlock(x, rY, zz, StarWarsMod.blockTempleStone, 0, 2);
+						world.setBlock(x, rY + 1, zz, StarWarsMod.blockTempleStoneMH, getVarHeightY(-slope, zz - aZ), 2);
+						world.setBlockMetadataWithNotify(x, rY + 1, zz, getVarHeightY(-slope, zz - aZ), 2);
+					}
 				}
 
 				if (!world.isRemote)
@@ -82,8 +89,6 @@ public class ItemSlopeWizard extends Item
 						world.setBlock(xx, rY, z, StarWarsMod.blockTempleStone, 0, 2);
 						world.setBlock(xx, rY + 1, z, StarWarsMod.blockTempleStoneMH, getVarHeightY(-slope, xx - aX), 2);
 						world.setBlockMetadataWithNotify(xx, rY + 1, z, getVarHeightY(-slope, xx - aX), 2);
-						if (!world.isRemote)
-							player.addChatComponentMessage(new ChatComponentText(String.format("Block at %s,%s,%s meta %s", xx, rY, z, getVarHeightY(-slope, xx - aX))));
 					}
 				}
 				else
@@ -93,8 +98,8 @@ public class ItemSlopeWizard extends Item
 						int nY = getBaseBlockY(slope, xx - x);
 						int rY = Math.min(aY, y) + nY;
 						world.setBlock(xx, rY, z, StarWarsMod.blockTempleStone, 0, 2);
-						if (!world.isRemote)
-							player.addChatComponentMessage(new ChatComponentText(String.format("-Block at %s,%s,%s", xx, rY, z)));
+						world.setBlock(xx, rY + 1, z, StarWarsMod.blockTempleStoneMH, getVarHeightY(slope, xx - aX), 2);
+						world.setBlockMetadataWithNotify(xx, rY + 1, z, getVarHeightY(slope, xx - aX), 2);
 					}
 				}
 
@@ -115,11 +120,11 @@ public class ItemSlopeWizard extends Item
 
 	private int getBaseBlockY(double slope, double x)
 	{
-		return (int)Math.floor((Math.floor(16 * slope * Math.floor(x))) / 16);
+		return (int)Math.floor(slope * Math.floor(x));
 	}
 
 	private int getVarHeightY(double slope, double x)
 	{
-		return (int)((Math.floor(16 * slope * Math.floor(x))) / 16 - Math.floor(slope * x));
+		return (int)(Math.floor(16 * slope * Math.floor(x)) % 16);
 	}
 }
