@@ -50,8 +50,8 @@ vec3 RGBtoHSV(vec3 rgb) {
 void main() {
     float xOffset = sin(texCoord.y * Frequency.x + time * 3.1415926535 * 2.0) * WobbleAmount.x;
     float yOffset = cos(texCoord.x * Frequency.y + time * 3.1415926535 * 2.0) * WobbleAmount.y;
-    vec2 offset = vec2(xOffset, yOffset);
-    vec4 rgb = texture2D(DiffuseSampler, texCoord + offset);
+    vec2 offsetY = vec2(xOffset, yOffset);
+    vec4 rgb = texture2D(DiffuseSampler, texCoord + offsetY);
     vec3 hsv = RGBtoHSV(rgb.rgb);
     hsv.x = fract(hsv.x + time);
     gl_FragColor = vec4(HSVtoRGB(hsv), rgb.a);

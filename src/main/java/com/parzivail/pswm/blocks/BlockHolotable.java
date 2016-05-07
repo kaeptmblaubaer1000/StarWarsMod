@@ -56,7 +56,9 @@ public class BlockHolotable extends BlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityHoloTableBase)
 		{
 			TileEntityHoloTableBase t = (TileEntityHoloTableBase)tile;
-			list.add(String.valueOf(t.getOffset()) + " offset");
+			list.add(String.valueOf(t.getOffsetX()) + " X offset");
+			list.add(String.valueOf(t.getOffsetY()) + " Y offset");
+			list.add(String.valueOf(t.getOffsetZ()) + " Z offset");
 			list.add(String.valueOf(t.getSideLength()) + " side length");
 		}
 
@@ -97,7 +99,7 @@ public class BlockHolotable extends BlockContainer implements IDebugProvider
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		if (!world.isRemote && player.inventory.getCurrentItem() == null)
+		if (world.isRemote)
 			player.openGui(StarWarsMod.instance, Resources.GUI_HOLOTABLE, world, x, y, z);
 		return true;
 	}

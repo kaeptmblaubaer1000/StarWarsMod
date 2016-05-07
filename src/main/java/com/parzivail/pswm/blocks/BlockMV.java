@@ -89,7 +89,7 @@ public class BlockMV extends BlockContainer implements IDebugProvider
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		if (!world.isRemote && player.inventory.getCurrentItem() == null)
+		if (world.isRemote)
 			player.openGui(StarWarsMod.instance, Resources.GUI_MV, world, x, y, z);
 		return true;
 	}

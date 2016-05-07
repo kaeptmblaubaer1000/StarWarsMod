@@ -15,6 +15,8 @@ public class MessageHoloTableUpdate extends PMessage<MessageHoloTableUpdate>
 	public Vec3 position;
 	public Color color;
 	public int offset;
+	public int offsetX;
+	public int offsetZ;
 
 	public MessageHoloTableUpdate()
 	{
@@ -25,14 +27,18 @@ public class MessageHoloTableUpdate extends PMessage<MessageHoloTableUpdate>
 		this.dim = table.getWorldObj().provider.dimensionId;
 		this.position = Vec3.createVectorHelper(table.xCoord, table.yCoord, table.zCoord);
 		this.color = table.getRGB();
-		this.offset = table.getOffset();
+		this.offset = table.getOffsetY();
+		this.offsetX = table.getOffsetX();
+		this.offsetZ = table.getOffsetZ();
 	}
 
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
 		TileEntityHoloTableBase table = (TileEntityHoloTableBase)MinecraftServer.getServer().worldServerForDimension(this.dim).getTileEntity((int)this.position.xCoord, (int)this.position.yCoord, (int)this.position.zCoord);
-		table.setOffset(this.offset);
+		table.setOffsetY(this.offset);
+		table.setOffsetX(this.offsetX);
+		table.setOffsetZ(this.offsetZ);
 		table.setRGB(this.color.getRGB());
 		return null;
 	}
