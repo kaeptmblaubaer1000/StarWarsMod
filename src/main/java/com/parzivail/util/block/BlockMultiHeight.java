@@ -84,6 +84,6 @@ public class BlockMultiHeight extends Block
 
 	public boolean isReplaceable(IBlockAccess world, int x, int y, int z)
 	{
-		return world.getBlockMetadata(x, y, z) < 15;
+		return false;
 	}
 }

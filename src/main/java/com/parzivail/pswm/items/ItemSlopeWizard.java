@@ -67,7 +67,7 @@ public class ItemSlopeWizard extends Item
 				double run = Math.max(z, aZ) - Math.min(z, aZ);
 				double slope = rise / run;
 
-				if (!world.isRemote && slope > 1)
+				if (!world.isRemote && (slope > 1 || slope < -1))
 				{
 					player.addChatComponentMessage(new ChatComponentText("Slopes over 45 deg. don't work!"));
 
@@ -107,7 +107,7 @@ public class ItemSlopeWizard extends Item
 				double run = Math.max(x, aX) - Math.min(x, aX);
 				double slope = rise / run;
 
-				if (!world.isRemote && slope > 1)
+				if (!world.isRemote && (slope > 1 || slope < -1))
 				{
 					player.addChatComponentMessage(new ChatComponentText("Slopes over 45 deg. don't work!"));
 

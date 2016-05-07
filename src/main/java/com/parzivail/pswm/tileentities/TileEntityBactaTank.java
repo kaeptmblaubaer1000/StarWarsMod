@@ -23,9 +23,7 @@ public class TileEntityBactaTank extends TileEntity
 		return 262144;
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getRenderBoundingBox()
+	public AxisAlignedBB getAABB()
 	{
 		if (this.bb == null)
 			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord + 0.4f, this.yCoord, this.zCoord + 0.4f, this.xCoord + 0.6f, this.yCoord + 3.8f, this.zCoord + 0.6f);
@@ -33,9 +31,16 @@ public class TileEntityBactaTank extends TileEntity
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getRenderBoundingBox()
+	{
+		return this.getAABB();
+	}
+
+	@Override
 	public void updateEntity()
 	{
-		List<Entity> entities = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getRenderBoundingBox());
+		List<Entity> entities = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.getAABB());
 		for (Entity e : entities)
 			if (e instanceof EntityPlayerMP)
 			{
