@@ -141,6 +141,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gaffiStick, new RenderGaffi());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new RenderAntenna());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloTableBase.class, new RenderHoloTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());

@@ -250,6 +250,7 @@ public class StarWarsMod
 	public static Item questContainer;
 
 	public static Item idScanner;
+	public static Item hydrospanner;
 
 	public static Item slopeWizard;
 
@@ -276,6 +277,7 @@ public class StarWarsMod
 	public static boolean isOverlayOnscreen = false;
 
 	public static Block blockMV;
+	public static Block blockAntenna;
 	public static Block blockFieldEmitter;
 	public static Block blockDeathStarDoor;
 	public static Block blockHoloTable;

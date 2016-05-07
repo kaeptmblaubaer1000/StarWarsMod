@@ -24,6 +24,10 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
 
+		StarWarsMod.blockAntenna = new BlockAntenna();
+		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");
+		GameRegistry.registerTileEntity(TileEntityAntenna.class, "teAntenna");
+
 		StarWarsMod.blockHoloTable = new BlockHolotable();
 		GameRegistry.registerBlock(StarWarsMod.blockHoloTable, ItemHolotableBlock.class, "holoTable");
 		GameRegistry.registerTileEntity(TileEntityHoloTableBase.class, "teHoloTableSmall");

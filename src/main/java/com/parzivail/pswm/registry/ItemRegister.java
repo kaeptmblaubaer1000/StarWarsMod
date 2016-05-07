@@ -120,6 +120,9 @@ public class ItemRegister
 		StarWarsMod.idScanner = new ItemIDScanner();
 		GameRegistry.registerItem(StarWarsMod.idScanner, "idScanner");
 
+		StarWarsMod.hydrospanner = new ItemHydrospanner();
+		GameRegistry.registerItem(StarWarsMod.hydrospanner, "hydrospanner");
+
 		StarWarsMod.ingotBene = new ItemBeneIngot();
 		GameRegistry.registerItem(StarWarsMod.ingotBene, "ingotBene");
 
