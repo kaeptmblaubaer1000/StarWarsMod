@@ -11,6 +11,7 @@ public class TileEntityAntenna extends TileEntity
 	private int facing = 2;
 	private boolean fixed = false;
 	private boolean on = false;
+	private int openFrame;
 
 	@Override
 	public Packet getDescriptionPacket()
@@ -78,6 +79,16 @@ public class TileEntityAntenna extends TileEntity
 		tag.setBoolean("on", this.on);
 		tag.setBoolean("fixed", this.fixed);
 		super.writeToNBT(tag);
+	}
+
+	public void setOpenFrame(int tick)
+	{
+		this.openFrame = tick;
+	}
+
+	public int getOpenFrame()
+	{
+		return openFrame;
 	}
 }
 /*

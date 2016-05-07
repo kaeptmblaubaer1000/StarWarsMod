@@ -1,5 +1,6 @@
 package com.parzivail.pswm.models;
 
+import com.parzivail.util.MathUtils;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -152,11 +153,11 @@ public class ModelAntenna extends ModelBase
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void render(Entity entity, float broken, float on, float openFrame, float f3, float f4, float f5)
 	{
-		if (f == 1)
+		if (broken == 1)
 		{
-			if (f1 == 1)
+			if (on == 1)
 			{
 				flap1.rotateAngleX = -0.13962634015954636F;
 				flap2.rotateAngleY = -0.13962634015954636F;
@@ -167,11 +168,11 @@ public class ModelAntenna extends ModelBase
 			}
 			else
 			{
-				flap1.rotateAngleX = -0.13962634015954636F;
-				flap2.rotateAngleY = -0.13962634015954636F;
-				flap3.rotateAngleX = 0.13962634015954636F;
-				flap4.rotateAngleY = 0.13962634015954636F;
-				dishbase.rotateAngleX = -0.296705972839036F;
+				flap1.rotateAngleX = MathUtils.lerp((float)-Math.PI / 2, -0.13962634015954636F, (openFrame / 100f));
+				flap2.rotateAngleY = MathUtils.lerp((float)-Math.PI / 2, -0.13962634015954636F, (openFrame / 100f));
+				flap3.rotateAngleX = MathUtils.lerp((float)Math.PI / 2, 0.13962634015954636F, (openFrame / 100f));
+				flap4.rotateAngleY = MathUtils.lerp((float)Math.PI / 2, 0.13962634015954636F, (openFrame / 100f));
+				dishbase.rotateAngleX = MathUtils.lerp(0.4f, -0.296705972839036F, (openFrame / 100f));
 				dishbase.rotateAngleY = 0;
 			}
 		}

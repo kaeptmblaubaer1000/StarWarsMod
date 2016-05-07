@@ -3,6 +3,7 @@ package com.parzivail.pswm.blocks;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemHydrospanner;
+import com.parzivail.pswm.rendering.AnimationAntennaOpen;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.world.HarvestLevel;
@@ -75,7 +76,10 @@ public class BlockAntenna extends BlockContainer implements IDebugProvider
 				if (tile1.getFixed())
 					tile1.setOn(!tile1.getOn());
 				else
+				{
 					tile1.setFixed(true);
+					new AnimationAntennaOpen(tile1).start();
+				}
 			}
 		}
 		return true;

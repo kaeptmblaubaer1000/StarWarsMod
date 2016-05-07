@@ -31,7 +31,7 @@ public class RenderAntenna extends TileEntitySpecialRenderer
 		GL11.glScalef(1.5F, 1.5F, 1.5F);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(antenna.getFacing() * 45, 0.0F, 1.0F, 0.0F);
-		this.model.render(null, antenna.getFixed() ? 1 : 0, antenna.getOn() ? 1 : 0, 0.0F, 0.0F, 0.0F, 0.05F);
+		this.model.render(null, antenna.getFixed() ? 1 : 0, antenna.getOn() ? 1 : 0, antenna.getOpenFrame(), 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 	}
