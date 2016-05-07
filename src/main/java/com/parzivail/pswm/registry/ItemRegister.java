@@ -83,6 +83,9 @@ public class ItemRegister
 		StarWarsMod.spawnTie = new ItemSpawnTIE();
 		GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");
 
+		StarWarsMod.spawnTieAdvanced = new ItemSpawnTIEAdvanced();
+		GameRegistry.registerItem(StarWarsMod.spawnTieAdvanced, "spawnTIEAdvanced");
+
 		StarWarsMod.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
 		GameRegistry.registerItem(StarWarsMod.spawnTieInterceptor, "spawnTIEInterceptor");
 
@@ -324,17 +327,17 @@ public class ItemRegister
 		StarWarsMod.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsMod.rebelPilotBoots, "rebelPilotBoots");
 
-		StarWarsMod.fleetHelmet = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.fleetHelmet, "fleetHelmet");
+		//StarWarsMod.fleetHelmet = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 0);
+		//GameRegistry.registerItem(StarWarsMod.fleetHelmet, "fleetHelmet");
 
-		StarWarsMod.fleetChest = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.fleetChest, "fleetChest");
+		//StarWarsMod.fleetChest = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 1);
+		//GameRegistry.registerItem(StarWarsMod.fleetChest, "fleetChest");
 
-		StarWarsMod.fleetLegs = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.fleetLegs, "fleetLegs");
+		//StarWarsMod.fleetLegs = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 2);
+		//GameRegistry.registerItem(StarWarsMod.fleetLegs, "fleetLegs");
 
-		StarWarsMod.fleetBoots = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.fleetBoots, "fleetBoots");
+		//StarWarsMod.fleetBoots = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 3);
+		//GameRegistry.registerItem(StarWarsMod.fleetBoots, "fleetBoots");
 
 		StarWarsMod.atatPilotHelmet = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsMod.atatPilotHelmet, "atatPilotHelmet");

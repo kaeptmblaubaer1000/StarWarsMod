@@ -19,6 +19,7 @@ public class ArmorAddonBuns extends ItemArmor
 		super(par2EnumArmorMaterial, par3, par4);
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
+		this.setCreativeTab(null);
 	}
 
 	@Override

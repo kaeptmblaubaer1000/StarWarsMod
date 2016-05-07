@@ -50,6 +50,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
 		EntityUtils.registerEntity(VehicTIE.class, "tie");
+		EntityUtils.registerEntity(VehicTIEAdvanced.class, "tieAdvanced");
 		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieInterceptor");
 		EntityUtils.registerEntity(VehicXWing.class, "xwing");
 		EntityUtils.registerEntity(VehicAWing.class, "awing");

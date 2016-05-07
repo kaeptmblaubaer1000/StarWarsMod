@@ -150,6 +150,7 @@ public class StarWarsMod
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
 	public static Item spawnTie;
+	public static Item spawnTieAdvanced;
 	public static Item spawnTieInterceptor;
 	public static Item spawnAwing;
 	public static Item spawnXwing;
@@ -269,7 +270,6 @@ public class StarWarsMod
 	public static BiomeGenBase biomeKashyyyk;
 	public static BiomeGenBase biomeYavin4;
 	public static BiomeGenBase biomeEndor;
-	public static BiomeGenBase biomeEndorPlains;
 	public static BiomeGenBase biomeDagobah;
 	public static BiomeGenBase biomeIlum;
 	public static BiomeGenBase biomeMustafar;
