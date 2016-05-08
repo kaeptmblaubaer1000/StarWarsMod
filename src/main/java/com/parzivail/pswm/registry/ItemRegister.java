@@ -31,9 +31,6 @@ public class ItemRegister
 			StarWarsMod.spawnDsTurret = new ItemSpawnDSTurret();
 			GameRegistry.registerItem(StarWarsMod.spawnDsTurret, "spawnDsTurret");
 
-			StarWarsMod.questContainer = new ItemQuestContainer();
-			GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
-
 			StarWarsMod.slopeWizard = new ItemSlopeWizard();
 			GameRegistry.registerItem(StarWarsMod.slopeWizard, "slopeWizard");
 
@@ -79,6 +76,12 @@ public class ItemRegister
 			StarWarsMod.spawnAstromechBb8 = new ItemSpawnAstromechBb8();
 			GameRegistry.registerItem(StarWarsMod.spawnAstromechBb8, "spawnAstromechBb8");
 		}
+
+		StarWarsMod.powerpack = new ItemPowerpack();
+		GameRegistry.registerItem(StarWarsMod.powerpack, "powerpack");
+
+		StarWarsMod.questContainer = new ItemQuestContainer();
+		GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
 
 		StarWarsMod.spawnTie = new ItemSpawnTIE();
 		GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");

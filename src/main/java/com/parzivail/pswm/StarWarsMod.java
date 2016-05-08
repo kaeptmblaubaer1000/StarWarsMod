@@ -252,6 +252,7 @@ public class StarWarsMod
 
 	public static Item idScanner;
 	public static Item hydrospanner;
+	public static Item powerpack;
 
 	public static Item slopeWizard;
 
