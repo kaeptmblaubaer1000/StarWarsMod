@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
+import com.parzivail.pswm.utils.BlasterUtils;
 import com.parzivail.util.ui.KeyboardUtils;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -137,26 +138,25 @@ public class ItemBlasterRifle extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (getCooldown(stack) < 15)
-			if (stack.stackTagCompound.getInteger("shotsLeft") > 1)
+		if (BlasterUtils.getCooldown(stack) < 15)
+			if (stack.stackTagCompound.getInteger("shotsLeft") > 0)
+			{
 				player.playSound(Resources.MODID + ":" + "fx.shoot." + this.versions[MathHelper.clamp_int(stack.getItemDamage(), 0, 15)].toLowerCase(), 1.0F, 1.0F);
-			else
+
+				if (!world.isRemote && BlasterUtils.getCooldown(stack) < 15)
+				{
+					world.spawnEntityInWorld(new EntityBlasterRifleBolt(world, player));
+
+					BlasterUtils.setCooldown(stack, BlasterUtils.getCooldown(stack) + 1);
+					BlasterUtils.setTicksSinceLastShot(stack, 0);
+
+					stack.stackTagCompound.setInteger("shotsLeft", stack.stackTagCompound.getInteger("shotsLeft") - 1);
+				}
+
+				player.addStat(StarWarsAchievements.fireBlaster, 1);
+			}
+			else if (!BlasterUtils.refillShots(stack, world, player))
 				player.playSound(Resources.MODID + ":" + "item.blasterRifle.break", 1.0F, 1.0F);
-
-		if (!world.isRemote && getCooldown(stack) < 15)
-		{
-			world.spawnEntityInWorld(new EntityBlasterRifleBolt(world, player));
-
-			setCooldown(stack, getCooldown(stack) + 1);
-			setTicksSinceLastShot(stack, 0);
-
-			stack.stackTagCompound.setInteger("shotsLeft", stack.stackTagCompound.getInteger("shotsLeft") - 1);
-
-			if (stack.stackTagCompound.getInteger("shotsLeft") <= 0)
-				player.inventory.mainInventory[player.inventory.currentItem] = null;
-		}
-
-		player.addStat(StarWarsAchievements.fireBlaster, 1);
 
 		return stack;
 	}
@@ -170,27 +170,15 @@ public class ItemBlasterRifle extends Item
 				stack.stackTagCompound = new NBTTagCompound();
 
 			if (!stack.stackTagCompound.hasKey("shotsLeft"))
-				switch (stack.getItemDamage())
-				{
-					case 0:
-					case 3:
-						stack.stackTagCompound.setInteger("shotsLeft", 180);
-					case 4:
-						stack.stackTagCompound.setInteger("shotsLeft", itemRand.nextBoolean() ? 500 : 100);
-						break;
-					case 1:
-					case 2:
-					default:
-						stack.stackTagCompound.setInteger("shotsLeft", 250);
-				}
+				BlasterUtils.refillShots(stack, world, entityIn);
 
-			if (getTicksSinceLastShot(stack) <= 40 * ((getCooldown(stack) + 1) / 15f))
-				ItemBlasterRifle.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);
+			if (BlasterUtils.getTicksSinceLastShot(stack) <= 40 * ((BlasterUtils.getCooldown(stack) + 1) / 15f))
+				BlasterUtils.setTicksSinceLastShot(stack, BlasterUtils.getTicksSinceLastShot(stack) + 1);
 
-			if (getTicksSinceLastShot(stack) > 40 * ((getCooldown(stack) + 1) / 15f))
+			if (BlasterUtils.getTicksSinceLastShot(stack) > 40 * ((BlasterUtils.getCooldown(stack) + 1) / 15f))
 			{
-				ItemBlasterRifle.setTicksSinceLastShot(stack, 0);
-				ItemBlasterRifle.setCooldown(stack, 0);
+				BlasterUtils.setTicksSinceLastShot(stack, 0);
+				BlasterUtils.setCooldown(stack, 0);
 			}
 		}
 	}
