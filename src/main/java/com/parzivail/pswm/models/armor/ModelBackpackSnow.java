@@ -1,17 +1,19 @@
 package com.parzivail.pswm.models.armor;
 
 import com.parzivail.pswm.Resources;
-import net.minecraft.client.model.ModelBase;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 /**
  * ModelBiped - Either Mojang or a mod author
  * Created using Tabula 4.1.1
  */
-public class ModelBackpackSnow extends ModelBase
+public class ModelBackpackSnow extends ModelBiped
 {
 	public ModelRenderer field_78112_f;
 	public ModelRenderer field_78124_i;
@@ -31,7 +33,7 @@ public class ModelBackpackSnow extends ModelBase
 	public ModelRenderer BackpackParent_8;
 	public ModelRenderer BackpackParent_9;
 
-	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/ModelBackpackSnow.png");
+	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/backpackSnow.png");
 	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/snowtrooperArmorLayer1.png");
 	private static ModelBiped armorModel = new ModelBiped(0.5f);
 
@@ -110,14 +112,34 @@ public class ModelBackpackSnow extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		StarWarsMod.mc.renderEngine.bindTexture(texture1);
+		this.BackpackParent.rotationPointZ = entity.isSneaking() ? 3.4f : 0;
+		this.BackpackParent.rotateAngleX = entity.isSneaking() ? 0.5f : 0;
 		this.BackpackParent.render(f5);
-		this.field_78113_g.render(f5);
-		this.field_78123_h.render(f5);
-		this.field_78112_f.render(f5);
-		this.field_78121_j.render(f5);
-		this.field_78115_e.render(f5);
-		this.field_78116_c.render(f5);
-		this.field_78124_i.render(f5);
+
+		if (entity instanceof EntityLivingBase)
+		{
+			EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
+			StarWarsMod.mc.renderEngine.bindTexture(texture2);
+			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
+			armorModel.onGround = entityLivingBase.getSwingProgress(f5);
+			armorModel.render(entity, f, f1, f2, f3, f4, f5);
+		}
+	}
+
+	private void doRotationStuff(EntityLivingBase entity, ItemStack stack)
+	{
+		armorModel.heldItemRight = stack != null ? 1 : 0;
+		armorModel.isSneak = entity.isSneaking();
+		armorModel.bipedHead.showModel = false;
+		armorModel.bipedHeadwear.showModel = false;
+		armorModel.bipedBody.showModel = true;
+		armorModel.bipedRightArm.showModel = true;
+		armorModel.bipedLeftArm.showModel = true;
+		armorModel.bipedRightLeg.showModel = false;
+		armorModel.bipedLeftLeg.showModel = false;
+		armorModel.isRiding = entity.isRiding();
+		armorModel.isChild = entity.isChild();
 	}
 
 	/**

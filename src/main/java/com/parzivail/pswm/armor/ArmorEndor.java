@@ -2,6 +2,7 @@ package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.armor.ModelBackpackEndor;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 import com.parzivail.pswm.models.armor.ModelEndorHelmet;
 import cpw.mods.fml.relauncher.Side;
@@ -15,6 +16,8 @@ import net.minecraft.item.ItemStack;
 public class ArmorEndor extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
+	@SideOnly(Side.CLIENT)
+	ModelBackpackEndor h2;
 	@SideOnly(Side.CLIENT)
 	ModelEndorHelmet h;
 	@SideOnly(Side.CLIENT)
@@ -32,6 +35,12 @@ public class ArmorEndor extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
+		if (itemstack.getItem() == StarWarsMod.endorChest)
+		{
+			if (h2 == null)
+				h2 = new ModelBackpackEndor();
+			return h2;
+		}
 		if (armorSlot == 0)
 		{
 			if (h == null)
