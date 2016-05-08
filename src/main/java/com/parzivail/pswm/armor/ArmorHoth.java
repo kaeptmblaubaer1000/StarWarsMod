@@ -2,6 +2,7 @@ package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.armor.ModelBackpackHoth;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,12 +16,20 @@ public class ArmorHoth extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
+	ModelBackpackHoth h;
+	@SideOnly(Side.CLIENT)
 	ModelCompressionArmor c;
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
+		if (itemstack.getItem() == StarWarsMod.hothChest)
+		{
+			if (h == null)
+				h = new ModelBackpackHoth();
+			return h;
+		}
 		if (c == null)
 			c = new ModelCompressionArmor(0.4f, this);
 		return c;
