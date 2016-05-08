@@ -86,6 +86,8 @@ public class ModelJetpack extends ModelBiped
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		this.JetpackMain.rotationPointZ = entity.isSneaking() ? 2.8f : 0;
+		this.JetpackMain.rotateAngleX = entity.isSneaking() ? 0.5f : 0;
 		this.JetpackMain.render(f5);
 
 		if (entity instanceof EntityLivingBase)

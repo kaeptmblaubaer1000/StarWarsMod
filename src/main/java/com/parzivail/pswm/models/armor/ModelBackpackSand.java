@@ -1,14 +1,19 @@
 package com.parzivail.pswm.models.armor;
 
-import net.minecraft.client.model.ModelBase;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * ModelBackpackSand - weaston
  * Created using Tabula 4.1.1
  */
-public class ModelBackpackSand extends ModelBase
+public class ModelBackpackSand extends ModelBiped
 {
 	public ModelRenderer BackpackParent;
 	public ModelRenderer ShoulderPadParent;
@@ -31,6 +36,10 @@ public class ModelBackpackSand extends ModelBase
 	public ModelRenderer shape17;
 	public ModelRenderer shape18;
 	public ModelRenderer shape19;
+
+	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/backpackSand.png");
+	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/sandtrooperArmorLayer1.png");
+	private static ModelBiped armorModel = new ModelBiped(0.5f);
 
 	public ModelBackpackSand()
 	{
@@ -123,10 +132,36 @@ public class ModelBackpackSand extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		StarWarsMod.mc.renderEngine.bindTexture(texture1);
 		this.ShoulderPadParent.render(f5);
+		this.BackpackParent.rotationPointZ = entity.isSneaking() ? 2.8f : 0;
+		this.BackpackParent.rotateAngleX = entity.isSneaking() ? 0.5f : 0;
 		this.BackpackParent.render(f5);
+
+		if (entity instanceof EntityLivingBase)
+		{
+			EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
+			StarWarsMod.mc.renderEngine.bindTexture(texture2);
+			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
+			armorModel.onGround = entityLivingBase.getSwingProgress(f5);
+			armorModel.render(entity, f, f1, f2, f3, f4, f5);
+		}
 	}
 
+	protected void doRotationStuff(EntityLivingBase entity, ItemStack stack)
+	{
+		armorModel.heldItemRight = stack != null ? 1 : 0;
+		armorModel.isSneak = entity.isSneaking();
+		armorModel.bipedHead.showModel = false;
+		armorModel.bipedHeadwear.showModel = false;
+		armorModel.bipedBody.showModel = true;
+		armorModel.bipedRightArm.showModel = true;
+		armorModel.bipedLeftArm.showModel = true;
+		armorModel.bipedRightLeg.showModel = false;
+		armorModel.bipedLeftLeg.showModel = false;
+		armorModel.isRiding = entity.isRiding();
+		armorModel.isChild = entity.isChild();
+	}
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
 	 */

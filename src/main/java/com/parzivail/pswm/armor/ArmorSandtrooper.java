@@ -2,6 +2,7 @@ package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.armor.ModelBackpackSand;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,12 +16,20 @@ public class ArmorSandtrooper extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
+	ModelBackpackSand h;
+	@SideOnly(Side.CLIENT)
 	ModelCompressionArmor c;
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
+		if (itemstack.getItem() == StarWarsMod.sandtrooperChest)
+		{
+			if (h == null)
+				h = new ModelBackpackSand();
+			return h;
+		}
 		if (c == null)
 			c = new ModelCompressionArmor(0.4f, this);
 		return c;
@@ -42,8 +51,3 @@ public class ArmorSandtrooper extends ItemArmor
 		return Resources.MODID + ":" + "textures/models/sandtrooperArmorLayer1.png";
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\armor\ArmorSandtrooper.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */
