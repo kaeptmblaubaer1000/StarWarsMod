@@ -135,6 +135,9 @@ public class BlockRegister
 		StarWarsMod.blockEndorBaseWallStairs = new BlockEndorBaseWallStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWallStairs, "endorBaseWallStairs");
 
+		StarWarsMod.blockCrystalOre = new BlockCrystalOre();
+		GameRegistry.registerBlock(StarWarsMod.blockCrystalOre, ItemCrystalOreBlock.class, "blockCrystalOre");
+
 		StarWarsMod.blockDeathStarBlock = new BlockDeathStar();
 		GameRegistry.registerBlock(StarWarsMod.blockDeathStarBlock, ItemDeathStarBlock.class, "deathStarBlock");
 
