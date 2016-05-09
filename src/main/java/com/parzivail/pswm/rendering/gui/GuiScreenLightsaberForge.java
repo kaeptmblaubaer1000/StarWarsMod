@@ -376,7 +376,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (s.equals("doubleSith"))
 			{
 				GL11.glScalef(0.315f, 0.315f, 0.315f);
-				GL11.glTranslatef(0, 2.22f, 0);
+				GL11.glTranslatef(0, 2.2201f, 0);
 			}
 			else if (s.equals("vader2"))
 			{
