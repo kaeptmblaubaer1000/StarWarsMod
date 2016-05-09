@@ -28,7 +28,7 @@ public class ModelBackpackHoth extends ModelBiped
 
 	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/backpackHoth.png");
 	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/hothArmorLayer1.png");
-	private static ModelBiped armorModel = new ModelBiped(0.5f);
+	private static ModelBiped armorModel = new ModelBiped(0.4f);
 
 	public ModelBackpackHoth()
 	{

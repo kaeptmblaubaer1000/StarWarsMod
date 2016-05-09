@@ -25,7 +25,7 @@ public class ModelBackpackEndor extends ModelBiped
 
 	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/backpackEndor.png");
 	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/endorArmorLayer1.png");
-	private static ModelBiped armorModel = new ModelBiped(0.5f);
+	private static ModelBiped armorModel = new ModelBiped(0.4f);
 
 	public ModelBackpackEndor()
 	{

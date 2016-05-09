@@ -284,6 +284,7 @@ public class StarWarsMod
 	public static Block blockHoloTable;
 	public static Block blockTable;
 	public static Block blockTable2;
+	public static Block blockCrystalOre;
 	public static Block blockChromiumOre;
 	public static Block blockTitaniumOre;
 	public static Block blockTitaniumChromiumBlock;
@@ -325,7 +326,6 @@ public class StarWarsMod
 	public static Block blockTempleStoneStairsSlabTopDark;
 
 	public static Block blockAncientJediStatue;
-
 	public static Block blockStaticNpc;
 
 	public static Item.ToolMaterial materialGaffi;

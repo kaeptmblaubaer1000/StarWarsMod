@@ -2,6 +2,7 @@ package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.models.armor.ModelBackpackScout;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,6 +15,8 @@ import net.minecraft.item.ItemStack;
 public class ArmorScoutTrooper extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
+	@SideOnly(Side.CLIENT)
+	ModelBackpackScout h;
 	@SideOnly(Side.CLIENT)
 	ModelCompressionArmor c;
 
