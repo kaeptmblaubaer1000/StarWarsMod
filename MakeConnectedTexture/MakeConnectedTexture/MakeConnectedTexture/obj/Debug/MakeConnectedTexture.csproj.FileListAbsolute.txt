@@ -1,6 +1,0 @@
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\MakeConnectedTexture\MakeConnectedTexture\MakeConnectedTexture\bin\Debug\MakeConnectedTexture.exe.config
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\MakeConnectedTexture\MakeConnectedTexture\MakeConnectedTexture\bin\Debug\MakeConnectedTexture.exe
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\MakeConnectedTexture\MakeConnectedTexture\MakeConnectedTexture\bin\Debug\MakeConnectedTexture.pdb
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\MakeConnectedTexture\MakeConnectedTexture\MakeConnectedTexture\obj\Debug\MakeConnectedTexture.csprojResolveAssemblyReference.cache
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\MakeConnectedTexture\MakeConnectedTexture\MakeConnectedTexture\obj\Debug\MakeConnectedTexture.exe
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\MakeConnectedTexture\MakeConnectedTexture\MakeConnectedTexture\obj\Debug\MakeConnectedTexture.pdb
