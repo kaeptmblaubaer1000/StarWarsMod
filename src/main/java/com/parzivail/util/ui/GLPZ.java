@@ -13,4 +13,14 @@ public class GLPZ
 	{
 		GL11.glScaled(scale, scale, scale);
 	}
+
+	public static void glColorGrayscale(int color)
+	{
+		glColorGrayscale(color / 255f);
+	}
+
+	public static void glColorGrayscale(float color)
+	{
+		GL11.glColor3f(color, color, color);
+	}
 }
