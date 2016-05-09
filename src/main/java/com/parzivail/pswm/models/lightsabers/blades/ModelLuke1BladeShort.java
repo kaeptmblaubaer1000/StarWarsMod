@@ -28,8 +28,8 @@ public class ModelLuke1BladeShort extends ModelBase implements IHandlesRender
 		this.textureWidth = 256;
 		this.textureHeight = 128;
 		this.shape32 = new ModelRenderer(this, 0, 0);
-		this.shape32.setRotationPoint(13.0F, 0.0F, 0.0F);
-		this.shape32.addBox(-105.0F, 1.5F, 1.5F, 100, 3, 3, 0.0F);
+		this.shape32.setRotationPoint(38.0F, 0.0F, 0.0F);
+		this.shape32.addBox(-105.0F, 1.5F, 1.5F, 75, 3, 3, 0.0F);
 	}
 
 	@Override

@@ -23,8 +23,8 @@ public class ModelDookuBladeMedium extends ModelBase implements IHandlesRender
 		this.textureWidth = 512;
 		this.textureHeight = 512;
 		this.blade = new ModelRenderer(this, 0, 0);
-		this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.blade.addBox(-129.0F, 2.5F, 1.5F, 120, 3, 3, 0.0F);
+		this.blade.setRotationPoint(10.0F, -2.2F, 0.0F);
+		this.blade.addBox(-129.0F, 2.5F, 1.5F, 110, 3, 3, 0.0F);
 		this.setRotateAngle(this.blade, 0.0F, 0.0F, -0.20943951023931953F);
 	}
 

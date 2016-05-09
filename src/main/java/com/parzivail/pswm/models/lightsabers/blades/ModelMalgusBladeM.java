@@ -27,8 +27,8 @@ public class ModelMalgusBladeM extends ModelBase implements IHandlesRender
 		this.textureWidth = 512;
 		this.textureHeight = 512;
 		this.blade = new ModelRenderer(this, 0, 0);
-		this.blade.setRotationPoint(9.0F, 0.0F, 0.0F);
-		this.blade.addBox(-128.0F, 1.5F, 1.5F, 120, 3, 3, 0.0F);
+		this.blade.setRotationPoint(-21.0F, 0.0F, 0.0F);
+		this.blade.addBox(-128.0F, 1.5F, 1.5F, 150, 3, 3, 0.0F);
 	}
 
 	@Override

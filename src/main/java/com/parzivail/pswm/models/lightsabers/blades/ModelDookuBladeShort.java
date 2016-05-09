@@ -24,7 +24,7 @@ public class ModelDookuBladeShort extends ModelBase implements IHandlesRender
 		this.textureHeight = 512;
 		this.blade = new ModelRenderer(this, 0, 0);
 		this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.blade.addBox(-109.0F, 2.5F, 1.5F, 100, 3, 3, 0.0F);
+		this.blade.addBox(-89.0F, 2.5F, 1.5F, 80, 3, 3, 0.0F);
 		this.setRotateAngle(this.blade, 0.0F, 0.0F, -0.20943951023931953F);
 	}
 

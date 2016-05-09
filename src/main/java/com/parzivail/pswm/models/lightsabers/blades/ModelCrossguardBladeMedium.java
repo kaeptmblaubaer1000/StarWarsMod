@@ -24,8 +24,8 @@ public class ModelCrossguardBladeMedium extends ModelBase implements IHandlesRen
 		this.textureWidth = 256;
 		this.textureHeight = 128;
 		this.shape49 = new ModelRenderer(this, 0, 0);
-		this.shape49.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.shape49.addBox(-122.0F, 1.5F, 1.5F, 120, 3, 3, 0.0F);
+		this.shape49.setRotationPoint(20.0F, 0.0F, 0.0F);
+		this.shape49.addBox(-122.0F, 1.5F, 1.5F, 100, 3, 3, 0.0F);
 		this.shape50 = new ModelRenderer(this, 0, 0);
 		this.shape50.setRotationPoint(2.0F, 0.0F, 3.0F);
 		this.shape50.addBox(-0.5F, 2.0F, -16.0F, 2, 2, 32, 0.0F);

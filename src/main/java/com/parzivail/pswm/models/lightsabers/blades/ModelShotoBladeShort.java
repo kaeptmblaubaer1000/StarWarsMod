@@ -23,8 +23,8 @@ public class ModelShotoBladeShort extends ModelBase implements IHandlesRender
 		this.textureWidth = 512;
 		this.textureHeight = 512;
 		this.shape1 = new ModelRenderer(this, 0, 0);
-		this.shape1.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-102.0F, 1.5F, 1.5F, 100, 3, 3, 0.0F);
+		this.shape1.setRotationPoint(20.0F, 0.0F, 0.0F);
+		this.shape1.addBox(-102.0F, 1.5F, 1.5F, 80, 3, 3, 0.0F);
 	}
 
 	@Override

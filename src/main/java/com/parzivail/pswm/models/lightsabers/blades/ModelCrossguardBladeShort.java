@@ -27,8 +27,8 @@ public class ModelCrossguardBladeShort extends ModelBase implements IHandlesRend
 		this.shape50.setRotationPoint(2.0F, 0.0F, 3.0F);
 		this.shape50.addBox(-0.5F, 2.0F, -14.0F, 2, 2, 28, 0.0F);
 		this.shape49 = new ModelRenderer(this, 0, 0);
-		this.shape49.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.shape49.addBox(-102.0F, 1.5F, 1.5F, 100, 3, 3, 0.0F);
+		this.shape49.setRotationPoint(30.0F, 0.0F, 0.0F);
+		this.shape49.addBox(-102.0F, 1.5F, 1.5F, 70, 3, 3, 0.0F);
 	}
 
 	@Override

@@ -28,8 +28,8 @@ public class ModelLukeNewBladeM extends ModelBase implements IHandlesRender
 		this.textureWidth = 512;
 		this.textureHeight = 512;
 		this.shape1 = new ModelRenderer(this, 0, 0);
-		this.shape1.setRotationPoint(6.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-126.0F, 2.5F, 2.5F, 120, 3, 3, 0.0F);
+		this.shape1.setRotationPoint(21.0F, 0.0F, 0.0F);
+		this.shape1.addBox(-126.0F, 2.5F, 2.5F, 105, 3, 3, 0.0F);
 	}
 
 	@Override
