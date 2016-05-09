@@ -36,6 +36,11 @@ public class Animation
 		return this.isRenderable;
 	}
 
+	public boolean isDone()
+	{
+		return this.tick == this.length;
+	}
+
 	public void render(RenderGameOverlayEvent event)
 	{
 	}

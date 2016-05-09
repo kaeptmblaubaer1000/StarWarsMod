@@ -17,6 +17,18 @@
             "force/pull"
         ]
     },
+    "lightspeed.enter": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/lightspeed/enter"
+        ]
+    },
+    "lightspeed.exit": {
+        "category": "neutral",
+        "sounds": [
+            "vehicle/lightspeed/exit"
+        ]
+    },
     "vehicle.speeder.move": {
         "category": "neutral",
         "sounds": [
