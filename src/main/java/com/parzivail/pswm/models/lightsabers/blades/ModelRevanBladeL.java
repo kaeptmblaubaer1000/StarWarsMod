@@ -28,8 +28,8 @@ public class ModelRevanBladeL extends ModelBase implements IHandlesRender
 		this.textureWidth = 512;
 		this.textureHeight = 512;
 		this.shape1 = new ModelRenderer(this, 0, 0);
-		this.shape1.setRotationPoint(-32.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-148.0F, 2.5F, 2.5F, 180, 3, 3, 0.0F);
+		this.shape1.setRotationPoint(-62.0F, 0.0F, 0.0F);
+		this.shape1.addBox(-148.0F, 2.5F, 2.5F, 210, 3, 3, 0.0F);
 	}
 
 	@Override
