@@ -24,11 +24,11 @@ public class ModelSithDoubleBladeLong extends ModelBase implements IHandlesRende
 		this.textureWidth = 512;
 		this.textureHeight = 512;
 		this.blade2 = new ModelRenderer(this, 0, 0);
-		this.blade2.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.blade2.addBox(-178.0F, 0.5F, 0.5F, 140, 3, 3, 0.0F);
+		this.blade2.setRotationPoint(-20.0F, 0.0F, 0.0F);
+		this.blade2.addBox(-178.0F, 0.5F, 0.5F, 160, 3, 3, 0.0F);
 		this.blade = new ModelRenderer(this, 0, 0);
-		this.blade.setRotationPoint(0.0F, 0.0F, 0.0F);
-		this.blade.addBox(38.0F, 0.5F, 0.5F, 140, 3, 3, 0.0F);
+		this.blade.setRotationPoint(-10.0F, 0.0F, 0.0F);
+		this.blade.addBox(38.0F, 0.5F, 0.5F, 160, 3, 3, 0.0F);
 	}
 
 	@Override
