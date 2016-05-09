@@ -345,18 +345,18 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		{
 			if (s.equals("dooku"))
 			{
-				GL11.glScalef(0.45f, 0.45f, 0.45f);
-				GL11.glTranslatef(0, -0.5f, 0);
+				GL11.glScalef(0.49f, 0.49f, 0.49f);
+				GL11.glTranslatef(0, -0.595f, 0);
 			}
 			else if (s.equals("ezra"))
 			{
-				GL11.glScalef(0.42f, 0.42f, 0.42f);
-				GL11.glTranslatef(0, -0.85f, 0);
+				GL11.glScalef(0.47f, 0.47f, 0.47f);
+				GL11.glTranslatef(0, -0.76f, 0);
 			}
 			else if (s.equals("kanan"))
 			{
-				GL11.glScalef(0.4f, 0.4f, 0.4f);
-				GL11.glTranslatef(0, -0.925f, 0);
+				GL11.glScalef(0.455f, 0.455f, 0.455f);
+				GL11.glTranslatef(0, -0.78f, 0);
 			}
 			else if (s.equals("maul"))
 			{
@@ -365,13 +365,13 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 			else if (s.equals("padawan"))
 			{
-				GL11.glScalef(0.4f, 0.4f, 0.4f);
-				GL11.glTranslatef(0, -1.445f, 0);
+				GL11.glScalef(0.42f, 0.42f, 0.42f);
+				GL11.glTranslatef(0, -1.355f, 0);
 			}
 			else if (s.equals("shoto"))
 			{
-				GL11.glScalef(0.38f, 0.38f, 0.38f);
-				GL11.glTranslatef(0, -1.25f, 0);
+				GL11.glScalef(0.46f, 0.46f, 0.46f);
+				GL11.glTranslatef(0, -1.03f, 0);
 			}
 			else if (s.equals("doubleSith"))
 			{
@@ -380,28 +380,28 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 			else if (s.equals("vader2"))
 			{
-				GL11.glScalef(0.3f, 0.3f, 0.3f);
-				GL11.glTranslatef(0, -0.945f, 0);
+				GL11.glScalef(0.36f, 0.36f, 0.36f);
+				GL11.glTranslatef(0, -0.82f, 0);
 			}
 			else if (s.equals("luke1"))
 			{
-				GL11.glScalef(0.275f, 0.275f, 0.275f);
-				GL11.glTranslatef(0, -1.2f, 0);
+				GL11.glScalef(0.33f, 0.33f, 0.33f);
+				GL11.glTranslatef(0, -1.0f, 0);
 			}
 			else if (s.equals("luke2"))
 			{
-				GL11.glScalef(0.35f, 0.35f, 0.35f);
-				GL11.glTranslatef(0, -1.25f, 0);
+				GL11.glScalef(0.45f, 0.45f, 0.45f);
+				GL11.glTranslatef(0, -0.92f, 0);
 			}
 			else if (s.equals("crossguard"))
 			{
-				GL11.glScalef(0.335f, 0.335f, 0.335f);
-				GL11.glTranslatef(0, -1.075f, 0);
+				GL11.glScalef(0.38f, 0.38f, 0.38f);
+				GL11.glTranslatef(0, -0.95f, 0);
 			}
 			else if (s.equals("malgus"))
 			{
-				GL11.glScalef(0.435f, 0.435f, 0.435f);
-				GL11.glTranslatef(0, -1.075f, 0);
+				GL11.glScalef(0.465f, 0.465f, 0.465f);
+				GL11.glTranslatef(0, -1.04f, 0);
 			}
 			else if (s.equals("obiwan"))
 			{
@@ -416,12 +416,12 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (s.equals("revan"))
 			{
 				GL11.glScalef(0.38f, 0.38f, 0.38f);
-				GL11.glTranslatef(0, -1.3f, 0);
+				GL11.glTranslatef(0, -1.33f, 0);
 			}
 			else if (s.equals("starkiller"))
 			{
-				GL11.glScalef(0.375f, 0.375f, 0.375f);
-				GL11.glTranslatef(0, -1.2f, 0);
+				GL11.glScalef(0.385f, 0.385f, 0.385f);
+				GL11.glTranslatef(0, -1.155f, 0);
 			}
 		}
 
