@@ -87,6 +87,8 @@ public class RenderLightsaber implements IItemRenderer
 				else
 					ShaderHelper.setLightsaberColor(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
 				ShaderHelper.useShader(ShaderHelper.glowSolid);
+				float shakeAmount = 0.001f;
+				GL11.glTranslatef((float)(StarWarsMod.rngGeneral.nextGaussian() * shakeAmount), 0, (float)(StarWarsMod.rngGeneral.nextGaussian() * shakeAmount));
 				rB.renderItem(type, item, data);
 				ShaderHelper.releaseShader();
 				GL11.glDisable(GL11.GL_BLEND);
