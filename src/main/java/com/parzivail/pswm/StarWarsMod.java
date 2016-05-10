@@ -296,6 +296,7 @@ public class StarWarsMod
 	public static Block blockDeathStarBlock;
 	public static Block blockTatooineSand;
 	public static Block blockTatooineSandstone;
+	public static Block blockIlumStone;
 	public static Block blockSpaceLamp;
 	public static Block blockDagobahMud;
 	public static Block blockHangingCauldron;

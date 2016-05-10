@@ -163,6 +163,9 @@ public class BlockRegister
 		StarWarsMod.blockSpaceLamp = new BlockSpaceLamp();
 		GameRegistry.registerBlock(StarWarsMod.blockSpaceLamp, "spaceLamp");
 
+		StarWarsMod.blockIlumStone = new BlockIlumStone();
+		GameRegistry.registerBlock(StarWarsMod.blockIlumStone, "IlumStone");
+
 		StarWarsMod.blockTable = new BlockTatooineTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
 		GameRegistry.registerTileEntity(TileEntityTatooineTable.class, "teTatooineTable");
