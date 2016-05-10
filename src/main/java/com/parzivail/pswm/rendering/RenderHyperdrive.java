@@ -50,7 +50,7 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GLPZ.glScalef(1.25f);
 		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
-		int dim = 0;
+		int dim = 48;
 		if (planetTextures.containsKey(dim))
 		{
 			GL11.glTranslated(0, -0.5, 0);
