@@ -154,6 +154,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBactaTank.class, new RenderBactaTank());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientJediStatue.class, new RenderAncientJediStatue());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpc.class, new RenderStaticNpc());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHyperdrive.class, new RenderHyperdrive());
 
 		RegisterGuiOverlays.registerAll();
 

@@ -327,6 +327,7 @@ public class StarWarsMod
 
 	public static Block blockAncientJediStatue;
 	public static Block blockStaticNpc;
+	public static Block blockHyperdrive;
 
 	public static Item.ToolMaterial materialGaffi;
 	public static Item.ToolMaterial materialEwok;

@@ -59,6 +59,10 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockBasket, "basket");
 		GameRegistry.registerTileEntity(TileEntityBasket.class, "teBasket");
 
+		StarWarsMod.blockHyperdrive = new BlockHyperdrive();
+		GameRegistry.registerBlock(StarWarsMod.blockHyperdrive, "blockHyperdrive");
+		GameRegistry.registerTileEntity(TileEntityHyperdrive.class, "teHyperdrive");
+
 		StarWarsMod.blockBactaTank = new BlockBactaTank();
 		GameRegistry.registerBlock(StarWarsMod.blockBactaTank, "bactaTank");
 		GameRegistry.registerTileEntity(TileEntityBactaTank.class, "teBactaTank");
