@@ -7,6 +7,7 @@ import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
@@ -55,6 +56,7 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 		{
 			GL11.glTranslated(0, -0.5, 0);
 			GLPZ.glScalef(0.4f);
+			GL11.glTranslatef(0, MathHelper.sin((float)Math.toRadians((System.currentTimeMillis() % 36000) / 30f)) / 10f, 0);
 			GL11.glRotatef((System.currentTimeMillis() % 36000) / 30f, 0, 1, 0);
 			Minecraft.getMinecraft().renderEngine.bindTexture(planetTextures.get(dim));
 			this.modelCube.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
