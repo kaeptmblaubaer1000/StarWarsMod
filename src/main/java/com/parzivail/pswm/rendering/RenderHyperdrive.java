@@ -28,6 +28,13 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 
 		planetTextures.put(0, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
 		planetTextures.put(Resources.ConfigOptions.dimTatooineId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
+		planetTextures.put(Resources.ConfigOptions.dimHothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetHoth.png"));
+		planetTextures.put(Resources.ConfigOptions.dimEndorId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
+		planetTextures.put(Resources.ConfigOptions.dimYavin4Id, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
+		planetTextures.put(Resources.ConfigOptions.dimDagobahId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDagobah.png"));
+		planetTextures.put(Resources.ConfigOptions.dimIlumId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetIlum.png"));
+		planetTextures.put(48, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png")); //This is Kessel, use 48 as the dim
+
 	}
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
@@ -39,15 +46,16 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 	{
 		GL11.glPushMatrix();
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-		GL11.glTranslated(x + 0.5f, y + 1.2f, z + 0.5f);
+		GL11.glTranslated(x + 0.5f, y + 1.5f, z + 0.5f);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
+		GLPZ.glScalef(1.25f);
 		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		int dim = 0;
 		if (planetTextures.containsKey(dim))
 		{
 			GL11.glTranslated(0, -0.5, 0);
 			GLPZ.glScalef(0.4f);
-			GL11.glRotatef((System.currentTimeMillis() % 36000) / 100f, 0, 1, 0);
+			GL11.glRotatef((System.currentTimeMillis() % 36000) / 30f, 0, 1, 0);
 			Minecraft.getMinecraft().renderEngine.bindTexture(planetTextures.get(dim));
 			this.modelCube.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		}
