@@ -84,9 +84,12 @@ public class RenderSpawnXWing implements IItemRenderer
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.055F, -0.055F, 0.055F);
-				GL11.glTranslatef(8, -23, 9);
-				GL11.glRotatef(90, 0, 0, 1);
+				GL11.glScalef(0.019F, -0.019F, 0.019F);
+				GL11.glTranslatef(8, -53, 35.5f);
+				GL11.glRotatef(180, 0, 0, 1);
+				GL11.glRotatef(60, 0, 1, 0);
+				GL11.glRotatef(25, 1, 0, 0);
+				GL11.glRotatef(-10, 0, 1, 0);
 				GL11.glTranslatef(8, 10, 6);
 				GL11.glScalef(-1, -1, -1);
 				GL11.glRotatef(-30, 1, 0.1f, 0);
