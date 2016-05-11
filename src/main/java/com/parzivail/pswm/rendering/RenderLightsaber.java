@@ -34,6 +34,8 @@ public class RenderLightsaber implements IItemRenderer
 		models.put("quigon", new ModelQuigonHilt());
 		models.put("revan", new ModelRevanHilt());
 		models.put("starkiller", new ModelStarkillerHilt());
+		models.put("plokoon", new ModelPloKoonHilt());
+		models.put("inquisitor", new ModelInquisitorHilt());
 
 		blades.put("dooku", new IHandlesRender[] { new ModelDookuBladeShort(), new ModelDookuBladeMedium(), new ModelDookuBladeLong() });
 		blades.put("ezra", new IHandlesRender[] { new ModelEzraBladeShort(), new ModelEzraBladeMedium(), new ModelEzraBladeLong() });
@@ -51,6 +53,9 @@ public class RenderLightsaber implements IItemRenderer
 		blades.put("quigon", new IHandlesRender[] { new ModelQuigonBladeS(), new ModelQuigonBladeM(), new ModelQuigonBladeL() });
 		blades.put("revan", new IHandlesRender[] { new ModelRevanBladeS(), new ModelRevanBladeM(), new ModelRevanBladeL() });
 		blades.put("starkiller", new IHandlesRender[] { new ModelStarkillerBladeS(), new ModelStarkillerBladeM(), new ModelStarkillerBladeL() });
+		blades.put("plokoon", new IHandlesRender[] { new ModelPloKoonBladeShort(), new ModelPloKoonBladeMedium(), new ModelPloKoonBladeLong() });
+		blades.put("inquisitor", new IHandlesRender[] { new ModelInquisitorBladeShort(), new ModelInquisitorBladeMedium(), new ModelInquisitorBladeLong() });
+
 	}
 
 	public RenderLightsaber()
@@ -210,6 +215,16 @@ public class RenderLightsaber implements IItemRenderer
 			GL11.glTranslatef(0, 0.31f, 0);
 		}
 		else if (s.equals("starkiller"))
+		{
+			GL11.glTranslatef(0, 0.3f, 0);
+			GL11.glScalef(1.1f, 1.1f, 1.1f);
+		}
+		else if (s.equals("plokoon"))
+		{
+			GL11.glTranslatef(0, 0.3f, 0);
+			GL11.glScalef(1.1f, 1.1f, 1.1f);
+		}
+		else if (s.equals("inquisitor"))
 		{
 			GL11.glTranslatef(0, 0.3f, 0);
 			GL11.glScalef(1.1f, 1.1f, 1.1f);
