@@ -446,7 +446,7 @@ public class ModelAWing extends ModelBase
 		this.Laser_R_2.render(f5);
 		this.Laser_Barrel_R_2.render(f5);
 		this.Body_Filler_More.render(f5);
-		if (!entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ))
+		if (entity != null && !entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ))
 		{
 			this.Landing_Gear_1.render(f5);
 			this.Landing_Gear_2.render(f5);

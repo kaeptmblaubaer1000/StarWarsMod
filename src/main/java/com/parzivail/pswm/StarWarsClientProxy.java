@@ -140,6 +140,18 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.vibroLance, new RenderVibro());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.ewokSpear, new RenderSpear());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gaffiStick, new RenderGaffi());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnXwing, new RenderSpawnXWing());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTie, new RenderSpawnTIE());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTieInterceptor, new RenderSpawnTIEInterceptor());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTieAdvanced, new RenderSpawnTIEAdvanced());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnAtst, new RenderSpawnATST());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnSkyhopper, new RenderSpawnSkyhopper());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnSnowspeeder, new RenderSpawnSnowspeeder());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnAwing, new RenderSpawnAWing());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnSpeederBike, new RenderSpawnSpeederBike());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnHothSpeederBike, new RenderSpawnHothSpeederBike());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnLandspeeder, new RenderSpawnLandspeeder());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnJakkuSpeeder, new RenderSpawnJakkuSpeeder());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new RenderAntenna());
