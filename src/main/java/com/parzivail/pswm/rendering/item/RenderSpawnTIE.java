@@ -99,7 +99,8 @@ public class RenderSpawnTIE implements IItemRenderer
 			default:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.07F, -0.07F, 0.07F);
+				GL11.glScalef(0.035F, -0.035F, 0.035F);
+				GL11.glRotatef(90, 0, 0, 1);
 				GL11.glRotatef(90, 0, 0, 1);
 				GL11.glTranslatef(-25, -2, -2);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
