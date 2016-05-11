@@ -2,8 +2,12 @@ package com.parzivail.pswm;
 
 import net.minecraft.util.ResourceLocation;
 
+import java.util.HashMap;
+
 public class Resources
 {
+	public static HashMap<Integer, ResourceLocation> planetTextures = new HashMap<>();
+
 	public static class ConfigOptions
 	{
 		public static int biomeTatooineId;
@@ -53,13 +57,15 @@ public class Resources
 	public static final String remoteVersionLink = "https://raw.githubusercontent.com/Parzivail-Modding-Team/ParziStarWarsMod/master/VERSION.md";
 	public static final String robesLeaderboardAddLink = "http://parzivail.com/mods/tswm/addLeaderboard.php";
 
-	public static final int GUI_MV = 0;
-	public static final int GUI_ROBES = 1;
-	public static final int GUI_JEDI_SITH = 2;
-	public static final int GUI_HOLOTABLE = 3;
-	public static final int GUI_QUESTLOG = 4;
-	public static final int GUI_LSFORGE = 5;
-	public static final int GUI_SCANNER = 6;
+	private static int guiCounter = 0;
+	public static final int GUI_MV = guiCounter++;
+	public static final int GUI_ROBES = guiCounter++;
+	public static final int GUI_JEDI_SITH = guiCounter++;
+	public static final int GUI_HOLOTABLE = guiCounter++;
+	public static final int GUI_QUESTLOG = guiCounter++;
+	public static final int GUI_LSFORGE = guiCounter++;
+	public static final int GUI_SCANNER = guiCounter++;
+	public static final int GUI_HYPERDRIVE = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

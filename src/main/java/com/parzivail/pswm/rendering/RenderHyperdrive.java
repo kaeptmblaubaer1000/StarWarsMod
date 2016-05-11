@@ -13,12 +13,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-import java.util.HashMap;
-
 public class RenderHyperdrive extends TileEntitySpecialRenderer
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/models/hyperdriveBlock.png");
-	public static HashMap<Integer, ResourceLocation> planetTextures = new HashMap<>();
 
 	private final ModelHyperdriveBlock model;
 	private final ModelPlanetCube modelCube;
@@ -28,14 +25,14 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 		this.model = new ModelHyperdriveBlock();
 		this.modelCube = new ModelPlanetCube();
 
-		planetTextures.put(0, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
-		planetTextures.put(Resources.ConfigOptions.dimTatooineId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
-		planetTextures.put(Resources.ConfigOptions.dimHothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetHoth.png"));
-		planetTextures.put(Resources.ConfigOptions.dimEndorId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
-		planetTextures.put(Resources.ConfigOptions.dimYavin4Id, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
-		planetTextures.put(Resources.ConfigOptions.dimDagobahId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDagobah.png"));
-		planetTextures.put(Resources.ConfigOptions.dimIlumId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetIlum.png"));
-		planetTextures.put(48, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png")); //This is Kessel, use 48 as the dim
+		Resources.planetTextures.put(0, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimTatooineId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimHothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetHoth.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimEndorId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimYavin4Id, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimDagobahId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDagobah.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimIlumId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetIlum.png"));
+		Resources.planetTextures.put(48, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png")); //This is Kessel, use 48 as the dim
 
 	}
 
@@ -52,14 +49,14 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GLPZ.glScalef(1.25f);
 		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
-		int dim = Resources.ConfigOptions.dimTatooineId;
-		if (planetTextures.containsKey(dim))
+		int dim = te.getWorldObj().provider.dimensionId;
+		if (Resources.planetTextures.containsKey(dim))
 		{
 			GL11.glTranslated(0, -0.5, 0);
 			GLPZ.glScalef(0.4f);
 			GL11.glTranslatef(0, MathHelper.sin((float)Math.toRadians(((TileEntityHyperdrive)te).getTicks())) / 10f, 0);
 			GL11.glRotatef(((TileEntityHyperdrive)te).getTicks(), 0, 1, 0);
-			Minecraft.getMinecraft().renderEngine.bindTexture(planetTextures.get(dim));
+			Minecraft.getMinecraft().renderEngine.bindTexture(Resources.planetTextures.get(dim));
 			this.modelCube.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		}
 		GL11.glPopMatrix();

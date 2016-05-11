@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -70,8 +69,11 @@ public class BlockHyperdrive extends BlockContainer implements IDebugProvider
 	}
 
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
 	{
+		if (!world.isRemote)
+			player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, world, x, y, z);
+		return true;
 	}
 }
 /*

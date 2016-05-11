@@ -1,21 +1,26 @@
 package com.parzivail.util.ui;
 
-import com.parzivail.pswm.rendering.IHandlesRender;
-import com.parzivail.pswm.rendering.RenderLightsaber;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class OutlineModelButton extends OutlineButton
-{
-	IHandlesRender body;
-	RenderLightsaber s = new RenderLightsaber();
+import java.util.function.Consumer;
 
-	public OutlineModelButton(int id, String name, int x, int y, IHandlesRender renderer)
+public class OutlineModelButtonFancy extends OutlineButton
+{
+	ModelBase model;
+	Consumer preTransform;
+	ResourceLocation texture;
+
+	public OutlineModelButtonFancy(int id, String name, int x, int y, ModelBase model, ResourceLocation texture, Consumer<OutlineButton> preTransform)
 	{
 		super(id, x, y, 30, 30, name, false);
-		this.body = renderer;
+		this.model = model;
+		this.preTransform = preTransform;
+		this.texture = texture;
 	}
 
 	@Override
@@ -25,7 +30,6 @@ public class OutlineModelButton extends OutlineButton
 		GL11.glPushMatrix();
 		if (this.visible)
 		{
-			FontRenderer fontrenderer = mc.fontRenderer;
 			/* hover */
 			this.field_146123_n = mX >= this.xPosition && mY >= this.yPosition && mX < this.xPosition + this.width && mY < this.yPosition + this.height;
 			int k = this.getHoverState(this.field_146123_n);
@@ -56,14 +60,16 @@ public class OutlineModelButton extends OutlineButton
 			GL11.glEnable(GL11.GL_LIGHTING);
 			RenderHelper.enableStandardItemLighting();
 
-			if (body != null)
-			{
-				GL11.glTranslatef(this.xPosition + (this.width / 2f), this.yPosition + this.height, 10);
-				GL11.glRotatef((System.currentTimeMillis() / 15) % 360, 0, 1, 0);
-				GL11.glScalef(20, -20, 20);
-				RenderLightsaber.applyTransformFix(this.displayString);
-				s.renderHiltItem(body, false);
-			}
+			GL11.glTranslatef(this.xPosition + (this.width / 2f), this.yPosition + this.height, 10);
+
+			if (preTransform != null)
+				preTransform.accept(this);
+
+			if (this.texture != null)
+				StarWarsMod.mc.renderEngine.bindTexture(texture);
+
+			if (this.model != null)
+				model.render(null, 0, 0, 0, 0, 0, 0);
 
 			GL11.glDisable(GL11.GL_LIGHTING);
 

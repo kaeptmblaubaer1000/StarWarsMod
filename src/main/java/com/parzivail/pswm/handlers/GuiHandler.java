@@ -29,6 +29,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiScreenLightsaberForge(player);
 		else if (id == Resources.GUI_SCANNER)
 			return new GuiIDScanner(player);
+		else if (id == Resources.GUI_HYPERDRIVE)
+			return new GuiScreenHyperdrive(player);
 		return null;
 	}
 
@@ -37,13 +39,9 @@ public class GuiHandler implements IGuiHandler
 	{
 		if (id == Resources.GUI_MV)
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_ROBES)
-			return new ContainerClient();
-		else if (id == Resources.GUI_JEDI_SITH)
-			return new ContainerClient();
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_QUESTLOG || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER)
+		else if (id == Resources.GUI_QUESTLOG || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH)
 			return new ContainerClient();
 		return null;
 	}

@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.rendering.OutlineLightsaberHiltButton;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.util.ui.*;
 import cpw.mods.fml.relauncher.Side;
@@ -116,7 +117,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		int y = 0;
 		for (String s : ItemLightsaber.hilts)
 		{
-			OutlineButton b = new OutlineModelButton(id++, s, x * 32 + 10, y * 32 + 40, RenderLightsaber.models.get(s));
+			OutlineButton b = new OutlineLightsaberHiltButton(id++, s, x * 32 + 10, y * 32 + 40, RenderLightsaber.models.get(s));
 			b.visible = true;
 			listBHilts.put(s, b);
 			buttonList.add(b);
