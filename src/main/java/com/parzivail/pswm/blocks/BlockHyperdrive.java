@@ -3,15 +3,19 @@ package com.parzivail.pswm.blocks;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHyperdrive;
+import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockHyperdrive extends BlockContainer
+import java.util.List;
+
+public class BlockHyperdrive extends BlockContainer implements IDebugProvider
 {
 	public BlockHyperdrive()
 	{
@@ -26,6 +30,19 @@ public class BlockHyperdrive extends BlockContainer
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
 		return new TileEntityHyperdrive();
+	}
+
+	@Override
+	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
+	{
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityHyperdrive)
+		{
+			TileEntityHyperdrive vap = (TileEntityHyperdrive)tile;
+			list.add(String.valueOf(vap.getTicks()) + " ticks");
+		}
+
+		return list;
 	}
 
 	@Override
