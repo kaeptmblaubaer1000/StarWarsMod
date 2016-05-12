@@ -432,7 +432,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (s.equals("inquisitor"))
 			{
 				GL11.glScalef(0.26f, 0.26f, 0.26f);
-				GL11.glTranslatef(0, 0.1f, 0);
+				GL11.glTranslatef(0, 3.08f, 0);
 			}
 		}
 
