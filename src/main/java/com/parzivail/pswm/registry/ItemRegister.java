@@ -123,6 +123,9 @@ public class ItemRegister
 		StarWarsMod.binoculars = new ItemBinocularsTatooine();
 		GameRegistry.registerItem(StarWarsMod.binoculars, "binoculars");
 
+		StarWarsMod.binocularsNew = new ItemBinocularsNew();
+		GameRegistry.registerItem(StarWarsMod.binocularsNew, "binocularsNew");
+
 		StarWarsMod.idScanner = new ItemIDScanner();
 		GameRegistry.registerItem(StarWarsMod.idScanner, "idScanner");
 

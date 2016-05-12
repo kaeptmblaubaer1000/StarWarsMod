@@ -6,7 +6,6 @@ import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
-import com.parzivail.pswm.models.ModelBinocularsNew;
 import com.parzivail.pswm.models.ModelDSTurret;
 import com.parzivail.pswm.models.mobs.*;
 import com.parzivail.pswm.models.vehicles.*;
@@ -141,7 +140,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.vibroLance, new RenderVibro());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.ewokSpear, new RenderSpear());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gaffiStick, new RenderGaffi());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.BinocularsNew, new RenderBinocularsNew());
+		MinecraftForgeClient.registerItemRenderer(StarWarsMod.binocularsNew, new RenderBinocularsNew());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnXwing, new RenderSpawnXWing());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTie, new RenderSpawnTIE());
 		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTieInterceptor, new RenderSpawnTIEInterceptor());

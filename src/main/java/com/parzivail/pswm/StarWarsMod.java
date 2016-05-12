@@ -171,7 +171,7 @@ public class StarWarsMod
 	public static Item spawnGonk;
 	public static Item spawnSurgical;
 	public static Item spawnTreadwell;
-	public static Item BinocularsNew;
+	public static Item binocularsNew;
 
 	public static Item jediRobes;
 
