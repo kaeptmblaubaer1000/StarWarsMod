@@ -426,13 +426,13 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 			else if (s.equals("plokoon"))
 			{
-				GL11.glScalef(0.385f, 0.385f, 0.385f);
-				GL11.glTranslatef(0, -1.155f, 0);
+				GL11.glScalef(0.395f, 0.395f, 0.395f);
+				GL11.glTranslatef(0, -0.92f, 0);
 			}
 			else if (s.equals("inquisitor"))
 			{
-				GL11.glScalef(0.385f, 0.385f, 0.385f);
-				GL11.glTranslatef(0, -1.155f, 0);
+				GL11.glScalef(0.26f, 0.26f, 0.26f);
+				GL11.glTranslatef(0, 0.1f, 0);
 			}
 		}
 

@@ -221,12 +221,12 @@ public class RenderLightsaber implements IItemRenderer
 		}
 		else if (s.equals("plokoon"))
 		{
-			GL11.glTranslatef(0, 0.3f, 0);
+			GL11.glTranslatef(0, 0.425f, 0);
 			GL11.glScalef(1.1f, 1.1f, 1.1f);
 		}
 		else if (s.equals("inquisitor"))
 		{
-			GL11.glTranslatef(0, 0.3f, 0);
+			GL11.glTranslatef(0, -0.55f, 0);
 			GL11.glScalef(1.1f, 1.1f, 1.1f);
 		}
 	}
