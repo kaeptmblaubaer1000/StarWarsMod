@@ -414,6 +414,7 @@ public class ModelInquisitorHilt extends ModelBase implements IHandlesRender
 				GL11.glPushMatrix();
 				GL11.glScalef(0.03f, 0.03f, 0.03f);
 				GL11.glRotatef(-90, 0, 0, 1);
+				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glTranslatef(-40, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				GL11.glPopMatrix();
@@ -424,8 +425,8 @@ public class ModelInquisitorHilt extends ModelBase implements IHandlesRender
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);
-				GL11.glRotatef(90, 1, 0, 0);
-				GL11.glTranslatef(22, -1.5f, 20);
+				GL11.glRotatef(180, 1, 0, 0);
+				GL11.glTranslatef(22, 17, 1.5f);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
@@ -442,7 +443,7 @@ public class ModelInquisitorHilt extends ModelBase implements IHandlesRender
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();
 				GL11.glScalef(0.05f, 0.05f, 0.05f);
-				GL11.glTranslatef(0, 25, 0);
+				GL11.glTranslatef(0, 26.75f, 0);
 				GL11.glRotatef(-130, 0, 1, 0);
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(75, 0, 0, 1);
@@ -464,8 +465,8 @@ public class ModelInquisitorHilt extends ModelBase implements IHandlesRender
 				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
-				GL11.glScalef(0.035f, 0.035f, 0.035f);
-				GL11.glTranslatef(-2, -3, -1);
+				GL11.glScalef(0.045f, 0.045f, 0.045f);
+				GL11.glTranslatef(-3, -4, -1);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(90, 1, 0, 0);

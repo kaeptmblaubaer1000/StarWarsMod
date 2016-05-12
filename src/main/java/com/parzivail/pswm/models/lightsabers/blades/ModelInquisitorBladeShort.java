@@ -22,12 +22,12 @@ public class ModelInquisitorBladeShort extends ModelBase implements IHandlesRend
     public ModelInquisitorBladeShort() {
         this.textureWidth = 512;
         this.textureHeight = 512;
-        this.shape1 = new ModelRenderer(this, 0, 0);
-        this.shape1.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.shape1.addBox(31.0F, 1.0F, 1.0F, 100, 3, 3, 0.0F);
-        this.shape2 = new ModelRenderer(this, 0, 0);
-        this.shape2.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.shape2.addBox(-130.0F, 1.0F, 1.0F, 100, 3, 3, 0.0F);
+	    this.shape1 = new ModelRenderer(this, 0, 0);
+	    this.shape1.setRotationPoint(0.0F, 0.0F, 0.0F);
+	    this.shape1.addBox(31.0F, 1.0F, 1.0F, 70, 3, 3, 0.0F);
+	    this.shape2 = new ModelRenderer(this, 0, 0);
+	    this.shape2.setRotationPoint(30.0F, 0.0F, 0.0F);
+	    this.shape2.addBox(-130.0F, 1.0F, 1.0F, 70, 3, 3, 0.0F);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ModelInquisitorBladeShort extends ModelBase implements IHandlesRend
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.shape1.render(f5);
-        this.shape2.render(f5);
+	    this.shape2.render(f5);
     }
 
     @Override

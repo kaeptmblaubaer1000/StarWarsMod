@@ -41,6 +41,9 @@ public class ModelPloKoonBladeLong extends ModelBase implements IHandlesRender
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
+        this.shape1 = new ModelRenderer(this, 0, 0);
+        this.shape1.setRotationPoint(-15.0F, 0.0F, 0.0F);
+        this.shape1.addBox(-139.0F, 1.5F, 1.5F, 155, 3, 3, 0.0F);
         this.shape1.render(f5);
     }
 

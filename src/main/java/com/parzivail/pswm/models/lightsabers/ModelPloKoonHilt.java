@@ -251,12 +251,12 @@ public class ModelPloKoonHilt extends ModelBase implements IHandlesRender
 			break;
 		case EQUIPPED:
 			GL11.glPushMatrix();
-			GL11.glScalef(0.05f, 0.05f, 0.05f);
+			GL11.glScalef(0.04f, 0.04f, 0.04f);
 			GL11.glRotatef(180, 1, 0, 0);
 			GL11.glRotatef(45, 0, 1, 0);
 			GL11.glRotatef(20, 0, 0, 1);
 			GL11.glRotatef(90, 1, 0, 0);
-			GL11.glTranslatef(13, -2, 18);
+			GL11.glTranslatef(9, -2, 22.8f);
 			if (data[1] instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer)data[1];
@@ -272,7 +272,7 @@ public class ModelPloKoonHilt extends ModelBase implements IHandlesRender
 		case EQUIPPED_FIRST_PERSON:
 			GL11.glPushMatrix();
 			GL11.glScalef(0.05f, 0.05f, 0.05f);
-			GL11.glTranslatef(0, 25, 0);
+			GL11.glTranslatef(0, 23, 0);
 			GL11.glRotatef(-130, 0, 1, 0);
 			GL11.glRotatef(180, 1, 0, 0);
 			GL11.glRotatef(75, 0, 0, 1);
@@ -294,7 +294,7 @@ public class ModelPloKoonHilt extends ModelBase implements IHandlesRender
 			break;
 		case INVENTORY:
 			GL11.glScalef(0.045f, 0.045f, 0.045f);
-			GL11.glTranslatef(-12, 0, 0);
+			GL11.glTranslatef(-21.5f, 3, 0);
 			GL11.glRotatef(160, 0, 0, 1);
 			GL11.glRotatef(180, 0, 1, 0);
 			GL11.glRotatef(90, 1, 0, 0);
