@@ -392,7 +392,7 @@ public class GuiVehicle
 					this.lastTarget = e;
 
 					/*
-					 * if (tie.getTargetLock()) color = GlPalette.ORANGE;
+					 * if (tie.getTargetLock()) dist = GlPalette.ORANGE;
 					 * 
 					 * if (e instanceof VehicleAirBase && e.riddenByEntity
 					 * instanceof EntityPlayer) {
@@ -410,39 +410,39 @@ public class GuiVehicle
 					 * this.lastTarget.worldObj.provider.dimensionId));
 					 * this.lastTarget = e; }
 					 * 
-					 * if (e != null) { color = GlPalette.ELECTRIC_LIME;
+					 * if (e != null) { dist = GlPalette.ELECTRIC_LIME;
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
-					 * centerY - 5, 3, 180, 2, color);
+					 * centerY - 5, 3, 180, 2, dist);
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX - 5,
-					 * centerY + 5, 3, 45, 2, color);
+					 * centerY + 5, 3, 45, 2, dist);
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 5,
-					 * centerY + 5, 3, 315, 2, color);
+					 * centerY + 5, 3, 315, 2, dist);
 					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
-					 * 20, centerX - 20, centerY - 10, 2, color);
+					 * 20, centerX - 20, centerY - 10, 2, dist);
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
-					 * 20, centerX - 10, centerY - 20, 2, color);
+					 * 20, centerX - 10, centerY - 20, 2, dist);
 					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
-					 * 20, centerX + 20, centerY - 10, 2, color);
+					 * 20, centerX + 20, centerY - 10, 2, dist);
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
-					 * 20, centerX + 10, centerY - 20, 2, color);
+					 * 20, centerX + 10, centerY - 20, 2, dist);
 					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
-					 * 20, centerX - 20, centerY + 10, 2, color);
+					 * 20, centerX - 20, centerY + 10, 2, dist);
 					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
-					 * 20, centerX - 10, centerY + 20, 2, color);
+					 * 20, centerX - 10, centerY + 20, 2, dist);
 					 * 
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
-					 * 20, centerX + 20, centerY + 10, 2, color);
+					 * 20, centerX + 20, centerY + 10, 2, dist);
 					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
-					 * 20, centerX + 10, centerY + 20, 2, color); } else {
+					 * 20, centerX + 10, centerY + 20, 2, dist); } else {
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
-					 * centerY - 10, 3, 180, 2, color);
+					 * centerY - 10, 3, 180, 2, dist);
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX - 10,
-					 * centerY + 10, 3, 45, 2, color);
+					 * centerY + 10, 3, 45, 2, dist);
 					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 10,
-					 * centerY + 10, 3, 315, 2, color); }
+					 * centerY + 10, 3, 315, 2, dist); }
 					 */
 
 					ClientEventHandler.pgui.renderOverlay(Resources.tieOverlay);
@@ -583,7 +583,7 @@ public class GuiVehicle
 						color = GLPalette.ANALOG_RED;
 
 					// if (vehic.getTargetLock())
-					// color = GLPalette.ORANGE;
+					// dist = GLPalette.ORANGE;
 
 					if (e != null && this.lastTarget == null)
 						new AnimationCrosshairClose(color).start();
