@@ -10,7 +10,7 @@ public class AnimationManager
 	/**
 	 * All active animations
 	 **/
-	public static ArrayList<Animation> animations = new ArrayList<Animation>();
+	public static ArrayList<Animation> animations = new ArrayList<>();
 
 	public static void render(RenderGameOverlayEvent event)
 	{
@@ -39,5 +39,19 @@ public class AnimationManager
 					i.remove();
 
 		}
+	}
+
+	public static Animation isRunning(Class<? extends Animation> clazz)
+	{
+		Iterator<Animation> i = animations.iterator();
+
+		while (i.hasNext())
+		{
+			Animation t = i.next();
+			if (clazz.isInstance(t))
+				return t;
+		}
+
+		return null;
 	}
 }

@@ -11,7 +11,7 @@ import com.parzivail.pswm.jedirobes.powers.Power;
 import com.parzivail.pswm.jedirobes.powers.PowerDefend;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.rendering.gui.AnimationHyperspace;
+import com.parzivail.pswm.rendering.gui.AnimationTargetingComputer;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
@@ -143,7 +143,12 @@ public class CommonEventHandler
 			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
-			new AnimationHyperspace(3500, false).start();
+		{
+			if (AnimationManager.isRunning(AnimationTargetingComputer.class) != null)
+				AnimationManager.isRunning(AnimationTargetingComputer.class).stop();
+			else
+				new AnimationTargetingComputer().start();
+		}
 
 		if (KeybindRegistry.keyLSForge.isPressed())
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
