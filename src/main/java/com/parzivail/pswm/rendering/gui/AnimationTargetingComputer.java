@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.Animation;
+import com.parzivail.util.MathUtils;
 import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -24,7 +25,7 @@ public class AnimationTargetingComputer extends Animation
 		super.render(event);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-		GL11.glLineWidth(3);
+		GL11.glLineWidth(5);
 
 		GL11.glColor3f(0, 0, 0);
 		int x = 0;
@@ -42,6 +43,11 @@ public class AnimationTargetingComputer extends Animation
 
 		Screen2D.drawLine(x + 10, y + 40, x + width - 10, y + height - 40);
 		Screen2D.drawLine(x + 10, y + height - 40, x + width - 10, y + 40);
+
+		int x1 = (int)MathUtils.lerp(x + 60, x + (height / 2f), this.tick / (float)this.getMax());
+		int y1 = (int)MathUtils.lerp(y + height - 10, y + 10, this.tick / (float)this.getMax());
+
+		Screen2D.drawLine(x1, y1 + 10, x1, y1 - 10);
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
