@@ -183,9 +183,9 @@ public class ItemLightsaber extends ItemSword
 		 */
 		if (s.equals("maul") || s.equals("dooku") || s.equals("vader2") || s.equals("malgus") || s.equals("doubleSith") || s.equals("starkiller") || s.equals("shoto") || s.equals("inquisitor"))
 			nbt.setInteger(nbtBladeColor, 0xFF0000); // red
-		else if (s.equals("quigon") || s.equals("padawan") || s.equals("luke2") || s.equals("plokoon"))
+		else if (s.equals("quigon") || s.equals("padawan") || s.equals("luke2"))
 			nbt.setInteger(nbtBladeColor, 0x00FF30); // green
-		else if (s.equals("obiwan") || s.equals("luke1") || s.equals("kanan") || s.equals("ezra") || s.equals("revan"))
+		else if (s.equals("obiwan") || s.equals("luke1") || s.equals("kanan") || s.equals("ezra") || s.equals("revan")  || s.equals("plokoon"))
 			nbt.setInteger(nbtBladeColor, 0x2448DA); // blue
 		else if (s.equals("crossguard"))
 			nbt.setInteger(nbtBladeColor, 0xFF5200); // red-orange
