@@ -2,11 +2,10 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.models.ModelPlanetCube;
-import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.OutlineButton;
 import com.parzivail.util.ui.OutlineButtonModel;
-import com.parzivail.util.ui.Screen2D;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -48,139 +47,193 @@ public class GuiScreenHyperdrive extends GuiScreen
 		};
 
 		int id = 0;
-		Point p = galaxyCoordsToXy(7.1f, 5.1f);
+		PlanetInformation info = PlanetInformation.getPlanet("alderaan");
+		Point p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel alderaan = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		alderaan.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimAlderaanId), transform);
+		alderaan.displayString = info.getName();
+		alderaan.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(alderaan);
 
-		p = galaxyCoordsToXy(4.9f, 13.3f);
+		info = PlanetInformation.getPlanet("bespin");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel bespin = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		bespin.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimBespinId), transform);
+		bespin.displayString = info.getName();
+		bespin.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(bespin);
 
-		p = galaxyCoordsToXy(4.6f, 13.8f);
+		info = PlanetInformation.getPlanet("hoth");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel hoth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		hoth.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimHothId), transform);
+		hoth.displayString = info.getName();
+		hoth.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(hoth);
 
-		p = galaxyCoordsToXy(7.4f, 6.8f);
+		info = PlanetInformation.getPlanet("earth");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel earth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		earth.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		earth.displayString = info.getName();
+		earth.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(earth);
 
-		p = galaxyCoordsToXy(6.1f, 4.9f);
+		info = PlanetInformation.getPlanet("coruscant");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel coruscant = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		coruscant.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimCoruscantId), transform);
+		coruscant.displayString = info.getName();
+		coruscant.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(coruscant);
 
-		p = galaxyCoordsToXy(7.5f, 14.4f);
+		info = PlanetInformation.getPlanet("dagobah");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel dagobah = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dagobah.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDagobahId), transform);
+		dagobah.displayString = info.getName();
+		dagobah.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(dagobah);
 
-		p = galaxyCoordsToXy(9.25f, 1.35f);
+		info = PlanetInformation.getPlanet("dathomir");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel dathomir = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dathomir.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDathomirId), transform);
+		dathomir.displayString = info.getName();
+		dathomir.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(dathomir);
 
-		p = galaxyCoordsToXy(2.58f, 11.6f);
+		info = PlanetInformation.getPlanet("endor");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel endor = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		endor.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimEndorId), transform);
+		endor.displayString = info.getName();
+		endor.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(endor);
 
-		p = galaxyCoordsToXy(12.7f, 11.4f);
+		info = PlanetInformation.getPlanet("geonosis");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel geonosis = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		geonosis.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimGeonosisId), transform);
+		geonosis.displayString = info.getName();
+		geonosis.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(geonosis);
 
-		p = galaxyCoordsToXy(12.35f, 11.75f);
+		info = PlanetInformation.getPlanet("tatooine");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel tatooine = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		tatooine.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimTatooineId), transform);
+		tatooine.displayString = info.getName();
+		tatooine.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(tatooine);
 
-		p = galaxyCoordsToXy(12.75f, 12.7f);
+		info = PlanetInformation.getPlanet("ryloth");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel ryloth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ryloth.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimRylothId), transform);
+		ryloth.displayString = info.getName();
+		ryloth.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(ryloth);
 
-		p = galaxyCoordsToXy(1.9f, 2.4f);
+		info = PlanetInformation.getPlanet("ilum");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel ilum = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ilum.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimIlumId), transform);
+		ilum.displayString = info.getName();
+		ilum.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(ilum);
 
-		p = galaxyCoordsToXy(13.75f, 10.3f);
+		info = PlanetInformation.getPlanet("kamino");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel kamino = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kamino.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKaminoId), transform);
+		kamino.displayString = info.getName();
+		kamino.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(kamino);
 
-		p = galaxyCoordsToXy(10.75f, 4.7f);
+		info = PlanetInformation.getPlanet("kashyyyk");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel kashyyyk = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kashyyyk.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKashyyykId), transform);
+		kashyyyk.displayString = info.getName();
+		kashyyyk.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(kashyyyk);
 
-		p = galaxyCoordsToXy(14.3f, 5.0f);
+		info = PlanetInformation.getPlanet("kessel");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel kessel = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kessel.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKesselId), transform);
+		kessel.displayString = info.getName();
+		kessel.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(kessel);
 
-		p = galaxyCoordsToXy(9.7f, 2.3f);
+		info = PlanetInformation.getPlanet("mandalore");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel mandalore = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		mandalore.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMandaloreId), transform);
+		mandalore.displayString = info.getName();
+		mandalore.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(mandalore);
 
-		p = galaxyCoordsToXy(15.1f, 1.8f);
+		info = PlanetInformation.getPlanet("monCalamari");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel monCalamari = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		monCalamari.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMonCalamariId), transform);
+		monCalamari.displayString = info.getName();
+		monCalamari.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(monCalamari);
 
-		p = galaxyCoordsToXy(6.3f, 19.8f);
+		info = PlanetInformation.getPlanet("mustafar");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel mustafar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		mustafar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMustafarId), transform);
+		mustafar.displayString = info.getName();
+		mustafar.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(mustafar);
 
-		p = galaxyCoordsToXy(9.4f, 12.1f);
+		info = PlanetInformation.getPlanet("naboo");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel naboo = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		naboo.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimNabooId), transform);
+		naboo.displayString = info.getName();
+		naboo.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(naboo);
 
-		p = galaxyCoordsToXy(7.75f, 12.5f);
+		info = PlanetInformation.getPlanet("sullust");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel sullust = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		sullust.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimSullustId), transform);
+		sullust.displayString = info.getName();
+		sullust.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(sullust);
 
-		p = galaxyCoordsToXy(8.5f, 14.75f);
+		info = PlanetInformation.getPlanet("utapau");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel utapau = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		utapau.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimUtapauId), transform);
+		utapau.displayString = info.getName();
+		utapau.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(utapau);
 
-		p = galaxyCoordsToXy(10.6f, 1.0f);
+		info = PlanetInformation.getPlanet("yavin4");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel yavin4 = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		yavin4.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimYavin4Id), transform);
+		yavin4.displayString = info.getName();
+		yavin4.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(yavin4);
 
-		p = galaxyCoordsToXy(3.8f, 8.4f);
+		info = PlanetInformation.getPlanet("jakku");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel jakku = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		jakku.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimJakkuId), transform);
+		jakku.displayString = info.getName();
+		jakku.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(jakku);
 
-		p = galaxyCoordsToXy(4.8f, 10.7f);
+		info = PlanetInformation.getPlanet("takodana");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel takodana = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		takodana.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimTakodanaId), transform);
+		takodana.displayString = info.getName();
+		takodana.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(takodana);
 
-		p = galaxyCoordsToXy(9.3f, 13.1f);
+		info = PlanetInformation.getPlanet("dQar");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel dQar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dQar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDQarId), transform);
+		dQar.displayString = info.getName();
+		dQar.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(dQar);
 
-		p = galaxyCoordsToXy(16.8f, 8.6f);
+		info = PlanetInformation.getPlanet("ahchTo");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel ahchTo = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ahchTo.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimAhchToId), transform);
+		ahchTo.displayString = info.getName();
+		ahchTo.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(ahchTo);
 
-		p = galaxyCoordsToXy(11.2f, 1.4f);
+		info = PlanetInformation.getPlanet("deathStar");
+		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 		OutlineButtonModel deathStar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		deathStar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDeathStarId), transform);
+		deathStar.displayString = info.getName();
+		deathStar.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
 		buttonList.add(deathStar);
 	}
 

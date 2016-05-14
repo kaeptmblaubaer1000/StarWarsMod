@@ -1,12 +1,15 @@
 package com.parzivail.pswm;
 
+import com.parzivail.pswm.dimension.PlanetInformation;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Resources
 {
 	public static HashMap<Integer, ResourceLocation> planetTextures = new HashMap<>();
+	public static ArrayList<PlanetInformation> planetInformation = new ArrayList<>();
 
 	public static class ConfigOptions
 	{

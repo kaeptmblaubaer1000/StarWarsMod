@@ -3,6 +3,7 @@ package com.parzivail.pswm;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.commands.CommandJediRobes;
+import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.handlers.CommonEventHandler;
@@ -566,6 +567,255 @@ public class StarWarsMod
 		Resources.planetTextures.put(Resources.ConfigOptions.dimDQarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDQar.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimAhchToId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAhchTo.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimDeathStarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDeathStar.png"));
+
+		Resources.planetInformation = new ArrayList<>();
+
+		PlanetInformation alderaan = new PlanetInformation();
+		alderaan.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
+		alderaan.setDimensionId(Resources.ConfigOptions.dimAlderaanId);
+		alderaan.setName("Alderaan");
+		alderaan.setPosition(7.1f, 5.1f);
+		alderaan.setAffiliation(Resources.allegianceNone);
+		alderaan.setDescription("");
+		Resources.planetInformation.add(alderaan);
+
+		PlanetInformation bespin = new PlanetInformation();
+		bespin.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetBespin.png"));
+		bespin.setDimensionId(Resources.ConfigOptions.dimBespinId);
+		bespin.setName("Bespin");
+		bespin.setPosition(4.9f, 13.3f);
+		bespin.setAffiliation(Resources.allegianceNone);
+		bespin.setDescription("");
+		Resources.planetInformation.add(bespin);
+
+		PlanetInformation hoth = new PlanetInformation();
+		hoth.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetHoth.png"));
+		hoth.setDimensionId(Resources.ConfigOptions.dimHothId);
+		hoth.setName("Hoth");
+		hoth.setPosition(4.6f, 13.8f);
+		hoth.setAffiliation(Resources.allegianceNone);
+		hoth.setDescription("");
+		Resources.planetInformation.add(hoth);
+
+		PlanetInformation earth = new PlanetInformation();
+		earth.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
+		earth.setDimensionId(0);
+		earth.setName("Earth");
+		earth.setPosition(7.4f, 6.8f);
+		earth.setAffiliation(Resources.allegianceNone);
+		earth.setDescription("");
+		Resources.planetInformation.add(earth);
+
+		PlanetInformation coruscant = new PlanetInformation();
+		coruscant.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetCoruscant.png"));
+		coruscant.setDimensionId(Resources.ConfigOptions.dimCoruscantId);
+		coruscant.setName("Coruscant");
+		coruscant.setPosition(6.1f, 4.9f);
+		coruscant.setAffiliation(Resources.allegianceNone);
+		coruscant.setDescription("");
+		Resources.planetInformation.add(coruscant);
+
+		PlanetInformation dagobah = new PlanetInformation();
+		dagobah.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDagobah.png"));
+		dagobah.setDimensionId(Resources.ConfigOptions.dimDagobahId);
+		dagobah.setName("Dagobah");
+		dagobah.setPosition(7.5f, 14.4f);
+		dagobah.setAffiliation(Resources.allegianceNone);
+		dagobah.setDescription("");
+		Resources.planetInformation.add(dagobah);
+
+		PlanetInformation dathomir = new PlanetInformation();
+		dathomir.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDathomir.png"));
+		dathomir.setDimensionId(Resources.ConfigOptions.dimDathomirId);
+		dathomir.setName("Dathomir");
+		dathomir.setPosition(9.25f, 1.35f);
+		dathomir.setAffiliation(Resources.allegianceNone);
+		dathomir.setDescription("");
+		Resources.planetInformation.add(dathomir);
+
+		PlanetInformation endor = new PlanetInformation();
+		endor.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
+		endor.setDimensionId(Resources.ConfigOptions.dimEndorId);
+		endor.setName("Endor");
+		endor.setPosition(2.58f, 11.6f);
+		endor.setAffiliation(Resources.allegianceNone);
+		endor.setDescription("");
+		Resources.planetInformation.add(endor);
+
+		PlanetInformation geonosis = new PlanetInformation();
+		geonosis.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetGeonosis.png"));
+		geonosis.setDimensionId(Resources.ConfigOptions.dimGeonosisId);
+		geonosis.setName("Geonosis");
+		geonosis.setPosition(12.7f, 11.4f);
+		geonosis.setAffiliation(Resources.allegianceNone);
+		geonosis.setDescription("");
+		Resources.planetInformation.add(geonosis);
+
+		PlanetInformation tatooine = new PlanetInformation();
+		tatooine.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
+		tatooine.setDimensionId(Resources.ConfigOptions.dimTatooineId);
+		tatooine.setName("Tatooine");
+		tatooine.setPosition(12.35f, 11.75f);
+		tatooine.setAffiliation(Resources.allegianceNone);
+		tatooine.setDescription("");
+		Resources.planetInformation.add(tatooine);
+
+		PlanetInformation ryloth = new PlanetInformation();
+		ryloth.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetRyloth.png"));
+		ryloth.setDimensionId(Resources.ConfigOptions.dimRylothId);
+		ryloth.setName("Ryloth");
+		ryloth.setPosition(12.75f, 12.7f);
+		ryloth.setAffiliation(Resources.allegianceNone);
+		ryloth.setDescription("");
+		Resources.planetInformation.add(ryloth);
+
+		PlanetInformation ilum = new PlanetInformation();
+		ilum.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetIlum.png"));
+		ilum.setDimensionId(Resources.ConfigOptions.dimIlumId);
+		ilum.setName("Ilum");
+		ilum.setPosition(1.9f, 2.4f);
+		ilum.setAffiliation(Resources.allegianceNone);
+		ilum.setDescription("");
+		Resources.planetInformation.add(ilum);
+
+		PlanetInformation kamino = new PlanetInformation();
+		kamino.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKamino.png"));
+		kamino.setDimensionId(Resources.ConfigOptions.dimKaminoId);
+		kamino.setName("Kamino");
+		kamino.setPosition(13.75f, 10.3f);
+		kamino.setAffiliation(Resources.allegianceNone);
+		kamino.setDescription("");
+		Resources.planetInformation.add(kamino);
+
+		PlanetInformation kashyyyk = new PlanetInformation();
+		kashyyyk.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKashyyyk.png"));
+		kashyyyk.setDimensionId(Resources.ConfigOptions.dimKashyyykId);
+		kashyyyk.setName("Kashyyyk");
+		kashyyyk.setPosition(10.75f, 4.7f);
+		kashyyyk.setAffiliation(Resources.allegianceNone);
+		kashyyyk.setDescription("");
+		Resources.planetInformation.add(kashyyyk);
+
+		PlanetInformation kessel = new PlanetInformation();
+		kessel.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png"));
+		kessel.setDimensionId(Resources.ConfigOptions.dimKesselId);
+		kessel.setName("Kessel");
+		kessel.setPosition(14.3f, 5.0f);
+		kessel.setAffiliation(Resources.allegianceNone);
+		kessel.setDescription("");
+		Resources.planetInformation.add(kessel);
+
+		PlanetInformation mandalore = new PlanetInformation();
+		mandalore.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMandalore.png"));
+		mandalore.setDimensionId(Resources.ConfigOptions.dimMandaloreId);
+		mandalore.setName("Mandalore");
+		mandalore.setPosition(9.7f, 2.3f);
+		mandalore.setAffiliation(Resources.allegianceNone);
+		mandalore.setDescription("");
+		Resources.planetInformation.add(mandalore);
+
+		PlanetInformation monCalamari = new PlanetInformation();
+		monCalamari.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMonCalamari.png"));
+		monCalamari.setDimensionId(Resources.ConfigOptions.dimMonCalamariId);
+		monCalamari.setName("MonCalamari");
+		monCalamari.setPosition(15.1f, 1.8f);
+		monCalamari.setAffiliation(Resources.allegianceNone);
+		monCalamari.setDescription("");
+		Resources.planetInformation.add(monCalamari);
+
+		PlanetInformation mustafar = new PlanetInformation();
+		mustafar.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMustafar.png"));
+		mustafar.setDimensionId(Resources.ConfigOptions.dimMustafarId);
+		mustafar.setName("Mustafar");
+		mustafar.setPosition(6.3f, 19.8f);
+		mustafar.setAffiliation(Resources.allegianceNone);
+		mustafar.setDescription("");
+		Resources.planetInformation.add(mustafar);
+
+		PlanetInformation naboo = new PlanetInformation();
+		naboo.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetNaboo.png"));
+		naboo.setDimensionId(Resources.ConfigOptions.dimNabooId);
+		naboo.setName("Naboo");
+		naboo.setPosition(9.4f, 12.1f);
+		naboo.setAffiliation(Resources.allegianceNone);
+		naboo.setDescription("");
+		Resources.planetInformation.add(naboo);
+
+		PlanetInformation sullust = new PlanetInformation();
+		sullust.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetSullust.png"));
+		sullust.setDimensionId(Resources.ConfigOptions.dimSullustId);
+		sullust.setName("Sullust");
+		sullust.setPosition(7.75f, 12.5f);
+		sullust.setAffiliation(Resources.allegianceNone);
+		sullust.setDescription("");
+		Resources.planetInformation.add(sullust);
+
+		PlanetInformation utapau = new PlanetInformation();
+		utapau.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetUtapau.png"));
+		utapau.setDimensionId(Resources.ConfigOptions.dimUtapauId);
+		utapau.setName("Utapau");
+		utapau.setPosition(8.5f, 14.75f);
+		utapau.setAffiliation(Resources.allegianceNone);
+		utapau.setDescription("");
+		Resources.planetInformation.add(utapau);
+
+		PlanetInformation yavin4 = new PlanetInformation();
+		yavin4.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
+		yavin4.setDimensionId(Resources.ConfigOptions.dimYavin4Id);
+		yavin4.setName("Yavin 4");
+		yavin4.setInternalName("Yavin4");
+		yavin4.setPosition(10.6f, 1.0f);
+		yavin4.setAffiliation(Resources.allegianceNone);
+		yavin4.setDescription("");
+		Resources.planetInformation.add(yavin4);
+
+		PlanetInformation jakku = new PlanetInformation();
+		jakku.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetJakku.png"));
+		jakku.setDimensionId(Resources.ConfigOptions.dimJakkuId);
+		jakku.setName("Jakku");
+		jakku.setPosition(3.8f, 8.4f);
+		jakku.setAffiliation(Resources.allegianceNone);
+		jakku.setDescription("");
+		Resources.planetInformation.add(jakku);
+
+		PlanetInformation takodana = new PlanetInformation();
+		takodana.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTakodana.png"));
+		takodana.setDimensionId(Resources.ConfigOptions.dimTakodanaId);
+		takodana.setName("Takodana");
+		takodana.setPosition(4.8f, 10.7f);
+		takodana.setAffiliation(Resources.allegianceNone);
+		takodana.setDescription("");
+		Resources.planetInformation.add(takodana);
+
+		PlanetInformation dQar = new PlanetInformation();
+		dQar.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDQar.png"));
+		dQar.setDimensionId(Resources.ConfigOptions.dimDQarId);
+		dQar.setName("D'Qar");
+		dQar.setInternalName("DQar");
+		dQar.setPosition(9.3f, 13.1f);
+		dQar.setAffiliation(Resources.allegianceNone);
+		dQar.setDescription("");
+		Resources.planetInformation.add(dQar);
+
+		PlanetInformation ahchTo = new PlanetInformation();
+		ahchTo.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAhchTo.png"));
+		ahchTo.setDimensionId(Resources.ConfigOptions.dimAhchToId);
+		ahchTo.setName("Ahch To");
+		ahchTo.setInternalName("AhchTo");
+		ahchTo.setPosition(16.8f, 8.6f);
+		ahchTo.setAffiliation(Resources.allegianceNone);
+		ahchTo.setDescription("");
+		Resources.planetInformation.add(ahchTo);
+
+		PlanetInformation deathStar = new PlanetInformation();
+		deathStar.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDeathStar.png"));
+		deathStar.setDimensionId(Resources.ConfigOptions.dimDeathStarId);
+		deathStar.setName("Death Star");
+		deathStar.setInternalName("DeathStar");
+		deathStar.setPosition(11.2f, 1.4f);
+		deathStar.setAffiliation(Resources.allegianceNone);
+		deathStar.setDescription("");
+		Resources.planetInformation.add(deathStar);
 
 		config.save();
 
