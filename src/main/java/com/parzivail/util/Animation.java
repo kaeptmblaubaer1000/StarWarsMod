@@ -8,6 +8,7 @@ public class Animation
 	protected int length = 0;
 	protected boolean loop = false;
 	protected boolean isRenderable = false;
+	protected boolean reverse;
 
 	public Animation(int length, boolean loop, boolean isRenderable)
 	{
@@ -16,7 +17,26 @@ public class Animation
 		this.isRenderable = isRenderable;
 	}
 
-	public int getLife()
+	public void setReverse(boolean reverse)
+	{
+		if (reverse)
+		{
+			this.reverse = true;
+			this.tick = this.length;
+		}
+		else
+		{
+			this.reverse = false;
+			this.tick = 0;
+		}
+	}
+
+	public boolean isReverse()
+	{
+		return reverse;
+	}
+
+	public int getTick()
 	{
 		return this.tick;
 	}
@@ -38,7 +58,7 @@ public class Animation
 
 	public boolean isDone()
 	{
-		return this.tick == this.length;
+		return reverse ? this.tick == 0 : this.tick == this.length;
 	}
 
 	public void render(RenderGameOverlayEvent event)
@@ -58,6 +78,9 @@ public class Animation
 
 	public void tick()
 	{
-		this.tick++;
+		if (reverse)
+			this.tick--;
+		else
+			this.tick++;
 	}
 }

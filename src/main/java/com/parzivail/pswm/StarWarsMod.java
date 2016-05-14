@@ -577,6 +577,7 @@ public class StarWarsMod
 		alderaan.setPosition(7.1f, 5.1f);
 		alderaan.setAffiliation(Resources.allegianceNone);
 		alderaan.setDescription("");
+		alderaan.setObfuscated(true);
 		Resources.planetInformation.add(alderaan);
 
 		PlanetInformation bespin = new PlanetInformation();
@@ -586,6 +587,7 @@ public class StarWarsMod
 		bespin.setPosition(4.9f, 13.3f);
 		bespin.setAffiliation(Resources.allegianceNone);
 		bespin.setDescription("");
+		bespin.setObfuscated(true);
 		Resources.planetInformation.add(bespin);
 
 		PlanetInformation hoth = new PlanetInformation();
@@ -593,8 +595,16 @@ public class StarWarsMod
 		hoth.setDimensionId(Resources.ConfigOptions.dimHothId);
 		hoth.setName("Hoth");
 		hoth.setPosition(4.6f, 13.8f);
-		hoth.setAffiliation(Resources.allegianceNone);
-		hoth.setDescription("");
+		hoth.setAffiliation(Resources.allegianceRebel);
+		hoth.setDescription("Hoth was the sixth planet of the remote Hoth system. A desolate world covered with ice and snow, located in the Anoat sector, a rarely-traveled portion of the Outer Rim Territories. Home to a large Rebel base.");
+		hoth.setSuns(1);
+		hoth.setMoons(3);
+		hoth.addNativeSpecies("Tauntaun");
+		hoth.addNativeSpecies("Wampa");
+		hoth.addTerrain("Ice Caves");
+		hoth.addTerrain("Tundras");
+		hoth.addTerrain("Frozen Plains");
+		hoth.addResource("None");
 		Resources.planetInformation.add(hoth);
 
 		PlanetInformation earth = new PlanetInformation();
@@ -603,7 +613,21 @@ public class StarWarsMod
 		earth.setName("Earth");
 		earth.setPosition(7.4f, 6.8f);
 		earth.setAffiliation(Resources.allegianceNone);
-		earth.setDescription("");
+		earth.setDescription("The birthplace of the Human Race and the original center of all galactic trade. Not much is known about this planet, and its place in Galactic history is still disputed.");
+		earth.addTerrain("Urban");
+		earth.addTerrain("Forests");
+		earth.addTerrain("Plains");
+		earth.addTerrain("Oceans");
+		earth.addResource("Coal");
+		earth.addResource("Iron");
+		earth.addResource("Gold");
+		earth.addResource("Diamond");
+		earth.addResource("Redstone");
+		earth.addResource("Lumber");
+		earth.addResource("Water");
+		earth.addNativeSpecies("Human");
+		earth.setSuns(1);
+		earth.setMoons(1);
 		Resources.planetInformation.add(earth);
 
 		PlanetInformation coruscant = new PlanetInformation();
@@ -613,6 +637,7 @@ public class StarWarsMod
 		coruscant.setPosition(6.1f, 4.9f);
 		coruscant.setAffiliation(Resources.allegianceNone);
 		coruscant.setDescription("");
+		coruscant.setObfuscated(true);
 		Resources.planetInformation.add(coruscant);
 
 		PlanetInformation dagobah = new PlanetInformation();
@@ -620,8 +645,15 @@ public class StarWarsMod
 		dagobah.setDimensionId(Resources.ConfigOptions.dimDagobahId);
 		dagobah.setName("Dagobah");
 		dagobah.setPosition(7.5f, 14.4f);
-		dagobah.setAffiliation(Resources.allegianceNone);
-		dagobah.setDescription("");
+		dagobah.setAffiliation(Resources.allegianceJedi);
+		dagobah.setDescription("Dagobah was a planet in the Dagobah system, and one of the purest places in the galaxy within the Force. A remote world of swamps and forests, it served as a refuge for Jedi Grand Master Yoda during his exile after the destruction of the Jedi Order.");
+		dagobah.setMoons(1);
+		dagobah.setSuns(1);
+		dagobah.addNativeSpecies("Snakes");
+		dagobah.addTerrain("Swamps");
+		dagobah.addTerrain("Bogs");
+		dagobah.addTerrain("Jungles");
+		dagobah.addResource("None");
 		Resources.planetInformation.add(dagobah);
 
 		PlanetInformation dathomir = new PlanetInformation();
@@ -631,6 +663,7 @@ public class StarWarsMod
 		dathomir.setPosition(9.25f, 1.35f);
 		dathomir.setAffiliation(Resources.allegianceNone);
 		dathomir.setDescription("");
+		dathomir.setObfuscated(true);
 		Resources.planetInformation.add(dathomir);
 
 		PlanetInformation endor = new PlanetInformation();
@@ -638,8 +671,15 @@ public class StarWarsMod
 		endor.setDimensionId(Resources.ConfigOptions.dimEndorId);
 		endor.setName("Endor");
 		endor.setPosition(2.58f, 11.6f);
-		endor.setAffiliation(Resources.allegianceNone);
-		endor.setDescription("");
+		endor.setAffiliation(Resources.allegianceImperial);
+		endor.setDescription("Endor (also known as the Forest Moon of Endor and the Sanctuary Moon) was a small forested moon orbiting the gas giant planet of Endor and was the farthest moon away from it. Home to the Headquarters of the Galactic Empire.");
+		endor.setSuns(1);
+		endor.setMoons(0);
+		endor.addNativeSpecies("Ewok");
+		endor.addTerrain("Forests");
+		endor.addTerrain("Mountains");
+		endor.addTerrain("Lakes");
+		endor.addResource("None");
 		Resources.planetInformation.add(endor);
 
 		PlanetInformation geonosis = new PlanetInformation();
@@ -649,6 +689,7 @@ public class StarWarsMod
 		geonosis.setPosition(12.7f, 11.4f);
 		geonosis.setAffiliation(Resources.allegianceNone);
 		geonosis.setDescription("");
+		geonosis.setObfuscated(true);
 		Resources.planetInformation.add(geonosis);
 
 		PlanetInformation tatooine = new PlanetInformation();
@@ -657,7 +698,20 @@ public class StarWarsMod
 		tatooine.setName("Tatooine");
 		tatooine.setPosition(12.35f, 11.75f);
 		tatooine.setAffiliation(Resources.allegianceNone);
-		tatooine.setDescription("");
+		tatooine.setDescription("Tatooine was a sparsely inhabited desert planet located in the galaxy's Outer Rim Territories. Part of a binary star system, the planet was oppressed by a scorching sun, resulting in a lack of necessary surface water.");
+		tatooine.setSuns(2);
+		tatooine.setMoons(3);
+		tatooine.addNativeSpecies("Tusken Raider");
+		tatooine.addNativeSpecies("Jawa");
+		tatooine.addNativeSpecies("Gamorrean Guard");
+		tatooine.addNativeSpecies("Human");
+		tatooine.addNativeSpecies("Bith");
+		tatooine.addNativeSpecies("Bantha");
+		tatooine.addNativeSpecies("Dewback");
+		tatooine.addTerrain("Deserts");
+		tatooine.addTerrain("Canyons");
+		tatooine.addTerrain("Rocky Bluffs");
+		tatooine.addResource("Bene");
 		Resources.planetInformation.add(tatooine);
 
 		PlanetInformation ryloth = new PlanetInformation();
@@ -667,6 +721,7 @@ public class StarWarsMod
 		ryloth.setPosition(12.75f, 12.7f);
 		ryloth.setAffiliation(Resources.allegianceNone);
 		ryloth.setDescription("");
+		ryloth.setObfuscated(true);
 		Resources.planetInformation.add(ryloth);
 
 		PlanetInformation ilum = new PlanetInformation();
@@ -674,8 +729,15 @@ public class StarWarsMod
 		ilum.setDimensionId(Resources.ConfigOptions.dimIlumId);
 		ilum.setName("Ilum");
 		ilum.setPosition(1.9f, 2.4f);
-		ilum.setAffiliation(Resources.allegianceNone);
-		ilum.setDescription("");
+		ilum.setAffiliation(Resources.allegianceJedi);
+		ilum.setDescription("Ilum was an arctic planet located in the Unknown Regions. It was used by the Jedi Order for the Gathering, a rite of passage in which Jedi younglings must find and harvest kyber crystals for their lightsabers.");
+		ilum.setSuns(1);
+		ilum.setMoons(2);
+		ilum.addNativeSpecies("None");
+		ilum.addTerrain("Caverns");
+		ilum.addTerrain("Crystal Caves");
+		ilum.addTerrain("Icy Mountains");
+		ilum.addResource("Kyber Crystal");
 		Resources.planetInformation.add(ilum);
 
 		PlanetInformation kamino = new PlanetInformation();
@@ -685,6 +747,7 @@ public class StarWarsMod
 		kamino.setPosition(13.75f, 10.3f);
 		kamino.setAffiliation(Resources.allegianceNone);
 		kamino.setDescription("");
+		kamino.setObfuscated(true);
 		Resources.planetInformation.add(kamino);
 
 		PlanetInformation kashyyyk = new PlanetInformation();
@@ -693,7 +756,12 @@ public class StarWarsMod
 		kashyyyk.setName("Kashyyyk");
 		kashyyyk.setPosition(10.75f, 4.7f);
 		kashyyyk.setAffiliation(Resources.allegianceNone);
-		kashyyyk.setDescription("");
+		kashyyyk.setDescription("Kashyyyk was a temperate jungle planet orbiting around a single star located in the Mytaranor sector of the Mid Rim, and had a complement of three moons. It was a member of the Galactic Republic and after the Clone Wars endured enslavement under the Galactic Empire.");
+		kashyyyk.addNativeSpecies("Wookiee");
+		kashyyyk.addTerrain("Forests");
+		kashyyyk.addResource("None");
+		kashyyyk.setSuns(1);
+		kashyyyk.setMoons(3);
 		Resources.planetInformation.add(kashyyyk);
 
 		PlanetInformation kessel = new PlanetInformation();
@@ -712,15 +780,18 @@ public class StarWarsMod
 		mandalore.setPosition(9.7f, 2.3f);
 		mandalore.setAffiliation(Resources.allegianceNone);
 		mandalore.setDescription("");
+		mandalore.setObfuscated(true);
 		Resources.planetInformation.add(mandalore);
 
 		PlanetInformation monCalamari = new PlanetInformation();
 		monCalamari.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMonCalamari.png"));
 		monCalamari.setDimensionId(Resources.ConfigOptions.dimMonCalamariId);
-		monCalamari.setName("MonCalamari");
+		monCalamari.setName("Mon Calamari");
+		monCalamari.setInternalName("MonCalamari");
 		monCalamari.setPosition(15.1f, 1.8f);
 		monCalamari.setAffiliation(Resources.allegianceNone);
 		monCalamari.setDescription("");
+		monCalamari.setObfuscated(true);
 		Resources.planetInformation.add(monCalamari);
 
 		PlanetInformation mustafar = new PlanetInformation();
@@ -730,6 +801,7 @@ public class StarWarsMod
 		mustafar.setPosition(6.3f, 19.8f);
 		mustafar.setAffiliation(Resources.allegianceNone);
 		mustafar.setDescription("");
+		mustafar.setObfuscated(true);
 		Resources.planetInformation.add(mustafar);
 
 		PlanetInformation naboo = new PlanetInformation();
@@ -739,6 +811,7 @@ public class StarWarsMod
 		naboo.setPosition(9.4f, 12.1f);
 		naboo.setAffiliation(Resources.allegianceNone);
 		naboo.setDescription("");
+		naboo.setObfuscated(true);
 		Resources.planetInformation.add(naboo);
 
 		PlanetInformation sullust = new PlanetInformation();
@@ -748,6 +821,7 @@ public class StarWarsMod
 		sullust.setPosition(7.75f, 12.5f);
 		sullust.setAffiliation(Resources.allegianceNone);
 		sullust.setDescription("");
+		sullust.setObfuscated(true);
 		Resources.planetInformation.add(sullust);
 
 		PlanetInformation utapau = new PlanetInformation();
@@ -757,6 +831,7 @@ public class StarWarsMod
 		utapau.setPosition(8.5f, 14.75f);
 		utapau.setAffiliation(Resources.allegianceNone);
 		utapau.setDescription("");
+		utapau.setObfuscated(true);
 		Resources.planetInformation.add(utapau);
 
 		PlanetInformation yavin4 = new PlanetInformation();
@@ -765,8 +840,14 @@ public class StarWarsMod
 		yavin4.setName("Yavin 4");
 		yavin4.setInternalName("Yavin4");
 		yavin4.setPosition(10.6f, 1.0f);
-		yavin4.setAffiliation(Resources.allegianceNone);
-		yavin4.setDescription("");
+		yavin4.setAffiliation(Resources.allegianceRebel);
+		yavin4.setDescription("Yavin 4 was one of three habitable moons orbiting the gas giant Yavin. It was mainly covered in jungle and rainforest, and despite being remote and unheard of, it would play an important role in galactic events. Served as the main headquarters of the Rebel Alliance.");
+		yavin4.setMoons(0);
+		yavin4.setSuns(1);
+		yavin4.addNativeSpecies("None");
+		yavin4.addResource("None");
+		yavin4.addTerrain("Jungles");
+		yavin4.addTerrain("Rainforests");
 		Resources.planetInformation.add(yavin4);
 
 		PlanetInformation jakku = new PlanetInformation();
@@ -776,6 +857,7 @@ public class StarWarsMod
 		jakku.setPosition(3.8f, 8.4f);
 		jakku.setAffiliation(Resources.allegianceNone);
 		jakku.setDescription("");
+		jakku.setObfuscated(true);
 		Resources.planetInformation.add(jakku);
 
 		PlanetInformation takodana = new PlanetInformation();
@@ -785,6 +867,7 @@ public class StarWarsMod
 		takodana.setPosition(4.8f, 10.7f);
 		takodana.setAffiliation(Resources.allegianceNone);
 		takodana.setDescription("");
+		takodana.setObfuscated(true);
 		Resources.planetInformation.add(takodana);
 
 		PlanetInformation dQar = new PlanetInformation();
@@ -795,6 +878,7 @@ public class StarWarsMod
 		dQar.setPosition(9.3f, 13.1f);
 		dQar.setAffiliation(Resources.allegianceNone);
 		dQar.setDescription("");
+		dQar.setObfuscated(true);
 		Resources.planetInformation.add(dQar);
 
 		PlanetInformation ahchTo = new PlanetInformation();
@@ -805,6 +889,7 @@ public class StarWarsMod
 		ahchTo.setPosition(16.8f, 8.6f);
 		ahchTo.setAffiliation(Resources.allegianceNone);
 		ahchTo.setDescription("");
+		ahchTo.setObfuscated(true);
 		Resources.planetInformation.add(ahchTo);
 
 		PlanetInformation deathStar = new PlanetInformation();
@@ -813,8 +898,15 @@ public class StarWarsMod
 		deathStar.setName("Death Star");
 		deathStar.setInternalName("DeathStar");
 		deathStar.setPosition(11.2f, 1.4f);
-		deathStar.setAffiliation(Resources.allegianceNone);
-		deathStar.setDescription("");
+		deathStar.setAffiliation(Resources.allegianceImperial);
+		deathStar.setDescription("Under Construction");
+		deathStar.setMoons(0);
+		deathStar.setSuns(0);
+		deathStar.addResource("None");
+		deathStar.addTerrain("Barracks");
+		deathStar.addTerrain("Detention Cells");
+		deathStar.addTerrain("Hangars");
+		deathStar.addNativeSpecies("Human");
 		Resources.planetInformation.add(deathStar);
 
 		config.save();

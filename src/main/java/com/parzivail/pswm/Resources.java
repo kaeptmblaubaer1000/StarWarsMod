@@ -150,6 +150,9 @@ public class Resources
 	public static final String speciesBith = "Bith";
 
 	public static final String allegianceNone = "None";
+	public static final String allegianceJedi = "Jedi";
+	public static final String allegianceSith = "Sith";
+	public static final String allegianceNewRepublic = "New Republic";
 	public static final String allegianceRebel = "Rebel Alliance";
 	public static final String allegianceImperial = "Galactic Empire";
 }

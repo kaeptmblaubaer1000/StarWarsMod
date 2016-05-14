@@ -32,7 +32,12 @@ public class AnimationManager
 		{
 			Animation t = i.next();
 			t.tick();
-			if (t.getLife() >= t.getMax())
+			if (t.reverse && t.getTick() <= 0)
+				if (t.getLoop())
+					t.tick = t.getMax();
+				else
+					i.remove();
+			else if (!t.reverse && t.getTick() >= t.getMax())
 				if (t.getLoop())
 					t.tick = 0;
 				else

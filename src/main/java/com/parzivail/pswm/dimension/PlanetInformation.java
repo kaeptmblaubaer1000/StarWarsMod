@@ -24,7 +24,7 @@ public class PlanetInformation
 	public static PlanetInformation getPlanet(String name)
 	{
 		for (PlanetInformation p : Resources.planetInformation)
-			if (p.getInternamName().equalsIgnoreCase(name))
+			if (p.getInternalName().equalsIgnoreCase(name))
 				return p;
 		return null;
 	}
@@ -34,13 +34,17 @@ public class PlanetInformation
 	private String name = "UNKNOWN";
 	private String description = "UNKNOWN";
 	private String affiliation = "UNKNOWN";
+	private int suns = 0;
+	private int moons = 0;
 	private ArrayList<String> terrain = new ArrayList<>();
 	private ArrayList<String> nativeSpecies = new ArrayList<>();
+	private ArrayList<String> resources = new ArrayList<>();
 
 	// Mod info
 	private int dimensionId = 0;
-	private String internamName = "UNKNOWN";
+	private String internalName = "UNKNOWN";
 	private ResourceLocation cubeTexture;
+	private boolean obfuscated = false;
 
 	public void setPosition(float x, float y)
 	{
@@ -50,6 +54,46 @@ public class PlanetInformation
 	public StarPosition getPosition()
 	{
 		return this.position;
+	}
+
+	public boolean isObfuscated()
+	{
+		return obfuscated;
+	}
+
+	public void setObfuscated(boolean obfuscated)
+	{
+		this.obfuscated = obfuscated;
+	}
+
+	public int getSuns()
+	{
+		return suns;
+	}
+
+	public void setSuns(int suns)
+	{
+		this.suns = suns;
+	}
+
+	public int getMoons()
+	{
+		return moons;
+	}
+
+	public void setMoons(int moons)
+	{
+		this.moons = moons;
+	}
+
+	public ArrayList<String> getResources()
+	{
+		return resources;
+	}
+
+	public void addResource(String resource)
+	{
+		this.resources.add(resource);
 	}
 
 	public void setCubeTexture(ResourceLocation cubeTexture)
@@ -100,12 +144,12 @@ public class PlanetInformation
 
 	public void setInternalName(String internamName)
 	{
-		this.internamName = internamName;
+		this.internalName = internamName;
 	}
 
-	public String getInternamName()
+	public String getInternalName()
 	{
-		return internamName;
+		return internalName;
 	}
 
 	public String getName()
