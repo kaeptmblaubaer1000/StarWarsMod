@@ -49,9 +49,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		Consumer<OutlineButton> transform = outlineButton -> {
 			GL11.glTranslatef(1.9f, -1f, 110);
 			GL11.glScalef(0.3f, 0.3f, 0.3f);
-			if (zoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(zoomPlanet.getName()))
-				GLPZ.glScalef((animationZoom.getTick() + 2) / 2f);
-			if (oldZoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(oldZoomPlanet.getName()))
+			if ((zoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(zoomPlanet.getName())) || (oldZoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(oldZoomPlanet.getName())))
 				GLPZ.glScalef((animationZoom.getTick() + 2) / 2f);
 			GL11.glRotatef(-30, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / 50) % 360, 0, 1, 0);
