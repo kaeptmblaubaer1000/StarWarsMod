@@ -53,12 +53,12 @@ public class GuiScreenHyperdrive extends GuiScreen
 		alderaan.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimAlderaanId), transform);
 		buttonList.add(alderaan);
 
-		p = galaxyCoordsToXy(4.9f, 13.45f);
+		p = galaxyCoordsToXy(4.9f, 13.3f);
 		OutlineButtonModel bespin = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		bespin.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimBespinId), transform);
 		buttonList.add(bespin);
 
-		p = galaxyCoordsToXy(4.7f, 13.7f);
+		p = galaxyCoordsToXy(4.6f, 13.8f);
 		OutlineButtonModel hoth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		hoth.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimHothId), transform);
 		buttonList.add(hoth);
@@ -73,7 +73,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		coruscant.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimCoruscantId), transform);
 		buttonList.add(coruscant);
 
-		p = galaxyCoordsToXy(7.7f, 14.4f);
+		p = galaxyCoordsToXy(7.5f, 14.4f);
 		OutlineButtonModel dagobah = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		dagobah.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDagobahId), transform);
 		buttonList.add(dagobah);
@@ -88,7 +88,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		endor.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimEndorId), transform);
 		buttonList.add(endor);
 
-		p = galaxyCoordsToXy(12.6f, 11.5f);
+		p = galaxyCoordsToXy(12.7f, 11.4f);
 		OutlineButtonModel geonosis = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		geonosis.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimGeonosisId), transform);
 		buttonList.add(geonosis);
@@ -98,7 +98,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		tatooine.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimTatooineId), transform);
 		buttonList.add(tatooine);
 
-		p = galaxyCoordsToXy(12.75f, 12.6f);
+		p = galaxyCoordsToXy(12.75f, 12.7f);
 		OutlineButtonModel ryloth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		ryloth.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimRylothId), transform);
 		buttonList.add(ryloth);
@@ -113,7 +113,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		kamino.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKaminoId), transform);
 		buttonList.add(kamino);
 
-		p = galaxyCoordsToXy(10.75f, 4.65f);
+		p = galaxyCoordsToXy(10.75f, 4.7f);
 		OutlineButtonModel kashyyyk = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		kashyyyk.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKashyyykId), transform);
 		buttonList.add(kashyyyk);
@@ -123,7 +123,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		kessel.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKesselId), transform);
 		buttonList.add(kessel);
 
-		p = galaxyCoordsToXy(9.7f, 1.3f);
+		p = galaxyCoordsToXy(9.7f, 2.3f);
 		OutlineButtonModel mandalore = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		mandalore.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMandaloreId), transform);
 		buttonList.add(mandalore);
@@ -148,7 +148,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		sullust.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimSullustId), transform);
 		buttonList.add(sullust);
 
-		p = galaxyCoordsToXy(8.2f, 14.75f);
+		p = galaxyCoordsToXy(8.5f, 14.75f);
 		OutlineButtonModel utapau = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		utapau.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimUtapauId), transform);
 		buttonList.add(utapau);
@@ -178,7 +178,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		ahchTo.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimAhchToId), transform);
 		buttonList.add(ahchTo);
 
-		p = galaxyCoordsToXy(10.4f, 0.8f);
+		p = galaxyCoordsToXy(11.2f, 1.4f);
 		OutlineButtonModel deathStar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
 		deathStar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDeathStarId), transform);
 		buttonList.add(deathStar);
