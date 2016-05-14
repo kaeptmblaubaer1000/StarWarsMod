@@ -539,14 +539,33 @@ public class StarWarsMod
 		ConfigOptions.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
 		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
 
-		Resources.planetTextures.put(0, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimTatooineId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimAlderaanId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimBespinId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetBespin.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimHothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetHoth.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimEndorId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimYavin4Id, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
+		Resources.planetTextures.put(0, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimCoruscantId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetCoruscant.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimDagobahId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDagobah.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimDathomirId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDathomir.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimEndorId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimGeonosisId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetGeonosis.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimTatooineId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimRylothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetRyloth.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimIlumId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetIlum.png"));
-		Resources.planetTextures.put(48, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png")); //This is Kessel, use 48 as the dim
+		Resources.planetTextures.put(Resources.ConfigOptions.dimKaminoId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKamino.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimKashyyykId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKashyyyk.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimKesselId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimMandaloreId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMandalore.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimMonCalamariId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMonCalamari.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimMustafarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMustafar.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimNabooId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetNaboo.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimSullustId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetSullust.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimUtapauId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetUtapau.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimYavin4Id, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimJakkuId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetJakku.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimTakodanaId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTakodana.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimDQarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDQar.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimAhchToId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAhchTo.png"));
+		Resources.planetTextures.put(Resources.ConfigOptions.dimDeathStarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDeathStar.png"));
 
 		config.save();
 

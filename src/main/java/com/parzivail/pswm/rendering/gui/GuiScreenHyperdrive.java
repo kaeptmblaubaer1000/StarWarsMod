@@ -50,17 +50,17 @@ public class GuiScreenHyperdrive extends GuiScreen
 		int id = 0;
 		Point p = galaxyCoordsToXy(7.1f, 5.1f);
 		OutlineButtonModel alderaan = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		alderaan.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		alderaan.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimAlderaanId), transform);
 		buttonList.add(alderaan);
 
 		p = galaxyCoordsToXy(4.9f, 13.45f);
 		OutlineButtonModel bespin = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		bespin.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		bespin.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimBespinId), transform);
 		buttonList.add(bespin);
 
 		p = galaxyCoordsToXy(4.7f, 13.7f);
 		OutlineButtonModel hoth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		hoth.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		hoth.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimHothId), transform);
 		buttonList.add(hoth);
 
 		p = galaxyCoordsToXy(7.4f, 6.8f);
@@ -70,118 +70,118 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 		p = galaxyCoordsToXy(6.1f, 4.9f);
 		OutlineButtonModel coruscant = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		coruscant.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		coruscant.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimCoruscantId), transform);
 		buttonList.add(coruscant);
 
 		p = galaxyCoordsToXy(7.7f, 14.4f);
 		OutlineButtonModel dagobah = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dagobah.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		dagobah.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDagobahId), transform);
 		buttonList.add(dagobah);
 
 		p = galaxyCoordsToXy(9.25f, 1.35f);
 		OutlineButtonModel dathomir = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dathomir.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		dathomir.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDathomirId), transform);
 		buttonList.add(dathomir);
 
 		p = galaxyCoordsToXy(2.58f, 11.6f);
 		OutlineButtonModel endor = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		endor.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		endor.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimEndorId), transform);
 		buttonList.add(endor);
 
 		p = galaxyCoordsToXy(12.6f, 11.5f);
 		OutlineButtonModel geonosis = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		geonosis.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		geonosis.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimGeonosisId), transform);
 		buttonList.add(geonosis);
 
 		p = galaxyCoordsToXy(12.35f, 11.75f);
 		OutlineButtonModel tatooine = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		tatooine.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		tatooine.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimTatooineId), transform);
 		buttonList.add(tatooine);
 
 		p = galaxyCoordsToXy(12.75f, 12.6f);
 		OutlineButtonModel ryloth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ryloth.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		ryloth.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimRylothId), transform);
 		buttonList.add(ryloth);
 
 		p = galaxyCoordsToXy(1.9f, 2.4f);
 		OutlineButtonModel ilum = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ilum.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		ilum.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimIlumId), transform);
 		buttonList.add(ilum);
 
 		p = galaxyCoordsToXy(13.75f, 10.3f);
 		OutlineButtonModel kamino = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kamino.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		kamino.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKaminoId), transform);
 		buttonList.add(kamino);
 
 		p = galaxyCoordsToXy(10.75f, 4.65f);
 		OutlineButtonModel kashyyyk = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kashyyyk.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		kashyyyk.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKashyyykId), transform);
 		buttonList.add(kashyyyk);
 
 		p = galaxyCoordsToXy(14.3f, 5.0f);
 		OutlineButtonModel kessel = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kessel.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		kessel.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimKesselId), transform);
 		buttonList.add(kessel);
 
 		p = galaxyCoordsToXy(9.7f, 1.3f);
 		OutlineButtonModel mandalore = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		mandalore.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		mandalore.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMandaloreId), transform);
 		buttonList.add(mandalore);
 
 		p = galaxyCoordsToXy(15.1f, 1.8f);
-		OutlineButtonModel moncalamari = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		moncalamari.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
-		buttonList.add(moncalamari);
+		OutlineButtonModel monCalamari = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
+		monCalamari.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMonCalamariId), transform);
+		buttonList.add(monCalamari);
 
 		p = galaxyCoordsToXy(6.3f, 19.8f);
 		OutlineButtonModel mustafar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		mustafar.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		mustafar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimMustafarId), transform);
 		buttonList.add(mustafar);
 
 		p = galaxyCoordsToXy(9.4f, 12.1f);
 		OutlineButtonModel naboo = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		naboo.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		naboo.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimNabooId), transform);
 		buttonList.add(naboo);
 
 		p = galaxyCoordsToXy(7.75f, 12.5f);
 		OutlineButtonModel sullust = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		sullust.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		sullust.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimSullustId), transform);
 		buttonList.add(sullust);
 
 		p = galaxyCoordsToXy(8.2f, 14.75f);
 		OutlineButtonModel utapau = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		utapau.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		utapau.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimUtapauId), transform);
 		buttonList.add(utapau);
 
 		p = galaxyCoordsToXy(10.6f, 1.0f);
 		OutlineButtonModel yavin4 = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		yavin4.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		yavin4.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimYavin4Id), transform);
 		buttonList.add(yavin4);
 
 		p = galaxyCoordsToXy(3.8f, 8.4f);
 		OutlineButtonModel jakku = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		jakku.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		jakku.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimJakkuId), transform);
 		buttonList.add(jakku);
 
 		p = galaxyCoordsToXy(4.8f, 10.7f);
 		OutlineButtonModel takodana = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		takodana.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
+		takodana.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimTakodanaId), transform);
 		buttonList.add(takodana);
 
 		p = galaxyCoordsToXy(9.3f, 13.1f);
-		OutlineButtonModel dqar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dqar.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
-		buttonList.add(dqar);
+		OutlineButtonModel dQar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
+		dQar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDQarId), transform);
+		buttonList.add(dQar);
 
 		p = galaxyCoordsToXy(16.8f, 8.6f);
-		OutlineButtonModel ahchto = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ahchto.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
-		buttonList.add(ahchto);
+		OutlineButtonModel ahchTo = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
+		ahchTo.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimAhchToId), transform);
+		buttonList.add(ahchTo);
 
 		p = galaxyCoordsToXy(10.4f, 0.8f);
-		OutlineButtonModel deathstar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		deathstar.setup(new ModelPlanetCube(), Resources.planetTextures.get(0), transform);
-		buttonList.add(deathstar);
+		OutlineButtonModel deathStar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
+		deathStar.setup(new ModelPlanetCube(), Resources.planetTextures.get(Resources.ConfigOptions.dimDeathStarId), transform);
+		buttonList.add(deathStar);
 	}
 
 	@Override
@@ -212,25 +212,6 @@ public class GuiScreenHyperdrive extends GuiScreen
 	{
 		this.drawBg2();
 
-		GL11.glPushMatrix();
-
-		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		RenderHelper.enableStandardItemLighting();
-
-		GLPalette.glColorI(GLPalette.WHITE);
-
-		int pX = (int)(r.getScaledWidth() / 2f - 108);
-		int pY = (int)(r.getScaledHeight() / 2f - 108);
-
-		for (int x = 0; x < 19; x++)
-			Screen2D.drawLine(x * 12 + pX, pY, x * 12 + pX, pY + 18 * 12);
-
-		for (int y = 0; y < 19; y++)
-			Screen2D.drawLine(pX, y * 12 + pY, pX + 18 * 12, y * 12 + pY);
-
-		GL11.glPopMatrix();
-
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		RenderHelper.enableStandardItemLighting();
@@ -240,8 +221,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 	public Point galaxyCoordsToXy(float x, float y)
 	{
-		int pX = (int)(r.getScaledWidth() / 2f - 108);
-		int pY = (int)(r.getScaledHeight() / 2f - 108);
-		return new Point((int)(pX + 12 * x), (int)(pY + 12 * y));
+		int pX = (int)(r.getScaledWidth() / 2f - 144);
+		int pY = (int)(r.getScaledHeight() / 2f - 144) + 16;
+		return new Point((int)(pX + 16 * x), (int)(pY + 16 * y));
 	}
 }
