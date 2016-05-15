@@ -1,6 +1,8 @@
 package com.parzivail.pswm.dimension;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.util.FPoint;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
@@ -10,16 +12,6 @@ import java.util.ArrayList;
  */
 public class PlanetInformation
 {
-	public class StarPosition
-	{
-		public float x, y;
-
-		public StarPosition(float x, float y)
-		{
-			this.x = x;
-			this.y = y;
-		}
-	}
 
 	public static PlanetInformation getPlanet(String name)
 	{
@@ -30,7 +22,7 @@ public class PlanetInformation
 	}
 
 	// Canon info
-	private StarPosition position = new StarPosition(0, 0);
+	private FPoint position = new FPoint(0, 0);
 	private String name = "UNKNOWN";
 	private String description = "UNKNOWN";
 	private String affiliation = "UNKNOWN";
@@ -44,14 +36,15 @@ public class PlanetInformation
 	private int dimensionId = 0;
 	private String internalName = "UNKNOWN";
 	private ResourceLocation cubeTexture;
+	private Item hyperdrive;
 	private boolean obfuscated = false;
 
 	public void setPosition(float x, float y)
 	{
-		this.position = new StarPosition(x, y);
+		this.position = new FPoint(x, y);
 	}
 
-	public StarPosition getPosition()
+	public FPoint getPosition()
 	{
 		return this.position;
 	}
@@ -64,6 +57,16 @@ public class PlanetInformation
 	public void setObfuscated(boolean obfuscated)
 	{
 		this.obfuscated = obfuscated;
+	}
+
+	public void setHyperdrive(Item hyperdrive)
+	{
+		this.hyperdrive = hyperdrive;
+	}
+
+	public Item getHyperdrive()
+	{
+		return hyperdrive;
 	}
 
 	public int getSuns()

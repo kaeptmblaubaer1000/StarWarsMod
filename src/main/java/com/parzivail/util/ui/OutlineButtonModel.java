@@ -12,7 +12,8 @@ public class OutlineButtonModel extends OutlineButton
 {
 	public boolean selected;
 	public ModelBase model;
-	public Consumer<OutlineButton> transform;
+	public Consumer<OutlineButton> preRender;
+	public Consumer<OutlineButton> postRender;
 	public ResourceLocation texture;
 	private boolean isSetup;
 
@@ -22,11 +23,12 @@ public class OutlineButtonModel extends OutlineButton
 		this.isSetup = false;
 	}
 
-	public void setup(ModelBase model, ResourceLocation texture, Consumer<OutlineButton> transform)
+	public void setup(ModelBase model, ResourceLocation texture, Consumer<OutlineButton> preRender, Consumer<OutlineButton> postRender)
 	{
 		this.model = model;
 		this.texture = texture;
-		this.transform = transform;
+		this.preRender = preRender;
+		this.postRender = postRender;
 		this.isSetup = true;
 	}
 
@@ -48,8 +50,9 @@ public class OutlineButtonModel extends OutlineButton
 				StarWarsMod.mc.renderEngine.bindTexture(texture);
 				GL11.glTranslatef(this.xPosition, this.yPosition, 0);
 				GL11.glPushMatrix();
-				this.transform.accept(this);
+				this.preRender.accept(this);
 				this.model.render(null, 0, 0, 0, 0, 0, 0.625f);
+				this.postRender.accept(this);
 				GL11.glPopMatrix();
 				GL11.glPopMatrix();
 			}

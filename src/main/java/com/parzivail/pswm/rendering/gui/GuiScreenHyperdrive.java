@@ -3,9 +3,16 @@ package com.parzivail.pswm.rendering.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
+import com.parzivail.pswm.dimension.yavin.TradeRoute;
+import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.models.ModelPlanetCube;
+import com.parzivail.pswm.models.vehicles.*;
+import com.parzivail.pswm.network.MessageHyperdrive;
+import com.parzivail.pswm.network.MessageTransferHyperdrive;
+import com.parzivail.pswm.rendering.vehicles.*;
+import com.parzivail.util.Animation;
+import com.parzivail.util.FPoint;
 import com.parzivail.util.MathUtils;
-import com.parzivail.util.PathfindingGrid;
 import com.parzivail.util.ui.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,16 +23,50 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 @SideOnly(Side.CLIENT)
 public class GuiScreenHyperdrive extends GuiScreen
 {
+	class MovingShip
+	{
+		FPoint position;
+		TradeRoute route;
+		Animation animation;
+		int model;
+		float angle;
+
+		public MovingShip(TradeRoute route, int model, boolean reverse)
+		{
+			this.position = route.getPointAlongPath(0);
+			this.route = route;
+			this.animation = new Animation((int)(100 * route.getRoute().getLength()), false, false);
+			this.animation.setReverse(reverse);
+			this.model = model;
+		}
+
+		public void start()
+		{
+			this.animation.start();
+		}
+
+		public void tick()
+		{
+			this.position = route.getPointAlongPath(animation.getTick() / (float)animation.getMax());
+			FPoint p = route.getPointAlongPath((animation.getTick() + 1 * (animation.isReverse() ? -1 : 1)) / (float)animation.getMax());
+			this.angle = (float)Math.toDegrees(Math.atan2(p.x - this.position.x, this.position.y - p.y));
+		}
+	}
+
 	private EntityPlayer player;
+	ItemStack qlog;
+
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
 	private static final ResourceLocation galaxy = new ResourceLocation(Resources.MODID, "textures/gui/galaxy.png");
 	private static ScaledResolution r;
@@ -35,9 +76,28 @@ public class GuiScreenHyperdrive extends GuiScreen
 	private PlanetInformation oldZoomPlanet;
 
 	private AnimationZoom animationZoom;
-	private OutlineButton buttonClose;
 
-	private PathfindingGrid pathfindingGrid = new PathfindingGrid(180, 180, 10);
+	private OutlineButton buttonClose;
+	private OutlineButton buttonEatHyperdrive;
+	private OutlineButton buttonTravel;
+
+	private TradeRoute perlemian = new TradeRoute(new FPoint[] { new FPoint(6.1f, 4.9f), new FPoint(8, 4), new FPoint(10, 3.7f), new FPoint(11.8f, 3), new FPoint(13, 1), new FPoint(13.4f, 0.2f) });
+	private TradeRoute corellianRun = new TradeRoute(new FPoint[] { new FPoint(6.1f, 4.9f), new FPoint(6.5f, 5.7f), new FPoint(7.8f, 8.4f), new FPoint(10, 10), new FPoint(12.75f, 12.7f), new FPoint(14.3f, 13.5f) });
+	private TradeRoute corellianSpine = new TradeRoute(new FPoint[] { new FPoint(7.3f, 9), new FPoint(6, 11.65f), new FPoint(5.5f, 13), new FPoint(5, 15.5f) });
+	private TradeRoute rimma = new TradeRoute(new FPoint[] { new FPoint(5.8f, 8.2f), new FPoint(6.5f, 9.8f), new FPoint(7, 12f), new FPoint(6.8f, 12.5f), new FPoint(6.4f, 14.7f) });
+	private TradeRoute hydian = new TradeRoute(new FPoint[] { new FPoint(11.8f, 0.5f), new FPoint(10.2f, 1), new FPoint(9.5f, 2), new FPoint(7.8f, 3), new FPoint(6.7f, 5.2f), new FPoint(7.6f, 6), new FPoint(9, 8.7f), new FPoint(8, 11), new FPoint(4.8f, 14.7f), new FPoint(4, 15) });
+
+	private TradeRoute[] routes = new TradeRoute[] { perlemian, corellianRun, corellianSpine, rimma, hydian };
+
+	private ArrayList<MovingShip> ships = new ArrayList<>();
+
+	private ModelXWing modelXWing = new ModelXWing();
+	private ModelSnowspeeder modelSnowspeeder = new ModelSnowspeeder();
+	private ModelAWing modelAWing = new ModelAWing();
+	private ModelTIE modelTIE = new ModelTIE();
+	private ModelTIEAdvanced modelTIEAdvanced = new ModelTIEAdvanced();
+	private ModelTIEInterceptor modelTIEInterceptor = new ModelTIEInterceptor();
+	private ModelSkyhopper modelSkyhopper = new ModelSkyhopper();
 
 	public GuiScreenHyperdrive(EntityPlayer player)
 	{
@@ -59,200 +119,84 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / 50) % 360, 0, 1, 0);
 		};
 
+		Consumer<OutlineButton> postRender = outlineButton -> {
+			GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glRotatef((System.currentTimeMillis() / 50) % 360 * -2, 0, 1, 0);
+			GL11.glScalef(0.12f, 0.12f, 0.12f);
+			GL11.glScalef(-1, 1, -1);
+			GL11.glTranslatef(-80, 70, 0);
+			switch (outlineButton.displayString)
+			{
+				case "Hoth":
+				case "Dagobah":
+				case "Yavin4":
+					StarWarsMod.mc.renderEngine.bindTexture(RenderXWing.texture);
+					this.modelXWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				case "Endor":
+				case "DeathStar":
+					StarWarsMod.mc.renderEngine.bindTexture(RenderTIE.texture);
+					this.modelTIE.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				case "Tatooine":
+					GL11.glTranslatef(-20, 0, 0);
+					StarWarsMod.mc.renderEngine.bindTexture(RenderSkyhopper.texture);
+					this.modelSkyhopper.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				default:
+					break;
+			}
+			GL11.glTranslatef(160, 0, 0);
+			GL11.glScalef(1, 1, -1);
+			switch (outlineButton.displayString)
+			{
+				case "Hoth":
+					StarWarsMod.mc.renderEngine.bindTexture(RenderSnowspeeder.texture);
+					this.modelSnowspeeder.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				case "Endor":
+					StarWarsMod.mc.renderEngine.bindTexture(RenderTIEInterceptor.texture);
+					this.modelTIEInterceptor.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				case "DeathStar":
+					StarWarsMod.mc.renderEngine.bindTexture(RenderTIEAdvanced.texture);
+					this.modelTIEAdvanced.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				case "Yavin4":
+					StarWarsMod.mc.renderEngine.bindTexture(RenderAWing.texture);
+					this.modelAWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					break;
+				default:
+					break;
+			}
+			GL11.glEnable(GL11.GL_CULL_FACE);
+			GL11.glPopMatrix();
+		};
+
 		animationZoom = new AnimationZoom();
 
 		int id = 0;
-		PlanetInformation info = PlanetInformation.getPlanet("alderaan");
-		Point p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel alderaan = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		alderaan.displayString = info.getInternalName();
-		alderaan.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(alderaan);
 
-		info = PlanetInformation.getPlanet("bespin");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel bespin = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		bespin.displayString = info.getInternalName();
-		bespin.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(bespin);
-
-		info = PlanetInformation.getPlanet("hoth");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel hoth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		hoth.displayString = info.getInternalName();
-		hoth.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(hoth);
-
-		info = PlanetInformation.getPlanet("earth");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel earth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		earth.displayString = info.getInternalName();
-		earth.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(earth);
-
-		info = PlanetInformation.getPlanet("coruscant");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel coruscant = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		coruscant.displayString = info.getInternalName();
-		coruscant.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(coruscant);
-
-		info = PlanetInformation.getPlanet("dagobah");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel dagobah = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dagobah.displayString = info.getInternalName();
-		dagobah.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(dagobah);
-
-		info = PlanetInformation.getPlanet("dathomir");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel dathomir = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dathomir.displayString = info.getInternalName();
-		dathomir.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(dathomir);
-
-		info = PlanetInformation.getPlanet("endor");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel endor = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		endor.displayString = info.getInternalName();
-		endor.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(endor);
-
-		info = PlanetInformation.getPlanet("geonosis");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel geonosis = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		geonosis.displayString = info.getInternalName();
-		geonosis.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(geonosis);
-
-		info = PlanetInformation.getPlanet("tatooine");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel tatooine = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		tatooine.displayString = info.getInternalName();
-		tatooine.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(tatooine);
-
-		info = PlanetInformation.getPlanet("ryloth");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel ryloth = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ryloth.displayString = info.getInternalName();
-		ryloth.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(ryloth);
-
-		info = PlanetInformation.getPlanet("ilum");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel ilum = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ilum.displayString = info.getInternalName();
-		ilum.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(ilum);
-
-		info = PlanetInformation.getPlanet("kamino");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel kamino = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kamino.displayString = info.getInternalName();
-		kamino.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(kamino);
-
-		info = PlanetInformation.getPlanet("kashyyyk");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel kashyyyk = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kashyyyk.displayString = info.getInternalName();
-		kashyyyk.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(kashyyyk);
-
-		info = PlanetInformation.getPlanet("kessel");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel kessel = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		kessel.displayString = info.getInternalName();
-		kessel.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(kessel);
-
-		info = PlanetInformation.getPlanet("mandalore");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel mandalore = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		mandalore.displayString = info.getInternalName();
-		mandalore.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(mandalore);
-
-		info = PlanetInformation.getPlanet("monCalamari");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel monCalamari = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		monCalamari.displayString = info.getInternalName();
-		monCalamari.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(monCalamari);
-
-		info = PlanetInformation.getPlanet("mustafar");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel mustafar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		mustafar.displayString = info.getInternalName();
-		mustafar.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(mustafar);
-
-		info = PlanetInformation.getPlanet("naboo");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel naboo = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		naboo.displayString = info.getInternalName();
-		naboo.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(naboo);
-
-		info = PlanetInformation.getPlanet("sullust");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel sullust = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		sullust.displayString = info.getInternalName();
-		sullust.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(sullust);
-
-		info = PlanetInformation.getPlanet("utapau");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel utapau = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		utapau.displayString = info.getInternalName();
-		utapau.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(utapau);
-
-		info = PlanetInformation.getPlanet("yavin4");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel yavin4 = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		yavin4.displayString = info.getInternalName();
-		yavin4.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(yavin4);
-
-		info = PlanetInformation.getPlanet("jakku");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel jakku = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		jakku.displayString = info.getInternalName();
-		jakku.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(jakku);
-
-		info = PlanetInformation.getPlanet("takodana");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel takodana = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		takodana.displayString = info.getInternalName();
-		takodana.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(takodana);
-
-		info = PlanetInformation.getPlanet("dQar");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel dQar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		dQar.displayString = info.getInternalName();
-		dQar.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(dQar);
-
-		info = PlanetInformation.getPlanet("ahchTo");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel ahchTo = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		ahchTo.displayString = info.getInternalName();
-		ahchTo.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(ahchTo);
-
-		info = PlanetInformation.getPlanet("deathStar");
-		p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
-		OutlineButtonModel deathStar = new OutlineButtonModel(id++, p.x, p.y, 4, 4);
-		deathStar.displayString = info.getInternalName();
-		deathStar.setup(new ModelPlanetCube(), info.getCubeTexture(), transform);
-		buttonList.add(deathStar);
+		for (PlanetInformation info : Resources.planetInformation)
+		{
+			FPoint p = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
+			OutlineButtonModel planetButton = new OutlineButtonModel(id++, (int)p.x, (int)p.y, 4, 4);
+			planetButton.displayString = info.getInternalName();
+			planetButton.setup(new ModelPlanetCube(), info.getCubeTexture(), transform, postRender);
+			buttonList.add(planetButton);
+		}
 
 		buttonClose = new OutlineButton(id++, 5, 5, 10, 10, "X", false);
 		buttonList.add(buttonClose);
+
+		qlog = ItemQuestContainer.getQuestContainer(player);
+
+		buttonEatHyperdrive = new OutlineButton(id++, 15, 215, 100, 20, "Program NavCom", false);
+		buttonList.add(buttonEatHyperdrive);
+
+		buttonTravel = new OutlineButton(id++, 125, 215, 100, 20, "Jump to Lightspeed", false);
+		buttonList.add(buttonTravel);
 	}
 
 	@Override
@@ -277,6 +221,52 @@ public class GuiScreenHyperdrive extends GuiScreen
 				this.animationZoom.start();
 				this.isZoom = false;
 			}
+			else if (button.id == buttonEatHyperdrive.id && zoomPlanet != null && qlog != null)
+			{
+				if (button instanceof OutlineButton)
+				{
+					OutlineButton outlineButton = (OutlineButton)button;
+					if (!outlineButton.selected)
+					{
+						StarWarsMod.network.sendToServer(new MessageTransferHyperdrive(player, zoomPlanet.getInternalName()));
+						if (player.inventory.consumeInventoryItem(zoomPlanet.getHyperdrive()) && qlog != null)
+							ItemQuestContainer.setHasHyperdrive(qlog, zoomPlanet.getInternalName());
+					}
+				}
+			}
+			else if (button.id == buttonTravel.id && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()))
+			{
+				AnimationHyperspace animationHyperspace = new AnimationHyperspace(3500, false);
+				animationHyperspace.setOnAnimationEnd(animation -> {
+					if (player.dimension != zoomPlanet.getDimensionId())
+					{
+						player.timeUntilPortal = 20;
+						StarWarsMod.network.sendToServer(new MessageHyperdrive(player, zoomPlanet.getDimensionId()));
+						Lumberjack.log("move");
+					}
+				});
+				StarWarsMod.mc.displayGuiScreen(null);
+				animationHyperspace.start();
+			}
+
+			if (qlog != null)
+				if (zoomPlanet != null && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()))
+				{
+					buttonEatHyperdrive.displayString = "Course Plotted";
+					buttonEatHyperdrive.selected = true;
+				}
+				else
+				{
+					buttonEatHyperdrive.displayString = "Program NavCom";
+					buttonEatHyperdrive.selected = false;
+				}
+			else
+			{
+				buttonEatHyperdrive.selected = false;
+				buttonEatHyperdrive.enabled = false;
+				buttonTravel.selected = false;
+				buttonTravel.enabled = false;
+			}
 		}
 	}
 
@@ -300,7 +290,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		Tessellator tessellator = Tessellator.instance;
 		this.mc.getTextureManager().bindTexture(galaxy);
 		tessellator.startDrawingQuads();
-		tessellator.setColorOpaque_I(0xFFFFFFFF);
+		tessellator.setColorOpaque_I(GLPalette.LIGHT_GREY);
 		tessellator.addVertexWithUV(0.0D, 256, 0.0D, 0.0D, 2);
 		tessellator.addVertexWithUV(256, 256, 0.0D, 1, 2);
 		tessellator.addVertexWithUV(256, 0.0D, 0.0D, 1, 1);
@@ -313,19 +303,69 @@ public class GuiScreenHyperdrive extends GuiScreen
 	{
 		this.drawStars();
 
+		float cX = r.getScaledWidth() / 2f;
+		float cY = r.getScaledHeight() / 2f;
+
 		if (zoomPlanet == null && animationZoom.getTick() == 0)
 		{
 			GL11.glPushMatrix();
-			GL11.glTranslatef(75, -35, 0);
+			GL11.glTranslatef(cX - 170, cY - 165, 0);
 			GLPZ.glScalef(1.3f);
 			this.drawGalaxy();
+			GL11.glPopMatrix();
+		}
+
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		RenderHelper.enableStandardItemLighting();
+
+		if (zoomPlanet == null && animationZoom.getTick() == 0)
+		{
+			GL11.glLineWidth(2);
+
+			GLPalette.glColorI(GLPalette.BLACK);
+			Screen2D.drawDashedCircle(cX - 50, cY - 22, 20, 5);
+
+			GLPalette.glColorI(GLPalette.DARK_GREY);
+			Screen2D.drawDashedCircle(cX - 50, cY - 22, 40, 3);
+
+			GLPalette.glColorI(GLPalette.GREY);
+			Screen2D.drawDashedCircle(cX - 50, cY - 22, 55, 3);
+
+			GL11.glPushMatrix();
+			GL11.glScalef(1, 1.15f, 1);
+			GLPalette.glColorI(GLPalette.LIGHT_GREY);
+			Screen2D.drawDashedCircle(cX - 50, cY / 1.15f - 12, 60, 3);
+			GL11.glPopMatrix();
+
+			GL11.glPushMatrix();
+			GL11.glScalef(1.25f, 1.15f, 1);
+			GLPalette.glColorI(GLPalette.OFF_WHITE);
+			Screen2D.drawDashedCircle(cX / 1.25f - 30, cY / 1.15f - 10, 70, 3);
+			GL11.glPopMatrix();
+		}
+
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		RenderHelper.enableStandardItemLighting();
+
+		if (zoomPlanet == null && animationZoom.getTick() == 0)
+		{
+			GL11.glPushMatrix();
+			GL11.glScalef(0.5f, 0.5f, 1);
+			StarWarsMod.mc.fontRenderer.drawString("Deep Core", (int)cX * 2 - 125, (int)cY * 2 - 44, GLPalette.BLACK);
+			StarWarsMod.mc.fontRenderer.drawString("Core", (int)cX * 2 - 111, (int)cY * 2 + 12, GLPalette.DARK_GREY);
+			StarWarsMod.mc.fontRenderer.drawString("Colonies", (int)cX * 2 - 105, (int)cY * 2 + 45, GLPalette.GREY);
+			StarWarsMod.mc.fontRenderer.drawString("Inner Rim", (int)cX * 2 - 98, (int)cY * 2 + 85, GLPalette.GREY);
+			StarWarsMod.mc.fontRenderer.drawString("Mid Rim", (int)cX * 2 - 88, (int)cY * 2 + 125, GLPalette.OFF_WHITE);
+			StarWarsMod.mc.fontRenderer.drawString("Outer Rim", (int)cX * 2 - 78, (int)cY * 2 + 165, GLPalette.WHITE);
 			GL11.glPopMatrix();
 		}
 
 		this.buttonList.stream().filter(b -> PlanetInformation.getPlanet(((GuiButton)b).displayString) != null).forEach(b -> {
 			OutlineButtonModel buttonModel = (OutlineButtonModel)b;
 			PlanetInformation info = PlanetInformation.getPlanet(buttonModel.displayString);
-			Point pt = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
+			FPoint pt = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);
 
 			if (info == zoomPlanet || info == oldZoomPlanet)
 			{
@@ -336,7 +376,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			buttonModel.visible = info == zoomPlanet || info == oldZoomPlanet || (zoomPlanet == null && animationZoom.getTick() == 0);
 		});
 
-		buttonClose.visible = zoomPlanet != null;
+		buttonClose.visible = buttonEatHyperdrive.visible = buttonTravel.visible = zoomPlanet != null && animationZoom.isDone();
 
 		PlanetInformation planet = zoomPlanet;
 		if (planet == null)
@@ -393,47 +433,67 @@ public class GuiScreenHyperdrive extends GuiScreen
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 		}
 
-		if (1 != 1)
+		if (MathUtils.oneIn(2000))
 		{
-			PlanetInformation info = PlanetInformation.getPlanet("bespin");
-			Point start = new Point((int)(info.getPosition().x * 10), (int)(info.getPosition().y * 10));
-
-			info = PlanetInformation.getPlanet("tatooine");
-			Point end = new Point((int)(info.getPosition().x * 10), (int)(info.getPosition().y * 10));
-
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
-
-			GL11.glLineWidth(5);
-			GLPalette.glColorI(GLPalette.WHITE);
-
-			Point last = null;
-			for (Point pt : pathfindingGrid.getPathFrom(start.x, start.y, end.x, end.y))
-			{
-				Point onscreen = galaxyCoordsToXy(pt.x + 0.9f, pt.y, 1.62f);
-				if (last != null)
-				{
-					Screen2D.drawLine(last.x, last.y, onscreen.x, onscreen.y);
-				}
-				last = (Point)onscreen.clone();
-			}
+			MovingShip s = new MovingShip(MathUtils.getRandomElement(routes), 0, StarWarsMod.rngGeneral.nextBoolean());
+			s.start();
+			ships.add(s);
 		}
 
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		RenderHelper.enableStandardItemLighting();
+		Iterator<MovingShip> iterator = ships.iterator();
+
+		while (iterator.hasNext())
+		{
+			GL11.glPushMatrix();
+
+			GLPalette.glColorI(GLPalette.WHITE);
+
+			MovingShip ship = iterator.next();
+
+			ship.tick();
+
+			if (ship.animation.isDone())
+				iterator.remove();
+
+			FPoint pos = galaxyCoordsToXy(ship.position.x, ship.position.y);
+			GL11.glTranslatef(pos.x, pos.y, 150);
+			GL11.glTranslatef(2 * (ship.animation.isReverse() ? -1 : 1), 0, 0);
+
+			if (zoomPlanet == null && animationZoom.getTick() == 0)
+			{
+				switch (ship.model)
+				{
+					case 0:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderXWing.texture);
+						GL11.glPushMatrix();
+						GL11.glDisable(GL11.GL_CULL_FACE);
+						GL11.glScalef(0.12f, 0.12f, 0.12f);
+						GL11.glRotatef(90, 1, 0, 0);
+						GL11.glRotatef(ship.angle, 0, 1, 0);
+						GL11.glScalef(1, 1, -1);
+						this.modelXWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						GL11.glEnable(GL11.GL_CULL_FACE);
+						GL11.glPopMatrix();
+						break;
+					default:
+						break;
+				}
+			}
+
+			GL11.glPopMatrix();
+		}
 
 		super.drawScreen(mX, mY, p);
 	}
 
-	public Point galaxyCoordsToXy(float x, float y, float scale)
+	public FPoint galaxyCoordsToXy(float x, float y, float scale)
 	{
 		float pX = r.getScaledWidth() / 2f - 144;
 		float pY = r.getScaledHeight() / 2f - 144 + 16;
-		return new Point((int)(pX + scale * x), (int)(pY + scale * y));
+		return new FPoint(pX + scale * x, pY + scale * y);
 	}
 
-	public Point galaxyCoordsToXy(float x, float y)
+	public FPoint galaxyCoordsToXy(float x, float y)
 	{
 		return galaxyCoordsToXy(x, y, 16);
 	}

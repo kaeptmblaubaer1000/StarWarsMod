@@ -36,12 +36,20 @@ public class AnimationManager
 				if (t.getLoop())
 					t.tick = t.getMax();
 				else
+				{
+					if (t.onAnimationEnd != null)
+						t.onAnimationEnd.accept(t);
 					i.remove();
+				}
 			else if (!t.reverse && t.getTick() >= t.getMax())
 				if (t.getLoop())
 					t.tick = 0;
 				else
+				{
+					if (t.onAnimationEnd != null)
+						t.onAnimationEnd.accept(t);
 					i.remove();
+				}
 
 		}
 	}

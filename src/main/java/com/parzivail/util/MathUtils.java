@@ -12,7 +12,7 @@ public class MathUtils
 		_rand = new Random();
 	}
 
-	public static String getRandomElement(String[] array)
+	public static <T> T getRandomElement(T[] array)
 	{
 		return array[_rand.nextInt(array.length)];
 	}
@@ -20,6 +20,16 @@ public class MathUtils
 	public static float lerp(float start, float end, float percent)
 	{
 		return start + percent * (end - start);
+	}
+
+	public static float map(float x, float in_min, float in_max, float out_min, float out_max)
+	{
+		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+
+	public static float distance(float x1, float y1, float x2, float y2)
+	{
+		return (float)Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 	}
 
 	public static int randomRange(int min, int max)

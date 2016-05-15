@@ -5,6 +5,7 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
+import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.jedirobes.powers.Power;
@@ -15,6 +16,7 @@ import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
 import com.parzivail.pswm.rendering.force.RenderJediDefense;
 import com.parzivail.pswm.rendering.force.RenderSithLightning;
+import com.parzivail.pswm.rendering.gui.AnimationHyperspace;
 import com.parzivail.pswm.rendering.gui.GuiBinocs;
 import com.parzivail.pswm.rendering.gui.GuiBlaster;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
@@ -211,15 +213,23 @@ public class ClientEventHandler
 	{
 		if (logInEvent.entity instanceof EntityPlayer)
 		{
+			EntityPlayer player = (EntityPlayer)logInEvent.entity;
 			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION) && !StarWarsMod.hasShownNeedUpdate)
 			{
-				((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(Resources.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(Resources.VERSION, Text.COLOR_YELLOW)));
+				player.addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(Resources.ONLINE_VERSION, Text.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(Resources.VERSION, Text.COLOR_YELLOW)));
 				StarWarsMod.hasShownNeedUpdate = true;
 			}
 			if (ConfigOptions.enableGlobalLeaderboard && !StarWarsMod.hasShownLeaderboardPart)
 			{
-				((EntityPlayer)logInEvent.entity).addChatMessage(new ChatComponentText("Thanks for participating in the global Jedi vs. Sith leaderboard! You can opt out at any time in the config."));
+				player.addChatMessage(new ChatComponentText("Thanks for participating in the global Jedi vs. Sith leaderboard! You can opt out at any time in the config."));
 				StarWarsMod.hasShownLeaderboardPart = true;
+			}
+
+			ItemStack qlog = ItemQuestContainer.getQuestContainer(player);
+			if (qlog != null && ItemQuestContainer.getInHyperspace(qlog))
+			{
+				new AnimationHyperspace(3500, true).start();
+				ItemQuestContainer.setInHyperspace(qlog, false);
 			}
 		}
 	}

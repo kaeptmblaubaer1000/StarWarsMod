@@ -41,9 +41,27 @@ public class ItemQuestContainer extends Item
 	public static boolean isQuestDone(EntityPlayer player, IQuest quest)
 	{
 		ItemStack stack = getQuestContainer(player);
-		if (stack == null)
-			return false;
-		return getQuests(stack).isQuestDone(quest.getID());
+		return stack != null && getQuests(stack).isQuestDone(quest.getID());
+	}
+
+	public static void setHasHyperdrive(ItemStack stack, String planet)
+	{
+		stack.stackTagCompound.setBoolean("hyperdrive-" + planet, true);
+	}
+
+	public static boolean getHasHyperdrive(ItemStack stack, String planet)
+	{
+		return stack.stackTagCompound.hasKey("hyperdrive-" + planet) && stack.stackTagCompound.getBoolean("hyperdrive-" + planet);
+	}
+
+	public static void setInHyperspace(ItemStack stack, boolean hyperspace)
+	{
+		stack.stackTagCompound.setBoolean("inHyperspace", hyperspace);
+	}
+
+	public static boolean getInHyperspace(ItemStack stack)
+	{
+		return stack.stackTagCompound.hasKey("inHyperspace") && stack.stackTagCompound.getBoolean("inHyperspace");
 	}
 
 	public static String getOwner(ItemStack stack)

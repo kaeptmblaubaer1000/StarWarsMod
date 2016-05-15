@@ -2,6 +2,8 @@ package com.parzivail.util;
 
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
+import java.util.function.Consumer;
+
 public class Animation
 {
 	protected int tick = 0;
@@ -9,6 +11,7 @@ public class Animation
 	protected boolean loop = false;
 	protected boolean isRenderable = false;
 	protected boolean reverse;
+	protected Consumer<Animation> onAnimationEnd;
 
 	public Animation(int length, boolean loop, boolean isRenderable)
 	{
@@ -29,6 +32,11 @@ public class Animation
 			this.reverse = false;
 			this.tick = 0;
 		}
+	}
+
+	public void setOnAnimationEnd(Consumer<Animation> onAnimationEnd)
+	{
+		this.onAnimationEnd = onAnimationEnd;
 	}
 
 	public boolean isReverse()
