@@ -94,6 +94,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 	private ModelXWing modelXWing = new ModelXWing();
 	private ModelSnowspeeder modelSnowspeeder = new ModelSnowspeeder();
 	private ModelAWing modelAWing = new ModelAWing();
+	private ModelYWing modelYWing = new ModelYWing();
 	private ModelTIE modelTIE = new ModelTIE();
 	private ModelTIEAdvanced modelTIEAdvanced = new ModelTIEAdvanced();
 	private ModelTIEInterceptor modelTIEInterceptor = new ModelTIEInterceptor();
@@ -164,8 +165,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 					this.modelTIEAdvanced.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 					break;
 				case "Yavin4":
-					StarWarsMod.mc.renderEngine.bindTexture(RenderAWing.texture);
-					this.modelAWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					StarWarsMod.mc.renderEngine.bindTexture(RenderYWing.texture);
+					this.modelYWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 					break;
 				default:
 					break;
