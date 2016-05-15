@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.models.ModelPlanetCube;
 import com.parzivail.util.MathUtils;
+import com.parzivail.util.PathfindingGrid;
 import com.parzivail.util.ui.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,6 +27,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 {
 	private EntityPlayer player;
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
+	private static final ResourceLocation galaxy = new ResourceLocation(Resources.MODID, "textures/gui/galaxy.png");
 	private static ScaledResolution r;
 
 	private boolean isZoom = false;
@@ -34,6 +36,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 	private AnimationZoom animationZoom;
 	private OutlineButton buttonClose;
+
+	private PathfindingGrid pathfindingGrid = new PathfindingGrid(180, 180, 10);
 
 	public GuiScreenHyperdrive(EntityPlayer player)
 	{
@@ -276,7 +280,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		}
 	}
 
-	public void drawBg2()
+	public void drawStars()
 	{
 		Tessellator tessellator = Tessellator.instance;
 		this.mc.getTextureManager().bindTexture(background);
@@ -291,14 +295,32 @@ public class GuiScreenHyperdrive extends GuiScreen
 		tessellator.draw();
 	}
 
+	public void drawGalaxy()
+	{
+		Tessellator tessellator = Tessellator.instance;
+		this.mc.getTextureManager().bindTexture(galaxy);
+		tessellator.startDrawingQuads();
+		tessellator.setColorOpaque_I(0xFFFFFFFF);
+		tessellator.addVertexWithUV(0.0D, 256, 0.0D, 0.0D, 2);
+		tessellator.addVertexWithUV(256, 256, 0.0D, 1, 2);
+		tessellator.addVertexWithUV(256, 0.0D, 0.0D, 1, 1);
+		tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 1);
+		tessellator.draw();
+	}
+
 	@Override
 	public void drawScreen(int mX, int mY, float p)
 	{
-		this.drawBg2();
+		this.drawStars();
 
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		RenderHelper.enableStandardItemLighting();
+		if (zoomPlanet == null && animationZoom.getTick() == 0)
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslatef(75, -35, 0);
+			GLPZ.glScalef(1.3f);
+			this.drawGalaxy();
+			GL11.glPopMatrix();
+		}
 
 		this.buttonList.stream().filter(b -> PlanetInformation.getPlanet(((GuiButton)b).displayString) != null).forEach(b -> {
 			OutlineButtonModel buttonModel = (OutlineButtonModel)b;
@@ -334,9 +356,9 @@ public class GuiScreenHyperdrive extends GuiScreen
 			y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
 			int color = GLPalette.BRIGHT_YELLOW;
-			if (planet.getAffiliation().equals(Resources.allegianceImperial))
+			if (planet.getAffiliation().equals(Resources.allegianceImperial) || planet.getAffiliation().equals(Resources.allegianceSith))
 				color = GLPalette.BRIGHT_RED;
-			else if (planet.getAffiliation().equals(Resources.allegianceRebel))
+			else if (planet.getAffiliation().equals(Resources.allegianceRebel) || planet.getAffiliation().equals(Resources.allegianceJedi))
 				color = GLPalette.BRIGHT_BLUE;
 			String aff = ("Affiliation: " + planet.getAffiliation());
 			StarWarsMod.mc.fontRenderer.drawString(aff.substring(0, (int)MathUtils.lerp(0, aff.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, color);
@@ -370,6 +392,36 @@ public class GuiScreenHyperdrive extends GuiScreen
 			for (String t : planet.getNativeSpecies())
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 		}
+
+		if (1 != 1)
+		{
+			PlanetInformation info = PlanetInformation.getPlanet("bespin");
+			Point start = new Point((int)(info.getPosition().x * 10), (int)(info.getPosition().y * 10));
+
+			info = PlanetInformation.getPlanet("tatooine");
+			Point end = new Point((int)(info.getPosition().x * 10), (int)(info.getPosition().y * 10));
+
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+			GL11.glLineWidth(5);
+			GLPalette.glColorI(GLPalette.WHITE);
+
+			Point last = null;
+			for (Point pt : pathfindingGrid.getPathFrom(start.x, start.y, end.x, end.y))
+			{
+				Point onscreen = galaxyCoordsToXy(pt.x + 0.9f, pt.y, 1.62f);
+				if (last != null)
+				{
+					Screen2D.drawLine(last.x, last.y, onscreen.x, onscreen.y);
+				}
+				last = (Point)onscreen.clone();
+			}
+		}
+
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		RenderHelper.enableStandardItemLighting();
 
 		super.drawScreen(mX, mY, p);
 	}
