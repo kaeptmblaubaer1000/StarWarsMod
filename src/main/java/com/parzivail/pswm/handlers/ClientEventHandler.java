@@ -238,22 +238,7 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRender(RenderLivingEvent.Pre event)
 	{
-		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
-		{
-			if (ClientEventHandler.renderHelper.isFirstPerson())
-			{
-				ClientEventHandler.pgui.changeCameraDist(this, 4);
-
-				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
-			}
-			else
-			{
-				ClientEventHandler.pgui.changeCameraDist(this, 15);
-
-				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
-			}
-		}
-		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
+		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
@@ -266,6 +251,36 @@ public class ClientEventHandler
 				ClientEventHandler.pgui.changeCameraDist(this, 10);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicATST);
+			}
+		}
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
+		{
+			if (ClientEventHandler.renderHelper.isFirstPerson())
+			{
+				ClientEventHandler.pgui.changeCameraDist(this, 4);
+
+				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+			}
+			else
+			{
+				ClientEventHandler.pgui.changeCameraDist(this, 25);
+
+				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
+			}
+		}
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+		{
+			if (ClientEventHandler.renderHelper.isFirstPerson())
+			{
+				ClientEventHandler.pgui.changeCameraDist(this, 4);
+
+				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+			}
+			else
+			{
+				ClientEventHandler.pgui.changeCameraDist(this, 15);
+
+				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
 		else

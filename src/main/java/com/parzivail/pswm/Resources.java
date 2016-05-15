@@ -109,6 +109,8 @@ public class Resources
 
 	public static final ResourceLocation atstOverlay = new ResourceLocation(Resources.MODID, "textures/gui/atst/atst.png");
 
+	public static final ResourceLocation ywingOverlay = new ResourceLocation(Resources.MODID, "textures/gui/ywing/ywing.png");
+
 	// Planet Textures
 	public static final ResourceLocation earthTexture = new ResourceLocation(Resources.MODID, "textures/gui/planets/earth.png");
 	public static final ResourceLocation endorTexture = new ResourceLocation(Resources.MODID, "textures/gui/planets/endor.png");

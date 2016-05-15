@@ -95,6 +95,9 @@ public class ItemRegister
 		StarWarsMod.spawnXwing = new ItemSpawnXWing();
 		GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
 
+		StarWarsMod.spawnYwing = new ItemSpawnYWing();
+		GameRegistry.registerItem(StarWarsMod.spawnYwing, "spawnYWing");
+
 		StarWarsMod.spawnSkyhopper = new ItemSpawnSkyhopper();
 		GameRegistry.registerItem(StarWarsMod.spawnSkyhopper, "spawnSkyhopper");
 

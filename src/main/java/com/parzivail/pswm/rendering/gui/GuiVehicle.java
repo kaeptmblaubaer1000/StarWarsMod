@@ -600,6 +600,40 @@ public class GuiVehicle
 
 					ClientEventHandler.pgui.renderOverlay(Resources.atstOverlay);
 				}
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
+				{
+					VehicYWing vehic = (VehicYWing)StarWarsMod.mc.thePlayer.ridingEntity;
+
+					event.resolution.getScaledWidth();
+					event.resolution.getScaledHeight();
+
+					updateFiring();
+
+					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
+
+					int color = GLPalette.ANALOG_GREEN;
+
+					if (e != null)
+						color = GLPalette.ANALOG_RED;
+
+					// if (vehic.getTargetLock())
+					// dist = GLPalette.ORANGE;
+
+					if (e != null && this.lastTarget == null)
+						new AnimationCrosshairClose(color).start();
+
+					if (e == null && this.lastTarget != null)
+						new AnimationCrosshairOpen(color).start();
+
+					if (!ClientEventHandler.isCursorAnim)
+						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+
+					updateTargetLock(e);
+
+					this.lastTarget = e;
+
+					ClientEventHandler.pgui.renderOverlay(Resources.ywingOverlay);
+				}
 			}
 		}
 

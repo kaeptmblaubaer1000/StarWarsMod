@@ -53,6 +53,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicTIEAdvanced.class, "tieAdvanced");
 		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieInterceptor");
 		EntityUtils.registerEntity(VehicXWing.class, "xwing");
+		EntityUtils.registerEntity(VehicYWing.class, "ywing");
 		EntityUtils.registerEntity(VehicAWing.class, "awing");
 		EntityUtils.registerEntity(VehicATST.class, "atst");
 		EntityUtils.registerEntity(VehicSnowspeeder.class, "snowspeeder");
