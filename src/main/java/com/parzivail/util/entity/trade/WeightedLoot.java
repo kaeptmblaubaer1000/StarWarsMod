@@ -2,6 +2,9 @@ package com.parzivail.util.entity.trade;
 
 import net.minecraft.item.ItemStack;
 
+/**
+ * Defines a Loot item with specific weight
+ */
 public class WeightedLoot
 {
 	public ItemStack item;

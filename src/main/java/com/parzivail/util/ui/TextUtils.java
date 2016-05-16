@@ -4,36 +4,80 @@ import java.util.StringTokenizer;
 
 public class TextUtils
 {
+	/**
+	 * Adds a text effect to a string, terminating it with a RESET flag
+	 *
+	 * @param p1     The string to affect
+	 * @param effect The effect to use
+	 * @return The affected string
+	 */
 	public static String addEffect(String p1, String effect)
 	{
 		return effect + p1 + Text.RESE;
 	}
 
+	/**
+	 * Makes a string bold
+	 *
+	 * @param p1 The string to bold
+	 * @return The bolded string
+	 */
 	public static String makeBold(String p1)
 	{
 		return Text.BOLD + p1 + Text.RESE;
 	}
 
+	/**
+	 * Makes a string italicized
+	 *
+	 * @param p1 The string to italicize
+	 * @return The italicized string
+	 */
 	public static String makeItalic(String p1)
 	{
 		return Text.ITAL + p1 + Text.RESE;
 	}
 
+	/**
+	 * Obfuscates a string
+	 *
+	 * @param p1 The string to obfuscate
+	 * @return The obfuscated string
+	 */
 	public static String makeObfuscated(String p1)
 	{
 		return Text.OBFU + p1 + Text.RESE;
 	}
 
+	/**
+	 * Makes a string strikethrough
+	 *
+	 * @param p1 The string to strike
+	 * @return The struck string
+	 */
 	public static String makeStrikethrough(String p1)
 	{
 		return Text.STRI + p1 + Text.RESE;
 	}
 
+	/**
+	 * Underlines a string
+	 *
+	 * @param p1 The string to underline
+	 * @return The underlined string
+	 */
 	public static String makeUnderline(String p1)
 	{
 		return Text.UNDE + p1 + Text.RESE;
 	}
 
+	/**
+	 * Splits a string into lines not exceeding maxCharInLine, but preserving spaces
+	 *
+	 * @param input         The string to split
+	 * @param maxCharInLine The maximum characters in a line
+	 * @return The split string
+	 */
 	public static String[] splitIntoLine(String input, int maxCharInLine)
 	{
 
@@ -63,6 +107,12 @@ public class TextUtils
 		return output.toString().split("\n");
 	}
 
+	/**
+	 * Translates some text into Besh
+	 *
+	 * @param english The string to translate
+	 * @return The translated string
+	 */
 	public static String translateAurebesh(String english)
 	{
 		if (english.equalsIgnoreCase("T-65B X-Wing Starfighter"))
@@ -92,6 +142,12 @@ public class TextUtils
 		return english;
 	}
 
+	/**
+	 * Translates some text into long Besh
+	 *
+	 * @param english The string to translate
+	 * @return The translated string
+	 */
 	public static String translateAurebeshLong(String english)
 	{
 		if (english.equalsIgnoreCase("T-65B X-Wing Starfighter"))

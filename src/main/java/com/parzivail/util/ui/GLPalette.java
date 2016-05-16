@@ -954,24 +954,40 @@ public class GLPalette
 	public static int YELLOW_ORANGE = 0xFFFCB001;
 	public static int YELLOW_TAN = 0xFFFFE36E;
 
-	public static void glColorI(int rgba)
+	/**
+	 * Sets the ARGB OpenGL color from a packed ARGB color int
+	 *
+	 * @param argb The color to use
+	 */
+	public static void glColorI(int argb)
 	{
-		int alpha = rgba >> 24 & 0xFF;
-		int red = rgba >> 16 & 0xFF;
-		int green = rgba >> 8 & 0xFF;
-		int blue = rgba & 0xFF;
+		int alpha = argb >> 24 & 0xFF;
+		int red = argb >> 16 & 0xFF;
+		int green = argb >> 8 & 0xFF;
+		int blue = argb & 0xFF;
 		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
 	}
 
-	public static Color intToColor(int rgba)
+	/**
+	 * Turns a packed RGB color into a Color
+	 *
+	 * @param rgb The color to unpack
+	 * @return The new Color
+	 */
+	public static Color intToColor(int rgb)
 	{
-		int alpha = rgba >> 24 & 0xFF;
-		int red = rgba >> 16 & 0xFF;
-		int green = rgba >> 8 & 0xFF;
-		int blue = rgba & 0xFF;
+		int red = rgb >> 16 & 0xFF;
+		int green = rgb >> 8 & 0xFF;
+		int blue = rgb & 0xFF;
 		return new Color(red, green, blue, 255);
 	}
 
+	/**
+	 * Turns a Color into a packed RGB int
+	 *
+	 * @param c The color to pack
+	 * @return The packed int
+	 */
 	public static int colorToInt(Color c)
 	{
 		int rgb = c.getRed();
@@ -980,6 +996,12 @@ public class GLPalette
 		return rgb;
 	}
 
+	/**
+	 * Makes an RGB packed int opaque in the A channel
+	 *
+	 * @param rgb The color to make opaque
+	 * @return The opaque color
+	 */
 	public static int makeOpaque(int rgb)
 	{
 		return -16777216 | rgb;

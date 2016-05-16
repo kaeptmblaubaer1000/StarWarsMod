@@ -9,6 +9,13 @@ public class WeightedTradeItem
 	public ItemStack cost2;
 	public float weight;
 
+	/**
+	 * Defines a trade with specific weight
+	 *
+	 * @param cost   The cost of the trade
+	 * @param item   The item to trade
+	 * @param weight The weight of the trade
+	 */
 	public WeightedTradeItem(ItemStack cost, ItemStack item, float weight)
 	{
 		this.cost = cost;
@@ -17,6 +24,14 @@ public class WeightedTradeItem
 		this.weight = weight;
 	}
 
+	/**
+	 * Defines a trade with specific weight
+	 *
+	 * @param cost   The cost of the trade
+	 * @param cost2  The second cost of the trade
+	 * @param item   The item to trade
+	 * @param weight The weight of the trade
+	 */
 	public WeightedTradeItem(ItemStack cost, ItemStack cost2, ItemStack item, float weight)
 	{
 		this.cost = cost;

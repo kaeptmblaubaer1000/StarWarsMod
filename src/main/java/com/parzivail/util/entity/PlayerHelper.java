@@ -3,6 +3,9 @@ package com.parzivail.util.entity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
+/**
+ * A class to help get information about the client's player
+ */
 public class PlayerHelper
 {
 	Minecraft mc;
@@ -12,18 +15,11 @@ public class PlayerHelper
 		this.mc = mc;
 	}
 
-	public int getHeading(int div)
-	{
-		try
-		{
-			return net.minecraft.util.MathHelper.floor_double(this.mc.thePlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & div;
-		}
-		catch (NullPointerException e)
-		{
-			return 0;
-		}
-	}
-
+	/**
+	 * Gets the player's held itemstack, with failsafes
+	 *
+	 * @return
+	 */
 	public ItemStack getHeldItemStack()
 	{
 		try
@@ -36,6 +32,11 @@ public class PlayerHelper
 		}
 	}
 
+	/**
+	 * Gets the player's username, with failsafes
+	 *
+	 * @return
+	 */
 	public String getUsername()
 	{
 		try

@@ -9,6 +9,18 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderHelper
 {
+	private Minecraft mc;
+
+	/**
+	 * Initiates a new RenderHelper class
+	 *
+	 * @param mc The minecraft to wrap
+	 */
+	public RenderHelper(Minecraft mc)
+	{
+		this.mc = mc;
+	}
+
 	public static void disableLightmap()
 	{
 		OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapTexUnit);
@@ -29,18 +41,6 @@ public class RenderHelper
 		Render render = RenderManager.instance.getEntityRenderObject(el);
 		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
 		GL11.glPopMatrix();
-	}
-
-	private Minecraft mc;
-
-	/**
-	 * Initiates a new RenderHelper class
-	 *
-	 * @param mc The minecraft to wrap
-	 */
-	public RenderHelper(Minecraft mc)
-	{
-		this.mc = mc;
 	}
 
 	/**

@@ -5,6 +5,14 @@ import java.util.Random;
 
 public class TradeUtils
 {
+	/**
+	 * Fluctuates a price by a random amount based on a given constraint, adhering to ItemStack size constraints
+	 *
+	 * @param rand   The random to use
+	 * @param price  The original price
+	 * @param amount The amount to fluctuate
+	 * @return The fluctuated price
+	 */
 	public static int fluxPrice(Random rand, int price, int amount)
 	{
 		int x = rand.nextInt(price + amount - (price - amount) + 1) + price - amount;
@@ -15,6 +23,13 @@ public class TradeUtils
 		return x;
 	}
 
+	/**
+	 * Gets a trade item from a list of weighted trade items
+	 *
+	 * @param items The items to pull from
+	 * @param rand  The random to use
+	 * @return One trade item
+	 */
 	public static WeightedTradeItem getWeightedItemFromList(List<WeightedTradeItem> items, Random rand)
 	{
 		int length = items.toArray().length;

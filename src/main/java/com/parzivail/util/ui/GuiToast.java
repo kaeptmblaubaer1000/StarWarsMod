@@ -9,34 +9,6 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiToast extends Gui
 {
-	// note to self: use the bitwise or operator to set, i.e.
-	// "ToastPosition.BOTTOM | ToastPosition.RIGHT"
-	// use the bitwise and operator to test i.e.
-	// "if ((position & ToastPosition.BOTTOM) == ToastPosition.BOTTOM) { ... }"
-	public class ToastPosition
-	{
-		/**
-		 * Top Discriminator
-		 **/
-		public static final int TOP = 1;
-		/**
-		 * Bottom Discriminator
-		 **/
-		public static final int BOTTOM = 2;
-		/**
-		 * Left Discriminator
-		 **/
-		public static final int LEFT = 4;
-		/**
-		 * Middle Discriminator
-		 **/
-		public static final int MIDDLE = 8;
-		/**
-		 * Right Discriminator
-		 **/
-		public static final int RIGHT = 16;
-	}
-
 	/**
 	 * A short timespan, 4 seconds
 	 **/
@@ -45,6 +17,43 @@ public class GuiToast extends Gui
 	 * A long timespan, 8 seconds
 	 **/
 	public static final int TIME_LONG = 160;
+	/**
+	 * How many ticks are left in it's existence
+	 **/
+	private int life = 0;
+	/**
+	 * The toast's text
+	 **/
+	private String[] text;
+	/**
+	 * The width og the toast
+	 **/
+	private int width;
+	/**
+	 * The position of the toast
+	 **/
+	private int position = ToastPosition.BOTTOM | ToastPosition.MIDDLE;
+
+	/**
+	 * Private constructor for a new toast
+	 *
+	 * @param text     The text to show
+	 * @param length   The timespan it should be shown
+	 * @param position The {@link ToastPosition} of the toast
+	 */
+	private GuiToast(String text, int length, int position)
+	{
+		this.life = length;
+		this.position = position;
+
+		this.text = TextUtils.splitIntoLine(text, 25);
+
+		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+
+		for (String line : this.text)
+			if (fontRenderer.getStringWidth(line) > this.width)
+				this.width = fontRenderer.getStringWidth(line);
+	}
 
 	/**
 	 * Creates a new toast in the default position (bottom right), but doesn't
@@ -72,48 +81,7 @@ public class GuiToast extends Gui
 		return new GuiToast(String.valueOf(text), length, position);
 	}
 
-	/**
-	 * How many ticks are left in it's existence
-	 **/
-	private int life = 0;
-
-	/**
-	 * The toast's text
-	 **/
-	private String[] text;
-
-	/**
-	 * The width og the toast
-	 **/
-	private int width;
-
-	/**
-	 * The position of the toast
-	 **/
-	private int position = ToastPosition.BOTTOM | ToastPosition.MIDDLE;
-
 	/** All active toasts **/
-
-	/**
-	 * Private constructor for a new toast
-	 *
-	 * @param text     The text to show
-	 * @param length   The timespan it should be shown
-	 * @param position The {@link ToastPosition} of the toast
-	 */
-	private GuiToast(String text, int length, int position)
-	{
-		this.life = length;
-		this.position = position;
-
-		this.text = TextUtils.splitIntoLine(text, 25);
-
-		FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
-
-		for (String line : this.text)
-			if (fontRenderer.getStringWidth(line) > this.width)
-				this.width = fontRenderer.getStringWidth(line);
-	}
 
 	/**
 	 * Draws the tooltip backdrop
@@ -192,5 +160,33 @@ public class GuiToast extends Gui
 	public void tick()
 	{
 		this.life--;
+	}
+
+	// note to self: use the bitwise or operator to set, i.e.
+	// "ToastPosition.BOTTOM | ToastPosition.RIGHT"
+	// use the bitwise and operator to test i.e.
+	// "if ((position & ToastPosition.BOTTOM) == ToastPosition.BOTTOM) { ... }"
+	public class ToastPosition
+	{
+		/**
+		 * Top Discriminator
+		 **/
+		public static final int TOP = 1;
+		/**
+		 * Bottom Discriminator
+		 **/
+		public static final int BOTTOM = 2;
+		/**
+		 * Left Discriminator
+		 **/
+		public static final int LEFT = 4;
+		/**
+		 * Middle Discriminator
+		 **/
+		public static final int MIDDLE = 8;
+		/**
+		 * Right Discriminator
+		 **/
+		public static final int RIGHT = 16;
 	}
 }

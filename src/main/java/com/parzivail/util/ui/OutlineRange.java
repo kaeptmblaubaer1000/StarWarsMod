@@ -7,12 +7,12 @@ import org.lwjgl.opengl.GL11;
 
 public class OutlineRange extends OutlineButton
 {
-	private String name;
 	public float value;
 	public boolean changeFlag;
 	public float multiplier;
 	public int colorFg = GLPalette.SW_YELLOW;
 	public int colorBg = GLPalette.DARK_SW_YELLOW;
+	private String name;
 	private String formatter;
 
 	public OutlineRange(int id, int x, int y, int width, float multiplier, String text, String formatter)

@@ -1,6 +1,5 @@
 package com.parzivail.util.ui;
 
-import com.parzivail.util.FPoint;
 import net.minecraft.client.gui.FontRenderer;
 import org.lwjgl.opengl.GL11;
 
@@ -47,44 +46,6 @@ public class Screen2D
 		glBegin(GL11.GL_LINE_STRIP);
 		GL11.glVertex2d(sx, sy);
 		GL11.glVertex2d(ex, ey);
-		glEnd();
-		GL11.glPopMatrix();
-	}
-
-	public static FPoint catmullRomLine(float t, FPoint p1, FPoint p2, FPoint p3, FPoint p4)
-	{
-
-		float t2 = t * t;
-		float t3 = t * t * t;
-		FPoint v = new FPoint(0, 0); // Interpolated point
-
-		/* Catmull Rom spline Calculation */
-
-		v.x = catmulRom(t, p1.x, p2.x, p3.x, p4.x);
-		v.y = catmulRom(t, p1.y, p2.y, p3.y, p4.y);
-
-		return v;
-	}
-
-	public static float catmulRom(float u, float x0, float x1, float x2, float x3)
-	{
-		float u2 = u * u;
-		float u3 = u2 * u;
-		return ((2 * x1) +
-				(-x0 + x2) * u +
-				(2 * x0 - 5 * x1 + 4 * x2 - x3) * u2 +
-				(-x0 + 3 * x1 - 3 * x2 + x3) * u3) * 0.5f;
-	}
-
-	public static void drawSpline(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)
-	{
-		GL11.glPushMatrix();
-		glBegin(GL11.GL_LINE_STRIP);
-		for (float t = 0; t < 1; t += 0.01f)
-		{
-			FPoint v = catmullRomLine(t, new FPoint(x1, y1), new FPoint(x2, y2), new FPoint(x3, y3), new FPoint(x4, y4));
-			GL11.glVertex2f(v.x, v.y);
-		}
 		glEnd();
 		GL11.glPopMatrix();
 	}

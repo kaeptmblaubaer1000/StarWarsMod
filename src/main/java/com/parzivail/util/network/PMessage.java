@@ -24,18 +24,7 @@ import java.util.HashMap;
 
 public class PMessage<REQ extends PMessage> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
-	public static interface Reader<T extends Object>
-	{
-		public T read(ByteBuf buf);
-	}
-
-	public static interface Writer<T extends Object>
-	{
-		public void write(T t, ByteBuf buf);
-	}
-
 	private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap();
-
 	private static final HashMap<Class, Field[]> fieldCache = new HashMap();
 
 	static
@@ -349,6 +338,16 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	{
 		Pair<Reader, Writer> handler = getHandler(clazz);
 		handler.getRight().write(f.get(this), buf);
+	}
+
+	public static interface Reader<T extends Object>
+	{
+		public T read(ByteBuf buf);
+	}
+
+	public static interface Writer<T extends Object>
+	{
+		public void write(T t, ByteBuf buf);
 	}
 
 }

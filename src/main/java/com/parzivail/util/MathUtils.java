@@ -26,8 +26,9 @@ public class MathUtils
 
 	/**
 	 * Linear Interpolation
-	 * @param start The start value
-	 * @param end The end value
+	 *
+	 * @param start   The start value
+	 * @param end     The end value
 	 * @param percent The percent position between the two
 	 * @return The interpolated value
 	 */
@@ -38,9 +39,10 @@ public class MathUtils
 
 	/**
 	 * Re-maps a value from one range to another
-	 * @param x The value to re-map
-	 * @param in_min The min for the first range
-	 * @param in_max The max for the first range
+	 *
+	 * @param x       The value to re-map
+	 * @param in_min  The min for the first range
+	 * @param in_max  The max for the first range
 	 * @param out_min The min for the second range
 	 * @param out_max The max for the second range
 	 * @return The re-mapped value
@@ -52,6 +54,7 @@ public class MathUtils
 
 	/**
 	 * Gets the distance between two points
+	 *
 	 * @param x1 The first point's X
 	 * @param y1 The first point's Y
 	 * @param x2 The second point's X
@@ -65,6 +68,7 @@ public class MathUtils
 
 	/**
 	 * Gets a random value within a given range
+	 *
 	 * @param min The range minimum (inclusive)
 	 * @param max The range maximum (exclusive)
 	 * @return The random value
@@ -76,6 +80,7 @@ public class MathUtils
 
 	/**
 	 * Returns a random boolean with a one-in-n chance of being true
+	 *
 	 * @param n The chance
 	 * @return The random boolean
 	 */
@@ -85,16 +90,16 @@ public class MathUtils
 	}
 
 	/**
-	 * Shuffles an array in-place
+	 * Shuffles a char array in-place
 	 *
 	 * @param ar The array to shuffle
 	 */
-	public static <T> void shuffleArray(T[] ar)
+	public static void shuffleArray(char[] ar)
 	{
 		for (int i = ar.length - 1; i > 0; i--)
 		{
 			int index = _rand.nextInt(i + 1);
-			T a = ar[index];
+			char a = ar[index];
 			ar[index] = ar[i];
 			ar[i] = a;
 		}
@@ -102,6 +107,7 @@ public class MathUtils
 
 	/**
 	 * Converts a List<Integer> into an int[]
+	 *
 	 * @param list The list to convert
 	 * @return The new int array
 	 */

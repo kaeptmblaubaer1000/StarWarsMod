@@ -24,7 +24,8 @@ public class WorldUtils
 
 	/**
 	 * Registers a dimension with FML
-	 * @param dimId The Dimension ID
+	 *
+	 * @param dimId  The Dimension ID
 	 * @param class1 The world provider for the dimension
 	 */
 	public static void registerDimension(int dimId, Class<? extends WorldProvider> class1)

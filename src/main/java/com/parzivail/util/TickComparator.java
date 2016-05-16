@@ -8,12 +8,11 @@ package com.parzivail.util;
  */
 public class TickComparator
 {
-	private boolean was = false;
-
 	/**
 	 * Set this every tick to whatever you're checking
 	 **/
 	public boolean is = false;
+	private boolean was = false;
 
 	/**
 	 * Checks if there was a change from true to false

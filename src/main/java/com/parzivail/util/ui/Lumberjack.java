@@ -22,6 +22,7 @@ public class Lumberjack
 
 	/**
 	 * Prints a message to log only
+	 *
 	 * @param message The message to print
 	 */
 	public static void info(String message)
@@ -36,6 +37,7 @@ public class Lumberjack
 
 	/**
 	 * Prints a message to log only
+	 *
 	 * @param message The message to print
 	 */
 	public static void log(Object message)
@@ -45,6 +47,7 @@ public class Lumberjack
 
 	/**
 	 * Prints a message to log only
+	 *
 	 * @param message The message to print
 	 */
 	public static void warn(String message)

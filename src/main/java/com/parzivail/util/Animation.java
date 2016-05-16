@@ -28,7 +28,28 @@ public class Animation
 	}
 
 	/**
+	 * A consumer to be called each time the animation ends
+	 *
+	 * @param onAnimationEnd
+	 */
+	public void setOnAnimationEnd(Consumer<Animation> onAnimationEnd)
+	{
+		this.onAnimationEnd = onAnimationEnd;
+	}
+
+	/**
+	 * Gets whether or not the animation is reversed
+	 *
+	 * @return
+	 */
+	public boolean isReverse()
+	{
+		return reverse;
+	}
+
+	/**
 	 * Sets the animation's reverse property
+	 *
 	 * @param reverse Whether or not the animation should run backwards
 	 */
 	public void setReverse(boolean reverse)
@@ -46,25 +67,8 @@ public class Animation
 	}
 
 	/**
-	 * A consumer to be called each time the animation ends
-	 * @param onAnimationEnd
-	 */
-	public void setOnAnimationEnd(Consumer<Animation> onAnimationEnd)
-	{
-		this.onAnimationEnd = onAnimationEnd;
-	}
-
-	/**
-	 * Gets whether or not the animation is reversed
-	 * @return
-	 */
-	public boolean isReverse()
-	{
-		return reverse;
-	}
-
-	/**
 	 * Gets the current tick of the animation
+	 *
 	 * @return
 	 */
 	public int getTick()
@@ -74,6 +78,7 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation loops
+	 *
 	 * @return
 	 */
 	public boolean getLoop()
@@ -83,6 +88,7 @@ public class Animation
 
 	/**
 	 * Gets the length of the animation
+	 *
 	 * @return
 	 */
 	public int getLength()
@@ -92,6 +98,7 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation is renderable
+	 *
 	 * @return
 	 */
 	public boolean getRenderable()
@@ -101,6 +108,7 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation is done
+	 *
 	 * @return
 	 */
 	public boolean isDone()
@@ -110,6 +118,7 @@ public class Animation
 
 	/**
 	 * Renders the animation, provided it is renderable
+	 *
 	 * @param event The parent RenderOverlay event
 	 */
 	public void render(RenderGameOverlayEvent event)

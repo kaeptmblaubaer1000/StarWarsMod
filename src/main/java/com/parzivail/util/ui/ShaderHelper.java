@@ -57,7 +57,7 @@ public final class ShaderHelper
 		glowSolid = createProgramFor("glowSolid");
 	}
 
-	public static void useShader(int shader, ShaderCallback callback)
+	public static void useShader(int shader)
 	{
 		if (!useShaders())
 			return;
@@ -85,15 +85,7 @@ public final class ShaderHelper
 				int time = ARBShaderObjects.glGetUniformLocationARB(shader, "time");
 				ARBShaderObjects.glUniform1iARB(time, StarWarsMod.mc.thePlayer.ticksExisted);
 			}
-
-			if (callback != null)
-				callback.call(shader);
 		}
-	}
-
-	public static void useShader(int shader)
-	{
-		useShader(shader, null);
 	}
 
 	public static void releaseShader()

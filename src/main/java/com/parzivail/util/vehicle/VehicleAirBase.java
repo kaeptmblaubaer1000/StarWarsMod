@@ -18,20 +18,14 @@ import java.util.List;
 public class VehicleAirBase extends VehicleBase
 {
 	public static int TGTLOCK_DW = 14;
-
-	String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
 	public float renderPitchLast;
-
 	public float renderRollLast;
-
 	public float gravity = 0.015F;
-
 	public float move = 0f;
-
 	public boolean wasMoving = false;
 	public boolean nowMoving = false;
-
 	public List<Entity> nearby = new ArrayList<Entity>();
+	String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
@@ -92,6 +86,12 @@ public class VehicleAirBase extends VehicleBase
 	public boolean getTargetLock()
 	{
 		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW) == 1;
+	}
+
+	public void setTargetLock(boolean f)
+	{
+		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
+		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
 	}
 
 	@Override
@@ -184,11 +184,5 @@ public class VehicleAirBase extends VehicleBase
 					if (!(entity.ridingEntity instanceof VehicleAirBase))
 						this.nearby.add(entity);
 			}
-	}
-
-	public void setTargetLock(boolean f)
-	{
-		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
-		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
 	}
 }

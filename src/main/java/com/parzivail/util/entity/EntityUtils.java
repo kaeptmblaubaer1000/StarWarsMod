@@ -20,11 +20,29 @@ public class EntityUtils
 {
 	private static int mobId = 300;
 
+	/**
+	 * Gets the Droid sitting message
+	 *
+	 * @param isSitting Whether or not the target is sitting
+	 * @return The appropriate string based on isSitting
+	 */
 	public static String getDroidSittingMessage(boolean isSitting)
 	{
 		return isSitting ? "Restrained" : "Unrestrained";
 	}
 
+	/**
+	 * Gets the Debug text of a Rebel droid based on the given parameters about the droid
+	 *
+	 * @param droid
+	 * @param list
+	 * @param player
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return The List<String> of debug text
+	 */
 	public static List<String> getRebelDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		list.add(droid.isTamed() ? "Owned" : "For Sale");
@@ -35,6 +53,18 @@ public class EntityUtils
 		return list;
 	}
 
+	/**
+	 * Gets the Debug text of a Rebel droid based on the given parameters about the droid
+	 *
+	 * @param droid
+	 * @param list
+	 * @param player
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return The List<String> of debug text
+	 */
 	public static List<String> getImperialDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		list.add(droid.isTamed() ? "Hacked" : "Employed");
@@ -45,6 +75,11 @@ public class EntityUtils
 		return list;
 	}
 
+	/**
+	 * Gets the last used Mob ID
+	 *
+	 * @return
+	 */
 	public static int getLastUsedId()
 	{
 		return mobId;
@@ -117,6 +152,12 @@ public class EntityUtils
 		return null;
 	}
 
+	/**
+	 * Registers an Entity with FML
+	 *
+	 * @param entityClass The class to register
+	 * @param entityName  The name of the entity
+	 */
 	public static void registerEntity(Class<? extends Entity> entityClass, String entityName)
 	{
 		while (EntityList.getClassFromID(mobId) != null)
@@ -126,6 +167,14 @@ public class EntityUtils
 		Lumberjack.debug("Registered entity \"" + entityName + "\" as ID " + String.valueOf(mobId));
 	}
 
+	/**
+	 * Registers an Entity with FML, and creates a spawn egg
+	 *
+	 * @param mobClass The class to register
+	 * @param mobName  The name of the entity
+	 * @param bgColor  The background color of the egg
+	 * @param fgColor  The foreground color of the egg
+	 */
 	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
 	{
 		while (EntityList.getClassFromID(mobId) != null)

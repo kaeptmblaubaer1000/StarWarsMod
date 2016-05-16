@@ -35,6 +35,7 @@ public class BlockMultiTexture extends Block
 	{
 		return meta;
 	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)

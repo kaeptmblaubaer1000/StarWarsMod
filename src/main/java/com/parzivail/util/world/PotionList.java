@@ -44,9 +44,10 @@ public class PotionList
 
 	/**
 	 * Add a potion effect to a player
-	 * @param player The player to affect
-	 * @param effect The effect to affect the player with
-	 * @param power The level of the effect
+	 *
+	 * @param player  The player to affect
+	 * @param effect  The effect to affect the player with
+	 * @param power   The level of the effect
 	 * @param seconds The number of seconds the potion lasts
 	 */
 	public static void addEffect(EntityPlayer player, int effect, int power, float seconds)

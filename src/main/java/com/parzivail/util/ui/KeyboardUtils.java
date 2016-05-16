@@ -16,6 +16,7 @@ public class KeyboardUtils
 
 	/**
 	 * Gets whether or not a Shift key is down
+	 *
 	 * @return
 	 */
 	public static boolean isShiftDown()
