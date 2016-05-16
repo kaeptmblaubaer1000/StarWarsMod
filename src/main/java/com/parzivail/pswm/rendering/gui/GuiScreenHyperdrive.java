@@ -112,7 +112,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		r = new ScaledResolution(StarWarsMod.mc, StarWarsMod.mc.displayWidth, StarWarsMod.mc.displayHeight);
 
 		Consumer<OutlineButton> transform = outlineButton -> {
-			GL11.glTranslatef(1.9f, -1f, 110);
+			GL11.glTranslatef(1.9f, -1f, 180);
 			GL11.glScalef(0.3f, 0.3f, 0.3f);
 			if ((zoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(zoomPlanet.getName())) || (oldZoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(oldZoomPlanet.getName())))
 				GLPZ.glScalef((animationZoom.getTick() + 2) / 2f);
@@ -235,7 +235,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 					}
 				}
 			}
-			else if (button.id == buttonTravel.id && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()))
+			else if (button.id == buttonTravel.id && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()) && player.dimension != zoomPlanet.getDimensionId())
 			{
 				AnimationHyperspace animationHyperspace = new AnimationHyperspace(3500, false);
 				animationHyperspace.setOnAnimationEnd(animation -> {
