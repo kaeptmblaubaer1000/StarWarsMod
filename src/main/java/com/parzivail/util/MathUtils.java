@@ -25,6 +25,17 @@ public class MathUtils
 	}
 
 	/**
+	 * Gets a random primitive int value from an array
+	 *
+	 * @param array The array to pull items from
+	 * @return A random element of the supplied array
+	 */
+	public static int getRandomElement(int[] array)
+	{
+		return array[_rand.nextInt(array.length)];
+	}
+
+	/**
 	 * Linear Interpolation
 	 *
 	 * @param start   The start value

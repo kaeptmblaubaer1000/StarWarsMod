@@ -46,7 +46,7 @@ public class VehicATST extends VehicleLandBase
 		super.onUpdate();
 		this.moveEntityWithHeading(0.0F, 0.0F);
 
-		this.setRotation(this.rotationLast, this.rotationPitchLast);
+		this.setRotation(this.rotationYaw, this.rotationPitch);
 	}
 
 	@Override
@@ -54,16 +54,13 @@ public class VehicATST extends VehicleLandBase
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			this.rotationYaw = this.rotationLast;
+			//this.rotationYaw = this.rotationLast;
 
-			this.rotationHead = this.riddenByEntity.rotationYaw;
-			if (this.rotationHead > this.rotationYaw + 45)
-				this.rotationLast = this.rotationHead - 45;
-			else if (this.rotationHead < this.rotationYaw - 45)
-				this.rotationLast = this.rotationHead + 45;
+			this.rotationYaw = this.riddenByEntity.rotationYaw;
+			//if (this.rotationHead >= this.rotationYaw + 67.5f || this.rotationHead <= this.rotationYaw - 67.5f)
+			//	this.rotationYaw = rotationHead;
 
 			this.rotationPitch = this.riddenByEntity.rotationPitch;
-			this.setRotation(this.rotationLast, this.rotationPitch);
 			// p_70612_1_ = ((EntityLivingBase)this.riddenByEntity).moveStrafing
 			// * 0.5F;
 			p_70612_2_ = ((EntityLivingBase)this.riddenByEntity).moveForward * (this.moveModifier / 8.0F);

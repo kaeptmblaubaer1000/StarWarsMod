@@ -1,8 +1,11 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.vehicles.VehicATST;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.MathHelper;
 
 /**
  * AT-ST - Weaston
@@ -284,6 +287,41 @@ public class ModelATST extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (entity instanceof VehicATST)
+		{
+			VehicATST atst = (VehicATST)entity;
+
+			if (atst.riddenByEntity instanceof EntityLivingBase)
+			{
+				EntityLivingBase elb = (EntityLivingBase)atst.riddenByEntity;
+				if (atst.getDistanceSq(atst.prevPosX, atst.prevPosY, atst.prevPosZ) > 0f)
+				{
+					this.MainLegLParent1.rotateAngleX = -0.08726646259971647F + MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f) / 5f;
+					this.LegLChild1.rotateAngleX = -0.4886921905584123F + -MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f + 1) / 5f;
+
+					this.MainLegRParent.rotateAngleX = -0.08726646259971647F + MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f + 3) / 5f;
+					this.LegRChild1.rotateAngleX = -0.4886921905584123F + -MathHelper.sin(atst.ticksExisted * (elb.moveForward >= 0 ? 1 : -1) / 3.75f + 4) / 5f;
+
+					this.BodyParentMain.rotationPointY = 3.0f + MathHelper.sin(atst.ticksExisted / 1.875f + 4) / 5f;
+				}
+
+				this.HeadParentMain.rotateAngleX = (float)Math.toRadians(MathHelper.clamp_float(atst.riddenByEntity.rotationPitch, -20, 20));
+			}
+			else
+			{
+				this.MainLegLParent1.rotateAngleX = -0.08726646259971647F;
+				this.LegLChild1.rotateAngleX = -0.4886921905584123F;
+
+				this.MainLegRParent.rotateAngleX = -0.08726646259971647F;
+				this.LegRChild1.rotateAngleX = -0.4886921905584123F;
+
+				this.BodyParentMain.rotationPointY = 3.0f;
+
+				this.HeadParentMain.rotateAngleY = 0;
+				this.HeadParentMain.rotateAngleX = 0;
+			}
+		}
+
 		this.BodyParentMain.render(f5);
 	}
 

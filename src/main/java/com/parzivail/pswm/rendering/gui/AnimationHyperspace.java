@@ -3,6 +3,7 @@ package com.parzivail.pswm.rendering.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.Animation;
+import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
@@ -25,14 +26,15 @@ public class AnimationHyperspace extends Animation
 		float g;
 		float b;
 
-		public Star(Point pos, int dist, float scale, float r, float g, float b)
+		public Star(Point pos, int dist, float scale, int color)
 		{
 			this.dist = dist;
 			this.pos = pos;
 			this.scale = scale;
-			this.r = r * (dist / 255f);
-			this.g = g * (dist / 255f);
-			this.b = b * (dist / 255f);
+			Color c = GLPalette.intToColor(color);
+			this.r = (c.getRed() / 255f) * (dist / 255f);
+			this.g = (c.getGreen() / 255f) * (dist / 255f);
+			this.b = (c.getBlue() / 255f) * (dist / 255f);
 		}
 	}
 
@@ -56,7 +58,7 @@ public class AnimationHyperspace extends Animation
 		//	player.playSound(Resources.MODID + ":" + "lightspeed.enter", 1, 1);
 
 		for (int i = 0; i < amtStars; i++)
-			stars.add(new Star(new Point(StarWarsMod.rngGeneral.nextInt(r.getScaledWidth()), StarWarsMod.rngGeneral.nextInt(r.getScaledHeight())), StarWarsMod.rngGeneral.nextInt(255), StarWarsMod.rngGeneral.nextFloat(), Math.max(0.9f, StarWarsMod.rngGeneral.nextFloat()), Math.max(0.9f, StarWarsMod.rngGeneral.nextFloat()), Math.max(0.95f, StarWarsMod.rngGeneral.nextFloat())));
+			stars.add(new Star(new Point(StarWarsMod.rngGeneral.nextInt(r.getScaledWidth()), StarWarsMod.rngGeneral.nextInt(r.getScaledHeight())), StarWarsMod.rngGeneral.nextInt(255), StarWarsMod.rngGeneral.nextFloat(), 0xEEEEFF));
 	}
 
 	@Override
