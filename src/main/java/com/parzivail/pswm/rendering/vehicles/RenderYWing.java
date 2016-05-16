@@ -9,9 +9,9 @@ public class RenderYWing extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/ywing.png");
 
-	public RenderYWing(ModelYWing model, float par2)
+	public RenderYWing()
 	{
-		super(model, par2);
+		super(new ModelYWing(), 0.5f);
 	}
 
 	@Override

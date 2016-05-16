@@ -9,9 +9,9 @@ public class RenderLandspeeder extends RenderLandBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/landspeeder.png");
 
-	public RenderLandspeeder(ModelLandspeeder modelLandspeeder, float par2)
+	public RenderLandspeeder()
 	{
-		super(modelLandspeeder, par2);
+		super(new ModelLandspeeder(), 0.5f);
 		this.scale = 2.4f;
 	}
 

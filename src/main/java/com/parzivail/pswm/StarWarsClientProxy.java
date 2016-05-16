@@ -8,7 +8,6 @@ import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
 import com.parzivail.pswm.models.ModelDSTurret;
 import com.parzivail.pswm.models.mobs.*;
-import com.parzivail.pswm.models.vehicles.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.registry.RegisterGuiOverlays;
 import com.parzivail.pswm.rendering.*;
@@ -100,20 +99,20 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidTreadwell.class, new RenderDroidTreadwell(new ModelDroidTreadwell(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidMouse.class, new RenderDroidMouse(new ModelDroidMouse(), 0.5F));
 
-		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike(new ModelSpeederBike(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder(new ModelLandspeeder(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder(new ModelJakkuSpeeder(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicATST.class, new RenderATST(new ModelATST(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderSpeederBike());
+		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike());
+		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder());
+		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder());
+		RenderingRegistry.registerEntityRenderingHandler(VehicATST.class, new RenderATST());
 
-		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, new RenderTIE(new ModelTIE(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicTIEAdvanced.class, new RenderTIEAdvanced(new ModelTIEAdvanced(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, new RenderTIEInterceptor(new ModelTIEInterceptor(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, new RenderXWing(new ModelXWingNew(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicYWing.class, new RenderYWing(new ModelYWing(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, new RenderAWing(new ModelAWing(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, new RenderSkyhopper(new ModelSkyhopper(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, new RenderSnowspeeder(new ModelSnowspeeder(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, new RenderTIE());
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEAdvanced.class, new RenderTIEAdvanced());
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, new RenderTIEInterceptor());
+		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, new RenderXWing());
+		RenderingRegistry.registerEntityRenderingHandler(VehicYWing.class, new RenderYWing());
+		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, new RenderAWing());
+		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, new RenderSkyhopper());
+		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, new RenderSnowspeeder());
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 

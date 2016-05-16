@@ -9,9 +9,9 @@ public class RenderTIEInterceptor extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tieInterceptor.png");
 
-	public RenderTIEInterceptor(ModelTIEInterceptor model, float par2)
+	public RenderTIEInterceptor()
 	{
-		super(model, par2);
+		super(new ModelTIEInterceptor(), 0.5f);
 	}
 
 	@Override

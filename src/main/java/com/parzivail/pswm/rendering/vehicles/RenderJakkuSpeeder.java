@@ -9,9 +9,9 @@ public class RenderJakkuSpeeder extends RenderLandBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/jakkuSpeeder.png");
 
-	public RenderJakkuSpeeder(ModelJakkuSpeeder modelSpeederBike, float par2)
+	public RenderJakkuSpeeder()
 	{
-		super(modelSpeederBike, par2);
+		super(new ModelJakkuSpeeder(), 0.5f);
 		this.scale = 3;
 	}
 

@@ -13,9 +13,9 @@ public class RenderLandBase extends RenderLiving
 	ModelBase model;
 	float scale = 1;
 
-	public RenderLandBase(ModelBase model, float par2)
+	public RenderLandBase(ModelBase model, float shadowSize)
 	{
-		super(model, par2);
+		super(model, shadowSize);
 		this.model = model;
 	}
 
@@ -28,7 +28,6 @@ public class RenderLandBase extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		this.mainModel = this.setRotations(this.model, entity, f);
 		GL11.glScalef(this.scale, this.scale, this.scale);
 		if (entity instanceof VehicleLandBase)
 		{
@@ -38,11 +37,6 @@ public class RenderLandBase extends RenderLiving
 			GL11.glTranslatef(tx, ty, tx * ty);
 			GL11.glRotatef(-vehic.tilt, 0.0F, 0.0F, 1.0F);
 		}
-	}
-
-	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
-	{
-		return modelBase;
 	}
 }
 /*

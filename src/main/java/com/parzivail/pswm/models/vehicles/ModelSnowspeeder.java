@@ -1,5 +1,6 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -329,6 +330,15 @@ public class ModelSnowspeeder extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (entity instanceof VehicSnowspeeder)
+		{
+			VehicSnowspeeder speeder = (VehicSnowspeeder)entity;
+
+			if (speeder.tilt < 0)
+				this.FlapL.rotateAngleX = 0.8f * (speeder.tilt / speeder.tiltMax);
+			else
+				this.FlapR.rotateAngleX = -0.8f * (speeder.tilt / speeder.tiltMax);
+		}
 		this.BodyMain.render(f5);
 	}
 

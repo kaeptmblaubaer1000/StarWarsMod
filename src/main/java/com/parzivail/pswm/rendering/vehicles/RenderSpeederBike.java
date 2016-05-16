@@ -3,9 +3,7 @@ package com.parzivail.pswm.rendering.vehicles;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelSpeederBike;
 import com.parzivail.pswm.vehicles.VehicHothSpeederBike;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderSpeederBike extends RenderLandBase
@@ -13,11 +11,10 @@ public class RenderSpeederBike extends RenderLandBase
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/speederbike.png");
 	public static ResourceLocation hothTexture = new ResourceLocation(Resources.MODID, "textures/models/hothSpeederbike.png");
 
-	public RenderSpeederBike(ModelSpeederBike modelSpeederBike, float par2)
+	public RenderSpeederBike()
 	{
-		super(modelSpeederBike, par2);
+		super(new ModelSpeederBike(), 0.5f);
 		this.scale = 1.75f;
-		this.model = modelSpeederBike;
 	}
 
 	@Override
@@ -26,30 +23,6 @@ public class RenderSpeederBike extends RenderLandBase
 		if (entity instanceof VehicHothSpeederBike)
 			return hothTexture;
 		return texture;
-	}
-
-	@Override
-	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
-	{
-		if (modelBase instanceof ModelSpeederBike)
-		{
-			EntityLivingBase bike = entity;
-			ModelSpeederBike model = (ModelSpeederBike)modelBase;
-
-			model.Flap_L.rotateAngleZ = bike.moveForward * 35f;
-			model.Flap_R.rotateAngleZ = bike.moveForward * 35f;
-
-			model.Handle_L_3.rotateAngleZ = bike.moveForward * -35f;
-			model.Handle_L_2.rotateAngleZ = bike.moveForward * -35f;
-			model.Handle_L_1.rotateAngleZ = bike.moveForward * -35f;
-
-			model.Handle_R_3.rotateAngleZ = bike.moveForward * -35f;
-			model.Handle_R_2.rotateAngleZ = bike.moveForward * -35f;
-			model.Handle_R_1.rotateAngleZ = bike.moveForward * -35f;
-
-			return model;
-		}
-		return modelBase;
 	}
 }
 /*

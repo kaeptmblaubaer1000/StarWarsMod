@@ -2,8 +2,6 @@ package com.parzivail.pswm.rendering.vehicles;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelSkyhopper;
-import com.parzivail.pswm.vehicles.VehicSkyhopper;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
@@ -13,15 +11,9 @@ public class RenderSkyhopper extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/skyhopper.png");
 
-	public RenderSkyhopper(ModelSkyhopper model, float par2)
+	public RenderSkyhopper()
 	{
-		super(model, par2);
-	}
-
-	@Override
-	public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-	{
-		super.doRender(p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
+		super(new ModelSkyhopper(), 0.5f);
 	}
 
 	@Override
@@ -36,22 +28,6 @@ public class RenderSkyhopper extends RenderVehicBase
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return texture;
-	}
-
-	@Override
-	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
-	{
-		if (modelBase instanceof ModelSkyhopper && entity instanceof VehicSkyhopper)
-		{
-			VehicSkyhopper skyhopper = (VehicSkyhopper)entity;
-			ModelSkyhopper model = (ModelSkyhopper)modelBase;
-
-			model.WingLParent.rotateAngleZ = -1.0122909661567112F - (1.5f * skyhopper.getWing());
-			model.WingRParent.rotateAngleZ = 1.0122909661567112F + (1.5f * skyhopper.getWing());
-
-			return model;
-		}
-		return modelBase;
 	}
 }
 /*

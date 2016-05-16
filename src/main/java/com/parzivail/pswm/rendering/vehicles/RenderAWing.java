@@ -9,9 +9,9 @@ public class RenderAWing extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/awing.png");
 
-	public RenderAWing(ModelAWing model, float par2)
+	public RenderAWing()
 	{
-		super(model, par2);
+		super(new ModelAWing(), 0.5f);
 	}
 
 	@Override

@@ -1,31 +1,23 @@
 package com.parzivail.pswm.rendering.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.vehicles.ModelXWingNew;
-import net.minecraft.client.model.ModelBase;
+import com.parzivail.pswm.models.vehicles.ModelXWing;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderXWing extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/xwingNew.png");
 
-	public RenderXWing(ModelXWingNew model, float par2)
+	public RenderXWing()
 	{
-		super(model, par2);
+		super(new ModelXWing(), 0.5f);
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return texture;
-	}
-
-	@Override
-	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
-	{
-		return modelBase;
 	}
 }
 /*

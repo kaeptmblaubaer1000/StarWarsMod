@@ -28,7 +28,6 @@ public class RenderVehicBase extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		this.mainModel = this.setRotations(this.model, entity, f);
 		GL11.glScalef(3.0F, 3.0F, 3.0F);
 		if (entity instanceof VehicleAirBase)
 		{
@@ -44,12 +43,6 @@ public class RenderVehicBase extends RenderLiving
 			GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F);
 			GL11.glTranslatef(0, 1F, 0);
 			GL11.glRotatef(roll, 0.0F, 0.0F, 1.0F);
-			// Lumberjack.log(vehicle.rotationLast - vehicle.rotationYaw);
 		}
-	}
-
-	public ModelBase setRotations(ModelBase modelBase, EntityLivingBase entity, float partialTicks)
-	{
-		return modelBase;
 	}
 }

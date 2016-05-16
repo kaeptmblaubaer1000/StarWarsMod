@@ -1,5 +1,6 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -205,6 +206,14 @@ public class ModelSkyhopper extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (entity instanceof VehicSkyhopper)
+		{
+			VehicSkyhopper skyhopper = (VehicSkyhopper)entity;
+
+			this.WingLParent.rotateAngleZ = -1.0122909661567112F - (1.5f * skyhopper.getWing());
+			this.WingRParent.rotateAngleZ = 1.0122909661567112F + (1.5f * skyhopper.getWing());
+		}
+
 		this.MainParent.render(f5);
 	}
 

@@ -9,9 +9,9 @@ public class RenderTIE extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tie.png");
 
-	public RenderTIE(ModelTIE model, float par2)
+	public RenderTIE()
 	{
-		super(model, par2);
+		super(new ModelTIE(), 0.5f);
 	}
 
 	@Override

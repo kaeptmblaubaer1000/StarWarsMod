@@ -11,9 +11,9 @@ public class RenderATST extends RenderVehicBase
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/atst.png");
 
-	public RenderATST(ModelATST modelATST, float par2)
+	public RenderATST()
 	{
-		super(modelATST, par2);
+		super(new ModelATST(), 0.5f);
 	}
 
 	@Override
