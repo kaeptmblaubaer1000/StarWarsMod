@@ -435,8 +435,6 @@ public class StarWarsMod
 
 		instance = this;
 
-		//test comment
-
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
 		StarWarsMod.commonHandler = new CommonEventHandler();

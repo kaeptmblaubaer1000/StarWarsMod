@@ -2,11 +2,11 @@ package com.parzivail.util;
 
 public interface IParziNPC
 {
-	public abstract String getName();
+	String getName();
 
-	public abstract String getSpecies();
+	String getSpecies();
 
-	public abstract String getAllegiance();
+	String getAllegiance();
 
-	public abstract String getJob();
+	String getJob();
 }

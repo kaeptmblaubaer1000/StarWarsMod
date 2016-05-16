@@ -346,9 +346,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glPopMatrix();
 		}
 
-		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		RenderHelper.enableStandardItemLighting();
 
 		if (zoomPlanet == null && animationZoom.getTick() == 0)
 		{
@@ -363,6 +361,9 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glPopMatrix();
 		}
 
+		GL11.glEnable(GL11.GL_LIGHTING);
+		RenderHelper.enableStandardItemLighting();
+
 		this.buttonList.stream().filter(b -> PlanetInformation.getPlanet(((GuiButton)b).displayString) != null).forEach(b -> {
 			OutlineButtonModel buttonModel = (OutlineButtonModel)b;
 			PlanetInformation info = PlanetInformation.getPlanet(buttonModel.displayString);
@@ -375,6 +376,21 @@ public class GuiScreenHyperdrive extends GuiScreen
 			}
 
 			buttonModel.visible = info == zoomPlanet || info == oldZoomPlanet || (zoomPlanet == null && animationZoom.getTick() == 0);
+
+			if (buttonModel.visible && buttonModel.isHover())
+			{
+				StarWarsMod.mc.fontRenderer.drawString(info.getName(), 4, 4, GLPalette.BRIGHT_YELLOW);
+				int color = GLPalette.BRIGHT_YELLOW;
+				if (info.getAffiliation().equals(Resources.allegianceImperial) || info.getAffiliation().equals(Resources.allegianceSith))
+					color = GLPalette.BRIGHT_RED;
+				else if (info.getAffiliation().equals(Resources.allegianceRebel) || info.getAffiliation().equals(Resources.allegianceJedi))
+					color = GLPalette.BRIGHT_BLUE;
+				String aff = ("Affiliation: " + info.getAffiliation());
+				GL11.glPushMatrix();
+				GL11.glScalef(0.5f, 0.5f, 1);
+				StarWarsMod.mc.fontRenderer.drawString(aff, 8, 32, color);
+				GL11.glPopMatrix();
+			}
 		});
 
 		buttonClose.visible = buttonEatHyperdrive.visible = buttonTravel.visible = zoomPlanet != null && animationZoom.isDone();
@@ -385,6 +401,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 		if (planet != null)
 		{
+			GLPalette.glColorI(GLPalette.WHITE);
 			GL11.glPushMatrix();
 			GL11.glScalef(2, 2, 1);
 			StarWarsMod.mc.fontRenderer.drawString(planet.getName().substring(0, (int)MathUtils.lerp(0, planet.getName().length(), (float)animationZoom.getTick() / animationZoom.getLength())), 160, 6, GLPalette.BRIGHT_YELLOW);
@@ -436,7 +453,11 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 		if (MathUtils.oneIn(200))
 		{
-			MovingShip s = new MovingShip(MathUtils.getRandomElement(routes), StarWarsMod.rngGeneral.nextInt(6), StarWarsMod.rngGeneral.nextBoolean());
+			TradeRoute r = MathUtils.getRandomElement(routes);
+			int type = StarWarsMod.rngGeneral.nextInt(6);
+			if (r == hydian)
+				type = MathUtils.randomRange(2, 4);
+			MovingShip s = new MovingShip(r, type, StarWarsMod.rngGeneral.nextBoolean());
 			s.start();
 			ships.add(s);
 		}
@@ -484,16 +505,16 @@ public class GuiScreenHyperdrive extends GuiScreen
 						this.modelTIE.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					case 3:
-						StarWarsMod.mc.renderEngine.bindTexture(RenderAWing.texture);
-						this.modelAWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-						break;
-					case 4:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEAdvanced.texture);
 						this.modelTIEAdvanced.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
-					case 5:
+					case 4:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEInterceptor.texture);
 						this.modelTIEInterceptor.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						break;
+					case 5:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderAWing.texture);
+						this.modelAWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					default:
 						break;

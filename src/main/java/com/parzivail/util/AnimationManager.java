@@ -38,23 +38,23 @@ public class AnimationManager
 			Animation t = i.next();
 			t.tick();
 			if (t.reverse && t.getTick() <= 0)
+			{
+				if (t.onAnimationEnd != null)
+					t.onAnimationEnd.accept(t);
 				if (t.getLoop())
 					t.tick = t.getLength();
 				else
-				{
-					if (t.onAnimationEnd != null)
-						t.onAnimationEnd.accept(t);
 					i.remove();
-				}
+			}
 			else if (!t.reverse && t.getTick() >= t.getLength())
+			{
+				if (t.onAnimationEnd != null)
+					t.onAnimationEnd.accept(t);
 				if (t.getLoop())
 					t.tick = 0;
 				else
-				{
-					if (t.onAnimationEnd != null)
-						t.onAnimationEnd.accept(t);
 					i.remove();
-				}
+			}
 
 		}
 	}

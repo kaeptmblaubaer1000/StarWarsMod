@@ -1,8 +1,9 @@
 package com.parzivail.pswm.quest;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.dimension.PlanetInformation;
+import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -10,6 +11,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -20,54 +22,23 @@ public class GuiQuest extends GuiScreen
 
 	private EntityPlayer player;
 
-	private DialogTree tree;
-	private DialogTree currentTree;
-	// private Response currentResponse;
+	ScaledResolution r;
 
-	private GuiButton response1;
-	private GuiButton response2;
-	private GuiButton response3;
-	private GuiButton close;
+	private ItemStack qlog;
 
-	String questId;
-
-	public GuiQuest(EntityPlayer player, String questId)
+	public GuiQuest(EntityPlayer player)
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
-		// this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
-		this.currentTree = tree;
-
-		this.questId = questId;
-
-		if (this.tree != null && this.tree.action != null)
-			this.tree.action.accept(player);
 	}
 
 	@Override
 	protected void actionPerformed(GuiButton button)
 	{
-		if (button.enabled)
-			if (button.id == this.response1.id)
-			{
-				// currentTree = this.currentTree.response1.npcDialog;
-				initGui();
-			}
-			else if (button.id == this.response2.id)
-			{
-				// currentTree = this.currentTree.response2.npcDialog;
-				initGui();
-			}
-			else if (button.id == this.response3.id)
-			{
-				// currentTree = this.currentTree.response3.npcDialog;
-				initGui();
-			}
-			else if (button.id == this.close.id)
-			{
-				this.mc.displayGuiScreen(null);
-				this.mc.setIngameFocus();
-			}
+		if (button.enabled && button.visible)
+		{
+
+		}
 	}
 
 	/**
@@ -77,18 +48,26 @@ public class GuiQuest extends GuiScreen
 	public void drawScreen(int p_571_1_, int p_571_2_, float p_571_3_)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
 		this.mc.getTextureManager().bindTexture(guiTexture);
 		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
 
-		int x = r.getScaledWidth() / 2;
-		int y = r.getScaledHeight() / 2;
-		int yy = 0;
-		this.drawCenteredString(fontRendererObj, questId, x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
-		String[] words = TextUtils.splitIntoLine("blah blah blah", 40); //currentTree.npcHeader
-		for (String line : words)
-			this.drawCenteredString(this.mc.fontRenderer, line, x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
+		if (qlog != null)
+		{
+			int x = r.getScaledWidth() / 2;
+			int y = r.getScaledHeight() / 2;
+			int yy = 0;
+			this.drawCenteredString(fontRendererObj, ItemQuestContainer.getOwner(qlog) + "'s Quest Log", x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
+
+			yy += this.mc.fontRenderer.FONT_HEIGHT;
+
+			this.drawString(fontRendererObj, "Courses Plotted:", x - 115, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
+			for (PlanetInformation info : Resources.planetInformation)
+			{
+				if (ItemQuestContainer.getHasHyperdrive(qlog, info.getInternalName()))
+					this.drawString(fontRendererObj, info.getName(), x - 105, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
+			}
+		}
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 	}
@@ -99,36 +78,11 @@ public class GuiQuest extends GuiScreen
 	@Override
 	public void initGui()
 	{
-		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+		r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 
-		this.buttonList.clear();
-
-		// if (currentTree.response1 != null)
-		// {
-		// String r1 = currentTree.response1.text;
-		// this.response1 = new GuiQuestButton(0, x - 100, y - 10, 198, 20, r1);
-		// this.buttonList.add(this.response1);
-		// }
-		// if (currentTree.response2 != null)
-		// {
-		// String r2 = currentTree.response2.text;
-		// this.response2 = new GuiQuestButton(1, x - 100, y + 20, 198, 20, r2);
-		// this.buttonList.add(this.response2);
-		// }
-		// if (currentTree.response3 != null)
-		// {
-		// String r3 = currentTree.response3.text;
-		// this.response3 = new GuiQuestButton(2, x - 100, y + 50, 198, 20, r3);
-		// this.buttonList.add(this.response3);
-		// }
-		// if (currentTree.response1 == null && currentTree.response2 == null &&
-		// currentTree.response3 == null)
-		// {
-		// this.close = new GuiQuestButton(3, x - 24, y + 50, 48, 20, "Close");
-		// this.buttonList.add(this.close);
-		// }
+		qlog = ItemQuestContainer.getQuestContainer(player);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.quest.GuiQuest;
+import com.parzivail.pswm.quest.GuiQuestNpc;
 import com.parzivail.pswm.rendering.gui.*;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.pswm.tileentities.TileEntityMV;
@@ -23,8 +24,10 @@ public class GuiHandler implements IGuiHandler
 			return new GuiJediSith(player);
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new GuiHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_QUESTLOG)
-			return new GuiQuest(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)).getId());
+		else if (id == Resources.GUI_QUESTNPC)
+			return new GuiQuestNpc(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)).getId());
+		else if (id == Resources.GUI_QUEST)
+			return new GuiQuest(player);
 		else if (id == Resources.GUI_LSFORGE)
 			return new GuiScreenLightsaberForge(player);
 		else if (id == Resources.GUI_SCANNER)
@@ -41,7 +44,7 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_QUESTLOG || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH)
+		else if (id == Resources.GUI_QUESTNPC || id == Resources.GUI_QUEST || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH)
 			return new ContainerClient();
 		return null;
 	}

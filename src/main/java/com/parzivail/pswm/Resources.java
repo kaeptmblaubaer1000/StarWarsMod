@@ -81,7 +81,8 @@ public class Resources
 	public static final int GUI_ROBES = guiCounter++;
 	public static final int GUI_JEDI_SITH = guiCounter++;
 	public static final int GUI_HOLOTABLE = guiCounter++;
-	public static final int GUI_QUESTLOG = guiCounter++;
+	public static final int GUI_QUESTNPC = guiCounter++;
+	public static final int GUI_QUEST = guiCounter++;
 	public static final int GUI_LSFORGE = guiCounter++;
 	public static final int GUI_SCANNER = guiCounter++;
 	public static final int GUI_HYPERDRIVE = guiCounter++;

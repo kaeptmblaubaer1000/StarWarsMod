@@ -178,7 +178,7 @@ public class CommonEventHandler
 		}
 
 		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())
-			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUESTLOG, null, 0, 0, 0);
+			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUEST, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)

@@ -15,6 +15,11 @@ public class OutlineButton extends GuiButton
 		this.selected = selected;
 	}
 
+	public boolean isHover()
+	{
+		return this.field_146123_n;
+	}
+
 	@Override
 	public void drawButton(Minecraft mc, int mX, int mY)
 	{

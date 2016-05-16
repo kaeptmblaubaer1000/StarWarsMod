@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IDebugProvider
 {
-	public abstract List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z);
+	List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z);
 }
