@@ -192,8 +192,3 @@ public class ItemBlasterRifle extends Item
 			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.versions[i]);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemBlasterRifle.class
- * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

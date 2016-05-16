@@ -148,8 +148,3 @@ public class EntityDestruction extends EntityThrowable
 		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / 3.141592653589793D);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\entities\EntityBlasterHeavyBolt.class
- * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

@@ -39,8 +39,3 @@ public class GuiMV extends GuiContainer
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), k + 8, l + 71, 4210752);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\gui\GuiMV.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

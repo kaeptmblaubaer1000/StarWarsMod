@@ -35,8 +35,3 @@ public class ItemGaffiStick extends ItemSword
 		return itemStack;
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\weapons\ItemGaffiStick.class
- * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

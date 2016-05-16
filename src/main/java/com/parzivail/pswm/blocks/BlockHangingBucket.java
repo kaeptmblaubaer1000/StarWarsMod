@@ -59,8 +59,3 @@ public class BlockHangingBucket extends BlockContainer
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockTable.class Java compiler
- * version: 6 (50.0) JD-Core Version: 0.7.1
- */

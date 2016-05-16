@@ -80,8 +80,3 @@ public class WeaponSwivelBase extends EntityLiving
 			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + this.vehicYOffset, this.posZ + this.vehicZOffset);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\weaponry\WeaponSwivelBase.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

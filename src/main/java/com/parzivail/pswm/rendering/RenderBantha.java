@@ -32,8 +32,3 @@ public class RenderBantha extends RenderCow
 			GL11.glScalef(1.8F, 1.8F, 1.8F);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\rendering\RenderBantha.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

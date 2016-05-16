@@ -59,8 +59,3 @@ public class BlockBasket extends BlockContainer
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\blocks\BlockTable.class Java compiler
- * version: 6 (50.0) JD-Core Version: 0.7.1
- */

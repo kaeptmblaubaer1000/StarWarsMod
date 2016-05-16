@@ -1429,8 +1429,3 @@ public class WorldGenHut extends WorldGenerator implements IWorldGenerator
 			world.setBlock(x, y, z, block, metadata, 2);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\structures\WorldGenHut.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

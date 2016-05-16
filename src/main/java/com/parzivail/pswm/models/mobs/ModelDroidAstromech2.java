@@ -113,9 +113,3 @@ public class ModelDroidAstromech2 extends ModelBase
 		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\
- * parzi\starwarsmod\rendering\models\mobs\ModelDroidAstromech2.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

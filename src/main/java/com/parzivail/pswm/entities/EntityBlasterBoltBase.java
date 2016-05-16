@@ -213,8 +213,3 @@ public class EntityBlasterBoltBase extends EntityThrowable
 		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / Math.PI);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\entities\EntityBlasterRifleBolt.class
- * Java compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */

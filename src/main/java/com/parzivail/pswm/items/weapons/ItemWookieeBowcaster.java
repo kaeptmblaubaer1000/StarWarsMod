@@ -94,9 +94,3 @@ public class ItemWookieeBowcaster extends Item
 			stack.stackTagCompound.setInteger("timeout", stack.stackTagCompound.getInteger("timeout") - 1);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\
- * parzi\starwarsmod\items\weapons\ItemWookieeBowcaster.class Java compiler
- * version: 6 (50.0) JD-Core Version: 0.7.1
- */

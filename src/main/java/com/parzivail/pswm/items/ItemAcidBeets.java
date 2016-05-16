@@ -27,8 +27,3 @@ public class ItemAcidBeets extends ItemFood
 		return super.onEaten(item, world, player);
 	}
 }
-/*
- * Location: C:\Users\Colby\Downloads\Parzi's Star Wars Mod
- * v1.2.0-dev7.jar!\com\parzi\starwarsmod\items\ItemAcidBeets.class Java
- * compiler version: 6 (50.0) JD-Core Version: 0.7.1
- */
