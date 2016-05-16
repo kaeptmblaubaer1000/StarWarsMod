@@ -1,5 +1,6 @@
-package starwarsmod;
+package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.vehicles.VehicXWing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -697,8 +698,28 @@ public class ModelXWingNew extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        this.MainParent.render(f5);
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+
+	    if (entity instanceof VehicXWing)
+	    {
+		    VehicXWing xwing = (VehicXWing)entity;
+
+		    this.WingLTopParent.rotateAngleZ = 0.314159f * xwing.getSFoil();
+		    this.WingLBottomParent.rotateAngleZ = -0.314159f * xwing.getSFoil();
+		    this.WingRTopParent.rotateAngleZ = -0.314159f * xwing.getSFoil();
+		    this.WingRBottomParent.rotateAngleZ = 0.314159f * xwing.getSFoil();
+
+		    boolean flag = this.Gear1.isHidden = entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ);
+		    this.Gear1.isHidden = flag;
+		    this.Gear2.isHidden = flag;
+		    this.Gear3.isHidden = flag;
+		    this.Gear4.isHidden = flag;
+		    this.Gear5.isHidden = flag;
+		    this.Gear6.isHidden = flag;
+
+	    }
+	    this.MainParent.render(f5);
     }
 
     /**
