@@ -434,9 +434,9 @@ public class GuiScreenHyperdrive extends GuiScreen
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 		}
 
-		if (MathUtils.oneIn(2000))
+		if (MathUtils.oneIn(200))
 		{
-			MovingShip s = new MovingShip(MathUtils.getRandomElement(routes), 0, StarWarsMod.rngGeneral.nextBoolean());
+			MovingShip s = new MovingShip(MathUtils.getRandomElement(routes), StarWarsMod.rngGeneral.nextInt(6), StarWarsMod.rngGeneral.nextBoolean());
 			s.start();
 			ships.add(s);
 		}
@@ -462,23 +462,44 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 			if (zoomPlanet == null && animationZoom.getTick() == 0)
 			{
+				GL11.glPushMatrix();
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				GLPZ.glScalef(0.15f);
+				GL11.glRotatef(90, 1, 0, 0);
+				GL11.glRotatef(ship.angle / 10f, 0, 0, 1);
+				GL11.glRotatef(ship.angle, 0, 1, 0);
+				GL11.glScalef(1, 1, -1);
 				switch (ship.model)
 				{
 					case 0:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderXWing.texture);
-						GL11.glPushMatrix();
-						GL11.glDisable(GL11.GL_CULL_FACE);
-						GL11.glScalef(0.12f, 0.12f, 0.12f);
-						GL11.glRotatef(90, 1, 0, 0);
-						GL11.glRotatef(ship.angle, 0, 1, 0);
-						GL11.glScalef(1, 1, -1);
 						this.modelXWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-						GL11.glEnable(GL11.GL_CULL_FACE);
-						GL11.glPopMatrix();
+						break;
+					case 1:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderYWing.texture);
+						this.modelYWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						break;
+					case 2:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderTIE.texture);
+						this.modelTIE.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						break;
+					case 3:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderAWing.texture);
+						this.modelAWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						break;
+					case 4:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEAdvanced.texture);
+						this.modelTIEAdvanced.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						break;
+					case 5:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEInterceptor.texture);
+						this.modelTIEInterceptor.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					default:
 						break;
 				}
+				GL11.glEnable(GL11.GL_CULL_FACE);
+				GL11.glPopMatrix();
 			}
 
 			GL11.glPopMatrix();
