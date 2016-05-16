@@ -1,8 +1,7 @@
 package com.parzivail.pswm.rendering.item;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.vehicles.ModelXWing;
-import com.parzivail.pswm.models.weapons.ModelGaffi;
+import com.parzivail.pswm.models.vehicles.ModelXWingNew;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,13 +11,13 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderSpawnXWing implements IItemRenderer
 {
-	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/xwing.png");
+	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/xwingNew.png");
 
-	private ModelXWing model;
+	private ModelXWingNew model;
 
 	public RenderSpawnXWing()
 	{
-		this.model = new ModelXWing();
+		this.model = new ModelXWingNew();
 	}
 
 	@Override

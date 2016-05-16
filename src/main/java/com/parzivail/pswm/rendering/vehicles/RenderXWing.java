@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.vehicles.ModelXWing;
+import com.parzivail.pswm.models.vehicles.ModelXWingNew;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
@@ -11,7 +11,7 @@ public class RenderXWing extends RenderVehicBase
 
 	public RenderXWing()
 	{
-		super(new ModelXWing(), 0.5f);
+		super(new ModelXWingNew(), 0.5f);
 	}
 
 	@Override

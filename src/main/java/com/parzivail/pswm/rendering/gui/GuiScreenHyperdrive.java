@@ -91,7 +91,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 	private ArrayList<MovingShip> ships = new ArrayList<>();
 
-	private ModelXWing modelXWing = new ModelXWing();
+	private ModelXWingNew modelXWing = new ModelXWingNew();
 	private ModelSnowspeeder modelSnowspeeder = new ModelSnowspeeder();
 	private ModelAWing modelAWing = new ModelAWing();
 	private ModelYWing modelYWing = new ModelYWing();
