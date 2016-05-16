@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 public class Spline2D
 {
-
 	private Spline splineX;
 	private Spline splineY;
 	/**

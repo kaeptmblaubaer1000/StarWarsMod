@@ -7,6 +7,12 @@ public class FPoint
 {
 	public float x, y;
 
+	/**
+	 * Creates a new 2D point in space
+	 *
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 */
 	public FPoint(float x, float y)
 	{
 		this.x = x;

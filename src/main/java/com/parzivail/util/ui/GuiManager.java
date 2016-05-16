@@ -7,11 +7,13 @@ import java.util.Iterator;
 
 public class GuiManager
 {
-	/**
-	 * All active toasts
-	 **/
 	public static ArrayList<GuiToast> toasts = new ArrayList<GuiToast>();
 
+	/**
+	 * Renders all active Toasts
+	 *
+	 * @param event The parent RenderOverlay event
+	 */
 	public static void render(RenderGameOverlayEvent event)
 	{
 		Iterator<GuiToast> i = GuiManager.toasts.iterator();
@@ -25,6 +27,9 @@ public class GuiManager
 		}
 	}
 
+	/**
+	 * Ticks all active Toasts
+	 */
 	public static void tick()
 	{
 		Iterator<GuiToast> i = GuiManager.toasts.iterator();

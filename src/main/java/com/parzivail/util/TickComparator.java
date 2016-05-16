@@ -9,6 +9,7 @@ package com.parzivail.util;
 public class TickComparator
 {
 	private boolean was = false;
+
 	/**
 	 * Set this every tick to whatever you're checking
 	 **/

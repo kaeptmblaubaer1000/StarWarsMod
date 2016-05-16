@@ -3,7 +3,6 @@ package com.parzivail.util.world;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.Chunk;
@@ -11,16 +10,11 @@ import net.minecraftforge.common.DimensionManager;
 
 public class WorldUtils
 {
-	public static String getBiomeName(int x, int z)
-	{
-		return Minecraft.getMinecraft().theWorld.getBiomeGenForCoords(x, z).biomeName;
-	}
-
-	public static Block getBlockAt(int x, int y, int z)
-	{
-		return Minecraft.getMinecraft().theWorld.getBlock(x, y, z);
-	}
-
+	/**
+	 * Registers a dimension with FML
+	 *
+	 * @param dimId The Dimension ID
+	 */
 	public static void registerDimension(int dimId)
 	{
 		DimensionManager.registerDimension(dimId, dimId);
@@ -28,6 +22,11 @@ public class WorldUtils
 		Lumberjack.log("World registered for " + WorldProvider.getProviderForDimension(dimId).getDimensionName());
 	}
 
+	/**
+	 * Registers a dimension with FML
+	 * @param dimId The Dimension ID
+	 * @param class1 The world provider for the dimension
+	 */
 	public static void registerDimension(int dimId, Class<? extends WorldProvider> class1)
 	{
 		DimensionManager.registerProviderType(dimId, class1, true);
@@ -35,12 +34,6 @@ public class WorldUtils
 		// WorldServer s =
 		// FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dimId);
 		Lumberjack.log("Provider and World registered for " + dimId);
-	}
-
-	public static void unregisterDimension(int dimId)
-	{
-		DimensionManager.unregisterDimension(dimId);
-		Lumberjack.log("Provider and World unregistered for " + dimId);
 	}
 
 	/**

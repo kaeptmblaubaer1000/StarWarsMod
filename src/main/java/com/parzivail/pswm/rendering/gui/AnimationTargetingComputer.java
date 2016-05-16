@@ -44,8 +44,8 @@ public class AnimationTargetingComputer extends Animation
 		Screen2D.drawLine(x + 10, y + 40, x + width - 10, y + height - 40);
 		Screen2D.drawLine(x + 10, y + height - 40, x + width - 10, y + 40);
 
-		int x1 = (int)MathUtils.lerp(x + 60, x + (height / 2f), this.tick / (float)this.getMax());
-		int y1 = (int)MathUtils.lerp(y + height - 10, y + 10, this.tick / (float)this.getMax());
+		int x1 = (int)MathUtils.lerp(x + 60, x + (height / 2f), this.tick / (float)this.getLength());
+		int y1 = (int)MathUtils.lerp(y + height - 10, y + 10, this.tick / (float)this.getLength());
 
 		Screen2D.drawLine(x1, y1 + 10, x1, y1 - 10);
 

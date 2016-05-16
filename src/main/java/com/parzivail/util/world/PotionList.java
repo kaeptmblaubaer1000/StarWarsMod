@@ -29,11 +29,26 @@ public class PotionList
 	public static int ABSORPTION = 22;
 	public static int SATURATION = 23;
 
+	/**
+	 * Add an ambient potion effect to a player
+	 *
+	 * @param player  The player to affect
+	 * @param effect  The effect to affect the player with
+	 * @param power   The level of the effect
+	 * @param seconds The number of seconds the potion lasts
+	 */
 	public static void addAmbientEffect(EntityPlayer player, int effect, int power, float seconds)
 	{
 		player.addPotionEffect(new PotionEffect(effect, (int)(seconds * 20.0F), power, true));
 	}
 
+	/**
+	 * Add a potion effect to a player
+	 * @param player The player to affect
+	 * @param effect The effect to affect the player with
+	 * @param power The level of the effect
+	 * @param seconds The number of seconds the potion lasts
+	 */
 	public static void addEffect(EntityPlayer player, int effect, int power, float seconds)
 	{
 		player.addPotionEffect(new PotionEffect(effect, (int)(seconds * 20.0F), power, false));

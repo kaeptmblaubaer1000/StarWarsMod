@@ -5,6 +5,9 @@ import com.parzivail.util.ui.GLPalette;
 import java.awt.*;
 import java.util.Comparator;
 
+/**
+ * Comparator for two colors, taking into account Hue, Saturation and Brightness
+ */
 public class IntColorComparator implements Comparator<Integer>
 {
 	@Override

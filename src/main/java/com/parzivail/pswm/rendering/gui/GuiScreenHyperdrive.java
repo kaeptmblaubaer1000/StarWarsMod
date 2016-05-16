@@ -58,8 +58,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 		public void tick()
 		{
-			this.position = route.getPointAlongPath(animation.getTick() / (float)animation.getMax());
-			FPoint p = route.getPointAlongPath((animation.getTick() + 1 * (animation.isReverse() ? -1 : 1)) / (float)animation.getMax());
+			this.position = route.getPointAlongPath(animation.getTick() / (float)animation.getLength());
+			FPoint p = route.getPointAlongPath((animation.getTick() + 1 * (animation.isReverse() ? -1 : 1)) / (float)animation.getLength());
 			this.angle = (float)Math.toDegrees(Math.atan2(p.x - this.position.x, this.position.y - p.y));
 		}
 	}
@@ -370,8 +370,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 			if (info == zoomPlanet || info == oldZoomPlanet)
 			{
-				buttonModel.xPosition = (int)MathUtils.lerp(pt.x, (float)(r.getScaledWidth_double() / 2f) - 120, (float)animationZoom.getTick() / animationZoom.getMax());
-				buttonModel.yPosition = (int)MathUtils.lerp(pt.y, (float)(r.getScaledHeight_double() / 2f) - 70, (float)animationZoom.getTick() / animationZoom.getMax());
+				buttonModel.xPosition = (int)MathUtils.lerp(pt.x, (float)(r.getScaledWidth_double() / 2f) - 120, (float)animationZoom.getTick() / animationZoom.getLength());
+				buttonModel.yPosition = (int)MathUtils.lerp(pt.y, (float)(r.getScaledHeight_double() / 2f) - 70, (float)animationZoom.getTick() / animationZoom.getLength());
 			}
 
 			buttonModel.visible = info == zoomPlanet || info == oldZoomPlanet || (zoomPlanet == null && animationZoom.getTick() == 0);
@@ -387,12 +387,12 @@ public class GuiScreenHyperdrive extends GuiScreen
 		{
 			GL11.glPushMatrix();
 			GL11.glScalef(2, 2, 1);
-			StarWarsMod.mc.fontRenderer.drawString(planet.getName().substring(0, (int)MathUtils.lerp(0, planet.getName().length(), (float)animationZoom.getTick() / animationZoom.getMax())), 160, 6, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(planet.getName().substring(0, (int)MathUtils.lerp(0, planet.getName().length(), (float)animationZoom.getTick() / animationZoom.getLength())), 160, 6, GLPalette.BRIGHT_YELLOW);
 			GL11.glPopMatrix();
 			int y = 32;
 			String[] d = TextUtils.splitIntoLine(planet.getDescription(), 40);
 			for (String d1 : d)
-				StarWarsMod.mc.fontRenderer.drawString(d1.substring(0, (int)MathUtils.lerp(0, d1.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+				StarWarsMod.mc.fontRenderer.drawString(d1.substring(0, (int)MathUtils.lerp(0, d1.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
@@ -402,36 +402,36 @@ public class GuiScreenHyperdrive extends GuiScreen
 			else if (planet.getAffiliation().equals(Resources.allegianceRebel) || planet.getAffiliation().equals(Resources.allegianceJedi))
 				color = GLPalette.BRIGHT_BLUE;
 			String aff = ("Affiliation: " + planet.getAffiliation());
-			StarWarsMod.mc.fontRenderer.drawString(aff.substring(0, (int)MathUtils.lerp(0, aff.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, color);
+			StarWarsMod.mc.fontRenderer.drawString(aff.substring(0, (int)MathUtils.lerp(0, aff.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, color);
 
 			y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
 			int ny = y;
 			String headerTerrain = "Primary Terrain:";
-			StarWarsMod.mc.fontRenderer.drawString(headerTerrain.substring(0, (int)MathUtils.lerp(0, headerTerrain.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(headerTerrain.substring(0, (int)MathUtils.lerp(0, headerTerrain.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getTerrain())
-				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
 			String suns = "Suns: " + planet.getSuns();
-			StarWarsMod.mc.fontRenderer.drawString(suns.substring(0, (int)MathUtils.lerp(0, suns.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(suns.substring(0, (int)MathUtils.lerp(0, suns.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
 			String moons = "Moons: " + planet.getMoons();
-			StarWarsMod.mc.fontRenderer.drawString(moons.substring(0, (int)MathUtils.lerp(0, moons.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(moons.substring(0, (int)MathUtils.lerp(0, moons.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			ny = y;
 
 			String mineralHeader = "Minerals: ";
-			StarWarsMod.mc.fontRenderer.drawString(mineralHeader.substring(0, (int)MathUtils.lerp(0, mineralHeader.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(mineralHeader.substring(0, (int)MathUtils.lerp(0, mineralHeader.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getResources())
-				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 390, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 390, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			String nativeSpecies = "Inhabiting Species:";
-			StarWarsMod.mc.fontRenderer.drawString(nativeSpecies.substring(0, (int)MathUtils.lerp(0, nativeSpecies.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(nativeSpecies.substring(0, (int)MathUtils.lerp(0, nativeSpecies.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getNativeSpecies())
-				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getMax())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 		}
 
 		if (MathUtils.oneIn(200))
