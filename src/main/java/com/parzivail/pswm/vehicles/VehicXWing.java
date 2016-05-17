@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
-import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -90,14 +89,12 @@ public class VehicXWing extends VehicleAirBase
 
 		if (this.worldObj.getBlock((int)this.posX, ht, (int)this.posZ) == Blocks.water && this.worldObj.isRemote && this.riddenByEntity instanceof EntityPlayer)
 		{
-			for (int i = 0; i < 50; i++)
+			for (int i = 0; i < 70; i++)
 			{
 				double motionX = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
-				double motionY = 0.02 * this.move;
+				double motionY = 0.03 * this.move;
 				motionY *= Math.max(1, 10 - (this.posY - ht));
 				double motionZ = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
-
-				Lumberjack.log(motionY);
 
 				float sXa = MathHelper.cos((float)Math.toRadians(this.rotationYaw)) * 7;
 				float sZa = MathHelper.sin((float)Math.toRadians(this.rotationYaw)) * 7;
