@@ -11,7 +11,7 @@ public class RenderXWing extends RenderVehicBase
 
 	public RenderXWing()
 	{
-		super(new ModelXWingNew(), 0.5f);
+		super(new ModelXWing(), 0.5f);
 	}
 
 	@Override
