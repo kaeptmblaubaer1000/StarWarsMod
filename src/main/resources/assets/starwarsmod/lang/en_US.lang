@@ -29,12 +29,16 @@ item.starwarsmod.ioniteIngot.name=Ionite Ingot
 item.starwarsmod.rubindumIngot.name=Rubindum Ingot
 item.starwarsmod.heliciteIngot.name=Helicite Ingot
 item.starwarsmod.keleriumIngot.name=Kelerium Ingot
+item.starwarsmod.questContainer.name=Quest Log
+item.starwarsmod.slopeWizard.name=Slope Wizard
+item.starwarsmod.powerpack.name=Power Pack
 
 // Tools
 item.starwarsmod.droidCaller.name=Droid Caller
 item.starwarsmod.droidHacker.name=Droid Hacker
 item.starwarsmod.binocularsHoth.name=TD2.3 Electrobinoculars
 item.starwarsmod.binocularsTatooine.name=MB450 Macrobinoculars
+item.starwarsmod.hydrospanner.name=Hydrospanner
 
 // Food
 item.starwarsmod.banthaChop.name=Bantha Chop
@@ -126,7 +130,9 @@ item.starwarsmod.spawnSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnLandspeeder.name=X-34 Landspeeder
 item.starwarsmod.spawnTIE.name=TIE/LN Starfighter
 item.starwarsmod.spawnTIEInterceptor.name=TIE/IN Interceptor
+item.starwarsmod.spawnTIEAdvanced.name=TIE Advanced x1
 item.starwarsmod.spawnXwing.name=T-65 X-Wing Starfighter
+item.starwarsmod.spawnYwing.name=BTL Y-Wing Starfighter
 item.starwarsmod.spawnAwing.name=RZ-1 A-Wing Interceptor
 item.starwarsmod.spawnSkyhopper.name=T-16 Skyhopper
 item.starwarsmod.spawnSnowspeeder.name=T-47 Snowspeeder
