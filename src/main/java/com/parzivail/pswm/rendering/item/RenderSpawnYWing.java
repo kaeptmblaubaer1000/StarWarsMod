@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering.item;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelXWingNew;
+import com.parzivail.pswm.models.vehicles.ModelYWing;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,15 +10,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
-public class RenderSpawnXWing implements IItemRenderer
+public class RenderSpawnYWing implements IItemRenderer
 {
-	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/xwingNew.png");
+	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/ywing.png");
 
-	private ModelXWingNew model;
+	private ModelYWing model;
 
-	public RenderSpawnXWing()
+	public RenderSpawnYWing()
 	{
-		this.model = new ModelXWingNew();
+		this.model = new ModelYWing();
 	}
 
 	@Override
@@ -36,8 +37,8 @@ public class RenderSpawnXWing implements IItemRenderer
 			case INVENTORY:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.027F, -0.027F, 0.027F);
-				GL11.glTranslatef(-11, 2, 1f);
+				GL11.glScalef(0.025F, -0.025F, 0.025F);
+				GL11.glTranslatef(-31, -2, 1f);
 				GL11.glRotatef(0, 0, 0, 1);
 				GL11.glRotatef(260, 0, 1, 0);
 				GL11.glTranslatef(-10, 0, 0);
@@ -54,7 +55,7 @@ public class RenderSpawnXWing implements IItemRenderer
 					GL11.glScalef(0.018F, -0.018F, 0.018F);
 					GL11.glRotatef(-40, 0, 1, 0);
 					GL11.glRotatef(24, 0, 0, 1);
-					GL11.glTranslatef(35, -12, 2);
+					GL11.glTranslatef(33, -10, 3);
 					GL11.glRotatef(90, 1, 0, 0);
 					GL11.glRotatef(90, 0, 0, -1);
 					GL11.glRotatef(90, 1, 0, 0);
@@ -88,15 +89,15 @@ public class RenderSpawnXWing implements IItemRenderer
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.017F, -0.017F, 0.017F);
-				GL11.glTranslatef(10, -58, 41.5f);
+				GL11.glScalef(0.019F, -0.019F, 0.019F);
+				GL11.glTranslatef(10, -56.5f, 45);
 				GL11.glRotatef(180, 0, 0, 1);
 				GL11.glRotatef(60, 0, 1, 0);
 				GL11.glRotatef(25, 1, 0, 0);
 				GL11.glRotatef(-10, 0, 1, 0);
 				GL11.glTranslatef(8, 10, 6);
 				GL11.glScalef(-1, -1, -1);
-				GL11.glRotatef(-25, 1, -0.075f, 0);
+				GL11.glRotatef(-25, 1, -0.085f, 0);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
