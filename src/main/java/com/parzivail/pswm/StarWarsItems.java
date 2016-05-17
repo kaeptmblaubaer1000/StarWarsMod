@@ -10,7 +10,7 @@ import net.minecraft.item.ItemFood;
  */
 public class StarWarsItems
 {
-	public static com.parzivail.pswm.items.ItemGaffiStick gaffiStick;
+	public static ItemGaffiStick gaffiStick;
 
 	public static ItemOldLightsaber lightsaber;
 
