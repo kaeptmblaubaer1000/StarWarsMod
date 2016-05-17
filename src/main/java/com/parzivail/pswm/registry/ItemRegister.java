@@ -1,6 +1,7 @@
 package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.armor.*;
 import com.parzivail.pswm.items.*;
@@ -22,172 +23,172 @@ public class ItemRegister
 	{
 		if (Resources.IS_DEV_ENVIRONVENT)
 		{
-			StarWarsMod.debugLootGen = new ItemDebugLootGen();
-			GameRegistry.registerItem(StarWarsMod.debugLootGen, "debugLootGen");
+			StarWarsItems.debugLootGen = new ItemDebugLootGen();
+			GameRegistry.registerItem(StarWarsItems.debugLootGen, "debugLootGen");
 
-			StarWarsMod.customTest = new ItemCustomTest();
-			GameRegistry.registerItem(StarWarsMod.customTest, "customItem");
+			StarWarsItems.customTest = new ItemCustomTest();
+			GameRegistry.registerItem(StarWarsItems.customTest, "customItem");
 
-			StarWarsMod.spawnDsTurret = new ItemSpawnDSTurret();
-			GameRegistry.registerItem(StarWarsMod.spawnDsTurret, "spawnDsTurret");
+			StarWarsItems.spawnDsTurret = new ItemSpawnDSTurret();
+			GameRegistry.registerItem(StarWarsItems.spawnDsTurret, "spawnDsTurret");
 
-			StarWarsMod.slopeWizard = new ItemSlopeWizard();
-			GameRegistry.registerItem(StarWarsMod.slopeWizard, "slopeWizard");
+			StarWarsItems.slopeWizard = new ItemSlopeWizard();
+			GameRegistry.registerItem(StarWarsItems.slopeWizard, "slopeWizard");
 
-			StarWarsMod.spawnAtst = new ItemSpawnATST();
-			GameRegistry.registerItem(StarWarsMod.spawnAtst, "spawnAtst");
+			StarWarsItems.spawnAtst = new ItemSpawnATST();
+			GameRegistry.registerItem(StarWarsItems.spawnAtst, "spawnAtst");
 		}
 
 		if (Resources.IS_SEQUEL_RELEASE)
 		{
-			StarWarsMod.stormtrooperNewHelmet = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperNewHelmet, "stormtrooperNewHelmet");
+			StarWarsItems.stormtrooperNewHelmet = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperNewHelmet, "stormtrooperNewHelmet");
 
-			StarWarsMod.stormtrooperNewChest = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 1);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperNewChest, "stormtrooperNewChest");
+			StarWarsItems.stormtrooperNewChest = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 1);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperNewChest, "stormtrooperNewChest");
 
-			StarWarsMod.stormtrooperNewLegs = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 2);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperNewLegs, "stormtrooperNewLegs");
+			StarWarsItems.stormtrooperNewLegs = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 2);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperNewLegs, "stormtrooperNewLegs");
 
-			StarWarsMod.stormtrooperNewBoots = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperNewBoots, "stormtrooperNewBoots");
+			StarWarsItems.stormtrooperNewBoots = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperNewBoots, "stormtrooperNewBoots");
 
-			StarWarsMod.stormtrooperSilverNewHelmet = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewHelmet, "stormtrooperSilverNewHelmet");
+			StarWarsItems.stormtrooperSilverNewHelmet = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperSilverNewHelmet, "stormtrooperSilverNewHelmet");
 
-			StarWarsMod.stormtrooperSilverNewChest = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 1);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewChest, "stormtrooperSilverNewChest");
+			StarWarsItems.stormtrooperSilverNewChest = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 1);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperSilverNewChest, "stormtrooperSilverNewChest");
 
-			StarWarsMod.stormtrooperSilverNewLegs = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 2);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewLegs, "stormtrooperSilverNewLegs");
+			StarWarsItems.stormtrooperSilverNewLegs = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 2);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperSilverNewLegs, "stormtrooperSilverNewLegs");
 
-			StarWarsMod.stormtrooperSilverNewBoots = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
-			GameRegistry.registerItem(StarWarsMod.stormtrooperSilverNewBoots, "stormtrooperSilverNewBoots");
+			StarWarsItems.stormtrooperSilverNewBoots = new ArmorSequelStormtrooperSilver(StarWarsMod.stormtrooperNewArmorMat, 1, 3);
+			GameRegistry.registerItem(StarWarsItems.stormtrooperSilverNewBoots, "stormtrooperSilverNewBoots");
 
-			StarWarsMod.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
-			GameRegistry.registerItem(StarWarsMod.spawnJakkuSpeeder, "spawnJakkuSpeeder");
+			StarWarsItems.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
+			GameRegistry.registerItem(StarWarsItems.spawnJakkuSpeeder, "spawnJakkuSpeeder");
 
-			StarWarsMod.sequelBlasterRifle = new ItemSequelBlasterRifle();
-			GameRegistry.registerItem(StarWarsMod.sequelBlasterRifle, "sequelBlasterRifle");
+			StarWarsItems.sequelBlasterRifle = new ItemSequelBlasterRifle();
+			GameRegistry.registerItem(StarWarsItems.sequelBlasterRifle, "sequelBlasterRifle");
 
-			StarWarsMod.sequelBlasterPistol = new ItemSequelBlasterPistol();
-			GameRegistry.registerItem(StarWarsMod.sequelBlasterPistol, "sequelBlasterPistol");
+			StarWarsItems.sequelBlasterPistol = new ItemSequelBlasterPistol();
+			GameRegistry.registerItem(StarWarsItems.sequelBlasterPistol, "sequelBlasterPistol");
 
-			StarWarsMod.spawnAstromechBb8 = new ItemSpawnAstromechBb8();
-			GameRegistry.registerItem(StarWarsMod.spawnAstromechBb8, "spawnAstromechBb8");
+			StarWarsItems.spawnAstromechBb8 = new ItemSpawnAstromechBb8();
+			GameRegistry.registerItem(StarWarsItems.spawnAstromechBb8, "spawnAstromechBb8");
 		}
 
-		StarWarsMod.powerpack = new ItemPowerpack();
-		GameRegistry.registerItem(StarWarsMod.powerpack, "powerpack");
+		StarWarsItems.powerpack = new ItemPowerpack();
+		GameRegistry.registerItem(StarWarsItems.powerpack, "powerpack");
 
-		StarWarsMod.questContainer = new ItemQuestContainer();
-		GameRegistry.registerItem(StarWarsMod.questContainer, "questContainer");
+		StarWarsItems.questContainer = new ItemQuestContainer();
+		GameRegistry.registerItem(StarWarsItems.questContainer, "questContainer");
 
-		StarWarsMod.spawnTie = new ItemSpawnTIE();
-		GameRegistry.registerItem(StarWarsMod.spawnTie, "spawnTIE");
+		StarWarsItems.spawnTie = new ItemSpawnTIE();
+		GameRegistry.registerItem(StarWarsItems.spawnTie, "spawnTIE");
 
-		StarWarsMod.spawnTieAdvanced = new ItemSpawnTIEAdvanced();
-		GameRegistry.registerItem(StarWarsMod.spawnTieAdvanced, "spawnTIEAdvanced");
+		StarWarsItems.spawnTieAdvanced = new ItemSpawnTIEAdvanced();
+		GameRegistry.registerItem(StarWarsItems.spawnTieAdvanced, "spawnTIEAdvanced");
 
-		StarWarsMod.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
-		GameRegistry.registerItem(StarWarsMod.spawnTieInterceptor, "spawnTIEInterceptor");
+		StarWarsItems.spawnTieInterceptor = new ItemSpawnTIEInterceptor();
+		GameRegistry.registerItem(StarWarsItems.spawnTieInterceptor, "spawnTIEInterceptor");
 
-		StarWarsMod.spawnXwing = new ItemSpawnXWing();
-		GameRegistry.registerItem(StarWarsMod.spawnXwing, "spawnXWing");
+		StarWarsItems.spawnXwing = new ItemSpawnXWing();
+		GameRegistry.registerItem(StarWarsItems.spawnXwing, "spawnXWing");
 
-		StarWarsMod.spawnYwing = new ItemSpawnYWing();
-		GameRegistry.registerItem(StarWarsMod.spawnYwing, "spawnYWing");
+		StarWarsItems.spawnYwing = new ItemSpawnYWing();
+		GameRegistry.registerItem(StarWarsItems.spawnYwing, "spawnYWing");
 
-		StarWarsMod.spawnSkyhopper = new ItemSpawnSkyhopper();
-		GameRegistry.registerItem(StarWarsMod.spawnSkyhopper, "spawnSkyhopper");
+		StarWarsItems.spawnSkyhopper = new ItemSpawnSkyhopper();
+		GameRegistry.registerItem(StarWarsItems.spawnSkyhopper, "spawnSkyhopper");
 
-		StarWarsMod.spawnSnowspeeder = new ItemSpawnSnowspeeder();
-		GameRegistry.registerItem(StarWarsMod.spawnSnowspeeder, "spawnSnowspeeder");
+		StarWarsItems.spawnSnowspeeder = new ItemSpawnSnowspeeder();
+		GameRegistry.registerItem(StarWarsItems.spawnSnowspeeder, "spawnSnowspeeder");
 
-		StarWarsMod.spawnAwing = new ItemSpawnAWing();
-		GameRegistry.registerItem(StarWarsMod.spawnAwing, "spawnAWing");
+		StarWarsItems.spawnAwing = new ItemSpawnAWing();
+		GameRegistry.registerItem(StarWarsItems.spawnAwing, "spawnAWing");
 
-		StarWarsMod.gaffiStick = new ItemGaffiStick();
-		GameRegistry.registerItem(StarWarsMod.gaffiStick, "gaffiStick");
+		StarWarsItems.gaffiStick = new ItemGaffiStick();
+		GameRegistry.registerItem(StarWarsItems.gaffiStick, "gaffiStick");
 
 		// StarWarsMod.lightsaber = new ItemOldLightsaber();
 		// GameRegistry.registerItem(StarWarsMod.lightsaber, "lightsaber");
 
-		for (int i = 0; i < StarWarsMod.lightsaberNew.length; i++)
+		for (int i = 0; i < StarWarsItems.lightsaberNew.length; i++)
 		{
-			StarWarsMod.lightsaberNew[i] = new ItemLightsaber(i);
-			GameRegistry.registerItem(StarWarsMod.lightsaberNew[i], "lightsaberNew" + String.valueOf(i));
+			StarWarsItems.lightsaberNew[i] = new ItemLightsaber(i);
+			GameRegistry.registerItem(StarWarsItems.lightsaberNew[i], "lightsaberNew" + String.valueOf(i));
 		}
 
 		// StarWarsMod.lightsaberOff = new ItemLightsaberOff();
 		// GameRegistry.registerItem(StarWarsMod.lightsaberOff,
 		// "lightsaberOff");
 
-		StarWarsMod.binoculars = new ItemBinocularsTatooine();
-		GameRegistry.registerItem(StarWarsMod.binoculars, "binoculars");
+		StarWarsItems.binoculars = new ItemBinocularsTatooine();
+		GameRegistry.registerItem(StarWarsItems.binoculars, "binoculars");
 
-		StarWarsMod.binocularsNew = new ItemBinocularsNew();
-		GameRegistry.registerItem(StarWarsMod.binocularsNew, "binocularsNew");
+		StarWarsItems.binocularsNew = new ItemBinocularsNew();
+		GameRegistry.registerItem(StarWarsItems.binocularsNew, "binocularsNew");
 
-		StarWarsMod.idScanner = new ItemIDScanner();
-		GameRegistry.registerItem(StarWarsMod.idScanner, "idScanner");
+		StarWarsItems.idScanner = new ItemIDScanner();
+		GameRegistry.registerItem(StarWarsItems.idScanner, "idScanner");
 
-		StarWarsMod.hydrospanner = new ItemHydrospanner();
-		GameRegistry.registerItem(StarWarsMod.hydrospanner, "hydrospanner");
+		StarWarsItems.hydrospanner = new ItemHydrospanner();
+		GameRegistry.registerItem(StarWarsItems.hydrospanner, "hydrospanner");
 
-		StarWarsMod.ingotBene = new ItemBeneIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotBene, "ingotBene");
+		StarWarsItems.ingotBene = new ItemBeneIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotBene, "ingotBene");
 
-		StarWarsMod.ingotCortosis = new ItemCortosisIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotCortosis, "ingotCortosis");
+		StarWarsItems.ingotCortosis = new ItemCortosisIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotCortosis, "ingotCortosis");
 
-		StarWarsMod.ingotDolomite = new ItemDolomiteIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotDolomite, "ingotDolomite");
+		StarWarsItems.ingotDolomite = new ItemDolomiteIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotDolomite, "ingotDolomite");
 
-		StarWarsMod.ingotExonium = new ItemExoniumIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotExonium, "ingotExonium");
+		StarWarsItems.ingotExonium = new ItemExoniumIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotExonium, "ingotExonium");
 
-		StarWarsMod.ingotHelicite = new ItemHeliciteIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotHelicite, "ingotHelicite");
+		StarWarsItems.ingotHelicite = new ItemHeliciteIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotHelicite, "ingotHelicite");
 
-		StarWarsMod.ingotIonite = new ItemIoniteIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotIonite, "ingotIonite");
+		StarWarsItems.ingotIonite = new ItemIoniteIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotIonite, "ingotIonite");
 
-		StarWarsMod.ingotKelerium = new ItemKeleriumIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotKelerium, "ingotKelerium");
+		StarWarsItems.ingotKelerium = new ItemKeleriumIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotKelerium, "ingotKelerium");
 
-		StarWarsMod.ingotRubindum = new ItemRubindumIngot();
-		GameRegistry.registerItem(StarWarsMod.ingotRubindum, "ingotRubindum");
+		StarWarsItems.ingotRubindum = new ItemRubindumIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotRubindum, "ingotRubindum");
 
-		StarWarsMod.binocularsHoth = new ItemBinocularsHoth();
-		GameRegistry.registerItem(StarWarsMod.binocularsHoth, "binocularsHoth");
+		StarWarsItems.binocularsHoth = new ItemBinocularsHoth();
+		GameRegistry.registerItem(StarWarsItems.binocularsHoth, "binocularsHoth");
 
-		StarWarsMod.blasterPistol = new ItemBlasterPistol();
-		GameRegistry.registerItem(StarWarsMod.blasterPistol, "blasterPistol");
+		StarWarsItems.blasterPistol = new ItemBlasterPistol();
+		GameRegistry.registerItem(StarWarsItems.blasterPistol, "blasterPistol");
 
-		StarWarsMod.blasterRifle = new ItemBlasterRifle();
-		GameRegistry.registerItem(StarWarsMod.blasterRifle, "blasterRifle");
+		StarWarsItems.blasterRifle = new ItemBlasterRifle();
+		GameRegistry.registerItem(StarWarsItems.blasterRifle, "blasterRifle");
 
-		StarWarsMod.blasterHeavy = new ItemBlasterHeavy();
-		GameRegistry.registerItem(StarWarsMod.blasterHeavy, "blasterHeavy");
+		StarWarsItems.blasterHeavy = new ItemBlasterHeavy();
+		GameRegistry.registerItem(StarWarsItems.blasterHeavy, "blasterHeavy");
 
-		StarWarsMod.hiltMetelCompound = new ItemHiltMetalCompound();
-		GameRegistry.registerItem(StarWarsMod.hiltMetelCompound, "hiltMetalCompound");
+		StarWarsItems.hiltMetelCompound = new ItemHiltMetalCompound();
+		GameRegistry.registerItem(StarWarsItems.hiltMetelCompound, "hiltMetalCompound");
 
-		StarWarsMod.hiltMetelAlloy = new ItemHiltMetalAlloy();
-		GameRegistry.registerItem(StarWarsMod.hiltMetelAlloy, "hiltMetalAlloy");
+		StarWarsItems.hiltMetelAlloy = new ItemHiltMetalAlloy();
+		GameRegistry.registerItem(StarWarsItems.hiltMetelAlloy, "hiltMetalAlloy");
 
-		StarWarsMod.plasmaEmitter = new ItemPlasmaEmitter();
-		GameRegistry.registerItem(StarWarsMod.plasmaEmitter, "plasmaEmitter");
+		StarWarsItems.plasmaEmitter = new ItemPlasmaEmitter();
+		GameRegistry.registerItem(StarWarsItems.plasmaEmitter, "plasmaEmitter");
 
-		StarWarsMod.bowcaster = new ItemWookieeBowcaster();
-		GameRegistry.registerItem(StarWarsMod.bowcaster, "bowcaster");
+		StarWarsItems.bowcaster = new ItemWookieeBowcaster();
+		GameRegistry.registerItem(StarWarsItems.bowcaster, "bowcaster");
 
-		StarWarsMod.containmentField = new ItemContainmentField();
-		GameRegistry.registerItem(StarWarsMod.containmentField, "containmentField");
+		StarWarsItems.containmentField = new ItemContainmentField();
+		GameRegistry.registerItem(StarWarsItems.containmentField, "containmentField");
 
-		StarWarsMod.lightsaberCrystal = new ItemLightsaberCrystal();
-		GameRegistry.registerItem(StarWarsMod.lightsaberCrystal, "lightsaberCrystal");
+		StarWarsItems.lightsaberCrystal = new ItemLightsaberCrystal();
+		GameRegistry.registerItem(StarWarsItems.lightsaberCrystal, "lightsaberCrystal");
 
 		// StarWarsMod.blasterTIEBolt = new ItemBolt("blasterTIEBolt");
 		// GameRegistry.registerItem(StarWarsMod.blasterTIEBolt,
@@ -204,137 +205,137 @@ public class ItemRegister
 		// GameRegistry.registerItem(StarWarsMod.blasterRifleBolt,
 		// "blasterRifleBolt");
 
-		StarWarsMod.ewokSpear = new ItemEwokSpear();
-		GameRegistry.registerItem(StarWarsMod.ewokSpear, "ewokSpear");
+		StarWarsItems.ewokSpear = new ItemEwokSpear();
+		GameRegistry.registerItem(StarWarsItems.ewokSpear, "ewokSpear");
 
-		StarWarsMod.gamorreanAx1 = new ItemGamorreanAx1();
-		GameRegistry.registerItem(StarWarsMod.gamorreanAx1, "gamorreanAx");
+		StarWarsItems.gamorreanAx1 = new ItemGamorreanAx1();
+		GameRegistry.registerItem(StarWarsItems.gamorreanAx1, "gamorreanAx");
 
-		StarWarsMod.vibroLance = new ItemVibroLance();
-		GameRegistry.registerItem(StarWarsMod.vibroLance, "vibroLance");
+		StarWarsItems.vibroLance = new ItemVibroLance();
+		GameRegistry.registerItem(StarWarsItems.vibroLance, "vibroLance");
 
-		StarWarsMod.gamorreanAx3 = new ItemGamorreanAx3();
-		GameRegistry.registerItem(StarWarsMod.gamorreanAx3, "gamorreanAx3");
+		StarWarsItems.gamorreanAx3 = new ItemGamorreanAx3();
+		GameRegistry.registerItem(StarWarsItems.gamorreanAx3, "gamorreanAx3");
 
-		StarWarsMod.gamorreanAx2 = new ItemGamorreanAx2();
-		GameRegistry.registerItem(StarWarsMod.gamorreanAx2, "gamorreanAx2");
+		StarWarsItems.gamorreanAx2 = new ItemGamorreanAx2();
+		GameRegistry.registerItem(StarWarsItems.gamorreanAx2, "gamorreanAx2");
 
-		StarWarsMod.banthaHorn = new ItemBanthaHorn();
-		GameRegistry.registerItem(StarWarsMod.banthaHorn, "banthaHorn");
+		StarWarsItems.banthaHorn = new ItemBanthaHorn();
+		GameRegistry.registerItem(StarWarsItems.banthaHorn, "banthaHorn");
 
-		StarWarsMod.banthaMilk = new ItemBanthaMilk();
-		GameRegistry.registerItem(StarWarsMod.banthaMilk, "banthaMilk");
+		StarWarsItems.banthaMilk = new ItemBanthaMilk();
+		GameRegistry.registerItem(StarWarsItems.banthaMilk, "banthaMilk");
 
-		StarWarsMod.acidBeets = new ItemAcidBeets();
-		GameRegistry.registerItem(StarWarsMod.acidBeets, "acidBeets");
+		StarWarsItems.acidBeets = new ItemAcidBeets();
+		GameRegistry.registerItem(StarWarsItems.acidBeets, "acidBeets");
 
-		StarWarsMod.banthaPlatter = new ItemBanthaPlatter();
-		GameRegistry.registerItem(StarWarsMod.banthaPlatter, "banthaPlatter");
+		StarWarsItems.banthaPlatter = new ItemBanthaPlatter();
+		GameRegistry.registerItem(StarWarsItems.banthaPlatter, "banthaPlatter");
 
-		StarWarsMod.canron = new ItemCanron();
-		GameRegistry.registerItem(StarWarsMod.canron, "canron");
+		StarWarsItems.canron = new ItemCanron();
+		GameRegistry.registerItem(StarWarsItems.canron, "canron");
 
-		StarWarsMod.chasuka = new ItemChasuka();
-		GameRegistry.registerItem(StarWarsMod.chasuka, "chasuka");
+		StarWarsItems.chasuka = new ItemChasuka();
+		GameRegistry.registerItem(StarWarsItems.chasuka, "chasuka");
 
-		StarWarsMod.dewbackRibs = new ItemDewbackRibs();
-		GameRegistry.registerItem(StarWarsMod.dewbackRibs, "dewbackRibs");
+		StarWarsItems.dewbackRibs = new ItemDewbackRibs();
+		GameRegistry.registerItem(StarWarsItems.dewbackRibs, "dewbackRibs");
 
-		StarWarsMod.gorrnar = new ItemGorrnar();
-		GameRegistry.registerItem(StarWarsMod.gorrnar, "gorrnar");
+		StarWarsItems.gorrnar = new ItemGorrnar();
+		GameRegistry.registerItem(StarWarsItems.gorrnar, "gorrnar");
 
-		StarWarsMod.jediRobes = new ArmorJediRobes();
-		GameRegistry.registerItem(StarWarsMod.jediRobes, "newJediRobes");
+		StarWarsItems.jediRobes = new ArmorJediRobes();
+		GameRegistry.registerItem(StarWarsItems.jediRobes, "newJediRobes");
 
-		StarWarsMod.endorHelmet = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.endorHelmet, "endorHelmet");
+		StarWarsItems.endorHelmet = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.endorHelmet, "endorHelmet");
 
-		StarWarsMod.endorChest = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.endorChest, "endorChest");
+		StarWarsItems.endorChest = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.endorChest, "endorChest");
 
-		StarWarsMod.endorLegs = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.endorLegs, "endorLegs");
+		StarWarsItems.endorLegs = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.endorLegs, "endorLegs");
 
-		StarWarsMod.endorBoots = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.endorBoots, "endorBoots");
+		StarWarsItems.endorBoots = new ArmorEndor(StarWarsMod.endorArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.endorBoots, "endorBoots");
 
-		StarWarsMod.hothHelmet = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.hothHelmet, "hothHelmet");
+		StarWarsItems.hothHelmet = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.hothHelmet, "hothHelmet");
 
-		StarWarsMod.hothChest = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.hothChest, "hothChest");
+		StarWarsItems.hothChest = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.hothChest, "hothChest");
 
-		StarWarsMod.hothLegs = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.hothLegs, "hothLegs");
+		StarWarsItems.hothLegs = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.hothLegs, "hothLegs");
 
-		StarWarsMod.hothBoots = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.hothBoots, "hothBoots");
+		StarWarsItems.hothBoots = new ArmorHoth(StarWarsMod.hothArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.hothBoots, "hothBoots");
 
-		StarWarsMod.scoutTrooperHelmet = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.scoutTrooperHelmet, "scoutTrooperHelmet");
+		StarWarsItems.scoutTrooperHelmet = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.scoutTrooperHelmet, "scoutTrooperHelmet");
 
-		StarWarsMod.scoutTrooperChest = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.scoutTrooperChest, "scoutTrooperChest");
+		StarWarsItems.scoutTrooperChest = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.scoutTrooperChest, "scoutTrooperChest");
 
-		StarWarsMod.scoutTrooperLegs = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.scoutTrooperLegs, "scoutTrooperLegs");
+		StarWarsItems.scoutTrooperLegs = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.scoutTrooperLegs, "scoutTrooperLegs");
 
-		StarWarsMod.scoutTrooperBoots = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.scoutTrooperBoots, "scoutTrooperBoots");
+		StarWarsItems.scoutTrooperBoots = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.scoutTrooperBoots, "scoutTrooperBoots");
 
-		StarWarsMod.sandtrooperHelmet = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.sandtrooperHelmet, "sandtrooperHelmet");
+		StarWarsItems.sandtrooperHelmet = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.sandtrooperHelmet, "sandtrooperHelmet");
 
-		StarWarsMod.sandtrooperChest = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.sandtrooperChest, "sandtrooperChest");
+		StarWarsItems.sandtrooperChest = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.sandtrooperChest, "sandtrooperChest");
 
-		StarWarsMod.sandtrooperLegs = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.sandtrooperLegs, "sandtrooperLegs");
+		StarWarsItems.sandtrooperLegs = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.sandtrooperLegs, "sandtrooperLegs");
 
-		StarWarsMod.sandtrooperBoots = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.sandtrooperBoots, "sandtrooperBoots");
+		StarWarsItems.sandtrooperBoots = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.sandtrooperBoots, "sandtrooperBoots");
 
-		StarWarsMod.snowtrooperHelmet = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.snowtrooperHelmet, "snowtrooperHelmet");
+		StarWarsItems.snowtrooperHelmet = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.snowtrooperHelmet, "snowtrooperHelmet");
 
-		StarWarsMod.snowtrooperChest = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.snowtrooperChest, "snowtrooperChest");
+		StarWarsItems.snowtrooperChest = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.snowtrooperChest, "snowtrooperChest");
 
-		StarWarsMod.snowtrooperLegs = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.snowtrooperLegs, "snowtrooperLegs");
+		StarWarsItems.snowtrooperLegs = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.snowtrooperLegs, "snowtrooperLegs");
 
-		StarWarsMod.snowtrooperBoots = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.snowtrooperBoots, "snowtrooperBoots");
+		StarWarsItems.snowtrooperBoots = new ArmorSnowtrooper(StarWarsMod.snowtrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.snowtrooperBoots, "snowtrooperBoots");
 
-		StarWarsMod.bobaHelmet = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.bobaHelmet, "bobaHelmet");
+		StarWarsItems.bobaHelmet = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.bobaHelmet, "bobaHelmet");
 
-		StarWarsMod.bobaChest = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.bobaChest, "bobaChest");
+		StarWarsItems.bobaChest = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.bobaChest, "bobaChest");
 
-		StarWarsMod.bobaJetpackChest = new ArmorBobaJetpack(StarWarsMod.bobaArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.bobaJetpackChest, "bobaJetpackChest");
+		StarWarsItems.bobaJetpackChest = new ArmorBobaJetpack(StarWarsMod.bobaArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.bobaJetpackChest, "bobaJetpackChest");
 
-		StarWarsMod.bobaJetpack = new ItemBobaJetpack();
-		GameRegistry.registerItem(StarWarsMod.bobaJetpack, "bobaJetpack");
+		StarWarsItems.bobaJetpack = new ItemBobaJetpack();
+		GameRegistry.registerItem(StarWarsItems.bobaJetpack, "bobaJetpack");
 
-		StarWarsMod.bobaLegs = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.bobaLegs, "bobaLegs");
+		StarWarsItems.bobaLegs = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.bobaLegs, "bobaLegs");
 
-		StarWarsMod.bobaBoots = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.bobaBoots, "bobaBoots");
+		StarWarsItems.bobaBoots = new ArmorBoba(StarWarsMod.bobaArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.bobaBoots, "bobaBoots");
 
-		StarWarsMod.rebelPilotHelmet = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.rebelPilotHelmet, "rebelPilotHelmet");
+		StarWarsItems.rebelPilotHelmet = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.rebelPilotHelmet, "rebelPilotHelmet");
 
-		StarWarsMod.rebelPilotChest = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.rebelPilotChest, "rebelPilotChest");
+		StarWarsItems.rebelPilotChest = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.rebelPilotChest, "rebelPilotChest");
 
-		StarWarsMod.rebelPilotLegs = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.rebelPilotLegs, "rebelPilotLegs");
+		StarWarsItems.rebelPilotLegs = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.rebelPilotLegs, "rebelPilotLegs");
 
-		StarWarsMod.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.rebelPilotBoots, "rebelPilotBoots");
+		StarWarsItems.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.rebelPilotBoots, "rebelPilotBoots");
 
 		//StarWarsMod.fleetHelmet = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 0);
 		//GameRegistry.registerItem(StarWarsMod.fleetHelmet, "fleetHelmet");
@@ -348,169 +349,169 @@ public class ItemRegister
 		//StarWarsMod.fleetBoots = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 3);
 		//GameRegistry.registerItem(StarWarsMod.fleetBoots, "fleetBoots");
 
-		StarWarsMod.atatPilotHelmet = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.atatPilotHelmet, "atatPilotHelmet");
+		StarWarsItems.atatPilotHelmet = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.atatPilotHelmet, "atatPilotHelmet");
 
-		StarWarsMod.atatPilotChest = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.atatPilotChest, "atatPilotChest");
+		StarWarsItems.atatPilotChest = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.atatPilotChest, "atatPilotChest");
 
-		StarWarsMod.atatPilotLegs = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.atatPilotLegs, "atatPilotLegs");
+		StarWarsItems.atatPilotLegs = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.atatPilotLegs, "atatPilotLegs");
 
-		StarWarsMod.atatPilotBoots = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.atatPilotBoots, "atatPilotBoots");
+		StarWarsItems.atatPilotBoots = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.atatPilotBoots, "atatPilotBoots");
 
-		StarWarsMod.tiePilotHelmet = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.tiePilotHelmet, "tiePilotHelmet");
+		StarWarsItems.tiePilotHelmet = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.tiePilotHelmet, "tiePilotHelmet");
 
-		StarWarsMod.tiePilotChest = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.tiePilotChest, "tiePilotChest");
+		StarWarsItems.tiePilotChest = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.tiePilotChest, "tiePilotChest");
 
-		StarWarsMod.tiePilotLegs = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.tiePilotLegs, "tiePilotLegs");
+		StarWarsItems.tiePilotLegs = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.tiePilotLegs, "tiePilotLegs");
 
-		StarWarsMod.tiePilotBoots = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.tiePilotBoots, "tiePilotBoots");
+		StarWarsItems.tiePilotBoots = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.tiePilotBoots, "tiePilotBoots");
 
-		StarWarsMod.stormtrooperHelmet = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.stormtrooperHelmet, "stormtrooperHelmet");
+		StarWarsItems.stormtrooperHelmet = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.stormtrooperHelmet, "stormtrooperHelmet");
 
-		StarWarsMod.stormtrooperChest = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 1);
-		GameRegistry.registerItem(StarWarsMod.stormtrooperChest, "stormtrooperChest");
+		StarWarsItems.stormtrooperChest = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.stormtrooperChest, "stormtrooperChest");
 
-		StarWarsMod.stormtrooperLegs = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 2);
-		GameRegistry.registerItem(StarWarsMod.stormtrooperLegs, "stormtrooperLegs");
+		StarWarsItems.stormtrooperLegs = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.stormtrooperLegs, "stormtrooperLegs");
 
-		StarWarsMod.stormtrooperBoots = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 3);
-		GameRegistry.registerItem(StarWarsMod.stormtrooperBoots, "stormtrooperBoots");
+		StarWarsItems.stormtrooperBoots = new ArmorStormtrooper(StarWarsMod.stormtrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.stormtrooperBoots, "stormtrooperBoots");
 
-		StarWarsMod.chromiumDust = new ItemChromiumDust();
-		GameRegistry.registerItem(StarWarsMod.chromiumDust, "chromiumDust");
+		StarWarsItems.chromiumDust = new ItemChromiumDust();
+		GameRegistry.registerItem(StarWarsItems.chromiumDust, "chromiumDust");
 
-		StarWarsMod.titaniumChromiumDust = new ItemTitaniumChromiumDust();
-		GameRegistry.registerItem(StarWarsMod.titaniumChromiumDust, "titaniumChromiumDust");
+		StarWarsItems.titaniumChromiumDust = new ItemTitaniumChromiumDust();
+		GameRegistry.registerItem(StarWarsItems.titaniumChromiumDust, "titaniumChromiumDust");
 
-		StarWarsMod.titaniumChromiumIngot = new ItemTitaniumChromiumIngot();
-		GameRegistry.registerItem(StarWarsMod.titaniumChromiumIngot, "titaniumChromiumIngot");
+		StarWarsItems.titaniumChromiumIngot = new ItemTitaniumChromiumIngot();
+		GameRegistry.registerItem(StarWarsItems.titaniumChromiumIngot, "titaniumChromiumIngot");
 
-		StarWarsMod.titaniumDust = new ItemTitaniumDust();
-		GameRegistry.registerItem(StarWarsMod.titaniumDust, "titaniumDust");
+		StarWarsItems.titaniumDust = new ItemTitaniumDust();
+		GameRegistry.registerItem(StarWarsItems.titaniumDust, "titaniumDust");
 
-		StarWarsMod.hyperdriveEngine = new ItemHyperdriveEngine();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveEngine, "hyperdriveEngine");
+		StarWarsItems.hyperdriveEngine = new ItemHyperdriveEngine();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveEngine, "hyperdriveEngine");
 
-		StarWarsMod.hyperdriveMotivator = new ItemHyperdriveMotivator();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveMotivator, "hyperdriveMotivator");
+		StarWarsItems.hyperdriveMotivator = new ItemHyperdriveMotivator();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveMotivator, "hyperdriveMotivator");
 
-		StarWarsMod.hyperdriveTatooine = new ItemHyperdriveTatooine();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveTatooine, "hyperdriveTatooine");
+		StarWarsItems.hyperdriveTatooine = new ItemHyperdriveTatooine();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveTatooine, "hyperdriveTatooine");
 
-		StarWarsMod.hyperdriveMustafar = new ItemHyperdriveMustafar();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveMustafar, "hyperdriveMustafar");
+		StarWarsItems.hyperdriveMustafar = new ItemHyperdriveMustafar();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveMustafar, "hyperdriveMustafar");
 
-		StarWarsMod.hyperdriveIlum = new ItemHyperdriveIlum();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveIlum, "hyperdriveIlum");
+		StarWarsItems.hyperdriveIlum = new ItemHyperdriveIlum();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveIlum, "hyperdriveIlum");
 
-		StarWarsMod.hyperdriveDagobah = new ItemHyperdriveDagobah();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveDagobah, "hyperdriveDagobah");
+		StarWarsItems.hyperdriveDagobah = new ItemHyperdriveDagobah();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveDagobah, "hyperdriveDagobah");
 
-		StarWarsMod.hyperdriveEarth = new ItemHyperdriveEarth();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveEarth, "hyperdriveEarth");
+		StarWarsItems.hyperdriveEarth = new ItemHyperdriveEarth();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveEarth, "hyperdriveEarth");
 
-		StarWarsMod.spawnHothSpeederBike = new ItemSpawnHothSpeederBike();
-		GameRegistry.registerItem(StarWarsMod.spawnHothSpeederBike, "spawnHothSpeederBike");
+		StarWarsItems.spawnHothSpeederBike = new ItemSpawnHothSpeederBike();
+		GameRegistry.registerItem(StarWarsItems.spawnHothSpeederBike, "spawnHothSpeederBike");
 
-		StarWarsMod.spawnSpeederBike = new ItemSpawnSpeederBike();
-		GameRegistry.registerItem(StarWarsMod.spawnSpeederBike, "spawnSpeederBike");
+		StarWarsItems.spawnSpeederBike = new ItemSpawnSpeederBike();
+		GameRegistry.registerItem(StarWarsItems.spawnSpeederBike, "spawnSpeederBike");
 
-		StarWarsMod.hyperdriveHoth = new ItemHyperdriveHoth();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveHoth, "hyperdriveHoth");
+		StarWarsItems.hyperdriveHoth = new ItemHyperdriveHoth();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveHoth, "hyperdriveHoth");
 
-		StarWarsMod.hyperdriveKashyyyk = new ItemHyperdriveKashyyyk();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveKashyyyk, "hyperdriveKashyyyk");
+		StarWarsItems.hyperdriveKashyyyk = new ItemHyperdriveKashyyyk();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveKashyyyk, "hyperdriveKashyyyk");
 
-		StarWarsMod.spawnLandspeeder = new ItemSpawnLandspeeder();
-		GameRegistry.registerItem(StarWarsMod.spawnLandspeeder, "spawnLandspeeder");
+		StarWarsItems.spawnLandspeeder = new ItemSpawnLandspeeder();
+		GameRegistry.registerItem(StarWarsItems.spawnLandspeeder, "spawnLandspeeder");
 
-		StarWarsMod.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveYavin4, "hyperdriveYavinFour");
+		StarWarsItems.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveYavin4, "hyperdriveYavinFour");
 
-		StarWarsMod.hyperdriveEndor = new ItemHyperdriveEndor();
-		GameRegistry.registerItem(StarWarsMod.hyperdriveEndor, "hyperdriveEndor");
+		StarWarsItems.hyperdriveEndor = new ItemHyperdriveEndor();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveEndor, "hyperdriveEndor");
 
-		StarWarsMod.droidCaller = new ItemDroidCaller();
-		GameRegistry.registerItem(StarWarsMod.droidCaller, "droidCaller");
+		StarWarsItems.droidCaller = new ItemDroidCaller();
+		GameRegistry.registerItem(StarWarsItems.droidCaller, "droidCaller");
 
-		StarWarsMod.droidHacker = new ItemDroidHacker();
-		GameRegistry.registerItem(StarWarsMod.droidHacker, "droidHacker");
+		StarWarsItems.droidHacker = new ItemDroidHacker();
+		GameRegistry.registerItem(StarWarsItems.droidHacker, "droidHacker");
 
-		StarWarsMod.spawnAstromech = new ItemSpawnAstromech();
-		GameRegistry.registerItem(StarWarsMod.spawnAstromech, "spawnAstromech");
+		StarWarsItems.spawnAstromech = new ItemSpawnAstromech();
+		GameRegistry.registerItem(StarWarsItems.spawnAstromech, "spawnAstromech");
 
-		StarWarsMod.spawnAstromechImperial = new ItemSpawnAstromechImperial();
-		GameRegistry.registerItem(StarWarsMod.spawnAstromechImperial, "spawnAstromechImperial");
+		StarWarsItems.spawnAstromechImperial = new ItemSpawnAstromechImperial();
+		GameRegistry.registerItem(StarWarsItems.spawnAstromechImperial, "spawnAstromechImperial");
 
-		StarWarsMod.spawnAstromechImperial2 = new ItemSpawnAstromechImperial2();
-		GameRegistry.registerItem(StarWarsMod.spawnAstromechImperial2, "spawnAstromechImperial2");
+		StarWarsItems.spawnAstromechImperial2 = new ItemSpawnAstromechImperial2();
+		GameRegistry.registerItem(StarWarsItems.spawnAstromechImperial2, "spawnAstromechImperial2");
 
-		StarWarsMod.spawnAstromech2 = new ItemSpawnAstromech2();
-		GameRegistry.registerItem(StarWarsMod.spawnAstromech2, "spawnAstromech2");
+		StarWarsItems.spawnAstromech2 = new ItemSpawnAstromech2();
+		GameRegistry.registerItem(StarWarsItems.spawnAstromech2, "spawnAstromech2");
 
-		StarWarsMod.spawnSurgical = new ItemSpawnSurgical();
-		GameRegistry.registerItem(StarWarsMod.spawnSurgical, "spawnSurgical");
+		StarWarsItems.spawnSurgical = new ItemSpawnSurgical();
+		GameRegistry.registerItem(StarWarsItems.spawnSurgical, "spawnSurgical");
 
-		StarWarsMod.spawnTreadwell = new ItemSpawnTreadwell();
+		StarWarsItems.spawnTreadwell = new ItemSpawnTreadwell();
 
-		StarWarsMod.spawnProtocol = new ItemSpawnProtocol();
-		GameRegistry.registerItem(StarWarsMod.spawnProtocol, "spawnProtocol");
+		StarWarsItems.spawnProtocol = new ItemSpawnProtocol();
+		GameRegistry.registerItem(StarWarsItems.spawnProtocol, "spawnProtocol");
 
-		StarWarsMod.spawnProtocol2 = new ItemSpawnProtocol2();
-		GameRegistry.registerItem(StarWarsMod.spawnProtocol2, "spawnProtocol2");
+		StarWarsItems.spawnProtocol2 = new ItemSpawnProtocol2();
+		GameRegistry.registerItem(StarWarsItems.spawnProtocol2, "spawnProtocol2");
 
-		StarWarsMod.spawnMouse = new ItemSpawnMouse();
-		GameRegistry.registerItem(StarWarsMod.spawnMouse, "spawnMouse");
+		StarWarsItems.spawnMouse = new ItemSpawnMouse();
+		GameRegistry.registerItem(StarWarsItems.spawnMouse, "spawnMouse");
 
-		StarWarsMod.spawnProbe = new ItemSpawnProbe();
-		GameRegistry.registerItem(StarWarsMod.spawnProbe, "spawnProbe");
+		StarWarsItems.spawnProbe = new ItemSpawnProbe();
+		GameRegistry.registerItem(StarWarsItems.spawnProbe, "spawnProbe");
 
-		StarWarsMod.spawnGonk = new ItemSpawnGonk();
-		GameRegistry.registerItem(StarWarsMod.spawnGonk, "spawnGonk");
+		StarWarsItems.spawnGonk = new ItemSpawnGonk();
+		GameRegistry.registerItem(StarWarsItems.spawnGonk, "spawnGonk");
 
-		StarWarsMod.imperialCredit = new ItemImperialCredit();
-		GameRegistry.registerItem(StarWarsMod.imperialCredit, "imperialCredit");
+		StarWarsItems.imperialCredit = new ItemImperialCredit();
+		GameRegistry.registerItem(StarWarsItems.imperialCredit, "imperialCredit");
 
-		StarWarsMod.silverImperialCredit = new ItemSilverImperialCredit();
-		GameRegistry.registerItem(StarWarsMod.silverImperialCredit, "silverImperialCredit");
+		StarWarsItems.silverImperialCredit = new ItemSilverImperialCredit();
+		GameRegistry.registerItem(StarWarsItems.silverImperialCredit, "silverImperialCredit");
 
-		StarWarsMod.goldImperialCredit = new ItemGoldImperialCredit();
-		GameRegistry.registerItem(StarWarsMod.goldImperialCredit, "goldImperialCredit");
+		StarWarsItems.goldImperialCredit = new ItemGoldImperialCredit();
+		GameRegistry.registerItem(StarWarsItems.goldImperialCredit, "goldImperialCredit");
 
-		StarWarsMod.banthaChop = new ItemBanthaChop();
-		GameRegistry.registerItem(StarWarsMod.banthaChop, "banthaChop");
+		StarWarsItems.banthaChop = new ItemBanthaChop();
+		GameRegistry.registerItem(StarWarsItems.banthaChop, "banthaChop");
 
-		StarWarsMod.banthaChopCooked = new ItemBanthaChopCooked();
-		GameRegistry.registerItem(StarWarsMod.banthaChopCooked, "banthaChopCooked");
+		StarWarsItems.banthaChopCooked = new ItemBanthaChopCooked();
+		GameRegistry.registerItem(StarWarsItems.banthaChopCooked, "banthaChopCooked");
 
-		StarWarsMod.waterDroplet = new ItemWaterDroplet();
-		GameRegistry.registerItem(StarWarsMod.waterDroplet, "waterDroplet");
+		StarWarsItems.waterDroplet = new ItemWaterDroplet();
+		GameRegistry.registerItem(StarWarsItems.waterDroplet, "waterDroplet");
 
-		StarWarsMod.leiasBuns = new ArmorAddonBuns(StarWarsMod.leiaBunsArmorMat, 1, 0);
-		GameRegistry.registerItem(StarWarsMod.leiasBuns, "leiasBuns");
+		StarWarsItems.leiasBuns = new ArmorAddonBuns(StarWarsMod.leiaBunsArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.leiasBuns, "leiasBuns");
 
-		StarWarsMod.recordTheme = new ItemMusicDisc("Theme");
-		GameRegistry.registerItem(StarWarsMod.recordTheme, "recordTheme");
+		StarWarsItems.recordTheme = new ItemMusicDisc("Theme");
+		GameRegistry.registerItem(StarWarsItems.recordTheme, "recordTheme");
 
-		StarWarsMod.recordThrone = new ItemMusicDisc("Throne");
-		GameRegistry.registerItem(StarWarsMod.recordThrone, "recordThrone");
+		StarWarsItems.recordThrone = new ItemMusicDisc("Throne");
+		GameRegistry.registerItem(StarWarsItems.recordThrone, "recordThrone");
 
-		StarWarsMod.recordBinary = new ItemMusicDisc("Binary");
-		GameRegistry.registerItem(StarWarsMod.recordBinary, "recordBinary");
+		StarWarsItems.recordBinary = new ItemMusicDisc("Binary");
+		GameRegistry.registerItem(StarWarsItems.recordBinary, "recordBinary");
 
-		StarWarsMod.recordImperial = new ItemMusicDisc("Imperial");
-		GameRegistry.registerItem(StarWarsMod.recordImperial, "recordImperial");
+		StarWarsItems.recordImperial = new ItemMusicDisc("Imperial");
+		GameRegistry.registerItem(StarWarsItems.recordImperial, "recordImperial");
 
-		StarWarsMod.recordCantina = new ItemMusicDisc("Cantina");
-		GameRegistry.registerItem(StarWarsMod.recordCantina, "recordCantina");
+		StarWarsItems.recordCantina = new ItemMusicDisc("Cantina");
+		GameRegistry.registerItem(StarWarsItems.recordCantina, "recordCantina");
 
 		Lumberjack.info("Items, reporting for duty!");
 	}

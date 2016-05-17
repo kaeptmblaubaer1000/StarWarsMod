@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.world.PotionList;
@@ -27,7 +27,7 @@ public class MobDroidSurgical extends EntityDroidBase
 		setSize(0.5F, 2.0F);
 		tasks.addTask(0, aiSit);
 		tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		tasks.addTask(2, aiTempt = new EntityAITempt(this, 0.6D, StarWarsMod.droidHacker, true));
+		tasks.addTask(2, aiTempt = new EntityAITempt(this, 0.6D, StarWarsItems.droidHacker, true));
 		tasks.addTask(3, new AiFreqMove(this, 1, 0));
 	}
 
@@ -54,7 +54,7 @@ public class MobDroidSurgical extends EntityDroidBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		dropItem(StarWarsMod.spawnSurgical, 1);
+		dropItem(StarWarsItems.spawnSurgical, 1);
 	}
 
 	@Override
@@ -106,14 +106,14 @@ public class MobDroidSurgical extends EntityDroidBase
 			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
 		if (isTamed())
 		{
-			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack) && itemstack.getItem() == StarWarsMod.droidHacker)
+			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack) && itemstack.getItem() == StarWarsItems.droidHacker)
 			{
 				aiSit.setSitting(!isSitting());
 				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
 				isJumping = false;
 			}
 		}
-		else if (itemstack != null && itemstack.getItem() == StarWarsMod.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
+		else if (itemstack != null && itemstack.getItem() == StarWarsItems.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
 			if (!worldObj.isRemote)
 				if (rand.nextInt(3) == 0)

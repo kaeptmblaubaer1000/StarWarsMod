@@ -1,6 +1,7 @@
 package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +23,7 @@ public class ItemSpawnAstromech extends net.minecraft.item.Item
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnAstromech))
+		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsItems.spawnAstromech))
 			if (!world.isRemote)
 			{
 				MobDroidAstromech newDroid = new MobDroidAstromech(world);

@@ -1,6 +1,7 @@
 package com.parzivail.pswm.items.weapons;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
@@ -68,7 +69,7 @@ public class ItemBlasterPistol extends Item
 
 	public ItemStack getMeta(String string)
 	{
-		return new ItemStack(StarWarsMod.blasterPistol, 1, this.indexOfMeta(string));
+		return new ItemStack(StarWarsItems.blasterPistol, 1, this.indexOfMeta(string));
 	}
 
 	@Override

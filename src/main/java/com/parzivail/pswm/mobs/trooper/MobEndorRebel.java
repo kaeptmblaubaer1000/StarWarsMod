@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
@@ -40,17 +40,17 @@ public class MobEndorRebel extends EntityMob implements IMob, IRangedAttackMob
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.endorHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.endorChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.endorLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.endorBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.endorHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.endorChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.endorLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.endorBoots, 1));
 		switch (rand.nextInt(2))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("A280"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("A280"));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterPistol.getMeta("Dh17"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterPistol.getMeta("Dh17"));
 				break;
 		}
 		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));

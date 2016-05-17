@@ -1,7 +1,7 @@
 package com.parzivail.pswm.utils;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.util.MathUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.item.ItemStack;
@@ -20,117 +20,117 @@ public class LootGenUtils
 		{
 			for (int i = 0; i < rand.nextInt(2) + 1; i++)
 				tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), getWeightedItemForDim(dimId, rand));
-			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsMod.imperialCredit, MathUtils.randomRange(1, 15)));
+			tile.setInventorySlotContents(rand.nextInt(tile.getSizeInventory()), new ItemStack(StarWarsItems.imperialCredit, MathUtils.randomRange(1, 15)));
 		}
 	}
 
 	public static List<WeightedLoot> getLootForDim(int dimId)
 	{
 		List<WeightedLoot> loot = new java.util.ArrayList();
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.imperialCredit, MathUtils.randomRange(1, 6)), baseRarity));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.leiasBuns, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordBinary, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordTheme, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordThrone, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsMod.recordImperial, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.imperialCredit, MathUtils.randomRange(1, 6)), baseRarity));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.leiasBuns, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordBinary, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordTheme, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordThrone, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordImperial, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
 		if (dimId == ConfigOptions.dimEndorId)
 		{
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.endorHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.endorChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.endorLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.endorBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.scoutTrooperHelmet, 1, 0), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.scoutTrooperChest, 1, 0), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.scoutTrooperLegs, 1, 0), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.scoutTrooperBoots, 1, 0), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotHelmet, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotChest, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotLegs, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotBoots, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSpeederBike, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnMouse, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Scout")), baseRarity / 1.2F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 3.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.endorHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.endorChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.endorLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.endorBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.scoutTrooperHelmet, 1, 0), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.scoutTrooperChest, 1, 0), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.scoutTrooperLegs, 1, 0), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.scoutTrooperBoots, 1, 0), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotHelmet, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotChest, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotLegs, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotBoots, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.spawnSpeederBike, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.spawnMouse, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Scout")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "A280")), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "Dlt19")), baseRarity / 3.0F));
 		}
 		else if (dimId == ConfigOptions.dimHothId)
 		{
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.snowtrooperHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.snowtrooperChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.snowtrooperLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.snowtrooperBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.hothHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.hothChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.hothLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.hothBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnHothSpeederBike, 1, 0), baseRarity / 3.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnProtocol2, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.spawnSurgical, 1, 0), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl21")), baseRarity / 1.2F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "T21")), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.snowtrooperHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.snowtrooperChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.snowtrooperLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.snowtrooperBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.hothHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.hothChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.hothLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.hothBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.spawnHothSpeederBike, 1, 0), baseRarity / 3.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.spawnProtocol2, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.spawnSurgical, 1, 0), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dl21")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "A280")), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "Dlt19")), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "T21")), baseRarity / 4.0F));
 		}
 		else if (dimId == ConfigOptions.dimKashyyykId)
 		{
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.stormtrooperBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.tiePilotBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.tiePilotBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "Dlt19")), baseRarity / 2.0F));
 		}
 		else if (dimId == ConfigOptions.dimTatooineId)
 		{
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.sandtrooperHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.sandtrooperChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.sandtrooperLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.sandtrooperBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaHelmet, 1, 0), baseRarity / 4.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaChest, 1, 0), baseRarity / 4.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaJetpack, 1, 0), baseRarity / 8.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaLegs, 1, 0), baseRarity / 4.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.bobaBoots, 1, 0), baseRarity / 4.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl18")), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Dlt19")), baseRarity / 4.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "T21")), baseRarity / 4.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "Esb")), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterHeavy, 1, indexOf(StarWarsMod.blasterHeavy.versions, "Rt97c")), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.sandtrooperHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.sandtrooperChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.sandtrooperLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.sandtrooperBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.bobaHelmet, 1, 0), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.bobaChest, 1, 0), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.bobaJetpack, 1, 0), baseRarity / 8.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.bobaLegs, 1, 0), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.bobaBoots, 1, 0), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "Stormtrooper")), baseRarity / 1.2F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dl18")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "Dlt19")), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "T21")), baseRarity / 4.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "Esb")), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterHeavy, 1, indexOf(StarWarsItems.blasterHeavy.versions, "Rt97c")), baseRarity / 4.0F));
 		}
 		else if (dimId == ConfigOptions.dimYavin4Id)
 		{
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotHelmet, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotChest, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotLegs, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.rebelPilotBoots, 1, 0), baseRarity));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.lightsaberCrystal, 1, indexOf(StarWarsMod.lightsaberCrystal.colors, "red")), baseRarity / 8.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.lightsaberCrystal, 1, indexOf(StarWarsMod.lightsaberCrystal.colors, "green")), baseRarity / 5.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.lightsaberCrystal, 1, indexOf(StarWarsMod.lightsaberCrystal.colors, "blue")), baseRarity / 5.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dh17")), baseRarity / 1.5F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterRifle, 1, indexOf(StarWarsMod.blasterRifle.versions, "A280")), baseRarity / 2.0F));
-			loot.add(new WeightedLoot(new ItemStack(StarWarsMod.blasterPistol, 1, indexOf(StarWarsMod.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotHelmet, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotChest, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotLegs, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.rebelPilotBoots, 1, 0), baseRarity));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.lightsaberCrystal, 1, indexOf(StarWarsItems.lightsaberCrystal.colors, "red")), baseRarity / 8.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.lightsaberCrystal, 1, indexOf(StarWarsItems.lightsaberCrystal.colors, "green")), baseRarity / 5.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.lightsaberCrystal, 1, indexOf(StarWarsItems.lightsaberCrystal.colors, "blue")), baseRarity / 5.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dh17")), baseRarity / 1.5F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterRifle, 1, indexOf(StarWarsItems.blasterRifle.versions, "A280")), baseRarity / 2.0F));
+			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.blasterPistol, 1, indexOf(StarWarsItems.blasterPistol.versions, "Dl44")), baseRarity / 1.5F));
 		}
 		return loot;
 	}

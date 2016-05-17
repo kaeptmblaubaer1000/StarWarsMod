@@ -1,6 +1,7 @@
 package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
@@ -86,7 +87,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	@Override
 	public void initGui()
 	{
-		stackShowing = new ItemStack(StarWarsMod.lightsaberNew[0], 1);
+		stackShowing = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
 		ItemLightsaber.setupNBT(0, stackShowing);
 		if (player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemLightsaber)
 			stackShowing = player.inventory.getCurrentItem().copy();

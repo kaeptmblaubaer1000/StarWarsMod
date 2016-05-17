@@ -1,6 +1,6 @@
 package com.parzivail.pswm.tabs;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,6 +20,6 @@ public class StarWarsTab extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return StarWarsMod.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("luke2")];
+		return StarWarsItems.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("luke2")];
 	}
 }

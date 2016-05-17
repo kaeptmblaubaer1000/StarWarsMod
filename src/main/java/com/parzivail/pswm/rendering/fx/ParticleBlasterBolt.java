@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.fx;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
 
@@ -22,7 +22,7 @@ public class ParticleBlasterBolt extends EntityFX
 		this.particleScale = 1.0F;
 		this.setRBGColorF(0xFF, 0x00, 0x00);
 
-		this.particleIcon = StarWarsMod.blasterBolt.getIconFromDamage(0);
+		this.particleIcon = StarWarsItems.blasterBolt.getIconFromDamage(0);
 	}
 
 	/**

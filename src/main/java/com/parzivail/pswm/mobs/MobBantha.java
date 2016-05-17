@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
@@ -55,11 +55,11 @@ public class MobBantha extends EntityHorse implements IShearable
 	public void dropFewItems(boolean par1, int par2)
 	{
 		List<WeightedLoot> drop = new java.util.ArrayList();
-		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaHorn, 1), LootGenUtils.baseRarity / 1.5F));
+		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.banthaHorn, 1), LootGenUtils.baseRarity / 1.5F));
 		if (isBurning())
-			drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaChopCooked, 1), LootGenUtils.baseRarity));
+			drop.add(new WeightedLoot(new ItemStack(StarWarsItems.banthaChopCooked, 1), LootGenUtils.baseRarity));
 		else
-			drop.add(new WeightedLoot(new ItemStack(StarWarsMod.banthaChop, 1), LootGenUtils.baseRarity));
+			drop.add(new WeightedLoot(new ItemStack(StarWarsItems.banthaChop, 1), LootGenUtils.baseRarity));
 		entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0.0F);
 	}
 
@@ -191,9 +191,9 @@ public class MobBantha extends EntityHorse implements IShearable
 		if (itemstack != null && itemstack.getItem() == Items.bucket && !p_70085_1_.capabilities.isCreativeMode)
 		{
 			if (itemstack.stackSize-- == 1)
-				p_70085_1_.inventory.setInventorySlotContents(p_70085_1_.inventory.currentItem, new ItemStack(StarWarsMod.banthaMilk));
-			else if (!p_70085_1_.inventory.addItemStackToInventory(new ItemStack(StarWarsMod.banthaMilk)))
-				p_70085_1_.dropPlayerItemWithRandomChoice(new ItemStack(StarWarsMod.banthaMilk, 1, 0), false);
+				p_70085_1_.inventory.setInventorySlotContents(p_70085_1_.inventory.currentItem, new ItemStack(StarWarsItems.banthaMilk));
+			else if (!p_70085_1_.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.banthaMilk)))
+				p_70085_1_.dropPlayerItemWithRandomChoice(new ItemStack(StarWarsItems.banthaMilk, 1, 0), false);
 			return true;
 		}
 		return super.interact(p_70085_1_);

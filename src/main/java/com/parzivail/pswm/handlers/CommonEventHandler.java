@@ -1,6 +1,7 @@
 package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.*;
@@ -181,12 +182,12 @@ public class CommonEventHandler
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUEST, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
 		{
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 			{
 				String current = ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer);
 				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(StarWarsMod.mc.thePlayer), ArmorJediRobes.getLevel(StarWarsMod.mc.thePlayer));
@@ -217,7 +218,7 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePowerPrev.isPressed())
 		{
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 			{
 				String current = ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer);
 				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(StarWarsMod.mc.thePlayer), ArmorJediRobes.getLevel(StarWarsMod.mc.thePlayer));
@@ -248,7 +249,7 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 		{
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 			{
 				Power active = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
 
@@ -398,7 +399,7 @@ public class CommonEventHandler
 				it.remove();
 		}
 
-		if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 		{
 			ItemStack robes = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
 			int level = ArmorJediRobes.getLevel(robes);

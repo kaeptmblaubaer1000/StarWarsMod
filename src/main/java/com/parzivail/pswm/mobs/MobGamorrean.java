@@ -1,6 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.entity.Entity;
@@ -29,13 +30,13 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 		switch (StarWarsMod.rngGeneral.nextInt(3))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx1, 1));
+				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsItems.gamorreanAx1, 1));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx2, 1));
+				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsItems.gamorreanAx2, 1));
 				break;
 			case 2:
-				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.gamorreanAx3, 1));
+				setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsItems.gamorreanAx3, 1));
 				break;
 		}
 	}
@@ -82,7 +83,7 @@ public class MobGamorrean extends EntityMob implements net.minecraft.entity.mons
 		switch (rand.nextInt(10))
 		{
 			case 0:
-				dropItem(StarWarsMod.gamorreanAx1, 1);
+				dropItem(StarWarsItems.gamorreanAx1, 1);
 		}
 	}
 

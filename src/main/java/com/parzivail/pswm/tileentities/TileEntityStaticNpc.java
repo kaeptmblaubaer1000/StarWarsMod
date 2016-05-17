@@ -1,6 +1,6 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -119,11 +119,11 @@ public class TileEntityStaticNpc extends TileEntity
 		{
 			internalBiped = new MobDefaultBiped(this.worldObj);
 
-			internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.snowtrooperHelmet, 1));
-			internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.snowtrooperChest, 1));
-			internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.snowtrooperLegs, 1));
-			internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.snowtrooperBoots, 1));
-			internalBiped.setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
+			internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
+			internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
+			internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
+			internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
+			internalBiped.setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
 		}
 		return internalBiped;
 	}

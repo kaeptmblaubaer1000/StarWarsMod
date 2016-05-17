@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
@@ -43,23 +43,23 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.sandtrooperHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.sandtrooperChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.sandtrooperLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.sandtrooperBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.sandtrooperHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.sandtrooperChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.sandtrooperLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.sandtrooperBoots, 1));
 		switch (rand.nextInt(4))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("T21"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("T21"));
 				break;
 			case 2:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Dlt19"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Dlt19"));
 				break;
 			case 3:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Rt97c"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Rt97c"));
 				break;
 		}
 		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
@@ -115,9 +115,9 @@ public class MobSandtrooper extends EntityMob implements IMob, IRangedAttackMob
 	public void dropFewItems(boolean par1, int par2)
 	{
 		List<WeightedLoot> drop = new ArrayList();
-		drop.add(new WeightedLoot(StarWarsMod.blasterRifle.getMeta("Stormtrooper"), LootGenUtils.baseRarity / 2.0F));
-		drop.add(new WeightedLoot(StarWarsMod.blasterHeavy.getMeta("T21"), LootGenUtils.baseRarity / 2.0F));
-		drop.add(new WeightedLoot(StarWarsMod.blasterHeavy.getMeta("Rt97c"), LootGenUtils.baseRarity / 2.0F));
+		drop.add(new WeightedLoot(StarWarsItems.blasterRifle.getMeta("Stormtrooper"), LootGenUtils.baseRarity / 2.0F));
+		drop.add(new WeightedLoot(StarWarsItems.blasterHeavy.getMeta("T21"), LootGenUtils.baseRarity / 2.0F));
+		drop.add(new WeightedLoot(StarWarsItems.blasterHeavy.getMeta("Rt97c"), LootGenUtils.baseRarity / 2.0F));
 		switch (rand.nextInt(5))
 		{
 			case 0:

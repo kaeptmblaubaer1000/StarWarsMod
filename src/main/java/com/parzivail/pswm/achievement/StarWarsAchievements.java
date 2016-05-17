@@ -1,6 +1,6 @@
 package com.parzivail.pswm.achievement;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -26,16 +26,16 @@ public class StarWarsAchievements
 
 	public static void registerAll()
 	{
-		becomeJedi = new StarWarsAchievement("becomeJedi", -2, -1, StarWarsMod.jediRobes, null);
-		fireBlaster = new StarWarsAchievement("fireBlaster", 2, -2, StarWarsMod.blasterRifle.getMeta("Stormtrooper"), null);
-		craftLightsaber = new StarWarsAchievement("craftLightsaber", -1, 2, new ItemStack(StarWarsMod.lightsaberNew[9], 1, 2), null);
-		craftHyperdrive = new StarWarsAchievement("craftHyperdrive", 1, 0, StarWarsMod.hyperdriveEngine, null);
-		travelTatooine = new StarWarsAchievement("travelTatooine", 2, 1, StarWarsMod.hyperdriveTatooine, craftHyperdrive);
-		travelHoth = new StarWarsAchievement("travelHoth", 2, 2, StarWarsMod.hyperdriveHoth, craftHyperdrive);
-		travelYavin = new StarWarsAchievement("travelYavin", 2, 3, StarWarsMod.hyperdriveYavin4, craftHyperdrive);
-		travelEndor = new StarWarsAchievement("travelEndor", 2, 4, StarWarsMod.hyperdriveEndor, craftHyperdrive);
-		travelKashyyyk = new StarWarsAchievement("travelKashyyyk", 2, 5, StarWarsMod.hyperdriveKashyyyk, craftHyperdrive);
-		ezraBlaster = new StarWarsAchievement("ezraBlaster", -4, 5, StarWarsMod.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("ezra")], null);
+		becomeJedi = new StarWarsAchievement("becomeJedi", -2, -1, StarWarsItems.jediRobes, null);
+		fireBlaster = new StarWarsAchievement("fireBlaster", 2, -2, StarWarsItems.blasterRifle.getMeta("Stormtrooper"), null);
+		craftLightsaber = new StarWarsAchievement("craftLightsaber", -1, 2, new ItemStack(StarWarsItems.lightsaberNew[9], 1, 2), null);
+		craftHyperdrive = new StarWarsAchievement("craftHyperdrive", 1, 0, StarWarsItems.hyperdriveEngine, null);
+		travelTatooine = new StarWarsAchievement("travelTatooine", 2, 1, StarWarsItems.hyperdriveTatooine, craftHyperdrive);
+		travelHoth = new StarWarsAchievement("travelHoth", 2, 2, StarWarsItems.hyperdriveHoth, craftHyperdrive);
+		travelYavin = new StarWarsAchievement("travelYavin", 2, 3, StarWarsItems.hyperdriveYavin4, craftHyperdrive);
+		travelEndor = new StarWarsAchievement("travelEndor", 2, 4, StarWarsItems.hyperdriveEndor, craftHyperdrive);
+		travelKashyyyk = new StarWarsAchievement("travelKashyyyk", 2, 5, StarWarsItems.hyperdriveKashyyyk, craftHyperdrive);
+		ezraBlaster = new StarWarsAchievement("ezraBlaster", -4, 5, StarWarsItems.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("ezra")], null);
 		page = new AchievementPage("Star Wars", StarWarsAchievement.achievements.toArray(new Achievement[StarWarsAchievement.achievements.size()]));
 		AchievementPage.registerAchievementPage(page);
 		FMLCommonHandler.instance().bus().register(new AchievementTrigger());

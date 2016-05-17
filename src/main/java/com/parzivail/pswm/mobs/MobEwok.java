@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
@@ -21,7 +21,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 		setSize(0.5F, 1.5F);
 		dw = super.getDataWatcher();
 		tasks.addTask(0, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsMod.ewokSpear, 1));
+		setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsItems.ewokSpear, 1));
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 		switch (rand.nextInt(60))
 		{
 			case 36:
-				dropItem(StarWarsMod.ewokSpear, 1);
+				dropItem(StarWarsItems.ewokSpear, 1);
 		}
 		return Item.getItemFromBlock(net.minecraft.init.Blocks.leaves);
 	}

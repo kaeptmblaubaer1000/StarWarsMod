@@ -1,6 +1,7 @@
 package com.parzivail.pswm.blocks.ore;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.Block;
@@ -27,6 +28,6 @@ public class BlockTitaniumOre extends Block
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsMod.titaniumDust;
+		return StarWarsItems.titaniumDust;
 	}
 }

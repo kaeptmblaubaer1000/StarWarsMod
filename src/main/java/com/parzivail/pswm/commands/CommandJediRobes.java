@@ -1,7 +1,7 @@
 package com.parzivail.pswm.commands;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -56,7 +56,7 @@ public class CommandJediRobes extends CommandBase
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
-		if (player != null && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
+		if (player != null && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
 			ItemStack robes = player.inventory.armorItemInSlot(2);
 			ArmorJediRobes.getXP(robes);
@@ -83,7 +83,7 @@ public class CommandJediRobes extends CommandBase
 				icommandsender.addChatMessage(new ChatComponentText("Error: player is null!"));
 			else if (player.inventory.armorItemInSlot(2) == null)
 				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
-			else if (player.inventory.armorItemInSlot(2).getItem() != StarWarsMod.jediRobes)
+			else if (player.inventory.armorItemInSlot(2).getItem() != StarWarsItems.jediRobes)
 				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
 			else
 				icommandsender.addChatMessage(new ChatComponentText("Unknown key!"));

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
@@ -40,16 +40,16 @@ public class MobBountyhunter extends EntityMob implements IMob, IRangedAttackMob
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.bobaHelmet, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.bobaLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.bobaBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.bobaHelmet, 1));
+		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.bobaLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.bobaBoots, 1));
 		switch (rand.nextInt(2))
 		{
 			case 0:
-				setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.bobaChest, 1));
+				setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.bobaChest, 1));
 				break;
 			case 1:
-				setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.bobaJetpackChest, 1));
+				setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.bobaJetpackChest, 1));
 				break;
 		}
 		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));

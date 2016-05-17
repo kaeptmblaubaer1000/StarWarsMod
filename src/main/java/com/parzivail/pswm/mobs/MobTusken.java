@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -40,10 +40,10 @@ public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
 		switch (rand.nextInt(3))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, new ItemStack(StarWarsMod.gaffiStick, 1));
+				setCurrentItemOrArmor(0, new ItemStack(StarWarsItems.gaffiStick, 1));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Cycler"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Cycler"));
 				tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
 				break;
 		}

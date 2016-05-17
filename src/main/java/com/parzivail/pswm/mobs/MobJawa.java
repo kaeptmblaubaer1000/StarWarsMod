@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
@@ -69,9 +69,9 @@ public class MobJawa extends EntityMob implements IMob
 	public void dropFewItems(boolean par1, int par2)
 	{
 		List<WeightedLoot> drop = new ArrayList();
-		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.hiltMetelCompound, 1), LootGenUtils.baseRarity));
-		drop.add(new WeightedLoot(new ItemStack(StarWarsMod.droidCaller, 1), LootGenUtils.baseRarity / 1.2F));
-		drop.add(new WeightedLoot(StarWarsMod.blasterRifle.getMeta("Ionization"), LootGenUtils.baseRarity / 2.0F));
+		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.hiltMetelCompound, 1), LootGenUtils.baseRarity));
+		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.droidCaller, 1), LootGenUtils.baseRarity / 1.2F));
+		drop.add(new WeightedLoot(StarWarsItems.blasterRifle.getMeta("Ionization"), LootGenUtils.baseRarity / 2.0F));
 		switch (rand.nextInt(5))
 		{
 			case 0:

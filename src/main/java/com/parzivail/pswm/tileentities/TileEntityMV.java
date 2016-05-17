@@ -1,6 +1,6 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -160,7 +160,7 @@ public class TileEntityMV extends TileEntity implements IInventory
 		{
 			this.progressTicks = 1;
 			if (this.waterDroplets == null)
-				this.waterDroplets = new ItemStack(StarWarsMod.waterDroplet, 1);
+				this.waterDroplets = new ItemStack(StarWarsItems.waterDroplet, 1);
 			else if (this.waterDroplets.stackSize < 64)
 				this.waterDroplets.stackSize += 1;
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);

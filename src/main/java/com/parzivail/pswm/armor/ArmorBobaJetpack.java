@@ -1,6 +1,7 @@
 package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.models.armor.ModelJetpack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -36,7 +37,7 @@ public class ArmorBobaJetpack extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
-		if (itemstack.getItem() == com.parzivail.pswm.StarWarsMod.bobaJetpackChest)
+		if (itemstack.getItem() == StarWarsItems.bobaJetpackChest)
 		{
 			if (h == null)
 				h = new ModelJetpack();

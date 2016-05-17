@@ -2,6 +2,7 @@ package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
@@ -436,7 +437,7 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onXpPickup(PlayerPickupXpEvent event)
 	{
-		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 		{
 			int currentLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
 			if (StarWarsMod.rngGeneral.nextInt(100) <= ArmorJediRobes.getPercentForLevel(currentLevels))

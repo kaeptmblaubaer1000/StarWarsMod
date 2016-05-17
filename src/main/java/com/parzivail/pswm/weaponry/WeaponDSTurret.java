@@ -1,6 +1,6 @@
 package com.parzivail.pswm.weaponry;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
@@ -22,7 +22,7 @@ public class WeaponDSTurret extends WeaponSwivelBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnSpeederBike, 1);
+		this.dropItem(StarWarsItems.spawnSpeederBike, 1);
 	}
 
 	@Override

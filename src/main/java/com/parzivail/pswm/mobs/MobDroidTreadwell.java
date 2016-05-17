@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -46,7 +46,7 @@ public class MobDroidTreadwell extends EntityTameable
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		dropItem(StarWarsMod.spawnTreadwell, 1);
+		dropItem(StarWarsItems.spawnTreadwell, 1);
 	}
 
 	@Override

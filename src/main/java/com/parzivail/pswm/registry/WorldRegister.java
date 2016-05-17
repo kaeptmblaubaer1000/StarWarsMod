@@ -2,6 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.dimension.dagobah.BiomeGenDagobah;
@@ -116,7 +117,7 @@ public class WorldRegister
 		hoth.addTerrain("Tundras");
 		hoth.addTerrain("Frozen Plains");
 		hoth.addResource("None");
-		hoth.setHyperdrive(StarWarsMod.hyperdriveHoth);
+		hoth.setHyperdrive(StarWarsItems.hyperdriveHoth);
 		Resources.planetInformation.add(hoth);
 
 		PlanetInformation earth = new PlanetInformation();
@@ -140,7 +141,7 @@ public class WorldRegister
 		earth.addNativeSpecies("Human");
 		earth.setSuns(1);
 		earth.setMoons(1);
-		earth.setHyperdrive(StarWarsMod.hyperdriveEarth);
+		earth.setHyperdrive(StarWarsItems.hyperdriveEarth);
 		Resources.planetInformation.add(earth);
 
 		PlanetInformation coruscant = new PlanetInformation();
@@ -167,7 +168,7 @@ public class WorldRegister
 		dagobah.addTerrain("Bogs");
 		dagobah.addTerrain("Jungles");
 		dagobah.addResource("None");
-		dagobah.setHyperdrive(StarWarsMod.hyperdriveDagobah);
+		dagobah.setHyperdrive(StarWarsItems.hyperdriveDagobah);
 		Resources.planetInformation.add(dagobah);
 
 		PlanetInformation dathomir = new PlanetInformation();
@@ -194,7 +195,7 @@ public class WorldRegister
 		endor.addTerrain("Mountains");
 		endor.addTerrain("Lakes");
 		endor.addResource("None");
-		endor.setHyperdrive(StarWarsMod.hyperdriveEndor);
+		endor.setHyperdrive(StarWarsItems.hyperdriveEndor);
 		Resources.planetInformation.add(endor);
 
 		PlanetInformation geonosis = new PlanetInformation();
@@ -227,7 +228,7 @@ public class WorldRegister
 		tatooine.addTerrain("Canyons");
 		tatooine.addTerrain("Rocky Bluffs");
 		tatooine.addResource("Bene");
-		tatooine.setHyperdrive(StarWarsMod.hyperdriveTatooine);
+		tatooine.setHyperdrive(StarWarsItems.hyperdriveTatooine);
 		Resources.planetInformation.add(tatooine);
 
 		PlanetInformation ryloth = new PlanetInformation();
@@ -254,7 +255,7 @@ public class WorldRegister
 		ilum.addTerrain("Crystal Caves");
 		ilum.addTerrain("Icy Mountains");
 		ilum.addResource("Kyber Crystal");
-		ilum.setHyperdrive(StarWarsMod.hyperdriveIlum);
+		ilum.setHyperdrive(StarWarsItems.hyperdriveIlum);
 		Resources.planetInformation.add(ilum);
 
 		PlanetInformation kamino = new PlanetInformation();
@@ -279,7 +280,7 @@ public class WorldRegister
 		kashyyyk.addResource("None");
 		kashyyyk.setSuns(1);
 		kashyyyk.setMoons(3);
-		kashyyyk.setHyperdrive(StarWarsMod.hyperdriveKashyyyk);
+		kashyyyk.setHyperdrive(StarWarsItems.hyperdriveKashyyyk);
 		Resources.planetInformation.add(kashyyyk);
 
 		PlanetInformation kessel = new PlanetInformation();
@@ -366,7 +367,7 @@ public class WorldRegister
 		yavin4.addResource("None");
 		yavin4.addTerrain("Jungles");
 		yavin4.addTerrain("Rainforests");
-		yavin4.setHyperdrive(StarWarsMod.hyperdriveYavin4);
+		yavin4.setHyperdrive(StarWarsItems.hyperdriveYavin4);
 		Resources.planetInformation.add(yavin4);
 
 		PlanetInformation jakku = new PlanetInformation();

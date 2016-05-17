@@ -1,6 +1,7 @@
 package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.armor.ModelBackpackSnow;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
@@ -24,7 +25,7 @@ public class ArmorSnowtrooper extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemstack, int armorSlot)
 	{
-		if (itemstack.getItem() == StarWarsMod.snowtrooperChest)
+		if (itemstack.getItem() == StarWarsItems.snowtrooperChest)
 		{
 			if (h == null)
 				h = new ModelBackpackSnow();

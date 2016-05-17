@@ -126,34 +126,34 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterEzraBolt.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 
-		for (ItemLightsaber i : StarWarsMod.lightsaberNew)
+		for (ItemLightsaber i : StarWarsItems.lightsaberNew)
 			MinecraftForgeClient.registerItemRenderer(i, new RenderLightsaber());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.lightsaberOff, new RenderLightsaber());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.lightsaberOff, new RenderLightsaber());
 
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterPistol, new RenderBlasterPistol());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterRifle, new RenderBlasterRifle());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.blasterHeavy, new RenderBlasterHeavy());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.bowcaster, new RenderBowcaster());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx1, new RenderGamS());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx2, new RenderGamM());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gamorreanAx3, new RenderGamL());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.vibroLance, new RenderVibro());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.ewokSpear, new RenderSpear());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.gaffiStick, new RenderGaffi());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.binoculars, new RenderBinocularsNew());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnXwing, new RenderSpawnXWing());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnYwing, new RenderSpawnYWing());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTie, new RenderSpawnTIE());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTieInterceptor, new RenderSpawnTIEInterceptor());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnTieAdvanced, new RenderSpawnTIEAdvanced());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnAtst, new RenderSpawnATST());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnSkyhopper, new RenderSpawnSkyhopper());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnSnowspeeder, new RenderSpawnSnowspeeder());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnAwing, new RenderSpawnAWing());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnSpeederBike, new RenderSpawnSpeederBike());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnHothSpeederBike, new RenderSpawnHothSpeederBike());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnLandspeeder, new RenderSpawnLandspeeder());
-		MinecraftForgeClient.registerItemRenderer(StarWarsMod.spawnJakkuSpeeder, new RenderSpawnJakkuSpeeder());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.blasterPistol, new RenderBlasterPistol());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.blasterRifle, new RenderBlasterRifle());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.blasterHeavy, new RenderBlasterHeavy());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.bowcaster, new RenderBowcaster());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.gamorreanAx1, new RenderGamS());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.gamorreanAx2, new RenderGamM());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.gamorreanAx3, new RenderGamL());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.vibroLance, new RenderVibro());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.ewokSpear, new RenderSpear());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.gaffiStick, new RenderGaffi());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.binoculars, new RenderBinocularsNew());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnXwing, new RenderSpawnXWing());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnYwing, new RenderSpawnYWing());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnTie, new RenderSpawnTIE());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnTieInterceptor, new RenderSpawnTIEInterceptor());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnTieAdvanced, new RenderSpawnTIEAdvanced());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAtst, new RenderSpawnATST());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnSkyhopper, new RenderSpawnSkyhopper());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnSnowspeeder, new RenderSpawnSnowspeeder());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAwing, new RenderSpawnAWing());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnSpeederBike, new RenderSpawnSpeederBike());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnHothSpeederBike, new RenderSpawnHothSpeederBike());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnLandspeeder, new RenderSpawnLandspeeder());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnJakkuSpeeder, new RenderSpawnJakkuSpeeder());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new RenderAntenna());

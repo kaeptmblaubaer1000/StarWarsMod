@@ -1,6 +1,6 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
@@ -19,7 +19,7 @@ public class VehicHothSpeederBike extends VehicleLandBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnHothSpeederBike, 1);
+		this.dropItem(StarWarsItems.spawnHothSpeederBike, 1);
 	}
 
 	@Override

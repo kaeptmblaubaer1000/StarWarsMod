@@ -1,6 +1,7 @@
 package com.parzivail.pswm.jedirobes;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.models.armor.ModelCompressionArmor;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
@@ -197,7 +198,7 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		if (player == null)
 			return null;
-		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 			return player.inventory.armorItemInSlot(2);
 		return null;
 	}

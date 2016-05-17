@@ -2,6 +2,7 @@ package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import net.minecraft.block.Block;
@@ -133,7 +134,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 			if (pos.entityHit instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
-				if (entityPlayer.inventory.armorItemInSlot(2) != null && entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+				if (entityPlayer.inventory.armorItemInSlot(2) != null && entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 				{
 					ItemStack stack = entityPlayer.inventory.armorItemInSlot(2);
 
@@ -152,7 +153,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 						this.setDead();
 					}
 				}
-				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsMod.lightsaber))
+				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsItems.lightsaber))
 				{
 					Vec3 vec3 = entityPlayer.getLookVec();
 					if (vec3 != null)

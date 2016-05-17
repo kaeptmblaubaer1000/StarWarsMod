@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
@@ -40,10 +40,10 @@ public class MobAtatPilot extends EntityMob implements IMob, IRangedAttackMob
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.atatPilotHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.atatPilotChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.atatPilotLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.atatPilotBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.atatPilotHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.atatPilotChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.atatPilotLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.atatPilotBoots, 1));
 		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
 	}
 

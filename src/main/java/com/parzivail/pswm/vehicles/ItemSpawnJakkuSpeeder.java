@@ -1,6 +1,7 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,7 +22,7 @@ public class ItemSpawnJakkuSpeeder extends net.minecraft.item.Item
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnJakkuSpeeder))
+		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsItems.spawnJakkuSpeeder))
 			if (!world.isRemote)
 			{
 				VehicJakkuSpeeder newVehic = new VehicJakkuSpeeder(world);

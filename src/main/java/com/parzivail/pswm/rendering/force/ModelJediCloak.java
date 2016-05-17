@@ -1,6 +1,7 @@
 package com.parzivail.pswm.rendering.force;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -89,7 +90,7 @@ public class ModelJediCloak extends ModelBiped
 
 	public void renderCloak(RenderPlayerEvent.Specials.Post event)
 	{
-		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 		{
 			GL11.glPushMatrix();
 			// GL11.glTranslatef(0.0F, -0.25F, 0.125F);

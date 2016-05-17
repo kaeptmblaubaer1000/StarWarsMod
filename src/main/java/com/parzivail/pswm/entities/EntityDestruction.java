@@ -1,7 +1,7 @@
 package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -91,7 +91,7 @@ public class EntityDestruction extends EntityThrowable
 	{
 		if (true)
 			return;
-		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsMod.lightsaber) && player.isBlocking())
+		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsItems.lightsaber) && player.isBlocking())
 		{
 			Vec3 vec3 = player.getLookVec();
 			if (vec3 != null)

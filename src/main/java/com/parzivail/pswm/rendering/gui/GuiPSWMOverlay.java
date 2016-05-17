@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
@@ -48,11 +49,11 @@ public class GuiPSWMOverlay extends Gui
 		for (ItemStack stack : this.mc.thePlayer.inventory.mainInventory)
 			if (stack != null && stack.getItem() != null)
 			{
-				if (stack.getItem() == StarWarsMod.imperialCredit)
+				if (stack.getItem() == StarWarsItems.imperialCredit)
 					credits += stack.stackSize;
-				if (stack.getItem() == StarWarsMod.silverImperialCredit)
+				if (stack.getItem() == StarWarsItems.silverImperialCredit)
 					credits += stack.stackSize * 9;
-				if (stack.getItem() == StarWarsMod.goldImperialCredit)
+				if (stack.getItem() == StarWarsItems.goldImperialCredit)
 					credits += stack.stackSize * 81;
 			}
 		return credits;
@@ -67,11 +68,11 @@ public class GuiPSWMOverlay extends Gui
 		RenderHelper.disableStandardItemLighting();
 
 		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + Resources.VERSION, 5, 5, 16777215);
-		ClientEventHandler.pgui.renderItem(23, 12, new ItemStack(StarWarsMod.imperialCredit, this.countCredits()));
+		ClientEventHandler.pgui.renderItem(23, 12, new ItemStack(StarWarsItems.imperialCredit, this.countCredits()));
 
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
-		if (this.mc.thePlayer.inventory.armorItemInSlot(2) != null && this.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsMod.jediRobes)
+		if (this.mc.thePlayer.inventory.armorItemInSlot(2) != null && this.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
 		{
 
 			ItemStack robes = this.mc.thePlayer.inventory.armorItemInSlot(2);

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
@@ -40,20 +40,20 @@ public class MobSnowtrooper extends EntityMob implements IMob, IRangedAttackMob
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsMod.snowtrooperHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsMod.snowtrooperChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsMod.snowtrooperLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsMod.snowtrooperBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
 		switch (rand.nextInt(3))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterRifle.getMeta("Stormtrooper"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("Dlt19"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Dlt19"));
 				break;
 			case 2:
-				setCurrentItemOrArmor(0, StarWarsMod.blasterHeavy.getMeta("T21"));
+				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("T21"));
 				break;
 		}
 		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));

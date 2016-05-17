@@ -2,6 +2,7 @@ package com.parzivail.pswm.items.weapons;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageToggleLightsaber;
 import com.parzivail.util.ui.TextUtils;
@@ -68,7 +69,7 @@ public class ItemOldLightsaber extends ItemSword
 
 	public static boolean isLightsaber(ItemStack stack)
 	{
-		return stack != null && (stack.getItem() == StarWarsMod.lightsaber);
+		return stack != null && (stack.getItem() == StarWarsItems.lightsaber);
 	}
 
 	@Override

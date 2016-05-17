@@ -1,6 +1,7 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.util.vehicle.VehicleAirBase;
@@ -26,7 +27,7 @@ public class VehicSkyhopper extends VehicleAirBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnSkyhopper, 1);
+		this.dropItem(StarWarsItems.spawnSkyhopper, 1);
 	}
 
 	@Override

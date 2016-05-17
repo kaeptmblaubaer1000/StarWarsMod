@@ -1,6 +1,7 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +33,7 @@ public class ItemSpawnTIE extends net.minecraft.item.Item
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsMod.spawnTie))
+		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsItems.spawnTie))
 			if (!world.isRemote)
 			{
 				VehicTIE newVehic = new VehicTIE(world);

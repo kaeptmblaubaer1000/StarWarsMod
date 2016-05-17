@@ -1,7 +1,7 @@
 package com.parzivail.pswm.utils;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -56,7 +56,7 @@ public class BlasterUtils
 		if (entity instanceof EntityPlayer)
 		{
 			EntityPlayer p = (EntityPlayer)entity;
-			if (p.inventory.consumeInventoryItem(StarWarsMod.powerpack))
+			if (p.inventory.consumeInventoryItem(StarWarsItems.powerpack))
 			{
 				setShotsLeft(stack, 10);
 				return true;

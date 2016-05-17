@@ -1,7 +1,7 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
@@ -20,7 +20,7 @@ public class VehicTIE extends VehicleAirBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsMod.spawnTie, 1);
+		this.dropItem(StarWarsItems.spawnTie, 1);
 	}
 
 	@Override
