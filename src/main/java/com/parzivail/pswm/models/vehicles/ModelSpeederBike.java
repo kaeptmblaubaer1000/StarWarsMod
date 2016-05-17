@@ -1,8 +1,10 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.util.vehicle.VehicleBase;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class ModelSpeederBike extends ModelBase
 {
@@ -320,6 +322,37 @@ public class ModelSpeederBike extends ModelBase
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+		if (entity instanceof VehicleBase && entity.riddenByEntity instanceof EntityPlayer)
+		{
+			VehicleBase vb = (VehicleBase)entity;
+			float s = ((EntityPlayer)entity.riddenByEntity).moveForward / 5f;
+
+			float rx = (vb.tilt > 0) ? 0.4f * (vb.tilt / vb.tiltMax) : 0;
+			float ry = (vb.tilt <= 0) ? -0.4f * (vb.tilt / vb.tiltMax) : 0;
+
+			this.Handle_R_1.rotateAngleX = 0.2094395F + s + 0.2f * (vb.tilt / vb.tiltMax);
+			this.Handle_R_2.rotateAngleX = -0.418879F + s + 0.2f * (vb.tilt / vb.tiltMax);
+			this.Handle_R_3.rotateAngleX = -0.418879F + s + 0.2f * (vb.tilt / vb.tiltMax);
+			this.Handle_L_1.rotateAngleX = 0.2094395F + -0.2f * (vb.tilt / vb.tiltMax);
+			this.Handle_L_2.rotateAngleX = -0.418879F + -0.2f * (vb.tilt / vb.tiltMax);
+			this.Handle_L_3.rotateAngleX = -0.418879F + -0.2f * (vb.tilt / vb.tiltMax);
+
+			this.Flap_L.rotateAngleX = rx;
+			this.Flap_R.rotateAngleX = ry;
+		}
+		else
+		{
+			this.Handle_R_1.rotateAngleX = 0.2094395F;
+			this.Handle_R_2.rotateAngleX = -0.418879F;
+			this.Handle_R_3.rotateAngleX = -0.418879F;
+			this.Handle_L_1.rotateAngleX = 0.2094395F;
+			this.Handle_L_2.rotateAngleX = -0.418879F;
+			this.Handle_L_3.rotateAngleX = -0.418879F;
+			this.Flap_L.rotateAngleX = 0.1396263F;
+			this.Flap_R.rotateAngleX = 0.1396263F;
+		}
+
 		this.Seat.render(f5);
 		this.Body_Back_Main.render(f5);
 		this.Saddlebag_L.render(f5);
