@@ -59,7 +59,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		public void tick()
 		{
 			this.position = route.getPointAlongPath(animation.getTick() / (float)animation.getLength());
-			FPoint p = route.getPointAlongPath((animation.getTick() + 1 * (animation.isReverse() ? -1 : 1)) / (float)animation.getLength());
+			FPoint p = route.getPointAlongPath((animation.getTick() + (animation.isReverse() ? -1 : 1)) / (float)animation.getLength());
 			this.angle = (float)Math.toDegrees(Math.atan2(p.x - this.position.x, this.position.y - p.y));
 		}
 	}
