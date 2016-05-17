@@ -1,5 +1,6 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.vehicles.VehicYWing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -299,6 +300,20 @@ public class ModelYWing extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		boolean flag = true;
+		if (entity instanceof VehicYWing)
+		{
+			VehicYWing yWing = (VehicYWing)entity;
+
+			flag = entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ);
+		}
+		this.LandingGear1.isHidden = flag;
+		this.LandingGear2.isHidden = flag;
+		this.LandingGear3.isHidden = flag;
+		this.LandingGear4.isHidden = flag;
+		this.LandingGear5.isHidden = flag;
+		this.LandingGear6.isHidden = flag;
+
 		this.ConnectorR1.render(f5);
 		this.LandingGear3.render(f5);
 		this.Neck_15.render(f5);

@@ -328,18 +328,18 @@ public class ModelSpeederBike extends ModelBase
 			VehicleBase vb = (VehicleBase)entity;
 			float s = ((EntityPlayer)entity.riddenByEntity).moveForward / 5f;
 
-			float rL = 0.2f * (vb.tilt / vb.tiltMax);
-			float rR = -0.2f * (vb.tilt / vb.tiltMax);
+			float rL = 0.1f * (vb.tilt / vb.tiltMax);
+			float rR = -0.1f * (vb.tilt / vb.tiltMax);
 
 			this.Handle_R_1.rotateAngleX = 0.2094395F + s + rL;
 			this.Handle_R_2.rotateAngleX = -0.418879F + s + rL;
 			this.Handle_R_3.rotateAngleX = -0.418879F + s + rL;
-			this.Handle_L_1.rotateAngleX = 0.2094395F + rR;
-			this.Handle_L_2.rotateAngleX = -0.418879F + rR;
-			this.Handle_L_3.rotateAngleX = -0.418879F + rR;
+			this.Handle_L_1.rotateAngleX = 0.2094395F + s + rR;
+			this.Handle_L_2.rotateAngleX = -0.418879F + s + rR;
+			this.Handle_L_3.rotateAngleX = -0.418879F + s + rR;
 
-			this.Flap_L.rotateAngleX = (vb.tilt > 0) ? 0.4f * (vb.tilt / vb.tiltMax) : 0;
-			this.Flap_R.rotateAngleX = (vb.tilt <= 0) ? -0.4f * (vb.tilt / vb.tiltMax) : 0;
+			this.Flap_L.rotateAngleX = ((vb.tilt > 0) ? 0.4f * (vb.tilt / vb.tiltMax) : 0) + s;
+			this.Flap_R.rotateAngleX = ((vb.tilt <= 0) ? -0.4f * (vb.tilt / vb.tiltMax) : 0) + s;
 		}
 		else
 		{
