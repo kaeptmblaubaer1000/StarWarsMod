@@ -46,22 +46,26 @@ public class ItemQuestContainer extends Item
 
 	public static void setHasHyperdrive(ItemStack stack, String planet)
 	{
+		if (!stack.hasTagCompound())
+			return;
 		stack.stackTagCompound.setBoolean("hyperdrive-" + planet, true);
 	}
 
 	public static boolean getHasHyperdrive(ItemStack stack, String planet)
 	{
-		return stack.stackTagCompound.hasKey("hyperdrive-" + planet) && stack.stackTagCompound.getBoolean("hyperdrive-" + planet);
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("hyperdrive-" + planet) && stack.stackTagCompound.getBoolean("hyperdrive-" + planet);
 	}
 
 	public static void setInHyperspace(ItemStack stack, boolean hyperspace)
 	{
+		if (!stack.hasTagCompound())
+			return;
 		stack.stackTagCompound.setBoolean("inHyperspace", hyperspace);
 	}
 
 	public static boolean getInHyperspace(ItemStack stack)
 	{
-		return stack.stackTagCompound.hasKey("inHyperspace") && stack.stackTagCompound.getBoolean("inHyperspace");
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("inHyperspace") && stack.stackTagCompound.getBoolean("inHyperspace");
 	}
 
 	public static String getOwner(ItemStack stack)
