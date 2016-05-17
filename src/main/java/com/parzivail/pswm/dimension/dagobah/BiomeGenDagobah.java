@@ -3,7 +3,7 @@ package com.parzivail.pswm.dimension.dagobah;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
-import com.parzivail.pswm.world.gen.yodatree.*;
+import com.parzivail.util.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -57,7 +57,7 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 	{
 		if (chunkX == 0 && chunkZ == 0)
 		{
-			this.structureY = par1World.getHeightValue(chunkX, chunkZ);
+			this.structureY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 			while (!(par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.grass || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.dirt || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.water))
 				this.structureY--;
 			new WorldGenYodaTree_0_0().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);

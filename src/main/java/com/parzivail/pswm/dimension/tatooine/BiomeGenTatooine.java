@@ -6,6 +6,7 @@ import com.parzivail.pswm.world.gen.WorldGenMV;
 import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
 import com.parzivail.pswm.world.gen.moseisley.big.*;
+import com.parzivail.util.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -51,7 +52,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	{
 		if (chunkX == 0 && chunkZ == 0)
 		{
-			this.mosY = par1World.getHeightValue(chunkX, chunkZ);
+			this.mosY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 			new ME_00().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
 		}
 		else if (chunkX == 0 && chunkZ == 32)
