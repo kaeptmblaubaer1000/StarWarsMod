@@ -16,10 +16,8 @@ import java.util.List;
 
 public class AiMouseScare extends EntityAIBase
 {
-	public final IEntitySelector field_98218_a = new IEntitySelector()
+	private final IEntitySelector field_98218_a = new IEntitySelector()
 	{
-		private static final String __OBFID = "CL_00001575";
-
 		@Override
 		public boolean isEntityApplicable(Entity p_82704_1_)
 		{

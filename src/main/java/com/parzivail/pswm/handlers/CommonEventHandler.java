@@ -39,7 +39,6 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,7 +101,6 @@ public class CommonEventHandler
 			{
 				ItemStack s = StarWarsMod.mc.thePlayer.inventory.getCurrentItem();
 				EntityPlayer entityPlayer = StarWarsMod.mc.thePlayer;
-				World par2World = entityPlayer.worldObj;
 				if (s.stackTagCompound.getString(ItemLightsaber.nbtHilt).equals("ezra") && s.stackTagCompound.getInteger(ItemLightsaber.nbtBlasterTimeout) == 0 && !s.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn))
 				{
 					entityPlayer.addStat(StarWarsAchievements.ezraBlaster, 1);
@@ -198,8 +196,8 @@ public class CommonEventHandler
 					if (index >= powers.size())
 						index = 0;
 				}
-				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && powers.get(index) != current);
-				if (index > -1 && powers.get(index) != current)
+				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
+				if (index > -1 && !powers.get(index).equals(current))
 				{
 					if (index >= powers.size())
 						index = 0;
@@ -229,8 +227,8 @@ public class CommonEventHandler
 					if (index < 0)
 						index = powers.size() - 1;
 				}
-				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && powers.get(index) != current);
-				if (index > -1 && powers.get(index) != current)
+				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
+				if (index > -1 && !powers.get(index).equals(current))
 				{
 					if (index < 0)
 						index = powers.size() - 1;
@@ -441,7 +439,7 @@ public class CommonEventHandler
 								StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 								ClientEventHandler.lastPlayerTarget = null;
 							}
-							catch (Exception e)
+							catch (Exception ignored)
 							{
 							}
 					ForceUtils.activePower.duration = 0;
@@ -469,7 +467,7 @@ public class CommonEventHandler
 									ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
 									StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
 								}
-								catch (Exception exc)
+								catch (Exception ignored)
 								{
 								}
 						}
@@ -480,7 +478,7 @@ public class CommonEventHandler
 							StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 							ClientEventHandler.lastPlayerTarget = null;
 						}
-						catch (Exception e)
+						catch (Exception ignored)
 						{
 						}
 				}
@@ -538,7 +536,7 @@ public class CommonEventHandler
 		}
 	}
 
-	public void resetRobes(PlayerEvent event)
+	private void resetRobes(PlayerEvent event)
 	{
 		ArmorJediRobes.setActive(event.player, "");
 		ArmorJediRobes.setDuration(event.player, false);

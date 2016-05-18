@@ -15,10 +15,10 @@ import net.minecraft.item.ItemStack;
 public class SoundManager
 {
 	@SideOnly(Side.CLIENT)
-	public static PSoundBank soundBank;
+	private static PSoundBank soundBank;
 
-	public static MovingSound lightsaberHum;
-	public static MovingSound shipMove;
+	private static MovingSound lightsaberHum;
+	private static MovingSound shipMove;
 
 	private static TickComparator inShip = new TickComparator();
 	private static TickComparator holdingLightsaber = new TickComparator();

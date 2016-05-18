@@ -34,7 +34,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
@@ -50,16 +49,12 @@ import java.nio.FloatBuffer;
 
 public class ClientEventHandler
 {
-	public static Item lastItem = null;
-	public static long lastTime = 0;
-
-	public static EntityPlayer lightningFrom = null;
-	public static EntityPlayer lastPlayerTarget = null;
+	static EntityPlayer lastPlayerTarget = null;
 
 	public static boolean cursorOpen = true;
 	public static boolean isCursorAnim = false;
 
-	public static MinimapStore worldStore;
+	private static MinimapStore worldStore;
 
 	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
@@ -69,23 +64,23 @@ public class ClientEventHandler
 	public static RenderHelper renderHelper;
 
 	@SideOnly(Side.CLIENT)
-	public static GuiBlaster guiBlaster;
+	private static GuiBlaster guiBlaster;
 	@SideOnly(Side.CLIENT)
-	public static GuiVehicle guiVehicle;
+	private static GuiVehicle guiVehicle;
 	@SideOnly(Side.CLIENT)
-	public static GuiBinocs guiBinocs;
+	private static GuiBinocs guiBinocs;
 	@SideOnly(Side.CLIENT)
-	public static RenderJediDefense renderJediDefense;
+	private static RenderJediDefense renderJediDefense;
 	@SideOnly(Side.CLIENT)
-	public static RenderSithLightning renderSithLightning;
+	private static RenderSithLightning renderSithLightning;
 	@SideOnly(Side.CLIENT)
-	public static RenderLightsaber renderLightsaber;
+	private static RenderLightsaber renderLightsaber;
 
 	@SideOnly(Side.CLIENT)
-	public static ModelJediCloak modelCloak;
+	private static ModelJediCloak modelCloak;
 
 	@SideOnly(Side.CLIENT)
-	public static SoundManager soundManager;
+	static SoundManager soundManager;
 
 	public ClientEventHandler()
 	{
@@ -310,87 +305,74 @@ public class ClientEventHandler
 					GL11.glRotatef(180, 0, 1, 0);
 
 					String s = inv.stackTagCompound.getString(ItemLightsaber.nbtHilt);
-					if (s.equals("dooku"))
+					switch (s)
 					{
-						GL11.glTranslatef(0, 0.075f, 0);
-						GL11.glRotatef(-90, 0, 1, 0);
-					}
-					else if (s.equals("ezra"))
-					{
-						GL11.glRotatef(180, 0, 1, 0);
-						GL11.glTranslatef(0, 0.075f, 0);
-					}
-					else if (s.equals("kanan"))
-					{
-						GL11.glTranslatef(0, 0.16f, 0);
-						GL11.glRotatef(90, 0, 1, 0);
-					}
-					else if (s.equals("padawan"))
-					{
-						GL11.glTranslatef(0, 0.3f, 0);
-					}
-					else if (s.equals("shoto"))
-					{
-						GL11.glRotatef(180, 0, 1, 0);
-						GL11.glTranslatef(0, 0.27f, 0);
-					}
-					else if (s.equals("vader2"))
-					{
-						GLPZ.glScalef(1.2f);
-						GL11.glTranslatef(0, 0.1f, 0);
-					}
-					else if (s.equals("luke1"))
-					{
-						GLPZ.glScalef(1.1f);
-						GL11.glTranslatef(0, 0.2f, 0);
-					}
-					else if (s.equals("luke2"))
-					{
-						GLPZ.glScalef(1.1f);
-						GL11.glTranslatef(0, 0.25f, 0);
-					}
-					else if (s.equals("crossguard"))
-					{
-						GL11.glTranslatef(0, 0.24f, 0);
-						GL11.glScalef(1.2f, 1.2f, 1.2f);
-						GL11.glRotatef(90, 0, 1, 0);
-					}
-					else if (s.equals("malgus"))
-					{
-						GL11.glScalef(0.85f, 0.85f, 0.85f);
-						GL11.glTranslatef(0, 0.29f, 0);
-						GL11.glRotatef(90, 0, 1, 0);
-					}
-					else if (s.equals("obiwan"))
-					{
-						GL11.glScalef(0.9f, 0.9f, 0.9f);
-						GL11.glTranslatef(0, 0.27f, 0);
-					}
-					else if (s.equals("quigon"))
-					{
-						GL11.glScalef(0.9f, 0.9f, 0.9f);
-						GL11.glTranslatef(0, 0.34f, 0);
-					}
-					else if (s.equals("revan"))
-					{
-						GL11.glScalef(0.9f, 0.9f, 0.9f);
-						GL11.glTranslatef(0, 0.31f, 0);
-					}
-					else if (s.equals("starkiller"))
-					{
-						GL11.glTranslatef(0, 0.3f, 0);
-						GL11.glScalef(1.1f, 1.1f, 1.1f);
-					}
-					else if (s.equals("doubleSith"))
-					{
-						GLPZ.glScalef(1.4f);
-						GL11.glTranslatef(-0.02f, -0.7f, 0.065f);
-						GL11.glRotatef(-90, 0, 1, 0);
-					}
-					else if (s.equals("maul"))
-					{
-						GLPZ.glScalef(0.95f);
-						GL11.glTranslatef(0, -0.45f, 0.05f);
+						case "dooku":
+							GL11.glTranslatef(0, 0.075f, 0);
+							GL11.glRotatef(-90, 0, 1, 0);
+							break;
+						case "ezra":
+							GL11.glRotatef(180, 0, 1, 0);
+							GL11.glTranslatef(0, 0.075f, 0);
+							break;
+						case "kanan":
+							GL11.glTranslatef(0, 0.16f, 0);
+							GL11.glRotatef(90, 0, 1, 0);
+							break;
+						case "padawan":
+							GL11.glTranslatef(0, 0.3f, 0);
+							break;
+						case "shoto":
+							GL11.glRotatef(180, 0, 1, 0);
+							GL11.glTranslatef(0, 0.27f, 0);
+							break;
+						case "vader2":
+							GLPZ.glScalef(1.2f);
+							GL11.glTranslatef(0, 0.1f, 0);
+							break;
+						case "luke1":
+							GLPZ.glScalef(1.1f);
+							GL11.glTranslatef(0, 0.2f, 0);
+							break;
+						case "luke2":
+							GLPZ.glScalef(1.1f);
+							GL11.glTranslatef(0, 0.25f, 0);
+							break;
+						case "crossguard":
+							GL11.glTranslatef(0, 0.24f, 0);
+							GL11.glScalef(1.2f, 1.2f, 1.2f);
+							GL11.glRotatef(90, 0, 1, 0);
+							break;
+						case "malgus":
+							GL11.glScalef(0.85f, 0.85f, 0.85f);
+							GL11.glTranslatef(0, 0.29f, 0);
+							GL11.glRotatef(90, 0, 1, 0);
+							break;
+						case "obiwan":
+							GL11.glScalef(0.9f, 0.9f, 0.9f);
+							GL11.glTranslatef(0, 0.27f, 0);
+							break;
+						case "quigon":
+							GL11.glScalef(0.9f, 0.9f, 0.9f);
+							GL11.glTranslatef(0, 0.34f, 0);
+							break;
+						case "revan":
+							GL11.glScalef(0.9f, 0.9f, 0.9f);
+							GL11.glTranslatef(0, 0.31f, 0);
+							break;
+						case "starkiller":
+							GL11.glTranslatef(0, 0.3f, 0);
+							GL11.glScalef(1.1f, 1.1f, 1.1f);
+							break;
+						case "doubleSith":
+							GLPZ.glScalef(1.4f);
+							GL11.glTranslatef(-0.02f, -0.7f, 0.065f);
+							GL11.glRotatef(-90, 0, 1, 0);
+							break;
+						case "maul":
+							GLPZ.glScalef(0.95f);
+							GL11.glTranslatef(0, -0.45f, 0.05f);
+							break;
 					}
 
 					renderLightsaber.renderHiltItem(lsRenderer, inv.stackTagCompound.getInteger(ItemLightsaber.nbtHiltSkin) == 1);

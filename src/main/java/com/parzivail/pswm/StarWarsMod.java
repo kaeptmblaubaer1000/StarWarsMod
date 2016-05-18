@@ -53,7 +53,7 @@ public class StarWarsMod
 
 	public static Configuration config;
 
-	public static int packetId = 0;
+	private static int packetId = 0;
 
 	public static Random rngGeneral = new Random();
 	public static Random rngChromium = new Random();
@@ -65,8 +65,8 @@ public class StarWarsMod
 	@SideOnly(Side.CLIENT)
 	public static Minecraft mc;
 
-	public static ClientEventHandler clientHandler;
-	public static CommonEventHandler commonHandler;
+	static ClientEventHandler clientHandler;
+	private static CommonEventHandler commonHandler;
 
 	@SidedProxy(clientSide = "com.parzivail.pswm.StarWarsClientProxy",
 	            serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
@@ -417,7 +417,7 @@ public class StarWarsMod
 	}
 
 	@SuppressWarnings("unchecked")
-	public void registerMessage(Class messageHandler)
+	private void registerMessage(Class messageHandler)
 	{
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.SERVER);
 		Lumberjack.debug("Registered packet \"" + messageHandler + "\" as packet ID " + packetId);

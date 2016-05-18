@@ -1,4 +1,4 @@
-package com.parzivail.pswm.structures;
+package com.parzivail.pswm.world.structures;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;

@@ -34,7 +34,7 @@ import java.util.function.Consumer;
 @SideOnly(Side.CLIENT)
 public class GuiScreenHyperdrive extends GuiScreen
 {
-	class MovingShip
+	private class MovingShip
 	{
 		FPoint position;
 		TradeRoute route;
@@ -42,7 +42,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		int model;
 		float angle;
 
-		public MovingShip(TradeRoute route, int model, boolean reverse)
+		MovingShip(TradeRoute route, int model, boolean reverse)
 		{
 			this.position = route.getPointAlongPath(0);
 			this.route = route;
@@ -65,7 +65,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 	}
 
 	private EntityPlayer player;
-	ItemStack qlog;
+	private ItemStack qlog;
 
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
 	private static final ResourceLocation galaxy = new ResourceLocation(Resources.MODID, "textures/gui/galaxy.png");
@@ -196,7 +196,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		buttonEatHyperdrive = new OutlineButton(id++, 15, 215, 100, 20, "Program NavCom", false);
 		buttonList.add(buttonEatHyperdrive);
 
-		buttonTravel = new OutlineButton(id++, 125, 215, 100, 20, "Jump to Lightspeed", false);
+		buttonTravel = new OutlineButton(id, 125, 215, 100, 20, "Jump to Lightspeed", false);
 		buttonList.add(buttonTravel);
 	}
 
@@ -271,7 +271,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		}
 	}
 
-	public void drawStars()
+	private void drawStars()
 	{
 		Tessellator tessellator = Tessellator.instance;
 		this.mc.getTextureManager().bindTexture(background);
@@ -286,7 +286,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		tessellator.draw();
 	}
 
-	public void drawGalaxy()
+	private void drawGalaxy()
 	{
 		Tessellator tessellator = Tessellator.instance;
 		this.mc.getTextureManager().bindTexture(galaxy);
@@ -436,7 +436,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
 			String moons = "Moons: " + planet.getMoons();
-			StarWarsMod.mc.fontRenderer.drawString(moons.substring(0, (int)MathUtils.lerp(0, moons.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+			StarWarsMod.mc.fontRenderer.drawString(moons.substring(0, (int)MathUtils.lerp(0, moons.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny + StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			ny = y;
 
@@ -531,14 +531,14 @@ public class GuiScreenHyperdrive extends GuiScreen
 		super.drawScreen(mX, mY, p);
 	}
 
-	public FPoint galaxyCoordsToXy(float x, float y, float scale)
+	private FPoint galaxyCoordsToXy(float x, float y, float scale)
 	{
 		float pX = r.getScaledWidth() / 2f - 144;
 		float pY = r.getScaledHeight() / 2f - 144 + 16;
 		return new FPoint(pX + scale * x, pY + scale * y);
 	}
 
-	public FPoint galaxyCoordsToXy(float x, float y)
+	private FPoint galaxyCoordsToXy(float x, float y)
 	{
 		return galaxyCoordsToXy(x, y, 16);
 	}

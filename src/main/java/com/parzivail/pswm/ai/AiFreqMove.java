@@ -44,7 +44,7 @@ public class AiFreqMove extends EntityAIBase
 		return !this.entity.getNavigator().noPath();
 	}
 
-	public Vec3 findRandomTarget(EntityLiving entity, int maxDistanceX, int maxDistanceY)
+	private Vec3 findRandomTarget(EntityLiving entity, int maxDistanceX, int maxDistanceY)
 	{
 		Random random = entity.getRNG();
 		boolean flag = false;

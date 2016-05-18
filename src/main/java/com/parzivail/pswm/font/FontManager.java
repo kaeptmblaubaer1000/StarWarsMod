@@ -13,7 +13,7 @@ public class FontManager
 	@SideOnly(Side.CLIENT)
 	public static FontRenderer aurebesh;
 
-	public static FontRenderer createFont(String file, boolean small)
+	private static FontRenderer createFont(String file, boolean small)
 	{
 		FontRenderer renderer = new FontRenderer(Minecraft.getMinecraft().gameSettings, new ResourceLocation(Resources.MODID, file), Minecraft.getMinecraft().getTextureManager(), small);
 

@@ -8,16 +8,16 @@ import net.minecraft.stats.Achievement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StarWarsAchievement extends Achievement
+class StarWarsAchievement extends Achievement
 {
 	public static List<Achievement> achievements = new ArrayList();
 
-	public StarWarsAchievement(String name, int x, int y, Item icon, Achievement parent)
+	StarWarsAchievement(String name, int x, int y, Item icon, Achievement parent)
 	{
 		this(name, x, y, new ItemStack(icon), parent);
 	}
 
-	public StarWarsAchievement(String name, int x, int y, ItemStack icon, Achievement parent)
+	StarWarsAchievement(String name, int x, int y, ItemStack icon, Achievement parent)
 	{
 		super("achievement.starwarsmod." + name, Resources.MODID + "." + name, x, y, icon, parent);
 		achievements.add(this);

@@ -17,7 +17,7 @@ public class CommandJediRobes extends CommandBase
 	@Override
 	public List addTabCompletionOptions(ICommandSender commandSender, String[] parameters)
 	{
-		List<String> commands = new ArrayList<String>();
+		List<String> commands = new ArrayList<>();
 
 		if (parameters.length == 1)
 		{
@@ -50,9 +50,7 @@ public class CommandJediRobes extends CommandBase
 		}
 
 		String key = astring[0];
-		int value = 0;
-
-		value = parseInt(icommandsender, astring[1]);
+		int value = parseInt(icommandsender, astring[1]);
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
@@ -87,7 +85,6 @@ public class CommandJediRobes extends CommandBase
 				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
 			else
 				icommandsender.addChatMessage(new ChatComponentText("Unknown key!"));
-			return;
 		}
 	}
 }
