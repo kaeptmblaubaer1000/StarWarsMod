@@ -1,8 +1,8 @@
 package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.Animation;
-import com.parzivail.util.MathUtils;
+import com.parzivail.util.math.Animation;
+import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

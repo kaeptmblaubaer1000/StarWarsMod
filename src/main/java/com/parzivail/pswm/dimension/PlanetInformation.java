@@ -1,7 +1,7 @@
 package com.parzivail.pswm.dimension;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.util.FPoint;
+import com.parzivail.util.math.FPoint;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 

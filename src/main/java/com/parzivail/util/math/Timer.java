@@ -1,4 +1,4 @@
-package com.parzivail.util;
+package com.parzivail.util.math;
 
 import java.util.function.Consumer;
 

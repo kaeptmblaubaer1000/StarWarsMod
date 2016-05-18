@@ -1,4 +1,4 @@
-package com.parzivail.util;
+package com.parzivail.util.math;
 
 /**
  * Created by Colby on 5/15/2016.

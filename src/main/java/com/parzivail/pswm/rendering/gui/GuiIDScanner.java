@@ -5,7 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.util.IParziNPC;
-import com.parzivail.util.MathUtils;
+import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.GLPZ;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

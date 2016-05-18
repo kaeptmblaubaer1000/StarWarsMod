@@ -2,8 +2,8 @@ package com.parzivail.pswm.utils;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.MathUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 

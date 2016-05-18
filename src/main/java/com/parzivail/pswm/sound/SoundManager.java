@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.vehicles.*;
-import com.parzivail.util.TickComparator;
+import com.parzivail.util.math.TickComparator;
 import com.parzivail.util.sound.PSoundBank;
 import com.parzivail.util.vehicle.VehicleBase;
 import cpw.mods.fml.relauncher.Side;

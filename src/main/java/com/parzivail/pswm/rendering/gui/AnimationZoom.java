@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.gui;
 
-import com.parzivail.util.Animation;
+import com.parzivail.util.math.Animation;
 
 public class AnimationZoom extends Animation
 {

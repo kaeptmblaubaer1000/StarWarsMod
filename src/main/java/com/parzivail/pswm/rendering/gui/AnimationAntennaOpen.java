@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
-import com.parzivail.util.Animation;
+import com.parzivail.util.math.Animation;
 
 /**
  * Created by Colby on 5/7/2016.

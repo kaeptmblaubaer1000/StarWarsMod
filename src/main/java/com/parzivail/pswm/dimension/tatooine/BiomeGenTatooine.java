@@ -6,7 +6,7 @@ import com.parzivail.pswm.world.gen.WorldGenMV;
 import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
 import com.parzivail.pswm.world.gen.moseisley.big.*;
-import com.parzivail.util.MathUtils;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 

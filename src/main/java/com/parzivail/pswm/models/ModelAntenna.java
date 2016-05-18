@@ -1,6 +1,6 @@
 package com.parzivail.pswm.models;
 
-import com.parzivail.util.MathUtils;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import com.parzivail.util.MathUtils;
+import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;

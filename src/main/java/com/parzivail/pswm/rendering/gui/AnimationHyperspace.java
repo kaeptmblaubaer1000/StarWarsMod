@@ -2,7 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.Animation;
+import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.gui.ScaledResolution;

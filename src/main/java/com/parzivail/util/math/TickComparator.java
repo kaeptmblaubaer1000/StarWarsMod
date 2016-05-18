@@ -1,4 +1,4 @@
-package com.parzivail.util;
+package com.parzivail.util.math;
 
 /**
  * Compares a boolean between two ticks to check for a change. Useful for

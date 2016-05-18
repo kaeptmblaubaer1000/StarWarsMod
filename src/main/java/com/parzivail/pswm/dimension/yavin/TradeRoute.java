@@ -1,7 +1,7 @@
 package com.parzivail.pswm.dimension.yavin;
 
-import com.parzivail.util.FPoint;
-import com.parzivail.util.Spline2D;
+import com.parzivail.util.math.FPoint;
+import com.parzivail.util.math.Spline2D;
 
 /**
  * Created by Colby on 5/15/2016.
