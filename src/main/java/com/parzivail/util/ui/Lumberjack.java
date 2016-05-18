@@ -21,13 +21,13 @@ public class Lumberjack
 	}
 
 	/**
-	 * Prints a message to log only
+	 * Prints a message to log
 	 *
 	 * @param message The message to print
 	 */
-	public static void info(String message)
+	public static void info(Object message)
 	{
-		log(Level.INFO, message);
+		log(Level.INFO, String.valueOf(message));
 	}
 
 	private static void log(Level level, String message)
@@ -36,7 +36,7 @@ public class Lumberjack
 	}
 
 	/**
-	 * Prints a message to log only
+	 * Prints a message to log
 	 *
 	 * @param message The message to print
 	 */
@@ -50,8 +50,8 @@ public class Lumberjack
 	 *
 	 * @param message The message to print
 	 */
-	public static void warn(String message)
+	public static void warn(Object message)
 	{
-		log(Level.WARN, message);
+		log(Level.WARN, String.valueOf(message));
 	}
 }

@@ -24,6 +24,12 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
 
+		GameRegistry.registerTileEntity(TileEntitySensor.class, "teSensor");
+
+		StarWarsMod.blockSensorXWing = new BlockSensorXWing();
+		GameRegistry.registerBlock(StarWarsMod.blockSensorXWing, "blockSensorXWing");
+		GameRegistry.registerTileEntity(TileEntitySensorXWing.class, "teSensorXWing");
+
 		StarWarsMod.blockAntenna = new BlockAntenna();
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");
 		GameRegistry.registerTileEntity(TileEntityAntenna.class, "teAntenna");

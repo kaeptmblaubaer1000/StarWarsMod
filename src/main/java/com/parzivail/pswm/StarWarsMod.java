@@ -115,6 +115,8 @@ public class StarWarsMod
 	public static Block blockBasket;
 	public static Block blockBactaTank;
 
+	public static Block blockSensorXWing;
+
 	public static Block blockBeneOre;
 	public static Block blockCortosisOre;
 	public static Block blockDolomiteOre;

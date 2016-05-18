@@ -1,6 +1,6 @@
 package com.parzivail.util.ui;
 
-public class Text
+public class TextEffects
 {
 	public static String OBFU = "\u00A7k";
 	public static String BOLD = "\u00A7l";

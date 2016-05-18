@@ -9,7 +9,7 @@ import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.ui.Text;
+import com.parzivail.util.ui.TextEffects;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -119,7 +119,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL), ForceUtils.getTitle(ArmorJediRobes.getSide(this.stack), (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(this.stack).equals(ArmorJediRobes.SIDE_JEDI) ? Text.COLOR_BLUE : Text.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL), ForceUtils.getTitle(ArmorJediRobes.getSide(this.stack), (int)Math.floor(ArmorJediRobes.getLevel(this.stack) / ArmorJediRobes.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), ArmorJediRobes.getSide(this.stack).equals(ArmorJediRobes.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
 		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", this.points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
