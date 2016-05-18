@@ -494,10 +494,12 @@ public class GuiScreenHyperdrive extends GuiScreen
 				{
 					case 0:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderXWing.texture);
+						GLPZ.glScalef(0.8f);
 						this.modelXWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					case 1:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderYWing.texture);
+						GLPZ.glScalef(0.8f);
 						this.modelYWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					case 2:
