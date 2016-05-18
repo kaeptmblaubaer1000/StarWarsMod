@@ -217,6 +217,7 @@ public class VehicleAirBase extends VehicleBase
 					this.setRotation(225, this.rotationPitch);
 					break;
 			}
+
 			this.tilt = 0;
 			this.renderRollLast = 0;
 		}
