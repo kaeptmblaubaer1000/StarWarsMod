@@ -41,13 +41,13 @@ public class SoundManager
 			String ship = "unknown";
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
 				ship = "awing";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				ship = "xwing";
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicLandspeeder)
 				ship = "landspeeder";
 			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicJakkuSpeeder)
 				ship = "speeder";
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEAdvanced)
+			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEAdvanced || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber)
 				ship = "tie";
 			SoundManager.shipMove = new SoundShipMove(ship);
 			soundBank.play(SoundManager.shipMove);

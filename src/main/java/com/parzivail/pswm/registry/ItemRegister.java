@@ -10,7 +10,6 @@ import com.parzivail.pswm.items.crafting.ItemPlasmaEmitter;
 import com.parzivail.pswm.items.hyperdrive.*;
 import com.parzivail.pswm.items.ingot.*;
 import com.parzivail.pswm.items.weapons.*;
-import com.parzivail.pswm.items.weapons.ItemGaffiStick;
 import com.parzivail.pswm.jedirobes.ArmorJediRobes;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.weaponry.ItemSpawnDSTurret;
@@ -86,6 +85,9 @@ public class ItemRegister
 
 		StarWarsItems.spawnTie = new ItemSpawnTIE();
 		GameRegistry.registerItem(StarWarsItems.spawnTie, "spawnTIE");
+
+		StarWarsItems.spawnTieBomber = new ItemSpawnTIEBomber();
+		GameRegistry.registerItem(StarWarsItems.spawnTieBomber, "spawnTIEBomber");
 
 		StarWarsItems.spawnTieAdvanced = new ItemSpawnTIEAdvanced();
 		GameRegistry.registerItem(StarWarsItems.spawnTieAdvanced, "spawnTIEAdvanced");
