@@ -24,8 +24,9 @@ public class VehicleAirBase extends VehicleBase
 	public float move = 0f;
 	public boolean wasMoving = false;
 	public boolean nowMoving = false;
-	public List<Entity> nearby = new ArrayList<Entity>();
-	String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
+	public List<Entity> nearby = new ArrayList<>();
+	private String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
+	public boolean hasHadRider = false;
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
@@ -52,6 +53,8 @@ public class VehicleAirBase extends VehicleBase
 		super.entityInit();
 		this.dataWatcher.addObject(TGTLOCK_DW, Integer.valueOf(0));
 		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
+		this.dataWatcher.addObject(TGTLOCK_DW + 1, Integer.valueOf(0));
+		this.dataWatcher.setObjectWatched(TGTLOCK_DW + 1);
 	}
 
 	@Override
@@ -88,10 +91,21 @@ public class VehicleAirBase extends VehicleBase
 		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW) == 1;
 	}
 
+	public int getYaw()
+	{
+		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW + 1);
+	}
+
 	public void setTargetLock(boolean f)
 	{
 		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
 		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
+	}
+
+	public void setYaw(int yaw)
+	{
+		this.dataWatcher.updateObject(TGTLOCK_DW + 1, yaw);
+		this.dataWatcher.setObjectWatched(TGTLOCK_DW + 1);
 	}
 
 	@Override
@@ -166,23 +180,45 @@ public class VehicleAirBase extends VehicleBase
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (this.riddenByEntity == null)
-			this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
+		if (!hasHadRider && this.riddenByEntity != null)
+			this.hasHadRider = true;
 
-		this.nowMoving = (int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ;
+		if (hasHadRider)
+		{
+			if (this.riddenByEntity == null && !hasHadRider)
+				this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
 
-		this.wasMoving = this.nowMoving;
+			this.nowMoving = (int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ;
 
-		if (this.ticksExisted % 5 == 0) // update radar
-			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
+			this.wasMoving = this.nowMoving;
+
+			//if (this.ticksExisted % 5 == 0) // update radar
+			//	if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
+			//	{
+			//		this.nearby.clear();
+			//		this.nearby.addAll(((List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> entity != this).collect(Collectors.toList()));
+			//		this.nearby.addAll(((List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> !(entity.ridingEntity instanceof VehicleAirBase)).collect(Collectors.toList()));
+			//	}
+		}
+		else
+		{
+			switch (getYaw())
 			{
-				this.nearby.clear();
-				for (VehicleAirBase entity : (List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)))
-					if (entity != this)
-						this.nearby.add(entity);
-				for (EntityPlayer entity : (List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100)))
-					if (!(entity.ridingEntity instanceof VehicleAirBase))
-						this.nearby.add(entity);
+				case 0:
+					this.setRotation(0, this.rotationPitch);
+					break;
+				case 90:
+					this.setRotation(135, this.rotationPitch);
+					break;
+				case 180:
+					this.setRotation(135, this.rotationPitch);
+					break;
+				case 270:
+					this.setRotation(225, this.rotationPitch);
+					break;
 			}
+			this.tilt = 0;
+			this.renderRollLast = 0;
+		}
 	}
 }

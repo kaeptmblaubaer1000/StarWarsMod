@@ -7,6 +7,9 @@ import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.blocks.ore.*;
 import com.parzivail.pswm.items.*;
 import com.parzivail.pswm.tileentities.*;
+import com.parzivail.pswm.vehicles.VehicAWing;
+import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.VehicYWing;
 import com.parzivail.util.block.BlockMultiHeight;
 import com.parzivail.util.block.ItemMultiHeightBlock;
 import com.parzivail.util.ui.Lumberjack;
@@ -24,11 +27,11 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
 
-		GameRegistry.registerTileEntity(TileEntitySensor.class, "teSensor");
+		GameRegistry.registerTileEntity(TileEntitySensorEntity.class, "teSensorEntity");
 
-		StarWarsMod.blockSensorXWing = new BlockSensorXWing();
-		GameRegistry.registerBlock(StarWarsMod.blockSensorXWing, "blockSensorXWing");
-		GameRegistry.registerTileEntity(TileEntitySensorXWing.class, "teSensorXWing");
+		GameRegistry.registerBlock(StarWarsMod.blockSensorXWing = new BlockSensorEntity(VehicXWing.class, 0, 3, 0), "blockSensorXWing");
+		GameRegistry.registerBlock(StarWarsMod.blockSensorYWing = new BlockSensorEntity(VehicYWing.class, 0, 3, 0), "blockSensorYWing");
+		GameRegistry.registerBlock(StarWarsMod.blockSensorAWing = new BlockSensorEntity(VehicAWing.class, 0, 3, 0), "blockSensorAWing");
 
 		StarWarsMod.blockAntenna = new BlockAntenna();
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");

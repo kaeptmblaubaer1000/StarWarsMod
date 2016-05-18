@@ -116,6 +116,9 @@ public class StarWarsMod
 	public static Block blockBactaTank;
 
 	public static Block blockSensorXWing;
+	public static Block blockSensorYWing;
+	public static Block blockSensorAWing;
+
 
 	public static Block blockBeneOre;
 	public static Block blockCortosisOre;
@@ -414,6 +417,7 @@ public class StarWarsMod
 		this.registerMessage(MessageDoWorldgen.class);
 		this.registerMessage(MessageChangeStaticNpcLock.class);
 		this.registerMessage(MessageTransferHyperdrive.class);
+		this.registerMessage(MessageSpawn.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

@@ -87,8 +87,7 @@ public class VehicleBase extends EntityCreature
 
 		this.setRotation(this.rotationLast, this.rotationPitchLast);
 
-		for (int i = 1; i < this.tiltTable.length; i++)
-			this.tiltTable[i - 1] = this.tiltTable[i];
+		System.arraycopy(this.tiltTable, 1, this.tiltTable, 0, this.tiltTable.length - 1);
 
 		float t = this.rotationYaw - this.prevRotationYaw;
 

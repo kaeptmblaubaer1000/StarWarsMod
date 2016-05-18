@@ -15,8 +15,6 @@ public class TileEntitySensor extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		super.updateEntity();
-
 		if (this.bb == null)
 			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord, this.yCoord, this.zCoord, this.xCoord + 1, this.yCoord + 1, this.zCoord + 1);
 
