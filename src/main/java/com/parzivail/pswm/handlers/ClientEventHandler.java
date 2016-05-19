@@ -222,10 +222,10 @@ public class ClientEventHandler
 			}
 
 			ItemStack qlog = ItemQuestContainer.getQuestContainer(player);
-			if (qlog != null && ItemQuestContainer.getInHyperspace(qlog) && player.worldObj.isRemote)
+			if (qlog != null && ItemQuestContainer.getInHyperspace(qlog))
 			{
-				new AnimationHyperspace(3500, true).start();
-
+				if (player.worldObj.isRemote)
+					new AnimationHyperspace(3500, true).start();
 				ItemQuestContainer.setInHyperspace(qlog, false);
 			}
 		}
