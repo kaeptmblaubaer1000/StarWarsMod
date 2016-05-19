@@ -225,6 +225,7 @@ public class ClientEventHandler
 			if (qlog != null && ItemQuestContainer.getInHyperspace(qlog) && player.worldObj.isRemote)
 			{
 				new AnimationHyperspace(3500, true).start();
+
 				ItemQuestContainer.setInHyperspace(qlog, false);
 			}
 		}
