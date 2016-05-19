@@ -160,4 +160,6 @@ public class Resources
 	public static final String allegianceNewRepublic = "New Republic";
 	public static final String allegianceRebel = "Rebel Alliance";
 	public static final String allegianceImperial = "Galactic Empire";
+
+	public static final String skinDefault = "default";
 }

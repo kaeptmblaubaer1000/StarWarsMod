@@ -1,6 +1,7 @@
 package com.parzivail.util.ui;
 
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.Tessellator;
 import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.glBegin;
@@ -30,6 +31,19 @@ public class Screen2D
 		GL11.glVertex3d(x + w, y, 0);
 		glEnd();
 		GL11.glPopMatrix();
+	}
+
+	public static void drawTexture(int x, int y, int textureX, int textureY, int width, int height)
+	{
+		float f = 0.00390625F;
+		float f1 = 0.00390625F;
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(x, y + height, 1, (textureX) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x + width, y + height, 1, (textureX + width) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x + width, y, 1, (textureX + width) * f, (textureY) * f1);
+		tessellator.addVertexWithUV(x, y, 1, (textureX) * f, (textureY) * f1);
+		tessellator.draw();
 	}
 
 	/**

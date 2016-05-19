@@ -1,12 +1,12 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.util.math.MathUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -23,7 +23,7 @@ public class TileEntityStaticNpc extends TileEntity
 
 	public TileEntityStaticNpc()
 	{
-		this.setId(QuestNpcUtils.makeNpcId("welcome0", "rebel", "defaultSkin"));
+		this.setId(QuestNpcUtils.makeNpcId("welcome0", MathUtils.getRandomElement(new String[] { Resources.allegianceRebel, Resources.allegianceImperial, Resources.allegianceJedi, Resources.allegianceSith }), Resources.skinDefault));
 	}
 
 	public String getId()
@@ -119,11 +119,11 @@ public class TileEntityStaticNpc extends TileEntity
 		{
 			internalBiped = new MobDefaultBiped(this.worldObj);
 
-			internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
-			internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
-			internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
-			internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
-			internalBiped.setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
+			//internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
+			//internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
+			//internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
+			//internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
+			//internalBiped.setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
 		}
 		return internalBiped;
 	}

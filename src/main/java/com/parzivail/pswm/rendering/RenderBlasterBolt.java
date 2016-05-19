@@ -57,6 +57,9 @@ public class RenderBlasterBolt extends Render
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		ShaderHelper.releaseShader();
 
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+
 		GL11.glPopMatrix();
 	}
 

@@ -30,6 +30,9 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
+		if (this.sender == null || this.sender.worldObj == null)
+			return null;
+
 		World world = this.sender.worldObj;
 		if (this.type == BlasterBoltType.SPEEDER)
 			world.spawnEntityInWorld(new EntitySpeederBlasterRifleBolt(world, this.sender));
