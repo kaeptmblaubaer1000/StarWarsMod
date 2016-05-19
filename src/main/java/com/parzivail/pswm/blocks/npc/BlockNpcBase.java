@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
-import com.parzivail.util.ui.KeyboardUtils;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.BlockContainer;
@@ -77,7 +76,7 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 			TileEntityStaticNpc tile1 = (TileEntityStaticNpc)tile;
 			int l = Math.abs(MathHelper.floor_double(player.rotationYaw % 360 / 90f + 0.5f));
 			tile1.setFacing(l);
-			tile1.setLocked(KeyboardUtils.isControlDown());
+			tile1.setLocked(player.isSneaking());
 			Lumberjack.log("placed at " + String.valueOf(tile1.getFacing()));
 			Lumberjack.log("locked: " + String.valueOf(tile1.getLocked()));
 		}
