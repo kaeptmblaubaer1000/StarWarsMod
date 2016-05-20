@@ -1,6 +1,5 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.util.math.MathUtils;
@@ -23,7 +22,6 @@ public class TileEntityStaticNpc extends TileEntity
 
 	public TileEntityStaticNpc()
 	{
-		this.setId(QuestNpcUtils.makeNpcId("welcome0", MathUtils.getRandomElement(new String[] { Resources.allegianceRebel, Resources.allegianceImperial, Resources.allegianceJedi, Resources.allegianceSith }), Resources.skinDefault));
 	}
 
 	public String getId()

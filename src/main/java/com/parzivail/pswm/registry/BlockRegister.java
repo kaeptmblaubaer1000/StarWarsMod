@@ -6,6 +6,7 @@ import com.parzivail.pswm.blocks.*;
 import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.blocks.ore.*;
 import com.parzivail.pswm.items.*;
+import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.*;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicXWing;
@@ -60,8 +61,23 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockHangingBucket, "hangingBucket");
 		GameRegistry.registerTileEntity(TileEntityHangingBucket.class, "teHangingBucket");
 
-		StarWarsMod.blockStaticNpc = new BlockNpcBase();
-		GameRegistry.registerBlock(StarWarsMod.blockStaticNpc, "staticNpc");
+		StarWarsMod.blockStaticNpc = new BlockNpcBase[9];
+
+		StarWarsMod.blockStaticNpc[0] = new BlockNpcBase("welcome0", Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[1] = new BlockNpcBase("welcome1", Resources.armors[1], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[2] = new BlockNpcBase("welcome2", Resources.armors[2], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[3] = new BlockNpcBase("welcome3", Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[4] = new BlockNpcBase("welcome4", Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[5] = new BlockNpcBase("welcome5", Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[6] = new BlockNpcBase("welcome6", Resources.armors[6], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[7] = new BlockNpcBase("welcome7", Resources.armors[7], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[8] = new BlockNpcBase("welcome8", Resources.armors[8], Resources.allegianceImperial, Resources.skinDefault);
+
+		for (int i = 0; i < StarWarsMod.blockStaticNpc.length; i++)
+		{
+			GameRegistry.registerBlock(StarWarsMod.blockStaticNpc[i], "staticNpc" + QuestNpcUtils.getNpcQuest(StarWarsMod.blockStaticNpc[i].id));
+		}
+
 		GameRegistry.registerTileEntity(TileEntityStaticNpc.class, "teStaticNpc");
 
 		StarWarsMod.blockBasket = new BlockBasket();
@@ -113,12 +129,15 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairsSlabTopDark, "blockTempleStoneStairsSlabTopDark");
 
 		StarWarsMod.blockTempleStoneSlab = new BlockTempleStoneSlab(false, false);
+
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlab, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlab");
 
 		StarWarsMod.blockTempleStoneLit = new BlockTempleStone(true);
+
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneLit, ItemTempleStoneBlock.class, "blockTempleStoneLit");
 
 		StarWarsMod.blockTempleStoneSlabLit = new BlockTempleStoneSlab(false, true);
+
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlabLit, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlabLit");
 
 		StarWarsMod.blockIoniteOre = new BlockIoniteOre();
