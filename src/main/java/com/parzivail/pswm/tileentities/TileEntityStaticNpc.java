@@ -107,10 +107,10 @@ public class TileEntityStaticNpc extends TileEntity
 	@Override
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{
+		super.writeToNBT(p_145841_1_);
 		p_145841_1_.setString("quest-id", getId());
 		p_145841_1_.setInteger("facing", getFacing());
 		p_145841_1_.setBoolean("locked", getLocked());
-		super.writeToNBT(p_145841_1_);
 	}
 
 	public MobDefaultBiped getInternalEntity()
@@ -119,11 +119,7 @@ public class TileEntityStaticNpc extends TileEntity
 		{
 			internalBiped = new MobDefaultBiped(this.worldObj);
 
-			//internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
-			//internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
-			//internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
-			//internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
-			//internalBiped.setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
+			QuestNpcUtils.arm(internalBiped, MathUtils.getRandomElement(new String[] { "rebelPilot", "rebelEndor", "rebelHoth", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot" }));
 		}
 		return internalBiped;
 	}
