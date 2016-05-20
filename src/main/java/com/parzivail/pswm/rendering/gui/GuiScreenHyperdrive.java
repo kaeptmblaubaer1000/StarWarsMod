@@ -325,24 +325,24 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glLineWidth(2);
 
 			GLPalette.glColorI(GLPalette.BLACK);
-			Screen2D.drawDashedCircle(cX - 50, cY - 22, 20, 5);
+			GFX.drawDashedCircle(cX - 50, cY - 22, 20, 5);
 
 			GLPalette.glColorI(GLPalette.DARK_GREY);
-			Screen2D.drawDashedCircle(cX - 50, cY - 22, 40, 3);
+			GFX.drawDashedCircle(cX - 50, cY - 22, 40, 3);
 
 			GLPalette.glColorI(GLPalette.GREY);
-			Screen2D.drawDashedCircle(cX - 50, cY - 22, 55, 3);
+			GFX.drawDashedCircle(cX - 50, cY - 22, 55, 3);
 
 			GL11.glPushMatrix();
 			GL11.glScalef(1, 1.15f, 1);
 			GLPalette.glColorI(GLPalette.LIGHT_GREY);
-			Screen2D.drawDashedCircle(cX - 50, cY / 1.15f - 12, 60, 3);
+			GFX.drawDashedCircle(cX - 50, cY / 1.15f - 12, 60, 3);
 			GL11.glPopMatrix();
 
 			GL11.glPushMatrix();
 			GL11.glScalef(1.25f, 1.15f, 1);
 			GLPalette.glColorI(GLPalette.OFF_WHITE);
-			Screen2D.drawDashedCircle(cX / 1.25f - 30, cY / 1.15f - 10, 70, 3);
+			GFX.drawDashedCircle(cX / 1.25f - 30, cY / 1.15f - 10, 70, 3);
 			GL11.glPopMatrix();
 		}
 

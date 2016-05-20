@@ -34,11 +34,11 @@ public class FilledColorButton extends OutlineButton
 				case 0:
 					textColor = GLPalette.GREY;
 					GLPalette.glColorI(GLPalette.DARK_GREY);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, true);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, true);
 					break;
 				default:
 					GLPalette.glColorI(color);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, true);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, true);
 					break;
 			}
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
