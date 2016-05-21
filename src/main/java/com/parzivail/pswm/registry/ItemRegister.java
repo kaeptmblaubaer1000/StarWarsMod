@@ -10,7 +10,8 @@ import com.parzivail.pswm.items.crafting.ItemPlasmaEmitter;
 import com.parzivail.pswm.items.hyperdrive.*;
 import com.parzivail.pswm.items.ingot.*;
 import com.parzivail.pswm.items.weapons.*;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.ArmorJediRobes;
+import com.parzivail.pswm.jedi.ItemHolocronJedi;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.weaponry.ItemSpawnDSTurret;
 import com.parzivail.util.ui.Lumberjack;
@@ -79,6 +80,9 @@ public class ItemRegister
 
 		StarWarsItems.powerpack = new ItemPowerpack();
 		GameRegistry.registerItem(StarWarsItems.powerpack, "powerpack");
+
+		StarWarsItems.holocronJedi = new ItemHolocronJedi();
+		GameRegistry.registerItem(StarWarsItems.holocronJedi, "holocronJedi");
 
 		StarWarsItems.questContainer = new ItemQuestContainer();
 		GameRegistry.registerItem(StarWarsItems.questContainer, "questContainer");

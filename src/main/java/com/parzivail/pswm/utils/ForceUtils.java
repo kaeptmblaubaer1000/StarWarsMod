@@ -1,8 +1,8 @@
 package com.parzivail.pswm.utils;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.jedirobes.powers.*;
+import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.jedi.powers.*;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import org.apache.commons.io.IOUtils;
@@ -119,7 +119,7 @@ public class ForceUtils
 
 	public static ArrayList<String> getPowersAvailableAtLevel(String side, int level)
 	{
-		ArrayList<String> r = new ArrayList<String>();
+		ArrayList<String> r = new ArrayList<>();
 
 		r.add("jump");
 		r.add("push");
@@ -135,14 +135,14 @@ public class ForceUtils
 		if (level > 25)
 			r.add("grab");
 
-		if (side.equals(ArmorJediRobes.SIDE_JEDI))
+		if (side.equals(JediUtils.SIDE_JEDI))
 		{
 			if (level > 30)
 				r.add("healing");
 			if (level > 35)
 				r.add("naturalAwareness");
 		}
-		else if (side.equals(ArmorJediRobes.SIDE_SITH))
+		else if (side.equals(JediUtils.SIDE_SITH))
 		{
 			if (level > 35)
 				r.add("slow");
@@ -164,8 +164,8 @@ public class ForceUtils
 
 	public static String getTitle(String side, int level)
 	{
-		String s = side.equals(ArmorJediRobes.SIDE_JEDI) ? "Jedi " : "Sith ";
-		if (side.equals(ArmorJediRobes.SIDE_JEDI))
+		String s = side.equals(JediUtils.SIDE_JEDI) ? "Jedi " : "Sith ";
+		if (side.equals(JediUtils.SIDE_JEDI))
 		{
 			if (level < 15)
 				s += "Padawan";

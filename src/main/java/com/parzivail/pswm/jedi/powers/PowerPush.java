@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedirobes.powers;
+package com.parzivail.pswm.jedi.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;

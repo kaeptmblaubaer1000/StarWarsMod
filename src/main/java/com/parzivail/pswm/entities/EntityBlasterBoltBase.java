@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -138,7 +138,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				{
 					ItemStack stack = entityPlayer.inventory.armorItemInSlot(2);
 
-					if (ArmorJediRobes.getActive(stack).equalsIgnoreCase("deflect") && ArmorJediRobes.getUsingDuration(stack))
+					if (JediUtils.getActive(stack).equalsIgnoreCase("deflect") && JediUtils.getUsingDuration(stack))
 					{
 						Vec3 vec3 = entityPlayer.getLookVec();
 						if (vec3 != null)

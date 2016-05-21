@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.gui;
 
-import com.parzivail.pswm.jedirobes.powers.Power;
+import com.parzivail.pswm.jedi.powers.Power;
 
 public class GuiPowerListItem
 {

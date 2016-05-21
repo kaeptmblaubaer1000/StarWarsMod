@@ -1,6 +1,6 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.util.network.PMessage;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -30,7 +30,7 @@ public class MessageDrainKnowledge extends PMessage<MessageDrainKnowledge>
 		{
 			EntityPlayer entityLiving = (EntityPlayer)entity;
 			entityLiving.heal(this.amount);
-			ArmorJediRobes.setXP(entityLiving, ArmorJediRobes.getXP(entityLiving) - amount);
+			JediUtils.setXP(entityLiving, JediUtils.getXP(entityLiving) - amount);
 			Lumberjack.log("Drained " + entityLiving);
 		}
 		return null;

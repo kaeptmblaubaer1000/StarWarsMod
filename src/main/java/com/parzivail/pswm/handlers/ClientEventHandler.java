@@ -2,14 +2,13 @@ package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.jedirobes.powers.Power;
+import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.jedi.powers.Power;
 import com.parzivail.pswm.minimap.MinimapStore;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.rendering.IHandlesRender;
@@ -147,12 +146,12 @@ public class ClientEventHandler
 			// Lumberjack.log("using duration? " +
 			// (ArmorJediRobes.getUsingDuration(entityPlayer) ? "yes" : "no"));
 
-			if (ArmorJediRobes.getActive(entityPlayer).equals("defend") && ArmorJediRobes.getHealth(entityPlayer) > 0)
+			if (JediUtils.getActive(entityPlayer).equals("defend") && JediUtils.getHealth(entityPlayer) > 0)
 			{
-				Power.getPowerFromName(ArmorJediRobes.getActive(entityPlayer));
-				if (ArmorJediRobes.getHealth(entityPlayer) > event.ammount)
+				Power.getPowerFromName(JediUtils.getActive(entityPlayer));
+				if (JediUtils.getHealth(entityPlayer) > event.ammount)
 				{
-					ArmorJediRobes.setHealth(entityPlayer, (int)(ArmorJediRobes.getHealth(entityPlayer) - event.ammount));
+					JediUtils.setHealth(entityPlayer, (int)(JediUtils.getHealth(entityPlayer) - event.ammount));
 					// Lumberjack.log("Remaining: " +
 					// ArmorJediRobes.getHealth(entityPlayer));
 					// Lumberjack.log("Cancelling event!");
@@ -160,13 +159,13 @@ public class ClientEventHandler
 				}
 				else
 				{
-					event.ammount -= ArmorJediRobes.getHealth(entityPlayer);
-					ArmorJediRobes.setHealth(entityPlayer, 0);
+					event.ammount -= JediUtils.getHealth(entityPlayer);
+					JediUtils.setHealth(entityPlayer, 0);
 					// Lumberjack.log("Depleted shield!");
 				}
 			}
 
-			if (ArmorJediRobes.getActive(entityPlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(entityPlayer))
+			if (JediUtils.getActive(entityPlayer).equals("deflect") && JediUtils.getUsingDuration(entityPlayer))
 				// Lumberjack.log("deflect running!");
 				if (event.source.isProjectile())
 					// Lumberjack.log("Cancelling event!");
@@ -420,27 +419,28 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onXpPickup(PlayerPickupXpEvent event)
 	{
-		if (event.entityPlayer.inventory.armorItemInSlot(2) != null && event.entityPlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+		ItemStack holocron = JediUtils.getHolocron(event.entityPlayer);
+		if (holocron != null)
 		{
-			int currentLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
-			if (StarWarsMod.rngGeneral.nextInt(100) <= ArmorJediRobes.getPercentForLevel(currentLevels))
+			int currentLevels = JediUtils.getLevel(holocron);
+			if (StarWarsMod.rngGeneral.nextInt(100) <= JediUtils.getPercentForLevel(currentLevels))
 			{
-				event.entityPlayer.inventory.armorInventory[2] = ArmorJediRobes.addLevels(event.entityPlayer.inventory.armorItemInSlot(2), 1);
+				holocron = JediUtils.addLevels(holocron, 1);
 				Lumberjack.log("XP accepted!");
 			}
 			else
 				Lumberjack.log("XP rejected!");
-			int newLevels = ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2));
-			Lumberjack.log(newLevels / ArmorJediRobes.POINTS_PER_LEVEL);
-			if (Math.floor(newLevels / ArmorJediRobes.POINTS_PER_LEVEL) == Math.floor(currentLevels / ArmorJediRobes.POINTS_PER_LEVEL) + 1)
+			int newLevels = JediUtils.getLevel(holocron);
+			Lumberjack.log(newLevels / JediUtils.POINTS_PER_LEVEL);
+			if (Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) == Math.floor(currentLevels / JediUtils.POINTS_PER_LEVEL) + 1)
 			{
 				// level up!
 				event.entityPlayer.playSound("random.levelup", 1, 1);
-				ArmorJediRobes.addPoints(event.entityPlayer.inventory.armorItemInSlot(2), 1);
-				ArmorJediRobes.setMaxXP(event.entityPlayer.inventory.armorItemInSlot(2), (int)(Math.floor(newLevels / ArmorJediRobes.POINTS_PER_LEVEL) * 100));
+				JediUtils.addPoints(holocron, 1);
+				JediUtils.setMaxXP(holocron, (int)(Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) * 100));
 				event.entityPlayer.addChatMessage(new ChatComponentText("[Robes] Level Up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(ArmorJediRobes.getLevel(event.entityPlayer.inventory.armorItemInSlot(2)) / ArmorJediRobes.POINTS_PER_LEVEL), ArmorJediRobes.getPoints(event.entityPlayer.inventory.armorItemInSlot(2)))));
-				if (Math.floor(newLevels / ArmorJediRobes.POINTS_PER_LEVEL) == 35)
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(JediUtils.getLevel(holocron) / JediUtils.POINTS_PER_LEVEL), JediUtils.getPoints(holocron))));
+				if (Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) == 35)
 				{
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
 					event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);

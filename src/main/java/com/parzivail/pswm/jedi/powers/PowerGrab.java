@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedirobes.powers;
+package com.parzivail.pswm.jedi.powers;
 
 public class PowerGrab extends Power
 {

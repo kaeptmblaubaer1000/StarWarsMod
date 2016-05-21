@@ -1,15 +1,14 @@
 package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.jedirobes.powers.Power;
-import com.parzivail.pswm.jedirobes.powers.PowerDefend;
+import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.jedi.powers.Power;
+import com.parzivail.pswm.jedi.powers.PowerDefend;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.AnimationTargetingComputer;
@@ -180,15 +179,15 @@ public class CommonEventHandler
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUEST, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+			if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
 		{
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+			if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 			{
-				String current = ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer);
-				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(StarWarsMod.mc.thePlayer), ArmorJediRobes.getLevel(StarWarsMod.mc.thePlayer));
+				String current = JediUtils.getActive(StarWarsMod.mc.thePlayer);
+				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(JediUtils.getSide(StarWarsMod.mc.thePlayer), JediUtils.getLevel(StarWarsMod.mc.thePlayer));
 				int index = Arrays.asList(powers.toArray()).indexOf(current);
 				do
 				{
@@ -196,16 +195,16 @@ public class CommonEventHandler
 					if (index >= powers.size())
 						index = 0;
 				}
-				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
+				while (JediUtils.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
 				if (index > -1 && !powers.get(index).equals(current))
 				{
 					if (index >= powers.size())
 						index = 0;
 					Power selectedPower = Power.getPowerFromName(powers.get(index));
 					ForceUtils.activePower = selectedPower;
-					ArmorJediRobes.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
-					ArmorJediRobes.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
-					ArmorJediRobes.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					JediUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
+					JediUtils.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					JediUtils.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
 					StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, selectedPower.name));
 					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(selectedPower.name).currentLevel));
 					if (selectedPower.name.equals("defend"))
@@ -216,10 +215,10 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePowerPrev.isPressed())
 		{
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+			if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 			{
-				String current = ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer);
-				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(ArmorJediRobes.getSide(StarWarsMod.mc.thePlayer), ArmorJediRobes.getLevel(StarWarsMod.mc.thePlayer));
+				String current = JediUtils.getActive(StarWarsMod.mc.thePlayer);
+				ArrayList<String> powers = ForceUtils.getPowersAvailableAtLevel(JediUtils.getSide(StarWarsMod.mc.thePlayer), JediUtils.getLevel(StarWarsMod.mc.thePlayer));
 				int index = Arrays.asList(powers.toArray()).indexOf(current);
 				do
 				{
@@ -227,16 +226,16 @@ public class CommonEventHandler
 					if (index < 0)
 						index = powers.size() - 1;
 				}
-				while (ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
+				while (JediUtils.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
 				if (index > -1 && !powers.get(index).equals(current))
 				{
 					if (index < 0)
 						index = powers.size() - 1;
 					Power selectedPower = Power.getPowerFromName(powers.get(index));
 					ForceUtils.activePower = selectedPower;
-					ArmorJediRobes.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
-					ArmorJediRobes.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
-					ArmorJediRobes.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					JediUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
+					JediUtils.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
+					JediUtils.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
 					StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, selectedPower.name));
 					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(selectedPower.name).currentLevel));
 					if (selectedPower.name.equals("defend"))
@@ -247,27 +246,27 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 		{
-			if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+			if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 			{
-				Power active = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+				Power active = Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
 
-				if (active != null && ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name) > 0)
+				if (active != null && JediUtils.getLevelOf(StarWarsMod.mc.thePlayer, active.name) > 0)
 				{
 					Entity e = EntityUtils.rayTrace(active.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
 
 					if (e != null)
-						ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
+						JediUtils.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
 
-					active.currentLevel = ArmorJediRobes.getLevelOf(StarWarsMod.mc.thePlayer, active.name);
-					if (ArmorJediRobes.getXP(StarWarsMod.mc.thePlayer) - active.getCost() >= 0 && !ForceUtils.isCooling(active.name))
+					active.currentLevel = JediUtils.getLevelOf(StarWarsMod.mc.thePlayer, active.name);
+					if (JediUtils.getXP(StarWarsMod.mc.thePlayer) - active.getCost() >= 0 && !ForceUtils.isCooling(active.name))
 					{
-						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, ArmorJediRobes.getXP(StarWarsMod.mc.thePlayer) - active.getCost()));
+						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, JediUtils.getXP(StarWarsMod.mc.thePlayer) - active.getCost()));
 
 						if (!active.isDurationBased)
 						{
 							if (active.name.equals("defend"))
 							{
-								if (!ArmorJediRobes.getIsRunning(StarWarsMod.mc.thePlayer))
+								if (!JediUtils.getIsRunning(StarWarsMod.mc.thePlayer))
 								{
 									if (active.run(StarWarsMod.mc.thePlayer))
 									{
@@ -290,7 +289,7 @@ public class CommonEventHandler
 							{
 								active.run(StarWarsMod.mc.thePlayer);
 								active.recharge = active.rechargeTime;
-								if (!ForceUtils.isCooling(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)))
+								if (!ForceUtils.isCooling(JediUtils.getActive(StarWarsMod.mc.thePlayer)))
 									ForceUtils.coolingPowers.add(active);
 							}
 						}
@@ -320,21 +319,21 @@ public class CommonEventHandler
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 
-		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+		if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 		{
-			Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+			Power power = Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
 
 			Entity e;
 
-			if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) == -1)
+			if (JediUtils.getEntityTarget(StarWarsMod.mc.thePlayer) == -1)
 				e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
 			else
-				e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
+				e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(JediUtils.getEntityTarget(StarWarsMod.mc.thePlayer));
 
 			if (e != null)
 			{
-				ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
-				if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
+				JediUtils.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
+				if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab") && JediUtils.getUsingDuration(StarWarsMod.mc.thePlayer))
 				{
 					if (ForceUtils.distanceToEntity == -1)
 						ForceUtils.distanceToEntity = (float)Vec3.createVectorHelper(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ).distanceTo(Vec3.createVectorHelper(e.posX, e.posY, e.posZ));
@@ -377,12 +376,12 @@ public class CommonEventHandler
 			}
 			else
 			{
-				ArmorJediRobes.setEntityTarget(StarWarsMod.mc.thePlayer, -1);
+				JediUtils.setEntityTarget(StarWarsMod.mc.thePlayer, -1);
 				ForceUtils.distanceToEntity = -1;
 			}
 		}
 
-		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("deflect") && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
+		if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("deflect") && JediUtils.getUsingDuration(StarWarsMod.mc.thePlayer))
 			StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterRifleBolt || entityObj instanceof EntityBlasterHeavyBolt || entityObj instanceof EntityBlasterPistolBolt || entityObj instanceof EntityBlasterProbeBolt || entityObj instanceof EntitySpeederBlasterRifleBolt).forEach(entityObj -> {
 				Entity entity = (Entity)entityObj;
 				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
@@ -397,12 +396,12 @@ public class CommonEventHandler
 				it.remove();
 		}
 
-		if (StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2) != null && StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+		if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 		{
-			ItemStack robes = StarWarsMod.mc.thePlayer.inventory.armorItemInSlot(2);
-			int level = ArmorJediRobes.getLevel(robes);
-			int xp = ArmorJediRobes.getXP(robes);
-			int maxxp = ArmorJediRobes.getMaxXP(robes);
+			ItemStack robes = JediUtils.getHolocron(StarWarsMod.mc.thePlayer);
+			int level = JediUtils.getLevel(robes);
+			int xp = JediUtils.getXP(robes);
+			int maxxp = JediUtils.getMaxXP(robes);
 
 			if (StarWarsMod.mc.thePlayer.ticksExisted % 20 == 0)
 			{
@@ -423,16 +422,16 @@ public class CommonEventHandler
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, total));
 			}
 
-			if (ForceUtils.activePower != null && ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer) && !ForceUtils.isCooling(ForceUtils.activePower.name))
+			if (ForceUtils.activePower != null && JediUtils.getUsingDuration(StarWarsMod.mc.thePlayer) && !ForceUtils.isCooling(ForceUtils.activePower.name))
 			{
 				ForceUtils.activePower.duration++;
 
 				ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
 				StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsUsingDuration, ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed()));
 
-				if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !ArmorJediRobes.getUsingDuration(StarWarsMod.mc.thePlayer))
+				if (ForceUtils.activePower.duration > ForceUtils.activePower.getDuration() || !JediUtils.getUsingDuration(StarWarsMod.mc.thePlayer))
 				{
-					if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+					if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 						if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
 							try
 							{
@@ -447,16 +446,16 @@ public class CommonEventHandler
 					ForceUtils.activePower.recharge = ForceUtils.activePower.rechargeTime;
 					ForceUtils.coolingPowers.add(ForceUtils.activePower);
 				}
-				else if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
+				else if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 				{
-					Power power = Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
-					if (ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer) != -1)
+					Power power = Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
+					if (JediUtils.getEntityTarget(StarWarsMod.mc.thePlayer) != -1)
 					{
-						Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(StarWarsMod.mc.thePlayer));
+						Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(JediUtils.getEntityTarget(StarWarsMod.mc.thePlayer));
 
 						if (e != null)
 						{
-							if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
+							if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("lightning"))
 							{
 								StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
 								StarWarsMod.network.sendToServer(new MessageEntityHurt(e, power.getDamage()));
@@ -494,10 +493,10 @@ public class CommonEventHandler
 		// ForceUtils.activePower.name.equals("defend") &&
 		// ((PowerDefend)ForceUtils.activePower).health <= 0 &&
 		// ((PowerDefend)ForceUtils.activePower).isRunning)
-		if (ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer).equals("defend") && ArmorJediRobes.getHealth(StarWarsMod.mc.thePlayer) <= 0 && ArmorJediRobes.getIsRunning(StarWarsMod.mc.thePlayer))
+		if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("defend") && JediUtils.getHealth(StarWarsMod.mc.thePlayer) <= 0 && JediUtils.getIsRunning(StarWarsMod.mc.thePlayer))
 
 		{
-			PowerDefend active = (PowerDefend)Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer));
+			PowerDefend active = (PowerDefend)Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
 			active.health = 0;
 			active.isRunning = false;
 			active.recharge = active.rechargeTime;
@@ -538,10 +537,10 @@ public class CommonEventHandler
 
 	private void resetRobes(PlayerEvent event)
 	{
-		ArmorJediRobes.setActive(event.player, "");
-		ArmorJediRobes.setDuration(event.player, false);
-		ArmorJediRobes.setEntityTarget(event.player, -1);
-		ArmorJediRobes.setRunning(event.player, false);
+		JediUtils.setActive(event.player, "");
+		JediUtils.setDuration(event.player, false);
+		JediUtils.setEntityTarget(event.player, -1);
+		JediUtils.setRunning(event.player, false);
 		ForceUtils.activePower = null;
 		ForceUtils.isUsingDuration = false;
 	}
