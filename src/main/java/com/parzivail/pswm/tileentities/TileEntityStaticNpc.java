@@ -5,8 +5,10 @@ import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.util.math.MathUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -23,6 +25,22 @@ public class TileEntityStaticNpc extends TileEntity
 	public TileEntityStaticNpc()
 	{
 	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		super.onDataPacket(net, packet);
+		this.readFromNBT(packet.func_148857_g());
+	}
+
 
 	public String getId()
 	{
@@ -73,24 +91,13 @@ public class TileEntityStaticNpc extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		getInternalEntity().ticksExisted++;
-		EntityPlayer e = getClosestPlayer();
-		if (e != null)
-			getInternalEntity().getLookHelper().setLookPosition(e.posX, e.posY, e.posZ, 0, 0);
+		if (this.internalBiped != null)
+		{
+			if (this.internalBiped.worldObj == null)
+				this.internalBiped.worldObj = this.worldObj;
+			this.internalBiped.ticksExisted++;
+		}
 		super.updateEntity();
-	}
-
-	public EntityPlayer getClosestPlayer()
-	{
-		return this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10);
-	}
-
-	public float getAngleToClosestPlayer()
-	{
-		EntityPlayer e = getClosestPlayer();
-		if (e == null)
-			return 0;
-		return (float)Math.toDegrees(Math.atan2(e.posX - 0.5f - (float)this.xCoord, e.posZ - 0.5f - (float)this.zCoord));
 	}
 
 	@Override

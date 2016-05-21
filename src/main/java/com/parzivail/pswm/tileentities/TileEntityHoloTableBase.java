@@ -4,6 +4,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import org.lwjgl.opengl.GL11;
@@ -24,7 +27,7 @@ public class TileEntityHoloTableBase extends TileEntity
 
 	public TileEntityHoloTableBase()
 	{
-		this.setRGB(0.4f, 0.4f, 1);
+		this.rgb = new Color(0.4f, 0.4f, 1f);
 	}
 
 	public int getDisplayList()
@@ -130,8 +133,8 @@ public class TileEntityHoloTableBase extends TileEntity
 	public void readFromNBT(NBTTagCompound tag)
 	{
 		super.readFromNBT(tag);
-		this.setOffsetY(tag.getInteger("offsetY"));
 		this.setOffsetX(tag.getInteger("offsetX"));
+		this.setOffsetY(tag.getInteger("offsetY"));
 		this.setOffsetZ(tag.getInteger("offsetZ"));
 		this.setRGB(tag.getInteger("color"));
 		this.sideLength = tag.getInteger("sidelength");
@@ -193,12 +196,27 @@ public class TileEntityHoloTableBase extends TileEntity
 	}
 
 	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		super.onDataPacket(net, packet);
+		this.readFromNBT(packet.func_148857_g());
+	}
+
+	@Override
 	public void writeToNBT(NBTTagCompound tag)
 	{
 		super.writeToNBT(tag);
 		tag.setInteger("color", this.getRGB().getRGB());
-		tag.setInteger("offsetY", this.getOffsetY());
 		tag.setInteger("offsetX", this.getOffsetX());
+		tag.setInteger("offsetY", this.getOffsetY());
 		tag.setInteger("offsetZ", this.getOffsetZ());
 		tag.setInteger("sidelength", this.sideLength);
 	}

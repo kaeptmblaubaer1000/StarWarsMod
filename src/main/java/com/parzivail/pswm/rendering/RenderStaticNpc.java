@@ -43,11 +43,15 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			GL11.glTranslated(x + 0.5f, y, z + 0.5f);
 
-			GL11.glRotatef(-RenderManager.instance.playerViewY + 180, 0, 1, 0);
+			if (staticNpc.getLocked())
+				GL11.glRotatef(staticNpc.getFacing() * 90 + 180, 0, 1, 0);
+			else
+				GL11.glRotatef(-RenderManager.instance.playerViewY + 180, 0, 1, 0);
 
 			GLPalette.glColorI(GLPalette.WHITE);
 
-			biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
+			if (staticNpc.getInternalEntity().worldObj != null)
+				biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
 
 			GL11.glTranslatef(-0.375f, 3f, -0.05f);
 			GL11.glScalef(1, -1, 1);

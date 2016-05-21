@@ -97,6 +97,18 @@ public class BlockHolotable extends BlockContainer implements IDebugProvider
 	}
 
 	@Override
+	public int onBlockPlaced(World world, int x, int y, int z, int p_149660_5_, float p_149660_6_, float p_149660_7_, float p_149660_8_, int p_149660_9_)
+	{
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityHoloTableBase)
+		{
+			TileEntityHoloTableBase holoTableBase = (TileEntityHoloTableBase)tile;
+			holoTableBase.setRGB(0.4f, 0.4f, 1);
+		}
+		return p_149660_9_;
+	}
+
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
 		if (world.isRemote)
