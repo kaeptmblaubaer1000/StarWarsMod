@@ -113,7 +113,7 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPopMatrix();
 		}
 
-		if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
+		if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 			if (this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof IDebugProvider)
@@ -139,7 +139,7 @@ public class GuiPSWMOverlay extends Gui
 				GL11.glPopMatrix();
 			}
 		}
-		else if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
+		else if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 			if (mop.entityHit instanceof IDebugProvider)

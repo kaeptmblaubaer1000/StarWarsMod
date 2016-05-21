@@ -2,6 +2,7 @@ package com.parzivail.pswm.blocks.npc;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.ui.Lumberjack;
@@ -22,20 +23,29 @@ import java.util.List;
 
 public class BlockNpcBase extends BlockContainer implements IDebugProvider
 {
-	public BlockNpcBase()
+	public String id;
+	String armor;
+
+	public BlockNpcBase(String quest, String armor, String side, String skin)
 	{
 		super(Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "staticNpc");
+		setBlockName(Resources.MODID + "." + "staticNpc" + quest);
 		setBlockBounds(0, 0, 0, 1, 1.83f, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
+
+		this.id = QuestNpcUtils.makeNpcId(quest, side, skin);
+		this.armor = armor;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityStaticNpc();
+		TileEntityStaticNpc te = new TileEntityStaticNpc();
+		QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
+		te.setId(this.id);
+		return te;
 	}
 
 	@Override

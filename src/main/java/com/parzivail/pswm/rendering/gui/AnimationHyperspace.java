@@ -3,8 +3,8 @@ package com.parzivail.pswm.rendering.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.math.Animation;
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.MathHelper;
@@ -68,7 +68,7 @@ public class AnimationHyperspace extends Animation
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 
 		GL11.glColor3f(0, 0, 0);
-		Screen2D.drawRectangle(0, 0, r.getScaledWidth(), r.getScaledHeight(), true);
+		GFX.drawRectangle(0, 0, r.getScaledWidth(), r.getScaledHeight(), true);
 
 		int mX = r.getScaledWidth() / 2;
 		int mY = r.getScaledHeight() / 2;
@@ -96,7 +96,7 @@ public class AnimationHyperspace extends Animation
 			if (t < 5)
 				mod = 1;
 
-			Screen2D.drawLine(star.pos.x + MathHelper.sin(angle) * mod, star.pos.y + MathHelper.cos(angle) * mod, star.pos.x + MathHelper.sin(angle) * t, star.pos.y + MathHelper.cos(angle) * t);
+			GFX.drawLine(star.pos.x + MathHelper.sin(angle) * mod, star.pos.y + MathHelper.cos(angle) * mod, star.pos.x + MathHelper.sin(angle) * t, star.pos.y + MathHelper.cos(angle) * t);
 		}
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}

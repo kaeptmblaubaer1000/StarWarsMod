@@ -40,15 +40,15 @@ public class OutlineButton extends GuiButton
 				case 0:
 					textColor = GLPalette.GREY;
 					GLPalette.glColorI(GLPalette.DARK_GREY);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				case 1:
 					GLPalette.glColorI(this.selected ? GLPalette.SW_YELLOW : GLPalette.DARK_SW_YELLOW);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				case 2:
 					GLPalette.glColorI(GLPalette.SW_YELLOW);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				default:
 					break;

@@ -1,8 +1,8 @@
 package com.parzivail.pswm.rendering;
 
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.OutlineButton;
-import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -36,15 +36,15 @@ public class OutlineLightsaberHiltButton extends OutlineButton
 			{
 				case 0:
 					GLPalette.glColorI(GLPalette.DARK_GREY);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				case 1:
 					GLPalette.glColorI(this.selected ? GLPalette.SW_YELLOW : GLPalette.DARK_SW_YELLOW);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				case 2:
 					GLPalette.glColorI(GLPalette.SW_YELLOW);
-					Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 					break;
 				default:
 					break;

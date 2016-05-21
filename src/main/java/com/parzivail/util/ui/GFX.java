@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 
-public class Screen2D
+public class GFX
 {
 	/**
 	 * Draws a rectangle
@@ -224,7 +224,7 @@ public class Screen2D
 	}
 
 	/**
-	 * Double wrapper for {@link Screen2D::drawLine}
+	 * Double wrapper for {@link GFX ::drawLine}
 	 *
 	 * @param x1
 	 * @param y1
