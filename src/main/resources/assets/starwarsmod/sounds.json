@@ -1,4 +1,10 @@
 {
+    "blastdoor.pressure": {
+        "category": "neutral",
+        "sounds": [
+            "block/blastdoor/pressure"
+        ]
+    },
     "force.lightning": {
         "category": "neutral",
         "sounds": [
