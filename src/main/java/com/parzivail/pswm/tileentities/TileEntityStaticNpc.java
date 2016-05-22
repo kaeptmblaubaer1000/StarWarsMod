@@ -1,13 +1,14 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.util.math.MathUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -23,8 +24,23 @@ public class TileEntityStaticNpc extends TileEntity
 
 	public TileEntityStaticNpc()
 	{
-		this.setId(QuestNpcUtils.makeNpcId("welcome0", MathUtils.getRandomElement(new String[] { Resources.allegianceRebel, Resources.allegianceImperial, Resources.allegianceJedi, Resources.allegianceSith }), Resources.skinDefault));
 	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		super.onDataPacket(net, packet);
+		this.readFromNBT(packet.func_148857_g());
+	}
+
 
 	public String getId()
 	{
@@ -75,24 +91,13 @@ public class TileEntityStaticNpc extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		getInternalEntity().ticksExisted++;
-		EntityPlayer e = getClosestPlayer();
-		if (e != null)
-			getInternalEntity().getLookHelper().setLookPosition(e.posX, e.posY, e.posZ, 0, 0);
+		if (this.internalBiped != null)
+		{
+			if (this.internalBiped.worldObj == null)
+				this.internalBiped.worldObj = this.worldObj;
+			this.internalBiped.ticksExisted++;
+		}
 		super.updateEntity();
-	}
-
-	public EntityPlayer getClosestPlayer()
-	{
-		return this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10);
-	}
-
-	public float getAngleToClosestPlayer()
-	{
-		EntityPlayer e = getClosestPlayer();
-		if (e == null)
-			return 0;
-		return (float)Math.toDegrees(Math.atan2(e.posX - 0.5f - (float)this.xCoord, e.posZ - 0.5f - (float)this.zCoord));
 	}
 
 	@Override
@@ -107,10 +112,10 @@ public class TileEntityStaticNpc extends TileEntity
 	@Override
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{
+		super.writeToNBT(p_145841_1_);
 		p_145841_1_.setString("quest-id", getId());
 		p_145841_1_.setInteger("facing", getFacing());
 		p_145841_1_.setBoolean("locked", getLocked());
-		super.writeToNBT(p_145841_1_);
 	}
 
 	public MobDefaultBiped getInternalEntity()
@@ -119,11 +124,7 @@ public class TileEntityStaticNpc extends TileEntity
 		{
 			internalBiped = new MobDefaultBiped(this.worldObj);
 
-			//internalBiped.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
-			//internalBiped.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
-			//internalBiped.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
-			//internalBiped.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
-			//internalBiped.setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
+			QuestNpcUtils.arm(internalBiped, MathUtils.getRandomElement(new String[] { "rebelPilot", "rebelEndor", "rebelHoth", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot" }));
 		}
 		return internalBiped;
 	}

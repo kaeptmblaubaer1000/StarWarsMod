@@ -1,8 +1,7 @@
 package com.parzivail.pswm.commands;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -54,34 +53,33 @@ public class CommandJediRobes extends CommandBase
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
-		if (player != null && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
+		if (player != null && JediUtils.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
-			ItemStack robes = player.inventory.armorItemInSlot(2);
-			ArmorJediRobes.getXP(robes);
-			ArmorJediRobes.getMaxXP(robes);
+			ItemStack robes = JediUtils.getHolocron(player);
+			JediUtils.getXP(robes);
+			JediUtils.getMaxXP(robes);
 
 			if (key.equalsIgnoreCase("level"))
-				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(key, (int)(value * ArmorJediRobes.POINTS_PER_LEVEL));
+				robes.stackTagCompound.setInteger(key, (int)(value * JediUtils.POINTS_PER_LEVEL));
 			else
-				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(key, value);
+				robes.stackTagCompound.setInteger(key, value);
 			icommandsender.addChatMessage(new ChatComponentText("[Robes] Set " + key + " to " + String.valueOf(value) + "."));
 
 			if (key.equalsIgnoreCase("level"))
 			{
-				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(Resources.nbtMaxXp, (value + 1) * 100);
+				robes.stackTagCompound.setInteger(Resources.nbtMaxXp, (value + 1) * 100);
 				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Max XP to " + String.valueOf((value + 1) * 100) + "."));
-				player.inventory.armorItemInSlot(2).stackTagCompound.setInteger(Resources.nbtRemainingPts, value);
+				robes.stackTagCompound.setInteger(Resources.nbtRemainingPts, value);
 				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Remaining Upgrade Points to " + String.valueOf(value) + "."));
 			}
 		}
 		else
 		{
+			ItemStack robes = JediUtils.getHolocron(player);
 			icommandsender.addChatMessage(new ChatComponentText("Usage: " + this.getCommandUsage(icommandsender)));
 			if (player == null)
 				icommandsender.addChatMessage(new ChatComponentText("Error: player is null!"));
-			else if (player.inventory.armorItemInSlot(2) == null)
-				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
-			else if (player.inventory.armorItemInSlot(2).getItem() != StarWarsItems.jediRobes)
+			else if (robes == null)
 				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
 			else
 				icommandsender.addChatMessage(new ChatComponentText("Unknown key!"));

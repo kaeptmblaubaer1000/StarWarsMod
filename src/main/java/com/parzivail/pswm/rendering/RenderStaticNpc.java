@@ -4,9 +4,9 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.Screen2D;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -43,11 +43,15 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			GL11.glTranslated(x + 0.5f, y, z + 0.5f);
 
-			GL11.glRotatef(-RenderManager.instance.playerViewY + 180, 0, 1, 0);
+			if (staticNpc.getLocked())
+				GL11.glRotatef(staticNpc.getFacing() * 90 + 180, 0, 1, 0);
+			else
+				GL11.glRotatef(-RenderManager.instance.playerViewY + 180, 0, 1, 0);
 
 			GLPalette.glColorI(GLPalette.WHITE);
 
-			biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
+			if (staticNpc.getInternalEntity().worldObj != null)
+				biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
 
 			GL11.glTranslatef(-0.375f, 3f, -0.05f);
 			GL11.glScalef(1, -1, 1);
@@ -66,16 +70,16 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 			switch (QuestNpcUtils.getNpcSide(staticNpc.getId()))
 			{
 				case Resources.allegianceJedi:
-					Screen2D.drawTexture(0, 0, 0, 26, 16, 16);
+					GFX.drawTexture(0, 0, 0, 26, 16, 16);
 					break;
 				case Resources.allegianceSith:
-					Screen2D.drawTexture(0, 0, 17, 26, 16, 16);
+					GFX.drawTexture(0, 0, 17, 26, 16, 16);
 					break;
 				case Resources.allegianceRebel:
-					Screen2D.drawTexture(0, 0, 33, 26, 16, 16);
+					GFX.drawTexture(0, 0, 33, 26, 16, 16);
 					break;
 				case Resources.allegianceImperial:
-					Screen2D.drawTexture(0, 0, 49, 26, 16, 16);
+					GFX.drawTexture(0, 0, 49, 26, 16, 16);
 					break;
 			}
 

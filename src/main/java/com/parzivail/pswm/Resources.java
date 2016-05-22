@@ -162,4 +162,6 @@ public class Resources
 	public static final String allegianceImperial = "Galactic Empire";
 
 	public static final String skinDefault = "default";
+
+	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot" };
 }

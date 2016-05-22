@@ -128,14 +128,14 @@ public class OutlineRange extends OutlineButton
 			FontRenderer fontrenderer = p_146112_1_.fontRenderer;
 			GLPalette.glColorI(this.colorBg);
 			this.field_146123_n = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height;
-			Screen2D.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
+			GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
 			this.mouseDragged(p_146112_1_, p_146112_2_, p_146112_3_);
 
 			GLPalette.glColorI(this.colorFg);
-			Screen2D.drawRectangle(this.xPosition + (int)(this.value * (float)(this.width - 4)), this.yPosition, 4, 10, true);
+			GFX.drawRectangle(this.xPosition + (int)(this.value * (float)(this.width - 4)), this.yPosition, 4, 10, true);
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			Screen2D.drawCenteredText(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 5.5f) / 2, 0.75f, GLPalette.WHITE);
+			GFX.drawCenteredText(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 5.5f) / 2, 0.75f, GLPalette.WHITE);
 		}
 		GL11.glPopMatrix();
 	}

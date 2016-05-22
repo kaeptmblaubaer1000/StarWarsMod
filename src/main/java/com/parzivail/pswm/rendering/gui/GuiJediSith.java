@@ -2,7 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.GLPalette;
@@ -31,7 +31,7 @@ public class GuiJediSith extends GuiScreen
 	public GuiJediSith(EntityPlayer player)
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.stack = player.getEquipmentInSlot(3);
+		this.stack = JediUtils.getHolocron(player);
 		this.player = player;
 	}
 
@@ -44,16 +44,16 @@ public class GuiJediSith extends GuiScreen
 				ForceUtils.addLeaderboardSide("jedi");
 				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
-				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, ArmorJediRobes.SIDE_JEDI));
-				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_JEDI);
+				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, JediUtils.SIDE_JEDI));
+				this.stack.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_JEDI);
 			}
 			else if (button.id == this.sithButton.id)
 			{
 				ForceUtils.addLeaderboardSide("sith");
 				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
-				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, ArmorJediRobes.SIDE_SITH));
-				this.stack.stackTagCompound.setString(Resources.nbtSide, ArmorJediRobes.SIDE_SITH);
+				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, JediUtils.SIDE_SITH));
+				this.stack.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_SITH);
 			}
 	}
 

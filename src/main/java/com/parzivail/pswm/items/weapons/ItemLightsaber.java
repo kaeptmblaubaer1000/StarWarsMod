@@ -3,9 +3,12 @@ package com.parzivail.pswm.items.weapons;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.math.IntColorComparator;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.TextEffects;
+import com.parzivail.util.ui.TextUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +19,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -96,10 +100,9 @@ public class ItemLightsaber extends ItemSword
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		// if (stack.stackTagCompound != null)
-		// {
-		// list.add("Hilt: " + stack.stackTagCompound.getString(nbtHilt));
-		// }
+		list.add(TextUtils.makeItalic("This is the formal weapon of a Jedi Knight."));
+		list.add(String.format("Sneak + Right Click (Or press %s) to toggle.", TextEffects.COLOR_YELLOW + Keyboard.getKeyName(KeybindRegistry.keyLSToggle.getKeyCode()) + TextEffects.COLOR_GRAY));
+		list.add("Block to deflect blaster bolts.");
 	}
 
 	@Override

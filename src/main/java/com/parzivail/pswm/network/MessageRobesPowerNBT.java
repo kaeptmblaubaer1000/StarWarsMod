@@ -1,6 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.util.network.PMessage;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -31,7 +32,7 @@ public class MessageRobesPowerNBT extends PMessage<MessageRobesPowerNBT>
 			return null;
 		try
 		{
-			this.player.inventory.armorInventory[2].stackTagCompound.getCompoundTag(Resources.nbtPowers).setInteger(this.key, this.value);
+			JediUtils.getHolocron(player).stackTagCompound.getCompoundTag(Resources.nbtPowers).setInteger(this.key, this.value);
 		}
 		catch (Exception e)
 		{

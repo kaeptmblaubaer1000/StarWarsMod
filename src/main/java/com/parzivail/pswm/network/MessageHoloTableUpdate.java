@@ -7,13 +7,11 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
 
-import java.awt.*;
-
 public class MessageHoloTableUpdate extends PMessage<MessageHoloTableUpdate>
 {
 	public int dim;
 	public Vec3 position;
-	public Color color;
+	public int color;
 	public int offset;
 	public int offsetX;
 	public int offsetZ;
@@ -22,14 +20,14 @@ public class MessageHoloTableUpdate extends PMessage<MessageHoloTableUpdate>
 	{
 	}
 
-	public MessageHoloTableUpdate(TileEntityHoloTableBase table)
+	public MessageHoloTableUpdate(int xCoord, int yCoord, int zCoord, int dim, int color, int oX, int oY, int oZ)
 	{
-		this.dim = table.getWorldObj().provider.dimensionId;
-		this.position = Vec3.createVectorHelper(table.xCoord, table.yCoord, table.zCoord);
-		this.color = table.getRGB();
-		this.offset = table.getOffsetY();
-		this.offsetX = table.getOffsetX();
-		this.offsetZ = table.getOffsetZ();
+		this.dim = dim;
+		this.position = Vec3.createVectorHelper(xCoord, yCoord, zCoord);
+		this.color = color;
+		this.offset = oY;
+		this.offsetX = oX;
+		this.offsetZ = oZ;
 	}
 
 	@Override
@@ -39,7 +37,8 @@ public class MessageHoloTableUpdate extends PMessage<MessageHoloTableUpdate>
 		table.setOffsetY(this.offset);
 		table.setOffsetX(this.offsetX);
 		table.setOffsetZ(this.offsetZ);
-		table.setRGB(this.color.getRGB());
+		table.setRGB(this.color);
+		table.markDirty();
 		return null;
 	}
 }

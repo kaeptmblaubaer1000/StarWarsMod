@@ -5,8 +5,8 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
-import com.parzivail.pswm.jedirobes.powers.Power;
+import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.jedi.powers.Power;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
@@ -72,14 +72,13 @@ public class GuiPSWMOverlay extends Gui
 
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
-		if (this.mc.thePlayer.inventory.armorItemInSlot(2) != null && this.mc.thePlayer.inventory.armorItemInSlot(2).getItem() == StarWarsItems.jediRobes)
+		if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 		{
+			ItemStack robes = JediUtils.getHolocron(StarWarsMod.mc.thePlayer);
+			int xp = JediUtils.getXP(robes);
+			int maxxp = JediUtils.getMaxXP(robes);
 
-			ItemStack robes = this.mc.thePlayer.inventory.armorItemInSlot(2);
-			int xp = ArmorJediRobes.getXP(robes);
-			int maxxp = ArmorJediRobes.getMaxXP(robes);
-
-			boolean isJedi = ArmorJediRobes.getSide(robes).equals(ArmorJediRobes.SIDE_JEDI);
+			boolean isJedi = JediUtils.getSide(robes).equals(JediUtils.SIDE_JEDI);
 			int guiColor = isJedi ? GLPalette.GREEN_APPLE : GLPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
@@ -89,8 +88,8 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPushMatrix();
 			GLPZ.glScalef(0.5f);
 
-			if (Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)) != null)
-				this.drawString(this.mc.fontRenderer, Power.getPowerFromName(ArmorJediRobes.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
+			if (Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
+				this.drawString(this.mc.fontRenderer, Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 
@@ -114,7 +113,7 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPopMatrix();
 		}
 
-		if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
+		if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 			if (this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof IDebugProvider)
@@ -140,7 +139,7 @@ public class GuiPSWMOverlay extends Gui
 				GL11.glPopMatrix();
 			}
 		}
-		else if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
+		else if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 			if (mop.entityHit instanceof IDebugProvider)

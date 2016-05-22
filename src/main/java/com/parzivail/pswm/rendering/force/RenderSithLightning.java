@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.force;
 
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,11 +24,11 @@ public class RenderSithLightning
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			if (ArmorJediRobes.getActive(player).equals("lightning") && ArmorJediRobes.getUsingDuration(player))
+			if (JediUtils.getActive(player).equals("lightning") && JediUtils.getUsingDuration(player))
 			{
 				Entity e = null;
-				if (ArmorJediRobes.getEntityTarget(player) != -1)
-					e = player.worldObj.getEntityByID(ArmorJediRobes.getEntityTarget(player));
+				if (JediUtils.getEntityTarget(player) != -1)
+					e = player.worldObj.getEntityByID(JediUtils.getEntityTarget(player));
 
 				if (e != null)
 				{
@@ -69,7 +69,7 @@ public class RenderSithLightning
 					}
 				}
 				else
-					ArmorJediRobes.setEntityTarget(player, -1);
+					JediUtils.setEntityTarget(player, -1);
 			}
 		}
 	}

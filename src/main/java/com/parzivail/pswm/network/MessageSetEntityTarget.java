@@ -1,6 +1,6 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.jedirobes.ArmorJediRobes;
+import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -25,7 +25,7 @@ public class MessageSetEntityTarget extends PMessage<MessageSetEntityTarget>
 	public IMessage handleMessage(MessageContext context)
 	{
 		if (this.sender != null)
-			ArmorJediRobes.setEntityTarget(this.sender, this.targetId);
+			JediUtils.setEntityTarget(this.sender, this.targetId);
 		return null;
 	}
 

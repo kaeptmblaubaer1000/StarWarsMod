@@ -43,7 +43,7 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 				GL11.glPopMatrix();
 			}
 
-		if (table.isMapSetup())
+		if (table.isMapSetup() && table.getRGB() != null)
 		{
 			Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
 			GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);

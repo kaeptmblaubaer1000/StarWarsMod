@@ -1,5 +1,6 @@
 package com.parzivail.pswm.network;
 
+import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -27,7 +28,7 @@ public class MessageRobesStringNBT extends PMessage<MessageRobesStringNBT>
 	{
 		if (this.player == null || this.player.inventory == null)
 			return null;
-		this.player.inventory.armorInventory[2].stackTagCompound.setString(this.key, this.value);
+		JediUtils.getHolocron(player).stackTagCompound.setString(this.key, this.value);
 		return null;
 	}
 

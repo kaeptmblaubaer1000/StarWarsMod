@@ -14,6 +14,8 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+
 @SideOnly(Side.CLIENT)
 public class GuiHoloTable extends GuiScreen
 {
@@ -29,7 +31,14 @@ public class GuiHoloTable extends GuiScreen
 	private GuiButton buttonOffsetZDown;
 	private GuiButton buttonRefresh;
 
-	private TileEntityHoloTableBase table;
+	private int offsetY = 0;
+	private int offsetX = 0;
+	private int offsetZ = 0;
+	private Color rgb;
+	private int dim;
+	private int xCoord;
+	private int yCoord;
+	private int zCoord;
 
 	private int lColumn;
 	private int rColumn;
@@ -37,7 +46,14 @@ public class GuiHoloTable extends GuiScreen
 	public GuiHoloTable(TileEntityHoloTableBase table)
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.table = table;
+		this.dim = table.getWorldObj().provider.dimensionId;
+		this.offsetX = table.getOffsetX();
+		this.offsetY = table.getOffsetY();
+		this.offsetZ = table.getOffsetZ();
+		this.rgb = table.getRGB();
+		this.xCoord = table.xCoord;
+		this.yCoord = table.yCoord;
+		this.zCoord = table.zCoord;
 
 		this.rColumn = -20;
 		this.lColumn = 5;
@@ -48,56 +64,28 @@ public class GuiHoloTable extends GuiScreen
 	{
 		if (button.enabled)
 			if (button.id == this.buttonBlack.id)
-			{
-				this.table.setRGB(0.2f, 0.2f, 0.4f);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.rgb = new Color(0.2f, 0.2f, 0.4f);
 			else if (button.id == this.buttonWhite.id)
-			{
-				this.table.setRGB(0.4f, 0.4f, 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.rgb = new Color(0.4f, 0.4f, 1f);
 			else if (button.id == this.buttonOffsetYUp.id)
-			{
-				this.table.setOffsetY(this.table.getOffsetY() - 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.offsetY--;
 			else if (button.id == this.buttonOffsetYDown.id)
-			{
-				this.table.setOffsetY(this.table.getOffsetY() + 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.offsetY++;
 			else if (button.id == this.buttonOffsetXUp.id)
-			{
-				this.table.setOffsetX(this.table.getOffsetX() - 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.offsetX--;
 			else if (button.id == this.buttonOffsetXDown.id)
-			{
-				this.table.setOffsetX(this.table.getOffsetX() + 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.offsetX++;
 			else if (button.id == this.buttonOffsetZUp.id)
-			{
-				this.table.setOffsetZ(this.table.getOffsetZ() - 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
+				this.offsetZ--;
 			else if (button.id == this.buttonOffsetZDown.id)
-			{
-				this.table.setOffsetZ(this.table.getOffsetZ() + 1);
-				this.table.getWorldObj().markBlockForUpdate(this.table.xCoord, this.table.yCoord, this.table.zCoord);
-				StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(this.table));
-			}
-			else if (button.id == this.buttonRefresh.id)
-				this.table.setupMap();
-		this.table.markDirty();
+				this.offsetZ++;
+		updateTable();
+	}
+
+	private void updateTable()
+	{
+		StarWarsMod.network.sendToServer(new MessageHoloTableUpdate(xCoord, yCoord, zCoord, dim, rgb.getRGB(), offsetX, offsetY, offsetZ));
+
 	}
 
 	/**
@@ -118,11 +106,17 @@ public class GuiHoloTable extends GuiScreen
 		this.drawString(this.mc.fontRenderer, "Holo X Offset", x - 94 + this.rColumn, y, GLPalette.WHITE);
 		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x - 18 + this.rColumn, y, GLPalette.WHITE);
 		this.drawString(this.mc.fontRenderer, "Holo Z Offset", x + 58 + this.rColumn, y, GLPalette.WHITE);
-		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(this.table.getOffsetX()), x - 60 + this.rColumn, y + 16, GLPalette.WHITE);
-		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(this.table.getOffsetY()), x + 16 + this.rColumn, y + 16, GLPalette.WHITE);
-		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(this.table.getOffsetZ()), x + 91 + this.rColumn, y + 16, GLPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(offsetX), x - 60 + this.rColumn, y + 16, GLPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(offsetY), x + 16 + this.rColumn, y + 16, GLPalette.WHITE);
+		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(offsetZ), x + 91 + this.rColumn, y + 16, GLPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
+	}
+
+	@Override
+	public boolean doesGuiPauseGame()
+	{
+		return false;
 	}
 
 	/**

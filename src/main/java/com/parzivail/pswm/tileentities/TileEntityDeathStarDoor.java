@@ -1,5 +1,6 @@
 package com.parzivail.pswm.tileentities;
 
+import com.parzivail.pswm.Resources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
@@ -86,7 +87,11 @@ public class TileEntityDeathStarDoor extends TileEntity
 		else
 			this.isClosing = false;
 
+		boolean wasMoving = isMoving;
 		this.isMoving = this.isOpening || this.isClosing;
+
+		if (isMoving && !wasMoving)
+			this.getWorldObj().playSound(this.xCoord, this.yCoord, this.zCoord, Resources.MODID + ":" + "blastdoor.pressure", 1, 1, true);
 	}
 
 	@Override

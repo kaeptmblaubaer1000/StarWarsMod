@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedirobes.powers;
+package com.parzivail.pswm.jedi.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageAddEffectTo;
@@ -8,16 +8,16 @@ import com.parzivail.util.ui.GuiToast;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PowerSlow extends Power
+public class PowerDisable extends Power
 {
-	public PowerSlow(int currentLevel)
+	public PowerDisable(int currentLevel)
 	{
-		super("slow");
-		this.costBase = 2700;
-		this.costMult = 75;
+		super("disable");
+		this.costBase = 960;
+		this.costMult = 60;
 		this.currentLevel = currentLevel;
-		this.maxLevel = 5;
-		this.rechargeTime = 15 * 40; // 40 ticks/second
+		this.maxLevel = 41;
+		this.rechargeTime = 10 * 40; // 40 ticks/second
 		this.recharge = 0;
 	}
 
@@ -30,7 +30,7 @@ public class PowerSlow extends Power
 
 			if (e != null)
 			{
-				StarWarsMod.network.sendToServer(new MessageAddEffectTo(new EntityCooldownEntry(e, "slow", this.currentLevel * 40)));
+				StarWarsMod.network.sendToServer(new MessageAddEffectTo(new EntityCooldownEntry(e, "disable", this.currentLevel * 40)));
 				GuiToast.makeText(e, 40).show();
 			}
 

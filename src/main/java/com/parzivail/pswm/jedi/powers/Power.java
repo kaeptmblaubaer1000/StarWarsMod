@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedirobes.powers;
+package com.parzivail.pswm.jedi.powers;
 
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;

@@ -2,9 +2,9 @@ package com.parzivail.pswm.blocks.npc;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
-import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,20 +22,29 @@ import java.util.List;
 
 public class BlockNpcBase extends BlockContainer implements IDebugProvider
 {
-	public BlockNpcBase()
+	public String id;
+	String armor;
+
+	public BlockNpcBase(String quest, String armor, String side, String skin)
 	{
 		super(Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "staticNpc");
-		setBlockBounds(0, 0, 0, 1, 1.83f, 1);
+		setBlockName(Resources.MODID + "." + "staticNpc" + quest);
+		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
+
+		this.id = QuestNpcUtils.makeNpcId(quest, side, skin);
+		this.armor = armor;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityStaticNpc();
+		TileEntityStaticNpc te = new TileEntityStaticNpc();
+		QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
+		te.setId(this.id);
+		return te;
 	}
 
 	@Override
@@ -77,8 +86,6 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 			int l = Math.abs(MathHelper.floor_double(player.rotationYaw % 360 / 90f + 0.5f));
 			tile1.setFacing(l);
 			tile1.setLocked(player.isSneaking());
-			Lumberjack.log("placed at " + String.valueOf(tile1.getFacing()));
-			Lumberjack.log("locked: " + String.valueOf(tile1.getLocked()));
 		}
 	}
 
@@ -107,12 +114,12 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int x, int y, int z)
 	{
-		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1.83f, z + 1);
+		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 2, z + 1);
 	}
 
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
 	{
-		setBlockBounds(0, 0, 0, 1, 1.83f, 1);
+		setBlockBounds(0, 0, 0, 1, 2, 1);
 	}
 }
