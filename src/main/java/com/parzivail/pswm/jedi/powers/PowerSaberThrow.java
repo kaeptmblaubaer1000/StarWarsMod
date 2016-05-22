@@ -27,7 +27,6 @@ public class PowerSaberThrow extends Power
 		if (this.recharge == 0 && player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemLightsaber && player.getHeldItem().stackTagCompound != null && player.getHeldItem().stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn))
 		{
 			StarWarsMod.network.sendToServer(new MessageThrowSaber(player, player.getHeldItem().copy()));
-			currentThrow = player.getHeldItem().copy();
 
 			return true;
 		}

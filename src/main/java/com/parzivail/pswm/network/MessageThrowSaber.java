@@ -31,10 +31,12 @@ public class MessageThrowSaber extends PMessage<MessageThrowSaber>
 
 		World world = this.sender.worldObj;
 
-		sender.setCurrentItemOrArmor(0, null);
-
 		EntityThrownSaber saber1 = new EntityThrownSaber(world, sender, saber);
 		world.spawnEntityInWorld(saber1);
+
+		saber1.setSender(sender);
+
+		sender.setCurrentItemOrArmor(0, null);
 
 		return null;
 	}

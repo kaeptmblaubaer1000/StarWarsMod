@@ -4,14 +4,13 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.jedi.powers.PowerSaberThrow;
-import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.utils.ForceUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -21,12 +20,12 @@ import net.minecraft.world.World;
 
 public class EntityThrownSaber extends EntityThrowable
 {
-	private EntityLivingBase sender;
 	private int timeAlive = 0;
 	protected float damage = 30.0f;
 	protected float speed = 1.5f;
 	private boolean isReturning = false;
-	private ItemStack saber;
+
+	private static final int SENDER_DW = 14;
 
 	public EntityThrownSaber(World par1World)
 	{
@@ -36,10 +35,27 @@ public class EntityThrownSaber extends EntityThrowable
 	public EntityThrownSaber(World par1World, EntityLivingBase sender, ItemStack saber)
 	{
 		super(par1World, sender);
-		this.sender = sender;
-		this.saber = saber;
 		this.speed = 3f;
+		if (sender instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)sender;
+
+			ItemStack holocron = JediUtils.getHolocron(player);
+
+			if (holocron != null)
+			{
+				holocron.stackTagCompound.setTag("thrownSaber", saber.stackTagCompound);
+			}
+		}
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
+	}
+
+	@Override
+	public void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(SENDER_DW, Integer.valueOf(0));
+		this.dataWatcher.setObjectWatched(SENDER_DW);
 	}
 
 	@Override
@@ -70,7 +86,7 @@ public class EntityThrownSaber extends EntityThrowable
 
 	public EntityLivingBase getSender()
 	{
-		return this.sender;
+		return (EntityLivingBase)this.worldObj.getEntityByID(dataWatcher.getWatchableObjectInt(SENDER_DW));
 	}
 
 	private void hitFX(int blockX, int blockY, int blockZ)
@@ -99,13 +115,13 @@ public class EntityThrownSaber extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
-		if (this.sender == null || this.worldObj == null)
+		if (this.getSender() == null || this.worldObj == null)
 		{
 			this.setDead();
 			return;
 		}
 
-		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
+		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.getSender() && pos.entityHit != this.getSender().ridingEntity)
 		{
 			if (pos.entityHit instanceof EntityPlayer)
 			{
@@ -123,11 +139,6 @@ public class EntityThrownSaber extends EntityThrowable
 				}
 				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsItems.lightsaber))
 				{
-					Vec3 vec3 = entityPlayer.getLookVec();
-					if (vec3 != null)
-					{
-						this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
-					}
 					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 				}
 				else
@@ -144,15 +155,29 @@ public class EntityThrownSaber extends EntityThrowable
 				trackSender();
 			}
 		}
+		else if (pos.typeOfHit == MovingObjectType.BLOCK)
+			trackSender();
 
-		if (pos.entityHit == this.sender && this.sender instanceof EntityPlayer)
+		if (pos.entityHit == this.getSender() && this.getSender() instanceof EntityPlayer)
 		{
-			StarWarsMod.network.sendToServer(new MessageSetPlayerHolding((EntityPlayer)sender, PowerSaberThrow.currentThrow));
+			givePlayerSaberBack();
 			this.setDead();
 		}
+	}
 
-		if (this.worldObj.isRemote)
-			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
+	private void givePlayerSaberBack()
+	{
+		if (getSender() instanceof EntityPlayer)
+		{
+			ItemStack holocron = JediUtils.getHolocron((EntityPlayer)getSender());
+
+			if (holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound && !worldObj.isRemote)
+			{
+				ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
+				stack.stackTagCompound = (NBTTagCompound)holocron.stackTagCompound.getTag("thrownSaber");
+				getSender().setCurrentItemOrArmor(0, stack);
+			}
+		}
 	}
 
 	@Override
@@ -160,13 +185,16 @@ public class EntityThrownSaber extends EntityThrowable
 	{
 		super.onUpdate();
 		int max = 8;
-		if (sender instanceof EntityPlayer)
-			max = (int)(8 * (JediUtils.getLevelOf((EntityPlayer)sender, "saberThrow") / (float)ForceUtils.powers.get("saberThrow").maxLevel));
-		if (this.timeAlive++ >= max)
+
+		if (getSender() instanceof EntityPlayer)
+			max = (int)(8 * (JediUtils.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)ForceUtils.powers.get("saberThrow").maxLevel));
+
+		if (this.timeAlive++ >= max || isReturning)
 			trackSender();
+
 		if (this.timeAlive > 18)
 		{
-			StarWarsMod.network.sendToServer(new MessageSetPlayerHolding((EntityPlayer)sender, PowerSaberThrow.currentThrow));
+			givePlayerSaberBack();
 			this.setDead();
 		}
 
@@ -176,20 +204,32 @@ public class EntityThrownSaber extends EntityThrowable
 		}
 	}
 
+	@Override
+	public void writeToNBT(NBTTagCompound p_70109_1_)
+	{
+		super.writeToNBT(p_70109_1_);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound p_70020_1_)
+	{
+		super.readFromNBT(p_70020_1_);
+	}
+
 	public void setSender(EntityLivingBase sender)
 	{
-		this.sender = sender;
+		this.dataWatcher.updateObject(SENDER_DW, sender.getEntityId());
 	}
 
 	public void trackSender()
 	{
-		if (this.sender != null)
+		if (this.getSender() != null)
 		{
 			this.isReturning = true;
 			this.renderDistanceWeight = 10.0D;
-			double d0 = this.sender.posX - this.posX;
-			double d1 = this.sender.boundingBox.minY + this.sender.height / 3.0F - this.posY;
-			double d2 = this.sender.posZ - this.posZ;
+			double d0 = this.getSender().posX - this.posX;
+			double d1 = this.getSender().boundingBox.minY + this.getSender().height / 3.0F - this.posY;
+			double d2 = this.getSender().posZ - this.posZ;
 			double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
 			if (d3 >= 1.0E-7D)
 			{
