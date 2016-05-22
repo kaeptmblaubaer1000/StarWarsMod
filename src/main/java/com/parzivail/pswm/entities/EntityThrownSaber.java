@@ -1,17 +1,16 @@
 package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.jedi.powers.PowerSaberThrow;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.utils.ForceUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -146,18 +145,14 @@ public class EntityThrownSaber extends EntityThrowable
 			}
 		}
 
-		if (pos.entityHit == this.sender)
+		if (pos.entityHit == this.sender && this.sender instanceof EntityPlayer)
 		{
+			StarWarsMod.network.sendToServer(new MessageSetPlayerHolding((EntityPlayer)sender, PowerSaberThrow.currentThrow));
 			this.setDead();
-			this.sender.setCurrentItemOrArmor(0, PowerSaberThrow.currentThrow);
 		}
 
 		if (this.worldObj.isRemote)
-		{
-			if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
-				this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
-		}
 	}
 
 	@Override
@@ -170,7 +165,10 @@ public class EntityThrownSaber extends EntityThrowable
 		if (this.timeAlive++ >= max)
 			trackSender();
 		if (this.timeAlive > 18)
+		{
+			StarWarsMod.network.sendToServer(new MessageSetPlayerHolding((EntityPlayer)sender, PowerSaberThrow.currentThrow));
 			this.setDead();
+		}
 
 		if (this.ticksExisted % 2 == 0)
 		{
