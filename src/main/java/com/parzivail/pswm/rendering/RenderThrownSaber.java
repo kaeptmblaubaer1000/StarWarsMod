@@ -41,7 +41,7 @@ public class RenderThrownSaber extends Render
 			{
 				ItemStack holocron = JediUtils.getHolocron((EntityPlayer)saber.getSender());
 
-				if (holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound)
+				if (holocron != null && holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound)
 				{
 					ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
 					stack.stackTagCompound = (NBTTagCompound)holocron.stackTagCompound.getTag("thrownSaber");
