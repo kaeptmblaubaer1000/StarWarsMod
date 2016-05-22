@@ -14,14 +14,6 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderThrownSaber extends Render
 {
-	/**
-	 * Actually renders the given argument. This is a synthetic bridge method,
-	 * always casting down its argument and then handing it off to a worker
-	 * function which does the actual work. In all probabilty, the class Render
-	 * is generic (Render<T extends Entity) and this method has signature public
-	 * void func_76986_a(T entity, double d, double d1, double d2, float f,
-	 * float f1). But JAD is pre 1.5 so doesn't do that.
-	 */
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float p_76986_8_, float pt)
 	{
@@ -34,14 +26,15 @@ public class RenderThrownSaber extends Render
 
 			GL11.glRotatef(90, 1, 0, 0);
 			GL11.glRotatef(90, 0, 1, 0);
-
 			GL11.glRotatef((entity.ticksExisted + pt) * 40, 1, 0, 0);
+
 			GL11.glTranslatef(0, -2, 0);
+
 			if (saber.getSender() instanceof EntityPlayer)
 			{
 				ItemStack holocron = JediUtils.getHolocron((EntityPlayer)saber.getSender());
 
-				if (holocron != null && holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound)
+				if (holocron != null && holocron.stackTagCompound != null && holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound)
 				{
 					ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
 					stack.stackTagCompound = (NBTTagCompound)holocron.stackTagCompound.getTag("thrownSaber");
@@ -53,10 +46,6 @@ public class RenderThrownSaber extends Render
 		}
 	}
 
-	/**
-	 * Returns the location of an entity's texture. Doesn't seem to be called
-	 * unless you call Render.bindEntityTexture.
-	 */
 	@Override
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_)
 	{

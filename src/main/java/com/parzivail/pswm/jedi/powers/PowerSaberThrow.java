@@ -4,12 +4,9 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageThrowSaber;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 public class PowerSaberThrow extends Power
 {
-	public static ItemStack currentThrow;
-
 	public PowerSaberThrow(int currentLevel)
 	{
 		super("saberThrow");

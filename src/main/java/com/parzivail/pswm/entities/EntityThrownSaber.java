@@ -3,9 +3,9 @@ package com.parzivail.pswm.entities;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.utils.ForceUtils;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -89,29 +89,6 @@ public class EntityThrownSaber extends EntityThrowable
 		return (EntityLivingBase)this.worldObj.getEntityByID(dataWatcher.getWatchableObjectInt(SENDER_DW));
 	}
 
-	private void hitFX(int blockX, int blockY, int blockZ)
-	{
-		Block block = this.worldObj.getBlock(blockX, blockY, blockZ);
-
-		for (int i = 0; i < 40; i++)
-		{
-			double motionX = -this.motionX * 0.08f;
-			double motionY = this.rand.nextDouble() * 0.05f;
-			double motionZ = -this.motionZ * 0.08f;
-			this.worldObj.spawnParticle("smoke", this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
-		}
-
-		for (int i = 0; i < 40; i++)
-		{
-			double motionX = -this.motionX * 0.02f;
-			double motionY = this.rand.nextDouble() * 0.02f;
-			double motionZ = -this.motionZ * 0.02f;
-			this.worldObj.spawnParticle("blockdust_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(blockX, blockY, blockZ), this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
-		}
-
-		this.playSound(Resources.MODID + ":" + "fx.bolt.hit", 1, 1);
-	}
-
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
@@ -137,7 +114,7 @@ public class EntityThrownSaber extends EntityThrowable
 						trackSender();
 					}
 				}
-				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsItems.lightsaber))
+				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber))
 				{
 					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 				}
@@ -171,7 +148,7 @@ public class EntityThrownSaber extends EntityThrowable
 		{
 			ItemStack holocron = JediUtils.getHolocron((EntityPlayer)getSender());
 
-			if (holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound && !worldObj.isRemote)
+			if (holocron != null && holocron.stackTagCompound != null && holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound && !worldObj.isRemote)
 			{
 				ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
 				stack.stackTagCompound = (NBTTagCompound)holocron.stackTagCompound.getTag("thrownSaber");
