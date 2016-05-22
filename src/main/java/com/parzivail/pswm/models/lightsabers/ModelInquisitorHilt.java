@@ -18,8 +18,8 @@ import org.lwjgl.opengl.GL11;
 public class ModelInquisitorHilt extends ModelBase implements IHandlesRender
 {
 
-	ResourceLocation tA = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/sith_A.png");
-	ResourceLocation tB = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/sith_B.png");
+	ResourceLocation tA = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/inquisitor_A.png");
+	ResourceLocation tB = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/inquisitor_B.png");
 
     public ModelRenderer Shape1;
     public ModelRenderer Shape2;
