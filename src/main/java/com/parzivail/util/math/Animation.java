@@ -48,7 +48,7 @@ public class Animation
 	}
 
 	/**
-	 * Sets the animation's reverse property
+	 * Sets the animation's trackSender property
 	 *
 	 * @param reverse Whether or not the animation should run backwards
 	 */

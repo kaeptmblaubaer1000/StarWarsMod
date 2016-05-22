@@ -35,11 +35,11 @@ public class ForceUtils
 	public static int health = 0;
 	public static float distanceToEntity = -1;
 
-	public static ArrayList<Power> coolingPowers = new ArrayList<Power>();
+	public static ArrayList<Power> coolingPowers = new ArrayList<>();
 
-	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<EntityCooldownEntry>();
+	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<>();
 
-	public static HashMap<String, Power> powers = new HashMap<String, Power>();
+	public static HashMap<String, Power> powers = new HashMap<>();
 
 	static
 	{
@@ -56,6 +56,7 @@ public class ForceUtils
 		powers.put("slow", new PowerSlow(0));
 		powers.put("healing", new PowerHeal(0));
 		powers.put("drainKnowledge", new PowerDrainKnowledge(0));
+		powers.put("saberThrow", new PowerSaberThrow(0));
 	}
 
 	public static void addLeaderboardSide(String side)
@@ -79,14 +80,9 @@ public class ForceUtils
 		}
 	}
 
-	public static String[] getAllPowers()
-	{
-		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "healing", "naturalAwareness", "slow", "drainKnowledge", "lightning", "destruction" };
-	}
-
 	public static String[] getBasicPowers()
 	{
-		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab" };
+		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "saberThrow" };
 	}
 
 	public static String[] getJediPowers()
@@ -134,6 +130,8 @@ public class ForceUtils
 			r.add("deflect");
 		if (level > 25)
 			r.add("grab");
+		if (level > 30)
+			r.add("saberThrow");
 
 		if (side.equals(JediUtils.SIDE_JEDI))
 		{
@@ -155,11 +153,6 @@ public class ForceUtils
 		}
 
 		return r;
-	}
-
-	public static String[] getSithPowers()
-	{
-		return new String[] { "slow", "drainKnowledge", "lightning", "destruction" };
 	}
 
 	public static String getTitle(String side, int level)

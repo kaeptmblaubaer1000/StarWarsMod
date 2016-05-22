@@ -127,6 +127,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterEzraBolt.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 
+		RenderingRegistry.registerEntityRenderingHandler(EntityThrownSaber.class, new RenderThrownSaber());
+
 		for (ItemLightsaber i : StarWarsItems.lightsaberNew)
 			MinecraftForgeClient.registerItemRenderer(i, new RenderLightsaber());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.lightsaberOff, new RenderLightsaber());

@@ -16,6 +16,8 @@ public class RenderLightsaber implements IItemRenderer
 	public static final HashMap<String, IHandlesRender> models = new HashMap<>();
 	public static final HashMap<String, IHandlesRender[]> blades = new HashMap<>();
 
+	public static RenderLightsaber instance;
+
 	static
 	{
 		models.put("dooku", new ModelDookuHilt());
@@ -60,6 +62,8 @@ public class RenderLightsaber implements IItemRenderer
 
 	public RenderLightsaber()
 	{
+		if (instance == null)
+			instance = this;
 	}
 
 	@Override

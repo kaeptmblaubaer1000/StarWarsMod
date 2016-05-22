@@ -52,7 +52,7 @@ public class AnimationHyperspace extends Animation
 		this.stars = new ArrayList<>();
 		this.reverse = reverse;
 
-		//if (reverse)
+		//if (trackSender)
 		//	player.playSound(Resources.MODID + ":" + "lightspeed.exit", 1, 1);
 		//else
 		//	player.playSound(Resources.MODID + ":" + "lightspeed.enter", 1, 1);

@@ -5,6 +5,8 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.jedi.powers.PowerSaberThrow;
+import com.parzivail.pswm.utils.ForceUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,52 +20,27 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntityBlasterBoltBase extends EntityThrowable
+public class EntityThrownSaber extends EntityThrowable
 {
 	private EntityLivingBase sender;
 	private int timeAlive = 0;
-	protected float damage = 5.0f;
-	protected float speed = 4.5f;
+	protected float damage = 30.0f;
+	protected float speed = 1.5f;
+	private boolean isReturning = false;
+	private ItemStack saber;
 
-	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
+	public EntityThrownSaber(World par1World)
 	{
-		super(par1World, par2, par4, par6);
-		this.damage = damage;
+		super(par1World);
 	}
 
-	public EntityBlasterBoltBase(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase, float damage)
-	{
-		this(par1World, par2EntityLivingBase, damage);
-		this.renderDistanceWeight = 10.0D;
-		this.posY = par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight() - 0.10000000149011612D;
-		double d0 = par3EntityLivingBase.posX - par2EntityLivingBase.posX;
-		double d1 = par3EntityLivingBase.boundingBox.minY + par3EntityLivingBase.height / 3.0F - this.posY;
-		double d2 = par3EntityLivingBase.posZ - par2EntityLivingBase.posZ;
-		double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
-		if (d3 >= 1.0E-7D)
-		{
-			float f2 = (float)(Math.atan2(d2, d0) * 180.0D / 3.141592653589793D) - 90.0F;
-			float f3 = (float)-(Math.atan2(d1, d3) * 180.0D / 3.141592653589793D);
-			double d4 = d0 / d3;
-			double d5 = d2 / d3;
-			this.setLocationAndAngles(par2EntityLivingBase.posX + d4, this.posY, par2EntityLivingBase.posZ + d5, f2, f3);
-			this.yOffset = 0.0F;
-			this.setThrowableHeading(d0, d1, d2, 1.0F, 1.0F);
-		}
-	}
-
-	public EntityBlasterBoltBase(World par1World, EntityLivingBase sender, float damage)
+	public EntityThrownSaber(World par1World, EntityLivingBase sender, ItemStack saber)
 	{
 		super(par1World, sender);
 		this.sender = sender;
-		this.damage = damage;
+		this.saber = saber;
+		this.speed = 3f;
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
-	}
-
-	public EntityBlasterBoltBase(World par1World, float damage)
-	{
-		super(par1World);
-		this.damage = damage;
 	}
 
 	@Override
@@ -138,19 +115,11 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				{
 					ItemStack stack = JediUtils.getHolocron(entityPlayer);
 
-					if (JediUtils.getActive(stack).equalsIgnoreCase("deflect") && JediUtils.getUsingDuration(stack))
+					if (!JediUtils.getActive(stack).equalsIgnoreCase("deflect") || !JediUtils.getUsingDuration(stack))
 					{
-						Vec3 vec3 = entityPlayer.getLookVec();
-						if (vec3 != null)
-						{
-							this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
-						}
-					}
-					else
-					{
-						pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
+						pos.entityHit.attackEntityFrom(StarWarsMod.saberDamageSource, this.damage);
 						pos.entityHit.setFire(8);
-						this.setDead();
+						trackSender();
 					}
 				}
 				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsItems.lightsaber))
@@ -164,24 +133,29 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				}
 				else
 				{
-					pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
+					pos.entityHit.attackEntityFrom(StarWarsMod.saberDamageSource, this.damage);
 					pos.entityHit.setFire(8);
-					this.setDead();
+					trackSender();
 				}
 			}
 			else
 			{
 				pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
 				pos.entityHit.setFire(8);
-				this.setDead();
+				trackSender();
 			}
+		}
+
+		if (pos.entityHit == this.sender)
+		{
+			this.setDead();
+			this.sender.setCurrentItemOrArmor(0, PowerSaberThrow.currentThrow);
 		}
 
 		if (this.worldObj.isRemote)
 		{
 			if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
 				this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
-			this.setDead();
 			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
 		}
 	}
@@ -190,13 +164,46 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (this.timeAlive++ > 100)
+		int max = 8;
+		if (sender instanceof EntityPlayer)
+			max = (int)(8 * (JediUtils.getLevelOf((EntityPlayer)sender, "saberThrow") / (float)ForceUtils.powers.get("saberThrow").maxLevel));
+		if (this.timeAlive++ >= max)
+			trackSender();
+		if (this.timeAlive > 18)
 			this.setDead();
+
+		if (this.ticksExisted % 2 == 0)
+		{
+			this.playSound(Resources.MODID + ":" + "item.lightsaber.spin", 1, 1);
+		}
 	}
 
 	public void setSender(EntityLivingBase sender)
 	{
 		this.sender = sender;
+	}
+
+	public void trackSender()
+	{
+		if (this.sender != null)
+		{
+			this.isReturning = true;
+			this.renderDistanceWeight = 10.0D;
+			double d0 = this.sender.posX - this.posX;
+			double d1 = this.sender.boundingBox.minY + this.sender.height / 3.0F - this.posY;
+			double d2 = this.sender.posZ - this.posZ;
+			double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+			if (d3 >= 1.0E-7D)
+			{
+				float f2 = (float)(Math.atan2(d2, d0) * 180.0D / 3.141592653589793D) - 90.0F;
+				float f3 = (float)-(Math.atan2(d1, d3) * 180.0D / 3.141592653589793D);
+				double d4 = d0 / d3;
+				double d5 = d2 / d3;
+				this.setLocationAndAngles(this.posX + d4, this.posY, this.posZ + d5, f2, f3);
+				this.yOffset = 0.0F;
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 1.0F);
+			}
+		}
 	}
 
 	@Override

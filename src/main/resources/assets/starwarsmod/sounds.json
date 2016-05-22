@@ -699,6 +699,12 @@
             "item/lightsaber/hum1"
         ]
     },
+    "item.lightsaber.spin": {
+        "category": "neutral",
+        "sounds": [
+            "item/lightsaber/spin"
+        ]
+    },
     "item.lightsaber.deflect": {
         "category": "neutral",
         "sounds": [

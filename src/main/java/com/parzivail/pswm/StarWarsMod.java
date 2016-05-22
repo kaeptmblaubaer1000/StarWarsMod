@@ -419,6 +419,7 @@ public class StarWarsMod
 		this.registerMessage(MessageChangeStaticNpcLock.class);
 		this.registerMessage(MessageTransferHyperdrive.class);
 		this.registerMessage(MessageSpawn.class);
+		this.registerMessage(MessageThrowSaber.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

@@ -71,6 +71,9 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "blasterXWingBolt");
 		EntityUtils.registerEntity(EntityTIEBolt.class, "blasterTIEBolt");
+
+		EntityUtils.registerEntity(EntityThrownSaber.class, "thrownSaber");
+
 		Lumberjack.info("Entities, reporting for duty!");
 	}
 }
