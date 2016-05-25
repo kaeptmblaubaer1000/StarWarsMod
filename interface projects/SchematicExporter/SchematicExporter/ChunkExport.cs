@@ -19,12 +19,10 @@ namespace SchematicExporter
         /// <param name="chunkZ">The chunk Y to export</param>
         public static void Export(ExportOptions options, Schematic schematic, int chunkX, int chunkZ)
         {
-            if (!File.Exists("template.java"))
-            {
-                Console.WriteLine("Unable to locate template.java");
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
+            if (!Directory.Exists("template/"))
+                Directory.CreateDirectory("template/");
+
+            Utils.RequireFile("template/default.java");
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(string.Format("{0}{1}", Utils.UpperFirst(string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ))), File.Exists("output/" + options.FileName) ? "*" : "").PadRight(40));

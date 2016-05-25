@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -84,6 +85,15 @@ namespace SchematicExporter
         public static string UpperFirst(string s)
         {
             return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        public static void RequireFile(string file)
+        {
+            if (File.Exists(file)) return;
+            Console.WriteLine("Unable to locate {0}", file);
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+            Environment.Exit(0);
         }
     }
 }
