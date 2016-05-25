@@ -112,6 +112,7 @@ namespace SchematicExporter
             gen.AppendLine("\t}");
 
             // Replace template placeholders with true data
+            template = template.Replace("{{CLASS_COMMENT}}", Exporter.CopyrightComment());
             template = template.Replace("{{PACKAGE}}", options.Package);
             template = template.Replace("{{CLASS}}", Utils.UpperFirst(string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ))));
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());

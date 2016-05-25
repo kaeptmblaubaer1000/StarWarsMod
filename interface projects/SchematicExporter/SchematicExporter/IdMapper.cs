@@ -33,6 +33,8 @@ namespace SchematicExporter
             PopulateBlocks();
             PopulateItems();
             PopulateEntities();
+
+            // TODO: make IDs pull from file and not hard-coded
         }
 
         /// <summary>

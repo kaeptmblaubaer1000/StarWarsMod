@@ -2,6 +2,7 @@
 
 {{IMPORTS}}
 
+{{CLASS_COMMENT}}
 public class {{CLASS}}
 {
 	public {{CLASS}}() { }
