@@ -4878,18 +4878,14 @@ namespace fNbt {
 
         private static void CheckArray(Array data, int offset, int count)
         {
-            if (data == null) {
+            if (data == null)
                 throw new ArgumentNullException("data");
-            }
-            if (offset < 0) {
+            if (offset < 0)
                 throw new ArgumentOutOfRangeException("offset", "offset may not be negative.");
-            }
-            if (count < 0) {
+            if (count < 0)
                 throw new ArgumentOutOfRangeException("count", "count may not be negative.");
-            }
-            if (data.Length - offset < count) {
+            if (data.Length - offset < count)
                 throw new ArgumentException("count may not be greater than offset subtracted from the array length.");
-            }
         }
 
         private void WriteByteArrayFromStreamImpl(Stream dataSource, int count, byte[] buffer) {

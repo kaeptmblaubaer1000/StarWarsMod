@@ -10,6 +10,13 @@ namespace SchematicExporter
 {
     class ChunkExport
     {
+        /// <summary>
+        /// Exports a single chunk
+        /// </summary>
+        /// <param name="options">The export options</param>
+        /// <param name="schematic">The schematic to export</param>
+        /// <param name="chunkX">The chunk X to export</param>
+        /// <param name="chunkZ">The chunk Y to export</param>
         public static void Export(ExportOptions options, Schematic schematic, int chunkX, int chunkZ)
         {
             if (!File.Exists("template.java"))

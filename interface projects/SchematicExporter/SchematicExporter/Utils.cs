@@ -18,12 +18,12 @@ namespace SchematicExporter
         public static string MillisToHrd(long millis, bool onlyMajorUnit)
         {
             var ts = TimeSpan.FromMilliseconds(millis);
-            var parts = String.Format("{0:D2}d:{1:D2}h:{2:D2}m:{3:D2}s:{4:D3}ms",
+            var parts = string.Format("{0:D2}d:{1:D2}h:{2:D2}m:{3:D2}s:{4:D3}ms",
                                 ts.Days, ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds)
                             .Split(':')
                             .SkipWhile(s => Regex.Match(s, @"00\w").Success) // skip zero-valued components
                             .ToArray();
-            var ret = onlyMajorUnit ? parts.Length == 0 ? "0ms" : parts[0] : String.Join(" ", parts); // combine the result
+            var ret = onlyMajorUnit ? parts.Length == 0 ? "0ms" : parts[0] : string.Join(" ", parts); // combine the result
             return Regex.Replace(ret, @"(0+)(\d+)", @"$2");
         }
 
@@ -65,7 +65,7 @@ namespace SchematicExporter
         {
             if (value < 0) { return "-" + SizeSuffix(-value); }
 
-            int i = 0;
+            var i = 0;
             decimal dValue = value;
             while (Math.Round(dValue / 1024) >= 1)
             {
@@ -73,7 +73,7 @@ namespace SchematicExporter
                 i++;
             }
 
-            return String.Format("{0:n1} {1}", dValue, SizeSuffixes[i]);
+            return string.Format("{0:n1} {1}", dValue, SizeSuffixes[i]);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace SchematicExporter
         /// <returns>The string with the first character uppercased</returns>
         public static string UpperFirst(string s)
         {
-            return Char.ToUpper(s[0]) + s.Substring(1);
+            return char.ToUpper(s[0]) + s.Substring(1);
         }
     }
 }

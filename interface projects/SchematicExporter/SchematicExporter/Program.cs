@@ -55,6 +55,7 @@ namespace SchematicExporter
                     }
                 }
             }
+
             /*
              * Check I/O directories
              */
