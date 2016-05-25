@@ -92,14 +92,18 @@ namespace SchematicExporter
             return char.ToUpper(s[0]) + s.Substring(1);
         }
 
-        public static void RequireFile(string file)
+        public static StreamReader RequireFile(string file)
         {
-            if (File.Exists(file)) return;
+            if (File.Exists(file)) return new StreamReader(file);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n\nError!");
             Console.WriteLine("Unable to locate required file {0}", file);
-            Console.WriteLine("Please re-download or create it.");
+            Console.WriteLine("Please re-download or create it.\n");
             Console.WriteLine("Press any key to exit...");
+            Console.ResetColor();
             Console.ReadKey();
             Environment.Exit(0);
+            return null;
         }
     }
 }

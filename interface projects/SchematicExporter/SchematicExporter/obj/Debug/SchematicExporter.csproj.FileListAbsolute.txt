@@ -8,7 +8,6 @@ E:\Forge\Mods\StarWarsMod\interface projects\SchematicExporter\SchematicExporter
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe.config
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.exe
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.pdb
-C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\bin\Debug\template.java
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.exe
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\bin\Debug\SchematicExporter.pdb
 C:\Users\Colby\Desktop\GitHub\StarWarsMod\interface projects\SchematicExporter\SchematicExporter\obj\Debug\SchematicExporter.csprojResolveAssemblyReference.cache

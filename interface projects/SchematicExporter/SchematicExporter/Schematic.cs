@@ -140,5 +140,10 @@ namespace SchematicExporter
         {
             return _blockFlags[(y * Length + z) * Width + x];
         }
+
+        public int Size()
+        {
+            return _blocks.Length;
+        }
     }
 }

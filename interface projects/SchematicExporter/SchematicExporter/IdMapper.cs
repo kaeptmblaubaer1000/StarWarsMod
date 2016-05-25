@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -98,9 +97,7 @@ namespace SchematicExporter
             if (!Directory.Exists("data/"))
                 Directory.CreateDirectory("data/");
 
-            Utils.RequireFile("data/items.txt");
-
-            using (var s = new StreamReader("data/items.txt"))
+            using (var s = Utils.RequireFile("data/items.txt"))
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();

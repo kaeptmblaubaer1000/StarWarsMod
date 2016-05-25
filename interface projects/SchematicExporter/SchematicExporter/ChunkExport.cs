@@ -22,13 +22,11 @@ namespace SchematicExporter
             if (!Directory.Exists("template/"))
                 Directory.CreateDirectory("template/");
 
-            Utils.RequireFile("template/default.java");
-
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(string.Format("{0}{1}", Utils.UpperFirst(string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ))), File.Exists("output/" + options.FileName) ? "*" : "").PadRight(40));
+            Console.Write(string.Format("{0}{1}", string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ)), File.Exists("output/" + options.FileName) ? "*" : "").PadRight(40));
 
             // Load the java template
-            var template = File.ReadAllText("template.java");
+            var template = Program.UseTemplate == null ? Utils.RequireFile("template/default.java").ReadToEnd() : Utils.RequireFile(string.Format("template/{0}", Program.UseTemplate)).ReadToEnd();
             Console.ForegroundColor = ConsoleColor.Green;
 
             var gen = new StringBuilder();
@@ -110,9 +108,9 @@ namespace SchematicExporter
             gen.AppendLine("\t}");
 
             // Replace template placeholders with true data
-            template = template.Replace("{{CLASS_COMMENT}}", Exporter.CopyrightComment());
+            template = template.Replace("{{CLASS_COMMENT}}", Exporter.HeaderComment());
             template = template.Replace("{{PACKAGE}}", options.Package);
-            template = template.Replace("{{CLASS}}", Utils.UpperFirst(string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ))));
+            template = template.Replace("{{CLASS}}", string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ)));
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
             template = template.Replace("{{IMPORTS}}", imports.ToString());
 
