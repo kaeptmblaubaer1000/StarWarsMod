@@ -18,8 +18,7 @@ namespace SchematicExporter
         public static string MillisToHrd(long millis, bool onlyMajorUnit)
         {
             var ts = TimeSpan.FromMilliseconds(millis);
-            var parts = string
-                            .Format("{0:D2}d:{1:D2}h:{2:D2}m:{3:D2}s:{4:D3}ms",
+            var parts = String.Format("{0:D2}d:{1:D2}h:{2:D2}m:{3:D2}s:{4:D3}ms",
                                 ts.Days, ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds)
                             .Split(':')
                             .SkipWhile(s => Regex.Match(s, @"00\w").Success) // skip zero-valued components
@@ -74,7 +73,17 @@ namespace SchematicExporter
                 i++;
             }
 
-            return string.Format("{0:n1} {1}", dValue, SizeSuffixes[i]);
+            return String.Format("{0:n1} {1}", dValue, SizeSuffixes[i]);
+        }
+
+        /// <summary>
+        /// Uppercase the first letter of a string
+        /// </summary>
+        /// <param name="s">The string to work on</param>
+        /// <returns>The string with the first character uppercased</returns>
+        public static string UpperFirst(string s)
+        {
+            return Char.ToUpper(s[0]) + s.Substring(1);
         }
     }
 }

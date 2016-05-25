@@ -78,48 +78,28 @@ namespace SchematicExporter
 
             // File counter
             var files = 0;
-            var overwriteFlag = false;
             foreach (var rFile in Directory.GetFiles("input/", "*.schematic"))
             {
                 //load the schematic
                 var s = new Schematic(rFile);
 
                 // Set how you want to export
-                var options = new ExportOptions("WorldGen" + Path.GetFileNameWithoutExtension(rFile) + ".java", "com.parzivail.test", "WorldGen" + Path.GetFileNameWithoutExtension(rFile));
-
-                if (File.Exists("output/" + options.FileName))
-                    overwriteFlag = true;
-
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(string.Format("{0}{1}", options.ClassName, File.Exists("output/" + options.FileName) ? "*" : "").PadRight(40));
-
-                // Start a stopwatch to time the current export
-                var fileElapse = new Stopwatch();
-                fileElapse.Start();
+                var options = new ExportOptions("WorldGen" + Path.GetFileNameWithoutExtension(rFile) + "{0}.java", "com.parzivail.test", "WorldGen" + Path.GetFileNameWithoutExtension(rFile) + "{0}");
 
                 // Actually export the schematic
                 Exporter.Export(options, s);
 
-                fileElapse.Stop();
-
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write(Utils.MillisToHrd(fileElapse.ElapsedMilliseconds).PadRight(10));
-
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
 
                 // Calculate filesize of the output
-                long fsLength = new FileInfo("output/" + options.FileName).Length;
-                Console.Write(Utils.SizeSuffix(fsLength).PadRight(10));
-
-                Console.WriteLine();
+                //long fsLength = new FileInfo("output/" + options.FileName).Length;
+                //Console.Write(Utils.SizeSuffix(fsLength).PadRight(10));
 
                 files++;
             }
             totalElapse.Stop();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            if (overwriteFlag)
-                Console.WriteLine("* Overwrote previous version");
             Console.WriteLine("Done exporting {0} files in {1}", files, Utils.MillisToHrd(totalElapse.ElapsedMilliseconds, false));
             Console.Read();
         }

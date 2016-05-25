@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChunkExport.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Exporter.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="IdMapper.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="JavaBuilder.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schematic.cs" />
