@@ -62,12 +62,17 @@ namespace SchematicExporter
                 list.Add(value);
         }
 
+        /// <summary>
+        /// Formats a long byte to the nearest data size format
+        /// </summary>
+        /// <param name="value">The filesize in bytes (long)</param>
+        /// <returns>The string-formatted filesize</returns>
         public static string SizeSuffix(long value)
         {
             if (value < 0) { return "-" + SizeSuffix(-value); }
 
             var i = 0;
-            decimal dValue = value;
+            float dValue = value;
             while (Math.Round(dValue / 1024) >= 1)
             {
                 dValue /= 1024;
@@ -90,8 +95,9 @@ namespace SchematicExporter
         public static void RequireFile(string file)
         {
             if (File.Exists(file)) return;
-            Console.WriteLine("Unable to locate {0}", file);
-            Console.WriteLine("Press any key to exit.");
+            Console.WriteLine("Unable to locate required file {0}", file);
+            Console.WriteLine("Please re-download or create it.");
+            Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
             Environment.Exit(0);
         }

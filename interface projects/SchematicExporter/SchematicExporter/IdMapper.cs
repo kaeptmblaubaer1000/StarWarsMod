@@ -35,8 +35,6 @@ namespace SchematicExporter
             PopulateBlocks();
             PopulateItems();
             PopulateEntities();
-
-            // TODO: make IDs pull from file and not hard-coded
         }
 
         /// <summary>
@@ -103,7 +101,6 @@ namespace SchematicExporter
             Utils.RequireFile("data/items.txt");
 
             using (var s = new StreamReader("data/items.txt"))
-            {
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();
@@ -131,7 +128,6 @@ namespace SchematicExporter
                             break;
                     }
                 }
-            }
         }
 
         /// <summary>
@@ -147,7 +143,6 @@ namespace SchematicExporter
             Utils.RequireFile("data/blocks.txt");
 
             using (var s = new StreamReader("data/blocks.txt"))
-            {
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();
@@ -175,7 +170,6 @@ namespace SchematicExporter
                             break;
                     }
                 }
-            }
         }
 
         /// <summary>
