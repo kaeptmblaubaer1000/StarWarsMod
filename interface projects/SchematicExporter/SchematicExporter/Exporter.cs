@@ -24,7 +24,7 @@ namespace SchematicExporter
 
             gen.AppendLine(HeaderComment());
 
-            gen.AppendLine("if (this.locY == null)");
+            gen.AppendLine("if (this.locY == 0)");
             gen.AppendLine("\tthis.locY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);\n");
 
             var chunks = 0;
@@ -44,7 +44,7 @@ namespace SchematicExporter
                     gen.AppendLine(string.Format("{0}if (chunkX == {1} && chunkZ == {2})", first ? "" : "else ", x, z));
 
                     gen.AppendLine(
-                        string.Format("\tnew {0}().generate(par1World, par2Random, chunkX, this.locY, chunkZ);",
+                        string.Format("\tnew {0}().generate(world, chunkX, this.locY, chunkZ);",
                             classTitle));
 
                     first = false;
