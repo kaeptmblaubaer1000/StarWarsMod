@@ -26,7 +26,7 @@ namespace SchematicExporter
             Console.Write(string.Format("{0}{1}", string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ)), File.Exists("output/" + options.FileName) ? "*" : "").PadRight(40));
 
             // Load the java template
-            var template = Program.UseTemplate == null ? Utils.RequireFile("template/default.java").ReadToEnd() : Utils.RequireFile(string.Format("template/{0}", Program.UseTemplate)).ReadToEnd();
+            var template = Utils.RequireFile(string.Format("template/{0}", Program.UseTemplate)).ReadToEnd();
             Console.ForegroundColor = ConsoleColor.Green;
 
             var gen = new StringBuilder();

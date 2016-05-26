@@ -97,7 +97,7 @@ namespace SchematicExporter
             if (!Directory.Exists("data/"))
                 Directory.CreateDirectory("data/");
 
-            using (var s = Utils.RequireFile(string.Format("data/{0}.txt", Program.UseItems)))
+            using (var s = Utils.RequireFile(string.Format("data/{0}", Program.UseItems)))
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();
@@ -137,7 +137,7 @@ namespace SchematicExporter
             if (!Directory.Exists("data/"))
                 Directory.CreateDirectory("data/");
 
-            using (var s = Utils.RequireFile(string.Format("data/{0}.txt", Program.UseBlocks)))
+            using (var s = Utils.RequireFile(string.Format("data/{0}", Program.UseBlocks)))
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();

@@ -92,6 +92,11 @@ namespace SchematicExporter
             return char.ToUpper(s[0]) + s.Substring(1);
         }
 
+        /// <summary>
+        /// Makes sure a required file is present
+        /// </summary>
+        /// <param name="file">The file to check</param>
+        /// <returns>An open streamreader if the file exists</returns>
         public static StreamReader RequireFile(string file)
         {
             if (File.Exists(file)) return new StreamReader(file);
