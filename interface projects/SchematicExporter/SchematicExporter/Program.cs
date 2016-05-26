@@ -12,14 +12,18 @@ namespace SchematicExporter
         public static bool IgnoreChestToEntity;
         public static string UseTemplate;
         public static string UsePackage;
+        public static string UseBlocks;
+        public static string UseItems;
 
         private static void Main(string[] args)
         {
             EmptyChestRandom = false;
             IgnoreAirBlocks = false;
             IgnoreChestToEntity = false;
-            UseTemplate = null;
-            UsePackage = null;
+            UseTemplate = "default.java";
+            UsePackage = "your.mod.pkg";
+            UseBlocks = "blocks.txt";
+            UseItems = "items.txt";
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -56,6 +60,9 @@ namespace SchematicExporter
                             "\n\t\t{{CLASS}}" +
                             "\n\t\t{{GEN_METHODS}}" +
                             "\n\t\t{{IMPORTS}}");
+                        Console.WriteLine("--package:<package>\n\tThe package for the file to be exported for");
+                        Console.WriteLine("--blocks:<blocks>\n\tThe dictionary file to pull blocks from");
+                        Console.WriteLine("--items:<items>\n\tThe dictionary file to pull items from");
                         Console.WriteLine("--ignoreair\n\tAir blocks will not be exported");
                         Console.WriteLine(
                             "--nochestentity\n\tChests with entity selectors inside will not export as entities");
@@ -72,6 +79,16 @@ namespace SchematicExporter
                     {
                         UseTemplate = s.Split(':')[1];
                         Console.WriteLine("Custom Setting: using package {0}", UsePackage);
+                    }
+                    else if (new Regex("--blocks:(\\S+)").IsMatch(s))
+                    {
+                        UseBlocks = s.Split(':')[1];
+                        Console.WriteLine("Custom Setting: using block dictionary data/{0}", UseBlocks);
+                    }
+                    else if (new Regex("--items:(\\S+)").IsMatch(s))
+                    {
+                        UseItems = s.Split(':')[1];
+                        Console.WriteLine("Custom Setting: using item dictionary data/{0}", UseItems);
                     }
                     else
                     {
@@ -116,7 +133,7 @@ namespace SchematicExporter
 
                 var upperFirstName = Utils.UpperFirst(Path.GetFileNameWithoutExtension(rFile));
                 // Set how you want to export
-                var options = new ExportOptions("WorldGen" + upperFirstName + "{0}.java", UsePackage ?? "your.mod.pkg",
+                var options = new ExportOptions("WorldGen" + upperFirstName + "{0}.java", UsePackage,
                     "WorldGen" + upperFirstName + "{0}");
 
                 // Actually export the schematic
