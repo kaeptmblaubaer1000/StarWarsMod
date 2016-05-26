@@ -77,7 +77,7 @@ namespace SchematicExporter
                     }
                     else if (new Regex("--package:(\\S+)").IsMatch(s))
                     {
-                        UseTemplate = s.Split(':')[1];
+                        UsePackage = s.Split(':')[1];
                         Console.WriteLine("Custom Setting: using package {0}", UsePackage);
                     }
                     else if (new Regex("--blocks:(\\S+)").IsMatch(s))

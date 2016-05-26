@@ -5,7 +5,7 @@ import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenMV;
 import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
-import com.parzivail.pswm.world.gen.moseisley.big.*;
+import com.parzivail.pswm.world.gen.moseisleynew.*;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class BiomeGenTatooine extends BiomeGenPSWM
 {
-	private int mosY;
+	private int locY = 0;
 
 	public BiomeGenTatooine(int biomeId)
 	{
@@ -50,117 +50,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (chunkX == 0 && chunkZ == 0)
-		{
-			this.mosY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
-			new ME_00().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		}
-		else if (chunkX == 0 && chunkZ == 32)
-			new ME_01().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 64)
-			new ME_02().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 96)
-			new ME_03().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 128)
-			new ME_04().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 160)
-			new ME_05().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 192)
-			new ME_06().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 224)
-			new ME_07().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 0 && chunkZ == 256)
-			new ME_08().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 0)
-			new ME_10().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 32)
-			new ME_11().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 64)
-			new ME_12().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 96)
-			new ME_13().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 128)
-			new ME_14().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 160)
-			new ME_15().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 192)
-			new ME_16().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 224)
-			new ME_17().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 32 && chunkZ == 256)
-			new ME_18().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 0)
-			new ME_20().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 32)
-			new ME_21().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 64)
-			new ME_22().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 96)
-			new ME_23().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 128)
-			new ME_24().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 160)
-			new ME_25().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 192)
-			new ME_26().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 224)
-			new ME_27().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 64 && chunkZ == 256)
-			new ME_28().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 0)
-			new ME_30().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 32)
-			new ME_31().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 64)
-			new ME_32().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 96)
-			new ME_33().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 128)
-			new ME_34().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 160)
-			new ME_35().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 192)
-			new ME_36().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 224)
-			new ME_37().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 96 && chunkZ == 256)
-			new ME_38().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 0)
-			new ME_40().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 32)
-			new ME_41().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 64)
-			new ME_42().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 96)
-			new ME_43().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 128)
-			new ME_44().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 160)
-			new ME_45().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 192)
-			new ME_46().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 224)
-			new ME_47().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 128 && chunkZ == 256)
-			new ME_48().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 0)
-			new ME_50().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 32)
-			new ME_51().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 64)
-			new ME_52().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 96)
-			new ME_53().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 128)
-			new ME_54().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 160)
-			new ME_55().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 192)
-			new ME_56().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 224)
-			new ME_57().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
-		else if (chunkX == 160 && chunkZ == 256)
-			new ME_58().generate(par1World, par2Random, chunkX, this.mosY, chunkZ);
+		genMosEisley(par1World, chunkX, chunkZ);
 		if (par2Random.nextInt(400) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -182,5 +72,484 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 			WorldGenTatooineHomestead worldGenHomestead = new WorldGenTatooineHomestead();
 			worldGenHomestead.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
+	}
+
+	private void genMosEisley(World world, int chunkX, int chunkZ)
+	{
+		/*
+		 * Generated by SchematicExporter
+		 * 5/25/2016 8:15:18 PM
+		 */
+		if (this.locY == 0)
+			this.locY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
+
+		if (chunkX == 0 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x0_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x0_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x0_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x0_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x0_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x0_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x0_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x0_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x0_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x0_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x0_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x0_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x0_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x0_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x0_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x0_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x0_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 0 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x0_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x16_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x16_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x16_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x16_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x16_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x16_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x16_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x16_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x16_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x16_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x16_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x16_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x16_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x16_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x16_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x16_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x16_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 16 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x16_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x32_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x32_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x32_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x32_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x32_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x32_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x32_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x32_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x32_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x32_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x32_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x32_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x32_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x32_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x32_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x32_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x32_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 32 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x32_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x48_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x48_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x48_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x48_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x48_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x48_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x48_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x48_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x48_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x48_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x48_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x48_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x48_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x48_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x48_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x48_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x48_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 48 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x48_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x64_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x64_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x64_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x64_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x64_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x64_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x64_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x64_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x64_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x64_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x64_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x64_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x64_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x64_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x64_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x64_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x64_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 64 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x64_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x80_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x80_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x80_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x80_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x80_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x80_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x80_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x80_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x80_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x80_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x80_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x80_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x80_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x80_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x80_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x80_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x80_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 80 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x80_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x96_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x96_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x96_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x96_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x96_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x96_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x96_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x96_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x96_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x96_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x96_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x96_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x96_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x96_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x96_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x96_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x96_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 96 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x96_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x112_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x112_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x112_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x112_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x112_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x112_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x112_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x112_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x112_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x112_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x112_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x112_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x112_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x112_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x112_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x112_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x112_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 112 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x112_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x128_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x128_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x128_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x128_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x128_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x128_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x128_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x128_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x128_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x128_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x128_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x128_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x128_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x128_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x128_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x128_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x128_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 128 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x128_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x144_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x144_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x144_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x144_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x144_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x144_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x144_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x144_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x144_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x144_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x144_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x144_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x144_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x144_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x144_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x144_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x144_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 144 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x144_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x160_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x160_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x160_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x160_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x160_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x160_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x160_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x160_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x160_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x160_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x160_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x160_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x160_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x160_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x160_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x160_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x160_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 160 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x160_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x176_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x176_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x176_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x176_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x176_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x176_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x176_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x176_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x176_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x176_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x176_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x176_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x176_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x176_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x176_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x176_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x176_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 176 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x176_z272().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 0)
+			new WorldGenMosEisleyBig_x192_z0().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 16)
+			new WorldGenMosEisleyBig_x192_z16().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 32)
+			new WorldGenMosEisleyBig_x192_z32().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 48)
+			new WorldGenMosEisleyBig_x192_z48().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 64)
+			new WorldGenMosEisleyBig_x192_z64().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 80)
+			new WorldGenMosEisleyBig_x192_z80().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 96)
+			new WorldGenMosEisleyBig_x192_z96().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 112)
+			new WorldGenMosEisleyBig_x192_z112().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 128)
+			new WorldGenMosEisleyBig_x192_z128().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 144)
+			new WorldGenMosEisleyBig_x192_z144().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 160)
+			new WorldGenMosEisleyBig_x192_z160().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 176)
+			new WorldGenMosEisleyBig_x192_z176().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 192)
+			new WorldGenMosEisleyBig_x192_z192().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 208)
+			new WorldGenMosEisleyBig_x192_z208().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 224)
+			new WorldGenMosEisleyBig_x192_z224().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 240)
+			new WorldGenMosEisleyBig_x192_z240().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 256)
+			new WorldGenMosEisleyBig_x192_z256().generate(world, chunkX, this.locY, chunkZ);
+		else if (chunkX == 192 && chunkZ == 272)
+			new WorldGenMosEisleyBig_x192_z272().generate(world, chunkX, this.locY, chunkZ);
 	}
 }

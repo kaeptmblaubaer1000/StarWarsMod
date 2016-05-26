@@ -77,7 +77,7 @@ namespace SchematicExporter
                         if (schematic.GetFlagAt(x, y, z) || (schematic.GetBlockAt(x, y, z).GetName() == "air" && Program.IgnoreAirBlocks))
                             continue;
 
-                        gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z));
+                        gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z, chunkX, chunkZ));
                         numStatements++;
                         //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
 
