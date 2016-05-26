@@ -256,12 +256,40 @@
             "mob/protocol/r2d2rare"
         ]
     },
+  "mob.rebel.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/rebel/crossfire",
+      "mob/rebel/empire",
+      "mob/rebel/good_work",
+      "mob/rebel/size"
+    ]
+  },
+  "mob.rebel.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/rebel/whooah",
+      "mob/rebel/hit"
+    ]
+  },
     "mob.sandtrooper.droid": {
         "category": "neutral",
         "sounds": [
             "mob/sandtrooper/droid1",
             "mob/sandtrooper/droid2",
-            "mob/sandtrooper/droid3"     
+            "mob/sandtrooper/droid3"
+        ]
+    },
+  "mob.stormtrooper.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/stormtrooper/going_on",
+      "mob/stormtrooper/right",
+      "mob/stormtrooper/report",
+      "mob/stormtrooper/load",
+      "mob/stormtrooper/guard",
+      "mob/stormtrooper/follow",
+      "mob/stormtrooper/drill"
         ]
     },
     "mob.sandtrooper.say": {

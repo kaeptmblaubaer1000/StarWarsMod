@@ -2,8 +2,6 @@ package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.mobs.MobDroidAstromech;
-import com.parzivail.pswm.mobs.MobDroidProtocol;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -164,22 +162,19 @@ public class MobEndorRebel extends EntityTameable implements IMob, IRangedAttack
 	@Override
 	protected String getDeathSound()
 	{
-		return Resources.MODID + ":" + "mob.sandtrooper.die";
+		return Resources.MODID + ":" + "mob.rebel.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return Resources.MODID + ":" + "mob.sandtrooper.hit";
+		return Resources.MODID + ":" + "mob.rebel.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
-		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
-			return Resources.MODID + ":" + "mob.sandtrooper.droid";
-		return Resources.MODID + ":" + "mob.sandtrooper.say";
+		return Resources.MODID + ":" + "mob.rebel.say";
 	}
 
 	@Override

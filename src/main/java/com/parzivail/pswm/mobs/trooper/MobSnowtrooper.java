@@ -161,21 +161,15 @@ public class MobSnowtrooper extends EntityTameable implements IMob, IRangedAttac
 	}
 
 	@Override
-	protected Entity findPlayerToAttack()
-	{
-		return angerLevel == 0 ? null : super.findPlayerToAttack();
-	}
-
-	@Override
 	protected String getDeathSound()
 	{
-		return Resources.MODID + ":" + "mob.sandtrooper.die";
+		return Resources.MODID + ":" + "mob.stormtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return Resources.MODID + ":" + "mob.sandtrooper.hit";
+		return Resources.MODID + ":" + "mob.stormtrooper.hit";
 	}
 
 	@Override
@@ -184,7 +178,7 @@ public class MobSnowtrooper extends EntityTameable implements IMob, IRangedAttac
 		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
 		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
 			return Resources.MODID + ":" + "mob.sandtrooper.droid";
-		return Resources.MODID + ":" + "mob.sandtrooper.say";
+		return Resources.MODID + ":" + "mob.stormtrooper.say";
 	}
 
 	@Override
