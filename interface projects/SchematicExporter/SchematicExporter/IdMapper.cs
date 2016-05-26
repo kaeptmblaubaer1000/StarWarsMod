@@ -41,6 +41,7 @@ namespace SchematicExporter
         /// </summary>
         private void PopulateEntities()
         {
+            //TODO: make entities dynamic
             _entityAssociations.Clear();
             _entityAssociations.Add(new Entity("MobSandtrooper", PkgTrooper), GetItemFromName("sandtrooperHelmet"));
             _entityAssociations.Add(new Entity("MobStormtrooper", PkgTrooper), GetItemFromName("stormtrooperHelmet"));
@@ -123,6 +124,9 @@ namespace SchematicExporter
                         case "ClassPswmItems":
                             _items.Add(id, new Item(itemName, ClassPswmItems));
                             break;
+                        default:
+                            _items.Add(id, new Item(itemName, package));
+                            break;
                     }
                 }
         }
@@ -162,6 +166,9 @@ namespace SchematicExporter
                             break;
                         case "ClassPswmItems":
                             _blocks.Add(id, new Block(blockName, ClassPswmItems));
+                            break;
+                        default:
+                            _blocks.Add(id, new Block(blockName, package));
                             break;
                     }
                 }

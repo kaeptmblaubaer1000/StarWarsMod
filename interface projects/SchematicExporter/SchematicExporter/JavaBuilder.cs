@@ -15,6 +15,8 @@ namespace SchematicExporter
         /// <param name="x">X</param>
         /// <param name="y">Y</param>
         /// <param name="z">Z</param>
+        /// <param name="chunkX">Chunk X</param>
+        /// <param name="chunkZ">Chunk Z</param>
         /// <returns>The generated setBlock line</returns>
         public static string MakeSetBlockLine(Schematic s, ref List<string> imports, int x, int y, int z, int chunkX, int chunkZ)
         {
@@ -30,7 +32,8 @@ namespace SchematicExporter
                     imports.Require("com.parzivail.pswm.StarWarsMod");
                     break;
                 default:
-                    throw new ArgumentException("Unknown namespace prefix: " + nsp);
+                    imports.Require(nsp);
+                    break;
             }
             sb.AppendLine(string.Format("\t\tthis.b(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x - chunkX, y, z - chunkZ,
                 b.CreateJavaVariable()));

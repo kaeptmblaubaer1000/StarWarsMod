@@ -15,6 +15,8 @@ namespace SchematicExporter
         public static string UseBlocks;
         public static string UseItems;
 
+        public static StreamWriter LogWriter;
+
         private static void Main(string[] args)
         {
             EmptyChestRandom = false;
@@ -26,6 +28,10 @@ namespace SchematicExporter
             UseItems = "items.txt";
 
             Console.ForegroundColor = ConsoleColor.White;
+
+            LogWriter = new StreamWriter(string.Format("log-{0}.log", DateTime.Now.Ticks));
+
+            LogWriter.WriteLine("Running with args: {0}", string.Join(", ", args));
 
             if (args.Length > 0)
             {
@@ -104,11 +110,13 @@ namespace SchematicExporter
             {
                 Directory.CreateDirectory("input/");
                 Console.WriteLine("Created input directory");
+                LogWriter.WriteLine("Input directory not found, created one.");
             }
             if (!Directory.Exists("output/"))
             {
                 Directory.CreateDirectory("output/");
                 Console.WriteLine("Created output directory");
+                LogWriter.WriteLine("Output directory nor found, created one.");
             }
             // Draw the header
             Console.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}", "File".PadRight(40), "Iterate".PadRight(10),
@@ -126,18 +134,38 @@ namespace SchematicExporter
             var blocks = 0;
             foreach (var rFile in Directory.GetFiles("input/", "*.schematic"))
             {
+                //TODO: make recursive searching an option
+
                 //load the schematic
                 var s = new Schematic(rFile);
+                LogWriter.WriteLine("Loaded schematic {0}", rFile);
 
                 blocks += s.Size();
+                LogWriter.WriteLine("Found {0} blocks", s.Size());
 
                 var upperFirstName = Utils.UpperFirst(Path.GetFileNameWithoutExtension(rFile));
                 // Set how you want to export
                 var options = new ExportOptions("WorldGen" + upperFirstName + "{0}.java", UsePackage,
                     "WorldGen" + upperFirstName + "{0}");
 
+                LogWriter.WriteLine("Exporting with options: className={0}, package={1}", string.Format(options.ClassName, ""), options.Package);
+
                 // Actually export the schematic
-                chunks += Exporter.Export(options, s);
+                var oldChunks = chunks;
+                LogWriter.Write("Exporting chunks... ");
+                try
+                {
+                    chunks += Exporter.Export(options, s);
+                    LogWriter.WriteLine("Exported {0} chunks", chunks - oldChunks);
+                }
+                catch (Exception exception)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\nError while exporting, check log for details!\n");
+                    LogWriter.WriteLine("Error while exporting {0}: {1} at {2}\n{3}", rFile, exception.Message, exception.TargetSite, exception.StackTrace);
+                }
+
+                LogWriter.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
 
@@ -155,6 +183,8 @@ namespace SchematicExporter
                 Console.WriteLine("Average Files/Second\t{0}", 1000/((float) totalElapse.ElapsedMilliseconds/chunks));
                 Console.WriteLine("Blocks (incl. air)\t{0}", blocks);
             }
+
+            LogWriter.Close();
 
             Console.Read();
         }
