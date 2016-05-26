@@ -16,7 +16,7 @@ namespace SchematicExporter
         /// <param name="y">Y</param>
         /// <param name="z">Z</param>
         /// <returns>The generated setBlock line</returns>
-        public static string MakeSetBlockLine(Schematic s, ref List<string> imports, int x, int y, int z)
+        public static string MakeSetBlockLine(Schematic s, ref List<string> imports, int x, int y, int z, int chunkX, int chunkZ)
         {
             var b = s.GetBlockAt(x, y, z);
             var sb = new StringBuilder();
@@ -32,12 +32,12 @@ namespace SchematicExporter
                 default:
                     throw new ArgumentException("Unknown namespace prefix: " + nsp);
             }
-            sb.AppendLine(string.Format("\t\tthis.b(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x, y, z,
+            sb.AppendLine(string.Format("\t\tthis.b(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x - chunkX, y, z - chunkZ,
                 b.CreateJavaVariable()));
             if (s.GetBlockMetadataAt(x, y, z) != 0)
-                sb.AppendLine(string.Format("\t\tthis.m(world, i + {0}, j + {1}, k + {2}, {3});", x, y, z,
+                sb.AppendLine(string.Format("\t\tthis.m(world, i + {0}, j + {1}, k + {2}, {3});", x - chunkX, y, z - chunkZ,
                     s.GetBlockMetadataAt(x, y, z)));
-            return sb.ToString();
+            return sb.ToString().Replace(" + 0", "");
         }
 
         /// <summary>
