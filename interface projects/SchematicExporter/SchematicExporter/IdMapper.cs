@@ -6,15 +6,15 @@ namespace SchematicExporter
 {
     internal class IdMapper
     {
-        public static IdMapper Instance = new IdMapper();
+        public static readonly IdMapper Instance = new IdMapper();
 
         public const string ClassBlocks = "Blocks";
         public const string ClassItems = "Items";
         public const string ClassPswm = "StarWarsMod";
-        public const string ClassPswmItems = "StarWarsItems";
-        public const string PkgMobs = "com.parzivail.pswm.mobs";
-        public const string PkgTrooper = "com.parzivail.pswm.mobs.trooper";
-        public const string PkgVehic = "com.parzivail.pswm.vehicles";
+        private const string ClassPswmItems = "StarWarsItems";
+        private const string PkgMobs = "com.parzivail.pswm.mobs";
+        private const string PkgTrooper = "com.parzivail.pswm.mobs.trooper";
+        private const string PkgVehic = "com.parzivail.pswm.vehicles";
 
         /// <summary>
         /// The ID to Block dictionary
@@ -29,7 +29,7 @@ namespace SchematicExporter
         /// </summary>
         private readonly Dictionary<Entity, Item> _entityAssociations = new Dictionary<Entity, Item>();
 
-        public IdMapper()
+        private IdMapper()
         {
             PopulateBlocks();
             PopulateItems();
@@ -98,7 +98,7 @@ namespace SchematicExporter
             if (!Directory.Exists("data/"))
                 Directory.CreateDirectory("data/");
 
-            using (var s = Utils.RequireFile(string.Format("data/{0}", Program.UseItems)))
+            using (var s = Utils.RequireFile(string.Format("data/{0}", Arguments.UseItems)))
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();
@@ -141,7 +141,7 @@ namespace SchematicExporter
             if (!Directory.Exists("data/"))
                 Directory.CreateDirectory("data/");
 
-            using (var s = Utils.RequireFile(string.Format("data/{0}", Program.UseBlocks)))
+            using (var s = Utils.RequireFile(string.Format("data/{0}", Arguments.UseBlocks)))
                 while (!s.EndOfStream)
                 {
                     var line = s.ReadLine();
@@ -181,19 +181,7 @@ namespace SchematicExporter
         /// <returns>The block it found, or Air if no block found</returns>
         public Block GetBlockFromId(int id)
         {
-            if (!_blocks.ContainsKey(id))
-                return _blocks[0];
-            return _blocks[id];
-        }
-
-        /// <summary>
-        /// Does a Name to Block conversion
-        /// </summary>
-        /// <param name="name">The name to look up</param>
-        /// <returns>The block it found, or null otherwise</returns>
-        public Block GetBlockFromName(string name)
-        {
-            return _blocks.FirstOrDefault(x => x.Value.GetName() == name).Value;
+            return !_blocks.ContainsKey(id) ? _blocks[0] : _blocks[id];
         }
 
         /// <summary>
@@ -203,21 +191,9 @@ namespace SchematicExporter
         /// <returns>If the item it found. If the ID is a block too, it returns that instead. Null if nothing found</returns>
         public Item GetItemFromId(int id)
         {
-            if (_blocks.ContainsKey(id)) // because items are blocks too and vice versa
-                return GetBlockFromId(id).ToItem();
-            if (!_items.ContainsKey(id))
-                return _items[0];
-            return _items[id];
-        }
-
-        /// <summary>
-        /// Does a Name to Entity conversion
-        /// </summary>
-        /// <param name="name">The name to loop up</param>
-        /// <returns>The entity if found, or null otherwise</returns>
-        public Entity GetEntityFromName(string name)
-        {
-            return _entityAssociations.FirstOrDefault(x => x.Key.GetName() == name).Key;
+            return _blocks.ContainsKey(id)
+                ? GetBlockFromId(id).ToItem()
+                : (!_items.ContainsKey(id) ? _items[0] : _items[id]);
         }
 
         /// <summary>
@@ -235,7 +211,7 @@ namespace SchematicExporter
         /// </summary>
         /// <param name="name">The name to look up</param>
         /// <returns>The item it found, or null otherwise</returns>
-        public Item GetItemFromName(string name)
+        private Item GetItemFromName(string name)
         {
             return _items.FirstOrDefault(x => x.Value.GetName() == name).Value;
         }
@@ -248,16 +224,6 @@ namespace SchematicExporter
         public int GetIdFromItem(string itemName)
         {
             return _items.FirstOrDefault(x => x.Value.GetName() == itemName).Key;
-        }
-
-        /// <summary>
-        /// Does a block Name to ID conversion
-        /// </summary>
-        /// <param name="blockName">The name to look up</param>
-        /// <returns>The ID it found, or null otherwise</returns>
-        public int GetIdFromBlock(string blockName)
-        {
-            return _blocks.FirstOrDefault(x => x.Value.GetName() == blockName).Key;
         }
     }
 }

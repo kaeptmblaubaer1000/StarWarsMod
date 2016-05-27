@@ -1,261 +1,261 @@
 {
-    "blastdoor.pressure": {
-        "category": "neutral",
-        "sounds": [
-            "block/blastdoor/pressure"
-        ]
-    },
-    "force.lightning": {
-        "category": "neutral",
-        "sounds": [
-            "force/lightning"
-        ]
-    },
-    "force.push": {
-        "category": "neutral",
-        "sounds": [
-            "force/push"
-        ]
-    },
-    "force.pull": {
-        "category": "neutral",
-        "sounds": [
-            "force/pull"
-        ]
-    },
-    "lightspeed.enter": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/lightspeed/enter"
-        ]
-    },
-    "lightspeed.exit": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/lightspeed/exit"
-        ]
-    },
-    "vehicle.speeder.move": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/speeder/move"
-        ]
-    },
-    "vehicle.landspeeder.move": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/landspeeder/move"
-        ]
-    },
-    "vehicle.tie.move": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/tie/move"
-        ]
-    },
-    "vehicle.tie.fire": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/tie/fire1"
-        ]
-    },
-    "vehicle.tie.die": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/tie/explode"
-        ]
-    },
-    "vehicle.awing.move": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/awing/move1"
-        ]
-    },
-    "vehicle.xwing.move": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/xwing/move"
-        ]
-    },
-    "vehicle.xwing.sfoilOpen": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/xwing/sfoilOpen"
-        ]
-    },
-    "vehicle.xwing.sfoilClose": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/xwing/sfoilClose"
-        ]
-    },
-    "vehicle.xwing.fire": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/xwing/fire1"
-        ]
-    },
-    "vehicle.xwing.die": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/xwing/explode"
-        ]
-    },
-    "vehicle.alarm.loop": {
-        "category": "neutral",
-        "sounds": [
-            "vehicle/alarm/loop1"
-        ]
-    },
-    "mob.ewok.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/ewok/say1",
-            "mob/ewok/say2",
-            "mob/ewok/say3",
-            "mob/ewok/say4"
-        ]
-    },
-    "mob.ewok.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/ewok/hit1",
-            "mob/ewok/hit2"
-        ]
-    },
-    "mob.ewok.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/ewok/die1"
-        ]
-    },
-    "mob.gamor.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/gamor/say"
-        ]
-    },
-    "mob.gamor.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/gamor/hit"
-        ]
-    },
-    "mob.gamor.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/gamor/die"
-        ]
-    },
-    "mob.wookiee.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/wookiee/say1",
-            "mob/wookiee/say2"
-        ]
-    },
-    "mob.wookiee.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/wookiee/hit1"
-        ]
-    },
-    "mob.dewback.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/dewback/say"
-        ]
-    },
-    "mob.dewback.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/dewback/hit"
-        ]
-    },
-    "mob.dewback.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/dewback/die"
-        ]
-    },
-    "mob.bantha.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/bantha/say1"
-        ]
-    },
-    "mob.tusken.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tusken/say1",
-            "mob/tusken/say2"
-        ]
-    },
-    "mob.tusken.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tusken/hit1"
-        ]
-    },
-    "mob.tusken.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tusken/die1"
-        ]
-    },
-    "mob.tauntaun.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tauntaun/say1",
-            "mob/tauntaun/say2"
-        ]
-    },
-    "mob.tauntaun.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tauntaun/hit1"
-        ]
-    },
-    "mob.tauntaun.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tauntaun/die1"
-        ]
-    },
-    "mob.tauntaun.move": {
-        "category": "neutral",
-        "sounds": [
-            "mob/tauntaun/walk1"
-        ]
-    },
-    "mob.protocol.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/protocol/say1",
-            "mob/protocol/say2",
-            "mob/protocol/say3"
-        ]
-    },
-    "mob.protocol.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/protocol/hit1",
-            "mob/protocol/hit2",
-            "mob/protocol/hit3"
-        ]
-    },
-    "mob.protocol.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/protocol/die1"
-        ]
-    },
-    "mob.protocol.r2d2rare": {
-        "category": "neutral",
-        "sounds": [
-            "mob/protocol/r2d2rare"
-        ]
-    },
+  "blastdoor.pressure": {
+    "category": "neutral",
+    "sounds": [
+      "block/blastdoor/pressure"
+    ]
+  },
+  "force.lightning": {
+    "category": "neutral",
+    "sounds": [
+      "force/lightning"
+    ]
+  },
+  "force.push": {
+    "category": "neutral",
+    "sounds": [
+      "force/push"
+    ]
+  },
+  "force.pull": {
+    "category": "neutral",
+    "sounds": [
+      "force/pull"
+    ]
+  },
+  "lightspeed.enter": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/lightspeed/enter"
+    ]
+  },
+  "lightspeed.exit": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/lightspeed/exit"
+    ]
+  },
+  "vehicle.speeder.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/speeder/move"
+    ]
+  },
+  "vehicle.landspeeder.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/landspeeder/move"
+    ]
+  },
+  "vehicle.tie.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/tie/move"
+    ]
+  },
+  "vehicle.tie.fire": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/tie/fire1"
+    ]
+  },
+  "vehicle.tie.die": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/tie/explode"
+    ]
+  },
+  "vehicle.awing.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/awing/move1"
+    ]
+  },
+  "vehicle.xwing.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/xwing/move"
+    ]
+  },
+  "vehicle.xwing.sfoilOpen": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/xwing/sfoilOpen"
+    ]
+  },
+  "vehicle.xwing.sfoilClose": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/xwing/sfoilClose"
+    ]
+  },
+  "vehicle.xwing.fire": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/xwing/fire1"
+    ]
+  },
+  "vehicle.xwing.die": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/xwing/explode"
+    ]
+  },
+  "vehicle.alarm.loop": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/alarm/loop1"
+    ]
+  },
+  "mob.ewok.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/ewok/say1",
+      "mob/ewok/say2",
+      "mob/ewok/say3",
+      "mob/ewok/say4"
+    ]
+  },
+  "mob.ewok.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/ewok/hit1",
+      "mob/ewok/hit2"
+    ]
+  },
+  "mob.ewok.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/ewok/die1"
+    ]
+  },
+  "mob.gamor.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/gamor/say"
+    ]
+  },
+  "mob.gamor.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/gamor/hit"
+    ]
+  },
+  "mob.gamor.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/gamor/die"
+    ]
+  },
+  "mob.wookiee.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/wookiee/say1",
+      "mob/wookiee/say2"
+    ]
+  },
+  "mob.wookiee.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/wookiee/hit1"
+    ]
+  },
+  "mob.dewback.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/dewback/say"
+    ]
+  },
+  "mob.dewback.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/dewback/hit"
+    ]
+  },
+  "mob.dewback.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/dewback/die"
+    ]
+  },
+  "mob.bantha.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/bantha/say1"
+    ]
+  },
+  "mob.tusken.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tusken/say1",
+      "mob/tusken/say2"
+    ]
+  },
+  "mob.tusken.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tusken/hit1"
+    ]
+  },
+  "mob.tusken.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tusken/die1"
+    ]
+  },
+  "mob.tauntaun.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tauntaun/say1",
+      "mob/tauntaun/say2"
+    ]
+  },
+  "mob.tauntaun.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tauntaun/hit1"
+    ]
+  },
+  "mob.tauntaun.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tauntaun/die1"
+    ]
+  },
+  "mob.tauntaun.move": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tauntaun/walk1"
+    ]
+  },
+  "mob.protocol.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/protocol/say1",
+      "mob/protocol/say2",
+      "mob/protocol/say3"
+    ]
+  },
+  "mob.protocol.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/protocol/hit1",
+      "mob/protocol/hit2",
+      "mob/protocol/hit3"
+    ]
+  },
+  "mob.protocol.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/protocol/die1"
+    ]
+  },
+  "mob.protocol.r2d2rare": {
+    "category": "neutral",
+    "sounds": [
+      "mob/protocol/r2d2rare"
+    ]
+  },
   "mob.rebel.say": {
     "category": "neutral",
     "sounds": [
@@ -272,14 +272,14 @@
       "mob/rebel/hit"
     ]
   },
-    "mob.sandtrooper.droid": {
-        "category": "neutral",
-        "sounds": [
-            "mob/sandtrooper/droid1",
-            "mob/sandtrooper/droid2",
-            "mob/sandtrooper/droid3"
-        ]
-    },
+  "mob.sandtrooper.droid": {
+    "category": "neutral",
+    "sounds": [
+      "mob/sandtrooper/droid1",
+      "mob/sandtrooper/droid2",
+      "mob/sandtrooper/droid3"
+    ]
+  },
   "mob.stormtrooper.say": {
     "category": "neutral",
     "sounds": [
@@ -290,499 +290,497 @@
       "mob/stormtrooper/guard",
       "mob/stormtrooper/follow",
       "mob/stormtrooper/drill"
-        ]
-    },
-    "mob.sandtrooper.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/sandtrooper/say1",
-            "mob/sandtrooper/say2",
-            "mob/sandtrooper/say3",
-            "mob/sandtrooper/say4",
-            "mob/sandtrooper/say5"        
-        ]
-    },
-    "mob.sandtrooper.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/sandtrooper/die1"         
-        ]
-    },
-    "mob.mouse.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/mouse/say1",
-            "mob/mouse/say2"
-            
-        ]
-    },
-    "mob.mouse.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/mouse/scare1"
-        ]
-    },
-    "mob.mouse.scare": {
-        "category": "neutral",
-        "sounds": [
-            "mob/mouse/scare1",
-            "mob/mouse/scare2"
-        ]
-    },
-    "mob.mouse.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/mouse/scare1"
-        ]
-    },
-    "mob.astromech.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromech/say1",
-            "mob/astromech/say2",
-            "mob/astromech/say3",
-            "mob/astromech/say4"
-        ]
-    },
-    "mob.astromech.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromech/hit1"
-        ]
-    },
-    "mob.astromech.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromech/die1"
-        ]
-    },
-    "mob.astromechImperial.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromechImperial/say1",
-            "mob/astromechImperial/say2",
-            "mob/astromechImperial/say3",
-            "mob/astromechImperial/say4"
-        ]
-    },
-    "mob.astromech2.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromech2/say1",
-            "mob/astromech2/say2",
-            "mob/astromech2/say3",
-            "mob/astromech2/fart"
-        ]
-    },
-    "mob.astromech2.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromech/hit1"
-        ]
-    },
-    "mob.astromech2.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/astromech2/die1"
-        ]
-    },
-    "mob.probe.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/probe/say1"
-        ]
-    },
-    "mob.probe.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/probe/hit1"
-        ]
-    },
-    "mob.probe.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/probe/die1"
-        ]
-    },
-    "mob.surgical.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/surgical/say1"
-        ]
-    },
-    "mob.surgical.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/surgical/hit1"
-        ]
-    },
-    "mob.surgical.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/surgical/die1"
-        ]
-    },
-    "mob.treadwell.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/treadwell/say1",
-            "mob/treadwell/say2"
-        ]
-    },
-    "mob.treadwell.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/treadwell/hit1"
-        ]
-    },
-    "mob.treadwell.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/treadwell/die1"
-        ]
-    },
-    "mob.gonk.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/gonk/say1",
-            "mob/gonk/say2"
-        ]
-    },
-    "mob.gonk.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/gonk/die1"
-        ]
-    },
-    "mob.jawa.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/jawa/say1",
-            "mob/jawa/say2"
-        ]
-    },
-    "mob.jawa.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/jawa/hit1"
-        ]
-    },
-    "mob.jawa.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/jawa/die1"
-        ]
-    },
-    "mob.bith.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/bith/say1",
-            "mob/bith/say2",
-            "mob/bith/say3"
-        ]
-    },
-    "mob.bith.trade": {
-        "category": "neutral",
-        "sounds": [
-            "mob/bith/yes"
-        ]
-    },
-    "mob.commoner.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/commoner/say1",
-            "mob/commoner/say2",
-            "mob/commoner/say3",
-            "mob/commoner/say4",
-            "mob/commoner/say6",
-            "mob/commoner/say7"
-        ]
-    },
-    "mob.commoner.haggle": {
-        "category": "neutral",
-        "sounds": [
-            "mob/commoner/haggle1",
-            "mob/commoner/haggle2",
-            "mob/commoner/haggle3"
-        ]
-    },
-    "mob.commoner.trade": {
-        "category": "neutral",
-        "sounds": [
-            "mob/commoner/yes"
-        ]
-    },
-    "mob.commoner.notrade": {
-        "category": "neutral",
-        "sounds": [
-            "mob/commoner/no"
-        ]
-    },
-    "mob.commoner.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/commoner/hit1"
-        ]
-    },
-    "mob.commoner.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/commoner/die1"
-        ]
-    },
-    
-    "mob.wampa.say": {
-        "category": "neutral",
-        "sounds": [
-            "mob/wampa/say1"
-        ]
-    },
-    "mob.wampa.hit": {
-        "category": "neutral",
-        "sounds": [
-            "mob/wampa/hit1"
-        ]
-    },
-    "mob.wampa.die": {
-        "category": "neutral",
-        "sounds": [
-            "mob/wampa/die1"
-        ]
-    },
-    "item.gaffi.rightclick": {
-        "category": "neutral",
-        "sounds": [
-            "item/gaffi/rc1"
-        ]
-    },
-    "item.blasterPistol.use": {
-        "category": "neutral",
-        "sounds": [
-            "item/blasterRifle/use1"
-        ]
-    },
-    "fx.shoot.dl44": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dl44"
-        ]
-    },
-    "fx.shoot.dl18": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dl44"
-        ]
-    },
-    "fx.shoot.dh17": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dh17"
-        ]
-    },
-    "fx.shoot.sporting": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dl44"
-        ]
-    },
-    "fx.shoot.dl21": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dl44"
-        ]
-    },
-    "fx.shoot.scout": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dl44"
-        ]
-    },
-    "fx.shoot.se14c": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dl44"
-        ]
-    },
-    "fx.shoot.a280": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/a280"
-        ]
-    },
-    "fx.shoot.ee3": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/e11"
-        ]
-    },
-    "fx.shoot.ionization": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/ion"
-        ]
-    },
-    "fx.shoot.cycler": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/cycler"
-        ]
-    },
-    "fx.shoot.stormtrooper": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/e11"
-        ]
-    },
-    "fx.shoot.bike": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/bike"
-        ]
-    },
-    "fx.shoot.e11": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/e11"
-        ]
-    },
-    "fx.shoot.dlt19": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/dlt19"
-        ]
-    },
-    "fx.shoot.t21": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/t21"
-        ]
-    },
-    "fx.shoot.rt97c": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/rt97c"
-        ]
-    },
-    "fx.bolt.hit": {
-        "category": "neutral",
-        "sounds": [
-            "item/hit/sand"
-        ]
-    },
-    "item.blasterRifle.use": {
-        "category": "neutral",
-        "sounds": [
-            "item/blasterRifle/stormtrooper"
-        ]
-    },
-    "item.blasterRifle.break": {
-        "category": "neutral",
-        "sounds": [
-            "item/blasterRifle/break"
-        ]
-    },
-    "item.blasterBow.use": {
-        "category": "neutral",
-        "sounds": [
-            "item/shoot/bowcaster"
-        ]
-    },
-    "item.lightsaber.swing": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/swing",
-            "item/lightsaber/swing1",
-            "item/lightsaber/swing2",
-            "item/lightsaber/swing3",
-            "item/lightsaber/swing4"
-        ]
-    },
-    "item.lightsaber.open": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/open"
-        ]
-    },
-    "item.lightsaber.close": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/close"
-        ]
-    },
-    "item.lightsaber.fizz": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/fizz"
-        ]
-    },
-    "item.lightsaber.crash": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/crash"
-        ]
-    },
-    "item.lightsaber.hum": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/hum1"
-        ]
-    },
-    "item.lightsaber.spin": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/spin"
-        ]
-    },
-    "item.lightsaber.deflect": {
-        "category": "neutral",
-        "sounds": [
-            "item/lightsaber/deflect1",
-            "item/lightsaber/deflect2"
-        ]
-    },
-    "item.records.Throne": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/throne",
-                "stream": true
-            }
-        ]
-    },
-    "item.records.Theme": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/theme",
-                "stream": true
-            }
-        ]
-    },
-    "item.records.Binary": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/binary",
-                "stream": true
-            }
-        ]
-    },
-    "item.records.Imperial": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/imperial",
-                "stream": true
-            }
-        ]
-    },
-    "item.records.Cantina": {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "item/records/cantina",
-                "stream": true
-            }
-        ]
-    }
+    ]
+  },
+  "mob.sandtrooper.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/sandtrooper/say1",
+      "mob/sandtrooper/say2",
+      "mob/sandtrooper/say3",
+      "mob/sandtrooper/say4",
+      "mob/sandtrooper/say5"
+    ]
+  },
+  "mob.sandtrooper.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/sandtrooper/die1"
+    ]
+  },
+  "mob.mouse.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/mouse/say1",
+      "mob/mouse/say2"
+    ]
+  },
+  "mob.mouse.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/mouse/scare1"
+    ]
+  },
+  "mob.mouse.scare": {
+    "category": "neutral",
+    "sounds": [
+      "mob/mouse/scare1",
+      "mob/mouse/scare2"
+    ]
+  },
+  "mob.mouse.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/mouse/scare1"
+    ]
+  },
+  "mob.astromech.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromech/say1",
+      "mob/astromech/say2",
+      "mob/astromech/say3",
+      "mob/astromech/say4"
+    ]
+  },
+  "mob.astromech.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromech/hit1"
+    ]
+  },
+  "mob.astromech.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromech/die1"
+    ]
+  },
+  "mob.astromechImperial.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromechImperial/say1",
+      "mob/astromechImperial/say2",
+      "mob/astromechImperial/say3",
+      "mob/astromechImperial/say4"
+    ]
+  },
+  "mob.astromech2.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromech2/say1",
+      "mob/astromech2/say2",
+      "mob/astromech2/say3",
+      "mob/astromech2/fart"
+    ]
+  },
+  "mob.astromech2.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromech/hit1"
+    ]
+  },
+  "mob.astromech2.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/astromech2/die1"
+    ]
+  },
+  "mob.probe.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/probe/say1"
+    ]
+  },
+  "mob.probe.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/probe/hit1"
+    ]
+  },
+  "mob.probe.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/probe/die1"
+    ]
+  },
+  "mob.surgical.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/surgical/say1"
+    ]
+  },
+  "mob.surgical.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/surgical/hit1"
+    ]
+  },
+  "mob.surgical.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/surgical/die1"
+    ]
+  },
+  "mob.treadwell.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/treadwell/say1",
+      "mob/treadwell/say2"
+    ]
+  },
+  "mob.treadwell.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/treadwell/hit1"
+    ]
+  },
+  "mob.treadwell.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/treadwell/die1"
+    ]
+  },
+  "mob.gonk.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/gonk/say1",
+      "mob/gonk/say2"
+    ]
+  },
+  "mob.gonk.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/gonk/die1"
+    ]
+  },
+  "mob.jawa.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/jawa/say1",
+      "mob/jawa/say2"
+    ]
+  },
+  "mob.jawa.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/jawa/hit1"
+    ]
+  },
+  "mob.jawa.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/jawa/die1"
+    ]
+  },
+  "mob.bith.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/bith/say1",
+      "mob/bith/say2",
+      "mob/bith/say3"
+    ]
+  },
+  "mob.bith.trade": {
+    "category": "neutral",
+    "sounds": [
+      "mob/bith/yes"
+    ]
+  },
+  "mob.commoner.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/commoner/say1",
+      "mob/commoner/say2",
+      "mob/commoner/say3",
+      "mob/commoner/say4",
+      "mob/commoner/say6",
+      "mob/commoner/say7"
+    ]
+  },
+  "mob.commoner.haggle": {
+    "category": "neutral",
+    "sounds": [
+      "mob/commoner/haggle1",
+      "mob/commoner/haggle2",
+      "mob/commoner/haggle3"
+    ]
+  },
+  "mob.commoner.trade": {
+    "category": "neutral",
+    "sounds": [
+      "mob/commoner/yes"
+    ]
+  },
+  "mob.commoner.notrade": {
+    "category": "neutral",
+    "sounds": [
+      "mob/commoner/no"
+    ]
+  },
+  "mob.commoner.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/commoner/hit1"
+    ]
+  },
+  "mob.commoner.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/commoner/die1"
+    ]
+  },
+  "mob.wampa.say": {
+    "category": "neutral",
+    "sounds": [
+      "mob/wampa/say1"
+    ]
+  },
+  "mob.wampa.hit": {
+    "category": "neutral",
+    "sounds": [
+      "mob/wampa/hit1"
+    ]
+  },
+  "mob.wampa.die": {
+    "category": "neutral",
+    "sounds": [
+      "mob/wampa/die1"
+    ]
+  },
+  "item.gaffi.rightclick": {
+    "category": "neutral",
+    "sounds": [
+      "item/gaffi/rc1"
+    ]
+  },
+  "item.blasterPistol.use": {
+    "category": "neutral",
+    "sounds": [
+      "item/blasterRifle/use1"
+    ]
+  },
+  "fx.shoot.dl44": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dl44"
+    ]
+  },
+  "fx.shoot.dl18": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dl44"
+    ]
+  },
+  "fx.shoot.dh17": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dh17"
+    ]
+  },
+  "fx.shoot.sporting": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dl44"
+    ]
+  },
+  "fx.shoot.dl21": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dl44"
+    ]
+  },
+  "fx.shoot.scout": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dl44"
+    ]
+  },
+  "fx.shoot.se14c": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dl44"
+    ]
+  },
+  "fx.shoot.a280": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/a280"
+    ]
+  },
+  "fx.shoot.ee3": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/e11"
+    ]
+  },
+  "fx.shoot.ionization": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/ion"
+    ]
+  },
+  "fx.shoot.cycler": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/cycler"
+    ]
+  },
+  "fx.shoot.stormtrooper": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/e11"
+    ]
+  },
+  "fx.shoot.bike": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/bike"
+    ]
+  },
+  "fx.shoot.e11": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/e11"
+    ]
+  },
+  "fx.shoot.dlt19": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/dlt19"
+    ]
+  },
+  "fx.shoot.t21": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/t21"
+    ]
+  },
+  "fx.shoot.rt97c": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/rt97c"
+    ]
+  },
+  "fx.bolt.hit": {
+    "category": "neutral",
+    "sounds": [
+      "item/hit/sand"
+    ]
+  },
+  "item.blasterRifle.use": {
+    "category": "neutral",
+    "sounds": [
+      "item/blasterRifle/stormtrooper"
+    ]
+  },
+  "item.blasterRifle.break": {
+    "category": "neutral",
+    "sounds": [
+      "item/blasterRifle/break"
+    ]
+  },
+  "item.blasterBow.use": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/bowcaster"
+    ]
+  },
+  "item.lightsaber.swing": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/swing",
+      "item/lightsaber/swing1",
+      "item/lightsaber/swing2",
+      "item/lightsaber/swing3",
+      "item/lightsaber/swing4"
+    ]
+  },
+  "item.lightsaber.open": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/open"
+    ]
+  },
+  "item.lightsaber.close": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/close"
+    ]
+  },
+  "item.lightsaber.fizz": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/fizz"
+    ]
+  },
+  "item.lightsaber.crash": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/crash"
+    ]
+  },
+  "item.lightsaber.hum": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/hum1"
+    ]
+  },
+  "item.lightsaber.spin": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/spin"
+    ]
+  },
+  "item.lightsaber.deflect": {
+    "category": "neutral",
+    "sounds": [
+      "item/lightsaber/deflect1",
+      "item/lightsaber/deflect2"
+    ]
+  },
+  "item.records.Throne": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "item/records/throne",
+        "stream": true
+      }
+    ]
+  },
+  "item.records.Theme": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "item/records/theme",
+        "stream": true
+      }
+    ]
+  },
+  "item.records.Binary": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "item/records/binary",
+        "stream": true
+      }
+    ]
+  },
+  "item.records.Imperial": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "item/records/imperial",
+        "stream": true
+      }
+    ]
+  },
+  "item.records.Cantina": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "item/records/cantina",
+        "stream": true
+      }
+    ]
+  }
 }

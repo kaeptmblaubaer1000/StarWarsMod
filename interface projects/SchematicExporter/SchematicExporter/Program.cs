@@ -5,101 +5,103 @@ using System.Text.RegularExpressions;
 
 namespace SchematicExporter
 {
-    internal class Program
+    internal static class Program
     {
-        public static bool EmptyChestRandom;
-        public static bool IgnoreAirBlocks;
-        public static bool IgnoreChestToEntity;
-        public static string UseTemplate;
-        public static string UsePackage;
-        public static string UseBlocks;
-        public static string UseItems;
-
-        public static StreamWriter LogWriter;
+        private static StreamWriter _logWriter;
 
         private static void Main(string[] args)
         {
-            EmptyChestRandom = false;
-            IgnoreAirBlocks = false;
-            IgnoreChestToEntity = false;
-            UseTemplate = "default.java";
-            UsePackage = "your.mod.pkg";
-            UseBlocks = "blocks.txt";
-            UseItems = "items.txt";
+            Arguments.EmptyChestRandom = false;
+            Arguments.IgnoreAirBlocks = false;
+            Arguments.IgnoreChestToEntity = false;
+            Arguments.UseTemplate = "default.java";
+            Arguments.UsePackage = "your.mod.pkg";
+            Arguments.UseBlocks = "blocks.txt";
+            Arguments.UseItems = "items.txt";
 
             Console.ForegroundColor = ConsoleColor.White;
 
-            LogWriter = new StreamWriter(string.Format("log-{0}.log", DateTime.Now.Ticks));
+            Console.Title = "SchematicExporter - Ready";
 
-            LogWriter.WriteLine("Running with args: {0}", string.Join(", ", args));
+            if (!Directory.Exists("logs/"))
+                Directory.CreateDirectory("logs/");
+            _logWriter = new StreamWriter(string.Format("logs/log-{0}.log", DateTime.Now.Ticks));
+
+            _logWriter.WriteLine("Running with args: {0}\n\n", string.Join(", ", args));
 
             if (args.Length > 0)
             {
                 foreach (var s in args)
                 {
-                    if (s == "--emptyloot")
+                    switch (s)
                     {
-                        EmptyChestRandom = true;
-                        Console.WriteLine("Custom Setting: empty chests will be filled with random loot");
-                    }
-                    else if (s == "--ignoreair")
-                    {
-                        IgnoreAirBlocks = true;
-                        Console.WriteLine("Custom Setting: air blocks will not be exported");
-                    }
-                    else if (s == "--nochestentity")
-                    {
-                        IgnoreChestToEntity = true;
-                        Console.WriteLine(
-                            "Custom Setting: chests with entity selectors inside will not export as entities");
-                    }
-                    else if (s == "--help")
-                    {
-                        Console.WriteLine("Available arguments:");
-                        Console.WriteLine(
-                            "--emptyloot\n\tEmpty chests (instead of blaze rod in top left corner) will be filled with random loot");
-                        Console.WriteLine(
-                            "--template:<template file>\n\tOutout will be generated based off of template/<template file>" +
-                            "\n\tPlaceholders:" +
-                            "\n\t\t{{CLASS_COMMENT}}" +
-                            "\n\t\t{{PACKAGE}}" +
-                            "\n\t\t{{CLASS}}" +
-                            "\n\t\t{{GEN_METHODS}}" +
-                            "\n\t\t{{IMPORTS}}");
-                        Console.WriteLine("--package:<package>\n\tThe package for the file to be exported for");
-                        Console.WriteLine("--blocks:<blocks>\n\tThe dictionary file to pull blocks from");
-                        Console.WriteLine("--items:<items>\n\tThe dictionary file to pull items from");
-                        Console.WriteLine("--ignoreair\n\tAir blocks will not be exported");
-                        Console.WriteLine(
-                            "--nochestentity\n\tChests with entity selectors inside will not export as entities");
-                        Console.WriteLine("Press any key to exit...");
-                        Console.ReadKey();
-                        Environment.Exit(0);
-                    }
-                    else if (new Regex("--template:(\\S+)").IsMatch(s))
-                    {
-                        UseTemplate = s.Split(':')[1];
-                        Console.WriteLine("Custom Setting: using template/{0}", UseTemplate);
-                    }
-                    else if (new Regex("--package:(\\S+)").IsMatch(s))
-                    {
-                        UsePackage = s.Split(':')[1];
-                        Console.WriteLine("Custom Setting: using package {0}", UsePackage);
-                    }
-                    else if (new Regex("--blocks:(\\S+)").IsMatch(s))
-                    {
-                        UseBlocks = s.Split(':')[1];
-                        Console.WriteLine("Custom Setting: using block dictionary data/{0}", UseBlocks);
-                    }
-                    else if (new Regex("--items:(\\S+)").IsMatch(s))
-                    {
-                        UseItems = s.Split(':')[1];
-                        Console.WriteLine("Custom Setting: using item dictionary data/{0}", UseItems);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid argument: \"{0}\"", s);
-                        Console.WriteLine("Use \"--help\" for a list of available arguments");
+                        case "-emptyloot":
+                            Arguments.EmptyChestRandom = true;
+                            Console.WriteLine("Custom Setting: empty chests will be filled with random loot");
+                            break;
+                        case "-ignoreair":
+                            Arguments.IgnoreAirBlocks = true;
+                            Console.WriteLine("Custom Setting: air blocks will not be exported");
+                            break;
+                        case "-r":
+                            Arguments.SearchRecursive = true;
+                            Console.WriteLine("Custom Setting: input directory searched recursively");
+                            break;
+                        case "-nochestentity":
+                            Arguments.IgnoreChestToEntity = true;
+                            Console.WriteLine(
+                                "Custom Setting: chests with entity selectors inside will not export as entities");
+                            break;
+                        case "-help":
+                            Console.WriteLine("Available arguments:");
+                            Console.WriteLine(
+                                "-emptyloot\n\tEmpty chests (instead of blaze rod in top left corner) will be filled with random loot");
+                            Console.WriteLine(
+                                "-template:<template file>\n\tOutout will be generated based off of template/<template file>" +
+                                "\n\tPlaceholders:" +
+                                "\n\t\t{{CLASS_COMMENT}}" +
+                                "\n\t\t{{PACKAGE}}" +
+                                "\n\t\t{{CLASS}}" +
+                                "\n\t\t{{GEN_METHODS}}" +
+                                "\n\t\t{{IMPORTS}}");
+                            Console.WriteLine("-package:<package>\n\tThe package for the file to be exported for");
+                            Console.WriteLine("-blocks:<blocks>\n\tThe dictionary file to pull blocks from");
+                            Console.WriteLine("-items:<items>\n\tThe dictionary file to pull items from");
+                            Console.WriteLine("-ignoreair\n\tAir blocks will not be exported");
+                            Console.WriteLine("-r\n\tInput directory will be searched recursively");
+                            Console.WriteLine(
+                                "-nochestentity\n\tChests with entity selectors inside will not export as entities");
+                            Console.WriteLine("Press any key to exit...");
+                            Console.ReadKey();
+                            Environment.Exit(0);
+                            break;
+                        default:
+                            if (new Regex("-template:(\\S+)").IsMatch(s))
+                            {
+                                Arguments.UseTemplate = s.Split(':')[1];
+                                Console.WriteLine("Custom Setting: using template/{0}", Arguments.UseTemplate);
+                            }
+                            else if (new Regex("-package:(\\S+)").IsMatch(s))
+                            {
+                                Arguments.UsePackage = s.Split(':')[1];
+                                Console.WriteLine("Custom Setting: using package {0}", Arguments.UsePackage);
+                            }
+                            else if (new Regex("-blocks:(\\S+)").IsMatch(s))
+                            {
+                                Arguments.UseBlocks = s.Split(':')[1];
+                                Console.WriteLine("Custom Setting: using block dictionary data/{0}", Arguments.UseBlocks);
+                            }
+                            else if (new Regex("-items:(\\S+)").IsMatch(s))
+                            {
+                                Arguments.UseItems = s.Split(':')[1];
+                                Console.WriteLine("Custom Setting: using item dictionary data/{0}", Arguments.UseItems);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid argument: \"{0}\"", s);
+                                Console.WriteLine("Use \"-help\" for a list of available arguments");
+                            }
+                            break;
                     }
                 }
                 Console.WriteLine();
@@ -110,13 +112,13 @@ namespace SchematicExporter
             {
                 Directory.CreateDirectory("input/");
                 Console.WriteLine("Created input directory");
-                LogWriter.WriteLine("Input directory not found, created one.");
+                _logWriter.WriteLine("Input directory not found, created one.");
             }
             if (!Directory.Exists("output/"))
             {
                 Directory.CreateDirectory("output/");
                 Console.WriteLine("Created output directory");
-                LogWriter.WriteLine("Output directory nor found, created one.");
+                _logWriter.WriteLine("Output directory not found, created one.");
             }
             // Draw the header
             Console.WriteLine("{0}{1}{2}{3}{4}{5}{6}{7}", "File".PadRight(40), "Iterate".PadRight(10),
@@ -130,61 +132,58 @@ namespace SchematicExporter
 
             // File counter
             var files = 0;
-            var chunks = 0;
-            var blocks = 0;
-            foreach (var rFile in Directory.GetFiles("input/", "*.schematic"))
+            foreach (var rFile in Utils.GetFiles("input", "*.schematic", Arguments.SearchRecursive))
             {
-                //TODO: make recursive searching an option
-
                 //load the schematic
                 var s = new Schematic(rFile);
-                LogWriter.WriteLine("Loaded schematic {0}", rFile);
-
-                blocks += s.Size();
-                LogWriter.WriteLine("Found {0} blocks", s.Size());
+                _logWriter.WriteLine("Loaded schematic {0}, found {1} blocks", rFile, s.Size());
 
                 var upperFirstName = Utils.UpperFirst(Path.GetFileNameWithoutExtension(rFile));
                 // Set how you want to export
-                var options = new ExportOptions("WorldGen" + upperFirstName + "{0}.java", UsePackage,
-                    "WorldGen" + upperFirstName + "{0}");
+                var options = new ExportOptions("WorldGen" + upperFirstName + "{0}.java", Arguments.UsePackage,
+                    "WorldGen" + upperFirstName + "{0}", Path.GetDirectoryName(rFile).Substring(5));
 
-                LogWriter.WriteLine("Exporting with options: className={0}, package={1}", string.Format(options.ClassName, ""), options.Package);
+                _logWriter.WriteLine("Exporting with options: className={0}, package={1}", string.Format(options.ClassName, ""), options.Package);
 
                 // Actually export the schematic
-                var oldChunks = chunks;
-                LogWriter.Write("Exporting chunks... ");
+                var oldChunks = Metrics.TotalChunks;
+                _logWriter.Write("Exporting chunks... ");
                 try
                 {
-                    chunks += Exporter.Export(options, s);
-                    LogWriter.WriteLine("Exported {0} chunks", chunks - oldChunks);
+                    Metrics.TotalChunks += Exporter.Export(options, s);
+                    _logWriter.WriteLine("Exported {0} chunks", Metrics.TotalChunks - oldChunks);
                 }
                 catch (Exception exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\nError while exporting, check log for details!\n");
-                    LogWriter.WriteLine("Error while exporting {0}: {1} at {2}\n{3}", rFile, exception.Message, exception.TargetSite, exception.StackTrace);
+                    _logWriter.WriteLine("Error while exporting {0}: {1}\n{2}", rFile, exception.Message, exception.StackTrace);
                 }
 
-                LogWriter.WriteLine();
+                _logWriter.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
 
                 files++;
             }
             totalElapse.Stop();
+            Console.Title = "SchematicExporter - Done";
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            Console.WriteLine("Done exporting {0} file{3} ({2} chunks) in {1}", files,
-                Utils.MillisToHrd(totalElapse.ElapsedMilliseconds), chunks, files == 1 ? "" : "s");
-            if (chunks > 0)
+            Console.WriteLine("Done exporting {0:n0} file{3} ({2:n0} chunk{4}) in {1}", files,
+                Utils.MillisToHrd(totalElapse.ElapsedMilliseconds), Metrics.TotalChunks, files == 1 ? "" : "s", Metrics.TotalChunks == 1 ? "" : "s");
+            if (Metrics.TotalChunks > 0)
             {
-                Console.WriteLine("\nAverage Time\t\t{0}",
-                    Utils.MillisToHrd(totalElapse.ElapsedMilliseconds/chunks));
-                Console.WriteLine("Average Files/Second\t{0}", 1000/((float) totalElapse.ElapsedMilliseconds/chunks));
-                Console.WriteLine("Blocks (incl. air)\t{0}", blocks);
+                Console.WriteLine("\tAverage Time\t\t{0}",
+                    Utils.MillisToHrd(totalElapse.ElapsedMilliseconds / Metrics.TotalChunks));
+                Console.WriteLine("\tAverage Files/Second\t{0:n0}", 1000 / ((float)totalElapse.ElapsedMilliseconds / Metrics.TotalChunks));
+                Console.WriteLine("\tBlocks (incl. air)\t{0:n0}", Metrics.TotalBlocks);
+                Console.WriteLine("\tTiles\t\t\t{0:n0}", Metrics.TotalTiles);
+                Console.WriteLine("\tTotal Filesize\t\t{0}", Utils.SizeSuffix(Metrics.TotalFilesize));
+                Console.WriteLine("\tChunks over 1 MB\t{0:n0} ({1}%)", Metrics.FilesOverOneMeg, 100 * Metrics.FilesOverOneMeg / Metrics.TotalChunks);
             }
 
-            LogWriter.Close();
+            _logWriter.Close();
 
             Console.Read();
         }

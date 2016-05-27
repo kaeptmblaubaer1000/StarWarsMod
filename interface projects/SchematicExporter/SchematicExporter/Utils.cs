@@ -73,7 +73,7 @@ namespace SchematicExporter
 
             var i = 0;
             float dValue = value;
-            while (Math.Round(dValue / 1024) >= 1)
+            while (Math.Floor(dValue / 1024) >= 1)
             {
                 dValue /= 1024;
                 i++;
@@ -109,6 +109,23 @@ namespace SchematicExporter
             Console.ReadKey();
             Environment.Exit(0);
             return null;
+        }
+
+        /// <summary>
+        /// Gets all of the files in a directory
+        /// </summary>
+        /// <param name="folder">The folder to search in</param>
+        /// <param name="searchPattern">The file search pattern</param>
+        /// <param name="recursive">Whether or not to search recursively</param>
+        /// <returns>A List of files</returns>
+        public static List<string> GetFiles(string folder, string searchPattern, bool recursive)
+        {
+            var l = new List<string>();
+            if (recursive)
+                foreach (var directory in Directory.GetDirectories(folder))
+                    l.AddRange(GetFiles(directory, searchPattern, true));
+            l.AddRange(Directory.GetFiles(folder, searchPattern));
+            return l;
         }
     }
 }

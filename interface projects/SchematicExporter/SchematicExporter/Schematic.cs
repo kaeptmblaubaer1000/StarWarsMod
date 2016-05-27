@@ -11,15 +11,15 @@ namespace SchematicExporter
         /// <summary>
         /// Length of the schematic, in blocks
         /// </summary>
-        public int Length;
+        public readonly int Length;
         /// <summary>
         /// Width of the schematic, in blocks
         /// </summary>
-        public int Width;
+        public readonly int Width;
         /// <summary>
         /// Height of the schematic, in blocks
         /// </summary>
-        public int Height;
+        public readonly int Height;
 
         private readonly int[] _blocks;
         private readonly bool[] _blockFlags;
@@ -64,7 +64,7 @@ namespace SchematicExporter
         /// <param name="y">Y</param>
         /// <param name="z">Z</param>
         /// <returns>The block ID at XYZ</returns>
-        public int GetBlockIdAt(int x, int y, int z)
+        private int GetBlockIdAt(int x, int y, int z)
         {
             return _blocks[(y * Length + z) * Width + x];
         }

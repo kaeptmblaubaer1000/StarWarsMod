@@ -23,10 +23,11 @@ namespace SchematicExporter
                 Directory.CreateDirectory("template/");
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(string.Format("{0}{1}", string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ)), File.Exists("output/" + options.FileName) ? "*" : "").PadRight(40));
+            string clazz = string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ));
+            Console.Write((clazz.Length <= 38 ? clazz : "..." + clazz.Substring(clazz.Length - 35, 35)).PadRight(40));
 
             // Load the java template
-            var template = Utils.RequireFile(string.Format("template/{0}", Program.UseTemplate)).ReadToEnd();
+            var template = Utils.RequireFile(string.Format("template/{0}", Arguments.UseTemplate)).ReadToEnd();
             Console.ForegroundColor = ConsoleColor.Green;
 
             var gen = new StringBuilder();
@@ -51,7 +52,7 @@ namespace SchematicExporter
             swIterate.Start();
 
             // Iterate over tile entities
-            var tag = 0;
+            var totalTiles = 0;
             foreach (var nbtTag in schematic.GetTileEntities().Where(nbtTag => ((NbtCompound)nbtTag)["x"].IntValue >= chunkX && ((NbtCompound)nbtTag)["x"].IntValue < chunkX + 16 && ((NbtCompound)nbtTag)["z"].IntValue >= chunkZ && ((NbtCompound)nbtTag)["z"].IntValue < chunkZ + 16))
             {
                 var t = (NbtCompound)nbtTag;
@@ -61,8 +62,8 @@ namespace SchematicExporter
 
                 if (t["id"].StringValue != "Chest") continue;
 
-                tiles.Append(JavaBuilder.MakeChest(ref schematic, ref lImports, tag, x, y, z, "\t\t"));
-                tag++;
+                tiles.Append(JavaBuilder.MakeChest(ref schematic, ref lImports, totalTiles, x, y, z, "\t\t"));
+                totalTiles++;
             }
 
             // Iterate over blocks
@@ -74,7 +75,7 @@ namespace SchematicExporter
                     {
                         if (x >= schematic.Width || z >= schematic.Length)
                             continue;
-                        if (schematic.GetFlagAt(x, y, z) || (schematic.GetBlockAt(x, y, z).GetName() == "air" && Program.IgnoreAirBlocks))
+                        if (schematic.GetFlagAt(x, y, z) || (schematic.GetBlockAt(x, y, z).GetName() == "air" && Arguments.IgnoreAirBlocks))
                             continue;
 
                         gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z, chunkX, chunkZ));
@@ -114,14 +115,21 @@ namespace SchematicExporter
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
             template = template.Replace("{{IMPORTS}}", imports.ToString());
 
+            var blocks = currentGen*Exporter.MaxBlocksPerGen + numStatements;
+
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write((currentGen * Exporter.MaxBlocksPerGen + numStatements).ToString().PadRight(10));
-            Console.Write(tag.ToString().PadRight(10));
-            Console.Write((currentGen + 1).ToString().PadRight(10));
+            Console.Write(string.Format("{0:n0}", blocks).PadRight(10));
+            Console.Write(string.Format("{0:n0}", totalTiles).PadRight(10));
+            Console.Write(string.Format("{0:n0}", (currentGen + 1)).PadRight(10));
             swIterate.Restart();
 
+            Metrics.TotalBlocks += blocks;
+            Metrics.TotalTiles += totalTiles;
+
             // Write data to file
-            using (var w = new StreamWriter("output/" + string.Format(options.FileName, string.Format("_x{0}_z{1}", chunkX, chunkZ))))
+            if (!Directory.Exists("output/" + options.Path))
+                Directory.CreateDirectory("output/" + options.Path);
+            using (var w = new StreamWriter("output/" + options.Path + "/" + string.Format(options.FileName, string.Format("_x{0}_z{1}", chunkX, chunkZ))))
                 w.WriteLine(template);
 
             swIterate.Stop();
@@ -131,8 +139,23 @@ namespace SchematicExporter
             swOverall.Stop();
             Console.Write(Utils.MillisToHrd(swOverall.ElapsedMilliseconds).PadRight(10));
 
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write(Utils.SizeSuffix(File.ReadAllBytes("output/" + string.Format(options.FileName, string.Format("_x{0}_z{1}", chunkX, chunkZ))).Length).PadRight(10));
+            var isize = File.ReadAllBytes("output/" + options.Path + "/" +
+                                          string.Format(options.FileName, string.Format("_x{0}_z{1}", chunkX, chunkZ)))
+                .Length;
+
+            Metrics.TotalFilesize += isize;
+
+            var size =
+                Utils.SizeSuffix(
+                   isize);
+            if (size.Contains("MB"))
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Metrics.FilesOverOneMeg++;
+            }
+            else
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write(size.PadRight(10));
 
             Console.WriteLine();
         }

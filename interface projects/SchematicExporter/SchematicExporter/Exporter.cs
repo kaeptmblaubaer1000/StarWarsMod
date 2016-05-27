@@ -33,14 +33,15 @@ namespace SchematicExporter
             for (var x = 0; x < schematic.Width; x += 16)
                 for (var z = 0; z < schematic.Length; z += 16)
                 {
-                    //Console.Title = string.Format("Exporting {0} ({1}% done)", string.Format(options.ClassName, ""), ((x * schematic.Width + z) * (float)100) / (schematic.Width * schematic.Length));
-                    ChunkExport.Export(options, schematic, x, z);
-
-                    chunks++;
-
                     var classTitle =
                         Utils.UpperFirst(string.Format(options.ClassName,
                             string.Format("_x{0}_z{1}", x, z)));
+
+                    Console.Title = string.Format("SchematicExporter - Exporting {0}...", classTitle);
+                    
+                    ChunkExport.Export(options, schematic, x, z);
+
+                    chunks++;
 
                     gen.AppendLine(string.Format("{0}if (chunkX == {1} && chunkZ == {2})", first ? "" : "else ", x, z));
 
@@ -51,7 +52,7 @@ namespace SchematicExporter
                     first = false;
                 }
 
-            using (var w = new StreamWriter("output/" + string.Format(options.FileName, "Generator")))
+            using (var w = new StreamWriter("output/" + options.Path + "/" + string.Format(options.FileName, "Generator")))
                 w.WriteLine(gen);
 
             return chunks;

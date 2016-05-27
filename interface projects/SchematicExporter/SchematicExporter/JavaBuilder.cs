@@ -179,7 +179,7 @@ namespace SchematicExporter
 
             if (c == null) return sb.ToString();
 
-            if (((NbtList)c["Items"]).Count == 0 && Program.EmptyChestRandom)
+            if (((NbtList)c["Items"]).Count == 0 && Arguments.EmptyChestRandom)
             {
                 sb.Clear();
                 sb.AppendLine(
@@ -216,7 +216,7 @@ namespace SchematicExporter
                         imports.Require("com.parzivail.pswm.utils.LootGenUtils");
                         break;
                     }
-                    if (id == IdMapper.Instance.GetIdFromItem("lever") && !Program.IgnoreChestToEntity)
+                    if (id == IdMapper.Instance.GetIdFromItem("lever") && !Arguments.IgnoreChestToEntity)
                         // lever in top left = spawn entity
                     {
                         sb.Clear();
