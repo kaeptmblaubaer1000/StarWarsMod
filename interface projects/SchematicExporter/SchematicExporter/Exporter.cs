@@ -30,6 +30,9 @@ namespace SchematicExporter
 
             var chunks = 0;
 
+            if (!Directory.Exists("output/" + options.Path))
+                Directory.CreateDirectory("output/" + options.Path);
+
             for (var x = 0; x < schematic.Width; x += 16)
                 for (var z = 0; z < schematic.Length; z += 16)
                 {

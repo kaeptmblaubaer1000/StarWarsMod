@@ -179,6 +179,7 @@ namespace SchematicExporter
                 Console.WriteLine("\tAverage Files/Second\t{0:n0}", 1000 / ((float)totalElapse.ElapsedMilliseconds / Metrics.TotalChunks));
                 Console.WriteLine("\tBlocks (incl. air)\t{0:n0}", Metrics.TotalBlocks);
                 Console.WriteLine("\tTiles\t\t\t{0:n0}", Metrics.TotalTiles);
+                Console.WriteLine("\tAverage Filesize\t{0}", Utils.SizeSuffix(Metrics.TotalFilesize / Metrics.TotalChunks));
                 Console.WriteLine("\tTotal Filesize\t\t{0}", Utils.SizeSuffix(Metrics.TotalFilesize));
                 Console.WriteLine("\tChunks over 1 MB\t{0:n0} ({1}%)", Metrics.FilesOverOneMeg, 100 * Metrics.FilesOverOneMeg / Metrics.TotalChunks);
             }
@@ -186,6 +187,11 @@ namespace SchematicExporter
             _logWriter.Close();
 
             Console.Read();
+        }
+
+        public static StreamWriter GetLogger()
+        {
+            return _logWriter;
         }
     }
 }

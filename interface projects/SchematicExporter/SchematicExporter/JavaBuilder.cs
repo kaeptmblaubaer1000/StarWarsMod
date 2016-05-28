@@ -5,7 +5,7 @@ using fNbt;
 
 namespace SchematicExporter
 {
-    internal class JavaBuilder
+    internal static class JavaBuilder
     {
         /// <summary>
         /// Creates a setBlock like from the given arguments
@@ -26,21 +26,19 @@ namespace SchematicExporter
             switch (nsp)
             {
                 case IdMapper.ClassBlocks:
-                    imports.Require("net.minecraft.init.Blocks");
+                    imports.Require("net.minecraft.init.Blocks.*");
                     break;
                 case IdMapper.ClassPswm:
-                    imports.Require("com.parzivail.pswm.StarWarsMod");
+                    imports.Require("com.parzivail.pswm.StarWarsMod.*");
                     break;
                 default:
                     imports.Require(nsp);
                     break;
             }
-            sb.AppendLine(string.Format("\t\tthis.b(world, i + {0}, j + {1}, k + {2}, {3}, 0);", x - chunkX, y, z - chunkZ,
-                b.CreateJavaVariable()));
+            sb.AppendFormat("{4}b(w,i+{0},j+{1}, k+{2},{3},0);\r\n", x - chunkX, y, z - chunkZ, b.GetName(), "\t\t");
             if (s.GetBlockMetadataAt(x, y, z) != 0)
-                sb.AppendLine(string.Format("\t\tthis.m(world, i + {0}, j + {1}, k + {2}, {3});", x - chunkX, y, z - chunkZ,
-                    s.GetBlockMetadataAt(x, y, z)));
-            return sb.ToString().Replace(" + 0", "");
+                sb.AppendFormat("{4}m(w,i+{0},j+{1},k+{2},{3});\r\n", x - chunkX, y, z - chunkZ, s.GetBlockMetadataAt(x, y, z), "\t\t");
+            return sb.ToString().Replace("+0", "");
         }
 
         /// <summary>
@@ -50,8 +48,8 @@ namespace SchematicExporter
         /// <returns>The generated method</returns>
         public static string MakeGen(int genId)
         {
-            return string.Format("\tpublic boolean generate{0}(World world, int i, int j, int k)",
-                genId == 0 ? "" : "_" + genId);
+            return new StringBuilder().AppendFormat("{1}public static void generate{0}(World w, int i, int j, int k)",
+                genId == 0 ? "" : "_" + genId, "\t").ToString();
         }
 
         /// <summary>
@@ -61,7 +59,7 @@ namespace SchematicExporter
         /// <returns>The generated line</returns>
         public static string MakeCallGen(int genId)
         {
-            return string.Format("\t\tgenerate_{0}(world, i, j, k);", genId);
+            return new StringBuilder().AppendFormat("{1}generate_{0}(w, i, j, k);", genId, "\t\t").ToString();
         }
 
         /// <summary>
@@ -184,7 +182,7 @@ namespace SchematicExporter
                 sb.Clear();
                 sb.AppendLine(
                     string.Format(
-                        "{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3}));",
+                        "{0}LootGenUtils.fillLootChest(w.provider.dimensionId, w.rand, (TileEntityChest)w.getTileEntity(i + {1}, j + {2}, k + {3}));",
                         linePrefix, x, y, z));
                 imports.Require("com.parzivail.pswm.utils.LootGenUtils");
                 return sb.ToString();
@@ -192,7 +190,7 @@ namespace SchematicExporter
 
             sb.AppendLine(
                 string.Format(
-                    "{0}TileEntityChest chest{4} = (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});",
+                    "{0}TileEntityChest chest{4} = (TileEntityChest)w.getTileEntity(i + {1}, j + {2}, k + {3});",
                     linePrefix, x, y, z, chestId));
             imports.Require("net.minecraft.tileentity.TileEntityChest");
 
@@ -211,7 +209,7 @@ namespace SchematicExporter
                         sb.Clear();
                         sb.Append(
                             string.Format(
-                                "{0}LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, (TileEntityChest)world.getTileEntity(i + {1}, j + {2}, k + {3});",
+                                "{0}LootGenUtils.fillLootChest(w.provider.dimensionId, w.rand, (TileEntityChest)w.getTileEntity(i + {1}, j + {2}, k + {3});",
                                 linePrefix, x, y, z));
                         imports.Require("com.parzivail.pswm.utils.LootGenUtils");
                         break;
@@ -239,12 +237,18 @@ namespace SchematicExporter
                 sb.AppendLine(string.Format("{0}chest{5}.setInventorySlotContents({1}, new ItemStack({2}, {3}, {4}));",
                     linePrefix, slot, IdMapper.Instance.GetItemFromId(id).CreateJavaVariable(), count, damage, chestId));
                 var nsp = IdMapper.Instance.GetItemFromId(id).GetNamespacePrefix();
-                if (nsp == IdMapper.ClassBlocks)
-                    imports.Require("net.minecraft.init.Blocks");
-                else if (nsp == IdMapper.ClassItems)
-                    imports.Require("net.minecraft.init.Items");
-                else if (nsp == IdMapper.ClassPswm)
-                    imports.Require("com.parzivail.pswm.StarWarsMod");
+                switch (nsp)
+                {
+                    case IdMapper.ClassBlocks:
+                        imports.Require("net.minecraft.init.Blocks");
+                        break;
+                    case IdMapper.ClassItems:
+                        imports.Require("net.minecraft.init.Items");
+                        break;
+                    case IdMapper.ClassPswm:
+                        imports.Require("com.parzivail.pswm.StarWarsMod");
+                        break;
+                }
             }
 
             return sb.ToString();
@@ -260,16 +264,16 @@ namespace SchematicExporter
         /// <param name="z">Z</param>
         /// <param name="linePrefix">The line prefix</param>
         /// <returns>The generated line</returns>
-        public static string MakeEntitySpawn(Entity e, int entityId, int x, int y, int z, string linePrefix)
+        private static string MakeEntitySpawn(Entity e, int entityId, int x, int y, int z, string linePrefix)
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine(string.Format("{0}if (!world.isRemote)", linePrefix));
+            sb.AppendLine(string.Format("{0}if (!w.isRemote)", linePrefix));
             sb.AppendLine(string.Format("{0}{{", linePrefix));
-            sb.AppendLine(string.Format("{0}\t{1} entity{2} = new {1}(world);", linePrefix, e.GetName(), entityId));
+            sb.AppendLine(string.Format("{0}\t{1} entity{2} = new {1}(w);", linePrefix, e.GetName(), entityId));
             sb.AppendLine(string.Format("{0}\tentity{1}.setPosition(i + 0.5D + {2}, j + {3}, k + 0.5D + {4});",
                 linePrefix, entityId, x, y, z));
-            sb.AppendLine(string.Format("{0}\tworld.spawnEntityInWorld(entity{1});", linePrefix, entityId));
+            sb.AppendLine(string.Format("{0}\tw.spawnEntityInWorld(entity{1});", linePrefix, entityId));
             sb.AppendLine(string.Format("{0}}}", linePrefix));
 
             return sb.ToString();

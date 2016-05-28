@@ -93,4 +93,14 @@ public class WorldUtils
 			return false;
 		}
 	}
+
+	public static void b(World world, int x, int y, int z, Block block, int metadata)
+	{
+		setBlock(world, x, y, z, block, metadata, 1 | 2);
+	}
+
+	public static void m(World world, int x, int y, int z, int metadata)
+	{
+		world.setBlockMetadataWithNotify(x, y, z, metadata, 1 | 2);
+	}
 }

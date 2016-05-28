@@ -38,7 +38,7 @@ namespace SchematicExporter
             // Load primary imports
             lImports.Require("net.minecraft.block.Block");
             lImports.Require("net.minecraft.world.World");
-            lImports.Require("com.parzivail.util.world.WorldUtils");
+            lImports.Require("com.parzivail.util.world.WorldUtils.*");
 
             var numStatements = 0;
             var currentGen = 0;
@@ -53,14 +53,18 @@ namespace SchematicExporter
 
             // Iterate over tile entities
             var totalTiles = 0;
-            foreach (var nbtTag in schematic.GetTileEntities().Where(nbtTag => ((NbtCompound)nbtTag)["x"].IntValue >= chunkX && ((NbtCompound)nbtTag)["x"].IntValue < chunkX + 16 && ((NbtCompound)nbtTag)["z"].IntValue >= chunkZ && ((NbtCompound)nbtTag)["z"].IntValue < chunkZ + 16))
+            var l = schematic.GetTileEntities();
+            for (var i = 0; i < l.Count; i++)
             {
-                var t = (NbtCompound)nbtTag;
+                var t = (NbtCompound)l[i];
                 var x = t["x"].IntValue;
                 var y = t["y"].IntValue;
                 var z = t["z"].IntValue;
 
-                if (t["id"].StringValue != "Chest") continue;
+                if (t["id"].StringValue != "Chest" || !(x >= chunkX &&
+                                                        x < chunkX + 16 &&
+                                                        z >= chunkZ &&
+                                                        z < chunkZ + 16)) continue;
 
                 tiles.Append(JavaBuilder.MakeChest(ref schematic, ref lImports, totalTiles, x, y, z, "\t\t"));
                 totalTiles++;
@@ -75,7 +79,8 @@ namespace SchematicExporter
                     {
                         if (x >= schematic.Width || z >= schematic.Length)
                             continue;
-                        if (schematic.GetFlagAt(x, y, z) || (schematic.GetBlockAt(x, y, z).GetName() == "air" && Arguments.IgnoreAirBlocks))
+                        if (schematic.GetFlagAt(x, y, z) ||
+                            (schematic.GetBlockAt(x, y, z).GetName() == "air" && Arguments.IgnoreAirBlocks))
                             continue;
 
                         gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z, chunkX, chunkZ));
@@ -87,21 +92,18 @@ namespace SchematicExporter
                         numStatements = 0;
                         currentGen++;
                         gen.AppendLine(JavaBuilder.MakeCallGen(currentGen));
-                        gen.AppendLine("\t\treturn true;");
                         gen.AppendLine("\t}");
-                        gen.AppendLine();
                         gen.AppendLine(JavaBuilder.MakeGen(currentGen));
                         gen.AppendLine("\t{");
                     }
 
             // Sort imports
             lImports.Sort();
-            foreach (var s in lImports)
-                imports.AppendLine(string.Format("import {0};", s));
+            for (var i = 0; i < lImports.Count; i++)
+                imports.AppendFormat("import {0};\r\n", lImports[i]);
 
-            Console.ForegroundColor = ConsoleColor.Blue;
             swIterate.Stop();
-            Console.Write(Utils.MillisToHrd(swIterate.ElapsedMilliseconds).PadRight(10));
+            var iterateElapsed = swIterate.ElapsedMilliseconds;
 
             gen.Append(tiles);
 
@@ -111,43 +113,48 @@ namespace SchematicExporter
             // Replace template placeholders with true data
             template = template.Replace("{{CLASS_COMMENT}}", Exporter.HeaderComment());
             template = template.Replace("{{PACKAGE}}", options.Package);
-            template = template.Replace("{{CLASS}}", string.Format(options.ClassName, string.Format("_x{0}_z{1}", chunkX, chunkZ)));
+            template = template.Replace("{{CLASS}}",
+                new StringBuilder().AppendFormat(options.ClassName, new StringBuilder().AppendFormat("_x{0}_z{1}", chunkX, chunkZ)).ToString());
             template = template.Replace("{{GEN_METHODS}}", gen.ToString());
             template = template.Replace("{{IMPORTS}}", imports.ToString());
 
             var blocks = currentGen*Exporter.MaxBlocksPerGen + numStatements;
 
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.Write(string.Format("{0:n0}", blocks).PadRight(10));
-            Console.Write(string.Format("{0:n0}", totalTiles).PadRight(10));
-            Console.Write(string.Format("{0:n0}", (currentGen + 1)).PadRight(10));
             swIterate.Restart();
 
             Metrics.TotalBlocks += blocks;
             Metrics.TotalTiles += totalTiles;
 
             // Write data to file
-            if (!Directory.Exists("output/" + options.Path))
-                Directory.CreateDirectory("output/" + options.Path);
-            using (var w = new StreamWriter("output/" + options.Path + "/" + string.Format(options.FileName, string.Format("_x{0}_z{1}", chunkX, chunkZ))))
+            using (
+                var w =
+                    new StreamWriter("output/" + options.Path + "/" +
+                                     new StringBuilder().AppendFormat(options.FileName, new StringBuilder().AppendFormat("_x{0}_z{1}", chunkX, chunkZ))))
                 w.WriteLine(template);
 
             swIterate.Stop();
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(Utils.MillisToHrd(swIterate.ElapsedMilliseconds).PadRight(10));
-
             swOverall.Stop();
-            Console.Write(Utils.MillisToHrd(swOverall.ElapsedMilliseconds).PadRight(10));
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(Utils.MillisToHrd(iterateElapsed).PadRight(10));
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write("{0}{1}{2}", new StringBuilder().AppendFormat("{0:n0}", blocks).ToString().PadRight(10),
+                new StringBuilder().AppendFormat("{0:n0}", totalTiles).ToString().PadRight(10), new StringBuilder().AppendFormat("{0:n0}", currentGen + 1).ToString().PadRight(10));
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("{0}{1}", Utils.MillisToHrd(swIterate.ElapsedMilliseconds).PadRight(10),
+                Utils.MillisToHrd(swOverall.ElapsedMilliseconds).PadRight(10));
 
             var isize = File.ReadAllBytes("output/" + options.Path + "/" +
-                                          string.Format(options.FileName, string.Format("_x{0}_z{1}", chunkX, chunkZ)))
+                                          new StringBuilder().AppendFormat(options.FileName, new StringBuilder().AppendFormat("_x{0}_z{1}", chunkX, chunkZ)))
                 .Length;
 
             Metrics.TotalFilesize += isize;
 
             var size =
                 Utils.SizeSuffix(
-                   isize);
+                    isize);
             if (size.Contains("MB"))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
