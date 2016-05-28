@@ -13,6 +13,7 @@ import com.parzivail.pswm.items.weapons.*;
 import com.parzivail.pswm.jedi.ArmorJediRobes;
 import com.parzivail.pswm.jedi.ItemHolocronJedi;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.pswm.vehicles.npc.ItemSpawnNpcLandspeeder;
 import com.parzivail.pswm.weaponry.ItemSpawnDSTurret;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -438,6 +439,9 @@ public class ItemRegister
 
 		StarWarsItems.spawnLandspeeder = new ItemSpawnLandspeeder();
 		GameRegistry.registerItem(StarWarsItems.spawnLandspeeder, "spawnLandspeeder");
+
+		StarWarsItems.spawnNpcLandspeeder = new ItemSpawnNpcLandspeeder();
+		GameRegistry.registerItem(StarWarsItems.spawnNpcLandspeeder, "spawnNpcLandspeeder");
 
 		StarWarsItems.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveYavin4, "hyperdriveYavinFour");

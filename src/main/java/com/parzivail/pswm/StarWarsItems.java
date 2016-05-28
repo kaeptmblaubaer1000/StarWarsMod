@@ -96,6 +96,7 @@ public class StarWarsItems
 	public static Item spawnJakkuSpeeder;
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
+	public static Item spawnNpcLandspeeder;
 	public static Item spawnTie;
 	public static Item spawnTieBomber;
 	public static Item spawnTieAdvanced;

@@ -4,6 +4,7 @@ import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.Lumberjack;
 
@@ -61,6 +62,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicSkyhopper.class, "skyhopper");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
+		EntityUtils.registerEntity(VehicNpcLandspeeder.class, "landspeederNpc");
 		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuSpeeder");
 		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
 		EntityUtils.registerEntity(EntityBlasterEzraBolt.class, "blasterEzraBolt");
