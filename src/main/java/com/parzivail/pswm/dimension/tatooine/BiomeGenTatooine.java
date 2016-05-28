@@ -5,6 +5,7 @@ import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenMV;
 import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
+import com.parzivail.pswm.world.gen.moseisleynew.*;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -82,5 +83,5 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		if (this.locY == 0)
 			this.locY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 
+		}
 	}
-}
