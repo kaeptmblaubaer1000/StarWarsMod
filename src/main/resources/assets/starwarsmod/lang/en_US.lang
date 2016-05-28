@@ -396,15 +396,15 @@ item.starwarsmod.sequelBlasterPistol.TrandoshanTarget.name=Target Pistol with Tr
 item.starwarsmod.sequelBlasterPistol.Huttsplitter.name=Huttsplitter
 
 // Armor
-item.starwarsmod.stormtrooperHelmet_new.name=Stormtrooper Helmet
-item.starwarsmod.stormtrooperChestplate_new.name=Stormtrooper Chestplate
-item.starwarsmod.stormtrooperLeggings_new.name=Stormtrooper Leggings
-item.starwarsmod.stormtrooperBoots_new.name=Stormtrooper Boots
+item.starwarsmod.stormtrooperHelmet_new.name=First Order Stormtrooper Helmet
+item.starwarsmod.stormtrooperChestplate_new.name=First Order Stormtrooper Chestplate
+item.starwarsmod.stormtrooperLeggings_new.name=First Order Stormtrooper Leggings
+item.starwarsmod.stormtrooperBoots_new.name=First Order Stormtrooper Boots
 
-item.starwarsmod.stormtrooperSilverHelmet_new.name=Stormtrooper Captain's Helmet
-item.starwarsmod.stormtrooperSilverChestplate_new.name=Stormtrooper Captain's Chestplate
-item.starwarsmod.stormtrooperSilverLeggings_new.name=Stormtrooper Captain's Leggings
-item.starwarsmod.stormtrooperSilverBoots_new.name=Stormtrooper Captain's Boots
+item.starwarsmod.stormtrooperSilverHelmet_new.name=First Order Stormtrooper Captain's Helmet
+item.starwarsmod.stormtrooperSilverChestplate_new.name=First Order Stormtrooper Captain's Chestplate
+item.starwarsmod.stormtrooperSilverLeggings_new.name=First Order Stormtrooper Captain's Leggings
+item.starwarsmod.stormtrooperSilverBoots_new.name=First Order Stormtrooper Captain's Boots
 
 // Vehicle Items
 item.starwarsmod.spawnJakkuSpeeder.name=Jakku Speeder
