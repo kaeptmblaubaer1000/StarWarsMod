@@ -5,7 +5,7 @@ package com.parzivail.util.math;
  */
 public class FPoint
 {
-	public float x, y;
+	public float x, y, z;
 
 	/**
 	 * Creates a new 2D point in space
@@ -17,5 +17,19 @@ public class FPoint
 	{
 		this.x = x;
 		this.y = y;
+		this.z = 0;
+	}
+
+	/**
+	 * Creates a new 3D point in space
+	 *
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 */
+	public FPoint(float x, float y, float z)
+	{
+		this.x = x;
+		this.y = y;
+		this.z = z;
 	}
 }

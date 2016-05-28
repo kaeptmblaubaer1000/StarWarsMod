@@ -11,7 +11,6 @@ import com.parzivail.pswm.jedi.powers.Power;
 import com.parzivail.pswm.jedi.powers.PowerDefend;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.rendering.gui.AnimationTargetingComputer;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
@@ -21,6 +20,7 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -160,10 +160,7 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			if (AnimationManager.isRunning(AnimationTargetingComputer.class) != null)
-				AnimationManager.isRunning(AnimationTargetingComputer.class).stop();
-			else
-				new AnimationTargetingComputer().start();
+			Lumberjack.log(String.format("new FPoint(%s, %s, %s), ", (int)StarWarsMod.mc.thePlayer.posX, (int)StarWarsMod.mc.thePlayer.posY, (int)StarWarsMod.mc.thePlayer.posZ));
 		}
 
 		if (KeybindRegistry.keyLSForge.isPressed())

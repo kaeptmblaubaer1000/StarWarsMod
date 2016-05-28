@@ -3,6 +3,7 @@ package com.parzivail.pswm.vehicles.npc;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.mobs.trooper.MobSandtrooper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -25,9 +26,15 @@ public class ItemSpawnNpcLandspeeder extends net.minecraft.item.Item
 		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsItems.spawnNpcLandspeeder))
 			if (!world.isRemote)
 			{
+				MobSandtrooper sandtrooper = new MobSandtrooper(world);
+
 				VehicNpcLandspeeder newVehic = new VehicNpcLandspeeder(world);
-				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
+
+				sandtrooper.mountEntity(newVehic);
+				newVehic.riddenByEntity = sandtrooper;
+
 				world.spawnEntityInWorld(newVehic);
+				world.spawnEntityInWorld(sandtrooper);
 			}
 		return true;
 	}
