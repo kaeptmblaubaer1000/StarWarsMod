@@ -104,17 +104,14 @@ public class VehicleBase extends EntityCreature
 		this.tilt /= this.tiltTable.length;
 	}
 
-	public void onNormalUpdate()
-	{
-		super.onUpdate();
-	}
-
 	@Override
 	public void updateRiderPosition()
 	{
 		if (this.riddenByEntity != null)
 		{
-			float offset = this.vehicYOffset - 0.5F;
+			float offset = this.vehicYOffset;
+			if (!(this.riddenByEntity instanceof EntityPlayer))
+				offset -= 0.5F;
 			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ + this.vehicZOffset);
 		}
 	}

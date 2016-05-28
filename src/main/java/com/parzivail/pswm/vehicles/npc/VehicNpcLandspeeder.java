@@ -2,13 +2,13 @@ package com.parzivail.pswm.vehicles.npc;
 
 import com.parzivail.util.math.FPoint;
 import com.parzivail.util.math.Spline3D;
-import com.parzivail.util.ui.Lumberjack;
-import com.parzivail.util.vehicle.VehicleLandBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class VehicNpcLandspeeder extends VehicleLandBase
+public class VehicNpcLandspeeder extends EntityLiving
 {
 	Spline3D path;
 
@@ -16,11 +16,8 @@ public class VehicNpcLandspeeder extends VehicleLandBase
 	{
 		super(par1World);
 		this.setSize(2.0F, 2.0F);
-		this.vehicYOffset = -0.3F;
-		this.moveModifier = 2.5F;
-		this.tiltMax = 3;
 
-		path = new Spline3D(new FPoint[] { new FPoint(-5, 5, 7), new FPoint(-7, 5, 24), new FPoint(-27, 5, 29), new FPoint(-46, 8, -1), new FPoint(-26, 6, -26), new FPoint(-5, 5, 7) });
+		path = new Spline3D(new FPoint[] { new FPoint(-5, 6, 7), new FPoint(-7, 6, 24), new FPoint(-27, 6, 29), new FPoint(-46, 9, -1), new FPoint(-26, 7, -26), new FPoint(-5, 6, 7) });
 		FPoint p = path.getPoint(0);
 		this.setPositionAndUpdate(p.x, p.y, p.z);
 	}
@@ -40,45 +37,56 @@ public class VehicNpcLandspeeder extends VehicleLandBase
 	}
 
 	@Override
-	public String getCommandSenderName()
+	public ItemStack getHeldItem()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
-		return "Piloted X-34 Landspeeder";
+		return null;
 	}
 
 	@Override
-	public String getMovingSound()
+	public ItemStack getEquipmentInSlot(int p_71124_1_)
 	{
-		return "vehicle.landspeeder.move";
+		return null;
+	}
+
+	@Override
+	public void setCurrentItemOrArmor(int p_70062_1_, ItemStack p_70062_2_)
+	{
+
+	}
+
+	@Override
+	public ItemStack[] getLastActiveItems()
+	{
+		return new ItemStack[0];
+	}
+
+	@Override
+	public String getCommandSenderName()
+	{
+		return "Piloted X-34 Landspeeder";
 	}
 
 	@Override
 	public void onUpdate()
 	{
-		FPoint pt = path.getPoint(0.5f);
-		FPoint npt = path.getPoint(0.59f);
+		if (!this.worldObj.isRemote)
+		{
+			FPoint pt = path.getPoint((this.ticksExisted % 600) / 600f);
+			FPoint npt = path.getPoint((this.ticksExisted % 600) / 600f + 0.01f);
 
-		// calculate position and angles
-		float d0 = npt.x - pt.x;
-		float d1 = npt.y - pt.y;
-		float d2 = npt.z - pt.z;
-		float d3 = MathHelper.sqrt_float(d0 * d0 + d2 * d2);
+			// calculate position and angles
+			float d0 = npt.x - pt.x;
+			float d1 = npt.y - pt.y;
+			float d2 = npt.z - pt.z;
+			float d3 = MathHelper.sqrt_float(d0 * d0 + d2 * d2);
 
-		float yaw = (float)Math.toDegrees(Math.atan2(d2, d0)) - 90;
-		float pitch = -(float)Math.toDegrees(Math.atan2(d1, d3));
-		this.setPositionAndRotation(pt.x, pt.y, pt.z, yaw, pitch);
+			this.rotationYaw = (float)Math.toDegrees(Math.atan2(d2, d0));
+			this.rotationPitch = -(float)Math.toDegrees(Math.atan2(d1, d3));
+			this.setPositionAndUpdate(pt.x, pt.y, pt.z);
 
-		Lumberjack.log(yaw);
+			//this.motionX = this.motionY = this.motionZ = 0;
+		}
 
-		this.motionX = this.motionY = this.motionZ = 0;
-
-		super.onNormalUpdate();
-	}
-
-	@Override
-	protected boolean isMovementCeased()
-	{
-		return false;
+		super.onUpdate();
 	}
 }
