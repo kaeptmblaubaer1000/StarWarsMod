@@ -25,6 +25,8 @@ namespace SchematicExporter
         private readonly bool[] _blockFlags;
         private readonly byte[] _addId = new byte[0];
 
+        private readonly Block[] _classBlocks;
+
         /// <summary>
         /// Creates a new Schematic from the given file
         /// </summary>
@@ -55,18 +57,11 @@ namespace SchematicExporter
                         _blocks[index] = ((_addId[index >> 1] & 0x0F) << 8) + _blocks[index];
                     else
                         _blocks[index] = ((_addId[index >> 1] & 0xF0) << 4) + _blocks[index];
-        }
 
-        /// <summary>
-        /// Gets the block ID at the position
-        /// </summary>
-        /// <param name="x">X</param>
-        /// <param name="y">Y</param>
-        /// <param name="z">Z</param>
-        /// <returns>The block ID at XYZ</returns>
-        private int GetBlockIdAt(int x, int y, int z)
-        {
-            return _blocks[(y * Length + z) * Width + x];
+            _classBlocks = new Block[_blocks.Length];
+
+            for (var index = 0; index < _blocks.Length; index++)
+                _classBlocks[index] = IdMapper.Instance.GetBlockFromId(_blocks[index]);
         }
 
         /// <summary>
@@ -111,8 +106,7 @@ namespace SchematicExporter
         /// <returns>The block at the position</returns>
         public Block GetBlockAt(int x, int y, int z)
         {
-            var id = GetBlockIdAt(x, y, z);
-            return IdMapper.Instance.GetBlockFromId(id);
+            return _classBlocks[(y * Length + z) * Width + x];
         }
 
         /// <summary>
