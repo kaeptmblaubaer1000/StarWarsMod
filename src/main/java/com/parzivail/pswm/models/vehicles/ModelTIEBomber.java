@@ -1,8 +1,10 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * TIE Int Base.tbl - TechneToTabulaImporter
@@ -804,7 +806,10 @@ public class ModelTIEBomber extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+        if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
+            GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
         this.WingSection19.render(f5);
         this.WingSection106.render(f5);
         this.WingSection33.render(f5);

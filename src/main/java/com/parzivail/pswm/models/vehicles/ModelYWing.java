@@ -1,9 +1,11 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.vehicles.VehicYWing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Y-Wing with landing gear.tbl - TechneToTabulaImporter
@@ -300,11 +302,11 @@ public class ModelYWing extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
+			GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
 		boolean flag = true;
 		if (entity instanceof VehicYWing)
 		{
-			VehicYWing yWing = (VehicYWing)entity;
-
 			flag = entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ);
 		}
 		this.LandingGear1.isHidden = flag;

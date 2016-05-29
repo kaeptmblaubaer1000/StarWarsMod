@@ -1,9 +1,11 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.vehicles.VehicSkyhopper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * T-16 Skyhopper - Weaston Created using Tabula 4.1.1
@@ -206,6 +208,8 @@ public class ModelSkyhopper extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
+			GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
 		if (entity instanceof VehicSkyhopper)
 		{
 			VehicSkyhopper skyhopper = (VehicSkyhopper)entity;
