@@ -69,20 +69,23 @@ public class VehicNpcXWing extends EntityLiving
 	@Override
 	public void onUpdate()
 	{
+		int spd = 30000;
+		int time = (int)(System.currentTimeMillis() % spd);
+		FPoint pt = path.getPoint(time / (float)spd);
+		FPoint npt = path.getPoint((time + 1) / (float)spd);
+
+		// calculate position and angles
+		float d0 = npt.x - pt.x;
+		float d1 = npt.y - pt.y;
+		float d2 = npt.z - pt.z;
+		float d3 = MathHelper.sqrt_float(d0 * d0 + d1 * d1 + d2 * d2);
+
+		this.rotationYaw = (float)Math.toDegrees(Math.atan2(d2, d0)) - 90;
+		this.rotationPitch = -(float)Math.toDegrees(Math.atan2(d1, d3));
+
 		if (!this.worldObj.isRemote)
 		{
-			FPoint pt = path.getPoint((this.ticksExisted % 600) / 600f);
-			FPoint npt = path.getPoint(((this.ticksExisted % 600) + 1) / 600f);
-
-			// calculate position and angles
-			float d0 = npt.x - pt.x;
-			float d1 = npt.y - pt.y;
-			float d2 = npt.z - pt.z;
-			float d3 = MathHelper.sqrt_float(d0 * d0 + d2 * d2);
-
-			this.rotationYaw = (float)Math.toDegrees(Math.atan2(d2, d0)) - 90;
-			this.rotationPitch = -(int)Math.toDegrees(Math.atan2(d1, d3));
-			this.setPositionAndRotation(pt.x, pt.y, pt.z, rotationYaw, rotationPitch);
+			this.setPositionAndUpdate(pt.x, pt.y, pt.z);
 		}
 
 		this.motionX = this.motionY = this.motionZ = 0;
