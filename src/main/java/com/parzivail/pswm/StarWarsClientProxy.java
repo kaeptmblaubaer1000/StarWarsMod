@@ -17,6 +17,7 @@ import com.parzivail.pswm.rendering.vehicles.*;
 import com.parzivail.pswm.tileentities.*;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
+import com.parzivail.pswm.vehicles.npc.VehicNpcXWing;
 import com.parzivail.pswm.weaponry.WeaponDSTurret;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Lumberjack;
@@ -103,9 +104,11 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicHothSpeederBike.class, new RenderSpeederBike());
 		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, new RenderSpeederBike());
 		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, new RenderLandspeeder());
-		RenderingRegistry.registerEntityRenderingHandler(VehicNpcLandspeeder.class, new RenderLandspeeder());
 		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, new RenderJakkuSpeeder());
 		RenderingRegistry.registerEntityRenderingHandler(VehicATST.class, new RenderATST());
+
+		RenderingRegistry.registerEntityRenderingHandler(VehicNpcLandspeeder.class, new RenderLandspeeder());
+		RenderingRegistry.registerEntityRenderingHandler(VehicNpcXWing.class, new RenderXWing());
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, new RenderTIE());
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEBomber.class, new RenderTIEBomber());
@@ -160,6 +163,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnHothSpeederBike, new RenderSpawnHothSpeederBike());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnLandspeeder, new RenderSpawnLandspeeder());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnNpcLandspeeder, new RenderSpawnLandspeeder());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnNpcXwing, new RenderSpawnXWing());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnJakkuSpeeder, new RenderSpawnJakkuSpeeder());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());

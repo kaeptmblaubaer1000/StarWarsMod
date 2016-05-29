@@ -4,6 +4,7 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 
 /**
  * X-Wing - Undefined
@@ -707,6 +708,11 @@ public class ModelXWingNew extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (entity instanceof EntityLiving)
+		{
+			EntityLiving entityLiving = (EntityLiving)entity;
+			//set pitch
+		}
 		if (entity instanceof VehicXWing)
 		{
 			VehicXWing xwing = (VehicXWing)entity;

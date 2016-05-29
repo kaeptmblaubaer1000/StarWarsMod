@@ -8,16 +8,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class VehicNpcLandspeeder extends EntityLiving
+public class VehicNpcXWing extends EntityLiving
 {
 	Spline3D path;
 
-	public VehicNpcLandspeeder(World par1World)
+	public VehicNpcXWing(World par1World)
 	{
 		super(par1World);
 		this.setSize(2.0F, 2.0F);
 
-		path = new Spline3D(new FPoint[] { new FPoint(-5, 5, 7), new FPoint(-7, 5, 24), new FPoint(-27, 5, 29), new FPoint(-46, 8, -1), new FPoint(-26, 6, -26), new FPoint(-5, 5, 7) });
+		path = new Spline3D(new FPoint[] { new FPoint(-5, 6, 7), new FPoint(-7, 13, 24), new FPoint(-27, 8, 29), new FPoint(-46, 11, -1), new FPoint(-26, 9, -26), new FPoint(-5, 6, 7) });
 		FPoint p = path.getPoint(0);
 		this.setPositionAndUpdate(p.x, p.y, p.z);
 	}
@@ -63,7 +63,7 @@ public class VehicNpcLandspeeder extends EntityLiving
 	@Override
 	public String getCommandSenderName()
 	{
-		return "Piloted X-34 Landspeeder";
+		return "Piloted T-65B X-Wing Starfighter";
 	}
 
 	@Override
@@ -81,21 +81,12 @@ public class VehicNpcLandspeeder extends EntityLiving
 			float d3 = MathHelper.sqrt_float(d0 * d0 + d2 * d2);
 
 			this.rotationYaw = (float)Math.toDegrees(Math.atan2(d2, d0)) - 90;
-			this.rotationPitch = -(float)Math.toDegrees(Math.atan2(d1, d3));
-			this.setPositionAndUpdate(pt.x, pt.y, pt.z);
+			this.rotationPitch = -(int)Math.toDegrees(Math.atan2(d1, d3));
+			this.setPositionAndRotation(pt.x, pt.y, pt.z, rotationYaw, rotationPitch);
 		}
 
 		this.motionX = this.motionY = this.motionZ = 0;
 
 		super.onUpdate();
-	}
-
-	@Override
-	public void updateRiderPosition()
-	{
-		if (this.riddenByEntity != null)
-		{
-			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() - 0.75f, this.posZ);
-		}
 	}
 }
