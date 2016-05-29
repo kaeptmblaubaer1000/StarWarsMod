@@ -17,7 +17,7 @@ public class VehicNpcLandspeeder extends EntityLiving
 		super(par1World);
 		this.setSize(2.0F, 2.0F);
 
-		path = new Spline3D(new FPoint[] { new FPoint(-5, 5, 7), new FPoint(-7, 5, 24), new FPoint(-27, 5, 29), new FPoint(-46, 8, -1), new FPoint(-26, 6, -26), new FPoint(-5, 5, 7) });
+		path = new Spline3D(new FPoint[] { new FPoint(3, 69, 1), new FPoint(27, 69, 31), new FPoint(38, 69, 49), new FPoint(65, 69, 74), new FPoint(82, 69, 98), new FPoint(92, 69, 115), new FPoint(94, 69, 146), new FPoint(99, 69, 155), new FPoint(83, 69, 161), new FPoint(45, 69, 177), new FPoint(37, 69, 208), new FPoint(55, 69, 242), new FPoint(73, 69, 240), new FPoint(92, 69, 242), new FPoint(113, 69, 230), new FPoint(127, 69, 250), new FPoint(137, 69, 267) });
 		FPoint p = path.getPoint(0);
 		this.setPositionAndUpdate(p.x, p.y, p.z);
 	}
