@@ -49,7 +49,7 @@ namespace SchematicExporter
                     gen.AppendLine(string.Format("{0}if (chunkX == {1} && chunkZ == {2})", first ? "" : "else ", x, z));
 
                     gen.AppendLine(
-                        string.Format("\tnew {0}().generate(world, chunkX, this.locY, chunkZ);",
+                        string.Format("\t{0}.generate(world, chunkX, this.locY, chunkZ);",
                             classTitle));
 
                     first = false;

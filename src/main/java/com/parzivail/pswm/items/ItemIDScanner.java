@@ -10,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemIDScanner extends Item
 {
 	public String name = "idScanner";
@@ -33,5 +35,11 @@ public class ItemIDScanner extends Item
 			}
 		}
 		return super.onItemRightClick(stack, world, player);
+	}
+
+	@Override
+	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_)
+	{
+		p_77624_3_.add("Sneak-use to scan someone or something");
 	}
 }

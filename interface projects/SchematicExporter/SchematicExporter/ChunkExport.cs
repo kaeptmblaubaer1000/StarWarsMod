@@ -36,9 +36,9 @@ namespace SchematicExporter
             var lImports = new List<string>();
 
             // Load primary imports
-            lImports.Require("net.minecraft.block.Block");
             lImports.Require("net.minecraft.world.World");
-            lImports.Require("com.parzivail.util.world.WorldUtils.*");
+            lImports.Require("static com.parzivail.util.world.WorldUtils.b");
+            lImports.Require("static com.parzivail.util.world.WorldUtils.m");
 
             var numStatements = 0;
             var currentGen = 0;
@@ -79,10 +79,14 @@ namespace SchematicExporter
                     {
                         if (x >= schematic.Width || z >= schematic.Length)
                             continue;
+
+                        var b = schematic.GetBlockAt(x, y, z);
+
                         if (schematic.GetFlagAt(x, y, z) ||
-                            (schematic.GetBlockAt(x, y, z).GetName() == "air" && Arguments.IgnoreAirBlocks))
+                            (b.GetName() == "air" && Arguments.IgnoreAirBlocks))
                             continue;
 
+                        lImports.Require("static " + b.CreateJavaVariable());
                         gen.Append(JavaBuilder.MakeSetBlockLine(schematic, ref lImports, x, y, z, chunkX, chunkZ));
                         numStatements++;
                         //Console.WriteLine(schematic.getBlockIdAt(x, y, z));
@@ -107,7 +111,6 @@ namespace SchematicExporter
 
             gen.Append(tiles);
 
-            gen.AppendLine("\t\treturn true;");
             gen.AppendLine("\t}");
 
             // Replace template placeholders with true data

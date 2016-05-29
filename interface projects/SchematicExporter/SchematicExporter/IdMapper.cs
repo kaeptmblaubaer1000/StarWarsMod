@@ -8,10 +8,10 @@ namespace SchematicExporter
     {
         public static readonly IdMapper Instance = new IdMapper();
 
-        public const string ClassBlocks = "Blocks";
-        public const string ClassItems = "Items";
-        public const string ClassPswm = "StarWarsMod";
-        private const string ClassPswmItems = "StarWarsItems";
+        public const string ClassBlocks = "net.minecraft.init.Blocks";
+        public const string ClassItems = "net.minecraft.init.Items";
+        public const string ClassPswm = "com.parzivail.pswm.StarWarsMod";
+        private const string ClassPswmItems = "com.parzivail.pswm.StarWarsItems";
         private const string PkgMobs = "com.parzivail.pswm.mobs";
         private const string PkgTrooper = "com.parzivail.pswm.mobs.trooper";
         private const string PkgVehic = "com.parzivail.pswm.vehicles";

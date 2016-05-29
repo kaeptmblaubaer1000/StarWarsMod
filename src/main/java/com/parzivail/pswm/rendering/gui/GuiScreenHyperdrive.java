@@ -98,7 +98,16 @@ public class GuiScreenHyperdrive extends GuiScreen
 	private ModelTIE modelTIE = new ModelTIE();
 	private ModelTIEAdvanced modelTIEAdvanced = new ModelTIEAdvanced();
 	private ModelTIEInterceptor modelTIEInterceptor = new ModelTIEInterceptor();
+	private ModelTIEBomber modelTIEBomber = new ModelTIEBomber();
 	private ModelSkyhopper modelSkyhopper = new ModelSkyhopper();
+
+	private final static int XWING = 0;
+	private final static int YWING = 1;
+	private final static int TIE = 2;
+	private final static int TIEADV = 3;
+	private final static int TIEINT = 4;
+	private final static int AWING = 5;
+	private final static int TIEBMB = 6;
 
 	public GuiScreenHyperdrive(EntityPlayer player)
 	{
@@ -451,12 +460,20 @@ public class GuiScreenHyperdrive extends GuiScreen
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 		}
 
-		if (MathUtils.oneIn(200))
+		if (MathUtils.oneIn(150))
 		{
 			TradeRoute r = MathUtils.getRandomElement(routes);
-			int type = StarWarsMod.rngGeneral.nextInt(6);
+			int type = StarWarsMod.rngGeneral.nextInt(7);
 			if (r == hydian)
-				type = MathUtils.randomRange(2, 4);
+				type = MathUtils.getRandomElement(new int[] { TIE, TIEADV, TIEBMB, TIEINT });
+			else if (r == corellianRun)
+				type = MathUtils.getRandomElement(new int[] { TIEADV, XWING, YWING });
+			else if (r == corellianSpine)
+				type = MathUtils.getRandomElement(new int[] { AWING, XWING, YWING });
+			else if (r == rimma)
+				type = MathUtils.getRandomElement(new int[] { TIEBMB, TIEINT });
+			else if (r == perlemian)
+				type = MathUtils.getRandomElement(new int[] { AWING, TIEINT, XWING });
 			MovingShip s = new MovingShip(r, type, StarWarsMod.rngGeneral.nextBoolean());
 			s.start();
 			ships.add(s);
@@ -492,31 +509,35 @@ public class GuiScreenHyperdrive extends GuiScreen
 				GL11.glScalef(1, 1, -1);
 				switch (ship.model)
 				{
-					case 0:
+					case XWING:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderXWing.texture);
 						GLPZ.glScalef(0.8f);
 						this.modelXWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
-					case 1:
+					case YWING:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderYWing.texture);
 						GLPZ.glScalef(0.8f);
 						this.modelYWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
-					case 2:
+					case TIE:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderTIE.texture);
 						this.modelTIE.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
-					case 3:
+					case TIEADV:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEAdvanced.texture);
 						this.modelTIEAdvanced.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
-					case 4:
+					case TIEINT:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEInterceptor.texture);
 						this.modelTIEInterceptor.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
-					case 5:
+					case AWING:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderAWing.texture);
 						this.modelAWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+						break;
+					case TIEBMB:
+						StarWarsMod.mc.renderEngine.bindTexture(RenderTIEBomber.texture);
+						this.modelTIEBomber.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					default:
 						break;

@@ -22,20 +22,7 @@ namespace SchematicExporter
         {
             var b = s.GetBlockAt(x, y, z);
             var sb = new StringBuilder();
-            var nsp = b.GetNamespacePrefix();
-            switch (nsp)
-            {
-                case IdMapper.ClassBlocks:
-                    imports.Require("net.minecraft.init.Blocks.*");
-                    break;
-                case IdMapper.ClassPswm:
-                    imports.Require("com.parzivail.pswm.StarWarsMod.*");
-                    break;
-                default:
-                    imports.Require(nsp);
-                    break;
-            }
-            sb.AppendFormat("{4}b(w,i+{0},j+{1}, k+{2},{3},0);\r\n", x - chunkX, y, z - chunkZ, b.GetName(), "\t\t");
+            sb.AppendFormat("{4}b(w,i+{0},j+{1},k+{2},{3},0);\r\n", x - chunkX, y, z - chunkZ, b.GetName(), "\t\t");
             if (s.GetBlockMetadataAt(x, y, z) != 0)
                 sb.AppendFormat("{4}m(w,i+{0},j+{1},k+{2},{3});\r\n", x - chunkX, y, z - chunkZ, s.GetBlockMetadataAt(x, y, z), "\t\t");
             return sb.ToString().Replace("+0", "");
