@@ -193,7 +193,7 @@ public class WorldRegister
 		endor.setName("Endor");
 		endor.setPosition(2.58f, 11.6f);
 		endor.setAffiliation(Resources.allegianceImperial);
-		endor.setDescription("Endor (also known as the Forest Moon of Endor and the Sanctuary Moon) id a small forested moon orbiting the gas giant planet of Endor and is the farthest moon away from it. Home to the Headquarters of the Galactic Empire.");
+		endor.setDescription("Endor (also known as the Forest Moon of Endor and the Sanctuary Moon) is a small forested moon orbiting the gas giant planet of Endor and is the farthest moon away from it. Home to the Headquarters of the Galactic Empire.");
 		endor.setSuns(1);
 		endor.setMoons(0);
 		endor.addNativeSpecies("Ewok");
