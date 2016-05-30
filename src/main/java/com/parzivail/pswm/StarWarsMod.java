@@ -250,8 +250,6 @@ public class StarWarsMod
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
-		// comment
-
 		StarWarsMod.commonHandler = new CommonEventHandler();
 		StarWarsMod.clientHandler = new ClientEventHandler();
 
