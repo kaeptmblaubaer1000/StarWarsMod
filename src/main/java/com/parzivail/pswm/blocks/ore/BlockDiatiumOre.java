@@ -10,11 +10,11 @@ import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockDolomiteOre extends Block
+public class BlockDiatiumOre extends Block
 {
 	public String name = "dolomiteOre";
 
-	public BlockDolomiteOre()
+	public BlockDiatiumOre()
 	{
 		super(Material.rock);
 		setBlockName(Resources.MODID + "." + name);

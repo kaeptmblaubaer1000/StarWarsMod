@@ -98,7 +98,7 @@ public class BlockRegister
 		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
 		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
 
-		StarWarsMod.blockDiatiumOre = new BlockDolomiteOre();
+		StarWarsMod.blockDiatiumOre = new BlockDiatiumOre();
 		GameRegistry.registerBlock(StarWarsMod.blockDiatiumOre, "blockDiatiumOre");
 
 		StarWarsMod.blockExoniumOre = new BlockExoniumOre();
