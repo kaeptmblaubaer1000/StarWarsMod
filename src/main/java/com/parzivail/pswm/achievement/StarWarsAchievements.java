@@ -41,6 +41,6 @@ public class StarWarsAchievements
 		FMLCommonHandler.instance().bus().register(new AchievementTrigger());
 		Lumberjack.info("Achievements, reporting for duty!");
 
-		// java ur dumb.
+		// java ur dumb..
 	}
 }
