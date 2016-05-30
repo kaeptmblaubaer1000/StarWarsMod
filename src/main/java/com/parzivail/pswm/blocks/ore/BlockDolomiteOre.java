@@ -28,6 +28,6 @@ public class BlockDolomiteOre extends Block
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsItems.ingotDolomite;
+		return StarWarsItems.ingotDiatium;
 	}
 }

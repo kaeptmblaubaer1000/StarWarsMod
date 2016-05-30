@@ -10,11 +10,11 @@ import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockBeneOre extends Block
+public class BlockThorolideOre extends Block
 {
-	public String name = "beneOre";
+	public String name = "thorolideOre";
 
-	public BlockBeneOre()
+	public BlockThorolideOre()
 	{
 		super(Material.rock);
 		setBlockName(Resources.MODID + "." + name);
@@ -28,6 +28,6 @@ public class BlockBeneOre extends Block
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsItems.ingotBene;
+		return StarWarsItems.ingotThorolide;
 	}
 }

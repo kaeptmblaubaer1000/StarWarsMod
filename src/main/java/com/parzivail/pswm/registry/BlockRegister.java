@@ -98,8 +98,8 @@ public class BlockRegister
 		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
 		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
 
-		StarWarsMod.blockDolomiteOre = new BlockDolomiteOre();
-		GameRegistry.registerBlock(StarWarsMod.blockDolomiteOre, "blockDolomiteOre");
+		StarWarsMod.blockDiatiumOre = new BlockDolomiteOre();
+		GameRegistry.registerBlock(StarWarsMod.blockDiatiumOre, "blockDiatiumOre");
 
 		StarWarsMod.blockExoniumOre = new BlockExoniumOre();
 		GameRegistry.registerBlock(StarWarsMod.blockExoniumOre, "blockExoniumOre");
@@ -107,8 +107,8 @@ public class BlockRegister
 		StarWarsMod.blockHeliciteOre = new BlockHeliciteOre();
 		GameRegistry.registerBlock(StarWarsMod.blockHeliciteOre, "blockHeliciteOre");
 
-		StarWarsMod.blockBeneOre = new BlockBeneOre();
-		GameRegistry.registerBlock(StarWarsMod.blockBeneOre, "blockBeneOre");
+		StarWarsMod.blockThorolideOre = new BlockThorolideOre();
+		GameRegistry.registerBlock(StarWarsMod.blockThorolideOre, "blockThorolideOre");
 
 		StarWarsMod.blockTempleStone = new BlockTempleStone(false);
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStone, ItemTempleStoneBlock.class, "blockTempleStone");

@@ -120,10 +120,9 @@ public class StarWarsMod
 	public static Block blockSensorYWing;
 	public static Block blockSensorAWing;
 
-
-	public static Block blockBeneOre;
+	public static Block blockThorolideOre;
 	public static Block blockCortosisOre;
-	public static Block blockDolomiteOre;
+	public static Block blockDiatiumOre;
 	public static Block blockExoniumOre;
 	public static Block blockHeliciteOre;
 	public static Block blockIoniteOre;

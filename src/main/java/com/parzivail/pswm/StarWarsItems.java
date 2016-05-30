@@ -72,8 +72,8 @@ public class StarWarsItems
 	public static Item titaniumChromiumIngot;
 
 	public static Item ingotCortosis;
-	public static Item ingotBene;
-	public static Item ingotDolomite;
+	public static Item ingotThorolide;
+	public static Item ingotDiatium;
 	public static Item ingotExonium;
 	public static Item ingotHelicite;
 	public static Item ingotIonite;

@@ -144,14 +144,14 @@ public class ItemRegister
 		StarWarsItems.hydrospanner = new ItemHydrospanner();
 		GameRegistry.registerItem(StarWarsItems.hydrospanner, "hydrospanner");
 
-		StarWarsItems.ingotBene = new ItemBeneIngot();
-		GameRegistry.registerItem(StarWarsItems.ingotBene, "ingotBene");
+		StarWarsItems.ingotThorolide = new ItemBeneIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotThorolide, "ingotThorolide");
 
 		StarWarsItems.ingotCortosis = new ItemCortosisIngot();
 		GameRegistry.registerItem(StarWarsItems.ingotCortosis, "ingotCortosis");
 
-		StarWarsItems.ingotDolomite = new ItemDolomiteIngot();
-		GameRegistry.registerItem(StarWarsItems.ingotDolomite, "ingotDolomite");
+		StarWarsItems.ingotDiatium = new ItemDolomiteIngot();
+		GameRegistry.registerItem(StarWarsItems.ingotDiatium, "ingotDiatium");
 
 		StarWarsItems.ingotExonium = new ItemExoniumIngot();
 		GameRegistry.registerItem(StarWarsItems.ingotExonium, "ingotExonium");
