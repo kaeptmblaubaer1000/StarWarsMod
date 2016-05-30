@@ -9,6 +9,7 @@ import com.parzivail.pswm.items.crafting.*;
 import com.parzivail.pswm.items.crafting.ItemPlasmaEmitter;
 import com.parzivail.pswm.items.hyperdrive.*;
 import com.parzivail.pswm.items.ingot.*;
+import com.parzivail.pswm.items.lightsaber.*;
 import com.parzivail.pswm.items.weapons.*;
 import com.parzivail.pswm.jedi.ArmorJediRobes;
 import com.parzivail.pswm.jedi.ItemHolocronJedi;
@@ -144,13 +145,13 @@ public class ItemRegister
 		StarWarsItems.hydrospanner = new ItemHydrospanner();
 		GameRegistry.registerItem(StarWarsItems.hydrospanner, "hydrospanner");
 
-		StarWarsItems.ingotThorolide = new ItemBeneIngot();
+		StarWarsItems.ingotThorolide = new ItemThorolideIngot();
 		GameRegistry.registerItem(StarWarsItems.ingotThorolide, "ingotThorolide");
 
 		StarWarsItems.ingotCortosis = new ItemCortosisIngot();
 		GameRegistry.registerItem(StarWarsItems.ingotCortosis, "ingotCortosis");
 
-		StarWarsItems.ingotDiatium = new ItemDolomiteIngot();
+		StarWarsItems.ingotDiatium = new ItemDiatiumIngot();
 		GameRegistry.registerItem(StarWarsItems.ingotDiatium, "ingotDiatium");
 
 		StarWarsItems.ingotExonium = new ItemExoniumIngot();
@@ -215,6 +216,36 @@ public class ItemRegister
 
 		StarWarsItems.ewokSpear = new ItemEwokSpear();
 		GameRegistry.registerItem(StarWarsItems.ewokSpear, "ewokSpear");
+
+		StarWarsItems.airsealGel = new ItemAirsealGel();
+		GameRegistry.registerItem(StarWarsItems.airsealGel, "airsealGel");
+
+		StarWarsItems.apexSeal = new ItemApexSeal();
+		GameRegistry.registerItem(StarWarsItems.apexSeal, "apexSeal");
+
+		StarWarsItems.cyclingFieldEnergizer = new ItemCyclingFieldEnergizer();
+		GameRegistry.registerItem(StarWarsItems.cyclingFieldEnergizer, "cyclingFieldEnergizer");
+
+		StarWarsItems.diatiumPowerCell = new ItemDiatiumPowerCell();
+		GameRegistry.registerItem(StarWarsItems.diatiumPowerCell, "diatiumPowerCell");
+
+		StarWarsItems.energyGate = new ItemEnergyGate();
+		GameRegistry.registerItem(StarWarsItems.energyGate, "energyGate");
+
+		StarWarsItems.energyModulationCircuit = new ItemEnergyModulationCircuit();
+		GameRegistry.registerItem(StarWarsItems.energyModulationCircuit, "energyModulationCircuit");
+
+		StarWarsItems.focusingCrystal = new ItemFocusingCrystal();
+		GameRegistry.registerItem(StarWarsItems.focusingCrystal, "focusingCrystal");
+
+		StarWarsItems.inertPowerInsulator = new ItemInertPowerInsulator();
+		GameRegistry.registerItem(StarWarsItems.inertPowerInsulator, "inertPowerInsulator");
+
+		StarWarsItems.magneticStabilizingRing = new ItemMagneticStabilizingRing();
+		GameRegistry.registerItem(StarWarsItems.magneticStabilizingRing, "magneticStabilizingRing");
+
+		StarWarsItems.powerVortexRing = new ItemPowerVortexRing();
+		GameRegistry.registerItem(StarWarsItems.powerVortexRing, "powerVortexRing");
 
 		StarWarsItems.gamorreanAx1 = new ItemGamorreanAx1();
 		GameRegistry.registerItem(StarWarsItems.gamorreanAx1, "gamorreanAx");

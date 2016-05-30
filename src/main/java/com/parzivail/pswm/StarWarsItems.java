@@ -52,6 +52,17 @@ public class StarWarsItems
 
 	public static Item banthaHorn;
 
+	public static Item airsealGel;
+	public static Item apexSeal;
+	public static Item cyclingFieldEnergizer;
+	public static Item diatiumPowerCell;
+	public static Item energyGate;
+	public static Item energyModulationCircuit;
+	public static Item focusingCrystal;
+	public static Item inertPowerInsulator;
+	public static Item magneticStabilizingRing;
+	public static Item powerVortexRing;
+
 	public static Item droidCaller;
 	public static Item droidHacker;
 

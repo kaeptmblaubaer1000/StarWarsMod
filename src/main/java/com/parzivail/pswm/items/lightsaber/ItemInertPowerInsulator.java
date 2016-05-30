@@ -1,14 +1,14 @@
-package com.parzivail.pswm.items.ingot;
+package com.parzivail.pswm.items.lightsaber;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.item.Item;
 
-public class ItemBeneIngot extends Item
+public class ItemInertPowerInsulator extends Item
 {
-	public String name = "beneIngot";
+	public String name = "inertPowerInsulator";
 
-	public ItemBeneIngot()
+	public ItemInertPowerInsulator()
 	{
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
