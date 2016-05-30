@@ -23,6 +23,7 @@ public class Resources
 		public static int biomeDagobahId;
 		public static int biomeIlumId;
 		public static int biomeMustafarId;
+		public static int biomeSpaceId;
 		public static int dimTatooineId;
 		public static int dimHothId;
 		public static int dimKashyyykId;
@@ -49,6 +50,7 @@ public class Resources
 		public static int dimDQarId = 115;
 		public static int dimAhchToId = 116;
 		public static int dimDeathStarId = 117;
+		public static int dimSpaceId = 118;
 		public static boolean enableCreditsOverlay;
 		public static boolean enableLightsaberStrobe;
 		public static boolean enableBlasterFire;

@@ -102,6 +102,7 @@ public class StarWarsItems
 	public static Item hyperdriveIlum;
 	public static Item hyperdriveDagobah;
 	public static Item hyperdriveMustafar;
+	public static Item hyperdriveSpace;
 
 	public static Item spawnSpeederBike;
 	public static Item spawnJakkuSpeeder;

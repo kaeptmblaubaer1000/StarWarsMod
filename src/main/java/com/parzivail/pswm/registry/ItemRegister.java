@@ -435,6 +435,9 @@ public class ItemRegister
 		StarWarsItems.hyperdriveMustafar = new ItemHyperdriveMustafar();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveMustafar, "hyperdriveMustafar");
 
+		StarWarsItems.hyperdriveSpace = new ItemHyperdriveSpace();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveSpace, "hyperdriveSpace");
+
 		StarWarsItems.hyperdriveIlum = new ItemHyperdriveIlum();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveIlum, "hyperdriveIlum");
 

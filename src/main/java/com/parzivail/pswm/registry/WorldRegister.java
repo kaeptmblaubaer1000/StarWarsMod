@@ -17,6 +17,8 @@ import com.parzivail.pswm.dimension.kashyyyk.BiomeGenKashyyyk;
 import com.parzivail.pswm.dimension.kashyyyk.KashyyykProvider;
 import com.parzivail.pswm.dimension.mustafar.BiomeGenMustafar;
 import com.parzivail.pswm.dimension.mustafar.MustafarProvider;
+import com.parzivail.pswm.dimension.space.BiomeGenSpace;
+import com.parzivail.pswm.dimension.space.SpaceProvider;
 import com.parzivail.pswm.dimension.tatooine.BiomeGenTatooine;
 import com.parzivail.pswm.dimension.tatooine.TatooineProvider;
 import com.parzivail.pswm.dimension.yavin.BiomeGenYavin;
@@ -56,6 +58,8 @@ public class WorldRegister
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeDagobah);
 		StarWarsMod.biomeMustafar = new BiomeGenMustafar(ConfigOptions.biomeMustafarId);
 		BiomeManager.removeSpawnBiome(StarWarsMod.biomeMustafar);
+		StarWarsMod.biomeSpace = new BiomeGenSpace(ConfigOptions.biomeSpaceId);
+		BiomeManager.removeSpawnBiome(StarWarsMod.biomeSpace);
 
 		WorldUtils.registerDimension(ConfigOptions.dimTatooineId, TatooineProvider.class);
 		WorldUtils.registerDimension(ConfigOptions.dimHothId, HothProvider.class);
@@ -65,6 +69,7 @@ public class WorldRegister
 		WorldUtils.registerDimension(ConfigOptions.dimIlumId, IlumProvider.class);
 		WorldUtils.registerDimension(ConfigOptions.dimDagobahId, DagobahProvider.class);
 		WorldUtils.registerDimension(ConfigOptions.dimMustafarId, MustafarProvider.class);
+		WorldUtils.registerDimension(ConfigOptions.dimSpaceId, SpaceProvider.class);
 
 		EntityRegistry.addSpawn(MobGamorrean.class, 3, 1, 3, EnumCreatureType.monster, StarWarsMod.biomeTatooine);
 		EntityRegistry.addSpawn(MobSandtrooper.class, 80, 5, 10, EnumCreatureType.monster, StarWarsMod.biomeTatooine);

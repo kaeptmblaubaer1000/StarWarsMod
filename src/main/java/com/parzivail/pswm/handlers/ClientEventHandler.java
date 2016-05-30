@@ -32,6 +32,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
@@ -236,6 +237,12 @@ public class ClientEventHandler
 				if (player.worldObj.isRemote)
 					new AnimationHyperspace(3500, true).start();
 				ItemQuestContainer.setInHyperspace(qlog, false);
+			}
+
+			if (logInEvent.world.provider.dimensionId == ConfigOptions.dimSpaceId && logInEvent.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) == Blocks.air)
+			{
+				logInEvent.world.setBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ, Blocks.stone);
+				Lumberjack.log(logInEvent.world.provider.dimensionId);
 			}
 		}
 	}

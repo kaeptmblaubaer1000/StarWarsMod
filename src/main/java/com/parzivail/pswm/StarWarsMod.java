@@ -86,6 +86,7 @@ public class StarWarsMod
 	public static BiomeGenBase biomeDagobah;
 	public static BiomeGenBase biomeIlum;
 	public static BiomeGenBase biomeMustafar;
+	public static BiomeGenBase biomeSpace;
 
 	public static boolean isOverlayOnscreen = false;
 
@@ -333,6 +334,8 @@ public class StarWarsMod
 		ConfigOptions.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
 		ConfigOptions.dimMustafarId = config.get("dimensions", "mustafar", 9).getInt();
 
+		ConfigOptions.dimSpaceId = config.get("dimensions", "space", 118).getInt();
+
 		ConfigOptions.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
 		ConfigOptions.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
 		ConfigOptions.biomeHothId = config.get("biomes", "hoth", 197).getInt();
@@ -341,6 +344,7 @@ public class StarWarsMod
 		ConfigOptions.biomeEndorId = config.get("biomes", "endor", 200).getInt();
 		ConfigOptions.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
 		ConfigOptions.biomeMustafarId = config.get("biomes", "mustafar", 202).getInt();
+		ConfigOptions.biomeSpaceId = config.get("biomes", "space", 203).getInt();
 
 		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
 
