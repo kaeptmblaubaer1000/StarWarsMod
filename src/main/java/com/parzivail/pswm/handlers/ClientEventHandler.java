@@ -9,7 +9,6 @@ import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.jedi.powers.Power;
-import com.parzivail.pswm.minimap.MinimapStore;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
@@ -53,8 +52,6 @@ public class ClientEventHandler
 	public static boolean cursorOpen = true;
 	public static boolean isCursorAnim = false;
 
-	private static MinimapStore worldStore;
-
 	@SideOnly(Side.CLIENT)
 	public static PGui pgui;
 	@SideOnly(Side.CLIENT)
@@ -80,11 +77,6 @@ public class ClientEventHandler
 
 	@SideOnly(Side.CLIENT)
 	static SoundManager soundManager;
-
-	public ClientEventHandler()
-	{
-		worldStore = new MinimapStore();
-	}
 
 	@SideOnly(Side.CLIENT)
 	public void init()
@@ -180,42 +172,42 @@ public class ClientEventHandler
 			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing)
 			{
-				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.XWING));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.XWING));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicYWing)
 			{
-				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.YWING));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.YWING));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicAWing)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
 			{
-				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.AWING));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.AWING));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSnowspeeder)
 			{
-				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.SNOWSPEEDER));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SNOWSPEEDER));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSkyhopper)
 			{
-				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.SKYHOPPER));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SKYHOPPER));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicATST)
 			{
-				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.ATST));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(StarWarsMod.mc.thePlayer.worldObj.rand, -0.2D, 0.2D));
+				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.ATST));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEAdvanced || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber)
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEAdvanced || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEBomber)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.TIE));
-				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
+				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
 		GuiVehicle.isFiring = true;
 		GuiVehicle.blipFrame = GuiVehicle.blipMax;

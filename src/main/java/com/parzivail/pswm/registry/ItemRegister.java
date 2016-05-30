@@ -16,7 +16,6 @@ import com.parzivail.pswm.jedi.ItemHolocronJedi;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.ItemSpawnNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.ItemSpawnNpcXWing;
-import com.parzivail.pswm.weaponry.ItemSpawnDSTurret;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -24,18 +23,6 @@ public class ItemRegister
 {
 	public static void registerAll()
 	{
-		if (Resources.IS_DEV_ENVIRONVENT)
-		{
-			StarWarsItems.debugLootGen = new ItemDebugLootGen();
-			GameRegistry.registerItem(StarWarsItems.debugLootGen, "debugLootGen");
-
-			StarWarsItems.customTest = new ItemCustomTest();
-			GameRegistry.registerItem(StarWarsItems.customTest, "customItem");
-
-			StarWarsItems.spawnDsTurret = new ItemSpawnDSTurret();
-			GameRegistry.registerItem(StarWarsItems.spawnDsTurret, "spawnDsTurret");
-		}
-
 		if (Resources.IS_SEQUEL_RELEASE)
 		{
 			StarWarsItems.stormtrooperNewHelmet = new ArmorSequelStormtrooper(StarWarsMod.stormtrooperNewArmorMat, 1, 0);
