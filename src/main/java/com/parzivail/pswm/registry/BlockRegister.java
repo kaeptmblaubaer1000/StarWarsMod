@@ -20,10 +20,6 @@ public class BlockRegister
 {
 	public static void registerAll()
 	{
-		if (Resources.IS_DEV_ENVIRONVENT)
-		{
-		}
-
 		StarWarsMod.blockMV = new BlockMV();
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");

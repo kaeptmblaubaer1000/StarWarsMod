@@ -34,12 +34,6 @@ public class ItemRegister
 
 			StarWarsItems.spawnDsTurret = new ItemSpawnDSTurret();
 			GameRegistry.registerItem(StarWarsItems.spawnDsTurret, "spawnDsTurret");
-
-			StarWarsItems.slopeWizard = new ItemSlopeWizard();
-			GameRegistry.registerItem(StarWarsItems.slopeWizard, "slopeWizard");
-
-			StarWarsItems.spawnAtst = new ItemSpawnATST();
-			GameRegistry.registerItem(StarWarsItems.spawnAtst, "spawnAtst");
 		}
 
 		if (Resources.IS_SEQUEL_RELEASE)
@@ -80,6 +74,12 @@ public class ItemRegister
 			StarWarsItems.spawnAstromechBb8 = new ItemSpawnAstromechBb8();
 			GameRegistry.registerItem(StarWarsItems.spawnAstromechBb8, "spawnAstromechBb8");
 		}
+
+		StarWarsItems.slopeWizard = new ItemSlopeWizard();
+		GameRegistry.registerItem(StarWarsItems.slopeWizard, "slopeWizard");
+
+		StarWarsItems.spawnAtst = new ItemSpawnATST();
+		GameRegistry.registerItem(StarWarsItems.spawnAtst, "spawnAtst");
 
 		StarWarsItems.powerpack = new ItemPowerpack();
 		GameRegistry.registerItem(StarWarsItems.powerpack, "powerpack");
