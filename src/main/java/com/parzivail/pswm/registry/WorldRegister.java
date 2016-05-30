@@ -116,7 +116,7 @@ public class WorldRegister
 		hoth.addTerrain("Ice Caves");
 		hoth.addTerrain("Tundras");
 		hoth.addTerrain("Frozen Plains");
-		hoth.addResource("None");
+		hoth.addResource("Exonium");
 		hoth.setHyperdrive(StarWarsItems.hyperdriveHoth);
 		Resources.planetInformation.add(hoth);
 
@@ -136,8 +136,9 @@ public class WorldRegister
 		earth.addResource("Gold");
 		earth.addResource("Diamond");
 		earth.addResource("Redstone");
-		earth.addResource("Lumber");
-		earth.addResource("Water");
+		earth.addResource("Titanium");
+		earth.addResource("Chromium");
+		earth.addResource("Rubindum");
 		earth.addNativeSpecies("Human");
 		earth.setSuns(1);
 		earth.setMoons(1);
@@ -194,7 +195,8 @@ public class WorldRegister
 		endor.addTerrain("Forests");
 		endor.addTerrain("Mountains");
 		endor.addTerrain("Lakes");
-		endor.addResource("None");
+		endor.addResource("Helicite");
+		endor.addResource("Thorolide");
 		endor.setHyperdrive(StarWarsItems.hyperdriveEndor);
 		Resources.planetInformation.add(endor);
 
@@ -227,7 +229,8 @@ public class WorldRegister
 		tatooine.addTerrain("Deserts");
 		tatooine.addTerrain("Canyons");
 		tatooine.addTerrain("Rocky Bluffs");
-		tatooine.addResource("Bene");
+		tatooine.addResource("Titanium");
+		tatooine.addResource("Chromium");
 		tatooine.setHyperdrive(StarWarsItems.hyperdriveTatooine);
 		Resources.planetInformation.add(tatooine);
 
@@ -255,6 +258,8 @@ public class WorldRegister
 		ilum.addTerrain("Crystal Caves");
 		ilum.addTerrain("Icy Mountains");
 		ilum.addResource("Kyber Crystal");
+		ilum.addResource("Focusing Crystal");
+		ilum.addResource("Diatium");
 		ilum.setHyperdrive(StarWarsItems.hyperdriveIlum);
 		Resources.planetInformation.add(ilum);
 
@@ -364,7 +369,7 @@ public class WorldRegister
 		yavin4.setMoons(0);
 		yavin4.setSuns(1);
 		yavin4.addNativeSpecies("None");
-		yavin4.addResource("None");
+		yavin4.addResource("Kelerium");
 		yavin4.addTerrain("Jungles");
 		yavin4.addTerrain("Rainforests");
 		yavin4.setHyperdrive(StarWarsItems.hyperdriveYavin4);

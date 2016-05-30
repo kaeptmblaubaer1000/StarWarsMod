@@ -1,0 +1,27 @@
+#Hyperdrives and Intergalactic Travel#
+
+****
+
+*The Tatooine Hyperdrive is the only Hyperdrive with a crafting recipe.  It is used to get you to Tatooine, where you will then need to use a Hyperdrive Block in order to change planets.  It is used by pressing Shift+use*
+
+*Some planets are exclusive to certain Questlines and cannot be traveled to without progressing through them appropriately.*
+
+****
+
+In order to travel to other [[ Planets ]], you will need a Hyperdrive Block and the Hyperdrive for the respective planet.  Hyperdrives can be procured in 2 different ways:  Some Hyperdrives are given to you as part of a Questline, while most all of them can be bought for an expensive price from the Corellian Merchant in Mos Eisley.  Depending on which Hyperdrive you use, you will be taken to a different section of the planet.  For instance, if you buy an Endor Hyperdrive, you will be taken to a random place on Endor.  However, if you receive an Endor Hyperdrive as part of the Imperial Questline, you will be taken to an Imperial Base.
+
+The Hyperdrive block **is not craftable**.  It is found only on the 4 Questline ships and can only be used in them.  It is not mineable or moveable in any way and can not be found in the Creative Inventory.
+
+The Hyperdrive Block also shows a small rotating model of the planet you are currently on.  Just a fun little touch, hope ya enjoy.
+
+****
+
+**The Hyperdrive Block GUI**
+
+To access the GUI of the Hyperdrive Block, simply right-click.  Once inside you will see The Galactic Map.  This map is a fairly accurate recreation of the actual Star Wars universe including correct planet coordinate positions, sector differentiations, and the 5 major trade-routes.  Don't be alarmed by the small ships flying around in the GUI, as they are simply traveling along the aforementioned trade-routes.  **The map also includes the planets that we plan on adding in future updates, but they are not accessible currently and for the sake of spoilers the names of the planets are not included in the GUI.**
+
+In order to see what planet your cursor is on, simply check the top left corner for a small blurb containing the name of the planet and it's affiliation.  Once you see a planet you would like to travel to and have clicked on it to enlarge it (and you have the Hyperdrive for that planet in your inventory), simply click the "Program NavCom" button.  This will plot a course to the planet.  Once you're ready to travel to your selected planet press the "Jump to Lightspeed" button.  This will take you through the Lightspeed animation and take you to your selected planet.
+
+When you are in the enlarged single planet screen, you can read a wealth of information about your selected planet.  A brief outline of the planet, the terrain, and inhabiting species are just a few of the informative categories that are included for the player to read.  You can also see if that planet has an affiliation. *(If it does have an affiliation, you will see ships from that faction circling the planet.  This is just an easy way to see the planetary affiliation quickly)*
+
+****
