@@ -1,0 +1,152 @@
+**Lightsabers**
+
+*Lightsaber Throw is a power obtained by leveling up as a Jedi as part of the Jedi Questline.  You can not throw a Lightsaber without progressing through the Jedi Questline, nor can you build a Lightsaber whatsoever.*
+
+*Sith Lightsabers, assembled as part of the Sith Questline, require a second set of materials separate from those used in the Jedi Questline.  Therefore, if you plan on becoming a Sith, take note of which Lightsaber you want for both the Jedi and Sith Questlines (you must build a Jedi Lightsaber before gaining access to the Sith Questline), and make sure to gather all the necessary materials for your Sith Lightsaber at the same time that you gather the materials for your Jedi Lightsaber.  You will still have to quest for the Synthetic Crystal Shards, but that will make the Shards the only thing you need in order to build your Sith Lightsaber.*
+
+*There is no limit to the amount of Jedi Lightsabers that you can make as long as you gather all the needed materials.  You can only assemble 2 Single Bladed Sith Lightsabers or 1 Double Bladed Sith Lightsaber however, because of the limited number of Synthetic Crystal Shards in the galaxy.*
+
+*Lightsaber Controls and Keybinds:*
+
+*1. Open/Close using Sneak and Right-Click.*
+*2. Open/Close using changeable keybind with default "O".*
+*3. CREATIVE ONLY Lightsaber Forge GUI (without using the Lightsaber Forge Block) using changeable keybind with default "P".*
+*4. Fire Blaster Bolt from Single Blade Blaster Lightsaber using changeable keybind with default "F". (This is the same keybind as firing lasers on laser-equipped vehicles)*
+*5. Blocking will refelct Blaster Bolts back in the direction of your cursor, as well as make a deflection noise.*
+*6. Blocking the swing of another Lightsaber will protect you from all damage as well as make a crash noise.*
+
+Lightsabers are a huge part of the Star Wars Universe and are indespensable tools for the Jedi and the Sith.  They are difficult to make and can only be made as part of the Jedi/Sith Questlines.  Each type of Lightsaber requires a certain set of materials *(see below for a list of materials and recipes on a per type basis, pictures included)* and can be customized in 5 ways: Blade Color, Blade Length, Hilt Texture, Waterproofing, and Blade Distortion.  The 5 Types of Lightsabers are: Single Blade (11 hilts), Single Blade Blaster (1 hilt), Crossguard (1 hilt), Shoto (1 hilt), and Double Blade (3 hilts).
+
+The first step towards building your Lightsaber is getting to Ilum.  The Ilum Hyperdrive is given to you by Jedi Master on Dagobah.  The Jedi Temple on Ilum (found at spawn), is home to the Crystal Caves.  It is in these caves that you can find Kyber Crystal Ore.  There are 9 Standard Blade Colors available in the Jedi Questline. *(Red, Red-Orange, and Orange are unlockable only through the Sith Questline as they are Synthetic Crystals and not naturally occuring Kyber Crystals.  Procurement of the Prism Crystal also unlocks these colors)*  
+
+The Jedi Blade Colors are (in order of increasing tiered ore rarity): 
+
+Tier 1: "Blue, Green" (Diamond Rarity)
+Tier 2: "Yellow, Cyan" (2x Diamond Rarity)
+Tier 3: "Purple, Pink" (4x Diamond Rarity)
+Tier 4: "Black, Gray, White" (6x Diamond Rarity)
+
+There is 1 more Blade Color option however.  The Prism Crystal (8x Diamond Rarity) allows for full customization of the Blade Color using RGB sliders.  The Prism Crystal, because of it's full color customization, also allows Jedi to access Sith Blade Colors without progressing through the Sith Questline.
+
+*Materials and Lightsaber Crafting:*
+
+*For information regarding where certain ores/materials/items are found/located, click on the blue highlighted names.  This will take you to the dedicated page for that ore/material/item and will provide you with all the information you need.  This is done in an attempt to keep this page as clear and concise as possible*
+
+Once you have the required materials, you use the Lightsaber Forge in the Ilum Jedi Temple in order to assemble your Lightsaber.  There is no "recipe" in the traditional Minecraft sense, but the Lightsaber Forge GUI will show you your available options based on the required materials located in your inventory.  Once you have selected your Lightsaber and clicked "Save", all of the required materials will be taken from your inventory and used in the creation of your personal Lightsaber.  Any options not available to you will be marked with an "X", that includes Hilts and Blade Colors.  All options in the "Options" Tab can be changed regardless of materials or Lightsaber type, except for the Toggle Waterproof Option which requires Apex Seals.  If you have no Apex Seals, then the button edge will not illuminate when pressed as the other buttons do.  *Let it be noted that the RGB sliders in the "Blades" Tab will not show up unless you have a Prism Crystal or are using the Creative Only Lightsaber Forge which requires no physical forge and no materials in order to make a Lightsaber.*
+
+Materials List:
+
+1. Magnetic Stabilizing Ring
+
+    1. Ingredients: 4 Exonium Ingots
+    
+2. Energy Modulation Circuit
+
+    1. Ingredients: 5 Quartz, 2 Redstone, 2 Kelerium Ingots
+    
+3. Cycling Field Energizer
+
+    1. Ingredients: 4 Gold Ingots, 4 Exonium Ingots
+    
+4. Kyber Crystal
+    
+5. Focusing Crystal
+
+6. Diatium Power Cell
+
+    1. Ingredients: 2 Power Cells, 7 Diatium Dust
+
+7. Energy Gate
+
+    1. Ingredients: 1 Quartz, 2 Kelerium Ingots
+
+8. Power Vortex Ring
+
+    1. Ingredients: Thorolide Ingots
+
+9. Inert Power Insulator
+
+    1. Ingredients: 6 Chromium Dust
+
+10. Apex Seals (Optional for Waterproofing)
+
+    1. Ingredients: 4 Airseal Gel
+
+11. Airseal Gel (Optional for Waterproofing)
+
+    1. Ingredients: 1 Water Bucket, 8 Helicite Dust
+    
+12. Hilt Metal Alloy
+
+    1. Ingredients: Smelted Hilt Metal Compound
+    
+13. Hilt Metal Compound
+
+    1. Ingredients: 5 Chromium Dust, 4 Titanium Dust
+    
+*Required Ingredients by Lightsaber Type:*
+
+1. Single Blade (11 hilts)
+
+    1. 1 Magnetic Stabilizing Ring
+    2. 1 Energy Modulation Circuit
+    3. 1 Cycling Field Energizer
+    4. 1 Kyber Crystal
+    5. 1 Focusing Crystal
+    6. 1 Diatium Power Cell
+    7. 1 Energy Gate
+    8. 1 Power Vortex Ring
+    9. Inert Power Insulator
+    10. 4 Hilt Metal Alloys
+
+2. Single Blade Blaster (1 hilt)
+
+    1. 1 Magnetic Stabilizing Ring
+    2. 2 Energy Modulation Circuits
+    3. 1 Cycling Field Energizer
+    4. 1 Kyber Crystal
+    5. 1 Focusing Crystal
+    6. 2 Diatium Power Cells
+    7. 2 Energy Gates
+    8. 1 Power Vortex Ring
+    9. 1 Inert Power Insulator
+    10. 4 Hilt Metal Alloys
+
+3. Crossguard (1 hilt)
+
+    1. 1 Magnetic Stabilizing Ring
+    2. 1 Energy Modulation Circuit
+    3. 1 Cycling Field Energizer
+    4. 1 Kyber Crystal
+    5. 2 Focusing Crystals
+    6. 1 Diatium Power Cell
+    7. 1 Energy Gate
+    8. 1 Power Vortex Ring
+    9. 1 Inert Power Insulator
+    10. 6 Hilt Metal Alloys
+
+4. Shoto (1 hilt)
+
+    1. 1 Magnetic Stabilizing Ring
+    2. 1 Energy Modulation Circuit
+    3. 1 Cycling Field Energizer
+    4. 1 Kyber Crystal
+    5. 1 Focusing Crystal
+    6. 1 Diatium Power Cell
+    7. 1 Energy Gate
+    8. 1 Power Vortex Ring
+    9. 1 Inert Power Insulator
+    10. 8 Hilt Metal Alloys
+
+5. Double Blade (3 hilts)
+
+    1. 2 Magnetic Stabilizing Rings
+    2. 1 Energy Modulation Circuit
+    3. 1 Cycling Field Energizer
+    4. 2 Kyber Crystals
+    5. 2 Focusing Crystals
+    6. 2 Diatium Power Cells
+    7. 1 Energy Gate
+    8. 1 Power Vortex Ring
+    9. 2 Inert Power Insulators
+    10. 8 Hilt Metal Alloys

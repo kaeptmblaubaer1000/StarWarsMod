@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class BlockCrystalOre extends BlockMultiTexture
 {
-	public static String[] colors = { "Black", "Blue", "Cyan", "Gray", "Green", "Pink", "Purple", "White", "Yellow" };
+	public static String[] colors = { "Black", "Blue", "Cyan", "Gray", "Green", "Pink", "Purple", "White", "Yellow", "Prism" };
 
 	public BlockCrystalOre()
 	{

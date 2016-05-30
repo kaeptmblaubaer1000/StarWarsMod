@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class BlockDiatiumOre extends Block
 {
-	public String name = "dolomiteOre";
+	public String name = "diatiumOre";
 
 	public BlockDiatiumOre()
 	{
