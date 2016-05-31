@@ -210,8 +210,6 @@ public class ClientEventHandler
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.TIE));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
-		GuiVehicle.isFiring = true;
-		GuiVehicle.blipFrame = GuiVehicle.blipMax;
 	}
 
 	@SubscribeEvent
