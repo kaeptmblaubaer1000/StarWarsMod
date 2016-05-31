@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension.space;
 
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -101,6 +102,9 @@ public class BiomeChunkProviderSpace extends ChunkProviderGenerate
 	@Override
 	public void populate(IChunkProvider p_73153_1_, int p_73153_2_, int p_73153_3_)
 	{
+		int k = p_73153_2_ * 16;
+		int l = p_73153_3_ * 16;
+		StarWarsMod.biomeSpace.decorate(this.worldObj, this.rand, k, l);
 	}
 
 	/**

@@ -76,7 +76,7 @@
     "sounds": [
       "vehicle/xwing/move"
     ]
-  }
+  },
   "vehicle.atst.move": {
     "category": "neutral",
     "sounds": [

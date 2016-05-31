@@ -22,9 +22,12 @@ public class DrawSpaceSky extends IRenderHandler
 		this.renderStars();
 		GL11.glEndList();
 		GL11.glPopMatrix();
+		GL11.glPushMatrix();
 		GL11.glNewList(glSkyList, 4864);
-		new Sphere().draw(150, 50, 50);
+		GL11.glColor3f(0, 0, 0);
+		new Sphere().draw(500, 50, 50);
 		GL11.glEndList();
+		GL11.glPopMatrix();
 	}
 
 	@Override
@@ -34,9 +37,7 @@ public class DrawSpaceSky extends IRenderHandler
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_CULL_FACE);
-		GL11.glColor3f(0, 0, 0);
 		GL11.glCallList(glSkyList);
-		GL11.glColor3f(1, 1, 1);
 		GL11.glCallList(starList);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
@@ -45,6 +46,7 @@ public class DrawSpaceSky extends IRenderHandler
 	private void renderStars()
 	{
 		Random rand = new Random(0);
+		GL11.glColor3f(1, 1, 1);
 		GL11.glBegin(GL11.GL_QUADS);
 		for (int starIndex = 0; starIndex < 20000; starIndex++)
 		{
@@ -54,7 +56,7 @@ public class DrawSpaceSky extends IRenderHandler
 			double var10 = 0.15F + rand.nextFloat() * 0.1F;
 			double var12 = var4 * var4 + var6 * var6 + var8 * var8;
 
-			float dist = rand.nextFloat() * 0.7f + 0.3f;
+			float dist = 4.5f;
 			if (var12 < 1.0D && var12 > 0.01D)
 			{
 				var12 = 1.0D / Math.sqrt(var12);
