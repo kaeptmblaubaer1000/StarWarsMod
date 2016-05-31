@@ -439,14 +439,8 @@ public class ClientEventHandler
 		{
 			int currentLevels = JediUtils.getLevel(holocron);
 			if (StarWarsMod.rngGeneral.nextInt(100) <= JediUtils.getPercentForLevel(currentLevels))
-			{
 				holocron = JediUtils.addLevels(holocron, 1);
-				Lumberjack.log("XP accepted!");
-			}
-			else
-				Lumberjack.log("XP rejected!");
 			int newLevels = JediUtils.getLevel(holocron);
-			Lumberjack.log(newLevels / JediUtils.POINTS_PER_LEVEL);
 			if (Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) == Math.floor(currentLevels / JediUtils.POINTS_PER_LEVEL) + 1)
 			{
 				// level up!
@@ -458,7 +452,8 @@ public class ClientEventHandler
 				if (Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) == 35)
 				{
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
-					event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
+					if (event.entityPlayer.worldObj.isRemote)
+						event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 				}
 			}
 		}

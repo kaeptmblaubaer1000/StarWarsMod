@@ -23,6 +23,7 @@ public class CommandJediRobes extends CommandBase
 			commands.add("level");
 			commands.add("xp");
 			commands.add("maxxp");
+			commands.add("side");
 		}
 		return commands;
 	}
@@ -36,7 +37,7 @@ public class CommandJediRobes extends CommandBase
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
-		return "robes <level|xp|maxxp> <int:value>";
+		return "robes <level|xp|maxxp|side> <int:value>";
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class CommandJediRobes extends CommandBase
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
-		if (player != null && JediUtils.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
+		if (player != null && JediUtils.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("side") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
 			ItemStack robes = JediUtils.getHolocron(player);
 			JediUtils.getXP(robes);
@@ -61,6 +62,16 @@ public class CommandJediRobes extends CommandBase
 
 			if (key.equalsIgnoreCase("level"))
 				robes.stackTagCompound.setInteger(key, (int)(value * JediUtils.POINTS_PER_LEVEL));
+			else if (key.equalsIgnoreCase("side"))
+				switch (value)
+				{
+					case 0:
+						robes.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_JEDI);
+						break;
+					case 1:
+						robes.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_SITH);
+						break;
+				}
 			else
 				robes.stackTagCompound.setInteger(key, value);
 			icommandsender.addChatMessage(new ChatComponentText("[Robes] Set " + key + " to " + String.valueOf(value) + "."));

@@ -76,6 +76,12 @@
     "sounds": [
       "vehicle/xwing/move"
     ]
+  }
+  "vehicle.atst.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/atst/move"
+    ]
   },
   "vehicle.xwing.sfoilOpen": {
     "category": "neutral",
