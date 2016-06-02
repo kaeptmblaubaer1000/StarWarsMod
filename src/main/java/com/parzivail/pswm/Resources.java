@@ -91,6 +91,7 @@ public class Resources
 	public static final int GUI_SCANNER = guiCounter++;
 	public static final int GUI_HYPERDRIVE = guiCounter++;
 	public static final int GUI_ANTENNA = guiCounter++;
+	public static final int GUI_CRYSTALCOMPRESSOR = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

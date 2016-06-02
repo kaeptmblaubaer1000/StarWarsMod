@@ -21,8 +21,8 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	/**
 	 * The ItemStacks currently placed in the slots of the brewing stand
 	 */
-	private ItemStack[] brewingItemStacks = new ItemStack[4];
-	private int brewTime;
+	private ItemStack[] itemStacks = new ItemStack[4];
+	private int compressTime;
 	/**
 	 * an integer with each bit specifying whether that slot of the stand contains a potion
 	 */
@@ -43,6 +43,16 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 		return Resources.MODID + ":" + "container.crystalcompressor";
 	}
 
+	public int getCompressTime()
+	{
+		return compressTime;
+	}
+
+	public int setCompressTime(int time)
+	{
+		return this.compressTime = time;
+	}
+
 	/**
 	 * Returns if the inventory is named
 	 */
@@ -56,35 +66,35 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	 */
 	public int getSizeInventory()
 	{
-		return this.brewingItemStacks.length;
+		return this.itemStacks.length;
 	}
 
 	public void updateEntity()
 	{
-		if (this.brewTime > 0)
+		if (this.compressTime > 0)
 		{
-			--this.brewTime;
+			--this.compressTime;
 
-			if (this.brewTime == 0)
+			if (this.compressTime == 0)
 			{
 				this.brewPotions();
 				this.markDirty();
 			}
 			else if (!this.canBrew())
 			{
-				this.brewTime = 0;
+				this.compressTime = 0;
 				this.markDirty();
 			}
-			else if (this.ingredientID != this.brewingItemStacks[3].getItem())
+			else if (this.ingredientID != this.itemStacks[3].getItem())
 			{
-				this.brewTime = 0;
+				this.compressTime = 0;
 				this.markDirty();
 			}
 		}
 		else if (this.canBrew())
 		{
-			this.brewTime = 400;
-			this.ingredientID = this.brewingItemStacks[3].getItem();
+			this.compressTime = 400;
+			this.ingredientID = this.itemStacks[3].getItem();
 		}
 
 		int i = this.getFilledSlots();
@@ -100,9 +110,9 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 
 	private boolean canBrew()
 	{
-		if (this.brewingItemStacks[3] != null && this.brewingItemStacks[3].stackSize > 0)
+		if (this.itemStacks[3] != null && this.itemStacks[3].stackSize > 0)
 		{
-			ItemStack itemstack = this.brewingItemStacks[3];
+			ItemStack itemstack = this.itemStacks[3];
 
 			if (!itemstack.getItem().isPotionIngredient(itemstack))
 			{
@@ -114,9 +124,9 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 
 				for (int i = 0; i < 3; ++i)
 				{
-					if (this.brewingItemStacks[i] != null && this.brewingItemStacks[i].getItem() instanceof ItemPotion)
+					if (this.itemStacks[i] != null && this.itemStacks[i].getItem() instanceof ItemPotion)
 					{
-						int j = this.brewingItemStacks[i].getItemDamage();
+						int j = this.itemStacks[i].getItemDamage();
 						int k = this.func_145936_c(j, itemstack);
 
 						if (!ItemPotion.isSplash(j) && ItemPotion.isSplash(k))
@@ -147,17 +157,17 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 
 	private void brewPotions()
 	{
-		if (net.minecraftforge.event.ForgeEventFactory.onPotionAttemptBreaw(brewingItemStacks))
+		if (net.minecraftforge.event.ForgeEventFactory.onPotionAttemptBreaw(itemStacks))
 			return;
 		if (this.canBrew())
 		{
-			ItemStack itemstack = this.brewingItemStacks[3];
+			ItemStack itemstack = this.itemStacks[3];
 
 			for (int i = 0; i < 3; ++i)
 			{
-				if (this.brewingItemStacks[i] != null && this.brewingItemStacks[i].getItem() instanceof ItemPotion)
+				if (this.itemStacks[i] != null && this.itemStacks[i].getItem() instanceof ItemPotion)
 				{
-					int j = this.brewingItemStacks[i].getItemDamage();
+					int j = this.itemStacks[i].getItemDamage();
 					int k = this.func_145936_c(j, itemstack);
 					List list = Items.potionitem.getEffects(j);
 					List list1 = Items.potionitem.getEffects(k);
@@ -166,30 +176,30 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 					{
 						if (j != k)
 						{
-							this.brewingItemStacks[i].setItemDamage(k);
+							this.itemStacks[i].setItemDamage(k);
 						}
 					}
 					else if (!ItemPotion.isSplash(j) && ItemPotion.isSplash(k))
 					{
-						this.brewingItemStacks[i].setItemDamage(k);
+						this.itemStacks[i].setItemDamage(k);
 					}
 				}
 			}
 
 			if (itemstack.getItem().hasContainerItem(itemstack))
 			{
-				this.brewingItemStacks[3] = itemstack.getItem().getContainerItem(itemstack);
+				this.itemStacks[3] = itemstack.getItem().getContainerItem(itemstack);
 			}
 			else
 			{
-				--this.brewingItemStacks[3].stackSize;
+				--this.itemStacks[3].stackSize;
 
-				if (this.brewingItemStacks[3].stackSize <= 0)
+				if (this.itemStacks[3].stackSize <= 0)
 				{
-					this.brewingItemStacks[3] = null;
+					this.itemStacks[3] = null;
 				}
 			}
-			net.minecraftforge.event.ForgeEventFactory.onPotionBrewed(brewingItemStacks);
+			net.minecraftforge.event.ForgeEventFactory.onPotionBrewed(itemStacks);
 		}
 	}
 
@@ -202,20 +212,20 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	{
 		super.readFromNBT(p_145839_1_);
 		NBTTagList nbttaglist = p_145839_1_.getTagList("Items", 10);
-		this.brewingItemStacks = new ItemStack[this.getSizeInventory()];
+		this.itemStacks = new ItemStack[this.getSizeInventory()];
 
 		for (int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte b0 = nbttagcompound1.getByte("Slot");
 
-			if (b0 >= 0 && b0 < this.brewingItemStacks.length)
+			if (b0 >= 0 && b0 < this.itemStacks.length)
 			{
-				this.brewingItemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				this.itemStacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 
-		this.brewTime = p_145839_1_.getShort("BrewTime");
+		this.compressTime = p_145839_1_.getShort("BrewTime");
 
 		if (p_145839_1_.hasKey("CustomName", 8))
 		{
@@ -226,16 +236,16 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{
 		super.writeToNBT(p_145841_1_);
-		p_145841_1_.setShort("BrewTime", (short)this.brewTime);
+		p_145841_1_.setShort("BrewTime", (short)this.compressTime);
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < this.brewingItemStacks.length; ++i)
+		for (int i = 0; i < this.itemStacks.length; ++i)
 		{
-			if (this.brewingItemStacks[i] != null)
+			if (this.itemStacks[i] != null)
 			{
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte)i);
-				this.brewingItemStacks[i].writeToNBT(nbttagcompound1);
+				this.itemStacks[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -253,7 +263,7 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	 */
 	public ItemStack getStackInSlot(int p_70301_1_)
 	{
-		return p_70301_1_ >= 0 && p_70301_1_ < this.brewingItemStacks.length ? this.brewingItemStacks[p_70301_1_] : null;
+		return p_70301_1_ >= 0 && p_70301_1_ < this.itemStacks.length ? this.itemStacks[p_70301_1_] : null;
 	}
 
 	/**
@@ -262,10 +272,10 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	 */
 	public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_)
 	{
-		if (p_70298_1_ >= 0 && p_70298_1_ < this.brewingItemStacks.length)
+		if (p_70298_1_ >= 0 && p_70298_1_ < this.itemStacks.length)
 		{
-			ItemStack itemstack = this.brewingItemStacks[p_70298_1_];
-			this.brewingItemStacks[p_70298_1_] = null;
+			ItemStack itemstack = this.itemStacks[p_70298_1_];
+			this.itemStacks[p_70298_1_] = null;
 			return itemstack;
 		}
 		else
@@ -280,10 +290,10 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	 */
 	public ItemStack getStackInSlotOnClosing(int p_70304_1_)
 	{
-		if (p_70304_1_ >= 0 && p_70304_1_ < this.brewingItemStacks.length)
+		if (p_70304_1_ >= 0 && p_70304_1_ < this.itemStacks.length)
 		{
-			ItemStack itemstack = this.brewingItemStacks[p_70304_1_];
-			this.brewingItemStacks[p_70304_1_] = null;
+			ItemStack itemstack = this.itemStacks[p_70304_1_];
+			this.itemStacks[p_70304_1_] = null;
 			return itemstack;
 		}
 		else
@@ -297,9 +307,9 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	 */
 	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_)
 	{
-		if (p_70299_1_ >= 0 && p_70299_1_ < this.brewingItemStacks.length)
+		if (p_70299_1_ >= 0 && p_70299_1_ < this.itemStacks.length)
 		{
-			this.brewingItemStacks[p_70299_1_] = p_70299_2_;
+			this.itemStacks[p_70299_1_] = p_70299_2_;
 		}
 	}
 
@@ -344,7 +354,7 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 
 		for (int j = 0; j < 3; ++j)
 		{
-			if (this.brewingItemStacks[j] != null)
+			if (this.itemStacks[j] != null)
 			{
 				i |= 1 << j;
 			}

@@ -92,6 +92,7 @@ public class StarWarsMod
 
 	public static Block blockMV;
 	public static Block blockLightsaberForge;
+	public static Block blockCrystalCompressor;
 	public static Block blockAntenna;
 	public static Block blockFieldEmitter;
 	public static Block blockDeathStarDoor;

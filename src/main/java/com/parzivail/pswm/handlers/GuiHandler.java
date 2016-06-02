@@ -4,10 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.quest.GuiQuest;
 import com.parzivail.pswm.quest.GuiQuestNpc;
 import com.parzivail.pswm.rendering.gui.*;
-import com.parzivail.pswm.tileentities.TileEntityAntenna;
-import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
-import com.parzivail.pswm.tileentities.TileEntityMV;
-import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.pswm.tileentities.*;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -37,6 +34,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiScreenHyperdrive(player);
 		else if (id == Resources.GUI_ANTENNA)
 			return new GuiAntenna(player, (TileEntityAntenna)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_CRYSTALCOMPRESSOR)
+			return new GuiCrystalCompressor(player.inventory, (TileEntityCrystalCompressor)world.getTileEntity(x, y, z));
 		return null;
 	}
 
