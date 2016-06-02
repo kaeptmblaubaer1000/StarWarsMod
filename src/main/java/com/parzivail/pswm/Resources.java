@@ -90,6 +90,7 @@ public class Resources
 	public static final int GUI_LSFORGE = guiCounter++;
 	public static final int GUI_SCANNER = guiCounter++;
 	public static final int GUI_HYPERDRIVE = guiCounter++;
+	public static final int GUI_ANTENNA = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

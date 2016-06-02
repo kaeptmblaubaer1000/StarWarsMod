@@ -82,6 +82,11 @@ public class BlockAntenna extends BlockContainer implements IDebugProvider
 				}
 			}
 		}
+		else
+		{
+			if (world.isRemote)
+				player.openGui(StarWarsMod.instance, Resources.GUI_ANTENNA, world, x, y, z);
+		}
 		return true;
 	}
 
