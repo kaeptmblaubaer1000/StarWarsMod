@@ -34,6 +34,10 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");
 		GameRegistry.registerTileEntity(TileEntityAntenna.class, "teAntenna");
 
+		StarWarsMod.blockLightsaberForge = new BlockLightsaberForge();
+		GameRegistry.registerBlock(StarWarsMod.blockLightsaberForge, "blockLightsaberForge");
+		GameRegistry.registerTileEntity(TileEntityLightsaberForge.class, "teLightsaberForge");
+
 		StarWarsMod.blockHoloTable = new BlockHolotable();
 		GameRegistry.registerBlock(StarWarsMod.blockHoloTable, ItemHolotableBlock.class, "holoTable");
 		GameRegistry.registerTileEntity(TileEntityHoloTableBase.class, "teHoloTableSmall");

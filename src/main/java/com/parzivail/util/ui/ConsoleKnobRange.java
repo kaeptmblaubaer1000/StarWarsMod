@@ -50,7 +50,7 @@ public class ConsoleKnobRange extends GuiButton
 		{
 			if (this.changeFlag)
 			{
-				this.value = (float)(p_146119_3_ - this.yPosition + (this.height / 2)) / ((float)this.height * 2);
+				this.value = (float)(p_146119_2_ - this.xPosition + (this.width / 2)) / ((float)this.width * 2);
 
 				if (this.value < 0.0F)
 				{

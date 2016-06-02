@@ -33,8 +33,8 @@ public class GuiAntenna extends GuiScreen
 	private float bW;
 	private float bH;
 
-	private float scale = 0.07f;
-	private int blocks = 75;
+	private float scale = 0.1f;
+	private int blocks = 30;
 
 	private int listBlocks = -1;
 	private boolean alreadyGen = false;
@@ -62,7 +62,7 @@ public class GuiAntenna extends GuiScreen
 		w = r.getScaledWidth();
 		h = r.getScaledHeight();
 
-		bW = w - 50;
+		bW = w - 60;
 		bH = h - 50;
 
 		int id = 0;
@@ -84,7 +84,7 @@ public class GuiAntenna extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -95,7 +95,6 @@ public class GuiAntenna extends GuiScreen
 		GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glDisable(GL11.GL_CULL_FACE);
 
 		GLPalette.glColorI(GLPalette.ALMOST_BLACK);
 		GFX.drawRectangle(0, 0, w, h, true);
@@ -204,7 +203,7 @@ public class GuiAntenna extends GuiScreen
 			GLPZ.glScalef(scale);
 			GL11.glColor4f(1, 1, 1, 1);
 			for (int x = -blocks; x < blocks; x++)
-				for (int y = -blocks; y < blocks; y++)
+				for (int y = -blocks / 2; y < blocks / 2; y++)
 					for (int z = -blocks; z < blocks; z++)
 						if ((b = antenna.getWorldObj().getBlock(antenna.xCoord + x, antenna.yCoord + y, antenna.zCoord + z)) != null)
 						{

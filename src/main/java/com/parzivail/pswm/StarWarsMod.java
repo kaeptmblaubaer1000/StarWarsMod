@@ -91,6 +91,7 @@ public class StarWarsMod
 	public static boolean isOverlayOnscreen = false;
 
 	public static Block blockMV;
+	public static Block blockLightsaberForge;
 	public static Block blockAntenna;
 	public static Block blockFieldEmitter;
 	public static Block blockDeathStarDoor;
