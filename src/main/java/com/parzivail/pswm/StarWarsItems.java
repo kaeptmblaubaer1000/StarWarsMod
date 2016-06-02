@@ -130,6 +130,7 @@ public class StarWarsItems
 	public static Item spawnProtocol2;
 	public static Item spawnProbe;
 	public static Item spawnMouse;
+	public static Item spawnTrainingRemote;
 	public static Item spawnGonk;
 	public static Item spawnSurgical;
 	public static Item spawnTreadwell;

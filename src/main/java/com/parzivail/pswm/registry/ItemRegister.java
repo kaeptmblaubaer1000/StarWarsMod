@@ -92,6 +92,9 @@ public class ItemRegister
 		StarWarsItems.spawnXwing = new ItemSpawnXWing();
 		GameRegistry.registerItem(StarWarsItems.spawnXwing, "spawnXWing");
 
+		StarWarsItems.spawnTrainingRemote = new ItemSpawnTrainingRemote();
+		GameRegistry.registerItem(StarWarsItems.spawnTrainingRemote, "spawnTrainingRemote");
+
 		StarWarsItems.spawnYwing = new ItemSpawnYWing();
 		GameRegistry.registerItem(StarWarsItems.spawnYwing, "spawnYWing");
 
