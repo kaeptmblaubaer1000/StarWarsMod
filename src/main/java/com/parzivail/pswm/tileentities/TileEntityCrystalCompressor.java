@@ -1,6 +1,8 @@
 package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -9,26 +11,16 @@ import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.potion.PotionHelper;
 import net.minecraft.tileentity.TileEntity;
-
-import java.util.List;
 
 public class TileEntityCrystalCompressor extends TileEntity implements ISidedInventory
 {
 	private static final int[] field_145941_a = new int[] { 3 };
 	private static final int[] field_145947_i = new int[] { 0, 1, 2 };
-	/**
-	 * The ItemStacks currently placed in the slots of the brewing stand
-	 */
+
 	private ItemStack[] itemStacks = new ItemStack[4];
 	private int compressTime;
-	/**
-	 * an integer with each bit specifying whether that slot of the stand contains a potion
-	 */
-	private int filledSlots;
-	private Item ingredientID;
-	private String field_145942_n;
+	private int compressTimeMax = 6000;
 
 	public TileEntityCrystalCompressor()
 	{
@@ -43,22 +35,25 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 		return Resources.MODID + ":" + "container.crystalcompressor";
 	}
 
+	@Override
+	public boolean hasCustomInventoryName()
+	{
+		return false;
+	}
+
 	public int getCompressTime()
 	{
 		return compressTime;
 	}
 
+	public int getCompressTimeMax()
+	{
+		return compressTimeMax;
+	}
+
 	public int setCompressTime(int time)
 	{
 		return this.compressTime = time;
-	}
-
-	/**
-	 * Returns if the inventory is named
-	 */
-	public boolean hasCustomInventoryName()
-	{
-		return this.field_145942_n != null && this.field_145942_n.length() > 0;
 	}
 
 	/**
@@ -75,137 +70,43 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 		{
 			--this.compressTime;
 
-			if (this.compressTime == 0)
+			if (this.compressTime == 0 || compressTime % 20 == 0)
 			{
-				this.brewPotions();
+				this.compress();
 				this.markDirty();
 			}
-			else if (!this.canBrew())
-			{
-				this.compressTime = 0;
-				this.markDirty();
-			}
-			else if (this.ingredientID != this.itemStacks[3].getItem())
+			else if (!this.canCompress())
 			{
 				this.compressTime = 0;
 				this.markDirty();
 			}
 		}
-		else if (this.canBrew())
+		else if (this.canCompress())
 		{
-			this.compressTime = 400;
-			this.ingredientID = this.itemStacks[3].getItem();
-		}
-
-		int i = this.getFilledSlots();
-
-		if (i != this.filledSlots)
-		{
-			this.filledSlots = i;
-			this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, i, 2);
+			this.compressTime = compressTimeMax;
 		}
 
 		super.updateEntity();
 	}
 
-	private boolean canBrew()
+	private boolean canCompress()
 	{
-		if (this.itemStacks[3] != null && this.itemStacks[3].stackSize > 0)
-		{
-			ItemStack itemstack = this.itemStacks[3];
-
-			if (!itemstack.getItem().isPotionIngredient(itemstack))
-			{
-				return false;
-			}
-			else
-			{
-				boolean flag = false;
-
-				for (int i = 0; i < 3; ++i)
-				{
-					if (this.itemStacks[i] != null && this.itemStacks[i].getItem() instanceof ItemPotion)
-					{
-						int j = this.itemStacks[i].getItemDamage();
-						int k = this.func_145936_c(j, itemstack);
-
-						if (!ItemPotion.isSplash(j) && ItemPotion.isSplash(k))
-						{
-							flag = true;
-							break;
-						}
-
-						List list = Items.potionitem.getEffects(j);
-						List list1 = Items.potionitem.getEffects(k);
-
-						if ((j <= 0 || list != list1) && (list == null || !list.equals(list1) && list1 != null) && j != k)
-						{
-							flag = true;
-							break;
-						}
-					}
-				}
-
-				return flag;
-			}
-		}
-		else
-		{
-			return false;
-		}
+		Item ingredient = StarWarsItems.lightsaberCrystal;
+		return ItemUtils.is(itemStacks[0], ingredient) && ItemUtils.is(itemStacks[1], ingredient) && ItemUtils.is(itemStacks[2], ingredient) && (itemStacks[3] == null || itemStacks[3].getItem() == StarWarsItems.lightsaberCrystal);
 	}
 
-	private void brewPotions()
+	private void compress()
 	{
-		if (net.minecraftforge.event.ForgeEventFactory.onPotionAttemptBreaw(itemStacks))
-			return;
-		if (this.canBrew())
+		if (this.canCompress() && ItemUtils.canDeinc(itemStacks[0], 1) && ItemUtils.canDeinc(itemStacks[1], 1) && ItemUtils.canDeinc(itemStacks[2], 1))
 		{
-			ItemStack itemstack = this.itemStacks[3];
-
-			for (int i = 0; i < 3; ++i)
-			{
-				if (this.itemStacks[i] != null && this.itemStacks[i].getItem() instanceof ItemPotion)
-				{
-					int j = this.itemStacks[i].getItemDamage();
-					int k = this.func_145936_c(j, itemstack);
-					List list = Items.potionitem.getEffects(j);
-					List list1 = Items.potionitem.getEffects(k);
-
-					if ((j <= 0 || list != list1) && (list == null || !list.equals(list1) && list1 != null))
-					{
-						if (j != k)
-						{
-							this.itemStacks[i].setItemDamage(k);
-						}
-					}
-					else if (!ItemPotion.isSplash(j) && ItemPotion.isSplash(k))
-					{
-						this.itemStacks[i].setItemDamage(k);
-					}
-				}
-			}
-
-			if (itemstack.getItem().hasContainerItem(itemstack))
-			{
-				this.itemStacks[3] = itemstack.getItem().getContainerItem(itemstack);
-			}
+			ItemUtils.deinc(itemStacks[0], 1);
+			ItemUtils.deinc(itemStacks[1], 1);
+			ItemUtils.deinc(itemStacks[2], 1);
+			if (itemStacks[3] == null)
+				itemStacks[3] = new ItemStack(StarWarsItems.lightsaberCrystal, 1);
 			else
-			{
-				--this.itemStacks[3].stackSize;
-
-				if (this.itemStacks[3].stackSize <= 0)
-				{
-					this.itemStacks[3] = null;
-				}
-			}
-			net.minecraftforge.event.ForgeEventFactory.onPotionBrewed(itemStacks);
+				ItemUtils.inc(itemStacks[3], 1);
 		}
-	}
-
-	private int func_145936_c(int p_145936_1_, ItemStack p_145936_2_)
-	{
-		return p_145936_2_ == null ? p_145936_1_ : (p_145936_2_.getItem().isPotionIngredient(p_145936_2_) ? PotionHelper.applyIngredient(p_145936_1_, p_145936_2_.getItem().getPotionEffect(p_145936_2_)) : p_145936_1_);
 	}
 
 	public void readFromNBT(NBTTagCompound p_145839_1_)
@@ -226,11 +127,6 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 		}
 
 		this.compressTime = p_145839_1_.getShort("BrewTime");
-
-		if (p_145839_1_.hasKey("CustomName", 8))
-		{
-			this.field_145942_n = p_145839_1_.getString("CustomName");
-		}
 	}
 
 	public void writeToNBT(NBTTagCompound p_145841_1_)
@@ -251,11 +147,6 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 		}
 
 		p_145841_1_.setTag("Items", nbttaglist);
-
-		if (this.hasCustomInventoryName())
-		{
-			p_145841_1_.setString("CustomName", this.field_145942_n);
-		}
 	}
 
 	/**
@@ -343,24 +234,6 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
 	{
 		return p_94041_1_ == 3 ? p_94041_2_.getItem().isPotionIngredient(p_94041_2_) : p_94041_2_.getItem() instanceof ItemPotion || p_94041_2_.getItem() == Items.glass_bottle;
-	}
-
-	/**
-	 * Returns an integer with each bit specifying whether that slot of the stand contains a potion
-	 */
-	private int getFilledSlots()
-	{
-		int i = 0;
-
-		for (int j = 0; j < 3; ++j)
-		{
-			if (this.itemStacks[j] != null)
-			{
-				i |= 1 << j;
-			}
-		}
-
-		return i;
 	}
 
 	/**

@@ -12,16 +12,15 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.stats.AchievementList;
 import net.minecraft.util.MathHelper;
 
-public class SlotCrystal extends Slot
+public class SlotCrystalOutput extends Slot
 {
 	/**
 	 * The player that is using the GUI where this slot resides.
 	 */
 	private EntityPlayer thePlayer;
 	private int field_75228_b;
-	private static final String __OBFID = "CL_00001749";
 
-	public SlotCrystal(EntityPlayer p_i1813_1_, IInventory p_i1813_2_, int p_i1813_3_, int p_i1813_4_, int p_i1813_5_)
+	public SlotCrystalOutput(EntityPlayer p_i1813_1_, IInventory p_i1813_2_, int p_i1813_3_, int p_i1813_4_, int p_i1813_5_)
 	{
 		super(p_i1813_2_, p_i1813_3_, p_i1813_4_, p_i1813_5_);
 		this.thePlayer = p_i1813_1_;
@@ -32,7 +31,7 @@ public class SlotCrystal extends Slot
 	 */
 	public boolean isItemValid(ItemStack p_75214_1_)
 	{
-		return true;
+		return false;
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package com.parzivail.util.world;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -22,5 +23,46 @@ public class ItemUtils
 			return true;
 		}
 		return false;
+	}
+
+	public static boolean is(ItemStack stack, Item item)
+	{
+		return stack != null && stack.getItem() == item;
+	}
+
+	public static boolean are(ItemStack[] stacks, Item item)
+	{
+		boolean flag = true;
+		for (ItemStack stack : stacks)
+			flag = flag && is(stack, item);
+		return flag;
+	}
+
+	public static boolean deinc(ItemStack stack, int amount)
+	{
+		if (!canDeinc(stack, amount))
+			return false;
+
+		stack.stackSize -= amount;
+		return true;
+	}
+
+	public static boolean canDeinc(ItemStack stack, int amount)
+	{
+		return !(stack == null || stack.stackSize < amount);
+	}
+
+	public static boolean inc(ItemStack stack, int amount)
+	{
+		if (!canInc(stack, amount))
+			return false;
+
+		stack.stackSize += amount;
+		return true;
+	}
+
+	public static boolean canInc(ItemStack stack, int amount)
+	{
+		return !(stack == null || stack.stackSize + amount > 64);
 	}
 }

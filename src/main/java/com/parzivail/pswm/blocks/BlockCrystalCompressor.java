@@ -105,7 +105,7 @@ public class BlockCrystalCompressor extends BlockContainer
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int metadata, float e, float f, float g)
 	{
-		if (world.isRemote)
+		if (!world.isRemote)
 			player.openGui(StarWarsMod.instance, Resources.GUI_CRYSTALCOMPRESSOR, world, x, y, z);
 		return true;
 	}
