@@ -20,6 +20,16 @@ public class RecipeRegister
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsItems.hiltMetelAlloy, 'N', Items.quartz, 'R', Blocks.diamond_block, 'G', Blocks.glass_pane);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.containmentField, 1), "AIA", "IEI", "AIA", 'A', StarWarsItems.titaniumChromiumIngot, 'I', Items.iron_ingot, 'E', Items.ender_eye);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.hiltMetelCompound, 1), "AIA", "IAI", "AIA", 'A', StarWarsItems.chromiumDust, 'I', StarWarsItems.titaniumDust);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.magneticStabilizingRing, 1), " I ", "I I", " I ", 'I', StarWarsItems.ingotExonium);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.energyModulationCircuit, 1), "QQQ", "QKQ", "RKR", 'Q', Items.quartz, 'K', StarWarsItems.ingotKelerium, 'R', Items.redstone);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), "XGX", "G G", "XGX", 'X', StarWarsItems.ingotExonium, 'G', Items.gold_ingot);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.diatiumPowerCell, 1), "DDD", "DPD", "DPD", 'D', StarWarsItems.ingotDiatium, 'P', StarWarsItems.powerpack);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.energyGate, 1), " K ", " Q ", " K ", 'K', StarWarsItems.ingotKelerium, 'Q', Items.quartz);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.powerVortexRing, 1), "TTT", "T T", "TTT", 'T', StarWarsItems.ingotThorolide);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.inertPowerInsulator, 1), "C C", "C C", "C C", 'C', StarWarsItems.chromiumDust);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.apexSeal, 1), " A ", "A A", " A ", 'A', StarWarsItems.airsealGel);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.airsealGel, 1), "HHH", "HWH", "HHH", 'H', StarWarsItems.ingotHelicite, 'W', Items.water_bucket);
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.silverImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.imperialCredit);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.goldImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.silverImperialCredit);
@@ -33,7 +43,7 @@ public class RecipeRegister
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blockTitaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.titaniumChromiumIngot);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.hyperdriveMotivator, 1), " B ", " A ", " B ", 'A', Blocks.quartz_block, 'B', StarWarsMod.blockTitaniumChromiumBlock);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.hyperdriveMotivator, 1), "RBR", "RAR", "RBR", 'A', Blocks.quartz_block, 'B', StarWarsMod.blockTitaniumChromiumBlock, 'R', StarWarsItems.ingotRubindum);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.hyperdriveEngine, 1), " F ", " B ", " A ", 'F', StarWarsItems.containmentField, 'B', StarWarsItems.hyperdriveMotivator, 'A', StarWarsItems.titaniumChromiumIngot);
 
 		if (ConfigOptions.enableBuckets)
