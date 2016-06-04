@@ -1,4 +1,4 @@
-package com.parzivail.pswm.items.crafting;
+package com.parzivail.pswm.items.lightsaber;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
@@ -15,7 +15,7 @@ import java.util.List;
 public class ItemLightsaberCrystal extends Item
 {
 	public String name = "lightsaberCrystal";
-	public String[] colors = { "red", "green", "blue" };
+	public String[] colors = { "red", "green", "blue", "black", "cyan", "gray", "pink", "purple", "white", "yellow", "prism", "shard" };
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 

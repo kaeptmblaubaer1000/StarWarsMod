@@ -67,6 +67,7 @@ public class SlotCrystal extends Slot
 
 	public static boolean canHold(ItemStack p_75243_0_)
 	{
+		// 11
 		return p_75243_0_ != null && p_75243_0_.getItem() == StarWarsItems.lightsaberCrystal;
 	}
 

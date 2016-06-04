@@ -27,14 +27,24 @@ public class ItemUtils
 
 	public static boolean is(ItemStack stack, Item item)
 	{
-		return stack != null && stack.getItem() == item;
+		return is(stack, item, 0);
+	}
+
+	public static boolean is(ItemStack stack, Item item, int meta)
+	{
+		return stack != null && stack.getItem() == item && stack.getItemDamage() == meta;
 	}
 
 	public static boolean are(ItemStack[] stacks, Item item)
 	{
+		return are(stacks, item, 0);
+	}
+
+	public static boolean are(ItemStack[] stacks, Item item, int meta)
+	{
 		boolean flag = true;
 		for (ItemStack stack : stacks)
-			flag = flag && is(stack, item);
+			flag = flag && is(stack, item, meta);
 		return flag;
 	}
 

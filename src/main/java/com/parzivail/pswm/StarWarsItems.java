@@ -1,6 +1,6 @@
 package com.parzivail.pswm;
 
-import com.parzivail.pswm.items.crafting.ItemLightsaberCrystal;
+import com.parzivail.pswm.items.lightsaber.ItemLightsaberCrystal;
 import com.parzivail.pswm.items.weapons.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;

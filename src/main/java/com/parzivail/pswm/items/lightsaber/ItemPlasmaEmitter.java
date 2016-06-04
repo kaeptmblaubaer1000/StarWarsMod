@@ -1,4 +1,4 @@
-package com.parzivail.pswm.items.crafting;
+package com.parzivail.pswm.items.lightsaber;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;

@@ -70,20 +70,16 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 		{
 			--this.compressTime;
 
-			if (this.compressTime == 0 || compressTime % 20 == 0)
+			if (this.compressTime == 0)
 			{
 				this.compress();
 				this.markDirty();
 			}
-			else if (!this.canCompress())
-			{
-				this.compressTime = 0;
-				this.markDirty();
-			}
 		}
-		else if (this.canCompress())
+		else if (this.canCompress() && initCompress())
 		{
 			this.compressTime = compressTimeMax;
+			this.markDirty();
 		}
 
 		super.updateEntity();
@@ -92,21 +88,33 @@ public class TileEntityCrystalCompressor extends TileEntity implements ISidedInv
 	private boolean canCompress()
 	{
 		Item ingredient = StarWarsItems.lightsaberCrystal;
-		return ItemUtils.is(itemStacks[0], ingredient) && ItemUtils.is(itemStacks[1], ingredient) && ItemUtils.is(itemStacks[2], ingredient) && (itemStacks[3] == null || itemStacks[3].getItem() == StarWarsItems.lightsaberCrystal);
+		return ItemUtils.is(itemStacks[0], ingredient, 11) && ItemUtils.is(itemStacks[1], ingredient, 11) && ItemUtils.is(itemStacks[2], ingredient, 11) && (itemStacks[3] == null || ItemUtils.is(itemStacks[3], ingredient));
 	}
 
 	private void compress()
+	{
+		if (itemStacks[3] == null)
+			itemStacks[3] = new ItemStack(StarWarsItems.lightsaberCrystal, 1);
+		else
+			ItemUtils.inc(itemStacks[3], 1);
+	}
+
+	private boolean initCompress()
 	{
 		if (this.canCompress() && ItemUtils.canDeinc(itemStacks[0], 1) && ItemUtils.canDeinc(itemStacks[1], 1) && ItemUtils.canDeinc(itemStacks[2], 1))
 		{
 			ItemUtils.deinc(itemStacks[0], 1);
 			ItemUtils.deinc(itemStacks[1], 1);
 			ItemUtils.deinc(itemStacks[2], 1);
-			if (itemStacks[3] == null)
-				itemStacks[3] = new ItemStack(StarWarsItems.lightsaberCrystal, 1);
-			else
-				ItemUtils.inc(itemStacks[3], 1);
+			if (itemStacks[0].stackSize == 0)
+				itemStacks[0] = null;
+			if (itemStacks[1].stackSize == 0)
+				itemStacks[1] = null;
+			if (itemStacks[2].stackSize == 0)
+				itemStacks[2] = null;
+			return true;
 		}
+		return false;
 	}
 
 	public void readFromNBT(NBTTagCompound p_145839_1_)
