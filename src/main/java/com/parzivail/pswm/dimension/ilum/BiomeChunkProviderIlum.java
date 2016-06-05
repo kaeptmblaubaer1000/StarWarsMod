@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension.ilum;
 
+import com.parzivail.pswm.StarWarsMod;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -303,7 +304,7 @@ public class BiomeChunkProviderIlum extends ChunkProviderGenerate
 
 							for (int k3 = 0; k3 < 4; ++k3)
 								if ((d15 += d16) > 0.0D)
-									p_147424_3_[j3 += short1] = Blocks.stone;
+									p_147424_3_[j3 += short1] = StarWarsMod.blockIlumStone;
 								else if (k2 * 8 + l2 < b0)
 									p_147424_3_[j3 += short1] = Blocks.snow;
 								else

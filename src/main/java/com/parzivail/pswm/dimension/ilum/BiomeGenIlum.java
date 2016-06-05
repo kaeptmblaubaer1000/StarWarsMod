@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension.ilum;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -26,7 +27,7 @@ public class BiomeGenIlum extends BiomeGenPSWM
 		this.spawnableWaterCreatureList.clear();
 
 		this.topBlock = Blocks.snow;
-		this.fillerBlock = Blocks.stone;
+		this.fillerBlock = StarWarsMod.blockIlumStone;
 
 		this.theBiomeDecorator.treesPerChunk = -999;
 		this.theBiomeDecorator.deadBushPerChunk = -999;
