@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -24,6 +25,21 @@ public class ItemLightsaberCrystal extends Item
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
+	{
+		if (stack != null && stack.getItemDamage() == 10)
+		{
+			list.add("As you turn it in your hand, you notice");
+			list.add("it can produce many different colors...");
+		}
+		else if (stack != null && stack.getItemDamage() == 11)
+		{
+			list.add("You groan when you realize this isn't");
+			list.add("the full crystal, but merely a shard");
+		}
 	}
 
 	@Override
