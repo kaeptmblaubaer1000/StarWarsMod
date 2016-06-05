@@ -122,6 +122,8 @@ public class StarWarsMod
 	public static Block blockBasket;
 	public static Block blockBactaTank;
 
+	public static Block blockMovingLightSource;
+
 	public static Block blockSensorXWing;
 	public static Block blockSensorYWing;
 	public static Block blockSensorAWing;
@@ -359,6 +361,8 @@ public class StarWarsMod
 		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
 		ConfigOptions.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
 		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
+
+		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true).getBoolean();
 
 		Resources.planetTextures.put(Resources.ConfigOptions.dimAlderaanId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimBespinId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetBespin.png"));

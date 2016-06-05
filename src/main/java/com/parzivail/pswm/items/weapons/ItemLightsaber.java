@@ -223,4 +223,11 @@ public class ItemLightsaber extends ItemSword
 
 		stack.stackTagCompound = nbt;
 	}
+
+	public static boolean isOn(ItemStack stack)
+	{
+		if (stack == null || !stack.hasTagCompound())
+			return false;
+		return stack.stackTagCompound.getBoolean(nbtBladeOn);
+	}
 }

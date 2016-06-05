@@ -21,6 +21,7 @@ import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
 import com.parzivail.util.ui.Lumberjack;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -35,6 +36,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
@@ -338,6 +340,32 @@ public class CommonEventHandler
 		}
 		else
 			StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
+	}
+
+	@SubscribeEvent(priority = EventPriority.NORMAL,
+	                receiveCanceled = true)
+	public void onEvent(TickEvent.PlayerTickEvent event)
+	{
+		if (!Resources.ConfigOptions.enableLightsaberLight)
+			return;
+		if (event.phase == TickEvent.Phase.START && !event.player.worldObj.isRemote)
+		{
+			if (event.player.getCurrentEquippedItem() != null)
+			{
+				if (ItemLightsaber.isOn(event.player.getCurrentEquippedItem()))
+				{
+					int blockX = MathHelper.floor_double(event.player.posX);
+					int blockY = MathHelper.floor_double(event.player.posY - 0.2D -
+							event.player.getYOffset());
+					int blockZ = MathHelper.floor_double(event.player.posZ);
+
+					if (event.player.worldObj.getBlock(blockX, blockY, blockZ) == Blocks.air)
+						event.player.worldObj.setBlock(blockX, blockY, blockZ, StarWarsMod.blockMovingLightSource);
+					else if (event.player.worldObj.getBlock(blockX + (int)event.player.getLookVec().xCoord, blockY + (int)event.player.getLookVec().yCoord, blockZ + (int)event.player.getLookVec().zCoord) == Blocks.air)
+						event.player.worldObj.setBlock(blockX, blockY, blockZ, StarWarsMod.blockMovingLightSource);
+				}
+			}
+		}
 	}
 
 	@SubscribeEvent

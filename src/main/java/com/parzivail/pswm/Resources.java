@@ -65,6 +65,7 @@ public class Resources
 		public static boolean enableFlyCommand;
 		public static boolean enableDimCommand;
 		public static boolean enableBetaFeatures;
+		public static boolean enableLightsaberLight;
 	}
 
 	// Core
