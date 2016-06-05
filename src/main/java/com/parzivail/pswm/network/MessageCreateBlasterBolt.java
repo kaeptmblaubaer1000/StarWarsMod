@@ -101,6 +101,12 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 					float ax = (float)Math.cos(Math.toRadians(yaw)) / 2;
 					float az = (float)Math.sin(Math.toRadians(yaw)) / 2;
 
+					if (this.sender.ridingEntity instanceof VehicYWing)
+					{
+						ax *= 15;
+						az *= 15;
+					}
+
 					EntityBomb bolt1 = new EntityBomb(world);
 					bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
 					bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);

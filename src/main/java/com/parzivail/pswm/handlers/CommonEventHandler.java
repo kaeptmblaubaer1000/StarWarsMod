@@ -142,7 +142,7 @@ public class CommonEventHandler
 				{
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.BOMB));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
-					StarWarsMod.shipSpecialWeaponCooldown = 200;
+					StarWarsMod.shipSpecialWeaponCooldown = 0;
 				}
 			}
 		}
