@@ -72,6 +72,8 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");
 		EntityUtils.registerEntity(EntityBlasterProbeBolt.class, "blasterProbeBolt");
+		EntityUtils.registerEntity(EntityProtonTorpedo.class, "protonTorpedo");
+		EntityUtils.registerEntity(EntityBomb.class, "tieBomb");
 		EntityUtils.registerEntity(EntityDestruction.class, "destructionBolt");
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "blasterXWingBolt");

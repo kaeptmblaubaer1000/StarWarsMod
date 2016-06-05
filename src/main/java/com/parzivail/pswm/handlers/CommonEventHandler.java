@@ -128,6 +128,25 @@ public class CommonEventHandler
 			}
 		}
 
+		if (KeybindRegistry.keyShootProton.isPressed())
+		{
+			if (StarWarsMod.mc.thePlayer.ridingEntity != null && StarWarsMod.shipSpecialWeaponCooldown == 0)
+			{
+				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+				{
+					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.PROTON));
+					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
+					StarWarsMod.shipSpecialWeaponCooldown = 200;
+				}
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
+				{
+					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.BOMB));
+					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
+					StarWarsMod.shipSpecialWeaponCooldown = 200;
+				}
+			}
+		}
+
 		if (KeybindRegistry.keySFoil.isPressed())
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
 			{
@@ -330,6 +349,9 @@ public class CommonEventHandler
 		AnimationManager.tick();
 
 		ClientEventHandler.soundManager.tick();
+
+		if (StarWarsMod.shipSpecialWeaponCooldown > 0)
+			StarWarsMod.shipSpecialWeaponCooldown--;
 
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;

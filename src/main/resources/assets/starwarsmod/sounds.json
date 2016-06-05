@@ -71,6 +71,12 @@
       "vehicle/awing/move1"
     ]
   },
+  "vehicle.xwing.proton": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/xwing/proton"
+    ]
+  },
   "vehicle.xwing.move": {
     "category": "neutral",
     "sounds": [

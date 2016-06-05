@@ -133,6 +133,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTIEBolt.class, new RenderBlasterBolt(GLPalette.NEON_GREEN, 2.0f));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDestruction.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterEzraBolt.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
+		RenderingRegistry.registerEntityRenderingHandler(EntityProtonTorpedo.class, new RenderWarhead(0xFFB20046));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBomb.class, new RenderWarhead(GLPalette.BLACK));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrownSaber.class, new RenderThrownSaber());
 

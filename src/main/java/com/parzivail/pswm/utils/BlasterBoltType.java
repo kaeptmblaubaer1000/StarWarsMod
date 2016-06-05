@@ -11,5 +11,8 @@ public class BlasterBoltType
 	public static final int ATST = 7;
 	public static final int AWING = 8;
 
+	public static final int PROTON = 9;
+	public static final int BOMB = 10;
+
 	public static final int EZRA = 3;
 }

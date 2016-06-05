@@ -1,9 +1,6 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.entities.EntityBlasterEzraBolt;
-import com.parzivail.pswm.entities.EntitySpeederBlasterRifleBolt;
-import com.parzivail.pswm.entities.EntityTIEBolt;
-import com.parzivail.pswm.entities.EntityXWingBolt;
+import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.network.PMessage;
@@ -73,6 +70,48 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 					bolt4.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
 					bolt4.setSender(this.sender);
 					world.spawnEntityInWorld(bolt4);
+				}
+				break;
+			case BlasterBoltType.PROTON:
+				if (this.sender.ridingEntity instanceof VehicXWing)
+				{
+					float yaw = this.sender.rotationYaw;
+
+					float ax = (float)Math.cos(Math.toRadians(yaw)) / 2;
+					float az = (float)Math.sin(Math.toRadians(yaw)) / 2;
+
+					EntityProtonTorpedo bolt1 = new EntityProtonTorpedo(world);
+					bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
+					bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+					bolt1.setSender(this.sender);
+					world.spawnEntityInWorld(bolt1);
+
+					EntityProtonTorpedo bolt2 = new EntityProtonTorpedo(world);
+					bolt2.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
+					bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+					bolt2.setSender(this.sender);
+					world.spawnEntityInWorld(bolt2);
+				}
+				break;
+			case BlasterBoltType.BOMB:
+				if (this.sender.ridingEntity instanceof VehicYWing || this.sender.ridingEntity instanceof VehicTIEBomber)
+				{
+					float yaw = this.sender.rotationYaw;
+
+					float ax = (float)Math.cos(Math.toRadians(yaw)) / 2;
+					float az = (float)Math.sin(Math.toRadians(yaw)) / 2;
+
+					EntityBomb bolt1 = new EntityBomb(world);
+					bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
+					bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+					bolt1.setSender(this.sender);
+					world.spawnEntityInWorld(bolt1);
+
+					EntityBomb bolt2 = new EntityBomb(world);
+					bolt2.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
+					bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+					bolt2.setSender(this.sender);
+					world.spawnEntityInWorld(bolt2);
 				}
 				break;
 			case BlasterBoltType.SPEEDER:
