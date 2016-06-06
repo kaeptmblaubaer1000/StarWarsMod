@@ -96,9 +96,9 @@ public class BlockAntenna extends BlockContainer implements IDebugProvider
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if (tile instanceof TileEntityAntenna)
 		{
-			TileEntityAntenna vap = (TileEntityAntenna)tile;
+			TileEntityAntenna tile1 = (TileEntityAntenna)tile;
 			int l = MathHelper.floor_double(player.rotationYaw * 8.0F / 360.0F + 0.5D) & 0x3;
-			vap.setFacing(l);
+			tile1.setFacing(l);
 		}
 	}
 
