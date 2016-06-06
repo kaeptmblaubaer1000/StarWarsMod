@@ -9,7 +9,7 @@ public class BlockDeathStarLight extends BlockLitMultiTexture
 {
 	public BlockDeathStarLight()
 	{
-		super("deathStarLight", new String[] { "HangarFloorSmall", "HangarFloor", "PureWhite", "HangarWallVertical", "Extra1", "Extra2" }, 1, Material.rock);
+		super("deathStarLight", new String[] { "HangarFloorSmall", "HangarFloor", "PureWhite", "HangarWallVertical", "HangarFloor2", "Extra2" }, 1, Material.rock);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

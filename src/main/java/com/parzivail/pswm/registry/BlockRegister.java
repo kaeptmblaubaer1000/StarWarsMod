@@ -137,15 +137,12 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairsSlabTopDark, "blockTempleStoneStairsSlabTopDark");
 
 		StarWarsMod.blockTempleStoneSlab = new BlockTempleStoneSlab(false, false);
-
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlab, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlab");
 
 		StarWarsMod.blockTempleStoneLit = new BlockTempleStone(true);
-
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneLit, ItemTempleStoneBlock.class, "blockTempleStoneLit");
 
 		StarWarsMod.blockTempleStoneSlabLit = new BlockTempleStoneSlab(false, true);
-
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneSlabLit, ItemTempleStoneSlabBlock.class, "blockTempleStoneSlabLit");
 
 		StarWarsMod.blockIoniteOre = new BlockIoniteOre();
@@ -186,6 +183,12 @@ public class BlockRegister
 
 		StarWarsMod.blockDeathStarGlass = new BlockDeathStarGlass();
 		GameRegistry.registerBlock(StarWarsMod.blockDeathStarGlass, "deathStarGlass");
+
+		StarWarsMod.blockDeathStarLightStairs = new BlockDeathStarLightStairs();
+		GameRegistry.registerBlock(StarWarsMod.blockDeathStarLightStairs, "blockDeathStarLightStairs");
+
+		StarWarsMod.blockDeathStarLightFence = new BlockDeathStarLightFence();
+		GameRegistry.registerBlock(StarWarsMod.blockDeathStarLightFence, "blockDeathStarLightFence");
 
 		StarWarsMod.blockMudStairs = new BlockMudStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockMudStairs, "mudStairs");
