@@ -66,7 +66,6 @@ public class StarWarsMod
 	@SideOnly(Side.CLIENT)
 	public static Minecraft mc;
 
-	@SideOnly(Side.CLIENT)
 	public static int shipSpecialWeaponCooldown = 0;
 
 	static ClientEventHandler clientHandler;
