@@ -24,7 +24,7 @@ public class ModelMaceBladeLong extends ModelBase implements IHandlesRender
 		this.textureHeight = 512;
 		this.shape1 = new ModelRenderer(this, 0, 0);
 		this.shape1.setRotationPoint(6.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-145.1F, 1.0F, 1.0F, 140, 3, 3, 0.0F);
+		this.shape1.addBox(-185.1F, 1.0F, 1.0F, 180, 3, 3, 0.0F);
 	}
 
 	@Override
