@@ -435,6 +435,16 @@ public class GuiScreenLightsaberForge extends GuiScreen
 				GL11.glScalef(0.26f, 0.26f, 0.26f);
 				GL11.glTranslatef(0, 3.08f, 0);
 			}
+			else if (s.equals("mace"))
+			{
+				GL11.glScalef(0.34f, 0.34f, 0.34f);
+				GL11.glTranslatef(0, -0.75f, 0);
+			}
+			else if (s.equals("yoda"))
+			{
+				GL11.glScalef(0.26f, 0.26f, 0.26f);
+				GL11.glTranslatef(0, 1.0f, 0);
+			}
 		}
 
 		renderLightsaber.renderItem(ItemRenderType.ENTITY, stackShowing);
