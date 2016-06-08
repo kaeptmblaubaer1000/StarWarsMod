@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-public class RenderBlockTatooineTable extends TileEntitySpecialRenderer
+public class RenderMudTable extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation textures = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/blockTable.png");
+	public static ResourceLocation textures = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/blockMudTable.png");
 	private final ModelBlockTable model;
 
-	public RenderBlockTatooineTable()
+	public RenderMudTable()
 	{
 		this.model = new ModelBlockTable();
 	}

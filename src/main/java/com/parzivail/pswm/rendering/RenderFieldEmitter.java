@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class RenderBlockFieldEmitter extends TileEntitySpecialRenderer
+public class RenderFieldEmitter extends TileEntitySpecialRenderer
 {
 	private static void renderCube(Tessellator tes, float x, float y, float z)
 	{

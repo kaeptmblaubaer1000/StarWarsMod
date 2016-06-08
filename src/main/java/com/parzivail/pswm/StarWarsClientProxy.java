@@ -14,6 +14,8 @@ import com.parzivail.pswm.registry.RegisterGuiOverlays;
 import com.parzivail.pswm.rendering.*;
 import com.parzivail.pswm.rendering.helper.PSWMEntityRenderer;
 import com.parzivail.pswm.rendering.item.*;
+import com.parzivail.pswm.rendering.itemblock.*;
+import com.parzivail.pswm.rendering.itemdroid.*;
 import com.parzivail.pswm.rendering.vehicles.*;
 import com.parzivail.pswm.tileentities.*;
 import com.parzivail.pswm.vehicles.*;
@@ -27,6 +29,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
@@ -69,7 +72,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobBantha.class, new RenderBantha(new ModelBantha(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobWampa.class, new RenderWampa(new ModelWampa(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTusken.class, new RenderTusken(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobDroidGNK.class, new RenderGNK(new ModelGNK(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobDroidGNK.class, new RenderGNK(new ModelDroidGNK(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobGamorrean.class, new RenderGamorrean(new ModelGamorrean(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDewback.class, new RenderDewback(new ModelDewback(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTatooineCommoner.class, new RenderCommoner(new ModelBiped(), 0.5F));
@@ -170,16 +173,41 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnNpcXwing, new RenderSpawnXWing());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnJakkuSpeeder, new RenderSpawnJakkuSpeeder());
 
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnProtocol, new RenderSpawnProtocol());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnProtocol2, new RenderSpawnProtocolHoth());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromech, new RenderSpawnAstromech1());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromechImperial, new RenderSpawnAstromech1Imperial());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromech2, new RenderSpawnAstromech2());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromechImperial2, new RenderSpawnAstromech2Imperial());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnProbe, new RenderSpawnProbe());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnSurgical, new RenderSpawnMedical());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnGonk, new RenderSpawnGNK());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromechBb8, new RenderSpawnAstromechBB8());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnMouse, new RenderSpawnMouse());
+
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHyperdrive), new RenderBlockHyperdrive());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHangingBucket), new RenderBlockHangingBucket());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHangingCauldron), new RenderBlockHangingCauldron());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockAntenna), new RenderBlockAntenna());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockBactaTank), new RenderBlockBactaTank());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockBasket), new RenderBlockBasket());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockCrystalCompressor), new RenderBlockCrystalCompressor());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockDeathStarDoor), new RenderBlockDeathStarDoor());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockLightsaberForge), new RenderBlockLightsaberForge());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockTable), new RenderBlockTatooineTable());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockTable2), new RenderBlockMudTable());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockMV), new RenderBlockMV());
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new RenderAntenna());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHoloTableBase.class, new RenderHoloTable());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderBlockTatooineTable());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderBlockMudTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTatooineTable.class, new RenderTatooineTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMudTable.class, new RenderMudTable());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingCauldron.class, new RenderHangingCauldron());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingBucket.class, new RenderHangingBucket());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBasket.class, new RenderBasket());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFieldEmitter.class, new RenderBlockFieldEmitter());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFieldEmitter.class, new RenderFieldEmitter());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBactaTank.class, new RenderBactaTank());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientJediStatue.class, new RenderAncientJediStatue());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpc.class, new RenderStaticNpc());

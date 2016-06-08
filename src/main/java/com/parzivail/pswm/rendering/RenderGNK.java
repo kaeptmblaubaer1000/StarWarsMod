@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.mobs.ModelGNK;
+import com.parzivail.pswm.models.mobs.ModelDroidGNK;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,7 +12,7 @@ public class RenderGNK extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/gnk.png");
 
-	public RenderGNK(ModelGNK modelGNK, float par2)
+	public RenderGNK(ModelDroidGNK modelGNK, float par2)
 	{
 		super(modelGNK, par2);
 	}

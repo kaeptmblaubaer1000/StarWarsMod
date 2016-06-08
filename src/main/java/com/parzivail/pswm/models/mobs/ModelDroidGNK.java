@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class ModelGNK extends ModelBase
+public class ModelDroidGNK extends ModelBase
 {
 	ModelRenderer FootL;
 	ModelRenderer TopBody;
@@ -18,7 +18,7 @@ public class ModelGNK extends ModelBase
 	ModelRenderer FootR;
 	float animScale = 0.5F;
 
-	public ModelGNK()
+	public ModelDroidGNK()
 	{
 		this.textureWidth = 64;
 		this.textureHeight = 128;
