@@ -32,7 +32,6 @@ public class RenderBlockHyperdrive implements IItemRenderer
 	{
 		GL11.glPushMatrix();
 		this.tile.setWorldObj(StarWarsMod.mc.theWorld);
-		this.tile.updateEntity();
 		switch (type)
 		{
 			case INVENTORY:
