@@ -23,7 +23,7 @@ public class GuiHandler implements IGuiHandler
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new GuiHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_QUESTNPC)
-			return new GuiQuestNpc(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)).getId());
+			return new GuiQuestNpc(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)));
 		else if (id == Resources.GUI_QUEST)
 			return new GuiQuestLog(player);
 		else if (id == Resources.GUI_LSFORGE)

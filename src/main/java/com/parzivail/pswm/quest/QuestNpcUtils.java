@@ -14,10 +14,10 @@ public class QuestNpcUtils
 		return quest + ":" + side + ":" + skin;
 	}
 
-	public static String getNpcQuest(String npcId)
+	public static Quest getNpcQuest(String npcId)
 	{
 		String[] ids = npcId.split(":");
-		return (ids.length == 3) ? ids[0] : "";
+		return QuestBank.getQuestByName(ids.length == 3 ? ids[0] : "");
 	}
 
 	public static String getNpcSide(String npcId)
@@ -37,19 +37,16 @@ public class QuestNpcUtils
 		switch (armor)
 		{
 			case "rebelPilot":
-				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.rebelPilotHelmet, 1));
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.rebelPilotChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.rebelPilotLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.rebelPilotBoots, 1));
 				break;
 			case "rebelHoth":
-				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.hothHelmet, 1));
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.hothChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.hothLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.hothBoots, 1));
 				break;
 			case "rebelEndor":
-				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.endorHelmet, 1));
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.endorChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.endorLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.endorBoots, 1));

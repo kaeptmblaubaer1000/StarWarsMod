@@ -2,6 +2,7 @@ package com.parzivail.pswm.blocks.npc;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
@@ -25,16 +26,18 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 	public String id;
 	String armor;
 
-	public BlockNpcBase(String quest, String armor, String side, String skin)
+	public BlockNpcBase(Quest quest, String armor, String side, String skin)
 	{
 		super(Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "staticNpc" + quest);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 
-		this.id = QuestNpcUtils.makeNpcId(quest, side, skin);
+		this.id = QuestNpcUtils.makeNpcId(quest.getID().toLowerCase().replaceAll("[^a-z]", ""), side.toLowerCase().replaceAll("[^a-z]", ""), skin);
+
+		setBlockName(Resources.MODID + "." + "staticNpc." + quest.getID().toLowerCase().replaceAll("[^a-z]", ""));
+
 		this.armor = armor;
 	}
 
@@ -42,7 +45,8 @@ public class BlockNpcBase extends BlockContainer implements IDebugProvider
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
 		TileEntityStaticNpc te = new TileEntityStaticNpc();
-		QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
+		if (this.armor != null)
+			QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
 		te.setId(this.id);
 		return te;
 	}

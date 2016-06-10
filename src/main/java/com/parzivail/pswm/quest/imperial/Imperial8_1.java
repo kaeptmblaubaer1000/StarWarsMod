@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial8_1 extends Quest
 {
-	Imperial8_1()
+	public Imperial8_1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Good job retrieving the data Trooper, your work here is done. You're being transferred back to Endor to be in an Imperial Navy unit.";
@@ -28,6 +28,12 @@ public class Imperial8_1 extends Quest
 		this.tree.response3DT.npcHeader = "Good to hear Trooper. Make sure to stop by the Quartermaster for anything you need before you go.";
 		this.tree.response3DT.response1 = "Sir Yes Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Veers";
 	}
 
 	@Override

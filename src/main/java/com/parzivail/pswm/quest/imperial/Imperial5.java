@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial5 extends Quest
 {
-	Imperial5()
+	public Imperial5()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Good job finding those droids Trooper, the Empire was in dire need of this information. Now, I have another mission for you.";
@@ -28,6 +28,12 @@ public class Imperial5 extends Quest
 		this.tree.response3DT.npcHeader = "I like your attitude Trooper. We've received intel about some Rebel smugglers doing operating out of Mos Eisley. Take this ID Scanner and scan people to see their identification. If something about the identification seems off, arrest them and bring them back here. We've only received intel regarding 2 of them, but feel free to bring back as many as you find.";
 		this.tree.response3DT.response1 = "Sir Yes Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Furgan";
 	}
 
 	@Override

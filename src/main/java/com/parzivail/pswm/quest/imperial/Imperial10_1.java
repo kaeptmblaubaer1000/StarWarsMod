@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial10_1 extends Quest
 {
-	Imperial10_1()
+	public Imperial10_1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Nice work destroying those bases Trooper, it looks like you'll fit in just fine in the Imperial Navy. You can now take out any ships you'd like at any time. Be careful though, if we find out you keep crashing ships when you take them out, you'll start to have limited flight privileges.";
@@ -28,6 +28,12 @@ public class Imperial10_1 extends Quest
 		this.tree.response3DT.npcHeader = "That'd be in your best interests Trooper. Now onto your mission. The Rebels have been outgunning us in firefights with their T65 X-Wings, we need to get an up close and personal look at one of them so we can better prepare our fleet. We need you to find and infiltrate their secret temple base on Yavin 4 and steal the plans for a T65 X-Wing and bring them back here so the Research and Development team can have a good look at them.";
 		this.tree.response3DT.response1 = "Sir Yes Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Daala";
 	}
 
 	@Override

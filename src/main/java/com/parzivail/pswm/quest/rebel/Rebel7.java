@@ -82,6 +82,12 @@ public class Rebel7 extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Tantor";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "Meeting the Ewoks";

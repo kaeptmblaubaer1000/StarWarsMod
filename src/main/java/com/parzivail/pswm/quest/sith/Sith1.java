@@ -2,6 +2,7 @@ package com.parzivail.pswm.quest.sith;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
@@ -64,5 +65,11 @@ public class Sith1 extends Quest
 	public String getID()
 	{
 		return "A New Holocron";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return TextUtils.makeObfuscated("Zannah");
 	}
 }

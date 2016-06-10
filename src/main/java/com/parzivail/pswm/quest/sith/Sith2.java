@@ -2,6 +2,7 @@ package com.parzivail.pswm.quest.sith;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
@@ -19,9 +20,15 @@ public class Sith2 extends Quest
 		this.tree.response1DT.response1 = "An Apprentice? What do you mean?";
 		this.tree.response1DT.response1DT = new DialogTree();
 		this.tree.response1DT.response1DT.npcHeader = "Long ago, a man named Darth Bane came to found The Sith Order. He was gifted in The Dark Side and was the first in a long line of Sith Lords. He instituted what is known as the Rule of Two. There may only be two Sith at a time, a Master, and an Apprentice. If you are willing, I will take you as my Apprentice and I will become your Master. The Dark Side flows strongly within you. With my teaching you can become more powerful than you've ever imagined.";
-		this.tree.response1DT.response1DT.response1 = "More powerful than I've ever imagined, I like the sound of that.";
-		this.tree.response1DT.response1DT.response1DT = new DialogTree();
-		this.tree.response1DT.response1DT.response1DT.npcHeader = "Then it is set, I am your Master and you, are my Apprentice. Take these robes as a symbol of your Apprenticeship and return to me when you are ready to construct a Lightsaber more befitting of a Sith.";
+		this.tree.response1DT.response1DT.response2 = "More powerful than I've ever imagined, I like the sound of that.";
+		this.tree.response1DT.response1DT.response2DT = new DialogTree();
+		this.tree.response1DT.response1DT.response2DT.npcHeader = "Then it is set, I am your Master and you, are my Apprentice. Take these robes as a symbol of your Apprenticeship and return to me when you are ready to construct a Lightsaber more befitting of a Sith.";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return TextUtils.makeObfuscated("Zannah");
 	}
 
 	@Override

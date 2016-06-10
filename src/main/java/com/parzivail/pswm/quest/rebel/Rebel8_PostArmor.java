@@ -66,6 +66,12 @@ public class Rebel8_PostArmor extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Dreis";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "Red Squadron";

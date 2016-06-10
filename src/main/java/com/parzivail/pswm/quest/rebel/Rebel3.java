@@ -82,6 +82,12 @@ public class Rebel3 extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Rex";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "Your ticket to the galaxy";

@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial4_3 extends Quest
 {
-	Imperial4_3()
+	public Imperial4_3()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Now that you've got your armor it's time to brief you on your mission Trooper.";
@@ -28,6 +28,12 @@ public class Imperial4_3 extends Quest
 		this.tree.response3DT.npcHeader = "Good to hear Trooper. I need you to find and bring back 2 escaped droids. You'll be looking for a gold Protocol Droid and a blue Astromech. Bring them to me unharmed, we need information that they carry about the Rebels. Take a Dewback if you wish, you'll have to tame it first though, and the Quartermaster has saddles.";
 		this.tree.response3DT.response1 = "Sir Yes Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Furgan";
 	}
 
 	@Override

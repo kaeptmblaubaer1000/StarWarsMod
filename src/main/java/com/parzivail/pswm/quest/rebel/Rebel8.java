@@ -82,6 +82,12 @@ public class Rebel8 extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Tantor";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "Red Squadron";

@@ -25,6 +25,12 @@ public class Rebel10_Over extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Dreis";
+	}
+
+	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
 		return false;

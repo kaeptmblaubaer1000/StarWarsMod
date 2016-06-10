@@ -69,16 +69,16 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			switch (QuestNpcUtils.getNpcSide(staticNpc.getId()))
 			{
-				case Resources.allegianceJedi:
+				case Resources.allegianceJediFmt:
 					GFX.drawTexture(0, 0, 0, 26, 16, 16);
 					break;
-				case Resources.allegianceSith:
+				case Resources.allegianceSithFmt:
 					GFX.drawTexture(0, 0, 17, 26, 16, 16);
 					break;
-				case Resources.allegianceRebel:
+				case Resources.allegianceRebelFmt:
 					GFX.drawTexture(0, 0, 33, 26, 16, 16);
 					break;
-				case Resources.allegianceImperial:
+				case Resources.allegianceImperialFmt:
 					GFX.drawTexture(0, 0, 49, 26, 16, 16);
 					break;
 			}

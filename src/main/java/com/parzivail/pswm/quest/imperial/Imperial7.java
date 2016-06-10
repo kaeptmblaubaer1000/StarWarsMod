@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial7 extends Quest
 {
-	Imperial7()
+	public Imperial7()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Taking those bases offline is going to give us a huge advantage over the Rebels, nice work Trooper. Now I need you to run a bit of maintenance on Viper Probe Droids out in the field.";
@@ -28,6 +28,12 @@ public class Imperial7 extends Quest
 		this.tree.response3DT.npcHeader = "Excellent, Trooper. Take this datapad and collect the data from at least 3 of our droids in the field. Take a 74-Z if you so choose.";
 		this.tree.response3DT.response1 = "You can count on me Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Veers";
 	}
 
 	@Override

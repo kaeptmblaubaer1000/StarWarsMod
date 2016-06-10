@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial4_1 extends Quest
 {
-	Imperial4_1()
+	public Imperial4_1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Fine work Trooper, with this intelligence we'll be able to better plan the destruction of The Rebel Alliance. Also I have a new assignment for you.";
@@ -28,6 +28,12 @@ public class Imperial4_1 extends Quest
 		this.tree.response3DT.npcHeader = "Your loyalty will not go unnoticed Trooper. You're being sent to Tatooine to assist a detachment of Sandtroopers that I hear are searching for escaped droids. Go to the Quartermaster for your Hyperdrive and be on your way. Use the Imperial Shuttle and its Hyperdrive Block in order to travel to other planets.";
 		this.tree.response3DT.response1 = "Sir Yes Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Cody";
 	}
 
 	@Override

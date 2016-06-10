@@ -1,8 +1,6 @@
 package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
-import com.parzivail.pswm.quest.QuestNpcUtils;
-import com.parzivail.util.math.MathUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
@@ -121,11 +119,7 @@ public class TileEntityStaticNpc extends TileEntity
 	public MobDefaultBiped getInternalEntity()
 	{
 		if (internalBiped == null)
-		{
 			internalBiped = new MobDefaultBiped(this.worldObj);
-
-			QuestNpcUtils.arm(internalBiped, MathUtils.getRandomElement(new String[] { "rebelPilot", "rebelEndor", "rebelHoth", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot" }));
-		}
 		return internalBiped;
 	}
 }

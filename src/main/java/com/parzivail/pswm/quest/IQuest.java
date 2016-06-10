@@ -45,4 +45,11 @@ public interface IQuest
 	 * @return
 	 */
 	String getID();
+
+	/**
+	 * Gets the questgiver's name
+	 *
+	 * @return
+	 */
+	String getQuestgiverName();
 }

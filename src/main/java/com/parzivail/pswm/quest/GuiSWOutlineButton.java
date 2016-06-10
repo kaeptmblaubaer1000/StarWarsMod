@@ -1,5 +1,6 @@
 package com.parzivail.pswm.quest;
 
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.client.Minecraft;
@@ -57,9 +58,13 @@ public class GuiSWOutlineButton extends GuiButton
 			}
 
 			int yy = 0;
-			String[] words = TextUtils.splitIntoLine(this.displayString, 35);
+			String[] words = TextUtils.splitIntoLine(this.displayString, 45);
+
+			if (words.length == 1)
+				yy += 4;
+
 			for (String line : words)
-				this.drawCenteredString(fontrenderer, line, this.xPosition + this.width / 2, this.yPosition + (yy += fontrenderer.FONT_HEIGHT) - 7, l);
+				GFX.drawCenteredText(fontrenderer, line, this.xPosition + this.width / 2 + 2, this.yPosition + (yy += fontrenderer.FONT_HEIGHT) - 7, 1, l);
 		}
 	}
 }

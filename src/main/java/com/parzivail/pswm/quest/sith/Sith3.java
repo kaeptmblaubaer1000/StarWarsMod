@@ -2,6 +2,7 @@ package com.parzivail.pswm.quest.sith;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
@@ -34,6 +35,12 @@ public class Sith3 extends Quest
 		this.tree.response1DT.response1DT.response1DT.response1DT.response1DT.response1DT.response1 = "Thank you Master, what do I do once I have the remaining shards?";
 		this.tree.response1DT.response1DT.response1DT.response1DT.response1DT.response1DT.response1DT = new DialogTree();
 		this.tree.response1DT.response1DT.response1DT.response1DT.response1DT.response1DT.response1DT.npcHeader = "Return to the chamber in the temple on Ilum where you found the Sith Holocron. There you will find a Crystal Compressor. Use it to make the shards whole again. Once you have your Synthetic Crystal, use the Lightsaber Forge you used previously to construct your saber. Once the construction is complete, return to me, Apprentice, and I will show you the true power of The Dark Side.";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return TextUtils.makeObfuscated("Zannah");
 	}
 
 	@Override

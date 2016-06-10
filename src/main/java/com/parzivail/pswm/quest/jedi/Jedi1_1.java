@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Jedi1_1 extends Quest
 {
-	Jedi1_1()
+	public Jedi1_1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Hmm, weary you look traveler, eat Gimer Seeds you must to regain lost strength.";
@@ -85,5 +85,11 @@ public class Jedi1_1 extends Quest
 	public String getID()
 	{
 		return "The Jedi Order";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Yoda";
 	}
 }

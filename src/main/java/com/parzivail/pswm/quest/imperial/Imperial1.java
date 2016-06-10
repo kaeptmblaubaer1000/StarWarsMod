@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial1 extends Quest
 {
-	Imperial1()
+	public Imperial1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Welcome to the 501st, Trooper. It is our duty to destroy The Rebel Alliance. I see that you already have your armor, but how's your aim with a blaster?";
@@ -64,5 +64,11 @@ public class Imperial1 extends Quest
 	public String getID()
 	{
 		return "The 501st";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Cody";
 	}
 }

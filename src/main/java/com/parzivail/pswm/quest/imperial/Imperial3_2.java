@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial3_2 extends Quest
 {
-	Imperial3_2()
+	public Imperial3_2()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Now that you've got your gear we need to send you out to do some recon.";
@@ -22,6 +22,12 @@ public class Imperial3_2 extends Quest
 		this.tree.response3 = "What am I doing recon on Sir?";
 		this.tree.response3DT = new DialogTree();
 		this.tree.response3DT.npcHeader = "There are hidden Rebel encampments not far from here that have Rebel Data Drives. We need those drives and it's your mission to retrieve them. Take a 74-Z Speeder Bike and use your blaster if you need to. We need at least three of those drives Trooper.";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Cody";
 	}
 
 	@Override

@@ -82,6 +82,12 @@ public class Rebel6_PostEndor extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Tantor";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "That’s no moon!";

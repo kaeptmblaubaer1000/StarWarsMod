@@ -16,6 +16,12 @@ public class Rebel0 extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Rex";
+	}
+
+	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
 		return false;

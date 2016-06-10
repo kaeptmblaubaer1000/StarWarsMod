@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial6_1 extends Quest
 {
-	Imperial6_1()
+	public Imperial6_1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Good work Trooper, we'll have a real edge over the Rebels with the information these smugglers hold. It's also time for you to transfer to the Snowtrooper Division.";
@@ -28,6 +28,12 @@ public class Imperial6_1 extends Quest
 		this.tree.response3DT.npcHeader = "Hoth, a desolate ice planet. You're to ship out right away, so go to the Quartermaster for your Hyperdrive and make haste. Make the Empire proud Trooper.";
 		this.tree.response3DT.response1 = "I will sir! Thank you sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Furgan";
 	}
 
 	@Override

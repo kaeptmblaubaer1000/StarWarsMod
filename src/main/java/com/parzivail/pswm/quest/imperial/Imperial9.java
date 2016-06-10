@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial9 extends Quest
 {
-	Imperial9()
+	public Imperial9()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "I assume you're ready for your first mission in the Imperial Navy, Trooper?";
@@ -28,6 +28,12 @@ public class Imperial9 extends Quest
 		this.tree.response3DT.npcHeader = "Your mission is to destroy any Rebel outposts in the surrounding area. It'll be a solo mission and you'll be taking a TIE Bomber. Once you've destroyed the bases and we deem your performance becoming of an Imperial Pilot, we'll give you access to the rest of the ships in the fleet. Be sure not to crash or get shot down Trooper.";
 		this.tree.response3DT.response1 = "You can count on me Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Daala";
 	}
 
 	@Override

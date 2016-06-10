@@ -55,6 +55,12 @@ public class Rebel8_Yavin extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Dreis";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "Red Squadron";

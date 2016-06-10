@@ -166,6 +166,13 @@ public class Resources
 	public static final String allegianceRebel = "Rebel Alliance";
 	public static final String allegianceImperial = "Galactic Empire";
 
+	public static final String allegianceNoneFmt = "none";
+	public static final String allegianceJediFmt = "jedi";
+	public static final String allegianceSithFmt = "sith";
+	public static final String allegianceNewRepublicFmt = "newrepublic";
+	public static final String allegianceRebelFmt = "rebelalliance";
+	public static final String allegianceImperialFmt = "galacticempire";
+
 	public static final String skinDefault = "default";
 
 	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot" };

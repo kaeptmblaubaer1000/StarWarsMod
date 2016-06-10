@@ -215,11 +215,13 @@ public class GFX
 	public static void drawCenteredText(FontRenderer font, String s, float x, float y, float scale, int color)
 	{
 		GL11.glPushMatrix();
+		boolean shouldDisable = !GL11.glIsEnabled(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glScalef(scale, scale, 1);
 		GL11.glTranslatef(x / scale, y / scale, 0);
 		font.drawString(s, -font.getStringWidth(s) / 2, 0, color);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		if (shouldDisable)
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
 	}
 

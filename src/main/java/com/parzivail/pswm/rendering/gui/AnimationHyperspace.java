@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
@@ -99,6 +100,8 @@ public class AnimationHyperspace extends Animation
 			GFX.drawLine(star.pos.x + MathHelper.sin(angle) * mod, star.pos.y + MathHelper.cos(angle) * mod, star.pos.x + MathHelper.sin(angle) * t, star.pos.y + MathHelper.cos(angle) * t);
 		}
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
+		ClientEventHandler.pgui.renderOverlay(Resources.awingBack);
 	}
 
 	@Override

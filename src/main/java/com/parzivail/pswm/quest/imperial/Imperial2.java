@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial2 extends Quest
 {
-	Imperial2()
+	public Imperial2()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Well it looks like you aren't completely incompetent Trooper, so I've got a mission for you. We've been having problems with some of the Shield Generator Bases.";
@@ -28,6 +28,12 @@ public class Imperial2 extends Quest
 		this.tree.response3DT.npcHeader = "We need you to find any Shield Generator Bases around this main base and hook their antennas back up. We need to be able to communicate with our fleet in space and without those antennas we simply can't. We need at least four of those antennas back up. Take a Hydrospanner in order to repair them, and a 74-Z Speeder Bike if you wish, the Quartermaster will give you all your equipment.";
 		this.tree.response3DT.response1 = "Sir Yes Sir!";
 		this.tree.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Cody";
 	}
 
 	@Override

@@ -30,7 +30,7 @@ public class Rebel4 extends Quest
 		this.tree.response1DT.npcHeader = "Frankly I don't know how I could miss it, recruit";
 		this.tree.response1DT.response1 = "Sorry to ask sir, but what's my first assignment?";
 		this.tree.response1DT.response1DT = allresp;
-		this.tree.response1DT.response2 = "Well with those old eyes of yours I'm surprised you can see anything. What's my first assignment anyway?";
+		this.tree.response1DT.response2 = "Well with those old eyes of yours I'm surprised you can see anything.";
 		this.tree.response1DT.response2DT = allresp;
 		this.tree.response1DT.response3 = "Just asking sir. So what's my first assignment?";
 		this.tree.response1DT.response3DT = allresp;
@@ -46,7 +46,7 @@ public class Rebel4 extends Quest
 		this.tree.response3 = "I see you're trying to make the best of the situation sir.";
 		this.tree.response3DT = new DialogTree();
 		this.tree.response3DT.npcHeader = "That's what we have to do here on Hoth. It's a grueling station, but you'll learn a lot here recruit.";
-		this.tree.response3DT.response1 = "Hopefully about how to shoot properly sir, I don't think i'd be much use in a battle right now... What's my first assignment by the way?";
+		this.tree.response3DT.response1 = "Hopefully about how to shoot properly sir, I don't think i'd be much use in a firefight.";
 		this.tree.response3DT.response1DT = allresp;
 		this.tree.response3DT.response2 = "Grueling or not i'm here for experience so what's my first assignment?";
 		this.tree.response3DT.response2DT = allresp;
@@ -82,6 +82,12 @@ public class Rebel4 extends Quest
 	public DialogTree getDialog(EntityPlayer player)
 	{
 		return tree;
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Carlist";
 	}
 
 	@Override

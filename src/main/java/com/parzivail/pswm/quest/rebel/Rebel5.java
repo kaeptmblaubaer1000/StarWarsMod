@@ -83,6 +83,12 @@ public class Rebel5 extends Quest
 	}
 
 	@Override
+	public String getQuestgiverName()
+	{
+		return "Carlist";
+	}
+
+	@Override
 	public String getID()
 	{
 		return "It’s no Beggar’s Canyon";

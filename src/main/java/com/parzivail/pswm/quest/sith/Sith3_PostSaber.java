@@ -2,6 +2,7 @@ package com.parzivail.pswm.quest.sith;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
@@ -31,6 +32,12 @@ public class Sith3_PostSaber extends Quest
 		this.tree.response1DT.response3DT.npcHeader = "You would be foolish to challenge me young Apprentice. I also have no further use for you at this time. I suggest you go and train, perhaps become more powerful than you are now, for you still have much to learn.";
 		this.tree.response1DT.response3DT.response1 = "Yes Master, I will look to The Dark Side for guidance.";
 		this.tree.response1DT.response3DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return TextUtils.makeObfuscated("Zannah");
 	}
 
 	@Override

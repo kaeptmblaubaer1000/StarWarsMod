@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Jedi3 extends Quest
 {
-	Jedi3()
+	public Jedi3()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Now that you have crafted the weapon of a Jedi, know about The Dark Side, you must.";
@@ -58,6 +58,12 @@ public class Jedi3 extends Quest
 		this.tree.response3DT.response1DT.response1DT.response2DT = new DialogTree();
 		this.tree.response3DT.response1DT.response1DT.response3 = "I'll look towards The Force for guidance Master.";
 		this.tree.response3DT.response1DT.response1DT.response3DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Yoda";
 	}
 
 	@Override

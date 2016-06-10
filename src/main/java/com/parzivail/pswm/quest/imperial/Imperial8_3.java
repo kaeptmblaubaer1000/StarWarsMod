@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Imperial8_3 extends Quest
 {
-	Imperial8_3()
+	public Imperial8_3()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Now that you have your armor it's time to give you a quick briefing on our ships and how to fly them.";
@@ -30,6 +30,12 @@ public class Imperial8_3 extends Quest
 		this.tree.response1DT.response1DT.response1DT.response1DT.response1DT.npcHeader = "This concludes the briefing Trooper, welcome to the Imperial Navy, I'd suggest taking out a ship and getting a feel for it. You can return to me when you're ready for your first mission.";
 		this.tree.response1DT.response1DT.response1DT.response1DT.response1DT.response1 = "Sir Yes Sir!";
 		this.tree.response1DT.response1DT.response1DT.response1DT.response1DT.response1DT = new DialogTree();
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Daala";
 	}
 
 	@Override

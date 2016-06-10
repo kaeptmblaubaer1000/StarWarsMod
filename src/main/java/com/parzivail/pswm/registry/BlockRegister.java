@@ -6,7 +6,7 @@ import com.parzivail.pswm.blocks.*;
 import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.blocks.ore.*;
 import com.parzivail.pswm.items.*;
-import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.quest.QuestBank;
 import com.parzivail.pswm.tileentities.*;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicXWing;
@@ -69,21 +69,57 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockHangingBucket, "hangingBucket");
 		GameRegistry.registerTileEntity(TileEntityHangingBucket.class, "teHangingBucket");
 
-		StarWarsMod.blockStaticNpc = new BlockNpcBase[9];
+		StarWarsMod.blockStaticNpc = new BlockNpcBase[41];
 
-		StarWarsMod.blockStaticNpc[0] = new BlockNpcBase("welcome0", Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[1] = new BlockNpcBase("welcome1", Resources.armors[1], Resources.allegianceRebel, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[2] = new BlockNpcBase("welcome2", Resources.armors[2], Resources.allegianceRebel, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[3] = new BlockNpcBase("welcome3", Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[4] = new BlockNpcBase("welcome4", Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[5] = new BlockNpcBase("welcome5", Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[6] = new BlockNpcBase("welcome6", Resources.armors[6], Resources.allegianceImperial, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[7] = new BlockNpcBase("welcome7", Resources.armors[7], Resources.allegianceImperial, Resources.skinDefault);
-		StarWarsMod.blockStaticNpc[8] = new BlockNpcBase("welcome8", Resources.armors[8], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[0] = new BlockNpcBase(QuestBank.imperial0, Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[1] = new BlockNpcBase(QuestBank.imperial1, Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[2] = new BlockNpcBase(QuestBank.imperial2, Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[3] = new BlockNpcBase(QuestBank.imperial3_1, Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[4] = new BlockNpcBase(QuestBank.imperial3_2, Resources.armors[3], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[5] = new BlockNpcBase(QuestBank.imperial4_1, Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[6] = new BlockNpcBase(QuestBank.imperial4_2, Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[7] = new BlockNpcBase(QuestBank.imperial4_3, Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[8] = new BlockNpcBase(QuestBank.imperial5, Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[9] = new BlockNpcBase(QuestBank.imperial6_1, Resources.armors[4], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[10] = new BlockNpcBase(QuestBank.imperial6_2, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[11] = new BlockNpcBase(QuestBank.imperial6_3, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[12] = new BlockNpcBase(QuestBank.imperial7, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[13] = new BlockNpcBase(QuestBank.imperial8_1, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[14] = new BlockNpcBase(QuestBank.imperial8_2, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[15] = new BlockNpcBase(QuestBank.imperial8_3, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[16] = new BlockNpcBase(QuestBank.imperial9, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[17] = new BlockNpcBase(QuestBank.imperial10_1, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[18] = new BlockNpcBase(QuestBank.imperial10_2, Resources.armors[5], Resources.allegianceImperial, Resources.skinDefault);
+
+		StarWarsMod.blockStaticNpc[19] = new BlockNpcBase(QuestBank.rebel0, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[20] = new BlockNpcBase(QuestBank.rebel1, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[21] = new BlockNpcBase(QuestBank.rebel2, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[22] = new BlockNpcBase(QuestBank.rebel3, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[23] = new BlockNpcBase(QuestBank.rebel4, Resources.armors[1], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[24] = new BlockNpcBase(QuestBank.rebel5, Resources.armors[1], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[25] = new BlockNpcBase(QuestBank.rebel6, Resources.armors[1], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[26] = new BlockNpcBase(QuestBank.rebel6_PostEndor, Resources.armors[2], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[27] = new BlockNpcBase(QuestBank.rebel7, Resources.armors[2], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[28] = new BlockNpcBase(QuestBank.rebel8, Resources.armors[2], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[29] = new BlockNpcBase(QuestBank.rebel8_Yavin, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[30] = new BlockNpcBase(QuestBank.rebel8_PostArmor, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[31] = new BlockNpcBase(QuestBank.rebel9, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[32] = new BlockNpcBase(QuestBank.rebel10, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[32] = new BlockNpcBase(QuestBank.rebel10_Over, Resources.armors[0], Resources.allegianceRebel, Resources.skinDefault);
+
+		StarWarsMod.blockStaticNpc[33] = new BlockNpcBase(QuestBank.jedi1_1, null, Resources.allegianceJedi, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[34] = new BlockNpcBase(QuestBank.jedi1_2, null, Resources.allegianceJedi, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[35] = new BlockNpcBase(QuestBank.jedi2, null, Resources.allegianceJedi, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[36] = new BlockNpcBase(QuestBank.jedi3, null, Resources.allegianceJedi, Resources.skinDefault);
+
+		StarWarsMod.blockStaticNpc[37] = new BlockNpcBase(QuestBank.sith1, null, Resources.allegianceSith, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[38] = new BlockNpcBase(QuestBank.sith2, null, Resources.allegianceSith, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[39] = new BlockNpcBase(QuestBank.sith3, null, Resources.allegianceSith, Resources.skinDefault);
+		StarWarsMod.blockStaticNpc[40] = new BlockNpcBase(QuestBank.sith3_PostSaber, null, Resources.allegianceSith, Resources.skinDefault);
 
 		for (int i = 0; i < StarWarsMod.blockStaticNpc.length; i++)
 		{
-			GameRegistry.registerBlock(StarWarsMod.blockStaticNpc[i], "staticNpc" + QuestNpcUtils.getNpcQuest(StarWarsMod.blockStaticNpc[i].id));
+			GameRegistry.registerBlock(StarWarsMod.blockStaticNpc[i], "staticNpc" + String.valueOf(i));
 		}
 
 		GameRegistry.registerTileEntity(TileEntityStaticNpc.class, "teStaticNpc");

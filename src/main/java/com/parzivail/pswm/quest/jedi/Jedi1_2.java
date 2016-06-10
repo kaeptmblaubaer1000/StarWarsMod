@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class Jedi1_2 extends Quest
 {
-	Jedi1_2()
+	public Jedi1_2()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "";
@@ -34,6 +34,12 @@ public class Jedi1_2 extends Quest
 		this.tree.response1DT.response3DT.response1 = "How do I train? What do I have to do?";
 		this.tree.response1DT.response3DT.response1DT = new DialogTree();
 		this.tree.response1DT.response3DT.response1DT.npcHeader = "Take this Holocron you must. Learn to use your powers more over time, you will. Holocron must stay on you at all times, lose your powers you will, if misplaced. Take also these robes, used by Jedi long ago, they were. Return here once you can use The Force to Grab your enemies, show you I will, how to create the weapon of a Jedi.";
+	}
+
+	@Override
+	public String getQuestgiverName()
+	{
+		return "Yoda";
 	}
 
 	@Override
