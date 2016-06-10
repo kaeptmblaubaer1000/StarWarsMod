@@ -50,7 +50,7 @@ public class BlockLightsaberForge extends BlockContainer implements IDebugProvid
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconForge");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override

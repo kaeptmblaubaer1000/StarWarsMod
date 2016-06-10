@@ -59,7 +59,7 @@ public class BlockHyperdrive extends BlockContainer implements IDebugProvider
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconHyperdriveBlock");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityAncientJediStatue;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,7 +18,6 @@ public class BlockAncientJediStatue extends BlockContainer
 	public BlockAncientJediStatue()
 	{
 		super(Material.iron);
-		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + "ancientJediStatue");
 		setBlockBounds(-3.0F, 0.0F, -3.0F, 4.0F, 26.0F, 4.0F);
 		setHardness(50.0F);
@@ -48,7 +46,7 @@ public class BlockAncientJediStatue extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconAncientJediStatue");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override

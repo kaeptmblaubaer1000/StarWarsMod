@@ -3,7 +3,6 @@ package com.parzivail.util.vehicle;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -14,6 +13,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class VehicleAirBase extends VehicleBase
 {
@@ -26,7 +26,6 @@ public class VehicleAirBase extends VehicleBase
 	public boolean nowMoving = false;
 	public List<Entity> nearby = new ArrayList<>();
 	private String[] explosionComponents = { "largesmoke", "flame", "lava", "largeexplode", "snowshovel", "reddust" };
-	public boolean hasHadRider = false;
 
 	public VehicleAirBase(World p_i1689_1_)
 	{
@@ -53,8 +52,6 @@ public class VehicleAirBase extends VehicleBase
 		super.entityInit();
 		this.dataWatcher.addObject(TGTLOCK_DW, Integer.valueOf(0));
 		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
-		this.dataWatcher.addObject(TGTLOCK_DW + 1, Integer.valueOf(0));
-		this.dataWatcher.setObjectWatched(TGTLOCK_DW + 1);
 	}
 
 	@Override
@@ -91,21 +88,10 @@ public class VehicleAirBase extends VehicleBase
 		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW) == 1;
 	}
 
-	public int getYaw()
-	{
-		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW + 1);
-	}
-
 	public void setTargetLock(boolean f)
 	{
 		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
 		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
-	}
-
-	public void setYaw(int yaw)
-	{
-		this.dataWatcher.updateObject(TGTLOCK_DW + 1, yaw);
-		this.dataWatcher.setObjectWatched(TGTLOCK_DW + 1);
 	}
 
 	@Override
@@ -113,17 +99,20 @@ public class VehicleAirBase extends VehicleBase
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
-			this.motionY = -(((EntityPlayer)this.riddenByEntity).rotationPitch / 180F) * this.move;
+			EntityPlayer riddenByPlayer = (EntityPlayer)this.riddenByEntity;
+
+			this.motionY = -(riddenByPlayer.rotationPitch / 180F) * this.move;
 
 			if (this.move != 0)
 			{
-				this.rotationLast = this.rotationYaw += this.riddenByEntity.rotationYaw - this.rotationLast;
-				this.rotationPitchLast = this.rotationPitch += ((EntityPlayer)this.riddenByEntity).rotationPitch - this.rotationPitchLast;
+				this.rotationYawLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
+				this.rotationPitchLast = this.rotationPitch = riddenByPlayer.rotationPitch;
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 				this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			}
-			strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-			forward = ((EntityLivingBase)this.riddenByEntity).moveForward;
+
+			strafe = riddenByPlayer.moveStrafing * 0.5F;
+			forward = riddenByPlayer.moveForward;
 
 			if (forward > 0)
 				this.move += 0.05f;
@@ -137,7 +126,7 @@ public class VehicleAirBase extends VehicleBase
 			if (this.move > this.moveModifier)
 				this.move = this.moveModifier;
 
-			forward = this.move / 8.0F * (1 - Math.abs(((EntityPlayer)this.riddenByEntity).rotationPitch / 90F));
+			forward = this.move / 8.0F * (1 - Math.abs(riddenByPlayer.rotationPitch / 90F));
 
 			this.gravity = 0.8f * ((this.moveModifier - this.move) / this.moveModifier);
 
@@ -172,7 +161,7 @@ public class VehicleAirBase extends VehicleBase
 					this.worldObj.spawnParticle(comp, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
 				}
 
-		if (source.getDamageType() == "fall" || source.isProjectile())
+		if (source.getDamageType().equals("fall") || source.isProjectile())
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
 	}
 
@@ -180,46 +169,17 @@ public class VehicleAirBase extends VehicleBase
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (!hasHadRider && this.riddenByEntity != null)
-			this.hasHadRider = true;
 
-		if (hasHadRider)
-		{
-			if (this.riddenByEntity == null && !hasHadRider)
-				this.renderPitchLast = (float)(this.newRotationPitch = this.rotationPitchLast = this.rotationPitch = 0);
+		this.nowMoving = this.posX != this.prevPosX || this.posY != this.prevPosY || this.posZ != this.prevPosZ;
 
-			this.nowMoving = (int)this.posX != (int)this.prevPosX || (int)this.posY != (int)this.prevPosY || (int)this.posZ != (int)this.prevPosZ;
+		this.wasMoving = this.nowMoving;
 
-			this.wasMoving = this.nowMoving;
-
-			//if (this.ticksExisted % 5 == 0) // update radar
-			//	if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
-			//	{
-			//		this.nearby.clear();
-			//		this.nearby.addAll(((List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> entity != this).collect(Collectors.toList()));
-			//		this.nearby.addAll(((List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> !(entity.ridingEntity instanceof VehicleAirBase)).collect(Collectors.toList()));
-			//	}
-		}
-		else
-		{
-			switch (getYaw())
+		if (this.ticksExisted % 5 == 0) // update radar
+			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
 			{
-				case 0:
-					this.setRotation(0, this.rotationPitch);
-					break;
-				case 90:
-					this.setRotation(135, this.rotationPitch);
-					break;
-				case 180:
-					this.setRotation(135, this.rotationPitch);
-					break;
-				case 270:
-					this.setRotation(225, this.rotationPitch);
-					break;
+				this.nearby.clear();
+				this.nearby.addAll(((List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> entity != this).collect(Collectors.toList()));
+				this.nearby.addAll(((List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> !(entity.ridingEntity instanceof VehicleAirBase)).collect(Collectors.toList()));
 			}
-
-			this.tilt = 0;
-			this.renderRollLast = 0;
-		}
 	}
 }

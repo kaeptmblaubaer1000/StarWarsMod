@@ -1,13 +1,8 @@
 package com.parzivail.pswm.rendering;
 
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.entities.EntityThrownSaber;
-import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -30,17 +25,8 @@ public class RenderThrownSaber extends Render
 
 			GL11.glTranslatef(0, -2, 0);
 
-			if (saber.getSender() instanceof EntityPlayer)
-			{
-				ItemStack holocron = JediUtils.getHolocron((EntityPlayer)saber.getSender());
-
-				if (holocron != null && holocron.stackTagCompound != null && holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound)
-				{
-					ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
-					stack.stackTagCompound = (NBTTagCompound)holocron.stackTagCompound.getTag("thrownSaber");
-					RenderLightsaber.instance.renderItem(IItemRenderer.ItemRenderType.ENTITY, stack);
-				}
-			}
+			if (saber.getSaberStack() != null)
+				RenderLightsaber.instance.renderItem(IItemRenderer.ItemRenderType.ENTITY, saber.getSaberStack());
 
 			GL11.glPopMatrix();
 		}

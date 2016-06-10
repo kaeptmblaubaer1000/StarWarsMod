@@ -14,7 +14,7 @@ public class ItemSpawnJakkuSpeeder extends net.minecraft.item.Item
 	public ItemSpawnJakkuSpeeder()
 	{
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
-		this.setTextureName(Resources.MODID + ":" + this.name);
+		this.setTextureName(Resources.MODID + ":" + "blank");
 		this.setCreativeTab(StarWarsMod.SequelStarWarsTab);
 		this.maxStackSize = 1;
 	}

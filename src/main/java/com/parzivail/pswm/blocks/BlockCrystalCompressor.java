@@ -51,7 +51,7 @@ public class BlockCrystalCompressor extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconCrystalCompressor");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override

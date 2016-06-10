@@ -9,6 +9,7 @@ import com.parzivail.pswm.utils.ForceUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -26,6 +27,7 @@ public class EntityThrownSaber extends EntityThrowable
 	private boolean isReturning = false;
 
 	private static final int SENDER_DW = 14;
+	private static final int ITEMSTACK_DW = 15;
 
 	public EntityThrownSaber(World par1World)
 	{
@@ -46,6 +48,8 @@ public class EntityThrownSaber extends EntityThrowable
 			{
 				holocron.stackTagCompound.setTag("thrownSaber", saber.stackTagCompound);
 			}
+
+			setSaberStack(saber);
 		}
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
 	}
@@ -54,8 +58,10 @@ public class EntityThrownSaber extends EntityThrowable
 	public void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(SENDER_DW, Integer.valueOf(0));
+		this.dataWatcher.addObject(SENDER_DW, 0);
 		this.dataWatcher.setObjectWatched(SENDER_DW);
+		this.dataWatcher.addObject(ITEMSTACK_DW, new ItemStack(Blocks.air, 0));
+		this.dataWatcher.setObjectWatched(ITEMSTACK_DW);
 	}
 
 	@Override
@@ -87,6 +93,11 @@ public class EntityThrownSaber extends EntityThrowable
 	public EntityLivingBase getSender()
 	{
 		return (EntityLivingBase)this.worldObj.getEntityByID(dataWatcher.getWatchableObjectInt(SENDER_DW));
+	}
+
+	public ItemStack getSaberStack()
+	{
+		return dataWatcher.getWatchableObjectItemStack(ITEMSTACK_DW);
 	}
 
 	@Override
@@ -196,9 +207,16 @@ public class EntityThrownSaber extends EntityThrowable
 	public void setSender(EntityLivingBase sender)
 	{
 		this.dataWatcher.updateObject(SENDER_DW, sender.getEntityId());
+		this.dataWatcher.setObjectWatched(SENDER_DW);
 	}
 
-	public void trackSender()
+	public void setSaberStack(ItemStack stack)
+	{
+		this.dataWatcher.updateObject(ITEMSTACK_DW, stack);
+		this.dataWatcher.setObjectWatched(ITEMSTACK_DW);
+	}
+
+	private void trackSender()
 	{
 		if (this.getSender() != null)
 		{

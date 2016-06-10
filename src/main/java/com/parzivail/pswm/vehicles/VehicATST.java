@@ -55,7 +55,7 @@ public class VehicATST extends VehicleLandBase
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
 		{
-			//this.rotationYaw = this.rotationLast;
+			//this.rotationYaw = this.rotationYawLast;
 
 			this.rotationYaw = this.riddenByEntity.rotationYaw;
 			//if (this.rotationHead >= this.rotationYaw + 67.5f || this.rotationHead <= this.rotationYaw - 67.5f)

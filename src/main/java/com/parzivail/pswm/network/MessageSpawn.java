@@ -41,9 +41,8 @@ public class MessageSpawn extends PMessage<MessageSpawn>
 			if (entity instanceof VehicleAirBase)
 			{
 				VehicleAirBase vehicleBase = (VehicleAirBase)entity;
-				vehicleBase.rotationLast = yaw;
+				vehicleBase.rotationYawLast = yaw;
 				vehicleBase.rotationPitchLast = pitch;
-				vehicleBase.setYaw((int)yaw);
 			}
 			world.spawnEntityInWorld(entity);
 		}

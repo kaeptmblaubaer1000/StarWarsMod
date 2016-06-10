@@ -2,21 +2,19 @@ package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.Resources;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class VehicleBase extends EntityCreature
+public class VehicleBase extends EntityLiving
 {
-	public float[] tiltTable = { 0, 0, 0, 0, 0, 0 };
+	private float[] tiltTable = { 0, 0, 0, 0, 0, 0 };
 	public float tilt = 0.0F;
 	public float tiltMax = 10;
-	public float vehicXOffset = 0.0F;
 	public float vehicYOffset = 0.0F;
-	public float vehicZOffset = 0.0F;
 	public float moveModifier = 1.0F;
 	public float frame = 0.0F;
-	public float rotationLast = 0.0F;
+	public float rotationYawLast = 0.0F;
 	public float rotationPitchLast = 0.0F;
 
 	public VehicleBase(World p_i1689_1_)
@@ -72,12 +70,6 @@ public class VehicleBase extends EntityCreature
 	}
 
 	@Override
-	protected boolean isMovementCeased()
-	{
-		return true;
-	}
-
-	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -85,7 +77,7 @@ public class VehicleBase extends EntityCreature
 
 		this.frame += 0.1F;
 
-		this.setRotation(this.rotationLast, this.rotationPitchLast);
+		this.setRotation(this.rotationYawLast, this.rotationPitchLast);
 
 		System.arraycopy(this.tiltTable, 1, this.tiltTable, 0, this.tiltTable.length - 1);
 
@@ -112,7 +104,7 @@ public class VehicleBase extends EntityCreature
 			float offset = this.vehicYOffset;
 			if (!(this.riddenByEntity instanceof EntityPlayer))
 				offset -= 0.5F;
-			this.riddenByEntity.setPosition(this.posX + this.vehicXOffset, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ + this.vehicZOffset);
+			this.riddenByEntity.setPosition(this.posX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ);
 		}
 	}
 }

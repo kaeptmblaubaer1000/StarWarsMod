@@ -37,6 +37,12 @@ public class BlockAntenna extends BlockContainer implements IDebugProvider
 	}
 
 	@Override
+	public void registerBlockIcons(IIconRegister icon)
+	{
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
+	}
+
+	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		TileEntity tile = world.getTileEntity(x, y, z);
@@ -100,12 +106,6 @@ public class BlockAntenna extends BlockContainer implements IDebugProvider
 			int l = MathHelper.floor_double(player.rotationYaw * 8.0F / 360.0F + 0.5D) & 0x3;
 			tile1.setFacing(l);
 		}
-	}
-
-	@Override
-	public void registerBlockIcons(IIconRegister icon)
-	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconAntenna");
 	}
 
 	@Override

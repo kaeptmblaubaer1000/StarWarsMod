@@ -3,17 +3,13 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -35,57 +31,6 @@ public class MobTauntaun extends EntityHorse
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.1D);
-	}
-
-	public void setAttackTarget(EntityLivingBase p_70624_1_)
-	{
-		super.setAttackTarget(p_70624_1_);
-
-		if (p_70624_1_ == null)
-		{
-			this.setAngry(false);
-		}
-	}
-
-	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
-	{
-		if (this.isEntityInvulnerable())
-		{
-			return false;
-		}
-		else
-		{
-			Entity entity = p_70097_1_.getEntity();
-
-			if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))
-			{
-				p_70097_2_ = (p_70097_2_ + 1.0F) / 2.0F;
-			}
-
-			return super.attackEntityFrom(p_70097_1_, p_70097_2_);
-		}
-	}
-
-	public boolean isAngry()
-	{
-		return (this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
-	}
-
-	/**
-	 * Sets whether this wolf is angry or not.
-	 */
-	private void setAngry(boolean p_70916_1_)
-	{
-		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
-
-		if (p_70916_1_)
-		{
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
-		}
-		else
-		{
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
-		}
 	}
 
 	@Override

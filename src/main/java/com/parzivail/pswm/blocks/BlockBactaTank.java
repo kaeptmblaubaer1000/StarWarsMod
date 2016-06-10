@@ -67,7 +67,7 @@ public class BlockBactaTank extends BlockContainer implements IDebugProvider
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBactaTank");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override

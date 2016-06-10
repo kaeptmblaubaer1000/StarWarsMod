@@ -14,7 +14,7 @@ public class ItemSpawnLandspeeder extends net.minecraft.item.Item
 	public ItemSpawnLandspeeder()
 	{
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
-		this.setTextureName(Resources.MODID + ":" + this.name);
+		this.setTextureName(Resources.MODID + ":" + "blank");
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.maxStackSize = 1;
 	}

@@ -14,7 +14,7 @@ public class ItemSpawnNpcXWing extends net.minecraft.item.Item
 	public ItemSpawnNpcXWing()
 	{
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
-		this.setTextureName(Resources.MODID + ":" + this.name);
+		this.setTextureName(Resources.MODID + ":" + "blank");
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 		this.maxStackSize = 1;
 	}
