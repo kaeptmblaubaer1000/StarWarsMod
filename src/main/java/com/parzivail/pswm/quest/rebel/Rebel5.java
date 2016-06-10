@@ -79,12 +79,12 @@ public class Rebel5 extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "It’s no Beggar’s Canyon";
 	}
 }

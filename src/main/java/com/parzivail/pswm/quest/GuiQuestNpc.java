@@ -21,7 +21,7 @@ public class GuiQuestNpc extends GuiScreen
 
 	private EntityPlayer player;
 
-	private DialogTree tree;
+	private Quest quest;
 	private DialogTree currentTree;
 	// private Response currentResponse;
 
@@ -36,13 +36,13 @@ public class GuiQuestNpc extends GuiScreen
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
-		this.tree = QuestBank.rebel1.getDialog(player);
-		this.currentTree = tree;
+		this.quest = QuestBank.rebel1;
+		this.currentTree = quest.getDialog(player);
 
-		this.questId = questId;
+		this.questId = quest.getID();
 
-		if (this.tree != null && this.tree.action != null)
-			this.tree.action.accept(player);
+		if (this.currentTree != null && this.currentTree.action != null)
+			this.currentTree.action.accept(player);
 	}
 
 	@Override

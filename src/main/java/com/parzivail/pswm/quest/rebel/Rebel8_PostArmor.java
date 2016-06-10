@@ -62,12 +62,12 @@ public class Rebel8_PostArmor extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "Red Squadron";
 	}
 }

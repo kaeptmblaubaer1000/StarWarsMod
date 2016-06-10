@@ -78,12 +78,12 @@ public class Rebel6 extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "That’s no moon!";
 	}
 }
