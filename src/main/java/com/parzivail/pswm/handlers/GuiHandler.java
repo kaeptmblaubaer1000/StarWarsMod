@@ -1,7 +1,7 @@
 package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.quest.GuiQuest;
+import com.parzivail.pswm.quest.GuiQuestLog;
 import com.parzivail.pswm.quest.GuiQuestNpc;
 import com.parzivail.pswm.rendering.gui.*;
 import com.parzivail.pswm.tileentities.*;
@@ -25,7 +25,7 @@ public class GuiHandler implements IGuiHandler
 		else if (id == Resources.GUI_QUESTNPC)
 			return new GuiQuestNpc(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)).getId());
 		else if (id == Resources.GUI_QUEST)
-			return new GuiQuest(player);
+			return new GuiQuestLog(player);
 		else if (id == Resources.GUI_LSFORGE)
 			return new GuiScreenLightsaberForge(player);
 		else if (id == Resources.GUI_SCANNER)
