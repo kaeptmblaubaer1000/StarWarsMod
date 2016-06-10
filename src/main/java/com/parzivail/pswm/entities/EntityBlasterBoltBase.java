@@ -85,13 +85,10 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 			double motionY = this.rand.nextDouble() * 0.05f;
 			double motionZ = -this.motionZ * 0.08f;
 			this.worldObj.spawnParticle("smoke", this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
-		}
 
-		for (int i = 0; i < 40; i++)
-		{
-			double motionX = -this.motionX * 0.02f;
-			double motionY = this.rand.nextDouble() * 0.02f;
-			double motionZ = -this.motionZ * 0.02f;
+			motionX = -this.motionX * 0.02f;
+			motionY = this.rand.nextDouble() * 0.02f;
+			motionZ = -this.motionZ * 0.02f;
 			this.worldObj.spawnParticle("blockdust_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(blockX, blockY, blockZ), this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
 		}
 
@@ -148,15 +145,12 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 		}
 		else if (pos.typeOfHit == MovingObjectType.BLOCK)
 		{
+			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
 			if (!this.worldObj.isRemote)
 			{
 				if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
 					this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
 				this.setDead();
-			}
-			else
-			{
-				this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
 			}
 		}
 	}
