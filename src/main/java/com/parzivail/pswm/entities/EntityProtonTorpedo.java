@@ -2,6 +2,7 @@ package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
@@ -43,5 +44,11 @@ public class EntityProtonTorpedo extends EntityBlasterBoltBase
 		super.onImpact(pos);
 		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
 			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
+	}
+
+	@Override
+	public void recreate(EntityPlayer hit)
+	{
+		this.setDead();
 	}
 }

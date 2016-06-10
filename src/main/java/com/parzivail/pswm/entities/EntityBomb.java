@@ -1,6 +1,7 @@
 package com.parzivail.pswm.entities;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
@@ -42,5 +43,11 @@ public class EntityBomb extends EntityBlasterBoltBase
 	protected float getGravityVelocity()
 	{
 		return 0.2F;
+	}
+
+	@Override
+	public void recreate(EntityPlayer hit)
+	{
+		this.setDead();
 	}
 }

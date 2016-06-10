@@ -2,8 +2,8 @@ package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,14 +11,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntityBlasterBoltBase extends EntityThrowable
+public abstract class EntityBlasterBoltBase extends EntityThrowable
 {
 	private EntityLivingBase sender;
 	private int timeAlive = 0;
@@ -64,26 +62,6 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	{
 		super(par1World);
 		this.damage = damage;
-	}
-
-	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
-		if (this.isEntityInvulnerable())
-			return false;
-		this.setBeenAttacked();
-		if (source.getEntity() != null)
-		{
-			Vec3 vec3 = source.getEntity().getLookVec();
-			if (vec3 != null)
-			{
-				this.motionX = vec3.xCoord;
-				this.motionY = vec3.yCoord;
-				this.motionZ = vec3.zCoord;
-			}
-			return true;
-		}
-		return false;
 	}
 
 	@Override
@@ -140,11 +118,7 @@ public class EntityBlasterBoltBase extends EntityThrowable
 
 					if (JediUtils.getActive(stack).equalsIgnoreCase("deflect") && JediUtils.getUsingDuration(stack))
 					{
-						Vec3 vec3 = entityPlayer.getLookVec();
-						if (vec3 != null)
-						{
-							this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
-						}
+						recreate(entityPlayer);
 					}
 					else
 					{
@@ -153,13 +127,9 @@ public class EntityBlasterBoltBase extends EntityThrowable
 						this.setDead();
 					}
 				}
-				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && (entityPlayer.inventory.getCurrentItem().getItem() == StarWarsItems.lightsaber))
+				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && entityPlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber)
 				{
-					Vec3 vec3 = entityPlayer.getLookVec();
-					if (vec3 != null)
-					{
-						this.setThrowableHeading(vec3.xCoord, vec3.yCoord, vec3.zCoord, 1.0F, 1.0F);
-					}
+					recreate(entityPlayer);
 					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 				}
 				else
@@ -176,13 +146,18 @@ public class EntityBlasterBoltBase extends EntityThrowable
 				this.setDead();
 			}
 		}
-
-		if (this.worldObj.isRemote)
+		else if (pos.typeOfHit == MovingObjectType.BLOCK)
 		{
-			if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
-				this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
-			this.setDead();
-			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
+			if (!this.worldObj.isRemote)
+			{
+				if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
+					this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
+				this.setDead();
+			}
+			else
+			{
+				this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
+			}
 		}
 	}
 
@@ -198,6 +173,8 @@ public class EntityBlasterBoltBase extends EntityThrowable
 	{
 		this.sender = sender;
 	}
+
+	public abstract void recreate(EntityPlayer hit);
 
 	@Override
 	public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)

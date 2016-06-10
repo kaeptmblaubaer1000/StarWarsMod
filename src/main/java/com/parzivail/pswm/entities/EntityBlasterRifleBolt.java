@@ -1,6 +1,7 @@
 package com.parzivail.pswm.entities;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntityBlasterRifleBolt extends EntityBlasterBoltBase
@@ -23,5 +24,13 @@ public class EntityBlasterRifleBolt extends EntityBlasterBoltBase
 	public EntityBlasterRifleBolt(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
 	{
 		super(par1World, par2EntityLivingBase, par3EntityLivingBase, 5.0f);
+	}
+
+	@Override
+	public void recreate(EntityPlayer hit)
+	{
+		EntityBlasterBoltBase bolt = new EntityBlasterRifleBolt(this.worldObj, hit);
+		this.worldObj.spawnEntityInWorld(bolt);
+		this.setDead();
 	}
 }
