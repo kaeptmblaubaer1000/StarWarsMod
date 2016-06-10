@@ -159,6 +159,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	public void onUpdate()
 	{
 		super.onUpdate();
+
 		if (this.timeAlive++ > 100)
 			this.setDead();
 	}
