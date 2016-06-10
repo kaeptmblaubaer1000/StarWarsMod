@@ -1,8 +1,8 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageSpawn;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
 
 public class TileEntitySensorEntity extends TileEntitySensor
 {
@@ -28,10 +28,27 @@ public class TileEntitySensorEntity extends TileEntitySensor
 	@Override
 	void runConditional()
 	{
-		if (worldObj.isRemote)
+		if (!worldObj.isRemote)
 		{
-			int l = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
-			StarWarsMod.network.sendToServer(new MessageSpawn(this.worldObj, needle, this.xCoord + 0.5f, this.yCoord + 1, this.zCoord + 0.5f, 0, l * 90));
+			try
+			{
+				int l = this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
+
+				Object c = this.needle.getConstructor(World.class).newInstance(this.worldObj);
+				Entity entity = this.needle.cast(c);
+				entity.setPositionAndRotation(this.xCoord, this.yCoord, this.zCoord, l * 90, 0);
+				if (entity instanceof VehicleAirBase)
+				{
+					VehicleAirBase vehicleBase = (VehicleAirBase)entity;
+					vehicleBase.rotationYawLast = l * 90;
+					vehicleBase.rotationPitchLast = 0;
+				}
+				this.worldObj.spawnEntityInWorld(entity);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }
