@@ -1,6 +1,7 @@
 package com.parzivail.pswm.entities;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -44,5 +45,13 @@ public class EntityXWingBolt extends EntityBlasterBoltBase
 		this.posX += dx;
 		this.posY += dy;
 		this.posZ += dz;
+	}
+
+	@Override
+	public void recreate(EntityPlayer hit)
+	{
+		EntityBlasterBoltBase bolt = new EntityXWingBolt(this.worldObj, hit);
+		this.worldObj.spawnEntityInWorld(bolt);
+		this.setDead();
 	}
 }
