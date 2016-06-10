@@ -9,6 +9,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -16,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiQuestNpc extends GuiScreen
 {
-	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/icons3.png");
+	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
 
 	private EntityPlayer player;
 
@@ -35,7 +36,7 @@ public class GuiQuestNpc extends GuiScreen
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
-		// this.tree = QuestBank.quest3TicketToTheGalaxy.getDialog(player);
+		this.tree = QuestBank.rebel1.getDialog(player);
 		this.currentTree = tree;
 
 		this.questId = questId;
@@ -79,8 +80,7 @@ public class GuiQuestNpc extends GuiScreen
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
-		this.mc.getTextureManager().bindTexture(guiTexture);
-		this.drawTexturedModalRect((r.getScaledWidth() - 248) / 2, (r.getScaledHeight() - 166) / 2, 0, 60, 248, 166);
+		drawBg2();
 
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
@@ -91,6 +91,21 @@ public class GuiQuestNpc extends GuiScreen
 			this.drawCenteredString(this.mc.fontRenderer, line, x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
 
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
+	}
+
+	public void drawBg2()
+	{
+		Tessellator tessellator = Tessellator.instance;
+		this.mc.getTextureManager().bindTexture(background);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		float f = 200.0F;
+		tessellator.startDrawingQuads();
+		tessellator.setColorOpaque_I(0xFFFFFFFF);
+		tessellator.addVertexWithUV(0.0D, this.height, 0.0D, 0.0D, this.height / f + 1);
+		tessellator.addVertexWithUV(this.width, this.height, 0.0D, this.width / f, this.height / f + 1);
+		tessellator.addVertexWithUV(this.width, 0.0D, 0.0D, this.width / f, 1);
+		tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 1);
+		tessellator.draw();
 	}
 
 	/**

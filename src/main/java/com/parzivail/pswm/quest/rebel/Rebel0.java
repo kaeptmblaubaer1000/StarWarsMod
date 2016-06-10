@@ -7,9 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Created by Colby on 5/8/2016.
  */
-public class Rebel0Welcome extends Quest
+public class Rebel0 extends Quest
 {
-	Rebel0Welcome()
+	public Rebel0()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Welcome to the Rebel Alliance. We're a small group dedicated to taking back the galaxy from the Galactic Empire. If you want to join us, just find the Quartermaster and he'll give you some armor. You can find him in the main hangar, good luck kid.";

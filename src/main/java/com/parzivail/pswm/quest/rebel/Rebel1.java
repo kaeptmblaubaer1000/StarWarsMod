@@ -7,9 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * Created by Colby on 5/8/2016.
  */
-public class Rebel1Enlisting extends Quest
+public class Rebel1 extends Quest
 {
-	Rebel1Enlisting()
+	public Rebel1()
 	{
 		this.tree = new DialogTree();
 		this.tree.npcHeader = "Well look at this, a new recruit, nice and Shiny in his brand new armor.";
