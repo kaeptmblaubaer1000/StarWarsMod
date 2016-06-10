@@ -78,12 +78,12 @@ public class Rebel7 extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "Meeting the Ewoks";
 	}
 }

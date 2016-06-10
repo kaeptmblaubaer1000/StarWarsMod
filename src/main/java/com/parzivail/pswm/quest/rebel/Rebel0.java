@@ -42,12 +42,12 @@ public class Rebel0 extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "Welcome to The Republic Alliance";
 	}
 }
