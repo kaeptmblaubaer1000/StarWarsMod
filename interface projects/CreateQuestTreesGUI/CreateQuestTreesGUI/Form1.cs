@@ -20,60 +20,87 @@ namespace CreateQuestTreesGUI
         {
             InitializeComponent();
             contextMenu = new ContextMenu();
-            MenuItem miNPC = new MenuItem("Add NPC Dialog", bAddNPCNode_Click);
-            contextMenu.MenuItems.Add(miNPC);
-            MenuItem miPlayer = new MenuItem("Add Player Dialog", bAddDialogNode_Click);
-            contextMenu.MenuItems.Add(miPlayer);
-            MenuItem miRemove = new MenuItem("Remove Tree", bRemoveNode_Click);
+            var appDig = new MenuItem("Paste Appropriate Dialog", BAddAppDialogPaste);
+            contextMenu.MenuItems.Add(appDig);
+            var miNpc = new MenuItem("Add Appropriate Dialog", BAddAppDialog);
+            contextMenu.MenuItems.Add(miNpc);
+            var miRemove = new MenuItem("Remove Tree", bRemoveNode_Click);
             contextMenu.MenuItems.Add(miRemove);
 
             questTree.ContextMenu = contextMenu;
         }
 
-        private void bAddNPCNode_Click(object sender, EventArgs e)
+        private void BAddAppDialog(object sender, EventArgs e)
         {
-            String t = "";
-            if (Clipboard.ContainsText()) t = Clipboard.GetText();
-            InputForm fInput = new InputForm(t);
-            fInput.ShowDialog();
-            if (!fInput.cancel)
+            if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "npc" &&
+                questTree.SelectedNode.Nodes.Count < 3)
+                AddPlayerDialog(false);
+            else
+                AddNpcDialog(false);
+        }
+
+        private void BAddAppDialogPaste(object sender, EventArgs e)
+        {
+            if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "npc" &&
+                questTree.SelectedNode.Nodes.Count < 3)
+                AddPlayerDialog(true);
+            else
+                AddNpcDialog(true);
+        }
+
+        private void AddNpcDialog(bool paste)
+        {
+            var t = "";
+            if (Clipboard.ContainsText()) t = Exporter.FixString(Clipboard.GetText());
+            var fInput = new InputForm(t);
+            if (!paste)
             {
-                TreeNode n = new TreeNode();
-                n.Name = "npc";
-                n.Text = fInput.text;
-                n.ContextMenu = contextMenu;
-                n.BackColor = Color.FromArgb(0xA4C2F4);
-                if (questTree.SelectedNode == null && questTree.Nodes.Count == 0)
-                {
-                    questTree.Nodes.Add(n);
-                }
-                else if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "player" && questTree.SelectedNode.Nodes.Count < 3)
-                {
-                    questTree.SelectedNode.Nodes.Add(n);
-                    questTree.SelectedNode.Expand();
-                }
+                fInput.ShowDialog();
+                if (fInput.cancel) return;
+            }
+
+            var n = new TreeNode
+            {
+                Name = "npc",
+                Text = paste ? t : fInput.text,
+                ContextMenu = contextMenu,
+                BackColor = Color.FromArgb(0xA4C2F4)
+            };
+            if (questTree.SelectedNode == null && questTree.Nodes.Count == 0)
+            {
+                questTree.Nodes.Add(n);
+            }
+            else if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "player" &&
+                     questTree.SelectedNode.Nodes.Count < 3)
+            {
+                questTree.SelectedNode.Nodes.Add(n);
+                questTree.SelectedNode.Expand();
             }
         }
 
-        private void bAddDialogNode_Click(object sender, EventArgs e)
+        private void AddPlayerDialog(bool paste)
         {
-            if (questTree.SelectedNode != null && questTree.SelectedNode.Name == "npc" && questTree.SelectedNode.Nodes.Count < 3)
+            if (questTree.SelectedNode == null || questTree.SelectedNode.Name != "npc" ||
+                questTree.SelectedNode.Nodes.Count >= 3) return;
+            var t = "";
+            if (Clipboard.ContainsText()) t = Exporter.FixString(Clipboard.GetText());
+
+            var fInput = new InputForm(t);
+            if (!paste)
             {
-                String t = "";
-                if (Clipboard.ContainsText()) t = Clipboard.GetText();
-                InputForm fInput = new InputForm(t);
                 fInput.ShowDialog();
-                if (!fInput.cancel)
-                {
-                    TreeNode n = new TreeNode();
-                    n.Name = "player";
-                    n.Text = fInput.text;
-                    n.ContextMenu = contextMenu;
-                    n.BackColor = Color.Yellow;
-                    questTree.SelectedNode.Nodes.Add(n);
-                    questTree.SelectedNode.Expand();
-                }
+                if (fInput.cancel) return;
             }
+
+            var n = new TreeNode
+            {
+                Name = "player",
+                Text = paste ? t : fInput.text,
+                ContextMenu = contextMenu,
+                BackColor = Color.Yellow
+            };
+            questTree.SelectedNode.Nodes.Add(n);
+            questTree.SelectedNode.Expand();
         }
 
         private void bRemoveNode_Click(object sender, EventArgs e)
@@ -87,7 +114,7 @@ namespace CreateQuestTreesGUI
         private void questTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (questTree.SelectedNode == null) return;
-            InputForm fInput = new InputForm(questTree.SelectedNode.Text);
+            var fInput = new InputForm(questTree.SelectedNode.Text);
             fInput.ShowDialog();
             if (!fInput.cancel)
             {
@@ -97,11 +124,11 @@ namespace CreateQuestTreesGUI
 
         private void bExport_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
+            var sfd = new SaveFileDialog();
             sfd.FileName = "";
             sfd.Filter = "Java Files|*.java";
 
-            if (sfd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+            if (sfd.ShowDialog() != DialogResult.Cancel)
             {
                 new Exporter(sfd.FileName, questTree.Nodes);
             }
@@ -109,7 +136,7 @@ namespace CreateQuestTreesGUI
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
+            var sfd = new SaveFileDialog();
             sfd.FileName = "";
             sfd.Filter = "XML Files|*.xml";
 
@@ -136,17 +163,17 @@ namespace CreateQuestTreesGUI
 
         private void bLoad_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
             ofd.FileName = "";
             ofd.Filter = "XML Files|*.xml";
 
             if (ofd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
             {
-                XmlDocument doc = new XmlDocument();
+                var doc = new XmlDocument();
                 doc.Load(ofd.FileName);
 
                 questTree.Nodes.Clear();
-                TreeNode tNode = new TreeNode();
+                var tNode = new TreeNode();
                 tNode.Name = "npc";
                 tNode.BackColor = Color.FromArgb(0xA4C2F4);
                 tNode.Text = doc.DocumentElement["npc"].Attributes[0].Value;
@@ -169,10 +196,10 @@ namespace CreateQuestTreesGUI
             if (inXmlNode.HasChildNodes)
             {
                 nodeList = inXmlNode.ChildNodes;
-                for (int i = 0; i <= nodeList.Count - 1; i++)
+                for (var i = 0; i <= nodeList.Count - 1; i++)
                 {
                     xNode = inXmlNode.ChildNodes[i];
-                    TreeNode t = new TreeNode();
+                    var t = new TreeNode();
                     t.Name = xNode.Name;
                     t.Text = xNode.Attributes[0].Value;
                     if (xNode.Attributes[0].Value == "npc")

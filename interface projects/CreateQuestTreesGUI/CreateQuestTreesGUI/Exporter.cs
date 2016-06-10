@@ -25,6 +25,27 @@ namespace CreateQuestTreesGUI
             }
         }
 
+        public static string FixString(string s)
+        {
+            if (s.IndexOf('\u2013') > -1) s = s.Replace('\u2013', '-');
+            if (s.IndexOf('\u2014') > -1) s = s.Replace('\u2014', '-');
+            if (s.IndexOf('\u2015') > -1) s = s.Replace('\u2015', '-');
+            if (s.IndexOf('\u2017') > -1) s = s.Replace('\u2017', '_');
+            if (s.IndexOf('\u2018') > -1) s = s.Replace('\u2018', '\'');
+            if (s.IndexOf('\u2019') > -1) s = s.Replace('\u2019', '\'');
+            if (s.IndexOf('\u201a') > -1) s = s.Replace('\u201a', ',');
+            if (s.IndexOf('\u201b') > -1) s = s.Replace('\u201b', '\'');
+            if (s.IndexOf('\u201c') > -1) s = s.Replace('\u201c', '\"');
+            if (s.IndexOf('\u201d') > -1) s = s.Replace('\u201d', '\"');
+            if (s.IndexOf('\u201e') > -1) s = s.Replace('\u201e', '\"');
+            if (s.IndexOf('\u2026') > -1) s = s.Replace("\u2026", "...");
+            if (s.IndexOf('\u2032') > -1) s = s.Replace('\u2032', '\'');
+            if (s.IndexOf('\u2033') > -1) s = s.Replace('\u2033', '\"');
+            if (s.IndexOf('"') > -1) s = s.Replace("\"", "\\\"");
+            if (s.IndexOf("  ", StringComparison.Ordinal) > -1) s = s.Replace("  ", " ");
+            return s;
+        }
+
         public void processNodes(String pfx, TreeNode node, StreamWriter w)
         {
             Console.WriteLine(node.Name);

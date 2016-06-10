@@ -18,3 +18,13 @@ E:\Forge\Mods\StarWarsMod\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\Crea
 E:\Forge\Mods\StarWarsMod\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.InputForm.resources
 E:\Forge\Mods\StarWarsMod\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.Properties.Resources.resources
 E:\Forge\Mods\StarWarsMod\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.csproj.GenerateResource.Cache
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\bin\Debug\CreateQuestTreesGUI.exe.config
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.exe
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.pdb
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\bin\Debug\CreateQuestTreesGUI.exe
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\bin\Debug\CreateQuestTreesGUI.pdb
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.csprojResolveAssemblyReference.cache
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.Form1.resources
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.InputForm.resources
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.Properties.Resources.resources
+E:\Forge\Mods\StarWarsMod\interface projects\CreateQuestTreesGUI\CreateQuestTreesGUI\obj\Debug\CreateQuestTreesGUI.csproj.GenerateResource.Cache
