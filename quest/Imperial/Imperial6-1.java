@@ -1,0 +1,17 @@
+this.tree = new DialogTree();
+this.tree.npcHeader = "Good work Trooper, we'll have a real edge over the Rebels with the information these smugglers hold. It's also time for you to transfer to the Snowtrooper Division.";
+this.tree.response1 = "Snowtrooper Division?";
+this.tree.response1DT = new DialogTree();
+this.tree.response1DT.npcHeader = "Yes the Snowtrooper Division, your transfer unit is currently stationed on Hoth. You'll be taking the fight to the Rebels in extreme conditions. Stop by the Quartermaster for your Hyperdrive and be on your way Trooper.";
+this.tree.response1DT.response1 = "Sir Yes Sir!";
+this.tree.response1DT.response1DT = new DialogTree();
+this.tree.response2 = "I've heard that Division is very elite.";
+this.tree.response2DT = new DialogTree();
+this.tree.response2DT.npcHeader = "They are indeed, and they need Troopers like you. The unit you are transferring to is currently stationed on Hoth. Be sure to stop by the Quartermaster, then be on your way.";
+this.tree.response2DT.response1 = "Thank you sir, I'll be leaving immediately.";
+this.tree.response2DT.response1DT = new DialogTree();
+this.tree.response3 = "Where would that be sir?";
+this.tree.response3DT = new DialogTree();
+this.tree.response3DT.npcHeader = "Hoth, a desolate ice planet. You're to ship out right away, so go to the Quartermaster for your Hyperdrive and make haste. Make the Empire proud Trooper.";
+this.tree.response3DT.response1 = "I will sir! Thank you sir!";
+this.tree.response3DT.response1DT = new DialogTree();
