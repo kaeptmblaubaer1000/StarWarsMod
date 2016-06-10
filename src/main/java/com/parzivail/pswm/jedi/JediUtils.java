@@ -105,9 +105,7 @@ public class JediUtils
 
 	public static boolean getIsRunning(ItemStack stack)
 	{
-		if (stack == null)
-			return false;
-		return stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtIsRunning) && stack.stackTagCompound.getBoolean(Resources.nbtIsRunning);
+		return stack != null && stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtIsRunning) && stack.stackTagCompound.getBoolean(Resources.nbtIsRunning);
 	}
 
 	public static int getLevel(EntityPlayer player)

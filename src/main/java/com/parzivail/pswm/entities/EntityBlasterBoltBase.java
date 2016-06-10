@@ -109,7 +109,13 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 			if (pos.entityHit instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
-				if (JediUtils.getHolocron(entityPlayer) != null)
+
+				if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && entityPlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber && ItemLightsaber.isOn(entityPlayer.inventory.getCurrentItem()))
+				{
+					recreate(entityPlayer);
+					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+				}
+				else if (JediUtils.getHolocron(entityPlayer) != null)
 				{
 					ItemStack stack = JediUtils.getHolocron(entityPlayer);
 
@@ -123,11 +129,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 						pos.entityHit.setFire(8);
 						this.setDead();
 					}
-				}
-				else if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && entityPlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber)
-				{
-					recreate(entityPlayer);
-					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 				}
 				else
 				{

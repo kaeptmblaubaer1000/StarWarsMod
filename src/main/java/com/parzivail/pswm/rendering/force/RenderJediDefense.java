@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering.force;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -35,7 +36,10 @@ public class RenderJediDefense
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
 		{
 			if (JediUtils.getActive((EntityPlayer)entity).equals("defend") && JediUtils.getIsRunning((EntityPlayer)entity))
+			{
 				this.renderPlayerShield(event, (EntityPlayer)entity, false);
+				Lumberjack.log(entity);
+			}
 
 			if (JediUtils.getActive((EntityPlayer)entity).equals("deflect") && JediUtils.getUsingDuration((EntityPlayer)entity))
 				this.renderPlayerShield(event, (EntityPlayer)entity, true);
