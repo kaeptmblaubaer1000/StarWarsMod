@@ -44,12 +44,12 @@ public class Imperial8_2 extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "The Imperial Navy";
 	}
 }

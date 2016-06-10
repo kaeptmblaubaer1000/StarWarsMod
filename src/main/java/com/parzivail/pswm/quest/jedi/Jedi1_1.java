@@ -78,12 +78,12 @@ public class Jedi1_1 extends Quest
 	@Override
 	public DialogTree getDialog(EntityPlayer player)
 	{
-		return null;
+		return tree;
 	}
 
 	@Override
 	public String getID()
 	{
-		return null;
+		return "The Jedi Order";
 	}
 }
