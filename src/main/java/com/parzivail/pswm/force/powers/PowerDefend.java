@@ -1,8 +1,9 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class PowerDefend extends Power
+public class PowerDefend extends PowerBase
 {
 	public int health = 0;
 	public boolean isRunning = false;
@@ -28,5 +29,22 @@ public class PowerDefend extends Power
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public NBTTagCompound serialize()
+	{
+		NBTTagCompound compound = super.serialize();
+		compound.setInteger("health", health);
+		compound.setBoolean("isRunning", isRunning);
+		return compound;
+	}
+
+	@Override
+	public void deserialize(NBTTagCompound compound)
+	{
+		super.deserialize(compound);
+		this.health = compound.getInteger("health");
+		this.isRunning = compound.getBoolean("isRunning");
 	}
 }

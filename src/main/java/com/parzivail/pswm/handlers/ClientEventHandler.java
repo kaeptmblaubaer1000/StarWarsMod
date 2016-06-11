@@ -3,12 +3,12 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.jedi.powers.Power;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
@@ -141,7 +141,7 @@ public class ClientEventHandler
 
 			if (JediUtils.getActive(entityPlayer).equals("defend") && JediUtils.getHealth(entityPlayer) > 0)
 			{
-				Power.getPowerFromName(JediUtils.getActive(entityPlayer));
+				PowerBase.getPowerFromName(JediUtils.getActive(entityPlayer));
 				if (JediUtils.getHealth(entityPlayer) > event.ammount)
 				{
 					JediUtils.setHealth(entityPlayer, (int)(JediUtils.getHealth(entityPlayer) - event.ammount));

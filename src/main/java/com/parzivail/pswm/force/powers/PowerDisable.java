@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageAddEffectTo;
@@ -8,7 +8,7 @@ import com.parzivail.util.ui.GuiToast;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PowerDisable extends Power
+public class PowerDisable extends PowerBase
 {
 	public PowerDisable(int currentLevel)
 	{

@@ -1,11 +1,11 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageThrowSaber;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PowerSaberThrow extends Power
+public class PowerSaberThrow extends PowerBase
 {
 	public PowerSaberThrow(int currentLevel)
 	{

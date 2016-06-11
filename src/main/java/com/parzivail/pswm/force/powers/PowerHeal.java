@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHeal;
@@ -6,7 +6,7 @@ import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PowerHeal extends Power
+public class PowerHeal extends PowerBase
 {
 	public PowerHeal(int currentLevel)
 	{

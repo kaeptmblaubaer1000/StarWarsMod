@@ -4,9 +4,9 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.jedi.powers.Power;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
@@ -88,15 +88,15 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPushMatrix();
 			GLPZ.glScalef(0.5f);
 
-			if (Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
-				this.drawString(this.mc.fontRenderer, Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
+			if (PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
+				this.drawString(this.mc.fontRenderer, PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 
-			Iterator<Power> coolingIt = ForceUtils.coolingPowers.iterator();
+			Iterator<PowerBase> coolingIt = ForceUtils.coolingPowers.iterator();
 			while (coolingIt.hasNext())
 			{
-				Power cooling = coolingIt.next();
+				PowerBase cooling = coolingIt.next();
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GLPalette.WHITE);
 				y -= 22;

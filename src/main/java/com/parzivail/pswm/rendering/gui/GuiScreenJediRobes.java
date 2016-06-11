@@ -2,8 +2,9 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.jedi.powers.Power;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.network.MessageRobesPowerNBT;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
@@ -45,10 +46,10 @@ public class GuiScreenJediRobes extends GuiScreen
 	public GuiScreenJediRobes(EntityPlayer player)
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.stack = JediUtils.getHolocron(player);
+		this.stack = CronUtils.getHolocron(player);
 		this.player = player;
 
-		this.powers = ForceUtils.getPowersAvailableAtLevel(JediUtils.getSide(this.stack), (int)Math.floor(JediUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL));
+		this.powers = ForceUtils.getPowersAvailableAtLevel(CronUtils.getSide(this.stack), (int)Math.floor(CronUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL));
 
 		this.points = JediUtils.getPoints(this.stack);
 	}
@@ -65,22 +66,22 @@ public class GuiScreenJediRobes extends GuiScreen
 				JediUtils.setActiveLevel(this.mc.thePlayer, this.selectedPower.power.currentLevel);
 				JediUtils.setHealth(this.mc.thePlayer, this.selectedPower.power.currentLevel);
 				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, this.selectedPower.power.name));
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(this.selectedPower.power.name).currentLevel));
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, PowerBase.getPowerFromName(this.selectedPower.power.name).currentLevel));
 				if (this.selectedPower.power.name.equals("defend"))
-					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, Power.getPowerFromName(this.selectedPower.power.name).currentLevel));
+					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, PowerBase.getPowerFromName(this.selectedPower.power.name).currentLevel));
 			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
-				Power.getPowerFromName(this.selectedPower.power.name).currentLevel++;
-				JediUtils.setActiveLevel(this.mc.thePlayer, Power.getPowerFromName(this.selectedPower.power.name).currentLevel);
-				StarWarsMod.network.sendToServer(new MessageRobesPowerNBT(this.player, this.selectedPower.power.name, Power.getPowerFromName(this.selectedPower.power.name).currentLevel));
+				PowerBase.getPowerFromName(this.selectedPower.power.name).currentLevel++;
+				JediUtils.setActiveLevel(this.mc.thePlayer, PowerBase.getPowerFromName(this.selectedPower.power.name).currentLevel);
+				StarWarsMod.network.sendToServer(new MessageRobesPowerNBT(this.player, this.selectedPower.power.name, PowerBase.getPowerFromName(this.selectedPower.power.name).currentLevel));
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtRemainingPts, --this.points));
 				JediUtils.setPoints(this.mc.thePlayer, this.points);
 			}
 		}
 	}
 
-	public boolean canLearn(Power power)
+	public boolean canLearn(PowerBase power)
 	{
 		if (power == null)
 			return false;
@@ -182,7 +183,7 @@ public class GuiScreenJediRobes extends GuiScreen
 
 			if (this.stack != null)
 			{
-				item.power = Power.getPowerFromName(power);
+				item.power = PowerBase.getPowerFromName(power);
 				if (item.power != null)
 					item.power.currentLevel = JediUtils.getLevelOf(this.stack, item.power.name);
 			}

@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageTransmute;
@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 
-public class PowerNaturalAwareness extends Power
+public class PowerNaturalAwareness extends PowerBase
 {
 	public PowerNaturalAwareness(int currentLevel)
 	{

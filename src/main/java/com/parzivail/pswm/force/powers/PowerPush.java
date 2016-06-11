@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 
-public class PowerPush extends Power
+public class PowerPush extends PowerBase
 {
 	public PowerPush(int currentLevel)
 	{

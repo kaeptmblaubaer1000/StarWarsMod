@@ -1,8 +1,8 @@
 package com.parzivail.pswm.utils;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.jedi.powers.*;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import org.apache.commons.io.IOUtils;
@@ -30,16 +30,16 @@ public class ForceUtils
 		}
 	}
 
-	public static Power activePower = null;
+	public static PowerBase activePower = null;
 	public static boolean isUsingDuration = false;
 	public static int health = 0;
 	public static float distanceToEntity = -1;
 
-	public static ArrayList<Power> coolingPowers = new ArrayList<>();
+	public static ArrayList<PowerBase> coolingPowers = new ArrayList<>();
 
 	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<>();
 
-	public static HashMap<String, Power> powers = new HashMap<>();
+	public static HashMap<String, PowerBase> powers = new HashMap<>();
 
 	static
 	{
@@ -178,7 +178,7 @@ public class ForceUtils
 
 	public static boolean isCooling(String power)
 	{
-		for (Power p : coolingPowers)
+		for (PowerBase p : coolingPowers)
 			if (p.name.equals(power))
 				return true;
 		return false;

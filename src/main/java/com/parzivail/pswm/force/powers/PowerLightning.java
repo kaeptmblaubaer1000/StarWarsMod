@@ -1,11 +1,7 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
-import net.minecraft.entity.Entity;
-
-public class PowerLightning extends Power
+public class PowerLightning extends PowerBase
 {
-	Entity target = null;
-
 	public PowerLightning(int currentLevel)
 	{
 		super("lightning");

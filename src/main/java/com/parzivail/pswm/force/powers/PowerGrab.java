@@ -1,6 +1,6 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
-public class PowerGrab extends Power
+public class PowerGrab extends PowerBase
 {
 	public PowerGrab(int currentLevel)
 	{

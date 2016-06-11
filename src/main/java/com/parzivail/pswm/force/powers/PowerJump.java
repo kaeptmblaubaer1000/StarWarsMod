@@ -1,9 +1,9 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 
-public class PowerJump extends Power
+public class PowerJump extends PowerBase
 {
 	public PowerJump(int currentLevel)
 	{

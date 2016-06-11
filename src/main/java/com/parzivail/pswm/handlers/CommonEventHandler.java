@@ -5,10 +5,11 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.exception.UserError;
+import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.powers.PowerDefend;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.jedi.powers.Power;
-import com.parzivail.pswm.jedi.powers.PowerDefend;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.AnimationHyperspace;
@@ -213,7 +214,7 @@ public class CommonEventHandler
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUEST, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
-			if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
+			if (CronUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
@@ -234,15 +235,15 @@ public class CommonEventHandler
 				{
 					if (index >= powers.size())
 						index = 0;
-					Power selectedPower = Power.getPowerFromName(powers.get(index));
+					PowerBase selectedPower = PowerBase.getPowerFromName(powers.get(index));
 					ForceUtils.activePower = selectedPower;
 					JediUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
 					JediUtils.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
 					JediUtils.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
 					StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, selectedPower.name));
-					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(selectedPower.name).currentLevel));
+					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, PowerBase.getPowerFromName(selectedPower.name).currentLevel));
 					if (selectedPower.name.equals("defend"))
-						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, Power.getPowerFromName(selectedPower.name).currentLevel));
+						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, PowerBase.getPowerFromName(selectedPower.name).currentLevel));
 				}
 			}
 		}
@@ -265,79 +266,49 @@ public class CommonEventHandler
 				{
 					if (index < 0)
 						index = powers.size() - 1;
-					Power selectedPower = Power.getPowerFromName(powers.get(index));
+					PowerBase selectedPower = PowerBase.getPowerFromName(powers.get(index));
 					ForceUtils.activePower = selectedPower;
 					JediUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower.name);
 					JediUtils.setActiveLevel(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
 					JediUtils.setHealth(StarWarsMod.mc.thePlayer, selectedPower.currentLevel);
 					StarWarsMod.network.sendToServer(new MessageRobesStringNBT(StarWarsMod.mc.thePlayer, Resources.nbtActive, selectedPower.name));
-					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, Power.getPowerFromName(selectedPower.name).currentLevel));
+					StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveLevel, PowerBase.getPowerFromName(selectedPower.name).currentLevel));
 					if (selectedPower.name.equals("defend"))
-						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, Power.getPowerFromName(selectedPower.name).currentLevel));
+						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, PowerBase.getPowerFromName(selectedPower.name).currentLevel));
 				}
 			}
 		}
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 		{
-			if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
+			ItemStack cron;
+			if ((cron = CronUtils.getHolocron(StarWarsMod.mc.thePlayer)) != null)
 			{
-				Power active = Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
+				PowerBase powerBase = CronUtils.getActive(cron);
 
-				if (active != null && JediUtils.getLevelOf(StarWarsMod.mc.thePlayer, active.name) > 0)
+				if (powerBase != null)
 				{
-					Entity e = EntityUtils.rayTrace(active.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
-
-					if (e != null)
-						JediUtils.setEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId());
-
-					active.currentLevel = JediUtils.getLevelOf(StarWarsMod.mc.thePlayer, active.name);
-					if (JediUtils.getXP(StarWarsMod.mc.thePlayer) - active.getCost() >= 0 && !ForceUtils.isCooling(active.name))
+					switch (powerBase.name)
 					{
-						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, JediUtils.getXP(StarWarsMod.mc.thePlayer) - active.getCost()));
-
-						if (!active.isDurationBased)
-						{
-							if (active.name.equals("defend"))
+						case "defend":
+							PowerDefend powerDefend = (PowerDefend)powerBase;
+							if (powerDefend.isRunning)
 							{
-								if (!JediUtils.getIsRunning(StarWarsMod.mc.thePlayer))
-								{
-									if (active.run(StarWarsMod.mc.thePlayer))
-									{
-										StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, active.currentLevel));
-										StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsRunning, true));
-									}
-								}
-								else
-								{
-									((PowerDefend)active).health = 0;
-									((PowerDefend)active).isRunning = false;
-									((PowerDefend)active).recharge = ((PowerDefend)active).rechargeTime;
-									StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtActiveHealth, 0));
-									StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsRunning, false));
-									if (!ForceUtils.isCooling("defend"))
-										ForceUtils.coolingPowers.add(active);
-								}
+								powerDefend.isRunning = false;
+								powerDefend.health = 0;
+								powerDefend.recharge = powerDefend.rechargeTime;
 							}
 							else
-							{
-								active.run(StarWarsMod.mc.thePlayer);
-								active.recharge = active.rechargeTime;
-								if (!ForceUtils.isCooling(JediUtils.getActive(StarWarsMod.mc.thePlayer)))
-									ForceUtils.coolingPowers.add(active);
-							}
-						}
-						else
-						{
-							ForceUtils.isUsingDuration = true;
-							StarWarsMod.network.sendToServer(new MessageRobesBooleanNBT(StarWarsMod.mc.thePlayer, Resources.nbtIsUsingDuration, true));
-						}
+								powerDefend.run(StarWarsMod.mc.thePlayer);
+						default:
+							powerBase.run(StarWarsMod.mc.thePlayer);
 					}
+
+					if (!ForceUtils.isCooling(JediUtils.getActive(StarWarsMod.mc.thePlayer)))
+						ForceUtils.coolingPowers.add(powerBase);
 				}
 			}
 		}
-		else
-			StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, -1));
 	}
 
 	@SubscribeEvent(priority = EventPriority.NORMAL,
@@ -384,7 +355,7 @@ public class CommonEventHandler
 
 		if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 		{
-			Power power = Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
+			PowerBase power = PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
 
 			Entity e;
 
@@ -450,10 +421,10 @@ public class CommonEventHandler
 				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
 			});
 
-		Iterator<Power> it = ForceUtils.coolingPowers.iterator();
+		Iterator<PowerBase> it = ForceUtils.coolingPowers.iterator();
 		while (it.hasNext())
 		{
-			Power cooling = it.next();
+			PowerBase cooling = it.next();
 			cooling.recharge--;
 			if (cooling.recharge <= 0)
 				it.remove();
@@ -511,7 +482,7 @@ public class CommonEventHandler
 				}
 				else if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("lightning") || JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
 				{
-					Power power = Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
+					PowerBase power = PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
 					if (JediUtils.getEntityTarget(StarWarsMod.mc.thePlayer) != -1)
 					{
 						Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(JediUtils.getEntityTarget(StarWarsMod.mc.thePlayer));
@@ -559,7 +530,7 @@ public class CommonEventHandler
 		if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("defend") && JediUtils.getHealth(StarWarsMod.mc.thePlayer) <= 0 && JediUtils.getIsRunning(StarWarsMod.mc.thePlayer))
 
 		{
-			PowerDefend active = (PowerDefend)Power.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
+			PowerDefend active = (PowerDefend)PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer));
 			active.health = 0;
 			active.isRunning = false;
 			active.recharge = active.rechargeTime;

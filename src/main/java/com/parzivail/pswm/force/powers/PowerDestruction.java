@@ -1,10 +1,10 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageCreateDestructionBolt;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PowerDestruction extends Power
+public class PowerDestruction extends PowerBase
 {
 	public PowerDestruction(int currentLevel)
 	{

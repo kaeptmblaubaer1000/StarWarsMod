@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.armor.*;
+import com.parzivail.pswm.force.ItemHolocron;
 import com.parzivail.pswm.items.*;
 import com.parzivail.pswm.items.crafting.*;
 import com.parzivail.pswm.items.hyperdrive.*;
@@ -73,6 +74,9 @@ public class ItemRegister
 
 		StarWarsItems.holocronJedi = new ItemHolocronJedi();
 		GameRegistry.registerItem(StarWarsItems.holocronJedi, "holocronJedi");
+
+		StarWarsItems.holocron = new ItemHolocron();
+		GameRegistry.registerItem(StarWarsItems.holocron, "holocron");
 
 		StarWarsItems.questContainer = new ItemQuestContainer();
 		GameRegistry.registerItem(StarWarsItems.questContainer, "questContainer");

@@ -1,6 +1,6 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
-public class PowerDeflect extends Power
+public class PowerDeflect extends PowerBase
 {
 	public PowerDeflect(int currentLevel)
 	{

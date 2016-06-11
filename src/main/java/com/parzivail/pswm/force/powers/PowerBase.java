@@ -1,12 +1,13 @@
-package com.parzivail.pswm.jedi.powers;
+package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class Power
+public class PowerBase
 {
-	public static Power getPowerFromName(String name)
+	public static PowerBase getPowerFromName(String name)
 	{
 		if (ForceUtils.powers.containsKey(name))
 			return ForceUtils.powers.get(name);
@@ -32,11 +33,63 @@ public class Power
 
 	public boolean isDurationBased = false;
 
-	public Power(String name)
+	public PowerBase(String name)
 	{
 		this.unlocalizedName = "force.power." + name;
 		this.unlocalizedDescription = this.unlocalizedName + ".desc";
 		this.name = name;
+	}
+
+	/**
+	 * Serializes the power for saving to NBT
+	 *
+	 * @return a NBTTagCompound of the power
+	 */
+	public NBTTagCompound serialize()
+	{
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setInteger("currentLevel", currentLevel);
+		compound.setInteger("maxLevel", maxLevel);
+		compound.setString("name", name);
+		compound.setString("unlocalizedName", unlocalizedName);
+		compound.setString("unlocalizedDescription", unlocalizedDescription);
+		compound.setFloat("rechargeTime", rechargeTime);
+		compound.setFloat("recharge", recharge);
+		compound.setInteger("costMult", costMult);
+		compound.setInteger("costBase", costBase);
+		compound.setInteger("duration", duration);
+		compound.setInteger("durationBase", durationBase);
+		compound.setInteger("durationMult", durationMult);
+		compound.setInteger("healthBase", healthBase);
+		compound.setInteger("healthMult", healthMult);
+		compound.setInteger("rangeBase", rangeBase);
+		compound.setInteger("rangeMult", rangeMult);
+		return compound;
+	}
+
+	/**
+	 * Sets up the power with the specified NBT
+	 *
+	 * @param compound The compound to read
+	 */
+	public void deserialize(NBTTagCompound compound)
+	{
+		this.currentLevel = compound.getInteger("currentLevel");
+		this.maxLevel = compound.getInteger("maxLevel");
+		this.name = compound.getString("name");
+		this.unlocalizedName = compound.getString("unlocalizedName");
+		this.unlocalizedDescription = compound.getString("unlocalizedDescription");
+		this.rechargeTime = compound.getFloat("rechargeTime");
+		this.recharge = compound.getFloat("recharge");
+		this.costMult = compound.getInteger("costMult");
+		this.costBase = compound.getInteger("costBase");
+		this.duration = compound.getInteger("duration");
+		this.durationBase = compound.getInteger("durationBase");
+		this.durationMult = compound.getInteger("durationMult");
+		this.healthBase = compound.getInteger("healthBase");
+		this.healthMult = compound.getInteger("healthMult");
+		this.rangeBase = compound.getInteger("rangeBase");
+		this.rangeMult = compound.getInteger("rangeMult");
 	}
 
 	/**

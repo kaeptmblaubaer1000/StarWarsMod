@@ -214,6 +214,7 @@ public class StarWarsItems
 	public static Item leiasBuns;
 
 	public static Item holocronJedi;
+	public static Item holocron;
 
 	public static Item questContainer;
 	public static Item idScanner;

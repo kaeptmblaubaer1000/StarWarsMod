@@ -1,0 +1,130 @@
+package com.parzivail.pswm.force;
+
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.utils.ForceUtils;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+/**
+ * Created by Colby on 6/10/2016. Utility class to help with Holocrons
+ */
+public class CronUtils
+{
+	public static void refreshRobes(ItemStack stack)
+	{
+		if (stack == null || !stack.hasTagCompound())
+			return;
+
+		stack.stackTagCompound.setTag(Resources.nbtPowers, compilePowers());
+	}
+
+	public static NBTTagCompound compilePowers()
+	{
+		NBTTagCompound compound = new NBTTagCompound();
+		for (PowerBase p : ForceUtils.powers.values())
+			compound.setTag(p.name, p.serialize());
+		return compound;
+	}
+
+	public static ItemStack getHolocron(EntityPlayer player)
+	{
+		if (player == null)
+			return null;
+		for (ItemStack i : player.inventory.mainInventory)
+		{
+			if (i == null)
+				continue;
+			if (i.getItem() instanceof ItemHolocron)
+				return i;
+		}
+		return null;
+	}
+
+	public static PowerBase getActive(EntityPlayer player)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return null;
+		return getActive(stack);
+	}
+
+	public static String getSide(EntityPlayer player)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return null;
+		return getSide(stack);
+	}
+
+	public static String getSide(ItemStack stack)
+	{
+		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield))
+			return null;
+
+		return stack.stackTagCompound.getString(Resources.nbtSide);
+	}
+
+	public static int getLevel(Object o)
+	{
+		return 10000000;
+	}
+
+	public static void setActive(EntityPlayer player, PowerBase power)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return;
+		setActive(stack, power);
+	}
+
+	public static void clearActive(EntityPlayer player)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return;
+		clearActive(stack);
+	}
+
+	public static PowerBase getActive(ItemStack stack)
+	{
+		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield))
+			return null;
+
+		NBTTagCompound compound = (NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtWield);
+		String type = compound.getString("name");
+
+		if (ForceUtils.powers.get(type) == null)
+			return null;
+
+		Class clazz = ForceUtils.powers.get(type).getClass();
+		try
+		{
+			PowerBase power = (PowerBase)clazz.getConstructor(Integer.class).newInstance(0);
+			power.deserialize(compound);
+			return power;
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static void setActive(ItemStack stack, PowerBase power)
+	{
+		if (stack == null || !stack.hasTagCompound())
+			return;
+
+		stack.stackTagCompound.setTag(Resources.nbtWield, power.serialize());
+	}
+
+	public static void clearActive(ItemStack stack)
+	{
+		if (stack == null || !stack.hasTagCompound())
+			return;
+
+		stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
+	}
+}
