@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.jedi.JediUtils;
@@ -18,7 +19,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -27,23 +27,20 @@ import org.lwjgl.opengl.GL11;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class GuiPSWMOverlay extends Gui
 {
 	private Minecraft mc;
-	private RenderItem r;
 	private NumberFormat format;
 
 	public GuiPSWMOverlay(Minecraft mc)
 	{
 		this.mc = mc;
-		this.r = RenderItem.getInstance();
 
 		this.format = NumberFormat.getInstance();
 	}
 
-	public int countCredits()
+	protected int countCredits()
 	{
 		int credits = 0;
 		for (ItemStack stack : this.mc.thePlayer.inventory.mainInventory)
@@ -72,13 +69,13 @@ public class GuiPSWMOverlay extends Gui
 
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
-		if (JediUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
+		if (CronUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 		{
-			ItemStack robes = JediUtils.getHolocron(StarWarsMod.mc.thePlayer);
-			int xp = JediUtils.getXP(robes);
-			int maxxp = JediUtils.getMaxXP(robes);
+			ItemStack robes = CronUtils.getHolocron(StarWarsMod.mc.thePlayer);
+			int xp = CronUtils.getXP(robes);
+			int maxxp = CronUtils.getMaxXP(robes);
 
-			boolean isJedi = JediUtils.getSide(robes).equals(JediUtils.SIDE_JEDI);
+			boolean isJedi = CronUtils.getSide(robes).equals(JediUtils.SIDE_JEDI);
 			int guiColor = isJedi ? GLPalette.GREEN_APPLE : GLPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
@@ -88,15 +85,14 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPushMatrix();
 			GLPZ.glScalef(0.5f);
 
-			if (PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
-				this.drawString(this.mc.fontRenderer, PowerBase.getPowerFromName(JediUtils.getActive(StarWarsMod.mc.thePlayer)).getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
+			PowerBase active;
+			if ((active = CronUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
+				this.drawString(this.mc.fontRenderer, active.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 
-			Iterator<PowerBase> coolingIt = ForceUtils.coolingPowers.iterator();
-			while (coolingIt.hasNext())
+			for (PowerBase cooling : ForceUtils.coolingPowers)
 			{
-				PowerBase cooling = coolingIt.next();
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GLPalette.WHITE);
 				y -= 22;

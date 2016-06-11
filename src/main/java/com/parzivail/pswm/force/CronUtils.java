@@ -60,13 +60,33 @@ public class CronUtils
 
 	public static String getSide(ItemStack stack)
 	{
-		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield))
+		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtSide))
 			return null;
 
 		return stack.stackTagCompound.getString(Resources.nbtSide);
 	}
 
 	public static int getLevel(Object o)
+	{
+		return 10000000;
+	}
+
+	public static int getLevelOf(EntityPlayer player, String power)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return 0;
+		return getLevelOf(stack, power);
+	}
+
+	public static int getLevelOf(ItemStack stack, String power)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
+			return new PowerBase(power).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(power)).currentLevel;
+		return 0;
+	}
+
+	public static int getPoints(Object o)
 	{
 		return 10000000;
 	}
@@ -87,6 +107,28 @@ public class CronUtils
 		clearActive(stack);
 	}
 
+	public static int getXP(EntityPlayer player)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return 0;
+		return getXP(stack);
+	}
+
+	public static int getXP(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtXp))
+			return stack.stackTagCompound.getInteger(Resources.nbtXp);
+		return 0;
+	}
+
+	public static int getMaxXP(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtMaxXp))
+			return stack.stackTagCompound.getInteger(Resources.nbtMaxXp);
+		return 0;
+	}
+
 	public static PowerBase getActive(ItemStack stack)
 	{
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield))
@@ -101,7 +143,7 @@ public class CronUtils
 		Class clazz = ForceUtils.powers.get(type).getClass();
 		try
 		{
-			PowerBase power = (PowerBase)clazz.getConstructor(Integer.class).newInstance(0);
+			PowerBase power = (PowerBase)clazz.getConstructor(int.class).newInstance(0);
 			power.deserialize(compound);
 			return power;
 		}

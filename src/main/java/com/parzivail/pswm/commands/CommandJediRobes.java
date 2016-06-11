@@ -1,6 +1,7 @@
 package com.parzivail.pswm.commands;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -31,13 +32,13 @@ public class CommandJediRobes extends CommandBase
 	@Override
 	public String getCommandName()
 	{
-		return "robes";
+		return "cron";
 	}
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender)
 	{
-		return "robes <level|xp|maxxp|side> <int:value>";
+		return "/cron <level | xp | maxxp | side> <integer value>";
 	}
 
 	@Override
@@ -54,11 +55,11 @@ public class CommandJediRobes extends CommandBase
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
-		if (player != null && JediUtils.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("side") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
+		if (player != null && CronUtils.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("side") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
-			ItemStack robes = JediUtils.getHolocron(player);
-			JediUtils.getXP(robes);
-			JediUtils.getMaxXP(robes);
+			ItemStack robes = CronUtils.getHolocron(player);
+			CronUtils.getXP(robes);
+			CronUtils.getMaxXP(robes);
 
 			if (key.equalsIgnoreCase("level"))
 				robes.stackTagCompound.setInteger(key, (int)(value * JediUtils.POINTS_PER_LEVEL));
@@ -74,24 +75,24 @@ public class CommandJediRobes extends CommandBase
 				}
 			else
 				robes.stackTagCompound.setInteger(key, value);
-			icommandsender.addChatMessage(new ChatComponentText("[Robes] Set " + key + " to " + String.valueOf(value) + "."));
+			icommandsender.addChatMessage(new ChatComponentText("[Cron] Set " + key + " to " + String.valueOf(value) + "."));
 
 			if (key.equalsIgnoreCase("level"))
 			{
 				robes.stackTagCompound.setInteger(Resources.nbtMaxXp, (value + 1) * 100);
-				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Max XP to " + String.valueOf((value + 1) * 100) + "."));
+				icommandsender.addChatMessage(new ChatComponentText("[Cron] Set Max XP to " + String.valueOf((value + 1) * 100) + "."));
 				robes.stackTagCompound.setInteger(Resources.nbtRemainingPts, value);
-				icommandsender.addChatMessage(new ChatComponentText("[Robes] Set Remaining Upgrade Points to " + String.valueOf(value) + "."));
+				icommandsender.addChatMessage(new ChatComponentText("[Cron] Set Remaining Upgrade Points to " + String.valueOf(value) + "."));
 			}
 		}
 		else
 		{
-			ItemStack robes = JediUtils.getHolocron(player);
+			ItemStack robes = CronUtils.getHolocron(player);
 			icommandsender.addChatMessage(new ChatComponentText("Usage: " + this.getCommandUsage(icommandsender)));
 			if (player == null)
 				icommandsender.addChatMessage(new ChatComponentText("Error: player is null!"));
 			else if (robes == null)
-				icommandsender.addChatMessage(new ChatComponentText("Note: You must be wearing robes!"));
+				icommandsender.addChatMessage(new ChatComponentText("Error: You must have a Holocron!"));
 			else
 				icommandsender.addChatMessage(new ChatComponentText("Unknown key!"));
 		}

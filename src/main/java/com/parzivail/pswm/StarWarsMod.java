@@ -434,6 +434,8 @@ public class StarWarsMod
 		this.registerMessage(MessageTransferHyperdrive.class);
 		this.registerMessage(MessageSpawn.class);
 		this.registerMessage(MessageThrowSaber.class);
+		this.registerMessage(MessageHolocronRefreshPowers.class);
+		this.registerMessage(MessageHolocronSetActive.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

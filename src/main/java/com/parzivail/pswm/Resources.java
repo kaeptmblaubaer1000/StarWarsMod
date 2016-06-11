@@ -152,7 +152,7 @@ public class Resources
 	public static final String nbtQuests = "quests";
 	public static final String nbtOwner = "owner";
 
-	public static final String nbtWield = "owner";
+	public static final String nbtWield = "wield";
 
 	public static final String nbtShotsLeft = "shotsLeft";
 	public static final String nbtCooldown = "cooldown";
