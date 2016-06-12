@@ -58,8 +58,9 @@ public class ItemHolocron extends Item
 			stack.stackTagCompound.setString(Resources.nbtMaster, player.getCommandSenderName());
 			stack.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_JEDI);
 
-			stack.stackTagCompound.setInteger(Resources.nbtXp, 0);
+			stack.stackTagCompound.setInteger(Resources.nbtXp, 1);
 			stack.stackTagCompound.setInteger(Resources.nbtMaxXp, 100);
+			stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, 0);
 
 			stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
 			stack.stackTagCompound.setTag(Resources.nbtPowers, new NBTTagCompound());

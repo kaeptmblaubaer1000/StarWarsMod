@@ -26,7 +26,7 @@ public class MessageRobesIntNBT extends PMessage<MessageRobesIntNBT>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		if (this.player == null || this.player.inventory == null)
+		if (this.player == null || this.player.inventory == null || CronUtils.getHolocron(this.player) == null)
 			return null;
 		CronUtils.getHolocron(this.player).stackTagCompound.setInteger(this.key, this.value);
 		return null;

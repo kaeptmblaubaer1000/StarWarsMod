@@ -23,6 +23,7 @@ public class PowerBase
 	public int healthMult = 0;
 	public int rangeBase = 0;
 	public int rangeMult = 0;
+	public boolean isRunning = false;
 
 	public boolean isDurationBased = false;
 
@@ -57,6 +58,7 @@ public class PowerBase
 		compound.setInteger("healthMult", healthMult);
 		compound.setInteger("rangeBase", rangeBase);
 		compound.setInteger("rangeMult", rangeMult);
+		compound.setBoolean("isRunning", isRunning);
 		return compound;
 	}
 
@@ -83,6 +85,7 @@ public class PowerBase
 		this.healthMult = compound.getInteger("healthMult");
 		this.rangeBase = compound.getInteger("rangeBase");
 		this.rangeMult = compound.getInteger("rangeMult");
+		this.isRunning = compound.getBoolean("isRunning");
 		return this;
 	}
 

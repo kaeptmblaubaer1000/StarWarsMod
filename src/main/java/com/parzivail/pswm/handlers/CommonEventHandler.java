@@ -6,12 +6,8 @@ import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.force.CronUtils;
-import com.parzivail.pswm.force.powers.ICanHaveEntityTarget;
-import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.force.powers.PowerDefend;
-import com.parzivail.pswm.force.powers.PowerLightning;
+import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.rendering.gui.AnimationHyperspace;
@@ -24,6 +20,7 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -300,13 +297,8 @@ public class CommonEventHandler
 								coolFlag = false;
 								break;
 							case "lightning":
-								Entity e = EntityUtils.rayTrace(powerBase.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
-								if (e != null)
-								{
-									((ICanHaveEntityTarget)powerBase).setEntityTargetId(e.getEntityId());
-									((PowerLightning)powerBase).isRunning = true;
-									coolFlag = false;
-								}
+								powerBase.isRunning = true;
+								coolFlag = false;
 								break;
 							default:
 								powerBase.run(StarWarsMod.mc.thePlayer);
@@ -367,96 +359,151 @@ public class CommonEventHandler
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 
-		PowerBase power1 = CronUtils.getActive(StarWarsMod.mc.thePlayer);
+		updateForcePowers();
+	}
 
-		if (power1 != null && (power1.name.equals("lightning") || power1.name.equals("grab")))
+	/**
+	 * Updates the force powers employed by the (client) player
+	 */
+	private void updateForcePowers()
+	{
+		PowerBase power = CronUtils.getActive(StarWarsMod.mc.thePlayer);
+
+		if (power != null)
 		{
-			ICanHaveEntityTarget targetable = (ICanHaveEntityTarget)power1;
-
-			Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(targetable.getEntityTargetId());
-
-			if (e != null)
+			switch (power.name)
 			{
-				if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab") && JediUtils.getUsingDuration(StarWarsMod.mc.thePlayer))
-				{
-					if (ForceUtils.distanceToEntity == -1)
-						ForceUtils.distanceToEntity = (float)Vec3.createVectorHelper(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ).distanceTo(Vec3.createVectorHelper(e.posX, e.posY, e.posZ));
+				case "deflect":
+					updateDeflect((PowerDeflect)power);
+					break;
+				case "grab":
+					updateGrab((PowerGrab)power);
+					break;
+				case "lightning":
+					updateLightning((PowerLightning)power);
+					break;
+			}
 
-					if (!e.worldObj.isRemote)
-					{
-						Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
-						look.xCoord *= ForceUtils.distanceToEntity;
-						look.yCoord *= ForceUtils.distanceToEntity;
-						look.zCoord *= ForceUtils.distanceToEntity;
-						look.xCoord += StarWarsMod.mc.thePlayer.posX;
-						look.yCoord += StarWarsMod.mc.thePlayer.posY;
-						look.zCoord += StarWarsMod.mc.thePlayer.posZ;
-						e.fallDistance = 0.0f;
-						e.onGround = false;
-						e.isAirBorne = true;
-						e.timeUntilPortal = 5;
-						e.setVelocity(0, 0, 0);
-						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
-						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
-					}
-					else
-					{
-						Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
-						look.xCoord *= ForceUtils.distanceToEntity;
-						look.yCoord *= ForceUtils.distanceToEntity;
-						look.zCoord *= ForceUtils.distanceToEntity;
-						look.xCoord += StarWarsMod.mc.thePlayer.posX;
-						look.yCoord += StarWarsMod.mc.thePlayer.posY;
-						look.zCoord += StarWarsMod.mc.thePlayer.posZ;
-						e.fallDistance = 0.0f;
-						e.onGround = false;
-						e.isAirBorne = true;
-						e.timeUntilPortal = 5;
-						e.setVelocity(0, 0, 0);
-						e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
-						StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
-					}
+			if (power.isDurationBased && power.isRunning)
+			{
+				power.duration++;
+				Lumberjack.log(power.duration);
+				if (power.duration >= power.getDuration() && !ForceUtils.isCooling(power.name))
+				{
+					ForceUtils.coolingPowers.add(power);
+					power.duration = 0;
+					power.isRunning = false;
 				}
 			}
-			else
-			{
-				targetable.setEntityTargetId(-1);
-				if (power1 instanceof PowerLightning)
-					((PowerLightning)power1).isRunning = false;
-				ForceUtils.distanceToEntity = -1;
-				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power1.serialize()));
 
-				if (!ForceUtils.isCooling(power1.name))
-					ForceUtils.coolingPowers.add(power1);
-			}
+			// TODO: make sure this happens AFTER confirmed changes are made by key input messages?
+			StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
 		}
 
-		if (JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("deflect") && JediUtils.getUsingDuration(StarWarsMod.mc.thePlayer))
+		NBTTagCompound powers = CronUtils.compilePowers();
+
+		tickCoolingPowers(powers);
+		addPlayerForceXp();
+
+		StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
+	}
+
+	/**
+	 * Updates lightning
+	 *
+	 * @param power The lightning power NBT Compound
+	 */
+	private void updateLightning(PowerLightning power)
+	{
+		Entity e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
+
+		if (e != null)
+		{
+			power.setEntityTargetId(e.getEntityId());
+		}
+		else
+		{
+			power.setEntityTargetId(-1);
+			power.isRunning = false;
+			power.duration = 0;
+			if (!ForceUtils.isCooling(power.name))
+				ForceUtils.coolingPowers.add(power);
+		}
+	}
+
+	/**
+	 * Updates entities caught in the deflect field
+	 *
+	 * @param power1 The deflect power NBT Compound
+	 */
+	private void updateDeflect(PowerDeflect power1)
+	{
+		if (power1.isRunning)
 			StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entityObj -> {
 				Entity entity = (Entity)entityObj;
 				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
 			});
+	}
 
-		NBTTagCompound powers = CronUtils.compilePowers();
-
-		Iterator<PowerBase> powerBaseIterator = ForceUtils.coolingPowers.iterator();
-		while (powerBaseIterator.hasNext())
+	/**
+	 * Updates grabbed entities
+	 *
+	 * @param power1 The grab power NBT Compound
+	 */
+	private void updateGrab(PowerGrab power1)
+	{
+		if (power1.isRunning)
 		{
-			PowerBase cooling = powerBaseIterator.next();
-			cooling.recharge--;
-			if (cooling.recharge <= 0)
+			Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(power1.getEntityTargetId());
+
+			if (e == null)
+				return;
+
+			if (ForceUtils.distanceToEntity == -1)
+				ForceUtils.distanceToEntity = (float)Vec3.createVectorHelper(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ).distanceTo(Vec3.createVectorHelper(e.posX, e.posY, e.posZ));
+
+			if (!e.worldObj.isRemote)
 			{
-				powerBaseIterator.remove();
-
-				if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(cooling.name))
-					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, cooling.serialize()));
+				Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
+				look.xCoord *= ForceUtils.distanceToEntity;
+				look.yCoord *= ForceUtils.distanceToEntity;
+				look.zCoord *= ForceUtils.distanceToEntity;
+				look.xCoord += StarWarsMod.mc.thePlayer.posX;
+				look.yCoord += StarWarsMod.mc.thePlayer.posY;
+				look.zCoord += StarWarsMod.mc.thePlayer.posZ;
+				e.fallDistance = 0.0f;
+				e.onGround = false;
+				e.isAirBorne = true;
+				e.timeUntilPortal = 5;
+				e.setVelocity(0, 0, 0);
+				e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
+				StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
 			}
-
-			powers.setTag(cooling.name, cooling.serialize());
+			else
+			{
+				Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
+				look.xCoord *= ForceUtils.distanceToEntity;
+				look.yCoord *= ForceUtils.distanceToEntity;
+				look.zCoord *= ForceUtils.distanceToEntity;
+				look.xCoord += StarWarsMod.mc.thePlayer.posX;
+				look.yCoord += StarWarsMod.mc.thePlayer.posY;
+				look.zCoord += StarWarsMod.mc.thePlayer.posZ;
+				e.fallDistance = 0.0f;
+				e.onGround = false;
+				e.isAirBorne = true;
+				e.timeUntilPortal = 5;
+				e.setVelocity(0, 0, 0);
+				e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
+				StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, ForceUtils.distanceToEntity));
+			}
 		}
+	}
 
-		StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
-
+	/**
+	 * Updates the player's Force XP and adds more as required
+	 */
+	private void addPlayerForceXp()
+	{
 		if (CronUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
 		{
 			ItemStack robes = CronUtils.getHolocron(StarWarsMod.mc.thePlayer);
@@ -482,93 +529,43 @@ public class CommonEventHandler
 
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, total));
 			}
+		}
+	}
 
-			powers = CronUtils.compilePowers();
-
-			PowerBase activePower = CronUtils.getActive(StarWarsMod.mc.thePlayer);
-
-			if (activePower != null && activePower.duration > 0 && !ForceUtils.isCooling(activePower.name))
+	/**
+	 * Ticks down all of the cooling powers
+	 *
+	 * @param powers The NBT serialized tag of powers to update as needed
+	 */
+	private void tickCoolingPowers(NBTTagCompound powers)
+	{
+		Iterator<PowerBase> powerBaseIterator = ForceUtils.coolingPowers.iterator();
+		while (powerBaseIterator.hasNext())
+		{
+			PowerBase cooling = powerBaseIterator.next();
+			cooling.recharge--;
+			if (cooling.recharge <= 0)
 			{
-				activePower.duration++;
+				powerBaseIterator.remove();
 
-				ForceUtils.isUsingDuration = ForceUtils.isUsingDuration && KeybindRegistry.keyRobePower.getIsKeyPressed();
-
-				if (activePower.duration > activePower.getDuration() || !ForceUtils.isUsingDuration)
-				{
-					if (activePower.name.equals("lightning") || JediUtils.getActive(StarWarsMod.mc.thePlayer).equals("grab"))
-					{
-						PowerLightning powerLightning = (PowerLightning)CronUtils.getActive(StarWarsMod.mc.thePlayer);
-						powerLightning.targetId = -1;
-					}
-					activePower.duration = 0;
-					activePower.recharge = activePower.rechargeTime;
-					ForceUtils.coolingPowers.add(activePower);
-				}
-				else if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals("lightning") || CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals("grab"))
-				{
-					PowerBase power = CronUtils.getActive(StarWarsMod.mc.thePlayer);
-					if (power instanceof ICanHaveEntityTarget)
-					{
-						ICanHaveEntityTarget targetable = (ICanHaveEntityTarget)power;
-
-						if (targetable.hasEntityTarget())
-						{
-							Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(targetable.getEntityTargetId());
-
-							if (e != null)
-							{
-								if (activePower.name.equals("lightning"))
-								{
-									StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "force.lightning", 1.0F, 1.0F);
-									StarWarsMod.network.sendToServer(new MessageEntityHurt(e, power.getDamage()));
-								}
-								if (e instanceof EntityPlayer)
-									try
-									{
-										ClientEventHandler.lastPlayerTarget = (EntityPlayer)e;
-										StarWarsMod.network.sendToServer(new MessageSetEntityTarget(StarWarsMod.mc.thePlayer, e.getEntityId()));
-									}
-									catch (Exception ignored)
-									{
-									}
-							}
-							else
-							{
-								targetable.setEntityTargetId(-1);
-								ClientEventHandler.lastPlayerTarget = null;
-							}
-						}
-						else if (ClientEventHandler.lastPlayerTarget instanceof EntityPlayer)
-						{
-							targetable.setEntityTargetId(-1);
-							ClientEventHandler.lastPlayerTarget = null;
-						}
-					}
-				}
-				else if (activePower.name.equals("defend") && ((PowerDefend)activePower).health <= 0 && ((PowerDefend)activePower).isRunning)
-				{
-					PowerDefend active = (PowerDefend)activePower;
-					active.health = 0;
-					active.isRunning = false;
-					active.recharge = active.rechargeTime;
-					if (!ForceUtils.isCooling("defend"))
-						ForceUtils.coolingPowers.add(active);
-				}
+				if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(cooling.name))
+					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, cooling.serialize()));
 			}
 
-			if (activePower != null)
-				powers.setTag(activePower.name, activePower.serialize());
-			StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
-		}
-		else
-		{
-			activePower = null;
-			ForceUtils.isUsingDuration = false;
+			powers.setTag(cooling.name, cooling.serialize());
 		}
 	}
 
 	@SubscribeEvent
 	public void onTick(TickEvent.ServerTickEvent event)
+	{
+		updateServerEffectMovement();
+	}
+
+	/**
+	 * Updates entities who have been slowed or disabled
+	 */
+	private void updateServerEffectMovement()
 	{
 		Iterator<EntityCooldownEntry> i = ForceUtils.entitiesWithEffects.iterator();
 		while (i.hasNext())
@@ -595,6 +592,11 @@ public class CommonEventHandler
 		}
 	}
 
+	/**
+	 * Resets the active robe power
+	 *
+	 * @param event
+	 */
 	private void resetRobes(PlayerEvent event)
 	{
 		StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(event.player, CronUtils.compilePowers()));

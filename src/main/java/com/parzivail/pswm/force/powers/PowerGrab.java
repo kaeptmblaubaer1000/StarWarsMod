@@ -30,7 +30,7 @@ public class PowerGrab extends PowerBase implements ICanHaveEntityTarget
 	}
 
 	@Override
-	public PowerGrab deserialize(NBTTagCompound compound)
+	public PowerBase deserialize(NBTTagCompound compound)
 	{
 		super.deserialize(compound);
 		this.targetId = compound.getInteger("targetId");
