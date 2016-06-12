@@ -14,6 +14,13 @@ import java.util.HashMap;
 
 public class ForceUtils
 {
+	public static PowerBase getPowerFromName(String name)
+	{
+		if (powers.containsKey(name))
+			return powers.get(name);
+		return null;
+	}
+
 	public static class EntityCooldownEntry
 	{
 		public int cooldownLeft;

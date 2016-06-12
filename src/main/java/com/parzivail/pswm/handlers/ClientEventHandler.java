@@ -3,7 +3,6 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestContainer;
@@ -22,6 +21,7 @@ import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.rendering.helper.PGui;
 import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
+import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.math.AnimationManager;
@@ -141,7 +141,7 @@ public class ClientEventHandler
 
 			if (JediUtils.getActive(entityPlayer).equals("defend") && JediUtils.getHealth(entityPlayer) > 0)
 			{
-				PowerBase.getPowerFromName(JediUtils.getActive(entityPlayer));
+				ForceUtils.getPowerFromName(JediUtils.getActive(entityPlayer));
 				if (JediUtils.getHealth(entityPlayer) > event.ammount)
 				{
 					JediUtils.setHealth(entityPlayer, (int)(JediUtils.getHealth(entityPlayer) - event.ammount));

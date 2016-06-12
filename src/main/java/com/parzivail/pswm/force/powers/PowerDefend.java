@@ -41,10 +41,11 @@ public class PowerDefend extends PowerBase
 	}
 
 	@Override
-	public void deserialize(NBTTagCompound compound)
+	public PowerDefend deserialize(NBTTagCompound compound)
 	{
 		super.deserialize(compound);
 		this.health = compound.getInteger("health");
 		this.isRunning = compound.getBoolean("isRunning");
+		return this;
 	}
 }

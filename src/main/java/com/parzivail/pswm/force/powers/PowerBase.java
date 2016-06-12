@@ -1,18 +1,11 @@
 package com.parzivail.pswm.force.powers;
 
-import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PowerBase
 {
-	public static PowerBase getPowerFromName(String name)
-	{
-		if (ForceUtils.powers.containsKey(name))
-			return ForceUtils.powers.get(name);
-		return null;
-	}
 
 	public int currentLevel = 0;
 	public int maxLevel = 5;
@@ -72,7 +65,7 @@ public class PowerBase
 	 *
 	 * @param compound The compound to read
 	 */
-	public void deserialize(NBTTagCompound compound)
+	public PowerBase deserialize(NBTTagCompound compound)
 	{
 		this.currentLevel = compound.getInteger("currentLevel");
 		this.maxLevel = compound.getInteger("maxLevel");
@@ -90,6 +83,7 @@ public class PowerBase
 		this.healthMult = compound.getInteger("healthMult");
 		this.rangeBase = compound.getInteger("rangeBase");
 		this.rangeMult = compound.getInteger("rangeMult");
+		return this;
 	}
 
 	/**

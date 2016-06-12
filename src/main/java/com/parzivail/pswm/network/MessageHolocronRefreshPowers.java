@@ -26,7 +26,7 @@ public class MessageHolocronRefreshPowers extends PMessage<MessageHolocronRefres
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		if (this.player == null || this.player.inventory == null)
+		if (this.player == null || this.player.inventory == null || CronUtils.getHolocron(player) == null || CronUtils.getHolocron(player).stackTagCompound == null)
 			return null;
 		CronUtils.getHolocron(player).stackTagCompound.setTag(Resources.nbtPowers, compound);
 		return null;
