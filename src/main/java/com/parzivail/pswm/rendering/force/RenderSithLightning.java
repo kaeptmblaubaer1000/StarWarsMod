@@ -1,6 +1,9 @@
 package com.parzivail.pswm.rendering.force;
 
-import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.powers.PowerLightning;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,11 +27,17 @@ public class RenderSithLightning
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			if (JediUtils.getActive(player).equals("lightning") && JediUtils.getUsingDuration(player))
+			PowerBase active = CronUtils.getActive(player);
+
+			Lumberjack.log(((PowerLightning)active).isRunning);
+
+			if (active != null && active.name.equals("lightning") && ((PowerLightning)active).isRunning)
 			{
+				PowerLightning powerLightning = (PowerLightning)active;
+
 				Entity e = null;
-				if (JediUtils.getEntityTarget(player) != -1)
-					e = player.worldObj.getEntityByID(JediUtils.getEntityTarget(player));
+				if (powerLightning.getEntityTargetId() != -1)
+					e = player.worldObj.getEntityByID(powerLightning.getEntityTargetId());
 
 				if (e != null)
 				{
@@ -68,8 +77,6 @@ public class RenderSithLightning
 
 					}
 				}
-				else
-					JediUtils.setEntityTarget(player, -1);
 			}
 		}
 	}

@@ -112,8 +112,11 @@ public class GuiScreenJediRobes extends GuiScreen
 
 			if (this.selectedPower.power != null)
 			{
-				// TODO: handle case where CronUtils.getActive(StarWarsMod.mc.thePlayer) returns NULL
-				this.enableButton.enabled = this.selectedPower.power.currentLevel > 0 && !CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(this.selectedPower.power.name);
+				boolean is_power_active = false;
+				PowerBase power;
+				if ((power = CronUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
+					is_power_active = power.name.equals(this.selectedPower.power.name);
+				this.enableButton.enabled = this.selectedPower.power.currentLevel > 0 && !is_power_active;
 				this.learnButton.enabled = this.canLearn(this.selectedPower.power);
 			}
 		}
