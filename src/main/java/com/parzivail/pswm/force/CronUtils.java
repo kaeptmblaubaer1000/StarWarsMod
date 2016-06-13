@@ -170,6 +170,15 @@ public class CronUtils
 		return getPower(stack, power);
 	}
 
+	public static int getLevel(ItemStack stack)
+	{
+		if (stack == null)
+			return 0;
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtLevel))
+			return stack.stackTagCompound.getInteger(Resources.nbtLevel);
+		return 0;
+	}
+
 	public static PowerBase getPower(ItemStack stack, String type)
 	{
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield) || ForceUtils.powers.get(type) == null)

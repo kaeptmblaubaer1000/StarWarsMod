@@ -96,7 +96,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(JediUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL), ForceUtils.getTitle(JediUtils.getSide(this.stack), (int)Math.floor(JediUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), JediUtils.getSide(this.stack).equals(JediUtils.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(CronUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL), ForceUtils.getTitle(JediUtils.getSide(this.stack), (int)Math.floor(JediUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), JediUtils.getSide(this.stack).equals(JediUtils.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
 		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", this.points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)

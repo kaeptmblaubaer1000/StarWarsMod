@@ -38,19 +38,7 @@ public class EntityThrownSaber extends EntityThrowable
 	{
 		super(par1World, sender);
 		this.speed = 3f;
-		if (sender instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer)sender;
-
-			ItemStack holocron = JediUtils.getHolocron(player);
-
-			if (holocron != null)
-			{
-				holocron.stackTagCompound.setTag("thrownSaber", saber.stackTagCompound);
-			}
-
-			setSaberStack(saber);
-		}
+		setSaberStack(saber);
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
 	}
 

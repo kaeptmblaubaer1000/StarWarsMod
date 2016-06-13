@@ -50,6 +50,8 @@ import static com.parzivail.pswm.utils.ForceUtils.activePower;
 
 public class CommonEventHandler
 {
+	private long lastTimeXpGive = 0;
+
 	@SubscribeEvent
 	public void logOut(PlayerLoggedInEvent event) throws UserError
 	{
@@ -296,18 +298,25 @@ public class CommonEventHandler
 									powerDefend.run(StarWarsMod.mc.thePlayer);
 								coolFlag = false;
 								break;
-							case "lightning":
-								powerBase.isRunning = true;
-								coolFlag = false;
-								break;
 							default:
 								powerBase.run(StarWarsMod.mc.thePlayer);
 								powerBase.recharge = powerBase.rechargeTime;
 								break;
 						}
 
-						if (coolFlag && !ForceUtils.isCooling(CronUtils.getActive(StarWarsMod.mc.thePlayer).name))
-							ForceUtils.coolingPowers.add(powerBase);
+						if (powerBase.isDurationBased)
+						{
+							if (powerBase.isRunning)
+								powerBase.isRunning = false;
+							else
+							{
+								powerBase.isRunning = true;
+								coolFlag = false;
+							}
+						}
+
+						if (coolFlag)
+							coolPower(powerBase);
 
 						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, CronUtils.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost()));
 						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.serialize()));
@@ -388,16 +397,17 @@ public class CommonEventHandler
 			{
 				power.duration++;
 				Lumberjack.log(power.duration);
-				if (power.duration >= power.getDuration() && !ForceUtils.isCooling(power.name))
+				if (power.duration >= power.getDuration())
 				{
-					ForceUtils.coolingPowers.add(power);
-					power.duration = 0;
+					power.duration = 1;
 					power.isRunning = false;
+					power.recharge = power.rechargeTime;
+					coolPower(power);
 				}
 			}
 
 			// TODO: make sure this happens AFTER confirmed changes are made by key input messages?
-			StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
+			//StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
 		}
 
 		NBTTagCompound powers = CronUtils.compilePowers();
@@ -424,11 +434,14 @@ public class CommonEventHandler
 		else
 		{
 			power.setEntityTargetId(-1);
-			power.isRunning = false;
-			power.duration = 0;
-			if (!ForceUtils.isCooling(power.name))
-				ForceUtils.coolingPowers.add(power);
+			power.duration = power.getDuration();
 		}
+	}
+
+	private void coolPower(PowerBase power)
+	{
+		if (!ForceUtils.isCooling(power.name))
+			ForceUtils.coolingPowers.add(power);
 	}
 
 	/**
@@ -511,8 +524,10 @@ public class CommonEventHandler
 			int xp = CronUtils.getXP(robes);
 			int maxxp = CronUtils.getMaxXP(robes);
 
-			if (StarWarsMod.mc.thePlayer.ticksExisted % 20 == 0)
+			if (System.currentTimeMillis() >= lastTimeXpGive + 1000)
 			{
+				lastTimeXpGive = System.currentTimeMillis();
+
 				double percent = 1 + 0.1f * Math.floor(level / 10);
 
 				if (percent > 6)
@@ -539,21 +554,25 @@ public class CommonEventHandler
 	 */
 	private void tickCoolingPowers(NBTTagCompound powers)
 	{
-		Iterator<PowerBase> powerBaseIterator = ForceUtils.coolingPowers.iterator();
-		while (powerBaseIterator.hasNext())
+		ArrayList<PowerBase> q = new ArrayList<>();
+		for (PowerBase b : ForceUtils.coolingPowers)
 		{
-			PowerBase cooling = powerBaseIterator.next();
-			cooling.recharge--;
-			if (cooling.recharge <= 0)
+			b.recharge--;
+			if (b.recharge <= 0)
 			{
-				powerBaseIterator.remove();
+				b.recharge = 0;
+				q.add(b);
 
-				if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(cooling.name))
-					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, cooling.serialize()));
+				Lumberjack.log(b);
+
+				if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(b.name))
+					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, b.serialize()));
 			}
 
-			powers.setTag(cooling.name, cooling.serialize());
+			powers.setTag(b.name, b.serialize());
 		}
+
+		ForceUtils.coolingPowers.removeAll(q);
 	}
 
 	@SubscribeEvent
