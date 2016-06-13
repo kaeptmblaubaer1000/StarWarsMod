@@ -298,28 +298,33 @@ public class CommonEventHandler
 									powerDefend.run(StarWarsMod.mc.thePlayer);
 								coolFlag = false;
 								break;
+							case "lightning":
+								if (powerBase.isRunning)
+								{
+									powerBase.isRunning = false;
+									powerBase.recharge = powerBase.rechargeTime;
+								}
+								else
+								{
+									powerBase.isRunning = true;
+									powerBase.recharge = 0;
+									coolFlag = false;
+								}
+								break;
 							default:
 								powerBase.run(StarWarsMod.mc.thePlayer);
 								powerBase.recharge = powerBase.rechargeTime;
 								break;
 						}
 
-						if (powerBase.isDurationBased)
-						{
-							if (powerBase.isRunning)
-								powerBase.isRunning = false;
-							else
-							{
-								powerBase.isRunning = true;
-								coolFlag = false;
-							}
-						}
+						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.serialize()));
 
 						if (coolFlag)
 							coolPower(powerBase);
 
+						Lumberjack.log(powerBase.isRunning);
+
 						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, CronUtils.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost()));
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.serialize()));
 					}
 				}
 			}
@@ -431,10 +436,12 @@ public class CommonEventHandler
 		{
 			power.setEntityTargetId(e.getEntityId());
 		}
-		else
+		else if (power.isRunning)
 		{
 			power.setEntityTargetId(-1);
-			power.duration = power.getDuration();
+			power.isRunning = false;
+			power.recharge = power.rechargeTime;
+			coolPower(power);
 		}
 	}
 
