@@ -31,7 +31,6 @@ public class RenderSithLightning
 			if (active != null && active.name.equals("lightning") && active.isRunning)
 			{
 				PowerLightning powerLightning = (PowerLightning)active;
-
 				Entity e = player.worldObj.getEntityByID(powerLightning.getEntityTargetId());
 
 				if (e != null)

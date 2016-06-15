@@ -51,6 +51,7 @@ import static com.parzivail.pswm.utils.ForceUtils.activePower;
 public class CommonEventHandler
 {
 	private long lastTimeXpGive = 0;
+	private boolean shouldPowerSync = false;
 
 	@SubscribeEvent
 	public void logOut(PlayerLoggedInEvent event) throws UserError
@@ -302,6 +303,7 @@ public class CommonEventHandler
 								if (powerBase.isRunning)
 								{
 									powerBase.isRunning = false;
+									powerBase.duration = 0;
 									powerBase.recharge = powerBase.rechargeTime;
 								}
 								else
@@ -385,6 +387,8 @@ public class CommonEventHandler
 
 		if (power != null)
 		{
+			shouldPowerSync = false;
+
 			switch (power.name)
 			{
 				case "deflect":
@@ -401,18 +405,21 @@ public class CommonEventHandler
 			if (power.isDurationBased && power.isRunning)
 			{
 				power.duration++;
-				Lumberjack.log(power.duration);
 				if (power.duration >= power.getDuration())
 				{
-					power.duration = 1;
+					power.duration = 0;
 					power.isRunning = false;
 					power.recharge = power.rechargeTime;
+					if (power instanceof ICanHaveEntityTarget)
+						((ICanHaveEntityTarget)power).setEntityTargetId(-1);
 					coolPower(power);
 				}
+
+				shouldPowerSync = true;
 			}
 
-			// TODO: make sure this happens AFTER confirmed changes are made by key input messages?
-			//StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
+			if (shouldPowerSync)
+				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
 		}
 
 		NBTTagCompound powers = CronUtils.compilePowers();
@@ -432,17 +439,17 @@ public class CommonEventHandler
 	{
 		Entity e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
 
+		int oldId = power.getEntityTargetId();
 		if (e != null)
 		{
 			power.setEntityTargetId(e.getEntityId());
+
+			if (power.isRunning)
+				StarWarsMod.network.sendToServer(new MessageEntityHurt(e, power.getDamage()));
 		}
-		else if (power.isRunning)
-		{
+		else
 			power.setEntityTargetId(-1);
-			power.isRunning = false;
-			power.recharge = power.rechargeTime;
-			coolPower(power);
-		}
+		shouldPowerSync = oldId != power.getEntityTargetId();
 	}
 
 	private void coolPower(PowerBase power)
@@ -570,7 +577,7 @@ public class CommonEventHandler
 				b.recharge = 0;
 				q.add(b);
 
-				Lumberjack.log(b);
+				b.duration = 0;
 
 				if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(b.name))
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, b.serialize()));

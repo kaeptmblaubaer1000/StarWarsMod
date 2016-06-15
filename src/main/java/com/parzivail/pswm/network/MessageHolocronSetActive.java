@@ -3,7 +3,6 @@ package com.parzivail.pswm.network;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.util.network.PMessage;
-import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +29,6 @@ public class MessageHolocronSetActive extends PMessage<MessageHolocronSetActive>
 		if (this.player == null || this.player.inventory == null || CronUtils.getHolocron(player) == null)
 			return null;
 		CronUtils.getHolocron(player).stackTagCompound.setTag(Resources.nbtWield, compound);
-		Lumberjack.log(compound);
 		return null;
 	}
 

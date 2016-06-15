@@ -5,7 +5,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class PowerLightning extends PowerBase implements ICanHaveEntityTarget
 {
 	public int targetId = -1;
-	public boolean isRunning = false;
 
 	public PowerLightning(int currentLevel)
 	{
@@ -29,7 +28,6 @@ public class PowerLightning extends PowerBase implements ICanHaveEntityTarget
 	{
 		NBTTagCompound compound = super.serialize();
 		compound.setInteger("targetId", targetId);
-		compound.setBoolean("isRunning", isRunning);
 		return compound;
 	}
 
@@ -38,7 +36,6 @@ public class PowerLightning extends PowerBase implements ICanHaveEntityTarget
 	{
 		super.deserialize(compound);
 		this.targetId = compound.getInteger("targetId");
-		this.isRunning = compound.getBoolean("isRunning");
 		return this;
 	}
 
