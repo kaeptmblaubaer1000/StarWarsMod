@@ -24,6 +24,7 @@ public class PowerBase
 	public int rangeBase = 0;
 	public int rangeMult = 0;
 	public boolean isRunning = false;
+	public int health = 0;
 
 	public boolean isDurationBased = false;
 
@@ -58,6 +59,7 @@ public class PowerBase
 		compound.setInteger("healthMult", healthMult);
 		compound.setInteger("rangeBase", rangeBase);
 		compound.setInteger("rangeMult", rangeMult);
+		compound.setInteger("health", health);
 		compound.setBoolean("isRunning", isRunning);
 		return compound;
 	}
@@ -85,6 +87,7 @@ public class PowerBase
 		this.healthMult = compound.getInteger("healthMult");
 		this.rangeBase = compound.getInteger("rangeBase");
 		this.rangeMult = compound.getInteger("rangeMult");
+		this.health = compound.getInteger("health");
 		this.isRunning = compound.getBoolean("isRunning");
 		return this;
 	}
@@ -173,9 +176,9 @@ public class PowerBase
 	}
 
 	/**
-	 * Gets the max damage / second of using the power at a specific level
+	 * Gets the max range of a the power at a specific level
 	 *
-	 * @return The max damage / second
+	 * @return The max range
 	 */
 	public int getRange()
 	{

@@ -1,12 +1,9 @@
 package com.parzivail.pswm.force.powers;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class PowerDefend extends PowerBase
 {
-	public int health = 0;
-
 	public PowerDefend(int currentLevel)
 	{
 		super("defend");
@@ -28,21 +25,5 @@ public class PowerDefend extends PowerBase
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public NBTTagCompound serialize()
-	{
-		NBTTagCompound compound = super.serialize();
-		compound.setInteger("health", health);
-		return compound;
-	}
-
-	@Override
-	public PowerDefend deserialize(NBTTagCompound compound)
-	{
-		super.deserialize(compound);
-		this.health = compound.getInteger("health");
-		return this;
 	}
 }

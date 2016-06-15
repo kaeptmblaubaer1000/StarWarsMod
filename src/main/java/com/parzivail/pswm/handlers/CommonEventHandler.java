@@ -149,7 +149,7 @@ public class CommonEventHandler
 				{
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.BOMB));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
-					StarWarsMod.shipSpecialWeaponCooldown = 0;
+					StarWarsMod.shipSpecialWeaponCooldown = 200;
 				}
 			}
 		}
@@ -308,6 +308,18 @@ public class CommonEventHandler
 									coolFlag = false;
 								}
 								break;
+							case "grab":
+								if (powerBase.isRunning)
+								{
+									powerBase.isRunning = false;
+									powerBase.recharge = powerBase.rechargeTime;
+								}
+								else
+								{
+									powerBase.run(StarWarsMod.mc.thePlayer);
+									coolFlag = false;
+								}
+								break;
 							default:
 								powerBase.run(StarWarsMod.mc.thePlayer);
 								powerBase.recharge = powerBase.rechargeTime;
@@ -393,6 +405,8 @@ public class CommonEventHandler
 				case "lightning":
 					updateLightning((PowerLightning)power);
 					break;
+				case "defend":
+					updateDefend((PowerDefend)power);
 			}
 
 			if (power.isDurationBased && power.isRunning)
@@ -421,6 +435,21 @@ public class CommonEventHandler
 		addPlayerForceXp();
 
 		StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
+	}
+
+	private void updateDefend(PowerDefend power)
+	{
+		if (!power.isRunning)
+			return;
+
+		if (power.health <= 0)
+		{
+			power.isRunning = false;
+			power.health = 0;
+			power.recharge = power.rechargeTime;
+			shouldPowerSync = true;
+			coolPower(power);
+		}
 	}
 
 	/**
@@ -479,7 +508,12 @@ public class CommonEventHandler
 			Entity e = StarWarsMod.mc.thePlayer.worldObj.getEntityByID(power1.getEntityTargetId());
 
 			if (e == null)
+			{
+				power1.isRunning = false;
+				power1.recharge = power1.rechargeTime;
+				shouldPowerSync = true;
 				return;
+			}
 
 			if (ForceUtils.distanceToEntity == -1)
 				ForceUtils.distanceToEntity = (float)Vec3.createVectorHelper(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ).distanceTo(Vec3.createVectorHelper(e.posX, e.posY, e.posZ));

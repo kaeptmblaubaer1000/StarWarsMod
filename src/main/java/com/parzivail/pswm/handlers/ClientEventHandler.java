@@ -3,12 +3,15 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
+import com.parzivail.pswm.network.MessageHolocronSetActive;
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
@@ -21,7 +24,6 @@ import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.rendering.helper.PGui;
 import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
-import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.math.AnimationManager;
@@ -131,37 +133,29 @@ public class ClientEventHandler
 		{
 			EntityPlayer entityPlayer = (EntityPlayer)event.entityLiving;
 
-			// Lumberjack.log("damage player!");
-			// Lumberjack.log("active: " +
-			// ArmorJediRobes.getActive(entityPlayer));
-			// Lumberjack.log("running? " +
-			// (ArmorJediRobes.getIsRunning(entityPlayer) ? "yes" : "no"));
-			// Lumberjack.log("using duration? " +
-			// (ArmorJediRobes.getUsingDuration(entityPlayer) ? "yes" : "no"));
+			PowerBase active = CronUtils.getActive(entityPlayer);
 
-			if (JediUtils.getActive(entityPlayer).equals("defend") && JediUtils.getHealth(entityPlayer) > 0)
+			if (active == null)
+				return;
+
+			if (active.name.equals("defend") && active.health > 0)
 			{
-				ForceUtils.getPowerFromName(JediUtils.getActive(entityPlayer));
-				if (JediUtils.getHealth(entityPlayer) > event.ammount)
+				if (active.health > event.ammount)
 				{
-					JediUtils.setHealth(entityPlayer, (int)(JediUtils.getHealth(entityPlayer) - event.ammount));
-					// Lumberjack.log("Remaining: " +
-					// ArmorJediRobes.getHealth(entityPlayer));
-					// Lumberjack.log("Cancelling event!");
+					active.health -= event.ammount;
 					event.setCanceled(true);
 				}
 				else
 				{
-					event.ammount -= JediUtils.getHealth(entityPlayer);
-					JediUtils.setHealth(entityPlayer, 0);
-					// Lumberjack.log("Depleted shield!");
+					event.ammount -= active.health;
+					active.health = 0;
 				}
+
+				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, active.serialize()));
 			}
 
-			if (JediUtils.getActive(entityPlayer).equals("deflect") && JediUtils.getUsingDuration(entityPlayer))
-				// Lumberjack.log("deflect running!");
+			if (active.name.equals("deflect") && active.isRunning)
 				if (event.source.isProjectile())
-					// Lumberjack.log("Cancelling event!");
 					event.setCanceled(true);
 		}
 	}

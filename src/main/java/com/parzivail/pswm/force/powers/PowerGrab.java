@@ -1,5 +1,8 @@
 package com.parzivail.pswm.force.powers;
 
+import com.parzivail.util.entity.EntityUtils;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class PowerGrab extends PowerBase implements ICanHaveEntityTarget
@@ -19,6 +22,23 @@ public class PowerGrab extends PowerBase implements ICanHaveEntityTarget
 		this.durationBase = 2 * 40; // 40 ticks/second
 		this.durationMult = 2 * 40; // 40 ticks/second
 		this.isDurationBased = true;
+	}
+
+	@Override
+	public boolean run(EntityPlayer player)
+	{
+		Entity e = EntityUtils.rayTrace(this.getRange(), player, new Entity[0]);
+
+		if (e != null)
+		{
+			setEntityTargetId(e.getEntityId());
+			this.isRunning = true;
+			this.duration = 0;
+
+			return true;
+		}
+
+		return super.run(player);
 	}
 
 	@Override

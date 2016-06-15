@@ -436,6 +436,7 @@ public class StarWarsMod
 		this.registerMessage(MessageThrowSaber.class);
 		this.registerMessage(MessageHolocronRefreshPowers.class);
 		this.registerMessage(MessageHolocronSetActive.class);
+		this.registerMessage(MessagePlayerRemoveItems.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

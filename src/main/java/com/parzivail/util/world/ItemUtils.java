@@ -1,5 +1,6 @@
 package com.parzivail.util.world;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -74,5 +75,32 @@ public class ItemUtils
 	public static boolean canInc(ItemStack stack, int amount)
 	{
 		return !(stack == null || stack.stackSize + amount > 64);
+	}
+
+	public static boolean hasItems(EntityPlayer player, ItemStack[] itemStacks)
+	{
+		for (ItemStack stack : itemStacks)
+			if (!hasItemStackExact(player, stack))
+				return false;
+		return true;
+	}
+
+	public static boolean hasItemStackExact(EntityPlayer player, ItemStack stack)
+	{
+		for (int i = 0; i < player.inventory.mainInventory.length; ++i)
+			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].isItemEqual(stack) && player.inventory.mainInventory[i].stackSize == stack.stackSize)
+				return true;
+		return false;
+	}
+
+	public static void removePlayerItem(EntityPlayer player, ItemStack stack)
+	{
+		for (int i = 0; i < player.inventory.mainInventory.length; ++i)
+			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].isItemEqual(stack))
+			{
+				player.inventory.mainInventory[i].stackSize -= stack.stackSize;
+				if (stack.stackSize == 0)
+					player.inventory.mainInventory[i] = null;
+			}
 	}
 }

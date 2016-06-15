@@ -4,10 +4,12 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.pswm.network.MessagePlayerRemoveItems;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.rendering.OutlineLightsaberHiltButton;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.util.ui.*;
+import com.parzivail.util.world.ItemUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -34,18 +36,20 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	private EntityPlayer player;
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
 
-	OutlineButton bTabHilts;
-	OutlineButton bTabBlade;
-	OutlineButton bTabOptions;
+	private OutlineButton bTabHilts;
+	private OutlineButton bTabBlade;
+	private OutlineButton bTabOptions;
 
-	OutlineButton bSave;
+	private OutlineButton bSave;
 
-	Map<String, OutlineButton> listBHilts;
-	Map<String, OutlineButton> listBBlade;
-	Map<String, OutlineButton> listBOptions;
+	private Map<String, OutlineButton> listBHilts;
+	private Map<String, OutlineButton> listBBlade;
+	private Map<String, OutlineButton> listBOptions;
 
-	ItemStack stackShowing;
-	RenderLightsaber renderLightsaber;
+	private ItemStack stackShowing;
+	private RenderLightsaber renderLightsaber;
+
+	private boolean isCustomColor = false;
 
 	public GuiScreenLightsaberForge(EntityPlayer player)
 	{
@@ -79,9 +83,12 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		}
 		Color c = GLPalette.intToColor(stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
 
-		((OutlineRange)listBBlade.get("rangeR")).setValue(c.getRed());
-		((OutlineRange)listBBlade.get("rangeG")).setValue(c.getGreen());
-		((OutlineRange)listBBlade.get("rangeB")).setValue(c.getBlue());
+		if (listBBlade.get("rangeR") != null)
+		{
+			((OutlineRange)listBBlade.get("rangeR")).setValue(c.getRed());
+			((OutlineRange)listBBlade.get("rangeG")).setValue(c.getGreen());
+			((OutlineRange)listBBlade.get("rangeB")).setValue(c.getBlue());
+		}
 	}
 
 	@Override
@@ -94,6 +101,11 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, true);
 
 		renderLightsaber = new RenderLightsaber();
+
+		boolean canGetSingleBlade = ItemUtils.hasItems(player, ItemLightsaber.getItemsForSingleBlade()) || player.capabilities.isCreativeMode;
+		boolean canGetSingleBladeBlaster = ItemUtils.hasItems(player, ItemLightsaber.getItemsForSingleBladeBlaster()) || player.capabilities.isCreativeMode;
+		boolean canGetSingleBladeShoto = ItemUtils.hasItems(player, ItemLightsaber.getItemsForSingleBladeShoto()) || player.capabilities.isCreativeMode;
+		boolean canGetDoubleBlade = ItemUtils.hasItems(player, ItemLightsaber.getItemsForDoubleBlade()) || player.capabilities.isCreativeMode;
 
 		int id = 0;
 		bTabHilts = new OutlineButton(id++, 10, 10, 40, 20, "Hilts", true);
@@ -122,6 +134,23 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			b.visible = true;
 			listBHilts.put(s, b);
 			buttonList.add(b);
+			switch (s)
+			{
+				case "doubleSith":
+				case "inquisitor":
+				case "maul":
+					b.enabled = canGetDoubleBlade;
+					break;
+				case "ezra":
+					b.enabled = canGetSingleBladeBlaster;
+					break;
+				case "shoto":
+					b.enabled = canGetSingleBladeShoto;
+					break;
+				default:
+					b.enabled = canGetSingleBlade;
+					break;
+			}
 			x++;
 			if (x >= 4)
 			{
@@ -143,6 +172,9 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			b.visible = false;
 			listBBlade.put(String.valueOf(ItemLightsaber.colorHex[i]), b);
 			buttonList.add(b);
+
+			b.enabled = ItemLightsaber.hasCrystalFor(player, ItemLightsaber.colorHex[i]) || player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 11)) || player.capabilities.isCreativeMode;
+
 			x++;
 			if (x >= 3)
 			{
@@ -150,29 +182,33 @@ public class GuiScreenLightsaberForge extends GuiScreen
 				y++;
 			}
 		}
-		y++;
-		OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 94, "Custom Color");
-		listBBlade.put("custLabel", custLabel);
-		buttonList.add(custLabel);
-		custLabel.visible = false;
-		y++;
-		OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "R", "%s: %2$.0f");
-		listBBlade.put("rangeR", rangeR);
-		buttonList.add(rangeR);
-		rangeR.visible = false;
-		rangeR.colorFg = 0xFFFF0000;
-		y++;
-		OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "G", "%s: %2$.0f");
-		listBBlade.put("rangeG", rangeG);
-		buttonList.add(rangeG);
-		rangeG.visible = false;
-		rangeG.colorFg = 0xFF00FF48;
-		y++;
-		OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "B", "%s: %2$.0f");
-		listBBlade.put("rangeB", rangeB);
-		buttonList.add(rangeB);
-		rangeB.visible = false;
-		rangeB.colorFg = 0xFF2448DA;
+
+		if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 11)) || player.capabilities.isCreativeMode)
+		{
+			y++;
+			OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 94, "Custom Color");
+			listBBlade.put("custLabel", custLabel);
+			buttonList.add(custLabel);
+			custLabel.visible = false;
+			y++;
+			OutlineRange rangeR = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "R", "%s: %2$.0f");
+			listBBlade.put("rangeR", rangeR);
+			buttonList.add(rangeR);
+			rangeR.visible = false;
+			rangeR.colorFg = 0xFFFF0000;
+			y++;
+			OutlineRange rangeG = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "G", "%s: %2$.0f");
+			listBBlade.put("rangeG", rangeG);
+			buttonList.add(rangeG);
+			rangeG.visible = false;
+			rangeG.colorFg = 0xFF00FF48;
+			y++;
+			OutlineRange rangeB = new OutlineRange(id++, x * 32 + 10, y * 16 + 90, 140, 255, "B", "%s: %2$.0f");
+			listBBlade.put("rangeB", rangeB);
+			buttonList.add(rangeB);
+			rangeB.visible = false;
+			rangeB.colorFg = 0xFF2448DA;
+		}
 
 		x = 0;
 		y = 0;
@@ -223,6 +259,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (button instanceof FilledColorButton)
 			{
 				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ((FilledColorButton)button).color);
+				isCustomColor = false;
 			}
 			else if (button.id == listBOptions.get("toggleBlade").id)
 			{
@@ -231,6 +268,24 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 			else if (button.id == bSave.id)
 			{
+				if (!player.capabilities.isCreativeMode)
+					switch (stackShowing.stackTagCompound.getString(ItemLightsaber.nbtHilt))
+					{
+						case "doubleSith":
+						case "inquisitor":
+						case "maul":
+							StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, ItemLightsaber.getItemsForDoubleBlade()));
+							break;
+						case "ezra":
+							StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, ItemLightsaber.getItemsForSingleBladeBlaster()));
+							break;
+						case "shoto":
+							StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, ItemLightsaber.getItemsForSingleBladeShoto()));
+							break;
+						default:
+							StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, ItemLightsaber.getItemsForSingleBlade()));
+							break;
+					}
 				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stackShowing));
 				StarWarsMod.mc.currentScreen = null;
 				StarWarsMod.mc.setIngameFocus();
@@ -294,6 +349,11 @@ public class GuiScreenLightsaberForge extends GuiScreen
 				for (OutlineButton b : listBBlade.values())
 					b.visible = false;
 			}
+			else if (listBBlade.get("rangeR") != null)
+			{
+				if (button.id == listBBlade.get("rangeR").id || button.id == listBBlade.get("rangeG").id || button.id == listBBlade.get("rangeB").id)
+					isCustomColor = true;
+			}
 		}
 		setButtonsFromNBT(stackShowing.stackTagCompound);
 	}
@@ -318,14 +378,15 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	{
 		this.drawBg2();
 
-		if (((OutlineRange)listBBlade.get("rangeR")).changeFlag || ((OutlineRange)listBBlade.get("rangeG")).changeFlag || ((OutlineRange)listBBlade.get("rangeB")).changeFlag)
-		{
-			OutlineRange r = (OutlineRange)listBBlade.get("rangeR");
-			OutlineRange g = (OutlineRange)listBBlade.get("rangeG");
-			OutlineRange b = (OutlineRange)listBBlade.get("rangeB");
+		if (listBBlade.get("rangeR") != null)
+			if (((OutlineRange)listBBlade.get("rangeR")).changeFlag || ((OutlineRange)listBBlade.get("rangeG")).changeFlag || ((OutlineRange)listBBlade.get("rangeB")).changeFlag)
+			{
+				OutlineRange r = (OutlineRange)listBBlade.get("rangeR");
+				OutlineRange g = (OutlineRange)listBBlade.get("rangeG");
+				OutlineRange b = (OutlineRange)listBBlade.get("rangeB");
 
-			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, GLPalette.colorToInt(new Color((int)r.getValue(), (int)g.getValue(), (int)b.getValue(), 255)));
-		}
+				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, GLPalette.colorToInt(new Color((int)r.getValue(), (int)g.getValue(), (int)b.getValue(), 255)));
+			}
 
 		GL11.glPushMatrix();
 

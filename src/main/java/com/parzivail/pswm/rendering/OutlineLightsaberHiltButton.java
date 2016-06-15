@@ -34,10 +34,6 @@ public class OutlineLightsaberHiltButton extends OutlineButton
 
 			switch (k)
 			{
-				case 0:
-					GLPalette.glColorI(GLPalette.DARK_GREY);
-					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
-					break;
 				case 1:
 					GLPalette.glColorI(this.selected ? GLPalette.SW_YELLOW : GLPalette.DARK_SW_YELLOW);
 					GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);

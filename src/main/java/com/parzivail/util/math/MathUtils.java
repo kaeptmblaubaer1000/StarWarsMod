@@ -122,9 +122,9 @@ public class MathUtils
 	 * @param list The list to convert
 	 * @return The new int array
 	 */
-	public static int[] toIntArray(List<Integer> list)
+	public static Integer[] toIntArray(List<Integer> list)
 	{
-		int[] ret = new int[list.size()];
+		Integer[] ret = new Integer[list.size()];
 		for (int i = 0; i < ret.length; i++)
 			ret[i] = list.get(i);
 		return ret;

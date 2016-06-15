@@ -1,11 +1,13 @@
 package com.parzivail.pswm.rendering.gui;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
+import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextEffects;
@@ -71,7 +73,11 @@ public class GuiScreenJediRobes extends GuiScreen
 				NBTTagCompound powers = CronUtils.compilePowers();
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
-				//JediUtils.setPoints(this.mc.thePlayer, --this.points);
+
+				PowerBase active = CronUtils.getActive(StarWarsMod.mc.thePlayer);
+				if (active != null && active.name.equals(this.selectedPower.power.name))
+					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.serialize()));
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtRemainingPts, --this.points));
 			}
 		}
 	}

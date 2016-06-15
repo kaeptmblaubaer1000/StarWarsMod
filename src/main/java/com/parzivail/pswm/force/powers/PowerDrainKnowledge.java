@@ -27,9 +27,7 @@ public class PowerDrainKnowledge extends PowerBase
 			Entity e = EntityUtils.rayTrace(this.currentLevel * 2, player, new Entity[0]);
 
 			if (e != null)
-			{
 				StarWarsMod.network.sendToServer(new MessageDrainKnowledge(e, 400 + (this.currentLevel * 400)));
-			}
 
 			return true;
 		}

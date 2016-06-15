@@ -19,6 +19,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -47,6 +48,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(EntityCooldownEntry.class, PMessage::readEntityCooldownEntry, PMessage::writeEntityCooldownEntry);
 		map(Color.class, PMessage::readColor, PMessage::writeColor);
 		map(World.class, PMessage::readWorld, PMessage::writeWorld);
+		map(ItemStack[].class, PMessage::readItemStacks, PMessage::writeItemStacks);
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
@@ -139,6 +141,15 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	private static ItemStack readItemStack(ByteBuf buf)
 	{
 		return ByteBufUtils.readItemStack(buf);
+	}
+
+	private static ItemStack[] readItemStacks(ByteBuf buf)
+	{
+		ArrayList<ItemStack> stacks = new ArrayList<>();
+		int count = readInt(buf);
+		for (int i = 0; i < count; i++)
+			stacks.add(readItemStack(buf));
+		return stacks.toArray(new ItemStack[count]);
 	}
 
 	private static long readLong(ByteBuf buf)
@@ -240,6 +251,13 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	private static void writeItemStack(ItemStack stack, ByteBuf buf)
 	{
 		ByteBufUtils.writeItemStack(buf, stack);
+	}
+
+	private static void writeItemStacks(ItemStack[] stack, ByteBuf buf)
+	{
+		writeInt(stack.length, buf);
+		for (ItemStack stack1 : stack)
+			ByteBufUtils.writeItemStack(buf, stack1);
 	}
 
 	private static void writeLong(long l, ByteBuf buf)

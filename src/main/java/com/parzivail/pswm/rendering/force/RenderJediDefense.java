@@ -37,11 +37,14 @@ public class RenderJediDefense
 		{
 			PowerBase powerBase = CronUtils.getActive((EntityPlayer)entity);
 
-			if (powerBase.name.equals("defend") && powerBase.isRunning)
-				this.renderPlayerShield(event, (EntityPlayer)entity, false);
+			if (powerBase != null)
+			{
+				if (powerBase.name.equals("defend") && powerBase.isRunning)
+					this.renderPlayerShield(event, (EntityPlayer)entity, false);
 
-			if (powerBase.name.equals("deflect") && powerBase.isRunning)
-				this.renderPlayerShield(event, (EntityPlayer)entity, true);
+				if (powerBase.name.equals("deflect") && powerBase.isRunning)
+					this.renderPlayerShield(event, (EntityPlayer)entity, true);
+			}
 		}
 	}
 

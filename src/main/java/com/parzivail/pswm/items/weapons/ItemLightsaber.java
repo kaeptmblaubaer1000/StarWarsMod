@@ -1,6 +1,7 @@
 package com.parzivail.pswm.items.weapons;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.registry.KeybindRegistry;
@@ -23,6 +24,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ItemLightsaber extends ItemSword
@@ -39,17 +41,34 @@ public class ItemLightsaber extends ItemSword
 
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 	public static final String[] hilts = { "obiwan", "quigon", "maul", "padawan", "dooku", "luke1", "vader2", "luke2", "crossguard", "kanan", "ezra", "revan", "malgus", "doubleSith", "starkiller", "shoto", "plokoon", "inquisitor", "mace", "yoda" };
-	public static int[] colorHex = { 0xFFFF00, 0xFF4F89, 0xE066FF, 0xF2F2F2, 0x595959, 0xFF5A00, 0x00E5EE, 0x191919, 0xFF0000, 0x00FF00, 0x0000FF };
+	public static Integer[] colorHex;
 	// public static final String[] colorName = { "yellow", "pink", "purple",
 	// "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
-	public static int[] colorHexNew = { 0xFFFF2B, 0xFF00A4, 0xD100FF, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF30, 0x3010DA, 0xFF5200 };
+	private static Integer[] colorHexNew = { 0xFFFF2B, 0xFF00A4, 0xD100FF, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF30, 0x3010DA, 0xFF5200 };
+	private static Integer[] colorItemsMeta = { 9, 6, 7, 8, 5, 3, 0, 4, 0, 1, 2, 0 };
+	public static HashMap<Integer, Integer> metaTable = new HashMap<Integer, Integer>()
+	{
+		{
+			put(0xFFFF2B, 9);
+			put(0xFF00A4, 6);
+			put(0xD100FF, 7);
+			put(0xFFFFFF, 8);
+			put(0xA0A0A0, 5);
+			put(0x202020, 3);
+			put(0xFF6A00, 0);
+			put(0x2FD0F6, 4);
+			put(0xFF0000, 0);
+			put(0x00FF30, 1);
+			put(0x3010DA, 2);
+			put(0xFF5200, 0);
+		}
+	};
 
 	static
 	{
-		colorHex = colorHexNew;
 		ArrayList<Integer> n = new ArrayList<>();
-		for (int i = 0; i < colorHex.length; i++)
-			n.add(GLPalette.makeOpaque(colorHex[i]));
+		for (Integer aColorHex : colorHexNew)
+			n.add(GLPalette.makeOpaque(aColorHex));
 		Collections.sort(n, new IntColorComparator());
 		colorHex = MathUtils.toIntArray(n);
 	}
@@ -95,6 +114,26 @@ public class ItemLightsaber extends ItemSword
 				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
 			}
 		}
+	}
+
+	public static ItemStack[] getItemsForSingleBlade()
+	{
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 1), };
+	}
+
+	public static ItemStack[] getItemsForSingleBladeBlaster()
+	{
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 2), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 2), new ItemStack(StarWarsItems.energyGate, 2), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 1), };
+	}
+
+	public static ItemStack[] getItemsForSingleBladeShoto()
+	{
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 2), };
+	}
+
+	public static ItemStack[] getItemsForDoubleBlade()
+	{
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 2), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 2), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 2), new ItemStack(StarWarsItems.hiltMetelAlloy, 2), };
 	}
 
 	@Override
@@ -184,18 +223,42 @@ public class ItemLightsaber extends ItemSword
 		/*
 		 * Blade Color (int - 0xRRGGBB)
 		 */
-		if (s.equals("maul") || s.equals("dooku") || s.equals("vader2") || s.equals("malgus") || s.equals("doubleSith") || s.equals("starkiller") || s.equals("shoto") || s.equals("inquisitor"))
-			nbt.setInteger(nbtBladeColor, 0xFF0000); // red
-		else if (s.equals("quigon") || s.equals("padawan") || s.equals("luke2") || s.equals("yoda"))
-			nbt.setInteger(nbtBladeColor, 0x00FF30); // green
-		else if (s.equals("obiwan") || s.equals("luke1") || s.equals("kanan") || s.equals("ezra") || s.equals("revan")  || s.equals("plokoon"))
-			nbt.setInteger(nbtBladeColor, 0x2448DA); // blue
-		else if (s.equals("crossguard"))
-			nbt.setInteger(nbtBladeColor, 0xFF5200); // red-orange
-		else if (s.equals("mace"))
-			nbt.setInteger(nbtBladeColor, 0xD100FF); // purple
-		else
-			nbt.setInteger(nbtBladeColor, 0xFFFFFF); // blue
+		switch (s)
+		{
+			case "maul":
+			case "dooku":
+			case "vader2":
+			case "malgus":
+			case "doubleSith":
+			case "starkiller":
+			case "shoto":
+			case "inquisitor":
+				nbt.setInteger(nbtBladeColor, 0xFF0000); // red
+				break;
+			case "quigon":
+			case "padawan":
+			case "luke2":
+			case "yoda":
+				nbt.setInteger(nbtBladeColor, 0x00FF30); // green
+				break;
+			case "obiwan":
+			case "luke1":
+			case "kanan":
+			case "ezra":
+			case "revan":
+			case "plokoon":
+				nbt.setInteger(nbtBladeColor, 0x2448DA); // blue
+				break;
+			case "crossguard":
+				nbt.setInteger(nbtBladeColor, 0xFF5200); // red-orange
+				break;
+			case "mace":
+				nbt.setInteger(nbtBladeColor, 0xD100FF); // purple
+				break;
+			default:
+				nbt.setInteger(nbtBladeColor, 0xFFFFFF); // blue
+				break;
+		}
 
 		/*
 		 * Blade Skin (int - 0: normal, 1: alternate)
@@ -226,8 +289,11 @@ public class ItemLightsaber extends ItemSword
 
 	public static boolean isOn(ItemStack stack)
 	{
-		if (stack == null || !stack.hasTagCompound())
-			return false;
-		return stack.stackTagCompound.getBoolean(nbtBladeOn);
+		return !(stack == null || !stack.hasTagCompound()) && stack.stackTagCompound.getBoolean(nbtBladeOn);
+	}
+
+	public static boolean hasCrystalFor(EntityPlayer player, int color)
+	{
+		return metaTable.get(color) != null && player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, metaTable.get(color)));
 	}
 }

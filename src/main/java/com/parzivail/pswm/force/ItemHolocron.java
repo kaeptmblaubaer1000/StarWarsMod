@@ -55,7 +55,7 @@ public class ItemHolocron extends Item
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			ForceUtils.resetPowers();
+			//ForceUtils.resetPowers();
 
 			stack.stackTagCompound.setString(Resources.nbtMaster, player.getCommandSenderName());
 			stack.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_JEDI);

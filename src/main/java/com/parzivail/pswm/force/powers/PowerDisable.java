@@ -4,7 +4,6 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageAddEffectTo;
 import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
 import com.parzivail.util.entity.EntityUtils;
-import com.parzivail.util.ui.GuiToast;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -29,10 +28,7 @@ public class PowerDisable extends PowerBase
 			Entity e = EntityUtils.rayTrace(this.currentLevel * 2, player, new Entity[0]);
 
 			if (e != null)
-			{
 				StarWarsMod.network.sendToServer(new MessageAddEffectTo(new EntityCooldownEntry(e, "disable", this.currentLevel * 40)));
-				GuiToast.makeText(e, 40).show();
-			}
 
 			return true;
 		}
