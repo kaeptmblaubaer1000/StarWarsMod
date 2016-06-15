@@ -20,7 +20,6 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
-import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -296,17 +295,13 @@ public class CommonEventHandler
 									powerDefend.recharge = powerDefend.rechargeTime;
 								}
 								else
+								{
 									powerDefend.run(StarWarsMod.mc.thePlayer);
-								coolFlag = false;
+									coolFlag = false;
+								}
 								break;
 							case "lightning":
-								if (powerBase.isRunning)
-								{
-									powerBase.isRunning = false;
-									powerBase.duration = 0;
-									powerBase.recharge = powerBase.rechargeTime;
-								}
-								else
+								if (!powerBase.isRunning)
 								{
 									powerBase.isRunning = true;
 									powerBase.recharge = 0;
@@ -319,12 +314,10 @@ public class CommonEventHandler
 								break;
 						}
 
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.serialize()));
-
 						if (coolFlag)
 							coolPower(powerBase);
 
-						Lumberjack.log(powerBase.isRunning);
+						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.serialize()));
 
 						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, CronUtils.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost()));
 					}
@@ -405,7 +398,7 @@ public class CommonEventHandler
 			if (power.isDurationBased && power.isRunning)
 			{
 				power.duration++;
-				if (power.duration >= power.getDuration())
+				if (power.duration >= power.getDuration() || KeybindRegistry.keyRobePower.getIsKeyPressed())
 				{
 					power.duration = 0;
 					power.isRunning = false;
@@ -437,6 +430,8 @@ public class CommonEventHandler
 	 */
 	private void updateLightning(PowerLightning power)
 	{
+		if (!power.isRunning)
+			return;
 		Entity e = EntityUtils.rayTrace(power.getRange(), StarWarsMod.mc.thePlayer, new Entity[0]);
 
 		int oldId = power.getEntityTargetId();
@@ -578,6 +573,7 @@ public class CommonEventHandler
 				q.add(b);
 
 				b.duration = 0;
+				b.isRunning = false;
 
 				if (CronUtils.getActive(StarWarsMod.mc.thePlayer).name.equals(b.name))
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, b.serialize()));

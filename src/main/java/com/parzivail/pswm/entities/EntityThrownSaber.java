@@ -1,10 +1,10 @@
 package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.utils.ForceUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -102,11 +102,11 @@ public class EntityThrownSaber extends EntityThrowable
 			if (pos.entityHit instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
-				if (JediUtils.getHolocron(entityPlayer) != null)
+				if (CronUtils.getHolocron(entityPlayer) != null)
 				{
-					ItemStack stack = JediUtils.getHolocron(entityPlayer);
+					PowerBase powerBase = CronUtils.getActive(entityPlayer);
 
-					if (!JediUtils.getActive(stack).equalsIgnoreCase("deflect") || !JediUtils.getUsingDuration(stack))
+					if (!powerBase.name.equalsIgnoreCase("deflect") && !powerBase.isRunning)
 					{
 						pos.entityHit.attackEntityFrom(StarWarsMod.saberDamageSource, this.damage);
 						pos.entityHit.setFire(8);
@@ -145,14 +145,7 @@ public class EntityThrownSaber extends EntityThrowable
 	{
 		if (getSender() instanceof EntityPlayer)
 		{
-			ItemStack holocron = JediUtils.getHolocron((EntityPlayer)getSender());
-
-			if (holocron != null && holocron.stackTagCompound != null && holocron.stackTagCompound.getTag("thrownSaber") instanceof NBTTagCompound && !worldObj.isRemote)
-			{
-				ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0], 1);
-				stack.stackTagCompound = (NBTTagCompound)holocron.stackTagCompound.getTag("thrownSaber");
-				getSender().setCurrentItemOrArmor(0, stack);
-			}
+			getSender().setCurrentItemOrArmor(0, getSaberStack());
 		}
 	}
 
@@ -163,7 +156,7 @@ public class EntityThrownSaber extends EntityThrowable
 		int max = 8;
 
 		if (getSender() instanceof EntityPlayer)
-			max = (int)(8 * (JediUtils.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)ForceUtils.powers.get("saberThrow").maxLevel));
+			max = (int)(8 * (CronUtils.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)ForceUtils.powers.get("saberThrow").maxLevel));
 
 		if (this.timeAlive++ >= max || isReturning)
 			trackSender();

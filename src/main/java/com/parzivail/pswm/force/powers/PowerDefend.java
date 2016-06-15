@@ -6,7 +6,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class PowerDefend extends PowerBase
 {
 	public int health = 0;
-	public boolean isRunning = false;
 
 	public PowerDefend(int currentLevel)
 	{
@@ -36,7 +35,6 @@ public class PowerDefend extends PowerBase
 	{
 		NBTTagCompound compound = super.serialize();
 		compound.setInteger("health", health);
-		compound.setBoolean("isRunning", isRunning);
 		return compound;
 	}
 
@@ -45,7 +43,6 @@ public class PowerDefend extends PowerBase
 	{
 		super.deserialize(compound);
 		this.health = compound.getInteger("health");
-		this.isRunning = compound.getBoolean("isRunning");
 		return this;
 	}
 }
