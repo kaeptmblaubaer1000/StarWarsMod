@@ -26,6 +26,7 @@ import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	private ItemStack stackShowing;
 	private RenderLightsaber renderLightsaber;
 
-	private boolean isCustomColor = false;
+	private boolean flagAnyCrystals = false;
 
 	public GuiScreenLightsaberForge(EntityPlayer player)
 	{
@@ -98,7 +99,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		ItemLightsaber.setupNBT(0, stackShowing);
 		if (player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemLightsaber)
 			stackShowing = player.inventory.getCurrentItem().copy();
-		stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, true);
 
 		renderLightsaber = new RenderLightsaber();
 
@@ -166,6 +166,9 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		buttonList.add(canonLabel);
 		canonLabel.visible = false;
 		y++;
+
+		ArrayList<Integer> availableColors = new ArrayList<>();
+
 		for (int i = 0; i < ItemLightsaber.colorHex.length; i++)
 		{
 			OutlineButton b = new FilledColorButton(id++, x * 32 + 10, y * 32 + 20, 30, 30, ItemLightsaber.colorHex[i]);
@@ -173,7 +176,12 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			listBBlade.put(String.valueOf(ItemLightsaber.colorHex[i]), b);
 			buttonList.add(b);
 
-			b.enabled = ItemLightsaber.hasCrystalFor(player, ItemLightsaber.colorHex[i]) || player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 11)) || player.capabilities.isCreativeMode;
+			b.enabled = ItemLightsaber.hasCrystalFor(player, ItemLightsaber.colorHex[i]) || player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10)) || player.capabilities.isCreativeMode;
+			if (b.enabled)
+			{
+				flagAnyCrystals = true;
+				availableColors.add(ItemLightsaber.colorHex[i] | 0xFF000000);
+			}
 
 			x++;
 			if (x >= 3)
@@ -183,7 +191,22 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 		}
 
-		if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 11)) || player.capabilities.isCreativeMode)
+		if (availableColors.contains(ItemLightsaber.colorHex[9]))
+			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ItemLightsaber.colorHex[9]);
+		else if (availableColors.contains(ItemLightsaber.colorHex[10]))
+			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ItemLightsaber.colorHex[10]);
+		else if (availableColors.contains(ItemLightsaber.colorHex[7]))
+			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ItemLightsaber.colorHex[7]);
+		else if (availableColors.contains(ItemLightsaber.colorHex[3]))
+			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ItemLightsaber.colorHex[3]);
+		else
+			stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, availableColors.get(availableColors.size() - 1));
+
+		stackShowing.stackTagCompound.setBoolean(ItemLightsaber.nbtBladeOn, flagAnyCrystals);
+
+		bSave.enabled = flagAnyCrystals && canGetSingleBlade;
+
+		if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10)) || player.capabilities.isCreativeMode)
 		{
 			y++;
 			OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 94, "Custom Color");
@@ -214,6 +237,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		y = 0;
 		OutlineButton bBladeToggle = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Blade", false);
 		bBladeToggle.visible = false;
+		bBladeToggle.enabled = flagAnyCrystals;
 		listBOptions.put("toggleBlade", bBladeToggle);
 		buttonList.add(bBladeToggle);
 		y++;
@@ -229,6 +253,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		y++;
 		OutlineButton bBladeWaterproof = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Waterproof", false);
 		bBladeWaterproof.visible = false;
+		bBladeWaterproof.enabled = player.inventory.hasItem(StarWarsItems.apexSeal) || player.capabilities.isCreativeMode;
 		listBOptions.put("bladeWaterproof", bBladeWaterproof);
 		buttonList.add(bBladeWaterproof);
 		y++;
@@ -259,7 +284,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (button instanceof FilledColorButton)
 			{
 				stackShowing.stackTagCompound.setInteger(ItemLightsaber.nbtBladeColor, ((FilledColorButton)button).color);
-				isCustomColor = false;
 			}
 			else if (button.id == listBOptions.get("toggleBlade").id)
 			{
@@ -269,6 +293,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			else if (button.id == bSave.id)
 			{
 				if (!player.capabilities.isCreativeMode)
+				{
 					switch (stackShowing.stackTagCompound.getString(ItemLightsaber.nbtHilt))
 					{
 						case "doubleSith":
@@ -286,6 +311,15 @@ public class GuiScreenLightsaberForge extends GuiScreen
 							StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, ItemLightsaber.getItemsForSingleBlade()));
 							break;
 					}
+
+					if (ItemLightsaber.hasCrystalFor(player, stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor)))
+						StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, new ItemStack[] { new ItemStack(StarWarsItems.lightsaberCrystal, 1, ItemLightsaber.metaTable.get(stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor))) }));
+					else if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10)))
+						StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, new ItemStack[] { new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10) }));
+
+					if (stackShowing.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeWaterproof))
+						StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, new ItemStack[] { new ItemStack(StarWarsItems.apexSeal, 1) }));
+				}
 				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stackShowing));
 				StarWarsMod.mc.currentScreen = null;
 				StarWarsMod.mc.setIngameFocus();
@@ -348,11 +382,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 					b.visible = false;
 				for (OutlineButton b : listBBlade.values())
 					b.visible = false;
-			}
-			else if (listBBlade.get("rangeR") != null)
-			{
-				if (button.id == listBBlade.get("rangeR").id || button.id == listBBlade.get("rangeG").id || button.id == listBBlade.get("rangeB").id)
-					isCustomColor = true;
 			}
 		}
 		setButtonsFromNBT(stackShowing.stackTagCompound);

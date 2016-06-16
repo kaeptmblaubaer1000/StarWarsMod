@@ -99,7 +99,7 @@ public class ItemUtils
 			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].isItemEqual(stack))
 			{
 				player.inventory.mainInventory[i].stackSize -= stack.stackSize;
-				if (stack.stackSize == 0)
+				if (player.inventory.mainInventory[i].stackSize <= 0)
 					player.inventory.mainInventory[i] = null;
 			}
 	}

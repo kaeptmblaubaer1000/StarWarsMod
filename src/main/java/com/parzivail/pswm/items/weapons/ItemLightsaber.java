@@ -46,21 +46,22 @@ public class ItemLightsaber extends ItemSword
 	// "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
 	private static Integer[] colorHexNew = { 0xFFFF2B, 0xFF00A4, 0xD100FF, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF30, 0x3010DA, 0xFF5200 };
 	private static Integer[] colorItemsMeta = { 9, 6, 7, 8, 5, 3, 0, 4, 0, 1, 2, 0 };
+	//                                          0  1  2  3  4  5  6  7  8  9 10 11
 	public static HashMap<Integer, Integer> metaTable = new HashMap<Integer, Integer>()
 	{
 		{
-			put(0xFFFF2B, 9);
-			put(0xFF00A4, 6);
-			put(0xD100FF, 7);
-			put(0xFFFFFF, 8);
-			put(0xA0A0A0, 5);
-			put(0x202020, 3);
-			put(0xFF6A00, 0);
-			put(0x2FD0F6, 4);
-			put(0xFF0000, 0);
-			put(0x00FF30, 1);
-			put(0x3010DA, 2);
-			put(0xFF5200, 0);
+			put(0xFFFF2B | 0xFF000000, 9);
+			put(0xFF00A4 | 0xFF000000, 6);
+			put(0xD100FF | 0xFF000000, 7);
+			put(0xFFFFFF | 0xFF000000, 8);
+			put(0xA0A0A0 | 0xFF000000, 5);
+			put(0x202020 | 0xFF000000, 3);
+			put(0xFF6A00 | 0xFF000000, 0);
+			put(0x2FD0F6 | 0xFF000000, 4);
+			put(0xFF0000 | 0xFF000000, 0);
+			put(0x00FF30 | 0xFF000000, 1);
+			put(0x3010DA | 0xFF000000, 2);
+			put(0xFF5200 | 0xFF000000, 0);
 		}
 	};
 
