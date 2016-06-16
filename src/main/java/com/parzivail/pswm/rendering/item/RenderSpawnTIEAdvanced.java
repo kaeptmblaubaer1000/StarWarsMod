@@ -2,7 +2,6 @@ package com.parzivail.pswm.rendering.item;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelTIEAdvanced;
-import com.parzivail.pswm.models.vehicles.ModelTIEInterceptor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

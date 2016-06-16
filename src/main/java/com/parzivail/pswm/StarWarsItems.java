@@ -12,11 +12,7 @@ public class StarWarsItems
 {
 	public static ItemGaffiStick gaffiStick;
 
-	public static ItemOldLightsaber lightsaber;
-
 	public static ItemLightsaber[] lightsaberNew = new ItemLightsaber[ItemLightsaber.hilts.length];
-
-	public static ItemLightsaberOff lightsaberOff;
 
 	public static ItemBlasterPistol blasterPistol;
 	public static ItemBlasterRifle blasterRifle;

@@ -59,6 +59,7 @@ public class MobTiePilot extends EntityTameable implements IMob, IRangedAttackMo
 	{
 		return false;
 	}
+
 	@Override
 	public EntityAgeable createChild(EntityAgeable p_90011_1_)
 	{

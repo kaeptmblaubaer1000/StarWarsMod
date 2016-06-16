@@ -396,8 +396,6 @@ public class StarWarsMod
 
 		Resources.planetInformation = new ArrayList<>();
 
-
-
 		config.save();
 
 		Lumberjack.info("Configuration loaded!");

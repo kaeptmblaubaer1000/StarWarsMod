@@ -162,6 +162,7 @@ public class ModelBackpackSand extends ModelBiped
 		armorModel.isRiding = entity.isRiding();
 		armorModel.isChild = entity.isChild();
 	}
+
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
 	 */

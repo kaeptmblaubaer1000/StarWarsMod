@@ -13,7 +13,6 @@ import com.parzivail.pswm.items.lightsaber.*;
 import com.parzivail.pswm.items.lightsaber.ItemPlasmaEmitter;
 import com.parzivail.pswm.items.weapons.*;
 import com.parzivail.pswm.jedi.ArmorJediRobes;
-import com.parzivail.pswm.jedi.ItemHolocronJedi;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.ItemSpawnNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.ItemSpawnNpcXWing;
@@ -71,9 +70,6 @@ public class ItemRegister
 
 		StarWarsItems.powerpack = new ItemPowerpack();
 		GameRegistry.registerItem(StarWarsItems.powerpack, "powerpack");
-
-		StarWarsItems.holocronJedi = new ItemHolocronJedi();
-		GameRegistry.registerItem(StarWarsItems.holocronJedi, "holocronJedi");
 
 		StarWarsItems.holocron = new ItemHolocron();
 		GameRegistry.registerItem(StarWarsItems.holocron, "holocron");

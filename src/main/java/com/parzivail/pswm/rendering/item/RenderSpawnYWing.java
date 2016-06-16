@@ -1,7 +1,6 @@
 package com.parzivail.pswm.rendering.item;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.vehicles.ModelXWingNew;
 import com.parzivail.pswm.models.vehicles.ModelYWing;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

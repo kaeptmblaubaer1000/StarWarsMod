@@ -16,15 +16,16 @@ import org.lwjgl.opengl.GL11;
  */
 public class ModelPloKoonBladeShort extends ModelBase implements IHandlesRender
 {
-    public ModelRenderer shape1;
+	public ModelRenderer shape1;
 
-    public ModelPloKoonBladeShort() {
-        this.textureWidth = 512;
-        this.textureHeight = 512;
-	    this.shape1 = new ModelRenderer(this, 0, 0);
-	    this.shape1.setRotationPoint(9.0F, 0.0F, 0.0F);
-	    this.shape1.addBox(-99.0F, 1.5F, 1.5F, 93, 3, 3, 0.0F);
-    }
+	public ModelPloKoonBladeShort()
+	{
+		this.textureWidth = 512;
+		this.textureHeight = 512;
+		this.shape1 = new ModelRenderer(this, 0, 0);
+		this.shape1.setRotationPoint(9.0F, 0.0F, 0.0F);
+		this.shape1.addBox(-99.0F, 1.5F, 1.5F, 93, 3, 3, 0.0F);
+	}
 
 	@Override
 	public ResourceLocation getResourceLocation(boolean alt)

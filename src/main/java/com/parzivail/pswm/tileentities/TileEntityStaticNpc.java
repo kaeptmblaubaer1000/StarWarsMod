@@ -39,7 +39,6 @@ public class TileEntityStaticNpc extends TileEntity
 		this.readFromNBT(packet.func_148857_g());
 	}
 
-
 	public String getId()
 	{
 		return id;

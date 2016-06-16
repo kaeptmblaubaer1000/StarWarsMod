@@ -2,7 +2,6 @@ package com.parzivail.pswm.rendering.item;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelAWing;
-import com.parzivail.pswm.models.vehicles.ModelSnowspeeder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
