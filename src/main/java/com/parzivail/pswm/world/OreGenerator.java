@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class OreGenerator implements IWorldGenerator
 {
+	public static WorldGenMinable genFocusCrys = new WorldGenMinable(StarWarsMod.blockFocusingCrystalOre, 5);
 	public static WorldGenMinable genKelerium = new WorldGenMinable(StarWarsMod.blockKeleriumOre, 8);
 	public static WorldGenMinable genIonite = new WorldGenMinable(StarWarsMod.blockIoniteOre, 8);
 	public static WorldGenMinable genRubindum = new WorldGenMinable(StarWarsMod.blockRubindumOre, 8);
@@ -62,6 +63,8 @@ public class OreGenerator implements IWorldGenerator
 
 			deposit(world, chunkX, chunkZ, 1, genCrystalBlue, 8, 40);
 			deposit(world, chunkX, chunkZ, 1, genCrystalGreen, 8, 40);
+
+			deposit(world, chunkX, chunkZ, 20, genFocusCrys, 0, 64);
 
 			if (MathUtils.oneIn(2))
 			{

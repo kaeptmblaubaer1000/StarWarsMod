@@ -38,8 +38,10 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.WorldServer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -187,7 +189,7 @@ public class CommonEventHandler
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 			new AnimationHyperspace(3500, false).start();
 
-		if (KeybindRegistry.keyLSForge.isPressed())
+		if (KeybindRegistry.keyLSForge.isPressed() && StarWarsMod.mc.thePlayer.capabilities.isCreativeMode)
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyLSToggle.isPressed())
@@ -623,6 +625,12 @@ public class CommonEventHandler
 	public void onTick(TickEvent.ServerTickEvent event)
 	{
 		updateServerEffectMovement();
+
+		WorldServer server = MinecraftServer.getServer().worldServers[0];
+
+		if (server != null && server.provider.dimensionId == Resources.ConfigOptions.dimIlumId && !server.getWorldInfo().isRaining())
+			server.getWorldInfo().setRaining(true);
+
 	}
 
 	/**

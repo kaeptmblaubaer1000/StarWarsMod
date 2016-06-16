@@ -143,7 +143,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		for (ItemLightsaber i : StarWarsItems.lightsaberNew)
 			MinecraftForgeClient.registerItemRenderer(i, new RenderLightsaber());
-		MinecraftForgeClient.registerItemRenderer(StarWarsItems.lightsaberOff, new RenderLightsaber());
 
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.blasterPistol, new RenderBlasterPistol());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.blasterRifle, new RenderBlasterRifle());

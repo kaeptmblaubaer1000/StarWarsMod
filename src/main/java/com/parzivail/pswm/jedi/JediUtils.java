@@ -174,15 +174,6 @@ public class JediUtils
 
 	public static ItemStack getHolocron(EntityPlayer player)
 	{
-		if (player == null)
-			return null;
-		for (ItemStack i : player.inventory.mainInventory)
-		{
-			if (i == null)
-				continue;
-			if (i.getItem() instanceof ItemHolocronJedi)
-				return i;
-		}
 		return null;
 	}
 

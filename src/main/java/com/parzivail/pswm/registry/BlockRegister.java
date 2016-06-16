@@ -139,6 +139,9 @@ public class BlockRegister
 		StarWarsMod.blockTempleStoneMH = new BlockMultiHeight("templeStone");
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneMH, ItemMultiHeightBlock.class, "blockTempleStoneMH");
 
+		StarWarsMod.blockFocusingCrystalOre = new BlockFocusingCrystalOre();
+		GameRegistry.registerBlock(StarWarsMod.blockFocusingCrystalOre, "blockFocusingCrystalOre");
+
 		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
 		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
 

@@ -88,7 +88,7 @@ public class ItemUtils
 	public static boolean hasItemStackExact(EntityPlayer player, ItemStack stack)
 	{
 		for (int i = 0; i < player.inventory.mainInventory.length; ++i)
-			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].isItemEqual(stack) && player.inventory.mainInventory[i].stackSize == stack.stackSize)
+			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].isItemEqual(stack) && player.inventory.mainInventory[i].stackSize >= stack.stackSize)
 				return true;
 		return false;
 	}
@@ -102,5 +102,14 @@ public class ItemUtils
 				if (player.inventory.mainInventory[i].stackSize <= 0)
 					player.inventory.mainInventory[i] = null;
 			}
+	}
+
+	public static int getAmount(EntityPlayer player, ItemStack itemStack)
+	{
+		int r = 0;
+		for (int i = 0; i < player.inventory.mainInventory.length; ++i)
+			if (player.inventory.mainInventory[i] != null && player.inventory.mainInventory[i].isItemEqual(itemStack))
+				r += player.inventory.mainInventory[i].stackSize;
+		return r;
 	}
 }

@@ -2,6 +2,7 @@ package com.parzivail.pswm.achievement;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
@@ -30,7 +31,7 @@ public class AchievementTrigger
 				event.player.addStat(StarWarsAchievements.becomeJedi, 1);
 			else if (event.crafting.getItem() == StarWarsItems.hyperdriveEngine)
 				event.player.addStat(StarWarsAchievements.craftHyperdrive, 1);
-			else if (event.crafting.getItem() == StarWarsItems.lightsaber)
+			else if (event.crafting.getItem() instanceof ItemLightsaber)
 				event.player.addStat(StarWarsAchievements.craftLightsaber, 1);
 	}
 }

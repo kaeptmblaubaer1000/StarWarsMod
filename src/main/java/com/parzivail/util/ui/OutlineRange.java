@@ -31,7 +31,7 @@ public class OutlineRange extends OutlineButton
 	 */
 	public int getHoverState(boolean p_146114_1_)
 	{
-		return 0;
+		return this.enabled ? 1 : 0;
 	}
 
 	/**
@@ -118,20 +118,38 @@ public class OutlineRange extends OutlineButton
 		}
 	}
 
-	public void drawButton(Minecraft p_146112_1_, int p_146112_2_, int p_146112_3_)
+	public void drawButton(Minecraft p_146112_1_, int mX, int mY)
 	{
 		GL11.glPushMatrix();
 		if (this.visible)
 		{
+			this.field_146123_n = mX >= this.xPosition && mY >= this.yPosition && mX < this.xPosition + this.width && mY < this.yPosition + this.height;
+			int k = this.getHoverState(this.field_146123_n);
+
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glLineWidth(3);
 			FontRenderer fontrenderer = p_146112_1_.fontRenderer;
-			GLPalette.glColorI(this.colorBg);
-			this.field_146123_n = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height;
+			switch (k)
+			{
+				case 0:
+					GLPalette.glColorI(GLPalette.GREY);
+					break;
+				default:
+					GLPalette.glColorI(this.colorBg);
+					break;
+			}
 			GFX.drawRectangle(this.xPosition, this.yPosition, this.width, this.height, false);
-			this.mouseDragged(p_146112_1_, p_146112_2_, p_146112_3_);
+			this.mouseDragged(p_146112_1_, mX, mY);
 
-			GLPalette.glColorI(this.colorFg);
+			switch (k)
+			{
+				case 0:
+					GLPalette.glColorI(GLPalette.GREY);
+					break;
+				default:
+					GLPalette.glColorI(this.colorFg);
+					break;
+			}
 			GFX.drawRectangle(this.xPosition + (int)(this.value * (float)(this.width - 4)), this.yPosition, 4, 10, true);
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);

@@ -10,6 +10,7 @@ public class MessageSetPlayerHolding extends PMessage<MessageSetPlayerHolding>
 {
 	public EntityPlayer player;
 	public ItemStack stack;
+	public boolean addNotReplace;
 
 	public MessageSetPlayerHolding()
 	{
@@ -21,10 +22,20 @@ public class MessageSetPlayerHolding extends PMessage<MessageSetPlayerHolding>
 		this.stack = stack;
 	}
 
+	public MessageSetPlayerHolding(EntityPlayer player, ItemStack stack, boolean addNotReplace)
+	{
+		this.player = player;
+		this.stack = stack;
+		this.addNotReplace = addNotReplace;
+	}
+
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		this.player.inventory.mainInventory[this.player.inventory.currentItem] = stack;
+		if (addNotReplace)
+			this.player.inventory.addItemStackToInventory(stack);
+		else
+			this.player.inventory.mainInventory[this.player.inventory.currentItem] = stack;
 		return null;
 	}
 

@@ -99,6 +99,7 @@ public class StarWarsMod
 	public static Block blockHoloTable;
 	public static Block blockTable;
 	public static Block blockTable2;
+	public static Block blockFocusingCrystalOre;
 	public static Block blockCrystalOre;
 	public static Block blockChromiumOre;
 	public static Block blockTitaniumOre;

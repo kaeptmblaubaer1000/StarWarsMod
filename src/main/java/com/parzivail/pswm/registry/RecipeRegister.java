@@ -3,7 +3,6 @@ package com.parzivail.pswm.registry;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.utils.CrystalColor;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -33,13 +32,6 @@ public class RecipeRegister
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.silverImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.imperialCredit);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.goldImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.silverImperialCredit);
-
-		if (ConfigOptions.enableLightsaber)
-		{
-			GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.lightsaberOff, 1, CrystalColor.RED), "HCH", "HEH", "HPH", 'H', StarWarsItems.hiltMetelAlloy, 'C', StarWarsItems.containmentField, 'E', new ItemStack(StarWarsItems.lightsaberCrystal, 1, CrystalColor.RED), 'P', StarWarsItems.plasmaEmitter);
-			GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.lightsaberOff, 1, CrystalColor.GREEN), "HCH", "HEH", "HPH", 'H', StarWarsItems.hiltMetelAlloy, 'C', StarWarsItems.containmentField, 'E', new ItemStack(StarWarsItems.lightsaberCrystal, 1, CrystalColor.GREEN), 'P', StarWarsItems.plasmaEmitter);
-			GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.lightsaberOff, 1, CrystalColor.BLUE), "HCH", "HEH", "HPH", 'H', StarWarsItems.hiltMetelAlloy, 'C', StarWarsItems.containmentField, 'E', new ItemStack(StarWarsItems.lightsaberCrystal, 1, CrystalColor.BLUE), 'P', StarWarsItems.plasmaEmitter);
-		}
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blockTitaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.titaniumChromiumIngot);

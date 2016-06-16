@@ -1,7 +1,6 @@
 package com.parzivail.pswm.sound;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +26,7 @@ public class SoundShipAlarm extends MovingSound
 	@Override
 	public void update()
 	{
-		if (this.player.inventory.getCurrentItem() != null && this.player.inventory.getCurrentItem().getItem() == StarWarsItems.lightsaber)
+		if (false)
 		{
 			float f = MathHelper.sqrt_double(this.player.motionX * this.player.motionX + this.player.motionZ * this.player.motionZ);
 
