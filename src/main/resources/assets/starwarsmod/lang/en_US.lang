@@ -354,6 +354,7 @@ force.power.slow=Slow
 force.power.drainKnowledge=Drain Knowledge
 force.power.lightning=Lightning
 force.power.destruction=Destruction
+force.power.saberThrow=Saber Throw
 
 force.power.jump.desc=Use your knowledge of The Force to propel yourself into the air.  5 level max, Level 1 lets you jump 2 blocks, each new level lets you jump 1 block higher than the previous.
 force.power.push.desc=Use your knowledge of The Force to propel entities away from yourself.  5 level max, Level 1 lets you push 2 blocks, each new level lets you push entities 2 blocks further and slightly faster.

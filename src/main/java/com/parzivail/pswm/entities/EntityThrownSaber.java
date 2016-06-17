@@ -32,11 +32,13 @@ public class EntityThrownSaber extends EntityThrowable
 	public EntityThrownSaber(World par1World)
 	{
 		super(par1World);
+		this.setSize(1.5f, 0.1f);
 	}
 
 	public EntityThrownSaber(World par1World, EntityLivingBase sender, ItemStack saber)
 	{
 		super(par1World, sender);
+		this.setSize(1.5f, 0.1f);
 		this.speed = 3f;
 		setSaberStack(saber);
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
