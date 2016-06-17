@@ -45,7 +45,6 @@ public class ItemLightsaber extends ItemSword
 	// public static final String[] colorName = { "yellow", "pink", "purple",
 	// "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
 	private static Integer[] colorHexNew = { 0xFFFF2B, 0xFF00A4, 0xD100FF, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF30, 0x3010DA, 0xFF5200 };
-	private static Integer[] colorItemsMeta = { 9, 6, 7, 8, 5, 3, 0, 4, 0, 1, 2, 0 };
 	//                                          0  1  2  3  4  5  6  7  8  9 10 11
 	public static HashMap<Integer, Integer> metaTable = new HashMap<Integer, Integer>()
 	{

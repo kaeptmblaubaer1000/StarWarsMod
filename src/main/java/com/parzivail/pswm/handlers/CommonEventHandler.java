@@ -10,7 +10,7 @@ import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.rendering.gui.AnimationHyperspace;
+import com.parzivail.pswm.rendering.gui.AnimationSaberShowcase;
 import com.parzivail.pswm.rendering.gui.GuiVehicle;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
@@ -187,7 +187,9 @@ public class CommonEventHandler
 			}
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
-			new AnimationHyperspace(3500, false).start();
+		{
+			new AnimationSaberShowcase(0, true).start();
+		}
 
 		if (KeybindRegistry.keyLSForge.isPressed() && StarWarsMod.mc.thePlayer.capabilities.isCreativeMode)
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
