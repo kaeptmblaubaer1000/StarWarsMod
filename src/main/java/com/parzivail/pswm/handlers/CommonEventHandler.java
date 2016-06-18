@@ -47,7 +47,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import static com.parzivail.pswm.utils.ForceUtils.activePower;
+//import static com.parzivail.pswm.utils.ForceUtils.activePower;
 
 public class CommonEventHandler
 {
@@ -244,7 +244,7 @@ public class CommonEventHandler
 					if (index < 0)
 						index = powers.size() - 1;
 					PowerBase selectedPower = CronUtils.getPower(StarWarsMod.mc.thePlayer, powers.get(index));
-					activePower = selectedPower;
+					//activePower = selectedPower;
 					CronUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower);
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
 				}
@@ -270,7 +270,7 @@ public class CommonEventHandler
 					if (index < 0)
 						index = powers.size() - 1;
 					PowerBase selectedPower = CronUtils.getPower(StarWarsMod.mc.thePlayer, powers.get(index));
-					activePower = selectedPower;
+					//activePower = selectedPower;
 					CronUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower);
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
 				}
@@ -675,7 +675,7 @@ public class CommonEventHandler
 		StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(event.player, CronUtils.compilePowers()));
 		StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, new NBTTagCompound()));
 
-		activePower = null;
+		//activePower = null;
 		ForceUtils.isUsingDuration = false;
 	}
 }

@@ -58,9 +58,12 @@ public class CronUtils
 		return stack.stackTagCompound.getString(Resources.nbtSide);
 	}
 
-	public static int getLevel(Object o)
+	public static int getLevel(EntityPlayer player)
 	{
-		return 10000000;
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return 0;
+		return getLevel(stack);
 	}
 
 	public static int getLevelOf(EntityPlayer player, String power)

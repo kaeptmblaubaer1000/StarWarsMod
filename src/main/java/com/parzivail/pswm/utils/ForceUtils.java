@@ -56,7 +56,7 @@ public class ForceUtils
 		}
 	}
 
-	public static PowerBase activePower = null;
+	//public static PowerBase activePower = null;
 	public static boolean isUsingDuration = false;
 	public static int health = 0;
 	public static float distanceToEntity = -1;
