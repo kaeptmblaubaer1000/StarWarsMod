@@ -14,32 +14,6 @@ import java.util.HashMap;
 
 public class ForceUtils
 {
-	public static PowerBase getPowerFromName(String name)
-	{
-		if (powers.containsKey(name))
-			return powers.get(name);
-		return null;
-	}
-
-	public static void resetPowers()
-	{
-		powers.clear();
-		powers.put("jump", new PowerJump(0));
-		powers.put("push", new PowerPush(0));
-		powers.put("pull", new PowerPull(0));
-		powers.put("lightning", new PowerLightning(0));
-		powers.put("destruction", new PowerDestruction(0));
-		powers.put("defend", new PowerDefend(0));
-		powers.put("deflect", new PowerDeflect(0));
-		powers.put("naturalAwareness", new PowerNaturalAwareness(0));
-		powers.put("grab", new PowerGrab(0));
-		powers.put("disable", new PowerDisable(0));
-		powers.put("slow", new PowerSlow(0));
-		powers.put("healing", new PowerHeal(0));
-		powers.put("drainKnowledge", new PowerDrainKnowledge(0));
-		powers.put("saberThrow", new PowerSaberThrow(0));
-	}
-
 	public static class EntityCooldownEntry
 	{
 		public int cooldownLeft;
@@ -65,24 +39,24 @@ public class ForceUtils
 
 	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<>();
 
-	public static HashMap<String, PowerBase> powers = new HashMap<>();
+	public static HashMap<String, Class<? extends PowerBase>> powers = new HashMap<>();
 
 	static
 	{
-		powers.put("jump", new PowerJump(0));
-		powers.put("push", new PowerPush(0));
-		powers.put("pull", new PowerPull(0));
-		powers.put("lightning", new PowerLightning(0));
-		powers.put("destruction", new PowerDestruction(0));
-		powers.put("defend", new PowerDefend(0));
-		powers.put("deflect", new PowerDeflect(0));
-		powers.put("naturalAwareness", new PowerNaturalAwareness(0));
-		powers.put("grab", new PowerGrab(0));
-		powers.put("disable", new PowerDisable(0));
-		powers.put("slow", new PowerSlow(0));
-		powers.put("healing", new PowerHeal(0));
-		powers.put("drainKnowledge", new PowerDrainKnowledge(0));
-		powers.put("saberThrow", new PowerSaberThrow(0));
+		powers.put("jump", PowerJump.class);
+		powers.put("push", PowerPush.class);
+		powers.put("pull", PowerPull.class);
+		powers.put("lightning", PowerLightning.class);
+		powers.put("destruction", PowerDestruction.class);
+		powers.put("defend", PowerDefend.class);
+		powers.put("deflect", PowerDeflect.class);
+		powers.put("naturalAwareness", PowerNaturalAwareness.class);
+		powers.put("grab", PowerGrab.class);
+		powers.put("disable", PowerDisable.class);
+		powers.put("slow", PowerSlow.class);
+		powers.put("healing", PowerHeal.class);
+		powers.put("drainKnowledge", PowerDrainKnowledge.class);
+		powers.put("saberThrow", PowerSaberThrow.class);
 	}
 
 	public static void addLeaderboardSide(String side)

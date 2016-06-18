@@ -12,14 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class CronUtils
 {
-	public static NBTTagCompound compilePowers()
-	{
-		NBTTagCompound compound = new NBTTagCompound();
-		for (PowerBase p : ForceUtils.powers.values())
-			compound.setTag(p.name, p.serialize());
-		return compound;
-	}
-
 	public static ItemStack getHolocron(EntityPlayer player)
 	{
 		if (player == null)
@@ -78,6 +70,21 @@ public class CronUtils
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
 			return new PowerBase(power).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(power)).currentLevel;
+		return 0;
+	}
+
+	public static int getMaxLevelOf(EntityPlayer player, String power)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return 0;
+		return getMaxLevelOf(stack, power);
+	}
+
+	public static int getMaxLevelOf(ItemStack stack, String power)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
+			return new PowerBase(power).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(power)).maxLevel;
 		return 0;
 	}
 
@@ -173,6 +180,21 @@ public class CronUtils
 		return getPower(stack, power);
 	}
 
+	public static NBTTagCompound getPowers(EntityPlayer player)
+	{
+		ItemStack stack = getHolocron(player);
+		if (stack == null)
+			return null;
+		return getPowers(stack);
+	}
+
+	public static NBTTagCompound getPowers(ItemStack stack)
+	{
+		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
+			return (NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers);
+		return null;
+	}
+
 	public static int getLevel(ItemStack stack)
 	{
 		if (stack == null)
@@ -187,10 +209,24 @@ public class CronUtils
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield) || ForceUtils.powers.get(type) == null)
 			return null;
 
-		Class clazz = ForceUtils.powers.get(type).getClass();
+		Class clazz = ForceUtils.powers.get(type);
 		try
 		{
 			return ((PowerBase)clazz.getConstructor(int.class).newInstance(0)).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(type));
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static PowerBase getPower(String type)
+	{
+		Class clazz = ForceUtils.powers.get(type);
+		try
+		{
+			return ((PowerBase)clazz.getConstructor(int.class).newInstance(0));
 		}
 		catch (Exception e)
 		{

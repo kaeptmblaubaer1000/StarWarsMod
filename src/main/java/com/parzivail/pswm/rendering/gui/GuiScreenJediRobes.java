@@ -62,15 +62,15 @@ public class GuiScreenJediRobes extends GuiScreen
 			{
 				//ForceUtils.activePower = this.selectedPower.power;
 				CronUtils.setActive(this.mc.thePlayer, this.selectedPower.power);
-				NBTTagCompound powers = CronUtils.compilePowers();
+				NBTTagCompound powers = CronUtils.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
 				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.serialize()));
 			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
-				ForceUtils.getPowerFromName(this.selectedPower.power.name).currentLevel++;
-				NBTTagCompound powers = CronUtils.compilePowers();
+				this.selectedPower.power.currentLevel++;
+				NBTTagCompound powers = CronUtils.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
 
@@ -169,7 +169,7 @@ public class GuiScreenJediRobes extends GuiScreen
 
 			if (this.stack != null)
 			{
-				item.power = ForceUtils.getPowerFromName(power);
+				item.power = CronUtils.getPower(stack, power);
 				if (item.power != null)
 					item.power.currentLevel = CronUtils.getLevelOf(this.stack, item.power.name);
 			}
@@ -201,6 +201,6 @@ public class GuiScreenJediRobes extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return false;
+		return true;
 	}
 }

@@ -2,7 +2,6 @@ package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.world.ItemUtils;
@@ -66,8 +65,8 @@ public class ItemHolocron extends Item
 
 			stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
 			stack.stackTagCompound.setTag(Resources.nbtPowers, new NBTTagCompound());
-			for (PowerBase p : ForceUtils.powers.values())
-				((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setTag(p.name, p.serialize());
+			for (String p : ForceUtils.powers.keySet())
+				((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setTag(p, CronUtils.getPower(p).serialize());
 		}
 	}
 }

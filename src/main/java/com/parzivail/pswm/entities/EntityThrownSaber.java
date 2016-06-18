@@ -5,7 +5,6 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.utils.ForceUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -158,7 +157,7 @@ public class EntityThrownSaber extends EntityThrowable
 		int max = 8;
 
 		if (getSender() instanceof EntityPlayer)
-			max = (int)(8 * (CronUtils.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)ForceUtils.powers.get("saberThrow").maxLevel));
+			max = (int)(8 * (CronUtils.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)CronUtils.getMaxLevelOf((EntityPlayer)getSender(), "saberThrow")));
 
 		if (this.timeAlive++ >= max || isReturning)
 			trackSender();

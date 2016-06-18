@@ -433,7 +433,7 @@ public class CommonEventHandler
 				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
 		}
 
-		NBTTagCompound powers = CronUtils.compilePowers();
+		NBTTagCompound powers = CronUtils.getPowers(StarWarsMod.mc.thePlayer);
 
 		tickCoolingPowers(powers);
 		addPlayerForceXp();
@@ -672,7 +672,6 @@ public class CommonEventHandler
 	 */
 	private void resetRobes(PlayerEvent event)
 	{
-		StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(event.player, CronUtils.compilePowers()));
 		StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, new NBTTagCompound()));
 
 		//activePower = null;
