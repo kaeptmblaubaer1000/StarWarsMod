@@ -58,9 +58,9 @@ public class RenderBlockTatooineTable implements IItemRenderer
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glScalef(1, 1, -1);
-				GL11.glTranslatef(0, -1, 0);
+				GL11.glTranslatef(3, -1, 0);
+				GL11.glRotatef(90, 0, 1, 0);
 				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
