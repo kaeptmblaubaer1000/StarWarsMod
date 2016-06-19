@@ -1,7 +1,5 @@
 package com.parzivail.pswm.entities;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -83,25 +81,6 @@ public class EntityDestruction extends EntityThrowable
 	protected float getGravityVelocity()
 	{
 		return 0.0F;
-	}
-
-	@SuppressWarnings("unused")
-	@Override
-	public void onCollideWithPlayer(EntityPlayer player)
-	{
-		if (true)
-			return;
-		if (player.getHeldItem() != null && (player.getHeldItem().getItem() == StarWarsItems.lightsaber) && player.isBlocking())
-		{
-			Vec3 vec3 = player.getLookVec();
-			if (vec3 != null)
-			{
-				this.motionX = vec3.xCoord;
-				this.motionY = vec3.yCoord;
-				this.motionZ = vec3.zCoord;
-			}
-			player.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
-		}
 	}
 
 	@Override
