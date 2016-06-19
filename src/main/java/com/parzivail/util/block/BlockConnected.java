@@ -307,7 +307,7 @@ public class BlockConnected extends Block
 	 * @param par6 Metadata of the block this block is trying to connect to
 	 * @return true if should connect
 	 */
-	public boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6)
+	private boolean shouldConnectToBlock(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, Block par5, int par6)
 	{
 		return par5 == this;
 	}
@@ -316,6 +316,6 @@ public class BlockConnected extends Block
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
 	{
 		Block b = par1IBlockAccess.getBlock(par2, par3, par4);
-		return b == this ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+		return b != this && super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
 	}
 }
