@@ -2,8 +2,10 @@ package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class VehicAWing extends VehicleAirBase
@@ -41,5 +43,13 @@ public class VehicAWing extends VehicleAirBase
 	public String getMovingSound()
 	{
 		return "vehicle.awing.move";
+	}
+
+	@Override
+	public boolean interact(EntityPlayer player)
+	{
+		if (player.isSneaking() && player.getHeldItem() == null && player.worldObj.isRemote)
+			player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+		return super.interact(player);
 	}
 }

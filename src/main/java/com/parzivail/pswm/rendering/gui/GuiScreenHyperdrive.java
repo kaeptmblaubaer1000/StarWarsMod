@@ -10,10 +10,13 @@ import com.parzivail.pswm.models.vehicles.*;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageTransferHyperdrive;
 import com.parzivail.pswm.rendering.vehicles.*;
+import com.parzivail.pswm.vehicles.VehicSkyhopper;
+import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.math.FPoint;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.*;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -75,6 +78,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 	private PlanetInformation zoomPlanet;
 	private PlanetInformation oldZoomPlanet;
 
+	private boolean canJump;
+
 	private AnimationZoom animationZoom;
 
 	private OutlineButton buttonClose;
@@ -113,6 +118,8 @@ public class GuiScreenHyperdrive extends GuiScreen
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
+
+		canJump = player.ridingEntity instanceof VehicleAirBase && !(player.ridingEntity instanceof VehicSnowspeeder) && !(player.ridingEntity instanceof VehicSkyhopper);
 	}
 
 	@Override
@@ -206,6 +213,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		buttonList.add(buttonEatHyperdrive);
 
 		buttonTravel = new OutlineButton(id, 125, 215, 100, 20, "Jump to Lightspeed", false);
+		buttonTravel.enabled = canJump;
 		buttonList.add(buttonTravel);
 	}
 
