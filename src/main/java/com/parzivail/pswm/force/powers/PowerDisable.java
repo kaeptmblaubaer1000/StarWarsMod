@@ -2,7 +2,7 @@ package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageAddEffectTo;
-import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
+import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

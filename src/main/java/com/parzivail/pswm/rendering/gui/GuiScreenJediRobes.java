@@ -4,11 +4,9 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
-import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextEffects;
 import com.parzivail.util.ui.TextUtils;
@@ -48,7 +46,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.stack = CronUtils.getHolocron(player);
 		this.player = player;
 
-		this.powers = ForceUtils.getPowersAvailableAtLevel(CronUtils.getSide(this.stack), (int)Math.floor(CronUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL));
+		this.powers = CronUtils.getPowersAvailableAtLevel(CronUtils.getSide(this.stack), (int)Math.floor(CronUtils.getLevel(this.stack) / CronUtils.POINTS_PER_LEVEL));
 
 		this.points = CronUtils.getPoints(this.stack);
 	}
@@ -102,7 +100,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(CronUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL), ForceUtils.getTitle(JediUtils.getSide(this.stack), (int)Math.floor(JediUtils.getLevel(this.stack) / JediUtils.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), JediUtils.getSide(this.stack).equals(JediUtils.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(CronUtils.getLevel(this.stack) / CronUtils.POINTS_PER_LEVEL), CronUtils.getTitle(CronUtils.getSide(this.stack), (int)Math.floor(CronUtils.getLevel(this.stack) / CronUtils.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), CronUtils.getSide(this.stack).equals(CronUtils.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
 		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", this.points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
@@ -169,7 +167,7 @@ public class GuiScreenJediRobes extends GuiScreen
 
 			if (this.stack != null)
 			{
-				item.power = CronUtils.getPower(stack, power);
+				item.power = CronUtils.initNewPower(stack, power);
 				if (item.power != null)
 					item.power.currentLevel = CronUtils.getLevelOf(this.stack, item.power.name);
 			}

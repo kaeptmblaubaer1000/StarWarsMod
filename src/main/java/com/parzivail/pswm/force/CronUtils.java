@@ -1,17 +1,54 @@
 package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.utils.ForceUtils;
+import com.parzivail.pswm.force.powers.*;
+import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import org.apache.commons.io.IOUtils;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Colby on 6/10/2016. Utility class to help with Holocrons
  */
 public class CronUtils
 {
+	public static final String SIDE_JEDI = "jedi";
+	public static final String SIDE_SITH = "sith";
+	public static final float POINTS_PER_LEVEL = 10;
+
+	//public static PowerBase activePower = null;
+	public static boolean isUsingDuration = false;
+	public static int health = 0;
+	public static float distanceToEntity = -1;
+	public static ArrayList<PowerBase> coolingPowers = new ArrayList<>();
+	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<>();
+	public static HashMap<String, Class<? extends PowerBase>> powers = new HashMap<>();
+
+	static
+	{
+		CronUtils.powers.put("jump", PowerJump.class);
+		CronUtils.powers.put("push", PowerPush.class);
+		CronUtils.powers.put("pull", PowerPull.class);
+		CronUtils.powers.put("lightning", PowerLightning.class);
+		CronUtils.powers.put("destruction", PowerDestruction.class);
+		CronUtils.powers.put("defend", PowerDefend.class);
+		CronUtils.powers.put("deflect", PowerDeflect.class);
+		CronUtils.powers.put("naturalAwareness", PowerNaturalAwareness.class);
+		CronUtils.powers.put("grab", PowerGrab.class);
+		CronUtils.powers.put("disable", PowerDisable.class);
+		CronUtils.powers.put("slow", PowerSlow.class);
+		CronUtils.powers.put("healing", PowerHeal.class);
+		CronUtils.powers.put("drainKnowledge", PowerDrainKnowledge.class);
+		CronUtils.powers.put("saberThrow", PowerSaberThrow.class);
+	}
+
 	public static ItemStack getHolocron(EntityPlayer player)
 	{
 		if (player == null)
@@ -150,7 +187,7 @@ public class CronUtils
 		String type = compound.getString("name");
 
 		PowerBase power;
-		if ((power = getPower(stack, type)) == null)
+		if ((power = initNewPower(stack, type)) == null)
 			return null;
 
 		return power.deserialize(compound);
@@ -172,27 +209,35 @@ public class CronUtils
 		stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
 	}
 
-	public static PowerBase getPower(EntityPlayer player, String power)
+	public static PowerBase initNewPower(EntityPlayer player, String power)
 	{
 		ItemStack stack = getHolocron(player);
 		if (stack == null)
 			return null;
-		return getPower(stack, power);
+		return initNewPower(stack, power);
 	}
 
 	public static NBTTagCompound getPowers(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
 		if (stack == null)
-			return null;
+			return makeNewPowersNBT();
 		return getPowers(stack);
+	}
+
+	public static NBTTagCompound makeNewPowersNBT()
+	{
+		NBTTagCompound compound = new NBTTagCompound();
+		for (String powerName : CronUtils.powers.keySet())
+			compound.setTag(powerName, CronUtils.initNewPower(powerName).serialize());
+		return compound;
 	}
 
 	public static NBTTagCompound getPowers(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
 			return (NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers);
-		return null;
+		return makeNewPowersNBT();
 	}
 
 	public static int getLevel(ItemStack stack)
@@ -204,12 +249,12 @@ public class CronUtils
 		return 0;
 	}
 
-	public static PowerBase getPower(ItemStack stack, String type)
+	public static PowerBase initNewPower(ItemStack stack, String type)
 	{
-		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield) || ForceUtils.powers.get(type) == null)
+		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield) || powers.get(type) == null)
 			return null;
 
-		Class clazz = ForceUtils.powers.get(type);
+		Class clazz = powers.get(type);
 		try
 		{
 			return ((PowerBase)clazz.getConstructor(int.class).newInstance(0)).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(type));
@@ -221,17 +266,134 @@ public class CronUtils
 		}
 	}
 
-	public static PowerBase getPower(String type)
+	public static PowerBase initNewPower(String type)
 	{
-		Class clazz = ForceUtils.powers.get(type);
+		Class clazz = powers.get(type);
 		try
 		{
 			return ((PowerBase)clazz.getConstructor(int.class).newInstance(0));
 		}
 		catch (Exception e)
 		{
+			Lumberjack.log("Couldn't init new power!");
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public static float getPercentForLevel(int level)
+	{
+		int i = 100 - level;
+		i = i < 10 ? 10 : i;
+		return i;
+	}
+
+	public static void addLeaderboardSide(String side)
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.robesLeaderboardAddLink + "?m=add&s=" + side).openStream();
+			switch (IOUtils.toString(in))
+			{
+				case "OK":
+					break;
+				default:
+					Lumberjack.log("Error contacting leaderboard server!");
+					break;
+			}
+			IOUtils.closeQuietly(in);
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Couldn't add leaderboard stats!");
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
+		}
+	}
+
+	public static String[] getBasicPowers()
+	{
+		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "saberThrow" };
+	}
+
+	public static String[] getJediPowers()
+	{
+		return new String[] { "healing", "naturalAwareness" };
+	}
+
+	public static ArrayList<String> getPowersAvailableAtLevel(String side, int level)
+	{
+		ArrayList<String> r = new ArrayList<>();
+
+		r.add("jump");
+		r.add("push");
+
+		if (level > 5)
+			r.add("pull");
+		if (level > 10)
+			r.add("defend");
+		if (level > 15)
+			r.add("disable");
+		if (level > 20)
+			r.add("deflect");
+		if (level > 25)
+			r.add("grab");
+		if (level > 30)
+			r.add("saberThrow");
+
+		if (side.equals(SIDE_JEDI))
+		{
+			if (level > 30)
+				r.add("healing");
+			if (level > 35)
+				r.add("naturalAwareness");
+		}
+		else if (side.equals(SIDE_SITH))
+		{
+			if (level > 35)
+				r.add("slow");
+			if (level > 40)
+				r.add("drainKnowledge");
+			if (level > 45)
+				r.add("lightning");
+			if (level > 50)
+				r.add("destruction");
+		}
+
+		return r;
+	}
+
+	public static String getTitle(String side, int level)
+	{
+		String s = side.equals(SIDE_JEDI) ? "Jedi " : "Sith ";
+		if (side.equals(SIDE_JEDI))
+		{
+			if (level < 15)
+				s += "Padawan";
+			else if (level < 35)
+				s += "Knight";
+			else
+				s += "Master";
+		}
+		else if (level < 45)
+			s += "Acolyte";
+		else if (level < 55)
+			s += "Apprentice";
+		else
+			s += "Lord";
+		return s;
+	}
+
+	public static boolean isCooling(String power)
+	{
+		for (PowerBase p : coolingPowers)
+			if (p.name.equals(power))
+				return true;
+		return false;
 	}
 }

@@ -7,9 +7,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.handlers.ClientEventHandler;
-import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.utils.ForceUtils;
-import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
+import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
@@ -75,7 +73,7 @@ public class GuiPSWMOverlay extends Gui
 			int xp = CronUtils.getXP(robes);
 			int maxxp = CronUtils.getMaxXP(robes);
 
-			boolean isJedi = CronUtils.getSide(robes).equals(JediUtils.SIDE_JEDI);
+			boolean isJedi = CronUtils.getSide(robes).equals(CronUtils.SIDE_JEDI);
 			int guiColor = isJedi ? GLPalette.GREEN_APPLE : GLPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
@@ -91,14 +89,14 @@ public class GuiPSWMOverlay extends Gui
 
 			int y = (r.getScaledHeight() - 25) * 2;
 
-			for (PowerBase cooling : ForceUtils.coolingPowers)
+			for (PowerBase cooling : CronUtils.coolingPowers)
 			{
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GLPalette.WHITE);
 				y -= 22;
 			}
 
-			for (EntityCooldownEntry entry : ForceUtils.entitiesWithEffects)
+			for (EntityCooldownEntry entry : CronUtils.entitiesWithEffects)
 			{
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GLPalette.ANALOG_BLUE);
 				this.drawString(this.mc.fontRenderer, entry.entity.getCommandSenderName() + " (" + entry.effect + "): " + (int)Math.ceil(entry.cooldownLeft / 40f) + "s", 30, y - 3, GLPalette.WHITE);

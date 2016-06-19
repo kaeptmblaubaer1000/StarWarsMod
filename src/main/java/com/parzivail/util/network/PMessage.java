@@ -1,6 +1,6 @@
 package com.parzivail.util.network;
 
-import com.parzivail.pswm.utils.ForceUtils.EntityCooldownEntry;
+import com.parzivail.pswm.utils.EntityCooldownEntry;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

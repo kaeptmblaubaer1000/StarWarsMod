@@ -2,8 +2,6 @@ package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.jedi.JediUtils;
-import com.parzivail.pswm.utils.ForceUtils;
 import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,9 +31,7 @@ public class ItemHolocron extends Item
 			String s = stack.stackTagCompound.getString(Resources.nbtMaster);
 
 			if (!StringUtils.isNullOrEmpty(s))
-			{
 				return s + "'s Holocron";
-			}
 		}
 
 		return super.getItemStackDisplayName(stack);
@@ -44,29 +40,25 @@ public class ItemHolocron extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add("Level " + String.valueOf((int)Math.floor(JediUtils.getLevel(stack) / 10f)));
+		list.add("Level " + String.valueOf((int)Math.floor(CronUtils.getLevel(stack) / 10f)));
 	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int a, boolean b)
 	{
-		if (ItemUtils.initNBT(stack) && entity instanceof EntityPlayer)
+		if ((ItemUtils.initNBT(stack) || !stack.stackTagCompound.hasKey(Resources.nbtPowers)) && entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			//ForceUtils.resetPowers();
-
 			stack.stackTagCompound.setString(Resources.nbtMaster, player.getCommandSenderName());
-			stack.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_JEDI);
+			stack.stackTagCompound.setString(Resources.nbtSide, CronUtils.SIDE_JEDI);
 
 			stack.stackTagCompound.setInteger(Resources.nbtXp, 1);
 			stack.stackTagCompound.setInteger(Resources.nbtMaxXp, 100);
 			stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, 0);
 
 			stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
-			stack.stackTagCompound.setTag(Resources.nbtPowers, new NBTTagCompound());
-			for (String p : ForceUtils.powers.keySet())
-				((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).setTag(p, CronUtils.getPower(p).serialize());
+			stack.stackTagCompound.setTag(Resources.nbtPowers, CronUtils.makeNewPowersNBT());
 		}
 	}
 }

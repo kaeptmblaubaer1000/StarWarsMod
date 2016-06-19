@@ -409,7 +409,6 @@ public class StarWarsMod
 		this.registerMessage(MessageEntityGrab.class);
 		this.registerMessage(MessageAddEffectTo.class);
 		this.registerMessage(MessageHoloTableUpdate.class);
-		this.registerMessage(MessageSetEntityTarget.class);
 		this.registerMessage(MessageCreateDestructionBolt.class);
 		this.registerMessage(MessageEntityAlterMotion.class);
 		this.registerMessage(MessageHyperdrive.class);

@@ -2,7 +2,6 @@ package com.parzivail.pswm.commands;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.force.CronUtils;
-import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -62,15 +61,15 @@ public class CommandJediRobes extends CommandBase
 			CronUtils.getMaxXP(robes);
 
 			if (key.equalsIgnoreCase("level"))
-				robes.stackTagCompound.setInteger(key, (int)(value * JediUtils.POINTS_PER_LEVEL));
+				robes.stackTagCompound.setInteger(key, (int)(value * CronUtils.POINTS_PER_LEVEL));
 			else if (key.equalsIgnoreCase("side"))
 				switch (value)
 				{
 					case 0:
-						robes.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_JEDI);
+						robes.stackTagCompound.setString(Resources.nbtSide, CronUtils.SIDE_JEDI);
 						break;
 					case 1:
-						robes.stackTagCompound.setString(Resources.nbtSide, JediUtils.SIDE_SITH);
+						robes.stackTagCompound.setString(Resources.nbtSide, CronUtils.SIDE_SITH);
 						break;
 				}
 			else

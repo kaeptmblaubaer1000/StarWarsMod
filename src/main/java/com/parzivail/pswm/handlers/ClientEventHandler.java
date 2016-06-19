@@ -9,9 +9,9 @@ import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.jedi.JediUtils;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
+import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
@@ -428,24 +428,23 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onXpPickup(PlayerPickupXpEvent event)
 	{
-		ItemStack holocron = JediUtils.getHolocron(event.entityPlayer);
+		ItemStack holocron = CronUtils.getHolocron(event.entityPlayer);
 		if (holocron != null)
 		{
-			int currentLevels = JediUtils.getLevel(holocron);
-			if (StarWarsMod.rngGeneral.nextInt(100) <= JediUtils.getPercentForLevel(currentLevels))
-				holocron = JediUtils.addLevels(holocron, 1);
-			int newLevels = JediUtils.getLevel(holocron);
-			if (Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) == Math.floor(currentLevels / JediUtils.POINTS_PER_LEVEL) + 1)
+			int currentLevels = CronUtils.getLevel(holocron);
+			if (StarWarsMod.rngGeneral.nextInt(100) <= CronUtils.getPercentForLevel(currentLevels))
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtLevel, currentLevels + 1));
+			int newLevels = CronUtils.getLevel(holocron);
+			if (Math.floor(newLevels / CronUtils.POINTS_PER_LEVEL) == Math.floor(currentLevels / CronUtils.POINTS_PER_LEVEL) + 1)
 			{
 				// level up!
 				event.entityPlayer.playSound("random.levelup", 1, 1);
-				JediUtils.addPoints(holocron, 1);
-				JediUtils.setMaxXP(holocron, (int)(Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) * 100));
-				event.entityPlayer.addChatMessage(new ChatComponentText("[Robes] Level Up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] You are now level %s and have %s upgrade points.", (int)Math.floor(JediUtils.getLevel(holocron) / JediUtils.POINTS_PER_LEVEL), JediUtils.getPoints(holocron))));
-				if (Math.floor(newLevels / JediUtils.POINTS_PER_LEVEL) == 35)
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtRemainingPts, CronUtils.getPoints(event.entityPlayer) + 1));
+				event.entityPlayer.addChatMessage(new ChatComponentText("[Holocron] Level Up! You gained an upgrade point."));
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(CronUtils.getLevel(holocron) / CronUtils.POINTS_PER_LEVEL), CronUtils.getPoints(holocron))));
+				if (Math.floor(newLevels / CronUtils.POINTS_PER_LEVEL) == 35)
 				{
-					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Robes] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
+					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
 					if (event.entityPlayer.worldObj.isRemote)
 						event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 				}

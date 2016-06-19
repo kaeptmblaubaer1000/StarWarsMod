@@ -1,6 +1,7 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.jedi.JediUtils;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.force.CronUtils;
 import com.parzivail.util.network.PMessage;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -30,7 +31,8 @@ public class MessageDrainKnowledge extends PMessage<MessageDrainKnowledge>
 		{
 			EntityPlayer entityLiving = (EntityPlayer)entity;
 			entityLiving.heal(this.amount);
-			JediUtils.setXP(entityLiving, JediUtils.getXP(entityLiving) - amount);
+			if (CronUtils.getHolocron(entityLiving) != null && CronUtils.getHolocron(entityLiving).hasTagCompound())
+				CronUtils.getHolocron(entityLiving).stackTagCompound.setInteger(Resources.nbtXp, CronUtils.getXP(entityLiving) - amount);
 			Lumberjack.log("Drained " + entityLiving);
 		}
 		return null;

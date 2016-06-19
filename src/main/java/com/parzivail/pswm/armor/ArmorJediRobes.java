@@ -1,4 +1,4 @@
-package com.parzivail.pswm.jedi;
+package com.parzivail.pswm.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;

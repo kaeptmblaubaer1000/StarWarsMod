@@ -3,8 +3,9 @@ package com.parzivail.pswm.entities;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.jedi.JediUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -115,11 +116,12 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 					recreate(entityPlayer);
 					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
 				}
-				else if (JediUtils.getHolocron(entityPlayer) != null)
+				else if (CronUtils.getHolocron(entityPlayer) != null)
 				{
-					ItemStack stack = JediUtils.getHolocron(entityPlayer);
+					ItemStack stack = CronUtils.getHolocron(entityPlayer);
+					PowerBase active = CronUtils.getActive(stack);
 
-					if (JediUtils.getActive(stack).equalsIgnoreCase("deflect") && JediUtils.getUsingDuration(stack))
+					if (active.name.equalsIgnoreCase("deflect") && active.isRunning)
 					{
 						recreate(entityPlayer);
 					}
