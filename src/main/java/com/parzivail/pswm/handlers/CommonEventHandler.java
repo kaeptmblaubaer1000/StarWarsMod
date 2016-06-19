@@ -437,8 +437,6 @@ public class CommonEventHandler
 
 			tickCoolingPowers(powers);
 			addPlayerForceXp();
-
-			StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
 		}
 	}
 

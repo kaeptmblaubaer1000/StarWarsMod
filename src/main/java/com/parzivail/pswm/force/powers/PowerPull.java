@@ -37,6 +37,13 @@ public class PowerPull extends PowerBase
 				lookVec.yCoord *= -mult;
 				lookVec.zCoord *= -mult;
 
+				e.motionX += lookVec.xCoord;
+				e.motionY += lookVec.yCoord;
+				e.motionZ += lookVec.zCoord;
+
+				if (e instanceof EntityPlayer)
+					((EntityPlayer)e).velocityChanged = true;
+
 				StarWarsMod.network.sendToServer(new MessageEntityAlterMotion(e, lookVec));
 			}
 

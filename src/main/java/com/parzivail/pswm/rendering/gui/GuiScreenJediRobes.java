@@ -8,6 +8,7 @@ import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.TextEffects;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -66,9 +67,10 @@ public class GuiScreenJediRobes extends GuiScreen
 			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
-				this.selectedPower.power.currentLevel++;
+				this.selectedPower.power.currentLevel = Cron.getLevelOf(player, this.selectedPower.power.name) + 1;
 				NBTTagCompound powers = Cron.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
+				Lumberjack.debug(powers.getTag(this.selectedPower.power.name));
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
 
 				PowerBase active = Cron.getActive(StarWarsMod.mc.thePlayer);
@@ -198,6 +200,6 @@ public class GuiScreenJediRobes extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 }
