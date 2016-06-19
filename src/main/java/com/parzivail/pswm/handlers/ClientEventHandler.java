@@ -125,6 +125,7 @@ public class ClientEventHandler
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onLivingHurt(LivingHurtEvent event)
 	{
 		if (event.entityLiving instanceof EntityPlayer)

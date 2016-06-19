@@ -33,7 +33,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -388,6 +387,7 @@ public class CommonEventHandler
 	/**
 	 * Updates the force powers employed by the (client) player
 	 */
+	@SideOnly(Side.CLIENT)
 	private void updateForcePowers()
 	{
 		PowerBase power = Cron.getActive(StarWarsMod.mc.thePlayer);
@@ -440,6 +440,7 @@ public class CommonEventHandler
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	private void updateDefend(PowerDefend power)
 	{
 		if (!power.isRunning)
@@ -460,6 +461,7 @@ public class CommonEventHandler
 	 *
 	 * @param power The lightning power NBT Compound
 	 */
+	@SideOnly(Side.CLIENT)
 	private void updateLightning(PowerLightning power)
 	{
 		if (!power.isRunning)
@@ -490,6 +492,7 @@ public class CommonEventHandler
 	 *
 	 * @param power1 The deflect power NBT Compound
 	 */
+	@SideOnly(Side.CLIENT)
 	private void updateDeflect(PowerDeflect power1)
 	{
 		if (power1.isRunning)
@@ -504,6 +507,7 @@ public class CommonEventHandler
 	 *
 	 * @param power1 The grab power NBT Compound
 	 */
+	@SideOnly(Side.CLIENT)
 	private void updateGrab(PowerGrab power1)
 	{
 		if (power1.isRunning)
@@ -521,50 +525,27 @@ public class CommonEventHandler
 			if (Cron.distanceToEntity == -1)
 				Cron.distanceToEntity = (float)Vec3.createVectorHelper(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ).distanceTo(Vec3.createVectorHelper(e.posX, e.posY, e.posZ));
 
-			if (!e.worldObj.isRemote)
-			{
-				Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
-				look.xCoord *= Cron.distanceToEntity;
-				look.yCoord *= Cron.distanceToEntity;
-				look.zCoord *= Cron.distanceToEntity;
-				look.xCoord += StarWarsMod.mc.thePlayer.posX;
-				look.yCoord += StarWarsMod.mc.thePlayer.posY;
-				look.zCoord += StarWarsMod.mc.thePlayer.posZ;
-				e.fallDistance = 0.0f;
-				e.onGround = false;
-				e.isAirBorne = true;
-				e.timeUntilPortal = 5;
-				e.setVelocity(0, 0, 0);
-				e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
-				if (e instanceof EntityPlayerMP)
-					((EntityPlayerMP)e).playerNetServerHandler.setPlayerLocation(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
-				StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, Cron.distanceToEntity));
-			}
-			else
-			{
-				Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
-				look.xCoord *= Cron.distanceToEntity;
-				look.yCoord *= Cron.distanceToEntity;
-				look.zCoord *= Cron.distanceToEntity;
-				look.xCoord += StarWarsMod.mc.thePlayer.posX;
-				look.yCoord += StarWarsMod.mc.thePlayer.posY;
-				look.zCoord += StarWarsMod.mc.thePlayer.posZ;
-				e.fallDistance = 0.0f;
-				e.onGround = false;
-				e.isAirBorne = true;
-				e.timeUntilPortal = 5;
-				e.setVelocity(0, 0, 0);
-				e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
-				if (e instanceof EntityPlayerMP)
-					((EntityPlayerMP)e).playerNetServerHandler.setPlayerLocation(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
-				StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, Cron.distanceToEntity));
-			}
+			Vec3 look = StarWarsMod.mc.thePlayer.getLookVec();
+			look.xCoord *= Cron.distanceToEntity;
+			look.yCoord *= Cron.distanceToEntity;
+			look.zCoord *= Cron.distanceToEntity;
+			look.xCoord += StarWarsMod.mc.thePlayer.posX;
+			look.yCoord += StarWarsMod.mc.thePlayer.posY;
+			look.zCoord += StarWarsMod.mc.thePlayer.posZ;
+			e.fallDistance = 0.0f;
+			e.onGround = false;
+			e.isAirBorne = true;
+			e.timeUntilPortal = 5;
+			e.setVelocity(0, 0, 0);
+			e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
+			StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, Cron.distanceToEntity));
 		}
 	}
 
 	/**
 	 * Updates the player's Force XP and adds more as required
 	 */
+	@SideOnly(Side.CLIENT)
 	private void addPlayerForceXp()
 	{
 		if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
@@ -602,6 +583,7 @@ public class CommonEventHandler
 	 *
 	 * @param powers The NBT serialized tag of powers to update as needed
 	 */
+	@SideOnly(Side.CLIENT)
 	private void tickCoolingPowers(NBTTagCompound powers)
 	{
 		ArrayList<PowerBase> q = new ArrayList<>();

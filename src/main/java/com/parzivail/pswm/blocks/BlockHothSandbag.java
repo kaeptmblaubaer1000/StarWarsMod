@@ -6,17 +6,17 @@ import com.parzivail.util.block.BlockConnected;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 
-public class BlockDeathStarGlass extends BlockConnected
+public class BlockHothSandbag extends BlockConnected
 {
-	private String name = "deathStarGlass";
+	private String name = "hothSandbag";
 
-	public BlockDeathStarGlass()
+	public BlockHothSandbag()
 	{
-		super("glass", Material.glass);
+		super("hothSandbag", Material.snow);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockName(Resources.MODID + "." + name);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		setStepSound(soundTypeGlass);
+		setStepSound(soundTypeSnow);
 	}
 }

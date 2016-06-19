@@ -2,21 +2,23 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.block.BlockConnected;
 import com.parzivail.util.world.HarvestLevel;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
-public class BlockDeathStarGlass extends BlockConnected
+public class BlockHothSnowCut extends Block
 {
-	private String name = "deathStarGlass";
+	public String name = "hothSnowCut";
 
-	public BlockDeathStarGlass()
+	public BlockHothSnowCut()
 	{
-		super("glass", Material.glass);
-		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
+		super(Material.rock);
 		setBlockName(Resources.MODID + "." + name);
+		setBlockTextureName(Resources.MODID + ":" + name);
+		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
-		setStepSound(soundTypeGlass);
+		setStepSound(soundTypeStone);
+		setLightLevel(1.0F);
 	}
 }
