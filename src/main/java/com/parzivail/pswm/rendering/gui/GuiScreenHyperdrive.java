@@ -252,7 +252,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 					{
 						player.timeUntilPortal = 20;
 						StarWarsMod.network.sendToServer(new MessageHyperdrive(player, zoomPlanet.getDimensionId()));
-						Lumberjack.log("move");
+						Lumberjack.debug("move");
 					}
 				});
 				StarWarsMod.mc.displayGuiScreen(null);

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering.force;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +35,7 @@ public class RenderJediDefense
 	{
 		for (Object entity : Minecraft.getMinecraft().theWorld.playerEntities)
 		{
-			PowerBase powerBase = CronUtils.getActive((EntityPlayer)entity);
+			PowerBase powerBase = Cron.getActive((EntityPlayer)entity);
 
 			if (powerBase != null)
 			{

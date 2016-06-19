@@ -35,7 +35,7 @@ public class MessageTransmute extends PMessage<MessageTransmute>
 	{
 		Block block = MinecraftServer.getServer().worldServerForDimension(this.dim).getBlock(this.x, this.y, this.z);
 
-		Lumberjack.log(block);
+		Lumberjack.debug(block);
 
 		Block ret = block;
 		int metadata = MinecraftServer.getServer().worldServerForDimension(this.dim).getBlockMetadata(this.x, this.y, this.z);

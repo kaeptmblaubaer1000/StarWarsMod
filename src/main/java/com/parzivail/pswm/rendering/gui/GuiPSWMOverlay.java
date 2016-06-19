@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
@@ -67,13 +67,13 @@ public class GuiPSWMOverlay extends Gui
 
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
-		if (CronUtils.getHolocron(StarWarsMod.mc.thePlayer) != null)
+		if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
 		{
-			ItemStack robes = CronUtils.getHolocron(StarWarsMod.mc.thePlayer);
-			int xp = CronUtils.getXP(robes);
-			int maxxp = CronUtils.getMaxXP(robes);
+			ItemStack robes = Cron.getHolocron(StarWarsMod.mc.thePlayer);
+			int xp = Cron.getXP(robes);
+			int maxxp = Cron.getMaxXP(robes);
 
-			boolean isJedi = CronUtils.getSide(robes).equals(CronUtils.SIDE_JEDI);
+			boolean isJedi = Cron.getSide(robes).equals(Cron.SIDE_JEDI);
 			int guiColor = isJedi ? GLPalette.GREEN_APPLE : GLPalette.RED_ORANGE;
 
 			RenderHelper.disableStandardItemLighting();
@@ -84,19 +84,19 @@ public class GuiPSWMOverlay extends Gui
 			GLPZ.glScalef(0.5f);
 
 			PowerBase active;
-			if ((active = CronUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
+			if ((active = Cron.getActive(StarWarsMod.mc.thePlayer)) != null)
 				this.drawString(this.mc.fontRenderer, active.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 
-			for (PowerBase cooling : CronUtils.coolingPowers)
+			for (PowerBase cooling : Cron.coolingPowers)
 			{
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, cooling.recharge / cooling.rechargeTime, guiColor);
 				this.drawString(this.mc.fontRenderer, cooling.getLocalizedName() + ": " + (int)Math.ceil(cooling.recharge / 40f) + "s", 30, y - 3, GLPalette.WHITE);
 				y -= 22;
 			}
 
-			for (EntityCooldownEntry entry : CronUtils.entitiesWithEffects)
+			for (EntityCooldownEntry entry : Cron.entitiesWithEffects)
 			{
 				ClientEventHandler.pgui.drawLoadingCircleWithoutSetup(15, y, 10, entry.cooldownLeft / (float)entry.cooldown, GLPalette.ANALOG_BLUE);
 				this.drawString(this.mc.fontRenderer, entry.entity.getCommandSenderName() + " (" + entry.effect + "): " + (int)Math.ceil(entry.cooldownLeft / 40f) + "s", 30, y - 3, GLPalette.WHITE);

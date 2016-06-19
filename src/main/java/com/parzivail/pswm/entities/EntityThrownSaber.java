@@ -2,7 +2,7 @@ package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import net.minecraft.entity.EntityLivingBase;
@@ -103,9 +103,9 @@ public class EntityThrownSaber extends EntityThrowable
 			if (pos.entityHit instanceof EntityPlayer)
 			{
 				EntityPlayer entityPlayer = (EntityPlayer)pos.entityHit;
-				if (CronUtils.getHolocron(entityPlayer) != null)
+				if (Cron.getHolocron(entityPlayer) != null)
 				{
-					PowerBase powerBase = CronUtils.getActive(entityPlayer);
+					PowerBase powerBase = Cron.getActive(entityPlayer);
 
 					if (!powerBase.name.equalsIgnoreCase("deflect") && !powerBase.isRunning)
 					{
@@ -157,7 +157,7 @@ public class EntityThrownSaber extends EntityThrowable
 		int max = 8;
 
 		if (getSender() instanceof EntityPlayer)
-			max = (int)(8 * (CronUtils.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)CronUtils.getMaxLevelOf((EntityPlayer)getSender(), "saberThrow")));
+			max = (int)(8 * (Cron.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)Cron.getMaxLevelOf((EntityPlayer)getSender(), "saberThrow")));
 
 		if (this.timeAlive++ >= max || isReturning)
 			trackSender();

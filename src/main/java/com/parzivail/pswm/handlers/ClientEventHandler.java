@@ -3,7 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
@@ -133,7 +133,7 @@ public class ClientEventHandler
 		{
 			EntityPlayer entityPlayer = (EntityPlayer)event.entityLiving;
 
-			PowerBase active = CronUtils.getActive(entityPlayer);
+			PowerBase active = Cron.getActive(entityPlayer);
 
 			if (active == null)
 				return;
@@ -234,7 +234,7 @@ public class ClientEventHandler
 			if (logInEvent.world.provider.dimensionId == ConfigOptions.dimSpaceId && logInEvent.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) == Blocks.air)
 			{
 				logInEvent.world.setBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ, Blocks.stone);
-				Lumberjack.log(logInEvent.world.provider.dimensionId);
+				Lumberjack.debug(logInEvent.world.provider.dimensionId);
 			}
 		}
 	}
@@ -428,21 +428,21 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onXpPickup(PlayerPickupXpEvent event)
 	{
-		ItemStack holocron = CronUtils.getHolocron(event.entityPlayer);
+		ItemStack holocron = Cron.getHolocron(event.entityPlayer);
 		if (holocron != null)
 		{
-			int currentLevels = CronUtils.getLevel(holocron);
-			if (StarWarsMod.rngGeneral.nextInt(100) <= CronUtils.getPercentForLevel(currentLevels))
+			int currentLevels = Cron.getLevel(holocron);
+			if (StarWarsMod.rngGeneral.nextInt(100) <= Cron.getPercentForLevel(currentLevels))
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtLevel, currentLevels + 1));
-			int newLevels = CronUtils.getLevel(holocron);
-			if (Math.floor(newLevels / CronUtils.POINTS_PER_LEVEL) == Math.floor(currentLevels / CronUtils.POINTS_PER_LEVEL) + 1)
+			int newLevels = Cron.getLevel(holocron);
+			if (Math.floor(newLevels / Cron.POINTS_PER_LEVEL) == Math.floor(currentLevels / Cron.POINTS_PER_LEVEL) + 1)
 			{
 				// level up!
 				event.entityPlayer.playSound("random.levelup", 1, 1);
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtRemainingPts, CronUtils.getPoints(event.entityPlayer) + 1));
+				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1));
 				event.entityPlayer.addChatMessage(new ChatComponentText("[Holocron] Level Up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(CronUtils.getLevel(holocron) / CronUtils.POINTS_PER_LEVEL), CronUtils.getPoints(holocron))));
-				if (Math.floor(newLevels / CronUtils.POINTS_PER_LEVEL) == 35)
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(Cron.getLevel(holocron) / Cron.POINTS_PER_LEVEL), Cron.getPoints(holocron))));
+				if (Math.floor(newLevels / Cron.POINTS_PER_LEVEL) == 35)
 				{
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
 					if (event.entityPlayer.worldObj.isRemote)

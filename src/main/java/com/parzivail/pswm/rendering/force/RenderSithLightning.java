@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.force;
 
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.force.powers.PowerLightning;
 import net.minecraft.client.Minecraft;
@@ -26,7 +26,7 @@ public class RenderSithLightning
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			PowerBase active = CronUtils.getActive(player);
+			PowerBase active = Cron.getActive(player);
 
 			if (active != null && active.name.equals("lightning") && active.isRunning)
 			{

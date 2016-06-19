@@ -2,7 +2,7 @@ package com.parzivail.pswm.rendering.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
@@ -43,12 +43,12 @@ public class GuiScreenJediRobes extends GuiScreen
 	public GuiScreenJediRobes(EntityPlayer player)
 	{
 		this.mc = Minecraft.getMinecraft();
-		this.stack = CronUtils.getHolocron(player);
+		this.stack = Cron.getHolocron(player);
 		this.player = player;
 
-		this.powers = CronUtils.getPowersAvailableAtLevel(CronUtils.getSide(this.stack), (int)Math.floor(CronUtils.getLevel(this.stack) / CronUtils.POINTS_PER_LEVEL));
+		this.powers = Cron.getPowersAvailableAtLevel(Cron.getSide(this.stack), (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL));
 
-		this.points = CronUtils.getPoints(this.stack);
+		this.points = Cron.getPoints(this.stack);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class GuiScreenJediRobes extends GuiScreen
 			if (button.id == this.enableButton.id)
 			{
 				//ForceUtils.activePower = this.selectedPower.power;
-				NBTTagCompound powers = CronUtils.getPowers(stack);
+				NBTTagCompound powers = Cron.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
 				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.serialize()));
@@ -67,11 +67,11 @@ public class GuiScreenJediRobes extends GuiScreen
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
 				this.selectedPower.power.currentLevel++;
-				NBTTagCompound powers = CronUtils.getPowers(stack);
+				NBTTagCompound powers = Cron.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
 
-				PowerBase active = CronUtils.getActive(StarWarsMod.mc.thePlayer);
+				PowerBase active = Cron.getActive(StarWarsMod.mc.thePlayer);
 				if (active != null && active.name.equals(this.selectedPower.power.name))
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.serialize()));
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtRemainingPts, --this.points));
@@ -99,7 +99,7 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(CronUtils.getLevel(this.stack) / CronUtils.POINTS_PER_LEVEL), CronUtils.getTitle(CronUtils.getSide(this.stack), (int)Math.floor(CronUtils.getLevel(this.stack) / CronUtils.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), CronUtils.getSide(this.stack).equals(CronUtils.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, String.format("Level %s %s ", (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL), Cron.getTitle(Cron.getSide(this.stack), (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), Cron.getSide(this.stack).equals(Cron.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
 		this.drawCenteredString(this.fontRendererObj, String.format("%s available upgrade points", this.points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
@@ -117,7 +117,7 @@ public class GuiScreenJediRobes extends GuiScreen
 			{
 				boolean is_power_active = false;
 				PowerBase power;
-				if ((power = CronUtils.getActive(StarWarsMod.mc.thePlayer)) != null)
+				if ((power = Cron.getActive(StarWarsMod.mc.thePlayer)) != null)
 					is_power_active = power.name.equals(this.selectedPower.power.name);
 				this.enableButton.enabled = this.selectedPower.power.currentLevel > 0 && !is_power_active;
 				this.learnButton.enabled = this.canLearn(this.selectedPower.power);
@@ -166,9 +166,9 @@ public class GuiScreenJediRobes extends GuiScreen
 
 			if (this.stack != null)
 			{
-				item.power = CronUtils.initNewPower(stack, power);
+				item.power = Cron.initNewPower(stack, power);
 				if (item.power != null)
-					item.power.currentLevel = CronUtils.getLevelOf(this.stack, item.power.name);
+					item.power.currentLevel = Cron.getLevelOf(this.stack, item.power.name);
 			}
 
 			items.add(item);

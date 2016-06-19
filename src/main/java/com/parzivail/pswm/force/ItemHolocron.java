@@ -40,7 +40,7 @@ public class ItemHolocron extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add("Level " + String.valueOf((int)Math.floor(CronUtils.getLevel(stack) / 10f)));
+		list.add("Level " + String.valueOf((int)Math.floor(Cron.getLevel(stack) / 10f)));
 	}
 
 	@Override
@@ -51,14 +51,14 @@ public class ItemHolocron extends Item
 			EntityPlayer player = (EntityPlayer)entity;
 
 			stack.stackTagCompound.setString(Resources.nbtMaster, player.getCommandSenderName());
-			stack.stackTagCompound.setString(Resources.nbtSide, CronUtils.SIDE_JEDI);
+			stack.stackTagCompound.setString(Resources.nbtSide, Cron.SIDE_JEDI);
 
 			stack.stackTagCompound.setInteger(Resources.nbtXp, 1);
 			stack.stackTagCompound.setInteger(Resources.nbtMaxXp, 100);
 			stack.stackTagCompound.setInteger(Resources.nbtRemainingPts, 0);
 
 			stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
-			stack.stackTagCompound.setTag(Resources.nbtPowers, CronUtils.makeNewPowersNBT());
+			stack.stackTagCompound.setTag(Resources.nbtPowers, Cron.makeNewPowersNBT());
 		}
 	}
 }

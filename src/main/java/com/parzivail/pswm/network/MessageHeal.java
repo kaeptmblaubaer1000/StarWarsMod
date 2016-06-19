@@ -30,13 +30,13 @@ public class MessageHeal extends PMessage<MessageHeal>
 		{
 			EntityLiving entityLiving = (EntityLiving)entity;
 			entityLiving.heal(this.amount);
-			Lumberjack.log("Healed " + entityLiving);
+			Lumberjack.debug("Healed " + entityLiving);
 		}
 		else if (this.entity != null && entity instanceof EntityPlayer)
 		{
 			EntityPlayer entityLiving = (EntityPlayer)entity;
 			entityLiving.heal(this.amount);
-			Lumberjack.log("Healed " + entityLiving);
+			Lumberjack.debug("Healed " + entityLiving);
 		}
 		return null;
 	}

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.util.network.PMessage;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -31,9 +31,9 @@ public class MessageDrainKnowledge extends PMessage<MessageDrainKnowledge>
 		{
 			EntityPlayer entityLiving = (EntityPlayer)entity;
 			entityLiving.heal(this.amount);
-			if (CronUtils.getHolocron(entityLiving) != null && CronUtils.getHolocron(entityLiving).hasTagCompound())
-				CronUtils.getHolocron(entityLiving).stackTagCompound.setInteger(Resources.nbtXp, CronUtils.getXP(entityLiving) - amount);
-			Lumberjack.log("Drained " + entityLiving);
+			if (Cron.getHolocron(entityLiving) != null && Cron.getHolocron(entityLiving).hasTagCompound())
+				Cron.getHolocron(entityLiving).stackTagCompound.setInteger(Resources.nbtXp, Cron.getXP(entityLiving) - amount);
+			Lumberjack.debug("Drained " + entityLiving);
 		}
 		return null;
 	}

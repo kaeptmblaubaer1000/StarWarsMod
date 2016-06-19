@@ -48,7 +48,7 @@ public class MessageSpawn extends PMessage<MessageSpawn>
 		}
 		catch (Exception e)
 		{
-			Lumberjack.log(this.world);
+			Lumberjack.warn(e.getMessage());
 		}
 		return null;
 	}

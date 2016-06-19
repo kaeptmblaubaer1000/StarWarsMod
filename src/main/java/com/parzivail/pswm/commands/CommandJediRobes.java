@@ -1,7 +1,7 @@
 package com.parzivail.pswm.commands;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -54,22 +54,22 @@ public class CommandJediRobes extends CommandBase
 
 		EntityPlayerMP player = getCommandSenderAsPlayer(icommandsender);
 
-		if (player != null && CronUtils.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("side") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
+		if (player != null && Cron.getHolocron(player) != null && (key.equalsIgnoreCase("level") || key.equalsIgnoreCase("side") || key.equalsIgnoreCase("xp") || key.equalsIgnoreCase("maxxp")))
 		{
-			ItemStack robes = CronUtils.getHolocron(player);
-			CronUtils.getXP(robes);
-			CronUtils.getMaxXP(robes);
+			ItemStack robes = Cron.getHolocron(player);
+			Cron.getXP(robes);
+			Cron.getMaxXP(robes);
 
 			if (key.equalsIgnoreCase("level"))
-				robes.stackTagCompound.setInteger(key, (int)(value * CronUtils.POINTS_PER_LEVEL));
+				robes.stackTagCompound.setInteger(key, (int)(value * Cron.POINTS_PER_LEVEL));
 			else if (key.equalsIgnoreCase("side"))
 				switch (value)
 				{
 					case 0:
-						robes.stackTagCompound.setString(Resources.nbtSide, CronUtils.SIDE_JEDI);
+						robes.stackTagCompound.setString(Resources.nbtSide, Cron.SIDE_JEDI);
 						break;
 					case 1:
-						robes.stackTagCompound.setString(Resources.nbtSide, CronUtils.SIDE_SITH);
+						robes.stackTagCompound.setString(Resources.nbtSide, Cron.SIDE_SITH);
 						break;
 				}
 			else
@@ -86,7 +86,7 @@ public class CommandJediRobes extends CommandBase
 		}
 		else
 		{
-			ItemStack robes = CronUtils.getHolocron(player);
+			ItemStack robes = Cron.getHolocron(player);
 			icommandsender.addChatMessage(new ChatComponentText("Usage: " + this.getCommandUsage(icommandsender)));
 			if (player == null)
 				icommandsender.addChatMessage(new ChatComponentText("Error: player is null!"));

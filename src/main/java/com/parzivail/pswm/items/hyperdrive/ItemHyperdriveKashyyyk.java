@@ -44,7 +44,7 @@ public class ItemHyperdriveKashyyyk extends Item
 		}
 		catch (Exception e)
 		{
-			Lumberjack.log("Something went wrong @ hyperdrive.java:34");
+			Lumberjack.warn("Something went wrong @ hyperdrive.java:34");
 			e.printStackTrace();
 		}
 		return stack;

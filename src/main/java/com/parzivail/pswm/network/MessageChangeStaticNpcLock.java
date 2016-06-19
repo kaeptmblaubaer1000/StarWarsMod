@@ -33,7 +33,7 @@ public class MessageChangeStaticNpcLock extends PMessage<MessageChangeStaticNpcL
 		te.setLocked(value);
 		te.markDirty();
 
-		Lumberjack.log(te.getLocked());
+		Lumberjack.debug(te.getLocked());
 
 		return null;
 	}

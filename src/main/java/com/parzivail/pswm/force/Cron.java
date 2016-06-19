@@ -17,7 +17,7 @@ import java.util.HashMap;
 /**
  * Created by Colby on 6/10/2016. Utility class to help with Holocrons
  */
-public class CronUtils
+public class Cron
 {
 	public static final String SIDE_JEDI = "jedi";
 	public static final String SIDE_SITH = "sith";
@@ -30,20 +30,20 @@ public class CronUtils
 
 	static
 	{
-		CronUtils.powers.put("jump", PowerJump.class);
-		CronUtils.powers.put("push", PowerPush.class);
-		CronUtils.powers.put("pull", PowerPull.class);
-		CronUtils.powers.put("lightning", PowerLightning.class);
-		CronUtils.powers.put("destruction", PowerDestruction.class);
-		CronUtils.powers.put("defend", PowerDefend.class);
-		CronUtils.powers.put("deflect", PowerDeflect.class);
-		CronUtils.powers.put("naturalAwareness", PowerNaturalAwareness.class);
-		CronUtils.powers.put("grab", PowerGrab.class);
-		CronUtils.powers.put("disable", PowerDisable.class);
-		CronUtils.powers.put("slow", PowerSlow.class);
-		CronUtils.powers.put("healing", PowerHeal.class);
-		CronUtils.powers.put("drainKnowledge", PowerDrainKnowledge.class);
-		CronUtils.powers.put("saberThrow", PowerSaberThrow.class);
+		powers.put("jump", PowerJump.class);
+		powers.put("push", PowerPush.class);
+		powers.put("pull", PowerPull.class);
+		powers.put("lightning", PowerLightning.class);
+		powers.put("destruction", PowerDestruction.class);
+		powers.put("defend", PowerDefend.class);
+		powers.put("deflect", PowerDeflect.class);
+		powers.put("naturalAwareness", PowerNaturalAwareness.class);
+		powers.put("grab", PowerGrab.class);
+		powers.put("disable", PowerDisable.class);
+		powers.put("slow", PowerSlow.class);
+		powers.put("healing", PowerHeal.class);
+		powers.put("drainKnowledge", PowerDrainKnowledge.class);
+		powers.put("saberThrow", PowerSaberThrow.class);
 	}
 
 	/**
@@ -305,8 +305,8 @@ public class CronUtils
 	public static NBTTagCompound makeNewPowersNBT()
 	{
 		NBTTagCompound compound = new NBTTagCompound();
-		for (String powerName : CronUtils.powers.keySet())
-			compound.setTag(powerName, CronUtils.initNewPower(powerName).serialize());
+		for (String powerName : Cron.powers.keySet())
+			compound.setTag(powerName, Cron.initNewPower(powerName).serialize());
 		return compound;
 	}
 
@@ -377,7 +377,7 @@ public class CronUtils
 		}
 		catch (Exception e)
 		{
-			Lumberjack.log("Couldn't init new power!");
+			Lumberjack.warn("Couldn't init new power!");
 			e.printStackTrace();
 			return null;
 		}
@@ -412,7 +412,7 @@ public class CronUtils
 				case "OK":
 					break;
 				default:
-					Lumberjack.log("Error contacting leaderboard server!");
+					Lumberjack.warn("Error contacting leaderboard server!");
 					break;
 			}
 			IOUtils.closeQuietly(in);

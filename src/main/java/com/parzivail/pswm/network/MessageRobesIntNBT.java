@@ -1,6 +1,6 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.force.CronUtils;
+import com.parzivail.pswm.force.Cron;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -26,9 +26,9 @@ public class MessageRobesIntNBT extends PMessage<MessageRobesIntNBT>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		if (this.player == null || this.player.inventory == null || CronUtils.getHolocron(this.player) == null)
+		if (this.player == null || this.player.inventory == null || Cron.getHolocron(this.player) == null)
 			return null;
-		CronUtils.getHolocron(this.player).stackTagCompound.setInteger(this.key, this.value);
+		Cron.getHolocron(this.player).stackTagCompound.setInteger(this.key, this.value);
 		return null;
 	}
 

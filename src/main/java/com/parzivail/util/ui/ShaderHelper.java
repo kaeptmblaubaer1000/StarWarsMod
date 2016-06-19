@@ -121,14 +121,14 @@ public final class ShaderHelper
 		ARBShaderObjects.glLinkProgramARB(program);
 		if (ARBShaderObjects.glGetObjectParameteriARB(program, ARBShaderObjects.GL_OBJECT_LINK_STATUS_ARB) == GL11.GL_FALSE)
 		{
-			Lumberjack.log(getLogInfo(program));
+			Lumberjack.debug(getLogInfo(program));
 			return 0;
 		}
 
 		ARBShaderObjects.glValidateProgramARB(program);
 		if (ARBShaderObjects.glGetObjectParameteriARB(program, ARBShaderObjects.GL_OBJECT_VALIDATE_STATUS_ARB) == GL11.GL_FALSE)
 		{
-			Lumberjack.log(getLogInfo(program));
+			Lumberjack.debug(getLogInfo(program));
 			return 0;
 		}
 
