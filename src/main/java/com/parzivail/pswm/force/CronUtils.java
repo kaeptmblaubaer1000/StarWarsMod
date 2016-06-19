@@ -49,6 +49,12 @@ public class CronUtils
 		CronUtils.powers.put("saberThrow", PowerSaberThrow.class);
 	}
 
+	/**
+	 * Gets a player's Holocron
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return The holocron {@link ItemStack}
+	 */
 	public static ItemStack getHolocron(EntityPlayer player)
 	{
 		if (player == null)
@@ -63,6 +69,12 @@ public class CronUtils
 		return null;
 	}
 
+	/**
+	 * Gets a player's active power
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return A {@link PowerBase} instance
+	 */
 	public static PowerBase getActive(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -71,6 +83,12 @@ public class CronUtils
 		return getActive(stack);
 	}
 
+	/**
+	 * Gets the side of a player
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return The side as a string
+	 */
 	public static String getSide(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -79,6 +97,12 @@ public class CronUtils
 		return getSide(stack);
 	}
 
+	/**
+	 * Gets the side of a Holocron
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return The side as a string
+	 */
 	public static String getSide(ItemStack stack)
 	{
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtSide))
@@ -87,6 +111,12 @@ public class CronUtils
 		return stack.stackTagCompound.getString(Resources.nbtSide);
 	}
 
+	/**
+	 * Gets the level of a player
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return The level as an int
+	 */
 	public static int getLevel(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -95,6 +125,13 @@ public class CronUtils
 		return getLevel(stack);
 	}
 
+	/**
+	 * Gets the level of a power
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @param power  The power to query
+	 * @return The level as an int
+	 */
 	public static int getLevelOf(EntityPlayer player, String power)
 	{
 		ItemStack stack = getHolocron(player);
@@ -103,6 +140,13 @@ public class CronUtils
 		return getLevelOf(stack, power);
 	}
 
+	/**
+	 * Gets the level of a power
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @param power The power to query
+	 * @return The level as an int
+	 */
 	public static int getLevelOf(ItemStack stack, String power)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
@@ -110,6 +154,13 @@ public class CronUtils
 		return 0;
 	}
 
+	/**
+	 * Gets the max level of a power
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @param power  The power to query
+	 * @return The level as an int
+	 */
 	public static int getMaxLevelOf(EntityPlayer player, String power)
 	{
 		ItemStack stack = getHolocron(player);
@@ -118,6 +169,13 @@ public class CronUtils
 		return getMaxLevelOf(stack, power);
 	}
 
+	/**
+	 * Gets the max level of a power
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @param power The power to query
+	 * @return The level as an int
+	 */
 	public static int getMaxLevelOf(ItemStack stack, String power)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
@@ -125,6 +183,12 @@ public class CronUtils
 		return 0;
 	}
 
+	/**
+	 * Gets the upgrade points of a player
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return The upgrade points as an int
+	 */
 	public static int getPoints(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -133,6 +197,12 @@ public class CronUtils
 		return getPoints(stack);
 	}
 
+	/**
+	 * Gets the upgrade points of a player
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return The upgrade points as an int
+	 */
 	public static int getPoints(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtXp))
@@ -140,22 +210,12 @@ public class CronUtils
 		return 0;
 	}
 
-	public static void setActive(EntityPlayer player, PowerBase power)
-	{
-		ItemStack stack = getHolocron(player);
-		if (stack == null)
-			return;
-		setActive(stack, power);
-	}
-
-	public static void clearActive(EntityPlayer player)
-	{
-		ItemStack stack = getHolocron(player);
-		if (stack == null)
-			return;
-		clearActive(stack);
-	}
-
+	/**
+	 * Gets the XP of a player
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return The XP as an int
+	 */
 	public static int getXP(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -164,6 +224,12 @@ public class CronUtils
 		return getXP(stack);
 	}
 
+	/**
+	 * Gets the XP of a Holocron
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return The XP as an int
+	 */
 	public static int getXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtXp))
@@ -171,6 +237,12 @@ public class CronUtils
 		return 0;
 	}
 
+	/**
+	 * Gets the max XP of a Holocron
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return The max XP as an int
+	 */
 	public static int getMaxXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtMaxXp))
@@ -178,6 +250,12 @@ public class CronUtils
 		return 0;
 	}
 
+	/**
+	 * Gets a stack's active power
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return A {@link PowerBase} instance
+	 */
 	public static PowerBase getActive(ItemStack stack)
 	{
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield))
@@ -193,22 +271,13 @@ public class CronUtils
 		return power.deserialize(compound);
 	}
 
-	public static void setActive(ItemStack stack, PowerBase power)
-	{
-		if (stack == null || !stack.hasTagCompound())
-			return;
-
-		stack.stackTagCompound.setTag(Resources.nbtWield, power.serialize());
-	}
-
-	public static void clearActive(ItemStack stack)
-	{
-		if (stack == null || !stack.hasTagCompound())
-			return;
-
-		stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
-	}
-
+	/**
+	 * Initializes a new copy of a power and populates the values with those of the player
+	 *
+	 * @param player The {@link EntityPlayer} to copy
+	 * @param power  The power to init
+	 * @return A {@link PowerBase} instance
+	 */
 	public static PowerBase initNewPower(EntityPlayer player, String power)
 	{
 		ItemStack stack = getHolocron(player);
@@ -217,6 +286,12 @@ public class CronUtils
 		return initNewPower(stack, power);
 	}
 
+	/**
+	 * Gets the power NBT of a player, creating a new {@link NBTTagCompound} of powers if none was found
+	 *
+	 * @param player The {@link EntityPlayer} to query
+	 * @return The {@link NBTTagCompound} of powers
+	 */
 	public static NBTTagCompound getPowers(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -225,6 +300,11 @@ public class CronUtils
 		return getPowers(stack);
 	}
 
+	/**
+	 * Initializes a new {@link NBTTagCompound} of powers
+	 *
+	 * @return The {@link NBTTagCompound} of powers
+	 */
 	public static NBTTagCompound makeNewPowersNBT()
 	{
 		NBTTagCompound compound = new NBTTagCompound();
@@ -233,6 +313,12 @@ public class CronUtils
 		return compound;
 	}
 
+	/**
+	 * Gets the power NBT of a player, creating a new {@link NBTTagCompound} of powers if none was found
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return The {@link NBTTagCompound} of powers
+	 */
 	public static NBTTagCompound getPowers(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtPowers))
@@ -240,6 +326,12 @@ public class CronUtils
 		return makeNewPowersNBT();
 	}
 
+	/**
+	 * Gets the level of a player
+	 *
+	 * @param stack The {@link ItemHolocron} stack to query
+	 * @return The level as an int
+	 */
 	public static int getLevel(ItemStack stack)
 	{
 		if (stack == null)
@@ -249,6 +341,13 @@ public class CronUtils
 		return 0;
 	}
 
+	/**
+	 * Initializes a new copy of a power and populates the values with those of the the Holocron
+	 *
+	 * @param stack The {@link ItemHolocron} stack to copy
+	 * @param type  The power to init
+	 * @return A {@link PowerBase} instance
+	 */
 	public static PowerBase initNewPower(ItemStack stack, String type)
 	{
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield) || powers.get(type) == null)
@@ -266,6 +365,12 @@ public class CronUtils
 		}
 	}
 
+	/**
+	 * Initializes a new copy of a power
+	 *
+	 * @param type The power to init
+	 * @return A {@link PowerBase} instance
+	 */
 	public static PowerBase initNewPower(String type)
 	{
 		Class clazz = powers.get(type);
@@ -281,6 +386,12 @@ public class CronUtils
 		}
 	}
 
+	/**
+	 * Gets the percent chance of XP gain vs rejection for a given level
+	 *
+	 * @param level The level to query
+	 * @return The percent chance as a float from 1-100
+	 */
 	public static float getPercentForLevel(int level)
 	{
 		int i = 100 - level;
@@ -288,6 +399,11 @@ public class CronUtils
 		return i;
 	}
 
+	/**
+	 * Querys the server and increments the players per side cound for the given side
+	 *
+	 * @param side The side to increment
+	 */
 	public static void addLeaderboardSide(String side)
 	{
 		InputStream in = null;
@@ -316,16 +432,33 @@ public class CronUtils
 		}
 	}
 
+	/**
+	 * Gets the basic powers available to any side
+	 *
+	 * @return A {@link String} array of power names
+	 */
 	public static String[] getBasicPowers()
 	{
 		return new String[] { "jump", "push", "pull", "defend", "disable", "deflect", "grab", "saberThrow" };
 	}
 
+	/**
+	 * Gets the Jedi powers available. We don't need one for Sith powers because we can just do a
+	 * deduction check against this array and {@link #getBasicPowers()} to see if they contain the power
+	 *
+	 * @return A {@link String} array of power names
+	 */
 	public static String[] getJediPowers()
 	{
 		return new String[] { "healing", "naturalAwareness" };
 	}
 
+	/**
+	 * Gets the powers available to a player at a given level and side
+	 * @param side The side to query
+	 * @param level The level to query
+	 * @return An {@link ArrayList} of powers
+	 */
 	public static ArrayList<String> getPowersAvailableAtLevel(String side, int level)
 	{
 		ArrayList<String> r = new ArrayList<>();
@@ -368,6 +501,12 @@ public class CronUtils
 		return r;
 	}
 
+	/**
+	 * Gets the proper title of a player at a given level and side
+	 * @param side The side to query
+	 * @param level The level to query
+	 * @return The proper title
+	 */
 	public static String getTitle(String side, int level)
 	{
 		String s = side.equals(SIDE_JEDI) ? "Jedi " : "Sith ";
@@ -389,6 +528,11 @@ public class CronUtils
 		return s;
 	}
 
+	/**
+	 * Performs a basic check to see if a power is cooling
+	 * @param power The power name to check
+	 * @return True if the power is already cooling, false otherwise
+	 */
 	public static boolean isCooling(String power)
 	{
 		for (PowerBase p : coolingPowers)

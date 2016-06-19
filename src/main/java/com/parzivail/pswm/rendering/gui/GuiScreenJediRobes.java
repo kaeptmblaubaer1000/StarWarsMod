@@ -59,7 +59,6 @@ public class GuiScreenJediRobes extends GuiScreen
 			if (button.id == this.enableButton.id)
 			{
 				//ForceUtils.activePower = this.selectedPower.power;
-				CronUtils.setActive(this.mc.thePlayer, this.selectedPower.power);
 				NBTTagCompound powers = CronUtils.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));

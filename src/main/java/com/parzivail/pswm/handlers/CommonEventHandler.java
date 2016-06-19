@@ -244,7 +244,6 @@ public class CommonEventHandler
 						index = powers.size() - 1;
 					PowerBase selectedPower = CronUtils.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
 					//activePower = selectedPower;
-					CronUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower);
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
 				}
 			}
@@ -270,7 +269,6 @@ public class CommonEventHandler
 						index = powers.size() - 1;
 					PowerBase selectedPower = CronUtils.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
 					//activePower = selectedPower;
-					CronUtils.setActive(StarWarsMod.mc.thePlayer, selectedPower);
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
 				}
 			}
