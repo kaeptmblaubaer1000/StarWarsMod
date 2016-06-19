@@ -178,7 +178,6 @@ public class StarWarsMod
 
 	public static DamageSource blasterDamageSource;
 	public static DamageSource saberDamageSource;
-	private FMLInitializationEvent eventInit;
 
 	public StarWarsMod()
 	{
@@ -251,8 +250,6 @@ public class StarWarsMod
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		eventInit = event;
-
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod init() ==========");
 
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
