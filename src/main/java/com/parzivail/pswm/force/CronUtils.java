@@ -23,9 +23,6 @@ public class CronUtils
 	public static final String SIDE_SITH = "sith";
 	public static final float POINTS_PER_LEVEL = 10;
 
-	//public static PowerBase activePower = null;
-	public static boolean isUsingDuration = false;
-	public static int health = 0;
 	public static float distanceToEntity = -1;
 	public static ArrayList<PowerBase> coolingPowers = new ArrayList<>();
 	public static ArrayList<EntityCooldownEntry> entitiesWithEffects = new ArrayList<>();

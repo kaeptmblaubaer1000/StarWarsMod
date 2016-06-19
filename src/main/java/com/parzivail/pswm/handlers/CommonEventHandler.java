@@ -673,8 +673,5 @@ public class CommonEventHandler
 	private void resetRobes(PlayerEvent event)
 	{
 		StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, new NBTTagCompound()));
-
-		//activePower = null;
-		CronUtils.isUsingDuration = false;
 	}
 }
