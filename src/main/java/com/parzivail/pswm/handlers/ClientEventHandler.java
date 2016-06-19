@@ -50,8 +50,6 @@ import java.nio.FloatBuffer;
 
 public class ClientEventHandler
 {
-	static EntityPlayer lastPlayerTarget = null;
-
 	public static boolean cursorOpen = true;
 	public static boolean isCursorAnim = false;
 

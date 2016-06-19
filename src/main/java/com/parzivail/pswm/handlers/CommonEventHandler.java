@@ -33,6 +33,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -537,6 +538,8 @@ public class CommonEventHandler
 				e.timeUntilPortal = 5;
 				e.setVelocity(0, 0, 0);
 				e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
+				if (e instanceof EntityPlayerMP)
+					((EntityPlayerMP)e).playerNetServerHandler.setPlayerLocation(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
 				StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, Cron.distanceToEntity));
 			}
 			else
@@ -554,6 +557,8 @@ public class CommonEventHandler
 				e.timeUntilPortal = 5;
 				e.setVelocity(0, 0, 0);
 				e.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
+				if (e instanceof EntityPlayerMP)
+					((EntityPlayerMP)e).playerNetServerHandler.setPlayerLocation(look.xCoord, look.yCoord, look.zCoord, StarWarsMod.mc.thePlayer.rotationYawHead, StarWarsMod.mc.thePlayer.rotationPitch);
 				StarWarsMod.network.sendToServer(new MessageEntityGrab(e, StarWarsMod.mc.thePlayer, Cron.distanceToEntity));
 			}
 		}
