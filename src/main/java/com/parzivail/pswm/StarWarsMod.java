@@ -150,6 +150,8 @@ public class StarWarsMod
 	public static Block blockTempleStoneStairsSlabTop;
 	public static Block blockTempleStoneStairsSlabTopDark;
 
+	public static Block blockHothSandbag;
+
 	public static Block blockAncientJediStatue;
 	public static BlockNpcBase[] blockStaticNpc;
 	public static Block blockHyperdrive;

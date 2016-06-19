@@ -142,6 +142,9 @@ public class BlockRegister
 		StarWarsMod.blockFocusingCrystalOre = new BlockFocusingCrystalOre();
 		GameRegistry.registerBlock(StarWarsMod.blockFocusingCrystalOre, "blockFocusingCrystalOre");
 
+		StarWarsMod.blockHothSandbag = new BlockHothSandbag();
+		GameRegistry.registerBlock(StarWarsMod.blockHothSandbag, "blockHothSandbag");
+
 		StarWarsMod.blockCortosisOre = new BlockCortosisOre();
 		GameRegistry.registerBlock(StarWarsMod.blockCortosisOre, "blockCortosisOre");
 
