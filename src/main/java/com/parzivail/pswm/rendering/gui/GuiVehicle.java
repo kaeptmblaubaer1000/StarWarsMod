@@ -40,12 +40,6 @@ public class GuiVehicle
 	{
 		if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 		{
-			GL11.glPushMatrix();
-			VehicleAirBase vehicle = (VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity;
-			//GL11.glTranslatef(event.resolution.getScaledWidth() / 2f, event.resolution.getScaledHeight() / 2f, 0);
-			float roll = MathUtils.lerp(vehicle.renderRollLast, -vehicle.tilt, event.partialTicks);
-			GL11.glRotatef(roll, 0, 0, 1);
-
 			StarWarsMod.isOverlayOnscreen = true;
 			if (event.type == RenderGameOverlayEvent.ElementType.HOTBAR)
 			{
@@ -75,46 +69,53 @@ public class GuiVehicle
 					else
 						ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack2);
 
-					for (Entity p : xwing.nearby)
-					{
-						if (p instanceof VehicXWing || p instanceof VehicAWing)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
-						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
-						if (p instanceof EntityPlayer)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
-					}
-
-					updateFiring();
-
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { xwing });
 
-					int color = GLPalette.ANALOG_GREEN;
+					if (xwing.getHasAstro())
+					{
+						for (Entity p : xwing.nearby)
+						{
+							if (p instanceof VehicXWing || p instanceof VehicAWing)
+								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer)
+								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+						}
 
-					if (e != null)
-						color = GLPalette.ANALOG_RED;
+						updateFiring();
 
-					if (xwing.getTargetLock())
-						color = GLPalette.ORANGE;
+						int color = GLPalette.ANALOG_GREEN;
 
-					if (e != null && this.lastTarget == null)
-						new AnimationCrosshairClose(color).start();
+						if (e != null)
+							color = GLPalette.ANALOG_RED;
 
-					if (e == null && this.lastTarget != null)
-						new AnimationCrosshairOpen(color).start();
+						if (xwing.getTargetLock())
+							color = GLPalette.ORANGE;
 
-					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						if (e != null && this.lastTarget == null)
+							new AnimationCrosshairClose(color).start();
 
-					updateTargetLock(e);
+						if (e == null && this.lastTarget != null)
+							new AnimationCrosshairOpen(color).start();
 
-					this.lastTarget = e;
+						if (!ClientEventHandler.isCursorAnim)
+							ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+
+						updateTargetLock(e);
+
+						this.lastTarget = e;
+					}
+					else
+					{
+						ClientEventHandler.pgui.drawFancyCursor(event, 0, GLPalette.GREY);
+					}
 
 					ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
 
 					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
-					String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
+					String s = e == null || !xwing.getHasAstro() ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
 					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
 
@@ -641,8 +642,6 @@ public class GuiVehicle
 					ClientEventHandler.pgui.renderOverlay(Resources.ywingOverlay);
 				}
 			}
-			GL11.glTranslatef(-event.resolution.getScaledWidth() / 2f, -event.resolution.getScaledHeight() / 2f, 0);
-			GL11.glPopMatrix();
 		}
 
 		if (StarWarsMod.mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)

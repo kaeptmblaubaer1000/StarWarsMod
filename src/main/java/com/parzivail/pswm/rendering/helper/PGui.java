@@ -581,10 +581,10 @@ public class PGui// extends Gui
 				GL11.glColor4f(f, f1, f2, f3);
 
 				tessellator.startDrawingQuads();
-				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0.0D);
-				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0.0D);
-				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0.0D);
-				tessellator.addVertex((x - min) * size, (y - min) * size, 0.0D);
+				tessellator.addVertex((x - min) * size, (y - min) * size + size, 0);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size + size, 0);
+				tessellator.addVertex((x - min) * size + size, (y - min) * size, 0);
+				tessellator.addVertex((x - min) * size, (y - min) * size, 0);
 				tessellator.draw();
 			}
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -605,10 +605,10 @@ public class PGui// extends Gui
 		float f5 = 1.0F / textureHeight;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x, y + height, 0.0D, u * f4, (v + height) * f5);
-		tessellator.addVertexWithUV(x + width, y + height, 0.0D, (u + width) * f4, (v + height) * f5);
-		tessellator.addVertexWithUV(x + width, y, 0.0D, (u + width) * f4, v * f5);
-		tessellator.addVertexWithUV(x, y, 0.0D, u * f4, v * f5);
+		tessellator.addVertexWithUV(x, y + height, 0, u * f4, (v + height) * f5);
+		tessellator.addVertexWithUV(x + width, y + height, 0, (u + width) * f4, (v + height) * f5);
+		tessellator.addVertexWithUV(x + width, y, 0, (u + width) * f4, v * f5);
+		tessellator.addVertexWithUV(x, y, 0, u * f4, v * f5);
 		tessellator.draw();
 	}
 
@@ -645,10 +645,10 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glColor4f(f, f1, f2, f3);
 		tessellator.startDrawingQuads();
-		tessellator.addVertex(x1, y2, 0.0D);
-		tessellator.addVertex(x2, y2, 0.0D);
-		tessellator.addVertex(x2, y1, 0.0D);
-		tessellator.addVertex(x1, y1, 0.0D);
+		tessellator.addVertex(x1, y2, 0);
+		tessellator.addVertex(x2, y2, 0);
+		tessellator.addVertex(x2, y1, 0);
+		tessellator.addVertex(x1, y1, 0);
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -683,10 +683,10 @@ public class PGui// extends Gui
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glColor4f(r / 255f, g / 255f, b / 255f, a / 255f);
 		tessellator.startDrawingQuads();
-		tessellator.addVertex(x1, y2, 0.0D);
-		tessellator.addVertex(x2, y2, 0.0D);
-		tessellator.addVertex(x2, y1, 0.0D);
-		tessellator.addVertex(x1, y1, 0.0D);
+		tessellator.addVertex(x1, y2, 0);
+		tessellator.addVertex(x2, y2, 0);
+		tessellator.addVertex(x2, y1, 0);
+		tessellator.addVertex(x1, y1, 0);
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
@@ -698,10 +698,10 @@ public class PGui// extends Gui
 		float f5 = 1.0F / tileHeight;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x, y + height, 0.0D, u * f4, (v + vHeight) * f5);
-		tessellator.addVertexWithUV(x + width, y + height, 0.0D, (u + uWidth) * f4, (v + vHeight) * f5);
-		tessellator.addVertexWithUV(x + width, y, 0.0D, (u + uWidth) * f4, v * f5);
-		tessellator.addVertexWithUV(x, y, 0.0D, u * f4, v * f5);
+		tessellator.addVertexWithUV(x, y + height, 0, u * f4, (v + vHeight) * f5);
+		tessellator.addVertexWithUV(x + width, y + height, 0, (u + uWidth) * f4, (v + vHeight) * f5);
+		tessellator.addVertexWithUV(x + width, y, 0, (u + uWidth) * f4, v * f5);
+		tessellator.addVertexWithUV(x, y, 0, u * f4, v * f5);
 		tessellator.draw();
 	}
 
@@ -934,7 +934,6 @@ public class PGui// extends Gui
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture)
 	{
-		GL11.glRotatef(45, 1, 1, 1);
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
 		int k = scaledresolution.getScaledWidth();
@@ -949,9 +948,10 @@ public class PGui// extends Gui
 		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(0.0D, l, -90.0D, 0.0D, 1.0D);
-		tessellator.addVertexWithUV(k, l, -90.0D, 1.0D, 1.0D);
-		tessellator.addVertexWithUV(k, 0.0D, -90.0D, 1.0D, 0.0D);
+		tessellator.addVertexWithUV(0, l, -90, 0, 1);
+		tessellator.addVertexWithUV(k, l, -90, 1, 1);
+		tessellator.addVertexWithUV(k, 0, -90, 1, 0);
+		tessellator.addVertexWithUV(0, 0, -90, 0, 0);
 		tessellator.draw();
 		GL11.glDepthMask(true);
 		GL11.glDisable(3042);
@@ -983,10 +983,10 @@ public class PGui// extends Gui
 		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(0.0D + offsetX, l + offsetY, -90.0D, 0.0D, 1.0D);
-		tessellator.addVertexWithUV(k + offsetX, l + offsetY, -90.0D, 1.0D, 1.0D);
-		tessellator.addVertexWithUV(k + offsetX, 0.0D + offsetY, -90.0D, 1.0D, 0.0D);
-		tessellator.addVertexWithUV(0.0D + offsetX, 0.0D + offsetY, -90.0D, 0.0D, 0.0D);
+		tessellator.addVertexWithUV(0 + offsetX, l + offsetY, -90, 0, 1);
+		tessellator.addVertexWithUV(k + offsetX, l + offsetY, -90, 1, 1);
+		tessellator.addVertexWithUV(k + offsetX, 0 + offsetY, -90, 1, 0);
+		tessellator.addVertexWithUV(0 + offsetX, 0 + offsetY, -90, 0, 0);
 		tessellator.draw();
 		GL11.glDepthMask(true);
 		GL11.glDisable(3042);
@@ -1017,10 +1017,10 @@ public class PGui// extends Gui
 		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x, h + y, -90.0D, 0.0D, 1.0D);
-		tessellator.addVertexWithUV(w + x, h + y, -90.0D, 1.0D, 1.0D);
-		tessellator.addVertexWithUV(w + x, y, -90.0D, 1.0D, 0.0D);
-		tessellator.addVertexWithUV(x, y, -90.0D, 0.0D, 0.0D);
+		tessellator.addVertexWithUV(x, h + y, -90, 0, 1);
+		tessellator.addVertexWithUV(w + x, h + y, -90, 1, 1);
+		tessellator.addVertexWithUV(w + x, y, -90, 1, 0);
+		tessellator.addVertexWithUV(x, y, -90, 0, 0);
 		tessellator.draw();
 		GL11.glDepthMask(true);
 		GL11.glDisable(3042);
@@ -1074,10 +1074,10 @@ public class PGui// extends Gui
 
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(0.0D, height, -90.0D, 0.0D, 1.0D);
-		tessellator.addVertexWithUV(width, height, -90.0D, 1.0D, 1.0D);
-		tessellator.addVertexWithUV(width, 0.0D, -90.0D, 1.0D, 0.0D);
-		tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
+		tessellator.addVertexWithUV(0, height, -90, 0, 1);
+		tessellator.addVertexWithUV(width, height, -90, 1, 1);
+		tessellator.addVertexWithUV(width, 0, -90, 1, 0);
+		tessellator.addVertexWithUV(0, 0, -90, 0, 0);
 		tessellator.draw();
 		GL11.glDepthMask(true);
 		GL11.glEnable(2929);
