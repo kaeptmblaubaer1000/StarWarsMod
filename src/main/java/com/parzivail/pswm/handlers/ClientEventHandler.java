@@ -246,13 +246,13 @@ public class ClientEventHandler
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
-				ClientEventHandler.pgui.changeCameraDist(this, 4);
+				ClientEventHandler.pgui.changeCameraDist(4);
 
 				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				ClientEventHandler.pgui.changeCameraDist(this, 10);
+				ClientEventHandler.pgui.changeCameraDist(10);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicATST);
 			}
@@ -261,13 +261,13 @@ public class ClientEventHandler
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
-				ClientEventHandler.pgui.changeCameraDist(this, 4);
+				ClientEventHandler.pgui.changeCameraDist(4);
 
 				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				ClientEventHandler.pgui.changeCameraDist(this, 25);
+				ClientEventHandler.pgui.changeCameraDist(25);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
@@ -276,19 +276,19 @@ public class ClientEventHandler
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
-				ClientEventHandler.pgui.changeCameraDist(this, 4);
+				ClientEventHandler.pgui.changeCameraDist(4);
 
-				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+				//event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{
-				ClientEventHandler.pgui.changeCameraDist(this, 15);
+				ClientEventHandler.pgui.changeCameraDist(15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
 		else
-			ClientEventHandler.pgui.changeCameraDist(this, 4);
+			ClientEventHandler.pgui.changeCameraDist(4);
 
 		if (event.entity instanceof EntityPlayer)
 		{

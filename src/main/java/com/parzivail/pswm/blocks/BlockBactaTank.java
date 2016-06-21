@@ -46,7 +46,7 @@ public class BlockBactaTank extends BlockContainer implements IDebugProvider
 				list.add(String.valueOf(t.getTicksInside()) + " ticks inside");
 			}
 			else
-				list.add("No player inside");
+				list.add("No ship inside");
 		}
 
 		return list;

@@ -80,7 +80,7 @@ public class ContainerCrystalCompressor extends Container
 	}
 
 	/**
-	 * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
+	 * Called when a ship shift-clicks on a slot. You must override this or you will crash when someone does that.
 	 */
 	public ItemStack transferStackInSlot(EntityPlayer p_82846_1_, int p_82846_2_)
 	{

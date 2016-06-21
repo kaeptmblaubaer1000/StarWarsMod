@@ -156,7 +156,7 @@ public class PowerBase
 	}
 
 	/**
-	 * Returns the description, translated into the player's native lang
+	 * Returns the description, translated into the ship's native lang
 	 *
 	 * @return
 	 */
@@ -166,7 +166,7 @@ public class PowerBase
 	}
 
 	/**
-	 * Returns the name, translated into the player's native lang
+	 * Returns the name, translated into the ship's native lang
 	 *
 	 * @return
 	 */
@@ -197,9 +197,9 @@ public class PowerBase
 	}
 
 	/**
-	 * Applies the power to the player, called every tick the armor is worn.
+	 * Applies the power to the ship, called every tick the armor is worn.
 	 *
-	 * @param player The player to apply the power to
+	 * @param player The ship to apply the power to
 	 * @return Returns true if a power was applied, false otherwise
 	 */
 	public boolean run(EntityPlayer player)

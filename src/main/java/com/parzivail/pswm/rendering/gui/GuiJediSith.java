@@ -113,6 +113,6 @@ public class GuiJediSith extends GuiScreen
 	@Override
 	protected void keyTyped(char typedChar, int keyCode)
 	{
-		// don't exit on escape, force player to choose
+		// don't exit on escape, force ship to choose
 	}
 }

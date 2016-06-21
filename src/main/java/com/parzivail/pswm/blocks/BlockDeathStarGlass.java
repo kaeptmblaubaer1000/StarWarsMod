@@ -19,4 +19,10 @@ public class BlockDeathStarGlass extends BlockConnected
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		setStepSound(soundTypeGlass);
 	}
+
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
 }

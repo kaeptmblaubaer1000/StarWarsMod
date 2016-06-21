@@ -3,17 +3,26 @@ package com.parzivail.pswm.vehicles;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.ItemSpawnAstromech;
+import com.parzivail.pswm.items.ItemSpawnAstromech2;
 import com.parzivail.pswm.network.MessageSFoil;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.network.MessageShipAstroDetails;
+import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class VehicXWing extends VehicleAirBase
+import java.util.List;
+
+public class VehicXWing extends VehicleAirBase implements IDebugProvider
 {
-	public static int SFOIL_DW = 13;
+	private static int SFOIL_DW = 23;
 	public boolean isOpening = false;
 	public boolean isClosing = false;
 
@@ -33,11 +42,23 @@ public class VehicXWing extends VehicleAirBase
 	}
 
 	@Override
+	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
+	{
+		list.add(String.format("Has astro: %s", getHasAstro()));
+		list.add(String.format("Astro type: %s", getAstroType()));
+		return list;
+	}
+
+	@Override
 	public void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(SFOIL_DW, Float.valueOf(0));
+		this.dataWatcher.addObject(SFOIL_DW, 0f);
 		this.dataWatcher.setObjectWatched(SFOIL_DW);
+		this.dataWatcher.addObject(SFOIL_DW + 1, 0);
+		this.dataWatcher.setObjectWatched(SFOIL_DW + 1);
+		this.dataWatcher.addObject(SFOIL_DW + 2, 0);
+		this.dataWatcher.setObjectWatched(SFOIL_DW + 1);
 	}
 
 	@Override
@@ -63,6 +84,51 @@ public class VehicXWing extends VehicleAirBase
 	public float getSFoil()
 	{
 		return this.dataWatcher.getWatchableObjectFloat(SFOIL_DW);
+	}
+
+	public boolean getHasAstro()
+	{
+		return this.dataWatcher.getWatchableObjectInt(SFOIL_DW + 1) == 1;
+	}
+
+	public int getAstroType()
+	{
+		return this.dataWatcher.getWatchableObjectInt(SFOIL_DW + 2);
+	}
+
+	@Override
+	public boolean interact(EntityPlayer p_70085_1_)
+	{
+		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
+
+		if (p_70085_1_.isSneaking() && getHasAstro())
+		{
+			if (worldObj.isRemote)
+			{
+				StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, false, 0));
+				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(p_70085_1_, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
+				setHasAstro(false);
+			}
+			return true;
+		}
+		else if (itemstack == null || itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
+			return super.interact(p_70085_1_);
+		else if (itemstack.getItem() instanceof ItemSpawnAstromech && !getHasAstro())
+		{
+			StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, true, 0));
+			setHasAstro(true);
+			setAstroType(0);
+			return true;
+		}
+		else if (itemstack.getItem() instanceof ItemSpawnAstromech2 && !getHasAstro())
+		{
+			StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, true, 1));
+			setHasAstro(true);
+			setAstroType(1);
+			return true;
+		}
+
+		return super.interact(p_70085_1_);
 	}
 
 	@Override
@@ -123,5 +189,39 @@ public class VehicXWing extends VehicleAirBase
 	public void setSFoil(float f)
 	{
 		this.dataWatcher.updateObject(SFOIL_DW, f);
+		this.dataWatcher.setObjectWatched(SFOIL_DW);
+	}
+
+	public void setHasAstro(boolean hasAstro)
+	{
+		this.dataWatcher.updateObject(SFOIL_DW + 1, hasAstro ? 1 : 0);
+		this.dataWatcher.setObjectWatched(SFOIL_DW + 1);
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound compound)
+	{
+		compound.setBoolean("hasAstro", getHasAstro());
+		compound.setInteger("astroType", getAstroType());
+		super.writeToNBT(compound);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound compound)
+	{
+		setHasAstro(compound.getBoolean("hasAstro"));
+		setAstroType(compound.getInteger("astroType"));
+		super.readFromNBT(compound);
+	}
+
+	/**
+	 * 0 = r2, 1 = r5
+	 *
+	 * @param astroType
+	 */
+	public void setAstroType(int astroType)
+	{
+		this.dataWatcher.updateObject(SFOIL_DW + 2, astroType);
+		this.dataWatcher.setObjectWatched(SFOIL_DW + 2);
 	}
 }

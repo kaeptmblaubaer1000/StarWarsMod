@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public interface IQuest
 {
 	/**
-	 * Checks if a player can be given a quest
+	 * Checks if a ship can be given a quest
 	 *
 	 * @param player
 	 * @return

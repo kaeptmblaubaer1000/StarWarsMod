@@ -105,11 +105,11 @@ public class VehicleAirBase extends VehicleBase
 
 			if (this.move != 0)
 			{
-				this.rotationYawLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
 				this.rotationPitchLast = this.rotationPitch = riddenByPlayer.rotationPitch;
-				this.setRotation(this.rotationYaw, this.rotationPitch);
-				this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
 			}
+			this.rotationYawLast = this.rotationYaw = this.riddenByEntity.rotationYaw;
+			this.rotationYawHead = this.renderYawOffset = this.rotationYaw;
+			this.setRotation(this.rotationYaw, this.rotationPitch);
 
 			strafe = riddenByPlayer.moveStrafing * 0.5F;
 			forward = riddenByPlayer.moveForward;

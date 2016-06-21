@@ -59,7 +59,7 @@ public class GuiToast extends Gui
 	 * Creates a new toast in the default position (bottom right), but doesn't
 	 * show it
 	 *
-	 * @param text   The text to notify the player
+	 * @param text   The text to notify the ship
 	 * @param length The timespan to show for
 	 * @return The new toast
 	 */
@@ -71,7 +71,7 @@ public class GuiToast extends Gui
 	/**
 	 * Creates a new toast, but doesn't show it
 	 *
-	 * @param text     The text to notify the player
+	 * @param text     The text to notify the ship
 	 * @param length   The timespan to show for
 	 * @param position The {@link ToastPotition} of the toast
 	 * @return The new toast

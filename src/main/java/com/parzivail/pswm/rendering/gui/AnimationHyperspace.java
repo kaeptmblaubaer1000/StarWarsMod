@@ -54,9 +54,9 @@ public class AnimationHyperspace extends Animation
 		this.reverse = reverse;
 
 		//if (trackSender)
-		//	player.playSound(Resources.MODID + ":" + "lightspeed.exit", 1, 1);
+		//	ship.playSound(Resources.MODID + ":" + "lightspeed.exit", 1, 1);
 		//else
-		//	player.playSound(Resources.MODID + ":" + "lightspeed.enter", 1, 1);
+		//	ship.playSound(Resources.MODID + ":" + "lightspeed.enter", 1, 1);
 
 		for (int i = 0; i < amtStars; i++)
 			stars.add(new Star(new Point(StarWarsMod.rngGeneral.nextInt(r.getScaledWidth()), StarWarsMod.rngGeneral.nextInt(r.getScaledHeight())), StarWarsMod.rngGeneral.nextInt(255), StarWarsMod.rngGeneral.nextFloat(), 0xEEEEFF));

@@ -15,7 +15,7 @@ import net.minecraft.util.MathHelper;
 public class SlotCrystal extends Slot
 {
 	/**
-	 * The player that is using the GUI where this slot resides.
+	 * The ship that is using the GUI where this slot resides.
 	 */
 	private EntityPlayer thePlayer;
 	private int field_75228_b;

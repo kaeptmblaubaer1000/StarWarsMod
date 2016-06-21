@@ -30,10 +30,10 @@ public class PotionList
 	public static int SATURATION = 23;
 
 	/**
-	 * Add an ambient potion effect to a player
+	 * Add an ambient potion effect to a ship
 	 *
-	 * @param player  The player to affect
-	 * @param effect  The effect to affect the player with
+	 * @param player  The ship to affect
+	 * @param effect  The effect to affect the ship with
 	 * @param power   The level of the effect
 	 * @param seconds The number of seconds the potion lasts
 	 */
@@ -43,10 +43,10 @@ public class PotionList
 	}
 
 	/**
-	 * Add a potion effect to a player
+	 * Add a potion effect to a ship
 	 *
-	 * @param player  The player to affect
-	 * @param effect  The effect to affect the player with
+	 * @param player  The ship to affect
+	 * @param effect  The effect to affect the ship with
 	 * @param power   The level of the effect
 	 * @param seconds The number of seconds the potion lasts
 	 */

@@ -1,6 +1,7 @@
 package com.parzivail.pswm.models.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -728,6 +729,18 @@ public class ModelXWingNew extends ModelBase
 			this.Gear4.isHidden = flag;
 			this.Gear5.isHidden = flag;
 			this.Gear6.isHidden = flag;
+
+			if (ClientEventHandler.renderHelper.isFirstPerson())
+			{
+				this.shape1_19.isHidden = true;
+				this.shape1_20.isHidden = true;
+				GL11.glTranslated(0, 0.5f, 0);
+			}
+			else
+			{
+				this.shape1_19.isHidden = false;
+				this.shape1_20.isHidden = false;
+			}
 
 		}
 		else

@@ -40,6 +40,12 @@ public class GuiVehicle
 	{
 		if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 		{
+			GL11.glPushMatrix();
+			VehicleAirBase vehicle = (VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity;
+			//GL11.glTranslatef(event.resolution.getScaledWidth() / 2f, event.resolution.getScaledHeight() / 2f, 0);
+			float roll = MathUtils.lerp(vehicle.renderRollLast, -vehicle.tilt, event.partialTicks);
+			GL11.glRotatef(roll, 0, 0, 1);
+
 			StarWarsMod.isOverlayOnscreen = true;
 			if (event.type == RenderGameOverlayEvent.ElementType.HOTBAR)
 			{
@@ -635,6 +641,8 @@ public class GuiVehicle
 					ClientEventHandler.pgui.renderOverlay(Resources.ywingOverlay);
 				}
 			}
+			GL11.glTranslatef(-event.resolution.getScaledWidth() / 2f, -event.resolution.getScaledHeight() / 2f, 0);
+			GL11.glPopMatrix();
 		}
 
 		if (StarWarsMod.mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)

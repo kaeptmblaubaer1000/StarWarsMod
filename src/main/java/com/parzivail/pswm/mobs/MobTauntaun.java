@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +21,6 @@ public class MobTauntaun extends EntityHorse
 		super(par1World);
 		setSize(1.0F, 3.0F);
 		tasks.addTask(0, new AiFreqMove(this, 1.25f, 0));
-		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, MobDroidProtocol.class, 0, false));
 	}
 
 	@Override
@@ -52,14 +50,14 @@ public class MobTauntaun extends EntityHorse
 			{
 				field_110285_bP += 1;
 				if (field_110285_bP > 5 && field_110285_bP % 3 == 0)
-					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+					playSound(Resources.MODID + ":" + "mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 				else if (field_110285_bP <= 5)
-					playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+					playSound(Resources.MODID + ":" + "mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			}
 			else if (soundtype == Block.soundTypeWood)
-				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound(Resources.MODID + ":" + "mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 			else
-				playSound("mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
+				playSound(Resources.MODID + ":" + "mob.tauntaun.move", soundtype.getVolume() * 0.15F, soundtype.getPitch());
 		}
 	}
 

@@ -26,11 +26,11 @@ public class SoundLightsaberHum extends MovingSound
 	@Override
 	public void update()
 	{
-		// if (!(this.player.inventory != null &&
-		// this.player.inventory.getCurrentItem() != null &&
-		// (this.player.inventory.getCurrentItem().getItem() ==
+		// if (!(this.ship.inventory != null &&
+		// this.ship.inventory.getCurrentItem() != null &&
+		// (this.ship.inventory.getCurrentItem().getItem() ==
 		// StarWarsMod.lightsaber ||
-		// this.player.inventory.getCurrentItem().getItem() ==
+		// this.ship.inventory.getCurrentItem().getItem() ==
 		// StarWarsMod.sequelLightsaber)))
 		// this.donePlaying = true;
 	}

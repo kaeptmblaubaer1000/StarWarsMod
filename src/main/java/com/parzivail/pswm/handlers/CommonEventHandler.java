@@ -385,7 +385,7 @@ public class CommonEventHandler
 	}
 
 	/**
-	 * Updates the force powers employed by the (client) player
+	 * Updates the force powers employed by the (client) ship
 	 */
 	@SideOnly(Side.CLIENT)
 	private void updateForcePowers()
@@ -543,7 +543,7 @@ public class CommonEventHandler
 	}
 
 	/**
-	 * Updates the player's Force XP and adds more as required
+	 * Updates the ship's Force XP and adds more as required
 	 */
 	@SideOnly(Side.CLIENT)
 	private void addPlayerForceXp()

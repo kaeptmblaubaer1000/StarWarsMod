@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
 /**
- * A class to help get information about the client's player
+ * A class to help get information about the client's ship
  */
 public class PlayerHelper
 {
@@ -16,7 +16,7 @@ public class PlayerHelper
 	}
 
 	/**
-	 * Gets the player's held itemstack, with failsafes
+	 * Gets the ship's held itemstack, with failsafes
 	 *
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class PlayerHelper
 	}
 
 	/**
-	 * Gets the player's username, with failsafes
+	 * Gets the ship's username, with failsafes
 	 *
 	 * @return
 	 */

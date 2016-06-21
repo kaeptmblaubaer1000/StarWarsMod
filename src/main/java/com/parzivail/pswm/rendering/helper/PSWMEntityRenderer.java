@@ -417,7 +417,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 	}
 
 	/**
-	 * Changes the field of view of the player depending on if they are
+	 * Changes the field of view of the ship depending on if they are
 	 * underwater or not
 	 */
 	private float getFOVModifier(float p_78481_1_, boolean p_78481_2_)
@@ -617,7 +617,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 	}
 
 	/**
-	 * sets up player's eye (or camera in third person mode)
+	 * sets up ship's eye (or camera in third person mode)
 	 */
 	private void orientCamera(float p_78467_1_)
 	{
@@ -730,7 +730,7 @@ public class PSWMEntityRenderer extends EntityRenderer
 	}
 
 	/**
-	 * Render player hand
+	 * Render ship hand
 	 */
 	private void renderHand(float p_78476_1_, int p_78476_2_)
 	{

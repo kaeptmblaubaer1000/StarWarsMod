@@ -272,8 +272,8 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 
 	private static void writePlayer(EntityPlayer player, ByteBuf buf)
 	{
-		// buf.writeInt(player.dimension);
-		// ByteBufUtils.writeUTF8String(buf, player.getCommandSenderName());
+		// buf.writeInt(ship.dimension);
+		// ByteBufUtils.writeUTF8String(buf, ship.getCommandSenderName());
 		writeEntity(player, buf);
 	}
 

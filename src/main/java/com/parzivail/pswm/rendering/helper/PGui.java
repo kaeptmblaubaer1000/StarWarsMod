@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -71,39 +72,27 @@ public class PGui// extends Gui
 		PGui.mc = minecraft;
 	}
 
-	public void changeCameraDist(ClientEventHandler clientEventHandler, int dist)
+	public void changeCameraDist(int dist)
 	{
-		if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
-			((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).setThirdPersonDistance(dist);
-		else
-			try
-			{
-				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance");
-				ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp");
-			}
-			catch (Exception e)
-			{
-				try
-				{
-					ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78490_B");
-					ReflectionHelper.setPrivateValue(net.minecraft.client.renderer.EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "field_78491_C");
-				}
-				catch (Exception e2)
-				{
-					Lumberjack.warn("Unable to change camera distance!");
-					e.printStackTrace();
-				}
-			}
+		try
+		{
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance", "field_78490_B");
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp", "field_78491_C");
+		}
+		catch (Exception e)
+		{
+			Lumberjack.warn("Unable to change camera distance!");
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Draws center-aligned text
 	 *
-	 * @param fontRendererIn The font renderer
-	 * @param text           The text to draw
-	 * @param x              The x position
-	 * @param y              The y position
-	 * @param color          The color
+	 * @param x      The x position
+	 * @param y      The y position
+	 * @param string The string
+	 * @param color  The color
 	 */
 	public void drawCenteredString(int x, int y, String string, int color)
 	{
@@ -242,9 +231,9 @@ public class PGui// extends Gui
 		GL11.glBlendFunc(770, 771);
 		GL11.glBegin(GL11.GL_TRIANGLES);
 
-		GL11.glVertex2d(0, 1 * scale);
-		GL11.glVertex2d(1 * scale, -(1 * scale));
-		GL11.glVertex2d(-(1 * scale), -(1 * scale));
+		GL11.glVertex2d(0, scale);
+		GL11.glVertex2d(scale, -scale);
+		GL11.glVertex2d(-scale, -(scale));
 
 		GL11.glEnd();
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
@@ -396,9 +385,9 @@ public class PGui// extends Gui
 		GL11.glLineWidth(lineWidth);
 		GL11.glBegin(GL11.GL_LINE_LOOP);
 
-		GL11.glVertex2d(0, 1 * scale);
-		GL11.glVertex2d(1 * scale, -(1 * scale));
-		GL11.glVertex2d(-(1 * scale), -(1 * scale));
+		GL11.glVertex2d(0, scale);
+		GL11.glVertex2d(scale, -scale);
+		GL11.glVertex2d(-scale, -scale);
 
 		GL11.glEnd();
 		GL11.glDisable(GL11.GL_LINE_SMOOTH);
@@ -733,10 +722,10 @@ public class PGui// extends Gui
 		float f1 = 0.00390625F;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x + 0, y + height, 1, (textureX + 0) * f, (textureY + height) * f1);
+		tessellator.addVertexWithUV(x, y + height, 1, textureX * f, (textureY + height) * f1);
 		tessellator.addVertexWithUV(x + width, y + height, 1, (textureX + width) * f, (textureY + height) * f1);
-		tessellator.addVertexWithUV(x + width, y + 0, 1, (textureX + width) * f, (textureY + 0) * f1);
-		tessellator.addVertexWithUV(x + 0, y + 0, 1, (textureX + 0) * f, (textureY + 0) * f1);
+		tessellator.addVertexWithUV(x + width, y, 1, (textureX + width) * f, textureY * f1);
+		tessellator.addVertexWithUV(x, y, 1, textureX * f, textureY * f1);
 		tessellator.draw();
 	}
 
@@ -778,10 +767,10 @@ public class PGui// extends Gui
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x + 0, y + height, 1, icon.getMinU(), icon.getMaxV());
+		tessellator.addVertexWithUV(x, y + height, 1, icon.getMinU(), icon.getMaxV());
 		tessellator.addVertexWithUV(x + width, y + height, 1, icon.getMaxU(), icon.getMaxV());
-		tessellator.addVertexWithUV(x + width, y + 0, 1, icon.getMaxU(), icon.getMinV());
-		tessellator.addVertexWithUV(x + 0, y + 0, 1, icon.getMinU(), icon.getMinV());
+		tessellator.addVertexWithUV(x + width, y, 1, icon.getMaxU(), icon.getMinV());
+		tessellator.addVertexWithUV(x, y, 1, icon.getMinU(), icon.getMinV());
 		tessellator.draw();
 	}
 
@@ -854,20 +843,15 @@ public class PGui// extends Gui
 		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
 		scaledresolution.getScaledWidth();
 		scaledresolution.getScaledHeight();
-		int health = amount;
-		int healthMax = max;
-		int healthRows = MathHelper.ceiling_float_int(healthMax / 2.0F / 10.0F);
+		int healthRows = MathHelper.ceiling_float_int(max / 2.0F / 10.0F);
 		int rowHeight = Math.max(10 - (healthRows - 2), 3);
-		if (rowHeight != 10)
-		{
-		}
 		int MARGIN = 16;
-		for (int i = 0; i < MathHelper.ceiling_float_int(healthMax / 2.0F); i++)
+		for (int i = 0; i < MathHelper.ceiling_float_int(max / 2.0F); i++)
 		{
 			this.drawTexturedModalRect(x, y, 16, 0, 9, 9);
-			if (i * 2 + 1 < health)
+			if (i * 2 + 1 < amount)
 				this.drawTexturedModalRect(x, y, MARGIN + 36, 0, 9, 9);
-			else if (i * 2 + 1 == health)
+			else if (i * 2 + 1 == amount)
 				this.drawTexturedModalRect(x, y, MARGIN + 45, 0, 9, 9);
 			if ((i + 1) % wrap == 0 && wrap != -1)
 			{
@@ -908,7 +892,8 @@ public class PGui// extends Gui
 	/**
 	 * Renders a progress bar on-screen
 	 *
-	 * @param caption The string to display above the bar
+	 * @param x       The x position
+	 * @param y       The y position
 	 * @param percent The percentage full of the bar (0-1)
 	 * @param jedi    True if you want to draw an XP-style bar instead of a boss bar
 	 */
@@ -949,6 +934,7 @@ public class PGui// extends Gui
 	 */
 	public void renderOverlay(ResourceLocation PGuiTexture)
 	{
+		GL11.glRotatef(45, 1, 1, 1);
 		PGui.mc.entityRenderer.setupOverlayRendering();
 		ScaledResolution scaledresolution = new ScaledResolution(mc, PGui.mc.displayWidth, PGui.mc.displayHeight);
 		int k = scaledresolution.getScaledWidth();
@@ -966,7 +952,6 @@ public class PGui// extends Gui
 		tessellator.addVertexWithUV(0.0D, l, -90.0D, 0.0D, 1.0D);
 		tessellator.addVertexWithUV(k, l, -90.0D, 1.0D, 1.0D);
 		tessellator.addVertexWithUV(k, 0.0D, -90.0D, 1.0D, 0.0D);
-		tessellator.addVertexWithUV(0.0D, 0.0D, -90.0D, 0.0D, 0.0D);
 		tessellator.draw();
 		GL11.glDepthMask(true);
 		GL11.glDisable(3042);
@@ -1022,8 +1007,6 @@ public class PGui// extends Gui
 	public void renderOverlay(ResourceLocation PGuiTexture, float x, float y, float w, float h)
 	{
 		PGui.mc.entityRenderer.setupOverlayRendering();
-		float k = w;
-		float l = h;
 		GL11.glDisable(2929);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, 771);
@@ -1034,9 +1017,9 @@ public class PGui// extends Gui
 		PGui.mc.getTextureManager().bindTexture(PGuiTexture);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.addVertexWithUV(x, l + y, -90.0D, 0.0D, 1.0D);
-		tessellator.addVertexWithUV(k + x, l + y, -90.0D, 1.0D, 1.0D);
-		tessellator.addVertexWithUV(k + x, y, -90.0D, 1.0D, 0.0D);
+		tessellator.addVertexWithUV(x, h + y, -90.0D, 0.0D, 1.0D);
+		tessellator.addVertexWithUV(w + x, h + y, -90.0D, 1.0D, 1.0D);
+		tessellator.addVertexWithUV(w + x, y, -90.0D, 1.0D, 0.0D);
 		tessellator.addVertexWithUV(x, y, -90.0D, 0.0D, 0.0D);
 		tessellator.draw();
 		GL11.glDepthMask(true);

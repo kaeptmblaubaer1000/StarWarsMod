@@ -2,7 +2,7 @@ package com.parzivail.util.math;
 
 /**
  * Compares a boolean between two ticks to check for a change. Useful for
- * starting or stopping things, or events, based on what a player's doing
+ * starting or stopping things, or events, based on what a ship's doing
  *
  * @author Colby
  */

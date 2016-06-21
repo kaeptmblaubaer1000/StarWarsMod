@@ -10,7 +10,7 @@ public class TileEntityMovingLightSource extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-		// check if player has moved away from the tile entity
+		// check if ship has moved away from the tile entity
 		EntityPlayer closestPlayer = worldObj.getClosestPlayer(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, 3.0D);
 
 		if (((closestPlayer == null) || (closestPlayer.getCurrentEquippedItem() == null) || !(closestPlayer.getCurrentEquippedItem().getItem() instanceof ItemLightsaber) || !ItemLightsaber.isOn(closestPlayer.getCurrentEquippedItem())) && (worldObj.getBlock(xCoord, yCoord, zCoord) == StarWarsMod.blockMovingLightSource))

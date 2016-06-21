@@ -244,8 +244,7 @@
     "category": "neutral",
     "sounds": [
       "mob/protocol/say1",
-      "mob/protocol/say2",
-      "mob/protocol/say3"
+      "mob/protocol/say2"
     ]
   },
   "mob.protocol.hit": {
@@ -253,7 +252,8 @@
     "sounds": [
       "mob/protocol/hit1",
       "mob/protocol/hit2",
-      "mob/protocol/hit3"
+      "mob/protocol/hit3",
+      "mob/protocol/say3"
     ]
   },
   "mob.protocol.die": {

@@ -12,7 +12,6 @@ import com.parzivail.pswm.models.mobs.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.registry.RegisterGuiOverlays;
 import com.parzivail.pswm.rendering.*;
-import com.parzivail.pswm.rendering.helper.PSWMEntityRenderer;
 import com.parzivail.pswm.rendering.item.*;
 import com.parzivail.pswm.rendering.itemblock.*;
 import com.parzivail.pswm.rendering.itemdroid.*;
@@ -37,7 +36,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 	@Override
 	public void doSidedThings()
 	{
-		Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
+		//Minecraft.getMinecraft().entityRenderer = new PSWMEntityRenderer(Minecraft.getMinecraft(), Minecraft.getMinecraft().getResourceManager());
 
 		StarWarsMod.mc = Minecraft.getMinecraft();
 
