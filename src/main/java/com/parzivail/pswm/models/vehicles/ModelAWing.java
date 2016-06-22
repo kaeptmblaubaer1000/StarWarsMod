@@ -1,6 +1,7 @@
 package com.parzivail.pswm.models.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -400,6 +401,33 @@ public class ModelAWing extends ModelBase
 	{
 		if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
 			GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
+
+		if (entity != null)
+		{
+
+			boolean flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
+			this.Cockpit_1.isHidden = flag;
+			this.Cockpit_2.isHidden = flag;
+			this.Cockpit_3.isHidden = flag;
+
+			if (flag)
+			{
+				float anf = entity.rotationPitch / 90f;
+				float nf = 1 - Math.abs(anf);
+				GL11.glTranslatef(0, nf / 3f, -anf / 2f - 1);
+			}
+
+			if (!entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ))
+			{
+				this.Landing_Gear_1.render(f5);
+				this.Landing_Gear_2.render(f5);
+				this.Landing_Gear_3.render(f5);
+				this.Landing_Gear_4.render(f5);
+				this.Landing_Gear_5.render(f5);
+				this.Landing_Gear_6.render(f5);
+			}
+		}
+
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.Main_Body.render(f5);
@@ -450,15 +478,6 @@ public class ModelAWing extends ModelBase
 		this.Laser_R_2.render(f5);
 		this.Laser_Barrel_R_2.render(f5);
 		this.Body_Filler_More.render(f5);
-		if (entity != null && !entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ))
-		{
-			this.Landing_Gear_1.render(f5);
-			this.Landing_Gear_2.render(f5);
-			this.Landing_Gear_3.render(f5);
-			this.Landing_Gear_4.render(f5);
-			this.Landing_Gear_5.render(f5);
-			this.Landing_Gear_6.render(f5);
-		}
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)

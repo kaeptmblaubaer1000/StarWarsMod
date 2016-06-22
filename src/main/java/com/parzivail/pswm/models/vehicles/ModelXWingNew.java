@@ -730,16 +730,13 @@ public class ModelXWingNew extends ModelBase
 			this.Gear5.isHidden = flag;
 			this.Gear6.isHidden = flag;
 
-			if (ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer)
+			flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
+			this.shape1_19.isHidden = flag;
+			this.shape1_20.isHidden = flag;
+
+			if (flag)
 			{
-				this.shape1_19.isHidden = true;
-				this.shape1_20.isHidden = true;
-				GL11.glTranslated(0, 0.5f, 0);
-			}
-			else
-			{
-				this.shape1_19.isHidden = false;
-				this.shape1_20.isHidden = false;
+				GL11.glTranslatef(0, 0.52f, -0.3f);
 			}
 
 		}

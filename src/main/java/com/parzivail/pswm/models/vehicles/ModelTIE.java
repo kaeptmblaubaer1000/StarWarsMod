@@ -1,6 +1,7 @@
 package com.parzivail.pswm.models.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -316,6 +317,30 @@ public class ModelTIE extends ModelBase
 	{
 		if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
 			GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
+
+		if (entity != null)
+		{
+
+			boolean flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
+			this.Cockpit.isHidden = flag;
+			this.Body_Panel_1.isHidden = flag;
+			this.Body_Panel_2.isHidden = flag;
+			this.Body_Panel_3.isHidden = flag;
+			this.Body_Panel_4.isHidden = flag;
+			this.Body_Panel_5.isHidden = flag;
+			this.Body_Panel_6.isHidden = flag;
+			this.Body_Panel_7.isHidden = flag;
+			this.Body_Panel_8.isHidden = flag;
+			this.Body_Panel_9.isHidden = flag;
+			this.Laser_1.isHidden = flag;
+			this.Laser_2.isHidden = flag;
+
+			if (flag)
+			{
+				GL11.glTranslatef(0, 0, -1);
+			}
+		}
+
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.Cockpit.render(f5);
