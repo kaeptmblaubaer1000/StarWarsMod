@@ -2,9 +2,14 @@ package com.parzivail.pswm.models.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
+import com.parzivail.pswm.mobs.MobDroidAstromech2;
 import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
@@ -738,7 +743,6 @@ public class ModelXWingNew extends ModelBase
 			{
 				GL11.glTranslatef(0, 0.57f, -0.3f);
 			}
-
 		}
 		else
 		{
@@ -751,6 +755,24 @@ public class ModelXWingNew extends ModelBase
 			this.Gear6.isHidden = flag;
 		}
 		this.MainParent.render(f5);
+		if (entity instanceof VehicXWing)
+		{
+			VehicXWing xwing = (VehicXWing)entity;
+			if (xwing.getHasAstro())
+			{
+				Entity astro = xwing.getAstroType() == 0 ? new MobDroidAstromech(xwing.worldObj) : new MobDroidAstromech2(xwing.worldObj);
+				GL11.glPushMatrix();
+				GL11.glRotatef(180, 0, 1, 0);
+				GL11.glRotatef(-9, 1, 0, 0);
+				GL11.glScalef(1, -1, 1);
+				GLPZ.glScalef(0.6f);
+				GL11.glTranslatef(0, -2f, -2.4f);
+				Render render = RenderManager.instance.getEntityRenderObject(astro);
+				astro.setEntityId(1337);
+				render.doRender(astro, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+				GL11.glPopMatrix();
+			}
+		}
 	}
 
 	/**

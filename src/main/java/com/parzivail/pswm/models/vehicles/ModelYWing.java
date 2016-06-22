@@ -2,9 +2,14 @@ package com.parzivail.pswm.models.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
+import com.parzivail.pswm.mobs.MobDroidAstromech2;
 import com.parzivail.pswm.vehicles.VehicYWing;
+import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
@@ -305,24 +310,25 @@ public class ModelYWing extends ModelBase
 	{
 		if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
 			GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
-		boolean flag = true;
+		boolean flag;
 		if (entity instanceof VehicYWing)
 		{
 			flag = entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ);
-		}
-		this.LandingGear1.isHidden = flag;
-		this.LandingGear2.isHidden = flag;
-		this.LandingGear3.isHidden = flag;
-		this.LandingGear4.isHidden = flag;
-		this.LandingGear5.isHidden = flag;
-		this.LandingGear6.isHidden = flag;
 
-		flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
-		this.Neck.isHidden = flag;
+			this.LandingGear1.isHidden = flag;
+			this.LandingGear2.isHidden = flag;
+			this.LandingGear3.isHidden = flag;
+			this.LandingGear4.isHidden = flag;
+			this.LandingGear5.isHidden = flag;
+			this.LandingGear6.isHidden = flag;
 
-		if (flag)
-		{
-			GL11.glTranslatef(0, 0.4f, -0.3f);
+			flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
+			this.Neck.isHidden = flag;
+
+			if (flag)
+			{
+				GL11.glTranslatef(0, 0.4f, -0.3f);
+			}
 		}
 
 		this.ConnectorR1.render(f5);
@@ -391,6 +397,25 @@ public class ModelYWing extends ModelBase
 		this.Wings.render(f5);
 		this.Neck_3.render(f5);
 		this.Neck_1.render(f5);
+
+		if (entity instanceof VehicYWing)
+		{
+			VehicYWing ywing = (VehicYWing)entity;
+			if (ywing.getHasAstro())
+			{
+				Entity astro = ywing.getAstroType() == 0 ? new MobDroidAstromech(ywing.worldObj) : new MobDroidAstromech2(ywing.worldObj);
+				GL11.glPushMatrix();
+				GL11.glRotatef(180, 0, 1, 0);
+				GL11.glRotatef(-9, 1, 0, 0);
+				GL11.glScalef(1, -1, 1);
+				GLPZ.glScalef(0.6f);
+				GL11.glTranslatef(0, -2.4f, -1.3f);
+				Render render = RenderManager.instance.getEntityRenderObject(astro);
+				astro.setEntityId(1337);
+				render.doRender(astro, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+				GL11.glPopMatrix();
+			}
+		}
 	}
 
 	/**

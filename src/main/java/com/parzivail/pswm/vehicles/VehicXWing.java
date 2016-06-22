@@ -9,6 +9,7 @@ import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipAstroDetails;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,7 +59,7 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		this.dataWatcher.addObject(SFOIL_DW + 1, 0);
 		this.dataWatcher.setObjectWatched(SFOIL_DW + 1);
 		this.dataWatcher.addObject(SFOIL_DW + 2, 0);
-		this.dataWatcher.setObjectWatched(SFOIL_DW + 1);
+		this.dataWatcher.setObjectWatched(SFOIL_DW + 2);
 	}
 
 	@Override
@@ -113,14 +114,14 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		}
 		else if (itemstack == null || itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
 			return super.interact(p_70085_1_);
-		else if (itemstack.getItem() instanceof ItemSpawnAstromech && !getHasAstro())
+		else if (p_70085_1_.isSneaking() && itemstack.getItem() instanceof ItemSpawnAstromech && !getHasAstro())
 		{
 			StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, true, 0));
 			setHasAstro(true);
 			setAstroType(0);
 			return true;
 		}
-		else if (itemstack.getItem() instanceof ItemSpawnAstromech2 && !getHasAstro())
+		else if (p_70085_1_.isSneaking() && itemstack.getItem() instanceof ItemSpawnAstromech2 && !getHasAstro())
 		{
 			StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, true, 1));
 			setHasAstro(true);
@@ -147,6 +148,9 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 			this.setSFoil(this.getSFoil() - 1 / 30f);
 			this.isClosing = this.getSFoil() > 0;
 		}
+
+		if (this.riddenByEntity != null && this.getHasAstro() && MathUtils.oneIn(300))
+			this.worldObj.playSoundAtEntity(this.riddenByEntity, Resources.MODID + ":" + "mob.astromech.say", 1, 1);
 
 		if ((this.isOpening || this.isClosing) && this.riddenByEntity instanceof EntityPlayer)
 			StarWarsMod.network.sendToServer(new MessageSFoil((EntityPlayer)this.riddenByEntity, this.getSFoil()));

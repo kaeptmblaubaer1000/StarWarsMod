@@ -75,13 +75,17 @@ public class ModelDroidAstromech extends ModelBase
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.head.render(f5);
-		this.body.render(f5);
-		this.rightarm.render(f5);
-		this.leftarm.render(f5);
-		this.FootR.render(f5);
-		this.FootL.render(f5);
-		this.FootM.render(f5);
-		this.LegM.render(f5);
+
+		if (entity == null || entity.getEntityId() != 1337)
+		{
+			this.body.render(f5);
+			this.rightarm.render(f5);
+			this.leftarm.render(f5);
+			this.FootR.render(f5);
+			this.FootL.render(f5);
+			this.FootM.render(f5);
+			this.LegM.render(f5);
+		}
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
