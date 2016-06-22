@@ -2,10 +2,10 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.block.PBlockSlab;
 import com.parzivail.util.world.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public class BlockTempleStoneSlab extends BlockSlab
+public class BlockTempleStoneSlab extends PBlockSlab
 {
 	public static final String[] names = new String[] { "templeStone", "templeStoneBrick", "templeStoneBrickFancy", "templeStoneSlab" };
 	@SideOnly(Side.CLIENT)
@@ -25,8 +25,7 @@ public class BlockTempleStoneSlab extends BlockSlab
 
 	public BlockTempleStoneSlab(boolean p_i45431_1_, boolean lit)
 	{
-		super(p_i45431_1_, Material.rock);
-		setBlockName(Resources.MODID + "." + "templeStoneSlab" + (lit ? "Lit" : ""));
+		super("templeStoneSlab" + (lit ? "Lit" : ""), p_i45431_1_, Material.rock);
 		if (lit)
 			this.setLightLevel(1);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);

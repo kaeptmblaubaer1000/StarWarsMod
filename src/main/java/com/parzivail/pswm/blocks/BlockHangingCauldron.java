@@ -3,21 +3,20 @@ package com.parzivail.pswm.blocks;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHangingCauldron;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockHangingCauldron extends BlockContainer
+public class BlockHangingCauldron extends PBlockContainer
 {
 	public BlockHangingCauldron()
 	{
-		super(Material.iron);
+		super("cauldronHanging", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "cauldronHanging");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

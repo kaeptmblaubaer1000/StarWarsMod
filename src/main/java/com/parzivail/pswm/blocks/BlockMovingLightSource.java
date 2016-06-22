@@ -1,7 +1,7 @@
 package com.parzivail.pswm.blocks;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.tileentities.TileEntityMovingLightSource;
+import com.parzivail.util.block.PBlockContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -9,12 +9,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class BlockMovingLightSource extends Block implements ITileEntityProvider
+public class BlockMovingLightSource extends PBlockContainer implements ITileEntityProvider
 {
 	public BlockMovingLightSource()
 	{
-		super(Material.air);
-		setBlockName(Resources.MODID + ":" + "movingLightSource");
+		super("movingLightSource", Material.air);
 		setTickRandomly(false);
 		setLightLevel(0.5F);
 		setBlockBounds(0.5F, 0.5F, 0.5F, 0.5F, 0.5F, 0.5F);

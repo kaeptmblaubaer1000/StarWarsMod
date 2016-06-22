@@ -4,9 +4,9 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,13 +21,12 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockMV extends BlockContainer implements IDebugProvider
+public class BlockMV extends PBlockContainer implements IDebugProvider
 {
 	public BlockMV()
 	{
-		super(Material.iron);
+		super("moistureVaporator", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "moistureVaporator");
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 4.0F, 1.0F);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

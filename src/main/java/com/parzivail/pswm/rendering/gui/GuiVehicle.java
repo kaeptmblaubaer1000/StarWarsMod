@@ -537,7 +537,7 @@ public class GuiVehicle
 
 					this.lastTarget = e;
 
-					ClientEventHandler.pgui.renderOverlay(Resources.snowspeederOverlay);
+					ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
 				{

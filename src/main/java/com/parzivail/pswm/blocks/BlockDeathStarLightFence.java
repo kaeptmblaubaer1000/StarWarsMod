@@ -2,20 +2,17 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import net.minecraft.block.BlockFence;
+import com.parzivail.util.block.PBlockFence;
 import net.minecraft.block.material.Material;
 
 /**
  * Created by Colby on 6/6/2016.
  */
-public class BlockDeathStarLightFence extends BlockFence
+public class BlockDeathStarLightFence extends PBlockFence
 {
-	public String name = "deathStarLightFence";
-
 	public BlockDeathStarLightFence()
 	{
-		super(Resources.MODID + ":" + "deathStarBlockHangarWallPanel", Material.ground);
-		setBlockName(Resources.MODID + "." + name);
+		super("deathStarLightFence", Resources.MODID + ":" + "deathStarBlockHangarWallPanel", Material.ground);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		setStepSound(soundTypeMetal);

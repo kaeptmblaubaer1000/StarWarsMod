@@ -264,6 +264,7 @@ public class BlockRegister
 		StarWarsMod.blockTable2 = new BlockMudTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable2, "mudTable");
 		GameRegistry.registerTileEntity(TileEntityMudTable.class, "teMudTable");
+
 		Lumberjack.info("Blocks, reporting for duty!");
 	}
 }

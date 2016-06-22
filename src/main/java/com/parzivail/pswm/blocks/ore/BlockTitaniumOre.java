@@ -3,21 +3,18 @@ package com.parzivail.pswm.blocks.ore;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.block.PBlock;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
 import java.util.Random;
 
-public class BlockTitaniumOre extends Block
+public class BlockTitaniumOre extends PBlock
 {
-	public String name = "titaniumOre";
-
 	public BlockTitaniumOre()
 	{
-		super(Material.rock);
-		setBlockName(Resources.MODID + "." + name);
+		super("titaniumOre", Material.rock);
 		setBlockTextureName(Resources.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);

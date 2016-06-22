@@ -2,7 +2,7 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.tileentities.TileEntityAncientJediStatue;
-import net.minecraft.block.BlockContainer;
+import com.parzivail.util.block.PBlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,12 +13,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockAncientJediStatue extends BlockContainer
+public class BlockAncientJediStatue extends PBlockContainer
 {
 	public BlockAncientJediStatue()
 	{
-		super(Material.iron);
-		setBlockName(Resources.MODID + "." + "ancientJediStatue");
+		super("ancientJediStatue", Material.iron);
 		setBlockBounds(-3.0F, 0.0F, -3.0F, 4.0F, 26.0F, 4.0F);
 		setHardness(50.0F);
 		setBlockUnbreakable();

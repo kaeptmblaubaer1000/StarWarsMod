@@ -3,11 +3,11 @@ package com.parzivail.pswm.blocks;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityCrystalCompressor;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -18,13 +18,12 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockCrystalCompressor extends BlockContainer
+public class BlockCrystalCompressor extends PBlockContainer
 {
 	public BlockCrystalCompressor()
 	{
-		super(Material.iron);
+		super("crystalCompressor", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "crystalCompressor");
 		setBlockBounds(0, 0, 0, 1, 1, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

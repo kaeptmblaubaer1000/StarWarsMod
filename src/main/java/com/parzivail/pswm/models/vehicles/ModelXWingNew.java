@@ -736,7 +736,7 @@ public class ModelXWingNew extends ModelBase
 
 			if (flag)
 			{
-				GL11.glTranslatef(0, 0.52f, -0.3f);
+				GL11.glTranslatef(0, 0.57f, -0.3f);
 			}
 
 		}

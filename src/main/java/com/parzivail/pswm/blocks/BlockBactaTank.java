@@ -4,8 +4,8 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,13 +15,12 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockBactaTank extends BlockContainer implements IDebugProvider
+public class BlockBactaTank extends PBlockContainer implements IDebugProvider
 {
 	public BlockBactaTank()
 	{
-		super(Material.iron);
+		super("bactaTank", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "bactaTank");
 		setBlockBounds(0, 0, 0, 1, 0.83f, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

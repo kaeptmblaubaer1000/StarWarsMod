@@ -4,8 +4,8 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHyperdrive;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,13 +14,12 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockHyperdrive extends BlockContainer implements IDebugProvider
+public class BlockHyperdrive extends PBlockContainer implements IDebugProvider
 {
 	public BlockHyperdrive()
 	{
-		super(Material.iron);
+		super("hyperdriveBlock", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "hyperdriveBlock");
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}

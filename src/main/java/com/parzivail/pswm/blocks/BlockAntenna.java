@@ -6,8 +6,8 @@ import com.parzivail.pswm.items.ItemHydrospanner;
 import com.parzivail.pswm.rendering.gui.AnimationAntennaOpen;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,13 +19,12 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockAntenna extends BlockContainer implements IDebugProvider
+public class BlockAntenna extends PBlockContainer implements IDebugProvider
 {
 	public BlockAntenna()
 	{
-		super(Material.iron);
+		super("antenna", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "antenna");
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}

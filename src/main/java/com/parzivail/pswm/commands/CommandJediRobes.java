@@ -87,13 +87,13 @@ public class CommandJediRobes extends CommandBase
 		else
 		{
 			ItemStack robes = Cron.getHolocron(player);
-			icommandsender.addChatMessage(new ChatComponentText("Usage: " + this.getCommandUsage(icommandsender)));
+			icommandsender.addChatMessage(new ChatComponentText("[Cron] Usage: " + this.getCommandUsage(icommandsender)));
 			if (player == null)
-				icommandsender.addChatMessage(new ChatComponentText("Error: ship is null!"));
+				icommandsender.addChatMessage(new ChatComponentText("[Cron] Error: ship is null!"));
 			else if (robes == null)
-				icommandsender.addChatMessage(new ChatComponentText("Error: You must have a Holocron!"));
+				icommandsender.addChatMessage(new ChatComponentText("[Cron] Error: You must have a Holocron!"));
 			else
-				icommandsender.addChatMessage(new ChatComponentText("Unknown key!"));
+				icommandsender.addChatMessage(new ChatComponentText("[Cron] Unknown key!"));
 		}
 	}
 }

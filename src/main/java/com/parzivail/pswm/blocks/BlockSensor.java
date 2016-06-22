@@ -3,7 +3,7 @@ package com.parzivail.pswm.blocks;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntitySensor;
-import net.minecraft.block.BlockContainer;
+import com.parzivail.util.block.PBlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,14 +12,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockSensor extends BlockContainer
+public class BlockSensor extends PBlockContainer
 {
 	public BlockSensor(String name)
 	{
-		super(Material.iron);
+		super("sensor-" + name, Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "sensor." + name);
-		setBlockTextureName(Resources.MODID + ":" + "sensor");
+		setBlockTextureName(Resources.MODID + ":" + name);
 		this.setBlockUnbreakable();
 		this.setResistance(6000000.0F);
 		this.setStepSound(soundTypePiston);

@@ -2,19 +2,17 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.block.PBlock;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 
-public class BlockIlumStone extends Block
+public class BlockIlumStone extends PBlock
 {
-	public String name = "ilumStone";
-
 	public BlockIlumStone()
 	{
-		super(Material.rock);
-		setBlockName(Resources.MODID + "." + name);
+		super("ilumStone", Material.rock);
 		setBlockTextureName(Resources.MODID + ":" + name);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);

@@ -7,10 +7,10 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableLarge;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,16 +23,15 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockHolotable extends BlockContainer implements IDebugProvider
+public class BlockHolotable extends PBlockContainer implements IDebugProvider
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon topIcon;
 
 	public BlockHolotable()
 	{
-		super(Material.iron);
+		super("holoTable", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "holoTable");
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}

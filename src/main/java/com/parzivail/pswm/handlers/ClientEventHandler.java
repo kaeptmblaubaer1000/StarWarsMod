@@ -263,7 +263,7 @@ public class ClientEventHandler
 			{
 				ClientEventHandler.pgui.changeCameraDist(4);
 
-				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+				//event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{

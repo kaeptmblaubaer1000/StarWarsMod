@@ -2,10 +2,10 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.block.PBlock;
 import com.parzivail.util.world.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,17 +15,15 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class BlockEndorBaseWall extends Block
+public class BlockEndorBaseWall extends PBlock
 {
-	public String name = "endorBaseWall";
 	private int subtypes = 6;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 
 	public BlockEndorBaseWall()
 	{
-		super(Material.rock);
-		setBlockName(Resources.MODID + "." + name);
+		super("endorBaseWall", Material.rock);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(4.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

@@ -2,10 +2,10 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.block.PBlock;
 import com.parzivail.util.world.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,12 +15,9 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class BlockTatooineSandstone extends Block
+public class BlockTatooineSandstone extends PBlock
 {
-	public static final String[] field_150157_a = { "default", "chiseled", "smooth" };
 	private static final String[] field_150156_b = { "normal", "carved", "smooth" };
-	public String name = "tatooineSandstone";
-	private int subtypes = 3;
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons;
 	@SideOnly(Side.CLIENT)
@@ -32,8 +29,7 @@ public class BlockTatooineSandstone extends Block
 
 	public BlockTatooineSandstone()
 	{
-		super(Material.ground);
-		setBlockName(Resources.MODID + "." + name);
+		super("tatooineSandstone", Material.ground);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(0.5F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.WOOD);
@@ -59,7 +55,7 @@ public class BlockTatooineSandstone extends Block
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List metaTypes)
 	{
-		for (int i = 0; i < subtypes; i++)
+		for (int i = 0; i < 3; i++)
 			metaTypes.add(new ItemStack(item, 1, i));
 	}
 

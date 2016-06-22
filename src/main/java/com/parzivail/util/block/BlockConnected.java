@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockConnected extends Block
+public class BlockConnected extends PBlock
 {
 	protected IIcon[] icons = new IIcon[16];
 	private String folder;
@@ -17,14 +17,17 @@ public class BlockConnected extends Block
 
 	public BlockConnected(String name, Material mat)
 	{
-		super(mat);
-		this.texture = name;
-		this.folder = name;
+		this(name, name, name, mat);
 	}
 
-	public BlockConnected(String folder, String name, Material mat)
+	public BlockConnected(String unlocalName, String name, Material mat)
 	{
-		super(mat);
+		this(unlocalName, name, name, mat);
+	}
+
+	public BlockConnected(String unlocalName, String folder, String name, Material mat)
+	{
+		super(unlocalName, mat);
 		this.texture = name;
 		this.folder = folder;
 	}

@@ -1,18 +1,14 @@
 package com.parzivail.pswm.blocks;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.block.PBlockStairs;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockStairs;
 
-public class BlockEndorBaseWallStairs extends BlockStairs
+public class BlockEndorBaseWallStairs extends PBlockStairs
 {
-	public String name = "endorBaseWallStairs";
-
 	public BlockEndorBaseWallStairs()
 	{
-		super(StarWarsMod.blockEndorBaseWall, 0);
-		setBlockName(Resources.MODID + "." + name);
+		super("endorBaseWallStairs", StarWarsMod.blockEndorBaseWall, 0);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 		this.useNeighborBrightness = true;

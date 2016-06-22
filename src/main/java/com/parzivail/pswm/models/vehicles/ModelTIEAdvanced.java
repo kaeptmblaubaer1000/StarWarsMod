@@ -638,7 +638,6 @@ public class ModelTIEAdvanced extends ModelBase
 
 		if (entity != null)
 		{
-
 			boolean flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
 			Cockpit.isHidden = flag;
 			BodyPanel1.isHidden = flag;

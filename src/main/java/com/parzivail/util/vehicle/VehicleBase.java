@@ -79,21 +79,24 @@ public class VehicleBase extends EntityLiving
 
 		this.setRotation(this.rotationYawLast, this.rotationPitchLast);
 
-		System.arraycopy(this.tiltTable, 1, this.tiltTable, 0, this.tiltTable.length - 1);
+		if (worldObj.isAirBlock((int)posX, (int)posY - 1, (int)posZ))
+		{
+			System.arraycopy(this.tiltTable, 1, this.tiltTable, 0, this.tiltTable.length - 1);
 
-		float t = this.rotationYaw - this.prevRotationYaw;
+			float t = this.rotationYaw - this.prevRotationYaw;
 
-		if (t > this.tiltMax)
-			t = this.tiltMax;
-		if (t < -this.tiltMax)
-			t = -this.tiltMax;
+			if (t > this.tiltMax)
+				t = this.tiltMax;
+			if (t < -this.tiltMax)
+				t = -this.tiltMax;
 
-		this.tiltTable[this.tiltTable.length - 1] = t;
+			this.tiltTable[this.tiltTable.length - 1] = t;
 
-		for (float i : this.tiltTable)
-			this.tilt += i;
+			for (float i : this.tiltTable)
+				this.tilt += i;
 
-		this.tilt /= this.tiltTable.length;
+			this.tilt /= this.tiltTable.length;
+		}
 	}
 
 	@Override

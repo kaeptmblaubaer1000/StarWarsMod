@@ -1,6 +1,7 @@
 package com.parzivail.pswm.models.vehicles;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.vehicles.VehicYWing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -315,6 +316,14 @@ public class ModelYWing extends ModelBase
 		this.LandingGear4.isHidden = flag;
 		this.LandingGear5.isHidden = flag;
 		this.LandingGear6.isHidden = flag;
+
+		flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
+		this.Neck.isHidden = flag;
+
+		if (flag)
+		{
+			GL11.glTranslatef(0, 0.4f, -0.3f);
+		}
 
 		this.ConnectorR1.render(f5);
 		this.LandingGear3.render(f5);

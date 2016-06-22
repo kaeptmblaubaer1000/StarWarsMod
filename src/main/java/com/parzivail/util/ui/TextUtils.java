@@ -176,4 +176,9 @@ public class TextUtils
 			return "Lil' Baby Banthy Banth";
 		return english;
 	}
+
+	public static String upperFirst(String s)
+	{
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
+	}
 }

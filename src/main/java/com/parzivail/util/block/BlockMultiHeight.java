@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,22 +11,18 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockMultiHeight extends Block
+public class BlockMultiHeight extends PBlock
 {
-	public String name = "multiHeight";
 	private String texture;
 
 	public BlockMultiHeight(String texture)
 	{
-		super(Material.rock);
+		super("multiHeight" + "." + texture, Material.rock);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 		this.setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + name + "." + texture);
 		this.setBlockBoundsFromHeight(0);
 
 		this.texture = texture;
-
-		// TODO: make this have a helper item to specify two places and make a slope between them
 	}
 
 	@SideOnly(Side.CLIENT)

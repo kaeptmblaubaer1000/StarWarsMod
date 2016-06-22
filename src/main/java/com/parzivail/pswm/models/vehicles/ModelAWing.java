@@ -414,7 +414,7 @@ public class ModelAWing extends ModelBase
 			{
 				float anf = entity.rotationPitch / 90f;
 				float nf = 1 - Math.abs(anf);
-				GL11.glTranslatef(0, nf / 3f, -anf / 2f - 1);
+				GL11.glTranslatef(0, nf / 3f + 0.2f, -anf / 2f - 1);
 			}
 
 			if (!entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ))

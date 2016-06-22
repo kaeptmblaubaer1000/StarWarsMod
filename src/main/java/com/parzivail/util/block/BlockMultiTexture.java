@@ -3,7 +3,6 @@ package com.parzivail.util.block;
 import com.parzivail.pswm.Resources;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,9 +12,8 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class BlockMultiTexture extends Block
+public class BlockMultiTexture extends PBlock
 {
-	public String name;
 	private String[] names;
 	private int subtypes;
 	@SideOnly(Side.CLIENT)
@@ -23,11 +21,9 @@ public class BlockMultiTexture extends Block
 
 	public BlockMultiTexture(String base, String[] postfixes, Material material)
 	{
-		super(material);
-		this.name = base;
+		super(base, material);
 		this.names = postfixes;
 		this.subtypes = this.names.length;
-		this.setBlockName(Resources.MODID + "." + this.name);
 	}
 
 	@Override

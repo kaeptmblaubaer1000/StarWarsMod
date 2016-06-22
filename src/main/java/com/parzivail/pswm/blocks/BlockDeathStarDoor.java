@@ -4,8 +4,8 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,13 +17,12 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockDeathStarDoor extends BlockContainer implements IDebugProvider
+public class BlockDeathStarDoor extends PBlockContainer implements IDebugProvider
 {
 	public BlockDeathStarDoor()
 	{
-		super(Material.iron);
+		super("deathStarDoor", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockName(Resources.MODID + "." + "deathStarDoor");
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}

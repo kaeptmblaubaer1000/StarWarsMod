@@ -6,8 +6,8 @@ import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,22 +21,20 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockNpcBase extends BlockContainer implements IDebugProvider
+public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 {
 	public String id;
 	String armor;
 
 	public BlockNpcBase(Quest quest, String armor, String side, String skin)
 	{
-		super(Material.iron);
+		super("staticNpc." + quest.getID().toLowerCase().replaceAll("[^a-z]", ""), Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 
 		this.id = QuestNpcUtils.makeNpcId(quest.getID().toLowerCase().replaceAll("[^a-z]", ""), side.toLowerCase().replaceAll("[^a-z]", ""), skin);
-
-		setBlockName(Resources.MODID + "." + "staticNpc." + quest.getID().toLowerCase().replaceAll("[^a-z]", ""));
 
 		this.armor = armor;
 	}
