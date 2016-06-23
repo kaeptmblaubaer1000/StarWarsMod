@@ -15,7 +15,6 @@ import com.parzivail.pswm.tabs.StarWarsTab;
 import com.parzivail.pswm.tabs.StarWarsTabBlocks;
 import com.parzivail.util.block.*;
 import com.parzivail.util.ui.Lumberjack;
-import com.rollbar.Rollbar;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -44,6 +43,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
+
+//import com.rollbar.Rollbar;
 
 @Mod(modid = Resources.MODID,
      version = Resources.VERSION,
@@ -185,11 +186,11 @@ public class StarWarsMod
 	public static DamageSource blasterDamageSource;
 	public static DamageSource saberDamageSource;
 
-	public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
+	//public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
 
 	public StarWarsMod()
 	{
-		rollbar.handleUncaughtErrors();
+		//rollbar.handleUncaughtErrors();
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
 		this.checkJavaVersion();
 		this.checkModVersion();
