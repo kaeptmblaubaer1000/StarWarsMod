@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
-import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
@@ -54,7 +53,7 @@ public class CommonEventHandler
 	private boolean shouldPowerSync = false;
 
 	@SubscribeEvent
-	public void logOut(PlayerLoggedInEvent event) throws UserError
+	public void logOut(PlayerLoggedInEvent event)
 	{
 		this.resetRobes(event);
 	}

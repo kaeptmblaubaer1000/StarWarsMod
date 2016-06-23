@@ -1,6 +1,7 @@
 package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
@@ -27,6 +28,7 @@ public class EntityThrownSaber extends EntityThrowable
 
 	private static final int SENDER_DW = 14;
 	private static final int ITEMSTACK_DW = 15;
+	private static final int SLOT_DW = 16;
 
 	public EntityThrownSaber(World par1World)
 	{
@@ -47,8 +49,10 @@ public class EntityThrownSaber extends EntityThrowable
 	public void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(SENDER_DW, 0);
+		this.dataWatcher.addObject(SENDER_DW, "");
 		this.dataWatcher.setObjectWatched(SENDER_DW);
+		this.dataWatcher.addObject(SLOT_DW, 0);
+		this.dataWatcher.setObjectWatched(SLOT_DW);
 		this.dataWatcher.addObject(ITEMSTACK_DW, new ItemStack(Blocks.air, 0));
 		this.dataWatcher.setObjectWatched(ITEMSTACK_DW);
 	}
@@ -79,9 +83,14 @@ public class EntityThrownSaber extends EntityThrowable
 		return 0.0F;
 	}
 
-	public EntityLivingBase getSender()
+	public EntityPlayer getSender()
 	{
-		return (EntityLivingBase)this.worldObj.getEntityByID(dataWatcher.getWatchableObjectInt(SENDER_DW));
+		return this.worldObj.getPlayerEntityByName(dataWatcher.getWatchableObjectString(SENDER_DW));
+	}
+
+	public int getSlot()
+	{
+		return dataWatcher.getWatchableObjectInt(SLOT_DW);
 	}
 
 	public ItemStack getSaberStack()
@@ -146,7 +155,7 @@ public class EntityThrownSaber extends EntityThrowable
 	{
 		if (getSender() instanceof EntityPlayer)
 		{
-			getSender().setCurrentItemOrArmor(0, getSaberStack());
+			((EntityPlayer)getSender()).inventory.mainInventory[getSlot()] = getSaberStack();
 		}
 	}
 
@@ -177,19 +186,39 @@ public class EntityThrownSaber extends EntityThrowable
 	@Override
 	public void writeToNBT(NBTTagCompound p_70109_1_)
 	{
+		p_70109_1_.setString("sender", getSender().getCommandSenderName());
+		p_70109_1_.setInteger("slot", getSlot());
+		p_70109_1_.setTag("stack", getSaberStack().stackTagCompound);
 		super.writeToNBT(p_70109_1_);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound p_70020_1_)
 	{
+		setSender(p_70020_1_.getString("sender"));
+		setSlot(p_70020_1_.getInteger("slot"));
+		ItemStack stack = new ItemStack(StarWarsItems.lightsaberNew[0]);
+		stack.stackTagCompound = p_70020_1_.getCompoundTag("stack");
+		setSaberStack(stack);
 		super.readFromNBT(p_70020_1_);
 	}
 
 	public void setSender(EntityLivingBase sender)
 	{
-		this.dataWatcher.updateObject(SENDER_DW, sender.getEntityId());
+		this.dataWatcher.updateObject(SENDER_DW, sender.getCommandSenderName());
 		this.dataWatcher.setObjectWatched(SENDER_DW);
+	}
+
+	public void setSender(String name)
+	{
+		this.dataWatcher.updateObject(SENDER_DW, name);
+		this.dataWatcher.setObjectWatched(SENDER_DW);
+	}
+
+	public void setSlot(int id)
+	{
+		this.dataWatcher.updateObject(SLOT_DW, id);
+		this.dataWatcher.setObjectWatched(SLOT_DW);
 	}
 
 	public void setSaberStack(ItemStack stack)

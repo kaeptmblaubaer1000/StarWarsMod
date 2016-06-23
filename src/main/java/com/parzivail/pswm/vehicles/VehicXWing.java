@@ -98,38 +98,49 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	}
 
 	@Override
-	public boolean interact(EntityPlayer p_70085_1_)
+	public boolean interact(EntityPlayer player)
 	{
-		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
+		ItemStack itemstack = player.inventory.getCurrentItem();
 
-		if (p_70085_1_.isSneaking() && getHasAstro())
+		if (player.isSneaking())
 		{
-			if (worldObj.isRemote)
+			if (getHasAstro())
 			{
-				StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, false, 0));
-				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(p_70085_1_, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
-				setHasAstro(false);
+				if (worldObj.isRemote)
+				{
+					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, false, 0));
+					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
+					setHasAstro(false);
+				}
+			}
+			else if (itemstack.getItem() instanceof ItemSpawnAstromech)
+			{
+				StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 0));
+				setHasAstro(true);
+				setAstroType(0);
+				return true;
+			}
+			else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
+			{
+				StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 1));
+				setHasAstro(true);
+				setAstroType(1);
+				return true;
 			}
 			return true;
 		}
-		else if (itemstack == null || itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
-			return super.interact(p_70085_1_);
-		else if (p_70085_1_.isSneaking() && itemstack.getItem() instanceof ItemSpawnAstromech && !getHasAstro())
+		else if (itemstack == null)
 		{
-			StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, true, 0));
-			setHasAstro(true);
-			setAstroType(0);
-			return true;
-		}
-		else if (p_70085_1_.isSneaking() && itemstack.getItem() instanceof ItemSpawnAstromech2 && !getHasAstro())
-		{
-			StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, p_70085_1_, true, 1));
-			setHasAstro(true);
-			setAstroType(1);
-			return true;
+			if (player.isSneaking())
+			{
+				player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
+				return true;
+			}
+			else
+				return super.interact(player);
 		}
 
-		return super.interact(p_70085_1_);
+		return super.interact(player);
 	}
 
 	@Override

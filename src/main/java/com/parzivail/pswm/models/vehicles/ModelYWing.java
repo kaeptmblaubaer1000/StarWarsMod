@@ -409,7 +409,7 @@ public class ModelYWing extends ModelBase
 				GL11.glRotatef(-9, 1, 0, 0);
 				GL11.glScalef(1, -1, 1);
 				GLPZ.glScalef(0.6f);
-				GL11.glTranslatef(0, -2.4f, -1.3f);
+				GL11.glTranslatef(0, -2.43f, -1.22f);
 				Render render = RenderManager.instance.getEntityRenderObject(astro);
 				astro.setEntityId(1337);
 				render.doRender(astro, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
