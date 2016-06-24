@@ -48,8 +48,13 @@ public class VehicAWing extends VehicleAirBase
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
-		if (player.isSneaking() && player.getHeldItem() == null && player.worldObj.isRemote)
-			player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+		if (player.isSneaking())
+		{
+			if (!worldObj.isRemote)
+				player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
+			return true;
+		}
+
 		return super.interact(player);
 	}
 }

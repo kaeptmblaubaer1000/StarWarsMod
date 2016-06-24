@@ -31,7 +31,11 @@ public class GuiHandler implements IGuiHandler
 		else if (id == Resources.GUI_SCANNER)
 			return new GuiIDScanner(player);
 		else if (id == Resources.GUI_HYPERDRIVE)
-			return new GuiScreenHyperdrive(player);
+		{
+			GuiScreenHyperdrive guiScreenHyperdrive = new GuiScreenHyperdrive(player);
+			guiScreenHyperdrive.didComeFromBlock = world.getTileEntity(x, y, z) instanceof TileEntityHyperdrive;
+			return guiScreenHyperdrive;
+		}
 		else if (id == Resources.GUI_ANTENNA)
 			return new GuiAntenna(player, (TileEntityAntenna)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_CRYSTALCOMPRESSOR)

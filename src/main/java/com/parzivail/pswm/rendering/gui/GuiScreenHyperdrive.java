@@ -79,6 +79,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 	private PlanetInformation oldZoomPlanet;
 
 	private boolean canJump;
+	public boolean didComeFromBlock = false;
 
 	private AnimationZoom animationZoom;
 
@@ -210,10 +211,11 @@ public class GuiScreenHyperdrive extends GuiScreen
 		qlog = ItemQuestContainer.getQuestContainer(player);
 
 		buttonEatHyperdrive = new OutlineButton(id++, 15, 215, 100, 20, "Program NavCom", false);
+		buttonEatHyperdrive.enabled = !didComeFromBlock;
 		buttonList.add(buttonEatHyperdrive);
 
 		buttonTravel = new OutlineButton(id, 125, 215, 100, 20, "Jump to Lightspeed", false);
-		buttonTravel.enabled = canJump;
+		buttonTravel.enabled = canJump && !didComeFromBlock;
 		buttonList.add(buttonTravel);
 	}
 
