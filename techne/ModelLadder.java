@@ -17,21 +17,21 @@ public class ModelLadder extends ModelBase {
     public ModelLadder() {
         this.textureWidth = 512;
         this.textureHeight = 512;
+        this.shape1_3 = new ModelRenderer(this, 0, 100);
+        this.shape1_3.setRotationPoint(15.0F, 0.0F, 0.0F);
+        this.shape1_3.addBox(-14.5F, -5.0F, -1.0F, 14, 1, 2, 0.0F);
+        this.shape1_1 = new ModelRenderer(this, 0, 44);
+        this.shape1_1.setRotationPoint(15.0F, 0.0F, 0.0F);
+        this.shape1_1.addBox(-0.5F, -8.0F, -1.0F, 1, 16, 2, 0.0F);
+        this.shape1_2 = new ModelRenderer(this, 49, 0);
+        this.shape1_2.setRotationPoint(15.0F, 0.0F, 0.0F);
+        this.shape1_2.addBox(-14.5F, 3.0F, -1.0F, 14, 1, 2, 0.0F);
         this.shape1 = new ModelRenderer(this, 0, 0);
         this.shape1.setRotationPoint(-7.5F, 16.0F, 0.0F);
         this.shape1.addBox(-0.5F, -8.0F, -1.0F, 1, 16, 2, 0.0F);
-        this.shape1_2 = new ModelRenderer(this, 0, 0);
-        this.shape1_2.setRotationPoint(15.0F, 0.0F, 0.0F);
-        this.shape1_2.addBox(-14.5F, 3.0F, -1.0F, 14, 1, 2, 0.0F);
-        this.shape1_1 = new ModelRenderer(this, 0, 0);
-        this.shape1_1.setRotationPoint(15.0F, 0.0F, 0.0F);
-        this.shape1_1.addBox(-0.5F, -8.0F, -1.0F, 1, 16, 2, 0.0F);
-        this.shape1_3 = new ModelRenderer(this, 0, 0);
-        this.shape1_3.setRotationPoint(15.0F, 0.0F, 0.0F);
-        this.shape1_3.addBox(-14.5F, -5.0F, -1.0F, 14, 1, 2, 0.0F);
-        this.shape1.addChild(this.shape1_2);
-        this.shape1.addChild(this.shape1_1);
         this.shape1.addChild(this.shape1_3);
+        this.shape1.addChild(this.shape1_1);
+        this.shape1.addChild(this.shape1_2);
     }
 
     @Override
