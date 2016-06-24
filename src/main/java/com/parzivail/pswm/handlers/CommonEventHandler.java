@@ -18,6 +18,7 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -191,6 +192,9 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyLSForge.isPressed() && StarWarsMod.mc.thePlayer.capabilities.isCreativeMode)
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
+
+		if (KeybindRegistry.keyShipHyperdrive.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase && !(StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder) && !(StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper))
+			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyLSToggle.isPressed())
 		{

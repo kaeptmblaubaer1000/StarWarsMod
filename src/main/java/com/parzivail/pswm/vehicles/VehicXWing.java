@@ -113,31 +113,27 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 					setHasAstro(false);
 				}
 			}
-			else if (itemstack.getItem() instanceof ItemSpawnAstromech)
+			else if (itemstack != null)
 			{
-				StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 0));
-				setHasAstro(true);
-				setAstroType(0);
-				return true;
-			}
-			else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
-			{
-				StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 1));
-				setHasAstro(true);
-				setAstroType(1);
-				return true;
-			}
-			return true;
-		}
-		else if (itemstack == null)
-		{
-			if (player.isSneaking())
-			{
-				player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
-				return true;
+				if (itemstack.getItem() instanceof ItemSpawnAstromech)
+				{
+					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 0));
+					setHasAstro(true);
+					setAstroType(0);
+				}
+				else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
+				{
+					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 1));
+					setHasAstro(true);
+					setAstroType(1);
+				}
 			}
 			else
-				return super.interact(player);
+			{
+				if (!worldObj.isRemote)
+					player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
+			}
+			return true;
 		}
 
 		return super.interact(player);

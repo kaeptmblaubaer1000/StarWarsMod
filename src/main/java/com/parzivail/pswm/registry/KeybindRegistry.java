@@ -31,6 +31,8 @@ public class KeybindRegistry
 	public static KeyBinding keyLSToggle;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyShootProton;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipHyperdrive;
 
 	public static void registerAll()
 	{
@@ -43,14 +45,14 @@ public class KeybindRegistry
 		KeybindRegistry.keyLSForge = registerKeybind("lsForge", Keyboard.KEY_P);
 		KeybindRegistry.keyLSToggle = registerKeybind("lsToggle", Keyboard.KEY_O);
 		KeybindRegistry.keyShootProton = registerKeybind("shootProton", Keyboard.KEY_I);
+		KeybindRegistry.keyShipHyperdrive = registerKeybind("shipHyperdrive", Keyboard.KEY_U);
 		if (Resources.IS_DEV_ENVIRONVENT)
 		{
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
-			KeybindRegistry.keyQuest = registerKeybind("quest", Keyboard.KEY_B);
 		}
 	}
 
-	public static KeyBinding registerKeybind(String keyName, int keyCode)
+	private static KeyBinding registerKeybind(String keyName, int keyCode)
 	{
 		KeyBinding b = new KeyBinding("key." + Resources.MODID + "." + keyName, keyCode, "key." + Resources.MODID);
 		ClientRegistry.registerKeyBinding(b);
