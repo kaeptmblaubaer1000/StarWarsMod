@@ -6,6 +6,7 @@ import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.math.TickComparator;
 import com.parzivail.util.sound.PSoundBank;
+import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.vehicle.VehicleBase;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,9 +20,13 @@ public class SoundManager
 
 	private static MovingSound lightsaberHum;
 	private static MovingSound shipMove;
+	private static MovingSound planetAmbient;
 
 	private static TickComparator inShip = new TickComparator();
 	private static TickComparator holdingLightsaber = new TickComparator();
+	private static TickComparator planetChange = new TickComparator();
+
+	private static int oldDim = 0;
 
 	public void init()
 	{
@@ -73,5 +78,23 @@ public class SoundManager
 			soundBank.stop(SoundManager.lightsaberHum);
 
 		holdingLightsaber.tick();
+
+		planetChange.is = StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId == oldDim;
+
+		// changeFalse = changed planet
+		if (planetChange.changeFalse() && SoundPlanetAmbient.ambiences.containsKey(StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId))
+		{
+			Lumberjack.debug(String.format("Playing %s", SoundPlanetAmbient.ambiences.get(StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId)));
+			soundBank.stop(SoundManager.planetAmbient);
+			SoundManager.planetAmbient = new SoundPlanetAmbient(StarWarsMod.mc.thePlayer);
+			soundBank.play(SoundManager.planetAmbient);
+		}
+		else if (!SoundPlanetAmbient.ambiences.containsKey(StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId)) // no ambience found
+		{
+			soundBank.stop(SoundManager.planetAmbient);
+		}
+
+		planetChange.tick();
+		oldDim = StarWarsMod.mc.thePlayer.worldObj.provider.dimensionId;
 	}
 }
