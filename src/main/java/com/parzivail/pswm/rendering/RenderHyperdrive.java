@@ -1,8 +1,8 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelHyperdriveBlock;
 import com.parzivail.pswm.models.ModelPlanetCube;
+import com.parzivail.pswm.models.blocks.ModelHyperdriveBlock;
 import com.parzivail.pswm.tileentities.TileEntityHyperdrive;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;

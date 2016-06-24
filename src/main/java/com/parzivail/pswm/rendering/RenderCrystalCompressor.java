@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelCrystalCompressor;
+import com.parzivail.pswm.models.blocks.ModelCrystalCompressor;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

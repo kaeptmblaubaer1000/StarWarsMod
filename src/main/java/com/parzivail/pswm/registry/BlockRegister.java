@@ -13,8 +13,11 @@ import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.vehicles.VehicYWing;
 import com.parzivail.util.block.BlockMultiHeight;
 import com.parzivail.util.block.ItemMultiHeightBlock;
+import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.ui.Lumberjack;
+import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.tileentity.TileEntity;
 
 public class BlockRegister
 {
@@ -257,6 +260,20 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockTable, "table");
 		GameRegistry.registerTileEntity(TileEntityTatooineTable.class, "teTatooineTable");
 
+		StarWarsMod.blockCrate1 = registerWithTileEntity(BlockCrateMass1.class, TileEntityCrate1.class);
+
+		StarWarsMod.blockFloorLight = registerWithTileEntity(BlockFloorLight.class, TileEntityFloorLight.class);
+
+		StarWarsMod.blockHolotableMass = registerWithTileEntity(BlockHolotableMass.class, TileEntityHolotableMass.class);
+
+		StarWarsMod.blockLadder = registerWithTileEntity(BlockLadder.class, TileEntityLadder.class);
+
+		StarWarsMod.blockPipeClampedMass = registerWithTileEntity(BlockPipeClampedMass.class, TileEntityPipeClampedMass.class);
+
+		StarWarsMod.blockPipeMass = registerWithTileEntity(BlockPipeMass.class, TileEntityPipeMass.class);
+
+		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockPipeSleevedMass.class, TileEntityPipeSleevedMass.class);
+
 		StarWarsMod.blockAncientJediStatue = new BlockAncientJediStatue();
 		GameRegistry.registerBlock(StarWarsMod.blockAncientJediStatue, "ancientJediStatue");
 		GameRegistry.registerTileEntity(TileEntityAncientJediStatue.class, "teAncientJediStatue");
@@ -266,5 +283,22 @@ public class BlockRegister
 		GameRegistry.registerTileEntity(TileEntityMudTable.class, "teMudTable");
 
 		Lumberjack.info("Blocks, reporting for duty!");
+	}
+
+	private static PBlockContainer registerWithTileEntity(Class<? extends PBlockContainer> blockClass, Class<? extends TileEntity> tileEntityClass)
+	{
+		try
+		{
+			PBlockContainer container = blockClass.newInstance();
+			GameRegistry.registerBlock(container, container.name);
+			GameRegistry.registerTileEntity(tileEntityClass, "te" + TextUtils.upperFirst(container.name));
+			return container;
+		}
+		catch (InstantiationException | IllegalAccessException e)
+		{
+			Lumberjack.warn(String.format("Unable to register block and tile %s - %s!", blockClass, tileEntityClass));
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

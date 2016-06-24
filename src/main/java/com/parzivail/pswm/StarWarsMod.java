@@ -157,6 +157,14 @@ public class StarWarsMod
 	public static PBlock blockHothSnowCut;
 	public static PBlock blockHothBaseDoor;
 
+	public static PBlockContainer blockCrate1;
+	public static PBlockContainer blockFloorLight;
+	public static PBlockContainer blockHolotableMass;
+	public static PBlockContainer blockLadder;
+	public static PBlockContainer blockPipeClampedMass;
+	public static PBlockContainer blockPipeMass;
+	public static PBlockContainer blockPipeSleevedMass;
+
 	public static Block blockAncientJediStatue;
 	public static BlockNpcBase[] blockStaticNpc;
 	public static Block blockHyperdrive;

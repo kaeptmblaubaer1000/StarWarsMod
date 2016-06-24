@@ -35,6 +35,12 @@
       "vehicle/lightspeed/exit"
     ]
   },
+  "vehicle.scootemaround.move": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/scootemaround/move"
+    ]
+  },
   "vehicle.speeder.move": {
     "category": "neutral",
     "sounds": [

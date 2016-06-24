@@ -293,6 +293,7 @@ public class ClientEventHandler
 		if (event.entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)event.entity;
+
 			for (int i = 0; i < 9; i++)
 			{
 				ItemStack inv = player.inventory.mainInventory[i];

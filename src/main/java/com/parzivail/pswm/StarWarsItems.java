@@ -104,6 +104,7 @@ public class StarWarsItems
 	public static Item spawnJakkuSpeeder;
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
+	public static Item spawnScootemaround;
 	public static Item spawnNpcLandspeeder;
 	public static Item spawnNpcXwing;
 	public static Item spawnTie;

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelDeathStarDoor;
+import com.parzivail.pswm.models.blocks.ModelDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

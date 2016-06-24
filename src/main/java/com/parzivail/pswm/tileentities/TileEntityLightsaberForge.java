@@ -15,10 +15,6 @@ public class TileEntityLightsaberForge extends TileEntity
 
 	int facing = 0;
 
-	public TileEntityLightsaberForge()
-	{
-	}
-
 	@Override
 	public Packet getDescriptionPacket()
 	{
@@ -45,6 +41,24 @@ public class TileEntityLightsaberForge extends TileEntity
 	}
 
 	@Override
+	public void readFromNBT(NBTTagCompound p_145839_1_)
+	{
+		super.readFromNBT(p_145839_1_);
+		this.setFacing(p_145839_1_.getInteger("facing"));
+	}
+
+	public TileEntityLightsaberForge()
+	{
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound p_145841_1_)
+	{
+		super.writeToNBT(p_145841_1_);
+		p_145841_1_.setInteger("facing", getFacing());
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public double getMaxRenderDistanceSquared()
 	{
@@ -58,19 +72,5 @@ public class TileEntityLightsaberForge extends TileEntity
 		if (this.bb == null)
 			this.bb = AxisAlignedBB.getBoundingBox(this.xCoord - 2, this.yCoord, this.zCoord - 2, this.xCoord + 2, this.yCoord + 1, this.zCoord + 2);
 		return this.bb;
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound p_145839_1_)
-	{
-		super.readFromNBT(p_145839_1_);
-		this.setFacing(p_145839_1_.getInteger("facing"));
-	}
-
-	@Override
-	public void writeToNBT(NBTTagCompound p_145841_1_)
-	{
-		super.writeToNBT(p_145841_1_);
-		p_145841_1_.setInteger("facing", getFacing());
 	}
 }

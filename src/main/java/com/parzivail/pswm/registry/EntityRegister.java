@@ -61,6 +61,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicAWing.class, "awing");
 		EntityUtils.registerEntity(VehicATST.class, "atst");
 		EntityUtils.registerEntity(VehicSnowspeeder.class, "snowspeeder");
+		EntityUtils.registerEntity(VehicScootemaround.class, "scootemaround");
 		EntityUtils.registerEntity(VehicSkyhopper.class, "skyhopper");
 		EntityUtils.registerEntity(VehicSpeederBike.class, "speederBike");
 		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");

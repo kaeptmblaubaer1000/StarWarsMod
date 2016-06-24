@@ -8,7 +8,6 @@ import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockBasket extends PBlockContainer
@@ -50,11 +49,5 @@ public class BlockBasket extends PBlockContainer
 	public boolean renderAsNormalBlock()
 	{
 		return false;
-	}
-
-	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess block, int x, int y, int z)
-	{
-		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
 	}
 }

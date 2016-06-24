@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelAntenna;
+import com.parzivail.pswm.models.blocks.ModelAntenna;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
