@@ -750,6 +750,51 @@
       "item/lightsaber/deflect2"
     ]
   },
+  "ambient.planet.desert": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "ambient/planet/desert",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.planet.forest": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "ambient/planet/forest",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.planet.jungle": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "ambient/planet/jungle",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.planet.swamp": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "ambient/planet/swamp",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.planet.tundra": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "ambient/planet/tundra",
+        "stream": true
+      }
+    ]
+  },
   "item.records.Throne": {
     "category": "neutral",
     "sounds": [
