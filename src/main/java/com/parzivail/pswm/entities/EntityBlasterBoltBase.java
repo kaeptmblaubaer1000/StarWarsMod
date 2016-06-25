@@ -121,7 +121,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 					ItemStack stack = Cron.getHolocron(entityPlayer);
 					PowerBase active = Cron.getActive(stack);
 
-					if (active.name.equalsIgnoreCase("deflect") && active.isRunning)
+					if (active != null && active.name.equalsIgnoreCase("deflect") && active.isRunning)
 					{
 						recreate(entityPlayer);
 					}
