@@ -56,10 +56,10 @@ public class PGui// extends Gui
 	public static int rainbowColor(int phaseMod)
 	{
 		float frequency = 0.001F;
-		float phase = Math.abs(Minecraft.getSystemTime() % Integer.MAX_VALUE - Integer.MIN_VALUE / 2);
-		int r = (int)(Math.sin(frequency * phase + 0 + phaseMod) * 127 + 128);
-		int g = (int)(Math.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
-		int b = (int)(Math.sin(frequency * phase + 4 + phaseMod) * 127 + 128);
+		float phase = MathHelper.abs(Minecraft.getSystemTime() % Integer.MAX_VALUE - Integer.MIN_VALUE / 2);
+		int r = (int)(MathHelper.sin(frequency * phase + 0 + phaseMod) * 127 + 128);
+		int g = (int)(MathHelper.sin(frequency * phase + 2 + phaseMod) * 127 + 128);
+		int b = (int)(MathHelper.sin(frequency * phase + 4 + phaseMod) * 127 + 128);
 		return getRGB(r, g, b);
 	}
 
@@ -196,8 +196,8 @@ public class PGui// extends Gui
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for (int i = 0; i <= 360; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			double nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			double ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + g, ny + h);
 		}
 		GL11.glEnd();
@@ -331,8 +331,8 @@ public class PGui// extends Gui
 		float f2 = (color >> 8 & 0xff) / 255F;
 		float f3 = (color & 0xff) / 255F;
 		float theta = (float)(2 * 3.1415926 / segments);
-		float p = (float)Math.cos(theta);// calculate the sine and cosine
-		float s = (float)Math.sin(theta);
+		float p = (float)MathHelper.cos(theta);// calculate the sine and cosine
+		float s = (float)MathHelper.sin(theta);
 		float t;
 		GL11.glColor4f(f1, f2, f3, f);
 		float nx = radius;
@@ -480,8 +480,8 @@ public class PGui// extends Gui
 		GL11.glVertex2d(x, y);
 		for (int i = 0; i <= 360 * percent; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			double nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			double ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		GL11.glEnd();
@@ -515,8 +515,8 @@ public class PGui// extends Gui
 		GL11.glVertex2d(x, y);
 		for (int i = 0; i <= 360 * percent; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			double nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			double ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		GL11.glEnd();
@@ -544,12 +544,12 @@ public class PGui// extends Gui
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 		for (int i = 0; i <= max * percent; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * (radius * (1 - stripSize));
-			double ny = Math.cos(i * 3.141526D / 180) * (radius * (1 - stripSize));
+			double nx = MathHelper.sin(i * 3.141526f / 180) * (radius * (1 - stripSize));
+			double ny = MathHelper.cos(i * 3.141526f / 180) * (radius * (1 - stripSize));
 			GL11.glVertex2d(nx, ny);
 
-			nx = Math.sin(i * 3.141526D / 180) * radius;
-			ny = Math.cos(i * 3.141526D / 180) * radius;
+			nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx, ny);
 		}
 		GL11.glEnd();

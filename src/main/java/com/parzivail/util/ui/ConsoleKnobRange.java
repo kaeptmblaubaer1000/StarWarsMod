@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 public class ConsoleKnobRange extends GuiButton
@@ -100,8 +101,8 @@ public class ConsoleKnobRange extends GuiButton
 			GLPalette.glColorI(colorFg);
 			GFX.drawCircle(this.xPosition + (this.width / 2), this.yPosition + (this.width / 2), this.width / 2);
 
-			double mx = Math.cos(((1 - this.value) * -270 + 45) / 180 * Math.PI);
-			double my = Math.sin(((1 - this.value) * -270 + 45) / 180 * Math.PI);
+			double mx = MathHelper.cos((float)(((1 - this.value) * -270 + 45) / 180 * Math.PI));
+			double my = MathHelper.sin((float)(((1 - this.value) * -270 + 45) / 180 * Math.PI));
 
 			GFX.drawLine(this.xPosition + this.width / 2 + mx * this.width / 3, this.yPosition + this.width / 2 + my * this.width / 3, this.xPosition + this.width / 2 + mx * this.width / 2, this.yPosition + this.width / 2 + my * this.width / 2);
 

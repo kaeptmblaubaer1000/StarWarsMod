@@ -2,6 +2,7 @@ package com.parzivail.util.ui;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.glBegin;
@@ -77,8 +78,8 @@ public class GFX
 		glBegin(GL11.GL_TRIANGLE_FAN);
 		for (int i = 0; i <= 360; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			double nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			double ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		glEnd();
@@ -98,8 +99,8 @@ public class GFX
 		glBegin(GL11.GL_LINE_STRIP);
 		for (int i = 0; i <= 360; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			double nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			double ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		glEnd();
@@ -122,8 +123,8 @@ public class GFX
 			glBegin(GL11.GL_LINE_STRIP);
 			for (int j = 0; j <= dashLen; j++)
 			{
-				double nx = Math.sin((i + j) * 3.141526D / 180) * radius;
-				double ny = Math.cos((i + j) * 3.141526D / 180) * radius;
+				double nx = MathHelper.sin((i + j) * 3.141526f / 180) * radius;
+				double ny = MathHelper.cos((i + j) * 3.141526f / 180) * radius;
 				GL11.glVertex2d(nx + x, ny + y);
 			}
 			glEnd();
@@ -146,8 +147,8 @@ public class GFX
 		GL11.glVertex2d(x, y);
 		for (int i = 0; i <= 360 * percent; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * radius;
-			double ny = Math.cos(i * 3.141526D / 180) * radius;
+			double nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			double ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		glEnd();
@@ -169,12 +170,12 @@ public class GFX
 		glBegin(GL11.GL_TRIANGLE_STRIP);
 		for (int i = 0; i <= 360 * percent; i++)
 		{
-			double nx = Math.sin(i * 3.141526D / 180) * (radius - stripSize);
-			double ny = Math.cos(i * 3.141526D / 180) * (radius - stripSize);
+			double nx = MathHelper.sin(i * 3.141526f / 180) * (radius - stripSize);
+			double ny = MathHelper.cos(i * 3.141526f / 180) * (radius - stripSize);
 			GL11.glVertex2d(nx + x, ny + y);
 
-			nx = Math.sin(i * 3.141526D / 180) * radius;
-			ny = Math.cos(i * 3.141526D / 180) * radius;
+			nx = MathHelper.sin(i * 3.141526f / 180) * radius;
+			ny = MathHelper.cos(i * 3.141526f / 180) * radius;
 			GL11.glVertex2d(nx + x, ny + y);
 		}
 		glEnd();
