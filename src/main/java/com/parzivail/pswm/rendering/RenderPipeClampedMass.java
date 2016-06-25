@@ -1,25 +1,26 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.blocks.ModelLightsaberForge;
-import com.parzivail.pswm.tileentities.TileEntityLightsaberForge;
+import com.parzivail.pswm.models.blocks.ModelPipesClampedMass;
+import com.parzivail.pswm.tileentities.TileEntityPipeClampedMass;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
-public class RenderLightsaberForge extends TileEntitySpecialRenderer
+public class RenderPipeClampedMass extends TileEntitySpecialRenderer
 {
-	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/blocks/lightsaberForge.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/models/pipesClampedMass.png");
 
-	private final ModelLightsaberForge model;
+	private final ModelBase model;
 
-	public RenderLightsaberForge()
+	public RenderPipeClampedMass()
 	{
-		this.model = new ModelLightsaberForge();
+		this.model = new ModelPipesClampedMass();
 	}
 
 	private void adjustRotatePivotViaMeta(World world, int x, int y, int z)
@@ -33,7 +34,7 @@ public class RenderLightsaberForge extends TileEntitySpecialRenderer
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		GL11.glTranslated(x + 0.5f, y + 1.5f, z + 0.5f);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(90 * ((TileEntityLightsaberForge)te).getFacing(), 0, 1, 0);
+		GL11.glRotatef(90 * ((TileEntityPipeClampedMass)te).getFacing(), 0, 1, 0);
 		GLPZ.glScalef(1.25f);
 		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();

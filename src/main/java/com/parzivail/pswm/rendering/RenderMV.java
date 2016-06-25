@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelMV;
+import com.parzivail.pswm.models.blocks.ModelMV;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

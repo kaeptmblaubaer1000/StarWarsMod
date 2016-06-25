@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelDSTurret;
+import com.parzivail.pswm.models.blocks.ModelDSTurret;
 import com.parzivail.pswm.weaponry.WeaponDSTurret;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;

@@ -6,8 +6,8 @@ import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
-import com.parzivail.pswm.models.ModelDSTurret;
 import com.parzivail.pswm.models.ModelTrainingRemote;
+import com.parzivail.pswm.models.blocks.ModelDSTurret;
 import com.parzivail.pswm.models.mobs.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.registry.RegisterGuiOverlays;
@@ -123,6 +123,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, new RenderAWing());
 		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, new RenderSkyhopper());
 		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, new RenderSnowspeeder());
+		RenderingRegistry.registerEntityRenderingHandler(VehicScootemaround.class, new RenderScootemaround());
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 
@@ -212,6 +213,14 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHyperdrive.class, new RenderHyperdrive());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightsaberForge.class, new RenderLightsaberForge());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrystalCompressor.class, new RenderCrystalCompressor());
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrate1.class, new RenderCrate1());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFloorLight.class, new RenderFloorLight());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHolotableMass.class, new RenderHolotableMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLadder.class, new RenderLadder());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeClampedMass.class, new RenderPipeClampedMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeMass.class, new RenderPipeMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeSleevedMass.class, new RenderPipeSleevedMass());
 
 		RegisterGuiOverlays.registerAll();
 

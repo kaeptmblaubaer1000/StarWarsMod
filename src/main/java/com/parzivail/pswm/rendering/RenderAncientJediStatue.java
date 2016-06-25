@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ModelAncientJediStatue;
+import com.parzivail.pswm.models.blocks.ModelAncientJediStatue;
 import com.parzivail.pswm.tileentities.TileEntityAncientJediStatue;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.ShaderHelper;

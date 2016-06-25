@@ -2,7 +2,7 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityBasket;
+import com.parzivail.pswm.tileentities.TileEntityHolotableMass;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
@@ -10,13 +10,12 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockBasket extends PBlockContainer
+public class BlockHolotableMass extends PBlockContainer
 {
-	public BlockBasket()
+	public BlockHolotableMass()
 	{
-		super("basket", Material.iron);
+		super("holotableMass", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
-		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
@@ -24,7 +23,7 @@ public class BlockBasket extends PBlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityBasket();
+		return new TileEntityHolotableMass();
 	}
 
 	@Override
@@ -42,7 +41,7 @@ public class BlockBasket extends PBlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		blockIcon = icon.registerIcon(Resources.MODID + ":" + "iconBasket");
+		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override

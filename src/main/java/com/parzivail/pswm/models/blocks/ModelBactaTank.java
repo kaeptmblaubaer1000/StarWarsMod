@@ -1,4 +1,4 @@
-package com.parzivail.pswm.models;
+package com.parzivail.pswm.models.blocks;
 
 import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.model.ModelBase;
