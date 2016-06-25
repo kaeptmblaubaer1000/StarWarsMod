@@ -111,6 +111,7 @@ public class ModelConsoleHoth1 extends ModelBase
 
 	public void drawGlass()
 	{
+		GL11.glPushMatrix();
 		GL11.glColor3f(0.8f, 0.8f, 0.8f);
 		GL11.glLineWidth(2);
 		GFX.drawLine(-0.6f, 0.2f, -0.6f, -1f);
@@ -133,12 +134,15 @@ public class ModelConsoleHoth1 extends ModelBase
 		GFX.drawCircle(0, -0.25f, 0.65f);
 
 		GL11.glLineWidth(2);
+		GL11.glScalef(1.2f, 1.2f, 0);
+		GL11.glTranslatef(-0.1f, 0, 0);
 		GFX.drawCircle(0.46f, -0.075f, 0.1f);
 		GFX.drawCircle(0.33f, -0.15f, 0.3f);
 		GFX.drawCircle(0.36f, -0.12f, 0.26f);
 		GFX.drawCircle(0.37f, -0.12f, 0.2f);
 		GFX.drawCircle(0.47f, -0.08f, 0.145f);
 		GFX.drawCircle(0.42f, -0.1f, 0.17f);
+		GL11.glPopMatrix();
 	}
 
 	/**
