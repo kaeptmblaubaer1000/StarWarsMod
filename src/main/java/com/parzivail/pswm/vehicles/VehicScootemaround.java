@@ -94,7 +94,7 @@ public class VehicScootemaround extends VehicleLandBase
 		for (int i = 0; i < ridersDatawatcherIds.length; i++)
 			if (getRiderAtIndex(i).getCommandSenderName().equals(e.getCommandSenderName()))
 			{
-				setRiderAtIndex(i, (String)null);
+				setRiderAtIndex(i, "");
 				return true;
 			}
 		return false;
