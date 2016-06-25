@@ -6,6 +6,7 @@ import com.parzivail.pswm.models.ModelBlasterBolt;
 import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -45,7 +46,7 @@ public class RenderBlasterBolt extends Render
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)p_76986_2_, (float)p_76986_4_, (float)p_76986_6_);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
-		GL11.glRotatef(entity.rotationPitch, -(float)Math.cos(Math.toRadians(entity.rotationYaw)), 0, (float)Math.sin(Math.toRadians(entity.rotationYaw)));
+		GL11.glRotatef(entity.rotationPitch, -MathHelper.cos((float)Math.toRadians(entity.rotationYaw)), 0, MathHelper.sin((float)Math.toRadians(entity.rotationYaw)));
 		GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
 		this.bindEntityTexture(entity);
 		// GLPalette.glColorI(this.color);

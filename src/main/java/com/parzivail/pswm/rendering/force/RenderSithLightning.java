@@ -6,6 +6,7 @@ import com.parzivail.pswm.force.powers.PowerLightning;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -35,8 +36,8 @@ public class RenderSithLightning
 
 				if (e != null)
 				{
-					float dx = (float)Math.cos(Math.toRadians(player.rotationYaw)) / 2;
-					float dz = (float)Math.sin(Math.toRadians(player.rotationYaw)) / 2;
+					float dx = MathHelper.cos((float)Math.toRadians(player.rotationYaw)) / 2;
+					float dz = MathHelper.sin((float)Math.toRadians(player.rotationYaw)) / 2;
 
 					Random r = new Random(e.ticksExisted * 4);
 					float posX2 = (float)e.posX;

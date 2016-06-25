@@ -132,8 +132,8 @@ public class VehicleAirBase extends VehicleBase
 
 			this.motionY -= this.gravity;
 
-			float f2 = (float)Math.sin(this.rotationYaw * Math.PI / 180.0F);
-			float f3 = (float)Math.cos(this.rotationYaw * Math.PI / 180.0F);
+			float f2 = MathHelper.sin((float)(this.rotationYaw * Math.PI / 180.0F));
+			float f3 = MathHelper.cos((float)(this.rotationYaw * Math.PI / 180.0F));
 			this.motionX += -0.4F * f2 * forward;
 			this.motionZ += 0.4F * f3 * forward;
 
