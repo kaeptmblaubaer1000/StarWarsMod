@@ -161,7 +161,7 @@ public class VehicScootemaround extends VehicleLandBase
 						//	switch (i)
 						//	{
 						//		default:
-									entityPlayerMP.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, entityPlayerMP.rotationYawHead, entityPlayerMP.rotationPitch);
+						//			entityPlayerMP.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, entityPlayerMP.rotationYawHead, entityPlayerMP.rotationPitch);
 						//			break;
 						//	}
 						//}
