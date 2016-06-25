@@ -17,7 +17,7 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 	public VehicScootemaroundHoth(World par1World)
 	{
 		super(par1World);
-		this.setSize(2.0F, 2.0F);
+		this.setSize(1.5F, 1.0F);
 		this.vehicYOffset = -0.4F;
 		this.moveModifier = 1.25F;
 		this.tiltMax = 0;
