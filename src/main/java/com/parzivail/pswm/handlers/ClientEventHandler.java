@@ -63,7 +63,7 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	private static GuiBlaster guiBlaster;
 	@SideOnly(Side.CLIENT)
-	private static GuiVehicle guiVehicle;
+	public static GuiVehicle guiVehicle;
 	@SideOnly(Side.CLIENT)
 	private static GuiBinocs guiBinocs;
 	@SideOnly(Side.CLIENT)

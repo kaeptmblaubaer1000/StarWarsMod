@@ -1,15 +1,12 @@
 package com.parzivail.pswm.rendering.gui;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -38,8 +35,6 @@ public class AnimationHyperspace extends Animation
 			this.b = (c.getBlue() / 255f) * (dist / 255f);
 		}
 	}
-
-	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
 
 	private ArrayList<Star> stars;
 	private boolean reverse;
@@ -100,8 +95,8 @@ public class AnimationHyperspace extends Animation
 			GFX.drawLine(star.pos.x + MathHelper.sin(angle) * mod, star.pos.y + MathHelper.cos(angle) * mod, star.pos.x + MathHelper.sin(angle) * t, star.pos.y + MathHelper.cos(angle) * t);
 		}
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
-		ClientEventHandler.pgui.renderOverlay(Resources.awingBack);
+		RenderGameOverlayEvent.Pre event1 = new RenderGameOverlayEvent.Pre(event, RenderGameOverlayEvent.ElementType.HOTBAR);
+		ClientEventHandler.guiVehicle.onRenderGui(event1);
 	}
 
 	@Override
@@ -112,18 +107,4 @@ public class AnimationHyperspace extends Animation
 		//	GuiToast.makeText("Done!", GuiToast.TIME_SHORT).show();
 	}
 
-	public void drawBackground(int width, int height)
-	{
-		Tessellator tessellator = Tessellator.instance;
-		StarWarsMod.mc.getTextureManager().bindTexture(background);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		float f = 200.0F;
-		tessellator.startDrawingQuads();
-		tessellator.setColorOpaque_I(0xFFFFFFFF);
-		tessellator.addVertexWithUV(0.0D, height, 0.0D, 0.0D, height / f + 1);
-		tessellator.addVertexWithUV(width, height, 0.0D, width / f, height / f + 1);
-		tessellator.addVertexWithUV(width, 0.0D, 0.0D, width / f, 1);
-		tessellator.addVertexWithUV(0.0D, 0.0D, 0.0D, 0.0D, 1);
-		tessellator.draw();
-	}
 }
