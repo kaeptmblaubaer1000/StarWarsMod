@@ -467,6 +467,9 @@ public class ItemRegister
 		StarWarsItems.spawnScootemaround = new ItemSpawnScootemaround();
 		GameRegistry.registerItem(StarWarsItems.spawnScootemaround, "spawnScootemaround");
 
+		StarWarsItems.spawnScootemaroundHoth = new ItemSpawnScootemaroundHoth();
+		GameRegistry.registerItem(StarWarsItems.spawnScootemaroundHoth, "spawnScootemaroundHoth");
+
 		StarWarsItems.spawnNpcLandspeeder = new ItemSpawnNpcLandspeeder();
 		GameRegistry.registerItem(StarWarsItems.spawnNpcLandspeeder, "spawnNpcLandspeeder");
 

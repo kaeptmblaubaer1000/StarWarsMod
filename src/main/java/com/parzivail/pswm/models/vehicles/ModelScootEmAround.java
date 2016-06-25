@@ -1,8 +1,10 @@
 package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * ScootEmAround - Weaston
@@ -114,13 +116,11 @@ public class ModelScootEmAround extends ModelBase
 		this.shape1_15.setRotationPoint(0.0F, 0.0F, 0.0F);
 		this.shape1_15.addBox(-5.0F, -15.5F, -15.2F, 10, 16, 1, 0.0F);
 		this.shape1.addChild(this.shape1_6);
-		this.shape1.addChild(this.Light2);
 		this.shape1.addChild(this.shape1_14);
 		this.shape1.addChild(this.shape1_19);
 		this.shape1.addChild(this.shape1_13);
 		this.shape1.addChild(this.shape1_12);
 		this.shape1.addChild(this.shape1_21);
-		this.shape1.addChild(this.Light1);
 		this.shape1.addChild(this.shape1_2);
 		this.shape1.addChild(this.shape1_11);
 		this.shape1.addChild(this.shape1_3);
@@ -142,6 +142,13 @@ public class ModelScootEmAround extends ModelBase
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		this.shape1.render(f5);
+
+		ShaderHelper.setColor(1, 0.2f, 0.2f, 1);
+		ShaderHelper.useShader(ShaderHelper.glowSolid);
+		GL11.glTranslatef(0, 1.187f, 0);
+		this.Light2.render(f5);
+		this.Light1.render(f5);
+		ShaderHelper.releaseShader();
 	}
 
 	/**

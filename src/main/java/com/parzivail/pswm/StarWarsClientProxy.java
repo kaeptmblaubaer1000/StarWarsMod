@@ -124,6 +124,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, new RenderSkyhopper());
 		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, new RenderSnowspeeder());
 		RenderingRegistry.registerEntityRenderingHandler(VehicScootemaround.class, new RenderScootemaround());
+		RenderingRegistry.registerEntityRenderingHandler(VehicScootemaroundHoth.class, new RenderScootemaroundHoth());
 
 		RenderingRegistry.registerEntityRenderingHandler(WeaponDSTurret.class, new RenderDSTurret(new ModelDSTurret(), 0.5F));
 

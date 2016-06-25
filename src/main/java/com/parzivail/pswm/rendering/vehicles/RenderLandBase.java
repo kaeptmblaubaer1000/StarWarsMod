@@ -1,6 +1,7 @@
 package com.parzivail.pswm.rendering.vehicles;
 
 import com.parzivail.pswm.vehicles.VehicScootemaround;
+import com.parzivail.pswm.vehicles.VehicScootemaroundHoth;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -31,7 +32,7 @@ public class RenderLandBase extends RenderLiving
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
 		GL11.glScalef(this.scale, this.scale, this.scale);
-		if (entity instanceof VehicleLandBase && !(entity instanceof VehicScootemaround))
+		if (entity instanceof VehicleLandBase && !(entity instanceof VehicScootemaround) && !(entity instanceof VehicScootemaroundHoth))
 		{
 			VehicleLandBase vehic = (VehicleLandBase)entity;
 			float tx = MathHelper.sin(vehic.frame) * 0.005F;

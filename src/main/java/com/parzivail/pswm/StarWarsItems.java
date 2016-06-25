@@ -34,8 +34,6 @@ public class StarWarsItems
 
 	public static ItemLightsaberCrystal lightsaberCrystal;
 
-	public static Item customTest;
-
 	public static Item hiltMetelCompound;
 	public static Item hiltMetelAlloy;
 	public static Item plasmaEmitter;
@@ -105,6 +103,7 @@ public class StarWarsItems
 	public static Item spawnHothSpeederBike;
 	public static Item spawnLandspeeder;
 	public static Item spawnScootemaround;
+	public static Item spawnScootemaroundHoth;
 	public static Item spawnNpcLandspeeder;
 	public static Item spawnNpcXwing;
 	public static Item spawnTie;
