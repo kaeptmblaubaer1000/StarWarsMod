@@ -18,7 +18,7 @@ public class VehicScootemaround extends VehicleLandBase
 	{
 		super(par1World);
 		this.setSize(1.5F, 1.0F);
-		this.vehicYOffset = -0.4F;
+		this.vehicYOffset = 0.3F;
 		this.moveModifier = 1.25F;
 		this.tiltMax = 0;
 	}
