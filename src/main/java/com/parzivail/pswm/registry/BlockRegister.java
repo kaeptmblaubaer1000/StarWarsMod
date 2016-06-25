@@ -261,18 +261,17 @@ public class BlockRegister
 		GameRegistry.registerTileEntity(TileEntityTatooineTable.class, "teTatooineTable");
 
 		StarWarsMod.blockCrate1 = registerWithTileEntity(BlockCrateMass1.class, TileEntityCrate1.class);
-
 		StarWarsMod.blockFloorLight = registerWithTileEntity(BlockFloorLight.class, TileEntityFloorLight.class);
-
 		StarWarsMod.blockHolotableMass = registerWithTileEntity(BlockHolotableMass.class, TileEntityHolotableMass.class);
-
 		StarWarsMod.blockLadder = registerWithTileEntity(BlockLadder.class, TileEntityLadder.class);
-
 		StarWarsMod.blockPipeClampedMass = registerWithTileEntity(BlockPipeClampedMass.class, TileEntityPipeClampedMass.class);
-
 		StarWarsMod.blockPipeMass = registerWithTileEntity(BlockPipeMass.class, TileEntityPipeMass.class);
-
 		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockPipeSleevedMass.class, TileEntityPipeSleevedMass.class);
+		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockConsoleHoth1.class, TileEntityConsoleHoth1.class);
+		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockConsoleHoth2.class, TileEntityConsoleHoth2.class);
+		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockConsoleHoth3.class, TileEntityConsoleHoth3.class);
+		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockPanelHoth.class, TileEntityPanelHoth.class);
+		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockHothCeilingLight.class, TileEntityHothCeilingLight.class);
 
 		StarWarsMod.blockAncientJediStatue = new BlockAncientJediStatue();
 		GameRegistry.registerBlock(StarWarsMod.blockAncientJediStatue, "ancientJediStatue");

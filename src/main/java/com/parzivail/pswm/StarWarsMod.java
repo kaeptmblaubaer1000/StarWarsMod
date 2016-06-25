@@ -164,6 +164,11 @@ public class StarWarsMod
 	public static PBlockContainer blockPipeClampedMass;
 	public static PBlockContainer blockPipeMass;
 	public static PBlockContainer blockPipeSleevedMass;
+	public static PBlockContainer blockConsoleHoth1;
+	public static PBlockContainer blockConsoleHoth2;
+	public static PBlockContainer blockConsoleHoth3;
+	public static PBlockContainer blockPanelHoth;
+	public static PBlockContainer blockHothCeilingLight;
 
 	public static Block blockAncientJediStatue;
 	public static BlockNpcBase[] blockStaticNpc;
