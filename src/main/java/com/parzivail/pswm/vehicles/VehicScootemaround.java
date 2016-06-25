@@ -45,7 +45,7 @@ public class VehicScootemaround extends VehicleLandBase
 	private String getEntityIdAtIndex(int i)
 	{
 		if (i < 0 || i >= ridersDatawatcherIds.length)
-			return "";
+			return null;
 		return this.dataWatcher.getWatchableObjectString(ridersDatawatcherIds[i]);
 	}
 
@@ -94,7 +94,7 @@ public class VehicScootemaround extends VehicleLandBase
 		for (int i = 0; i < ridersDatawatcherIds.length; i++)
 			if (getRiderAtIndex(i).getCommandSenderName().equals(e.getCommandSenderName()))
 			{
-				setRiderAtIndex(i, "");
+				setRiderAtIndex(i, (String)null);
 				return true;
 			}
 		return false;
@@ -132,7 +132,6 @@ public class VehicScootemaround extends VehicleLandBase
 			}
 			else
 			{
-				p_70085_1_.ridingEntity = this;
 				return this.addRider(p_70085_1_);
 			}
 		}
@@ -156,15 +155,15 @@ public class VehicScootemaround extends VehicleLandBase
 
 						if (rider.isSneaking())
 							removeRider(rider);
-						//else
-						//{
-						//	switch (i)
-						//	{
-						//		default:
-						//			entityPlayerMP.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, entityPlayerMP.rotationYawHead, entityPlayerMP.rotationPitch);
-						//			break;
-						//	}
-						//}
+						else
+						{
+							switch (i)
+							{
+								default:
+									entityPlayerMP.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, entityPlayerMP.rotationYawHead, entityPlayerMP.rotationPitch);
+									break;
+							}
+						}
 					}
 				}
 		}
@@ -188,7 +187,7 @@ public class VehicScootemaround extends VehicleLandBase
 
 		for (int i = 0; i < ridersDatawatcherIds.length; i++)
 		{
-			setRiderAtIndex(i, compound.getString("rider" + ridersDatawatcherIds[i]));
+			setRiderAtIndex(i, getEntityIdAtIndex(i));
 		}
 	}
 
