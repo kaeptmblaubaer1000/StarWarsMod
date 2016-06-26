@@ -35,6 +35,18 @@
       "vehicle/lightspeed/exit"
     ]
   },
+  "vehicle.repulsor.on": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/default/pulseon"
+    ]
+  },
+  "vehicle.repulsor.off": {
+    "category": "neutral",
+    "sounds": [
+      "vehicle/default/pulseoff"
+    ]
+  },
   "vehicle.scootemaround.move": {
     "category": "neutral",
     "sounds": [

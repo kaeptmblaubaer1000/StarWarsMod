@@ -18,6 +18,7 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
+import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -188,6 +189,16 @@ public class CommonEventHandler
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
 			new AnimationSaberShowcase(0, true).start();
+		}
+
+		if (KeybindRegistry.keyShipHoverMode.isPressed())
+		{
+			boolean hover = false;
+			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+				hover = !((VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity).getHoverMode();
+			StarWarsMod.network.sendToServer(new MessageShipHoverMode(StarWarsMod.mc.thePlayer, hover));
+			GuiToast.makeText("Hover Mode " + (hover ? "Activated" : "Deactivated"), GuiToast.TIME_SHORT).show();
+			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.repulsor." + (hover ? "on" : "off"), 1, 1);
 		}
 
 		if (KeybindRegistry.keyLSForge.isPressed() && StarWarsMod.mc.thePlayer.capabilities.isCreativeMode)

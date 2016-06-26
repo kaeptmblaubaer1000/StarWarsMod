@@ -459,6 +459,7 @@ public class StarWarsMod
 		this.registerMessage(MessageHolocronSetActive.class);
 		this.registerMessage(MessagePlayerRemoveItems.class);
 		this.registerMessage(MessageShipAstroDetails.class);
+		this.registerMessage(MessageShipHoverMode.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

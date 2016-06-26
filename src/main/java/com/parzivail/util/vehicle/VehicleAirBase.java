@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class VehicleAirBase extends VehicleBase
 {
 	public static int TGTLOCK_DW = 14;
+	public static int HOVERMD_DW = 15;
 	public float renderPitchLast;
 	public float renderRollLast;
 	public float gravity = 0.015F;
@@ -50,8 +51,10 @@ public class VehicleAirBase extends VehicleBase
 	public void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(TGTLOCK_DW, Integer.valueOf(0));
+		this.dataWatcher.addObject(TGTLOCK_DW, 0);
 		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
+		this.dataWatcher.addObject(HOVERMD_DW, 1);
+		this.dataWatcher.setObjectWatched(HOVERMD_DW);
 	}
 
 	@Override
@@ -59,8 +62,6 @@ public class VehicleAirBase extends VehicleBase
 	{
 		distance = ForgeHooks.onLivingFall(this, distance);
 		// Lumberjack.log(this.motionY);
-		if (distance <= 3 || this.motionY > -0.3F)
-			return;
 		super.fall(distance);
 		PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
 		float f1 = potioneffect != null ? (float)(potioneffect.getAmplifier() + 1) : 0.0F;
@@ -69,7 +70,8 @@ public class VehicleAirBase extends VehicleBase
 		if (i > 0)
 		{
 			this.playSound(this.func_146067_o(i), 1.0F, 1.0F);
-			this.attackEntityFrom(DamageSource.fall, i);
+			if (!(distance <= 3 || this.motionY > -0.3F || getHoverMode()))
+				this.attackEntityFrom(DamageSource.fall, i);
 			int j = MathHelper.floor_double(this.posX);
 			int k = MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset);
 			int l = MathHelper.floor_double(this.posZ);
@@ -92,6 +94,17 @@ public class VehicleAirBase extends VehicleBase
 	{
 		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
 		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
+	}
+
+	public boolean getHoverMode()
+	{
+		return this.dataWatcher.getWatchableObjectInt(HOVERMD_DW) == 1;
+	}
+
+	public void setHoverMode(boolean f)
+	{
+		this.dataWatcher.updateObject(HOVERMD_DW, f ? 1 : 0);
+		this.dataWatcher.setObjectWatched(HOVERMD_DW);
 	}
 
 	@Override
@@ -123,14 +136,20 @@ public class VehicleAirBase extends VehicleBase
 			if (this.move < 0)
 				this.move = 0;
 
-			if (this.move > this.moveModifier)
+			if (getHoverMode() && this.move > this.moveModifier / 5f)
+				this.move = this.moveModifier / 5f;
+			else if (this.move > this.moveModifier)
 				this.move = this.moveModifier;
 
 			forward = this.move / 8.0F * (1 - Math.abs(riddenByPlayer.rotationPitch / 90F));
 
 			this.gravity = 0.8f * ((this.moveModifier - this.move) / this.moveModifier);
 
-			this.motionY -= this.gravity;
+			if (this.riddenByEntity == null)
+				this.gravity = 0.8f;
+
+			if (!getHoverMode() || this.riddenByEntity == null)
+				this.motionY -= this.gravity;
 
 			float f2 = MathHelper.sin((float)(this.rotationYaw * Math.PI / 180.0F));
 			float f3 = MathHelper.cos((float)(this.rotationYaw * Math.PI / 180.0F));
