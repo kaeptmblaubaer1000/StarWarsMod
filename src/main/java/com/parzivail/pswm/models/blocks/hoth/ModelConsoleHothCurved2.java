@@ -6,6 +6,7 @@ import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * ConsoleHothCurved1 - Weaston
@@ -129,6 +130,7 @@ public class ModelConsoleHothCurved2 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		GL11.glPushMatrix();
 		if (entity instanceof EntityTilePassthrough && ((EntityTilePassthrough)entity).tileEntity instanceof TileEntityConsoleHoth2)
 		{
 			TileEntityConsoleHoth2 console = (TileEntityConsoleHoth2)((EntityTilePassthrough)entity).tileEntity;
@@ -168,6 +170,8 @@ public class ModelConsoleHothCurved2 extends ModelBase
 			this.Light_6.render(f5);
 			ShaderHelper.releaseShader();
 		}
+		GL11.glPopMatrix();
+
 		this.shape1.render(f5);
 	}
 

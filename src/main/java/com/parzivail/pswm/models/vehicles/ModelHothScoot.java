@@ -4,6 +4,7 @@ import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * HothScoot - Weaston
@@ -361,6 +362,7 @@ public class ModelHothScoot extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		GL11.glPushMatrix();
 		ShaderHelper.setColor(1, 1, 0.6f, 1);
 		ShaderHelper.useShader(ShaderHelper.glowSolid);
 		this.Light_3.render(f5);
@@ -375,6 +377,7 @@ public class ModelHothScoot extends ModelBase
 		this.Light_1.render(f5);
 		this.Light_2.render(f5);
 		ShaderHelper.releaseShader();
+		GL11.glPopMatrix();
 
 		this.shape1.render(f5);
 	}

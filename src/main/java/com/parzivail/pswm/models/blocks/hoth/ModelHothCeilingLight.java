@@ -1,10 +1,11 @@
-package com.parzivail.pswm.models.blocks;
+package com.parzivail.pswm.models.blocks.hoth;
 
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * HothCeilingLight - Weaston
@@ -47,6 +48,7 @@ public class ModelHothCeilingLight extends ModelBase
 	{
 		this.shape1.render(f5);
 
+		GL11.glPushMatrix();
 		if (MathUtils.oneIn(50))
 			ShaderHelper.setColor(1, 1, 1, 1);
 		else
@@ -54,6 +56,7 @@ public class ModelHothCeilingLight extends ModelBase
 		ShaderHelper.useShader(ShaderHelper.glowSolid);
 		this.Light.render(f5);
 		ShaderHelper.releaseShader();
+		GL11.glPopMatrix();
 	}
 
 	/**

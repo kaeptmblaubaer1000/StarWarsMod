@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.blocks.ModelHothCeilingLight;
+import com.parzivail.pswm.models.blocks.hoth.ModelHothCeilingLight;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
