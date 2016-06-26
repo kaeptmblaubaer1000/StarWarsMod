@@ -133,12 +133,6 @@ public class StarWarsItems
 
 	public static Item binocularsNew;
 	public static Item jediRobes;
-	public static Item recordTheme;
-
-	public static Item recordThrone;
-	public static Item recordBinary;
-	public static Item recordImperial;
-	public static Item recordCantina;
 
 	public static Item endorHelmet;
 	public static Item endorChest;
@@ -209,7 +203,6 @@ public class StarWarsItems
 
 	public static Item leiasBuns;
 
-	public static Item holocronJedi;
 	public static Item holocron;
 
 	public static Item questContainer;
