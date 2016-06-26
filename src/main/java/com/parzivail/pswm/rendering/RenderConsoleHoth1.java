@@ -2,7 +2,7 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.entities.EntityTilePassthrough;
-import com.parzivail.pswm.models.blocks.ModelConsoleHothCurved1;
+import com.parzivail.pswm.models.blocks.hoth.ModelConsoleHothCurved1;
 import com.parzivail.pswm.tileentities.TileEntityConsoleHoth1;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;

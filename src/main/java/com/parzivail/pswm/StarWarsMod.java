@@ -169,6 +169,15 @@ public class StarWarsMod
 	public static PBlockContainer blockConsoleHoth3;
 	public static PBlockContainer blockPanelHoth;
 	public static PBlockContainer blockHothCeilingLight;
+	public static PBlockContainer blockPipeDoubleOffsetTopSpecial;
+	public static PBlockContainer blockPipeDoubleOffsetBot;
+	public static PBlockContainer blockPipeDoubleOffsetBotSpecial;
+	public static PBlockContainer blockPipeDoubleOffsetTop;
+	public static PBlockContainer blockMedicalConsole;
+	public static PBlockContainer blockMedicalConsole2;
+	public static PBlockContainer blockFloorLight2;
+	public static PBlockContainer blockHothCrate1;
+	public static PBlockContainer blockHothCrate2;
 
 	public static Block blockAncientJediStatue;
 	public static BlockNpcBase[] blockStaticNpc;

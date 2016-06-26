@@ -228,6 +228,16 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPanelHoth.class, new RenderPanelHoth());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHothCeilingLight.class, new RenderCeilingLightHoth());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetTopSpecial.class, new RenderPipeDoubleOffsetTopSpecial());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMedicalConsole.class, new RenderMedicalConsole());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMedicalConsole2.class, new RenderMedicalConsole2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetBot.class, new RenderPipeDoubleOffsetBot());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetBotSpecial.class, new RenderPipeDoubleOffsetBotSpecial());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetTop.class, new RenderPipeDoubleOffsetTop());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFloorLight2.class, new RenderFloorLight2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrateHoth1.class, new RenderHothCrate1());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrateHoth2.class, new RenderHothCrate2());
+
 		RegisterGuiOverlays.registerAll();
 
 		Lumberjack.log("Rendering registered!");

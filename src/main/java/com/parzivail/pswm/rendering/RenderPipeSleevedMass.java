@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.blocks.ModelPipesSleevedMass;
+import com.parzivail.pswm.models.blocks.pipe.ModelPipesSleevedMass;
 import com.parzivail.pswm.tileentities.TileEntityPipeSleevedMass;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;

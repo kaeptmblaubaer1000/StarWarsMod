@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.blocks.ModelPipesMass;
+import com.parzivail.pswm.models.blocks.pipe.ModelPipesMass;
 import com.parzivail.pswm.tileentities.TileEntityPipeMass;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;

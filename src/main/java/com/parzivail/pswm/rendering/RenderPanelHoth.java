@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.blocks.ModelConsoleHoth1;
+import com.parzivail.pswm.models.blocks.hoth.ModelConsoleHoth1;
 import com.parzivail.pswm.tileentities.TileEntityPanelHoth;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;

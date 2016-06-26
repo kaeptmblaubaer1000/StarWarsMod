@@ -24,19 +24,19 @@ public class TileEntityConsoleHoth2 extends TileEntity
 	public void updateEntity()
 	{
 		if (MathUtils.oneIn(20))
-			color1 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color1 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 		if (MathUtils.oneIn(50))
-			color2 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color2 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 		if (MathUtils.oneIn(70))
-			color3 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color3 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 		if (MathUtils.oneIn(10))
-			color4 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color4 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 		if (MathUtils.oneIn(100))
-			color5 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color5 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 		if (MathUtils.oneIn(120))
-			color6 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color6 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 		if (MathUtils.oneIn(120))
-			color7 = MathUtils.getRandomElement(Resources.hothPanelLightColors);
+			color7 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
 	}
 
 	@Override

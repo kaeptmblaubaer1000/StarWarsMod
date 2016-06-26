@@ -267,11 +267,21 @@ public class BlockRegister
 		StarWarsMod.blockPipeClampedMass = registerWithTileEntity(BlockPipeClampedMass.class, TileEntityPipeClampedMass.class);
 		StarWarsMod.blockPipeMass = registerWithTileEntity(BlockPipeMass.class, TileEntityPipeMass.class);
 		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockPipeSleevedMass.class, TileEntityPipeSleevedMass.class);
-		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockConsoleHoth1.class, TileEntityConsoleHoth1.class);
-		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockConsoleHoth2.class, TileEntityConsoleHoth2.class);
-		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockConsoleHoth3.class, TileEntityConsoleHoth3.class);
-		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockPanelHoth.class, TileEntityPanelHoth.class);
-		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockHothCeilingLight.class, TileEntityHothCeilingLight.class);
+		StarWarsMod.blockConsoleHoth1 = registerWithTileEntity(BlockConsoleHoth1.class, TileEntityConsoleHoth1.class);
+		StarWarsMod.blockConsoleHoth2 = registerWithTileEntity(BlockConsoleHoth2.class, TileEntityConsoleHoth2.class);
+		StarWarsMod.blockConsoleHoth3 = registerWithTileEntity(BlockConsoleHoth3.class, TileEntityConsoleHoth3.class);
+		StarWarsMod.blockPanelHoth = registerWithTileEntity(BlockPanelHoth.class, TileEntityPanelHoth.class);
+		StarWarsMod.blockHothCeilingLight = registerWithTileEntity(BlockHothCeilingLight.class, TileEntityHothCeilingLight.class);
+
+		StarWarsMod.blockPipeDoubleOffsetTopSpecial = registerWithTileEntity(BlockPipeDoubleOffsetTopSpecial.class, TileEntityPipeDoubleOffsetTopSpecial.class);
+		StarWarsMod.blockMedicalConsole = registerWithTileEntity(BlockMedicalConsole.class, TileEntityMedicalConsole.class);
+		StarWarsMod.blockMedicalConsole2 = registerWithTileEntity(BlockMedicalConsole2.class, TileEntityMedicalConsole2.class);
+		StarWarsMod.blockPipeDoubleOffsetBot = registerWithTileEntity(BlockPipeDoubleOffsetBot.class, TileEntityPipeDoubleOffsetBot.class);
+		StarWarsMod.blockPipeDoubleOffsetBotSpecial = registerWithTileEntity(BlockPipeDoubleOffsetBotSpecial.class, TileEntityPipeDoubleOffsetBotSpecial.class);
+		StarWarsMod.blockPipeDoubleOffsetTop = registerWithTileEntity(BlockPipeDoubleOffsetTop.class, TileEntityPipeDoubleOffsetTop.class);
+		StarWarsMod.blockFloorLight2 = registerWithTileEntity(BlockFloorLight2.class, TileEntityFloorLight2.class);
+		StarWarsMod.blockHothCrate1 = registerWithTileEntity(BlockCrateHoth1.class, TileEntityCrateHoth1.class);
+		StarWarsMod.blockHothCrate2 = registerWithTileEntity(BlockCrateHoth2.class, TileEntityCrateHoth2.class);
 
 		StarWarsMod.blockAncientJediStatue = new BlockAncientJediStatue();
 		GameRegistry.registerBlock(StarWarsMod.blockAncientJediStatue, "ancientJediStatue");

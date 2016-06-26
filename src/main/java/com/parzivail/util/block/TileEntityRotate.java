@@ -1,40 +1,14 @@
-package com.parzivail.pswm.tileentities;
+package com.parzivail.util.block;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.util.math.MathUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityConsoleHoth1 extends TileEntity
+public class TileEntityRotate extends TileEntity
 {
 	int facing = 0;
-
-	public int color1 = 0;
-	public int color2 = 0;
-	public int color3 = 0;
-	public int color4 = 0;
-	public int color5 = 0;
-	public int color6 = 0;
-
-	@Override
-	public void updateEntity()
-	{
-		if (MathUtils.oneIn(20))
-			color1 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
-		if (MathUtils.oneIn(50))
-			color2 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
-		if (MathUtils.oneIn(70))
-			color3 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
-		if (MathUtils.oneIn(10))
-			color4 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
-		if (MathUtils.oneIn(100))
-			color5 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
-		if (MathUtils.oneIn(120))
-			color6 = MathUtils.getRandomElement(Resources.PANEL_LIGHT_COLORS);
-	}
 
 	@Override
 	public Packet getDescriptionPacket()

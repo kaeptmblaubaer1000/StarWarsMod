@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.blocks.ModelFloorLight;
+import com.parzivail.pswm.models.blocks.hoth.ModelFloorLight;
 import com.parzivail.pswm.tileentities.TileEntityFloorLight;
 import com.parzivail.util.ui.GLPZ;
 import net.minecraft.client.Minecraft;

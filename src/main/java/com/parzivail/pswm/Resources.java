@@ -11,7 +11,7 @@ public class Resources
 	public static HashMap<Integer, ResourceLocation> planetTextures = new HashMap<>();
 	public static ArrayList<PlanetInformation> planetInformation = new ArrayList<>();
 
-	public static final int[] hothPanelLightColors = { 0xF8E443, 0x0050A1, 0x4ACBFF, 0xD1A250, 0x42A904, 0xFB4B33 };
+	public static final int[] PANEL_LIGHT_COLORS = { 0xF8E443, 0x0050A1, 0x4ACBFF, 0xD1A250, 0x42A904, 0xFB4B33 };
 
 	public static class ConfigOptions
 	{
