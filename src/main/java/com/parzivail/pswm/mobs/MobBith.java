@@ -1,7 +1,6 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
 import net.minecraft.entity.DataWatcher;
@@ -44,7 +43,7 @@ public class MobBith extends EntityVillager implements IParziNPC
 	{
 		new ArrayList();
 		MerchantRecipeList fn = new MerchantRecipeList();
-		fn.add(new MerchantRecipe(new ItemStack(StarWarsItems.goldImperialCredit, 10), new ItemStack(StarWarsItems.recordCantina, 1)));
+		//fn.add(new MerchantRecipe(new ItemStack(StarWarsItems.goldImperialCredit, 10), new ItemStack(StarWarsItems.recordCantina, 1)));
 		return fn;
 	}
 

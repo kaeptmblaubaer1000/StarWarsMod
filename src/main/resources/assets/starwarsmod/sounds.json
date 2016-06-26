@@ -800,50 +800,5 @@
         "stream": true
       }
     ]
-  },
-  "item.records.Throne": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "item/records/throne",
-        "stream": true
-      }
-    ]
-  },
-  "item.records.Theme": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "item/records/theme",
-        "stream": true
-      }
-    ]
-  },
-  "item.records.Binary": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "item/records/binary",
-        "stream": true
-      }
-    ]
-  },
-  "item.records.Imperial": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "item/records/imperial",
-        "stream": true
-      }
-    ]
-  },
-  "item.records.Cantina": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "item/records/cantina",
-        "stream": true
-      }
-    ]
   }
 }

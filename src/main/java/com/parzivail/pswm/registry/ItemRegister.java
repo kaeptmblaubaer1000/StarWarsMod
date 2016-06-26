@@ -541,21 +541,6 @@ public class ItemRegister
 		StarWarsItems.leiasBuns = new ArmorAddonBuns(StarWarsMod.leiaBunsArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsItems.leiasBuns, "leiasBuns");
 
-		StarWarsItems.recordTheme = new ItemMusicDisc("Theme");
-		GameRegistry.registerItem(StarWarsItems.recordTheme, "recordTheme");
-
-		StarWarsItems.recordThrone = new ItemMusicDisc("Throne");
-		GameRegistry.registerItem(StarWarsItems.recordThrone, "recordThrone");
-
-		StarWarsItems.recordBinary = new ItemMusicDisc("Binary");
-		GameRegistry.registerItem(StarWarsItems.recordBinary, "recordBinary");
-
-		StarWarsItems.recordImperial = new ItemMusicDisc("Imperial");
-		GameRegistry.registerItem(StarWarsItems.recordImperial, "recordImperial");
-
-		StarWarsItems.recordCantina = new ItemMusicDisc("Cantina");
-		GameRegistry.registerItem(StarWarsItems.recordCantina, "recordCantina");
-
 		Lumberjack.info("Items, reporting for duty!");
 	}
 }

@@ -29,10 +29,10 @@ public class LootGenUtils
 		List<WeightedLoot> loot = new java.util.ArrayList();
 		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.imperialCredit, MathUtils.randomRange(1, 6)), baseRarity));
 		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.leiasBuns, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordBinary, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordTheme, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordThrone, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
-		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordImperial, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		//loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordBinary, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		//loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordTheme, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		//loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordThrone, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
+		//loot.add(new WeightedLoot(new ItemStack(StarWarsItems.recordImperial, MathUtils.randomRange(1, 1)), baseRarity / 10.0F));
 		if (dimId == ConfigOptions.dimEndorId)
 		{
 			loot.add(new WeightedLoot(new ItemStack(StarWarsItems.stormtrooperHelmet, 1, 0), baseRarity));
