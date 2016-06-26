@@ -3,14 +3,13 @@ package com.parzivail.util.ui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.renderer.OpenGlHelper;
-import org.lwjgl.opengl.ARBFragmentShader;
-import org.lwjgl.opengl.ARBShaderObjects;
-import org.lwjgl.opengl.ARBVertexShader;
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.*;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public final class ShaderHelper
 {
@@ -18,6 +17,8 @@ public final class ShaderHelper
 	private static final int FRAG = ARBFragmentShader.GL_FRAGMENT_SHADER_ARB;
 
 	public static int glowSolid = 0;
+
+	private static int previousShader = 0;
 
 	private static float r;
 	private static float g;
@@ -70,6 +71,9 @@ public final class ShaderHelper
 		if (!useShaders())
 			return;
 
+		if (!inDisplayList())
+			previousShader = glGetInteger(GL20.GL_CURRENT_PROGRAM);
+
 		ARBShaderObjects.glUseProgramObjectARB(shader);
 
 		if (shader != 0)
@@ -96,12 +100,30 @@ public final class ShaderHelper
 		}
 	}
 
-	public static void releaseShader()
+	private static boolean inDisplayList()
 	{
-		useShader(0);
+		boolean result;
+		int v;
+		v = GL11.glGetInteger(GL_LIST_INDEX);
+		if (v != 0) // we are building a display list
+		{
+			v = GL11.glGetInteger(GL_LIST_MODE);
+			result = v == GL_COMPILE;
+		}
+		else
+			result = false;
+		return result;
 	}
 
-	public static boolean useShaders()
+	public static void releaseShader()
+	{
+		if (inDisplayList())
+			useShader(0);
+		else
+			useShader(previousShader);
+	}
+
+	private static boolean useShaders()
 	{
 		return OpenGlHelper.shadersSupported;
 	}
