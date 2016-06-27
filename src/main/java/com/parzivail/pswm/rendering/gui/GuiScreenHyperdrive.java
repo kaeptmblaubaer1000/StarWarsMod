@@ -134,13 +134,13 @@ public class GuiScreenHyperdrive extends GuiScreen
 			if ((zoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(zoomPlanet.getName())) || (oldZoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(oldZoomPlanet.getName())))
 				GLPZ.glScalef((animationZoom.getTick() + 2) / 2f);
 			GL11.glRotatef(-30, 1, 0, 0);
-			GL11.glRotatef((System.currentTimeMillis() / 50) % 360, 0, 1, 0);
+			GL11.glRotatef(((System.currentTimeMillis() + PlanetInformation.getPlanet(outlineButton.displayString).getName().hashCode()) / 50) % 360, 0, 1, 0);
 		};
 
 		Consumer<OutlineButton> postRender = outlineButton -> {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glRotatef((System.currentTimeMillis() / 50) % 360 * -2, 0, 1, 0);
+			GL11.glRotatef(((System.currentTimeMillis() + PlanetInformation.getPlanet(outlineButton.displayString).getName().hashCode()) / 50) % 360 * -2, 0, 1, 0);
 			GL11.glScalef(0.12f, 0.12f, 0.12f);
 			GL11.glScalef(-1, 1, -1);
 			GL11.glTranslatef(-80, 70, 0);
@@ -202,6 +202,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			OutlineButtonModel planetButton = new OutlineButtonModel(id++, (int)p.x, (int)p.y, 4, 4);
 			planetButton.displayString = info.getInternalName();
 			planetButton.setup(new ModelPlanetCube(), info.getCubeTexture(), transform, postRender);
+			planetButton.enabled = canMoveToPlanet(info.getInternalName());
 			buttonList.add(planetButton);
 		}
 
@@ -217,6 +218,35 @@ public class GuiScreenHyperdrive extends GuiScreen
 		buttonTravel = new OutlineButton(id, 125, 215, 100, 20, "Jump to Lightspeed", false);
 		buttonTravel.enabled = canJump && !didComeFromBlock;
 		buttonList.add(buttonTravel);
+	}
+
+	private boolean canMoveToPlanet(String planet)
+	{
+		switch (planet)
+		{
+			case "AhchTo":
+			case "Alderaan":
+			case "Bespin":
+			case "Coruscant":
+			case "Dathomir":
+			case "DeathStar":
+			case "DQar":
+			case "Geonosis":
+			case "Jakku":
+			case "Kamino":
+			case "Kessel":
+			case "Mandalore":
+			case "MonCalamari":
+			case "Mustafar":
+			case "Naboo":
+			case "Ryloth":
+			case "Sullust":
+			case "Takodana":
+			case "Utapau":
+				return false;
+			default:
+				return true;
+		}
 	}
 
 	@Override
