@@ -671,6 +671,7 @@ public class CommonEventHandler
 	 */
 	private void resetRobes(PlayerEvent event)
 	{
-		StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, new NBTTagCompound()));
+		if (event.player.worldObj.isRemote)
+			StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, new NBTTagCompound()));
 	}
 }
