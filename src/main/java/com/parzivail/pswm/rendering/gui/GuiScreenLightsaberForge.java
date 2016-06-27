@@ -211,6 +211,8 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		bSave.enabled = flagAnyCrystals && canGetSingleBlade;
 
+		x = 0;
+
 		if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10)) || player.capabilities.isCreativeMode)
 		{
 			y++;
