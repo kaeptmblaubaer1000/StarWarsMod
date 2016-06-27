@@ -255,18 +255,18 @@ public class RenderLightsaber implements IItemRenderer
 		}
 		else if (s.equals("ahsoka"))
 		{
-			GL11.glTranslatef(0, -0.35f, 0);
-			GL11.glScalef(1.45f, 1.45f, 1.45f);
+			GL11.glTranslatef(0, 0.475f, 0);
+			GL11.glScalef(1.2f, 1.2f, 1.2f);
 		}
 		else if (s.equals("darksaber"))
 		{
-			GL11.glTranslatef(0, -0.35f, 0);
-			GL11.glScalef(1.45f, 1.45f, 1.45f);
+			GL11.glTranslatef(0, 0.36f, 0);
+			GL11.glScalef(1.25f, 1.25f, 1.25f);
 		}
 		else if (s.equals("pike"))
 		{
-			GL11.glTranslatef(0, -0.35f, 0);
-			GL11.glScalef(1.45f, 1.45f, 1.45f);
+			GL11.glTranslatef(0, 0.785f, 0);
+			GL11.glScalef(0.65f, 0.65f, 0.65f);
 		}
 	}
 }

@@ -192,7 +192,7 @@ public class ModelDarksaberHilt extends ModelBase implements IHandlesRender
 		{
 			case ENTITY:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.03f, 0.03f, 0.03f);
+				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(-90, 0, 0, 1);
 				GL11.glTranslatef(-30, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
@@ -200,7 +200,7 @@ public class ModelDarksaberHilt extends ModelBase implements IHandlesRender
 				break;
 			case EQUIPPED:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glScalef(0.045f, 0.045f, 0.045f);
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);
@@ -244,8 +244,8 @@ public class ModelDarksaberHilt extends ModelBase implements IHandlesRender
 				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
-				GL11.glScalef(0.045f, 0.045f, 0.045f);
-				GL11.glTranslatef(-10, 3, 0);
+				GL11.glScalef(0.0525f, 0.0525f, 0.0525f);
+				GL11.glTranslatef(-21.5f, 3, 0);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(90, 1, 0, 0);

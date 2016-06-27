@@ -24,7 +24,7 @@ public class ModelPikeBladeMedium extends ModelBase implements IHandlesRender
 		this.textureHeight = 256;
 		this.shape1 = new ModelRenderer(this, 0, 0);
 		this.shape1.setRotationPoint(9.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-130.0F, 0.9F, 0.9F, 120, 3, 3, 0.0F);
+		this.shape1.addBox(-135.0F, 0.9F, 0.9F, 125, 3, 3, 0.0F);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ModelPikeBladeMedium extends ModelBase implements IHandlesRender
 		{
 			case ENTITY:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.03f, 0.03f, 0.03f);
+				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(-90, 0, 0, 1);
 				GL11.glTranslatef(-30, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
@@ -72,7 +72,7 @@ public class ModelPikeBladeMedium extends ModelBase implements IHandlesRender
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);
 				GL11.glRotatef(90, 1, 0, 0);
-				GL11.glTranslatef(13, -2, 18);
+				GL11.glTranslatef(6, -2, 18);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];

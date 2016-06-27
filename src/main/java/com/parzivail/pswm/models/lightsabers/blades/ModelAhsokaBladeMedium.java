@@ -24,7 +24,7 @@ public class ModelAhsokaBladeMedium extends ModelBase implements IHandlesRender
 		this.textureHeight = 256;
 		this.shape1 = new ModelRenderer(this, 0, 0);
 		this.shape1.setRotationPoint(22.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-130.0F, 0.8F, 1.6F, 120, 3, 3, 0.0F);
+		this.shape1.addBox(-160.0F, 0.8F, 1.6F, 150, 3, 3, 0.0F);
 	}
 
 	@Override
@@ -64,12 +64,13 @@ public class ModelAhsokaBladeMedium extends ModelBase implements IHandlesRender
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				break;
 			case EQUIPPED:
-				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glPushMatrix();
+				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);
 				GL11.glRotatef(90, 1, 0, 0);
-				GL11.glTranslatef(13, -2, 18);
+				GL11.glTranslatef(11, -2, 25);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
@@ -80,15 +81,18 @@ public class ModelAhsokaBladeMedium extends ModelBase implements IHandlesRender
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
+				GL11.glPopMatrix();
 				break;
 			case EQUIPPED_FIRST_PERSON:
+				GL11.glPushMatrix();
 				GL11.glScalef(0.05f, 0.05f, 0.05f);
 				GL11.glTranslatef(0, 25, 0);
 				GL11.glRotatef(-130, 0, 1, 0);
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(75, 0, 0, 1);
 				GL11.glRotatef(85, 1, 0, 0);
-				GL11.glTranslatef(0, 18, 0);
+				GL11.glRotatef(90, 1, 0, 0);
+				GL11.glTranslatef(0, -5, -25);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
@@ -101,6 +105,7 @@ public class ModelAhsokaBladeMedium extends ModelBase implements IHandlesRender
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
+				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
 				GL11.glScalef(0.045f, 0.045f, 0.045f);
