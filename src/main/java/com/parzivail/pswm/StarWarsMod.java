@@ -387,11 +387,8 @@ public class StarWarsMod
 
 		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
 
-		ConfigOptions.lightsaberDamage = config.get("items", "lightsaberDamage", 26).getInt();
-		ConfigOptions.enableLightsaber = config.get("items", "enableLightsaberRecipe", true).getBoolean();
 		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true).getBoolean();
 		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
-		ConfigOptions.enableLightsaberStrobe = config.get("items", "enableLightsaberAnimation", true).getBoolean();
 		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
 
 		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true).getBoolean();

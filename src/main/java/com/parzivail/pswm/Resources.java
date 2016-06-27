@@ -24,6 +24,7 @@ public class Resources
 		public static int biomeIlumId;
 		public static int biomeMustafarId;
 		public static int biomeSpaceId;
+
 		public static int dimTatooineId;
 		public static int dimHothId;
 		public static int dimKashyyykId;
@@ -51,19 +52,17 @@ public class Resources
 		public static int dimAhchToId = 116;
 		public static int dimDeathStarId = 117;
 		public static int dimSpaceId = 118;
+
+		public static int lightsaberDamage;
+
 		public static boolean enableCreditsOverlay;
-		public static boolean enableLightsaberStrobe;
 		public static boolean enableBlasterFire;
 		public static boolean enableBuckets;
-		public static boolean enableLightsaber;
 		public static boolean enableGlobalLeaderboard;
 		public static boolean enableLightsaberHum;
 		public static boolean beshOverride;
 		public static boolean enableTabOriginal = true;
 		public static boolean enableTabSequel = true;
-		public static int lightsaberDamage;
-		public static boolean enableFlyCommand;
-		public static boolean enableDimCommand;
 		public static boolean enableBetaFeatures;
 		public static boolean enableLightsaberLight;
 	}
