@@ -339,7 +339,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 	{
 		if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemLightsaber)
 		{
-			stackShowing = player.getHeldItem();
+			stackShowing = player.getHeldItem().copy();
 			holdingColor = stackShowing.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor);
 			return true;
 		}
