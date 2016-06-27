@@ -40,6 +40,9 @@ public class RenderLightsaber implements IItemRenderer
 		models.put("inquisitor", new ModelInquisitorHilt());
 		models.put("mace", new ModelMaceHilt());
 		models.put("yoda", new ModelYodaHilt());
+		models.put("ahsoka", new ModelAhsokaHilt());
+		models.put("darksaber", new ModelDarksaberHilt());
+		models.put("pike", new ModelPikeHilt());
 
 		blades.put("dooku", new IHandlesRender[] { new ModelDookuBladeShort(), new ModelDookuBladeMedium(), new ModelDookuBladeLong() });
 		blades.put("ezra", new IHandlesRender[] { new ModelEzraBladeShort(), new ModelEzraBladeMedium(), new ModelEzraBladeLong() });
@@ -61,6 +64,9 @@ public class RenderLightsaber implements IItemRenderer
 		blades.put("inquisitor", new IHandlesRender[] { new ModelInquisitorBladeShort(), new ModelInquisitorBladeMedium(), new ModelInquisitorBladeLong() });
 		blades.put("mace", new IHandlesRender[] { new ModelMaceBladeShort(), new ModelMaceBladeMedium(), new ModelMaceBladeLong() });
 		blades.put("yoda", new IHandlesRender[] { new ModelYodaBladeShort(), new ModelYodaBladeMedium(), new ModelYodaBladeLong() });
+		blades.put("ahsoka", new IHandlesRender[] { new ModelAhsokaBladeShort(), new ModelAhsokaBladeMedium(), new ModelAhsokaBladeLong() });
+		blades.put("darksaber", new IHandlesRender[] { new ModelDarksaberBladeShort(), new ModelDarksaberBladeMedium(), new ModelDarksaberBladeLong() });
+		blades.put("pike", new IHandlesRender[] { new ModelPikeBladeShort(), new ModelPikeBladeMedium(), new ModelPikeBladeLong() });
 
 	}
 
@@ -243,6 +249,21 @@ public class RenderLightsaber implements IItemRenderer
 			GL11.glScalef(1.23f, 1.23f, 1.23f);
 		}
 		else if (s.equals("yoda"))
+		{
+			GL11.glTranslatef(0, -0.35f, 0);
+			GL11.glScalef(1.45f, 1.45f, 1.45f);
+		}
+		else if (s.equals("ahsoka"))
+		{
+			GL11.glTranslatef(0, -0.35f, 0);
+			GL11.glScalef(1.45f, 1.45f, 1.45f);
+		}
+		else if (s.equals("darksaber"))
+		{
+			GL11.glTranslatef(0, -0.35f, 0);
+			GL11.glScalef(1.45f, 1.45f, 1.45f);
+		}
+		else if (s.equals("pike"))
 		{
 			GL11.glTranslatef(0, -0.35f, 0);
 			GL11.glScalef(1.45f, 1.45f, 1.45f);
