@@ -24,7 +24,7 @@ public class ModelDarksaberBladeLong extends ModelBase implements IHandlesRender
 		this.textureHeight = 256;
 		this.shape1 = new ModelRenderer(this, 0, 0);
 		this.shape1.setRotationPoint(17.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-148.0F, 1.0F, 1.1F, 140, 4, 2, 0.0F);
+		this.shape1.addBox(-138.0F, 1.0F, 1.1F, 130, 4, 2, 0.0F);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ModelDarksaberBladeLong extends ModelBase implements IHandlesRender
 		{
 			case ENTITY:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.03f, 0.03f, 0.03f);
+				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(-90, 0, 0, 1);
 				GL11.glTranslatef(-30, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
@@ -67,7 +67,7 @@ public class ModelDarksaberBladeLong extends ModelBase implements IHandlesRender
 				break;
 			case EQUIPPED:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glScalef(0.045f, 0.045f, 0.045f);
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);

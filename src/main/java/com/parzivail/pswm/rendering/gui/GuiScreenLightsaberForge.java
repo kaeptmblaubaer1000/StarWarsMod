@@ -211,6 +211,8 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		bSave.enabled = flagAnyCrystals && canGetSingleBlade;
 
+		x = 0;
+
 		if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10)) || player.capabilities.isCreativeMode)
 		{
 			y++;
@@ -423,7 +425,8 @@ public class GuiScreenLightsaberForge extends GuiScreen
 						break;
 				}
 
-				setRightColor();
+				// TODO: make this still check against having enough for double blades
+				//setRightColor();
 			}
 			else if (button instanceof FilledColorButton)
 			{
@@ -681,18 +684,18 @@ public class GuiScreenLightsaberForge extends GuiScreen
 			}
 			else if (s.equals("ahsoka"))
 			{
-				GL11.glScalef(0.26f, 0.26f, 0.26f);
-				GL11.glTranslatef(0, 1.0f, 0);
+				GL11.glScalef(0.31f, 0.31f, 0.31f);
+				GL11.glTranslatef(0, -1.62f, 0);
 			}
 			else if (s.equals("darksaber"))
 			{
-				GL11.glScalef(0.26f, 0.26f, 0.26f);
-				GL11.glTranslatef(0, 1.0f, 0);
+				GL11.glScalef(0.38f, 0.38f, 0.38f);
+				GL11.glTranslatef(0, -1.1f, 0);
 			}
 			else if (s.equals("pike"))
 			{
 				GL11.glScalef(0.26f, 0.26f, 0.26f);
-				GL11.glTranslatef(0, 1.0f, 0);
+				GL11.glTranslatef(0, 1.4f, 0);
 			}
 		}
 

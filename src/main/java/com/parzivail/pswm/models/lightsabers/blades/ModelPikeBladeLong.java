@@ -24,7 +24,7 @@ public class ModelPikeBladeLong extends ModelBase implements IHandlesRender
 		this.textureHeight = 256;
 		this.shape1 = new ModelRenderer(this, 0, 0);
 		this.shape1.setRotationPoint(9.0F, 0.0F, 0.0F);
-		this.shape1.addBox(-150.0F, 0.9F, 0.9F, 140, 3, 3, 0.0F);
+		this.shape1.addBox(-185.0F, 0.9F, 0.9F, 175, 3, 3, 0.0F);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ModelPikeBladeLong extends ModelBase implements IHandlesRender
 		{
 			case ENTITY:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.03f, 0.03f, 0.03f);
+				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(-90, 0, 0, 1);
 				GL11.glTranslatef(-30, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);

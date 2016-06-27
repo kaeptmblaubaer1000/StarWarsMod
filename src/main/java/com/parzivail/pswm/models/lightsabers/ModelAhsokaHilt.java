@@ -304,12 +304,12 @@ public class ModelAhsokaHilt extends ModelBase implements IHandlesRender
 				break;
 			case EQUIPPED:
 				GL11.glPushMatrix();
-				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);
 				GL11.glRotatef(90, 1, 0, 0);
-				GL11.glTranslatef(13, -2, 18);
+				GL11.glTranslatef(11, -2, 25);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
@@ -330,7 +330,8 @@ public class ModelAhsokaHilt extends ModelBase implements IHandlesRender
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(75, 0, 0, 1);
 				GL11.glRotatef(85, 1, 0, 0);
-				GL11.glTranslatef(0, 18, 0);
+				GL11.glRotatef(90, 1, 0, 0);
+				GL11.glTranslatef(0, -5, -25);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
@@ -346,8 +347,8 @@ public class ModelAhsokaHilt extends ModelBase implements IHandlesRender
 				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
-				GL11.glScalef(0.045f, 0.045f, 0.045f);
-				GL11.glTranslatef(-10, 3, 0);
+				GL11.glScalef(0.048f, 0.048f, 0.048f);
+				GL11.glTranslatef(-23.5f, 4, 0);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(90, 1, 0, 0);

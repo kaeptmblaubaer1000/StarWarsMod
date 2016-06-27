@@ -306,8 +306,8 @@ public class ModelLuke1Hilt extends ModelBase implements IHandlesRender
 			case INVENTORY:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.055F, -0.055F, 0.055F);
-				GL11.glTranslatef(-13, -6.5f, -3.5f);
+				GL11.glScalef(0.062F, -0.062F, 0.062F);
+				GL11.glTranslatef(-13, -7f, -3.5f);
 				GL11.glRotatef(25, 0, 0, 1);
 				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glTranslatef(2, 6.5f, 2f);
