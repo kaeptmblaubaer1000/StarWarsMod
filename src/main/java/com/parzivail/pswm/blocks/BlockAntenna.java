@@ -85,6 +85,9 @@ public class BlockAntenna extends PBlockContainer implements IDebugProvider
 					tile1.setFixed(true);
 					new AnimationAntennaOpen(tile1).start();
 				}
+
+				tile.markDirty();
+				tile.invalidate();
 			}
 		}
 		else
