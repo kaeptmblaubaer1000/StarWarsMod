@@ -6,7 +6,9 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -23,12 +25,46 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	private int timeAlive = 0;
 	protected float damage = 5.0f;
 	protected float speed = 4.5f;
+	private Entity target;
 
 	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
 	{
 		super(par1World, par2, par4, par6);
 		this.damage = damage;
 	}
+
+	public void setTarget(Entity target)
+	{
+		this.target = target;
+	}
+
+	public Entity getTarget()
+	{
+		return target;
+	}
+
+	private void trackTarget()
+	{
+		if (this.target != null)
+		{
+			this.renderDistanceWeight = 10.0D;
+			double d0 = this.target.posX - this.posX;
+			double d1 = this.target.boundingBox.minY + this.target.height / 3.0F - this.posY;
+			double d2 = this.target.posZ - this.posZ;
+			double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+			if (d3 >= 1.0E-7D)
+			{
+				float f2 = (float)(Math.atan2(d2, d0) * 180.0D / 3.141592653589793D) - 90.0F;
+				float f3 = (float)-(Math.atan2(d1, d3) * 180.0D / 3.141592653589793D);
+				double d4 = d0 / d3;
+				double d5 = d2 / d3;
+				this.setLocationAndAngles(this.posX + d4, this.posY, this.posZ + d5, f2, f3);
+				this.yOffset = 0.0F;
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 1.0F);
+			}
+		}
+	}
+
 
 	public EntityBlasterBoltBase(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase, float damage)
 	{
@@ -162,6 +198,10 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	public void onUpdate()
 	{
 		super.onUpdate();
+
+		trackTarget();
+
+		Lumberjack.debug(this.target);
 
 		if (this.timeAlive++ > 100)
 			this.setDead();

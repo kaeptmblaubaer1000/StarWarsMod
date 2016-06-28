@@ -207,6 +207,7 @@ public class StarWarsMod
 
 	public static DamageSource blasterDamageSource;
 	public static DamageSource saberDamageSource;
+	public static DamageSource roadkillDamageSource;
 
 	//public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
 

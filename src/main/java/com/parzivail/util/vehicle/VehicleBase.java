@@ -1,9 +1,12 @@
 package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class VehicleBase extends EntityLiving
@@ -39,6 +42,13 @@ public class VehicleBase extends EntityLiving
 	@Override
 	public void fall(float p1)
 	{
+	}
+
+	@Override
+	protected void collideWithEntity(Entity entity)
+	{
+		if (this.motionX > 0.01f || this.motionY > 0.01f || this.motionZ > 0.01f)
+			entity.attackEntityFrom(StarWarsMod.roadkillDamageSource, MathHelper.sqrt_float(Math.max(4, 4 * (float)(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ))));
 	}
 
 	@Override

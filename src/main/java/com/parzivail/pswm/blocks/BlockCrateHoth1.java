@@ -23,7 +23,7 @@ public class BlockCrateHoth1 extends PBlockContainer implements IDebugProvider
 {
 	public BlockCrateHoth1()
 	{
-		super("pipeMass", Material.iron);
+		super("crateHoth1", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);

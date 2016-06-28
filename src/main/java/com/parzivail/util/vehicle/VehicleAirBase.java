@@ -42,12 +42,6 @@ public class VehicleAirBase extends VehicleBase
 	}
 
 	@Override
-	protected void collideWithNearbyEntities()
-	{
-		// do nothing
-	}
-
-	@Override
 	public void entityInit()
 	{
 		super.entityInit();
