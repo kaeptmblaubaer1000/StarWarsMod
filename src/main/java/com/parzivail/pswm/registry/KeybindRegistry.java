@@ -46,7 +46,7 @@ public class KeybindRegistry
 		KeybindRegistry.keyRobePowerPrev = registerKeybind("robePowerPrev", Keyboard.KEY_H);
 		KeybindRegistry.keyLSForge = registerKeybind("lsForge", Keyboard.KEY_P);
 		KeybindRegistry.keyLSToggle = registerKeybind("lsToggle", Keyboard.KEY_O);
-		KeybindRegistry.keyShootProton = registerKeybind("shootProton", Keyboard.KEY_I);
+		KeybindRegistry.keyShootProton = registerKeybind("shootSpecial", Keyboard.KEY_I);
 		KeybindRegistry.keyShipHyperdrive = registerKeybind("shipHyperdrive", Keyboard.KEY_U);
 		KeybindRegistry.keyShipHoverMode = registerKeybind("shipHoverMode", Keyboard.KEY_Y);
 		if (Resources.IS_DEV_ENVIRONVENT)
