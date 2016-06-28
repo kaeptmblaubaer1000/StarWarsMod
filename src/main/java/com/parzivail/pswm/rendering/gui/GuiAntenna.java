@@ -107,6 +107,7 @@ public class GuiAntenna extends GuiScreen
 
 		GL11.glPushMatrix();
 		GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
+		GL11.glTranslatef(0, 0, 5);
 		super.drawScreen(x, y, n);
 		GL11.glPopMatrix();
 
