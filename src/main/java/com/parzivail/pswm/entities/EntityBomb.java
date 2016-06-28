@@ -34,9 +34,11 @@ public class EntityBomb extends EntityBlasterBoltBase
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
+		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && pos.entityHit == getSender())
+			return;
+
 		super.onImpact(pos);
-		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
+		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
 	}
 
 	@Override

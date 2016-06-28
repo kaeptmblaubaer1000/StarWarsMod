@@ -167,7 +167,12 @@ public class ClientEventHandler
 		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
 		{
 			Entity targetted = EntityUtils.rayTrace(100, playerInteractEvent.entityPlayer, new Entity[] { playerInteractEvent.entityPlayer.ridingEntity });
-			
+
+			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing && !((VehicXWing)playerInteractEvent.entityPlayer.ridingEntity).getHasAstro())
+				targetted = null;
+			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicYWing && !((VehicYWing)playerInteractEvent.entityPlayer.ridingEntity).getHasAstro())
+				targetted = null;
+
 			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SPEEDER, null));
