@@ -34,7 +34,7 @@ public class EntityBomb extends EntityBlasterBoltBase
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
-		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && pos.entityHit == getSender())
+		if ((pos.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && pos.entityHit == getSender()) || this.ticksExisted < 10)
 			return;
 
 		super.onImpact(pos);
