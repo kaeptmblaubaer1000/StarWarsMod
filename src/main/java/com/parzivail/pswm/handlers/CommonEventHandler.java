@@ -82,6 +82,11 @@ public class CommonEventHandler
 			{
 				Entity targetted = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { StarWarsMod.mc.thePlayer.ridingEntity });
 
+				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing && !((VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity).getHasAstro())
+					targetted = null;
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing && !((VehicYWing)StarWarsMod.mc.thePlayer.ridingEntity).getHasAstro())
+					targetted = null;
+
 				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSpeederBike || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicHothSpeederBike)
 				{
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.SPEEDER, null));
@@ -145,7 +150,12 @@ public class CommonEventHandler
 			{
 				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
 				{
-					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.PROTON, null));
+					Entity targetted = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { StarWarsMod.mc.thePlayer.ridingEntity });
+
+					if (!((VehicXWing)StarWarsMod.mc.thePlayer.ridingEntity).getHasAstro())
+						targetted = null;
+
+					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.PROTON, targetted));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
 					StarWarsMod.shipSpecialWeaponCooldown = 200;
 				}
@@ -392,7 +402,14 @@ public class CommonEventHandler
 		ClientEventHandler.soundManager.tick();
 
 		if (StarWarsMod.shipSpecialWeaponCooldown > 0)
+		{
 			StarWarsMod.shipSpecialWeaponCooldown--;
+			if (StarWarsMod.shipSpecialWeaponCooldown == 1 && StarWarsMod.mc.thePlayer != null)
+				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicXWing)
+					GuiToast.makeText("Proton torpedoes reloaded!", GuiToast.TIME_SHORT).show();
+				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
+					GuiToast.makeText("Bombs reloaded!", GuiToast.TIME_SHORT).show();
+		}
 
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;

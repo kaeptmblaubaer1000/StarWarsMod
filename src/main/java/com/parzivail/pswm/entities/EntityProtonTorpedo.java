@@ -41,9 +41,11 @@ public class EntityProtonTorpedo extends EntityBlasterBoltBase
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
 	{
+		if ((pos.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && pos.entityHit == getSender()) || this.ticksExisted < 10)
+			return;
+
 		super.onImpact(pos);
-		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
-			this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
+		this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
 	}
 
 	@Override

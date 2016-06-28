@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.mobs.ModelBantha;
+import com.parzivail.pswm.models.mobs.ModelBanthaNew;
 import net.minecraft.client.renderer.entity.RenderCow;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,9 +10,9 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderBantha extends RenderCow
 {
-	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/bantha.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/banthaNew.png");
 
-	public RenderBantha(ModelBantha par1ModelBase, float par2)
+	public RenderBantha(ModelBanthaNew par1ModelBase, float par2)
 	{
 		super(par1ModelBase, par2);
 	}

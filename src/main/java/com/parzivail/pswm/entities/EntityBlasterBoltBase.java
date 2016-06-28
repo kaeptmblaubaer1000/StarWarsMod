@@ -6,7 +6,6 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -200,8 +199,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 		super.onUpdate();
 
 		trackTarget();
-
-		Lumberjack.debug(this.target);
 
 		if (this.timeAlive++ > 100)
 			this.setDead();
