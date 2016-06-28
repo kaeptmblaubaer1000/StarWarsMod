@@ -54,10 +54,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	private static boolean acceptField(Field f, Class<?> type)
 	{
 		int mods = f.getModifiers();
-		if (Modifier.isFinal(mods) || Modifier.isStatic(mods) || Modifier.isTransient(mods))
-			return false;
-
-		return handlers.containsKey(type);
+		return !(Modifier.isFinal(mods) || Modifier.isStatic(mods) || Modifier.isTransient(mods)) && handlers.containsKey(type);
 	}
 
 	private static Field[] getClassFields(Class<?> clazz)

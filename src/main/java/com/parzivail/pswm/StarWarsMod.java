@@ -359,11 +359,11 @@ public class StarWarsMod
 		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
-		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true).getBoolean();
-		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true).getBoolean();
-		ConfigOptions.enableBetaFeatures = config.get("core", "enableBetaFeatures", false).getBoolean();
-		ConfigOptions.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false).getBoolean();
-		ConfigOptions.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true).getBoolean();
+		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true, "Wether or not the Original Trilogy tab is enabled").getBoolean();
+		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true, "Wether or not the Sequel Trilogy tab is enabled").getBoolean();
+		ConfigOptions.enableBetaFeatures = config.get("core", "enableBetaFeatures", false, "Development purposes only. Do not use!").getBoolean();
+		ConfigOptions.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false, "Enable for a fun time!").getBoolean();
+		ConfigOptions.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true, "If true, you agree to have which side you choose (Jedi or Sith) logged").getBoolean();
 
 		ConfigOptions.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		ConfigOptions.dimHothId = config.get("dimensions", "hoth", 3).getInt();
@@ -386,13 +386,13 @@ public class StarWarsMod
 		ConfigOptions.biomeMustafarId = config.get("biomes", "mustafar", 202).getInt();
 		ConfigOptions.biomeSpaceId = config.get("biomes", "space", 203).getInt();
 
-		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true).getBoolean();
+		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true, "Wether or not the PSWM overlay is visible").getBoolean();
 
-		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true).getBoolean();
-		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true).getBoolean();
-		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true).getBoolean();
+		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true, "Wether or not lightsabers hum when idle").getBoolean();
+		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true, "Wether or not blaster bolts create fire on impact").getBoolean();
+		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true, "Wether or not you get a water bucket from Moisture Vaporators").getBoolean();
 
-		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true).getBoolean();
+		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true, "Wether or not lightsabers are a light source").getBoolean();
 
 		Resources.planetTextures.put(Resources.ConfigOptions.dimAlderaanId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimBespinId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetBespin.png"));

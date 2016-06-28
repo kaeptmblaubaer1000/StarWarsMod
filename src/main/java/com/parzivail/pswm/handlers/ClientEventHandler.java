@@ -222,12 +222,12 @@ public class ClientEventHandler
 		if (logInEvent.entity instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)logInEvent.entity;
-			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION) && !StarWarsMod.hasShownNeedUpdate)
+			if (!Resources.VERSION.equalsIgnoreCase(Resources.ONLINE_VERSION) && !StarWarsMod.hasShownNeedUpdate && logInEvent.world.isRemote)
 			{
 				player.addChatMessage(new ChatComponentText("New version of Parzi's Star Wars Mod available: " + TextUtils.addEffect(Resources.ONLINE_VERSION, TextEffects.COLOR_YELLOW) + "! Current: " + TextUtils.addEffect(Resources.VERSION, TextEffects.COLOR_YELLOW)));
 				StarWarsMod.hasShownNeedUpdate = true;
 			}
-			if (ConfigOptions.enableGlobalLeaderboard && !StarWarsMod.hasShownLeaderboardPart)
+			if (ConfigOptions.enableGlobalLeaderboard && !StarWarsMod.hasShownLeaderboardPart && logInEvent.world.isRemote)
 			{
 				player.addChatMessage(new ChatComponentText("Thanks for participating in the global Jedi vs. Sith leaderboard! You can opt out at any time in the config."));
 				StarWarsMod.hasShownLeaderboardPart = true;

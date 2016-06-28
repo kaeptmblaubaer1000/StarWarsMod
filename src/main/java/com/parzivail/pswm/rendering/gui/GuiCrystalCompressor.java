@@ -13,14 +13,13 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class GuiCrystalCompressor extends GuiContainer
 {
-	private static final ResourceLocation brewingStandGuiTextures = new ResourceLocation(Resources.MODID, "textures/gui/crystalCompressor.png");
-	private TileEntityCrystalCompressor tileBrewingStand;
-	private static final String __OBFID = "CL_00000746";
+	private static final ResourceLocation crystalCompressorGuiTextures = new ResourceLocation(Resources.MODID, "textures/gui/crystalCompressor.png");
+	private TileEntityCrystalCompressor compressor;
 
 	public GuiCrystalCompressor(InventoryPlayer p_i1081_1_, TileEntityCrystalCompressor p_i1081_2_)
 	{
 		super(new ContainerCrystalCompressor(p_i1081_1_, p_i1081_2_));
-		this.tileBrewingStand = p_i1081_2_;
+		this.compressor = p_i1081_2_;
 	}
 
 	/**
@@ -33,15 +32,15 @@ public class GuiCrystalCompressor extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(brewingStandGuiTextures);
+		this.mc.getTextureManager().bindTexture(crystalCompressorGuiTextures);
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-		if (this.tileBrewingStand.getCompressTime() == 0)
+		if (this.compressor.getCompressTime() == 0)
 			return;
 
-		float i1 = 1 - this.tileBrewingStand.getCompressTime() / (float)this.tileBrewingStand.getCompressTimeMax();
+		float i1 = 1 - this.compressor.getCompressTime() / (float)this.compressor.getCompressTimeMax();
 
 		ClientEventHandler.pgui.drawTexturedModalRectFloat(k + 28.5f, l + 27f, 0, 166, 119 * i1, 32);
 	}

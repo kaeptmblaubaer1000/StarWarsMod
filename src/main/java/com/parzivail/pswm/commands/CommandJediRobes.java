@@ -74,26 +74,26 @@ public class CommandJediRobes extends CommandBase
 				}
 			else
 				robes.stackTagCompound.setInteger(key, value);
-			icommandsender.addChatMessage(new ChatComponentText("[Cron] Set " + key + " to " + String.valueOf(value) + "."));
+			icommandsender.addChatMessage(new ChatComponentText("[Holocron] Set " + key + " to " + String.valueOf(value) + "."));
 
 			if (key.equalsIgnoreCase("level"))
 			{
 				robes.stackTagCompound.setInteger(Resources.nbtMaxXp, (value + 1) * 100);
-				icommandsender.addChatMessage(new ChatComponentText("[Cron] Set Max XP to " + String.valueOf((value + 1) * 100) + "."));
+				icommandsender.addChatMessage(new ChatComponentText("[Holocron] Set Max XP to " + String.valueOf((value + 1) * 100) + "."));
 				robes.stackTagCompound.setInteger(Resources.nbtRemainingPts, value);
-				icommandsender.addChatMessage(new ChatComponentText("[Cron] Set Remaining Upgrade Points to " + String.valueOf(value) + "."));
+				icommandsender.addChatMessage(new ChatComponentText("[Holocron] Set Remaining Upgrade Points to " + String.valueOf(value) + "."));
 			}
 		}
 		else
 		{
 			ItemStack robes = Cron.getHolocron(player);
-			icommandsender.addChatMessage(new ChatComponentText("[Cron] Usage: " + this.getCommandUsage(icommandsender)));
+			icommandsender.addChatMessage(new ChatComponentText("[Holocron] Usage: " + this.getCommandUsage(icommandsender)));
 			if (player == null)
-				icommandsender.addChatMessage(new ChatComponentText("[Cron] Error: ship is null!"));
+				icommandsender.addChatMessage(new ChatComponentText("[Holocron] Error: ship is null!"));
 			else if (robes == null)
-				icommandsender.addChatMessage(new ChatComponentText("[Cron] Error: You must have a Holocron!"));
+				icommandsender.addChatMessage(new ChatComponentText("[Holocron] Error: You must have a Holocron!"));
 			else
-				icommandsender.addChatMessage(new ChatComponentText("[Cron] Unknown key!"));
+				icommandsender.addChatMessage(new ChatComponentText("[Holocron] Unknown key!"));
 		}
 	}
 }
