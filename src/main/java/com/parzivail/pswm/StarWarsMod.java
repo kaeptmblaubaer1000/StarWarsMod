@@ -157,7 +157,7 @@ public class StarWarsMod
 	public static PBlock blockHothSnowCut;
 	public static PBlock blockHothBaseDoor;
 
-	public static PBlockContainer blockCrate1;
+	public static Block blockCrate1;
 	public static PBlockContainer blockFloorLight;
 	public static PBlockContainer blockHolotableMass;
 	public static PBlockContainer blockLadder;
@@ -176,8 +176,8 @@ public class StarWarsMod
 	public static PBlockContainer blockMedicalConsole;
 	public static PBlockContainer blockMedicalConsole2;
 	public static PBlockContainer blockFloorLight2;
-	public static PBlockContainer blockHothCrate1;
-	public static PBlockContainer blockHothCrate2;
+	public static Block blockHothCrate1;
+	public static Block blockHothCrate2;
 
 	public static Block blockAncientJediStatue;
 	public static BlockNpcBase[] blockStaticNpc;

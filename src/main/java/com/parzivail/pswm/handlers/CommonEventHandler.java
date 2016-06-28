@@ -612,7 +612,8 @@ public class CommonEventHandler
 				b.duration = 0;
 				b.isRunning = false;
 
-				if (Cron.getActive(StarWarsMod.mc.thePlayer).name.equals(b.name))
+				PowerBase active = Cron.getActive(StarWarsMod.mc.thePlayer);
+				if (active != null && active.name.equals(b.name))
 					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, b.serialize()));
 			}
 
