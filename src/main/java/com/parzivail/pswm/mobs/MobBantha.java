@@ -8,7 +8,6 @@ import com.parzivail.util.entity.trade.WeightedLoot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -186,9 +185,15 @@ public class MobBantha extends EntityHorse implements IShearable
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		ItemStack itemstack = p_70085_1_.inventory.getCurrentItem();
-		if (itemstack != null && itemstack.getItem() == Items.spawn_egg)
+		if (itemstack != null && itemstack.getItem() == net.minecraft.init.Items.spawn_egg)
 			return false;
-		if (itemstack != null && itemstack.getItem() == Items.bucket && !p_70085_1_.capabilities.isCreativeMode)
+		if (!isTame())
+		{
+			setHorseTamed(true);
+			playLivingSound();
+			spawnHorseParticles(true);
+		}
+		else if (itemstack != null && itemstack.getItem() == Items.bucket)
 		{
 			if (itemstack.stackSize-- == 1)
 				p_70085_1_.inventory.setInventorySlotContents(p_70085_1_.inventory.currentItem, new ItemStack(StarWarsItems.banthaMilk));
@@ -212,12 +217,17 @@ public class MobBantha extends EntityHorse implements IShearable
 			sheepTimer = Math.max(0, sheepTimer - 1);
 
 		super.onLivingUpdate();
+
+		if (this.isChild())
+			setSize(2, 2);
+		else
+			setSize(4, 4);
 	}
 
 	@Override
 	public ArrayList<ItemStack> onSheared(ItemStack item, IBlockAccess world, int x, int y, int z, int fortune)
 	{
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> ret = new ArrayList<>();
 		setSheared(true);
 		int i = 1 + rand.nextInt(3);
 		for (int j = 0; j < i; j++)
@@ -241,21 +251,24 @@ public class MobBantha extends EntityHorse implements IShearable
 		byte b0 = dataWatcher.getWatchableObjectByte(17);
 
 		if (p_70893_1_)
-			dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 | 16)));
+			dataWatcher.updateObject(17, (byte)(b0 | 16));
 		else
-			dataWatcher.updateObject(17, Byte.valueOf((byte)(b0 & -17)));
+			dataWatcher.updateObject(17, (byte)(b0 & -17));
 	}
 
 	@Override
 	public void updateRiderPosition()
 	{
-		super.updateRiderPosition();
-		float f = MathHelper.sin(renderYawOffset * 3.1415927F / 180.0F);
-		float f1 = MathHelper.cos(renderYawOffset * 3.1415927F / 180.0F);
-		float f2 = 0.5F;
-		float f3 = 1.0F;
-		riddenByEntity.setPosition(posX + f2 * f, posY + getMountedYOffset() + riddenByEntity.getYOffset() + f3, posZ - f2 * f1);
-		if (riddenByEntity instanceof EntityLivingBase)
-			((EntityLivingBase)riddenByEntity).renderYawOffset = renderYawOffset;
+		if (this.riddenByEntity != null)
+		{
+			float offset = 0.7f;
+			if (!(this.riddenByEntity instanceof EntityPlayer))
+				offset -= 0.5F;
+
+			float mu = 0.1f;
+			float ox = MathHelper.cos((float)Math.toRadians(this.rotationYaw + 90)) * mu;
+			float oz = MathHelper.sin((float)Math.toRadians(this.rotationYaw + 90)) * mu;
+			this.riddenByEntity.setPosition(this.posX + ox, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ + oz);
+		}
 	}
 }

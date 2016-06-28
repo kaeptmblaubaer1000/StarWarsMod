@@ -3,6 +3,8 @@ package com.parzivail.pswm.models.mobs;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+import org.lwjgl.opengl.GL11;
 
 /**
  * NewProject - Undefined
@@ -156,8 +158,8 @@ public class ModelBanthaNew extends ModelBase
     public ModelRenderer TailChild3;
     public ModelRenderer TailChild4;
 
-    public ModelBantha()
-    {
+	public ModelBanthaNew()
+	{
         this.textureWidth = 256;
         this.textureHeight = 256;
         this.Shape100 = new ModelRenderer(this, 24, 181);
@@ -627,6 +629,22 @@ public class ModelBanthaNew extends ModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
+	    GL11.glTranslatef(0, 0, -1.6f);
+
+	    float animScale = 1;
+	    this.Shape64_2.rotateAngleX = MathHelper.sin((float)(f * 0.6662F + Math.PI)) * animScale * f1;
+	    this.Shape64_3.rotateAngleX = MathHelper.sin(f * 0.6662F) * animScale * f1;
+	    this.Shape64_1.rotateAngleX = MathHelper.sin(f * 0.6662F) * animScale * f1;
+	    this.Shape64.rotateAngleX = MathHelper.sin((float)(f * 0.6662F + Math.PI)) * animScale * f1;
+
+	    this.TailParent.rotateAngleY = 0;
+	    this.TailChild1.rotateAngleY = MathHelper.sin(entity.ticksExisted / 10f) * 0.05f;
+	    this.TailChild2.rotateAngleY = MathHelper.sin(entity.ticksExisted / 10f) * 0.05f;
+	    this.TailChild3.rotateAngleY = MathHelper.sin(entity.ticksExisted / 10f) * 0.05f;
+	    this.TailChild4.rotateAngleY = MathHelper.sin(entity.ticksExisted / 10f) * 0.05f;
+	    this.Tail1.rotateAngleY = 0;
+	    this.Tail1.rotateAngleY = 0;
+
         this.Shape100.render(f5);
         this.Shape122.render(f5);
         this.Shape35.render(f5);
