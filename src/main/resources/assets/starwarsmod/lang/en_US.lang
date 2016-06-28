@@ -2,6 +2,10 @@
 # Original Trilogy
 ####################
 
+// Damage Sources
+death.attack.blaster.player=%1$s blasted %2$s to bits
+death.attack.saber.player=%2$s was no match for the lightsaber of %1$s
+
 // Items
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy

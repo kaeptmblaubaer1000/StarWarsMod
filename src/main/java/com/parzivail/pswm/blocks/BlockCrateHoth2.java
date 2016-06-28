@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -25,7 +26,6 @@ public class BlockCrateHoth2 extends PBlockContainer implements IDebugProvider
 		super("crateHoth2", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(50.0F);
-		this.setBlockBounds(0.1f, 0, 0.1f, 0.9f, 0.8f, 0.9f);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
@@ -45,6 +45,12 @@ public class BlockCrateHoth2 extends PBlockContainer implements IDebugProvider
 	public boolean isOpaqueCube()
 	{
 		return false;
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+	{
+		this.setBlockBounds(0.1f, 0, 0.1f, 0.9f, 0.8f, 0.9f);
 	}
 
 	@Override

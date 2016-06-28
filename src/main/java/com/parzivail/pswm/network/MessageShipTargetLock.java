@@ -24,6 +24,9 @@ public class MessageShipTargetLock extends PMessage<MessageShipTargetLock>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
+		if (player == null)
+			return null;
+
 		if (player.ridingEntity instanceof VehicleAirBase)
 			((VehicleAirBase)player.ridingEntity).setTargetLock(this.lock);
 		return null;

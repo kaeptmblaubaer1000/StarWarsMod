@@ -34,7 +34,7 @@ public class GuiVehicle
 	String randomChar3 = "D";
 	String randomChar4 = "L";
 
-	Entity lastTarget = null;
+	public static Entity lastTarget = null;
 
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
@@ -93,10 +93,10 @@ public class GuiVehicle
 						if (xwing.getTargetLock())
 							color = GLPalette.ORANGE;
 
-						if (e != null && this.lastTarget == null)
+						if (e != null && lastTarget == null)
 							new AnimationCrosshairClose(color).start();
 
-						if (e == null && this.lastTarget != null)
+						if (e == null && lastTarget != null)
 							new AnimationCrosshairOpen(color).start();
 
 						if (!ClientEventHandler.isCursorAnim)
@@ -104,7 +104,7 @@ public class GuiVehicle
 
 						updateTargetLock(e);
 
-						this.lastTarget = e;
+						lastTarget = e;
 					}
 					else
 					{
@@ -206,10 +206,10 @@ public class GuiVehicle
 					if (awing.getTargetLock())
 						color = GLPalette.ORANGE;
 
-					if (e != null && this.lastTarget == null)
+					if (e != null && lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && this.lastTarget != null)
+					if (e == null && lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
@@ -217,7 +217,7 @@ public class GuiVehicle
 
 					updateTargetLock(e);
 
-					this.lastTarget = e;
+					lastTarget = e;
 
 					if (randomCharNextTime <= System.currentTimeMillis())
 					{
@@ -269,7 +269,7 @@ public class GuiVehicle
 					{
 						GL11.glPushMatrix();
 
-						this.lastTarget = e;
+						lastTarget = e;
 
 						if (e instanceof VehicleAirBase)
 							((VehicleAirBase)e).setTargetLock(true);
@@ -285,11 +285,11 @@ public class GuiVehicle
 
 						GL11.glPopMatrix();
 					}
-					else if (this.lastTarget != null)
+					else if (lastTarget != null)
 					{
-						if (this.lastTarget instanceof VehicleAirBase)
-							((VehicleAirBase)this.lastTarget).setTargetLock(true);
-						this.lastTarget = null;
+						if (lastTarget instanceof VehicleAirBase)
+							((VehicleAirBase)lastTarget).setTargetLock(true);
+						lastTarget = null;
 					}
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIE || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEInterceptor || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEAdvanced)
@@ -385,10 +385,10 @@ public class GuiVehicle
 					if (tie.getTargetLock())
 						color = GLPalette.ORANGE;
 
-					if (e != null && this.lastTarget == null)
+					if (e != null && lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && this.lastTarget != null)
+					if (e == null && lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
@@ -396,7 +396,7 @@ public class GuiVehicle
 
 					updateTargetLock(e);
 
-					this.lastTarget = e;
+					lastTarget = e;
 
 					/*
 					 * if (tie.getTargetLock()) dist = GlPalette.ORANGE;
@@ -480,7 +480,7 @@ public class GuiVehicle
 					{
 						GL11.glPushMatrix();
 
-						this.lastTarget = e;
+						lastTarget = e;
 
 						float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
@@ -498,11 +498,11 @@ public class GuiVehicle
 
 						GL11.glPopMatrix();
 					}
-					else if (this.lastTarget != null)
+					else if (lastTarget != null)
 					{
-						if (this.lastTarget instanceof VehicleAirBase)
-							((VehicleAirBase)this.lastTarget).setTargetLock(true);
-						this.lastTarget = null;
+						if (lastTarget instanceof VehicleAirBase)
+							((VehicleAirBase)lastTarget).setTargetLock(true);
+						lastTarget = null;
 					}
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder)
@@ -524,10 +524,10 @@ public class GuiVehicle
 					if (vehic.getTargetLock())
 						color = GLPalette.ORANGE;
 
-					if (e != null && this.lastTarget == null)
+					if (e != null && lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && this.lastTarget != null)
+					if (e == null && lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
@@ -535,7 +535,7 @@ public class GuiVehicle
 
 					updateTargetLock(e);
 
-					this.lastTarget = e;
+					lastTarget = e;
 
 					ClientEventHandler.pgui.renderOverlay(Resources.snowspeederOverlay);
 				}
@@ -558,10 +558,10 @@ public class GuiVehicle
 					if (vehic.getTargetLock())
 						color = GLPalette.ORANGE;
 
-					if (e != null && this.lastTarget == null)
+					if (e != null && lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && this.lastTarget != null)
+					if (e == null && lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
@@ -569,7 +569,7 @@ public class GuiVehicle
 
 					updateTargetLock(e);
 
-					this.lastTarget = e;
+					lastTarget = e;
 
 					ClientEventHandler.pgui.renderOverlay(Resources.skyhopperOverlay);
 				}
@@ -592,10 +592,10 @@ public class GuiVehicle
 					// if (vehic.getTargetLock())
 					// dist = GLPalette.ORANGE;
 
-					if (e != null && this.lastTarget == null)
+					if (e != null && lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && this.lastTarget != null)
+					if (e == null && lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
@@ -603,7 +603,7 @@ public class GuiVehicle
 
 					updateTargetLock(e);
 
-					this.lastTarget = e;
+					lastTarget = e;
 
 					ClientEventHandler.pgui.renderOverlay(Resources.atstOverlay);
 				}
@@ -626,10 +626,10 @@ public class GuiVehicle
 					// if (vehic.getTargetLock())
 					// dist = GLPalette.ORANGE;
 
-					if (e != null && this.lastTarget == null)
+					if (e != null && lastTarget == null)
 						new AnimationCrosshairClose(color).start();
 
-					if (e == null && this.lastTarget != null)
+					if (e == null && lastTarget != null)
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
@@ -637,24 +637,24 @@ public class GuiVehicle
 
 					updateTargetLock(e);
 
-					this.lastTarget = e;
+					lastTarget = e;
 
 					ClientEventHandler.pgui.renderOverlay(Resources.ywingOverlay);
 				}
 			}
 		}
 
-		if (StarWarsMod.mc.thePlayer.ridingEntity == null && this.lastTarget instanceof VehicleAirBase)
+		if (StarWarsMod.mc.thePlayer.ridingEntity == null && lastTarget instanceof VehicleAirBase)
 		{
 			try
 			{
-				StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)this.lastTarget.riddenByEntity, false));
+				StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)lastTarget.riddenByEntity, false));
 			}
 			catch (Exception e)
 			{
 				e.printStackTrace();
 			}
-			this.lastTarget = null;
+			lastTarget = null;
 		}
 	}
 
@@ -676,7 +676,7 @@ public class GuiVehicle
 		if (e instanceof VehicleAirBase && e.riddenByEntity instanceof EntityPlayer)
 			StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)e.riddenByEntity, true));
 
-		if (e == null && this.lastTarget instanceof VehicleAirBase && this.lastTarget.riddenByEntity instanceof EntityPlayer)
-			StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)this.lastTarget.riddenByEntity, false));
+		if (e == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
+			StarWarsMod.network.sendToServer(new MessageShipTargetLock((EntityPlayer)lastTarget.riddenByEntity, false));
 	}
 }

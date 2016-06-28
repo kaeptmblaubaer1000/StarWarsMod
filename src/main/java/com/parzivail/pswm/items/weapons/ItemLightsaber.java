@@ -171,7 +171,8 @@ public class ItemLightsaber extends ItemSword
 					player.playSound(Resources.MODID + ":" + "item.lightsaber.open", 1.0F, 1.0F);
 				stack.stackTagCompound.setBoolean(nbtBladeOn, !stack.stackTagCompound.getBoolean(nbtBladeOn));
 				stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
-				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+				if (player.worldObj.isRemote)
+					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
 			}
 		}
 		return super.onItemRightClick(stack, p_77659_2_, player);

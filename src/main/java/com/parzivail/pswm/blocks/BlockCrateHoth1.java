@@ -2,7 +2,7 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityCrateHoth1;
+import com.parzivail.pswm.tileentities.TileEntityPipeMass;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.block.TileEntityRotate;
@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -25,14 +26,13 @@ public class BlockCrateHoth1 extends PBlockContainer implements IDebugProvider
 		super("crateHoth1", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(50.0F);
-		this.setBlockBounds(0.1f, 0, 0.1f, 0.9f, 1, 0.9f);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityCrateHoth1();
+		return new TileEntityPipeMass();
 	}
 
 	@Override
@@ -45,6 +45,28 @@ public class BlockCrateHoth1 extends PBlockContainer implements IDebugProvider
 	public boolean isOpaqueCube()
 	{
 		return false;
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+	{
+		int face = ((TileEntityPipeMass)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
+
+		switch (face)
+		{
+			case 0:
+				setBlockBounds(0, 0.4f, 0.8f, 1, 0.6f, 1);
+				break;
+			case 1:
+				setBlockBounds(0, 0.4f, 0, 0.2f, 0.6f, 1); // done
+				break;
+			case 2:
+				setBlockBounds(0, 0.4f, 0, 1, 0.6f, 0.2f);
+				break;
+			case 3:
+				setBlockBounds(0.8f, 0.4f, 0, 1, 0.6f, 1); // done
+				break;
+		}
 	}
 
 	@Override

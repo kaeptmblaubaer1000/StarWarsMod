@@ -42,7 +42,9 @@ public class MessageEntityGrab extends PMessage<MessageEntityGrab>
 				this.entity.onGround = false;
 				this.entity.isAirBorne = true;
 				this.entity.timeUntilPortal = 5;
-				this.entity.setVelocity(0, 0, 0);
+				this.entity.motionX = 0;
+				this.entity.motionY = 0;
+				this.entity.motionZ = 0;
 				this.entity.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, this.grabber.rotationYawHead, this.grabber.rotationPitch);
 			}
 		}

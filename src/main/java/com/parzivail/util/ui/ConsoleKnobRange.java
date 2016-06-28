@@ -93,6 +93,7 @@ public class ConsoleKnobRange extends GuiButton
 		GL11.glPushMatrix();
 		if (this.visible)
 		{
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			FontRenderer fontrenderer = p_146112_1_.fontRenderer;
 			GLPalette.glColorI(GLPalette.GREY);
 			this.field_146123_n = p_146112_2_ >= this.xPosition && p_146112_3_ >= this.yPosition && p_146112_2_ < this.xPosition + this.width && p_146112_3_ < this.yPosition + this.height;
