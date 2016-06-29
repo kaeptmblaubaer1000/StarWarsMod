@@ -2,6 +2,7 @@ package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.utils.BlasterBoltType;
+import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -15,16 +16,18 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 	public EntityPlayer sender;
 	public int type;
 	public int itarget;
+	public byte pos;
 
 	public MessageCreateBlasterBolt()
 	{
 	}
 
-	public MessageCreateBlasterBolt(EntityPlayer sender, int type, Entity target)
+	public MessageCreateBlasterBolt(EntityPlayer sender, int type, Entity target, byte pos)
 	{
 		this.sender = sender;
 		this.type = type;
 		this.itarget = target == null ? -1 : target.getEntityId();
+		this.pos = pos;
 	}
 
 	@Override
@@ -52,33 +55,48 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 
 					float r = 5.5f;
 
-					EntityXWingBolt bolt1 = new EntityXWingBolt(world);
-					bolt1.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1.setSender(this.sender);
-					bolt1.setTarget(target);
-					world.spawnEntityInWorld(bolt1);
-
-					EntityXWingBolt bolt2 = new EntityXWingBolt(world);
-					bolt2.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2.setSender(this.sender);
-					bolt2.setTarget(target);
-					world.spawnEntityInWorld(bolt2);
-
-					EntityXWingBolt bolt3 = new EntityXWingBolt(world);
-					bolt3.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt3.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt3.setSender(this.sender);
-					bolt3.setTarget(target);
-					world.spawnEntityInWorld(bolt3);
-
-					EntityXWingBolt bolt4 = new EntityXWingBolt(world);
-					bolt4.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt4.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt4.setSender(this.sender);
-					bolt4.setTarget(target);
-					world.spawnEntityInWorld(bolt4);
+					if ((pos & BlasterPosition.BOTTOM) == BlasterPosition.BOTTOM)
+					{
+						if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+						{
+							EntityXWingBolt bolt1 = new EntityXWingBolt(world); // bottom right
+							bolt1.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
+							bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt1.setSender(this.sender);
+							bolt1.setTarget(target);
+							world.spawnEntityInWorld(bolt1);
+						}
+						else
+						{
+							EntityXWingBolt bolt2 = new EntityXWingBolt(world); // bottom left
+							bolt2.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
+							bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt2.setSender(this.sender);
+							bolt2.setTarget(target);
+							world.spawnEntityInWorld(bolt2);
+						}
+					}
+					else
+					{
+						if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+						{
+							EntityXWingBolt bolt3 = new EntityXWingBolt(world); // top right
+							bolt3.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
+							bolt3.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt3.setSender(this.sender);
+							bolt3.setTarget(target);
+							world.spawnEntityInWorld(bolt3);
+						}
+						else
+						{
+							EntityXWingBolt bolt4 = new EntityXWingBolt(world); // top left
+							bolt4.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
+							bolt4.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt4.setSender(this.sender);
+							bolt4.setTarget(target);
+							world.spawnEntityInWorld(bolt4);
+						}
+					}
 				}
 				break;
 			case BlasterBoltType.PROTON:
@@ -89,19 +107,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 					float ax = (float)Math.cos(Math.toRadians(yaw)) / 2;
 					float az = (float)Math.sin(Math.toRadians(yaw)) / 2;
 
-					EntityProtonTorpedo bolt1 = new EntityProtonTorpedo(world);
-					bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1.setSender(this.sender);
-					bolt1.setTarget(target);
-					world.spawnEntityInWorld(bolt1);
-
-					EntityProtonTorpedo bolt2 = new EntityProtonTorpedo(world);
-					bolt2.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2.setSender(this.sender);
-					bolt2.setTarget(target);
-					world.spawnEntityInWorld(bolt2);
+					if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+					{
+						EntityProtonTorpedo bolt1 = new EntityProtonTorpedo(world);
+						bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt1.setSender(this.sender);
+						bolt1.setTarget(target);
+						world.spawnEntityInWorld(bolt1);
+					}
+					else
+					{
+						EntityProtonTorpedo bolt2 = new EntityProtonTorpedo(world);
+						bolt2.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt2.setSender(this.sender);
+						bolt2.setTarget(target);
+						world.spawnEntityInWorld(bolt2);
+					}
 				}
 				break;
 			case BlasterBoltType.BOMB:
@@ -118,19 +141,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 						az *= 15;
 					}
 
-					EntityBomb bolt1 = new EntityBomb(world);
-					bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1.setSender(this.sender);
-					bolt1.setTarget(target);
-					world.spawnEntityInWorld(bolt1);
-
-					EntityBomb bolt2 = new EntityBomb(world);
-					bolt2.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2.setSender(this.sender);
-					bolt2.setTarget(target);
-					world.spawnEntityInWorld(bolt2);
+					if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+					{
+						EntityBomb bolt1 = new EntityBomb(world);
+						bolt1.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt1.setSender(this.sender);
+						bolt1.setTarget(target);
+						world.spawnEntityInWorld(bolt1);
+					}
+					else
+					{
+						EntityBomb bolt2 = new EntityBomb(world);
+						bolt2.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt2.setSender(this.sender);
+						bolt2.setTarget(target);
+						world.spawnEntityInWorld(bolt2);
+					}
 				}
 				break;
 			case BlasterBoltType.SPEEDER:
@@ -153,19 +181,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 
 					float r = 0.5f;
 
-					EntityXWingBolt bolt1x = new EntityXWingBolt(world);
-					bolt1x.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1x.setSender(this.sender);
-					bolt1x.setTarget(target);
-					world.spawnEntityInWorld(bolt1x);
-
-					EntityXWingBolt bolt2x = new EntityXWingBolt(world);
-					bolt2x.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2x.setSender(this.sender);
-					bolt2x.setTarget(target);
-					world.spawnEntityInWorld(bolt2x);
+					if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+					{
+						EntityXWingBolt bolt1x = new EntityXWingBolt(world);
+						bolt1x.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt1x.setSender(this.sender);
+						bolt1x.setTarget(target);
+						world.spawnEntityInWorld(bolt1x);
+					}
+					else
+					{
+						EntityXWingBolt bolt2x = new EntityXWingBolt(world);
+						bolt2x.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt2x.setSender(this.sender);
+						bolt2x.setTarget(target);
+						world.spawnEntityInWorld(bolt2x);
+					}
 				}
 				break;
 			case BlasterBoltType.AWING:
@@ -176,19 +209,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 					float az = (float)Math.sin(Math.toRadians(yaw));
 					float dy = 0f;
 
-					EntityXWingBolt bolt1x = new EntityXWingBolt(world);
-					bolt1x.setLocationAndAngles(this.sender.posX + ax * 2, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * 2, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1x.setSender(this.sender);
-					bolt1x.setTarget(target);
-					world.spawnEntityInWorld(bolt1x);
-
-					EntityXWingBolt bolt2x = new EntityXWingBolt(world);
-					bolt2x.setLocationAndAngles(this.sender.posX + ax * -2, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -2, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2x.setSender(this.sender);
-					bolt2x.setTarget(target);
-					world.spawnEntityInWorld(bolt2x);
+					if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+					{
+						EntityXWingBolt bolt1x = new EntityXWingBolt(world);
+						bolt1x.setLocationAndAngles(this.sender.posX + ax * 2, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * 2, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt1x.setSender(this.sender);
+						bolt1x.setTarget(target);
+						world.spawnEntityInWorld(bolt1x);
+					}
+					else
+					{
+						EntityXWingBolt bolt2x = new EntityXWingBolt(world);
+						bolt2x.setLocationAndAngles(this.sender.posX + ax * -2, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -2, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt2x.setSender(this.sender);
+						bolt2x.setTarget(target);
+						world.spawnEntityInWorld(bolt2x);
+					}
 				}
 				break;
 			case BlasterBoltType.SKYHOPPER:
@@ -209,19 +247,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 
 					float r = 2.2f;
 
-					bolt1x = new EntityXWingBolt(world);
-					bolt1x.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1x.setSender(this.sender);
-					bolt1x.setTarget(target);
-					world.spawnEntityInWorld(bolt1x);
-
-					EntityXWingBolt bolt2x = new EntityXWingBolt(world);
-					bolt2x.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2x.setSender(this.sender);
-					bolt2x.setTarget(target);
-					world.spawnEntityInWorld(bolt2x);
+					if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+					{
+						bolt1x = new EntityXWingBolt(world);
+						bolt1x.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt1x.setSender(this.sender);
+						bolt1x.setTarget(target);
+						world.spawnEntityInWorld(bolt1x);
+					}
+					else
+					{
+						EntityXWingBolt bolt2x = new EntityXWingBolt(world);
+						bolt2x.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt2x.setSender(this.sender);
+						bolt2x.setTarget(target);
+						world.spawnEntityInWorld(bolt2x);
+					}
 				}
 				break;
 			case BlasterBoltType.TIE:
@@ -230,19 +273,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				float ax = (float)Math.cos(Math.toRadians(yaw)) / 2;
 				float az = (float)Math.sin(Math.toRadians(yaw)) / 2;
 
-				EntityTIEBolt bolt1xx = new EntityTIEBolt(world);
-				bolt1xx.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
-				bolt1xx.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-				bolt1xx.setSender(this.sender);
-				bolt1xx.setTarget(target);
-				world.spawnEntityInWorld(bolt1xx);
-
-				EntityTIEBolt bolt2x = new EntityTIEBolt(world);
-				bolt2x.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
-				bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-				bolt2x.setSender(this.sender);
-				bolt2x.setTarget(target);
-				world.spawnEntityInWorld(bolt2x);
+				if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+				{
+					EntityTIEBolt bolt1xx = new EntityTIEBolt(world);
+					bolt1xx.setLocationAndAngles(this.sender.posX + ax, this.sender.posY, this.sender.posZ + az, this.sender.rotationYaw, this.sender.rotationPitch);
+					bolt1xx.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+					bolt1xx.setSender(this.sender);
+					bolt1xx.setTarget(target);
+					world.spawnEntityInWorld(bolt1xx);
+				}
+				else
+				{
+					EntityTIEBolt bolt2x = new EntityTIEBolt(world);
+					bolt2x.setLocationAndAngles(this.sender.posX - ax, this.sender.posY, this.sender.posZ - az, this.sender.rotationYaw, this.sender.rotationPitch);
+					bolt2x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+					bolt2x.setSender(this.sender);
+					bolt2x.setTarget(target);
+					world.spawnEntityInWorld(bolt2x);
+				}
 				break;
 			case BlasterBoltType.YWING:
 				if (this.sender.ridingEntity instanceof VehicYWing)
@@ -254,19 +302,24 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 
 					float r = 0.5f;
 
-					bolt1x = new EntityXWingBolt(world);
-					bolt1x.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt1x.setSender(this.sender);
-					bolt1x.setTarget(target);
-					world.spawnEntityInWorld(bolt1x);
-
-					EntityXWingBolt bolt2xx = new EntityXWingBolt(world);
-					bolt2xx.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-					bolt2xx.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
-					bolt2xx.setSender(this.sender);
-					bolt2xx.setTarget(target);
-					world.spawnEntityInWorld(bolt2xx);
+					if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+					{
+						bolt1x = new EntityXWingBolt(world);
+						bolt1x.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt1x.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt1x.setSender(this.sender);
+						bolt1x.setTarget(target);
+						world.spawnEntityInWorld(bolt1x);
+					}
+					else
+					{
+						EntityXWingBolt bolt2xx = new EntityXWingBolt(world);
+						bolt2xx.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
+						bolt2xx.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+						bolt2xx.setSender(this.sender);
+						bolt2xx.setTarget(target);
+						world.spawnEntityInWorld(bolt2xx);
+					}
 				}
 				break;
 			default:

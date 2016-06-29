@@ -3,6 +3,7 @@ package com.parzivail.util.vehicle;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -33,6 +34,13 @@ public class VehicleAirBase extends VehicleBase
 		super(p_i1689_1_);
 		this.renderPitchLast = this.rotationPitch;
 		this.renderRollLast = 0;
+	}
+
+	@Override
+	protected void applyEntityAttributes()
+	{
+		super.applyEntityAttributes();
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
 	}
 
 	@Override
