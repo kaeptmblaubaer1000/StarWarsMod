@@ -1,9 +1,9 @@
 package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.gui.*;
 import com.parzivail.pswm.quest.GuiQuestLog;
 import com.parzivail.pswm.quest.GuiQuestNpc;
-import com.parzivail.pswm.rendering.gui.*;
 import com.parzivail.pswm.tileentities.*;
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;

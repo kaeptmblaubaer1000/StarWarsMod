@@ -39,6 +39,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.io.IOUtils;
 
+import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,7 +50,8 @@ import java.util.Random;
 @Mod(modid = Resources.MODID,
      version = Resources.VERSION,
      name = "Parzi's Star Wars Mod",
-     acceptedMinecraftVersions = "[1.7.10]")
+     acceptedMinecraftVersions = "[1.7.10]",
+     guiFactory = "com.parzivail.pswm.gui.GuiFactory")
 public class StarWarsMod
 {
 	public static boolean hasShownNeedUpdate = false;
@@ -209,6 +211,8 @@ public class StarWarsMod
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
 
+	public static File configFile;
+
 	//public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
 
 	public StarWarsMod()
@@ -356,11 +360,11 @@ public class StarWarsMod
 
 	private void setupConfig(FMLPreInitializationEvent event)
 	{
-		config = new Configuration(event.getSuggestedConfigurationFile(), Resources.VERSION);
+		config = new Configuration(configFile = event.getSuggestedConfigurationFile(), Resources.VERSION);
 		config.load();
 
-		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true, "Wether or not the Original Trilogy tab is enabled").getBoolean();
-		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true, "Wether or not the Sequel Trilogy tab is enabled").getBoolean();
+		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true, "Whether or not the Original Trilogy tab is enabled").getBoolean();
+		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true, "Whether or not the Sequel Trilogy tab is enabled").getBoolean();
 		ConfigOptions.enableBetaFeatures = config.get("core", "enableBetaFeatures", false, "Development purposes only. Do not use!").getBoolean();
 		ConfigOptions.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false, "Enable for a fun time!").getBoolean();
 		ConfigOptions.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true, "If true, you agree to have which side you choose (Jedi or Sith) logged").getBoolean();
@@ -386,13 +390,19 @@ public class StarWarsMod
 		ConfigOptions.biomeMustafarId = config.get("biomes", "mustafar", 202).getInt();
 		ConfigOptions.biomeSpaceId = config.get("biomes", "space", 203).getInt();
 
-		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true, "Wether or not the PSWM overlay is visible").getBoolean();
+		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true, "Whether or not the PSWM overlay is visible").getBoolean();
 
-		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true, "Wether or not lightsabers hum when idle").getBoolean();
-		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true, "Wether or not blaster bolts create fire on impact").getBoolean();
-		ConfigOptions.enableBuckets = config.get("items", "enableGettingThatDumbFreeBucketFromWaterDroplets", true, "Wether or not you get a water bucket from Moisture Vaporators").getBoolean();
+		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true, "Whether or not lightsabers hum when idle").getBoolean();
+		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true, "Whether or not blaster bolts create fire on impact").getBoolean();
+		ConfigOptions.enableBuckets = true;
 
-		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true, "Wether or not lightsabers are a light source").getBoolean();
+		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true, "Whether or not lightsabers are a light source").getBoolean();
+
+		config.getCategory("core").setComment("Core options for the mod");
+		config.getCategory("dimensions").setComment("Dimension IDs");
+		config.getCategory("biomes").setComment("Biome IDs");
+		config.getCategory("gui").setComment("GUI-related options");
+		config.getCategory("items").setComment("Item-related options");
 
 		Resources.planetTextures.put(Resources.ConfigOptions.dimAlderaanId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
 		Resources.planetTextures.put(Resources.ConfigOptions.dimBespinId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetBespin.png"));

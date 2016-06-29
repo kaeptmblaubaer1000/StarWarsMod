@@ -1,7 +1,7 @@
 package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
-import com.parzivail.pswm.rendering.gui.GuiPSWMOverlay;
+import com.parzivail.pswm.gui.GuiPSWMOverlay;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 

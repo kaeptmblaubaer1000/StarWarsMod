@@ -2,8 +2,8 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.gui.AnimationAntennaOpen;
 import com.parzivail.pswm.items.ItemHydrospanner;
-import com.parzivail.pswm.rendering.gui.AnimationAntennaOpen;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
