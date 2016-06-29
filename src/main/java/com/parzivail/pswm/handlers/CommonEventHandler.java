@@ -6,7 +6,6 @@ import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.*;
-import com.parzivail.pswm.gui.AnimationSaberShowcase;
 import com.parzivail.pswm.gui.GuiVehicle;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.*;
@@ -200,7 +199,7 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			new AnimationSaberShowcase(0, true).start();
+			//new AnimationSaberShowcase(0, true).start();
 		}
 
 		if (KeybindRegistry.keyShipHoverMode.isPressed())

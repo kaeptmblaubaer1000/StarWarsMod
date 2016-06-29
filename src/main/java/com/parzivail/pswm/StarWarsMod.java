@@ -33,7 +33,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -56,8 +55,6 @@ public class StarWarsMod
 {
 	public static boolean hasShownNeedUpdate = false;
 	public static boolean hasShownLeaderboardPart = false;
-
-	public static Configuration config;
 
 	private static int packetId = 0;
 
@@ -211,8 +208,6 @@ public class StarWarsMod
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
 
-	public static File configFile;
-
 	//public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
 
 	public StarWarsMod()
@@ -360,84 +355,14 @@ public class StarWarsMod
 
 	private void setupConfig(FMLPreInitializationEvent event)
 	{
-		configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION));
-		config = new Configuration(configFile, Resources.VERSION);
-		config.load();
+		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION));
+		ConfigOptions.config = new Configuration(ConfigOptions.configFile, Resources.VERSION);
 
-		ConfigOptions.enableTabOriginal = config.get("core", "Enable Original Trilogy Tab", true, "Whether or not the Original Trilogy tab is enabled").getBoolean();
-		ConfigOptions.enableTabSequel = config.get("core", "Enable Sequel Trilogy Tab", true, "Whether or not the Sequel Trilogy tab is enabled").getBoolean();
-		ConfigOptions.enableBetaFeatures = config.get("core", "Enable Debug Mode", false, "Development purposes only. Do not use!").getBoolean();
-		ConfigOptions.beshOverride = config.get("core", "Use Aurebesh Font", false, "Enable for a fun time!").getBoolean();
-		ConfigOptions.enableGlobalLeaderboard = config.get("core", "Participate in Global Leaderboard", true, "If true, you agree to have which side you choose (Jedi or Sith) logged").getBoolean();
+		ConfigOptions.config.load();
 
-		ConfigOptions.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
-		ConfigOptions.dimHothId = config.get("dimensions", "hoth", 3).getInt();
-		ConfigOptions.dimKashyyykId = config.get("dimensions", "kashyyyk", 4).getInt();
-		ConfigOptions.dimYavin4Id = config.get("dimensions", "yavin", 5).getInt();
-		ConfigOptions.dimEndorId = config.get("dimensions", "endor", 6).getInt();
-		ConfigOptions.dimIlumId = config.get("dimensions", "ilum", 7).getInt();
-		ConfigOptions.dimDagobahId = config.get("dimensions", "dagobah", 8).getInt();
-		ConfigOptions.dimMustafarId = config.get("dimensions", "mustafar", 9).getInt();
+		ConfigOptions.loadConfigOptions();
 
-		ConfigOptions.dimSpaceId = config.get("dimensions", "space", 118).getInt();
-
-		ConfigOptions.biomeDagobahId = config.get("biomes", "dagobah", 195).getInt();
-		ConfigOptions.biomeTatooineId = config.get("biomes", "tatooine", 196).getInt();
-		ConfigOptions.biomeHothId = config.get("biomes", "hoth", 197).getInt();
-		ConfigOptions.biomeKashyyykId = config.get("biomes", "kashyyyk", 198).getInt();
-		ConfigOptions.biomeYavin4Id = config.get("biomes", "yavin", 199).getInt();
-		ConfigOptions.biomeEndorId = config.get("biomes", "endor", 200).getInt();
-		ConfigOptions.biomeIlumId = config.get("biomes", "ilum", 201).getInt();
-		ConfigOptions.biomeMustafarId = config.get("biomes", "mustafar", 202).getInt();
-		ConfigOptions.biomeSpaceId = config.get("biomes", "space", 203).getInt();
-
-		ConfigOptions.enableCreditsOverlay = config.get("gui", "Enable GUI Overlay", true, "Whether or not the PSWM overlay is visible").getBoolean();
-
-		ConfigOptions.enableLightsaberHum = config.get("items", "Enable Lightsaber Idle Sound", true, "Whether or not lightsabers hum when idle").getBoolean();
-		ConfigOptions.enableBlasterFire = config.get("items", "Enable Blaster Fire", true, "Whether or not blaster bolts create fire on impact").getBoolean();
-		ConfigOptions.enableBuckets = true;
-
-		ConfigOptions.enableLightsaberLight = config.get("items", "Enable Lightsaber Lighting", true, "Whether or not lightsabers are a light source").getBoolean();
-
-		config.getCategory("core").setComment("Core options for the mod");
-		config.getCategory("dimensions").setComment("Dimension IDs");
-		config.getCategory("biomes").setComment("Biome IDs");
-		config.getCategory("gui").setComment("GUI-related options");
-		config.getCategory("items").setComment("Item-related options");
-
-		Resources.planetTextures.put(Resources.ConfigOptions.dimAlderaanId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimBespinId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetBespin.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimHothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetHoth.png"));
-		Resources.planetTextures.put(0, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEarth.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimCoruscantId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetCoruscant.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimDagobahId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDagobah.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimDathomirId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDathomir.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimEndorId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetEndor.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimGeonosisId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetGeonosis.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimTatooineId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTatooine.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimRylothId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetRyloth.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimIlumId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetIlum.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimKaminoId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKamino.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimKashyyykId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKashyyyk.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimKesselId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetKessel.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimMandaloreId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMandalore.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimMonCalamariId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMonCalamari.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimMustafarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetMustafar.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimNabooId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetNaboo.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimSullustId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetSullust.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimUtapauId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetUtapau.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimYavin4Id, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetYavin4.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimJakkuId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetJakku.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimTakodanaId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetTakodana.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimDQarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDQar.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimAhchToId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAhchTo.png"));
-		Resources.planetTextures.put(Resources.ConfigOptions.dimDeathStarId, new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetDeathStar.png"));
-
-		Resources.planetInformation = new ArrayList<>();
-
-		config.save();
-
-		Lumberjack.info("Configuration loaded!");
+		ConfigOptions.config.save();
 	}
 
 	private void setupNetworking()

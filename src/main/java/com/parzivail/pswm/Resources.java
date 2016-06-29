@@ -1,8 +1,11 @@
 package com.parzivail.pswm;
 
 import com.parzivail.pswm.dimension.PlanetInformation;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Configuration;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +18,12 @@ public class Resources
 
 	public static class ConfigOptions
 	{
+		public static final String CAT_CORE = "core";
+		public static final String CAT_DIM = "dimensions";
+		public static final String CAT_GUI = "gui";
+		public static final String CAT_ITEMS = "functionality";
+		public static final String CAT_BIOMES = "biomes";
+
 		public static int biomeTatooineId;
 		public static int biomeHothId;
 		public static int biomeKashyyykId;
@@ -65,6 +74,85 @@ public class Resources
 		public static boolean enableTabSequel = true;
 		public static boolean enableBetaFeatures;
 		public static boolean enableLightsaberLight;
+
+		public static Configuration config;
+		public static File configFile;
+
+		public static void loadConfigOptions()
+		{
+			enableTabOriginal = config.get(CAT_CORE, "Enable Original Trilogy Tab", true, "Whether or not the Original Trilogy tab is enabled").setRequiresMcRestart(true).getBoolean();
+			enableTabSequel = config.get(CAT_CORE, "Enable Sequel Trilogy Tab", true, "Whether or not the Sequel Trilogy tab is enabled").setRequiresMcRestart(true).getBoolean();
+			enableBetaFeatures = config.get(CAT_CORE, "Enable Debug Mode", false, "Development purposes only. Do not use!").setRequiresMcRestart(true).getBoolean();
+			beshOverride = config.get(CAT_CORE, "Use Aurebesh Font", false, "Enable for a fun time!").setRequiresMcRestart(true).getBoolean();
+			enableGlobalLeaderboard = config.get(CAT_CORE, "Participate in Global Leaderboard", true, "If true, you agree to have which side you choose (Jedi or Sith) logged").getBoolean();
+
+			dimTatooineId = config.get(CAT_DIM, "tatooine", 2).setRequiresMcRestart(true).getInt();
+			dimHothId = config.get(CAT_DIM, "hoth", 3).setRequiresMcRestart(true).getInt();
+			dimKashyyykId = config.get(CAT_DIM, "kashyyyk", 4).setRequiresMcRestart(true).getInt();
+			dimYavin4Id = config.get(CAT_DIM, "yavin", 5).setRequiresMcRestart(true).getInt();
+			dimEndorId = config.get(CAT_DIM, "endor", 6).setRequiresMcRestart(true).getInt();
+			dimIlumId = config.get(CAT_DIM, "ilum", 7).setRequiresMcRestart(true).getInt();
+			dimDagobahId = config.get(CAT_DIM, "dagobah", 8).setRequiresMcRestart(true).getInt();
+			dimMustafarId = config.get(CAT_DIM, "mustafar", 9).setRequiresMcRestart(true).getInt();
+			dimSpaceId = config.get(CAT_DIM, "space", 118).setRequiresMcRestart(true).getInt();
+
+			biomeDagobahId = config.get(CAT_BIOMES, "dagobah", 195).setRequiresMcRestart(true).getInt();
+			biomeTatooineId = config.get(CAT_BIOMES, "tatooine", 196).setRequiresMcRestart(true).getInt();
+			biomeHothId = config.get(CAT_BIOMES, "hoth", 197).setRequiresMcRestart(true).getInt();
+			biomeKashyyykId = config.get(CAT_BIOMES, "kashyyyk", 198).setRequiresMcRestart(true).getInt();
+			biomeYavin4Id = config.get(CAT_BIOMES, "yavin", 199).setRequiresMcRestart(true).getInt();
+			biomeEndorId = config.get(CAT_BIOMES, "endor", 200).setRequiresMcRestart(true).getInt();
+			biomeIlumId = config.get(CAT_BIOMES, "ilum", 201).setRequiresMcRestart(true).getInt();
+			biomeMustafarId = config.get(CAT_BIOMES, "mustafar", 202).setRequiresMcRestart(true).getInt();
+			biomeSpaceId = config.get(CAT_BIOMES, "space", 203).setRequiresMcRestart(true).getInt();
+
+			enableCreditsOverlay = config.get(CAT_GUI, "Enable GUI Overlay", true, "Whether or not the PSWM overlay is visible").getBoolean();
+
+			enableLightsaberHum = config.get(CAT_ITEMS, "Enable Lightsaber Idle Sound", true, "Whether or not lightsabers hum when idle").getBoolean();
+			enableBlasterFire = config.get(CAT_ITEMS, "Enable Blaster Fire", true, "Whether or not blaster bolts create fire on impact").setRequiresMcRestart(true).getBoolean();
+			enableBuckets = true;
+
+			enableLightsaberLight = config.get(CAT_ITEMS, "Enable Lightsaber Lighting", true, "Whether or not lightsabers are a light source").getBoolean();
+
+			config.getCategory(CAT_CORE).setComment("Core options for the mod");
+			config.getCategory(CAT_DIM).setComment("Dimension IDs");
+			config.getCategory(CAT_BIOMES).setComment("Biome IDs");
+			config.getCategory(CAT_GUI).setComment("GUI-related options");
+			config.getCategory(CAT_ITEMS).setComment("Item-related options");
+
+			planetTextures.clear();
+			planetTextures.put(dimAlderaanId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetAlderaan.png"));
+			planetTextures.put(dimBespinId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetBespin.png"));
+			planetTextures.put(dimHothId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetHoth.png"));
+			planetTextures.put(0, new ResourceLocation(MODID + ":" + "textures/models/planets/planetEarth.png"));
+			planetTextures.put(dimCoruscantId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetCoruscant.png"));
+			planetTextures.put(dimDagobahId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDagobah.png"));
+			planetTextures.put(dimDathomirId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDathomir.png"));
+			planetTextures.put(dimEndorId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetEndor.png"));
+			planetTextures.put(dimGeonosisId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetGeonosis.png"));
+			planetTextures.put(dimTatooineId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetTatooine.png"));
+			planetTextures.put(dimRylothId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetRyloth.png"));
+			planetTextures.put(dimIlumId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetIlum.png"));
+			planetTextures.put(dimKaminoId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetKamino.png"));
+			planetTextures.put(dimKashyyykId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetKashyyyk.png"));
+			planetTextures.put(dimKesselId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetKessel.png"));
+			planetTextures.put(dimMandaloreId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetMandalore.png"));
+			planetTextures.put(dimMonCalamariId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetMonCalamari.png"));
+			planetTextures.put(dimMustafarId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetMustafar.png"));
+			planetTextures.put(dimNabooId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetNaboo.png"));
+			planetTextures.put(dimSullustId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetSullust.png"));
+			planetTextures.put(dimUtapauId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetUtapau.png"));
+			planetTextures.put(dimYavin4Id, new ResourceLocation(MODID + ":" + "textures/models/planets/planetYavin4.png"));
+			planetTextures.put(dimJakkuId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetJakku.png"));
+			planetTextures.put(dimTakodanaId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetTakodana.png"));
+			planetTextures.put(dimDQarId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDQar.png"));
+			planetTextures.put(dimAhchToId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetAhchTo.png"));
+			planetTextures.put(dimDeathStarId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDeathStar.png"));
+
+			planetInformation = new ArrayList<>();
+
+			Lumberjack.info("Configuration loaded!");
+		}
 	}
 
 	// Core

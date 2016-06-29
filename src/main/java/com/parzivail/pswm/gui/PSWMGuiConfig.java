@@ -1,7 +1,6 @@
 package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 import cpw.mods.fml.client.config.GuiConfig;
 import cpw.mods.fml.client.config.IConfigElement;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,18 +16,18 @@ public class PSWMGuiConfig extends GuiConfig
 {
 	public PSWMGuiConfig(GuiScreen parent)
 	{
-		super(parent, getConfigElements(), Resources.MODID, StarWarsMod.configFile.getName(), true, true, "PSWM v" + Resources.VERSION);
-		titleLine2 = StarWarsMod.configFile.getAbsolutePath();
+		super(parent, getConfigElements(), Resources.MODID, Resources.ConfigOptions.configFile.getName(), false, false, "PSWM v" + Resources.VERSION);
+		titleLine2 = Resources.ConfigOptions.configFile.getAbsolutePath();
 	}
 
 	private static List<IConfigElement> getConfigElements()
 	{
 		List<IConfigElement> list = new ArrayList<>();
-		list.add(new ConfigElement(StarWarsMod.config.getCategory("core")));
-		list.add(new ConfigElement(StarWarsMod.config.getCategory("dimensions")));
-		list.add(new ConfigElement(StarWarsMod.config.getCategory("biomes")));
-		list.add(new ConfigElement(StarWarsMod.config.getCategory("gui")));
-		list.add(new ConfigElement(StarWarsMod.config.getCategory("items")));
+		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("core")));
+		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("dimensions")));
+		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("biomes")));
+		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("gui")));
+		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("items")));
 		return list;
 	}
 
@@ -36,5 +35,7 @@ public class PSWMGuiConfig extends GuiConfig
 	public void onGuiClosed()
 	{
 		super.onGuiClosed();
+		Resources.ConfigOptions.config.save();
+		Resources.ConfigOptions.loadConfigOptions();
 	}
 }
