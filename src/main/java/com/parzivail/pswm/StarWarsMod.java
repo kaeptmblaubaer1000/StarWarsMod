@@ -360,14 +360,15 @@ public class StarWarsMod
 
 	private void setupConfig(FMLPreInitializationEvent event)
 	{
-		config = new Configuration(configFile = event.getSuggestedConfigurationFile(), Resources.VERSION);
+		configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION));
+		config = new Configuration(configFile, Resources.VERSION);
 		config.load();
 
-		ConfigOptions.enableTabOriginal = config.get("core", "enableTabOriginal", true, "Whether or not the Original Trilogy tab is enabled").getBoolean();
-		ConfigOptions.enableTabSequel = config.get("core", "enableTabSequel", true, "Whether or not the Sequel Trilogy tab is enabled").getBoolean();
-		ConfigOptions.enableBetaFeatures = config.get("core", "enableBetaFeatures", false, "Development purposes only. Do not use!").getBoolean();
-		ConfigOptions.beshOverride = config.get("core", "aurebeshInsteadOfEnglish", false, "Enable for a fun time!").getBoolean();
-		ConfigOptions.enableGlobalLeaderboard = config.get("core", "participateInGlobalLeaderboard", true, "If true, you agree to have which side you choose (Jedi or Sith) logged").getBoolean();
+		ConfigOptions.enableTabOriginal = config.get("core", "Enable Original Trilogy Tab", true, "Whether or not the Original Trilogy tab is enabled").getBoolean();
+		ConfigOptions.enableTabSequel = config.get("core", "Enable Sequel Trilogy Tab", true, "Whether or not the Sequel Trilogy tab is enabled").getBoolean();
+		ConfigOptions.enableBetaFeatures = config.get("core", "Enable Debug Mode", false, "Development purposes only. Do not use!").getBoolean();
+		ConfigOptions.beshOverride = config.get("core", "Use Aurebesh Font", false, "Enable for a fun time!").getBoolean();
+		ConfigOptions.enableGlobalLeaderboard = config.get("core", "Participate in Global Leaderboard", true, "If true, you agree to have which side you choose (Jedi or Sith) logged").getBoolean();
 
 		ConfigOptions.dimTatooineId = config.get("dimensions", "tatooine", 2).getInt();
 		ConfigOptions.dimHothId = config.get("dimensions", "hoth", 3).getInt();
@@ -390,13 +391,13 @@ public class StarWarsMod
 		ConfigOptions.biomeMustafarId = config.get("biomes", "mustafar", 202).getInt();
 		ConfigOptions.biomeSpaceId = config.get("biomes", "space", 203).getInt();
 
-		ConfigOptions.enableCreditsOverlay = config.get("gui", "enableGuiOverlay", true, "Whether or not the PSWM overlay is visible").getBoolean();
+		ConfigOptions.enableCreditsOverlay = config.get("gui", "Enable GUI Overlay", true, "Whether or not the PSWM overlay is visible").getBoolean();
 
-		ConfigOptions.enableLightsaberHum = config.get("items", "enableLightsaberIdleSound", true, "Whether or not lightsabers hum when idle").getBoolean();
-		ConfigOptions.enableBlasterFire = config.get("items", "enableBlasterFire", true, "Whether or not blaster bolts create fire on impact").getBoolean();
+		ConfigOptions.enableLightsaberHum = config.get("items", "Enable Lightsaber Idle Sound", true, "Whether or not lightsabers hum when idle").getBoolean();
+		ConfigOptions.enableBlasterFire = config.get("items", "Enable Blaster Fire", true, "Whether or not blaster bolts create fire on impact").getBoolean();
 		ConfigOptions.enableBuckets = true;
 
-		ConfigOptions.enableLightsaberLight = config.get("items", "enableLightsaberLighting", true, "Whether or not lightsabers are a light source").getBoolean();
+		ConfigOptions.enableLightsaberLight = config.get("items", "Enable Lightsaber Lighting", true, "Whether or not lightsabers are a light source").getBoolean();
 
 		config.getCategory("core").setComment("Core options for the mod");
 		config.getCategory("dimensions").setComment("Dimension IDs");

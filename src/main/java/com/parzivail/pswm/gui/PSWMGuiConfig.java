@@ -17,7 +17,7 @@ public class PSWMGuiConfig extends GuiConfig
 {
 	public PSWMGuiConfig(GuiScreen parent)
 	{
-		super(parent, getConfigElements(), Resources.MODID, true, true, "PSWM v" + Resources.VERSION);
+		super(parent, getConfigElements(), Resources.MODID, StarWarsMod.configFile.getName(), true, true, "PSWM v" + Resources.VERSION);
 		titleLine2 = StarWarsMod.configFile.getAbsolutePath();
 	}
 
@@ -30,5 +30,11 @@ public class PSWMGuiConfig extends GuiConfig
 		list.add(new ConfigElement(StarWarsMod.config.getCategory("gui")));
 		list.add(new ConfigElement(StarWarsMod.config.getCategory("items")));
 		return list;
+	}
+
+	@Override
+	public void onGuiClosed()
+	{
+		super.onGuiClosed();
 	}
 }
