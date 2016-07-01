@@ -36,11 +36,11 @@ public class TileEntitySensorEntity extends TileEntitySensor
 
 				Object c = this.needle.getConstructor(World.class).newInstance(this.worldObj);
 				Entity entity = this.needle.cast(c);
-				entity.setPositionAndRotation(this.xCoord, this.yCoord, this.zCoord, l * 90, 0);
+				entity.setPositionAndRotation(this.xCoord, this.yCoord + 1, this.zCoord, l * 90, 0);
 				if (entity instanceof VehicleAirBase)
 				{
 					VehicleAirBase vehicleBase = (VehicleAirBase)entity;
-					vehicleBase.rotationYawLast = l * 90;
+					vehicleBase.setRealYaw(l * 90);
 					vehicleBase.rotationPitchLast = 0;
 				}
 				this.worldObj.spawnEntityInWorld(entity);
