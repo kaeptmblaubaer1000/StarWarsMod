@@ -2,10 +2,14 @@ package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.math.MathUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -20,11 +24,60 @@ public class VehicleBase extends EntityLiving
 	public float rotationYawLast = 0.0F;
 	public float rotationPitchLast = 0.0F;
 
+	public static final int ROT_PLACE_SNAP = 90;
+
+	public static int YAW_DW = 16;
+
 	public VehicleBase(World p_i1689_1_)
 	{
 		super(p_i1689_1_);
 		this.setSize(1F, 1F);
 		this.isImmuneToFire = true;
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(YAW_DW, 0f);
+		this.dataWatcher.setObjectWatched(YAW_DW);
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound p_70109_1_)
+	{
+		super.writeToNBT(p_70109_1_);
+		p_70109_1_.setTag("Rotation", this.newFloatNBTList(this.getRealYaw(), this.rotationPitch));
+		p_70109_1_.setFloat("realYaw", this.getRealYaw());
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void setAngles(float p_70082_1_, float p_70082_2_)
+	{
+	}
+
+	public void onPlacedBy(EntityPlayer player)
+	{
+		if (player != null)
+			this.setRealYaw(MathUtils.roundToNearest(player.rotationYaw, ROT_PLACE_SNAP));
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound p_70020_1_)
+	{
+		super.readFromNBT(p_70020_1_);
+		this.setRealYaw(p_70020_1_.getFloat("realYaw"));
+	}
+
+	public float getRealYaw()
+	{
+		return this.dataWatcher.getWatchableObjectFloat(YAW_DW);
+	}
+
+	public void setRealYaw(float realYaw)
+	{
+		this.dataWatcher.updateObject(YAW_DW, realYaw);
+		this.dataWatcher.setObjectWatched(YAW_DW);
 	}
 
 	@Override
@@ -80,6 +133,11 @@ public class VehicleBase extends EntityLiving
 	}
 
 	@Override
+	protected void updateAITasks()
+	{
+	}
+
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -88,6 +146,11 @@ public class VehicleBase extends EntityLiving
 		this.frame += 0.1F;
 
 		this.setRotation(this.rotationYawLast, this.rotationPitchLast);
+
+		if (this.riddenByEntity == null)
+			this.renderYawOffset = this.rotationYawLast = this.rotationYaw = (float)(this.newRotationYaw = getRealYaw());
+		else
+			this.setRealYaw(this.riddenByEntity.rotationYaw);
 
 		if (worldObj.isAirBlock((int)posX, (int)posY - 1, (int)posZ))
 		{

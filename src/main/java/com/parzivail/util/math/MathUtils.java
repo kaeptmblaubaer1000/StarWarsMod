@@ -129,4 +129,19 @@ public class MathUtils
 			ret[i] = list.get(i);
 		return ret;
 	}
+
+	public static float roundToNearest(float f, float nearest)
+	{
+		return nearest * (Math.round(f / nearest));
+	}
+
+	public static float floorToNearest(float f, float nearest)
+	{
+		return (float)(nearest * (Math.floor(f / nearest)));
+	}
+
+	public static float ceilToNearest(float f, float nearest)
+	{
+		return (float)(nearest * (Math.ceil(f / nearest)));
+	}
 }

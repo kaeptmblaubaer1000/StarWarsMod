@@ -37,6 +37,7 @@ public class ItemSpawnSnowspeeder extends net.minecraft.item.Item
 			if (!world.isRemote)
 			{
 				VehicSnowspeeder newVehic = new VehicSnowspeeder(world);
+				newVehic.onPlacedBy(player);
 				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
 				world.spawnEntityInWorld(newVehic);
 			}

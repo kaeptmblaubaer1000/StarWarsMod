@@ -26,6 +26,7 @@ public class ItemSpawnScootemaroundHoth extends net.minecraft.item.Item
 			if (!world.isRemote)
 			{
 				VehicScootemaroundHoth newVehic = new VehicScootemaroundHoth(world);
+				newVehic.onPlacedBy(player);
 				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
 				world.spawnEntityInWorld(newVehic);
 			}

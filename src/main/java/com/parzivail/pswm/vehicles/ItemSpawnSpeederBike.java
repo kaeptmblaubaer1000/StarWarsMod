@@ -37,6 +37,7 @@ public class ItemSpawnSpeederBike extends net.minecraft.item.Item
 			if (!world.isRemote)
 			{
 				VehicSpeederBike newVehic = new VehicSpeederBike(world);
+				newVehic.onPlacedBy(player);
 				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
 				world.spawnEntityInWorld(newVehic);
 			}
