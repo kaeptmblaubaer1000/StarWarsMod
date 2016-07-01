@@ -2,6 +2,8 @@ package com.parzivail.util.ui;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -45,6 +47,11 @@ public class GFX
 		tessellator.addVertexWithUV(x + width, y, 1, (textureX + width) * f, (textureY) * f1);
 		tessellator.addVertexWithUV(x, y, 1, (textureX) * f, (textureY) * f1);
 		tessellator.draw();
+	}
+
+	public static void renderTileEntityAt(TileEntity tileEntity, float x, float y, float z, float partialTicks)
+	{
+		TileEntityRendererDispatcher.instance.renderTileEntityAt(tileEntity, x, y, z, partialTicks);
 	}
 
 	/**
