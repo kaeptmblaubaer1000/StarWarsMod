@@ -58,7 +58,7 @@ public class VehicleBase extends EntityLiving
 
 	public void onPlacedBy(EntityPlayer player)
 	{
-		if (player != null)
+		if (player != null && player.isSneaking())
 			this.setRealYaw(MathUtils.roundToNearest(player.rotationYaw, ROT_PLACE_SNAP));
 	}
 
