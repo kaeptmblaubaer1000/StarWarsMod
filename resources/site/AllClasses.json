@@ -1,0 +1,7346 @@
+[
+  {
+    "Name": "EnumChatFormatting",
+    "CompiledName": "a"
+  },
+  {
+    "Name": "ICommand",
+    "CompiledName": "aa"
+  },
+  {
+    "Name": "ContainerBrewingStand$Ingredient",
+    "CompiledName": "aaa"
+  },
+  {
+    "Name": "ContainerBrewingStand$Potion",
+    "CompiledName": "aab"
+  },
+  {
+    "Name": "ICrafting",
+    "CompiledName": "aac"
+  },
+  {
+    "Name": "ContainerChest",
+    "CompiledName": "aad"
+  },
+  {
+    "Name": "InventoryCrafting",
+    "CompiledName": "aae"
+  },
+  {
+    "Name": "ContainerWorkbench",
+    "CompiledName": "aaf"
+  },
+  {
+    "Name": "ContainerEnchantment",
+    "CompiledName": "aag"
+  },
+  {
+    "Name": "ContainerEnchantment$1",
+    "CompiledName": "aah"
+  },
+  {
+    "Name": "ContainerEnchantment$2",
+    "CompiledName": "aai"
+  },
+  {
+    "Name": "ContainerFurnace",
+    "CompiledName": "aaj"
+  },
+  {
+    "Name": "SlotFurnace",
+    "CompiledName": "aak"
+  },
+  {
+    "Name": "ContainerHopper",
+    "CompiledName": "aal"
+  },
+  {
+    "Name": "ContainerHorseInventory",
+    "CompiledName": "aam"
+  },
+  {
+    "Name": "ContainerHorseInventory$1",
+    "CompiledName": "aan"
+  },
+  {
+    "Name": "ContainerHorseInventory$2",
+    "CompiledName": "aao"
+  },
+  {
+    "Name": "ContainerPlayer",
+    "CompiledName": "aap"
+  },
+  {
+    "Name": "ContainerPlayer$1",
+    "CompiledName": "aaq"
+  },
+  {
+    "Name": "InventoryMerchant",
+    "CompiledName": "aas"
+  },
+  {
+    "Name": "ContainerMerchant",
+    "CompiledName": "aat"
+  },
+  {
+    "Name": "SlotMerchantResult",
+    "CompiledName": "aau"
+  },
+  {
+    "Name": "InventoryEnderChest",
+    "CompiledName": "aav"
+  },
+  {
+    "Name": "InventoryCraftResult",
+    "CompiledName": "aaw"
+  },
+  {
+    "Name": "SlotCrafting",
+    "CompiledName": "aax"
+  },
+  {
+    "Name": "Slot",
+    "CompiledName": "aay"
+  },
+  {
+    "Name": "ContainerDispenser",
+    "CompiledName": "aaz"
+  },
+  {
+    "Name": "ICommandManager",
+    "CompiledName": "ab"
+  },
+  {
+    "Name": "ItemAnvilBlock",
+    "CompiledName": "aba"
+  },
+  {
+    "Name": "ItemArmor",
+    "CompiledName": "abb"
+  },
+  {
+    "Name": "ItemArmor$1",
+    "CompiledName": "abc"
+  },
+  {
+    "Name": "ItemArmor$ArmorMaterial",
+    "CompiledName": "abd"
+  },
+  {
+    "Name": "ItemBlockWithMetadata",
+    "CompiledName": "abe"
+  },
+  {
+    "Name": "ItemAxe",
+    "CompiledName": "abf"
+  },
+  {
+    "Name": "ItemBed",
+    "CompiledName": "abg"
+  },
+  {
+    "Name": "ItemBlock",
+    "CompiledName": "abh"
+  },
+  {
+    "Name": "ItemReed",
+    "CompiledName": "abi"
+  },
+  {
+    "Name": "ItemBoat",
+    "CompiledName": "abj"
+  },
+  {
+    "Name": "ItemBook",
+    "CompiledName": "abk"
+  },
+  {
+    "Name": "ItemGlassBottle",
+    "CompiledName": "abl"
+  },
+  {
+    "Name": "ItemBow",
+    "CompiledName": "abm"
+  },
+  {
+    "Name": "ItemSoup",
+    "CompiledName": "abn"
+  },
+  {
+    "Name": "ItemBucket",
+    "CompiledName": "abo"
+  },
+  {
+    "Name": "ItemCarrotOnAStick",
+    "CompiledName": "abp"
+  },
+  {
+    "Name": "ItemCoal",
+    "CompiledName": "abq"
+  },
+  {
+    "Name": "ItemColored",
+    "CompiledName": "abr"
+  },
+  {
+    "Name": "ItemMapBase",
+    "CompiledName": "abs"
+  },
+  {
+    "Name": "CreativeTabs",
+    "CompiledName": "abt"
+  },
+  {
+    "Name": "CreativeTabs$1",
+    "CompiledName": "abu"
+  },
+  {
+    "Name": "CreativeTabs$10",
+    "CompiledName": "abv"
+  },
+  {
+    "Name": "CreativeTabs$11",
+    "CompiledName": "abw"
+  },
+  {
+    "Name": "CreativeTabs$12",
+    "CompiledName": "abx"
+  },
+  {
+    "Name": "CreativeTabs$2",
+    "CompiledName": "aby"
+  },
+  {
+    "Name": "CreativeTabs$3",
+    "CompiledName": "abz"
+  },
+  {
+    "Name": "ICommandSender",
+    "CompiledName": "ac"
+  },
+  {
+    "Name": "CreativeTabs$4",
+    "CompiledName": "aca"
+  },
+  {
+    "Name": "CreativeTabs$5",
+    "CompiledName": "acb"
+  },
+  {
+    "Name": "CreativeTabs$6",
+    "CompiledName": "acc"
+  },
+  {
+    "Name": "CreativeTabs$7",
+    "CompiledName": "acd"
+  },
+  {
+    "Name": "CreativeTabs$8",
+    "CompiledName": "ace"
+  },
+  {
+    "Name": "CreativeTabs$9",
+    "CompiledName": "acf"
+  },
+  {
+    "Name": "ItemTool",
+    "CompiledName": "acg"
+  },
+  {
+    "Name": "ItemDoor",
+    "CompiledName": "ach"
+  },
+  {
+    "Name": "ItemDoublePlant",
+    "CompiledName": "aci"
+  },
+  {
+    "Name": "ItemDye",
+    "CompiledName": "acj"
+  },
+  {
+    "Name": "ItemEgg",
+    "CompiledName": "ack"
+  },
+  {
+    "Name": "ItemEmptyMap",
+    "CompiledName": "acl"
+  },
+  {
+    "Name": "ItemEnchantedBook",
+    "CompiledName": "acm"
+  },
+  {
+    "Name": "ItemEnderEye",
+    "CompiledName": "acn"
+  },
+  {
+    "Name": "ItemEnderPearl",
+    "CompiledName": "aco"
+  },
+  {
+    "Name": "ItemExpBottle",
+    "CompiledName": "acp"
+  },
+  {
+    "Name": "ItemFireball",
+    "CompiledName": "acq"
+  },
+  {
+    "Name": "ItemFireworkCharge",
+    "CompiledName": "acr"
+  },
+  {
+    "Name": "ItemFirework",
+    "CompiledName": "acs"
+  },
+  {
+    "Name": "ItemFishFood",
+    "CompiledName": "act"
+  },
+  {
+    "Name": "ItemFishFood$FishType",
+    "CompiledName": "acu"
+  },
+  {
+    "Name": "ItemFishingRod",
+    "CompiledName": "acv"
+  },
+  {
+    "Name": "ItemFlintAndSteel",
+    "CompiledName": "acw"
+  },
+  {
+    "Name": "ItemFood",
+    "CompiledName": "acx"
+  },
+  {
+    "Name": "ItemAppleGold",
+    "CompiledName": "acy"
+  },
+  {
+    "Name": "ItemHangingEntity",
+    "CompiledName": "acz"
+  },
+  {
+    "Name": "PlayerSelector",
+    "CompiledName": "ad"
+  },
+  {
+    "Name": "ItemHoe",
+    "CompiledName": "ada"
+  },
+  {
+    "Name": "Item",
+    "CompiledName": "adb"
+  },
+  {
+    "Name": "Item$ToolMaterial",
+    "CompiledName": "adc"
+  },
+  {
+    "Name": "ItemStack",
+    "CompiledName": "add"
+  },
+  {
+    "Name": "Items",
+    "CompiledName": "ade"
+  },
+  {
+    "Name": "ItemLead",
+    "CompiledName": "adf"
+  },
+  {
+    "Name": "ItemLeaves",
+    "CompiledName": "adg"
+  },
+  {
+    "Name": "ItemMap",
+    "CompiledName": "adh"
+  },
+  {
+    "Name": "ItemBucketMilk",
+    "CompiledName": "adi"
+  },
+  {
+    "Name": "ItemMinecart",
+    "CompiledName": "adj"
+  },
+  {
+    "Name": "ItemMinecart$1",
+    "CompiledName": "adk"
+  },
+  {
+    "Name": "ItemMultiTexture",
+    "CompiledName": "adl"
+  },
+  {
+    "Name": "ItemNameTag",
+    "CompiledName": "adm"
+  },
+  {
+    "Name": "ItemPickaxe",
+    "CompiledName": "adn"
+  },
+  {
+    "Name": "ItemPiston",
+    "CompiledName": "ado"
+  },
+  {
+    "Name": "ItemPotion",
+    "CompiledName": "adp"
+  },
+  {
+    "Name": "EnumRarity",
+    "CompiledName": "adq"
+  },
+  {
+    "Name": "ItemRecord",
+    "CompiledName": "adr"
+  },
+  {
+    "Name": "ItemRedstone",
+    "CompiledName": "ads"
+  },
+  {
+    "Name": "ItemSaddle",
+    "CompiledName": "adt"
+  },
+  {
+    "Name": "ItemSeedFood",
+    "CompiledName": "adv"
+  },
+  {
+    "Name": "ItemSeeds",
+    "CompiledName": "adw"
+  },
+  {
+    "Name": "ItemShears",
+    "CompiledName": "adx"
+  },
+  {
+    "Name": "ItemSpade",
+    "CompiledName": "ady"
+  },
+  {
+    "Name": "ItemSign",
+    "CompiledName": "adz"
+  },
+  {
+    "Name": "CommandAchievement",
+    "CompiledName": "ae"
+  },
+  {
+    "Name": "ItemSimpleFoiled",
+    "CompiledName": "aea"
+  },
+  {
+    "Name": "ItemSkull",
+    "CompiledName": "aeb"
+  },
+  {
+    "Name": "ItemSnow",
+    "CompiledName": "aec"
+  },
+  {
+    "Name": "ItemSnowball",
+    "CompiledName": "aed"
+  },
+  {
+    "Name": "ItemMonsterPlacer",
+    "CompiledName": "aee"
+  },
+  {
+    "Name": "ItemSlab",
+    "CompiledName": "aeg"
+  },
+  {
+    "Name": "ItemSword",
+    "CompiledName": "aeh"
+  },
+  {
+    "Name": "EnumAction",
+    "CompiledName": "aei"
+  },
+  {
+    "Name": "ItemLilyPad",
+    "CompiledName": "aej"
+  },
+  {
+    "Name": "ItemCloth",
+    "CompiledName": "aek"
+  },
+  {
+    "Name": "ItemWritableBook",
+    "CompiledName": "ael"
+  },
+  {
+    "Name": "ItemEditableBook",
+    "CompiledName": "aem"
+  },
+  {
+    "Name": "PotionHelper",
+    "CompiledName": "aen"
+  },
+  {
+    "Name": "RecipesArmorDyes",
+    "CompiledName": "aeu"
+  },
+  {
+    "Name": "RecipesArmor",
+    "CompiledName": "aev"
+  },
+  {
+    "Name": "RecipeBookCloning",
+    "CompiledName": "aew"
+  },
+  {
+    "Name": "RecipesDyes",
+    "CompiledName": "aex"
+  },
+  {
+    "Name": "RecipeFireworks",
+    "CompiledName": "aey"
+  },
+  {
+    "Name": "RecipesFood",
+    "CompiledName": "aez"
+  },
+  {
+    "Name": "CommandBanIp",
+    "CompiledName": "af"
+  },
+  {
+    "Name": "FurnaceRecipes",
+    "CompiledName": "afa"
+  },
+  {
+    "Name": "RecipesMapCloning",
+    "CompiledName": "afb"
+  },
+  {
+    "Name": "RecipesMapExtending",
+    "CompiledName": "afc"
+  },
+  {
+    "Name": "RecipesIngots",
+    "CompiledName": "afd"
+  },
+  {
+    "Name": "CraftingManager",
+    "CompiledName": "afe"
+  },
+  {
+    "Name": "CraftingManager$1",
+    "CompiledName": "aff"
+  },
+  {
+    "Name": "IRecipe",
+    "CompiledName": "afg"
+  },
+  {
+    "Name": "ShapedRecipes",
+    "CompiledName": "afh"
+  },
+  {
+    "Name": "ShapelessRecipes",
+    "CompiledName": "afi"
+  },
+  {
+    "Name": "RecipesCrafting",
+    "CompiledName": "afj"
+  },
+  {
+    "Name": "RecipesTools",
+    "CompiledName": "afk"
+  },
+  {
+    "Name": "RecipesWeapons",
+    "CompiledName": "afl"
+  },
+  {
+    "Name": "EnchantmentArrowDamage",
+    "CompiledName": "afm"
+  },
+  {
+    "Name": "EnchantmentArrowFire",
+    "CompiledName": "afn"
+  },
+  {
+    "Name": "EnchantmentArrowInfinite",
+    "CompiledName": "afo"
+  },
+  {
+    "Name": "EnchantmentArrowKnockback",
+    "CompiledName": "afp"
+  },
+  {
+    "Name": "EnchantmentDamage",
+    "CompiledName": "afq"
+  },
+  {
+    "Name": "EnchantmentDurability",
+    "CompiledName": "afr"
+  },
+  {
+    "Name": "EnchantmentDigging",
+    "CompiledName": "afs"
+  },
+  {
+    "Name": "Enchantment",
+    "CompiledName": "aft"
+  },
+  {
+    "Name": "EnumEnchantmentType",
+    "CompiledName": "afu"
+  },
+  {
+    "Name": "EnchantmentHelper",
+    "CompiledName": "afv"
+  },
+  {
+    "Name": "EnchantmentHelper$1",
+    "CompiledName": "afw"
+  },
+  {
+    "Name": "EnchantmentHelper$DamageIterator",
+    "CompiledName": "afx"
+  },
+  {
+    "Name": "EnchantmentHelper$HurtIterator",
+    "CompiledName": "afy"
+  },
+  {
+    "Name": "EnchantmentHelper$IModifier",
+    "CompiledName": "afz"
+  },
+  {
+    "Name": "CommandBanPlayer",
+    "CompiledName": "ag"
+  },
+  {
+    "Name": "EnchantmentHelper$ModifierLiving",
+    "CompiledName": "aga"
+  },
+  {
+    "Name": "EnchantmentHelper$ModifierDamage",
+    "CompiledName": "agb"
+  },
+  {
+    "Name": "EnchantmentData",
+    "CompiledName": "agc"
+  },
+  {
+    "Name": "EnchantmentFireAspect",
+    "CompiledName": "agd"
+  },
+  {
+    "Name": "EnchantmentFishingSpeed",
+    "CompiledName": "age"
+  },
+  {
+    "Name": "EnchantmentKnockback",
+    "CompiledName": "agf"
+  },
+  {
+    "Name": "EnchantmentLootBonus",
+    "CompiledName": "agg"
+  },
+  {
+    "Name": "EnchantmentOxygen",
+    "CompiledName": "agh"
+  },
+  {
+    "Name": "EnchantmentProtection",
+    "CompiledName": "agi"
+  },
+  {
+    "Name": "EnchantmentThorns",
+    "CompiledName": "agj"
+  },
+  {
+    "Name": "EnchantmentUntouching",
+    "CompiledName": "agk"
+  },
+  {
+    "Name": "EnchantmentWaterWorker",
+    "CompiledName": "agl"
+  },
+  {
+    "Name": "IMerchant",
+    "CompiledName": "agm"
+  },
+  {
+    "Name": "MerchantRecipe",
+    "CompiledName": "agn"
+  },
+  {
+    "Name": "MerchantRecipeList",
+    "CompiledName": "ago"
+  },
+  {
+    "Name": "CommandBlockLogic",
+    "CompiledName": "agp"
+  },
+  {
+    "Name": "MobSpawnerBaseLogic",
+    "CompiledName": "agq"
+  },
+  {
+    "Name": "MobSpawnerBaseLogic$WeightedRandomMinecart",
+    "CompiledName": "agr"
+  },
+  {
+    "Name": "BlockEventData",
+    "CompiledName": "ags"
+  },
+  {
+    "Name": "ChunkPosition",
+    "CompiledName": "agt"
+  },
+  {
+    "Name": "ChunkCoordIntPair",
+    "CompiledName": "agu"
+  },
+  {
+    "Name": "Explosion",
+    "CompiledName": "agw"
+  },
+  {
+    "Name": "ColorizerFoliage",
+    "CompiledName": "agx"
+  },
+  {
+    "Name": "GameRules",
+    "CompiledName": "agy"
+  },
+  {
+    "Name": "GameRules$Value",
+    "CompiledName": "agz"
+  },
+  {
+    "Name": "CommandBroadcast",
+    "CompiledName": "ah"
+  },
+  {
+    "Name": "ColorizerGrass",
+    "CompiledName": "aha"
+  },
+  {
+    "Name": "World",
+    "CompiledName": "ahb"
+  },
+  {
+    "Name": "World$1",
+    "CompiledName": "ahc"
+  },
+  {
+    "Name": "World$2",
+    "CompiledName": "ahd"
+  },
+  {
+    "Name": "World$3",
+    "CompiledName": "ahe"
+  },
+  {
+    "Name": "World$4",
+    "CompiledName": "ahf"
+  },
+  {
+    "Name": "MinecraftException",
+    "CompiledName": "ahg"
+  },
+  {
+    "Name": "IWorldAccess",
+    "CompiledName": "ahh"
+  },
+  {
+    "Name": "WorldSettings",
+    "CompiledName": "ahj"
+  },
+  {
+    "Name": "WorldSettings$GameType",
+    "CompiledName": "ahk"
+  },
+  {
+    "Name": "IBlockAccess",
+    "CompiledName": "ahl"
+  },
+  {
+    "Name": "WorldType",
+    "CompiledName": "ahm"
+  },
+  {
+    "Name": "EnumSkyBlock",
+    "CompiledName": "ahn"
+  },
+  {
+    "Name": "SpawnerAnimals",
+    "CompiledName": "aho"
+  },
+  {
+    "Name": "Teleporter",
+    "CompiledName": "ahp"
+  },
+  {
+    "Name": "Teleporter$PortalPosition",
+    "CompiledName": "ahq"
+  },
+  {
+    "Name": "ChunkCache",
+    "CompiledName": "ahr"
+  },
+  {
+    "Name": "NextTickListEntry",
+    "CompiledName": "ahs"
+  },
+  {
+    "Name": "BiomeGenBeach",
+    "CompiledName": "aht"
+  },
+  {
+    "Name": "BiomeGenBase",
+    "CompiledName": "ahu"
+  },
+  {
+    "Name": "BiomeGenBase$Height",
+    "CompiledName": "ahv"
+  },
+  {
+    "Name": "BiomeGenBase$TempCategory",
+    "CompiledName": "ahw"
+  },
+  {
+    "Name": "BiomeGenBase$SpawnListEntry",
+    "CompiledName": "ahx"
+  },
+  {
+    "Name": "BiomeCache",
+    "CompiledName": "ahy"
+  },
+  {
+    "Name": "BiomeCache$Block",
+    "CompiledName": "ahz"
+  },
+  {
+    "Name": "CommandClearInventory",
+    "CompiledName": "ai"
+  },
+  {
+    "Name": "BiomeDecorator",
+    "CompiledName": "aia"
+  },
+  {
+    "Name": "WorldChunkManager",
+    "CompiledName": "aib"
+  },
+  {
+    "Name": "BiomeGenDesert",
+    "CompiledName": "aic"
+  },
+  {
+    "Name": "BiomeGenHills",
+    "CompiledName": "aid"
+  },
+  {
+    "Name": "WorldChunkManagerHell",
+    "CompiledName": "aie"
+  },
+  {
+    "Name": "BiomeGenForest",
+    "CompiledName": "aif"
+  },
+  {
+    "Name": "BiomeGenForest$1",
+    "CompiledName": "aig"
+  },
+  {
+    "Name": "BiomeGenForest$2",
+    "CompiledName": "aih"
+  },
+  {
+    "Name": "BiomeGenHell",
+    "CompiledName": "aii"
+  },
+  {
+    "Name": "BiomeGenSnow",
+    "CompiledName": "aij"
+  },
+  {
+    "Name": "BiomeGenJungle",
+    "CompiledName": "aik"
+  },
+  {
+    "Name": "BiomeGenMesa",
+    "CompiledName": "ail"
+  },
+  {
+    "Name": "BiomeGenMushroomIsland",
+    "CompiledName": "aim"
+  },
+  {
+    "Name": "BiomeGenMutated",
+    "CompiledName": "ain"
+  },
+  {
+    "Name": "BiomeGenOcean",
+    "CompiledName": "aio"
+  },
+  {
+    "Name": "BiomeGenPlains",
+    "CompiledName": "aip"
+  },
+  {
+    "Name": "BiomeGenRiver",
+    "CompiledName": "air"
+  },
+  {
+    "Name": "BiomeGenSavanna",
+    "CompiledName": "ais"
+  },
+  {
+    "Name": "BiomeGenSavanna$Mutated",
+    "CompiledName": "ait"
+  },
+  {
+    "Name": "BiomeGenStoneBeach",
+    "CompiledName": "aiu"
+  },
+  {
+    "Name": "BiomeGenSwamp",
+    "CompiledName": "aiv"
+  },
+  {
+    "Name": "BiomeGenTaiga",
+    "CompiledName": "aiw"
+  },
+  {
+    "Name": "BiomeGenEnd",
+    "CompiledName": "aix"
+  },
+  {
+    "Name": "BiomeEndDecorator",
+    "CompiledName": "aiy"
+  },
+  {
+    "Name": "WorldGenWaterlily",
+    "CompiledName": "aiz"
+  },
+  {
+    "Name": "CommandDeOp",
+    "CompiledName": "aj"
+  },
+  {
+    "Name": "BlockAir",
+    "CompiledName": "aja"
+  },
+  {
+    "Name": "BlockAnvil",
+    "CompiledName": "ajb"
+  },
+  {
+    "Name": "BlockContainer",
+    "CompiledName": "ajc"
+  },
+  {
+    "Name": "BlockBasePressurePlate",
+    "CompiledName": "ajd"
+  },
+  {
+    "Name": "BlockRailBase",
+    "CompiledName": "aje"
+  },
+  {
+    "Name": "BlockRailBase$Rail",
+    "CompiledName": "ajf"
+  },
+  {
+    "Name": "BlockBeacon",
+    "CompiledName": "ajg"
+  },
+  {
+    "Name": "BlockBed",
+    "CompiledName": "ajh"
+  },
+  {
+    "Name": "Block",
+    "CompiledName": "aji"
+  },
+  {
+    "Name": "Block$1",
+    "CompiledName": "ajj"
+  },
+  {
+    "Name": "Block$2",
+    "CompiledName": "ajk"
+  },
+  {
+    "Name": "Block$3",
+    "CompiledName": "ajl"
+  },
+  {
+    "Name": "Block$SoundType",
+    "CompiledName": "ajm"
+  },
+  {
+    "Name": "Blocks",
+    "CompiledName": "ajn"
+  },
+  {
+    "Name": "IGrowable",
+    "CompiledName": "ajo"
+  },
+  {
+    "Name": "BlockBookshelf",
+    "CompiledName": "ajp"
+  },
+  {
+    "Name": "BlockBrewingStand",
+    "CompiledName": "ajq"
+  },
+  {
+    "Name": "BlockBush",
+    "CompiledName": "ajr"
+  },
+  {
+    "Name": "BlockButton",
+    "CompiledName": "ajs"
+  },
+  {
+    "Name": "BlockCactus",
+    "CompiledName": "ajt"
+  },
+  {
+    "Name": "BlockCake",
+    "CompiledName": "aju"
+  },
+  {
+    "Name": "BlockCarrot",
+    "CompiledName": "ajv"
+  },
+  {
+    "Name": "BlockCauldron",
+    "CompiledName": "ajw"
+  },
+  {
+    "Name": "BlockChest",
+    "CompiledName": "ajx"
+  },
+  {
+    "Name": "BlockClay",
+    "CompiledName": "ajy"
+  },
+  {
+    "Name": "BlockCocoa",
+    "CompiledName": "ajz"
+  },
+  {
+    "Name": "CommandDebug",
+    "CompiledName": "ak"
+  },
+  {
+    "Name": "BlockColored",
+    "CompiledName": "aka"
+  },
+  {
+    "Name": "BlockCommandBlock",
+    "CompiledName": "akb"
+  },
+  {
+    "Name": "BlockRedstoneComparator",
+    "CompiledName": "akc"
+  },
+  {
+    "Name": "BlockWorkbench",
+    "CompiledName": "ake"
+  },
+  {
+    "Name": "BlockCrops",
+    "CompiledName": "akf"
+  },
+  {
+    "Name": "BlockDaylightDetector",
+    "CompiledName": "akg"
+  },
+  {
+    "Name": "BlockDeadBush",
+    "CompiledName": "akh"
+  },
+  {
+    "Name": "BlockRailDetector",
+    "CompiledName": "aki"
+  },
+  {
+    "Name": "BlockRedstoneDiode",
+    "CompiledName": "akj"
+  },
+  {
+    "Name": "BlockDirectional",
+    "CompiledName": "akk"
+  },
+  {
+    "Name": "BlockDirt",
+    "CompiledName": "akl"
+  },
+  {
+    "Name": "BlockDispenser",
+    "CompiledName": "akm"
+  },
+  {
+    "Name": "BlockDoor",
+    "CompiledName": "akn"
+  },
+  {
+    "Name": "BlockDoublePlant",
+    "CompiledName": "ako"
+  },
+  {
+    "Name": "BlockDragonEgg",
+    "CompiledName": "akp"
+  },
+  {
+    "Name": "BlockDropper",
+    "CompiledName": "akq"
+  },
+  {
+    "Name": "BlockDynamicLiquid",
+    "CompiledName": "akr"
+  },
+  {
+    "Name": "BlockEnchantmentTable",
+    "CompiledName": "aks"
+  },
+  {
+    "Name": "BlockEndPortal",
+    "CompiledName": "akt"
+  },
+  {
+    "Name": "BlockEndPortalFrame",
+    "CompiledName": "aku"
+  },
+  {
+    "Name": "BlockEnderChest",
+    "CompiledName": "akv"
+  },
+  {
+    "Name": "ITileEntityProvider",
+    "CompiledName": "akw"
+  },
+  {
+    "Name": "BlockFalling",
+    "CompiledName": "akx"
+  },
+  {
+    "Name": "BlockFarmland",
+    "CompiledName": "aky"
+  },
+  {
+    "Name": "BlockFence",
+    "CompiledName": "akz"
+  },
+  {
+    "Name": "CommandDefaultGameMode",
+    "CompiledName": "al"
+  },
+  {
+    "Name": "BlockFenceGate",
+    "CompiledName": "ala"
+  },
+  {
+    "Name": "BlockFire",
+    "CompiledName": "alb"
+  },
+  {
+    "Name": "BlockFlower",
+    "CompiledName": "alc"
+  },
+  {
+    "Name": "BlockFlowerPot",
+    "CompiledName": "ald"
+  },
+  {
+    "Name": "BlockFurnace",
+    "CompiledName": "ale"
+  },
+  {
+    "Name": "BlockGlass",
+    "CompiledName": "alf"
+  },
+  {
+    "Name": "BlockGlowstone",
+    "CompiledName": "alg"
+  },
+  {
+    "Name": "BlockGrass",
+    "CompiledName": "alh"
+  },
+  {
+    "Name": "BlockGravel",
+    "CompiledName": "ali"
+  },
+  {
+    "Name": "BlockSlab",
+    "CompiledName": "alj"
+  },
+  {
+    "Name": "BlockBreakable",
+    "CompiledName": "alk"
+  },
+  {
+    "Name": "BlockHardenedClay",
+    "CompiledName": "all"
+  },
+  {
+    "Name": "BlockHay",
+    "CompiledName": "alm"
+  },
+  {
+    "Name": "BlockHopper",
+    "CompiledName": "aln"
+  },
+  {
+    "Name": "BlockHugeMushroom",
+    "CompiledName": "alo"
+  },
+  {
+    "Name": "BlockIce",
+    "CompiledName": "alp"
+  },
+  {
+    "Name": "BlockJukebox",
+    "CompiledName": "alq"
+  },
+  {
+    "Name": "BlockJukebox$TileEntityJukebox",
+    "CompiledName": "alr"
+  },
+  {
+    "Name": "BlockLadder",
+    "CompiledName": "als"
+  },
+  {
+    "Name": "BlockLeaves",
+    "CompiledName": "alt"
+  },
+  {
+    "Name": "BlockLever",
+    "CompiledName": "alv"
+  },
+  {
+    "Name": "BlockLiquid",
+    "CompiledName": "alw"
+  },
+  {
+    "Name": "BlockLog",
+    "CompiledName": "alx"
+  },
+  {
+    "Name": "BlockMelon",
+    "CompiledName": "aly"
+  },
+  {
+    "Name": "BlockCompressed",
+    "CompiledName": "alz"
+  },
+  {
+    "Name": "CommandEffect",
+    "CompiledName": "am"
+  },
+  {
+    "Name": "BlockMobSpawner",
+    "CompiledName": "ama"
+  },
+  {
+    "Name": "BlockSilverfish",
+    "CompiledName": "amb"
+  },
+  {
+    "Name": "BlockMushroom",
+    "CompiledName": "amc"
+  },
+  {
+    "Name": "BlockMycelium",
+    "CompiledName": "amd"
+  },
+  {
+    "Name": "BlockNetherWart",
+    "CompiledName": "amf"
+  },
+  {
+    "Name": "BlockNetherrack",
+    "CompiledName": "amg"
+  },
+  {
+    "Name": "BlockNewLeaf",
+    "CompiledName": "amh"
+  },
+  {
+    "Name": "BlockNewLog",
+    "CompiledName": "ami"
+  },
+  {
+    "Name": "BlockNote",
+    "CompiledName": "amj"
+  },
+  {
+    "Name": "BlockObsidian",
+    "CompiledName": "amk"
+  },
+  {
+    "Name": "BlockOldLeaf",
+    "CompiledName": "aml"
+  },
+  {
+    "Name": "BlockOldLog",
+    "CompiledName": "amm"
+  },
+  {
+    "Name": "BlockOre",
+    "CompiledName": "amn"
+  },
+  {
+    "Name": "BlockPackedIce",
+    "CompiledName": "amo"
+  },
+  {
+    "Name": "BlockPortal",
+    "CompiledName": "amp"
+  },
+  {
+    "Name": "BlockPortal$Size",
+    "CompiledName": "amq"
+  },
+  {
+    "Name": "BlockPotato",
+    "CompiledName": "amr"
+  },
+  {
+    "Name": "BlockCompressedPowered",
+    "CompiledName": "ams"
+  },
+  {
+    "Name": "BlockRailPowered",
+    "CompiledName": "amt"
+  },
+  {
+    "Name": "BlockPressurePlate",
+    "CompiledName": "amu"
+  },
+  {
+    "Name": "BlockPressurePlate$Sensitivity",
+    "CompiledName": "amv"
+  },
+  {
+    "Name": "BlockPumpkin",
+    "CompiledName": "amw"
+  },
+  {
+    "Name": "BlockQuartz",
+    "CompiledName": "amx"
+  },
+  {
+    "Name": "BlockRail",
+    "CompiledName": "amy"
+  },
+  {
+    "Name": "BlockRedstoneOre",
+    "CompiledName": "amz"
+  },
+  {
+    "Name": "CommandEmote",
+    "CompiledName": "an"
+  },
+  {
+    "Name": "BlockRedstoneWire",
+    "CompiledName": "ana"
+  },
+  {
+    "Name": "BlockRedstoneLight",
+    "CompiledName": "anb"
+  },
+  {
+    "Name": "BlockRedstoneTorch",
+    "CompiledName": "anc"
+  },
+  {
+    "Name": "BlockRedstoneTorch$Toggle",
+    "CompiledName": "and"
+  },
+  {
+    "Name": "BlockReed",
+    "CompiledName": "ane"
+  },
+  {
+    "Name": "BlockRedstoneRepeater",
+    "CompiledName": "anf"
+  },
+  {
+    "Name": "BlockRotatedPillar",
+    "CompiledName": "ang"
+  },
+  {
+    "Name": "BlockSand",
+    "CompiledName": "anh"
+  },
+  {
+    "Name": "BlockSandStone",
+    "CompiledName": "ani"
+  },
+  {
+    "Name": "BlockSapling",
+    "CompiledName": "anj"
+  },
+  {
+    "Name": "BlockSign",
+    "CompiledName": "ank"
+  },
+  {
+    "Name": "BlockSkull",
+    "CompiledName": "anl"
+  },
+  {
+    "Name": "BlockSnowBlock",
+    "CompiledName": "anm"
+  },
+  {
+    "Name": "BlockSnow",
+    "CompiledName": "ann"
+  },
+  {
+    "Name": "BlockSoulSand",
+    "CompiledName": "ano"
+  },
+  {
+    "Name": "BlockSponge",
+    "CompiledName": "anp"
+  },
+  {
+    "Name": "BlockStainedGlass",
+    "CompiledName": "anq"
+  },
+  {
+    "Name": "BlockStainedGlassPane",
+    "CompiledName": "anr"
+  },
+  {
+    "Name": "BlockStairs",
+    "CompiledName": "ans"
+  },
+  {
+    "Name": "BlockStaticLiquid",
+    "CompiledName": "ant"
+  },
+  {
+    "Name": "BlockStem",
+    "CompiledName": "anu"
+  },
+  {
+    "Name": "BlockStone",
+    "CompiledName": "anv"
+  },
+  {
+    "Name": "BlockStoneBrick",
+    "CompiledName": "anw"
+  },
+  {
+    "Name": "BlockButtonStone",
+    "CompiledName": "anx"
+  },
+  {
+    "Name": "BlockStoneSlab",
+    "CompiledName": "any"
+  },
+  {
+    "Name": "BlockTallGrass",
+    "CompiledName": "anz"
+  },
+  {
+    "Name": "CommandEnchant",
+    "CompiledName": "ao"
+  },
+  {
+    "Name": "BlockPane",
+    "CompiledName": "aoa"
+  },
+  {
+    "Name": "BlockTNT",
+    "CompiledName": "aob"
+  },
+  {
+    "Name": "BlockTorch",
+    "CompiledName": "aoc"
+  },
+  {
+    "Name": "BlockLeavesBase",
+    "CompiledName": "aod"
+  },
+  {
+    "Name": "BlockTrapDoor",
+    "CompiledName": "aoe"
+  },
+  {
+    "Name": "BlockTripWire",
+    "CompiledName": "aof"
+  },
+  {
+    "Name": "BlockTripWireHook",
+    "CompiledName": "aog"
+  },
+  {
+    "Name": "BlockVine",
+    "CompiledName": "aoh"
+  },
+  {
+    "Name": "BlockWall",
+    "CompiledName": "aoi"
+  },
+  {
+    "Name": "BlockLilyPad",
+    "CompiledName": "aoj"
+  },
+  {
+    "Name": "BlockWeb",
+    "CompiledName": "aok"
+  },
+  {
+    "Name": "BlockPressurePlateWeighted",
+    "CompiledName": "aol"
+  },
+  {
+    "Name": "BlockWood",
+    "CompiledName": "aom"
+  },
+  {
+    "Name": "BlockButtonWood",
+    "CompiledName": "aon"
+  },
+  {
+    "Name": "BlockWoodSlab",
+    "CompiledName": "aoo"
+  },
+  {
+    "Name": "BlockCarpet",
+    "CompiledName": "aop"
+  },
+  {
+    "Name": "TileEntityBeacon",
+    "CompiledName": "aoq"
+  },
+  {
+    "Name": "TileEntity",
+    "CompiledName": "aor"
+  },
+  {
+    "Name": "TileEntity$1",
+    "CompiledName": "aos"
+  },
+  {
+    "Name": "TileEntity$2",
+    "CompiledName": "aot"
+  },
+  {
+    "Name": "TileEntity$3",
+    "CompiledName": "aou"
+  },
+  {
+    "Name": "TileEntityBrewingStand",
+    "CompiledName": "aov"
+  },
+  {
+    "Name": "TileEntityChest",
+    "CompiledName": "aow"
+  },
+  {
+    "Name": "TileEntityCommandBlock",
+    "CompiledName": "aox"
+  },
+  {
+    "Name": "TileEntityCommandBlock$1",
+    "CompiledName": "aoy"
+  },
+  {
+    "Name": "TileEntityComparator",
+    "CompiledName": "aoz"
+  },
+  {
+    "Name": "CommandXP",
+    "CompiledName": "ap"
+  },
+  {
+    "Name": "TileEntityDaylightDetector",
+    "CompiledName": "apa"
+  },
+  {
+    "Name": "TileEntityDispenser",
+    "CompiledName": "apb"
+  },
+  {
+    "Name": "TileEntityDropper",
+    "CompiledName": "apc"
+  },
+  {
+    "Name": "TileEntityEnchantmentTable",
+    "CompiledName": "apd"
+  },
+  {
+    "Name": "TileEntityEnderChest",
+    "CompiledName": "ape"
+  },
+  {
+    "Name": "TileEntityFlowerPot",
+    "CompiledName": "apf"
+  },
+  {
+    "Name": "TileEntityFurnace",
+    "CompiledName": "apg"
+  },
+  {
+    "Name": "IHopper",
+    "CompiledName": "aph"
+  },
+  {
+    "Name": "TileEntityHopper",
+    "CompiledName": "api"
+  },
+  {
+    "Name": "TileEntityMobSpawner",
+    "CompiledName": "apj"
+  },
+  {
+    "Name": "TileEntityMobSpawner$1",
+    "CompiledName": "apk"
+  },
+  {
+    "Name": "TileEntityNote",
+    "CompiledName": "apl"
+  },
+  {
+    "Name": "TileEntitySign",
+    "CompiledName": "apm"
+  },
+  {
+    "Name": "TileEntitySkull",
+    "CompiledName": "apn"
+  },
+  {
+    "Name": "TileEntityEndPortal",
+    "CompiledName": "apo"
+  },
+  {
+    "Name": "BlockPistonBase",
+    "CompiledName": "app"
+  },
+  {
+    "Name": "BlockPistonExtension",
+    "CompiledName": "apq"
+  },
+  {
+    "Name": "BlockPistonMoving",
+    "CompiledName": "apr"
+  },
+  {
+    "Name": "TileEntityPiston",
+    "CompiledName": "aps"
+  },
+  {
+    "Name": "IChunkProvider",
+    "CompiledName": "apu"
+  },
+  {
+    "Name": "NibbleArray",
+    "CompiledName": "apv"
+  },
+  {
+    "Name": "EmptyChunk",
+    "CompiledName": "apw"
+  },
+  {
+    "Name": "Chunk",
+    "CompiledName": "apx"
+  },
+  {
+    "Name": "Chunk$1",
+    "CompiledName": "apy"
+  },
+  {
+    "Name": "ExtendedBlockStorage",
+    "CompiledName": "apz"
+  },
+  {
+    "Name": "CommandDifficulty",
+    "CompiledName": "aq"
+  },
+  {
+    "Name": "NibbleArrayReader",
+    "CompiledName": "aqa"
+  },
+  {
+    "Name": "IChunkLoader",
+    "CompiledName": "aqc"
+  },
+  {
+    "Name": "ChunkLoader",
+    "CompiledName": "aqf"
+  },
+  {
+    "Name": "ChunkLoader$AnvilConverterData",
+    "CompiledName": "aqg"
+  },
+  {
+    "Name": "RegionFile",
+    "CompiledName": "aqh"
+  },
+  {
+    "Name": "RegionFile$ChunkBuffer",
+    "CompiledName": "aqi"
+  },
+  {
+    "Name": "RegionFileCache",
+    "CompiledName": "aqj"
+  },
+  {
+    "Name": "AnvilChunkLoader",
+    "CompiledName": "aqk"
+  },
+  {
+    "Name": "AnvilChunkLoader$PendingChunk",
+    "CompiledName": "aql"
+  },
+  {
+    "Name": "WorldProvider",
+    "CompiledName": "aqo"
+  },
+  {
+    "Name": "WorldProviderHell",
+    "CompiledName": "aqp"
+  },
+  {
+    "Name": "WorldProviderSurface",
+    "CompiledName": "aqq"
+  },
+  {
+    "Name": "WorldProviderEnd",
+    "CompiledName": "aqr"
+  },
+  {
+    "Name": "MapGenRavine",
+    "CompiledName": "aqs"
+  },
+  {
+    "Name": "ChunkProviderFlat",
+    "CompiledName": "aqu"
+  },
+  {
+    "Name": "ChunkProviderHell",
+    "CompiledName": "aqv"
+  },
+  {
+    "Name": "MapGenCaves",
+    "CompiledName": "aqw"
+  },
+  {
+    "Name": "MapGenBase",
+    "CompiledName": "aqx"
+  },
+  {
+    "Name": "MapGenCavesHell",
+    "CompiledName": "aqy"
+  },
+  {
+    "Name": "ChunkProviderGenerate",
+    "CompiledName": "aqz"
+  },
+  {
+    "Name": "CommandGameMode",
+    "CompiledName": "ar"
+  },
+  {
+    "Name": "ChunkProviderEnd",
+    "CompiledName": "ara"
+  },
+  {
+    "Name": "WorldGenAbstractTree",
+    "CompiledName": "arc"
+  },
+  {
+    "Name": "WorldGenBigTree",
+    "CompiledName": "ard"
+  },
+  {
+    "Name": "WorldGenForest",
+    "CompiledName": "are"
+  },
+  {
+    "Name": "WorldGenBlockBlob",
+    "CompiledName": "arf"
+  },
+  {
+    "Name": "WorldGeneratorBonusChest",
+    "CompiledName": "arg"
+  },
+  {
+    "Name": "WorldGenCactus",
+    "CompiledName": "arh"
+  },
+  {
+    "Name": "WorldGenClay",
+    "CompiledName": "arj"
+  },
+  {
+    "Name": "WorldGenDeadBush",
+    "CompiledName": "ark"
+  },
+  {
+    "Name": "WorldGenDesertWells",
+    "CompiledName": "arl"
+  },
+  {
+    "Name": "WorldGenDoublePlant",
+    "CompiledName": "arm"
+  },
+  {
+    "Name": "WorldGenerator",
+    "CompiledName": "arn"
+  },
+  {
+    "Name": "WorldGenFlowers",
+    "CompiledName": "aro"
+  },
+  {
+    "Name": "WorldGenShrub",
+    "CompiledName": "arp"
+  },
+  {
+    "Name": "WorldGenFire",
+    "CompiledName": "arq"
+  },
+  {
+    "Name": "WorldGenGlowStone2",
+    "CompiledName": "arr"
+  },
+  {
+    "Name": "WorldGenHellLava",
+    "CompiledName": "ars"
+  },
+  {
+    "Name": "WorldGenBigMushroom",
+    "CompiledName": "aru"
+  },
+  {
+    "Name": "WorldGenIcePath",
+    "CompiledName": "arv"
+  },
+  {
+    "Name": "WorldGenIceSpike",
+    "CompiledName": "arw"
+  },
+  {
+    "Name": "WorldGenLakes",
+    "CompiledName": "arx"
+  },
+  {
+    "Name": "WorldGenGlowStone1",
+    "CompiledName": "ary"
+  },
+  {
+    "Name": "WorldGenMegaJungle",
+    "CompiledName": "arz"
+  },
+  {
+    "Name": "CommandGameRule",
+    "CompiledName": "as"
+  },
+  {
+    "Name": "WorldGenMegaPineTree",
+    "CompiledName": "asa"
+  },
+  {
+    "Name": "WorldGenHugeTrees",
+    "CompiledName": "asb"
+  },
+  {
+    "Name": "WorldGenMelon",
+    "CompiledName": "asc"
+  },
+  {
+    "Name": "WorldGenDungeons",
+    "CompiledName": "asd"
+  },
+  {
+    "Name": "WorldGenMinable",
+    "CompiledName": "ase"
+  },
+  {
+    "Name": "WorldGenTaiga1",
+    "CompiledName": "asf"
+  },
+  {
+    "Name": "WorldGenPumpkin",
+    "CompiledName": "asg"
+  },
+  {
+    "Name": "WorldGenReed",
+    "CompiledName": "ash"
+  },
+  {
+    "Name": "WorldGenCanopyTree",
+    "CompiledName": "asi"
+  },
+  {
+    "Name": "WorldGenSand",
+    "CompiledName": "asj"
+  },
+  {
+    "Name": "WorldGenSavannaTree",
+    "CompiledName": "ask"
+  },
+  {
+    "Name": "WorldGenSpikes",
+    "CompiledName": "asl"
+  },
+  {
+    "Name": "WorldGenLiquids",
+    "CompiledName": "asm"
+  },
+  {
+    "Name": "WorldGenTaiga2",
+    "CompiledName": "asn"
+  },
+  {
+    "Name": "WorldGenSwamp",
+    "CompiledName": "aso"
+  },
+  {
+    "Name": "WorldGenTallGrass",
+    "CompiledName": "asp"
+  },
+  {
+    "Name": "WorldGenTrees",
+    "CompiledName": "asq"
+  },
+  {
+    "Name": "WorldGenVines",
+    "CompiledName": "asr"
+  },
+  {
+    "Name": "FlatGeneratorInfo",
+    "CompiledName": "ass"
+  },
+  {
+    "Name": "FlatLayerInfo",
+    "CompiledName": "ast"
+  },
+  {
+    "Name": "StructureBoundingBox",
+    "CompiledName": "asv"
+  },
+  {
+    "Name": "MapGenMineshaft",
+    "CompiledName": "asw"
+  },
+  {
+    "Name": "StructureMineshaftPieces",
+    "CompiledName": "asx"
+  },
+  {
+    "Name": "StructureMineshaftPieces$Corridor",
+    "CompiledName": "asy"
+  },
+  {
+    "Name": "StructureMineshaftPieces$Cross",
+    "CompiledName": "asz"
+  },
+  {
+    "Name": "CommandGive",
+    "CompiledName": "at"
+  },
+  {
+    "Name": "StructureMineshaftPieces$Room",
+    "CompiledName": "ata"
+  },
+  {
+    "Name": "StructureMineshaftPieces$Stairs",
+    "CompiledName": "atb"
+  },
+  {
+    "Name": "StructureMineshaftStart",
+    "CompiledName": "atc"
+  },
+  {
+    "Name": "MapGenNetherBridge",
+    "CompiledName": "atd"
+  },
+  {
+    "Name": "MapGenNetherBridge$Start",
+    "CompiledName": "ate"
+  },
+  {
+    "Name": "StructureNetherBridgePieces",
+    "CompiledName": "atf"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Crossing3",
+    "CompiledName": "atg"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$End",
+    "CompiledName": "ath"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Straight",
+    "CompiledName": "ati"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Corridor3",
+    "CompiledName": "atj"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Corridor4",
+    "CompiledName": "atk"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Entrance",
+    "CompiledName": "atl"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Crossing2",
+    "CompiledName": "atm"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Corridor",
+    "CompiledName": "atn"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Corridor5",
+    "CompiledName": "ato"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Corridor2",
+    "CompiledName": "atp"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$NetherStalkRoom",
+    "CompiledName": "atq"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Throne",
+    "CompiledName": "atr"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Piece",
+    "CompiledName": "ats"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$PieceWeight",
+    "CompiledName": "att"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Crossing",
+    "CompiledName": "atu"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Stairs",
+    "CompiledName": "atv"
+  },
+  {
+    "Name": "StructureNetherBridgePieces$Start",
+    "CompiledName": "atw"
+  },
+  {
+    "Name": "MapGenScatteredFeature",
+    "CompiledName": "atx"
+  },
+  {
+    "Name": "MapGenScatteredFeature$Start",
+    "CompiledName": "aty"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces",
+    "CompiledName": "atz"
+  },
+  {
+    "Name": "CommandHelp",
+    "CompiledName": "au"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces$1",
+    "CompiledName": "aua"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces$DesertPyramid",
+    "CompiledName": "aub"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces$JunglePyramid",
+    "CompiledName": "auc"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces$JunglePyramid$Stones",
+    "CompiledName": "aud"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces$Feature",
+    "CompiledName": "aue"
+  },
+  {
+    "Name": "ComponentScatteredFeaturePieces$SwampHut",
+    "CompiledName": "auf"
+  },
+  {
+    "Name": "MapGenStronghold",
+    "CompiledName": "aug"
+  },
+  {
+    "Name": "MapGenStronghold$Start",
+    "CompiledName": "auh"
+  },
+  {
+    "Name": "StructureStrongholdPieces",
+    "CompiledName": "aui"
+  },
+  {
+    "Name": "StructureStrongholdPieces$1",
+    "CompiledName": "auj"
+  },
+  {
+    "Name": "StructureStrongholdPieces$2",
+    "CompiledName": "auk"
+  },
+  {
+    "Name": "StructureStrongholdPieces$SwitchDoor",
+    "CompiledName": "aul"
+  },
+  {
+    "Name": "StructureStrongholdPieces$ChestCorridor",
+    "CompiledName": "aum"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Corridor",
+    "CompiledName": "aun"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Crossing",
+    "CompiledName": "auo"
+  },
+  {
+    "Name": "StructureStrongholdPieces$LeftTurn",
+    "CompiledName": "aup"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Library",
+    "CompiledName": "auq"
+  },
+  {
+    "Name": "StructureStrongholdPieces$PieceWeight",
+    "CompiledName": "aur"
+  },
+  {
+    "Name": "StructureStrongholdPieces$PortalRoom",
+    "CompiledName": "aus"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Prison",
+    "CompiledName": "aut"
+  },
+  {
+    "Name": "StructureStrongholdPieces$RightTurn",
+    "CompiledName": "auu"
+  },
+  {
+    "Name": "StructureStrongholdPieces$RoomCrossing",
+    "CompiledName": "auv"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Stones",
+    "CompiledName": "auw"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Stairs",
+    "CompiledName": "auy"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Stairs2",
+    "CompiledName": "auz"
+  },
+  {
+    "Name": "CommandServerKick",
+    "CompiledName": "av"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Straight",
+    "CompiledName": "ava"
+  },
+  {
+    "Name": "StructureStrongholdPieces$StairsStraight",
+    "CompiledName": "avb"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Stronghold",
+    "CompiledName": "avc"
+  },
+  {
+    "Name": "StructureStrongholdPieces$Stronghold$Door",
+    "CompiledName": "avd"
+  },
+  {
+    "Name": "MapGenStructure",
+    "CompiledName": "ave"
+  },
+  {
+    "Name": "MapGenStructure$1",
+    "CompiledName": "avf"
+  },
+  {
+    "Name": "MapGenStructure$2",
+    "CompiledName": "avg"
+  },
+  {
+    "Name": "MapGenStructure$3",
+    "CompiledName": "avh"
+  },
+  {
+    "Name": "MapGenStructureIO",
+    "CompiledName": "avi"
+  },
+  {
+    "Name": "MapGenStructureData",
+    "CompiledName": "avj"
+  },
+  {
+    "Name": "StructureComponent",
+    "CompiledName": "avk"
+  },
+  {
+    "Name": "StructureComponent$BlockSelector",
+    "CompiledName": "avl"
+  },
+  {
+    "Name": "StructureStart",
+    "CompiledName": "avm"
+  },
+  {
+    "Name": "MapGenVillage",
+    "CompiledName": "avn"
+  },
+  {
+    "Name": "MapGenVillage$Start",
+    "CompiledName": "avo"
+  },
+  {
+    "Name": "StructureVillagePieces",
+    "CompiledName": "avp"
+  },
+  {
+    "Name": "StructureVillagePieces$House1",
+    "CompiledName": "avq"
+  },
+  {
+    "Name": "StructureVillagePieces$Field1",
+    "CompiledName": "avr"
+  },
+  {
+    "Name": "StructureVillagePieces$Field2",
+    "CompiledName": "avs"
+  },
+  {
+    "Name": "StructureVillagePieces$Torch",
+    "CompiledName": "avt"
+  },
+  {
+    "Name": "StructureVillagePieces$PieceWeight",
+    "CompiledName": "avu"
+  },
+  {
+    "Name": "StructureVillagePieces$Hall",
+    "CompiledName": "avv"
+  },
+  {
+    "Name": "StructureVillagePieces$House4Garden",
+    "CompiledName": "avw"
+  },
+  {
+    "Name": "StructureVillagePieces$WoodHut",
+    "CompiledName": "avx"
+  },
+  {
+    "Name": "StructureVillagePieces$Church",
+    "CompiledName": "avy"
+  },
+  {
+    "Name": "StructureVillagePieces$House2",
+    "CompiledName": "avz"
+  },
+  {
+    "Name": "CommandKill",
+    "CompiledName": "aw"
+  },
+  {
+    "Name": "StructureVillagePieces$Start",
+    "CompiledName": "awa"
+  },
+  {
+    "Name": "StructureVillagePieces$Path",
+    "CompiledName": "awb"
+  },
+  {
+    "Name": "StructureVillagePieces$House3",
+    "CompiledName": "awc"
+  },
+  {
+    "Name": "StructureVillagePieces$Village",
+    "CompiledName": "awd"
+  },
+  {
+    "Name": "StructureVillagePieces$Road",
+    "CompiledName": "awe"
+  },
+  {
+    "Name": "StructureVillagePieces$Well",
+    "CompiledName": "awf"
+  },
+  {
+    "Name": "NoiseGeneratorImproved",
+    "CompiledName": "awj"
+  },
+  {
+    "Name": "NoiseGeneratorOctaves",
+    "CompiledName": "awk"
+  },
+  {
+    "Name": "NoiseGeneratorPerlin",
+    "CompiledName": "awl"
+  },
+  {
+    "Name": "NoiseGeneratorSimplex",
+    "CompiledName": "awo"
+  },
+  {
+    "Name": "NoiseGenerator",
+    "CompiledName": "awp"
+  },
+  {
+    "Name": "MaterialLogic",
+    "CompiledName": "awq"
+  },
+  {
+    "Name": "MaterialTransparent",
+    "CompiledName": "awr"
+  },
+  {
+    "Name": "MaterialLiquid",
+    "CompiledName": "aws"
+  },
+  {
+    "Name": "Material",
+    "CompiledName": "awt"
+  },
+  {
+    "Name": "Material$1",
+    "CompiledName": "awu"
+  },
+  {
+    "Name": "MapColor",
+    "CompiledName": "awv"
+  },
+  {
+    "Name": "MaterialPortal",
+    "CompiledName": "aww"
+  },
+  {
+    "Name": "GenLayerDeepOcean",
+    "CompiledName": "awx"
+  },
+  {
+    "Name": "GenLayerEdge",
+    "CompiledName": "awy"
+  },
+  {
+    "Name": "GenLayerEdge$SwitchMode",
+    "CompiledName": "awz"
+  },
+  {
+    "Name": "CommandListBans",
+    "CompiledName": "ax"
+  },
+  {
+    "Name": "GenLayerEdge$Mode",
+    "CompiledName": "axa"
+  },
+  {
+    "Name": "GenLayerAddIsland",
+    "CompiledName": "axb"
+  },
+  {
+    "Name": "GenLayerAddMushroomIsland",
+    "CompiledName": "axc"
+  },
+  {
+    "Name": "GenLayerAddSnow",
+    "CompiledName": "axd"
+  },
+  {
+    "Name": "GenLayerBiomeEdge",
+    "CompiledName": "axe"
+  },
+  {
+    "Name": "GenLayerBiome",
+    "CompiledName": "axf"
+  },
+  {
+    "Name": "GenLayerFuzzyZoom",
+    "CompiledName": "axj"
+  },
+  {
+    "Name": "IntCache",
+    "CompiledName": "axl"
+  },
+  {
+    "Name": "GenLayerIsland",
+    "CompiledName": "axm"
+  },
+  {
+    "Name": "GenLayer",
+    "CompiledName": "axn"
+  },
+  {
+    "Name": "GenLayer$1",
+    "CompiledName": "axo"
+  },
+  {
+    "Name": "GenLayer$2",
+    "CompiledName": "axp"
+  },
+  {
+    "Name": "GenLayerRareBiome",
+    "CompiledName": "axq"
+  },
+  {
+    "Name": "GenLayerHills",
+    "CompiledName": "axr"
+  },
+  {
+    "Name": "GenLayerRemoveTooMuchOcean",
+    "CompiledName": "axs"
+  },
+  {
+    "Name": "GenLayerRiverInit",
+    "CompiledName": "axt"
+  },
+  {
+    "Name": "GenLayerRiver",
+    "CompiledName": "axu"
+  },
+  {
+    "Name": "GenLayerRiverMix",
+    "CompiledName": "axv"
+  },
+  {
+    "Name": "GenLayerShore",
+    "CompiledName": "axw"
+  },
+  {
+    "Name": "GenLayerSmooth",
+    "CompiledName": "axx"
+  },
+  {
+    "Name": "CommandListPlayers",
+    "CompiledName": "ay"
+  },
+  {
+    "Name": "GenLayerVoronoiZoom",
+    "CompiledName": "ayb"
+  },
+  {
+    "Name": "GenLayerZoom",
+    "CompiledName": "ayc"
+  },
+  {
+    "Name": "Path",
+    "CompiledName": "ayd"
+  },
+  {
+    "Name": "PathPoint",
+    "CompiledName": "aye"
+  },
+  {
+    "Name": "PathEntity",
+    "CompiledName": "ayf"
+  },
+  {
+    "Name": "PathFinder",
+    "CompiledName": "ayg"
+  },
+  {
+    "Name": "MapData",
+    "CompiledName": "ayi"
+  },
+  {
+    "Name": "MapData$MapInfo",
+    "CompiledName": "ayj"
+  },
+  {
+    "Name": "MapData$MapCoord",
+    "CompiledName": "ayk"
+  },
+  {
+    "Name": "WorldSavedData",
+    "CompiledName": "ayl"
+  },
+  {
+    "Name": "AnvilSaveHandler",
+    "CompiledName": "aym"
+  },
+  {
+    "Name": "AnvilSaveConverter",
+    "CompiledName": "ayn"
+  },
+  {
+    "Name": "AnvilSaveConverter$1",
+    "CompiledName": "ayo"
+  },
+  {
+    "Name": "DerivedWorldInfo",
+    "CompiledName": "ayp"
+  },
+  {
+    "Name": "SaveHandler",
+    "CompiledName": "ayq"
+  },
+  {
+    "Name": "SaveFormatOld",
+    "CompiledName": "ayr"
+  },
+  {
+    "Name": "WorldInfo",
+    "CompiledName": "ays"
+  },
+  {
+    "Name": "WorldInfo$1",
+    "CompiledName": "ayt"
+  },
+  {
+    "Name": "WorldInfo$2",
+    "CompiledName": "ayu"
+  },
+  {
+    "Name": "WorldInfo$3",
+    "CompiledName": "ayv"
+  },
+  {
+    "Name": "WorldInfo$4",
+    "CompiledName": "ayw"
+  },
+  {
+    "Name": "WorldInfo$5",
+    "CompiledName": "ayx"
+  },
+  {
+    "Name": "WorldInfo$6",
+    "CompiledName": "ayy"
+  },
+  {
+    "Name": "WorldInfo$7",
+    "CompiledName": "ayz"
+  },
+  {
+    "Name": "CommandMessage",
+    "CompiledName": "az"
+  },
+  {
+    "Name": "WorldInfo$8",
+    "CompiledName": "aza"
+  },
+  {
+    "Name": "WorldInfo$9",
+    "CompiledName": "azb"
+  },
+  {
+    "Name": "ISaveHandler",
+    "CompiledName": "azc"
+  },
+  {
+    "Name": "AnvilConverterException",
+    "CompiledName": "azd"
+  },
+  {
+    "Name": "ISaveFormat",
+    "CompiledName": "aze"
+  },
+  {
+    "Name": "SaveFormatComparator",
+    "CompiledName": "azf"
+  },
+  {
+    "Name": "SaveHandlerMP",
+    "CompiledName": "azo"
+  },
+  {
+    "Name": "IPlayerFileData",
+    "CompiledName": "azp"
+  },
+  {
+    "Name": "MapStorage",
+    "CompiledName": "azq"
+  },
+  {
+    "Name": "ThreadedFileIOBase",
+    "CompiledName": "azr"
+  },
+  {
+    "Name": "IThreadedFileIO",
+    "CompiledName": "azs"
+  },
+  {
+    "Name": "AxisAlignedBB",
+    "CompiledName": "azt"
+  },
+  {
+    "Name": "MovingObjectPosition",
+    "CompiledName": "azu"
+  },
+  {
+    "Name": "MovingObjectPosition$MovingObjectType",
+    "CompiledName": "azv"
+  },
+  {
+    "Name": "Vec3",
+    "CompiledName": "azw"
+  },
+  {
+    "Name": "ScoreObjective",
+    "CompiledName": "azx"
+  },
+  {
+    "Name": "ScorePlayerTeam",
+    "CompiledName": "azy"
+  },
+  {
+    "Name": "Score",
+    "CompiledName": "azz"
+  },
+  {
+    "Name": "CrashReport",
+    "CompiledName": "b"
+  },
+  {
+    "Name": "CommandMessageRaw",
+    "CompiledName": "ba"
+  },
+  {
+    "Name": "Score$1",
+    "CompiledName": "baa"
+  },
+  {
+    "Name": "Scoreboard",
+    "CompiledName": "bac"
+  },
+  {
+    "Name": "ScoreboardSaveData",
+    "CompiledName": "bad"
+  },
+  {
+    "Name": "Team",
+    "CompiledName": "bae"
+  },
+  {
+    "Name": "ScoreDummyCriteria",
+    "CompiledName": "baf"
+  },
+  {
+    "Name": "ScoreHealthCriteria",
+    "CompiledName": "bag"
+  },
+  {
+    "Name": "IScoreObjectiveCriteria",
+    "CompiledName": "bah"
+  },
+  {
+    "Name": "ObjectiveStat",
+    "CompiledName": "bai"
+  },
+  {
+    "Name": "ActiveRenderInfo",
+    "CompiledName": "baj"
+  },
+  {
+    "Name": "ChatLine",
+    "CompiledName": "bak"
+  },
+  {
+    "Name": "KeyBinding",
+    "CompiledName": "bal"
+  },
+  {
+    "Name": "RenderHelper",
+    "CompiledName": "bam"
+  },
+  {
+    "Name": "GLAllocation",
+    "CompiledName": "ban"
+  },
+  {
+    "Name": "Minecraft",
+    "CompiledName": "bao"
+  },
+  {
+    "Name": "Minecraft$1",
+    "CompiledName": "bap"
+  },
+  {
+    "Name": "Minecraft$10",
+    "CompiledName": "baq"
+  },
+  {
+    "Name": "Minecraft$11",
+    "CompiledName": "bar"
+  },
+  {
+    "Name": "Minecraft$12",
+    "CompiledName": "bas"
+  },
+  {
+    "Name": "Minecraft$13",
+    "CompiledName": "bat"
+  },
+  {
+    "Name": "Minecraft$14",
+    "CompiledName": "bau"
+  },
+  {
+    "Name": "Minecraft$15",
+    "CompiledName": "bav"
+  },
+  {
+    "Name": "Minecraft$16",
+    "CompiledName": "baw"
+  },
+  {
+    "Name": "Minecraft$SwitchMovingObjectType",
+    "CompiledName": "bax"
+  },
+  {
+    "Name": "Minecraft$2",
+    "CompiledName": "bay"
+  },
+  {
+    "Name": "Minecraft$3",
+    "CompiledName": "baz"
+  },
+  {
+    "Name": "CommandNetstat",
+    "CompiledName": "bb"
+  },
+  {
+    "Name": "Minecraft$4",
+    "CompiledName": "bba"
+  },
+  {
+    "Name": "Minecraft$5",
+    "CompiledName": "bbb"
+  },
+  {
+    "Name": "Minecraft$6",
+    "CompiledName": "bbc"
+  },
+  {
+    "Name": "Minecraft$7",
+    "CompiledName": "bbd"
+  },
+  {
+    "Name": "Minecraft$8",
+    "CompiledName": "bbe"
+  },
+  {
+    "Name": "Minecraft$9",
+    "CompiledName": "bbf"
+  },
+  {
+    "Name": "MouseHelper",
+    "CompiledName": "bbg"
+  },
+  {
+    "Name": "OpenGlCapsChecker",
+    "CompiledName": "bbh"
+  },
+  {
+    "Name": "GameSettings",
+    "CompiledName": "bbj"
+  },
+  {
+    "Name": "GameSettings$1",
+    "CompiledName": "bbk"
+  },
+  {
+    "Name": "GameSettings$SwitchOptions",
+    "CompiledName": "bbl"
+  },
+  {
+    "Name": "GameSettings$Options",
+    "CompiledName": "bbm"
+  },
+  {
+    "Name": "GameSettings$Options$1",
+    "CompiledName": "bbn"
+  },
+  {
+    "Name": "LoadingScreenRenderer",
+    "CompiledName": "bbo"
+  },
+  {
+    "Name": "ScreenShotHelper",
+    "CompiledName": "bbp"
+  },
+  {
+    "Name": "MinecraftError",
+    "CompiledName": "bbq"
+  },
+  {
+    "Name": "Timer",
+    "CompiledName": "bbr"
+  },
+  {
+    "Name": "Session",
+    "CompiledName": "bbs"
+  },
+  {
+    "Name": "Session$Type",
+    "CompiledName": "bbt"
+  },
+  {
+    "Name": "FontRenderer",
+    "CompiledName": "bbu"
+  },
+  {
+    "Name": "GuiIngame",
+    "CompiledName": "bbv"
+  },
+  {
+    "Name": "Gui",
+    "CompiledName": "bbw"
+  },
+  {
+    "Name": "MapItemRenderer",
+    "CompiledName": "bbx"
+  },
+  {
+    "Name": "MapItemRenderer$1",
+    "CompiledName": "bby"
+  },
+  {
+    "Name": "MapItemRenderer$Instance",
+    "CompiledName": "bbz"
+  },
+  {
+    "Name": "CommandOp",
+    "CompiledName": "bc"
+  },
+  {
+    "Name": "ScaledResolution",
+    "CompiledName": "bca"
+  },
+  {
+    "Name": "GuiButton",
+    "CompiledName": "bcb"
+  },
+  {
+    "Name": "GuiNewChat",
+    "CompiledName": "bcc"
+  },
+  {
+    "Name": "GuiTextField",
+    "CompiledName": "bcd"
+  },
+  {
+    "Name": "GuiLabel",
+    "CompiledName": "bce"
+  },
+  {
+    "Name": "GuiButtonLanguage",
+    "CompiledName": "bcf"
+  },
+  {
+    "Name": "GuiListExtended",
+    "CompiledName": "bch"
+  },
+  {
+    "Name": "GuiListExtended$IGuiListEntry",
+    "CompiledName": "bci"
+  },
+  {
+    "Name": "GuiOptionButton",
+    "CompiledName": "bcj"
+  },
+  {
+    "Name": "GuiOptionsRowList",
+    "CompiledName": "bck"
+  },
+  {
+    "Name": "GuiOptionsRowList$Row",
+    "CompiledName": "bcl"
+  },
+  {
+    "Name": "GuiSlot",
+    "CompiledName": "bcm"
+  },
+  {
+    "Name": "GuiOptionSlider",
+    "CompiledName": "bcn"
+  },
+  {
+    "Name": "GuiStreamIndicator",
+    "CompiledName": "bco"
+  },
+  {
+    "Name": "GuiButtonRealmsProxy",
+    "CompiledName": "bcp"
+  },
+  {
+    "Name": "GuiScreenRealmsProxy",
+    "CompiledName": "bcq"
+  },
+  {
+    "Name": "GuiSlotRealmsProxy",
+    "CompiledName": "bcr"
+  },
+  {
+    "Name": "ScreenChatOptions",
+    "CompiledName": "bcs"
+  },
+  {
+    "Name": "GuiChat",
+    "CompiledName": "bct"
+  },
+  {
+    "Name": "GuiConfirmOpenLink",
+    "CompiledName": "bcu"
+  },
+  {
+    "Name": "GuiYesNoCallback",
+    "CompiledName": "bcv"
+  },
+  {
+    "Name": "GuiYesNo",
+    "CompiledName": "bcw"
+  },
+  {
+    "Name": "GuiConnecting",
+    "CompiledName": "bcx"
+  },
+  {
+    "Name": "GuiConnecting$1",
+    "CompiledName": "bcy"
+  },
+  {
+    "Name": "GuiCreateFlatWorld",
+    "CompiledName": "bcz"
+  },
+  {
+    "Name": "CommandPardonIp",
+    "CompiledName": "bd"
+  },
+  {
+    "Name": "GuiCreateFlatWorld$Details",
+    "CompiledName": "bda"
+  },
+  {
+    "Name": "GuiCreateWorld",
+    "CompiledName": "bdb"
+  },
+  {
+    "Name": "GuiGameOver",
+    "CompiledName": "bdc"
+  },
+  {
+    "Name": "GuiScreenDemo",
+    "CompiledName": "bdd"
+  },
+  {
+    "Name": "GuiScreenServerList",
+    "CompiledName": "bde"
+  },
+  {
+    "Name": "GuiDisconnected",
+    "CompiledName": "bdf"
+  },
+  {
+    "Name": "GuiScreenAddServer",
+    "CompiledName": "bdg"
+  },
+  {
+    "Name": "GuiErrorScreen",
+    "CompiledName": "bdh"
+  },
+  {
+    "Name": "GuiSleepMP",
+    "CompiledName": "bdi"
+  },
+  {
+    "Name": "GuiLanguage",
+    "CompiledName": "bdj"
+  },
+  {
+    "Name": "GuiLanguage$List",
+    "CompiledName": "bdk"
+  },
+  {
+    "Name": "GuiOptions",
+    "CompiledName": "bdm"
+  },
+  {
+    "Name": "GuiOptions$1",
+    "CompiledName": "bdn"
+  },
+  {
+    "Name": "GuiMemoryErrorScreen",
+    "CompiledName": "bdo"
+  },
+  {
+    "Name": "GuiIngameMenu",
+    "CompiledName": "bdp"
+  },
+  {
+    "Name": "GuiFlatPresets",
+    "CompiledName": "bdq"
+  },
+  {
+    "Name": "GuiFlatPresets$LayerItem",
+    "CompiledName": "bdr"
+  },
+  {
+    "Name": "GuiFlatPresets$ListSlot",
+    "CompiledName": "bds"
+  },
+  {
+    "Name": "GuiScreenWorking",
+    "CompiledName": "bdt"
+  },
+  {
+    "Name": "GuiDownloadTerrain",
+    "CompiledName": "bdu"
+  },
+  {
+    "Name": "GuiRenameWorld",
+    "CompiledName": "bdv"
+  },
+  {
+    "Name": "GuiScreen",
+    "CompiledName": "bdw"
+  },
+  {
+    "Name": "GuiSelectWorld",
+    "CompiledName": "bdx"
+  },
+  {
+    "Name": "GuiSelectWorld$List",
+    "CompiledName": "bdy"
+  },
+  {
+    "Name": "GuiShareToLan",
+    "CompiledName": "bdz"
+  },
+  {
+    "Name": "CommandPardonPlayer",
+    "CompiledName": "be"
+  },
+  {
+    "Name": "GuiSnooper",
+    "CompiledName": "bea"
+  },
+  {
+    "Name": "GuiSnooper$List",
+    "CompiledName": "beb"
+  },
+  {
+    "Name": "GuiScreenOptionsSounds",
+    "CompiledName": "bec"
+  },
+  {
+    "Name": "GuiScreenOptionsSounds$Button",
+    "CompiledName": "bed"
+  },
+  {
+    "Name": "GuiMainMenu",
+    "CompiledName": "bee"
+  },
+  {
+    "Name": "GuiVideoSettings",
+    "CompiledName": "bef"
+  },
+  {
+    "Name": "GuiWinGame",
+    "CompiledName": "beg"
+  },
+  {
+    "Name": "GuiAchievement",
+    "CompiledName": "beh"
+  },
+  {
+    "Name": "GuiAchievements",
+    "CompiledName": "bei"
+  },
+  {
+    "Name": "GuiStats",
+    "CompiledName": "bej"
+  },
+  {
+    "Name": "GuiStats$StatsBlock",
+    "CompiledName": "bek"
+  },
+  {
+    "Name": "GuiStats$StatsBlock$1",
+    "CompiledName": "bel"
+  },
+  {
+    "Name": "GuiStats$StatsGeneral",
+    "CompiledName": "bem"
+  },
+  {
+    "Name": "GuiStats$StatsItem",
+    "CompiledName": "ben"
+  },
+  {
+    "Name": "GuiStats$StatsItem$1",
+    "CompiledName": "beo"
+  },
+  {
+    "Name": "GuiStats$StatsMobsList",
+    "CompiledName": "bep"
+  },
+  {
+    "Name": "GuiStats$Stats",
+    "CompiledName": "beq"
+  },
+  {
+    "Name": "IProgressMeter",
+    "CompiledName": "ber"
+  },
+  {
+    "Name": "GuiKeyBindingList",
+    "CompiledName": "bes"
+  },
+  {
+    "Name": "GuiKeyBindingList$1",
+    "CompiledName": "bet"
+  },
+  {
+    "Name": "GuiKeyBindingList$CategoryEntry",
+    "CompiledName": "beu"
+  },
+  {
+    "Name": "GuiKeyBindingList$KeyEntry",
+    "CompiledName": "bev"
+  },
+  {
+    "Name": "GuiControls",
+    "CompiledName": "bew"
+  },
+  {
+    "Name": "GuiContainer",
+    "CompiledName": "bex"
+  },
+  {
+    "Name": "GuiRepair",
+    "CompiledName": "bey"
+  },
+  {
+    "Name": "GuiBeacon",
+    "CompiledName": "bez"
+  },
+  {
+    "Name": "CommandPlaySound",
+    "CompiledName": "bf"
+  },
+  {
+    "Name": "GuiBeacon$CancelButton",
+    "CompiledName": "bfa"
+  },
+  {
+    "Name": "GuiBeacon$ConfirmButton",
+    "CompiledName": "bfb"
+  },
+  {
+    "Name": "GuiBeacon$PowerButton",
+    "CompiledName": "bfc"
+  },
+  {
+    "Name": "GuiBeacon$Button",
+    "CompiledName": "bfd"
+  },
+  {
+    "Name": "GuiScreenBook",
+    "CompiledName": "bfe"
+  },
+  {
+    "Name": "GuiScreenBook$NextPageButton",
+    "CompiledName": "bff"
+  },
+  {
+    "Name": "GuiBrewingStand",
+    "CompiledName": "bfg"
+  },
+  {
+    "Name": "GuiCommandBlock",
+    "CompiledName": "bfh"
+  },
+  {
+    "Name": "GuiChest",
+    "CompiledName": "bfi"
+  },
+  {
+    "Name": "GuiCrafting",
+    "CompiledName": "bfj"
+  },
+  {
+    "Name": "CreativeCrafting",
+    "CompiledName": "bfk"
+  },
+  {
+    "Name": "GuiContainerCreative",
+    "CompiledName": "bfl"
+  },
+  {
+    "Name": "GuiContainerCreative$ContainerCreative",
+    "CompiledName": "bfm"
+  },
+  {
+    "Name": "GuiContainerCreative$CreativeSlot",
+    "CompiledName": "bfn"
+  },
+  {
+    "Name": "InventoryEffectRenderer",
+    "CompiledName": "bfo"
+  },
+  {
+    "Name": "EnchantmentNameParts",
+    "CompiledName": "bfp"
+  },
+  {
+    "Name": "GuiEnchantment",
+    "CompiledName": "bfq"
+  },
+  {
+    "Name": "GuiFurnace",
+    "CompiledName": "bfr"
+  },
+  {
+    "Name": "GuiHopper",
+    "CompiledName": "bfs"
+  },
+  {
+    "Name": "GuiScreenHorseInventory",
+    "CompiledName": "bft"
+  },
+  {
+    "Name": "GuiInventory",
+    "CompiledName": "bfu"
+  },
+  {
+    "Name": "GuiMerchant",
+    "CompiledName": "bfv"
+  },
+  {
+    "Name": "GuiMerchant$MerchantButton",
+    "CompiledName": "bfw"
+  },
+  {
+    "Name": "GuiEditSign",
+    "CompiledName": "bfx"
+  },
+  {
+    "Name": "GuiDispenser",
+    "CompiledName": "bfy"
+  },
+  {
+    "Name": "GuiMultiplayer",
+    "CompiledName": "bfz"
+  },
+  {
+    "Name": "CommandPublishLocalServer",
+    "CompiledName": "bg"
+  },
+  {
+    "Name": "ServerListEntryLanScan",
+    "CompiledName": "bga"
+  },
+  {
+    "Name": "ServerListEntryLanDetected",
+    "CompiledName": "bgb"
+  },
+  {
+    "Name": "ServerListEntryNormal",
+    "CompiledName": "bgc"
+  },
+  {
+    "Name": "ServerListEntryNormal$1",
+    "CompiledName": "bgd"
+  },
+  {
+    "Name": "ServerSelectionList",
+    "CompiledName": "bge"
+  },
+  {
+    "Name": "GuiScreenResourcePacks",
+    "CompiledName": "bgf"
+  },
+  {
+    "Name": "ResourcePackListEntry",
+    "CompiledName": "bgg"
+  },
+  {
+    "Name": "ResourcePackListEntryDefault",
+    "CompiledName": "bgh"
+  },
+  {
+    "Name": "ResourcePackListEntryFound",
+    "CompiledName": "bgi"
+  },
+  {
+    "Name": "GuiResourcePackAvailable",
+    "CompiledName": "bgj"
+  },
+  {
+    "Name": "GuiResourcePackList",
+    "CompiledName": "bgk"
+  },
+  {
+    "Name": "GuiResourcePackSelected",
+    "CompiledName": "bgl"
+  },
+  {
+    "Name": "GuiIngestServers",
+    "CompiledName": "bgm"
+  },
+  {
+    "Name": "GuiIngestServers$ServerList",
+    "CompiledName": "bgn"
+  },
+  {
+    "Name": "GuiStreamOptions",
+    "CompiledName": "bgo"
+  },
+  {
+    "Name": "GuiStreamUnavailable",
+    "CompiledName": "bgp"
+  },
+  {
+    "Name": "GuiStreamUnavailable$SwitchReason",
+    "CompiledName": "bgq"
+  },
+  {
+    "Name": "GuiStreamUnavailable$Reason",
+    "CompiledName": "bgr"
+  },
+  {
+    "Name": "GuiTwitchUserMode",
+    "CompiledName": "bgs"
+  },
+  {
+    "Name": "Main$1",
+    "CompiledName": "bgt"
+  },
+  {
+    "Name": "Main$1$1",
+    "CompiledName": "bgu"
+  },
+  {
+    "Name": "Main$2",
+    "CompiledName": "bgv"
+  },
+  {
+    "Name": "Main$3",
+    "CompiledName": "bgw"
+  },
+  {
+    "Name": "CommandSaveAll",
+    "CompiledName": "bh"
+  },
+  {
+    "Name": "ModelBat",
+    "CompiledName": "bhc"
+  },
+  {
+    "Name": "ModelBlaze",
+    "CompiledName": "bhd"
+  },
+  {
+    "Name": "ModelBoat",
+    "CompiledName": "bhe"
+  },
+  {
+    "Name": "ModelBook",
+    "CompiledName": "bhf"
+  },
+  {
+    "Name": "ModelChest",
+    "CompiledName": "bhg"
+  },
+  {
+    "Name": "ModelChicken",
+    "CompiledName": "bhh"
+  },
+  {
+    "Name": "ModelCow",
+    "CompiledName": "bhi"
+  },
+  {
+    "Name": "ModelCreeper",
+    "CompiledName": "bhj"
+  },
+  {
+    "Name": "ModelEnderman",
+    "CompiledName": "bhk"
+  },
+  {
+    "Name": "ModelGhast",
+    "CompiledName": "bhl"
+  },
+  {
+    "Name": "ModelBiped",
+    "CompiledName": "bhm"
+  },
+  {
+    "Name": "ModelLargeChest",
+    "CompiledName": "bhn"
+  },
+  {
+    "Name": "ModelMagmaCube",
+    "CompiledName": "bho"
+  },
+  {
+    "Name": "ModelLeashKnot",
+    "CompiledName": "bhp"
+  },
+  {
+    "Name": "ModelMinecart",
+    "CompiledName": "bhq"
+  },
+  {
+    "Name": "ModelBase",
+    "CompiledName": "bhr"
+  },
+  {
+    "Name": "ModelHorse",
+    "CompiledName": "bhs"
+  },
+  {
+    "Name": "ModelOcelot",
+    "CompiledName": "bht"
+  },
+  {
+    "Name": "ModelPig",
+    "CompiledName": "bhu"
+  },
+  {
+    "Name": "TexturedQuad",
+    "CompiledName": "bhv"
+  },
+  {
+    "Name": "ModelQuadruped",
+    "CompiledName": "bhw"
+  },
+  {
+    "Name": "ModelSheep1",
+    "CompiledName": "bhx"
+  },
+  {
+    "Name": "ModelSheep2",
+    "CompiledName": "bhy"
+  },
+  {
+    "Name": "ModelSign",
+    "CompiledName": "bhz"
+  },
+  {
+    "Name": "CommandSaveOff",
+    "CompiledName": "bi"
+  },
+  {
+    "Name": "ModelSilverfish",
+    "CompiledName": "bia"
+  },
+  {
+    "Name": "ModelSkeletonHead",
+    "CompiledName": "bib"
+  },
+  {
+    "Name": "ModelSkeleton",
+    "CompiledName": "bic"
+  },
+  {
+    "Name": "ModelSlime",
+    "CompiledName": "bie"
+  },
+  {
+    "Name": "ModelSnowMan",
+    "CompiledName": "bif"
+  },
+  {
+    "Name": "ModelSpider",
+    "CompiledName": "big"
+  },
+  {
+    "Name": "ModelSquid",
+    "CompiledName": "bih"
+  },
+  {
+    "Name": "PositionTextureVertex",
+    "CompiledName": "bii"
+  },
+  {
+    "Name": "ModelIronGolem",
+    "CompiledName": "bij"
+  },
+  {
+    "Name": "ModelVillager",
+    "CompiledName": "bik"
+  },
+  {
+    "Name": "ModelZombieVillager",
+    "CompiledName": "bil"
+  },
+  {
+    "Name": "ModelWitch",
+    "CompiledName": "bim"
+  },
+  {
+    "Name": "ModelWither",
+    "CompiledName": "bin"
+  },
+  {
+    "Name": "ModelWolf",
+    "CompiledName": "bio"
+  },
+  {
+    "Name": "ModelZombie",
+    "CompiledName": "bip"
+  },
+  {
+    "Name": "ModelDragon",
+    "CompiledName": "biq"
+  },
+  {
+    "Name": "ModelEnderCrystal",
+    "CompiledName": "bir"
+  },
+  {
+    "Name": "ModelBox",
+    "CompiledName": "bis"
+  },
+  {
+    "Name": "ModelRenderer",
+    "CompiledName": "bix"
+  },
+  {
+    "Name": "TextureOffset",
+    "CompiledName": "biy"
+  },
+  {
+    "Name": "NetHandlerLoginClient",
+    "CompiledName": "biz"
+  },
+  {
+    "Name": "CommandSaveOn",
+    "CompiledName": "bj"
+  },
+  {
+    "Name": "NetHandlerLoginClient$1",
+    "CompiledName": "bja"
+  },
+  {
+    "Name": "NetHandlerPlayClient",
+    "CompiledName": "bjb"
+  },
+  {
+    "Name": "NetHandlerPlayClient$1",
+    "CompiledName": "bjc"
+  },
+  {
+    "Name": "ChunkProviderClient",
+    "CompiledName": "bjd"
+  },
+  {
+    "Name": "PlayerControllerMP",
+    "CompiledName": "bje"
+  },
+  {
+    "Name": "WorldClient",
+    "CompiledName": "bjf"
+  },
+  {
+    "Name": "WorldClient$1",
+    "CompiledName": "bjg"
+  },
+  {
+    "Name": "WorldClient$2",
+    "CompiledName": "bjh"
+  },
+  {
+    "Name": "WorldClient$3",
+    "CompiledName": "bji"
+  },
+  {
+    "Name": "WorldClient$4",
+    "CompiledName": "bjj"
+  },
+  {
+    "Name": "EntityClientPlayerMP",
+    "CompiledName": "bjk"
+  },
+  {
+    "Name": "GuiPlayerInfo",
+    "CompiledName": "bjl"
+  },
+  {
+    "Name": "ServerAddress",
+    "CompiledName": "bjm"
+  },
+  {
+    "Name": "ServerData",
+    "CompiledName": "bjn"
+  },
+  {
+    "Name": "ServerData$ServerResourceMode",
+    "CompiledName": "bjo"
+  },
+  {
+    "Name": "ServerList",
+    "CompiledName": "bjp"
+  },
+  {
+    "Name": "OldServerPinger",
+    "CompiledName": "bjq"
+  },
+  {
+    "Name": "OldServerPinger$1",
+    "CompiledName": "bjr"
+  },
+  {
+    "Name": "OldServerPinger$2",
+    "CompiledName": "bjs"
+  },
+  {
+    "Name": "OldServerPinger$2$1",
+    "CompiledName": "bjt"
+  },
+  {
+    "Name": "EntityBreakingFX",
+    "CompiledName": "bju"
+  },
+  {
+    "Name": "EntityBubbleFX",
+    "CompiledName": "bjv"
+  },
+  {
+    "Name": "EntityCrit2FX",
+    "CompiledName": "bjw"
+  },
+  {
+    "Name": "EntityCritFX",
+    "CompiledName": "bjx"
+  },
+  {
+    "Name": "EntityDropParticleFX",
+    "CompiledName": "bjy"
+  },
+  {
+    "Name": "EntityEnchantmentTableParticleFX",
+    "CompiledName": "bjz"
+  },
+  {
+    "Name": "CommandScoreboard",
+    "CompiledName": "bk"
+  },
+  {
+    "Name": "EntityExplodeFX",
+    "CompiledName": "bka"
+  },
+  {
+    "Name": "EntityFireworkOverlayFX",
+    "CompiledName": "bkc"
+  },
+  {
+    "Name": "EntityFireworkSparkFX",
+    "CompiledName": "bkd"
+  },
+  {
+    "Name": "EntityFireworkStarterFX",
+    "CompiledName": "bke"
+  },
+  {
+    "Name": "EntityFlameFX",
+    "CompiledName": "bkf"
+  },
+  {
+    "Name": "EntityFootStepFX",
+    "CompiledName": "bkg"
+  },
+  {
+    "Name": "EntityHeartFX",
+    "CompiledName": "bkh"
+  },
+  {
+    "Name": "EntityLargeExplodeFX",
+    "CompiledName": "bki"
+  },
+  {
+    "Name": "EntityHugeExplodeFX",
+    "CompiledName": "bkj"
+  },
+  {
+    "Name": "EntityLavaFX",
+    "CompiledName": "bkk"
+  },
+  {
+    "Name": "EntityNoteFX",
+    "CompiledName": "bkl"
+  },
+  {
+    "Name": "EntityFX",
+    "CompiledName": "bkm"
+  },
+  {
+    "Name": "EffectRenderer",
+    "CompiledName": "bkn"
+  },
+  {
+    "Name": "EffectRenderer$1",
+    "CompiledName": "bko"
+  },
+  {
+    "Name": "EffectRenderer$2",
+    "CompiledName": "bkp"
+  },
+  {
+    "Name": "EffectRenderer$3",
+    "CompiledName": "bkq"
+  },
+  {
+    "Name": "EffectRenderer$4",
+    "CompiledName": "bkr"
+  },
+  {
+    "Name": "EntityCloudFX",
+    "CompiledName": "bks"
+  },
+  {
+    "Name": "EntityPortalFX",
+    "CompiledName": "bkt"
+  },
+  {
+    "Name": "EntityReddustFX",
+    "CompiledName": "bku"
+  },
+  {
+    "Name": "EntitySmokeFX",
+    "CompiledName": "bkv"
+  },
+  {
+    "Name": "EntitySnowShovelFX",
+    "CompiledName": "bkw"
+  },
+  {
+    "Name": "EntitySpellParticleFX",
+    "CompiledName": "bkx"
+  },
+  {
+    "Name": "EntitySplashFX",
+    "CompiledName": "bky"
+  },
+  {
+    "Name": "EntitySuspendFX",
+    "CompiledName": "bkz"
+  },
+  {
+    "Name": "ServerCommandManager",
+    "CompiledName": "bl"
+  },
+  {
+    "Name": "EntityAuraFX",
+    "CompiledName": "bla"
+  },
+  {
+    "Name": "EntityPickupFX",
+    "CompiledName": "blb"
+  },
+  {
+    "Name": "EntityBlockDustFX",
+    "CompiledName": "blc"
+  },
+  {
+    "Name": "EntityDiggingFX",
+    "CompiledName": "bld"
+  },
+  {
+    "Name": "EntityFishWakeFX",
+    "CompiledName": "ble"
+  },
+  {
+    "Name": "EntityRainFX",
+    "CompiledName": "blf"
+  },
+  {
+    "Name": "AbstractClientPlayer",
+    "CompiledName": "blg"
+  },
+  {
+    "Name": "AbstractClientPlayer$SwitchType",
+    "CompiledName": "blh"
+  },
+  {
+    "Name": "MovementInput",
+    "CompiledName": "bli"
+  },
+  {
+    "Name": "MovementInputFromOptions",
+    "CompiledName": "blj"
+  },
+  {
+    "Name": "EntityPlayerSP",
+    "CompiledName": "blk"
+  },
+  {
+    "Name": "EntityOtherPlayerMP",
+    "CompiledName": "bll"
+  },
+  {
+    "Name": "RenderBlocks",
+    "CompiledName": "blm"
+  },
+  {
+    "Name": "BossStatus",
+    "CompiledName": "bln"
+  },
+  {
+    "Name": "WorldRenderer",
+    "CompiledName": "blo"
+  },
+  {
+    "Name": "RenderSorter",
+    "CompiledName": "blp"
+  },
+  {
+    "Name": "EntitySorter",
+    "CompiledName": "blq"
+  },
+  {
+    "Name": "RenderDistanceSorter",
+    "CompiledName": "blr"
+  },
+  {
+    "Name": "TileEntityRendererChestHelper",
+    "CompiledName": "bls"
+  },
+  {
+    "Name": "EntityRenderer",
+    "CompiledName": "blt"
+  },
+  {
+    "Name": "EntityRenderer$1",
+    "CompiledName": "blu"
+  },
+  {
+    "Name": "EntityRenderer$2",
+    "CompiledName": "blv"
+  },
+  {
+    "Name": "EntityRenderer$3",
+    "CompiledName": "blw"
+  },
+  {
+    "Name": "IImageBuffer",
+    "CompiledName": "blx"
+  },
+  {
+    "Name": "ItemRenderer",
+    "CompiledName": "bly"
+  },
+  {
+    "Name": "CommandSetBlock",
+    "CompiledName": "bm"
+  },
+  {
+    "Name": "RenderGlobal",
+    "CompiledName": "bma"
+  },
+  {
+    "Name": "RenderGlobal$1",
+    "CompiledName": "bmb"
+  },
+  {
+    "Name": "ImageBufferDownload",
+    "CompiledName": "bmc"
+  },
+  {
+    "Name": "RenderList",
+    "CompiledName": "bmd"
+  },
+  {
+    "Name": "QuadComparator",
+    "CompiledName": "bme"
+  },
+  {
+    "Name": "Framebuffer",
+    "CompiledName": "bmg"
+  },
+  {
+    "Name": "Tessellator",
+    "CompiledName": "bmh"
+  },
+  {
+    "Name": "TesselatorVertexState",
+    "CompiledName": "bmi"
+  },
+  {
+    "Name": "TileEntityBeaconRenderer",
+    "CompiledName": "bmj"
+  },
+  {
+    "Name": "TileEntityRendererDispatcher",
+    "CompiledName": "bmk"
+  },
+  {
+    "Name": "TileEntitySpecialRenderer",
+    "CompiledName": "bml"
+  },
+  {
+    "Name": "TileEntityChestRenderer",
+    "CompiledName": "bmm"
+  },
+  {
+    "Name": "RenderEnchantmentTable",
+    "CompiledName": "bmn"
+  },
+  {
+    "Name": "TileEntityEnderChestRenderer",
+    "CompiledName": "bmo"
+  },
+  {
+    "Name": "TileEntityMobSpawnerRenderer",
+    "CompiledName": "bmp"
+  },
+  {
+    "Name": "TileEntityRendererPiston",
+    "CompiledName": "bmq"
+  },
+  {
+    "Name": "TileEntitySignRenderer",
+    "CompiledName": "bmr"
+  },
+  {
+    "Name": "TileEntitySkullRenderer",
+    "CompiledName": "bms"
+  },
+  {
+    "Name": "RenderEndPortal",
+    "CompiledName": "bmt"
+  },
+  {
+    "Name": "ICamera",
+    "CompiledName": "bmv"
+  },
+  {
+    "Name": "ClippingHelperImpl",
+    "CompiledName": "bmw"
+  },
+  {
+    "Name": "Frustrum",
+    "CompiledName": "bmx"
+  },
+  {
+    "Name": "ClippingHelper",
+    "CompiledName": "bmy"
+  },
+  {
+    "Name": "CommandSetDefaultSpawnpoint",
+    "CompiledName": "bn"
+  },
+  {
+    "Name": "RenderArrow",
+    "CompiledName": "bnb"
+  },
+  {
+    "Name": "RenderBat",
+    "CompiledName": "bnc"
+  },
+  {
+    "Name": "RenderBlaze",
+    "CompiledName": "bnd"
+  },
+  {
+    "Name": "RenderBoat",
+    "CompiledName": "bne"
+  },
+  {
+    "Name": "RenderCaveSpider",
+    "CompiledName": "bnf"
+  },
+  {
+    "Name": "RenderChicken",
+    "CompiledName": "bng"
+  },
+  {
+    "Name": "RenderCow",
+    "CompiledName": "bnh"
+  },
+  {
+    "Name": "RenderCreeper",
+    "CompiledName": "bni"
+  },
+  {
+    "Name": "RenderEntity",
+    "CompiledName": "bnj"
+  },
+  {
+    "Name": "RenderEnderCrystal",
+    "CompiledName": "bnk"
+  },
+  {
+    "Name": "RenderDragon",
+    "CompiledName": "bnl"
+  },
+  {
+    "Name": "RenderEnderman",
+    "CompiledName": "bnm"
+  },
+  {
+    "Name": "RenderManager",
+    "CompiledName": "bnn"
+  },
+  {
+    "Name": "Render",
+    "CompiledName": "bno"
+  },
+  {
+    "Name": "RenderXPOrb",
+    "CompiledName": "bnp"
+  },
+  {
+    "Name": "RenderFallingBlock",
+    "CompiledName": "bnq"
+  },
+  {
+    "Name": "RenderFireball",
+    "CompiledName": "bnr"
+  },
+  {
+    "Name": "RenderFish",
+    "CompiledName": "bns"
+  },
+  {
+    "Name": "RenderGhast",
+    "CompiledName": "bnt"
+  },
+  {
+    "Name": "RenderGiantZombie",
+    "CompiledName": "bnu"
+  },
+  {
+    "Name": "RenderHorse",
+    "CompiledName": "bnv"
+  },
+  {
+    "Name": "RenderBiped",
+    "CompiledName": "bnw"
+  },
+  {
+    "Name": "RenderItemFrame",
+    "CompiledName": "bnx"
+  },
+  {
+    "Name": "RenderItem",
+    "CompiledName": "bny"
+  },
+  {
+    "Name": "RenderItem$1",
+    "CompiledName": "bnz"
+  },
+  {
+    "Name": "CommandSetPlayerTimeout",
+    "CompiledName": "bo"
+  },
+  {
+    "Name": "RenderItem$2",
+    "CompiledName": "boa"
+  },
+  {
+    "Name": "RenderItem$3",
+    "CompiledName": "bob"
+  },
+  {
+    "Name": "RenderItem$4",
+    "CompiledName": "boc"
+  },
+  {
+    "Name": "RenderSnowball",
+    "CompiledName": "bod"
+  },
+  {
+    "Name": "RenderMagmaCube",
+    "CompiledName": "boe"
+  },
+  {
+    "Name": "RenderLeashKnot",
+    "CompiledName": "bof"
+  },
+  {
+    "Name": "RenderLightningBolt",
+    "CompiledName": "bog"
+  },
+  {
+    "Name": "RendererLivingEntity",
+    "CompiledName": "boh"
+  },
+  {
+    "Name": "RenderMinecart",
+    "CompiledName": "boi"
+  },
+  {
+    "Name": "RenderMinecartMobSpawner",
+    "CompiledName": "boj"
+  },
+  {
+    "Name": "RenderLiving",
+    "CompiledName": "bok"
+  },
+  {
+    "Name": "RenderMooshroom",
+    "CompiledName": "bol"
+  },
+  {
+    "Name": "RenderOcelot",
+    "CompiledName": "bom"
+  },
+  {
+    "Name": "RenderPainting",
+    "CompiledName": "bon"
+  },
+  {
+    "Name": "RenderPig",
+    "CompiledName": "boo"
+  },
+  {
+    "Name": "RenderPlayer",
+    "CompiledName": "bop"
+  },
+  {
+    "Name": "RenderSheep",
+    "CompiledName": "boq"
+  },
+  {
+    "Name": "RenderSilverfish",
+    "CompiledName": "bor"
+  },
+  {
+    "Name": "RenderSkeleton",
+    "CompiledName": "bos"
+  },
+  {
+    "Name": "RenderSlime",
+    "CompiledName": "bot"
+  },
+  {
+    "Name": "RenderSnowMan",
+    "CompiledName": "bou"
+  },
+  {
+    "Name": "RenderSpider",
+    "CompiledName": "bov"
+  },
+  {
+    "Name": "RenderSquid",
+    "CompiledName": "bow"
+  },
+  {
+    "Name": "RenderTntMinecart",
+    "CompiledName": "box"
+  },
+  {
+    "Name": "RenderTNTPrimed",
+    "CompiledName": "boy"
+  },
+  {
+    "Name": "RenderIronGolem",
+    "CompiledName": "boz"
+  },
+  {
+    "Name": "CommandSetSpawnpoint",
+    "CompiledName": "bp"
+  },
+  {
+    "Name": "RenderVillager",
+    "CompiledName": "bpa"
+  },
+  {
+    "Name": "RenderWitch",
+    "CompiledName": "bpb"
+  },
+  {
+    "Name": "RenderWither",
+    "CompiledName": "bpc"
+  },
+  {
+    "Name": "RenderWitherSkull",
+    "CompiledName": "bpd"
+  },
+  {
+    "Name": "RenderWolf",
+    "CompiledName": "bpe"
+  },
+  {
+    "Name": "RenderZombie",
+    "CompiledName": "bpf"
+  },
+  {
+    "Name": "JsonBlendingMode",
+    "CompiledName": "bpg"
+  },
+  {
+    "Name": "ShaderDefault",
+    "CompiledName": "bph"
+  },
+  {
+    "Name": "ShaderManager",
+    "CompiledName": "bpi"
+  },
+  {
+    "Name": "ShaderGroup",
+    "CompiledName": "bpj"
+  },
+  {
+    "Name": "Shader",
+    "CompiledName": "bpk"
+  },
+  {
+    "Name": "ShaderLoader",
+    "CompiledName": "bpl"
+  },
+  {
+    "Name": "ShaderLoader$ShaderType",
+    "CompiledName": "bpm"
+  },
+  {
+    "Name": "ShaderLinkHelper",
+    "CompiledName": "bpn"
+  },
+  {
+    "Name": "ShaderUniform",
+    "CompiledName": "bpo"
+  },
+  {
+    "Name": "AbstractTexture",
+    "CompiledName": "bpp"
+  },
+  {
+    "Name": "DynamicTexture",
+    "CompiledName": "bpq"
+  },
+  {
+    "Name": "ThreadDownloadImageData",
+    "CompiledName": "bpr"
+  },
+  {
+    "Name": "ThreadDownloadImageData$1",
+    "CompiledName": "bps"
+  },
+  {
+    "Name": "LayeredTexture",
+    "CompiledName": "bpt"
+  },
+  {
+    "Name": "SimpleTexture",
+    "CompiledName": "bpu"
+  },
+  {
+    "Name": "Stitcher",
+    "CompiledName": "bpv"
+  },
+  {
+    "Name": "Stitcher$Holder",
+    "CompiledName": "bpw"
+  },
+  {
+    "Name": "Stitcher$Slot",
+    "CompiledName": "bpx"
+  },
+  {
+    "Name": "StitcherException",
+    "CompiledName": "bpy"
+  },
+  {
+    "Name": "TextureMap",
+    "CompiledName": "bpz"
+  },
+  {
+    "Name": "CommandShowSeed",
+    "CompiledName": "bq"
+  },
+  {
+    "Name": "TextureMap$1",
+    "CompiledName": "bqa"
+  },
+  {
+    "Name": "TextureMap$2",
+    "CompiledName": "bqb"
+  },
+  {
+    "Name": "TextureMap$3",
+    "CompiledName": "bqc"
+  },
+  {
+    "Name": "TextureAtlasSprite",
+    "CompiledName": "bqd"
+  },
+  {
+    "Name": "TextureAtlasSprite$1",
+    "CompiledName": "bqe"
+  },
+  {
+    "Name": "TextureManager",
+    "CompiledName": "bqf"
+  },
+  {
+    "Name": "TextureManager$1",
+    "CompiledName": "bqg"
+  },
+  {
+    "Name": "ITextureObject",
+    "CompiledName": "bqh"
+  },
+  {
+    "Name": "TextureUtil",
+    "CompiledName": "bqi"
+  },
+  {
+    "Name": "ITickable",
+    "CompiledName": "bqj"
+  },
+  {
+    "Name": "ITickableTextureObject",
+    "CompiledName": "bqk"
+  },
+  {
+    "Name": "TextureClock",
+    "CompiledName": "bql"
+  },
+  {
+    "Name": "TextureCompass",
+    "CompiledName": "bqm"
+  },
+  {
+    "Name": "AbstractResourcePack",
+    "CompiledName": "bqn"
+  },
+  {
+    "Name": "ResourceIndex",
+    "CompiledName": "bqo"
+  },
+  {
+    "Name": "DefaultResourcePack",
+    "CompiledName": "bqp"
+  },
+  {
+    "Name": "FallbackResourceManager",
+    "CompiledName": "bqq"
+  },
+  {
+    "Name": "FileResourcePack",
+    "CompiledName": "bqr"
+  },
+  {
+    "Name": "FolderResourcePack",
+    "CompiledName": "bqs"
+  },
+  {
+    "Name": "FoliageColorReloadListener",
+    "CompiledName": "bqt"
+  },
+  {
+    "Name": "GrassColorReloadListener",
+    "CompiledName": "bqu"
+  },
+  {
+    "Name": "IReloadableResourceManager",
+    "CompiledName": "bqv"
+  },
+  {
+    "Name": "IResource",
+    "CompiledName": "bqw"
+  },
+  {
+    "Name": "ResourceLocation",
+    "CompiledName": "bqx"
+  },
+  {
+    "Name": "IResourceManager",
+    "CompiledName": "bqy"
+  },
+  {
+    "Name": "IResourceManagerReloadListener",
+    "CompiledName": "bqz"
+  },
+  {
+    "Name": "CommandSpreadPlayers",
+    "CompiledName": "br"
+  },
+  {
+    "Name": "IResourcePack",
+    "CompiledName": "bra"
+  },
+  {
+    "Name": "ResourcePackFileNotFoundException",
+    "CompiledName": "brb"
+  },
+  {
+    "Name": "ResourcePackRepository",
+    "CompiledName": "brc"
+  },
+  {
+    "Name": "ResourcePackRepository$1",
+    "CompiledName": "brd"
+  },
+  {
+    "Name": "ResourcePackRepository$2",
+    "CompiledName": "bre"
+  },
+  {
+    "Name": "ResourcePackRepository$Entry",
+    "CompiledName": "brf"
+  },
+  {
+    "Name": "SimpleReloadableResourceManager",
+    "CompiledName": "brg"
+  },
+  {
+    "Name": "SimpleReloadableResourceManager$1",
+    "CompiledName": "brh"
+  },
+  {
+    "Name": "SimpleResource",
+    "CompiledName": "bri"
+  },
+  {
+    "Name": "SkinManager",
+    "CompiledName": "brj"
+  },
+  {
+    "Name": "SkinManager$1",
+    "CompiledName": "brk"
+  },
+  {
+    "Name": "SkinManager$2",
+    "CompiledName": "brl"
+  },
+  {
+    "Name": "SkinManager$3",
+    "CompiledName": "brm"
+  },
+  {
+    "Name": "SkinManager$3$1",
+    "CompiledName": "brn"
+  },
+  {
+    "Name": "SkinManager$SkinAvailableCallback",
+    "CompiledName": "bro"
+  },
+  {
+    "Name": "I18n",
+    "CompiledName": "brp"
+  },
+  {
+    "Name": "Language",
+    "CompiledName": "brq"
+  },
+  {
+    "Name": "LanguageManager",
+    "CompiledName": "brr"
+  },
+  {
+    "Name": "Locale",
+    "CompiledName": "brs"
+  },
+  {
+    "Name": "BaseMetadataSectionSerializer",
+    "CompiledName": "brt"
+  },
+  {
+    "Name": "IMetadataSection",
+    "CompiledName": "bru"
+  },
+  {
+    "Name": "IMetadataSectionSerializer",
+    "CompiledName": "brv"
+  },
+  {
+    "Name": "IMetadataSerializer",
+    "CompiledName": "brw"
+  },
+  {
+    "Name": "IMetadataSerializer$1",
+    "CompiledName": "brx"
+  },
+  {
+    "Name": "IMetadataSerializer$Registration",
+    "CompiledName": "bry"
+  },
+  {
+    "Name": "AnimationFrame",
+    "CompiledName": "brz"
+  },
+  {
+    "Name": "CommandSpreadPlayers$Position",
+    "CompiledName": "bs"
+  },
+  {
+    "Name": "AnimationMetadataSection",
+    "CompiledName": "bsa"
+  },
+  {
+    "Name": "AnimationMetadataSectionSerializer",
+    "CompiledName": "bsb"
+  },
+  {
+    "Name": "FontMetadataSection",
+    "CompiledName": "bsc"
+  },
+  {
+    "Name": "FontMetadataSectionSerializer",
+    "CompiledName": "bsd"
+  },
+  {
+    "Name": "LanguageMetadataSection",
+    "CompiledName": "bse"
+  },
+  {
+    "Name": "LanguageMetadataSectionSerializer",
+    "CompiledName": "bsf"
+  },
+  {
+    "Name": "PackMetadataSection",
+    "CompiledName": "bsg"
+  },
+  {
+    "Name": "PackMetadataSectionSerializer",
+    "CompiledName": "bsh"
+  },
+  {
+    "Name": "TextureMetadataSection",
+    "CompiledName": "bsi"
+  },
+  {
+    "Name": "TextureMetadataSectionSerializer",
+    "CompiledName": "bsj"
+  },
+  {
+    "Name": "PositionedSound",
+    "CompiledName": "bsk"
+  },
+  {
+    "Name": "MovingSound",
+    "CompiledName": "bsl"
+  },
+  {
+    "Name": "MovingSoundMinecart",
+    "CompiledName": "bsm"
+  },
+  {
+    "Name": "MovingSoundMinecartRiding",
+    "CompiledName": "bsn"
+  },
+  {
+    "Name": "PositionedSoundRecord",
+    "CompiledName": "bso"
+  },
+  {
+    "Name": "SoundList",
+    "CompiledName": "bsp"
+  },
+  {
+    "Name": "SoundList$SoundEntry",
+    "CompiledName": "bsq"
+  },
+  {
+    "Name": "SoundList$SoundEntry$Type",
+    "CompiledName": "bsr"
+  },
+  {
+    "Name": "SoundListSerializer",
+    "CompiledName": "bss"
+  },
+  {
+    "Name": "ISound",
+    "CompiledName": "bst"
+  },
+  {
+    "Name": "ISound$AttenuationType",
+    "CompiledName": "bsu"
+  },
+  {
+    "Name": "ITickableSound",
+    "CompiledName": "bsv"
+  },
+  {
+    "Name": "IntegratedPlayerList",
+    "CompiledName": "bsw"
+  },
+  {
+    "Name": "IntegratedServer",
+    "CompiledName": "bsx"
+  },
+  {
+    "Name": "IntegratedServer$1",
+    "CompiledName": "bsy"
+  },
+  {
+    "Name": "IntegratedServer$2",
+    "CompiledName": "bsz"
+  },
+  {
+    "Name": "CommandStop",
+    "CompiledName": "bt"
+  },
+  {
+    "Name": "LanServerDetector",
+    "CompiledName": "bta"
+  },
+  {
+    "Name": "LanServerDetector$LanServer",
+    "CompiledName": "btb"
+  },
+  {
+    "Name": "LanServerDetector$ThreadLanServerFind",
+    "CompiledName": "btc"
+  },
+  {
+    "Name": "LanServerDetector$LanServerList",
+    "CompiledName": "btd"
+  },
+  {
+    "Name": "ThreadLanServerPing",
+    "CompiledName": "bte"
+  },
+  {
+    "Name": "MusicTicker",
+    "CompiledName": "btg"
+  },
+  {
+    "Name": "MusicTicker$MusicType",
+    "CompiledName": "bth"
+  },
+  {
+    "Name": "SoundPoolEntry",
+    "CompiledName": "bti"
+  },
+  {
+    "Name": "SoundManager",
+    "CompiledName": "btj"
+  },
+  {
+    "Name": "SoundManager$1",
+    "CompiledName": "btk"
+  },
+  {
+    "Name": "SoundManager$2",
+    "CompiledName": "btl"
+  },
+  {
+    "Name": "SoundManager$2$1",
+    "CompiledName": "btm"
+  },
+  {
+    "Name": "SoundManager$SoundSystemStarterThread",
+    "CompiledName": "btn"
+  },
+  {
+    "Name": "SoundEventAccessorComposite",
+    "CompiledName": "bto"
+  },
+  {
+    "Name": "SoundHandler",
+    "CompiledName": "btp"
+  },
+  {
+    "Name": "SoundHandler$1",
+    "CompiledName": "btq"
+  },
+  {
+    "Name": "SoundHandler$2",
+    "CompiledName": "btr"
+  },
+  {
+    "Name": "SoundHandler$SwitchType",
+    "CompiledName": "bts"
+  },
+  {
+    "Name": "SoundRegistry",
+    "CompiledName": "btt"
+  },
+  {
+    "Name": "ISoundEventAccessor",
+    "CompiledName": "btu"
+  },
+  {
+    "Name": "SoundEventAccessor",
+    "CompiledName": "btv"
+  },
+  {
+    "Name": "MetadataAchievement",
+    "CompiledName": "btw"
+  },
+  {
+    "Name": "Metadata",
+    "CompiledName": "btz"
+  },
+  {
+    "Name": "CommandSummon",
+    "CompiledName": "bu"
+  },
+  {
+    "Name": "BroadcastController",
+    "CompiledName": "bua"
+  },
+  {
+    "Name": "BroadcastController$SwitchBroadcastState",
+    "CompiledName": "bub"
+  },
+  {
+    "Name": "BroadcastController$BroadcastState",
+    "CompiledName": "buc"
+  },
+  {
+    "Name": "BroadcastController$BroadcastListener",
+    "CompiledName": "bud"
+  },
+  {
+    "Name": "ChatController",
+    "CompiledName": "bue"
+  },
+  {
+    "Name": "ChatController$SwitchChatState",
+    "CompiledName": "buf"
+  },
+  {
+    "Name": "ChatController$ChatState",
+    "CompiledName": "bug"
+  },
+  {
+    "Name": "ChatController$ChatListener",
+    "CompiledName": "buh"
+  },
+  {
+    "Name": "IngestServerTester",
+    "CompiledName": "bui"
+  },
+  {
+    "Name": "IngestServerTester$SwitchStatType",
+    "CompiledName": "buj"
+  },
+  {
+    "Name": "IngestServerTester$IngestTestListener",
+    "CompiledName": "buk"
+  },
+  {
+    "Name": "IngestServerTester$IngestTestState",
+    "CompiledName": "bul"
+  },
+  {
+    "Name": "IStream",
+    "CompiledName": "bum"
+  },
+  {
+    "Name": "IStream$AuthFailureReason",
+    "CompiledName": "bun"
+  },
+  {
+    "Name": "TwitchStream",
+    "CompiledName": "buo"
+  },
+  {
+    "Name": "TwitchStream$1",
+    "CompiledName": "bup"
+  },
+  {
+    "Name": "TwitchStream$1$1",
+    "CompiledName": "buq"
+  },
+  {
+    "Name": "NullStream",
+    "CompiledName": "bur"
+  },
+  {
+    "Name": "RealmsConnect$1",
+    "CompiledName": "bus"
+  },
+  {
+    "Name": "RealmsServerStatusPinger$1",
+    "CompiledName": "but"
+  },
+  {
+    "Name": "OpenGlHelper",
+    "CompiledName": "buu"
+  },
+  {
+    "Name": "CommandTeleport",
+    "CompiledName": "bv"
+  },
+  {
+    "Name": "CommandTestForBlock",
+    "CompiledName": "bx"
+  },
+  {
+    "Name": "CommandTestFor",
+    "CompiledName": "by"
+  },
+  {
+    "Name": "CommandTime",
+    "CompiledName": "bz"
+  },
+  {
+    "Name": "CrashReport$1",
+    "CompiledName": "c"
+  },
+  {
+    "Name": "CommandToggleDownfall",
+    "CompiledName": "ca"
+  },
+  {
+    "Name": "CommandWeather",
+    "CompiledName": "cb"
+  },
+  {
+    "Name": "CommandWhitelist",
+    "CompiledName": "cc"
+  },
+  {
+    "Name": "CommandException",
+    "CompiledName": "cd"
+  },
+  {
+    "Name": "NumberInvalidException",
+    "CompiledName": "ce"
+  },
+  {
+    "Name": "SyntaxErrorException",
+    "CompiledName": "cf"
+  },
+  {
+    "Name": "PlayerNotFoundException",
+    "CompiledName": "cg"
+  },
+  {
+    "Name": "CommandNotFoundException",
+    "CompiledName": "ch"
+  },
+  {
+    "Name": "WrongUsageException",
+    "CompiledName": "ci"
+  },
+  {
+    "Name": "IBlockSource",
+    "CompiledName": "ck"
+  },
+  {
+    "Name": "BlockSourceImpl",
+    "CompiledName": "cl"
+  },
+  {
+    "Name": "BehaviorDefaultDispenseItem",
+    "CompiledName": "cm"
+  },
+  {
+    "Name": "RegistryNamespacedDefaultedByKey",
+    "CompiledName": "cn"
+  },
+  {
+    "Name": "RegistryDefaulted",
+    "CompiledName": "co"
+  },
+  {
+    "Name": "IBehaviorDispenseItem",
+    "CompiledName": "cp"
+  },
+  {
+    "Name": "IBehaviorDispenseItem$1",
+    "CompiledName": "cq"
+  },
+  {
+    "Name": "EnumFacing",
+    "CompiledName": "cr"
+  },
+  {
+    "Name": "IObjectIntIterable",
+    "CompiledName": "cs"
+  },
+  {
+    "Name": "ObjectIntIdentityMap",
+    "CompiledName": "ct"
+  },
+  {
+    "Name": "ILocatableSource",
+    "CompiledName": "cu"
+  },
+  {
+    "Name": "ILocation",
+    "CompiledName": "cv"
+  },
+  {
+    "Name": "RegistryNamespaced",
+    "CompiledName": "cw"
+  },
+  {
+    "Name": "IPosition",
+    "CompiledName": "cx"
+  },
+  {
+    "Name": "PositionImpl",
+    "CompiledName": "cy"
+  },
+  {
+    "Name": "IRegistry",
+    "CompiledName": "cz"
+  },
+  {
+    "Name": "CrashReport$2",
+    "CompiledName": "d"
+  },
+  {
+    "Name": "RegistrySimple",
+    "CompiledName": "da"
+  },
+  {
+    "Name": "StatCollector",
+    "CompiledName": "dd"
+  },
+  {
+    "Name": "StringTranslate",
+    "CompiledName": "de"
+  },
+  {
+    "Name": "NBTTagByteArray",
+    "CompiledName": "df"
+  },
+  {
+    "Name": "NBTTagByte",
+    "CompiledName": "dg"
+  },
+  {
+    "Name": "NBTTagCompound",
+    "CompiledName": "dh"
+  },
+  {
+    "Name": "NBTTagCompound$1",
+    "CompiledName": "di"
+  },
+  {
+    "Name": "NBTTagCompound$2",
+    "CompiledName": "dj"
+  },
+  {
+    "Name": "NBTTagDouble",
+    "CompiledName": "dk"
+  },
+  {
+    "Name": "NBTTagEnd",
+    "CompiledName": "dl"
+  },
+  {
+    "Name": "NBTTagFloat",
+    "CompiledName": "dm"
+  },
+  {
+    "Name": "NBTTagIntArray",
+    "CompiledName": "dn"
+  },
+  {
+    "Name": "NBTTagInt",
+    "CompiledName": "dp"
+  },
+  {
+    "Name": "NBTTagList",
+    "CompiledName": "dq"
+  },
+  {
+    "Name": "NBTTagLong",
+    "CompiledName": "dr"
+  },
+  {
+    "Name": "NBTSizeTracker",
+    "CompiledName": "ds"
+  },
+  {
+    "Name": "NBTSizeTracker$1",
+    "CompiledName": "dt"
+  },
+  {
+    "Name": "CompressedStreamTools",
+    "CompiledName": "du"
+  },
+  {
+    "Name": "NBTUtil",
+    "CompiledName": "dv"
+  },
+  {
+    "Name": "NBTTagShort",
+    "CompiledName": "dw"
+  },
+  {
+    "Name": "NBTTagString",
+    "CompiledName": "dx"
+  },
+  {
+    "Name": "NBTBase",
+    "CompiledName": "dy"
+  },
+  {
+    "Name": "NBTBase$NBTPrimitive",
+    "CompiledName": "dz"
+  },
+  {
+    "Name": "CrashReport$3",
+    "CompiledName": "e"
+  },
+  {
+    "Name": "NBTException",
+    "CompiledName": "ea"
+  },
+  {
+    "Name": "JsonToNBT",
+    "CompiledName": "eb"
+  },
+  {
+    "Name": "JsonToNBT$Any",
+    "CompiledName": "ec"
+  },
+  {
+    "Name": "JsonToNBT$Compound",
+    "CompiledName": "ed"
+  },
+  {
+    "Name": "JsonToNBT$List",
+    "CompiledName": "ee"
+  },
+  {
+    "Name": "JsonToNBT$Primitive",
+    "CompiledName": "ef"
+  },
+  {
+    "Name": "NettyEncryptionTranslator",
+    "CompiledName": "eg"
+  },
+  {
+    "Name": "NettyEncryptingDecoder",
+    "CompiledName": "eh"
+  },
+  {
+    "Name": "NettyEncryptingEncoder",
+    "CompiledName": "ei"
+  },
+  {
+    "Name": "NetworkManager",
+    "CompiledName": "ej"
+  },
+  {
+    "Name": "NetworkManager$1",
+    "CompiledName": "ek"
+  },
+  {
+    "Name": "NetworkManager$2",
+    "CompiledName": "el"
+  },
+  {
+    "Name": "NetworkManager$3",
+    "CompiledName": "em"
+  },
+  {
+    "Name": "NetworkManager$InboundHandlerTuplePacketListener",
+    "CompiledName": "en"
+  },
+  {
+    "Name": "EnumConnectionState",
+    "CompiledName": "eo"
+  },
+  {
+    "Name": "EnumConnectionState$2",
+    "CompiledName": "ep"
+  },
+  {
+    "Name": "EnumConnectionState$4",
+    "CompiledName": "eq"
+  },
+  {
+    "Name": "EnumConnectionState$3",
+    "CompiledName": "er"
+  },
+  {
+    "Name": "EnumConnectionState$1",
+    "CompiledName": "es"
+  },
+  {
+    "Name": "PacketBuffer",
+    "CompiledName": "et"
+  },
+  {
+    "Name": "NetworkStatistics",
+    "CompiledName": "eu"
+  },
+  {
+    "Name": "NetworkStatistics$1",
+    "CompiledName": "ev"
+  },
+  {
+    "Name": "NetworkStatistics$PacketStat",
+    "CompiledName": "ew"
+  },
+  {
+    "Name": "NetworkStatistics$Tracker",
+    "CompiledName": "ex"
+  },
+  {
+    "Name": "NetworkStatistics$PacketStatData",
+    "CompiledName": "ey"
+  },
+  {
+    "Name": "MessageDeserializer",
+    "CompiledName": "ez"
+  },
+  {
+    "Name": "CrashReport$4",
+    "CompiledName": "f"
+  },
+  {
+    "Name": "MessageSerializer",
+    "CompiledName": "fa"
+  },
+  {
+    "Name": "INetHandler",
+    "CompiledName": "fb"
+  },
+  {
+    "Name": "MessageDeserializer2",
+    "CompiledName": "fc"
+  },
+  {
+    "Name": "MessageSerializer2",
+    "CompiledName": "fd"
+  },
+  {
+    "Name": "ChatComponentStyle",
+    "CompiledName": "fe"
+  },
+  {
+    "Name": "ChatComponentStyle$1",
+    "CompiledName": "ff"
+  },
+  {
+    "Name": "ChatComponentStyle$2",
+    "CompiledName": "fg"
+  },
+  {
+    "Name": "ClickEvent",
+    "CompiledName": "fh"
+  },
+  {
+    "Name": "ClickEvent$Action",
+    "CompiledName": "fi"
+  },
+  {
+    "Name": "IChatComponent",
+    "CompiledName": "fj"
+  },
+  {
+    "Name": "IChatComponent$Serializer",
+    "CompiledName": "fk"
+  },
+  {
+    "Name": "HoverEvent",
+    "CompiledName": "fl"
+  },
+  {
+    "Name": "HoverEvent$Action",
+    "CompiledName": "fm"
+  },
+  {
+    "Name": "ChatStyle",
+    "CompiledName": "fn"
+  },
+  {
+    "Name": "ChatStyle$1",
+    "CompiledName": "fo"
+  },
+  {
+    "Name": "ChatStyle$Serializer",
+    "CompiledName": "fp"
+  },
+  {
+    "Name": "ChatComponentText",
+    "CompiledName": "fq"
+  },
+  {
+    "Name": "ChatComponentTranslation",
+    "CompiledName": "fr"
+  },
+  {
+    "Name": "ChatComponentTranslationFormatException",
+    "CompiledName": "fs"
+  },
+  {
+    "Name": "Packet",
+    "CompiledName": "ft"
+  },
+  {
+    "Name": "S08PacketPlayerPosLook",
+    "CompiledName": "fu"
+  },
+  {
+    "Name": "INetHandlerPlayClient",
+    "CompiledName": "fv"
+  },
+  {
+    "Name": "S0EPacketSpawnObject",
+    "CompiledName": "fw"
+  },
+  {
+    "Name": "S11PacketSpawnExperienceOrb",
+    "CompiledName": "fx"
+  },
+  {
+    "Name": "S2CPacketSpawnGlobalEntity",
+    "CompiledName": "fy"
+  },
+  {
+    "Name": "S0FPacketSpawnMob",
+    "CompiledName": "fz"
+  },
+  {
+    "Name": "CrashReport$5",
+    "CompiledName": "g"
+  },
+  {
+    "Name": "S10PacketSpawnPainting",
+    "CompiledName": "ga"
+  },
+  {
+    "Name": "S0CPacketSpawnPlayer",
+    "CompiledName": "gb"
+  },
+  {
+    "Name": "S0BPacketAnimation",
+    "CompiledName": "gc"
+  },
+  {
+    "Name": "S37PacketStatistics",
+    "CompiledName": "gd"
+  },
+  {
+    "Name": "S25PacketBlockBreakAnim",
+    "CompiledName": "ge"
+  },
+  {
+    "Name": "S35PacketUpdateTileEntity",
+    "CompiledName": "gf"
+  },
+  {
+    "Name": "S24PacketBlockAction",
+    "CompiledName": "gg"
+  },
+  {
+    "Name": "S23PacketBlockChange",
+    "CompiledName": "gh"
+  },
+  {
+    "Name": "S3APacketTabComplete",
+    "CompiledName": "gi"
+  },
+  {
+    "Name": "S02PacketChat",
+    "CompiledName": "gj"
+  },
+  {
+    "Name": "S22PacketMultiBlockChange",
+    "CompiledName": "gk"
+  },
+  {
+    "Name": "S32PacketConfirmTransaction",
+    "CompiledName": "gl"
+  },
+  {
+    "Name": "S2EPacketCloseWindow",
+    "CompiledName": "gm"
+  },
+  {
+    "Name": "S2DPacketOpenWindow",
+    "CompiledName": "gn"
+  },
+  {
+    "Name": "S30PacketWindowItems",
+    "CompiledName": "go"
+  },
+  {
+    "Name": "S31PacketWindowProperty",
+    "CompiledName": "gp"
+  },
+  {
+    "Name": "S2FPacketSetSlot",
+    "CompiledName": "gq"
+  },
+  {
+    "Name": "S3FPacketCustomPayload",
+    "CompiledName": "gr"
+  },
+  {
+    "Name": "S40PacketDisconnect",
+    "CompiledName": "gs"
+  },
+  {
+    "Name": "S19PacketEntityStatus",
+    "CompiledName": "gt"
+  },
+  {
+    "Name": "S27PacketExplosion",
+    "CompiledName": "gu"
+  },
+  {
+    "Name": "S2BPacketChangeGameState",
+    "CompiledName": "gv"
+  },
+  {
+    "Name": "S00PacketKeepAlive",
+    "CompiledName": "gw"
+  },
+  {
+    "Name": "S21PacketChunkData",
+    "CompiledName": "gx"
+  },
+  {
+    "Name": "S21PacketChunkData$Extracted",
+    "CompiledName": "gy"
+  },
+  {
+    "Name": "S26PacketMapChunkBulk",
+    "CompiledName": "gz"
+  },
+  {
+    "Name": "CrashReport$6",
+    "CompiledName": "h"
+  },
+  {
+    "Name": "S28PacketEffect",
+    "CompiledName": "ha"
+  },
+  {
+    "Name": "S2APacketParticles",
+    "CompiledName": "hb"
+  },
+  {
+    "Name": "S29PacketSoundEffect",
+    "CompiledName": "hc"
+  },
+  {
+    "Name": "S01PacketJoinGame",
+    "CompiledName": "hd"
+  },
+  {
+    "Name": "S34PacketMaps",
+    "CompiledName": "he"
+  },
+  {
+    "Name": "S14PacketEntity",
+    "CompiledName": "hf"
+  },
+  {
+    "Name": "S14PacketEntity$S15PacketEntityRelMove",
+    "CompiledName": "hg"
+  },
+  {
+    "Name": "S14PacketEntity$S17PacketEntityLookMove",
+    "CompiledName": "hh"
+  },
+  {
+    "Name": "S14PacketEntity$S16PacketEntityLook",
+    "CompiledName": "hi"
+  },
+  {
+    "Name": "S36PacketSignEditorOpen",
+    "CompiledName": "hj"
+  },
+  {
+    "Name": "S39PacketPlayerAbilities",
+    "CompiledName": "hk"
+  },
+  {
+    "Name": "S38PacketPlayerListItem",
+    "CompiledName": "ho"
+  },
+  {
+    "Name": "S0APacketUseBed",
+    "CompiledName": "hp"
+  },
+  {
+    "Name": "S13PacketDestroyEntities",
+    "CompiledName": "hq"
+  },
+  {
+    "Name": "S1EPacketRemoveEntityEffect",
+    "CompiledName": "hr"
+  },
+  {
+    "Name": "S07PacketRespawn",
+    "CompiledName": "hs"
+  },
+  {
+    "Name": "S19PacketEntityHeadLook",
+    "CompiledName": "ht"
+  },
+  {
+    "Name": "S09PacketHeldItemChange",
+    "CompiledName": "hu"
+  },
+  {
+    "Name": "S3DPacketDisplayScoreboard",
+    "CompiledName": "hv"
+  },
+  {
+    "Name": "S1CPacketEntityMetadata",
+    "CompiledName": "hw"
+  },
+  {
+    "Name": "S1BPacketEntityAttach",
+    "CompiledName": "hx"
+  },
+  {
+    "Name": "S12PacketEntityVelocity",
+    "CompiledName": "hy"
+  },
+  {
+    "Name": "S04PacketEntityEquipment",
+    "CompiledName": "hz"
+  },
+  {
+    "Name": "CrashReport$7",
+    "CompiledName": "i"
+  },
+  {
+    "Name": "S1FPacketSetExperience",
+    "CompiledName": "ia"
+  },
+  {
+    "Name": "S06PacketUpdateHealth",
+    "CompiledName": "ib"
+  },
+  {
+    "Name": "S3BPacketScoreboardObjective",
+    "CompiledName": "ic"
+  },
+  {
+    "Name": "S3EPacketTeams",
+    "CompiledName": "id"
+  },
+  {
+    "Name": "S3CPacketUpdateScore",
+    "CompiledName": "ie"
+  },
+  {
+    "Name": "S05PacketSpawnPosition",
+    "CompiledName": "ig"
+  },
+  {
+    "Name": "S03PacketTimeUpdate",
+    "CompiledName": "ih"
+  },
+  {
+    "Name": "S33PacketUpdateSign",
+    "CompiledName": "ii"
+  },
+  {
+    "Name": "S0DPacketCollectItem",
+    "CompiledName": "ij"
+  },
+  {
+    "Name": "S18PacketEntityTeleport",
+    "CompiledName": "ik"
+  },
+  {
+    "Name": "S20PacketEntityProperties",
+    "CompiledName": "il"
+  },
+  {
+    "Name": "S20PacketEntityProperties$Snapshot",
+    "CompiledName": "im"
+  },
+  {
+    "Name": "S1DPacketEntityEffect",
+    "CompiledName": "in"
+  },
+  {
+    "Name": "INetHandlerPlayServer",
+    "CompiledName": "io"
+  },
+  {
+    "Name": "C0APacketAnimation",
+    "CompiledName": "ip"
+  },
+  {
+    "Name": "C14PacketTabComplete",
+    "CompiledName": "iq"
+  },
+  {
+    "Name": "C01PacketChatMessage",
+    "CompiledName": "ir"
+  },
+  {
+    "Name": "C16PacketClientStatus",
+    "CompiledName": "is"
+  },
+  {
+    "Name": "C16PacketClientStatus$EnumState",
+    "CompiledName": "it"
+  },
+  {
+    "Name": "C15PacketClientSettings",
+    "CompiledName": "iu"
+  },
+  {
+    "Name": "C0FPacketConfirmTransaction",
+    "CompiledName": "iv"
+  },
+  {
+    "Name": "C11PacketEnchantItem",
+    "CompiledName": "iw"
+  },
+  {
+    "Name": "C0EPacketClickWindow",
+    "CompiledName": "ix"
+  },
+  {
+    "Name": "C0DPacketCloseWindow",
+    "CompiledName": "iy"
+  },
+  {
+    "Name": "C17PacketCustomPayload",
+    "CompiledName": "iz"
+  },
+  {
+    "Name": "CrashReport$8",
+    "CompiledName": "j"
+  },
+  {
+    "Name": "C02PacketUseEntity",
+    "CompiledName": "ja"
+  },
+  {
+    "Name": "C02PacketUseEntity$Action",
+    "CompiledName": "jb"
+  },
+  {
+    "Name": "C00PacketKeepAlive",
+    "CompiledName": "jc"
+  },
+  {
+    "Name": "C03PacketPlayer",
+    "CompiledName": "jd"
+  },
+  {
+    "Name": "C03PacketPlayer$C04PacketPlayerPosition",
+    "CompiledName": "je"
+  },
+  {
+    "Name": "C03PacketPlayer$C06PacketPlayerPosLook",
+    "CompiledName": "jf"
+  },
+  {
+    "Name": "C03PacketPlayer$C05PacketPlayerLook",
+    "CompiledName": "jg"
+  },
+  {
+    "Name": "C13PacketPlayerAbilities",
+    "CompiledName": "jh"
+  },
+  {
+    "Name": "C07PacketPlayerDigging",
+    "CompiledName": "ji"
+  },
+  {
+    "Name": "C0BPacketEntityAction",
+    "CompiledName": "jj"
+  },
+  {
+    "Name": "C0CPacketInput",
+    "CompiledName": "jk"
+  },
+  {
+    "Name": "C09PacketHeldItemChange",
+    "CompiledName": "jl"
+  },
+  {
+    "Name": "C10PacketCreativeInventoryAction",
+    "CompiledName": "jm"
+  },
+  {
+    "Name": "C12PacketUpdateSign",
+    "CompiledName": "jn"
+  },
+  {
+    "Name": "C08PacketPlayerBlockPlacement",
+    "CompiledName": "jo"
+  },
+  {
+    "Name": "C00Handshake",
+    "CompiledName": "jp"
+  },
+  {
+    "Name": "INetHandlerHandshakeServer",
+    "CompiledName": "jq"
+  },
+  {
+    "Name": "INetHandlerLoginClient",
+    "CompiledName": "jr"
+  },
+  {
+    "Name": "S02PacketLoginSuccess",
+    "CompiledName": "js"
+  },
+  {
+    "Name": "S01PacketEncryptionRequest",
+    "CompiledName": "jt"
+  },
+  {
+    "Name": "S00PacketDisconnect",
+    "CompiledName": "ju"
+  },
+  {
+    "Name": "INetHandlerLoginServer",
+    "CompiledName": "jv"
+  },
+  {
+    "Name": "C00PacketLoginStart",
+    "CompiledName": "jw"
+  },
+  {
+    "Name": "C01PacketEncryptionResponse",
+    "CompiledName": "jx"
+  },
+  {
+    "Name": "INetHandlerStatusClient",
+    "CompiledName": "jy"
+  },
+  {
+    "Name": "S01PacketPong",
+    "CompiledName": "jz"
+  },
+  {
+    "Name": "CrashReportCategory",
+    "CompiledName": "k"
+  },
+  {
+    "Name": "S00PacketServerInfo",
+    "CompiledName": "ka"
+  },
+  {
+    "Name": "ServerStatusResponse",
+    "CompiledName": "kb"
+  },
+  {
+    "Name": "ServerStatusResponse$PlayerCountData",
+    "CompiledName": "kc"
+  },
+  {
+    "Name": "ServerStatusResponse$PlayerCountData$Serializer",
+    "CompiledName": "kd"
+  },
+  {
+    "Name": "ServerStatusResponse$Serializer",
+    "CompiledName": "ke"
+  },
+  {
+    "Name": "ServerStatusResponse$MinecraftProtocolVersionIdentifier",
+    "CompiledName": "kf"
+  },
+  {
+    "Name": "ServerStatusResponse$MinecraftProtocolVersionIdentifier$Serializer",
+    "CompiledName": "kg"
+  },
+  {
+    "Name": "INetHandlerStatusServer",
+    "CompiledName": "kh"
+  },
+  {
+    "Name": "C01PacketPing",
+    "CompiledName": "ki"
+  },
+  {
+    "Name": "C00PacketServerQuery",
+    "CompiledName": "kj"
+  },
+  {
+    "Name": "BehaviorProjectileDispense",
+    "CompiledName": "kk"
+  },
+  {
+    "Name": "Bootstrap",
+    "CompiledName": "kl"
+  },
+  {
+    "Name": "Bootstrap$1",
+    "CompiledName": "km"
+  },
+  {
+    "Name": "Bootstrap$10",
+    "CompiledName": "kn"
+  },
+  {
+    "Name": "Bootstrap$11",
+    "CompiledName": "ko"
+  },
+  {
+    "Name": "Bootstrap$12",
+    "CompiledName": "kp"
+  },
+  {
+    "Name": "Bootstrap$13",
+    "CompiledName": "kq"
+  },
+  {
+    "Name": "Bootstrap$14",
+    "CompiledName": "kr"
+  },
+  {
+    "Name": "Bootstrap$2",
+    "CompiledName": "ks"
+  },
+  {
+    "Name": "Bootstrap$3",
+    "CompiledName": "kt"
+  },
+  {
+    "Name": "Bootstrap$4",
+    "CompiledName": "ku"
+  },
+  {
+    "Name": "Bootstrap$5",
+    "CompiledName": "kv"
+  },
+  {
+    "Name": "Bootstrap$5$1",
+    "CompiledName": "kw"
+  },
+  {
+    "Name": "Bootstrap$6",
+    "CompiledName": "kx"
+  },
+  {
+    "Name": "Bootstrap$7",
+    "CompiledName": "ky"
+  },
+  {
+    "Name": "Bootstrap$8",
+    "CompiledName": "kz"
+  },
+  {
+    "Name": "CrashReportCategory$1",
+    "CompiledName": "l"
+  },
+  {
+    "Name": "Bootstrap$9",
+    "CompiledName": "la"
+  },
+  {
+    "Name": "JsonException",
+    "CompiledName": "lb"
+  },
+  {
+    "Name": "JsonException$1",
+    "CompiledName": "lc"
+  },
+  {
+    "Name": "JsonException$Entry",
+    "CompiledName": "ld"
+  },
+  {
+    "Name": "ServerCommand",
+    "CompiledName": "le"
+  },
+  {
+    "Name": "ServerEula",
+    "CompiledName": "lg"
+  },
+  {
+    "Name": "MinecraftServer$1",
+    "CompiledName": "lh"
+  },
+  {
+    "Name": "MinecraftServer$2",
+    "CompiledName": "li"
+  },
+  {
+    "Name": "MinecraftServer$3",
+    "CompiledName": "lj"
+  },
+  {
+    "Name": "MinecraftServer$4",
+    "CompiledName": "lk"
+  },
+  {
+    "Name": "MinecraftServer$5",
+    "CompiledName": "ll"
+  },
+  {
+    "Name": "MinecraftServer$6",
+    "CompiledName": "lm"
+  },
+  {
+    "Name": "PlayerPositionComparator",
+    "CompiledName": "ln"
+  },
+  {
+    "Name": "IServer",
+    "CompiledName": "lo"
+  },
+  {
+    "Name": "ServerScoreboard",
+    "CompiledName": "lp"
+  },
+  {
+    "Name": "PropertyManager",
+    "CompiledName": "lq"
+  },
+  {
+    "Name": "IUpdatePlayerListBox",
+    "CompiledName": "lr"
+  },
+  {
+    "Name": "DedicatedPlayerList",
+    "CompiledName": "ls"
+  },
+  {
+    "Name": "DedicatedServer",
+    "CompiledName": "lt"
+  },
+  {
+    "Name": "DedicatedServer$1",
+    "CompiledName": "lu"
+  },
+  {
+    "Name": "DedicatedServer$2",
+    "CompiledName": "lv"
+  },
+  {
+    "Name": "DedicatedServer$3",
+    "CompiledName": "lw"
+  },
+  {
+    "Name": "DedicatedServer$4",
+    "CompiledName": "lx"
+  },
+  {
+    "Name": "MinecraftServerGui",
+    "CompiledName": "ly"
+  },
+  {
+    "Name": "MinecraftServerGui$1",
+    "CompiledName": "lz"
+  },
+  {
+    "Name": "CrashReportCategory$2",
+    "CompiledName": "m"
+  },
+  {
+    "Name": "MinecraftServerGui$2",
+    "CompiledName": "ma"
+  },
+  {
+    "Name": "MinecraftServerGui$3",
+    "CompiledName": "mb"
+  },
+  {
+    "Name": "MinecraftServerGui$4",
+    "CompiledName": "mc"
+  },
+  {
+    "Name": "MinecraftServerGui$5",
+    "CompiledName": "md"
+  },
+  {
+    "Name": "PlayerListComponent",
+    "CompiledName": "me"
+  },
+  {
+    "Name": "StatsComponent",
+    "CompiledName": "mf"
+  },
+  {
+    "Name": "StatsComponent$1",
+    "CompiledName": "mg"
+  },
+  {
+    "Name": "DestroyBlockProgress",
+    "CompiledName": "mj"
+  },
+  {
+    "Name": "DemoWorldServer",
+    "CompiledName": "mk"
+  },
+  {
+    "Name": "DemoWorldManager",
+    "CompiledName": "ml"
+  },
+  {
+    "Name": "WorldServerMulti",
+    "CompiledName": "mm"
+  },
+  {
+    "Name": "EntityTracker",
+    "CompiledName": "mn"
+  },
+  {
+    "Name": "EntityTracker$1",
+    "CompiledName": "mo"
+  },
+  {
+    "Name": "WorldManager",
+    "CompiledName": "mp"
+  },
+  {
+    "Name": "PlayerManager",
+    "CompiledName": "mq"
+  },
+  {
+    "Name": "PlayerManager$PlayerInstance",
+    "CompiledName": "mr"
+  },
+  {
+    "Name": "ChunkProviderServer",
+    "CompiledName": "ms"
+  },
+  {
+    "Name": "WorldServer",
+    "CompiledName": "mt"
+  },
+  {
+    "Name": "WorldServer$1",
+    "CompiledName": "mu"
+  },
+  {
+    "Name": "WorldServer$ServerBlockEventList",
+    "CompiledName": "mv"
+  },
+  {
+    "Name": "EntityPlayerMP",
+    "CompiledName": "mw"
+  },
+  {
+    "Name": "ItemInWorldManager",
+    "CompiledName": "mx"
+  },
+  {
+    "Name": "EntityTrackerEntry",
+    "CompiledName": "my"
+  },
+  {
+    "Name": "PingResponseHandler",
+    "CompiledName": "mz"
+  },
+  {
+    "Name": "CrashReportCategory$3",
+    "CompiledName": "n"
+  },
+  {
+    "Name": "NetHandlerHandshakeMemory",
+    "CompiledName": "na"
+  },
+  {
+    "Name": "NetHandlerHandshakeMemory$SwitchEnumConnectionState",
+    "CompiledName": "nb"
+  },
+  {
+    "Name": "NetworkSystem",
+    "CompiledName": "nc"
+  },
+  {
+    "Name": "NetworkSystem$1",
+    "CompiledName": "nd"
+  },
+  {
+    "Name": "NetworkSystem$2",
+    "CompiledName": "ne"
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "",
+    "CompiledName": ""
+  },
+  {
+    "Name": "NetworkSystem$3",
+    "CompiledName": "nf"
+  },
+  {
+    "Name": "NetworkSystem$4",
+    "CompiledName": "ng"
+  },
+  {
+    "Name": "NetHandlerPlayServer",
+    "CompiledName": "nh"
+  },
+  {
+    "Name": "NetHandlerPlayServer$1",
+    "CompiledName": "ni"
+  },
+  {
+    "Name": "NetHandlerPlayServer$2",
+    "CompiledName": "nj"
+  },
+  {
+    "Name": "NetHandlerPlayServer$SwitchEnumState",
+    "CompiledName": "nk"
+  },
+  {
+    "Name": "NetHandlerHandshakeTCP",
+    "CompiledName": "nl"
+  },
+  {
+    "Name": "NetHandlerHandshakeTCP$SwitchEnumConnectionState",
+    "CompiledName": "nm"
+  },
+  {
+    "Name": "NetHandlerLoginServer",
+    "CompiledName": "nn"
+  },
+  {
+    "Name": "NetHandlerLoginServer$1",
+    "CompiledName": "no"
+  },
+  {
+    "Name": "NetHandlerLoginServer$LoginState",
+    "CompiledName": "np"
+  },
+  {
+    "Name": "NetHandlerStatusServer",
+    "CompiledName": "nq"
+  },
+  {
+    "Name": "BanEntry",
+    "CompiledName": "nr"
+  },
+  {
+    "Name": "PlayerProfileCache",
+    "CompiledName": "ns"
+  },
+  {
+    "Name": "PlayerProfileCache$1",
+    "CompiledName": "nt"
+  },
+  {
+    "Name": "PlayerProfileCache$2",
+    "CompiledName": "nu"
+  },
+  {
+    "Name": "PlayerProfileCache$ProfileEntry",
+    "CompiledName": "nv"
+  },
+  {
+    "Name": "PlayerProfileCache$Serializer",
+    "CompiledName": "nw"
+  },
+  {
+    "Name": "BanList",
+    "CompiledName": "nx"
+  },
+  {
+    "Name": "IPBanEntry",
+    "CompiledName": "ny"
+  },
+  {
+    "Name": "PreYggdrasilConverter",
+    "CompiledName": "nz"
+  },
+  {
+    "Name": "CrashReportCategory$Entry",
+    "CompiledName": "o"
+  },
+  {
+    "Name": "PreYggdrasilConverter$1",
+    "CompiledName": "oa"
+  },
+  {
+    "Name": "PreYggdrasilConverter$2",
+    "CompiledName": "ob"
+  },
+  {
+    "Name": "PreYggdrasilConverter$3",
+    "CompiledName": "oc"
+  },
+  {
+    "Name": "PreYggdrasilConverter$4",
+    "CompiledName": "od"
+  },
+  {
+    "Name": "PreYggdrasilConverter$5",
+    "CompiledName": "oe"
+  },
+  {
+    "Name": "PreYggdrasilConverter$6",
+    "CompiledName": "of"
+  },
+  {
+    "Name": "PreYggdrasilConverter$7",
+    "CompiledName": "og"
+  },
+  {
+    "Name": "PreYggdrasilConverter$ConversionError",
+    "CompiledName": "oh"
+  },
+  {
+    "Name": "ServerConfigurationManager",
+    "CompiledName": "oi"
+  },
+  {
+    "Name": "UserListOps",
+    "CompiledName": "oj"
+  },
+  {
+    "Name": "UserListOpsEntry",
+    "CompiledName": "ok"
+  },
+  {
+    "Name": "UserListEntry",
+    "CompiledName": "ol"
+  },
+  {
+    "Name": "UserList",
+    "CompiledName": "om"
+  },
+  {
+    "Name": "UserList$1",
+    "CompiledName": "on"
+  },
+  {
+    "Name": "UserList$Serializer",
+    "CompiledName": "oo"
+  },
+  {
+    "Name": "UserListBans",
+    "CompiledName": "op"
+  },
+  {
+    "Name": "UserListBansEntry",
+    "CompiledName": "oq"
+  },
+  {
+    "Name": "UserListWhitelist",
+    "CompiledName": "or"
+  },
+  {
+    "Name": "UserListWhitelistEntry",
+    "CompiledName": "os"
+  },
+  {
+    "Name": "RConOutputStream",
+    "CompiledName": "ot"
+  },
+  {
+    "Name": "RConUtils",
+    "CompiledName": "ou"
+  },
+  {
+    "Name": "RConConsoleSource",
+    "CompiledName": "ov"
+  },
+  {
+    "Name": "RConThreadBase",
+    "CompiledName": "ow"
+  },
+  {
+    "Name": "RConThreadQuery",
+    "CompiledName": "ox"
+  },
+  {
+    "Name": "RConThreadQuery$Auth",
+    "CompiledName": "oy"
+  },
+  {
+    "Name": "RConThreadClient",
+    "CompiledName": "oz"
+  },
+  {
+    "Name": "Direction",
+    "CompiledName": "p"
+  },
+  {
+    "Name": "RConThreadMain",
+    "CompiledName": "pa"
+  },
+  {
+    "Name": "Achievement",
+    "CompiledName": "pb"
+  },
+  {
+    "Name": "AchievementList",
+    "CompiledName": "pc"
+  },
+  {
+    "Name": "IStatStringFormat",
+    "CompiledName": "pd"
+  },
+  {
+    "Name": "StatBasic",
+    "CompiledName": "pe"
+  },
+  {
+    "Name": "StatCrafting",
+    "CompiledName": "pf"
+  },
+  {
+    "Name": "StatisticsFile",
+    "CompiledName": "pg"
+  },
+  {
+    "Name": "StatBase",
+    "CompiledName": "ph"
+  },
+  {
+    "Name": "StatBase$1",
+    "CompiledName": "pi"
+  },
+  {
+    "Name": "StatBase$2",
+    "CompiledName": "pj"
+  },
+  {
+    "Name": "StatBase$3",
+    "CompiledName": "pk"
+  },
+  {
+    "Name": "StatBase$4",
+    "CompiledName": "pl"
+  },
+  {
+    "Name": "IStatType",
+    "CompiledName": "pm"
+  },
+  {
+    "Name": "TupleIntJsonSerializable",
+    "CompiledName": "pn"
+  },
+  {
+    "Name": "IJsonSerializable",
+    "CompiledName": "po"
+  },
+  {
+    "Name": "StatList",
+    "CompiledName": "pp"
+  },
+  {
+    "Name": "StatFileWriter",
+    "CompiledName": "pq"
+  },
+  {
+    "Name": "JsonSerializableSet",
+    "CompiledName": "pr"
+  },
+  {
+    "Name": "CryptManager",
+    "CompiledName": "pt"
+  },
+  {
+    "Name": "JsonUtils",
+    "CompiledName": "pu"
+  },
+  {
+    "Name": "HttpUtil",
+    "CompiledName": "pv"
+  },
+  {
+    "Name": "HttpUtil$1",
+    "CompiledName": "pw"
+  },
+  {
+    "Name": "HttpUtil$DownloadListener",
+    "CompiledName": "px"
+  },
+  {
+    "Name": "LowerStringMap",
+    "CompiledName": "py"
+  },
+  {
+    "Name": "IntHashMap",
+    "CompiledName": "pz"
+  },
+  {
+    "Name": "Facing",
+    "CompiledName": "q"
+  },
+  {
+    "Name": "IntHashMap$Entry",
+    "CompiledName": "qa"
+  },
+  {
+    "Name": "ThreadSafeBoundList",
+    "CompiledName": "qc"
+  },
+  {
+    "Name": "LongHashMap",
+    "CompiledName": "qd"
+  },
+  {
+    "Name": "LongHashMap$Entry",
+    "CompiledName": "qe"
+  },
+  {
+    "Name": "EnumTypeAdapterFactory",
+    "CompiledName": "qf"
+  },
+  {
+    "Name": "EnumTypeAdapterFactory$1",
+    "CompiledName": "qg"
+  },
+  {
+    "Name": "MathHelper",
+    "CompiledName": "qh"
+  },
+  {
+    "Name": "Profiler",
+    "CompiledName": "qi"
+  },
+  {
+    "Name": "Profiler$Result",
+    "CompiledName": "qj"
+  },
+  {
+    "Name": "IProgressUpdate",
+    "CompiledName": "qk"
+  },
+  {
+    "Name": "MouseFilter",
+    "CompiledName": "qm"
+  },
+  {
+    "Name": "StringUtils",
+    "CompiledName": "qn"
+  },
+  {
+    "Name": "Tuple",
+    "CompiledName": "qu"
+  },
+  {
+    "Name": "WeightedRandom",
+    "CompiledName": "qv"
+  },
+  {
+    "Name": "WeightedRandom$Item",
+    "CompiledName": "qw"
+  },
+  {
+    "Name": "WeightedRandomChestContent",
+    "CompiledName": "qx"
+  },
+  {
+    "Name": "ChunkCoordinates",
+    "CompiledName": "r"
+  },
+  {
+    "Name": "InventoryLargeChest",
+    "CompiledName": "ra"
+  },
+  {
+    "Name": "IInventory",
+    "CompiledName": "rb"
+  },
+  {
+    "Name": "IInvBasic",
+    "CompiledName": "rc"
+  },
+  {
+    "Name": "EnumDifficulty",
+    "CompiledName": "rd"
+  },
+  {
+    "Name": "IconFlipped",
+    "CompiledName": "re"
+  },
+  {
+    "Name": "IIcon",
+    "CompiledName": "rf"
+  },
+  {
+    "Name": "IIconRegister",
+    "CompiledName": "rg"
+  },
+  {
+    "Name": "InventoryBasic",
+    "CompiledName": "rh"
+  },
+  {
+    "Name": "PlayerUsageSnooper",
+    "CompiledName": "ri"
+  },
+  {
+    "Name": "PlayerUsageSnooper$1",
+    "CompiledName": "rj"
+  },
+  {
+    "Name": "IPlayerUsage",
+    "CompiledName": "rk"
+  },
+  {
+    "Name": "ISidedInventory",
+    "CompiledName": "rl"
+  },
+  {
+    "Name": "CombatEntry",
+    "CompiledName": "rm"
+  },
+  {
+    "Name": "CombatTracker",
+    "CompiledName": "rn"
+  },
+  {
+    "Name": "DamageSource",
+    "CompiledName": "ro"
+  },
+  {
+    "Name": "EntityDamageSource",
+    "CompiledName": "rp"
+  },
+  {
+    "Name": "EntityDamageSourceIndirect",
+    "CompiledName": "rq"
+  },
+  {
+    "Name": "PotionAbsoption",
+    "CompiledName": "rr"
+  },
+  {
+    "Name": "PotionAttackDamage",
+    "CompiledName": "rs"
+  },
+  {
+    "Name": "PotionHealthBoost",
+    "CompiledName": "rt"
+  },
+  {
+    "Name": "PotionHealth",
+    "CompiledName": "ru"
+  },
+  {
+    "Name": "Potion",
+    "CompiledName": "rv"
+  },
+  {
+    "Name": "PotionEffect",
+    "CompiledName": "rw"
+  },
+  {
+    "Name": "EntityAgeable",
+    "CompiledName": "rx"
+  },
+  {
+    "Name": "IAnimals",
+    "CompiledName": "ry"
+  },
+  {
+    "Name": "ReportedException",
+    "CompiledName": "s"
+  },
+  {
+    "Name": "Entity",
+    "CompiledName": "sa"
+  },
+  {
+    "Name": "Entity$1",
+    "CompiledName": "sb"
+  },
+  {
+    "Name": "Entity$2",
+    "CompiledName": "sc"
+  },
+  {
+    "Name": "Entity$SwitchEnumEntitySize",
+    "CompiledName": "sd"
+  },
+  {
+    "Name": "Entity$EnumEntitySize",
+    "CompiledName": "se"
+  },
+  {
+    "Name": "EntityList",
+    "CompiledName": "sg"
+  },
+  {
+    "Name": "EntityList$EntityEggInfo",
+    "CompiledName": "sh"
+  },
+  {
+    "Name": "IEntitySelector",
+    "CompiledName": "sj"
+  },
+  {
+    "Name": "IEntitySelector$1",
+    "CompiledName": "sk"
+  },
+  {
+    "Name": "IEntitySelector$2",
+    "CompiledName": "sl"
+  },
+  {
+    "Name": "IEntitySelector$3",
+    "CompiledName": "sm"
+  },
+  {
+    "Name": "IEntitySelector$ArmoredMob",
+    "CompiledName": "sp"
+  },
+  {
+    "Name": "EntityXPOrb",
+    "CompiledName": "sq"
+  },
+  {
+    "Name": "EntityFlying",
+    "CompiledName": "sr"
+  },
+  {
+    "Name": "EntityHanging",
+    "CompiledName": "ss"
+  },
+  {
+    "Name": "EntityItemFrame",
+    "CompiledName": "st"
+  },
+  {
+    "Name": "EntityLeashKnot",
+    "CompiledName": "su"
+  },
+  {
+    "Name": "EntityLivingBase",
+    "CompiledName": "sv"
+  },
+  {
+    "Name": "EntityLiving",
+    "CompiledName": "sw"
+  },
+  {
+    "Name": "EnumCreatureType",
+    "CompiledName": "sx"
+  },
+  {
+    "Name": "IEntityLivingData",
+    "CompiledName": "sy"
+  },
+  {
+    "Name": "EnumCreatureAttribute",
+    "CompiledName": "sz"
+  },
+  {
+    "Name": "ChatAllowedCharacters",
+    "CompiledName": "t"
+  },
+  {
+    "Name": "IEntityOwnable",
+    "CompiledName": "ta"
+  },
+  {
+    "Name": "EntityPainting",
+    "CompiledName": "tb"
+  },
+  {
+    "Name": "EntityPainting$EnumArt",
+    "CompiledName": "tc"
+  },
+  {
+    "Name": "EntityCreature",
+    "CompiledName": "td"
+  },
+  {
+    "Name": "DataWatcher",
+    "CompiledName": "te"
+  },
+  {
+    "Name": "DataWatcher$WatchableObject",
+    "CompiledName": "tf"
+  },
+  {
+    "Name": "EntityTameable",
+    "CompiledName": "tg"
+  },
+  {
+    "Name": "IAttribute",
+    "CompiledName": "th"
+  },
+  {
+    "Name": "IAttributeInstance",
+    "CompiledName": "ti"
+  },
+  {
+    "Name": "AttributeModifier",
+    "CompiledName": "tj"
+  },
+  {
+    "Name": "BaseAttribute",
+    "CompiledName": "tk"
+  },
+  {
+    "Name": "BaseAttributeMap",
+    "CompiledName": "tl"
+  },
+  {
+    "Name": "ModifiableAttributeInstance",
+    "CompiledName": "tn"
+  },
+  {
+    "Name": "RangedAttribute",
+    "CompiledName": "to"
+  },
+  {
+    "Name": "ServersideAttributeMap",
+    "CompiledName": "tq"
+  },
+  {
+    "Name": "EntityBodyHelper",
+    "CompiledName": "tr"
+  },
+  {
+    "Name": "EntityJumpHelper",
+    "CompiledName": "tt"
+  },
+  {
+    "Name": "EntityLookHelper",
+    "CompiledName": "tu"
+  },
+  {
+    "Name": "EntityMoveHelper",
+    "CompiledName": "tv"
+  },
+  {
+    "Name": "EntityAIAvoidEntity",
+    "CompiledName": "tw"
+  },
+  {
+    "Name": "EntityAIAvoidEntity$1",
+    "CompiledName": "tx"
+  },
+  {
+    "Name": "EntityAIBeg",
+    "CompiledName": "ty"
+  },
+  {
+    "Name": "EntityAIBreakDoor",
+    "CompiledName": "tz"
+  },
+  {
+    "Name": "Util",
+    "CompiledName": "u"
+  },
+  {
+    "Name": "EntityAIMate",
+    "CompiledName": "ua"
+  },
+  {
+    "Name": "EntityAIControlledByPlayer",
+    "CompiledName": "ub"
+  },
+  {
+    "Name": "EntityAIDoorInteract",
+    "CompiledName": "uc"
+  },
+  {
+    "Name": "EntityAIEatGrass",
+    "CompiledName": "ud"
+  },
+  {
+    "Name": "EntityAIFleeSun",
+    "CompiledName": "ue"
+  },
+  {
+    "Name": "EntityAISwimming",
+    "CompiledName": "uf"
+  },
+  {
+    "Name": "EntityAIFollowOwner",
+    "CompiledName": "ug"
+  },
+  {
+    "Name": "EntityAIFollowParent",
+    "CompiledName": "uh"
+  },
+  {
+    "Name": "EntityAIBase",
+    "CompiledName": "ui"
+  },
+  {
+    "Name": "EntityAITasks",
+    "CompiledName": "uj"
+  },
+  {
+    "Name": "EntityAITasks$EntityAITaskEntry",
+    "CompiledName": "uk"
+  },
+  {
+    "Name": "EntityAIWatchClosest2",
+    "CompiledName": "ul"
+  },
+  {
+    "Name": "EntityAILeapAtTarget",
+    "CompiledName": "um"
+  },
+  {
+    "Name": "EntityAIWatchClosest",
+    "CompiledName": "un"
+  },
+  {
+    "Name": "EntityAILookAtTradePlayer",
+    "CompiledName": "uo"
+  },
+  {
+    "Name": "EntityAIVillagerMate",
+    "CompiledName": "up"
+  },
+  {
+    "Name": "EntityAIAttackOnCollide",
+    "CompiledName": "uq"
+  },
+  {
+    "Name": "EntityAIMoveIndoors",
+    "CompiledName": "ur"
+  },
+  {
+    "Name": "EntityAIMoveThroughVillage",
+    "CompiledName": "us"
+  },
+  {
+    "Name": "EntityAIMoveTowardsRestriction",
+    "CompiledName": "ut"
+  },
+  {
+    "Name": "EntityAIMoveTowardsTarget",
+    "CompiledName": "uu"
+  },
+  {
+    "Name": "EntityAIOcelotAttack",
+    "CompiledName": "uv"
+  },
+  {
+    "Name": "EntityAIOcelotSit",
+    "CompiledName": "uw"
+  },
+  {
+    "Name": "EntityAILookAtVillager",
+    "CompiledName": "ux"
+  },
+  {
+    "Name": "EntityAIOpenDoor",
+    "CompiledName": "uy"
+  },
+  {
+    "Name": "EntityAIPanic",
+    "CompiledName": "uz"
+  },
+  {
+    "Name": "Util$EnumOS",
+    "CompiledName": "v"
+  },
+  {
+    "Name": "EntityAIPlay",
+    "CompiledName": "va"
+  },
+  {
+    "Name": "EntityAILookIdle",
+    "CompiledName": "vb"
+  },
+  {
+    "Name": "EntityAIWander",
+    "CompiledName": "vc"
+  },
+  {
+    "Name": "EntityAIArrowAttack",
+    "CompiledName": "vd"
+  },
+  {
+    "Name": "EntityAIRestrictOpenDoor",
+    "CompiledName": "ve"
+  },
+  {
+    "Name": "EntityAIRestrictSun",
+    "CompiledName": "vf"
+  },
+  {
+    "Name": "EntityAIRunAroundLikeCrazy",
+    "CompiledName": "vg"
+  },
+  {
+    "Name": "EntityAISit",
+    "CompiledName": "vh"
+  },
+  {
+    "Name": "EntityAICreeperSwell",
+    "CompiledName": "vi"
+  },
+  {
+    "Name": "EntityAIFollowGolem",
+    "CompiledName": "vj"
+  },
+  {
+    "Name": "EntityAITempt",
+    "CompiledName": "vk"
+  },
+  {
+    "Name": "EntityAITradePlayer",
+    "CompiledName": "vl"
+  },
+  {
+    "Name": "EntityAIDefendVillage",
+    "CompiledName": "vm"
+  },
+  {
+    "Name": "EntityAIHurtByTarget",
+    "CompiledName": "vn"
+  },
+  {
+    "Name": "EntityAINearestAttackableTarget",
+    "CompiledName": "vo"
+  },
+  {
+    "Name": "EntityAINearestAttackableTarget$1",
+    "CompiledName": "vp"
+  },
+  {
+    "Name": "EntityAINearestAttackableTarget$Sorter",
+    "CompiledName": "vq"
+  },
+  {
+    "Name": "EntityAITargetNonTamed",
+    "CompiledName": "vr"
+  },
+  {
+    "Name": "EntityAIOwnerHurtByTarget",
+    "CompiledName": "vs"
+  },
+  {
+    "Name": "EntityAIOwnerHurtTarget",
+    "CompiledName": "vt"
+  },
+  {
+    "Name": "EntityAITarget",
+    "CompiledName": "vu"
+  },
+  {
+    "Name": "PathNavigate",
+    "CompiledName": "vv"
+  },
+  {
+    "Name": "EntitySenses",
+    "CompiledName": "vw"
+  },
+  {
+    "Name": "RandomPositionGenerator",
+    "CompiledName": "vx"
+  },
+  {
+    "Name": "VillageDoorInfo",
+    "CompiledName": "vy"
+  },
+  {
+    "Name": "Village",
+    "CompiledName": "vz"
+  },
+  {
+    "Name": "SoundCategory",
+    "CompiledName": "w"
+  },
+  {
+    "Name": "Village$VillageAgressor",
+    "CompiledName": "wa"
+  },
+  {
+    "Name": "VillageSiege",
+    "CompiledName": "wb"
+  },
+  {
+    "Name": "VillageCollection",
+    "CompiledName": "wc"
+  },
+  {
+    "Name": "EntityAmbientCreature",
+    "CompiledName": "wd"
+  },
+  {
+    "Name": "EntityBat",
+    "CompiledName": "we"
+  },
+  {
+    "Name": "EntityAnimal",
+    "CompiledName": "wf"
+  },
+  {
+    "Name": "EntityChicken",
+    "CompiledName": "wg"
+  },
+  {
+    "Name": "EntityCow",
+    "CompiledName": "wh"
+  },
+  {
+    "Name": "EntityHorse",
+    "CompiledName": "wi"
+  },
+  {
+    "Name": "EntityHorse$1",
+    "CompiledName": "wj"
+  },
+  {
+    "Name": "EntityHorse$GroupData",
+    "CompiledName": "wk"
+  },
+  {
+    "Name": "EntityGolem",
+    "CompiledName": "wl"
+  },
+  {
+    "Name": "EntityMooshroom",
+    "CompiledName": "wm"
+  },
+  {
+    "Name": "EntityOcelot",
+    "CompiledName": "wn"
+  },
+  {
+    "Name": "EntityPig",
+    "CompiledName": "wo"
+  },
+  {
+    "Name": "EntitySheep",
+    "CompiledName": "wp"
+  },
+  {
+    "Name": "EntitySheep$1",
+    "CompiledName": "wq"
+  },
+  {
+    "Name": "EntitySnowman",
+    "CompiledName": "wr"
+  },
+  {
+    "Name": "EntitySquid",
+    "CompiledName": "ws"
+  },
+  {
+    "Name": "EntityIronGolem",
+    "CompiledName": "wt"
+  },
+  {
+    "Name": "EntityWaterMob",
+    "CompiledName": "wu"
+  },
+  {
+    "Name": "EntityWolf",
+    "CompiledName": "wv"
+  },
+  {
+    "Name": "IBossDisplayData",
+    "CompiledName": "ww"
+  },
+  {
+    "Name": "IEntityMultiPart",
+    "CompiledName": "wx"
+  },
+  {
+    "Name": "EntityDragonPart",
+    "CompiledName": "wy"
+  },
+  {
+    "Name": "EntityEnderCrystal",
+    "CompiledName": "wz"
+  },
+  {
+    "Name": "IAdminCommand",
+    "CompiledName": "x"
+  },
+  {
+    "Name": "EntityDragon",
+    "CompiledName": "xa"
+  },
+  {
+    "Name": "EntityWither",
+    "CompiledName": "xc"
+  },
+  {
+    "Name": "EntityWither$1",
+    "CompiledName": "xd"
+  },
+  {
+    "Name": "EntityFishHook",
+    "CompiledName": "xe"
+  },
+  {
+    "Name": "WeightedRandomFishable",
+    "CompiledName": "xf"
+  },
+  {
+    "Name": "EntityWeatherEffect",
+    "CompiledName": "xg"
+  },
+  {
+    "Name": "EntityLightningBolt",
+    "CompiledName": "xh"
+  },
+  {
+    "Name": "EntityBoat",
+    "CompiledName": "xi"
+  },
+  {
+    "Name": "EntityFallingBlock",
+    "CompiledName": "xj"
+  },
+  {
+    "Name": "EntityItem",
+    "CompiledName": "xk"
+  },
+  {
+    "Name": "EntityMinecart",
+    "CompiledName": "xl"
+  },
+  {
+    "Name": "EntityMinecartChest",
+    "CompiledName": "xm"
+  },
+  {
+    "Name": "EntityMinecartCommandBlock",
+    "CompiledName": "xn"
+  },
+  {
+    "Name": "EntityMinecartCommandBlock$1",
+    "CompiledName": "xo"
+  },
+  {
+    "Name": "EntityMinecartContainer",
+    "CompiledName": "xp"
+  },
+  {
+    "Name": "EntityMinecartFurnace",
+    "CompiledName": "xq"
+  },
+  {
+    "Name": "EntityMinecartHopper",
+    "CompiledName": "xr"
+  },
+  {
+    "Name": "EntityMinecartEmpty",
+    "CompiledName": "xs"
+  },
+  {
+    "Name": "EntityMinecartMobSpawner",
+    "CompiledName": "xt"
+  },
+  {
+    "Name": "EntityMinecartMobSpawner$1",
+    "CompiledName": "xu"
+  },
+  {
+    "Name": "EntityMinecartTNT",
+    "CompiledName": "xv"
+  },
+  {
+    "Name": "EntityTNTPrimed",
+    "CompiledName": "xw"
+  },
+  {
+    "Name": "EntityBlaze",
+    "CompiledName": "xx"
+  },
+  {
+    "Name": "EntityCaveSpider",
+    "CompiledName": "xy"
+  },
+  {
+    "Name": "EntityCreeper",
+    "CompiledName": "xz"
+  },
+  {
+    "Name": "CommandBase",
+    "CompiledName": "y"
+  },
+  {
+    "Name": "EntityEnderman",
+    "CompiledName": "ya"
+  },
+  {
+    "Name": "IMob",
+    "CompiledName": "yb"
+  },
+  {
+    "Name": "IMob$1",
+    "CompiledName": "yc"
+  },
+  {
+    "Name": "EntityGhast",
+    "CompiledName": "yd"
+  },
+  {
+    "Name": "EntityGiantZombie",
+    "CompiledName": "ye"
+  },
+  {
+    "Name": "EntityMagmaCube",
+    "CompiledName": "yf"
+  },
+  {
+    "Name": "EntityMob",
+    "CompiledName": "yg"
+  },
+  {
+    "Name": "EntityPigZombie",
+    "CompiledName": "yh"
+  },
+  {
+    "Name": "IRangedAttackMob",
+    "CompiledName": "yi"
+  },
+  {
+    "Name": "SharedMonsterAttributes",
+    "CompiledName": "yj"
+  },
+  {
+    "Name": "EntitySilverfish",
+    "CompiledName": "yk"
+  },
+  {
+    "Name": "EntitySkeleton",
+    "CompiledName": "yl"
+  },
+  {
+    "Name": "EntitySlime",
+    "CompiledName": "ym"
+  },
+  {
+    "Name": "EntitySpider",
+    "CompiledName": "yn"
+  },
+  {
+    "Name": "EntitySpider$GroupData",
+    "CompiledName": "yo"
+  },
+  {
+    "Name": "EntityWitch",
+    "CompiledName": "yp"
+  },
+  {
+    "Name": "EntityZombie",
+    "CompiledName": "yq"
+  },
+  {
+    "Name": "EntityZombie$1",
+    "CompiledName": "yr"
+  },
+  {
+    "Name": "EntityZombie$GroupData",
+    "CompiledName": "ys"
+  },
+  {
+    "Name": "NpcMerchant",
+    "CompiledName": "yt"
+  },
+  {
+    "Name": "INpc",
+    "CompiledName": "yu"
+  },
+  {
+    "Name": "EntityVillager",
+    "CompiledName": "yv"
+  },
+  {
+    "Name": "PlayerCapabilities",
+    "CompiledName": "yw"
+  },
+  {
+    "Name": "InventoryPlayer",
+    "CompiledName": "yx"
+  },
+  {
+    "Name": "InventoryPlayer$1",
+    "CompiledName": "yy"
+  },
+  {
+    "Name": "EntityPlayer",
+    "CompiledName": "yz"
+  },
+  {
+    "Name": "CommandHandler",
+    "CompiledName": "z"
+  },
+  {
+    "Name": "EntityPlayer$EnumStatus",
+    "CompiledName": "za"
+  },
+  {
+    "Name": "EntityPlayer$EnumChatVisibility",
+    "CompiledName": "zb"
+  },
+  {
+    "Name": "EntityArrow",
+    "CompiledName": "zc"
+  },
+  {
+    "Name": "EntityEnderEye",
+    "CompiledName": "zd"
+  },
+  {
+    "Name": "EntityFireball",
+    "CompiledName": "ze"
+  },
+  {
+    "Name": "EntityFireworkRocket",
+    "CompiledName": "zf"
+  },
+  {
+    "Name": "EntityLargeFireball",
+    "CompiledName": "zg"
+  },
+  {
+    "Name": "IProjectile",
+    "CompiledName": "zh"
+  },
+  {
+    "Name": "EntitySmallFireball",
+    "CompiledName": "zi"
+  },
+  {
+    "Name": "EntitySnowball",
+    "CompiledName": "zj"
+  },
+  {
+    "Name": "EntityThrowable",
+    "CompiledName": "zk"
+  },
+  {
+    "Name": "EntityEgg",
+    "CompiledName": "zl"
+  },
+  {
+    "Name": "EntityEnderPearl",
+    "CompiledName": "zm"
+  },
+  {
+    "Name": "EntityExpBottle",
+    "CompiledName": "zn"
+  },
+  {
+    "Name": "EntityPotion",
+    "CompiledName": "zo"
+  },
+  {
+    "Name": "EntityWitherSkull",
+    "CompiledName": "zp"
+  },
+  {
+    "Name": "FoodStats",
+    "CompiledName": "zr"
+  },
+  {
+    "Name": "Container",
+    "CompiledName": "zs"
+  },
+  {
+    "Name": "AnimalChest",
+    "CompiledName": "zt"
+  },
+  {
+    "Name": "ContainerRepair",
+    "CompiledName": "zu"
+  },
+  {
+    "Name": "ContainerRepair$1",
+    "CompiledName": "zv"
+  },
+  {
+    "Name": "ContainerRepair$2",
+    "CompiledName": "zw"
+  },
+  {
+    "Name": "ContainerBeacon",
+    "CompiledName": "zx"
+  },
+  {
+    "Name": "ContainerBeacon$BeaconSlot",
+    "CompiledName": "zy"
+  },
+  {
+    "Name": "ContainerBrewingStand",
+    "CompiledName": "zz"
+  }
+]
