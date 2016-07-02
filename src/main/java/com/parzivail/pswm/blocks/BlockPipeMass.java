@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityPipeMass;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -49,7 +50,7 @@ public class BlockPipeMass extends PBlockContainer implements IDebugProvider
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
 	{
-		int face = ((TileEntityPipeMass)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
+		int face = ((TileEntityRotate)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
 
 		switch (face)
 		{
@@ -72,7 +73,7 @@ public class BlockPipeMass extends PBlockContainer implements IDebugProvider
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityPipeMass)
+		if (tile instanceof TileEntityRotate)
 		{
 			TileEntityPipeMass t = (TileEntityPipeMass)tile;
 			list.add("Facing: " + t.getFacing());
@@ -91,9 +92,9 @@ public class BlockPipeMass extends PBlockContainer implements IDebugProvider
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack item)
 	{
 		TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityPipeMass)
+		if (tile instanceof TileEntityRotate)
 		{
-			TileEntityPipeMass te = (TileEntityPipeMass)tile;
+			TileEntityRotate te = (TileEntityRotate)tile;
 			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
 			te.setFacing(l);
 		}

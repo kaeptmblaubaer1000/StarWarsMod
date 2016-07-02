@@ -1,6 +1,6 @@
 package com.parzivail.pswm.tileentities;
 
-import com.parzivail.util.vehicle.VehicleAirBase;
+import com.parzivail.util.vehicle.VehicleBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
@@ -37,9 +37,9 @@ public class TileEntitySensorEntity extends TileEntitySensor
 				Object c = this.needle.getConstructor(World.class).newInstance(this.worldObj);
 				Entity entity = this.needle.cast(c);
 				entity.setPositionAndRotation(this.xCoord, this.yCoord + 1, this.zCoord, l * 90, 0);
-				if (entity instanceof VehicleAirBase)
+				if (entity instanceof VehicleBase)
 				{
-					VehicleAirBase vehicleBase = (VehicleAirBase)entity;
+					VehicleBase vehicleBase = (VehicleBase)entity;
 					vehicleBase.setRealYaw(l * 90);
 					vehicleBase.rotationPitchLast = 0;
 				}

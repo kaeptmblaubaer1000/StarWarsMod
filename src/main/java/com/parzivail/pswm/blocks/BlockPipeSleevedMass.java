@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityPipeSleevedMass;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -39,7 +40,7 @@ public class BlockPipeSleevedMass extends PBlockContainer
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
 	{
-		int face = ((TileEntityPipeSleevedMass)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
+		int face = ((TileEntityRotate)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
 
 		switch (face)
 		{
@@ -68,9 +69,9 @@ public class BlockPipeSleevedMass extends PBlockContainer
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack item)
 	{
 		TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityPipeSleevedMass)
+		if (tile instanceof TileEntityRotate)
 		{
-			TileEntityPipeSleevedMass te = (TileEntityPipeSleevedMass)tile;
+			TileEntityRotate te = (TileEntityRotate)tile;
 			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
 			te.setFacing(l);
 		}

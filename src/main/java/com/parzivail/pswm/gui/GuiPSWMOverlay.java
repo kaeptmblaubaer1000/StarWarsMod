@@ -9,6 +9,7 @@ import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -17,7 +18,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -110,15 +113,31 @@ public class GuiPSWMOverlay extends Gui
 		if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
-			if (this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ) instanceof IDebugProvider)
+			Block block = this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
+
+			if (block != null)
 			{
-				Block block = this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
-				IDebugProvider debugProvider = (IDebugProvider)block;
 
 				ArrayList<String> s = new ArrayList<>();
-				s.add(block.getLocalizedName());
+				s.add(String.format("Block: %s (ID %s)", block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
+				s.add("Meta: " + this.mc.theWorld.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ));
+				TileEntity tileEntity = this.mc.theWorld.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
+				s.add("Tile: " + (tileEntity == null ? "None" : tileEntity.getClass().getName()));
 
-				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
+				boolean didChange = false;
+				if (block instanceof IDebugProvider)
+				{
+					IDebugProvider debugProvider = (IDebugProvider)block;
+
+					int ll = s.size();
+					debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
+					didChange = ll < s.size();
+				}
+
+				if (tileEntity instanceof TileEntityRotate && !didChange)
+				{
+					s.add("Rotate: " + ((TileEntityRotate)tileEntity).getFacing());
+				}
 
 				GL11.glPushMatrix();
 				GLPZ.glScalef(0.5f);
@@ -136,27 +155,29 @@ public class GuiPSWMOverlay extends Gui
 		else if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
 		{
 			MovingObjectPosition mop = this.mc.objectMouseOver;
+
+			ArrayList<String> s = new ArrayList<>();
+			s.add(String.format("Entity: %s (eID %s)", mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
+			s.add(String.format("Class: %s", mop.entityHit.getClass().getName()));
+
 			if (mop.entityHit instanceof IDebugProvider)
 			{
 				IDebugProvider debugProvider = (IDebugProvider)mop.entityHit;
 
-				ArrayList<String> s = new ArrayList<>();
-				s.add(mop.entityHit.getCommandSenderName());
-
 				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
-
-				GL11.glPushMatrix();
-				GLPZ.glScalef(0.5f);
-
-				int y = 0;
-				for (String line : s)
-				{
-					this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
-					y++;
-				}
-
-				GL11.glPopMatrix();
 			}
+
+			GL11.glPushMatrix();
+			GLPZ.glScalef(0.5f);
+
+			int y = 0;
+			for (String line : s)
+			{
+				this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
+				y++;
+			}
+
+			GL11.glPopMatrix();
 		}
 
 		RenderHelper.disableStandardItemLighting();

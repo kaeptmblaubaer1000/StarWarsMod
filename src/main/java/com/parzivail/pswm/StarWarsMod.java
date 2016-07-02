@@ -129,6 +129,19 @@ public class StarWarsMod
 	public static PBlockContainer blockSensorXWing;
 	public static PBlockContainer blockSensorYWing;
 	public static PBlockContainer blockSensorAWing;
+	public static PBlockContainer blockSensorTIE;
+	public static PBlockContainer blockSensorTIEAdvanced;
+	public static PBlockContainer blockSensorTIEBomber;
+	public static PBlockContainer blockSensorTIEInterceptor;
+	public static PBlockContainer blockSensorScootemaround;
+	public static PBlockContainer blockSensorScootemaroundHoth;
+	public static PBlockContainer blockSensorSnowspeeder;
+	public static PBlockContainer blockSensorSkyhopper;
+	public static PBlockContainer blockSensorATST;
+	public static PBlockContainer blockSensorSpeederBike;
+	public static PBlockContainer blockSensorHothSpeederBike;
+	public static PBlockContainer blockSensorLandspeeder;
+	public static PBlockContainer blockSensorJakkuSpeeder;
 
 	public static PBlock blockThorolideOre;
 	public static PBlock blockCortosisOre;
