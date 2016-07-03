@@ -76,8 +76,8 @@ public class PGui// extends Gui
 	{
 		try
 		{
-			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance", "field_78490_B");
-			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp", "field_78491_C");
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistance", "field_78490_B", "E");
+			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, dist, "thirdPersonDistanceTemp", "field_78491_C", "F");
 		}
 		catch (Exception e)
 		{
