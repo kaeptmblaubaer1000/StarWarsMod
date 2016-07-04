@@ -1,6 +1,6 @@
 package com.parzivail.pswm.gui;
 
-import com.parzivail.pswm.rendering.helper.PGui;
+import com.parzivail.util.ui.GFX;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import org.lwjgl.opengl.GL11;
@@ -20,7 +20,7 @@ public class GuiButtonSith extends GuiButton
 	{
 		if (this.visible)
 		{
-			mc.getTextureManager().bindTexture(PGui.swIcons);
+			mc.getTextureManager().bindTexture(GFX.swIcons);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			boolean flag = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
 			int k = 26;

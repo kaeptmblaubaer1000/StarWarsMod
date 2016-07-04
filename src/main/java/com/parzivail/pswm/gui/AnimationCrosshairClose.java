@@ -2,6 +2,7 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.math.Animation;
+import com.parzivail.util.ui.GFX;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class AnimationCrosshairClose extends Animation
@@ -20,7 +21,7 @@ public class AnimationCrosshairClose extends Animation
 	{
 		super.render(event);
 
-		ClientEventHandler.pgui.drawFancyCursor(event, this.tick / (float)this.length, this.color);
+		GFX.drawFancyCursor(event, this.tick / (float)this.length, this.color);
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import com.parzivail.pswm.rendering.helper.VehicleLineDraw;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
@@ -65,9 +66,9 @@ public class GuiVehicle
 					float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
 					if (System.currentTimeMillis() / 1000 % 2 == 0)
-						ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack1);
+						GFX.renderOverlay(Resources.xwingOverlayBack1);
 					else
-						ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlayBack2);
+						GFX.renderOverlay(Resources.xwingOverlayBack2);
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { xwing });
 
@@ -76,11 +77,11 @@ public class GuiVehicle
 						for (Entity p : xwing.nearby)
 						{
 							if (p instanceof VehicXWing || p instanceof VehicAWing)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+								GFX.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
 							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+								GFX.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
 							if (p instanceof EntityPlayer)
-								ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+								GFX.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
 
 						updateFiring();
@@ -100,7 +101,7 @@ public class GuiVehicle
 							new AnimationCrosshairOpen(color).start();
 
 						if (!ClientEventHandler.isCursorAnim)
-							ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+							GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 						updateTargetLock(e);
 
@@ -108,12 +109,12 @@ public class GuiVehicle
 					}
 					else
 					{
-						ClientEventHandler.pgui.drawFancyCursor(event, 0, GLPalette.GREY);
+						GFX.drawFancyCursor(event, 0, GLPalette.GREY);
 					}
 
-					ClientEventHandler.pgui.renderOverlay(Resources.xwingOverlay);
+					GFX.renderOverlay(Resources.xwingOverlay);
 
-					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
+					GFX.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
 					String s = e == null || !xwing.getHasAstro() ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
@@ -130,7 +131,7 @@ public class GuiVehicle
 						lookStringNextTime = System.currentTimeMillis() + 100;
 					}
 
-					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
+					GFX.renderOverlay(GFX.planetTextureFromDim(xwing.dimension), -4.215f * scale, -0.455f * scale);
 
 					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GLPalette.YELLOW, true);
 
@@ -178,23 +179,23 @@ public class GuiVehicle
 					float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
 					if (System.currentTimeMillis() / 1000 % 2 == 0)
-						ClientEventHandler.pgui.renderOverlay(Resources.awingBack);
+						GFX.renderOverlay(Resources.awingBack);
 					else
-						ClientEventHandler.pgui.renderOverlay(Resources.awingBack2);
+						GFX.renderOverlay(Resources.awingBack2);
 
 					for (Entity p : awing.nearby)
 					{
 						if (p instanceof VehicXWing || p instanceof VehicAWing)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+							GFX.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
 						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							GFX.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
 						if (p instanceof EntityPlayer)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							GFX.drawHollowCircle(radarCenterX + (int)(awing.posX - p.posX) / 5F, radarCenterY + (int)(awing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
 					updateFiring();
 
-					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
+					GFX.renderOverlay(GFX.planetTextureFromDim(awing.dimension), -1.07f * scale, -0.055f * scale);
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { awing });
 
@@ -213,7 +214,7 @@ public class GuiVehicle
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					updateTargetLock(e);
 
@@ -238,12 +239,12 @@ public class GuiVehicle
 					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GLPalette.YELLOW, true);
 					GL11.glPopMatrix();
 
-					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch1, 0, (int)((1 - awing.move / awing.moveModifier) * 14));
-					ClientEventHandler.pgui.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
+					GFX.renderOverlay(Resources.awingPitch1, 0, (int)((1 - awing.move / awing.moveModifier) * 14));
+					GFX.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(awing.rotationYaw / 180 * 8)) + 16);
 
-					ClientEventHandler.pgui.renderOverlay(Resources.awingOverlay);
+					GFX.renderOverlay(Resources.awingOverlay);
 
-					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
+					GFX.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
@@ -327,34 +328,34 @@ public class GuiVehicle
 					float heal5Y = event.resolution.getScaledHeight() * (131.5f / 144F);
 					float healMaxY = event.resolution.getScaledHeight() * (4 / 144F);
 
-					ClientEventHandler.pgui.renderOverlay(Resources.tieBackOverlay);
+					GFX.renderOverlay(Resources.tieBackOverlay);
 
-					ClientEventHandler.pgui.renderOverlay(Resources.tiePitch, 0, (int)((1 - tie.move / tie.moveModifier) * 37));
+					GFX.renderOverlay(Resources.tiePitch, 0, (int)((1 - tie.move / tie.moveModifier) * 37));
 
 					for (Entity p : tie.nearby)
 					{
 						if (p instanceof VehicXWing || p instanceof VehicAWing)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							GFX.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
 						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+							GFX.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
 						if (p instanceof EntityPlayer)
-							ClientEventHandler.pgui.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+							GFX.drawHollowCircle(radarCenterX + (int)(tie.posX - p.posX) / 5F, radarCenterY + (int)(tie.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 					}
 
 					updateFiring();
 
-					ClientEventHandler.pgui.renderOverlay(ClientEventHandler.pgui.planetTextureFromDim(tie.dimension), 0, 0);
+					GFX.renderOverlay(GFX.planetTextureFromDim(tie.dimension), 0, 0);
 
 					if (tie.getHealth() >= 20)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GLPalette.GREEN_APPLE);
+						GFX.drawRect((int)healX, (int)healY, (int)healMaxX, (int)healY + (int)healMaxY, GLPalette.GREEN_APPLE);
 					if (tie.getHealth() >= 16)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GLPalette.YELLOW_GREEN);
+						GFX.drawRect((int)healX, (int)heal2Y, (int)healMaxX, (int)heal2Y + (int)healMaxY, GLPalette.YELLOW_GREEN);
 					if (tie.getHealth() >= 8)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GLPalette.ORANGE);
+						GFX.drawRect((int)healX, (int)heal3Y, (int)healMaxX, (int)heal3Y + (int)healMaxY, GLPalette.ORANGE);
 					if (tie.getHealth() >= 4)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GLPalette.RED_ORANGE);
+						GFX.drawRect((int)healX, (int)heal4Y, (int)healMaxX, (int)heal4Y + (int)healMaxY, GLPalette.RED_ORANGE);
 					if (tie.getHealth() >= 0)
-						ClientEventHandler.pgui.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GLPalette.RED);
+						GFX.drawRect((int)healX, (int)heal5Y, (int)healMaxX, (int)heal5Y + (int)healMaxY, GLPalette.RED);
 
 					if (randomCharNextTime <= System.currentTimeMillis())
 					{
@@ -392,7 +393,7 @@ public class GuiVehicle
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					updateTargetLock(e);
 
@@ -418,43 +419,43 @@ public class GuiVehicle
 					 * this.lastTarget = e; }
 					 * 
 					 * if (e != null) { dist = GlPalette.ELECTRIC_LIME;
-					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
+					 * ClientEventHandler.instance.drawHollowTriangle(centerX,
 					 * centerY - 5, 3, 180, 2, dist);
-					 * ClientEventHandler.pgui.drawHollowTriangle(centerX - 5,
+					 * ClientEventHandler.instance.drawHollowTriangle(centerX - 5,
 					 * centerY + 5, 3, 45, 2, dist);
-					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 5,
+					 * ClientEventHandler.instance.drawHollowTriangle(centerX + 5,
 					 * centerY + 5, 3, 315, 2, dist);
 					 * 
-					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
+					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 20, centerY - 10, 2, dist);
-					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY -
+					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 10, centerY - 20, 2, dist);
 					 * 
-					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
+					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 20, centerY - 10, 2, dist);
-					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY -
+					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 10, centerY - 20, 2, dist);
 					 * 
-					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
+					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 20, centerY + 10, 2, dist);
-					 * ClientEventHandler.pgui.drawLine(centerX - 20, centerY +
+					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 10, centerY + 20, 2, dist);
 					 * 
-					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
+					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY +
 					 * 20, centerX + 20, centerY + 10, 2, dist);
-					 * ClientEventHandler.pgui.drawLine(centerX + 20, centerY +
+					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY +
 					 * 20, centerX + 10, centerY + 20, 2, dist); } else {
-					 * ClientEventHandler.pgui.drawHollowTriangle(centerX,
+					 * ClientEventHandler.instance.drawHollowTriangle(centerX,
 					 * centerY - 10, 3, 180, 2, dist);
-					 * ClientEventHandler.pgui.drawHollowTriangle(centerX - 10,
+					 * ClientEventHandler.instance.drawHollowTriangle(centerX - 10,
 					 * centerY + 10, 3, 45, 2, dist);
-					 * ClientEventHandler.pgui.drawHollowTriangle(centerX + 10,
+					 * ClientEventHandler.instance.drawHollowTriangle(centerX + 10,
 					 * centerY + 10, 3, 315, 2, dist); }
 					 */
 
-					ClientEventHandler.pgui.renderOverlay(Resources.tieOverlay);
+					GFX.renderOverlay(Resources.tieOverlay);
 
-					ClientEventHandler.pgui.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
+					GFX.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
@@ -531,13 +532,13 @@ public class GuiVehicle
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					updateTargetLock(e);
 
 					lastTarget = e;
 
-					ClientEventHandler.pgui.renderOverlay(Resources.snowspeederOverlay);
+					GFX.renderOverlay(Resources.snowspeederOverlay);
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
 				{
@@ -565,13 +566,13 @@ public class GuiVehicle
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					updateTargetLock(e);
 
 					lastTarget = e;
 
-					ClientEventHandler.pgui.renderOverlay(Resources.skyhopperOverlay);
+					GFX.renderOverlay(Resources.skyhopperOverlay);
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
 				{
@@ -599,13 +600,13 @@ public class GuiVehicle
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					updateTargetLock(e);
 
 					lastTarget = e;
 
-					ClientEventHandler.pgui.renderOverlay(Resources.atstOverlay);
+					GFX.renderOverlay(Resources.atstOverlay);
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
@@ -633,13 +634,13 @@ public class GuiVehicle
 						new AnimationCrosshairOpen(color).start();
 
 					if (!ClientEventHandler.isCursorAnim)
-						ClientEventHandler.pgui.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
 
 					updateTargetLock(e);
 
 					lastTarget = e;
 
-					ClientEventHandler.pgui.renderOverlay(Resources.ywingOverlay);
+					GFX.renderOverlay(Resources.ywingOverlay);
 				}
 			}
 		}

@@ -1,8 +1,8 @@
 package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.tileentities.TileEntityCrystalCompressor;
+import com.parzivail.util.ui.GFX;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -42,6 +42,6 @@ public class GuiCrystalCompressor extends GuiContainer
 
 		float i1 = 1 - this.compressor.getCompressTime() / (float)this.compressor.getCompressTimeMax();
 
-		ClientEventHandler.pgui.drawTexturedModalRectFloat(k + 28.5f, l + 27f, 0, 166, 119 * i1, 32);
+		GFX.drawTexturedModalRectFloat(k + 28.5f, l + 27f, 0, 166, 119 * i1, 32);
 	}
 }

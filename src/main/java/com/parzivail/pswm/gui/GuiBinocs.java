@@ -7,6 +7,7 @@ import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsTatooine;
 import com.parzivail.util.entity.EntityUtils;
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.Entity;
@@ -20,7 +21,7 @@ public class GuiBinocs
 	public static int lookStringPos = 0;
 	public static long lookStringNextTime = 0;
 
-	public void onRenderGui(RenderGameOverlayEvent.Pre event)
+	public static void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		ItemStack item = ClientEventHandler.playerHelper.getHeldItemStack();
 		if (item != null && item.getItem() instanceof ItemBinoculars && ItemBinoculars.getEnabled(item))
@@ -33,7 +34,7 @@ public class GuiBinocs
 					guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/binoc_style/binoc_style_" + ItemBinoculars.getZoom(item) + ".png");
 				else
 					guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/binoc_hoth/binoc_hoth_" + ItemBinoculars.getZoom(item) + ".png");
-				ClientEventHandler.pgui.renderOverlay(guiTexture);
+				GFX.renderOverlay(guiTexture);
 
 				if (item.getItem() instanceof ItemBinocularsTatooine)
 				{

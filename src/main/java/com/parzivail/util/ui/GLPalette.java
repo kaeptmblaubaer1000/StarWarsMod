@@ -1,19 +1,18 @@
 package com.parzivail.util.ui;
 
-import com.parzivail.pswm.rendering.helper.PGui;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
 public class GLPalette
 {
-	public static int TRANSPARENT = PGui.getRGBA(0, 0, 0, 0);
+	public static int TRANSPARENT = GFX.getRGBA(0, 0, 0, 0);
 
 	// pswm colors
-	public static int ANALOG_GREEN = PGui.getRGBA(0, 208, 12, 255);
-	public static int ANALOG_ORANGE = PGui.getRGBA(165, 71, 0, 255);
-	public static int ANALOG_BLUE = PGui.getRGBA(90, 184, 255, 255);
-	public static int ANALOG_RED = PGui.getRGBA(255, 39, 70, 255);
+	public static int ANALOG_GREEN = GFX.getRGBA(0, 208, 12, 255);
+	public static int ANALOG_ORANGE = GFX.getRGBA(165, 71, 0, 255);
+	public static int ANALOG_BLUE = GFX.getRGBA(90, 184, 255, 255);
+	public static int ANALOG_RED = GFX.getRGBA(255, 39, 70, 255);
 
 	public static int SW_YELLOW = 0xFFFFD400;
 	public static int DARK_SW_YELLOW = 0xFF645300;

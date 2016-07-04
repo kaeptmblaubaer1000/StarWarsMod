@@ -23,7 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-import static com.parzivail.pswm.rendering.helper.PGui.swIcons;
+import static com.parzivail.util.ui.GFX.swIcons;
 
 @SideOnly(Side.CLIENT)
 public class GuiQuestNpc extends GuiScreen
