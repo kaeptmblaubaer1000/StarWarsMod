@@ -27,7 +27,7 @@ public class AiFollowEntity extends EntityAIBase
 	 */
 	public boolean shouldExecute()
 	{
-		if (this.theEntity == null || this.targetEntity == null)
+		if (this.theEntity == null || this.targetEntityClass == null)
 			return false;
 
 		List list = this.theEntity.worldObj.getEntitiesWithinAABB(targetEntityClass, this.theEntity.boundingBox.expand(range, range, range));
