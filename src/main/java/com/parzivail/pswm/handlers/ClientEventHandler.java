@@ -250,7 +250,7 @@ public class ClientEventHandler
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public static void onRender(RenderLivingEvent.Pre event)
+	public void onRender(RenderLivingEvent.Pre event)
 	{
 		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
 		{
