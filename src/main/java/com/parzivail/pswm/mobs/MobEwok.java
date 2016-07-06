@@ -2,7 +2,7 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.ai.AiFollowEntity;
+import com.parzivail.pswm.ai.AiFollowType;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,7 +17,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	{
 		super(par1World);
 		setSize(0.5F, 1.5F);
-		tasks.addTask(0, new AiFollowEntity(this, MobDroidProtocol.class, 0.5f, 10));
+		tasks.addTask(0, new AiFollowType(this, MobDroidProtocol.class, 0.5f, 10));
 		tasks.addTask(1, new AiFreqMove(this, 0.5f, 0));
 		setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsItems.ewokSpear, 1));
 	}

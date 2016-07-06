@@ -36,6 +36,12 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 	}
 
 	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+
+	@Override
 	public EntityVillager createChild(EntityAgeable p_90011_1_)
 	{
 		return null;

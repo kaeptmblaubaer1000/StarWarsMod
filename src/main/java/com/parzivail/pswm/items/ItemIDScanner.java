@@ -26,14 +26,21 @@ public class ItemIDScanner extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (world.isRemote && StarWarsMod.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && player.isSneaking())
+		if (world.isRemote && StarWarsMod.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY)
 		{
 			Entity e = StarWarsMod.mc.objectMouseOver.entityHit;
+
 			if (e instanceof IParziNPC)
 			{
-				player.openGui(StarWarsMod.instance, Resources.GUI_SCANNER, world, 0, 0, 0);
+				if (player.isSneaking())
+				{
+					player.openGui(StarWarsMod.instance, Resources.GUI_SCANNER, world, 0, 0, 0);
+				}
+
+				//((EntityLiving)e).tasks.addTask(0, new AiFollowEntity((EntityLiving)e, player, ((EntityLiving)e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue(), 30));
 			}
 		}
+
 		return super.onItemRightClick(stack, world, player);
 	}
 

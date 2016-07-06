@@ -1,21 +1,23 @@
 package com.parzivail.pswm.ai;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 
-public class AiFollowEntity extends EntityAIBase
+import java.util.List;
+
+public class AiFollowType extends EntityAIBase
 {
 	private EntityLiving theEntity;
-	private Entity targetEntity;
+	private Class<? extends EntityLiving> targetEntityClass;
+	private EntityLiving targetEntity;
 	private double speed;
 	private float range;
 	private int ticksUntilPathUpdate;
 
-	public AiFollowEntity(EntityLiving thisEntity, Entity target, double speed, float range)
+	public AiFollowType(EntityLiving thisEntity, Class<? extends EntityLiving> target, double speed, float range)
 	{
 		this.theEntity = thisEntity;
-		this.targetEntity = target;
+		this.targetEntityClass = target;
 		this.speed = speed;
 		this.range = range;
 	}
@@ -25,8 +27,24 @@ public class AiFollowEntity extends EntityAIBase
 	 */
 	public boolean shouldExecute()
 	{
-		return !(this.theEntity == null || this.targetEntity == null) && this.targetEntity.isEntityAlive();
+		if (this.theEntity == null || this.targetEntityClass == null)
+			return false;
 
+		List list = this.theEntity.worldObj.getEntitiesWithinAABB(targetEntityClass, this.theEntity.boundingBox.expand(range, range, range));
+		EntityLiving entityanimal = null;
+
+		for (Object aList : list)
+			entityanimal = (EntityLiving)aList;
+
+		if (entityanimal == null)
+		{
+			return false;
+		}
+		else
+		{
+			this.targetEntity = entityanimal;
+			return true;
+		}
 	}
 
 	/**
@@ -34,7 +52,7 @@ public class AiFollowEntity extends EntityAIBase
 	 */
 	public boolean continueExecuting()
 	{
-		return shouldExecute();
+		return !(this.theEntity == null || this.targetEntity == null) && this.targetEntity.isEntityAlive();
 	}
 
 	/**
@@ -50,7 +68,7 @@ public class AiFollowEntity extends EntityAIBase
 	 */
 	public void resetTask()
 	{
-		this.targetEntity = null;
+		this.targetEntityClass = null;
 	}
 
 	/**
