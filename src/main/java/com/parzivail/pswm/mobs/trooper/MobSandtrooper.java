@@ -6,11 +6,12 @@ import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,19 +23,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class MobSandtrooper extends EntityTameable implements IMob, IRangedAttackMob
+public class MobSandtrooper extends MobTrooper
 {
 	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt = null;
-	private EntityAIArrowAttack aiArrow;
 
 	public MobSandtrooper(World par1World)
 	{
 		super(par1World);
-		setSize(0.5F, 1.5F);
-		getNavigator().setEnterDoors(true);
 		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.sandtrooperHelmet, 1));
 		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.sandtrooperChest, 1));
 		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.sandtrooperLegs, 1));
@@ -54,16 +52,6 @@ public class MobSandtrooper extends EntityTameable implements IMob, IRangedAttac
 				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Rt97c"));
 				break;
 		}
-		tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
-
-		tasks.addTask(0, new EntityAIFollowOwner(this, 1.0D, 4.0F, 2.0F));
-		this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-		this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		this.tasks.addTask(9, new EntityAILookIdle(this));
-		tasks.addTask(10, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
-		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
-		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
-		this.setTamed(false);
 	}
 
 	@Override
