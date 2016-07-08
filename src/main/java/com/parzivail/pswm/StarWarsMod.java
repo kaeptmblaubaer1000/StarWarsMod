@@ -369,6 +369,7 @@ public class StarWarsMod
 	private void setupConfig(FMLPreInitializationEvent event)
 	{
 		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION));
+
 		ConfigOptions.config = new Configuration(ConfigOptions.configFile, Resources.VERSION);
 
 		ConfigOptions.config.load();
