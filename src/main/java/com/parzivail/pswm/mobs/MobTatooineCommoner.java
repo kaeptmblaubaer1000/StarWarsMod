@@ -3,6 +3,7 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.ai.AiFollowEntity;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.TradeUtils;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
@@ -33,6 +34,7 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 	{
 		super(p_i1748_1_);
 		dw = super.getDataWatcher();
+		this.tasks.addTask(0, new AiFollowEntity(this, null, 0.5f));
 	}
 
 	@Override
@@ -226,6 +228,16 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 	public int getTalkInterval()
 	{
 		return 400;
+	}
+
+	@Override
+	public boolean interact(EntityPlayer entityPlayer)
+	{
+		if (entityPlayer.isSneaking())
+		{
+
+		}
+		return super.interact(entityPlayer);
 	}
 
 	private int getType()

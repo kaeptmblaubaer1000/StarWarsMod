@@ -9,15 +9,13 @@ public class AiFollowEntity extends EntityAIBase
 	private EntityLiving theEntity;
 	private Entity targetEntity;
 	private double speed;
-	private float range;
 	private int ticksUntilPathUpdate;
 
-	public AiFollowEntity(EntityLiving thisEntity, Entity target, double speed, float range)
+	public AiFollowEntity(EntityLiving thisEntity, Entity target, double speed)
 	{
 		this.theEntity = thisEntity;
 		this.targetEntity = target;
 		this.speed = speed;
-		this.range = range;
 	}
 
 	/**
