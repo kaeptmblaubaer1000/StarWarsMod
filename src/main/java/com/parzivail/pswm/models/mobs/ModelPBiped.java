@@ -5,6 +5,7 @@ import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
 import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
+import com.parzivail.pswm.vehicles.VehicScootemaround;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,16 +41,6 @@ public class ModelPBiped extends ModelBiped
 		this.bipedLeftLeg.rotateAngleX = MathHelper.cos(p_78087_1_ * 0.6662F + (float)Math.PI) * 1.4F * p_78087_2_;
 		this.bipedRightLeg.rotateAngleY = 0.0F;
 		this.bipedLeftLeg.rotateAngleY = 0.0F;
-
-		if (this.isRiding)
-		{
-			this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
-			this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
-			this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-			this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
-			this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
-			this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
-		}
 
 		if (this.heldItemLeft != 0)
 		{
@@ -167,6 +158,20 @@ public class ModelPBiped extends ModelBiped
 					this.bipedRightArm.rotateAngleX = -1.5F;
 					this.bipedRightArm.rotateAngleY = -0.1F;
 				}
+			}
+
+			if (player.ridingEntity instanceof VehicScootemaround)
+			{
+
+			}
+			else if (this.isRiding)
+			{
+				this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
+				this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
+				this.bipedRightLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+				this.bipedLeftLeg.rotateAngleX = -((float)Math.PI * 2F / 5F);
+				this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+				this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
 			}
 		}
 	}

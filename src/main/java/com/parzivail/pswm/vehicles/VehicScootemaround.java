@@ -196,11 +196,11 @@ public class VehicScootemaround extends VehicleLandBase
 	{
 		if (this.riddenByEntity != null)
 		{
-			float offset = this.vehicYOffset;
+			float offset = this.vehicYOffset - 0.1f;
 			if (!(this.riddenByEntity instanceof EntityPlayer))
 				offset -= 0.5F;
 
-			float mu = 1.3f;
+			float mu = 1.5f;
 			float ox = MathHelper.cos((float)Math.toRadians(this.rotationYaw + 90)) * mu;
 			float oz = MathHelper.sin((float)Math.toRadians(this.rotationYaw + 90)) * mu;
 			this.riddenByEntity.setPosition(this.posX + ox, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset() + offset, this.posZ + oz);
