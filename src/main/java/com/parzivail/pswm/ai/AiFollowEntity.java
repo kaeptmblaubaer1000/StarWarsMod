@@ -7,7 +7,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 public class AiFollowEntity extends EntityAIBase
 {
 	private EntityLiving theEntity;
-	private Entity targetEntity;
+	public Entity targetEntity;
 	private double speed;
 	private int ticksUntilPathUpdate;
 

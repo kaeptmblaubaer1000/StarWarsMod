@@ -23,6 +23,7 @@ import java.util.List;
 
 public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 {
+	public AiFollowEntity aiFollowEntity;
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
 	private String[] types = { "weaponsDealer", "generalMerchant", "corellian", "bartender", "shipDealer" };
@@ -34,7 +35,7 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 	{
 		super(p_i1748_1_);
 		dw = super.getDataWatcher();
-		this.tasks.addTask(0, new AiFollowEntity(this, null, 0.5f));
+		this.tasks.addTask(0, aiFollowEntity = new AiFollowEntity(this, null, 0.5f));
 	}
 
 	@Override
@@ -235,7 +236,7 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 	{
 		if (entityPlayer.isSneaking())
 		{
-
+			this.aiFollowEntity.targetEntity = this.aiFollowEntity.targetEntity == null ? entityPlayer : null;
 		}
 		return super.interact(entityPlayer);
 	}
