@@ -3,6 +3,7 @@ package com.parzivail.pswm.force;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -377,7 +378,7 @@ public class Cron
 		}
 		catch (Exception e)
 		{
-			Lumberjack.warn("Couldn't init new power!");
+			Lumberjack.warn(LangUtils.translate("couldn.t.init.new.power"));
 			e.printStackTrace();
 			return null;
 		}
@@ -412,14 +413,14 @@ public class Cron
 				case "OK":
 					break;
 				default:
-					Lumberjack.warn("Error contacting leaderboard server!");
+					Lumberjack.warn(LangUtils.translate("error.contacting.leaderboard.server"));
 					break;
 			}
 			IOUtils.closeQuietly(in);
 		}
 		catch (Exception e)
 		{
-			Lumberjack.warn("Couldn't add leaderboard stats!");
+			Lumberjack.warn(LangUtils.translate("couldn.t.add.leaderboard.stats"));
 			e.printStackTrace();
 		}
 		finally

@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.math.FPoint;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
@@ -23,9 +24,9 @@ public class PlanetInformation
 
 	// Canon info
 	private FPoint position = new FPoint(0, 0);
-	private String name = "UNKNOWN";
-	private String description = "UNKNOWN";
-	private String affiliation = "UNKNOWN";
+	private String name = LangUtils.translate("unknown");
+	private String description = LangUtils.translate("unknown");
+	private String affiliation = LangUtils.translate("unknown");
 	private int suns = 0;
 	private int moons = 0;
 	private ArrayList<String> terrain = new ArrayList<>();

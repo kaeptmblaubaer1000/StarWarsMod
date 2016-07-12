@@ -7,6 +7,7 @@ import com.parzivail.pswm.ai.AiFollowEntity;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.TradeUtils;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -27,7 +28,7 @@ public class MobTatooineCommoner extends EntityVillager implements IParziNPC
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
 	private String[] types = { "weaponsDealer", "generalMerchant", "corellian", "bartender", "shipDealer" };
-	private String[] officialNames = { "Weapons Dealer", "General Merchant", "Corellian", "Bartender", "Ship Dealer" };
+	private String[] officialNames = { LangUtils.translate("weapons.dealer"), LangUtils.translate("general.merchant"), LangUtils.translate("corellian"), LangUtils.translate("bartender"), LangUtils.translate("ship.dealer") };
 	private float baseRarity = 1.0F;
 	private DataWatcher dw;
 

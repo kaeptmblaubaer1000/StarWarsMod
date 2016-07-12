@@ -2,6 +2,7 @@ package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +32,7 @@ public class ItemHolocron extends Item
 			String s = stack.stackTagCompound.getString(Resources.nbtMaster);
 
 			if (!StringUtils.isNullOrEmpty(s))
-				return s + "'s Holocron";
+				return LangUtils.translate("0.s.holocron", s);
 		}
 
 		return super.getItemStackDisplayName(stack);
@@ -40,7 +41,7 @@ public class ItemHolocron extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add("Level " + String.valueOf((int)Math.floor(Cron.getLevel(stack) / 10f)));
+		list.add(LangUtils.translate("level.0", String.valueOf((int)Math.floor(Cron.getLevel(stack) / 10f))));
 	}
 
 	@Override

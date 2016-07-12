@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHyperdrive;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -37,7 +38,7 @@ public class BlockHyperdrive extends PBlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityHyperdrive)
 		{
 			TileEntityHyperdrive vap = (TileEntityHyperdrive)tile;
-			list.add(String.valueOf(vap.getTicks()) + " ticks");
+			list.add(LangUtils.translate("0.ticks", String.valueOf(vap.getTicks())));
 		}
 
 		return list;

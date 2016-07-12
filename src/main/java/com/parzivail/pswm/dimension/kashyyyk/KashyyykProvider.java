@@ -3,6 +3,7 @@ package com.parzivail.pswm.dimension.kashyyyk;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.rendering.DrawKashyyykSky;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.ChunkCoordinates;
@@ -13,7 +14,7 @@ import net.minecraftforge.client.IRenderHandler;
 
 public class KashyyykProvider extends WorldProvider
 {
-	public static String dimName = "Kashyyyk";
+	public static String dimName = LangUtils.translate("kashyyyk");
 
 	@SideOnly(Side.CLIENT)
 	private IRenderHandler skyRenderer;

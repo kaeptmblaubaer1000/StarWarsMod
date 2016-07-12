@@ -7,6 +7,7 @@ import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
 import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
 import com.parzivail.pswm.world.gen.moseisleynew.*;
 import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -20,7 +21,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("Tatooine");
+		this.setBiomeName(LangUtils.translate("tatooine"));
 
 		this.enableRain = false;
 		this.enableSnow = false;

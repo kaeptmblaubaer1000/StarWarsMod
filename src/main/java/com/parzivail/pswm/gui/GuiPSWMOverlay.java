@@ -12,6 +12,7 @@ import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -106,7 +107,7 @@ public class GuiPSWMOverlay extends Gui
 				y -= 22;
 			}
 
-			this.drawCenteredString(this.mc.fontRenderer, "FORCE XP: " + this.format.format(xp) + "/" + this.format.format(maxxp), 145, (r.getScaledHeight() - 15) * 2, guiColor);
+			this.drawCenteredString(this.mc.fontRenderer, LangUtils.translate("force.xp.0.1", this.format.format(xp), this.format.format(maxxp)), 145, (r.getScaledHeight() - 15) * 2, guiColor);
 			GL11.glPopMatrix();
 		}
 
@@ -119,10 +120,10 @@ public class GuiPSWMOverlay extends Gui
 			{
 
 				ArrayList<String> s = new ArrayList<>();
-				s.add(String.format("Block: %s (ID %s)", block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
-				s.add("Meta: " + this.mc.theWorld.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ));
+				s.add(String.format(LangUtils.translate("block.s.id.s"), block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
+				s.add(LangUtils.translate("meta.0", this.mc.theWorld.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ)));
 				TileEntity tileEntity = this.mc.theWorld.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
-				s.add("Tile: " + (tileEntity == null ? "None" : tileEntity.getClass().getName()));
+				s.add(LangUtils.translate("tile.0", tileEntity == null ? LangUtils.translate("none") : tileEntity.getClass().getName()));
 
 				boolean didChange = false;
 				if (block instanceof IDebugProvider)
@@ -136,7 +137,7 @@ public class GuiPSWMOverlay extends Gui
 
 				if (tileEntity instanceof TileEntityRotate && !didChange)
 				{
-					s.add("Rotate: " + ((TileEntityRotate)tileEntity).getFacing());
+					s.add(LangUtils.translate("rotate.0", ((TileEntityRotate)tileEntity).getFacing()));
 				}
 
 				GL11.glPushMatrix();
@@ -157,8 +158,8 @@ public class GuiPSWMOverlay extends Gui
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 
 			ArrayList<String> s = new ArrayList<>();
-			s.add(String.format("Entity: %s (eID %s)", mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
-			s.add(String.format("Class: %s", mop.entityHit.getClass().getName()));
+			s.add(String.format(LangUtils.translate("entity.s.eid.s"), mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
+			s.add(String.format(LangUtils.translate("class.s"), mop.entityHit.getClass().getName()));
 
 			if (mop.entityHit instanceof IDebugProvider)
 			{

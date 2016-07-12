@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -102,10 +103,10 @@ public class GuiHoloTable extends GuiScreen
 
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
-		this.drawString(this.mc.fontRenderer, "Holo Color", x - 33 + this.lColumn, y - 65, GLPalette.WHITE);
-		this.drawString(this.mc.fontRenderer, "Holo X Offset", x - 94 + this.rColumn, y, GLPalette.WHITE);
-		this.drawString(this.mc.fontRenderer, "Holo Y Offset", x - 18 + this.rColumn, y, GLPalette.WHITE);
-		this.drawString(this.mc.fontRenderer, "Holo Z Offset", x + 58 + this.rColumn, y, GLPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, LangUtils.translate("holo.color"), x - 33 + this.lColumn, y - 65, GLPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, LangUtils.translate("holo.x.offset"), x - 94 + this.rColumn, y, GLPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, LangUtils.translate("holo.y.offset"), x - 18 + this.rColumn, y, GLPalette.WHITE);
+		this.drawString(this.mc.fontRenderer, LangUtils.translate("holo.z.offset"), x + 58 + this.rColumn, y, GLPalette.WHITE);
 		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(offsetX), x - 60 + this.rColumn, y + 16, GLPalette.WHITE);
 		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(offsetY), x + 16 + this.rColumn, y + 16, GLPalette.WHITE);
 		this.drawCenteredString(this.mc.fontRenderer, String.valueOf(offsetZ), x + 91 + this.rColumn, y + 16, GLPalette.WHITE);
@@ -129,10 +130,10 @@ public class GuiHoloTable extends GuiScreen
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 
-		this.buttonBlack = new GuiButton(0, x - 30 + this.lColumn, y - 50, 40, 20, "Dark");
+		this.buttonBlack = new GuiButton(0, x - 30 + this.lColumn, y - 50, 40, 20, LangUtils.translate("dark"));
 		this.buttonList.add(this.buttonBlack);
 
-		this.buttonWhite = new GuiButton(1, x - 30 + this.lColumn, y - 28, 40, 20, "Light");
+		this.buttonWhite = new GuiButton(1, x - 30 + this.lColumn, y - 28, 40, 20, LangUtils.translate("light"));
 		this.buttonList.add(this.buttonWhite);
 
 		this.buttonOffsetYUp = new GuiButton(2, x - 18 + this.rColumn, y + 10, 20, 20, "<");
@@ -153,7 +154,7 @@ public class GuiHoloTable extends GuiScreen
 		this.buttonOffsetZDown = new GuiButton(7, x + 104 + this.rColumn, y + 10, 20, 20, ">");
 		this.buttonList.add(this.buttonOffsetZDown);
 
-		this.buttonRefresh = new GuiButton(8, x - 18 + this.rColumn, y + 48, 68, 20, "Refresh");
+		this.buttonRefresh = new GuiButton(8, x - 18 + this.rColumn, y + 48, 68, 20, LangUtils.translate("refresh"));
 		this.buttonList.add(this.buttonRefresh);
 		/*
 		 * if (keyCode == 1) { this.mc.displayGuiScreen((GuiScreen)null);

@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -40,8 +41,8 @@ public class BlockDeathStarDoor extends PBlockContainer implements IDebugProvide
 		if (tile instanceof TileEntityDeathStarDoor)
 		{
 			TileEntityDeathStarDoor t = (TileEntityDeathStarDoor)tile;
-			list.add("Moving: " + String.valueOf(t.isMoving));
-			list.add(t.isOpening ? "Opening" : "Closing");
+			list.add(LangUtils.translate("moving.0", String.valueOf(t.isMoving)));
+			list.add(t.isOpening ? LangUtils.translate("opening") : LangUtils.translate("closing"));
 			float l = t.progressTicks / (float)t.totalTicks;
 			list.add(String.valueOf((int)(l * 100f)) + "%");
 		}

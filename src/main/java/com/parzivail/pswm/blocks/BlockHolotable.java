@@ -8,6 +8,7 @@ import com.parzivail.pswm.tileentities.TileEntityHoloTableMedium;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableWar;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -55,10 +56,10 @@ public class BlockHolotable extends PBlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityHoloTableBase)
 		{
 			TileEntityHoloTableBase t = (TileEntityHoloTableBase)tile;
-			list.add(String.valueOf(t.getOffsetX()) + " X offset");
-			list.add(String.valueOf(t.getOffsetY()) + " Y offset");
-			list.add(String.valueOf(t.getOffsetZ()) + " Z offset");
-			list.add(String.valueOf(t.getSideLength()) + " side length");
+			list.add(LangUtils.translate("0.x.offset", String.valueOf(t.getOffsetX())));
+			list.add(LangUtils.translate("0.y.offset", String.valueOf(t.getOffsetY())));
+			list.add(LangUtils.translate("0.z.offset", String.valueOf(t.getOffsetZ())));
+			list.add(LangUtils.translate("0.side.length", String.valueOf(t.getSideLength())));
 		}
 
 		return list;

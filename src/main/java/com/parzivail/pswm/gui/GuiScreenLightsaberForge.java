@@ -81,13 +81,13 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		switch (l)
 		{
 			case 0:
-				listBOptions.get("bladeLength").displayString = "Blade Length: Short";
+				listBOptions.get("bladeLength").displayString = LangUtils.translate("blade.length.short");
 				break;
 			case 1:
-				listBOptions.get("bladeLength").displayString = "Blade Length: Medium";
+				listBOptions.get("bladeLength").displayString = LangUtils.translate("blade.length.medium");
 				break;
 			case 2:
-				listBOptions.get("bladeLength").displayString = "Blade Length: Long";
+				listBOptions.get("bladeLength").displayString = LangUtils.translate("blade.length.long");
 				break;
 			default:
 				break;
@@ -118,9 +118,9 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		boolean canGetDoubleBlade = ItemUtils.hasItems(player, ItemLightsaber.getItemsForDoubleBlade()) || player.capabilities.isCreativeMode;
 
 		int id = 0;
-		bTabHilts = new OutlineButton(id++, 10, 10, 40, 20, "Hilts", true);
-		bTabBlade = new OutlineButton(id++, 60, 10, 40, 20, "Blades", false);
-		bTabOptions = new OutlineButton(id++, 110, 10, 40, 20, "Options", false);
+		bTabHilts = new OutlineButton(id++, 10, 10, 40, 20, LangUtils.translate("hilts"), true);
+		bTabBlade = new OutlineButton(id++, 60, 10, 40, 20, LangUtils.translate("blades"), false);
+		bTabOptions = new OutlineButton(id++, 110, 10, 40, 20, LangUtils.translate("options"), false);
 
 		buttonList.add(bTabHilts);
 		buttonList.add(bTabBlade);
@@ -128,7 +128,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
-		bSave = new OutlineButton(id++, r.getScaledWidth() - 60, 10, 40, 20, "Save", false);
+		bSave = new OutlineButton(id++, r.getScaledWidth() - 60, 10, 40, 20, LangUtils.translate("save"), false);
 
 		buttonList.add(bSave);
 
@@ -138,7 +138,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		int x = 0;
 		int y = 0;
-		OutlineLabel canonLabel = new OutlineLabel(id++, x * 32 + 10, y * 32 + 41, "Presets");
+		OutlineLabel canonLabel = new OutlineLabel(id++, x * 32 + 10, y * 32 + 41, LangUtils.translate("presets"));
 		listBBlade.put("canonLabel", canonLabel);
 		buttonList.add(canonLabel);
 		canonLabel.visible = false;
@@ -216,7 +216,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		if (player.inventory.hasItemStack(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 10)) || player.capabilities.isCreativeMode)
 		{
 			y++;
-			OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 94, "Custom Color");
+			OutlineLabel custLabel = new OutlineLabel(id++, x * 32 + 10, y * 16 + 94, LangUtils.translate("custom.color"));
 			listBBlade.put("custLabel", custLabel);
 			buttonList.add(custLabel);
 			custLabel.visible = false;
@@ -242,29 +242,29 @@ public class GuiScreenLightsaberForge extends GuiScreen
 
 		x = 0;
 		y = 0;
-		OutlineButton bBladeToggle = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Blade", false);
+		OutlineButton bBladeToggle = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, LangUtils.translate("toggle.blade"), false);
 		bBladeToggle.visible = false;
 		bBladeToggle.enabled = flagAnyCrystals;
 		listBOptions.put("toggleBlade", bBladeToggle);
 		buttonList.add(bBladeToggle);
 		y++;
-		OutlineButton bHiltAlt = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Alt Texture", false);
+		OutlineButton bHiltAlt = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, LangUtils.translate("toggle.alt.texture"), false);
 		bHiltAlt.visible = false;
 		listBOptions.put("altTexture", bHiltAlt);
 		buttonList.add(bHiltAlt);
 		y++;
-		OutlineButton bBladeLength = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Blade Length", false);
+		OutlineButton bBladeLength = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, LangUtils.translate("blade.length"), false);
 		bBladeLength.visible = false;
 		listBOptions.put("bladeLength", bBladeLength);
 		buttonList.add(bBladeLength);
 		y++;
-		OutlineButton bBladeWaterproof = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Waterproof", false);
+		OutlineButton bBladeWaterproof = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, LangUtils.translate("toggle.waterproof"), false);
 		bBladeWaterproof.visible = false;
 		bBladeWaterproof.enabled = player.inventory.hasItem(StarWarsItems.apexSeal) || player.capabilities.isCreativeMode;
 		listBOptions.put("bladeWaterproof", bBladeWaterproof);
 		buttonList.add(bBladeWaterproof);
 		y++;
-		OutlineButton bBladeDistort = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, "Toggle Distortion", false);
+		OutlineButton bBladeDistort = new OutlineButton(id++, x * 32 + 10, y * 32 + 40, 140, 30, LangUtils.translate("toggle.distortion"), false);
 		bBladeDistort.visible = false;
 		listBOptions.put("bladeDistort", bBladeDistort);
 		buttonList.add(bBladeDistort);

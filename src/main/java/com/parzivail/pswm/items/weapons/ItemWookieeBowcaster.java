@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
 import com.parzivail.util.ui.KeyboardUtils;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,8 +37,8 @@ public class ItemWookieeBowcaster extends Item
 	{
 		if (KeyboardUtils.isShiftDown())
 		{
-			list.add(TextUtils.makeItalic("I ain't afraid of Wookiees,"));
-			list.add(TextUtils.makeItalic("It's their bowcasters that scare me"));
+			list.add(TextUtils.makeItalic(LangUtils.translate("bowcaster.tooltip1")));
+			list.add(TextUtils.makeItalic(LangUtils.translate("bowcaster.tooltip2")));
 		}
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));

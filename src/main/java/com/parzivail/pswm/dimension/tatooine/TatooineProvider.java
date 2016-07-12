@@ -3,6 +3,7 @@ package com.parzivail.pswm.dimension.tatooine;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.rendering.DrawTatooineSky;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.ChunkCoordinates;
@@ -13,7 +14,7 @@ import net.minecraftforge.client.IRenderHandler;
 
 public class TatooineProvider extends WorldProvider
 {
-	public static String dimName = "Tatooine";
+	public static String dimName = LangUtils.translate("tatooine");
 
 	@SideOnly(Side.CLIENT)
 	private IRenderHandler skyRenderer;

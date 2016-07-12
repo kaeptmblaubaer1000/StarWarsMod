@@ -2,6 +2,7 @@ package com.parzivail.pswm.items.weapons;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +25,7 @@ public class ItemGamorreanAx1 extends ItemSword
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add(TextUtils.makeItalic("What they lacked in subtlty, they more "));
-		list.add(TextUtils.makeItalic("than made up for in very damaging blows"));
+		list.add(TextUtils.makeItalic(LangUtils.translate("gam.tooltip1")));
+		list.add(TextUtils.makeItalic(LangUtils.translate("gam.tooltip2")));
 	}
 }

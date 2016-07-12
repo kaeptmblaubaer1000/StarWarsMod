@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.quest.IQuest;
 import com.parzivail.pswm.quest.NBTQuestTag;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -96,7 +97,7 @@ public class ItemQuestContainer extends Item
 
 			if (!StringUtils.isNullOrEmpty(s))
 			{
-				return s + "'s Quest Log";
+				return LangUtils.translate("0.s.quest.log", s);
 			}
 		}
 

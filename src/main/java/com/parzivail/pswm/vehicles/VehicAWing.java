@@ -3,6 +3,7 @@ package com.parzivail.pswm.vehicles;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +31,7 @@ public class VehicAWing extends VehicleAirBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return "RZ-1 A-Wing Interceptor";
+		return LangUtils.translate("rz.1.a.wing.interceptor");
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.hoth;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenHothGenerator;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -13,7 +14,7 @@ public class BiomeGenHoth extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("Hoth");
+		this.setBiomeName(LangUtils.translate("hoth"));
 
 		this.rootHeight = 0.1f;
 		this.heightVariation = 0.2f;

@@ -2,13 +2,13 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.mobs.ModelBanthaNew;
-import net.minecraft.client.renderer.entity.RenderCow;
+import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public class RenderBantha extends RenderCow
+public class RenderBantha extends RenderLiving
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/banthaNew.png");
 

@@ -2,6 +2,7 @@ package com.parzivail.pswm.items.lightsaber;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -32,13 +33,13 @@ public class ItemLightsaberCrystal extends Item
 	{
 		if (stack != null && stack.getItemDamage() == 10)
 		{
-			list.add("As you turn it in your hand, you notice");
-			list.add("it can produce many different colors...");
+			list.add(LangUtils.translate("sabercrystal.prism1"));
+			list.add(LangUtils.translate("sabercrystal.prism2"));
 		}
 		else if (stack != null && stack.getItemDamage() == 11)
 		{
-			list.add("You groan when you realize this isn't");
-			list.add("the full crystal, but merely a shard");
+			list.add(LangUtils.translate("sabercrystal.shard1"));
+			list.add(LangUtils.translate("sabercrystal.shard2"));
 		}
 	}
 

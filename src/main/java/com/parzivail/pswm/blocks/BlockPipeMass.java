@@ -6,6 +6,7 @@ import com.parzivail.pswm.tileentities.TileEntityPipeMass;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.block.TileEntityRotate;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -76,7 +77,7 @@ public class BlockPipeMass extends PBlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityRotate)
 		{
 			TileEntityPipeMass t = (TileEntityPipeMass)tile;
-			list.add("Facing: " + t.getFacing());
+			list.add(LangUtils.translate("facing.0", t.getFacing()));
 		}
 
 		return list;

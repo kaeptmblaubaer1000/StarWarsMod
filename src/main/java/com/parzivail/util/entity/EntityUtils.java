@@ -2,6 +2,7 @@ package com.parzivail.util.entity;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.EntityDroidBase;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
@@ -28,7 +29,7 @@ public class EntityUtils
 	 */
 	public static String getDroidSittingMessage(boolean isSitting)
 	{
-		return isSitting ? "Restrained" : "Unrestrained";
+		return isSitting ? LangUtils.translate("restrained") : LangUtils.translate("unrestrained");
 	}
 
 	/**
@@ -45,10 +46,10 @@ public class EntityUtils
 	 */
 	public static List<String> getRebelDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
-		list.add(droid.isTamed() ? "Owned" : "For Sale");
+		list.add(droid.isTamed() ? LangUtils.translate("owned") : LangUtils.translate("for.sale"));
 		if (droid.getOwner() != null)
-			list.add("Owner: " + droid.getOwner().getCommandSenderName());
-		list.add(droid.isSitting() ? "Restrained" : "Unrestrained");
+			list.add(LangUtils.translate("owner.0", droid.getOwner().getCommandSenderName()));
+		list.add(droid.isSitting() ? LangUtils.translate("restrained") : LangUtils.translate("unrestrained"));
 
 		return list;
 	}
@@ -67,10 +68,10 @@ public class EntityUtils
 	 */
 	public static List<String> getImperialDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
-		list.add(droid.isTamed() ? "Hacked" : "Employed");
+		list.add(droid.isTamed() ? LangUtils.translate("hacked") : LangUtils.translate("employed"));
 		if (droid.getOwner() != null)
 			list.add("Hacker: " + droid.getOwner().getCommandSenderName());
-		list.add(droid.isSitting() ? "Restrained" : "Unrestrained");
+		list.add(droid.isSitting() ? LangUtils.translate("restrained") : LangUtils.translate("unrestrained"));
 
 		return list;
 	}

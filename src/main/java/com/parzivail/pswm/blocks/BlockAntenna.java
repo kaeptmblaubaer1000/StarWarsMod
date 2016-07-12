@@ -7,6 +7,7 @@ import com.parzivail.pswm.items.ItemHydrospanner;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -48,9 +49,9 @@ public class BlockAntenna extends PBlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityAntenna)
 		{
 			TileEntityAntenna tile1 = (TileEntityAntenna)tile;
-			list.add(String.format("Facing: %s", tile1.getFacing()));
-			list.add(String.format("On: %s", tile1.getOn()));
-			list.add(String.format("Fixed: %s", tile1.getFixed()));
+			list.add(String.format(LangUtils.translate("facing") + ": %s", tile1.getFacing()));
+			list.add(String.format(LangUtils.translate("on") + ": %s", tile1.getOn()));
+			list.add(String.format(LangUtils.translate("fixed") + ": %s", tile1.getFixed()));
 		}
 
 		return list;

@@ -10,6 +10,7 @@ import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipAstroDetails;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,8 +46,8 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
-		list.add(String.format("Has astro: %s", getHasAstro()));
-		list.add(String.format("Astro type: %s", getAstroType()));
+		list.add(String.format(LangUtils.translate("has.astro.s"), getHasAstro()));
+		list.add(String.format(LangUtils.translate("astro.type.s"), getAstroType()));
 		return list;
 	}
 
@@ -67,7 +68,7 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return "T-65B X-Wing Starfighter";
+		return LangUtils.translate("t.65b.x.wing.starfighter");
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.ilum;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -13,7 +14,7 @@ public class BiomeGenIlum extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("Ilum");
+		this.setBiomeName(LangUtils.translate("ilum"));
 
 		this.temperature = 0;
 		this.rainfall = 1;

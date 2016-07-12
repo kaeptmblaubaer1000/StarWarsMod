@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityLightsaberForge;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -85,7 +86,7 @@ public class BlockLightsaberForge extends PBlockContainer implements IDebugProvi
 		if (tile instanceof TileEntityLightsaberForge)
 		{
 			TileEntityLightsaberForge t = (TileEntityLightsaberForge)tile;
-			list.add("Facing: " + t.getFacing());
+			list.add(LangUtils.translate("facing.0", t.getFacing()));
 		}
 
 		return list;

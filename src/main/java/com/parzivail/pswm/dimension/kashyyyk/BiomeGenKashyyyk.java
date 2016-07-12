@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.kashyyyk;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenMegaKashyyykJungle;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -15,7 +16,7 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("Kashyyyk");
+		this.setBiomeName(LangUtils.translate("kashyyyk"));
 
 		this.enableRain = true;
 		this.enableSnow = false;

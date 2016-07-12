@@ -10,8 +10,11 @@ public class LangUtils
 	 * @param input The string to format
 	 * @return The formatted string
 	 */
-	public static String translate(String input)
+	public static String translate(String input, Object... args)
 	{
-		return I18n.format(input, new Object[0]);
+		//Lumberjack.log("input: " + input);
+		//Lumberjack.log("args: " + args.length);
+		//Lumberjack.log("trans: " + I18n.format(input).replaceAll("\\{\\d+\\}", "%s"));
+		return I18n.format(input, args).replace("Format error: ", "");
 	}
 }

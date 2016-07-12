@@ -2,6 +2,7 @@ package com.parzivail.pswm.items.weapons;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,7 @@ public class ItemGaffiStick extends ItemSword
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		list.add(TextUtils.makeItalic("Whoever has two hands can hold a gaderffi."));
+		list.add(TextUtils.makeItalic(LangUtils.translate("gaffi.tooltip")));
 	}
 
 	@Override

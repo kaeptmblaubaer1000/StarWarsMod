@@ -3,7 +3,7 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
-import com.parzivail.pswm.dimension.yavin.TradeRoute;
+import com.parzivail.pswm.dimension.TradeRoute;
 import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.models.ModelPlanetCube;
 import com.parzivail.pswm.models.vehicles.*;
@@ -302,12 +302,12 @@ public class GuiScreenHyperdrive extends GuiScreen
 			if (qlog != null)
 				if (zoomPlanet != null && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()))
 				{
-					buttonEatHyperdrive.displayString = "Course Plotted";
+					buttonEatHyperdrive.displayString = LangUtils.translate("course.plotted");
 					buttonEatHyperdrive.selected = true;
 				}
 				else
 				{
-					buttonEatHyperdrive.displayString = "Program NavCom";
+					buttonEatHyperdrive.displayString = LangUtils.translate("program.navcom");
 					buttonEatHyperdrive.selected = false;
 				}
 			else
@@ -401,12 +401,12 @@ public class GuiScreenHyperdrive extends GuiScreen
 		{
 			GL11.glPushMatrix();
 			GL11.glScalef(0.5f, 0.5f, 1);
-			StarWarsMod.mc.fontRenderer.drawString("Deep Core", (int)cX * 2 - 125, (int)cY * 2 - 44, GLPalette.BLACK);
-			StarWarsMod.mc.fontRenderer.drawString("Core", (int)cX * 2 - 111, (int)cY * 2 + 12, GLPalette.DARK_GREY);
-			StarWarsMod.mc.fontRenderer.drawString("Colonies", (int)cX * 2 - 105, (int)cY * 2 + 45, GLPalette.GREY);
-			StarWarsMod.mc.fontRenderer.drawString("Inner Rim", (int)cX * 2 - 98, (int)cY * 2 + 85, GLPalette.GREY);
-			StarWarsMod.mc.fontRenderer.drawString("Mid Rim", (int)cX * 2 - 88, (int)cY * 2 + 125, GLPalette.OFF_WHITE);
-			StarWarsMod.mc.fontRenderer.drawString("Outer Rim", (int)cX * 2 - 78, (int)cY * 2 + 165, GLPalette.WHITE);
+			StarWarsMod.mc.fontRenderer.drawString(LangUtils.translate("deep.core"), (int)cX * 2 - 125, (int)cY * 2 - 44, GLPalette.BLACK);
+			StarWarsMod.mc.fontRenderer.drawString(LangUtils.translate("core"), (int)cX * 2 - 111, (int)cY * 2 + 12, GLPalette.DARK_GREY);
+			StarWarsMod.mc.fontRenderer.drawString(LangUtils.translate("colonies"), (int)cX * 2 - 105, (int)cY * 2 + 45, GLPalette.GREY);
+			StarWarsMod.mc.fontRenderer.drawString(LangUtils.translate("inner.rim"), (int)cX * 2 - 98, (int)cY * 2 + 85, GLPalette.GREY);
+			StarWarsMod.mc.fontRenderer.drawString(LangUtils.translate("mid.rim"), (int)cX * 2 - 88, (int)cY * 2 + 125, GLPalette.OFF_WHITE);
+			StarWarsMod.mc.fontRenderer.drawString(LangUtils.translate("outer.rim"), (int)cX * 2 - 78, (int)cY * 2 + 165, GLPalette.WHITE);
 			GL11.glPopMatrix();
 		}
 
@@ -467,34 +467,34 @@ public class GuiScreenHyperdrive extends GuiScreen
 				color = GLPalette.BRIGHT_RED;
 			else if (planet.getAffiliation().equals(Resources.allegianceRebel) || planet.getAffiliation().equals(Resources.allegianceJedi))
 				color = GLPalette.BRIGHT_BLUE;
-			String aff = ("Affiliation: " + planet.getAffiliation());
+			String aff = (LangUtils.translate("affiliation.0", planet.getAffiliation()));
 			StarWarsMod.mc.fontRenderer.drawString(aff.substring(0, (int)MathUtils.lerp(0, aff.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, color);
 
 			y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
 			int ny = y;
-			String headerTerrain = "Primary Terrain:";
+			String headerTerrain = LangUtils.translate("primary.terrain");
 			StarWarsMod.mc.fontRenderer.drawString(headerTerrain.substring(0, (int)MathUtils.lerp(0, headerTerrain.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getTerrain())
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
-			String suns = "Suns: " + planet.getSuns();
+			String suns = LangUtils.translate("suns.0", planet.getSuns());
 			StarWarsMod.mc.fontRenderer.drawString(suns.substring(0, (int)MathUtils.lerp(0, suns.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 
-			String moons = "Moons: " + planet.getMoons();
+			String moons = LangUtils.translate("moons.0", planet.getMoons());
 			StarWarsMod.mc.fontRenderer.drawString(moons.substring(0, (int)MathUtils.lerp(0, moons.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny + StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
 			ny = y;
 
-			String mineralHeader = "Minerals: ";
+			String mineralHeader = LangUtils.translate("minerals");
 			StarWarsMod.mc.fontRenderer.drawString(mineralHeader.substring(0, (int)MathUtils.lerp(0, mineralHeader.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 380, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getResources())
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 390, ny += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 
-			String nativeSpecies = "Inhabiting Species:";
+			String nativeSpecies = LangUtils.translate("inhabiting.species");
 			StarWarsMod.mc.fontRenderer.drawString(nativeSpecies.substring(0, (int)MathUtils.lerp(0, nativeSpecies.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getNativeSpecies())
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);

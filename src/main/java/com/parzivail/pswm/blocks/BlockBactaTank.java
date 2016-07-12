@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityBactaTank;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -41,8 +42,8 @@ public class BlockBactaTank extends PBlockContainer implements IDebugProvider
 			TileEntityBactaTank t = (TileEntityBactaTank)tile;
 			if (t.getPlayerInside() != null)
 			{
-				list.add(t.getPlayerInside().getCommandSenderName() + " inside");
-				list.add(String.valueOf(t.getTicksInside()) + " ticks inside");
+				list.add(LangUtils.translate("0.inside", t.getPlayerInside().getCommandSenderName()));
+				list.add(LangUtils.translate("0.ticks.inside", String.valueOf(t.getTicksInside())));
 			}
 			else
 				list.add("No ship inside");

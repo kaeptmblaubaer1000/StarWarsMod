@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHyperdrive;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,7 +29,7 @@ public class ItemHyperdriveIlum extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add(TextUtils.makeItalic("Your ticket to the galaxy"));
+		list.add(TextUtils.makeItalic(LangUtils.translate("your.ticket.to.the.galaxy")));
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -68,11 +69,11 @@ public class ItemBinoculars extends Item
 		if (stack.stackTagCompound != null && stack.getItem() instanceof ItemBinoculars)
 		{
 			int zoom = getZoom(stack);
-			list.add("Zoom Factor: " + zoom + "x");
+			list.add(LangUtils.translate("zoom.factor.0.x", zoom));
 			boolean enabled = getEnabled(stack);
-			list.add("Enabled: " + (enabled ? "Yes" : "No"));
-			list.add("Sneak-Use to enable");
-			list.add("Use while enabled to change zoom");
+			list.add(LangUtils.translate("enabled.0", enabled ? LangUtils.translate("yes") : LangUtils.translate("no")));
+			list.add(LangUtils.translate("sneak.use.to.enable"));
+			list.add(LangUtils.translate("use.while.enabled.to.change.zoom"));
 		}
 	}
 

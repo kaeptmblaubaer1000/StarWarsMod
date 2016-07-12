@@ -8,6 +8,7 @@ import com.parzivail.pswm.items.ItemSpawnAstromech2;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipAstroDetails;
 import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -91,7 +92,7 @@ public class VehicYWing extends VehicleAirBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return "BTL Y-Wing Starfighter";
+		return LangUtils.translate("btl.y.wing.starfighter");
 	}
 
 	@Override

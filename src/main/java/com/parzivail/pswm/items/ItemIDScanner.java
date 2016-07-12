@@ -3,6 +3,7 @@ package com.parzivail.pswm.items;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.IParziNPC;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -47,6 +48,6 @@ public class ItemIDScanner extends Item
 	@Override
 	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_)
 	{
-		p_77624_3_.add("Sneak-use to scan someone or something");
+		p_77624_3_.add(LangUtils.translate("sneak.use.to.scan.someone.or.something"));
 	}
 }

@@ -3,6 +3,7 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.client.GuiScrollingList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
@@ -306,7 +307,7 @@ public class GuiSlotPowerList extends GuiScrollingList
 		int c = isJedi ? (hasPower ? GLPalette.ANALOG_BLUE : GLPalette.BLUE) : (hasPower ? GLPalette.BRIGHT_RED : GLPalette.DARK_RED);
 		c = Arrays.asList(Cron.getBasicPowers()).contains(power.power.name) ? (hasPower ? GLPalette.BRIGHT_GREEN : GLPalette.MEDIUM_GREEN) : c;
 		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.localizedName, this.listWidth - 10), this.left + 3, var3 + 2, c);
-		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth("Level " + (power.power == null ? 0 : power.power.currentLevel), this.listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
+		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(LangUtils.translate("level.0", power.power == null ? 0 : power.power.currentLevel), this.listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
 	}
 
 	@Override

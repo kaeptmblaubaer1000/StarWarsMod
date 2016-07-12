@@ -1,6 +1,7 @@
 package com.parzivail.pswm.dimension.mustafar;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -12,7 +13,7 @@ public class BiomeGenMustafar extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("Mustafar");
+		this.setBiomeName(LangUtils.translate("mustafar"));
 
 		this.temperature = 1;
 		this.rainfall = 1;

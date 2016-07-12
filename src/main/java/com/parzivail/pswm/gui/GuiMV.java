@@ -2,6 +2,7 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.tileentities.TileEntityMV;
+import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -34,7 +35,7 @@ public class GuiMV extends GuiContainer
 		int percent = (int)((this.vaporator.progressTicks + 1F) / this.vaporator.totalTicks * 30.0F);
 		this.drawTexturedModalRect(k + 62, l + 58 - percent, 176, 30 - percent, 9, percent);
 
-		String s = "Moisture Vaporator";
+		String s = LangUtils.translate("moisture.vaporator");
 		this.fontRendererObj.drawString(s, k + this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, l + 6, 4210752);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), k + 8, l + 71, 4210752);
 	}

@@ -2,6 +2,7 @@ package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
@@ -28,7 +29,7 @@ public class VehicTIEBomber extends VehicleAirBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return "TIE/SA Bomber";
+		return LangUtils.translate("tie.sa.bomber");
 	}
 
 	@Override

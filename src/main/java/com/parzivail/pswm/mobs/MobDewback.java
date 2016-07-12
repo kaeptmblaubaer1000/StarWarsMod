@@ -2,6 +2,7 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -86,8 +87,8 @@ public class MobDewback extends EntityHorse
 		if (hasCustomNameTag())
 			return getCustomNameTag();
 		if (isChested())
-			return "Pack-Dewback";
-		return "Dewback";
+			return LangUtils.translate("pack.dewback");
+		return LangUtils.translate("dewback");
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
 import com.parzivail.pswm.utils.BlasterUtils;
 import com.parzivail.util.ui.KeyboardUtils;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -91,9 +92,9 @@ public class ItemBlasterHeavy extends Item
 	{
 		if (KeyboardUtils.isShiftDown())
 		{
-			list.add(TextUtils.makeItalic("The blaster rifle was the staple"));
-			list.add(TextUtils.makeItalic("infantry weapon since before the"));
-			list.add(TextUtils.makeItalic("formation of the Galactic Republic"));
+			list.add(TextUtils.makeItalic(LangUtils.translate("blaster.rifle1")));
+			list.add(TextUtils.makeItalic(LangUtils.translate("blaster.rifle2")));
+			list.add(TextUtils.makeItalic(LangUtils.translate("blaster.rifle3")));
 		}
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));

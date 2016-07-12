@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.endor;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.*;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
@@ -16,7 +17,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("The Forest Moon of Endor");
+		this.setBiomeName(LangUtils.translate("the.forest.moon.of.endor"));
 
 		this.enableRain = true;
 		this.enableSnow = false;

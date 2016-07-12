@@ -1,4 +1,4 @@
-package com.parzivail.pswm.dimension.yavin;
+package com.parzivail.pswm.dimension;
 
 import com.parzivail.util.math.FPoint;
 import com.parzivail.util.math.Spline2D;

@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -92,7 +93,7 @@ public class ItemSequelBlasterPistol extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		list.add(TextUtils.makeItalic("Used by First Order Stormtroopers or something"));
+		list.add(TextUtils.makeItalic(LangUtils.translate("blaster.firstOrder")));
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey("shotsLeft"))
 			list.add("Shots Remaining: " + stack.stackTagCompound.getInteger("shotsLeft"));
 	}

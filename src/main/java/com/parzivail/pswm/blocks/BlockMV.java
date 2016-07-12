@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -67,7 +68,7 @@ public class BlockMV extends PBlockContainer implements IDebugProvider
 			float l = vap.progressTicks / (float)vap.totalTicks;
 			list.add(String.valueOf((int)(l * 100f)) + "%");
 			if (vap.getStackInSlot(0) != null)
-				list.add(String.valueOf(vap.getStackInSlot(0).stackSize) + " droplets");
+				list.add(LangUtils.translate("0.droplets", String.valueOf(vap.getStackInSlot(0).stackSize)));
 		}
 
 		return list;

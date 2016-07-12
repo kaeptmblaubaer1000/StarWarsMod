@@ -3,6 +3,7 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityVillager;
@@ -20,7 +21,7 @@ public class MobBith extends EntityVillager implements IParziNPC
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
 	private String[] types = { "bith" };
-	private String[] officialNames = { "Bith" };
+	private String[] officialNames = { LangUtils.translate("bith") };
 	private float baseRarity = 1.0F;
 	private DataWatcher dw;
 	private int bithsNear = 0;

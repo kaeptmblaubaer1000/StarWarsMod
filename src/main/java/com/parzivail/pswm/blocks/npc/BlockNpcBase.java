@@ -7,6 +7,7 @@ import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -57,8 +58,8 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 		{
 			TileEntityStaticNpc t = (TileEntityStaticNpc)tile;
 			list.add(t.getId());
-			list.add(String.format("Facing: %s", t.getFacing()));
-			list.add(String.format("Locked: %s", t.getLocked()));
+			list.add(String.format(LangUtils.translate("facing") + ": %s", t.getFacing()));
+			list.add(String.format(LangUtils.translate("locked") + ": %s", t.getLocked()));
 		}
 
 		return list;

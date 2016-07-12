@@ -3,6 +3,7 @@ package com.parzivail.pswm.dimension.space;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.asteroid.*;
 import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.ui.LangUtils;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -15,7 +16,7 @@ public class BiomeGenSpace extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName("Space");
+		this.setBiomeName(LangUtils.translate("space"));
 
 		this.enableRain = false;
 		this.enableSnow = false;

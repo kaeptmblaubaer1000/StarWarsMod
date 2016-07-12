@@ -2,6 +2,7 @@ package com.parzivail.pswm.items.weapons;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,8 +25,8 @@ public class ItemVibroLance extends ItemSword
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
 	{
-		list.add(TextUtils.makeItalic("Kinda like a lance, but there's"));
-		list.add(TextUtils.makeItalic("something about it we don't quite"));
-		list.add(TextUtils.makeItalic("understand..."));
+		list.add(TextUtils.makeItalic(LangUtils.translate("lance.tooltip1")));
+		list.add(TextUtils.makeItalic(LangUtils.translate("lance.tooltip2")));
+		list.add(TextUtils.makeItalic(LangUtils.translate("lance.tooltip3")));
 	}
 }
