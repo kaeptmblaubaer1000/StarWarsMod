@@ -43,9 +43,20 @@ public class RenderHelper
 	public static void renderEntity(Entity el, float partialTicks)
 	{
 		GL11.glPushMatrix();
-		Render render = RenderManager.instance.getEntityRenderObject(el);
+		Render render = getEntityClassRenderObject(el.getClass());
 		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
 		GL11.glPopMatrix();
+	}
+
+	private static Render getEntityClassRenderObject(Class par1Class)
+	{
+		Render render = (Render)RenderManager.instance.entityRenderMap.get(par1Class);
+		if (render == null && par1Class != Entity.class)
+		{
+			render = getEntityClassRenderObject(par1Class.getSuperclass());
+		}
+
+		return render;
 	}
 
 	/**

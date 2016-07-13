@@ -353,15 +353,15 @@ public class ClientEventHandler
 							GL11.glTranslatef(0, 0.27f, 0);
 							break;
 						case "vader2":
-							GLPZ.glScalef(1.2f);
+							P3D.glScalef(1.2f);
 							GL11.glTranslatef(0, 0.1f, 0);
 							break;
 						case "luke1":
-							GLPZ.glScalef(1.1f);
+							P3D.glScalef(1.1f);
 							GL11.glTranslatef(0, 0.2f, 0);
 							break;
 						case "luke2":
-							GLPZ.glScalef(1.1f);
+							P3D.glScalef(1.1f);
 							GL11.glTranslatef(0, 0.25f, 0);
 							break;
 						case "crossguard":
@@ -391,12 +391,12 @@ public class ClientEventHandler
 							GL11.glScalef(1.1f, 1.1f, 1.1f);
 							break;
 						case "doubleSith":
-							GLPZ.glScalef(1.4f);
+							P3D.glScalef(1.4f);
 							GL11.glTranslatef(-0.02f, -0.7f, 0.065f);
 							GL11.glRotatef(-90, 0, 1, 0);
 							break;
 						case "maul":
-							GLPZ.glScalef(0.95f);
+							P3D.glScalef(0.95f);
 							GL11.glTranslatef(0, -0.45f, 0.05f);
 							break;
 					}
@@ -457,11 +457,11 @@ public class ClientEventHandler
 				// level up!
 				event.entityPlayer.playSound("random.levelup", 1, 1);
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1));
-				event.entityPlayer.addChatMessage(new ChatComponentText("[Holocron] Level Up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(Cron.getLevel(holocron) / Cron.POINTS_PER_LEVEL), Cron.getPoints(holocron))));
+				event.entityPlayer.addChatMessage(new ChatComponentText(LangUtils.translate("holocron.level.up.you.gained.an.upgrade.point")));
+				event.entityPlayer.addChatMessage(new ChatComponentText(String.format(LangUtils.translate("holocron.you.are.now.level.s.and.have.s.upgrade.points"), (int)Math.floor(Cron.getLevel(holocron) / Cron.POINTS_PER_LEVEL), Cron.getPoints(holocron))));
 				if (Math.floor(newLevels / Cron.POINTS_PER_LEVEL) == 35)
 				{
-					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
+					event.entityPlayer.addChatMessage(new ChatComponentText(String.format(LangUtils.translate("holocron.s"), TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
 					if (event.entityPlayer.worldObj.isRemote)
 						event.entityPlayer.openGui(StarWarsMod.instance, Resources.GUI_JEDI_SITH, null, 0, 0, 0);
 				}

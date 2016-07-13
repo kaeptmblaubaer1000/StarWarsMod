@@ -6,7 +6,7 @@ import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.math.MathUtils;
-import com.parzivail.util.ui.GLPZ;
+import com.parzivail.util.ui.P3D;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -84,7 +84,7 @@ public class GuiIDScanner extends GuiScreen
 			GL11.glPushMatrix();
 			int width = FontManager.aurebesh.getStringWidth(parziNPC.getName());
 			FontManager.aurebesh.drawString(parziNPC.getName().substring(0, (int)(parziNPC.getName().length() * (strPos / 100f))), (r.getScaledWidth() - width) / 2, (r.getScaledHeight() - 130) / 2, textColor);
-			GLPZ.glScalef(0.5f);
+			P3D.glScalef(0.5f);
 			FontManager.aurebesh.drawString(parziNPC.getSpecies().substring(0, (int)(parziNPC.getSpecies().length() * (strPos / 100f))), r.getScaledWidth() + 2, r.getScaledHeight() - 85, textColor);
 			FontManager.aurebesh.drawString(parziNPC.getAllegiance().substring(0, (int)(parziNPC.getAllegiance().length() * (strPos / 100f))), r.getScaledWidth() + 2, r.getScaledHeight() - 65, textColor);
 			FontManager.aurebesh.drawString(parziNPC.getJob().substring(0, (int)(parziNPC.getJob().length() * (strPos / 100f))), r.getScaledWidth() + 2, r.getScaledHeight() - 45, textColor);
@@ -93,7 +93,7 @@ public class GuiIDScanner extends GuiScreen
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
 			GL11.glTranslatef(r.getScaledWidth() / 2 - 20, r.getScaledHeight() / 2 - 3, 10);
-			GLPZ.glScalef(25f);
+			P3D.glScalef(25f);
 			GL11.glRotatef(scanned.getRotationYawHead(), 0, 1, 0);
 			GL11.glScalef(1, -1, 1);
 			float old = RendererLivingEntity.NAME_TAG_RANGE;

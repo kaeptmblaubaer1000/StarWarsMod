@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ModelPlanetCube;
 import com.parzivail.pswm.models.blocks.ModelHyperdriveBlock;
 import com.parzivail.pswm.tileentities.TileEntityHyperdrive;
-import com.parzivail.util.ui.GLPZ;
+import com.parzivail.util.ui.P3D;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -47,13 +47,13 @@ public class RenderHyperdrive extends TileEntitySpecialRenderer
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		GL11.glTranslated(x + 0.5f, y + 1.5f, z + 0.5f);
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
-		GLPZ.glScalef(1.25f);
+		P3D.glScalef(1.25f);
 		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		int dim = te.getWorldObj().provider.dimensionId;
 		if (Resources.planetTextures.containsKey(dim))
 		{
 			GL11.glTranslated(0, -0.5, 0);
-			GLPZ.glScalef(0.4f);
+			P3D.glScalef(0.4f);
 			GL11.glTranslatef(0, MathHelper.sin((float)Math.toRadians(((TileEntityHyperdrive)te).getTicks())) / 10f, 0);
 			GL11.glRotatef(((TileEntityHyperdrive)te).getTicks(), 0, 1, 0);
 			Minecraft.getMinecraft().renderEngine.bindTexture(Resources.planetTextures.get(dim));

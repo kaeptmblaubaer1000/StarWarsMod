@@ -5,8 +5,8 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.P3D;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -61,7 +61,7 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			GL11.glPushMatrix();
 
-			GLPZ.glScalef(0.05f);
+			P3D.glScalef(0.05f);
 
 			GL11.glTranslatef(0, MathHelper.sin(staticNpc.getInternalEntity().ticksExisted / 5f), 0);
 

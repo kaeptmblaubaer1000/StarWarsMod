@@ -101,16 +101,16 @@ public class GuiScreenJediRobes extends GuiScreen
 		this.powerList.drawScreen(p_571_1_, p_571_2_, p_571_3_);
 		int offset = (this.listWidth + this.width) / 2;
 		int y = 5;
-		this.drawCenteredString(this.fontRendererObj, String.format(LangUtils.translate("level.s.s"), (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL), Cron.getTitle(Cron.getSide(this.stack), (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL))) + TextUtils.addEffect(this.player.getCommandSenderName(), Cron.getSide(this.stack).equals(Cron.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
-		this.drawCenteredString(this.fontRendererObj, String.format(LangUtils.translate("s.available.upgrade.points"), this.points), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, LangUtils.translate("level.s.s", (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL), Cron.getTitle(Cron.getSide(this.stack), (int)Math.floor(Cron.getLevel(this.stack) / Cron.POINTS_PER_LEVEL))) + TextUtils.addEffect(" " + this.player.getCommandSenderName(), Cron.getSide(this.stack).equals(Cron.SIDE_JEDI) ? TextEffects.COLOR_BLUE : TextEffects.COLOR_DARK_RED), offset, y += 10, 0xFFFFFF);
+		this.drawCenteredString(this.fontRendererObj, LangUtils.translate("s.available.upgrade.points", this.points), offset, y += 10, 0xFFFFFF);
 		y += 10;
 		if (this.selectedPower != null)
 		{
 			GL11.glEnable(GL11.GL_BLEND);
 			this.drawCenteredString(this.fontRendererObj, TextUtils.makeUnderline(this.selectedPower.localizedName), offset, y += 10, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format(LangUtils.translate("current.level.s"), this.selectedPower.power == null ? 0 : this.selectedPower.power.currentLevel), offset, y += 10, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format(LangUtils.translate("xp.use.s"), this.selectedPower.power == null ? 0 : this.selectedPower.power.getCost()), offset, y += 10, 0xFFFFFF);
-			this.drawCenteredString(this.fontRendererObj, String.format(LangUtils.translate("recharge.time.s.seconds"), this.selectedPower.power == null ? 0 : this.selectedPower.power.rechargeTime / 40f), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, LangUtils.translate("current.level.s", this.selectedPower.power == null ? 0 : this.selectedPower.power.currentLevel), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, LangUtils.translate("xp.use.s", this.selectedPower.power == null ? 0 : this.selectedPower.power.getCost()), offset, y += 10, 0xFFFFFF);
+			this.drawCenteredString(this.fontRendererObj, LangUtils.translate("recharge.time.s.seconds", this.selectedPower.power == null ? 0 : this.selectedPower.power.rechargeTime / 40f), offset, y += 10, 0xFFFFFF);
 			this.drawCenteredString(this.fontRendererObj, LangUtils.translate("description.and.use"), offset, y += 10, 0xDDDDDD);
 			this.fontRendererObj.drawSplitString(TextUtils.makeItalic(this.selectedPower.localizedDesc), offset - 125, y + 20, 250, 0xDDDDDD);
 			GL11.glDisable(GL11.GL_BLEND);

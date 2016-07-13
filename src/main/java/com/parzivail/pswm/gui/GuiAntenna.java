@@ -4,8 +4,8 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.ui.ConsoleKnobRange;
 import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.P3D;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -170,7 +170,7 @@ public class GuiAntenna extends GuiScreen
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		RenderHelper.enableStandardItemLighting();
 		GL11.glTranslatef(this.w / 2f, this.h / 2f + 50, 200);
-		GLPZ.glScalef(25);
+		P3D.glScalef(25);
 		GL11.glRotatef(sliderRX.getValue(), 1, 0, 0);
 		GL11.glRotatef(sliderRY.getValue(), 0, 1, 0);
 		GL11.glRotatef(sliderRZ.getValue(), 0, 0, 1);
@@ -184,7 +184,7 @@ public class GuiAntenna extends GuiScreen
 				GL11.glPushMatrix();
 
 				GL11.glScalef(1, -1, 1);
-				GLPZ.glScalef(scale);
+				P3D.glScalef(scale);
 				GL11.glTranslated(entity.posX - antenna.xCoord, entity.posY - antenna.yCoord, entity.posZ - antenna.zCoord);
 				GL11.glTranslatef(-1, 0, -1);
 				GL11.glColor4f(1, 1, 1, 1);
@@ -201,7 +201,7 @@ public class GuiAntenna extends GuiScreen
 			Block b;
 
 			GL11.glScalef(1, -1, 1);
-			GLPZ.glScalef(scale);
+			P3D.glScalef(scale);
 			GL11.glColor4f(1, 1, 1, 1);
 			for (int x = -blocks; x < blocks; x++)
 				for (int y = -blocks / 2; y < blocks / 2; y++)

@@ -132,7 +132,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glTranslatef(1.9f, -1f, 180);
 			GL11.glScalef(0.3f, 0.3f, 0.3f);
 			if ((zoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(zoomPlanet.getName())) || (oldZoomPlanet != null && PlanetInformation.getPlanet(outlineButton.displayString).getName().equalsIgnoreCase(oldZoomPlanet.getName())))
-				GLPZ.glScalef((animationZoom.getTick() + 2) / 2f);
+				P3D.glScalef((animationZoom.getTick() + 2) / 2f);
 			GL11.glRotatef(-30, 1, 0, 0);
 			GL11.glRotatef(((System.currentTimeMillis() + PlanetInformation.getPlanet(outlineButton.displayString).getName().hashCode()) / 50) % 360, 0, 1, 0);
 		};
@@ -360,7 +360,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		{
 			GL11.glPushMatrix();
 			GL11.glTranslatef(cX - 170, cY - 165, 0);
-			GLPZ.glScalef(1.3f);
+			P3D.glScalef(1.3f);
 			this.drawGalaxy();
 			GL11.glPopMatrix();
 		}
@@ -542,7 +542,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			{
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GLPZ.glScalef(0.15f);
+				P3D.glScalef(0.15f);
 				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glRotatef(ship.angle / 10f, 0, 0, 1);
 				GL11.glRotatef(ship.angle, 0, 1, 0);
@@ -551,12 +551,12 @@ public class GuiScreenHyperdrive extends GuiScreen
 				{
 					case XWING:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderXWing.texture);
-						GLPZ.glScalef(0.8f);
+						P3D.glScalef(0.8f);
 						this.modelXWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					case YWING:
 						StarWarsMod.mc.renderEngine.bindTexture(RenderYWing.texture);
-						GLPZ.glScalef(0.8f);
+						P3D.glScalef(0.8f);
 						this.modelYWing.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 						break;
 					case TIE:

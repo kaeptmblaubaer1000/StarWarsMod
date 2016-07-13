@@ -5,8 +5,8 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.P3D;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -114,7 +114,7 @@ public class GuiQuestNpc extends GuiScreen
 			GL11.glEnable(GL11.GL_LIGHTING);
 			RenderHelper.enableGUIStandardItemLighting();
 			GL11.glTranslatef(50, r.getScaledHeight() / 2f + 48, 10);
-			GLPZ.glScalef(40f);
+			P3D.glScalef(40f);
 			GL11.glRotatef(questGiver.getInternalEntity().getRotationYawHead(), 0, 1, 0);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 0, 1, 0);
@@ -129,7 +129,7 @@ public class GuiQuestNpc extends GuiScreen
 
 		GL11.glPushMatrix();
 		GL11.glTranslatef(r.getScaledWidth() - 80, r.getScaledHeight() / 2f - 18, 10);
-		GLPZ.glScalef(3);
+		P3D.glScalef(3);
 		StarWarsMod.mc.renderEngine.bindTexture(swIcons);
 		String s = QuestNpcUtils.getNpcSide(questGiver.getId());
 		switch (s)

@@ -10,9 +10,9 @@ import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPZ;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.P3D;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -85,7 +85,7 @@ public class GuiPSWMOverlay extends Gui
 			GFX.renderOrderLogo(70, 6, isJedi);
 
 			GL11.glPushMatrix();
-			GLPZ.glScalef(0.5f);
+			P3D.glScalef(0.5f);
 
 			PowerBase active;
 			if ((active = Cron.getActive(StarWarsMod.mc.thePlayer)) != null)
@@ -120,7 +120,7 @@ public class GuiPSWMOverlay extends Gui
 			{
 
 				ArrayList<String> s = new ArrayList<>();
-				s.add(String.format(LangUtils.translate("block.s.id.s"), block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
+				s.add(LangUtils.translate("block.s.id.s", block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
 				s.add(LangUtils.translate("meta.0", this.mc.theWorld.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ)));
 				TileEntity tileEntity = this.mc.theWorld.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
 				s.add(LangUtils.translate("tile.0", tileEntity == null ? LangUtils.translate("none") : tileEntity.getClass().getName()));
@@ -141,7 +141,7 @@ public class GuiPSWMOverlay extends Gui
 				}
 
 				GL11.glPushMatrix();
-				GLPZ.glScalef(0.5f);
+				P3D.glScalef(0.5f);
 
 				int y = 0;
 				for (String line : s)
@@ -158,8 +158,8 @@ public class GuiPSWMOverlay extends Gui
 			MovingObjectPosition mop = this.mc.objectMouseOver;
 
 			ArrayList<String> s = new ArrayList<>();
-			s.add(String.format(LangUtils.translate("entity.s.eid.s"), mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
-			s.add(String.format(LangUtils.translate("class.s"), mop.entityHit.getClass().getName()));
+			s.add(LangUtils.translate("entity.s.eid.s", mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
+			s.add(LangUtils.translate("class.s", mop.entityHit.getClass().getName()));
 
 			if (mop.entityHit instanceof IDebugProvider)
 			{
@@ -169,7 +169,7 @@ public class GuiPSWMOverlay extends Gui
 			}
 
 			GL11.glPushMatrix();
-			GLPZ.glScalef(0.5f);
+			P3D.glScalef(0.5f);
 
 			int y = 0;
 			for (String line : s)

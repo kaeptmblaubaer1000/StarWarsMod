@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.util.ui.GLPZ;
+import com.parzivail.util.ui.P3D;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -26,6 +26,6 @@ public class RenderDroidTrainingRemote extends RenderLiving
 	@Override
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
-		GLPZ.glScalef(0.3f);
+		P3D.glScalef(0.3f);
 	}
 }
