@@ -25,6 +25,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -350,6 +351,16 @@ public class StarWarsMod
 		proxy.registerRendering();
 
 		Lumberjack.info("=========== End Parzi's Star Wars Mod init() ===========");
+
+		for (Block block : GameData.getBlockRegistry().typeSafeIterable())
+		{
+			System.out.println(String.format("%s,%s", block.getUnlocalizedName(), Block.getIdFromBlock(block)));
+		}
+
+		for (Item item : GameData.getItemRegistry().typeSafeIterable())
+		{
+			System.out.println(String.format("%s,%s", item.getUnlocalizedName(), Item.getIdFromItem(item)));
+		}
 	}
 
 	@EventHandler

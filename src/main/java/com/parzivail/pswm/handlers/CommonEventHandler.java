@@ -29,17 +29,14 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -206,15 +203,6 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			for (Block block : GameData.getBlockRegistry().typeSafeIterable())
-			{
-				System.out.println(String.format("%s,%s", block.getUnlocalizedName(), Block.getIdFromBlock(block)));
-			}
-
-			for (Item item : GameData.getItemRegistry().typeSafeIterable())
-			{
-				System.out.println(String.format("%s,%s", item.getUnlocalizedName(), Item.getIdFromItem(item)));
-			}
 		}
 
 		if (KeybindRegistry.keyShipHoverMode.isPressed())
