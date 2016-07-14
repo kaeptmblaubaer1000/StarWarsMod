@@ -6,10 +6,10 @@ package com.parzivail.util.schematic;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.ui.Lumberjack;
-import net.minecraft.block.Block;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 
 import java.io.InputStream;
 
@@ -19,49 +19,43 @@ public class Schematic
 	public int width;
 	public int height;
 	public int length;
-	public int[] blocks;
-	public Block[] classBlocks;
-	public int[] metadata;
-	public byte[] addId;
+	public BlockInfo[] blocks;
 
 	public Schematic(String schematic)
 	{
 		try
 		{
 			Lumberjack.log("Loading schematic " + schematic);
-			InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/schematics/" + schematic);
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/schematics/" + schematic + ".schematic");
 			NBTTagCompound nbtdata = CompressedStreamTools.readCompressed(is);
 			width = nbtdata.getShort("Width");
 			height = nbtdata.getShort("Height");
 			length = nbtdata.getShort("Length");
 
 			byte[] _blocks = nbtdata.getByteArray("Blocks");
-			blocks = new int[_blocks.length];
-			for (int i = 0; i < _blocks.length; i++)
-				blocks[i] = _blocks[i];
 
-			byte[] _metadata = nbtdata.getByteArray("Data");
-			metadata = new int[_metadata.length];
-			for (int i = 0; i < _metadata.length; i++)
-				metadata[i] = _metadata[i];
+			byte[] metadata = nbtdata.getByteArray("Data");
 
-			addId = nbtdata.getByteArray("AddBlocks");
+			byte[] addId = nbtdata.getByteArray("AddBlocks");
 
-			classBlocks = new Block[_blocks.length];
+			blocks = new BlockInfo[_blocks.length];
 
-			for (int index = 0; index < blocks.length; index++)
+			for (int index = 0; index < _blocks.length; index++)
 			{
+				int n = _blocks[index];
 				if (index >> 1 < addId.length)
+				{
 					if ((index & 1) == 0)
-						blocks[index] = ((addId[index >> 1] & 0x0F) << 8) + blocks[index];
+						n = (((addId[index >> 1] & 0x0F) << 8) + _blocks[index]);
 					else
-						blocks[index] = ((addId[index >> 1] & 0xF0) << 4) + blocks[index];
-
-				classBlocks[index] = PBlockMap.idToBlock(blocks[index]);
+						n = (((addId[index >> 1] & 0xF0) << 4) + _blocks[index]);
+				}
+				blocks[index] = new BlockInfo(n, metadata[index]);
 			}
 
 			tileentities = nbtdata.getTagList("TileEntities", 10);
 			is.close();
+			Lumberjack.log("Loading SUCCESSFUL");
 		}
 		catch (Exception e)
 		{
@@ -70,23 +64,41 @@ public class Schematic
 		}
 	}
 
-	public int GetBlockMetadataAt(int x, int y, int z)
-	{
-		return metadata[(y * length + z) * width + x];
-	}
-
-	public NBTTagList GetTileEntities()
+	public NBTTagList getTileEntities()
 	{
 		return tileentities;
 	}
 
-	public Block GetBlockAt(int x, int y, int z)
+	public BlockInfo getBlockAt(int x, int y, int z)
 	{
-		return classBlocks[(y * length + z) * width + x];
+		//int i = (y * length + z) * width + x;
+		//return (i >= size()) ? null : blocks[i];
+		return blocks[(y * length + z) * width + x];
 	}
 
-	public int Size()
+	public int size()
 	{
 		return blocks.length;
+	}
+
+	public void spawn(World world, int chunkX, int spawnY, int chunkZ)
+	{
+		if (chunkX >= 0 && chunkX < width && chunkZ >= 0 && chunkZ < length)
+		{
+			int nX = Math.min(chunkX + 16, width - 1);
+			int nZ = Math.min(chunkZ + 16, length - 1);
+
+			for (int x = chunkX; x < nX; x++)
+				for (int z = chunkZ; z < nZ; z++)
+					for (int y = 0; y < height; y++)
+					{
+						BlockInfo bi = getBlockAt(x, y, z);
+
+						world.setBlock(x, y + spawnY, z, PBlockMap.idToBlock(bi.block), bi.metadata, 2);
+						world.setBlockMetadataWithNotify(x, y + spawnY, z, bi.metadata, 2);
+
+						// TODO: tile entities and entity spawns
+					}
+		}
 	}
 }

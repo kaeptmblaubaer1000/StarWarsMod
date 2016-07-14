@@ -2,7 +2,9 @@ package com.parzivail.pswm.dimension.dagobah;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
+import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -50,6 +52,8 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
+
+		structureY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 	{
 		//if (chunkX == 0 && chunkZ == 0)
 		//{
-		//	this.structureY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
+		//	this.structureY = ;
 		//	while (!(par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.grass || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.dirt || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.water))
 		//		this.structureY--;
 		//	new WorldGenYodaTree_0_0().generate(par1World, chunkX, this.structureY, chunkZ);
@@ -72,6 +76,8 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 		//	new WorldGenYodaTree_2_0().generate(par1World, chunkX, this.structureY, chunkZ);
 		//else if (chunkX == 64 && chunkZ == 32)
 		//	new WorldGenYodaTree_2_1().generate(par1World, chunkX, this.structureY, chunkZ);
+
+		StructureBank.yodaTree.spawn(par1World, chunkX, structureY, chunkZ);
 
 		if (chunkX >= 0 && chunkX <= 64 && chunkZ >= 0 && chunkZ <= 64)
 		{

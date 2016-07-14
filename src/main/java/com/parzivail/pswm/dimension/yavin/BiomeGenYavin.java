@@ -1,8 +1,8 @@
 package com.parzivail.pswm.dimension.yavin;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenYavinTempleRuins;
-import com.parzivail.util.schematic.Schematic;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class BiomeGenYavin extends BiomeGenPSWM
 {
-	private Schematic schematic = new Schematic("yavinTemple");
+	private static final int SPAWN_Y = 10;
 
 	public BiomeGenYavin(int biomeId)
 	{
@@ -76,10 +76,7 @@ public class BiomeGenYavin extends BiomeGenPSWM
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
 		}
 
-		if (chunkX < schematic.length && chunkZ < schematic.width)
-		{
-
-		}
+		StructureBank.yavinTemple.spawn(par1World, chunkX, SPAWN_Y, chunkZ);
 	}
 
 	@Override

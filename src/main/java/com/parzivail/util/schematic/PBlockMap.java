@@ -412,6 +412,6 @@ public class PBlockMap
 				return StarWarsMod.blockSensorSnowspeeder; // com.parzivail.pswm.blocks.BlockSensorEntity
 
 		}
-		return null;
+		return Block.getBlockById(id);
 	}
 }
