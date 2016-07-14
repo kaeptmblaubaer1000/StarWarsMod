@@ -191,7 +191,7 @@ public class P3D
 		return rgba;
 	}
 
-	public static void glScale(double scale)
+	public static void glScalef(double scale)
 	{
 		GL11.glScaled(scale, scale, scale);
 	}

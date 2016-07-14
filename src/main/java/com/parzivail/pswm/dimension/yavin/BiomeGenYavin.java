@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.yavin;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenYavinTempleRuins;
+import com.parzivail.util.schematic.Schematic;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -11,6 +12,8 @@ import java.util.Random;
 
 public class BiomeGenYavin extends BiomeGenPSWM
 {
+	private Schematic schematic = new Schematic("yavinTemple");
+
 	public BiomeGenYavin(int biomeId)
 	{
 		super(biomeId);
@@ -71,6 +74,11 @@ public class BiomeGenYavin extends BiomeGenPSWM
 			int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
 			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
+		}
+
+		if (chunkX < schematic.length && chunkZ < schematic.width)
+		{
+
 		}
 	}
 
