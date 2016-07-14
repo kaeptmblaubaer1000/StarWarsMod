@@ -6,9 +6,12 @@ package com.parzivail.util.schematic;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.ui.Lumberjack;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import java.io.InputStream;
@@ -76,6 +79,17 @@ public class Schematic
 		return blocks[(y * length + z) * width + x];
 	}
 
+	public NBTTagCompound getTileNbtAt(int x, int y, int z)
+	{
+		for (int i = 0; i < tileentities.tagCount(); i++)
+		{
+			NBTTagCompound tileEntity = tileentities.getCompoundTagAt(i);
+			if (tileEntity.getInteger("x") == x && tileEntity.getInteger("y") == y && tileEntity.getInteger("z") == z)
+				return tileEntity;
+		}
+		return null;
+	}
+
 	public int size()
 	{
 		return blocks.length;
@@ -94,10 +108,27 @@ public class Schematic
 					{
 						BlockInfo bi = getBlockAt(x, y, z);
 
-						world.setBlock(x, y + spawnY, z, PBlockMap.idToBlock(bi.block), bi.metadata, 2);
+						Block b = PBlockMap.idToBlock(bi.block);
+						world.setBlock(x, y + spawnY, z, b, bi.metadata, 2);
 						world.setBlockMetadataWithNotify(x, y + spawnY, z, bi.metadata, 2);
 
 						// TODO: tile entities and entity spawns
+
+						if (b instanceof ITileEntityProvider)
+						{
+							NBTTagCompound compound = getTileNbtAt(x, y, z);
+							if (compound != null)
+							{
+								TileEntity t = world.getTileEntity(x, y + spawnY, z);
+								compound.setInteger("x", x);
+								compound.setInteger("y", y + spawnY);
+								compound.setInteger("z", z);
+								if (t != null)
+								{
+									t.readFromNBT(compound);
+								}
+							}
+						}
 					}
 		}
 	}
