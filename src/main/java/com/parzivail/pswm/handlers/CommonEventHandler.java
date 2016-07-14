@@ -210,6 +210,7 @@ public class CommonEventHandler
 			{
 				System.out.println(String.format("%s,%s", block.getUnlocalizedName(), Block.getIdFromBlock(block)));
 			}
+
 			for (Item item : GameData.getItemRegistry().typeSafeIterable())
 			{
 				System.out.println(String.format("%s,%s", item.getUnlocalizedName(), Item.getIdFromItem(item)));
