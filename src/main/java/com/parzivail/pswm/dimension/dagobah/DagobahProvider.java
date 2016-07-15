@@ -2,7 +2,6 @@ package com.parzivail.pswm.dimension.dagobah;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.ChunkCoordinates;
@@ -14,7 +13,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 
 public class DagobahProvider extends WorldProvider
 {
-	public static String dimName = LangUtils.translate("dagobah");
+	public static String dimName = "Dagobah";
 
 	@Override
 	public float calculateCelestialAngle(long var1, float var3)

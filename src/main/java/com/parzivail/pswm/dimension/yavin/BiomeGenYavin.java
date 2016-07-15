@@ -3,7 +3,6 @@ package com.parzivail.pswm.dimension.yavin;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenYavinTempleRuins;
-import com.parzivail.util.ui.LangUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.*;
@@ -18,7 +17,7 @@ public class BiomeGenYavin extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName(LangUtils.translate("yavin.four"));
+		this.setBiomeName("Yavin Four");
 
 		this.enableRain = true;
 		this.enableSnow = false;

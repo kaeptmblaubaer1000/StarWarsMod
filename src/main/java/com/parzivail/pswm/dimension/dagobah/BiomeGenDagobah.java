@@ -5,7 +5,6 @@ import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
 import com.parzivail.util.math.MathUtils;
-import com.parzivail.util.ui.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -22,7 +21,7 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 	{
 		super(biomeId);
 
-		this.setBiomeName(LangUtils.translate("dagobah"));
+		this.setBiomeName("Dagobah");
 
 		this.enableRain = true;
 		this.enableSnow = false;
