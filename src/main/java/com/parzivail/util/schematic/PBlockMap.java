@@ -1,7 +1,9 @@
 package com.parzivail.util.schematic;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 
 /**
  * @author Colby
@@ -12,406 +14,409 @@ public class PBlockMap
 	{
 		switch (id)
 		{
-			case 165:
-				return StarWarsMod.blockMV; // com.parzivail.pswm.blocks.BlockMV
-
 			case 166:
-				return StarWarsMod.blockChromiumOre; // com.parzivail.pswm.blocks.ore.BlockChromiumOre
+				return StarWarsMod.blockMV; // moistureVaporator
 
 			case 167:
-				return StarWarsMod.blockTitaniumOre; // com.parzivail.pswm.blocks.ore.BlockTitaniumOre
+				return StarWarsMod.blockSensorXWing; // sensor-VehicXWing
 
 			case 168:
-				return StarWarsMod.blockTitaniumChromiumBlock; // com.parzivail.pswm.blocks.BlockTitaniumChromium
+				return StarWarsMod.blockSensorYWing; // sensor-VehicYWing
 
 			case 169:
-				return StarWarsMod.blockEndorBaseWall; // com.parzivail.pswm.blocks.BlockEndorBaseWall
+				return StarWarsMod.blockSensorAWing; // sensor-VehicAWing
+
+			case 176:
+				return StarWarsMod.blockSensorTIE; // sensor-VehicTIE
+
+			case 177:
+				return StarWarsMod.blockSensorTIEAdvanced; // sensor-VehicTIEAdvanced
 
 			case 178:
-				return StarWarsMod.blockEndorBaseWallStairs; // com.parzivail.pswm.blocks.BlockEndorBaseWallStairs
+				return StarWarsMod.blockSensorTIEBomber; // sensor-VehicTIEBomber
 
 			case 179:
-				return StarWarsMod.blockTatooineSand; // com.parzivail.pswm.blocks.BlockTatooineSand
+				return StarWarsMod.blockSensorTIEInterceptor; // sensor-VehicTIEInterceptor
 
 			case 180:
-				return StarWarsMod.blockTable; // com.parzivail.pswm.blocks.BlockTatooineTable
+				return StarWarsMod.blockSensorSnowspeeder; // sensor-VehicSnowspeeder
 
 			case 181:
-				return StarWarsMod.blockSpaceLamp; // com.parzivail.pswm.blocks.BlockSpaceLamp
+				return StarWarsMod.blockSensorSkyhopper; // sensor-VehicSkyhopper
 
 			case 182:
-				return StarWarsMod.blockTatooineSandstone; // com.parzivail.pswm.blocks.BlockTatooineSandstone
+				return StarWarsMod.blockSensorATST; // sensor-VehicATST
 
 			case 183:
-				return StarWarsMod.blockDagobahMud; // com.parzivail.pswm.blocks.BlockDagobahMud
+				return StarWarsMod.blockSensorLandspeeder; // sensor-VehicLandspeeder
+
+			case 184:
+				return StarWarsMod.blockSensorJakkuSpeeder; // sensor-VehicJakkuSpeeder
 
 			case 185:
-				return StarWarsMod.blockTable2; // com.parzivail.pswm.blocks.BlockMudTable
+				return StarWarsMod.blockSensorSpeederBike; // sensor-VehicSpeederBike
 
 			case 186:
-				return StarWarsMod.blockMudStairs; // com.parzivail.pswm.blocks.BlockMudStairs
+				return StarWarsMod.blockSensorHothSpeederBike; // sensor-VehicHothSpeederBike
 
 			case 187:
-				return StarWarsMod.blockHangingCauldron; // com.parzivail.pswm.blocks.BlockHangingCauldron
+				return StarWarsMod.blockSensorScootemaround; // sensor-VehicScootemaround
 
 			case 188:
-				return StarWarsMod.blockHangingBucket; // com.parzivail.pswm.blocks.BlockHangingBucket
+				return StarWarsMod.blockSensorScootemaroundHoth; // sensor-VehicScootemaroundHoth
 
 			case 189:
-				return StarWarsMod.blockBasket; // com.parzivail.pswm.blocks.BlockBasket
+				return StarWarsMod.blockAntenna; // antenna
 
 			case 190:
-				return StarWarsMod.blockDeathStarBlock; // com.parzivail.pswm.blocks.BlockDeathStar
+				return StarWarsMod.blockMovingLightSource; // movingLightSource
 
 			case 191:
-				return StarWarsMod.blockDeathStarLight; // com.parzivail.pswm.blocks.BlockDeathStarLight
+				return StarWarsMod.blockLightsaberForge; // lightsaberForge
 
 			case 192:
-				return StarWarsMod.blockDeathStarGlass; // com.parzivail.pswm.blocks.BlockDeathStarGlass
+				return StarWarsMod.blockCrystalCompressor; // crystalCompressor
+
+			case 193:
+				return StarWarsMod.blockHoloTable; // holoTable
 
 			case 194:
-				return StarWarsMod.blockDeathStarDoor; // com.parzivail.pswm.blocks.BlockDeathStarDoor
+				return StarWarsMod.blockFieldEmitter; // fieldEmitter
+
+			case 195:
+				return StarWarsMod.blockDeathStarDoor; // deathStarDoor
 
 			case 196:
-				return StarWarsMod.blockFieldEmitter; // com.parzivail.pswm.blocks.BlockFieldEmitter
+				return StarWarsMod.blockHangingCauldron; // cauldronHanging
+
+			case 197:
+				return StarWarsMod.blockHangingBucket; // bucketHanging
+
+			case 198:
+				return StarWarsMod.blockStaticNpc[0]; // staticNpc.welcometothegalacticempire
+
+			case 199:
+				return StarWarsMod.blockStaticNpc[1]; // staticNpc.thest
+
+			case 200:
+				return StarWarsMod.blockStaticNpc[2]; // staticNpc.maintenanceduty
+
+			case 201:
+				return StarWarsMod.blockStaticNpc[3]; // staticNpc.reconmission
+
+			case 202:
+				return StarWarsMod.blockStaticNpc[4]; // staticNpc.reconmission
+
+			case 203:
+				return StarWarsMod.blockStaticNpc[5]; // staticNpc.sandytroopers
+
+			case 204:
+				return StarWarsMod.blockStaticNpc[6]; // staticNpc.sandytroopers
+
+			case 205:
+				return StarWarsMod.blockStaticNpc[7]; // staticNpc.sandytroopers
+
+			case 206:
+				return StarWarsMod.blockStaticNpc[8]; // staticNpc.awretchedhiveofscumandvillainy
+
+			case 207:
+				return StarWarsMod.blockStaticNpc[9]; // staticNpc.therebelswilltrembleinfear
+
+			case 208:
+				return StarWarsMod.blockStaticNpc[10]; // staticNpc.therebelswilltrembleinfear
+
+			case 209:
+				return StarWarsMod.blockStaticNpc[11]; // staticNpc.therebelswilltrembleinfear
+
+			case 210:
+				return StarWarsMod.blockStaticNpc[12]; // staticNpc.routinemaintenance
+
+			case 211:
+				return StarWarsMod.blockStaticNpc[13]; // staticNpc.theimperialnavy
+
+			case 212:
+				return StarWarsMod.blockStaticNpc[14]; // staticNpc.theimperialnavy
+
+			case 213:
+				return StarWarsMod.blockStaticNpc[15]; // staticNpc.theimperialnavy
+
+			case 214:
+				return StarWarsMod.blockStaticNpc[16]; // staticNpc.bombingrun
+
+			case 215:
+				return StarWarsMod.blockStaticNpc[17]; // staticNpc.arealmission
+
+			case 216:
+				return StarWarsMod.blockStaticNpc[18]; // staticNpc.arealmission
+
+			case 217:
+				return StarWarsMod.blockStaticNpc[19]; // staticNpc.welcometotherepublicalliance
+
+			case 218:
+				return StarWarsMod.blockStaticNpc[20]; // staticNpc.enlisting
+
+			case 219:
+				return StarWarsMod.blockStaticNpc[21]; // staticNpc.targetpractice
+
+			case 220:
+				return StarWarsMod.blockStaticNpc[22]; // staticNpc.yourtickettothegalaxy
+
+			case 221:
+				return StarWarsMod.blockStaticNpc[23]; // staticNpc.shhhimhuntingwampa
+
+			case 222:
+				return StarWarsMod.blockStaticNpc[24]; // staticNpc.itsnobeggarscanyon
+
+			case 223:
+				return StarWarsMod.blockStaticNpc[25]; // staticNpc.thatsnomoon
+
+			case 224:
+				return StarWarsMod.blockStaticNpc[26]; // staticNpc.thatsnomoon
+
+			case 225:
+				return StarWarsMod.blockStaticNpc[27]; // staticNpc.meetingtheewoks
+
+			case 226:
+				return StarWarsMod.blockStaticNpc[28]; // staticNpc.redsquadron
+
+			case 227:
+				return StarWarsMod.blockStaticNpc[29]; // staticNpc.redsquadron
+
+			case 228:
+				return StarWarsMod.blockStaticNpc[30]; // staticNpc.redsquadron
+
+			case 229:
+				return StarWarsMod.blockStaticNpc[31]; // staticNpc.earningyourwings
+
+			case 230:
+				return StarWarsMod.blockStaticNpc[32]; // staticNpc.infiltration
+
+			case 231:
+				return StarWarsMod.blockStaticNpc[33]; // staticNpc.thejediorder
+
+			case 232:
+				return StarWarsMod.blockStaticNpc[34]; // staticNpc.thejediorder
+
+			case 233:
+				return StarWarsMod.blockStaticNpc[35]; // staticNpc.thelightsaber
+
+			case 234:
+				return StarWarsMod.blockStaticNpc[36]; // staticNpc.thedarkside
+
+			case 235:
+				return StarWarsMod.blockStaticNpc[37]; // staticNpc.anewholocron
+
+			case 236:
+				return StarWarsMod.blockStaticNpc[38]; // staticNpc.amasterandanapprentice
+
+			case 237:
+				return StarWarsMod.blockStaticNpc[39]; // staticNpc.theweaponofasith
+
+			case 238:
+				return StarWarsMod.blockStaticNpc[40]; // staticNpc.theweaponofasith
+
+			case 239:
+				return StarWarsMod.blockBasket; // basket
+
+			case 240:
+				return StarWarsMod.blockHyperdrive; // hyperdriveBlock
+
+			case 241:
+				return StarWarsMod.blockBactaTank; // bactaTank
+
+			case 242:
+				return StarWarsMod.blockTempleStoneMH; // multiHeight.templeStone
+
+			case 243:
+				return StarWarsMod.blockFocusingCrystalOre; // focusingCrystalOre
+
+			case 244:
+				return StarWarsMod.blockHothSnowCut; // hothSnowCut
+
+			case 245:
+				return StarWarsMod.blockHothSandbag; // hothSandbag
+
+			case 246:
+				return StarWarsMod.blockHothBaseDoor; // hothDoor
+
+			case 247:
+				return StarWarsMod.blockCortosisOre; // cortosisOre
+
+			case 248:
+				return StarWarsMod.blockDiatiumOre; // diatiumOre
+
+			case 249:
+				return StarWarsMod.blockExoniumOre; // exoniumOre
+
+			case 250:
+				return StarWarsMod.blockHeliciteOre; // heliciteOre
+
+			case 251:
+				return StarWarsMod.blockThorolideOre; // thorolideOre
+
+			case 252:
+				return StarWarsMod.blockTempleStone; // templeStone
+
+			case 253:
+				return StarWarsMod.blockTempleStoneStairs; // templeStoneStairs
+
+			case 254:
+				return StarWarsMod.blockTempleStoneStairsBrick; // templeStoneStairsBrick
+
+			case 255:
+				return StarWarsMod.blockTempleStoneStairsFancy; // templeStoneStairsBrickFancy
 
 			case 409:
-				return StarWarsMod.blockBactaTank; // com.parzivail.pswm.blocks.BlockBactaTank
+				return StarWarsMod.blockTempleStoneStairsSlabTopDark; // templeStoneStairsSlabTop
+
+			case 410:
+				return StarWarsMod.blockTempleStoneStairsSlabTopDark; // templeStoneStairsSlabTopDark
+
+			case 411:
+				return StarWarsMod.blockTempleStoneSlabLit; // templeStoneSlab
+
+			case 412:
+				return StarWarsMod.blockTempleStoneLit; // templeStoneLit
+
+			case 413:
+				return StarWarsMod.blockTempleStoneSlabLit; // templeStoneSlabLit
+
+			case 414:
+				return StarWarsMod.blockIoniteOre; // ioniteOre
+
+			case 415:
+				return StarWarsMod.blockKeleriumOre; // keleriumOre
+
+			case 416:
+				return StarWarsMod.blockRubindumOre; // rubindumOre
+
+			case 423:
+				return StarWarsMod.blockChromiumOre; // chromiumOre
 
 			case 424:
-				return StarWarsMod.blockExoniumOre; // com.parzivail.pswm.blocks.ore.BlockExoniumOre
+				return StarWarsMod.blockTitaniumOre; // titaniumOre
 
 			case 425:
-				return StarWarsMod.blockKeleriumOre; // com.parzivail.pswm.blocks.ore.BlockKeleriumOre
+				return StarWarsMod.blockTitaniumChromiumBlock; // titaniumChromiumBlock
 
 			case 426:
-				return StarWarsMod.blockIoniteOre; // com.parzivail.pswm.blocks.ore.BlockIoniteOre
+				return StarWarsMod.blockDagobahMud; // dagobahMud
 
 			case 427:
-				return StarWarsMod.blockCortosisOre; // com.parzivail.pswm.blocks.ore.BlockCortosisOre
+				return StarWarsMod.blockEndorBaseWall; // endorBaseWall
 
 			case 428:
-				return StarWarsMod.blockHeliciteOre; // com.parzivail.pswm.blocks.ore.BlockHeliciteOre
+				return StarWarsMod.blockEndorBaseWallStairs; // endorBaseWallStairs
 
 			case 429:
-				return StarWarsMod.blockRubindumOre; // com.parzivail.pswm.blocks.ore.BlockRubindumOre
+				return StarWarsMod.blockCrystalOre; // crystal
+
+			case 430:
+				return StarWarsMod.blockDeathStarBlock; // deathStarBlock
 
 			case 431:
-				return StarWarsMod.blockTempleStone; // com.parzivail.pswm.blocks.BlockTempleStone
+				return StarWarsMod.blockDeathStarLight; // deathStarLight
 
 			case 432:
-				return StarWarsMod.blockTempleStoneSlab; // com.parzivail.pswm.blocks.BlockTempleStoneSlab
+				return StarWarsMod.blockDeathStarGlass; // deathStarGlass
 
 			case 433:
-				return StarWarsMod.blockTempleStoneLit; // com.parzivail.pswm.blocks.BlockTempleStone
+				return StarWarsMod.blockDeathStarLightStairs; // deathStarLightStairs
 
 			case 434:
-				return StarWarsMod.blockTempleStoneSlabLit; // com.parzivail.pswm.blocks.BlockTempleStoneSlab
+				return StarWarsMod.blockDeathStarLightFence; // deathStarLightFence
 
 			case 435:
-				return StarWarsMod.blockAncientJediStatue; // com.parzivail.pswm.blocks.BlockAncientJediStatue
+				return StarWarsMod.blockMudStairs; // mudStairs
 
 			case 436:
-				return StarWarsMod.blockTempleStoneStairsBrick; // com.parzivail.pswm.blocks.BlockTempleStoneStairsBrick
+				return StarWarsMod.blockTatooineSand; // tatooineSand
 
 			case 437:
-				return StarWarsMod.blockTempleStoneStairsSlabTopDark; // com.parzivail.pswm.blocks.BlockTempleStoneStairsSlabTopDark
+				return StarWarsMod.blockTatooineSandstone; // tatooineSandstone
 
 			case 438:
-				return StarWarsMod.blockTempleStoneStairs; // com.parzivail.pswm.blocks.BlockTempleStoneStairs
+				return StarWarsMod.blockSpaceLamp; // spaceLamp
 
 			case 439:
-				return StarWarsMod.blockTempleStoneStairsSlabTop; // com.parzivail.pswm.blocks.BlockTempleStoneStairsSlabTop
+				return StarWarsMod.blockIlumStone; // ilumStone
 
 			case 440:
-				return StarWarsMod.blockHoloTable; // com.parzivail.pswm.blocks.BlockHolotable
+				return StarWarsMod.blockTable; // table
 
 			case 441:
-				return StarWarsMod.blockTempleStoneStairsFancy; // com.parzivail.pswm.blocks.BlockTempleStoneStairsFancy
+				return StarWarsMod.blockCrate1; // crate1
 
 			case 442:
-				return StarWarsMod.blockAntenna; // com.parzivail.pswm.blocks.BlockAntenna
+				return StarWarsMod.blockFloorLight; // floorLight
 
 			case 443:
-				return StarWarsMod.blockSensorAWing; // com.parzivail.pswm.blocks.BlockSensorEntity
+				return StarWarsMod.blockHolotableMass; // holotableMass
 
 			case 444:
-				return StarWarsMod.blockHyperdrive; // com.parzivail.pswm.blocks.BlockHyperdrive
+				return StarWarsMod.blockLadder; // ladder
 
 			case 445:
-				return StarWarsMod.blockIlumStone; // com.parzivail.pswm.blocks.BlockIlumStone
+				return StarWarsMod.blockPipeClampedMass; // pipeClampedMass
 
 			case 446:
-				return StarWarsMod.blockCrystalOre; // com.parzivail.pswm.blocks.BlockCrystalOre
+				return StarWarsMod.blockPipeMass; // pipeMass
+
+			case 447:
+				return StarWarsMod.blockPipeSleevedMass; // pipeSleevedMass
 
 			case 448:
-				return StarWarsMod.blockSensorXWing; // com.parzivail.pswm.blocks.BlockSensorEntity
+				return StarWarsMod.blockConsoleHoth1; // blockConsoleHoth1
 
 			case 449:
-				return StarWarsMod.blockSensorYWing; // com.parzivail.pswm.blocks.BlockSensorEntity
+				return StarWarsMod.blockConsoleHoth2; // blockConsoleHoth2
 
 			case 450:
-				return StarWarsMod.blockTempleStoneMH; // com.parzivail.util.block.BlockMultiHeight
+				return StarWarsMod.blockConsoleHoth3; // blockConsoleHoth3
+
+			case 451:
+				return StarWarsMod.blockPanelHoth; // blockPanelHoth
+
+			case 452:
+				return StarWarsMod.blockHothCeilingLight; // hothCeilingLight
+
+			case 453:
+				return StarWarsMod.blockPipeDoubleOffsetTopSpecial; // pipeDoubleOffsetTopSpecial
+
+			case 454:
+				return StarWarsMod.blockMedicalConsole; // medicalConsole
+
+			case 455:
+				return StarWarsMod.blockMedicalConsole2; // medicalConsole2
+
+			case 456:
+				return StarWarsMod.blockPipeDoubleOffsetBot; // pipeDoubleOffsetBot
+
+			case 457:
+				return StarWarsMod.blockPipeDoubleOffsetBotSpecial; // pipeDoubleOffsetBotSpecial
+
+			case 458:
+				return StarWarsMod.blockPipeDoubleOffsetTop; // pipeDoubleOffsetTop
+
+			case 459:
+				return StarWarsMod.blockFloorLight2; // floorLight2
 
 			case 460:
-				return StarWarsMod.blockDiatiumOre; // com.parzivail.pswm.blocks.ore.BlockDiatiumOre
+				return StarWarsMod.blockHothCrate1; // crateHoth1
 
 			case 461:
-				return StarWarsMod.blockThorolideOre; // com.parzivail.pswm.blocks.ore.BlockThorolideOre
+				return StarWarsMod.blockHothCrate2; // crateHoth2
 
 			case 462:
-				return StarWarsMod.blockMovingLightSource; // com.parzivail.pswm.blocks.BlockMovingLightSource
+				return StarWarsMod.blockAncientJediStatue; // ancientJediStatue
 
 			case 463:
-				return StarWarsMod.blockDeathStarLightFence; // com.parzivail.pswm.blocks.BlockDeathStarLightFence
-
-			case 464:
-				return StarWarsMod.blockLightsaberForge; // com.parzivail.pswm.blocks.BlockLightsaberForge
-
-			case 465:
-				return StarWarsMod.blockDeathStarLightStairs; // com.parzivail.pswm.blocks.BlockDeathStarLightStairs
-
-			case 466:
-				return StarWarsMod.blockCrystalCompressor; // com.parzivail.pswm.blocks.BlockCrystalCompressor
-
-			case 467:
-				return StarWarsMod.blockStaticNpc[24]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 468:
-				return StarWarsMod.blockStaticNpc[25]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 469:
-				return StarWarsMod.blockStaticNpc[26]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 470:
-				return StarWarsMod.blockStaticNpc[27]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 471:
-				return StarWarsMod.blockStaticNpc[28]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 472:
-				return StarWarsMod.blockStaticNpc[29]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 473:
-				return StarWarsMod.blockStaticNpc[30]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 474:
-				return StarWarsMod.blockStaticNpc[31]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 475:
-				return StarWarsMod.blockStaticNpc[10]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 476:
-				return StarWarsMod.blockStaticNpc[32]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 477:
-				return StarWarsMod.blockStaticNpc[11]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 478:
-				return StarWarsMod.blockStaticNpc[33]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 479:
-				return StarWarsMod.blockStaticNpc[12]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 480:
-				return StarWarsMod.blockStaticNpc[34]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 481:
-				return StarWarsMod.blockStaticNpc[13]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 482:
-				return StarWarsMod.blockStaticNpc[35]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 483:
-				return StarWarsMod.blockStaticNpc[14]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 484:
-				return StarWarsMod.blockStaticNpc[36]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 485:
-				return StarWarsMod.blockStaticNpc[15]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 486:
-				return StarWarsMod.blockStaticNpc[37]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 487:
-				return StarWarsMod.blockStaticNpc[16]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 488:
-				return StarWarsMod.blockStaticNpc[38]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 489:
-				return StarWarsMod.blockStaticNpc[17]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 490:
-				return StarWarsMod.blockStaticNpc[39]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 491:
-				return StarWarsMod.blockStaticNpc[18]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 492:
-				return StarWarsMod.blockStaticNpc[19]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 493:
-				return StarWarsMod.blockStaticNpc[2]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 494:
-				return StarWarsMod.blockStaticNpc[3]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 495:
-				return StarWarsMod.blockStaticNpc[4]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 496:
-				return StarWarsMod.blockStaticNpc[40]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 497:
-				return StarWarsMod.blockStaticNpc[5]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 498:
-				return StarWarsMod.blockStaticNpc[20]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 499:
-				return StarWarsMod.blockStaticNpc[21]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 500:
-				return StarWarsMod.blockStaticNpc[0]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 501:
-				return StarWarsMod.blockStaticNpc[22]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 502:
-				return StarWarsMod.blockStaticNpc[1]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 503:
-				return StarWarsMod.blockStaticNpc[23]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 504:
-				return StarWarsMod.blockStaticNpc[6]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 505:
-				return StarWarsMod.blockStaticNpc[7]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 506:
-				return StarWarsMod.blockStaticNpc[8]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 507:
-				return StarWarsMod.blockStaticNpc[9]; // com.parzivail.pswm.blocks.npc.BlockNpcBase
-
-			case 508:
-				return StarWarsMod.blockHothSandbag; // com.parzivail.pswm.blocks.BlockHothSandbag
-
-			case 509:
-				return StarWarsMod.blockHothSnowCut; // com.parzivail.pswm.blocks.BlockHothSnowCut
-
-			case 510:
-				return StarWarsMod.blockFocusingCrystalOre; // com.parzivail.pswm.blocks.ore.BlockFocusingCrystalOre
-
-			case 511:
-				return StarWarsMod.blockHothBaseDoor; // com.parzivail.pswm.blocks.BlockHothBaseDoor
-
-			case 512:
-				return StarWarsMod.blockPipeMass; // com.parzivail.pswm.blocks.BlockPipeMass
-
-			case 513:
-				return StarWarsMod.blockHothCeilingLight; // com.parzivail.pswm.blocks.BlockHothCeilingLight
-
-			case 514:
-				return StarWarsMod.blockFloorLight; // com.parzivail.pswm.blocks.BlockFloorLight
-
-			case 515:
-				return StarWarsMod.blockLadder; // com.parzivail.pswm.blocks.BlockLadder
-
-			case 516:
-				return StarWarsMod.blockConsoleHoth3; // com.parzivail.pswm.blocks.BlockConsoleHoth3
-
-			case 517:
-				return StarWarsMod.blockCrate1; // com.parzivail.pswm.blocks.BlockCrateMass1
-
-			case 518:
-				return StarWarsMod.blockHolotableMass; // com.parzivail.pswm.blocks.BlockHolotableMass
-
-			case 519:
-				return StarWarsMod.blockPipeClampedMass; // com.parzivail.pswm.blocks.BlockPipeClampedMass
-
-			case 520:
-				return StarWarsMod.blockConsoleHoth2; // com.parzivail.pswm.blocks.BlockConsoleHoth2
-
-			case 521:
-				return StarWarsMod.blockPipeSleevedMass; // com.parzivail.pswm.blocks.BlockPipeSleevedMass
-
-			case 522:
-				return StarWarsMod.blockConsoleHoth1; // com.parzivail.pswm.blocks.BlockConsoleHoth1
-
-			case 523:
-				return StarWarsMod.blockPanelHoth; // com.parzivail.pswm.blocks.BlockPanelHoth
-
-			case 524:
-				return StarWarsMod.blockPipeDoubleOffsetTopSpecial; // com.parzivail.pswm.blocks.BlockPipeDoubleOffsetTopSpecial
-
-			case 525:
-				return StarWarsMod.blockPipeDoubleOffsetTop; // com.parzivail.pswm.blocks.BlockPipeDoubleOffsetTop
-
-			case 526:
-				return StarWarsMod.blockPipeDoubleOffsetBot; // com.parzivail.pswm.blocks.BlockPipeDoubleOffsetBot
-
-			case 527:
-				return StarWarsMod.blockMedicalConsole2; // com.parzivail.pswm.blocks.BlockMedicalConsole2
-
-			case 528:
-				return StarWarsMod.blockPipeDoubleOffsetBotSpecial; // com.parzivail.pswm.blocks.BlockPipeDoubleOffsetBotSpecial
-
-			case 529:
-				return StarWarsMod.blockFloorLight2; // com.parzivail.pswm.blocks.BlockFloorLight2
-
-			case 530:
-				return StarWarsMod.blockHothCrate2; // com.parzivail.pswm.blocks.BlockCrateHoth2
-
-			case 531:
-				return StarWarsMod.blockHothCrate1; // com.parzivail.pswm.blocks.BlockCrateHoth1
-
-			case 532:
-				return StarWarsMod.blockMedicalConsole; // com.parzivail.pswm.blocks.BlockMedicalConsole
-
-			case 533:
-				return StarWarsMod.blockSensorTIE; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 534:
-				return StarWarsMod.blockSensorScootemaroundHoth; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 535:
-				return StarWarsMod.blockSensorJakkuSpeeder; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 536:
-				return StarWarsMod.blockSensorTIEInterceptor; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 537:
-				return StarWarsMod.blockSensorATST; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 538:
-				return StarWarsMod.blockSensorSkyhopper; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 539:
-				return StarWarsMod.blockSensorSpeederBike; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 540:
-				return StarWarsMod.blockSensorScootemaround; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 541:
-				return StarWarsMod.blockSensorTIEBomber; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 542:
-				return StarWarsMod.blockSensorTIEAdvanced; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 543:
-				return StarWarsMod.blockSensorHothSpeederBike; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 544:
-				return StarWarsMod.blockSensorLandspeeder; // com.parzivail.pswm.blocks.BlockSensorEntity
-
-			case 545:
-				return StarWarsMod.blockSensorSnowspeeder; // com.parzivail.pswm.blocks.BlockSensorEntity
+				return StarWarsMod.blockTable2; // mudTable
 
 		}
-		return Block.getBlockById(id);
+		Block b = Block.getBlockById(id);
+		if (b == Blocks.air && id != 0)
+			Lumberjack.debug("Unknown PSWM block ID " + id);
+		return b;
 	}
 }

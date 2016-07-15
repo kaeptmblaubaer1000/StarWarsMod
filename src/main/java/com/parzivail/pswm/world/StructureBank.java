@@ -7,6 +7,6 @@ import com.parzivail.util.schematic.Schematic;
  */
 public class StructureBank
 {
-	public static Schematic yavinTemple = new Schematic("yavintemple");
-	public static Schematic yodaTree = new Schematic("yodatree");
+	public static Schematic yavinTemple = new Schematic("yavintemple", "mobs-map");
+	public static Schematic yodaTree = new Schematic("mobs-yodatree", "mobs-map");
 }

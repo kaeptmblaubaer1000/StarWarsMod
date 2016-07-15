@@ -15,48 +15,73 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Schematic
 {
-	public NBTTagList tileentities;
 	public int width;
 	public int height;
 	public int length;
-	public BlockInfo[] blocks;
+	public BlockInfo[] blockInfos;
 
-	public Schematic(String schematic)
+	private HashMap<Integer, Block> blockMap;
+
+	private List<NBTTagCompound> tileEntities = new ArrayList<>();
+	private List<NBTTagCompound> entities = new ArrayList<>();
+
+	public Schematic(String schematic, String nbtpack)
 	{
 		try
 		{
 			Lumberjack.log("Loading schematic " + schematic);
 			InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/schematics/" + schematic + ".schematic");
-			NBTTagCompound nbtdata = CompressedStreamTools.readCompressed(is);
-			width = nbtdata.getShort("Width");
-			height = nbtdata.getShort("Height");
-			length = nbtdata.getShort("Length");
+			NBTTagCompound tag = CompressedStreamTools.readCompressed(is);
 
-			byte[] _blocks = nbtdata.getByteArray("Blocks");
+			width = tag.getShort("Width");
+			height = tag.getShort("Height");
+			length = tag.getShort("Length");
 
-			byte[] metadata = nbtdata.getByteArray("Data");
+			// read in block data; Vanilla lower byte array
+			byte[] b_lower = tag.getByteArray("Blocks");
 
-			byte[] addId = nbtdata.getByteArray("AddBlocks");
-
-			blocks = new BlockInfo[_blocks.length];
-
-			for (int index = 0; index < _blocks.length; index++)
+			byte[] addBlocks = new byte[0];
+			// Check and load Additional blocks array
+			if (tag.hasKey("AddBlocks"))
 			{
-				int n = _blocks[index];
-				if (index >> 1 < addId.length)
-				{
-					if ((index & 1) == 0)
-						n = (((addId[index >> 1] & 0x0F) << 8) + _blocks[index]);
-					else
-						n = (((addId[index >> 1] & 0xF0) << 4) + _blocks[index]);
-				}
-				blocks[index] = new BlockInfo(n, metadata[index]);
+				addBlocks = tag.getByteArray("AddBlocks");
 			}
 
-			tileentities = nbtdata.getTagList("TileEntities", 10);
+			blockInfos = new BlockInfo[b_lower.length];
+
+			byte[] blockData = tag.getByteArray("Data");
+			short n;
+			for (int index = 0; index < b_lower.length; index++)
+			{
+				if (index >> 1 >= addBlocks.length)
+					n = (short)(b_lower[index] & 0xFF);
+				else if ((index & 1) == 0)
+					n = (short)(((addBlocks[index >> 1] & 0x0F) << 8) + (b_lower[index] & 0xFF));
+				else
+					n = (short)(((addBlocks[index >> 1] & 0xF0) << 4) + (b_lower[index] & 0xFF));
+				blockInfos[index] = new BlockInfo(n, blockData[index]);
+			}
+
+			// load tileEntities
+			NBTTagList tileEntityTag = (NBTTagList)tag.getTag("TileEntities");
+
+			for (int i = 0; i < tileEntityTag.tagCount(); i++)
+			{
+				tileEntities.add(tileEntityTag.getCompoundTagAt(i));
+			}
+			NBTTagList entityTag = (NBTTagList)tag.getTag("Entities");
+
+			for (int i = 0; i < entityTag.tagCount(); i++)
+			{
+				entities.add(entityTag.getCompoundTagAt(i));
+			}
+
 			is.close();
 			Lumberjack.log("Loading SUCCESSFUL");
 		}
@@ -67,32 +92,29 @@ public class Schematic
 		}
 	}
 
-	public NBTTagList getTileEntities()
+	public List<NBTTagCompound> getTileEntities()
 	{
-		return tileentities;
+		return tileEntities;
 	}
 
 	public BlockInfo getBlockAt(int x, int y, int z)
 	{
 		//int i = (y * length + z) * width + x;
 		//return (i >= size()) ? null : blocks[i];
-		return blocks[(y * length + z) * width + x];
+		return blockInfos[(y * length + z) * width + x];
 	}
 
 	public NBTTagCompound getTileNbtAt(int x, int y, int z)
 	{
-		for (int i = 0; i < tileentities.tagCount(); i++)
-		{
-			NBTTagCompound tileEntity = tileentities.getCompoundTagAt(i);
+		for (NBTTagCompound tileEntity : tileEntities)
 			if (tileEntity.getInteger("x") == x && tileEntity.getInteger("y") == y && tileEntity.getInteger("z") == z)
 				return tileEntity;
-		}
 		return null;
 	}
 
 	public int size()
 	{
-		return blocks.length;
+		return blockInfos.length;
 	}
 
 	public void spawn(World world, int chunkX, int spawnY, int chunkZ)
@@ -108,7 +130,7 @@ public class Schematic
 					{
 						BlockInfo bi = getBlockAt(x, y, z);
 
-						Block b = PBlockMap.idToBlock(bi.block);
+						Block b = blockMap.get(bi.block);
 						world.setBlock(x, y + spawnY, z, b, bi.metadata, 2);
 						world.setBlockMetadataWithNotify(x, y + spawnY, z, bi.metadata, 2);
 

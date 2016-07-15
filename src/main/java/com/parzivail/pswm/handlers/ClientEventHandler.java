@@ -38,6 +38,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.*;
@@ -45,9 +46,11 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
+import java.io.File;
 import java.nio.FloatBuffer;
 
 public class ClientEventHandler
@@ -156,6 +159,13 @@ public class ClientEventHandler
 				if (event.source.isProjectile())
 					event.setCanceled(true);
 		}
+	}
+
+	@SubscribeEvent
+	public void onWorldLoad(WorldEvent.Load loadEvent)
+	{
+		File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
+		StarWarsMod.saveNbtMappings(new File(dir, MinecraftServer.getServer().getWorldName() + "-map.nbt"));
 	}
 
 	@SubscribeEvent

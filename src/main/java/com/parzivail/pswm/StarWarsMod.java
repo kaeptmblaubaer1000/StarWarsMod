@@ -3,6 +3,7 @@ package com.parzivail.pswm;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.blocks.npc.BlockNpcBase;
+import com.parzivail.pswm.commands.CommandExportIdMap;
 import com.parzivail.pswm.commands.CommandJediRobes;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
@@ -33,14 +34,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.commons.io.IOUtils;
 
-import java.io.File;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -221,6 +224,7 @@ public class StarWarsMod
 	public static DamageSource blasterDamageSource;
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
+	public FMLPreInitializationEvent preInitEvent;
 
 	//public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
 
@@ -351,16 +355,6 @@ public class StarWarsMod
 		proxy.registerRendering();
 
 		Lumberjack.info("=========== End Parzi's Star Wars Mod init() ===========");
-
-		for (Block block : GameData.getBlockRegistry().typeSafeIterable())
-		{
-			System.out.println(String.format("%s,%s", block.getUnlocalizedName(), Block.getIdFromBlock(block)));
-		}
-
-		for (Item item : GameData.getItemRegistry().typeSafeIterable())
-		{
-			System.out.println(String.format("%s,%s", item.getUnlocalizedName(), Item.getIdFromItem(item)));
-		}
 	}
 
 	@EventHandler
@@ -379,6 +373,8 @@ public class StarWarsMod
 
 	private void setupConfig(FMLPreInitializationEvent event)
 	{
+		preInitEvent = event;
+
 		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION));
 
 		ConfigOptions.config = new Configuration(ConfigOptions.configFile, Resources.VERSION);
@@ -388,6 +384,34 @@ public class StarWarsMod
 		ConfigOptions.loadConfigOptions();
 
 		ConfigOptions.config.save();
+	}
+
+	public static void saveNbtMappings(File file)
+	{
+		NBTTagCompound compound = new NBTTagCompound();
+		NBTTagList blockMap = new NBTTagList();
+
+		GameData.GameDataSnapshot gameDataSnapshot = GameData.buildItemDataList();
+
+		for (String key : gameDataSnapshot.idMap.keySet())
+		{
+			NBTTagCompound c = new NBTTagCompound();
+			c.setString("k", key.substring(1)); // substring because GameDataSnapshot adds a descriminator or something dumb
+			c.setInteger("v", gameDataSnapshot.idMap.get(key));
+			blockMap.appendTag(c);
+		}
+		compound.setTag("map", blockMap);
+
+		try
+		{
+			OutputStream outputStream = new FileOutputStream(file);
+			CompressedStreamTools.writeCompressed(compound, outputStream);
+			outputStream.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	private void setupNetworking()
@@ -435,5 +459,6 @@ public class StarWarsMod
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new CommandJediRobes());
+		event.registerServerCommand(new CommandExportIdMap());
 	}
 }

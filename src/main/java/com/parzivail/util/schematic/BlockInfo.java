@@ -5,10 +5,10 @@ package com.parzivail.util.schematic;
  */
 public class BlockInfo
 {
-	public int block;
+	public short block;
 	public byte metadata;
 
-	public BlockInfo(int block, byte metadata)
+	public BlockInfo(short block, byte metadata)
 	{
 		this.block = block;
 		this.metadata = metadata;
