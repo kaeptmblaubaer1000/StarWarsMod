@@ -8,6 +8,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -84,6 +85,27 @@ public class Schematic
 
 			is.close();
 			Lumberjack.log("Loading SUCCESSFUL");
+
+			Lumberjack.log("Loading nbtpack " + schematic);
+			is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/nbtpacks/" + nbtpack + ".nbt");
+			tag = CompressedStreamTools.readCompressed(is);
+
+			NBTTagList map = (NBTTagList)tag.getTag("map");
+
+			blockMap = new HashMap<>();
+
+			for (int i = 0; i < map.tagCount(); i++)
+			{
+				NBTTagCompound compound = map.getCompoundTagAt(i);
+				String blockname = compound.getString("k");
+				int id = compound.getInteger("v");
+				Block b = Block.getBlockFromName(blockname);
+				if (b != Blocks.air || id == 0)
+					blockMap.put(id, b);
+			}
+
+			is.close();
+			Lumberjack.log("Loaded " + map.tagCount() + " key/value pairs");
 		}
 		catch (Exception e)
 		{
@@ -130,7 +152,7 @@ public class Schematic
 					{
 						BlockInfo bi = getBlockAt(x, y, z);
 
-						Block b = blockMap.get(bi.block);
+						Block b = blockMap.get((int)bi.block);
 						world.setBlock(x, y + spawnY, z, b, bi.metadata, 2);
 						world.setBlockMetadataWithNotify(x, y + spawnY, z, bi.metadata, 2);
 
