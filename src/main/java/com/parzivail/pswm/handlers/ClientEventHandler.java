@@ -165,7 +165,14 @@ public class ClientEventHandler
 	{
 		File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
 
-		StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
+		try
+		{
+			StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
+		}
+		catch (NullPointerException e)
+		{
+			Lumberjack.debug("Couldn't save NBT map. Probably connecting to a server.");
+		}
 	}
 
 	@SubscribeEvent
