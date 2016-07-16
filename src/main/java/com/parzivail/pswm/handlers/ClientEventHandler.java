@@ -165,6 +165,7 @@ public class ClientEventHandler
 	public void onWorldLoad(WorldEvent.Load loadEvent)
 	{
 		File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
+
 		StarWarsMod.saveNbtMappings(new File(dir, MinecraftServer.getServer().getWorldName() + "-map.nbt"));
 	}
 
