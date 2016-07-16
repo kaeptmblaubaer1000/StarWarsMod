@@ -86,7 +86,7 @@ public class Schematic
 			is.close();
 			Lumberjack.log("Loading SUCCESSFUL");
 
-			Lumberjack.log("Loading nbtpack " + schematic);
+			Lumberjack.log("Loading nbtpack " + nbtpack);
 			is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/nbtpacks/" + nbtpack + ".nbt");
 			tag = CompressedStreamTools.readCompressed(is);
 
@@ -141,6 +141,7 @@ public class Schematic
 
 	public void spawn(World world, int chunkX, int spawnY, int chunkZ)
 	{
+		// TODO: make x and z spawn parameters, not just spawn at 0, 0
 		if (chunkX >= 0 && chunkX < width && chunkZ >= 0 && chunkZ < length)
 		{
 			int nX = Math.min(chunkX + 16, width - 1);
