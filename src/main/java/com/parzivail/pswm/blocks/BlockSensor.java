@@ -12,6 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockSensor extends PBlockContainer
 {
 	public BlockSensor(String name)
@@ -40,6 +42,14 @@ public class BlockSensor extends PBlockContainer
 	public void registerBlockIcons(IIconRegister icon)
 	{
 		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
+	}
+
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random random)
+	{
+		super.updateTick(world, x, y, z, random);
+
+		//this.blockIcon = world.getBlock(x + 1, y, z).getIcon(world, x, y, z, world.getBlockMetadata(x + 1, y, z));
 	}
 
 	@Override
