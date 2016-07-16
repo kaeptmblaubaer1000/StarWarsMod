@@ -3,7 +3,6 @@ package com.parzivail.pswm;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.blocks.npc.BlockNpcBase;
-import com.parzivail.pswm.commands.CommandExportIdMap;
 import com.parzivail.pswm.commands.CommandJediRobes;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
@@ -459,6 +458,5 @@ public class StarWarsMod
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new CommandJediRobes());
-		event.registerServerCommand(new CommandExportIdMap());
 	}
 }

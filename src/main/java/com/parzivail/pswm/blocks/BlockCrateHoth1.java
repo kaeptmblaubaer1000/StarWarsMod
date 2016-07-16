@@ -2,6 +2,7 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.tileentities.TileEntityCrateHoth1;
 import com.parzivail.pswm.tileentities.TileEntityPipeMass;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
@@ -33,7 +34,7 @@ public class BlockCrateHoth1 extends PBlockContainer implements IDebugProvider
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityPipeMass();
+		return new TileEntityCrateHoth1();
 	}
 
 	@Override
