@@ -38,7 +38,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.*;
@@ -166,7 +165,7 @@ public class ClientEventHandler
 	{
 		File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
 
-		StarWarsMod.saveNbtMappings(new File(dir, MinecraftServer.getServer().getWorldName() + "-map.nbt"));
+		StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
 	}
 
 	@SubscribeEvent
