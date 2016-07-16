@@ -12,6 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -46,7 +47,13 @@ public class BlockSnowSlab extends BlockSlab
 	 */
 	protected ItemStack createStackedBlock(int p_149644_1_)
 	{
-		return new ItemStack(Item.getItemFromBlock(StarWarsMod.blockSnowDoubleSlab), 2, p_149644_1_ & 7);
+		return new ItemStack(Item.getItemFromBlock(StarWarsMod.blockSnowSlab), 2, p_149644_1_ & 7);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
+	{
+		return Item.getItemFromBlock(StarWarsMod.blockSnowSlab);
 	}
 
 	public String func_150002_b(int p_150002_1_)
