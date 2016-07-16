@@ -2,7 +2,7 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.tileentities.TileEntityCrateHoth1;
+import com.parzivail.pswm.tileentities.TileEntityGunRack;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.block.TileEntityRotate;
@@ -20,11 +20,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockCrateHoth1 extends PBlockContainer implements IDebugProvider
+public class BlockGunRack extends PBlockContainer implements IDebugProvider
 {
-	public BlockCrateHoth1()
+	public BlockGunRack()
 	{
-		super("crateHoth1", Material.iron);
+		super("gunRack", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
@@ -33,7 +33,7 @@ public class BlockCrateHoth1 extends PBlockContainer implements IDebugProvider
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityCrateHoth1();
+		return new TileEntityGunRack();
 	}
 
 	@Override

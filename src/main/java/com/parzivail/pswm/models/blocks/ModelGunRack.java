@@ -1,4 +1,4 @@
-package starwarsmod;
+package com.parzivail.pswm.models.blocks;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -8,7 +8,8 @@ import net.minecraft.entity.Entity;
  * Gun Rack - Weaston
  * Created using Tabula 4.1.1
  */
-public class GunRack extends ModelBase {
+public class ModelGunRack extends ModelBase
+{
     public ModelRenderer shape1;
     public ModelRenderer shape2;
     public ModelRenderer shape3;
@@ -53,7 +54,8 @@ public class GunRack extends ModelBase {
     public ModelRenderer shape1_16;
     public ModelRenderer shape1_17;
 
-    public GunRack() {
+    public ModelGunRack()
+    {
         this.textureWidth = 256;
         this.textureHeight = 256;
         this.shape9 = new ModelRenderer(this, 0, 104);

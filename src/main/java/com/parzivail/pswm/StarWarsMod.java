@@ -29,6 +29,7 @@ import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -160,6 +161,9 @@ public class StarWarsMod
 	public static PBlock blockTempleStoneLit;
 	public static PBlockSlab blockTempleStoneSlabLit;
 
+	public static BlockSlab blockTempleStoneDoubleSlabLit;
+	public static BlockSlab blockTempleStoneDoubleSlab;
+
 	public static PBlock blockTempleStoneMH;
 
 	public static PBlockStairs blockTempleStoneStairs;
@@ -167,6 +171,12 @@ public class StarWarsMod
 	public static PBlockStairs blockTempleStoneStairsFancy;
 	public static PBlockStairs blockTempleStoneStairsSlabTop;
 	public static PBlockStairs blockTempleStoneStairsSlabTopDark;
+
+	public static PBlockStairs blockHardenedClayStairs;
+	public static BlockSlab blockHardenedClaySlab;
+	public static BlockSlab blockSnowSlab;
+	public static BlockSlab blockHardenedClayDoubleSlab;
+	public static BlockSlab blockSnowDoubleSlab;
 
 	public static PBlock blockHothSandbag;
 	public static PBlock blockHothSnowCut;
@@ -191,6 +201,7 @@ public class StarWarsMod
 	public static PBlockContainer blockMedicalConsole;
 	public static PBlockContainer blockMedicalConsole2;
 	public static PBlockContainer blockFloorLight2;
+	public static PBlockContainer blockGunRack;
 	public static Block blockHothCrate1;
 	public static Block blockHothCrate2;
 

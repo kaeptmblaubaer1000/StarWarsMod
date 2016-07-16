@@ -185,6 +185,9 @@ public class BlockRegister
 		StarWarsMod.blockTempleStone = new BlockTempleStone(false);
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStone, ItemTempleStoneBlock.class, "blockTempleStone");
 
+		StarWarsMod.blockHardenedClayStairs = new BlockHardenedClayStairs();
+		GameRegistry.registerBlock(StarWarsMod.blockHardenedClayStairs, "blockHardenedClayStairs");
+
 		StarWarsMod.blockTempleStoneStairs = new BlockTempleStoneStairs();
 		GameRegistry.registerBlock(StarWarsMod.blockTempleStoneStairs, "blockTempleStoneStairs");
 
@@ -295,6 +298,7 @@ public class BlockRegister
 		StarWarsMod.blockFloorLight2 = registerWithTileEntity(BlockFloorLight2.class, TileEntityFloorLight2.class);
 		StarWarsMod.blockHothCrate1 = registerWithTileEntity(BlockCrateHoth1.class, TileEntityCrateHoth1.class);
 		StarWarsMod.blockHothCrate2 = registerWithTileEntity(BlockCrateHoth2.class, TileEntityCrateHoth2.class);
+		StarWarsMod.blockGunRack = registerWithTileEntity(BlockGunRack.class, TileEntityGunRack.class);
 
 		StarWarsMod.blockAncientJediStatue = new BlockAncientJediStatue();
 		GameRegistry.registerBlock(StarWarsMod.blockAncientJediStatue, "ancientJediStatue");
@@ -303,6 +307,18 @@ public class BlockRegister
 		StarWarsMod.blockTable2 = new BlockMudTable();
 		GameRegistry.registerBlock(StarWarsMod.blockTable2, "mudTable");
 		GameRegistry.registerTileEntity(TileEntityMudTable.class, "teMudTable");
+
+		StarWarsMod.blockSnowSlab = new BlockSnowSlab(false);
+		GameRegistry.registerBlock(StarWarsMod.blockSnowSlab, "blockSnowSlab");
+
+		StarWarsMod.blockHardenedClaySlab = new BlockHardenedClaySlab(false);
+		GameRegistry.registerBlock(StarWarsMod.blockHardenedClaySlab, "blockHardenedClaySlab");
+
+		StarWarsMod.blockSnowDoubleSlab = new BlockSnowSlab(true);
+		GameRegistry.registerBlock(StarWarsMod.blockSnowDoubleSlab, "blockSnowDoubleSlab");
+
+		StarWarsMod.blockHardenedClayDoubleSlab = new BlockHardenedClaySlab(true);
+		GameRegistry.registerBlock(StarWarsMod.blockHardenedClayDoubleSlab, "blockHardenedClayDoubleSlab");
 
 		Lumberjack.info("Blocks, reporting for duty!");
 	}
@@ -313,6 +329,7 @@ public class BlockRegister
 		{
 			PBlockContainer container = blockClass.newInstance();
 			GameRegistry.registerBlock(container, container.name);
+			//tileEntityClass = container.createNewTileEntity(null, 0).getClass();
 			GameRegistry.registerTileEntity(tileEntityClass, "te" + TextUtils.upperFirst(container.name));
 			return container;
 		}
