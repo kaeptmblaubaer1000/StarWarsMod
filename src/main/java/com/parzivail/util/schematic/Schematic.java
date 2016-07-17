@@ -86,7 +86,7 @@ public class Schematic
 			is.close();
 			Lumberjack.log("Loading SUCCESSFUL");
 
-			Lumberjack.log("Loading nbtpack " + schematic);
+			Lumberjack.log("Loading nbtpack " + nbtpack);
 			is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/nbtpacks/" + nbtpack + ".nbt");
 			tag = CompressedStreamTools.readCompressed(is);
 
