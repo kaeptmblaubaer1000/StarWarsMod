@@ -5,7 +5,7 @@ package com.parzivail.util.schematic;
  */
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.world.NbtPack;
+import com.parzivail.pswm.world.NbtBlockMap;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -26,12 +26,12 @@ public class Schematic
 	public int length;
 	public BlockInfo[] blockInfos;
 
-	private NbtPack pack;
+	private NbtBlockMap pack;
 
 	private List<NBTTagCompound> tileEntities = new ArrayList<>();
 	private List<NBTTagCompound> entities = new ArrayList<>();
 
-	public Schematic(String schematic, NbtPack pack)
+	public Schematic(String schematic, NbtBlockMap pack)
 	{
 		try
 		{

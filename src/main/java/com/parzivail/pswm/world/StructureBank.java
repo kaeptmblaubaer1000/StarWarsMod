@@ -12,13 +12,13 @@ public class StructureBank
 	public static Schematic yodaTree;
 	public static Schematic falcon;
 
-	public static NbtPack mobsClientPack;
-	public static NbtPack mobsBuildserverMap;
+	public static NbtBlockMap mobsClientPack;
+	public static NbtBlockMap mobsBuildserverMap;
 
 	public static void loadAll()
 	{
-		mobsClientPack = new NbtPack("mobs-map");
-		mobsBuildserverMap = new NbtPack("buildserver-map");
+		mobsClientPack = new NbtBlockMap("mobs-map");
+		mobsBuildserverMap = new NbtBlockMap("buildserver-map");
 
 		yavinTemple = new Schematic("yavintemple", mobsClientPack);
 		yodaTree = new Schematic("mobs-yodatree", mobsClientPack);
