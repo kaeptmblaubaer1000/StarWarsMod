@@ -13,6 +13,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -53,6 +54,7 @@ public class RenderDoorHoth extends TileEntitySpecialRenderer
 		ents.removeIf(entity -> entity instanceof EntityBat);
 		ents.removeIf(entity -> entity instanceof MobWampa);
 		ents.removeIf(entity -> entity instanceof VehicleBase);
+		ents.removeIf(entity -> entity instanceof EntityPlayer && ((EntityPlayer)entity).isPlayerSleeping());
 
 		if (ents.size() > 0)
 		{
