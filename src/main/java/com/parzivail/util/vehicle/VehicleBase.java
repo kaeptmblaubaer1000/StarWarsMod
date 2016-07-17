@@ -100,7 +100,7 @@ public class VehicleBase extends EntityLiving
 	@Override
 	protected void collideWithEntity(Entity entity)
 	{
-		if (this.motionX > 0.01f || this.motionY > 0.01f || this.motionZ > 0.01f)
+		if (entity != this.riddenByEntity && (this.motionX > 0.01f || this.motionY > 0.01f || this.motionZ > 0.01f))
 			entity.attackEntityFrom(StarWarsMod.roadkillDamageSource, MathHelper.sqrt_float(Math.max(4, 4 * (float)(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ))));
 	}
 
