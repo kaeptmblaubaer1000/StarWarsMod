@@ -1,7 +1,7 @@
 package com.parzivail.pswm.tileentities;
 
-import net.minecraft.tileentity.TileEntity;
+import com.parzivail.util.block.TileEntityRotate;
 
-public class TileEntityCrate1 extends TileEntity
+public class TileEntityCrate1 extends TileEntityRotate
 {
 }
