@@ -7,6 +7,7 @@ import com.parzivail.pswm.models.blocks.ModelDoorHoth;
 import com.parzivail.pswm.tileentities.TileEntityDoorHoth;
 import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.ui.P3D;
+import com.parzivail.util.vehicle.VehicleBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -51,6 +52,7 @@ public class RenderDoorHoth extends TileEntitySpecialRenderer
 
 		ents.removeIf(entity -> entity instanceof EntityBat);
 		ents.removeIf(entity -> entity instanceof MobWampa);
+		ents.removeIf(entity -> entity instanceof VehicleBase);
 
 		if (ents.size() > 0)
 		{
