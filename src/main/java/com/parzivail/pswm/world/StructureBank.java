@@ -17,7 +17,7 @@ public class StructureBank
 
 	public static void loadAll()
 	{
-		mobsClientPack = new NbtBlockMap("mobs-map");
+		mobsClientPack = new NbtBlockMap("mobs-client-map");
 		mobsBuildserverMap = new NbtBlockMap("buildserver-map");
 
 		yavinTemple = new Schematic("yavintemple", mobsClientPack);
