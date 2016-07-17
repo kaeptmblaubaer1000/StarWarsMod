@@ -147,7 +147,7 @@ public class Schematic
 					{
 						BlockInfo bi = getBlockAt(x, y, z);
 
-						Block b = this.pack.blockMap.get((int)bi.block);
+						Block b = pack.blockMap.get((int)bi.block);
 						world.setBlock(x, y + spawnY, z, b, bi.metadata, 2);
 						world.setBlockMetadataWithNotify(x, y + spawnY, z, bi.metadata, 2);
 
