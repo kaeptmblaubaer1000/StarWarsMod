@@ -13,6 +13,7 @@ import com.parzivail.pswm.registry.*;
 import com.parzivail.pswm.tabs.SequelStarWarsTab;
 import com.parzivail.pswm.tabs.StarWarsTab;
 import com.parzivail.pswm.tabs.StarWarsTabBlocks;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.util.block.*;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -361,6 +362,8 @@ public class StarWarsMod
 		StarWarsAchievements.registerAll();
 
 		DamageSourceRegister.registerAll();
+
+		StructureBank.loadAll();
 
 		proxy.registerRendering();
 
