@@ -22,6 +22,7 @@ public class BlockHothCeilingLight2 extends PBlockContainer
 		super("hothCeilingLight2", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setHardness(50.0F);
+		setLightLevel(1);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}
 
