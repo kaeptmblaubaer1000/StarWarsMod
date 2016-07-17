@@ -1,8 +1,11 @@
 package com.parzivail.pswm.models.blocks;
 
+import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 /**
  * HothCeilingLight2 - Weaston
@@ -70,11 +73,43 @@ public class ModelHothCeilingLight2 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		this.Light3.render(f5);
-		this.Light4.render(f5);
-		this.Light2.render(f5);
 		this.shape1.render(f5);
+		GL11.glPushMatrix();
+		if (MathUtils.oneIn(250))
+			ShaderHelper.setColor(1, 1, 1, 1);
+		else
+			ShaderHelper.setColor(0.9f, 0.9f, 1, 1);
+		ShaderHelper.useShader(ShaderHelper.glowSolid);
 		this.Light1.render(f5);
+		ShaderHelper.releaseShader();
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
+		if (MathUtils.oneIn(250))
+			ShaderHelper.setColor(1, 1, 1, 1);
+		else
+			ShaderHelper.setColor(0.9f, 0.9f, 1, 1);
+		ShaderHelper.useShader(ShaderHelper.glowSolid);
+		this.Light2.render(f5);
+		ShaderHelper.releaseShader();
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
+		if (MathUtils.oneIn(250))
+			ShaderHelper.setColor(1, 1, 1, 1);
+		else
+			ShaderHelper.setColor(0.9f, 0.9f, 1, 1);
+		ShaderHelper.useShader(ShaderHelper.glowSolid);
+		this.Light3.render(f5);
+		ShaderHelper.releaseShader();
+		GL11.glPopMatrix();
+		GL11.glPushMatrix();
+		if (MathUtils.oneIn(250))
+			ShaderHelper.setColor(1, 1, 1, 1);
+		else
+			ShaderHelper.setColor(0.9f, 0.9f, 1, 1);
+		ShaderHelper.useShader(ShaderHelper.glowSolid);
+		this.Light4.render(f5);
+		ShaderHelper.releaseShader();
+		GL11.glPopMatrix();
 	}
 
 	/**

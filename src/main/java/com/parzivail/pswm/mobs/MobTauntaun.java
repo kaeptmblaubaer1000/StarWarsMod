@@ -10,7 +10,6 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class MobTauntaun extends EntityHorse
@@ -131,10 +130,7 @@ public class MobTauntaun extends EntityHorse
 
 	protected boolean isValidLightLevel()
 	{
-		int i = MathHelper.floor_double(posX);
-		int j = MathHelper.floor_double(boundingBox.minY);
-		int k = MathHelper.floor_double(posZ);
-		return worldObj.getSavedLightValue(net.minecraft.world.EnumSkyBlock.Sky, i, j, k) > 11;
+		return true;
 	}
 
 	@Override
