@@ -1,6 +1,7 @@
 package com.parzivail.pswm.world;
 
 import com.parzivail.util.schematic.Schematic;
+import com.parzivail.util.ui.Lumberjack;
 
 /**
  * @author Colby
@@ -11,12 +12,18 @@ public class StructureBank
 	public static Schematic yodaTree;
 	public static Schematic falcon;
 
+	public static NbtPack mobsClientPack;
+	public static NbtPack mobsBuildserverMap;
+
 	public static void loadAll()
 	{
-		yavinTemple = new Schematic("yavintemple", "mobs-map");
-		yodaTree = new Schematic("mobs-yodatree", "mobs-map");
-		falcon = new Schematic("falcon", "buildserver-map");
+		mobsClientPack = new NbtPack("mobs-map");
+		mobsBuildserverMap = new NbtPack("buildserver-map");
 
-		// TODO: create NbtPack class, load them up at boot, make Schematics take them as parameters instead of strings
+		yavinTemple = new Schematic("yavintemple", mobsClientPack);
+		yodaTree = new Schematic("mobs-yodatree", mobsClientPack);
+		falcon = new Schematic("falcon", mobsBuildserverMap);
+
+		Lumberjack.info("Structures, reporting for duty!");
 	}
 }

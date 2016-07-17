@@ -80,7 +80,13 @@ public class BlockDoorHoth extends PBlockContainer implements IDebugProvider
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
 	{
-		setBlockBounds(0, 0, 0, 1, 0.1f, 1);
+		TileEntity te = p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_);
+		if (te instanceof TileEntityDoorHoth && ((TileEntityDoorHoth)te).progressTicks == 0)
+		{
+			setBlockBounds(-0.5f, 0, -0.5f, 1.5f, 3, 1.5f);
+		}
+		else
+			setBlockBounds(0, 0, 0, 1, 0.1f, 1);
 	}
 
 	@Override

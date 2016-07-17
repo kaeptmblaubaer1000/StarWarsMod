@@ -54,4 +54,24 @@ public class Lumberjack
 	{
 		log(Level.WARN, String.valueOf(message));
 	}
+
+	/**
+	 * Prints a message to log only
+	 *
+	 * @param message The message to print
+	 */
+	public static void err(Object message)
+	{
+		log(Level.ERROR, String.valueOf(message));
+	}
+
+	/**
+	 * Prints a message to log only
+	 *
+	 * @param message The message to print
+	 */
+	public static void trace(Object message)
+	{
+		log(Level.TRACE, String.valueOf(message));
+	}
 }

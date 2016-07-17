@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.entities.EntityTilePassthrough;
+import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.models.blocks.ModelDoorHoth;
 import com.parzivail.pswm.tileentities.TileEntityDoorHoth;
 import com.parzivail.util.block.TileEntityRotate;
@@ -10,10 +11,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 public class RenderDoorHoth extends TileEntitySpecialRenderer
 {
@@ -43,7 +47,12 @@ public class RenderDoorHoth extends TileEntitySpecialRenderer
 
 		TileEntityDoorHoth door = (TileEntityDoorHoth)te;
 
-		if (te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(3, 3, 3)).size() > 0)
+		List<Entity> ents = te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(3, 3, 3));
+
+		ents.removeIf(entity -> entity instanceof EntityBat);
+		ents.removeIf(entity -> entity instanceof MobWampa);
+
+		if (ents.size() > 0)
 		{
 			door.isClosing = false;
 			door.isOpening = true;
@@ -60,13 +69,15 @@ public class RenderDoorHoth extends TileEntitySpecialRenderer
 
 		float percent = (door.progressTicks + p) / door.totalTicks;
 
-		((ModelDoorHoth)this.model).DoorParent.offsetY = -2.75f * percent;
-		((ModelDoorHoth)this.model).DoorChild1.offsetY = -2.75f * percent;
-		((ModelDoorHoth)this.model).DoorChild2.offsetY = -2.75f * percent;
-		((ModelDoorHoth)this.model).DoorChild3.offsetY = -2.75f * percent;
-		((ModelDoorHoth)this.model).DoorChild4.offsetY = -2.75f * percent;
-		((ModelDoorHoth)this.model).DoorChild5.offsetY = -2.75f * percent;
-		((ModelDoorHoth)this.model).DoorChild6.offsetY = -2.75f * percent;
+		float n = -2.75f * percent;
+
+		((ModelDoorHoth)this.model).DoorParent.offsetY = n;
+		((ModelDoorHoth)this.model).DoorChild1.offsetY = n;
+		((ModelDoorHoth)this.model).DoorChild2.offsetY = n;
+		((ModelDoorHoth)this.model).DoorChild3.offsetY = n;
+		((ModelDoorHoth)this.model).DoorChild4.offsetY = n;
+		((ModelDoorHoth)this.model).DoorChild5.offsetY = n;
+		((ModelDoorHoth)this.model).DoorChild6.offsetY = n;
 
 		this.model.render(new EntityTilePassthrough(te), 0, 0, 0, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
