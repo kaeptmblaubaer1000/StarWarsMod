@@ -16,5 +16,7 @@ public class StructureBank
 		yavinTemple = new Schematic("yavintemple", "mobs-map");
 		yodaTree = new Schematic("mobs-yodatree", "mobs-map");
 		falcon = new Schematic("falcon", "buildserver-map");
+
+		// TODO: create NbtPack class, load them up at boot, make Schematics take them as parameters instead of strings
 	}
 }
