@@ -162,8 +162,8 @@ public class StarWarsMod
 	public static PBlock blockTempleStoneLit;
 	public static PBlockSlab blockTempleStoneSlabLit;
 
-	public static BlockSlab blockTempleStoneDoubleSlabLit;
-	public static BlockSlab blockTempleStoneDoubleSlab;
+	public static PBlockContainer blockDoorHoth;
+	public static PBlockContainer blockHothCeilingLight2;
 
 	public static PBlock blockTempleStoneMH;
 
