@@ -154,6 +154,8 @@ public class Schematic
 
 						// TODO: tile entities and entity spawns
 
+						// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
+
 						if (b instanceof ITileEntityProvider)
 						{
 							NBTTagCompound compound = getTileNbtAt(x, y, z);
