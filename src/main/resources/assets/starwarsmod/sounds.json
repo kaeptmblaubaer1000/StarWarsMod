@@ -1,4 +1,13 @@
 {
+  "item.records.drift": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "item/records/drift",
+        "stream": true
+      }
+    ]
+  },
   "blastdoor.pressure": {
     "category": "neutral",
     "sounds": [

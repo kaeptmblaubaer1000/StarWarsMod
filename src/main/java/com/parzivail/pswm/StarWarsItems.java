@@ -1,5 +1,6 @@
 package com.parzivail.pswm;
 
+import com.parzivail.pswm.items.ItemMusicDisc;
 import com.parzivail.pswm.items.lightsaber.ItemLightsaberCrystal;
 import com.parzivail.pswm.items.weapons.*;
 import net.minecraft.item.Item;
@@ -220,4 +221,5 @@ public class StarWarsItems
 	public static ItemFood chasuka;
 	public static ItemFood dewbackRibs;
 	public static ItemFood gorrnar;
+	public static ItemMusicDisc recordDrift;
 }
