@@ -2,7 +2,6 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.blocks.ModelGunRack;
-import com.parzivail.pswm.tileentities.TileEntityDoorHoth;
 import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.ui.P3D;
 import net.minecraft.client.Minecraft;
@@ -37,7 +36,7 @@ public class RenderGunRack extends TileEntitySpecialRenderer
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		P3D.glScalef(0.8f);
 		if (te instanceof TileEntityRotate)
-			GL11.glRotatef(90 * ((TileEntityDoorHoth)te).getFacing(), 0, 1, 0);
+			GL11.glRotatef(90 * ((TileEntityRotate)te).getFacing(), 0, 1, 0);
 		this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.05F);
 		GL11.glPopMatrix();
 	}
