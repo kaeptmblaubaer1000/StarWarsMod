@@ -4,15 +4,17 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntitySensor;
 import com.parzivail.util.block.PBlockContainer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class BlockSensor extends PBlockContainer
 {
@@ -33,33 +35,21 @@ public class BlockSensor extends PBlockContainer
 	}
 
 	@Override
-	public int getRenderType()
-	{
-		return 0;
-	}
-
-	@Override
 	public void registerBlockIcons(IIconRegister icon)
 	{
 		blockIcon = icon.registerIcon(Resources.MODID + ":" + "blank");
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random random)
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
 	{
-		super.updateTick(world, x, y, z, random);
-
-		//this.blockIcon = world.getBlock(x + 1, y, z).getIcon(world, x, y, z, world.getBlockMetadata(x + 1, y, z));
+		IIcon icon = par1IBlockAccess.getBlock(par2 + 1, par3, par4).getIcon(par1IBlockAccess, par2, par3, par4, par5);
+		return par1IBlockAccess.isAirBlock(par2 + 1, par3, par4) ? this.blockIcon : icon;
 	}
 
 	@Override
 	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean renderAsNormalBlock()
 	{
 		return false;
 	}
