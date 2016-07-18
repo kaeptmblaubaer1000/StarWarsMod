@@ -7,6 +7,7 @@ package com.parzivail.util.schematic;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.world.NbtBlockMap;
 import com.parzivail.util.ui.Lumberjack;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.nbt.CompressedStreamTools;
@@ -148,8 +149,8 @@ public class Schematic
 						BlockInfo bi = getBlockAt(x, y, z);
 
 						Block b = pack.blockMap.get((int)bi.block);
-						world.setBlock(x, y + spawnY, z, b, bi.metadata, 2);
-						world.setBlockMetadataWithNotify(x, y + spawnY, z, bi.metadata, 2);
+						WorldUtils.b(world, x, y + spawnY, z, b, bi.metadata);
+						WorldUtils.m(world, x, y + spawnY, z, bi.metadata);
 
 						// TODO: tile entities and entity spawns
 
