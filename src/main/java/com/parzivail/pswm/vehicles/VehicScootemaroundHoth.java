@@ -104,7 +104,7 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		this.dropItem(StarWarsItems.spawnScootemaround, 1);
+		this.dropItem(StarWarsItems.spawnScootemaroundHoth, 1);
 	}
 
 	@Override
