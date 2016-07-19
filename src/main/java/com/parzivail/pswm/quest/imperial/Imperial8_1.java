@@ -4,6 +4,9 @@ import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
+import static com.parzivail.pswm.items.ItemQuestContainer.isQuestDone;
+import static com.parzivail.pswm.items.ItemQuestContainer.setQuestDone;
+
 /**
  * Created by Colby on 5/8/2016.
  */
@@ -12,7 +15,7 @@ public class Imperial8_1 extends Quest
 	public Imperial8_1()
 	{
 		this.tree = new DialogTree();
-		this.tree.npcHeader = "Good job retrieving the data Trooper, your work here is done. You're being transferred back to Endor to be in an Imperial Navy unit.";
+		this.tree.npcHeader = "";//"Good job retrieving the data Trooper, your work here is done. You're being transferred back to Endor to be in an Imperial Navy unit.";
 		this.tree.response1 = "Thank you Sir!";
 		this.tree.response1DT = new DialogTree();
 		this.tree.response1DT.npcHeader = "Stop by the Quartermaster for anything you need before you go. Good work Trooper.";
@@ -39,7 +42,7 @@ public class Imperial8_1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return false;
+		return !isQuestDone(player, this);
 	}
 
 	@Override
@@ -51,13 +54,13 @@ public class Imperial8_1 extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public void end(EntityPlayer player)
 	{
-
+		setQuestDone(player, this);
 	}
 
 	@Override

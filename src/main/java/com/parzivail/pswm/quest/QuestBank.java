@@ -13,6 +13,8 @@ import com.parzivail.pswm.quest.sith.Sith3_PostSaber;
 
 public class QuestBank
 {
+	public static Quest questNotAvailable = new QuestNotAvailable();
+
 	public static Quest rebel0 = new Rebel0();
 	public static Quest rebel1 = new Rebel1();
 	public static Quest rebel2 = new Rebel2();

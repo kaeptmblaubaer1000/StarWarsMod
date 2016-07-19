@@ -4,6 +4,9 @@ import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
+import static com.parzivail.pswm.items.ItemQuestContainer.isQuestDone;
+import static com.parzivail.pswm.items.ItemQuestContainer.setQuestDone;
+
 /**
  * Created by Colby on 5/8/2016.
  */
@@ -27,7 +30,7 @@ public class Rebel8_Yavin extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return false;
+		return !isQuestDone(player, this);
 	}
 
 	@Override
@@ -39,13 +42,13 @@ public class Rebel8_Yavin extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public void end(EntityPlayer player)
 	{
-
+		setQuestDone(player, this);
 	}
 
 	@Override

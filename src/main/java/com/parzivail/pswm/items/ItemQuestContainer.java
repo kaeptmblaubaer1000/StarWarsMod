@@ -2,9 +2,11 @@ package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetQuests;
 import com.parzivail.pswm.quest.IQuest;
 import com.parzivail.pswm.quest.NBTQuestTag;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -27,8 +29,8 @@ public class ItemQuestContainer extends Item
 	public static NBTQuestTag getQuests(ItemStack stack)
 	{
 		if (!stack.stackTagCompound.hasKey(Resources.nbtQuests))
-			stack.stackTagCompound.setTag(Resources.nbtQuests, new NBTQuestTag());
-		return (NBTQuestTag)stack.stackTagCompound.getTag(Resources.nbtQuests);
+			stack.stackTagCompound.setTag(Resources.nbtQuests, new NBTTagCompound());
+		return new NBTQuestTag(stack.stackTagCompound.getCompoundTag(Resources.nbtQuests));
 	}
 
 	public static void setQuestDone(EntityPlayer player, IQuest quest)
@@ -36,7 +38,10 @@ public class ItemQuestContainer extends Item
 		ItemStack stack = getQuestContainer(player);
 		if (stack == null)
 			return;
-		getQuests(stack).setQuestDone(quest.getID());
+
+		NBTTagCompound co = getQuests(stack).setQuestDone(quest.getID()).getCompound();
+		Lumberjack.log(co);
+		StarWarsMod.network.sendToServer(new MessageSetQuests(player, co));
 	}
 
 	public static boolean isQuestDone(EntityPlayer player, IQuest quest)

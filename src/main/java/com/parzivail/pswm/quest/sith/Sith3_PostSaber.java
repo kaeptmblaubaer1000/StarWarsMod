@@ -2,8 +2,11 @@ package com.parzivail.pswm.quest.sith;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
-import com.parzivail.util.ui.TextUtils;
 import net.minecraft.entity.player.EntityPlayer;
+
+import static com.parzivail.pswm.items.ItemQuestContainer.isQuestDone;
+import static com.parzivail.pswm.items.ItemQuestContainer.setQuestDone;
+import static com.parzivail.util.ui.TextUtils.makeObfuscated;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -37,13 +40,13 @@ public class Sith3_PostSaber extends Quest
 	@Override
 	public String getQuestgiverName()
 	{
-		return TextUtils.makeObfuscated("Zannah");
+		return makeObfuscated("Zannah");
 	}
 
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return false;
+		return !isQuestDone(player, this);
 	}
 
 	@Override
@@ -55,13 +58,13 @@ public class Sith3_PostSaber extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public void end(EntityPlayer player)
 	{
-
+		setQuestDone(player, this);
 	}
 
 	@Override

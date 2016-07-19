@@ -2,22 +2,35 @@ package com.parzivail.pswm.quest;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class NBTQuestTag extends NBTTagCompound
+public class NBTQuestTag
 {
-	public boolean hasDoneQuest(String quest)
+	private NBTTagCompound compound;
+
+	public NBTQuestTag(NBTTagCompound compound)
 	{
-		if (!this.hasKey(quest))
-			this.setBoolean(quest, false);
-		return this.getBoolean(quest);
+		this.compound = compound;
 	}
 
-	public void setQuestDone(String quest)
+	public boolean hasDoneQuest(String quest)
 	{
-		this.setBoolean(quest, true);
+		if (!this.compound.hasKey(quest))
+			this.compound.setBoolean(quest, false);
+		return this.compound.getBoolean(quest);
+	}
+
+	public NBTQuestTag setQuestDone(String quest)
+	{
+		this.compound.setBoolean(quest, true);
+		return this;
 	}
 
 	public boolean isQuestDone(String quest)
 	{
-		return this.getBoolean(quest);
+		return this.compound.getBoolean(quest);
+	}
+
+	public NBTTagCompound getCompound()
+	{
+		return compound;
 	}
 }

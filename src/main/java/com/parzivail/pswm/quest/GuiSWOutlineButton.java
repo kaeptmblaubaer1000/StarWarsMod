@@ -60,8 +60,11 @@ public class GuiSWOutlineButton extends GuiButton
 			int yy = 0;
 			String[] words = TextUtils.splitIntoLine(this.displayString, 45);
 
+
 			if (words.length == 1)
 				yy += 4;
+			else
+				this.height = 2 + 10 * words.length;
 
 			for (String line : words)
 				GFX.drawCenteredText(fontrenderer, line, this.xPosition + this.width / 2 + 2, this.yPosition + (yy += fontrenderer.FONT_HEIGHT) - 7, 1, l);

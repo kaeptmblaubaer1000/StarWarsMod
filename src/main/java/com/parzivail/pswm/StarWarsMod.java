@@ -2,7 +2,6 @@ package com.parzivail.pswm;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.commands.CommandJediRobes;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
@@ -207,7 +206,11 @@ public class StarWarsMod
 	public static Block blockHothCrate2;
 
 	public static Block blockAncientJediStatue;
-	public static BlockNpcBase[] blockStaticNpc;
+	//public static BlockNpcBase[] blockStaticNpc;
+	public static PBlockContainer blockStaticNpcRebelRex;
+	public static PBlockContainer blockStaticNpcRebelCarlist;
+	public static PBlockContainer blockStaticNpcRebelTantor;
+	public static PBlockContainer blockStaticNpcRebelDreis;
 	public static Block blockHyperdrive;
 
 	public static Item.ToolMaterial materialGaffi;
@@ -456,6 +459,7 @@ public class StarWarsMod
 		this.registerMessage(MessagePlayerRemoveItems.class);
 		this.registerMessage(MessageShipAstroDetails.class);
 		this.registerMessage(MessageShipHoverMode.class);
+		this.registerMessage(MessageSetQuests.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

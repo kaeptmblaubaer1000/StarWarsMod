@@ -45,14 +45,14 @@ public class GuiQuestNpc extends GuiScreen
 
 	Animation ticker;
 
-	public GuiQuestNpc(EntityPlayer player, TileEntityStaticNpc questGiver)
+	public GuiQuestNpc(Quest quest, EntityPlayer player, TileEntityStaticNpc questGiver)
 	{
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
 
-		this.questGiver = questGiver;
+		this.quest = quest;
 
-		this.quest = QuestNpcUtils.getNpcQuest(questGiver.getId());
+		this.questGiver = questGiver;
 		this.currentTree = quest.getDialog(player);
 	}
 
@@ -77,6 +77,8 @@ public class GuiQuestNpc extends GuiScreen
 			}
 			else if (this.close != null && button.id == this.close.id)
 			{
+				if (this.quest.isQuestComplete(player))
+					this.quest.end(player);
 				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
 			}
@@ -95,14 +97,14 @@ public class GuiQuestNpc extends GuiScreen
 
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
-		int yy = 5;
+		int yy = 2;
 
 		if (currentTree == quest.getDialog(player))
-			GFX.drawCenteredText(mc.fontRenderer, questId.substring(0, (int)(questId.length() * ((float)ticker.getTick() / ticker.getLength()))), r.getScaledWidth() / 2f, yy += mc.fontRenderer.FONT_HEIGHT * 2, 2, GLPalette.SW_YELLOW);
+			GFX.drawCenteredText(mc.fontRenderer, questId.substring(0, (int)(questId.length() * ((float)ticker.getTick() / ticker.getLength()))), r.getScaledWidth() / 2f, yy += mc.fontRenderer.FONT_HEIGHT * 2, 1.5f, GLPalette.SW_YELLOW);
 		else
-			GFX.drawCenteredText(mc.fontRenderer, questId, r.getScaledWidth() / 2f, yy += mc.fontRenderer.FONT_HEIGHT * 2, 2, GLPalette.SW_YELLOW);
+			GFX.drawCenteredText(mc.fontRenderer, questId, r.getScaledWidth() / 2f, yy += mc.fontRenderer.FONT_HEIGHT * 2, 1.5f, GLPalette.SW_YELLOW);
 
-		yy += 30;
+		yy += 10;
 
 		String[] words = TextUtils.splitIntoLine(currentTree.npcHeader, 60); //currentTree.npcHeader
 		for (String line : words)

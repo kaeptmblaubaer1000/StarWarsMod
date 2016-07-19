@@ -1,6 +1,7 @@
 package com.parzivail.pswm.handlers;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.blocks.npc.BlockNpcBase;
 import com.parzivail.pswm.gui.*;
 import com.parzivail.pswm.quest.GuiQuestLog;
 import com.parzivail.pswm.quest.GuiQuestNpc;
@@ -23,7 +24,7 @@ public class GuiHandler implements IGuiHandler
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new GuiHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_QUESTNPC)
-			return new GuiQuestNpc(player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)));
+			return new GuiQuestNpc(((BlockNpcBase)world.getBlock(x, y, z)).getQuestForPlayer(player), player, ((TileEntityStaticNpc)world.getTileEntity(x, y, z)));
 		else if (id == Resources.GUI_QUEST)
 			return new GuiQuestLog(player);
 		else if (id == Resources.GUI_LSFORGE)

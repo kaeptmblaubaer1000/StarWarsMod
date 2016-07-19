@@ -27,15 +27,15 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 	public String id;
 	String armor;
 
-	public BlockNpcBase(Quest quest, String armor, String side, String skin)
+	public BlockNpcBase(String id, String armor)
 	{
-		super("staticNpc." + quest.getID().toLowerCase().replaceAll("[^a-z]", ""), Material.iron);
+		super("staticNpc." + id, Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 
-		this.id = QuestNpcUtils.makeNpcId(quest.getID().toLowerCase().replaceAll("[^a-z]", ""), side.toLowerCase().replaceAll("[^a-z]", ""), skin);
+		this.id = id;
 
 		this.armor = armor;
 	}
@@ -48,6 +48,11 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 			QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
 		te.setId(this.id);
 		return te;
+	}
+
+	public Quest getQuestForPlayer(EntityPlayer player)
+	{
+		return null;
 	}
 
 	@Override

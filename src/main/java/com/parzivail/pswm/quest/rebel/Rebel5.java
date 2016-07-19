@@ -4,6 +4,9 @@ import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
+import static com.parzivail.pswm.items.ItemQuestContainer.isQuestDone;
+import static com.parzivail.pswm.items.ItemQuestContainer.setQuestDone;
+
 /**
  * Created by Colby on 5/8/2016.
  */
@@ -12,7 +15,7 @@ public class Rebel5 extends Quest
 	public Rebel5()
 	{
 		DialogTree allresp = new DialogTree();
-		allresp.npcHeader = "Your first real assignment is to take out some of the Imperial Probe Droids that are constantly patrolling the planet trying to find us. Since you did so well with the Wampa feel free to take a T-47 Airspeeder if you'd like. It'll make things a lot faster, and its blasters will hit those Imperial Probe Droids a lot harder. Stop by the Quartermaster and he'll give you some Rebel Pilot Armor and a ship. I want you to bring me back at least 5 of those droids. Good luck, soldier.";
+		allresp.npcHeader = "Your first real assignment is to take out some of the Imperial Probe Droids that are constantly patrolling the planet.  Since you’ve done so well, feel free to take a T-47 Snowspeeder.  It’ll be faster, and its blasters will hit those Probe Droids hard.  Stop by the Quartermaster for some Rebel Pilot Armor too.  I want at least 5 of those droids.";
 		allresp.response1 = "But I've never flown one of those before, sir!";
 		allresp.response1DT = new DialogTree();
 		allresp.response1DT.npcHeader = "I'm sure you'll figure it out quick enough, kid.";
@@ -55,7 +58,7 @@ public class Rebel5 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return false;
+		return !isQuestDone(player, this);
 	}
 
 	@Override
@@ -67,13 +70,13 @@ public class Rebel5 extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public void end(EntityPlayer player)
 	{
-
+		setQuestDone(player, this);
 	}
 
 	@Override
