@@ -26,6 +26,6 @@ public class RenderHuman extends RenderBiped
 	{
 		if (overrideTexture != null)
 			return overrideTexture;
-		return texture;
+		return RenderStaticNpc.texture;
 	}
 }

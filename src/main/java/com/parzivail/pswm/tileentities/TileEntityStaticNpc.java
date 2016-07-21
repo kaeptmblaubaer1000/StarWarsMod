@@ -19,6 +19,7 @@ public class TileEntityStaticNpc extends TileEntity
 	int facing = 0;
 
 	String id = "";
+	String aff = "";
 
 	public TileEntityStaticNpc()
 	{
@@ -47,6 +48,16 @@ public class TileEntityStaticNpc extends TileEntity
 	public void setId(String id)
 	{
 		this.id = id;
+	}
+
+	public String getAff()
+	{
+		return aff;
+	}
+
+	public void setAff(String aff)
+	{
+		this.aff = aff;
 	}
 
 	public int getFacing()

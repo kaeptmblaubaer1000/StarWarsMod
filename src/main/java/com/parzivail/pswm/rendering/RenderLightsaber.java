@@ -43,6 +43,8 @@ public class RenderLightsaber implements IItemRenderer
 		models.put("ahsoka", new ModelAhsokaHilt());
 		models.put("darksaber", new ModelDarksaberHilt());
 		models.put("pike", new ModelPikeHilt());
+		models.put("revan2", new ModelRevan2Hilt());
+		models.put("ventress", new ModelVentressHilt());
 
 		blades.put("dooku", new IHandlesRender[] { new ModelDookuBladeShort(), new ModelDookuBladeMedium(), new ModelDookuBladeLong() });
 		blades.put("ezra", new IHandlesRender[] { new ModelEzraBladeShort(), new ModelEzraBladeMedium(), new ModelEzraBladeLong() });
@@ -67,6 +69,8 @@ public class RenderLightsaber implements IItemRenderer
 		blades.put("ahsoka", new IHandlesRender[] { new ModelAhsokaBladeShort(), new ModelAhsokaBladeMedium(), new ModelAhsokaBladeLong() });
 		blades.put("darksaber", new IHandlesRender[] { new ModelDarksaberBladeShort(), new ModelDarksaberBladeMedium(), new ModelDarksaberBladeLong() });
 		blades.put("pike", new IHandlesRender[] { new ModelPikeBladeShort(), new ModelPikeBladeMedium(), new ModelPikeBladeLong() });
+		blades.put("revan2", new IHandlesRender[] { new ModelRevan2BladeLong(), new ModelRevan2BladeLong(), new ModelRevan2BladeLong() });
+		blades.put("ventress", new IHandlesRender[] { new ModelVentressBladeLong(), new ModelVentressBladeLong(), new ModelVentressBladeLong() });
 
 	}
 

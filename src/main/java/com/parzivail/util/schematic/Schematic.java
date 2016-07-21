@@ -147,27 +147,32 @@ public class Schematic
 					for (int y = 0; y < height; y++)
 					{
 						BlockInfo bi = getBlockAt(x, y, z);
-
-						Block b = pack.blockMap.get((int)bi.block);
-						WorldUtils.b(world, x, y + spawnY, z, b, bi.metadata);
-						WorldUtils.m(world, x, y + spawnY, z, bi.metadata);
-
-						// TODO: tile entities and entity spawns
-
-						// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
-
-						if (b instanceof ITileEntityProvider)
+						if (bi != null)
 						{
-							NBTTagCompound compound = getTileNbtAt(x, y, z);
-							if (compound != null)
+							Block b = pack.blockMap.get((int)bi.block);
+							if (b != null)
 							{
-								TileEntity t = world.getTileEntity(x, y + spawnY, z);
-								compound.setInteger("x", x);
-								compound.setInteger("y", y + spawnY);
-								compound.setInteger("z", z);
-								if (t != null)
+								WorldUtils.b(world, x, y + spawnY, z, b, bi.metadata);
+								WorldUtils.m(world, x, y + spawnY, z, bi.metadata);
+
+								// TODO: tile entities and entity spawns
+
+								// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
+
+								if (b instanceof ITileEntityProvider)
 								{
-									t.readFromNBT(compound);
+									NBTTagCompound compound = getTileNbtAt(x, y, z);
+									if (compound != null)
+									{
+										TileEntity t = world.getTileEntity(x, y + spawnY, z);
+										compound.setInteger("x", x);
+										compound.setInteger("y", y + spawnY);
+										compound.setInteger("z", z);
+										if (t != null)
+										{
+											t.readFromNBT(compound);
+										}
+									}
 								}
 							}
 						}

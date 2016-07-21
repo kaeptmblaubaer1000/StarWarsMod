@@ -54,6 +54,7 @@ public class RenderScout implements IItemRenderer
 				GL11.glRotatef(90, 0, 0, -1);
 				GL11.glTranslatef(5, -20, 0);
 				GL11.glScalef(1, 1, -1);
+				GL11.glTranslatef(-3, 2, 0);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();

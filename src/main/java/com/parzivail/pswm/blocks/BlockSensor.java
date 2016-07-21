@@ -44,7 +44,7 @@ public class BlockSensor extends PBlockContainer
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
 	{
-		IIcon icon = par1IBlockAccess.getBlock(par2 + 1, par3, par4).getIcon(par1IBlockAccess, par2, par3, par4, par5);
+		IIcon icon = par1IBlockAccess.getBlock(par2 + 1, par3, par4).getIcon(par5, par1IBlockAccess.getBlockMetadata(par2 + 1, par3, par4));
 		return par1IBlockAccess.isAirBlock(par2 + 1, par3, par4) ? this.blockIcon : icon;
 	}
 

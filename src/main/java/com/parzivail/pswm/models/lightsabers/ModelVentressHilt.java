@@ -1,14 +1,26 @@
-package starwarsmod;
+package com.parzivail.pswm.models.lightsabers;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.rendering.IHandlesRender;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Ventress - Wolfie
  * Created using P-Tabula 4.1.1
  */
-public class ModelVentressHilt extends ModelBase {
+public class ModelVentressHilt extends ModelBase implements IHandlesRender
+{
+
+	ResourceLocation tA = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/revan2_A.png");
+	ResourceLocation tB = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/revan2_B.png");
+
     public ModelRenderer Shape1;
     public ModelRenderer Shape2;
     public ModelRenderer Shape3;
@@ -204,4 +216,91 @@ public class ModelVentressHilt extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
+
+	@Override
+	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type)
+	{
+		return true;
+	}
+
+	@Override
+	public ResourceLocation getResourceLocation(boolean alt)
+	{
+		if (alt)
+			return this.tB;
+		return this.tA;
+	}
+
+	@Override
+	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
+	{
+		switch (type)
+		{
+			case ENTITY:
+				GL11.glPushMatrix();
+				GL11.glScalef(0.03f, 0.03f, 0.03f);
+				GL11.glRotatef(-90, 0, 0, 1);
+				GL11.glTranslatef(-30, -2, -2);
+				this.render(null, 0, 0, 0, 0, 0, 0.625f);
+				GL11.glPopMatrix();
+				break;
+			case EQUIPPED:
+				GL11.glPushMatrix();
+				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glRotatef(180, 1, 0, 0);
+				GL11.glRotatef(45, 0, 1, 0);
+				GL11.glRotatef(-10, 0, 0, 1);
+				GL11.glTranslatef(15, -10, -2);
+				if (data[1] instanceof EntityPlayer)
+				{
+					EntityPlayer player = (EntityPlayer)data[1];
+					if (player.isBlocking())
+					{
+						GL11.glRotatef(40, 0, 0, 1);
+						GL11.glRotatef(-20, 0, 1, 0);
+						GL11.glTranslatef(0, -8, -3);
+					}
+				}
+				this.render(null, 0, 0, 0, 0, 0, 0.625f);
+				GL11.glPopMatrix();
+				break;
+			case EQUIPPED_FIRST_PERSON:
+				GL11.glPushMatrix();
+				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glTranslatef(0, 25, 0);
+				GL11.glRotatef(-130, 0, 1, 0);
+				GL11.glRotatef(180, 1, 0, 0);
+				GL11.glRotatef(50, 0, 0, 1);
+				GL11.glTranslatef(0, 0, 18);
+				if (data[1] instanceof EntityPlayer)
+				{
+					EntityPlayer player = (EntityPlayer)data[1];
+					if (player.isBlocking())
+					{
+						GL11.glRotatef(70, 0, 0, 1);
+						GL11.glRotatef(70, 1, 0, 0);
+						GL11.glTranslatef(0, -5, 18);
+					}
+				}
+				this.render(null, 0, 0, 0, 0, 0, 0.625f);
+				GL11.glPopMatrix();
+				break;
+			case INVENTORY:
+				GL11.glScalef(0.045f, 0.045f, 0.045f);
+				GL11.glTranslatef(-7, 8, 0);
+				GL11.glRotatef(160, 0, 0, 1);
+				GL11.glRotatef(180, 0, 1, 0);
+				GL11.glRotatef(0, 1, 0, 0);
+				this.render(null, 0, 0, 0, 0, 0, 0.625f);
+				break;
+			default:
+				break;
+		}
+	}
+
+	@Override
+	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper)
+	{
+		return true;
+	}
 }

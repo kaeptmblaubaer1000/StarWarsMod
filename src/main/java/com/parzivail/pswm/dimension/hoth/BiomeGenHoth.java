@@ -1,6 +1,7 @@
 package com.parzivail.pswm.dimension.hoth;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenHothGenerator;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
@@ -55,6 +56,6 @@ public class BiomeGenHoth extends BiomeGenPSWM
 			new WorldGenHothGenerator().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 
-		//StructureBank.falcon.spawn(par1World, chunkX, structureY, chunkZ);
+		StructureBank.ilumTemple.spawn(par1World, chunkX, 1, chunkZ);
 	}
 }

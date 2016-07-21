@@ -198,7 +198,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 					break;
 			}
 			x++;
-			if (x >= 4)
+			if (x >= 5)
 			{
 				x = 0;
 				y++;

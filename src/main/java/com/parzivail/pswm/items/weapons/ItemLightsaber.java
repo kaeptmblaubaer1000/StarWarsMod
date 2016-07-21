@@ -41,7 +41,7 @@ public class ItemLightsaber extends ItemSword
 	public static final String nbtBlasterTimeout = "blasterTimeout";
 
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
-	public static final String[] hilts = { "obiwan", "quigon", "maul", "padawan", "dooku", "luke1", "vader2", "luke2", "crossguard", "kanan", "ezra", "revan", "malgus", "doubleSith", "starkiller", "shoto", "plokoon", "inquisitor", "mace", "yoda", "ahsoka", "darksaber", "pike" };
+	public static final String[] hilts = { "obiwan", "quigon", "maul", "padawan", "dooku", "luke1", "vader2", "luke2", "crossguard", "kanan", "ezra", "revan", "malgus", "doubleSith", "starkiller", "shoto", "plokoon", "inquisitor", "mace", "yoda", "ahsoka", "darksaber", "pike", "revan2", "ventress" };
 	public static Integer[] colorHex;
 	// public static final String[] colorName = { "yellow", "pink", "purple",
 	// "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
@@ -236,6 +236,8 @@ public class ItemLightsaber extends ItemSword
 			case "shoto":
 			case "inquisitor":
 			case "pike":
+			case "revan":
+			case "ventress":
 				nbt.setInteger(nbtBladeColor, 0xFF0000); // red
 				break;
 			case "quigon":
@@ -249,7 +251,7 @@ public class ItemLightsaber extends ItemSword
 			case "luke1":
 			case "kanan":
 			case "ezra":
-			case "revan":
+			case "revan2":
 			case "plokoon":
 				nbt.setInteger(nbtBladeColor, 0x2448DA); // blue
 				break;

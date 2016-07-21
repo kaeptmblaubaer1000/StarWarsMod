@@ -26,10 +26,12 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 {
 	public String id;
 	String armor;
+	private String aff;
 
-	public BlockNpcBase(String id, String armor)
+	public BlockNpcBase(String id, String armor, String aff)
 	{
 		super("staticNpc." + id, Material.iron);
+		this.aff = aff;
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setHardness(50.0F);
@@ -47,6 +49,7 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 		if (this.armor != null)
 			QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
 		te.setId(this.id);
+		te.setAff(this.aff);
 		return te;
 	}
 

@@ -2,7 +2,6 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
@@ -67,7 +66,7 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			StarWarsMod.mc.renderEngine.bindTexture(swIcons);
 
-			switch (QuestNpcUtils.getNpcSide(staticNpc.getId()))
+			switch (staticNpc.getAff())
 			{
 				case Resources.allegianceJediFmt:
 					GFX.drawTexture(0, 0, 0, 26, 16, 16);
