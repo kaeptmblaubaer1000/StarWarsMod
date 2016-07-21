@@ -16,6 +16,8 @@ public class TileEntityGunRack extends TileEntityRotate
 
 		NBTTagList nbttaglist = p_145839_1_.getTagList("guns", 10);
 
+		guns = new ItemStack[12];
+
 		for (int i = 0; i < nbttaglist.tagCount(); ++i)
 		{
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
@@ -30,14 +32,18 @@ public class TileEntityGunRack extends TileEntityRotate
 		return guns;
 	}
 
-	public void pushGun(ItemStack gun)
+	public boolean pushGun(ItemStack gun)
 	{
+		boolean b = false;
 		for (int i = 0; i < this.guns.length; i++)
 			if (this.guns[i] == null)
 			{
 				this.guns[i] = gun;
+				b = true;
 				break;
 			}
+		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+		return b;
 	}
 
 	public ItemStack popGun()
@@ -50,6 +56,7 @@ public class TileEntityGunRack extends TileEntityRotate
 				this.guns[i] = null;
 				break;
 			}
+		this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		return s;
 	}
 

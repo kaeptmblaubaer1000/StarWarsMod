@@ -8,7 +8,6 @@ import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,8 +33,7 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 		this.aff = aff;
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
-		setHardness(50.0F);
-		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
+		setBlockUnbreakable();
 
 		this.id = id;
 

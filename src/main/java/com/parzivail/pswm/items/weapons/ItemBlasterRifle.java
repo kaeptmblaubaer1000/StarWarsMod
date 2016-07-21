@@ -126,7 +126,7 @@ public class ItemBlasterRifle extends Item
 		return "item.starwarsmod." + this.name + "." + this.versions[metadata];
 	}
 
-	private int indexOfMeta(String needle)
+	public int indexOfMeta(String needle)
 	{
 		return Arrays.asList(this.versions).indexOf(needle);
 	}

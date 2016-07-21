@@ -2,18 +2,23 @@ package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageUpdateGunRack;
+import com.parzivail.pswm.items.weapons.ItemBlasterHeavy;
+import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.tileentities.TileEntityGunRack;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.HarvestLevel;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -64,10 +69,48 @@ public class BlockGunRack extends PBlockContainer implements IDebugProvider
 	}
 
 	@Override
+	public void breakBlock(World world, int x, int y, int z, Block block, int wut)
+	{
+		TileEntityGunRack rack = (TileEntityGunRack)world.getTileEntity(x, y, z);
+		if (rack != null)
+		{
+			for (ItemStack gun : rack.getGuns())
+			{
+				if (gun != null)
+				{
+					EntityItem entityitem = new EntityItem(world, x, y, z, gun);
+					if (gun.hasTagCompound())
+						entityitem.getEntityItem().setTagCompound((NBTTagCompound)gun.getTagCompound().copy());
+					world.spawnEntityInWorld(entityitem);
+				}
+			}
+			world.func_147453_f(x, y, z, block);
+		}
+		super.breakBlock(world, x, y, z, block, wut);
+	}
+
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float sX, float sY, float sZ)
 	{
-		if (world.isRemote)
-			StarWarsMod.network.sendToServer(new MessageUpdateGunRack(world, x, y, z, player));
+		if (!world.isRemote)
+		{
+			if (player.getHeldItem() == null)
+			{
+				TileEntityGunRack gunRack = (TileEntityGunRack)world.getTileEntity(x, y, z);
+				ItemStack itemStack = gunRack.popGun();
+				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, itemStack));
+			}
+			else if (player.getHeldItem().getItem() instanceof ItemBlasterRifle || player.getHeldItem().getItem() instanceof ItemBlasterHeavy)
+			{
+				if (!(player.getHeldItem().getItemDamage() == 2 && player.getHeldItem().getItem() instanceof ItemBlasterRifle))
+				{
+					TileEntityGunRack gunRack = (TileEntityGunRack)world.getTileEntity(x, y, z);
+					if (gunRack.pushGun(player.getHeldItem()))
+						StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, null));
+				}
+			}
+		}
+		world.markBlockForUpdate(x, y, z);
 		return true;
 	}
 
