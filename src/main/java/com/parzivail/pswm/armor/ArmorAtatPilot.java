@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class ArmorHothPilot extends ItemArmor
+public class ArmorAtatPilot extends ItemArmor
 {
 	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
@@ -26,7 +26,7 @@ public class ArmorHothPilot extends ItemArmor
 		return c;
 	}
 
-	public ArmorHothPilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
+	public ArmorAtatPilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
 		this.setUnlocalizedName(Resources.MODID + "." + "atatPilot" + this.names[par4]);

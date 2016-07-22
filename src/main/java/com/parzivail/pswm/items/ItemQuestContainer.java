@@ -119,4 +119,18 @@ public class ItemQuestContainer extends Item
 			getQuests(stack);
 		}
 	}
+
+	public static int getTargetKills(ItemStack stack)
+	{
+		if (!stack.hasTagCompound())
+			return 0;
+		return stack.stackTagCompound.getInteger("targetKills");
+	}
+
+	public static void addTargetKill(ItemStack stack)
+	{
+		if (!stack.hasTagCompound())
+			return;
+		stack.stackTagCompound.setInteger("targetKills", getTargetKills(stack) + 1);
+	}
 }

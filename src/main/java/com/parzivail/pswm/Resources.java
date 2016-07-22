@@ -180,6 +180,7 @@ public class Resources
 	public static final int GUI_HYPERDRIVE = guiCounter++;
 	public static final int GUI_ANTENNA = guiCounter++;
 	public static final int GUI_CRYSTALCOMPRESSOR = guiCounter++;
+	public static final int GUI_QUARTERMASTER = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");
@@ -264,5 +265,5 @@ public class Resources
 
 	public static final String skinDefault = "default";
 
-	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot" };
+	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot", "aWingPilot", "yWingPilot", "shadowtrooper" };
 }

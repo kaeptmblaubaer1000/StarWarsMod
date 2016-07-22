@@ -41,6 +41,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiAntenna(player, (TileEntityAntenna)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_CRYSTALCOMPRESSOR)
 			return new GuiCrystalCompressor(player.inventory, (TileEntityCrystalCompressor)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_QUARTERMASTER)
+			return new GuiScreenQuartermaster(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
 		return null;
 	}
 
@@ -51,7 +53,7 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_QUESTNPC || id == Resources.GUI_ANTENNA || id == Resources.GUI_QUEST || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH)
+		else if (id == Resources.GUI_QUARTERMASTER || id == Resources.GUI_QUESTNPC || id == Resources.GUI_ANTENNA || id == Resources.GUI_QUEST || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH)
 			return new ContainerClient();
 		else if (id == Resources.GUI_CRYSTALCOMPRESSOR)
 			return new ContainerCrystalCompressor(player.inventory, (TileEntityCrystalCompressor)world.getTileEntity(x, y, z));

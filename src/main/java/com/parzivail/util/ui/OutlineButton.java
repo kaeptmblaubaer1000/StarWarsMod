@@ -55,7 +55,6 @@ public class OutlineButton extends GuiButton
 			}
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			this.drawCenteredString(fontrenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, textColor);
 		}
 		GL11.glPopMatrix();

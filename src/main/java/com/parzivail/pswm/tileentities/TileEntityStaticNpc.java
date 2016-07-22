@@ -20,6 +20,7 @@ public class TileEntityStaticNpc extends TileEntity
 
 	String id = "";
 	String aff = "";
+	String skin = "";
 
 	public TileEntityStaticNpc()
 	{
@@ -31,6 +32,16 @@ public class TileEntityStaticNpc extends TileEntity
 		NBTTagCompound tag = new NBTTagCompound();
 		this.writeToNBT(tag);
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
+	}
+
+	public String getSkin()
+	{
+		return skin;
+	}
+
+	public void setSkin(String skin)
+	{
+		this.skin = skin;
 	}
 
 	@Override
@@ -112,6 +123,7 @@ public class TileEntityStaticNpc extends TileEntity
 	public void readFromNBT(NBTTagCompound p_145839_1_)
 	{
 		super.readFromNBT(p_145839_1_);
+		this.setSkin(p_145839_1_.getString("skin"));
 		this.setId(p_145839_1_.getString("quest-id"));
 		this.setFacing(p_145839_1_.getInteger("facing"));
 		this.setLocked(p_145839_1_.getBoolean("locked"));
@@ -121,6 +133,7 @@ public class TileEntityStaticNpc extends TileEntity
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{
 		super.writeToNBT(p_145841_1_);
+		p_145841_1_.setString("skin", getSkin());
 		p_145841_1_.setString("quest-id", getId());
 		p_145841_1_.setInteger("facing", getFacing());
 		p_145841_1_.setBoolean("locked", getLocked());

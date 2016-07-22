@@ -2,10 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.*;
-import com.parzivail.pswm.blocks.npc.BlockNpcRebelCarlist;
-import com.parzivail.pswm.blocks.npc.BlockNpcRebelDreis;
-import com.parzivail.pswm.blocks.npc.BlockNpcRebelRex;
-import com.parzivail.pswm.blocks.npc.BlockNpcRebelTantor;
+import com.parzivail.pswm.blocks.npc.*;
 import com.parzivail.pswm.blocks.ore.*;
 import com.parzivail.pswm.items.*;
 import com.parzivail.pswm.tileentities.*;
@@ -150,6 +147,9 @@ public class BlockRegister
 
 		StarWarsMod.blockStaticNpcRebelDreis = new BlockNpcRebelDreis();
 		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRebelDreis, "blockStaticNpcRebelDreis");
+
+		StarWarsMod.blockStaticNpcRebelYavinQuartermaster = new BlockNpcRebelYavinQuartermaster();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRebelYavinQuartermaster, "blockStaticNpcRebelYavinQuartermaster");
 
 		GameRegistry.registerTileEntity(TileEntityStaticNpc.class, "teStaticNpc");
 

@@ -368,6 +368,30 @@ public class ItemRegister
 		StarWarsItems.rebelPilotBoots = new ArmorRebelPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsItems.rebelPilotBoots, "rebelPilotBoots");
 
+		StarWarsItems.rebelAPilotHelmet = new ArmorRebelAPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.rebelAPilotHelmet, "rebelAPilotHelmet");
+
+		StarWarsItems.rebelAPilotChest = new ArmorRebelAPilot(StarWarsMod.rebelPilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.rebelAPilotChest, "rebelAPilotChest");
+
+		StarWarsItems.rebelAPilotLegs = new ArmorRebelAPilot(StarWarsMod.rebelPilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.rebelAPilotLegs, "rebelAPilotLegs");
+
+		StarWarsItems.rebelAPilotBoots = new ArmorRebelAPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.rebelAPilotBoots, "rebelAPilotBoots");
+
+		StarWarsItems.rebelYPilotHelmet = new ArmorRebelYPilot(StarWarsMod.rebelPilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.rebelYPilotHelmet, "rebelYPilotHelmet");
+
+		StarWarsItems.rebelYPilotChest = new ArmorRebelYPilot(StarWarsMod.rebelPilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.rebelYPilotChest, "rebelYPilotChest");
+
+		StarWarsItems.rebelYPilotLegs = new ArmorRebelYPilot(StarWarsMod.rebelPilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.rebelYPilotLegs, "rebelYPilotLegs");
+
+		StarWarsItems.rebelYPilotBoots = new ArmorRebelYPilot(StarWarsMod.rebelPilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.rebelYPilotBoots, "rebelYPilotBoots");
+
 		//StarWarsMod.fleetHelmet = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 0);
 		//GameRegistry.registerItem(StarWarsMod.fleetHelmet, "fleetHelmet");
 
@@ -380,16 +404,16 @@ public class ItemRegister
 		//StarWarsMod.fleetBoots = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 3);
 		//GameRegistry.registerItem(StarWarsMod.fleetBoots, "fleetBoots");
 
-		StarWarsItems.atatPilotHelmet = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
+		StarWarsItems.atatPilotHelmet = new ArmorAtatPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsItems.atatPilotHelmet, "atatPilotHelmet");
 
-		StarWarsItems.atatPilotChest = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 1);
+		StarWarsItems.atatPilotChest = new ArmorAtatPilot(StarWarsMod.atatPilotArmorMat, 1, 1);
 		GameRegistry.registerItem(StarWarsItems.atatPilotChest, "atatPilotChest");
 
-		StarWarsItems.atatPilotLegs = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 2);
+		StarWarsItems.atatPilotLegs = new ArmorAtatPilot(StarWarsMod.atatPilotArmorMat, 1, 2);
 		GameRegistry.registerItem(StarWarsItems.atatPilotLegs, "atatPilotLegs");
 
-		StarWarsItems.atatPilotBoots = new ArmorHothPilot(StarWarsMod.atatPilotArmorMat, 1, 3);
+		StarWarsItems.atatPilotBoots = new ArmorAtatPilot(StarWarsMod.atatPilotArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsItems.atatPilotBoots, "atatPilotBoots");
 
 		StarWarsItems.tiePilotHelmet = new ArmorTiePilot(StarWarsMod.tiePilotArmorMat, 1, 0);

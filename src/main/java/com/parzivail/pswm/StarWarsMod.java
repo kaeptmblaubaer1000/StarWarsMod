@@ -213,6 +213,8 @@ public class StarWarsMod
 	public static PBlockContainer blockStaticNpcRebelCarlist;
 	public static PBlockContainer blockStaticNpcRebelTantor;
 	public static PBlockContainer blockStaticNpcRebelDreis;
+	public static PBlockContainer blockStaticNpcRebelYavinQuartermaster;
+
 	public static Block blockHyperdrive;
 
 	public static Item.ToolMaterial materialGaffi;
@@ -462,7 +464,7 @@ public class StarWarsMod
 		this.registerMessage(MessageShipAstroDetails.class);
 		this.registerMessage(MessageShipHoverMode.class);
 		this.registerMessage(MessageSetQuests.class);
-		this.registerMessage(MessageUpdateGunRack.class);
+		this.registerMessage(MessageUpdateTarget.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

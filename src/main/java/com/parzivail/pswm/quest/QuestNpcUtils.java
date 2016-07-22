@@ -37,16 +37,19 @@ public class QuestNpcUtils
 		switch (armor)
 		{
 			case "rebelPilot":
+				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.rebelPilotHelmet, 1));
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.rebelPilotChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.rebelPilotLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.rebelPilotBoots, 1));
 				break;
 			case "rebelHoth":
+				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.hothHelmet, 1));
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.hothChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.hothLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.hothBoots, 1));
 				break;
 			case "rebelEndor":
+				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.endorHelmet, 1));
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.endorChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.endorLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.endorBoots, 1));
@@ -86,6 +89,17 @@ public class QuestNpcUtils
 				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.scoutTrooperChest, 1));
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.scoutTrooperLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.scoutTrooperBoots, 1));
+				break;
+			case "aWingPilot":
+				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.rebelAPilotHelmet, 1));
+				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.rebelAPilotChest, 1));
+				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.rebelAPilotLegs, 1));
+				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.rebelAPilotBoots, 1));
+			case "yWingPilot":
+				entity.setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.rebelYPilotHelmet, 1));
+				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.rebelYPilotChest, 1));
+				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.rebelYPilotLegs, 1));
+				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.rebelYPilotBoots, 1));
 				break;
 		}
 	}

@@ -145,6 +145,16 @@ public class StarWarsItems
 	public static Item rebelPilotLegs;
 	public static Item rebelPilotBoots;
 
+	public static Item rebelAPilotHelmet;
+	public static Item rebelAPilotChest;
+	public static Item rebelAPilotLegs;
+	public static Item rebelAPilotBoots;
+
+	public static Item rebelYPilotHelmet;
+	public static Item rebelYPilotChest;
+	public static Item rebelYPilotLegs;
+	public static Item rebelYPilotBoots;
+
 	public static Item stormtrooperHelmet;
 	public static Item stormtrooperChest;
 	public static Item stormtrooperLegs;

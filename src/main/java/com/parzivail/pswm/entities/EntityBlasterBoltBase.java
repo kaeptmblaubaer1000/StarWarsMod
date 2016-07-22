@@ -5,7 +5,10 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.items.ItemQuestContainer;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.pswm.tileentities.TileEntityTarget;
+import com.parzivail.util.ui.GuiToast;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -186,9 +189,30 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 			this.hitFX(pos.blockX, pos.blockY, pos.blockZ);
 			if (!this.worldObj.isRemote)
 			{
-				if (this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ) == Blocks.air && ConfigOptions.enableBlasterFire)
-					this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
-				this.setDead();
+				Block b0 = this.worldObj.getBlock(pos.blockX, pos.blockY, pos.blockZ);
+				Block b = this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ);
+				if (b0 != StarWarsMod.blockTarget)
+				{
+					if (b == Blocks.air && ConfigOptions.enableBlasterFire)
+						this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
+					this.setDead();
+				}
+				else
+				{
+					TileEntityTarget te = (TileEntityTarget)this.worldObj.getTileEntity(pos.blockX, pos.blockY, pos.blockZ);
+					te.isHit = true;
+					te.hits++;
+					te.hitTime = System.currentTimeMillis();
+					te.getWorldObj().markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
+					if (this.sender instanceof EntityPlayer)
+					{
+						ItemStack questContainer = ItemQuestContainer.getQuestContainer((EntityPlayer)this.sender);
+
+						ItemQuestContainer.addTargetKill(questContainer);
+
+						GuiToast.makeText(ItemQuestContainer.getTargetKills(questContainer), GuiToast.TIME_SHORT).show();
+					}
+				}
 			}
 		}
 	}

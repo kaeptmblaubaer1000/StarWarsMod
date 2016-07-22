@@ -26,11 +26,13 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 	public String id;
 	String armor;
 	private String aff;
+	private String skin;
 
-	public BlockNpcBase(String id, String armor, String aff)
+	public BlockNpcBase(String id, String armor, String aff, String skin)
 	{
 		super("staticNpc." + id, Material.iron);
 		this.aff = aff;
+		this.skin = skin;
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setBlockUnbreakable();
@@ -38,6 +40,11 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 		this.id = id;
 
 		this.armor = armor;
+	}
+
+	public BlockNpcBase(String id, String armor, String aff)
+	{
+		this(id, armor, aff, "parzi");
 	}
 
 	@Override
