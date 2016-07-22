@@ -5,6 +5,7 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.pswm.tileentities.TileEntityTarget;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicXWing;
@@ -24,6 +25,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import org.lwjgl.opengl.GL11;
@@ -50,6 +52,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 	private ItemStack stackShowing;
 	private Entity entityShowing;
+	private TileEntity tileShowing;
 	private ItemRenderer renderItem = RenderManager.instance.itemRenderer;
 	private TileEntityStaticNpc staticNpc;
 
@@ -63,6 +66,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixAwing;
 	Consumer<OutlineButton> fixYwing;
 	Consumer<OutlineButton> fixT47;
+	Consumer<OutlineButton> fixBlock;
 	Consumer<OutlineButton> currentFix = null;
 
 	public GuiScreenQuartermaster(EntityPlayer player, TileEntityStaticNpc tileEntity)
@@ -256,6 +260,23 @@ public class GuiScreenQuartermaster extends GuiScreen
 		}, postRenderEmpty);
 		listBShips.put("bShipT47", bShipT47);
 
+		x = 0;
+		y = 0;
+
+		Consumer<OutlineButton> fixItems = fixBlock = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
+			P3D.glScalef(28f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+		};
+
+		OutlineButtonTileEntity bMiscTarget = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscTarget.setup(new TileEntityTarget(), fixItems, postRenderEmpty);
+		listBMisc.put("bMiscTarget", bMiscTarget);
+
 		setTabArmor();
 	}
 
@@ -289,6 +310,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			else if (button.id == listBArmor.get("bArmorEndor").id)
 			{
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorEndor")).entity;
 
 				showingTitle = "Rebel Forest Gear";
@@ -297,6 +319,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			else if (button.id == listBArmor.get("bArmorHoth").id)
 			{
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorHoth")).entity;
 
 				showingTitle = "Rebel Low Temperature Gear";
@@ -305,6 +328,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			else if (button.id == listBArmor.get("bArmorXPilot").id)
 			{
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorXPilot")).entity;
 
 				showingTitle = "Rebel X-Wing Pilot Jumpsuit";
@@ -313,6 +337,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			else if (button.id == listBArmor.get("bArmorYPilot").id)
 			{
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorYPilot")).entity;
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
@@ -321,6 +346,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			else if (button.id == listBArmor.get("bArmorAPilot").id)
 			{
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorAPilot")).entity;
 
 				showingTitle = "Rebel A-Wing Pilot Jumpsuit";
@@ -331,6 +357,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				currentFix = fixA280;
 				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunA280")).itemStack;
 				entityShowing = null;
+				tileShowing = null;
 
 				showingTitle = "BlasTech A-280C Blaster Rifle";
 				showingDesc = "shooty";
@@ -344,6 +371,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				};
 				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDefender")).itemStack;
 				entityShowing = null;
+				tileShowing = null;
 
 				showingTitle = "DDC Defender Sporting Pistol";
 				showingDesc = "pew pew";
@@ -357,6 +385,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				};
 				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDl21")).itemStack;
 				entityShowing = null;
+				tileShowing = null;
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
 				showingDesc = "shooty mc'booty";
@@ -365,6 +394,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			{
 				currentFix = fixXwing;
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipXwing")).entity;
 
 				showingTitle = "Incom T-65 X-Wing Starfighter";
@@ -374,6 +404,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			{
 				currentFix = fixYwing;
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipYwing")).entity;
 
 				showingTitle = "BTL Y-Wing Bomber";
@@ -383,6 +414,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			{
 				currentFix = fixAwing;
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipAwing")).entity;
 
 				showingTitle = "RZ-1 A-Wing Interceptor";
@@ -392,10 +424,21 @@ public class GuiScreenQuartermaster extends GuiScreen
 			{
 				currentFix = fixT47;
 				stackShowing = null;
+				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipT47")).entity;
 
 				showingTitle = "Incom T-47 Snowspeeder";
 				showingDesc = "cold";
+			}
+			else if (button.id == listBMisc.get("bMiscTarget").id)
+			{
+				currentFix = fixBlock;
+				stackShowing = null;
+				entityShowing = null;
+				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscTarget")).tileEntity;
+
+				showingTitle = "Target";
+				showingDesc = "aim better than a stormtrooper, at least";
 			}
 		}
 	}
@@ -560,6 +603,42 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 			GL11.glPopMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
+		}
+		else if (tileShowing != null)
+		{
+			GL11.glPushMatrix();
+
+			GFX.drawCenteredText(mc.fontRenderer, showingTitle, 320, 165, 1.5f, GLPalette.SW_YELLOW);
+
+			String[] lines = TextUtils.splitIntoLine(showingDesc, 45);
+			int i = 0;
+			for (String line : lines)
+			{
+				GFX.drawCenteredText(mc.fontRenderer, line, 320, 185 + i * 12, 1f, GLPalette.WHITE);
+				i++;
+			}
+
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GL11.glEnable(GL11.GL_LIGHTING);
+			RenderHelper.enableStandardItemLighting();
+
+			P3D.setup2D(mc);
+
+			GLPalette.glColorI(GLPalette.WHITE);
+
+			GL11.glTranslatef(320, 90, 200);
+
+			P3D.glScalef(50);
+
+			if (currentFix != null)
+				currentFix.accept(null);
+
+			GFX.renderTileEntityAt(tileShowing, 0, 0, 0, 0);
+
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+			GL11.glPopMatrix();
 		}
 
 		super.drawScreen(mX, mY, p);
