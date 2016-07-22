@@ -314,6 +314,7 @@ public class BlockRegister
 		StarWarsMod.blockGunRack = registerWithTileEntity(BlockGunRack.class, TileEntityGunRack.class);
 		StarWarsMod.blockDoorHoth = registerWithTileEntity(BlockDoorHoth.class, TileEntityDoorHoth.class);
 		StarWarsMod.blockHothCeilingLight2 = registerWithTileEntity(BlockHothCeilingLight2.class, TileEntityHothCeilingLight2.class);
+		StarWarsMod.blockTarget = registerWithTileEntity(BlockTarget.class, TileEntityTarget.class);
 
 		StarWarsMod.blockAncientJediStatue = new BlockAncientJediStatue();
 		GameRegistry.registerBlock(StarWarsMod.blockAncientJediStatue, "ancientJediStatue");
