@@ -72,7 +72,7 @@ public class OutlineButtonTileEntity extends OutlineButton
 				GL11.glTranslatef(this.xPosition, this.yPosition, 0);
 				GL11.glPushMatrix();
 				this.preRender.accept(this);
-				P3D.setup2D(mc);
+				GL11.glTranslatef(-0.5f, 0, -0.5f);
 				GFX.renderTileEntityAt(tileEntity, 0, 0, 0, 0);
 				this.postRender.accept(this);
 				GL11.glPopMatrix();

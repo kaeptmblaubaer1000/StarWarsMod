@@ -4,6 +4,8 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.tileentities.TileEntityAntenna;
+import com.parzivail.pswm.tileentities.TileEntityGunRack;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.tileentities.TileEntityTarget;
 import com.parzivail.pswm.vehicles.VehicAWing;
@@ -66,7 +68,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixAwing;
 	Consumer<OutlineButton> fixYwing;
 	Consumer<OutlineButton> fixT47;
-	Consumer<OutlineButton> fixBlock;
+	Consumer<OutlineButton> fixTarget;
+	Consumer<OutlineButton> fixGunRack;
+	Consumer<OutlineButton> fixAntenna;
+	Consumer<OutlineButton> fixHolotable;
+	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> currentFix = null;
 
 	public GuiScreenQuartermaster(EntityPlayer player, TileEntityStaticNpc tileEntity)
@@ -263,19 +269,48 @@ public class GuiScreenQuartermaster extends GuiScreen
 		x = 0;
 		y = 0;
 
-		Consumer<OutlineButton> fixItems = fixBlock = outlineButton ->
+		OutlineButtonTileEntity bMiscTarget = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscTarget.setup(new TileEntityTarget(), fixTarget = outlineButton ->
 		{
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
-			P3D.glScalef(28f);
+			GL11.glTranslatef(0, 20, 0);
+			P3D.glScalef(22f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
-		};
-
-		OutlineButtonTileEntity bMiscTarget = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bMiscTarget.setup(new TileEntityTarget(), fixItems, postRenderEmpty);
+		}, postRenderEmpty);
 		listBMisc.put("bMiscTarget", bMiscTarget);
+
+		OutlineButtonTileEntity bMiscGunRack = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscGunRack.setup(new TileEntityGunRack(), fixGunRack = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
+			GL11.glTranslatef(0, 20, 0);
+			P3D.glScalef(22f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+		}, postRenderEmpty);
+		listBMisc.put("bMiscGunRack", bMiscGunRack);
+
+		x = 0;
+		y++;
+
+		OutlineButtonTileEntity bMiscAntenna = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscAntenna.setup(new TileEntityAntenna(), fixAntenna = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
+			GL11.glTranslatef(0, 20, 0);
+			P3D.glScalef(18f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 + 90, 0, 1, 0);
+			GL11.glTranslatef(0, 0, 0.5f);
+		}, postRenderEmpty);
+		listBMisc.put("bMiscAntenna", bMiscAntenna);
 
 		setTabArmor();
 	}
@@ -432,13 +467,33 @@ public class GuiScreenQuartermaster extends GuiScreen
 			}
 			else if (button.id == listBMisc.get("bMiscTarget").id)
 			{
-				currentFix = fixBlock;
+				currentFix = fixTarget;
 				stackShowing = null;
 				entityShowing = null;
 				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscTarget")).tileEntity;
 
 				showingTitle = "Target";
 				showingDesc = "aim better than a stormtrooper, at least";
+			}
+			else if (button.id == listBMisc.get("bMiscGunRack").id)
+			{
+				currentFix = fixGunRack;
+				stackShowing = null;
+				entityShowing = null;
+				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscGunRack")).tileEntity;
+
+				showingTitle = "Gun Rack";
+				showingDesc = "store yo guns";
+			}
+			else if (button.id == listBMisc.get("bMiscAntenna").id)
+			{
+				currentFix = fixAntenna;
+				stackShowing = null;
+				entityShowing = null;
+				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscAntenna")).tileEntity;
+
+				showingTitle = "Antenna";
+				showingDesc = "listeny";
 			}
 		}
 	}
@@ -622,16 +677,16 @@ public class GuiScreenQuartermaster extends GuiScreen
 			GL11.glEnable(GL11.GL_LIGHTING);
 			RenderHelper.enableStandardItemLighting();
 
-			P3D.setup2D(mc);
-
 			GLPalette.glColorI(GLPalette.WHITE);
 
 			GL11.glTranslatef(320, 90, 200);
 
-			P3D.glScalef(50);
+			P3D.glScalef(2.75f);
 
 			if (currentFix != null)
 				currentFix.accept(null);
+
+			GL11.glTranslatef(-0.5f, 0, -0.5f);
 
 			GFX.renderTileEntityAt(tileShowing, 0, 0, 0, 0);
 

@@ -1,7 +1,9 @@
 package com.parzivail.pswm.tileentities;
 
+import com.parzivail.pswm.StarWarsMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -33,6 +35,14 @@ public class TileEntityHoloTableBase extends TileEntity
 	public int getDisplayList()
 	{
 		return this.displayList;
+	}
+
+	/**
+	 * Gets the block type at the location of this entity (client-only).
+	 */
+	public Block getBlockType()
+	{
+		return StarWarsMod.blockHoloTable;
 	}
 
 	protected void regenDisplayList()
