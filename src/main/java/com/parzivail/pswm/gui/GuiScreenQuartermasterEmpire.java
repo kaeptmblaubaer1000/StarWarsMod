@@ -4,11 +4,14 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
-import com.parzivail.pswm.tileentities.*;
-import com.parzivail.pswm.vehicles.VehicAWing;
-import com.parzivail.pswm.vehicles.VehicSnowspeeder;
-import com.parzivail.pswm.vehicles.VehicXWing;
-import com.parzivail.pswm.vehicles.VehicYWing;
+import com.parzivail.pswm.tileentities.TileEntityAntenna;
+import com.parzivail.pswm.tileentities.TileEntityGunRack;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.pswm.tileentities.TileEntityTarget;
+import com.parzivail.pswm.vehicles.VehicTIE;
+import com.parzivail.pswm.vehicles.VehicTIEAdvanced;
+import com.parzivail.pswm.vehicles.VehicTIEBomber;
+import com.parzivail.pswm.vehicles.VehicTIEInterceptor;
 import com.parzivail.util.ui.*;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.relauncher.Side;
@@ -34,7 +37,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 @SideOnly(Side.CLIENT)
-public class GuiScreenQuartermaster extends GuiScreen
+public class GuiScreenQuartermasterEmpire extends GuiScreen
 {
 	private EntityPlayer player;
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
@@ -58,13 +61,15 @@ public class GuiScreenQuartermaster extends GuiScreen
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixA280;
-	Consumer<OutlineButton> fixDefender;
-	Consumer<OutlineButton> fixDl21;
-	Consumer<OutlineButton> fixXwing;
-	Consumer<OutlineButton> fixAwing;
-	Consumer<OutlineButton> fixYwing;
-	Consumer<OutlineButton> fixT47;
+	Consumer<OutlineButton> fixE11;
+	Consumer<OutlineButton> fixDlt19;
+	Consumer<OutlineButton> fixT21;
+	Consumer<OutlineButton> fixRt97c;
+	Consumer<OutlineButton> fixScout;
+	Consumer<OutlineButton> fixTie;
+	Consumer<OutlineButton> fixTIEInterceptor;
+	Consumer<OutlineButton> fixTIEBomber;
+	Consumer<OutlineButton> fixTIEAdvanced;
 	Consumer<OutlineButton> fixTarget;
 	Consumer<OutlineButton> fixGunRack;
 	Consumer<OutlineButton> fixAntenna;
@@ -72,7 +77,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> currentFix = null;
 
-	public GuiScreenQuartermaster(EntityPlayer player, TileEntityStaticNpc tileEntity)
+	public GuiScreenQuartermasterEmpire(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
 		this.mc = Minecraft.getMinecraft();
@@ -120,88 +125,138 @@ public class GuiScreenQuartermaster extends GuiScreen
 		{
 		};
 
-		OutlineButtonEntity bArmorEndor = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		OutlineButtonEntity bArmorStorm = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedEndor = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedEndor, Resources.armors[2]);
-		bArmorEndor.setup(bipedEndor, preRenderArmorButton, postRenderEmpty);
-		listBArmor.put("bArmorEndor", bArmorEndor);
+		QuestNpcUtils.arm(bipedEndor, Resources.armors[3]);
+		bArmorStorm.setup(bipedEndor, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorStorm", bArmorStorm);
 
-		OutlineButtonEntity bArmorHoth = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		OutlineButtonEntity bArmorScout = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		MobDefaultBiped bipedScout = new MobDefaultBiped(player.worldObj);
+		QuestNpcUtils.arm(bipedScout, Resources.armors[6]);
+		bArmorScout.setup(bipedScout, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorScout", bArmorScout);
+
+		OutlineButtonEntity bArmorAtatPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		MobDefaultBiped bipedAtat = new MobDefaultBiped(player.worldObj);
+		QuestNpcUtils.arm(bipedAtat, Resources.armors[8]);
+		bArmorAtatPilot.setup(bipedAtat, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorAtatPilot", bArmorAtatPilot);
+
+		x = 0;
+		y++;
+
+		OutlineButtonEntity bArmorSandtrooper = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedHoth = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedHoth, Resources.armors[1]);
-		bArmorHoth.setup(bipedHoth, preRenderArmorButton, postRenderEmpty);
-		listBArmor.put("bArmorHoth", bArmorHoth);
+		QuestNpcUtils.arm(bipedHoth, Resources.armors[4]);
+		bArmorSandtrooper.setup(bipedHoth, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorSandtrooper", bArmorSandtrooper);
+
+		OutlineButtonEntity bArmorSnowtrooper = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		MobDefaultBiped bipedTie = new MobDefaultBiped(player.worldObj);
+		QuestNpcUtils.arm(bipedTie, Resources.armors[5]);
+		bArmorSnowtrooper.setup(bipedTie, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorSnowtrooper", bArmorSnowtrooper);
 
 		x = 0;
 		y++;
 
-		OutlineButtonEntity bArmorXPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		MobDefaultBiped bipedXwing = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedXwing, Resources.armors[0]);
-		bArmorXPilot.setup(bipedXwing, preRenderArmorButton, postRenderEmpty);
-		listBArmor.put("bArmorXPilot", bArmorXPilot);
+		OutlineButtonEntity bArmorTiePilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		MobDefaultBiped bipedTIEInterceptor = new MobDefaultBiped(player.worldObj);
+		QuestNpcUtils.arm(bipedTIEInterceptor, Resources.armors[7]);
+		bArmorTiePilot.setup(bipedTIEInterceptor, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorTiePilot", bArmorTiePilot);
 
-		OutlineButtonEntity bArmorYPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		MobDefaultBiped bipedYwing = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedYwing, Resources.armors[10]);
-		bArmorYPilot.setup(bipedYwing, preRenderArmorButton, postRenderEmpty);
-		listBArmor.put("bArmorYPilot", bArmorYPilot);
-
-		x = 0;
-		y++;
-
-		OutlineButtonEntity bArmorAPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		MobDefaultBiped bipedAwing = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedAwing, Resources.armors[9]);
-		bArmorAPilot.setup(bipedAwing, preRenderArmorButton, postRenderEmpty);
-		listBArmor.put("bArmorAPilot", bArmorAPilot);
+		OutlineButtonEntity bArmorAtstPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		MobDefaultBiped bipedAtst = new MobDefaultBiped(player.worldObj);
+		QuestNpcUtils.arm(bipedAtst, Resources.armors[8]);
+		bArmorAtstPilot.setup(bipedAtst, preRenderArmorButton, postRenderEmpty);
+		listBArmor.put("bArmorAtstPilot", bArmorAtstPilot);
 
 		x = 0;
 		y = 0;
 
-		OutlineButtonItemStack bGunA280 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bGunA280.setup(new ItemStack(StarWarsItems.blasterRifle, 1, 0), fixA280 = outlineButton ->
+		OutlineButtonItemStack bGunE11 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunE11.setup(new ItemStack(StarWarsItems.blasterRifle, 1, 4), fixE11 = outlineButton ->
 		{
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
-			P3D.glScalef(18f);
+			P3D.glScalef(20f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
-			GL11.glTranslatef(0.51f, 0, 0.75f);
+			GL11.glTranslatef(0.51f, 0, 0f);
 		}, postRenderEmpty);
-		listBWeapons.put("bGunA280", bGunA280);
+		listBWeapons.put("bGunE11", bGunE11);
+
+		OutlineButtonItemStack bGunDlt19 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunDlt19.setup(new ItemStack(StarWarsItems.blasterHeavy, 1, 0), fixDlt19 = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			P3D.glScalef(11f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(0.2f, 0, 0.65f);
+		}, postRenderEmpty);
+		listBWeapons.put("bGunDlt19", bGunDlt19);
 
 		x = 0;
 		y++;
 
-		OutlineButtonItemStack bGunDefender = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bGunDefender.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 3), fixDefender = outlineButton ->
+		OutlineButtonItemStack bGunT21 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunT21.setup(new ItemStack(StarWarsItems.blasterHeavy, 1, 1), fixT21 = outlineButton ->
 		{
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
-			P3D.glScalef(22f);
+			else
+				GL11.glTranslatef(0, 6, 0);
+			P3D.glScalef(11f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef(90, 0, 1, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 			GL11.glTranslatef(0.51f, 0, -0.3f);
 			GL11.glRotatef(90, 0, 1, 0);
 		}, postRenderEmpty);
-		listBWeapons.put("bGunDefender", bGunDefender);
+		listBWeapons.put("bGunT21", bGunT21);
 
-		OutlineButtonItemStack bGunDl21 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bGunDl21.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 4), fixDl21 = outlineButton ->
+		OutlineButtonItemStack bGunRt97c = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunRt97c.setup(new ItemStack(StarWarsItems.blasterHeavy, 1, 2), fixRt97c = outlineButton ->
 		{
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
-			P3D.glScalef(27f);
+			else
+				GL11.glTranslatef(0, 6, 0);
+			P3D.glScalef(15f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef(90, 0, 1, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
-			GL11.glTranslatef(0.51f, 0, -0.5f);
+			GL11.glTranslatef(0f, 0, -0.3f);
 			GL11.glRotatef(90, 0, 1, 0);
 		}, postRenderEmpty);
-		listBWeapons.put("bGunDl21", bGunDl21);
+		listBWeapons.put("bGunRt97c", bGunRt97c);
+
+		x = 0;
+		y++;
+
+		OutlineButtonItemStack bGunScout = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunScout.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 5), fixScout = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			GL11.glTranslatef(0, -6, 0);
+			P3D.glScalef(40f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(0.3f, 0, 0.5f);
+		}, postRenderEmpty);
+		listBWeapons.put("bGunScout", bGunScout);
 
 		x = 0;
 		y = 0;
@@ -216,52 +271,50 @@ public class GuiScreenQuartermaster extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / 15) % 360, 0, 1, 0);
 		};
 
-		OutlineButtonEntity bShipXwing = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
-		VehicXWing xwing = new VehicXWing(player.worldObj);
-		bShipXwing.setup(xwing, fixXwing = outlineButton ->
+		OutlineButtonEntity bShipTie = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
+		VehicTIE Tie = new VehicTIE(player.worldObj);
+		bShipTie.setup(Tie, fixTie = outlineButton ->
 		{
-			P3D.glScalef(1.2f);
-			GL11.glTranslatef(-7.5f, -10, 0);
+			P3D.glScalef(2f);
+			GL11.glTranslatef(-22f, -22, 0);
 			preRenderShips.accept(outlineButton);
 		}, postRenderEmpty);
-		listBShips.put("bShipXwing", bShipXwing);
+		listBShips.put("bShipTie", bShipTie);
 
-		OutlineButtonEntity bShipYwing = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
-		VehicYWing ywing = new VehicYWing(player.worldObj);
-		bShipYwing.setup(ywing, fixYwing = outlineButton ->
+		OutlineButtonEntity bShipTIEBomber = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
+		VehicTIEBomber TIEBomber = new VehicTIEBomber(player.worldObj);
+		bShipTIEBomber.setup(TIEBomber, fixTIEBomber = outlineButton ->
 		{
-			if (outlineButton != null)
-				GL11.glTranslatef(0, -3f, 0);
+			P3D.glScalef(1.5f);
+			GL11.glTranslatef(-15f, -15, 0);
 			preRenderShips.accept(outlineButton);
 			if (outlineButton != null)
-				GL11.glTranslatef(0, 0, 5);
+				GL11.glTranslatef(-2.67f, 0, -0.5f);
 		}, postRenderEmpty);
-		listBShips.put("bShipYwing", bShipYwing);
+		listBShips.put("bShipTIEBomber", bShipTIEBomber);
 
 		x = 0;
 		y++;
 
-		OutlineButtonEntity bShipAwing = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
-		VehicAWing awing = new VehicAWing(player.worldObj);
-		bShipAwing.setup(awing, fixAwing = outlineButton ->
+		OutlineButtonEntity bShipTIEInterceptor = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
+		VehicTIEInterceptor TIEInterceptor = new VehicTIEInterceptor(player.worldObj);
+		bShipTIEInterceptor.setup(TIEInterceptor, fixTIEInterceptor = outlineButton ->
 		{
-			P3D.glScalef(2.3f);
-			if (outlineButton != null)
-				GL11.glTranslatef(-25.5f, -30, 0);
+			P3D.glScalef(1.8f);
+			GL11.glTranslatef(-20f, -20, 0);
 			preRenderShips.accept(outlineButton);
 		}, postRenderEmpty);
-		listBShips.put("bShipAwing", bShipAwing);
+		listBShips.put("bShipTIEInterceptor", bShipTIEInterceptor);
 
-		OutlineButtonEntity bShipT47 = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
-		VehicSnowspeeder t47 = new VehicSnowspeeder(player.worldObj);
-		bShipT47.setup(t47, fixT47 = outlineButton ->
+		OutlineButtonEntity bShipTIEAdvanced = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
+		VehicTIEAdvanced TIEAdvanced = new VehicTIEAdvanced(player.worldObj);
+		bShipTIEAdvanced.setup(TIEAdvanced, fixTIEAdvanced = outlineButton ->
 		{
-			P3D.glScalef(2.3f);
-			if (outlineButton != null)
-				GL11.glTranslatef(-25.5f, -32, 0);
+			P3D.glScalef(1.8f);
+			GL11.glTranslatef(-20f, -20, 0);
 			preRenderShips.accept(outlineButton);
 		}, postRenderEmpty);
-		listBShips.put("bShipT47", bShipT47);
+		listBShips.put("bShipTIEAdvanced", bShipTIEAdvanced);
 
 		x = 0;
 		y = 0;
@@ -309,19 +362,6 @@ public class GuiScreenQuartermaster extends GuiScreen
 		}, postRenderEmpty);
 		listBMisc.put("bMiscAntenna", bMiscAntenna);
 
-		OutlineButtonTileEntity bMiscBacta = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bMiscBacta.setup(new TileEntityBactaTank(), fixBacta = outlineButton ->
-		{
-			if (outlineButton != null)
-				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
-			GL11.glTranslatef(0, 20, 0);
-			P3D.glScalef(10.5f);
-			GL11.glScalef(1, -1, 1);
-			GL11.glRotatef(10, 1, 0, 0);
-			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 + 90, 0, 1, 0);
-		}, postRenderEmpty);
-		listBMisc.put("bMiscBacta", bMiscBacta);
-
 		setTabArmor();
 	}
 
@@ -352,125 +392,167 @@ public class GuiScreenQuartermaster extends GuiScreen
 			{
 				setTabMisc();
 			}
-			else if (button.id == listBArmor.get("bArmorEndor").id)
+			else if (button.id == listBArmor.get("bArmorStorm").id)
 			{
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorEndor")).entity;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorStorm")).entity;
 
-				showingTitle = "Rebel Forest Gear";
-				showingDesc = "Hidey";
+				showingTitle = "Stormtrooper Body Armor";
+				showingDesc = "makes you unable to aim";
 			}
-			else if (button.id == listBArmor.get("bArmorHoth").id)
+			else if (button.id == listBArmor.get("bArmorSandtrooper").id)
 			{
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorHoth")).entity;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorSandtrooper")).entity;
 
 				showingTitle = "Rebel Low Temperature Gear";
 				showingDesc = "freezy";
 			}
-			else if (button.id == listBArmor.get("bArmorXPilot").id)
+			else if (button.id == listBArmor.get("bArmorSnowtrooper").id)
 			{
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorXPilot")).entity;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorSnowtrooper")).entity;
 
 				showingTitle = "Rebel X-Wing Pilot Jumpsuit";
 				showingDesc = "fly-y";
 			}
-			else if (button.id == listBArmor.get("bArmorYPilot").id)
+			else if (button.id == listBArmor.get("bArmorScout").id)
 			{
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorYPilot")).entity;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorScout")).entity;
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
 			}
-			else if (button.id == listBArmor.get("bArmorAPilot").id)
+			else if (button.id == listBArmor.get("bArmorTiePilot").id)
 			{
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorAPilot")).entity;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorTiePilot")).entity;
 
 				showingTitle = "Rebel A-Wing Pilot Jumpsuit";
 				showingDesc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book";
 			}
-			else if (button.id == listBWeapons.get("bGunA280").id)
+			else if (button.id == listBArmor.get("bArmorAtstPilot").id)
 			{
-				currentFix = fixA280;
-				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunA280")).itemStack;
+				stackShowing = null;
+				tileShowing = null;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorAtstPilot")).entity;
+
+				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
+				showingDesc = "bomby";
+			}
+			else if (button.id == listBArmor.get("bArmorAtatPilot").id)
+			{
+				stackShowing = null;
+				tileShowing = null;
+				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorAtatPilot")).entity;
+
+				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
+				showingDesc = "bomby";
+			}
+			else if (button.id == listBWeapons.get("bGunE11").id)
+			{
+				currentFix = fixE11;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunE11")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
 
 				showingTitle = "BlasTech A-280C Blaster Rifle";
 				showingDesc = "shooty";
 			}
-			else if (button.id == listBWeapons.get("bGunDefender").id)
+			else if (button.id == listBWeapons.get("bGunDlt19").id)
 			{
-				currentFix = outlineButton ->
-				{
-					GL11.glTranslatef(0, -6, 0);
-					fixDefender.accept(outlineButton);
-				};
-				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDefender")).itemStack;
+				currentFix = fixDlt19;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDlt19")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "DDC Defender Sporting Pistol";
-				showingDesc = "pew pew";
+				showingTitle = "BlasTech A-280C Blaster Rifle";
+				showingDesc = "shooty";
 			}
-			else if (button.id == listBWeapons.get("bGunDl21").id)
+			else if (button.id == listBWeapons.get("bGunT21").id)
 			{
 				currentFix = outlineButton ->
 				{
 					GL11.glTranslatef(0, -6, 0);
-					fixDl21.accept(outlineButton);
+					fixT21.accept(outlineButton);
 				};
-				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDl21")).itemStack;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunT21")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "DDC T21 Sporting Pistol";
+				showingDesc = "pew pew";
+			}
+			else if (button.id == listBWeapons.get("bGunRt97c").id)
+			{
+				currentFix = outlineButton ->
+				{
+					GL11.glTranslatef(0, -6, 0);
+					fixRt97c.accept(outlineButton);
+				};
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunRt97c")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
 				showingDesc = "shooty mc'booty";
 			}
-			else if (button.id == listBShips.get("bShipXwing").id)
+			else if (button.id == listBWeapons.get("bGunScout").id)
 			{
-				currentFix = fixXwing;
+				currentFix = outlineButton ->
+				{
+					GL11.glTranslatef(0, -6, 0);
+					fixScout.accept(outlineButton);
+				};
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunScout")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "BlasTech DL-21 Blaster Pistol";
+				showingDesc = "shooty mc'booty";
+			}
+			else if (button.id == listBShips.get("bShipTie").id)
+			{
+				currentFix = fixTie;
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipXwing")).entity;
+				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTie")).entity;
 
 				showingTitle = "Incom T-65 X-Wing Starfighter";
 				showingDesc = "BAD-X (R)";
 			}
-			else if (button.id == listBShips.get("bShipYwing").id)
+			else if (button.id == listBShips.get("bShipTIEBomber").id)
 			{
-				currentFix = fixYwing;
+				currentFix = fixTIEBomber;
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipYwing")).entity;
+				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTIEBomber")).entity;
 
 				showingTitle = "BTL Y-Wing Bomber";
 				showingDesc = "boom";
 			}
-			else if (button.id == listBShips.get("bShipAwing").id)
+			else if (button.id == listBShips.get("bShipTIEInterceptor").id)
 			{
-				currentFix = fixAwing;
+				currentFix = fixTIEInterceptor;
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipAwing")).entity;
+				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTIEInterceptor")).entity;
 
 				showingTitle = "RZ-1 A-Wing Interceptor";
 				showingDesc = "double pew";
 			}
-			else if (button.id == listBShips.get("bShipT47").id)
+			else if (button.id == listBShips.get("bShipTIEAdvanced").id)
 			{
-				currentFix = fixT47;
+				currentFix = fixTIEAdvanced;
 				stackShowing = null;
 				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipT47")).entity;
+				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTIEAdvanced")).entity;
 
 				showingTitle = "Incom T-47 Snowspeeder";
 				showingDesc = "cold";
@@ -504,16 +586,6 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				showingTitle = "Antenna";
 				showingDesc = "listeny";
-			}
-			else if (button.id == listBMisc.get("bMiscBacta").id)
-			{
-				currentFix = fixBacta;
-				stackShowing = null;
-				entityShowing = null;
-				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscBacta")).tileEntity;
-
-				showingTitle = "Bacta Tank";
-				showingDesc = "healy";
 			}
 		}
 	}
@@ -634,13 +706,13 @@ public class GuiScreenQuartermaster extends GuiScreen
 				GL11.glTranslatef(0, -30, 0);
 			}
 
-			GFX.drawCenteredText(mc.fontRenderer, showingTitle, 330, 170, 1.5f, GLPalette.SW_YELLOW);
+			GFX.drawCenteredText(mc.fontRenderer, showingTitle, 330, 205, 1.5f, GLPalette.SW_YELLOW);
 
 			String[] lines = TextUtils.splitIntoLine(showingDesc, 45);
 			int i = 0;
 			for (String line : lines)
 			{
-				GFX.drawCenteredText(mc.fontRenderer, line, 330, 190 + i * 12, 1f, GLPalette.WHITE);
+				GFX.drawCenteredText(mc.fontRenderer, line, 330, 225 + i * 12, 1f, GLPalette.WHITE);
 				i++;
 			}
 			GL11.glPopMatrix();
@@ -654,16 +726,17 @@ public class GuiScreenQuartermaster extends GuiScreen
 			GL11.glTranslatef(330, 160, 130);
 			if (entityShowing instanceof VehicleAirBase)
 			{
-				if (entityShowing instanceof VehicXWing)
-					GL11.glTranslatef(19, -40, 0);
-				else
-					GL11.glTranslatef(0, -70, 0);
+				GL11.glTranslatef(90, 60, 0);
+
+				if (entityShowing instanceof VehicTIEBomber)
+					GL11.glTranslatef(-40, -50, 0);
+				else if (entityShowing instanceof VehicTIEInterceptor || entityShowing instanceof VehicTIEAdvanced)
+					GL11.glTranslatef(-15, -25, 0);
+
 				P3D.glScalef(2);
 				if (currentFix != null)
 					currentFix.accept(null);
 				GL11.glRotatef((System.currentTimeMillis() / -30) % 360, 0, 1, 0);
-				if (entityShowing instanceof VehicYWing)
-					GL11.glTranslatef(0, 0, 5);
 			}
 			else
 			{

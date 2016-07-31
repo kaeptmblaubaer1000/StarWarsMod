@@ -215,6 +215,15 @@ public class StarWarsMod
 	public static PBlockContainer blockStaticNpcRebelDreis;
 	public static PBlockContainer blockStaticNpcRebelYavinQuartermaster;
 
+	public static PBlockContainer blockStaticNpcEmpireEndorQuartermaster;
+
+	public static PBlockContainer blockStaticNpcMerchant;
+	public static PBlockContainer blockStaticNpcWeaponsDealer;
+	public static PBlockContainer blockStaticNpcBartender;
+	public static PBlockContainer blockStaticNpcCorellian;
+
+	public static PBlockContainer blockStaticNpcJawaQuartermaster;
+
 	public static Block blockHyperdrive;
 
 	public static Item.ToolMaterial materialGaffi;

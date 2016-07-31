@@ -181,6 +181,8 @@ public class Resources
 	public static final int GUI_ANTENNA = guiCounter++;
 	public static final int GUI_CRYSTALCOMPRESSOR = guiCounter++;
 	public static final int GUI_QUARTERMASTER = guiCounter++;
+	public static final int GUI_QUARTERMASTER_EMPIRE = guiCounter++;
+	public static final int GUI_JAWA = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");
@@ -262,8 +264,14 @@ public class Resources
 	public static final String allegianceNewRepublicFmt = "newrepublic";
 	public static final String allegianceRebelFmt = "rebelalliance";
 	public static final String allegianceImperialFmt = "galacticempire";
+	public static final String allegianceJawaFmt = "jawa";
+	public static final String allegianceCorellianFmt = "corellian";
+	public static final String allegianceWeaponDealerFmt = "weapondealer";
+	public static final String allegianceBartenderFmt = "bartender";
+	public static final String allegianceMerchantFmt = "merchant";
 
 	public static final String skinDefault = "default";
 
+	//                                      0             1            2             3               4              5              6               7           8            9             10            11
 	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot", "aWingPilot", "yWingPilot", "shadowtrooper" };
 }

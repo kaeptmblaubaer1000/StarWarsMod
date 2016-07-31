@@ -25,7 +25,7 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 {
 	public String id;
 	String armor;
-	private String aff;
+	String aff;
 	private String skin;
 
 	public BlockNpcBase(String id, String armor, String aff, String skin)

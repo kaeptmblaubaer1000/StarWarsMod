@@ -4,7 +4,10 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
-import com.parzivail.pswm.tileentities.*;
+import com.parzivail.pswm.tileentities.TileEntityAntenna;
+import com.parzivail.pswm.tileentities.TileEntityBactaTank;
+import com.parzivail.pswm.tileentities.TileEntityGunRack;
+import com.parzivail.pswm.tileentities.TileEntityTarget;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicXWing;
@@ -34,7 +37,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 @SideOnly(Side.CLIENT)
-public class GuiScreenQuartermaster extends GuiScreen
+public class GuiScreenJawa extends GuiScreen
 {
 	private EntityPlayer player;
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
@@ -53,7 +56,6 @@ public class GuiScreenQuartermaster extends GuiScreen
 	private Entity entityShowing;
 	private TileEntity tileShowing;
 	private ItemRenderer renderItem = RenderManager.instance.itemRenderer;
-	private TileEntityStaticNpc staticNpc;
 
 	private String showingTitle = "";
 	private String showingDesc = "";
@@ -72,9 +74,8 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> currentFix = null;
 
-	public GuiScreenQuartermaster(EntityPlayer player, TileEntityStaticNpc tileEntity)
+	public GuiScreenJawa(EntityPlayer player)
 	{
-		this.staticNpc = tileEntity;
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
 	}
