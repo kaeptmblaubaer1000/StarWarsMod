@@ -49,6 +49,19 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			GLPalette.glColorI(GLPalette.WHITE);
 
+			if (staticNpc.getAff().equals(Resources.allegianceBartenderFmt))
+				biped.overrideTexture = RenderHuman.textureBartender;
+			else if (staticNpc.getAff().equals(Resources.allegianceCorellianFmt))
+				biped.overrideTexture = RenderHuman.textureCorellian;
+			else if (staticNpc.getAff().equals(Resources.allegianceMerchantFmt))
+				biped.overrideTexture = RenderHuman.textureMerchant;
+			else if (staticNpc.getAff().equals(Resources.allegianceWeaponDealerFmt))
+				biped.overrideTexture = RenderHuman.textureWeaponsDealer;
+			else if (staticNpc.getAff().equals(Resources.allegianceImperialFmt))
+				biped.overrideTexture = RenderHuman.textureSteve;
+			else
+				biped.overrideTexture = RenderHuman.texture;
+
 			if (staticNpc.getInternalEntity().worldObj != null)
 				biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
 
@@ -79,6 +92,18 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 					break;
 				case Resources.allegianceImperialFmt:
 					GFX.drawTexture(0, 0, 49, 26, 16, 16);
+					break;
+				case Resources.allegianceMerchantFmt:
+					GFX.drawTexture(0, 0, 5 * 16 + 1, 26, 16, 16);
+					break;
+				case Resources.allegianceCorellianFmt:
+					GFX.drawTexture(0, 0, 6 * 16 + 1, 26, 16, 16);
+					break;
+				case Resources.allegianceBartenderFmt:
+					GFX.drawTexture(0, 0, 7 * 16 + 1, 26, 16, 16);
+					break;
+				case Resources.allegianceWeaponDealerFmt:
+					GFX.drawTexture(0, 0, 8 * 16 + 1, 26, 16, 16);
 					break;
 			}
 

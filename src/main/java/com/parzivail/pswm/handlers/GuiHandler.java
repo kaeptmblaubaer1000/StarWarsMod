@@ -45,6 +45,14 @@ public class GuiHandler implements IGuiHandler
 			return new GuiScreenQuartermaster(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_QUARTERMASTER_EMPIRE)
 			return new GuiScreenQuartermasterEmpire(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_CORELLIAN)
+			return new GuiScreenCorellian(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_WEAPONS_DEALER)
+			return new GuiScreenWeaponsDealer(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_MERCHANT)
+			return new GuiScreenMerchant(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
+		else if (id == Resources.GUI_BARTENDER)
+			return new GuiScreenBartender(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_JAWA)
 			return new GuiScreenJawa(player);
 		return null;

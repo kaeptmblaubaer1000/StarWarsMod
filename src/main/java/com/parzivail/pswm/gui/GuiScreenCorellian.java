@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 @SideOnly(Side.CLIENT)
-public class GuiScreenQuartermaster extends GuiScreen
+public class GuiScreenCorellian extends GuiScreen
 {
 	private EntityPlayer player;
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
@@ -61,7 +61,6 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixA280;
 	Consumer<OutlineButton> fixDefender;
 	Consumer<OutlineButton> fixDl21;
-	Consumer<OutlineButton> fixDh17;
 	Consumer<OutlineButton> fixXwing;
 	Consumer<OutlineButton> fixAwing;
 	Consumer<OutlineButton> fixYwing;
@@ -73,7 +72,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> currentFix = null;
 
-	public GuiScreenQuartermaster(EntityPlayer player, TileEntityStaticNpc tileEntity)
+	public GuiScreenCorellian(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
 		this.mc = Minecraft.getMinecraft();
@@ -172,22 +171,6 @@ public class GuiScreenQuartermaster extends GuiScreen
 			GL11.glTranslatef(0.51f, 0, 0.75f);
 		}, postRenderEmpty);
 		listBWeapons.put("bGunA280", bGunA280);
-
-		OutlineButtonItemStack bGunDh17 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bGunDh17.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 2), fixDh17 = outlineButton ->
-		{
-			if (outlineButton != null)
-				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
-			else
-				GL11.glTranslatef(0, -4, 0);
-			GL11.glTranslatef(0, 3, 0);
-			P3D.glScalef(24f);
-			GL11.glScalef(1, -1, 1);
-			GL11.glRotatef(10, 1, 0, 0);
-			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 - 180, 0, 1, 0);
-			GL11.glTranslatef(0.4f, 0, 0.3f);
-		}, postRenderEmpty);
-		listBWeapons.put("bGunDh17", bGunDh17);
 
 		x = 0;
 		y++;
@@ -450,16 +433,6 @@ public class GuiScreenQuartermaster extends GuiScreen
 				tileShowing = null;
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
-				showingDesc = "shooty mc'booty";
-			}
-			else if (button.id == listBWeapons.get("bGunDh17").id)
-			{
-				currentFix = fixDh17;
-				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDh17")).itemStack;
-				entityShowing = null;
-				tileShowing = null;
-
-				showingTitle = "dh17";
 				showingDesc = "shooty mc'booty";
 			}
 			else if (button.id == listBShips.get("bShipXwing").id)

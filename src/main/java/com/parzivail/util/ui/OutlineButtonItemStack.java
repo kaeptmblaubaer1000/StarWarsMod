@@ -3,6 +3,7 @@ package com.parzivail.util.ui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -15,8 +16,10 @@ public class OutlineButtonItemStack extends OutlineButton
 	public ItemStack itemStack;
 	public Consumer<OutlineButton> preRender;
 	public Consumer<OutlineButton> postRender;
+	private EntityPlayer player;
 	private boolean isSetup;
 	private ItemRenderer itemRenderer = RenderManager.instance.itemRenderer;
+	private boolean flat;
 
 	public OutlineButtonItemStack(int id, int x, int y, int width, int height)
 	{
@@ -24,12 +27,19 @@ public class OutlineButtonItemStack extends OutlineButton
 		this.isSetup = false;
 	}
 
-	public void setup(ItemStack itemStack, Consumer<OutlineButton> preRender, Consumer<OutlineButton> postRender)
+	public void setup(ItemStack itemStack, Consumer<OutlineButton> preRender, Consumer<OutlineButton> postRender, boolean flat, EntityPlayer player)
 	{
 		this.itemStack = itemStack;
 		this.preRender = preRender;
 		this.postRender = postRender;
+		this.player = player;
 		this.isSetup = true;
+		this.flat = flat;
+	}
+
+	public void setup(ItemStack itemStack, Consumer<OutlineButton> preRender, Consumer<OutlineButton> postRender)
+	{
+		setup(itemStack, preRender, postRender, false, null);
 	}
 
 	@Override
@@ -76,7 +86,10 @@ public class OutlineButtonItemStack extends OutlineButton
 				GL11.glTranslatef(this.xPosition, this.yPosition, 0);
 				GL11.glPushMatrix();
 				this.preRender.accept(this);
-				itemRenderer.renderItem(null, itemStack, 0, IItemRenderer.ItemRenderType.ENTITY);
+				if (flat)
+					GFX.renderItem(0, 0, itemStack);
+				else
+					itemRenderer.renderItem(player, itemStack, 0, IItemRenderer.ItemRenderType.ENTITY);
 				this.postRender.accept(this);
 				GL11.glPopMatrix();
 				GL11.glPopMatrix();

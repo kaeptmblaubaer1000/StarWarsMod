@@ -183,6 +183,10 @@ public class Resources
 	public static final int GUI_QUARTERMASTER = guiCounter++;
 	public static final int GUI_QUARTERMASTER_EMPIRE = guiCounter++;
 	public static final int GUI_JAWA = guiCounter++;
+	public static final int GUI_MERCHANT = guiCounter++;
+	public static final int GUI_WEAPONS_DEALER = guiCounter++;
+	public static final int GUI_CORELLIAN = guiCounter++;
+	public static final int GUI_BARTENDER = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

@@ -2,7 +2,7 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.mobs.*;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.vehicles.VehicYWing;
 import com.parzivail.util.ui.*;
@@ -30,33 +30,40 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 @SideOnly(Side.CLIENT)
-public class GuiScreenJawa extends GuiScreen
+public class GuiScreenWeaponsDealer extends GuiScreen
 {
 	private EntityPlayer player;
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
 
-	private OutlineButton bTabDroids;
 	private OutlineButton bTabWeapons;
+	private OutlineButton bTabMelee;
 	private OutlineButton bTabMisc;
 
-	private Map<String, OutlineButton> listBDroids;
 	private Map<String, OutlineButton> listBWeapons;
+	private Map<String, OutlineButton> listBMelee;
 	private Map<String, OutlineButton> listBMisc;
 
 	private ItemStack stackShowing;
 	private Entity entityShowing;
 	private TileEntity tileShowing;
 	private ItemRenderer renderItem = RenderManager.instance.itemRenderer;
+	private TileEntityStaticNpc staticNpc;
 
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixA280;
-	Consumer<OutlineButton> fixItem;
+	Consumer<OutlineButton> fixEe3;
+	Consumer<OutlineButton> fixDl44;
+	Consumer<OutlineButton> fixDl18;
+	Consumer<OutlineButton> fixSe14c;
+	Consumer<OutlineButton> fixDh17;
+	Consumer<OutlineButton> fixGaffi;
+	Consumer<OutlineButton> fixVibroLance;
 	Consumer<OutlineButton> currentFix = null;
 
-	public GuiScreenJawa(EntityPlayer player)
+	public GuiScreenWeaponsDealer(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
+		this.staticNpc = tileEntity;
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
 	}
@@ -69,28 +76,26 @@ public class GuiScreenJawa extends GuiScreen
 
 		int id = 0;
 		int xTab = -40;
-		bTabDroids = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("droids"), false);
 		bTabWeapons = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("guns"), false);
+		bTabMelee = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("melee"), false);
 		bTabMisc = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("misc"), false);
 
-		buttonList.add(bTabDroids);
 		buttonList.add(bTabWeapons);
+		buttonList.add(bTabMelee);
 		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
-		listBDroids = new HashMap<>();
 		listBWeapons = new HashMap<>();
+		listBMelee = new HashMap<>();
 		listBMisc = new HashMap<>();
 
 		int x = 0;
 		int y = 0;
 
-		Consumer<OutlineButton> preRenderDroidsButton = outlineButton ->
+		Consumer<OutlineButton> preRenderArmorButton = outlineButton ->
 		{
 			GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 3f, 50);
-			if (outlineButton instanceof OutlineButtonEntity && !(((OutlineButtonEntity)outlineButton).entity instanceof MobDroidProtocol))
-				GL11.glTranslatef(0, -4, 0);
 			P3D.glScalef(23.25f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
@@ -101,80 +106,132 @@ public class GuiScreenJawa extends GuiScreen
 		{
 		};
 
-		OutlineButtonEntity bDroidAstromech = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bDroidAstromech.setup(new MobDroidAstromech(player.worldObj), preRenderDroidsButton, postRenderEmpty);
-		listBDroids.put("bDroidAstromech", bDroidAstromech);
-
-		OutlineButtonEntity bDroidAstromech2 = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bDroidAstromech2.setup(new MobDroidAstromech2(player.worldObj), preRenderDroidsButton, postRenderEmpty);
-		listBDroids.put("bDroidAstromech2", bDroidAstromech2);
-
-		x = 0;
-		y++;
-
-		OutlineButtonEntity bDroidProtocol = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bDroidProtocol.setup(new MobDroidProtocol(player.worldObj), preRenderDroidsButton, postRenderEmpty);
-		listBDroids.put("bDroidProtocol", bDroidProtocol);
-
-		OutlineButtonEntity bDroidAstromechBb8 = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bDroidAstromechBb8.setup(new MobDroidAstromechBb8(player.worldObj), preRenderDroidsButton, postRenderEmpty);
-		listBDroids.put("bDroidAstromechBb8", bDroidAstromechBb8);
-
-		x = 0;
-		y++;
-
-		OutlineButtonEntity bDroidGonk = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bDroidGonk.setup(new MobDroidGNK(player.worldObj), preRenderDroidsButton, postRenderEmpty);
-		listBDroids.put("bDroidGonk", bDroidGonk);
-
-		x = 0;
-		y = 0;
-
-		OutlineButtonItemStack bGunIonization = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bGunIonization.setup(new ItemStack(StarWarsItems.blasterRifle, 1, 2), fixA280 = outlineButton ->
+		OutlineButtonItemStack bGunEe3 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunEe3.setup(new ItemStack(StarWarsItems.blasterRifle, 1, 1), fixEe3 = outlineButton ->
 		{
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+				GL11.glTranslatef(0, -1, 0);
+			P3D.glScalef(18f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(0.4f, 0, -0.25f);
+		}, postRenderEmpty);
+		listBWeapons.put("bGunEe3", bGunEe3);
+
+		OutlineButtonItemStack bGunDl44 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunDl44.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 0), fixDl44 = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 34f, 50);
+			else
+			{
+				GL11.glTranslatef(0, -4, 0);
+				P3D.glScalef(0.8f);
+			}
+			P3D.glScalef(28f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 + 180, 0, 1, 0);
+			GL11.glTranslatef(0.4f, 0, 0.25f);
+		}, postRenderEmpty);
+		listBWeapons.put("bGunDl44", bGunDl44);
+
+		x = 0;
+		y++;
+
+		OutlineButtonItemStack bGunDl18 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunDl18.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 1), fixDl18 = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+				GL11.glTranslatef(0, -4, 0);
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 - 90, 0, 1, 0);
+			GL11.glTranslatef(0.5f, 0, 0.5f);
+		}, postRenderEmpty);
+		listBWeapons.put("bGunDl18", bGunDl18);
+
+		OutlineButtonItemStack bGunSe14c = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunSe14c.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 6), fixSe14c = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+				GL11.glTranslatef(0, -5, 0);
+			P3D.glScalef(28f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 - 90, 0, 1, 0);
+			GL11.glTranslatef(0.2f, 0, 0.5f);
+		}, postRenderEmpty);
+		listBWeapons.put("bGunSe14c", bGunSe14c);
+
+		x = 0;
+		y++;
+
+		OutlineButtonItemStack bGunDh17 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bGunDh17.setup(new ItemStack(StarWarsItems.blasterPistol, 1, 2), fixDh17 = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+				GL11.glTranslatef(0, -4, 0);
+			GL11.glTranslatef(0, 3, 0);
 			P3D.glScalef(24f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
-			GL11.glTranslatef(0.25f, 0, 0.55f);
+			GL11.glTranslatef(0.4f, 0, 0.3f);
 		}, postRenderEmpty);
-		listBWeapons.put("bGunIonization", bGunIonization);
+		listBWeapons.put("bGunDh17", bGunDh17);
 
 		x = 0;
 		y = 0;
 
-		OutlineButtonItemStack bMiscCaller = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bMiscCaller.setup(new ItemStack(StarWarsItems.droidCaller), fixItem = outlineButton ->
+		OutlineButtonItemStack bMeleeGaffi = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMeleeGaffi.setup(new ItemStack(StarWarsItems.gaffiStick), fixGaffi = outlineButton ->
 		{
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
 			else
 			{
-				P3D.glScalef(0.75f);
-				GL11.glTranslatef(-1, -4, 0);
+				GL11.glTranslatef(0, -3, 0);
+				P3D.glScalef(0.6f);
 			}
-			GL11.glTranslatef(0, 12, 0);
+			GL11.glTranslatef(0, -13, 0);
+			P3D.glScalef(16f);
+			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
-			GL11.glTranslatef(-14, 0, -1);
-			P3D.glScalef(24f);
+			GL11.glTranslatef(0.45f, 0, 0.57f);
+		}, postRenderEmpty);
+		listBMelee.put("bMeleeGaffi", bMeleeGaffi);
+
+		OutlineButtonItemStack bMeleeVibroLance = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMeleeVibroLance.setup(new ItemStack(StarWarsItems.vibroLance), fixVibroLance = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				GL11.glTranslatef(0, -3, 0);
+				P3D.glScalef(0.55f);
+			}
+			GL11.glTranslatef(0, 18, 0);
+			P3D.glScalef(16f);
 			GL11.glScalef(1, -1, 1);
-			GL11.glRotatef(90, 0, 1, 0);
-			GL11.glRotatef(45, 0, 1, 0);
-			GL11.glRotatef(18, 1, 0, 0);
-			GL11.glRotatef(18, 0, 0, 1);
-			GL11.glRotatef(-1, 0, 0, 1);
-			GL11.glRotatef(-2, 0, 1, 0);
-		}, postRenderEmpty, false, player);
-		listBMisc.put("bMiscCaller", bMiscCaller);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(0.45f, 0, 0.57f);
+		}, postRenderEmpty);
+		listBMelee.put("bMeleeVibroLance", bMeleeVibroLance);
 
-		OutlineButtonItemStack bMiscHacker = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bMiscHacker.setup(new ItemStack(StarWarsItems.droidHacker), fixItem, postRenderEmpty, false, player);
-		listBMisc.put("bMiscHacker", bMiscHacker);
-
-		setTabDroids();
+		setTabGuns();
 	}
 
 	@Override
@@ -188,126 +245,121 @@ public class GuiScreenJawa extends GuiScreen
 	{
 		if (button.enabled && button.visible)
 		{
-			if (button.id == bTabDroids.id)
-			{
-				setTabDroids();
-			}
-			else if (button.id == bTabWeapons.id)
+			if (button.id == bTabWeapons.id)
 			{
 				setTabGuns();
+			}
+			else if (button.id == bTabMelee.id)
+			{
+				setTabMelee();
 			}
 			else if (button.id == bTabMisc.id)
 			{
 				setTabMisc();
 			}
-			else if (button.id == listBDroids.get("bDroidAstromech").id)
+			else if (button.id == listBWeapons.get("bGunEe3").id)
 			{
-				stackShowing = null;
-				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidAstromech")).entity;
-
-				showingTitle = "R2-Series Astromech Droid";
-				showingDesc = "beep";
-			}
-			else if (button.id == listBDroids.get("bDroidAstromech2").id)
-			{
-				stackShowing = null;
-				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidAstromech2")).entity;
-
-				showingTitle = "R5-Series Astromech Droid";
-				showingDesc = "boop";
-			}
-			else if (button.id == listBDroids.get("bDroidProtocol").id)
-			{
-				stackShowing = null;
-				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidProtocol")).entity;
-
-				showingTitle = "3PO-Series Protocol Droid";
-				showingDesc = "boop";
-			}
-			else if (button.id == listBDroids.get("bDroidAstromechBb8").id)
-			{
-				stackShowing = null;
-				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidAstromechBb8")).entity;
-
-				showingTitle = "BB-Series Astromech Droid";
-				showingDesc = "boop";
-			}
-			else if (button.id == listBDroids.get("bDroidGonk").id)
-			{
-				stackShowing = null;
-				tileShowing = null;
-				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidGonk")).entity;
-
-				showingTitle = "GNK Power Droid";
-				showingDesc = "boop";
-			}
-			else if (button.id == listBWeapons.get("bGunIonization").id)
-			{
-				currentFix = fixA280;
-				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunIonization")).itemStack;
+				currentFix = fixEe3;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunEe3")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "Ionization Blaster";
+				showingTitle = "eeeeeeeeeeee3";
 				showingDesc = "shooty";
 			}
-			else if (button.id == listBMisc.get("bMiscCaller").id)
+			else if (button.id == listBWeapons.get("bGunDl44").id)
 			{
-				currentFix = fixItem;
-				tileShowing = null;
+				currentFix = fixDl44;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDl44")).itemStack;
 				entityShowing = null;
-				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscCaller")).itemStack;
+				tileShowing = null;
 
-				showingTitle = "Droid Caller";
-				showingDesc = "zip";
+				showingTitle = "dl444444";
+				showingDesc = "shooty";
 			}
-			else if (button.id == listBMisc.get("bMiscHacker").id)
+			else if (button.id == listBWeapons.get("bGunDl18").id)
 			{
-				currentFix = fixItem;
-				tileShowing = null;
+				currentFix = fixDl18;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDl18")).itemStack;
 				entityShowing = null;
-				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscHacker")).itemStack;
+				tileShowing = null;
 
-				showingTitle = "Droid Hacker";
-				showingDesc = "*hacker voice* i'm in";
+				showingTitle = "dl188888888888";
+				showingDesc = "shooty";
+			}
+			else if (button.id == listBWeapons.get("bGunSe14c").id)
+			{
+				currentFix = fixSe14c;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunSe14c")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "s-ee four14 see";
+				showingDesc = "shooty";
+			}
+			else if (button.id == listBWeapons.get("bGunDh17").id)
+			{
+				currentFix = fixDh17;
+				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDh17")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "dee aech fourteen see";
+				showingDesc = "shooty";
+			}
+			else if (button.id == listBMelee.get("bMeleeGaffi").id)
+			{
+				currentFix = fixGaffi;
+				stackShowing = ((OutlineButtonItemStack)listBMelee.get("bMeleeGaffi")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "UUUUUH! UH! UH! UH! UUUUUH!";
+				showingDesc = "shooty";
+			}
+			else if (button.id == listBMelee.get("bMeleeVibroLance").id)
+			{
+				currentFix = fixVibroLance;
+				stackShowing = ((OutlineButtonItemStack)listBMelee.get("bMeleeVibroLance")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "vibrolance";
+				showingDesc = "shooty";
 			}
 		}
 	}
 
-	private void setTabDroids()
+	private void setTabGuns()
 	{
-		bTabDroids.selected = true;
-		bTabWeapons.selected = false;
+		bTabWeapons.selected = true;
+		bTabMelee.selected = false;
 		bTabMisc.selected = false;
 
-		buttonList.addAll(listBDroids.values());
-		buttonList.removeAll(listBWeapons.values());
+		buttonList.addAll(listBWeapons.values());
+		buttonList.removeAll(listBMelee.values());
 		buttonList.removeAll(listBMisc.values());
 	}
 
-	private void setTabGuns()
+	private void setTabMelee()
 	{
-		bTabDroids.selected = false;
-		bTabWeapons.selected = true;
+		bTabWeapons.selected = false;
+		bTabMelee.selected = true;
 		bTabMisc.selected = false;
 
-		buttonList.removeAll(listBDroids.values());
-		buttonList.addAll(listBWeapons.values());
+		buttonList.removeAll(listBWeapons.values());
+		buttonList.addAll(listBMelee.values());
 		buttonList.removeAll(listBMisc.values());
 	}
 
 	private void setTabMisc()
 	{
-		bTabDroids.selected = false;
 		bTabWeapons.selected = false;
+		bTabMelee.selected = false;
 		bTabMisc.selected = true;
 
-		buttonList.removeAll(listBDroids.values());
 		buttonList.removeAll(listBWeapons.values());
+		buttonList.removeAll(listBMelee.values());
 		buttonList.addAll(listBMisc.values());
 	}
 

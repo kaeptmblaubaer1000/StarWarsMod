@@ -158,7 +158,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.vibroLance, new RenderVibro());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.ewokSpear, new RenderSpear());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.gaffiStick, new RenderGaffi());
-		MinecraftForgeClient.registerItemRenderer(StarWarsItems.binoculars, new RenderBinocularsNew());
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.binoculars, new RenderBinocularsNew());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnXwing, new RenderSpawnXWing());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnYwing, new RenderSpawnYWing());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnTie, new RenderSpawnTIE());
