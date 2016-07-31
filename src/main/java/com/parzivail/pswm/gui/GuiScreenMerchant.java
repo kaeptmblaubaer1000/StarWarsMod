@@ -1,10 +1,11 @@
 package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
-import com.parzivail.pswm.vehicles.VehicXWing;
-import com.parzivail.pswm.vehicles.VehicYWing;
+import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
+import com.parzivail.pswm.vehicles.VehicLandspeeder;
 import com.parzivail.util.ui.*;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.relauncher.Side;
@@ -19,6 +20,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -99,12 +101,110 @@ public class GuiScreenMerchant extends GuiScreen
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
 			GL11.glTranslatef(0, 22, 0);
-			P3D.glScalef(22f);
+			P3D.glScalef(9f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 		}, postRenderEmpty);
 		listBMisc.put("bMiscMV", bMiscMV);
+
+		OutlineButtonItemStack bMiscSaddle = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscSaddle.setup(new ItemStack(Items.saddle), fixSaddle = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glTranslatef(0, 12, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(-14, 0, -1);
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
+			GL11.glRotatef(18, 1, 0, 0);
+			GL11.glRotatef(18, 0, 0, 1);
+			GL11.glRotatef(-1, 0, 0, 1);
+			GL11.glRotatef(-2, 0, 1, 0);
+		}, postRenderEmpty, false, player);
+		listBMisc.put("bMiscSaddle", bMiscSaddle);
+
+		x = 0;
+		y++;
+
+		OutlineButtonItemStack bMiscBinocs = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscBinocs.setup(new ItemStack(StarWarsItems.binoculars), fixBinocs = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glTranslatef(0, 12, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(-14, 0, -1);
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
+			GL11.glRotatef(18, 1, 0, 0);
+			GL11.glRotatef(18, 0, 0, 1);
+			GL11.glRotatef(-1, 0, 0, 1);
+			GL11.glRotatef(-2, 0, 1, 0);
+		}, postRenderEmpty, false, player);
+		listBMisc.put("bMiscBinocs", bMiscBinocs);
+
+		OutlineButtonEntity bShipLandspeeder = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		VehicLandspeeder landspeeder = new VehicLandspeeder(player.worldObj);
+		bShipLandspeeder.setup(landspeeder, fixLandspeeder = outlineButton ->
+		{
+			if (outlineButton != null)
+			{
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 35f, 50);
+				GL11.glTranslatef(0, 14, 0);
+			}
+			else
+			{
+				GL11.glTranslatef(0, -28, 0);
+				P3D.glScalef(4f);
+			}
+			P3D.glScalef(7f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(30, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(0, 0, -1f);
+		}, postRenderEmpty);
+		listBMisc.put("bShipLandspeeder", bShipLandspeeder);
+
+		x = 0;
+		y++;
+
+		OutlineButtonEntity bShipjakku = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		VehicJakkuSpeeder jakku = new VehicJakkuSpeeder(player.worldObj);
+		bShipjakku.setup(jakku, fixLandspeeder = outlineButton ->
+		{
+			if (outlineButton != null)
+			{
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 35f, 50);
+				GL11.glTranslatef(0, 18, 0);
+			}
+			else
+			{
+				GL11.glTranslatef(0, -30, 0);
+				P3D.glScalef(4f);
+			}
+			P3D.glScalef(7f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(30, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(0, 0, -1f);
+		}, postRenderEmpty);
+		listBMisc.put("bShipjakku", bShipjakku);
 
 		setTabMisc();
 	}
@@ -122,12 +222,58 @@ public class GuiScreenMerchant extends GuiScreen
 		{
 			if (button.id == listBMisc.get("bMiscMV").id)
 			{
+				currentFix = fixMV;
+
 				stackShowing = null;
 				entityShowing = null;
 				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscMV")).tileEntity;
 
 				showingTitle = "mv";
 				showingDesc = "water";
+			}
+			else if (button.id == listBMisc.get("bMiscSaddle").id)
+			{
+				currentFix = fixSaddle;
+
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscSaddle")).itemStack;
+
+				showingTitle = "saddle";
+				showingDesc = "sitty";
+			}
+			else if (button.id == listBMisc.get("bMiscBinocs").id)
+			{
+				currentFix = fixBinocs;
+
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscBinocs")).itemStack;
+
+				showingTitle = "binocs";
+				showingDesc = "see-y";
+			}
+			else if (button.id == listBMisc.get("bShipLandspeeder").id)
+			{
+				currentFix = fixLandspeeder;
+
+				tileShowing = null;
+				stackShowing = null;
+				entityShowing = ((OutlineButtonEntity)listBMisc.get("bShipLandspeeder")).entity;
+
+				showingTitle = "land";
+				showingDesc = "speeder";
+			}
+			else if (button.id == listBMisc.get("bShipjakku").id)
+			{
+				currentFix = fixLandspeeder;
+
+				tileShowing = null;
+				stackShowing = null;
+				entityShowing = ((OutlineButtonEntity)listBMisc.get("bShipjakku")).entity;
+
+				showingTitle = "jak";
+				showingDesc = "ku";
 			}
 		}
 	}
@@ -221,24 +367,9 @@ public class GuiScreenMerchant extends GuiScreen
 			GLPalette.glColorI(GLPalette.WHITE);
 
 			GL11.glTranslatef(330, 160, 130);
-			if (entityShowing instanceof VehicleAirBase)
-			{
-				if (entityShowing instanceof VehicXWing)
-					GL11.glTranslatef(19, -40, 0);
-				else
-					GL11.glTranslatef(0, -70, 0);
-				P3D.glScalef(2);
-				if (currentFix != null)
-					currentFix.accept(null);
-				GL11.glRotatef((System.currentTimeMillis() / -30) % 360, 0, 1, 0);
-				if (entityShowing instanceof VehicYWing)
-					GL11.glTranslatef(0, 0, 5);
-			}
-			else
-			{
-				GL11.glScalef(60, -60, 60);
-				GL11.glRotatef((System.currentTimeMillis() / 30) % 360, 0, 1, 0);
-			}
+
+			if (currentFix != null)
+				currentFix.accept(null);
 
 			com.parzivail.util.ui.RenderHelper.renderEntity(entityShowing);
 
