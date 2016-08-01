@@ -37,11 +37,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 	private OutlineButton bTabWeapons;
 	private OutlineButton bTabMelee;
-	private OutlineButton bTabMisc;
 
 	private Map<String, OutlineButton> listBWeapons;
 	private Map<String, OutlineButton> listBMelee;
-	private Map<String, OutlineButton> listBMisc;
 
 	private ItemStack stackShowing;
 	private Entity entityShowing;
@@ -78,17 +76,14 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 		int xTab = -40;
 		bTabWeapons = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("guns"), false);
 		bTabMelee = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("melee"), false);
-		bTabMisc = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("misc"), false);
 
 		buttonList.add(bTabWeapons);
 		buttonList.add(bTabMelee);
-		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
 		listBWeapons = new HashMap<>();
 		listBMelee = new HashMap<>();
-		listBMisc = new HashMap<>();
 
 		int x = 0;
 		int y = 0;
@@ -253,10 +248,6 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 			{
 				setTabMelee();
 			}
-			else if (button.id == bTabMisc.id)
-			{
-				setTabMisc();
-			}
 			else if (button.id == listBWeapons.get("bGunEe3").id)
 			{
 				currentFix = fixEe3;
@@ -334,33 +325,18 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 	{
 		bTabWeapons.selected = true;
 		bTabMelee.selected = false;
-		bTabMisc.selected = false;
 
 		buttonList.addAll(listBWeapons.values());
 		buttonList.removeAll(listBMelee.values());
-		buttonList.removeAll(listBMisc.values());
 	}
 
 	private void setTabMelee()
 	{
 		bTabWeapons.selected = false;
 		bTabMelee.selected = true;
-		bTabMisc.selected = false;
 
 		buttonList.removeAll(listBWeapons.values());
 		buttonList.addAll(listBMelee.values());
-		buttonList.removeAll(listBMisc.values());
-	}
-
-	private void setTabMisc()
-	{
-		bTabWeapons.selected = false;
-		bTabMelee.selected = false;
-		bTabMisc.selected = true;
-
-		buttonList.removeAll(listBWeapons.values());
-		buttonList.removeAll(listBMelee.values());
-		buttonList.addAll(listBMisc.values());
 	}
 
 	public void drawBg2()
