@@ -2,7 +2,9 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.*;
+import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.vehicles.VehicYWing;
 import com.parzivail.util.ui.*;
@@ -55,6 +57,9 @@ public class GuiScreenJawa extends GuiScreen
 	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
 
+	private OutlineButtonCreditCounter bBuy;
+	private ItemStack[] buyItemStacks;
+
 	public GuiScreenJawa(EntityPlayer player)
 	{
 		this.mc = Minecraft.getMinecraft();
@@ -78,6 +83,8 @@ public class GuiScreenJawa extends GuiScreen
 		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
+		buttonList.add(bBuy);
 
 		listBDroids = new HashMap<>();
 		listBWeapons = new HashMap<>();
@@ -180,7 +187,7 @@ public class GuiScreenJawa extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -188,7 +195,11 @@ public class GuiScreenJawa extends GuiScreen
 	{
 		if (button.enabled && button.visible)
 		{
-			if (button.id == bTabDroids.id)
+			if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
+			{
+				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
+			}
+			else if (button.id == bTabDroids.id)
 			{
 				setTabDroids();
 			}
@@ -208,6 +219,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "R2-Series Astromech Droid";
 				showingDesc = "beep";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech, 1) };
 			}
 			else if (button.id == listBDroids.get("bDroidAstromech2").id)
 			{
@@ -217,6 +231,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "R5-Series Astromech Droid";
 				showingDesc = "boop";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech2, 1) };
 			}
 			else if (button.id == listBDroids.get("bDroidProtocol").id)
 			{
@@ -226,6 +243,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "3PO-Series Protocol Droid";
 				showingDesc = "boop";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnProtocol, 1) };
 			}
 			else if (button.id == listBDroids.get("bDroidAstromechBb8").id)
 			{
@@ -235,6 +255,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "BB-Series Astromech Droid";
 				showingDesc = "boop";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromechBb8, 1) };
 			}
 			else if (button.id == listBDroids.get("bDroidGonk").id)
 			{
@@ -244,6 +267,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "GNK Power Droid";
 				showingDesc = "boop";
+
+				bBuy.setCurrentCost(48);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnGonk, 1) };
 			}
 			else if (button.id == listBWeapons.get("bGunIonization").id)
 			{
@@ -254,6 +280,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "Ionization Blaster";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 2) };
 			}
 			else if (button.id == listBMisc.get("bMiscCaller").id)
 			{
@@ -264,6 +293,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "Droid Caller";
 				showingDesc = "zip";
+
+				bBuy.setCurrentCost(32);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.droidCaller, 1) };
 			}
 			else if (button.id == listBMisc.get("bMiscHacker").id)
 			{
@@ -274,6 +306,9 @@ public class GuiScreenJawa extends GuiScreen
 
 				showingTitle = "Droid Hacker";
 				showingDesc = "*hacker voice* i'm in";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.droidHacker, 1) };
 			}
 		}
 	}

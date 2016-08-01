@@ -2,6 +2,7 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
@@ -77,6 +78,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> currentFix = null;
 
+	private OutlineButtonCreditCounter bBuy;
+	private ItemStack[] buyItemStacks;
+
 	public GuiScreenQuartermasterEmpire(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
@@ -103,6 +107,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
+		buttonList.add(bBuy);
 
 		listBArmor = new HashMap<>();
 		listBWeapons = new HashMap<>();
@@ -368,7 +374,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -400,6 +406,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Stormtrooper Body Armor";
 				showingDesc = "makes you unable to aim";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.stormtrooperHelmet, 1), new ItemStack(StarWarsItems.stormtrooperChest, 1), new ItemStack(StarWarsItems.stormtrooperLegs, 1), new ItemStack(StarWarsItems.stormtrooperBoots, 1) };
 			}
 			else if (button.id == listBArmor.get("bArmorSandtrooper").id)
 			{
@@ -409,6 +418,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Rebel Low Temperature Gear";
 				showingDesc = "freezy";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.sandtrooperHelmet, 1), new ItemStack(StarWarsItems.sandtrooperChest, 1), new ItemStack(StarWarsItems.sandtrooperLegs, 1), new ItemStack(StarWarsItems.sandtrooperBoots, 1) };
 			}
 			else if (button.id == listBArmor.get("bArmorSnowtrooper").id)
 			{
@@ -418,6 +430,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Rebel X-Wing Pilot Jumpsuit";
 				showingDesc = "fly-y";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.snowtrooperHelmet, 1), new ItemStack(StarWarsItems.snowtrooperChest, 1), new ItemStack(StarWarsItems.snowtrooperLegs, 1), new ItemStack(StarWarsItems.snowtrooperBoots, 1) };
 			}
 			else if (button.id == listBArmor.get("bArmorScout").id)
 			{
@@ -427,6 +442,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.scoutTrooperHelmet, 1), new ItemStack(StarWarsItems.scoutTrooperChest, 1), new ItemStack(StarWarsItems.scoutTrooperLegs, 1), new ItemStack(StarWarsItems.scoutTrooperBoots, 1) };
 			}
 			else if (button.id == listBArmor.get("bArmorTiePilot").id)
 			{
@@ -436,6 +454,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Rebel A-Wing Pilot Jumpsuit";
 				showingDesc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.tiePilotHelmet, 1), new ItemStack(StarWarsItems.tiePilotChest, 1), new ItemStack(StarWarsItems.tiePilotLegs, 1), new ItemStack(StarWarsItems.tiePilotBoots, 1) };
 			}
 			else if (button.id == listBArmor.get("bArmorAtstPilot").id)
 			{
@@ -445,6 +466,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.atstPilotHelmet, 1), new ItemStack(StarWarsItems.atstPilotChest, 1), new ItemStack(StarWarsItems.atstPilotLegs, 1), new ItemStack(StarWarsItems.atstPilotBoots, 1) };
 			}
 			else if (button.id == listBArmor.get("bArmorAtatPilot").id)
 			{
@@ -454,6 +478,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.atatPilotHelmet, 1), new ItemStack(StarWarsItems.atatPilotChest, 1), new ItemStack(StarWarsItems.atatPilotLegs, 1), new ItemStack(StarWarsItems.atatPilotBoots, 1) };
 			}
 			else if (button.id == listBWeapons.get("bGunE11").id)
 			{
@@ -464,6 +491,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "BlasTech A-280C Blaster Rifle";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 4) };
 			}
 			else if (button.id == listBWeapons.get("bGunDlt19").id)
 			{
@@ -474,6 +504,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "BlasTech A-280C Blaster Rifle";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterHeavy, 1, 0) };
 			}
 			else if (button.id == listBWeapons.get("bGunT21").id)
 			{
@@ -488,6 +521,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "DDC T21 Sporting Pistol";
 				showingDesc = "pew pew";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterHeavy, 1, 1) };
 			}
 			else if (button.id == listBWeapons.get("bGunRt97c").id)
 			{
@@ -502,6 +538,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
 				showingDesc = "shooty mc'booty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterHeavy, 1, 2) };
 			}
 			else if (button.id == listBWeapons.get("bGunScout").id)
 			{
@@ -516,6 +555,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
 				showingDesc = "shooty mc'booty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 4) };
 			}
 			else if (button.id == listBShips.get("bShipTie").id)
 			{
@@ -526,6 +568,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Incom T-65 X-Wing Starfighter";
 				showingDesc = "BAD-X (R)";
+
+				bBuy.setCurrentCost(-1);
 			}
 			else if (button.id == listBShips.get("bShipTIEBomber").id)
 			{
@@ -536,6 +580,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "BTL Y-Wing Bomber";
 				showingDesc = "boom";
+
+				bBuy.setCurrentCost(-1);
 			}
 			else if (button.id == listBShips.get("bShipTIEInterceptor").id)
 			{
@@ -546,6 +592,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "RZ-1 A-Wing Interceptor";
 				showingDesc = "double pew";
+
+				bBuy.setCurrentCost(-1);
 			}
 			else if (button.id == listBShips.get("bShipTIEAdvanced").id)
 			{
@@ -556,6 +604,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Incom T-47 Snowspeeder";
 				showingDesc = "cold";
+
+				bBuy.setCurrentCost(-1);
 			}
 			else if (button.id == listBMisc.get("bMiscTarget").id)
 			{
@@ -566,6 +616,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Target";
 				showingDesc = "aim better than a stormtrooper, at least";
+
+				bBuy.setCurrentCost(16);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockTarget, 1) };
 			}
 			else if (button.id == listBMisc.get("bMiscGunRack").id)
 			{
@@ -576,6 +629,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Gun Rack";
 				showingDesc = "store yo guns";
+
+				bBuy.setCurrentCost(32);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockGunRack, 1) };
 			}
 			else if (button.id == listBMisc.get("bMiscAntenna").id)
 			{
@@ -586,6 +642,9 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				showingTitle = "Antenna";
 				showingDesc = "listeny";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockAntenna, 1) };
 			}
 		}
 	}

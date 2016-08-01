@@ -6,6 +6,7 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.TileEntityRotate;
@@ -42,22 +43,6 @@ public class GuiPSWMOverlay extends Gui
 		this.format = NumberFormat.getInstance();
 	}
 
-	protected int countCredits()
-	{
-		int credits = 0;
-		for (ItemStack stack : this.mc.thePlayer.inventory.mainInventory)
-			if (stack != null && stack.getItem() != null)
-			{
-				if (stack.getItem() == StarWarsItems.imperialCredit)
-					credits += stack.stackSize;
-				if (stack.getItem() == StarWarsItems.silverImperialCredit)
-					credits += stack.stackSize * 9;
-				if (stack.getItem() == StarWarsItems.goldImperialCredit)
-					credits += stack.stackSize * 81;
-			}
-		return credits;
-	}
-
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent event)
 	{
@@ -66,8 +51,9 @@ public class GuiPSWMOverlay extends Gui
 
 		RenderHelper.disableStandardItemLighting();
 
-		this.mc.fontRenderer.drawStringWithShadow("PSWM v" + Resources.VERSION, 5, 5, 16777215);
-		GFX.renderItem(23, 12, new ItemStack(StarWarsItems.imperialCredit, this.countCredits()));
+		GFX.drawTextShadow(mc.fontRenderer, "PSWM v" + Resources.VERSION, 5, 5, 1, GLPalette.SW_YELLOW);
+		GFX.drawTextShadow(mc.fontRenderer, String.valueOf(QuestNpcUtils.getPlayerBronzeCredits(StarWarsMod.mc.thePlayer)), 17, 17, 1, GLPalette.SW_YELLOW);
+		GFX.renderItem(2, 13, new ItemStack(StarWarsItems.imperialCredit, 0));
 
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 

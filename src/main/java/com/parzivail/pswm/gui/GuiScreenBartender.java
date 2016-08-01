@@ -2,6 +2,8 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.ui.*;
 import com.parzivail.util.vehicle.VehicleAirBase;
@@ -49,6 +51,9 @@ public class GuiScreenBartender extends GuiScreen
 	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
 
+	private OutlineButtonCreditCounter bBuy;
+	private ItemStack[] buyItemStacks;
+
 	public GuiScreenBartender(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
@@ -69,6 +74,8 @@ public class GuiScreenBartender extends GuiScreen
 		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
+		buttonList.add(bBuy);
 
 		listBMisc = new HashMap<>();
 
@@ -149,7 +156,7 @@ public class GuiScreenBartender extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -157,7 +164,11 @@ public class GuiScreenBartender extends GuiScreen
 	{
 		if (button.enabled && button.visible)
 		{
-			if (button.id == listBMisc.get("bBanthaChop").id)
+			if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
+			{
+				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
+			}
+			else if (button.id == listBMisc.get("bBanthaChop").id)
 			{
 				currentFix = fixItem;
 
@@ -167,6 +178,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(8);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaChop, 1) };
 			}
 			else if (button.id == listBMisc.get("bBanthaChopCooked").id)
 			{
@@ -178,6 +192,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(12);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaChopCooked, 1) };
 			}
 			else if (button.id == listBMisc.get("bBanthaPlatter").id)
 			{
@@ -189,6 +206,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(16);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaPlatter, 1) };
 			}
 			else if (button.id == listBMisc.get("bDewRibs").id)
 			{
@@ -200,6 +220,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(16);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.dewbackRibs, 1) };
 			}
 			else if (button.id == listBMisc.get("bChasuka").id)
 			{
@@ -211,6 +234,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(8);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.chasuka, 1) };
 			}
 			else if (button.id == listBMisc.get("bCanron").id)
 			{
@@ -222,6 +248,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(8);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.canron, 1) };
 			}
 			else if (button.id == listBMisc.get("bAcidbeets").id)
 			{
@@ -233,6 +262,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(12);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.acidBeets, 1) };
 			}
 			else if (button.id == listBMisc.get("bGorrnar").id)
 			{
@@ -244,6 +276,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(16);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.gorrnar, 1) };
 			}
 			else if (button.id == listBMisc.get("bBanthaMilk").id)
 			{
@@ -255,6 +290,9 @@ public class GuiScreenBartender extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(8);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaMilk, 1) };
 			}
 		}
 	}

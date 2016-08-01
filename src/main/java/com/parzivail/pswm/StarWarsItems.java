@@ -207,6 +207,11 @@ public class StarWarsItems
 	public static Item atatPilotLegs;
 	public static Item atatPilotBoots;
 
+	public static Item atstPilotHelmet;
+	public static Item atstPilotChest;
+	public static Item atstPilotLegs;
+	public static Item atstPilotBoots;
+
 	public static Item hothHelmet;
 	public static Item hothChest;
 	public static Item hothLegs;

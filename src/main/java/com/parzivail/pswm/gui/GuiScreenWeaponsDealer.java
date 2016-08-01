@@ -2,6 +2,8 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.vehicles.VehicYWing;
@@ -59,6 +61,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 	Consumer<OutlineButton> fixVibroLance;
 	Consumer<OutlineButton> currentFix = null;
 
+	private OutlineButtonCreditCounter bBuy;
+	private ItemStack[] buyItemStacks;
+
 	public GuiScreenWeaponsDealer(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
@@ -81,6 +86,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 		buttonList.add(bTabMelee);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
+		buttonList.add(bBuy);
 
 		listBWeapons = new HashMap<>();
 		listBMelee = new HashMap<>();
@@ -232,7 +239,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -240,7 +247,11 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 	{
 		if (button.enabled && button.visible)
 		{
-			if (button.id == bTabWeapons.id)
+			if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
+			{
+				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
+			}
+			else if (button.id == bTabWeapons.id)
 			{
 				setTabGuns();
 			}
@@ -257,6 +268,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "eeeeeeeeeeee3";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(128);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 1) };
 			}
 			else if (button.id == listBWeapons.get("bGunDl44").id)
 			{
@@ -267,6 +281,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "dl444444";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 0) };
 			}
 			else if (button.id == listBWeapons.get("bGunDl18").id)
 			{
@@ -277,6 +294,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "dl188888888888";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(32);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 1) };
 			}
 			else if (button.id == listBWeapons.get("bGunSe14c").id)
 			{
@@ -287,6 +307,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "s-ee four14 see";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(32);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 6) };
 			}
 			else if (button.id == listBWeapons.get("bGunDh17").id)
 			{
@@ -297,6 +320,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "dee aech fourteen see";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(32);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 2) };
 			}
 			else if (button.id == listBMelee.get("bMeleeGaffi").id)
 			{
@@ -307,6 +333,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "UUUUUH! UH! UH! UH! UUUUUH!";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(128);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.gaffiStick, 1) };
 			}
 			else if (button.id == listBMelee.get("bMeleeVibroLance").id)
 			{
@@ -317,6 +346,9 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 				showingTitle = "vibrolance";
 				showingDesc = "shooty";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.vibroLance, 1) };
 			}
 		}
 	}

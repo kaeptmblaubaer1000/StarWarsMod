@@ -2,6 +2,8 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
@@ -56,6 +58,9 @@ public class GuiScreenMerchant extends GuiScreen
 	Consumer<OutlineButton> fixBinocs;
 	Consumer<OutlineButton> currentFix = null;
 
+	private OutlineButtonCreditCounter bBuy;
+	private ItemStack[] buyItemStacks;
+
 	public GuiScreenMerchant(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
@@ -76,6 +81,8 @@ public class GuiScreenMerchant extends GuiScreen
 		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
+		buttonList.add(bBuy);
 
 		listBMisc = new HashMap<>();
 
@@ -212,7 +219,7 @@ public class GuiScreenMerchant extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -220,7 +227,11 @@ public class GuiScreenMerchant extends GuiScreen
 	{
 		if (button.enabled && button.visible)
 		{
-			if (button.id == listBMisc.get("bMiscMV").id)
+			if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
+			{
+				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
+			}
+			else if (button.id == listBMisc.get("bMiscMV").id)
 			{
 				currentFix = fixMV;
 
@@ -230,6 +241,9 @@ public class GuiScreenMerchant extends GuiScreen
 
 				showingTitle = "mv";
 				showingDesc = "water";
+
+				bBuy.setCurrentCost(16);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockMV, 1) };
 			}
 			else if (button.id == listBMisc.get("bMiscSaddle").id)
 			{
@@ -241,6 +255,9 @@ public class GuiScreenMerchant extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(32);
+				buyItemStacks = new ItemStack[] { new ItemStack(Items.saddle, 1) };
 			}
 			else if (button.id == listBMisc.get("bMiscBinocs").id)
 			{
@@ -252,6 +269,9 @@ public class GuiScreenMerchant extends GuiScreen
 
 				showingTitle = "binocs";
 				showingDesc = "see-y";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.binoculars, 1) };
 			}
 			else if (button.id == listBMisc.get("bShipLandspeeder").id)
 			{
@@ -263,6 +283,8 @@ public class GuiScreenMerchant extends GuiScreen
 
 				showingTitle = "land";
 				showingDesc = "speeder";
+
+				bBuy.setCurrentCost(-1);
 			}
 			else if (button.id == listBMisc.get("bShipjakku").id)
 			{
@@ -274,6 +296,8 @@ public class GuiScreenMerchant extends GuiScreen
 
 				showingTitle = "jak";
 				showingDesc = "ku";
+
+				bBuy.setCurrentCost(-1);
 			}
 		}
 	}

@@ -1,7 +1,9 @@
 package com.parzivail.pswm.quest;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -102,5 +104,39 @@ public class QuestNpcUtils
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.rebelYPilotBoots, 1));
 				break;
 		}
+		/*
+		GFX.drawTextShadow(mc.fontRenderer, String.valueOf(QuestNpcUtils.countCredits()), 17, 17, 1, GLPalette.SW_YELLOW);
+		GFX.renderItem(2, 13, new ItemStack(StarWarsItems.imperialCredit, 0));*/
+	}
+
+	public static boolean getIsPlayerOnPlanet(int dim, EntityPlayer player)
+	{
+		return player.capabilities.isCreativeMode || player.dimension == dim;
+	}
+
+	public static int getPlayerBronzeCredits(EntityPlayer player)
+	{
+		return player.capabilities.isCreativeMode ? Integer.MAX_VALUE : countCredits();
+	}
+
+	public static int countCredits(EntityPlayer player)
+	{
+		int credits = 0;
+		for (ItemStack stack : player.inventory.mainInventory)
+			if (stack != null && stack.getItem() != null)
+			{
+				if (stack.getItem() == StarWarsItems.imperialCredit)
+					credits += stack.stackSize;
+				if (stack.getItem() == StarWarsItems.silverImperialCredit)
+					credits += stack.stackSize * 64;
+				if (stack.getItem() == StarWarsItems.goldImperialCredit)
+					credits += stack.stackSize * 4096;
+			}
+		return credits;
+	}
+
+	public static int countCredits()
+	{
+		return countCredits(StarWarsMod.mc.thePlayer);
 	}
 }

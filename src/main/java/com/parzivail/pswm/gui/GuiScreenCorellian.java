@@ -2,6 +2,8 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.ui.*;
 import com.parzivail.util.vehicle.VehicleAirBase;
@@ -49,6 +51,9 @@ public class GuiScreenCorellian extends GuiScreen
 	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
 
+	private OutlineButtonCreditCounter bBuy;
+	private ItemStack[] buyItemStacks;
+
 	public GuiScreenCorellian(EntityPlayer player, TileEntityStaticNpc tileEntity)
 	{
 		this.staticNpc = tileEntity;
@@ -69,6 +74,8 @@ public class GuiScreenCorellian extends GuiScreen
 		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
+		buttonList.add(bBuy);
 
 		listBMisc = new HashMap<>();
 
@@ -137,7 +144,7 @@ public class GuiScreenCorellian extends GuiScreen
 	@Override
 	public boolean doesGuiPauseGame()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -145,7 +152,11 @@ public class GuiScreenCorellian extends GuiScreen
 	{
 		if (button.enabled && button.visible)
 		{
-			if (button.id == listBMisc.get("bEarth").id)
+			if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
+			{
+				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
+			}
+			else if (button.id == listBMisc.get("bEarth").id)
 			{
 				currentFix = fixItem;
 
@@ -155,6 +166,9 @@ public class GuiScreenCorellian extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(45);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEarth, 1) };
 			}
 			else if (button.id == listBMisc.get("bTatooine").id)
 			{
@@ -166,6 +180,9 @@ public class GuiScreenCorellian extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(45);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveTatooine, 1) };
 			}
 			else if (button.id == listBMisc.get("bEndor").id)
 			{
@@ -177,6 +194,9 @@ public class GuiScreenCorellian extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(55);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEndor, 1) };
 			}
 			else if (button.id == listBMisc.get("bKashyyyk").id)
 			{
@@ -188,6 +208,9 @@ public class GuiScreenCorellian extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(55);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveKashyyyk, 1) };
 			}
 			else if (button.id == listBMisc.get("bHoth").id)
 			{
@@ -199,6 +222,9 @@ public class GuiScreenCorellian extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
+
+				bBuy.setCurrentCost(65);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
 			}
 			else if (button.id == listBMisc.get("bSpace").id)
 			{
@@ -210,39 +236,9 @@ public class GuiScreenCorellian extends GuiScreen
 
 				showingTitle = "saddle";
 				showingDesc = "sitty";
-			}
-			else if (button.id == listBMisc.get("bAcidbeets").id)
-			{
-				currentFix = fixItem;
 
-				tileShowing = null;
-				entityShowing = null;
-				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bAcidbeets")).itemStack;
-
-				showingTitle = "saddle";
-				showingDesc = "sitty";
-			}
-			else if (button.id == listBMisc.get("bGorrnar").id)
-			{
-				currentFix = fixItem;
-
-				tileShowing = null;
-				entityShowing = null;
-				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bGorrnar")).itemStack;
-
-				showingTitle = "saddle";
-				showingDesc = "sitty";
-			}
-			else if (button.id == listBMisc.get("bBanthaMilk").id)
-			{
-				currentFix = fixItem;
-
-				tileShowing = null;
-				entityShowing = null;
-				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bBanthaMilk")).itemStack;
-
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				bBuy.setCurrentCost(45);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
 			}
 		}
 	}

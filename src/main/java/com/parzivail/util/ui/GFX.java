@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -56,6 +57,37 @@ public class GFX
 		GL11.glVertex3d(x + w, y, 0);
 		glEnd();
 		GL11.glPopMatrix();
+	}
+
+	private static void drawBackdrop(int x, int y, int width, int height, int opacity)
+	{
+		int color = opacity << 24;
+		Gui.drawRect(x + 1, y, x + width - 1, y + height, color);
+		Gui.drawRect(x, y + 1, x + 1, y + height - 1, color);
+		Gui.drawRect(x + width - 1, y + 1, x + width, y + height - 1, color);
+
+		color = 0x28025C | opacity << 24;
+		Gui.drawRect(x + 1, y + 1, x + width - 1, y + 2, color);
+		Gui.drawRect(x + 1, y + height - 1, x + width - 1, y + height - 2, color);
+		Gui.drawRect(x + 1, y + 1, x + 2, y + height - 1, color);
+		Gui.drawRect(x + width - 1, y + 1, x + width - 2, y + height - 1, color);
+	}
+
+	public static void drawTooltip(int x, int y, String text)
+	{
+		int width = 0;
+		String[] _text = TextUtils.splitIntoLine(text, 25);
+		for (String line : _text)
+			if (StarWarsMod.mc.fontRenderer.getStringWidth(line) > width)
+				width = StarWarsMod.mc.fontRenderer.getStringWidth(line);
+
+		int height = (_text.length + 1) * StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
+		drawBackdrop(x, y, width + 8, height, 255);
+
+		GL11.glEnable(3042);
+
+		for (int i = 0; i < _text.length; i++)
+			StarWarsMod.mc.fontRenderer.drawStringWithShadow(_text[i], x + 6, y + i * (StarWarsMod.mc.fontRenderer.FONT_HEIGHT + 1) + 5, GLPalette.WHITE);
 	}
 
 	public static void drawTexture(int x, int y, int textureX, int textureY, int width, int height)
@@ -188,11 +220,25 @@ public class GFX
 	public static void drawText(FontRenderer font, String s, float x, float y, float scale, int color)
 	{
 		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
 		GL11.glScalef(scale, scale, 1);
 		GL11.glTranslatef(x / scale, y / scale, 0);
 		font.drawString(s, 0, 0, color);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glPopAttrib();
+		GL11.glPopMatrix();
+	}
+
+	/**
+	 * Draws some text
+	 */
+	public static void drawTextShadow(FontRenderer font, String s, float x, float y, float scale, int color)
+	{
+		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
+		GL11.glScalef(scale, scale, 1);
+		GL11.glTranslatef(x / scale, y / scale, 0);
+		font.drawStringWithShadow(s, 0, 0, color);
+		GL11.glPopAttrib();
 		GL11.glPopMatrix();
 	}
 
@@ -202,13 +248,12 @@ public class GFX
 	public static void drawCenteredText(FontRenderer font, String s, float x, float y, float scale, int color)
 	{
 		GL11.glPushMatrix();
-		boolean shouldDisable = !GL11.glIsEnabled(GL11.GL_TEXTURE_2D);
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glScalef(scale, scale, 1);
 		GL11.glTranslatef(x / scale, y / scale, 0);
 		font.drawString(s, -font.getStringWidth(s) / 2, 0, color);
-		if (shouldDisable)
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glPopAttrib();
 		GL11.glPopMatrix();
 	}
 
