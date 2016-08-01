@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
+import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.quest.QuestNpcUtils;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.pswm.tileentities.TileEntityGunRack;
@@ -397,6 +398,10 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			else if (button.id == bTabMisc.id)
 			{
 				setTabMisc();
+			}
+			else if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
+			{
+				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
 			}
 			else if (button.id == listBArmor.get("bArmorStorm").id)
 			{

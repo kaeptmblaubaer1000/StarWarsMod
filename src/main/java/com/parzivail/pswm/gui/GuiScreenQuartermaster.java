@@ -467,7 +467,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				showingTitle = "DDC Defender Sporting Pistol";
 				showingDesc = "pew pew";
-				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 1) };
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 3) };
 
 				bBuy.setCurrentCost(24);
 			}
