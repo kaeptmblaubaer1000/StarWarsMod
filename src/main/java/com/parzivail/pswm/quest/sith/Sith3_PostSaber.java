@@ -58,7 +58,7 @@ public class Sith3_PostSaber extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return true;
+		return isQuestDone(player, this);
 	}
 
 	@Override

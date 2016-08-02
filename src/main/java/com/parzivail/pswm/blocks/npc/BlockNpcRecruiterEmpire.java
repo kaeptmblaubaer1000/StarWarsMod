@@ -10,11 +10,11 @@ import net.minecraft.entity.player.EntityPlayer;
 /**
  * @author Colby
  */
-public class BlockNpcRebelCarlist extends BlockNpcBase
+public class BlockNpcRecruiterEmpire extends BlockNpcBase
 {
-	public BlockNpcRebelCarlist()
+	public BlockNpcRecruiterEmpire()
 	{
-		super("rebelMainCarlist", Resources.armors[1], Resources.allegianceRebelFmt);
+		super("empireRecruiter", null, Resources.allegianceImperialFmt);
 	}
 
 	@Override
@@ -23,13 +23,8 @@ public class BlockNpcRebelCarlist extends BlockNpcBase
 		if (ItemQuestLog.getQuestContainer(player) == null)
 			return QuestBank.noQuestLog;
 
-		if (QuestBank.rebel4.canBeGivenQuest(player))
-			return QuestBank.rebel4;
-		else if (QuestBank.rebel5.canBeGivenQuest(player))
-			return QuestBank.rebel5;
-		else if (QuestBank.rebel6.canBeGivenQuest(player))
-			return QuestBank.rebel6;
-		else
-			return QuestBank.questNotAvailable;
+		if (QuestBank.empireRecruit.canBeGivenQuest(player))
+			return QuestBank.empireRecruit;
+		return QuestBank.questNotAvailable;
 	}
 }

@@ -65,6 +65,19 @@ public class VehicSkyhopper extends VehicleAirBase
 	}
 
 	@Override
+	public boolean interact(EntityPlayer player)
+	{
+		if (player.isSneaking())
+		{
+			if (!worldObj.isRemote)
+				player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
+			return true;
+		}
+
+		return super.interact(player);
+	}
+
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();

@@ -150,6 +150,12 @@ public class BlockRegister
 		StarWarsMod.blockStaticNpcRebelDreis = new BlockNpcRebelDreis();
 		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRebelDreis, "blockStaticNpcRebelDreis");
 
+		StarWarsMod.blockStaticNpcRecruiterRebel = new BlockNpcRecruiterRebel();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRecruiterRebel, "blockStaticNpcRecruiterRebel");
+
+		StarWarsMod.blockStaticNpcRecruiterEmpire = new BlockNpcRecruiterEmpire();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRecruiterEmpire, "blockStaticNpcRecruiterEmpire");
+
 		StarWarsMod.blockStaticNpcRebelYavinQuartermaster = new BlockNpcRebelYavinQuartermaster();
 		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRebelYavinQuartermaster, "blockStaticNpcRebelYavinQuartermaster");
 

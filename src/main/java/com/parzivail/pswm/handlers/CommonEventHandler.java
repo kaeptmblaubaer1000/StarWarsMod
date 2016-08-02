@@ -231,7 +231,7 @@ public class CommonEventHandler
 		if (KeybindRegistry.keyLSForge.isPressed() && StarWarsMod.mc.thePlayer.capabilities.isCreativeMode)
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_LSFORGE, null, 0, 0, 0);
 
-		if (KeybindRegistry.keyShipHyperdrive.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase && !(StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder) && !(StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper))
+		if (KeybindRegistry.keyShipHyperdrive.isPressed() && StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase && !(StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder))
 			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyLSToggle.isPressed())

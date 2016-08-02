@@ -42,7 +42,7 @@ public class Rebel8_Yavin extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return true;
+		return isQuestDone(player, this);
 	}
 
 	@Override

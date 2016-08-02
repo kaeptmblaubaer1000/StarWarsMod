@@ -48,7 +48,7 @@ public class Rebel10_Over extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return true;
+		return isQuestDone(player, this);
 	}
 
 	@Override

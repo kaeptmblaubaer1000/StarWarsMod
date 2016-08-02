@@ -77,7 +77,7 @@ public class ItemUtils
 		return !(stack == null || stack.stackSize + amount > 64);
 	}
 
-	public static boolean hasItems(EntityPlayer player, ItemStack[] itemStacks)
+	public static boolean hasItems(EntityPlayer player, ItemStack... itemStacks)
 	{
 		for (ItemStack stack : itemStacks)
 			if (!hasItemStackExact(player, stack))

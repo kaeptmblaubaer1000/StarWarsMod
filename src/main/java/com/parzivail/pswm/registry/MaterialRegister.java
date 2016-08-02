@@ -22,6 +22,7 @@ public class MaterialRegister
 		StarWarsMod.rebelPilotArmorMat = EnumHelper.addArmorMaterial("rebelPilotArmorMat", 70, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.atatPilotArmorMat = EnumHelper.addArmorMaterial("atatPilotArmorMat", 70, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.stormtrooperArmorMat = EnumHelper.addArmorMaterial("stormtrooperArmorMat", 90, new int[] { 1, 4, 3, 2 }, 4);
+		StarWarsMod.shadowtrooperArmorMat = EnumHelper.addArmorMaterial("shadowtrooperArmorMat", 180, new int[] { 2, 8, 6, 4 }, 4);
 		StarWarsMod.stormtrooperNewArmorMat = EnumHelper.addArmorMaterial("stormtrooperNewArmorMat", 90, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.scoutTrooperArmorMat = EnumHelper.addArmorMaterial("scoutTrooperArmorMat", 80, new int[] { 1, 4, 3, 2 }, 4);
 		StarWarsMod.sandtrooperArmorMat = EnumHelper.addArmorMaterial("sandtroopertArmorMat", 90, new int[] { 1, 4, 3, 2 }, 4);

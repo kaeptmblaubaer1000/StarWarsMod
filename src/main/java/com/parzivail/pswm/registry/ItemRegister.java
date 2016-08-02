@@ -332,6 +332,18 @@ public class ItemRegister
 		StarWarsItems.scoutTrooperBoots = new ArmorScoutTrooper(StarWarsMod.scoutTrooperArmorMat, 1, 3);
 		GameRegistry.registerItem(StarWarsItems.scoutTrooperBoots, "scoutTrooperBoots");
 
+		StarWarsItems.shadowtrooperHelmet = new ArmorShadowtrooper(StarWarsMod.shadowtrooperArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.shadowtrooperHelmet, "shadowtrooperHelmet");
+
+		StarWarsItems.shadowtrooperChest = new ArmorShadowtrooper(StarWarsMod.shadowtrooperArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.shadowtrooperChest, "shadowtrooperChest");
+
+		StarWarsItems.shadowtrooperLegs = new ArmorShadowtrooper(StarWarsMod.shadowtrooperArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.shadowtrooperLegs, "shadowtrooperLegs");
+
+		StarWarsItems.shadowtrooperBoots = new ArmorShadowtrooper(StarWarsMod.shadowtrooperArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.shadowtrooperBoots, "shadowtrooperBoots");
+
 		StarWarsItems.sandtrooperHelmet = new ArmorSandtrooper(StarWarsMod.sandtrooperArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsItems.sandtrooperHelmet, "sandtrooperHelmet");
 

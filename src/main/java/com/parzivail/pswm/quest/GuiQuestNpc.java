@@ -77,8 +77,7 @@ public class GuiQuestNpc extends GuiScreen
 			}
 			else if (this.close != null && button.id == this.close.id)
 			{
-				if (this.quest.isQuestComplete(player))
-					this.quest.end(player);
+				this.quest.end(player);
 				this.mc.displayGuiScreen(null);
 				this.mc.setIngameFocus();
 			}

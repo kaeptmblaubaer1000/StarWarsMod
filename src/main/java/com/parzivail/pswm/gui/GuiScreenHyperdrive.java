@@ -10,7 +10,6 @@ import com.parzivail.pswm.models.vehicles.*;
 import com.parzivail.pswm.network.MessageHyperdrive;
 import com.parzivail.pswm.network.MessageTransferHyperdrive;
 import com.parzivail.pswm.rendering.vehicles.*;
-import com.parzivail.pswm.vehicles.VehicSkyhopper;
 import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.math.FPoint;
@@ -120,7 +119,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
 
-		canJump = player.ridingEntity instanceof VehicleAirBase && !(player.ridingEntity instanceof VehicSnowspeeder) && !(player.ridingEntity instanceof VehicSkyhopper);
+		canJump = player.ridingEntity instanceof VehicleAirBase && !(player.ridingEntity instanceof VehicSnowspeeder);
 	}
 
 	@Override

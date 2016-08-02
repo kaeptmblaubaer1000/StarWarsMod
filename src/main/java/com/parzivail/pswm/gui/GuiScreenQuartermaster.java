@@ -3,6 +3,9 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
+import com.parzivail.pswm.mobs.MobDroidAstromech2;
+import com.parzivail.pswm.mobs.MobDroidProtocol;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.network.MessagePlayerBuyItem;
 import com.parzivail.pswm.quest.QuestNpcUtils;
@@ -73,6 +76,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixAntenna;
 	Consumer<OutlineButton> fixHolotable;
 	Consumer<OutlineButton> fixBacta;
+	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
 
 	private OutlineButtonCreditCounter bBuy;
@@ -114,6 +118,28 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 		int x = 0;
 		int y = 0;
+
+		fixItem = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glTranslatef(0, 12, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(-14, 0, -1);
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
+			GL11.glRotatef(18, 1, 0, 0);
+			GL11.glRotatef(18, 0, 0, 1);
+			GL11.glRotatef(-1, 0, 0, 1);
+			GL11.glRotatef(-2, 0, 1, 0);
+		};
 
 		Consumer<OutlineButton> preRenderArmorButton = outlineButton ->
 		{
@@ -316,6 +342,10 @@ public class GuiScreenQuartermaster extends GuiScreen
 		}, postRenderEmpty);
 		listBMisc.put("bMiscGunRack", bMiscGunRack);
 
+		OutlineButtonItemStack bHEndor = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHEndor.setup(new ItemStack(StarWarsItems.hyperdriveEndor), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHEndor", bHEndor);
+
 		x = 0;
 		y++;
 
@@ -345,6 +375,36 @@ public class GuiScreenQuartermaster extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 + 90, 0, 1, 0);
 		}, postRenderEmpty);
 		listBMisc.put("bMiscBacta", bMiscBacta);
+
+		OutlineButtonItemStack bHHoth = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHHoth.setup(new ItemStack(StarWarsItems.hyperdriveHoth), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHHoth", bHHoth);
+
+		x = 0;
+		y++;
+
+		Consumer<OutlineButton> preRenderDroidsButton = outlineButton ->
+		{
+			GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 3f, 50);
+			if (outlineButton instanceof OutlineButtonEntity && !(((OutlineButtonEntity)outlineButton).entity instanceof MobDroidProtocol))
+				GL11.glTranslatef(0, -4, 0);
+			P3D.glScalef(23.25f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(10, 1, 0, 0);
+			GL11.glRotatef((System.currentTimeMillis() / 15) % 360, 0, 1, 0);
+		};
+
+		OutlineButtonEntity bDroidAstromech = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bDroidAstromech.setup(new MobDroidAstromech(player.worldObj), preRenderDroidsButton, postRenderEmpty);
+		listBMisc.put("bDroidAstromech", bDroidAstromech);
+
+		OutlineButtonEntity bDroidAstromech2 = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bDroidAstromech2.setup(new MobDroidAstromech2(player.worldObj), preRenderDroidsButton, postRenderEmpty);
+		listBMisc.put("bDroidAstromech2", bDroidAstromech2);
+
+		OutlineButtonItemStack bHSpace = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHSpace.setup(new ItemStack(StarWarsItems.hyperdriveSpace), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHSpace", bHSpace);
 
 		setTabArmor();
 	}
@@ -600,6 +660,69 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				bBuy.setCurrentCost(128);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockBactaTank, 1) };
+			}
+			else if (button.id == listBMisc.get("bDroidAstromech").id)
+			{
+				stackShowing = null;
+				tileShowing = null;
+				entityShowing = ((OutlineButtonEntity)listBMisc.get("bDroidAstromech")).entity;
+
+				showingTitle = "R2-Series Astromech Droid";
+				showingDesc = "beep";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech, 1) };
+			}
+			else if (button.id == listBMisc.get("bDroidAstromech2").id)
+			{
+				stackShowing = null;
+				tileShowing = null;
+				entityShowing = ((OutlineButtonEntity)listBMisc.get("bDroidAstromech2")).entity;
+
+				showingTitle = "R5-Series Astromech Droid";
+				showingDesc = "boop";
+
+				bBuy.setCurrentCost(64);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech2, 1) };
+			}
+			else if (button.id == listBMisc.get("bHHoth").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHHoth")).itemStack;
+
+				showingTitle = "hoth";
+				showingDesc = "2QR3qertag80[ohihofhg";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
+			}
+			else if (button.id == listBMisc.get("bHSpace").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHSpace")).itemStack;
+
+				showingTitle = "space";
+				showingDesc = "dobuipsfh;bskjdfbnskjbg";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
+			}
+			else if (button.id == listBMisc.get("bHEndor").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHEndor")).itemStack;
+
+				showingTitle = "endor";
+				showingDesc = "theoforestmoon";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEndor, 1) };
 			}
 		}
 	}

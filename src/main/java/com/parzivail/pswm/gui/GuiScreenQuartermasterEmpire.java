@@ -77,6 +77,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 	Consumer<OutlineButton> fixAntenna;
 	Consumer<OutlineButton> fixHolotable;
 	Consumer<OutlineButton> fixBacta;
+	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
 
 	private OutlineButtonCreditCounter bBuy;
@@ -352,6 +353,32 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 		}, postRenderEmpty);
 		listBMisc.put("bMiscGunRack", bMiscGunRack);
 
+		fixItem = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glTranslatef(0, 12, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(-14, 0, -1);
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
+			GL11.glRotatef(18, 1, 0, 0);
+			GL11.glRotatef(18, 0, 0, 1);
+			GL11.glRotatef(-1, 0, 0, 1);
+			GL11.glRotatef(-2, 0, 1, 0);
+		};
+
+		OutlineButtonItemStack bHHoth = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHHoth.setup(new ItemStack(StarWarsItems.hyperdriveHoth), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHHoth", bHHoth);
+
 		x = 0;
 		y++;
 
@@ -368,6 +395,29 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glTranslatef(0, 0, 0.5f);
 		}, postRenderEmpty);
 		listBMisc.put("bMiscAntenna", bMiscAntenna);
+
+		OutlineButtonItemStack bHydrospanner = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHydrospanner.setup(new ItemStack(StarWarsItems.hydrospanner), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHydrospanner", bHydrospanner);
+
+		OutlineButtonItemStack bHSpace = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHSpace.setup(new ItemStack(StarWarsItems.hyperdriveSpace), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHSpace", bHSpace);
+
+		x = 0;
+		y++;
+
+		OutlineButtonItemStack bIdScanner = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bIdScanner.setup(new ItemStack(StarWarsItems.idScanner), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bIdScanner", bIdScanner);
+
+		OutlineButtonItemStack bDatapad = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bDatapad.setup(new ItemStack(StarWarsItems.dataPad), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bDatapad", bDatapad);
+
+		OutlineButtonItemStack bHYavin = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bHYavin.setup(new ItemStack(StarWarsItems.hyperdriveYavin4), fixItem, postRenderEmpty, false, player);
+		listBMisc.put("bHYavin", bHYavin);
 
 		setTabArmor();
 	}
@@ -650,6 +700,84 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockAntenna, 1) };
+			}
+			else if (button.id == listBMisc.get("bHydrospanner").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHydrospanner")).itemStack;
+
+				showingTitle = "hydroipashjdfgner";
+				showingDesc = "spanny";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hydrospanner, 1) };
+			}
+			else if (button.id == listBMisc.get("bIdScanner").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bIdScanner")).itemStack;
+
+				showingTitle = "id scal;kajsndfler";
+				showingDesc = "scsnny";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.idScanner, 1) };
+			}
+			else if (button.id == listBMisc.get("bDatapad").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bDatapad")).itemStack;
+
+				showingTitle = "dataiosudghpad";
+				showingDesc = "paddy7";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.dataPad, 1) };
+			}
+			else if (button.id == listBMisc.get("bHHoth").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHHoth")).itemStack;
+
+				showingTitle = "hoth";
+				showingDesc = "2QR3qertag80[ohihofhg";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
+			}
+			else if (button.id == listBMisc.get("bHSpace").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHSpace")).itemStack;
+
+				showingTitle = "space";
+				showingDesc = "dobuipsfh;bskjdfbnskjbg";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
+			}
+			else if (button.id == listBMisc.get("bHYavin").id)
+			{
+				currentFix = fixItem;
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHYavin")).itemStack;
+
+				showingTitle = "yavin";
+				showingDesc = "aliusdfghblsdhjgf";
+
+				bBuy.setCurrentCost(0);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveYavin4, 1) };
 			}
 		}
 	}

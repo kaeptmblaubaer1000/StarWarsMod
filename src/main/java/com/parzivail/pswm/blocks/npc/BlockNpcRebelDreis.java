@@ -25,12 +25,13 @@ public class BlockNpcRebelDreis extends BlockNpcBase
 
 		if (QuestBank.rebel8_Yavin.canBeGivenQuest(player))
 			return QuestBank.rebel8_Yavin;
-		if (QuestBank.rebel9.canBeGivenQuest(player))
+		else if (QuestBank.rebel9.canBeGivenQuest(player))
 			return QuestBank.rebel9;
-		if (QuestBank.rebel10.canBeGivenQuest(player))
+		else if (QuestBank.rebel10.canBeGivenQuest(player))
 			return QuestBank.rebel10;
-		if (QuestBank.rebel10_Over.canBeGivenQuest(player))
+		else if (QuestBank.rebel10_Over.canBeGivenQuest(player))
 			return QuestBank.rebel10_Over;
-		return QuestBank.questNotAvailable;
+		else
+			return QuestBank.questNotAvailable;
 	}
 }

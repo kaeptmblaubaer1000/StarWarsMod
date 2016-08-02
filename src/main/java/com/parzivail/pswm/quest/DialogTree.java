@@ -3,6 +3,7 @@ package com.parzivail.pswm.quest;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class DialogTree
 {
@@ -22,6 +23,8 @@ public class DialogTree
 	 * i.e. get weapons or set variables
 	 */
 	public Consumer<EntityPlayer> action;
+
+	public Function<EntityPlayer, Boolean> canContinue;
 
 	public DialogTree()
 	{

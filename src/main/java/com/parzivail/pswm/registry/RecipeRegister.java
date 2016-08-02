@@ -30,8 +30,10 @@ public class RecipeRegister
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.apexSeal, 1), " A ", "A A", " A ", 'A', StarWarsItems.airsealGel);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.airsealGel, 1), "HHH", "HWH", "HHH", 'H', StarWarsItems.ingotHelicite, 'W', Items.water_bucket);
 
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.silverImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.imperialCredit);
-		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.goldImperialCredit, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.silverImperialCredit);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.shadowtrooperHelmet, 1), "AAA", "ABA", "AAA", 'A', StarWarsItems.ingotCortosis, 'B', StarWarsItems.stormtrooperHelmet);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.shadowtrooperChest, 1), "AAA", "ABA", "AAA", 'A', StarWarsItems.ingotCortosis, 'B', StarWarsItems.stormtrooperChest);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.shadowtrooperLegs, 1), "AAA", "ABA", "AAA", 'A', StarWarsItems.ingotCortosis, 'B', StarWarsItems.stormtrooperLegs);
+		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.shadowtrooperBoots, 1), "AAA", "ABA", "AAA", 'A', StarWarsItems.ingotCortosis, 'B', StarWarsItems.stormtrooperBoots);
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.jediRobes, 1), "L L", "LWL", "LLL", 'L', Items.leather, 'W', new ItemStack(Blocks.wool, 1, 12));
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsMod.blockTitaniumChromiumBlock, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.titaniumChromiumIngot);
@@ -42,9 +44,6 @@ public class RecipeRegister
 			GameRegistry.addShapedRecipe(new ItemStack(Items.water_bucket, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.waterDroplet);
 		else
 			GameRegistry.addShapedRecipe(new ItemStack(Blocks.flowing_water, 1), "AAA", "AAA", "AAA", 'A', StarWarsItems.waterDroplet);
-
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.imperialCredit, 9), StarWarsItems.silverImperialCredit);
-		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.silverImperialCredit, 9), StarWarsItems.goldImperialCredit);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.titaniumChromiumDust, 1), StarWarsItems.titaniumDust, StarWarsItems.chromiumDust);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.titaniumChromiumIngot, 9), StarWarsMod.blockTitaniumChromiumBlock);

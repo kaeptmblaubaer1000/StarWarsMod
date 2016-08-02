@@ -182,6 +182,11 @@ public class StarWarsItems
 	public static Item snowtrooperLegs;
 	public static Item snowtrooperBoots;
 
+	public static Item shadowtrooperHelmet;
+	public static Item shadowtrooperChest;
+	public static Item shadowtrooperLegs;
+	public static Item shadowtrooperBoots;
+
 	public static Item scoutTrooperHelmet;
 	public static Item scoutTrooperChest;
 	public static Item scoutTrooperLegs;

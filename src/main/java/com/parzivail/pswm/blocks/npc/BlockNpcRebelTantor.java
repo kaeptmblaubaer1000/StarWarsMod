@@ -11,6 +11,8 @@ import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 
+import static com.parzivail.pswm.quest.QuestBank.questNotAvailable;
+
 /**
  * @author Colby
  */
@@ -29,14 +31,13 @@ public class BlockNpcRebelTantor extends BlockNpcBase
 
 		if (QuestBank.rebel6_PostEndor.canBeGivenQuest(player))
 			return QuestBank.rebel6_PostEndor;
-
-		if (!ItemQuestLog.getHasBroughtAtst(ItemQuestLog.getQuestContainer(player)))
+		else if (!ItemQuestLog.getHasBroughtAtst(ItemQuestLog.getQuestContainer(player)))
 		{
 			TileEntity t;
 			if ((t = questGiver.getWorldObj().getTileEntity(questGiver.xCoord, questGiver.yCoord - 1, questGiver.zCoord)) instanceof TileEntitySensorAtst)
 			{
 				if (!((TileEntitySensorAtst)t).checkCondition())
-					return QuestBank.questNotAvailable;
+					return questNotAvailable;
 				else
 				{
 					ItemQuestLog.setHasBroughtAtst(ItemQuestLog.getQuestContainer(player), true);
@@ -44,15 +45,15 @@ public class BlockNpcRebelTantor extends BlockNpcBase
 				}
 			}
 			else
-				return QuestBank.questNotAvailable;
+				return questNotAvailable;
 		}
-
-		if (QuestBank.rebel7.canBeGivenQuest(player))
+		else if (QuestBank.rebel7.canBeGivenQuest(player))
 			return QuestBank.rebel7;
-		if (QuestBank.rebel8.canBeGivenQuest(player))
+		else if (QuestBank.rebel8.canBeGivenQuest(player))
 			return QuestBank.rebel8;
-		if (QuestBank.rebel8_PostArmor.canBeGivenQuest(player))
+		else if (QuestBank.rebel8_PostArmor.canBeGivenQuest(player))
 			return QuestBank.rebel8_PostArmor;
+
 		return QuestBank.questNotAvailable;
 	}
 }

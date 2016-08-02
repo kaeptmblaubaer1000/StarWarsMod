@@ -1,11 +1,13 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.armor.ArmorEndor;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebel0;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -45,7 +47,15 @@ public class Rebel1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && hasOnEndorArmor(player) && rebel0.isQuestComplete(player);
+	}
+
+	private boolean hasOnEndorArmor(EntityPlayer player)
+	{
+		for (int i = 0; i < 4; i++)
+			if (player.getCurrentArmor(i) == null || !(player.getCurrentArmor(i).getItem() instanceof ArmorEndor))
+				return false;
+		return true;
 	}
 
 	@Override
@@ -57,7 +67,7 @@ public class Rebel1 extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return true;
+		return isQuestDone(player, this);
 	}
 
 	@Override

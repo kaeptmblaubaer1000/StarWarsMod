@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebelRecruit;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -27,19 +28,18 @@ public class Rebel0 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && rebelRecruit.isQuestComplete(player);
 	}
 
 	@Override
 	public void begin(EntityPlayer player)
 	{
-
 	}
 
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return true;
+		return isQuestDone(player, this);
 	}
 
 	@Override

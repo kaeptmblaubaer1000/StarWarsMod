@@ -24,6 +24,7 @@ public class ItemQuestLog extends Item
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.maxStackSize = 1;
 	}
 
 	public static NBTQuestTag getQuests(ItemStack stack)

@@ -1,11 +1,15 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebel4;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -58,7 +62,7 @@ public class Rebel5 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && rebel4.isQuestComplete(player) && ItemUtils.hasItems(player, new ItemStack(StarWarsItems.wampaHorn, 1));
 	}
 
 	@Override
@@ -70,7 +74,7 @@ public class Rebel5 extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
-		return true;
+		return isQuestDone(player, this);
 	}
 
 	@Override

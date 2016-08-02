@@ -23,6 +23,7 @@ public class OreGenerator implements IWorldGenerator
 	public static WorldGenMinable genExonium = new WorldGenMinable(StarWarsMod.blockExoniumOre, 8);
 	public static WorldGenMinable genHelecite = new WorldGenMinable(StarWarsMod.blockHeliciteOre, 8);
 	public static WorldGenMinable genThoralide = new WorldGenMinable(StarWarsMod.blockThorolideOre, 8);
+	public static WorldGenMinable genCortosis = new WorldGenMinable(StarWarsMod.blockCortosisOre, 5);
 
 	public static WorldGenMinable genCrystalBlack = new WorldGenMinable(StarWarsMod.blockCrystalOre, 0, 3, StarWarsMod.blockIlumStone);
 	public static WorldGenMinable genCrystalBlue = new WorldGenMinable(StarWarsMod.blockCrystalOre, 1, 3, StarWarsMod.blockIlumStone);
@@ -95,6 +96,10 @@ public class OreGenerator implements IWorldGenerator
 		{
 			deposit(world, chunkX, chunkZ, 2, genHelecite, 0, 32);
 			deposit(world, chunkX, chunkZ, 20, genThoralide, 0, 64);
+		}
+		else if (world.provider.dimensionId == Resources.ConfigOptions.dimKashyyykId)
+		{
+			deposit(world, chunkX, chunkZ, 2, genCortosis, 8, 40);
 		}
 	}
 

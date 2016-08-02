@@ -14,7 +14,7 @@ public class BlockNpcRebelRex extends BlockNpcBase
 {
 	public BlockNpcRebelRex()
 	{
-		super("rebelMainRex", Resources.armors[0], Resources.allegianceRebelFmt);
+		super("rebelMainRex", Resources.armors[2], Resources.allegianceRebelFmt);
 	}
 
 	@Override
@@ -25,12 +25,15 @@ public class BlockNpcRebelRex extends BlockNpcBase
 
 		if (QuestBank.rebel0.canBeGivenQuest(player))
 			return QuestBank.rebel0;
-		if (QuestBank.rebel1.canBeGivenQuest(player))
+		else if (QuestBank.rebel1.canBeGivenQuest(player))
 			return QuestBank.rebel1;
-		if (QuestBank.rebel2.canBeGivenQuest(player))
+		else if (QuestBank.rebel2.canBeGivenQuest(player))
 			return QuestBank.rebel2;
-		if (QuestBank.rebel3.canBeGivenQuest(player))
+		else if (QuestBank.rebel2_PostTarget.canBeGivenQuest(player))
+			return QuestBank.rebel2_PostTarget;
+		else if (QuestBank.rebel3.canBeGivenQuest(player))
 			return QuestBank.rebel3;
-		return QuestBank.questNotAvailable;
+		else
+			return QuestBank.questNotAvailable;
 	}
 }

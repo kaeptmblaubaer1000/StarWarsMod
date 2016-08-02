@@ -16,9 +16,13 @@ public class QuestBank
 	public static Quest questNotAvailable = new QuestNotAvailable();
 	public static Quest noQuestLog = new QuestNoQuestLog();
 
+	public static Quest rebelRecruit = new RebelRecruit();
+	public static Quest empireRecruit = new ImperialRecruit();
+
 	public static Quest rebel0 = new Rebel0();
 	public static Quest rebel1 = new Rebel1();
 	public static Quest rebel2 = new Rebel2();
+	public static Quest rebel2_PostTarget = new Rebel2_PostTarget();
 	public static Quest rebel3 = new Rebel3();
 	public static Quest rebel4 = new Rebel4();
 	public static Quest rebel5 = new Rebel5();

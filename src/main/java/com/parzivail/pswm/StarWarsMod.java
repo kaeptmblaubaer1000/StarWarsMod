@@ -215,6 +215,8 @@ public class StarWarsMod
 	public static PBlockContainer blockStaticNpcRebelCarlist;
 	public static PBlockContainer blockStaticNpcRebelTantor;
 	public static PBlockContainer blockStaticNpcRebelDreis;
+	public static PBlockContainer blockStaticNpcRecruiterRebel;
+	public static PBlockContainer blockStaticNpcRecruiterEmpire;
 	public static PBlockContainer blockStaticNpcRebelYavinQuartermaster;
 
 	public static PBlockContainer blockStaticNpcEmpireEndorQuartermaster;
@@ -243,6 +245,7 @@ public class StarWarsMod
 	public static ArmorMaterial stormtrooperNewArmorMat;
 	public static ArmorMaterial snowtrooperArmorMat;
 	public static ArmorMaterial scoutTrooperArmorMat;
+	public static ArmorMaterial shadowtrooperArmorMat;
 	public static ArmorMaterial tiePilotArmorMat;
 	public static ArmorMaterial atatPilotArmorMat;
 	public static ArmorMaterial hothArmorMat;
