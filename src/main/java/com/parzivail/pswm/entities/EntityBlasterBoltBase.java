@@ -8,7 +8,6 @@ import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.tileentities.TileEntityTarget;
-import com.parzivail.util.ui.GuiToast;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -209,8 +208,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 						ItemStack questContainer = ItemQuestLog.getQuestContainer((EntityPlayer)this.sender);
 
 						ItemQuestLog.addTargetKill(questContainer);
-
-						GuiToast.makeText(ItemQuestLog.getTargetKills(questContainer), GuiToast.TIME_SHORT).show();
 					}
 				}
 			}

@@ -25,6 +25,8 @@ public class BlockNpcRebelDreis extends BlockNpcBase
 
 		if (QuestBank.rebel8_Yavin.canBeGivenQuest(player))
 			return QuestBank.rebel8_Yavin;
+		else if (QuestBank.rebel8_PostArmor.canBeGivenQuest(player))
+			return QuestBank.rebel8_PostArmor;
 		else if (QuestBank.rebel9.canBeGivenQuest(player))
 			return QuestBank.rebel9;
 		else if (QuestBank.rebel10.canBeGivenQuest(player))

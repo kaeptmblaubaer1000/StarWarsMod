@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebel6;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -57,7 +58,7 @@ public class Rebel6_PostEndor extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && rebel6.isQuestComplete(player);
 	}
 
 	@Override
@@ -93,6 +94,6 @@ public class Rebel6_PostEndor extends Quest
 	@Override
 	public String getID()
 	{
-		return "That’s no moon!";
+		return " That’s no moon! ";
 	}
 }

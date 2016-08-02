@@ -1,7 +1,10 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestBank;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
@@ -63,7 +66,7 @@ public class Rebel10 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && QuestBank.rebel9.isQuestComplete(player) && ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(player), Resources.ConfigOptions.dimSpaceId) > 0;
 	}
 
 	@Override

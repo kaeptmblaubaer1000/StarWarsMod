@@ -1,7 +1,9 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.armor.ArmorRebelPilot;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestBank;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
@@ -41,7 +43,15 @@ public class Rebel8_PostArmor extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && QuestBank.rebel8_Yavin.isQuestComplete(player) && hasOnArmor(player);
+	}
+
+	private boolean hasOnArmor(EntityPlayer player)
+	{
+		for (int i = 0; i < 4; i++)
+			if (player.getCurrentArmor(i) == null || !(player.getCurrentArmor(i).getItem() instanceof ArmorRebelPilot))
+				return false;
+		return true;
 	}
 
 	@Override
@@ -77,6 +87,6 @@ public class Rebel8_PostArmor extends Quest
 	@Override
 	public String getID()
 	{
-		return "Red Squadron";
+		return " Red Squadron ";
 	}
 }

@@ -1,8 +1,12 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestBank;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
@@ -36,7 +40,7 @@ public class Rebel10_Over extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && QuestBank.rebel10.isQuestComplete(player) && ItemUtils.hasItems(player, new ItemStack(StarWarsItems.tieSchematics, 1));
 	}
 
 	@Override
@@ -66,6 +70,6 @@ public class Rebel10_Over extends Quest
 	@Override
 	public String getID()
 	{
-		return "Infiltration";
+		return " Infiltration ";
 	}
 }

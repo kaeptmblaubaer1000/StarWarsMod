@@ -2,6 +2,7 @@ package com.parzivail.pswm.quest.rebel;
 
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestBank;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
@@ -54,7 +55,7 @@ public class Rebel9 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && QuestBank.rebel8_PostArmor.isQuestComplete(player);
 	}
 
 	@Override

@@ -51,8 +51,6 @@ public class BlockNpcRebelTantor extends BlockNpcBase
 			return QuestBank.rebel7;
 		else if (QuestBank.rebel8.canBeGivenQuest(player))
 			return QuestBank.rebel8;
-		else if (QuestBank.rebel8_PostArmor.canBeGivenQuest(player))
-			return QuestBank.rebel8_PostArmor;
 
 		return QuestBank.questNotAvailable;
 	}
