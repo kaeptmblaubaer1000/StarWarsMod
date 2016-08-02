@@ -1,11 +1,9 @@
 package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.util.IParziNPC;
-import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.P3D;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -39,17 +37,9 @@ public class GuiIDScanner extends GuiScreen
 	public void initGui()
 	{
 		this.scanned = mc.objectMouseOver.entityHit;
-		if (scanned instanceof MobTatooineCommoner && MathUtils.oneIn(10))
+		if (scanned instanceof MobTatooineCommoner)
 		{
-			scanned = new MobTatooineCommoner(scanned.worldObj);
-			int n = 0;
-			do
-				n = StarWarsMod.rngGeneral.nextInt(5);
-			while (n == mc.objectMouseOver.entityHit.getDataWatcher().getWatchableObjectInt(25));
-
-			scanned.getDataWatcher().updateObject(25, Integer.valueOf(n));
-
-			fraud = true;
+			fraud = ((MobTatooineCommoner)scanned).getFraud();
 		}
 		timeInit = System.currentTimeMillis();
 	}

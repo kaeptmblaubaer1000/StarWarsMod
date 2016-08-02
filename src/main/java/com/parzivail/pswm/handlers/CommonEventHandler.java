@@ -7,8 +7,10 @@ import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.gui.GuiVehicle;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.*;
+import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
@@ -20,6 +22,7 @@ import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
 import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -161,12 +164,22 @@ public class CommonEventHandler
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.PROTON, targetted, BlasterPosition.BOTH_SIDES));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
 					StarWarsMod.shipSpecialWeaponCooldown = 200;
+
+					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
+					Lumberjack.log(ItemQuestLog.getStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT));
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.BOMB, null, BlasterPosition.BOTH_SIDES));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
 					StarWarsMod.shipSpecialWeaponCooldown = 200;
+
+					String stat = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber ? QuestStats.BOMBS_DROPPED_EMPIRE : QuestStats.BOMBS_DROPPED_REBEL;
+
+					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, stat);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
+					Lumberjack.log(ItemQuestLog.getStat(StarWarsMod.mc.thePlayer, stat));
 				}
 			}
 		}

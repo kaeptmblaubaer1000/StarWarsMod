@@ -3,7 +3,7 @@ package com.parzivail.pswm.blocks.npc;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemQuestLog;
-import com.parzivail.pswm.network.MessageSetQuests;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestBank;
 import com.parzivail.pswm.tileentities.TileEntitySensorAtst;
@@ -40,7 +40,7 @@ public class BlockNpcRebelTantor extends BlockNpcBase
 				else
 				{
 					ItemQuestLog.setHasBroughtAtst(ItemQuestLog.getQuestContainer(player), true);
-					StarWarsMod.network.sendToServer(new MessageSetQuests(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
 				}
 			}
 			else

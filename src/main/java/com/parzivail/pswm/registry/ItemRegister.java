@@ -260,6 +260,18 @@ public class ItemRegister
 		StarWarsItems.tieSchematics = new ItemTieSchematics();
 		GameRegistry.registerItem(StarWarsItems.tieSchematics, "tieSchematics");
 
+		StarWarsItems.xwingSchematics = new ItemXWingSchematics();
+		GameRegistry.registerItem(StarWarsItems.xwingSchematics, "xwingSchematics");
+
+		StarWarsItems.reactorCore = new ItemReactorCore();
+		GameRegistry.registerItem(StarWarsItems.reactorCore, "reactorCore");
+
+		StarWarsItems.dataPad = new ItemDataPad();
+		GameRegistry.registerItem(StarWarsItems.dataPad, "dataPad");
+
+		StarWarsItems.rebelDataDrive = new ItemRebelDataDrive();
+		GameRegistry.registerItem(StarWarsItems.rebelDataDrive, "rebelDataDrive");
+
 		StarWarsItems.banthaMilk = new ItemBanthaMilk();
 		GameRegistry.registerItem(StarWarsItems.banthaMilk, "banthaMilk");
 

@@ -2,7 +2,7 @@ package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.IParziNPC;
+import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,14 +31,12 @@ public class ItemIDScanner extends Item
 		{
 			Entity e = StarWarsMod.mc.objectMouseOver.entityHit;
 
-			if (e instanceof IParziNPC)
+			if (e instanceof MobTatooineCommoner)
 			{
 				if (player.isSneaking())
 				{
 					player.openGui(StarWarsMod.instance, Resources.GUI_SCANNER, world, 0, 0, 0);
 				}
-
-				//((EntityLiving)e).tasks.addTask(0, new AiFollowEntity((EntityLiving)e, player, ((EntityLiving)e).getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue(), 30));
 			}
 		}
 

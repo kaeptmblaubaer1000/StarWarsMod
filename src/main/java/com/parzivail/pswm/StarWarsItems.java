@@ -49,6 +49,10 @@ public class StarWarsItems
 	public static Item wampaHorn;
 
 	public static Item tieSchematics;
+	public static Item xwingSchematics;
+	public static Item rebelDataDrive;
+	public static Item reactorCore;
+	public static Item dataPad;
 
 	public static Item airsealGel;
 	public static Item apexSeal;
