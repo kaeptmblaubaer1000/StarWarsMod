@@ -2,7 +2,9 @@ package com.parzivail.pswm.achievement;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
@@ -21,6 +23,18 @@ public class AchievementTrigger
 			event.player.addStat(StarWarsAchievements.travelKashyyyk, 1);
 		else if (event.toDim == ConfigOptions.dimYavin4Id)
 			event.player.addStat(StarWarsAchievements.travelYavin, 1);
+		else if (event.toDim == ConfigOptions.dimSpaceId)
+			event.player.addStat(StarWarsAchievements.travelSpace, 1);
+		else if (event.toDim == ConfigOptions.dimIlumId)
+			event.player.addStat(StarWarsAchievements.travelIlum, 1);
+		else if (event.toDim == ConfigOptions.dimDagobahId)
+			event.player.addStat(StarWarsAchievements.travelDagobah, 1);
+
+		if (ItemQuestLog.getQuestContainer(event.player) != null && !event.player.worldObj.isRemote)
+		{
+			ItemQuestLog.addDimTravel(ItemQuestLog.getQuestContainer(event.player), event.toDim);
+			Lumberjack.log(ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(event.player), event.toDim));
+		}
 	}
 
 	@SubscribeEvent

@@ -76,7 +76,7 @@ public class ItemRegister
 		StarWarsItems.holocron = new ItemHolocron();
 		GameRegistry.registerItem(StarWarsItems.holocron, "holocron");
 
-		StarWarsItems.questContainer = new ItemQuestContainer();
+		StarWarsItems.questContainer = new ItemQuestLog();
 		GameRegistry.registerItem(StarWarsItems.questContainer, "questContainer");
 
 		StarWarsItems.spawnTie = new ItemSpawnTIE();
@@ -253,6 +253,12 @@ public class ItemRegister
 
 		StarWarsItems.banthaHorn = new ItemBanthaHorn();
 		GameRegistry.registerItem(StarWarsItems.banthaHorn, "banthaHorn");
+
+		StarWarsItems.wampaHorn = new ItemWampaHorn();
+		GameRegistry.registerItem(StarWarsItems.wampaHorn, "wampaHorn");
+
+		StarWarsItems.tieSchematics = new ItemTieSchematics();
+		GameRegistry.registerItem(StarWarsItems.tieSchematics, "tieSchematics");
 
 		StarWarsItems.banthaMilk = new ItemBanthaMilk();
 		GameRegistry.registerItem(StarWarsItems.banthaMilk, "banthaMilk");

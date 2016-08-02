@@ -1,9 +1,10 @@
 package com.parzivail.pswm.blocks.npc;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestBank;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
@@ -17,9 +18,9 @@ public class BlockNpcRebelDreis extends BlockNpcBase
 	}
 
 	@Override
-	public Quest getQuestForPlayer(EntityPlayer player)
+	public Quest getQuestForPlayer(TileEntityStaticNpc questGiver, EntityPlayer player)
 	{
-		if (ItemQuestContainer.getQuestContainer(player) == null)
+		if (ItemQuestLog.getQuestContainer(player) == null)
 			return QuestBank.noQuestLog;
 
 		if (QuestBank.rebel8_Yavin.canBeGivenQuest(player))

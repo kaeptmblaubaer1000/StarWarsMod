@@ -78,15 +78,19 @@ public class MessagePlayerBuyItem extends PMessage<MessagePlayerBuyItem>
 			}
 
 			if (retGold > 0)
-				this.player.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.goldImperialCredit, retGold));
+				if (!this.player.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.goldImperialCredit, retGold)))
+					this.player.entityDropItem(new ItemStack(StarWarsItems.goldImperialCredit, retGold), 0);
 			if (retSilver > 0)
-				this.player.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.silverImperialCredit, retSilver));
+				if (!this.player.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.silverImperialCredit, retSilver)))
+					this.player.entityDropItem(new ItemStack(StarWarsItems.silverImperialCredit, retSilver), 0);
 			if (ret > 0)
-				this.player.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.imperialCredit, ret));
+				if (!this.player.inventory.addItemStackToInventory(new ItemStack(StarWarsItems.imperialCredit, ret)))
+					this.player.entityDropItem(new ItemStack(StarWarsItems.imperialCredit, ret), 0);
 		}
 
 		for (ItemStack s : stacks)
-			this.player.inventory.addItemStackToInventory(s);
+			if (!this.player.inventory.addItemStackToInventory(s))
+				this.player.entityDropItem(s, 0);
 		return null;
 	}
 

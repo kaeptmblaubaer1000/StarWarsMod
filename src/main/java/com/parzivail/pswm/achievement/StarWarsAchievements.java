@@ -22,6 +22,9 @@ public class StarWarsAchievements
 	public static Achievement travelYavin;
 	public static Achievement travelEndor;
 	public static Achievement travelKashyyyk;
+	public static Achievement travelSpace;
+	public static Achievement travelIlum;
+	public static Achievement travelDagobah;
 	public static Achievement ezraBlaster;
 
 	public static void registerAll()
@@ -30,11 +33,14 @@ public class StarWarsAchievements
 		fireBlaster = new StarWarsAchievement("fireBlaster", 2, -2, StarWarsItems.blasterRifle.getMeta("Stormtrooper"), null);
 		craftLightsaber = new StarWarsAchievement("craftLightsaber", -1, 2, new ItemStack(StarWarsItems.lightsaberNew[9], 1, 2), null);
 		craftHyperdrive = new StarWarsAchievement("craftHyperdrive", 1, 0, StarWarsItems.hyperdriveEngine, null);
-		travelTatooine = new StarWarsAchievement("travelTatooine", 2, 1, StarWarsItems.hyperdriveTatooine, craftHyperdrive);
-		travelHoth = new StarWarsAchievement("travelHoth", 2, 2, StarWarsItems.hyperdriveHoth, craftHyperdrive);
-		travelYavin = new StarWarsAchievement("travelYavin", 2, 3, StarWarsItems.hyperdriveYavin4, craftHyperdrive);
-		travelEndor = new StarWarsAchievement("travelEndor", 2, 4, StarWarsItems.hyperdriveEndor, craftHyperdrive);
-		travelKashyyyk = new StarWarsAchievement("travelKashyyyk", 2, 5, StarWarsItems.hyperdriveKashyyyk, craftHyperdrive);
+		travelTatooine = new StarWarsAchievement("travelTatooine", 2, 1, StarWarsItems.hyperdriveTatooine, null);
+		travelHoth = new StarWarsAchievement("travelHoth", 2, 2, StarWarsItems.hyperdriveHoth, null);
+		travelYavin = new StarWarsAchievement("travelYavin", 2, 3, StarWarsItems.hyperdriveYavin4, null);
+		travelEndor = new StarWarsAchievement("travelEndor", 2, 4, StarWarsItems.hyperdriveEndor, null);
+		travelKashyyyk = new StarWarsAchievement("travelKashyyyk", 2, 5, StarWarsItems.hyperdriveKashyyyk, null);
+		travelSpace = new StarWarsAchievement("travelSpace", 2, 6, StarWarsItems.hyperdriveSpace, null);
+		travelIlum = new StarWarsAchievement("travelIlum", 2, 7, StarWarsItems.hyperdriveIlum, null);
+		travelDagobah = new StarWarsAchievement("travelDagobah", 2, 8, StarWarsItems.hyperdriveDagobah, null);
 		ezraBlaster = new StarWarsAchievement("ezraBlaster", -4, 5, StarWarsItems.lightsaberNew[Arrays.asList(ItemLightsaber.hilts).indexOf("ezra")], null);
 		page = new AchievementPage("Star Wars", StarWarsAchievement.achievements.toArray(new Achievement[StarWarsAchievement.achievements.size()]));
 		AchievementPage.registerAchievementPage(page);

@@ -4,8 +4,8 @@ import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 
-import static com.parzivail.pswm.items.ItemQuestContainer.isQuestDone;
-import static com.parzivail.pswm.items.ItemQuestContainer.setQuestDone;
+import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
+import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
 
 /**
  * Created by Colby on 5/8/2016.

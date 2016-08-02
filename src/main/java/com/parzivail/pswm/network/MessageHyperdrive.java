@@ -1,6 +1,6 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.world.TransferDim;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -27,10 +27,10 @@ public class MessageHyperdrive extends PMessage<MessageHyperdrive>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		ItemStack qlog = ItemQuestContainer.getQuestContainer(player);
+		ItemStack qlog = ItemQuestLog.getQuestContainer(player);
 		if (qlog != null)
 		{
-			ItemQuestContainer.setInHyperspace(qlog, true);
+			ItemQuestLog.setInHyperspace(qlog, true);
 		}
 		new TransferDim(MinecraftServer.getServer().worldServerForDimension(this.destDim)).teleport(this.player);
 		this.player.setSneaking(false);

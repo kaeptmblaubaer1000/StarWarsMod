@@ -11,7 +11,7 @@ import com.parzivail.pswm.gui.GuiBlaster;
 import com.parzivail.pswm.gui.GuiVehicle;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
@@ -249,12 +249,12 @@ public class ClientEventHandler
 				StarWarsMod.hasShownLeaderboardPart = true;
 			}
 
-			ItemStack qlog = ItemQuestContainer.getQuestContainer(player);
-			if (qlog != null && ItemQuestContainer.getInHyperspace(qlog))
+			ItemStack qlog = ItemQuestLog.getQuestContainer(player);
+			if (qlog != null && ItemQuestLog.getInHyperspace(qlog))
 			{
 				if (player.worldObj.isRemote)
 					new AnimationHyperspace(3500, true).start();
-				ItemQuestContainer.setInHyperspace(qlog, false);
+				ItemQuestLog.setInHyperspace(qlog, false);
 			}
 
 			if (logInEvent.world.provider.dimensionId == ConfigOptions.dimSpaceId && logInEvent.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) == Blocks.air)

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.dimension.PlanetInformation;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -27,10 +27,10 @@ public class MessageTransferHyperdrive extends PMessage<MessageTransferHyperdriv
 	public IMessage handleMessage(MessageContext context)
 	{
 		PlanetInformation information = PlanetInformation.getPlanet(planet);
-		ItemStack questlog = ItemQuestContainer.getQuestContainer(player);
+		ItemStack questlog = ItemQuestLog.getQuestContainer(player);
 		if (player.inventory.consumeInventoryItem(information.getHyperdrive()) && questlog != null)
 		{
-			ItemQuestContainer.setHasHyperdrive(questlog, information.getInternalName());
+			ItemQuestLog.setHasHyperdrive(questlog, information.getInternalName());
 		}
 		return null;
 	}

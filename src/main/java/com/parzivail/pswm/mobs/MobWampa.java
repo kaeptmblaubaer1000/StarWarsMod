@@ -1,6 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -68,6 +69,12 @@ public class MobWampa extends EntityMob implements IMob
 	protected String getLivingSound()
 	{
 		return Resources.MODID + ":" + "mob.wampa.say";
+	}
+
+	@Override
+	protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
+	{
+		this.dropItem(StarWarsItems.wampaHorn, 1);
 	}
 
 	@Override

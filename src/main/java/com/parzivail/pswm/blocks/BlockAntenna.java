@@ -4,10 +4,13 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.gui.AnimationAntennaOpen;
 import com.parzivail.pswm.items.ItemHydrospanner;
+import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -85,6 +88,11 @@ public class BlockAntenna extends PBlockContainer implements IDebugProvider
 				{
 					tile1.setFixed(true);
 					new AnimationAntennaOpen(tile1).start();
+					if (!world.isRemote)
+					{
+						ItemQuestLog.addStat(player, QuestStats.ANTENNAS_FIXED);
+						Lumberjack.log(ItemQuestLog.getStat(player, QuestStats.ANTENNAS_FIXED));
+					}
 				}
 
 				tile.markDirty();

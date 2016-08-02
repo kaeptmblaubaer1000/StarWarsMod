@@ -5,7 +5,7 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.tileentities.TileEntityTarget;
 import com.parzivail.util.ui.GuiToast;
@@ -206,11 +206,11 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 					te.getWorldObj().markBlockForUpdate(te.xCoord, te.yCoord, te.zCoord);
 					if (this.sender instanceof EntityPlayer)
 					{
-						ItemStack questContainer = ItemQuestContainer.getQuestContainer((EntityPlayer)this.sender);
+						ItemStack questContainer = ItemQuestLog.getQuestContainer((EntityPlayer)this.sender);
 
-						ItemQuestContainer.addTargetKill(questContainer);
+						ItemQuestLog.addTargetKill(questContainer);
 
-						GuiToast.makeText(ItemQuestContainer.getTargetKills(questContainer), GuiToast.TIME_SHORT).show();
+						GuiToast.makeText(ItemQuestLog.getTargetKills(questContainer), GuiToast.TIME_SHORT).show();
 					}
 				}
 			}

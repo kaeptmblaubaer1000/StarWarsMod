@@ -75,6 +75,7 @@ public class GFX
 
 	public static void drawTooltip(int x, int y, String text)
 	{
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		int width = 0;
 		String[] _text = TextUtils.splitIntoLine(text, 25);
 		for (String line : _text)
@@ -84,10 +85,12 @@ public class GFX
 		int height = (_text.length + 1) * StarWarsMod.mc.fontRenderer.FONT_HEIGHT;
 		drawBackdrop(x, y, width + 8, height, 255);
 
-		GL11.glEnable(3042);
-
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		for (int i = 0; i < _text.length; i++)
 			StarWarsMod.mc.fontRenderer.drawStringWithShadow(_text[i], x + 6, y + i * (StarWarsMod.mc.fontRenderer.FONT_HEIGHT + 1) + 5, GLPalette.WHITE);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(1, 1, 1, 1);
 	}
 
 	public static void drawTexture(int x, int y, int textureX, int textureY, int width, int height)
@@ -238,6 +241,20 @@ public class GFX
 		GL11.glScalef(scale, scale, 1);
 		GL11.glTranslatef(x / scale, y / scale, 0);
 		font.drawStringWithShadow(s, 0, 0, color);
+		GL11.glPopAttrib();
+		GL11.glPopMatrix();
+	}
+
+	/**
+	 * Draws some text
+	 */
+	public static void drawTextShadowCenter(FontRenderer font, String s, float x, float y, float scale, int color)
+	{
+		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
+		GL11.glScalef(scale, scale, 1);
+		GL11.glTranslatef(x / scale, y / scale, 0);
+		font.drawStringWithShadow(s, -font.getStringWidth(s) / 2, 0, color);
 		GL11.glPopAttrib();
 		GL11.glPopMatrix();
 	}

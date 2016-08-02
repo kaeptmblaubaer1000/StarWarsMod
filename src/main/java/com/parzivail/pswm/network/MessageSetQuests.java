@@ -1,7 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -26,9 +26,9 @@ public class MessageSetQuests extends PMessage<MessageSetQuests>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		if (this.player == null || this.player.inventory == null || ItemQuestContainer.getQuestContainer(player) == null || ItemQuestContainer.getQuestContainer(player).stackTagCompound == null)
+		if (this.player == null || this.player.inventory == null || ItemQuestLog.getQuestContainer(player) == null || ItemQuestLog.getQuestContainer(player).stackTagCompound == null)
 			return null;
-		ItemQuestContainer.getQuestContainer(player).stackTagCompound.setTag(Resources.nbtQuests, compound);
+		ItemQuestLog.getQuestContainer(player).stackTagCompound.setTag(Resources.nbtQuests, compound);
 		return null;
 	}
 

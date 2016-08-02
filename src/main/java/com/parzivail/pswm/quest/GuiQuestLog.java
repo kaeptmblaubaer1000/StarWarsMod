@@ -2,7 +2,7 @@ package com.parzivail.pswm.quest;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.dimension.PlanetInformation;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.util.ui.GLPalette;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -57,14 +57,14 @@ public class GuiQuestLog extends GuiScreen
 			int x = r.getScaledWidth() / 2;
 			int y = r.getScaledHeight() / 2;
 			int yy = 0;
-			this.drawCenteredString(fontRendererObj, ItemQuestContainer.getOwner(qlog) + "'s Quest Log", x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
+			this.drawCenteredString(fontRendererObj, ItemQuestLog.getOwner(qlog) + "'s Quest Log", x, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
 
 			yy += this.mc.fontRenderer.FONT_HEIGHT;
 
 			this.drawString(fontRendererObj, "Courses Plotted:", x - 115, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
 			for (PlanetInformation info : Resources.planetInformation)
 			{
-				if (ItemQuestContainer.getHasHyperdrive(qlog, info.getInternalName()))
+				if (ItemQuestLog.getHasHyperdrive(qlog, info.getInternalName()))
 					this.drawString(fontRendererObj, info.getName(), x - 105, y - 85 + (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
 			}
 		}
@@ -82,7 +82,7 @@ public class GuiQuestLog extends GuiScreen
 		int x = r.getScaledWidth() / 2;
 		int y = r.getScaledHeight() / 2;
 
-		qlog = ItemQuestContainer.getQuestContainer(player);
+		qlog = ItemQuestLog.getQuestContainer(player);
 	}
 
 	@Override

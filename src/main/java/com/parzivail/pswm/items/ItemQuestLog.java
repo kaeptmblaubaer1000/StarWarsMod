@@ -15,11 +15,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 
-public class ItemQuestContainer extends Item
+public class ItemQuestLog extends Item
 {
 	public String name = "questContainer";
 
-	public ItemQuestContainer()
+	public ItemQuestLog()
 	{
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
 		this.setTextureName(Resources.MODID + ":" + this.name);
@@ -62,6 +62,18 @@ public class ItemQuestContainer extends Item
 		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("hyperdrive-" + planet) && stack.stackTagCompound.getBoolean("hyperdrive-" + planet);
 	}
 
+	public static void setHasBroughtAtst(ItemStack stack, boolean b)
+	{
+		if (!stack.hasTagCompound())
+			return;
+		stack.stackTagCompound.setBoolean("hasBroughtAtst", b);
+	}
+
+	public static boolean getHasBroughtAtst(ItemStack stack)
+	{
+		return stack.hasTagCompound() && stack.stackTagCompound.hasKey("hasBroughtAtst") && stack.stackTagCompound.getBoolean("hasBroughtAtst");
+	}
+
 	public static void setInHyperspace(ItemStack stack, boolean hyperspace)
 	{
 		if (!stack.hasTagCompound())
@@ -87,7 +99,7 @@ public class ItemQuestContainer extends Item
 		{
 			if (i == null)
 				continue;
-			if (i.getItem() instanceof ItemQuestContainer)
+			if (i.getItem() instanceof ItemQuestLog)
 				return i;
 		}
 		return null;
@@ -132,5 +144,35 @@ public class ItemQuestContainer extends Item
 		if (!stack.hasTagCompound())
 			return;
 		stack.stackTagCompound.setInteger("targetKills", getTargetKills(stack) + 1);
+	}
+
+	public static int getDimTravel(ItemStack stack, int planetId)
+	{
+		if (!stack.hasTagCompound())
+			return 0;
+		return stack.stackTagCompound.getInteger("dimTravel" + String.valueOf(planetId));
+	}
+
+	public static void addDimTravel(ItemStack stack, int planetId)
+	{
+		if (!stack.hasTagCompound())
+			return;
+		stack.stackTagCompound.setInteger("dimTravel" + String.valueOf(planetId), getDimTravel(stack, planetId) + 1);
+	}
+
+	public static int getStat(EntityPlayer player, String statId)
+	{
+		ItemStack stack = getQuestContainer(player);
+		if (stack == null || !stack.hasTagCompound())
+			return 0;
+		return stack.stackTagCompound.getInteger(statId);
+	}
+
+	public static void addStat(EntityPlayer player, String statId)
+	{
+		ItemStack stack = getQuestContainer(player);
+		if (stack == null || !stack.hasTagCompound())
+			return;
+		stack.stackTagCompound.setInteger(statId, getStat(player, statId) + 1);
 	}
 }

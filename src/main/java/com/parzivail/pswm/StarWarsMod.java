@@ -147,6 +147,8 @@ public class StarWarsMod
 	public static PBlockContainer blockSensorLandspeeder;
 	public static PBlockContainer blockSensorJakkuSpeeder;
 
+	public static PBlockContainer blockSensorQuestAtst;
+
 	public static PBlock blockThorolideOre;
 	public static PBlock blockCortosisOre;
 	public static PBlock blockDiatiumOre;

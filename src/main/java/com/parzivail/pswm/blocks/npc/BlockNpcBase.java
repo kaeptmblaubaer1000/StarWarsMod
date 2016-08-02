@@ -58,7 +58,7 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 		return te;
 	}
 
-	public Quest getQuestForPlayer(EntityPlayer player)
+	public Quest getQuestForPlayer(TileEntityStaticNpc questGiver, EntityPlayer player)
 	{
 		return null;
 	}

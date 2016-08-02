@@ -2,7 +2,7 @@ package com.parzivail.pswm.quest;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-import static com.parzivail.pswm.items.ItemQuestContainer.isQuestDone;
+import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 
 /**
  * Created by Colby on 5/8/2016.

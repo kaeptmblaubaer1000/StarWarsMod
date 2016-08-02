@@ -70,11 +70,22 @@ public class OutlineButtonCreditCounter extends OutlineButton
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 
 			int c = QuestNpcUtils.getPlayerBronzeCredits(player);
-			GFX.drawTextShadow(fontrenderer, String.valueOf(c == Integer.MAX_VALUE ? "INF" : c) + (currentCost != -1 ? " - " + String.valueOf(currentCost) : ""), this.xPosition + 15, this.yPosition + 6, 1, textColor);
-			GFX.renderItem(this.xPosition, this.yPosition + 2, new ItemStack(StarWarsItems.imperialCredit, 0));
 
-			if (k == 2 && currentCost != -1)
-				GFX.drawTooltip(mX + 2, mY + 2, "Buy");
+			if (c != Integer.MAX_VALUE)
+			{
+				GFX.drawTextShadow(fontrenderer, String.valueOf(c) + (currentCost != -1 ? " - " + String.valueOf(currentCost) : ""), this.xPosition + 15, this.yPosition + 6, 1, textColor);
+				GFX.renderItem(this.xPosition, this.yPosition + 2, new ItemStack(StarWarsItems.imperialCredit, 0));
+
+				if (k == 2 && currentCost != -1)
+					GFX.drawTooltip(mX + 2, mY + 2, "Buy");
+			}
+			else
+			{
+				GFX.drawTextShadowCenter(fontrenderer, "Get Item", this.xPosition + (this.width / 2), this.yPosition + 6, 1, textColor);
+
+				if (k == 2 && currentCost != -1)
+					GFX.drawTooltip(mX + 2, mY + 2, String.valueOf(currentCost) + " Credits");
+			}
 		}
 		GL11.glPopMatrix();
 	}

@@ -46,6 +46,9 @@ public class StarWarsItems
 	public static Item blasterRifleBolt;
 
 	public static Item banthaHorn;
+	public static Item wampaHorn;
+
+	public static Item tieSchematics;
 
 	public static Item airsealGel;
 	public static Item apexSeal;

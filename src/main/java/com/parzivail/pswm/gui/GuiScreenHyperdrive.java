@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.dimension.TradeRoute;
-import com.parzivail.pswm.items.ItemQuestContainer;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.models.ModelPlanetCube;
 import com.parzivail.pswm.models.vehicles.*;
 import com.parzivail.pswm.network.MessageHyperdrive;
@@ -209,7 +209,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 		buttonClose = new OutlineButton(id++, 5, 5, 10, 10, "X", false);
 		buttonList.add(buttonClose);
 
-		qlog = ItemQuestContainer.getQuestContainer(player);
+		qlog = ItemQuestLog.getQuestContainer(player);
 
 		buttonEatHyperdrive = new OutlineButton(id++, 15, 215, 100, 20, "Program NavCom", false);
 		buttonEatHyperdrive.enabled = !didComeFromBlock;
@@ -280,11 +280,11 @@ public class GuiScreenHyperdrive extends GuiScreen
 					{
 						StarWarsMod.network.sendToServer(new MessageTransferHyperdrive(player, zoomPlanet.getInternalName()));
 						if (player.inventory.consumeInventoryItem(zoomPlanet.getHyperdrive()) && qlog != null)
-							ItemQuestContainer.setHasHyperdrive(qlog, zoomPlanet.getInternalName());
+							ItemQuestLog.setHasHyperdrive(qlog, zoomPlanet.getInternalName());
 					}
 				}
 			}
-			else if (button.id == buttonTravel.id && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()) && player.dimension != zoomPlanet.getDimensionId())
+			else if (button.id == buttonTravel.id && ItemQuestLog.getHasHyperdrive(qlog, zoomPlanet.getInternalName()) && player.dimension != zoomPlanet.getDimensionId())
 			{
 				AnimationHyperspace animationHyperspace = new AnimationHyperspace(3500, false);
 				animationHyperspace.setOnAnimationEnd(animation -> {
@@ -300,7 +300,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			}
 
 			if (qlog != null)
-				if (zoomPlanet != null && ItemQuestContainer.getHasHyperdrive(qlog, zoomPlanet.getInternalName()))
+				if (zoomPlanet != null && ItemQuestLog.getHasHyperdrive(qlog, zoomPlanet.getInternalName()))
 				{
 					buttonEatHyperdrive.displayString = LangUtils.translate("course.plotted");
 					buttonEatHyperdrive.selected = true;
