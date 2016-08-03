@@ -1,11 +1,15 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.imperial10_1;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -33,7 +37,7 @@ public class Imperial10_2 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && imperial10_1.isQuestComplete(player) && ItemUtils.hasItems(player, new ItemStack(StarWarsItems.xwingSchematics, 1));
 	}
 
 	@Override
@@ -63,6 +67,6 @@ public class Imperial10_2 extends Quest
 	@Override
 	public String getID()
 	{
-		return "A Real Mission";
+		return " A Real Mission ";
 	}
 }

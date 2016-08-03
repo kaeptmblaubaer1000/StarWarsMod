@@ -1,11 +1,15 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestStats;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.imperial2;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -29,7 +33,8 @@ public class Imperial3_1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		Lumberjack.log(ItemQuestLog.getStat(player, QuestStats.ANTENNAS_FIXED));
+		return !isQuestDone(player, this) && imperial2.isQuestComplete(player) && ItemQuestLog.getStat(player, QuestStats.ANTENNAS_FIXED) >= 4;
 	}
 
 	@Override

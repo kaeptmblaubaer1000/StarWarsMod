@@ -4,6 +4,7 @@ import com.parzivail.pswm.armor.ArmorRebelPilot;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestBank;
+import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
@@ -43,15 +44,7 @@ public class Rebel8_PostArmor extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this) && QuestBank.rebel8_Yavin.isQuestComplete(player) && hasOnArmor(player);
-	}
-
-	private boolean hasOnArmor(EntityPlayer player)
-	{
-		for (int i = 0; i < 4; i++)
-			if (player.getCurrentArmor(i) == null || !(player.getCurrentArmor(i).getItem() instanceof ArmorRebelPilot))
-				return false;
-		return true;
+		return !isQuestDone(player, this) && QuestBank.rebel8_Yavin.isQuestComplete(player) && QuestUtils.hasOnArmor(player, ArmorRebelPilot.class);
 	}
 
 	@Override

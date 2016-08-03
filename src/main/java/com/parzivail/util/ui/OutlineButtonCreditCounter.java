@@ -1,7 +1,7 @@
 package com.parzivail.util.ui;
 
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -69,7 +69,7 @@ public class OutlineButtonCreditCounter extends OutlineButton
 			}
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-			int c = QuestNpcUtils.getPlayerBronzeCredits(player);
+			int c = QuestUtils.getPlayerBronzeCredits(player);
 
 			if (c != Integer.MAX_VALUE)
 			{

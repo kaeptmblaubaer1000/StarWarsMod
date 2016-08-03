@@ -1,11 +1,14 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestStats;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.imperial9;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -42,7 +45,7 @@ public class Imperial10_1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && imperial9.isQuestComplete(player) && ItemQuestLog.getStat(player, QuestStats.BOMBS_DROPPED_EMPIRE) >= 20;
 	}
 
 	@Override

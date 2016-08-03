@@ -1,12 +1,12 @@
 package com.parzivail.pswm.rendering.force;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import org.lwjgl.opengl.GL11;
 
@@ -122,12 +122,14 @@ public class ModelJediCloak extends ModelBiped
 
 			f6 *= 1.8f;
 
-			GL11.glRotatef(6.0F + f6 / 2.0F + f5, 1.0F, 0.0F, 0.0F);
+			float n = 6.0F + f6 / 2.0F + f5;
+
+			GL11.glRotatef(n > 75 ? 75 : n, 1.0F, 0.0F, 0.0F);
 			GL11.glRotatef(f7 / 2.0F, 0.0F, 0.0F, 1.0F);
 			GL11.glRotatef(-f7 / 2.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 			GL11.glScalef(1, 1, 1);
-			StarWarsMod.mc.getTextureManager().bindTexture(Resources.capeTexture);
+			StarWarsMod.mc.getTextureManager().bindTexture(new ResourceLocation(event.entityPlayer.inventory.armorItemInSlot(2).getItem().getArmorTexture(event.entityPlayer.inventory.armorItemInSlot(2), null, 0, "")));
 			// rp.modelBipedMain.renderCloak(0.0625F);
 			this.renderCape(0.0625F);
 			GL11.glPopMatrix();

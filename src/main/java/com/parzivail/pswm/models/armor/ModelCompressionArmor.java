@@ -15,8 +15,8 @@ public class ModelCompressionArmor extends ModelBiped
 	ModelBiped _model;
 	ItemArmor armor;
 
-	ResourceLocation a;
-	ResourceLocation b;
+	public ResourceLocation a;
+	public ResourceLocation b;
 
 	public ModelCompressionArmor(float scale, ItemArmor item)
 	{

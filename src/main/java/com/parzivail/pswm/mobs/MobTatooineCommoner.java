@@ -1,8 +1,10 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFollowEntity;
 import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
@@ -93,8 +95,11 @@ public class MobTatooineCommoner extends EntityCreature implements IParziNPC
 		{
 			this.aiFollowEntity.targetEntity = this.aiFollowEntity.targetEntity == null ? entityPlayer : null;
 			setArrested(true);
-			if (!worldObj.isRemote)
+			if (worldObj.isRemote)
+			{
 				ItemQuestLog.addStat(entityPlayer, QuestStats.ARRESTED_NPCS);
+				StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(entityPlayer, ItemQuestLog.getQuestContainer(entityPlayer).stackTagCompound));
+			}
 		}
 		return super.interact(entityPlayer);
 	}

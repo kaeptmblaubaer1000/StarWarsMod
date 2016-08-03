@@ -1,11 +1,17 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.armor.ArmorScoutTrooper;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestUtils;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.imperial3_1;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -36,7 +42,7 @@ public class Imperial3_2 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && imperial3_1.isQuestComplete(player) && QuestUtils.hasOnArmor(player, ArmorScoutTrooper.class) && ItemUtils.hasItems(player, new ItemStack(StarWarsItems.blasterPistol, 1, 5));
 	}
 
 	@Override
@@ -66,6 +72,6 @@ public class Imperial3_2 extends Quest
 	@Override
 	public String getID()
 	{
-		return "Recon Mission";
+		return " Recon Mission ";
 	}
 }

@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.imperial8_1;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -29,7 +30,7 @@ public class Imperial8_2 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && imperial8_1.isQuestComplete(player);
 	}
 
 	@Override
@@ -59,6 +60,6 @@ public class Imperial8_2 extends Quest
 	@Override
 	public String getID()
 	{
-		return "The Imperial Navy";
+		return " The Imperial Navy ";
 	}
 }

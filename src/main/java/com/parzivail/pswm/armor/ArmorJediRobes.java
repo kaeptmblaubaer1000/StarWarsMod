@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.List;
 
@@ -52,7 +53,10 @@ public class ArmorJediRobes extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (stack != null)
+		{
+			model.a = model.b = new ResourceLocation(Resources.MODID + ":" + "textures/force/cloak" + stack.getItemDamage() + ".png");
 			return Resources.MODID + ":" + "textures/force/cloak" + stack.getItemDamage() + ".png";
+		}
 		return Resources.MODID + ":" + "textures/force/cloak.png";
 	}
 

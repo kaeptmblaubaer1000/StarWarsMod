@@ -1,7 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -30,7 +30,7 @@ public class MessagePlayerBuyItem extends PMessage<MessagePlayerBuyItem>
 	{
 		int amountDeducted = 0;
 
-		if (QuestNpcUtils.getPlayerBronzeCredits(player) < cost)
+		if (QuestUtils.getPlayerBronzeCredits(player) < cost)
 			return null;
 
 		for (int i = 0; i < player.inventory.mainInventory.length; i++)

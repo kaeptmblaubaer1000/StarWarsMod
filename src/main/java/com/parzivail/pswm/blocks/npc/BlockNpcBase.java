@@ -3,7 +3,7 @@ package com.parzivail.pswm.blocks.npc;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.quest.Quest;
-import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
@@ -52,7 +52,7 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 	{
 		TileEntityStaticNpc te = new TileEntityStaticNpc();
 		if (this.armor != null)
-			QuestNpcUtils.arm(te.getInternalEntity(), this.armor);
+			QuestUtils.arm(te.getInternalEntity(), this.armor);
 		te.setId(this.id);
 		te.setAff(this.aff);
 		return te;

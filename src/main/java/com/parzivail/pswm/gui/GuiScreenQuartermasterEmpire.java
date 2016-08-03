@@ -5,7 +5,7 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.network.MessagePlayerBuyItem;
-import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.pswm.tileentities.TileEntityGunRack;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
@@ -135,19 +135,19 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 		OutlineButtonEntity bArmorStorm = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedEndor = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedEndor, Resources.armors[3]);
+		QuestUtils.arm(bipedEndor, Resources.armors[3]);
 		bArmorStorm.setup(bipedEndor, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorStorm", bArmorStorm);
 
 		OutlineButtonEntity bArmorScout = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedScout = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedScout, Resources.armors[6]);
+		QuestUtils.arm(bipedScout, Resources.armors[6]);
 		bArmorScout.setup(bipedScout, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorScout", bArmorScout);
 
 		OutlineButtonEntity bArmorAtatPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedAtat = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedAtat, Resources.armors[8]);
+		QuestUtils.arm(bipedAtat, Resources.armors[8]);
 		bArmorAtatPilot.setup(bipedAtat, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorAtatPilot", bArmorAtatPilot);
 
@@ -156,13 +156,13 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 		OutlineButtonEntity bArmorSandtrooper = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedHoth = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedHoth, Resources.armors[4]);
+		QuestUtils.arm(bipedHoth, Resources.armors[4]);
 		bArmorSandtrooper.setup(bipedHoth, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorSandtrooper", bArmorSandtrooper);
 
 		OutlineButtonEntity bArmorSnowtrooper = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedTie = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedTie, Resources.armors[5]);
+		QuestUtils.arm(bipedTie, Resources.armors[5]);
 		bArmorSnowtrooper.setup(bipedTie, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorSnowtrooper", bArmorSnowtrooper);
 
@@ -171,13 +171,13 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 		OutlineButtonEntity bArmorTiePilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedTIEInterceptor = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedTIEInterceptor, Resources.armors[7]);
+		QuestUtils.arm(bipedTIEInterceptor, Resources.armors[7]);
 		bArmorTiePilot.setup(bipedTIEInterceptor, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorTiePilot", bArmorTiePilot);
 
 		OutlineButtonEntity bArmorAtstPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedAtst = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedAtst, Resources.armors[8]);
+		QuestUtils.arm(bipedAtst, Resources.armors[8]);
 		bArmorAtstPilot.setup(bipedAtst, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorAtstPilot", bArmorAtstPilot);
 

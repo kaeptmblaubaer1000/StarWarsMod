@@ -1,11 +1,14 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.armor.ArmorSandtrooper;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.imperial4_2;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -42,7 +45,7 @@ public class Imperial4_3 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && imperial4_2.isQuestComplete(player) && QuestUtils.hasOnArmor(player, ArmorSandtrooper.class);
 	}
 
 	@Override
@@ -72,6 +75,6 @@ public class Imperial4_3 extends Quest
 	@Override
 	public String getID()
 	{
-		return "Sandy Troopers";
+		return "  Sandy Troopers  ";
 	}
 }

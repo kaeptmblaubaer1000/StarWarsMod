@@ -3,9 +3,9 @@ package com.parzivail.pswm.items;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.MobDroidProbe;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.util.ui.GuiToast;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -38,14 +38,11 @@ public class ItemDataPad extends Item
 
 			if (e instanceof MobDroidProbe && !stack.stackTagCompound.hasKey(String.valueOf(e.getEntityId())))
 			{
-				if (!world.isRemote)
-				{
-					ItemQuestLog.addStat(player, QuestStats.PROBE_DATA);
-					Lumberjack.log(ItemQuestLog.getStat(player, QuestStats.PROBE_DATA));
-				}
-				else
+				if (world.isRemote)
 				{
 					GuiToast.makeText("Data Transmitted!", GuiToast.TIME_SHORT).show();
+					ItemQuestLog.addStat(player, QuestStats.PROBE_DATA);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
 				}
 				stack.stackTagCompound.setBoolean(String.valueOf(e.getEntityId()), true);
 			}

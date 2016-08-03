@@ -2,6 +2,7 @@ package com.parzivail.pswm.quest;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
@@ -14,11 +15,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -29,6 +29,9 @@ import static com.parzivail.util.ui.GFX.swIcons;
 public class GuiQuestNpc extends GuiScreen
 {
 	private static final ResourceLocation background = new ResourceLocation(Resources.MODID, "textures/gui/space.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/parzi.png");
+
+	private final RenderHuman biped;
 
 	private EntityPlayer player;
 	private TileEntityStaticNpc questGiver;
@@ -47,6 +50,9 @@ public class GuiQuestNpc extends GuiScreen
 
 	public GuiQuestNpc(Quest quest, EntityPlayer player, TileEntityStaticNpc questGiver)
 	{
+		this.biped = new RenderHuman(new ModelBiped(), 0.5f, texture);
+		biped.setRenderManager(RenderManager.instance);
+
 		this.mc = Minecraft.getMinecraft();
 		this.player = player;
 
@@ -119,11 +125,12 @@ public class GuiQuestNpc extends GuiScreen
 			GL11.glRotatef(questGiver.getInternalEntity().getRotationYawHead(), 0, 1, 0);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 0, 1, 0);
-			float old = RendererLivingEntity.NAME_TAG_RANGE;
-			RendererLivingEntity.NAME_TAG_RANGE = 0.0F;
-			Render render = RenderManager.instance.getEntityRenderObject(questGiver.getInternalEntity());
-			render.doRender(questGiver.getInternalEntity(), 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
-			RendererLivingEntity.NAME_TAG_RANGE = old;
+
+			QuestUtils.setRightTexture(questGiver, biped);
+
+			if (questGiver.getInternalEntity().worldObj != null)
+				biped.doRender(questGiver.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
+
 			GL11.glDisable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();
 		}
@@ -132,7 +139,7 @@ public class GuiQuestNpc extends GuiScreen
 		GL11.glTranslatef(r.getScaledWidth() - 80, r.getScaledHeight() / 2f - 18, 10);
 		P3D.glScalef(3);
 		StarWarsMod.mc.renderEngine.bindTexture(swIcons);
-		String s = QuestNpcUtils.getNpcSide(questGiver.getId());
+		String s = questGiver.getAff();
 		switch (s)
 		{
 			case Resources.allegianceJediFmt:
@@ -206,15 +213,17 @@ public class GuiQuestNpc extends GuiScreen
 			this.response3.visible = false;
 			this.buttonList.add(this.response3);
 		}
-		if (currentTree.response1.equals("") && currentTree.response2.equals("") && currentTree.response3.equals(""))
+
+		if ((currentTree.response1.equals("") && currentTree.response2.equals("") && currentTree.response3.equals("")))
 		{
 			this.close = new GuiSWOutlineButton(3, x - 24, y + 50, 48, 20, "Close");
-			this.close.visible = false;
+			this.close.visible = (currentTree.npcHeader == null || currentTree.npcHeader.equals(""));
 			this.buttonList.add(this.close);
 		}
 
 		ticker = new Animation(75, false, false);
-		ticker.setOnAnimationEnd(animation -> {
+		ticker.setOnAnimationEnd(animation ->
+		{
 			if (this.response1 != null)
 				this.response1.visible = true;
 			if (this.close != null)
@@ -223,14 +232,16 @@ public class GuiQuestNpc extends GuiScreen
 		ticker.start();
 
 		Animation ticker2 = new Animation(90, false, false);
-		ticker2.setOnAnimationEnd(animation -> {
+		ticker2.setOnAnimationEnd(animation ->
+		{
 			if (this.response2 != null)
 				this.response2.visible = true;
 		});
 		ticker2.start();
 
 		Animation ticker3 = new Animation(105, false, false);
-		ticker3.setOnAnimationEnd(animation -> {
+		ticker3.setOnAnimationEnd(animation ->
+		{
 			if (this.response3 != null)
 				this.response3.visible = true;
 		});

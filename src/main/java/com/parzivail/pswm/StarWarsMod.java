@@ -216,6 +216,10 @@ public class StarWarsMod
 	public static PBlockContainer blockStaticNpcRebelTantor;
 	public static PBlockContainer blockStaticNpcRebelDreis;
 	public static PBlockContainer blockStaticNpcRecruiterRebel;
+	public static PBlockContainer blockStaticNpcImperialCody;
+	public static PBlockContainer blockStaticNpcImperialDaala;
+	public static PBlockContainer blockStaticNpcImperialFurgan;
+	public static PBlockContainer blockStaticNpcImperialVeers;
 	public static PBlockContainer blockStaticNpcRecruiterEmpire;
 	public static PBlockContainer blockStaticNpcRebelYavinQuartermaster;
 

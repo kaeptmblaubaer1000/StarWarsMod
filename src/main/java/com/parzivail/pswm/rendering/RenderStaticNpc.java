@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
@@ -49,18 +50,7 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 			GLPalette.glColorI(GLPalette.WHITE);
 
-			if (staticNpc.getAff().equals(Resources.allegianceBartenderFmt))
-				biped.overrideTexture = RenderHuman.textureBartender;
-			else if (staticNpc.getAff().equals(Resources.allegianceCorellianFmt))
-				biped.overrideTexture = RenderHuman.textureCorellian;
-			else if (staticNpc.getAff().equals(Resources.allegianceMerchantFmt))
-				biped.overrideTexture = RenderHuman.textureMerchant;
-			else if (staticNpc.getAff().equals(Resources.allegianceWeaponDealerFmt))
-				biped.overrideTexture = RenderHuman.textureWeaponsDealer;
-			else if (staticNpc.getAff().equals(Resources.allegianceImperialFmt))
-				biped.overrideTexture = RenderHuman.textureSteve;
-			else
-				biped.overrideTexture = RenderHuman.texture;
+			QuestUtils.setRightTexture(staticNpc, biped);
 
 			if (staticNpc.getInternalEntity().worldObj != null)
 				biped.doRender(staticNpc.getInternalEntity(), 0, 0, 0, 0, 0.0625f);
@@ -114,4 +104,5 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 			GL11.glPopMatrix();
 		}
 	}
+
 }

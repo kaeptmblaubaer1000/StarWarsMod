@@ -1,15 +1,19 @@
 package com.parzivail.pswm.quest;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.rendering.RenderHuman;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 /**
  * Created by Colby on 5/5/2016.
  */
-public class QuestNpcUtils
+public class QuestUtils
 {
 	public static String makeNpcId(String quest, String side, String skin)
 	{
@@ -105,7 +109,7 @@ public class QuestNpcUtils
 				break;
 		}
 		/*
-		GFX.drawTextShadow(mc.fontRenderer, String.valueOf(QuestNpcUtils.countCredits()), 17, 17, 1, GLPalette.SW_YELLOW);
+		GFX.drawTextShadow(mc.fontRenderer, String.valueOf(QuestUtils.countCredits()), 17, 17, 1, GLPalette.SW_YELLOW);
 		GFX.renderItem(2, 13, new ItemStack(StarWarsItems.imperialCredit, 0));*/
 	}
 
@@ -138,5 +142,29 @@ public class QuestNpcUtils
 	public static int countCredits()
 	{
 		return countCredits(StarWarsMod.mc.thePlayer);
+	}
+
+	public static void setRightTexture(TileEntityStaticNpc staticNpc, RenderHuman biped)
+	{
+		if (staticNpc.getAff().equals(Resources.allegianceBartenderFmt))
+			biped.overrideTexture = RenderHuman.textureBartender;
+		else if (staticNpc.getAff().equals(Resources.allegianceCorellianFmt))
+			biped.overrideTexture = RenderHuman.textureCorellian;
+		else if (staticNpc.getAff().equals(Resources.allegianceMerchantFmt))
+			biped.overrideTexture = RenderHuman.textureMerchant;
+		else if (staticNpc.getAff().equals(Resources.allegianceWeaponDealerFmt))
+			biped.overrideTexture = RenderHuman.textureWeaponsDealer;
+		else if (staticNpc.getAff().equals(Resources.allegianceImperialFmt))
+			biped.overrideTexture = RenderHuman.textureSteve;
+		else
+			biped.overrideTexture = RenderHuman.texture;
+	}
+
+	public static boolean hasOnArmor(EntityPlayer player, Class<? extends ItemArmor> armor)
+	{
+		for (int i = 0; i < 4; i++)
+			if (player.getCurrentArmor(i) == null || !(armor.isInstance(player.getCurrentArmor(i).getItem())))
+				return false;
+		return true;
 	}
 }

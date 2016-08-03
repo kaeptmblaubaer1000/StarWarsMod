@@ -8,7 +8,7 @@ import com.parzivail.pswm.mobs.MobDroidAstromech2;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.network.MessagePlayerBuyItem;
-import com.parzivail.pswm.quest.QuestNpcUtils;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.*;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicSnowspeeder;
@@ -156,13 +156,13 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 		OutlineButtonEntity bArmorEndor = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedEndor = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedEndor, Resources.armors[2]);
+		QuestUtils.arm(bipedEndor, Resources.armors[2]);
 		bArmorEndor.setup(bipedEndor, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorEndor", bArmorEndor);
 
 		OutlineButtonEntity bArmorHoth = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedHoth = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedHoth, Resources.armors[1]);
+		QuestUtils.arm(bipedHoth, Resources.armors[1]);
 		bArmorHoth.setup(bipedHoth, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorHoth", bArmorHoth);
 
@@ -171,13 +171,13 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 		OutlineButtonEntity bArmorXPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedXwing = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedXwing, Resources.armors[0]);
+		QuestUtils.arm(bipedXwing, Resources.armors[0]);
 		bArmorXPilot.setup(bipedXwing, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorXPilot", bArmorXPilot);
 
 		OutlineButtonEntity bArmorYPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedYwing = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedYwing, Resources.armors[10]);
+		QuestUtils.arm(bipedYwing, Resources.armors[10]);
 		bArmorYPilot.setup(bipedYwing, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorYPilot", bArmorYPilot);
 
@@ -186,7 +186,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 		OutlineButtonEntity bArmorAPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedAwing = new MobDefaultBiped(player.worldObj);
-		QuestNpcUtils.arm(bipedAwing, Resources.armors[9]);
+		QuestUtils.arm(bipedAwing, Resources.armors[9]);
 		bArmorAPilot.setup(bipedAwing, preRenderArmorButton, postRenderEmpty);
 		listBArmor.put("bArmorAPilot", bArmorAPilot);
 
