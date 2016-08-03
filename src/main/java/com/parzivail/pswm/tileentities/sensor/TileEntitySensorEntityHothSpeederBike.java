@@ -16,9 +16,9 @@ public class TileEntitySensorEntityHothSpeederBike extends TileEntitySensor
 	public TileEntitySensorEntityHothSpeederBike()
 	{
 		this.needle = VehicHothSpeederBike.class;
-		this.rX = 4;
+		this.rX = 2;
 		this.rY = 4;
-		this.rZ = 4;
+		this.rZ = 2;
 	}
 
 	@Override

@@ -16,9 +16,9 @@ public class TileEntitySensorEntityScootemaroundHoth extends TileEntitySensor
 	public TileEntitySensorEntityScootemaroundHoth()
 	{
 		this.needle = VehicScootemaroundHoth.class;
-		this.rX = 4;
+		this.rX = 2;
 		this.rY = 4;
-		this.rZ = 4;
+		this.rZ = 2;
 	}
 
 	@Override
