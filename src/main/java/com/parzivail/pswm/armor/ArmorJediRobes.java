@@ -54,7 +54,8 @@ public class ArmorJediRobes extends ItemArmor
 	{
 		if (stack != null)
 		{
-			model.a = model.b = new ResourceLocation(Resources.MODID + ":" + "textures/force/cloak" + stack.getItemDamage() + ".png");
+			if (model != null)
+				model.a = model.b = new ResourceLocation(Resources.MODID + ":" + "textures/force/cloak" + stack.getItemDamage() + ".png");
 			return Resources.MODID + ":" + "textures/force/cloak" + stack.getItemDamage() + ".png";
 		}
 		return Resources.MODID + ":" + "textures/force/cloak.png";
