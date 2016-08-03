@@ -8,7 +8,6 @@ import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
-import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +22,6 @@ public class MobTatooineCommoner extends EntityCreature implements IParziNPC
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
 	private String[] types = { "weaponsDealer", "generalMerchant", "corellian", "bartender", "shipDealer" };
-	private String[] officialNames = { LangUtils.translate("weapons.dealer"), LangUtils.translate("general.merchant"), LangUtils.translate("corellian"), LangUtils.translate("bartender"), LangUtils.translate("ship.dealer") };
 	private float baseRarity = 1.0F;
 	private DataWatcher dw;
 
@@ -52,7 +50,7 @@ public class MobTatooineCommoner extends EntityCreature implements IParziNPC
 	@Override
 	public String getCommandSenderName()
 	{
-		return officialNames[getType()];
+		return "Tatooine Commoner";
 	}
 
 	/**

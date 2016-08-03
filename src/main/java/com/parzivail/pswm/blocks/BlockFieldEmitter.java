@@ -24,7 +24,7 @@ public class BlockFieldEmitter extends PBlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntityFieldEmitter(world);
+		return new TileEntityFieldEmitter();
 	}
 
 	@Override

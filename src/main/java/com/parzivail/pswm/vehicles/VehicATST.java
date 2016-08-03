@@ -1,7 +1,6 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -33,7 +32,7 @@ public class VehicATST extends VehicleLandBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return LangUtils.translate("all.terrain.scout.transport");
+		return "All-Terrain Scout Transport";
 	}
 
 	@Override

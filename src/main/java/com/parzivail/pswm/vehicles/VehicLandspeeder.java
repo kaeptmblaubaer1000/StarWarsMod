@@ -1,7 +1,6 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
@@ -36,7 +35,7 @@ public class VehicLandspeeder extends VehicleLandBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return LangUtils.translate("x.34.landspeeder");
+		return "X-34 Landspeeder";
 	}
 
 	@Override

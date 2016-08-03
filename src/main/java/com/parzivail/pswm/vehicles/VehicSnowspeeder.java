@@ -2,7 +2,6 @@ package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
@@ -29,7 +28,7 @@ public class VehicSnowspeeder extends VehicleAirBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return LangUtils.translate("t.47.snowspeeder");
+		return "T-47 Snowspeeder";
 	}
 
 	@Override

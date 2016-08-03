@@ -1,7 +1,6 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -112,7 +111,7 @@ public class VehicScootemaround extends VehicleLandBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return LangUtils.translate("rebel.scoot.em.around");
+		return "Rebel Scoot-'Em-Around";
 	}
 
 	@Override

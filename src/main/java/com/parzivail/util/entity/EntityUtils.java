@@ -29,7 +29,7 @@ public class EntityUtils
 	 */
 	public static String getDroidSittingMessage(boolean isSitting)
 	{
-		return isSitting ? LangUtils.translate("restrained") : LangUtils.translate("unrestrained");
+		return isSitting ? "Restrained" : "Unrestrained";
 	}
 
 	/**

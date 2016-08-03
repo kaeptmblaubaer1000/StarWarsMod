@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
-import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +43,7 @@ public class VehicSkyhopper extends VehicleAirBase
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return LangUtils.translate("t.16.skyhopper");
+		return "T-16 Skyhopper";
 	}
 
 	@Override

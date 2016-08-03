@@ -4,15 +4,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
 
 public class TileEntityFieldEmitter extends TileEntity
 {
 	AxisAlignedBB bb;
 
-	public TileEntityFieldEmitter(World world)
+	public TileEntityFieldEmitter()
 	{
-		this.setWorldObj(world);
 	}
 
 	@Override

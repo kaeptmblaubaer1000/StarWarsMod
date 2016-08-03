@@ -2,6 +2,11 @@ package com.parzivail.pswm.tileentities;
 
 import com.parzivail.util.vehicle.VehicleBase;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.World;
 
 public class TileEntitySensorEntity extends TileEntitySensor
@@ -17,6 +22,10 @@ public class TileEntitySensorEntity extends TileEntitySensor
 		this.rX = rX;
 		this.rY = rY;
 		this.rZ = rZ;
+	}
+
+	public TileEntitySensorEntity()
+	{
 	}
 
 	@Override
@@ -49,6 +58,49 @@ public class TileEntitySensorEntity extends TileEntitySensor
 			{
 				e.printStackTrace();
 			}
+		}
+	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 64537, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet)
+	{
+		super.onDataPacket(net, packet);
+		this.readFromNBT(packet.func_148857_g());
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound p_145841_1_)
+	{
+		super.writeToNBT(p_145841_1_);
+		p_145841_1_.setInteger("rx", rX);
+		p_145841_1_.setInteger("ry", rY);
+		p_145841_1_.setInteger("rz", rZ);
+		p_145841_1_.setString("class", needle.getCanonicalName());
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound p_145839_1_)
+	{
+		super.readFromNBT(p_145839_1_);
+		this.rX = p_145839_1_.getInteger("rx");
+		this.rY = p_145839_1_.getInteger("ry");
+		this.rZ = p_145839_1_.getInteger("rz");
+		try
+		{
+			this.needle = (Class<? extends Entity>)Class.forName(p_145839_1_.getString("class"));
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+			this.needle = EntityPig.class;
 		}
 	}
 }

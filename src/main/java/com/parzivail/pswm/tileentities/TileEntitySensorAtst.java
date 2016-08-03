@@ -15,6 +15,10 @@ public class TileEntitySensorAtst extends TileEntitySensor
 		this.rZ = rZ;
 	}
 
+	public TileEntitySensorAtst()
+	{
+	}
+
 	@Override
 	public boolean checkCondition()
 	{

@@ -68,7 +68,7 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	{
 		if (this.hasCustomNameTag())
 			return this.getCustomNameTag();
-		return LangUtils.translate("t.65b.x.wing.starfighter");
+		return "T-65B X-Wing Starfighter";
 	}
 
 	@Override

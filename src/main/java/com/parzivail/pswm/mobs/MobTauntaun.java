@@ -2,7 +2,6 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.util.ui.LangUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -79,8 +78,8 @@ public class MobTauntaun extends EntityHorse
 		if (hasCustomNameTag())
 			return getCustomNameTag();
 		if (isChested())
-			return LangUtils.translate("pack.tauntaun");
-		return LangUtils.translate("tauntaun");
+			return "Pack-Tauntaun";
+		return "Tauntaun";
 	}
 
 	@Override
