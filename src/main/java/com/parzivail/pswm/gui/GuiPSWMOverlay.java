@@ -6,6 +6,8 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.quest.QuestBank;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
@@ -30,6 +32,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+
+import static com.parzivail.util.ui.GFX.swIcons;
 
 public class GuiPSWMOverlay extends Gui
 {
@@ -57,6 +61,27 @@ public class GuiPSWMOverlay extends Gui
 
 		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
+		GL11.glDisable(GL11.GL_LIGHTING);
+
+		if (ItemQuestLog.isQuestDone(StarWarsMod.mc.thePlayer, QuestBank.rebel1))
+		{
+			GL11.glPushMatrix();
+			GL11.glColor4f(1, 1, 1, 1);
+			GL11.glTranslatef(6, 30, 10);
+			StarWarsMod.mc.renderEngine.bindTexture(swIcons);
+			GFX.drawTexture(0, 0, 33, 26, 16, 16);
+			GL11.glPopMatrix();
+		}
+		else if (ItemQuestLog.isQuestDone(StarWarsMod.mc.thePlayer, QuestBank.imperial1))
+		{
+			GL11.glPushMatrix();
+			GL11.glColor4f(1, 1, 1, 1);
+			GL11.glTranslatef(6, 30, 10);
+			StarWarsMod.mc.renderEngine.bindTexture(swIcons);
+			GFX.drawTexture(0, 0, 49, 26, 16, 16);
+			GL11.glPopMatrix();
+		}
+
 		if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
 		{
 			ItemStack robes = Cron.getHolocron(StarWarsMod.mc.thePlayer);
@@ -68,7 +93,7 @@ public class GuiPSWMOverlay extends Gui
 
 			RenderHelper.disableStandardItemLighting();
 			GFX.renderLightsaberBarOnscreen(2, r.getScaledHeight() - 10, (float)xp / (float)maxxp, isJedi);
-			GFX.renderOrderLogo(70, 6, isJedi);
+			GFX.renderOrderLogo(26, 30, isJedi);
 
 			GL11.glPushMatrix();
 			P3D.glScalef(0.5f);

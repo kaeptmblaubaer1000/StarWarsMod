@@ -1,10 +1,13 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.armor.ArmorStormtrooper;
+import com.parzivail.pswm.network.MessageSetQuests;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
@@ -57,6 +60,7 @@ public class Imperial1 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		StarWarsMod.network.sendToServer(new MessageSetQuests(player, new NBTTagCompound()));
 		setQuestDone(player, this);
 	}
 

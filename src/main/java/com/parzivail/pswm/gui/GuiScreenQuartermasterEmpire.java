@@ -3,8 +3,10 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.network.MessagePlayerBuyItem;
+import com.parzivail.pswm.quest.QuestBank;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.pswm.tileentities.TileEntityGunRack;
@@ -137,18 +139,21 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 		MobDefaultBiped bipedEndor = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedEndor, Resources.armors[3]);
 		bArmorStorm.setup(bipedEndor, preRenderArmorButton, postRenderEmpty);
+		bArmorStorm.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial0) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorStorm", bArmorStorm);
 
 		OutlineButtonEntity bArmorScout = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedScout = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedScout, Resources.armors[6]);
 		bArmorScout.setup(bipedScout, preRenderArmorButton, postRenderEmpty);
+		bArmorScout.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial3_1) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorScout", bArmorScout);
 
 		OutlineButtonEntity bArmorAtatPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedAtat = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedAtat, Resources.armors[8]);
 		bArmorAtatPilot.setup(bipedAtat, preRenderArmorButton, postRenderEmpty);
+		bArmorAtatPilot.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial10_2) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorAtatPilot", bArmorAtatPilot);
 
 		x = 0;
@@ -158,12 +163,14 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 		MobDefaultBiped bipedHoth = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedHoth, Resources.armors[4]);
 		bArmorSandtrooper.setup(bipedHoth, preRenderArmorButton, postRenderEmpty);
+		bArmorSandtrooper.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial4_2) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorSandtrooper", bArmorSandtrooper);
 
 		OutlineButtonEntity bArmorSnowtrooper = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedTie = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedTie, Resources.armors[5]);
 		bArmorSnowtrooper.setup(bipedTie, preRenderArmorButton, postRenderEmpty);
+		bArmorSnowtrooper.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial6_2) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorSnowtrooper", bArmorSnowtrooper);
 
 		x = 0;
@@ -173,12 +180,14 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 		MobDefaultBiped bipedTIEInterceptor = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedTIEInterceptor, Resources.armors[7]);
 		bArmorTiePilot.setup(bipedTIEInterceptor, preRenderArmorButton, postRenderEmpty);
+		bArmorTiePilot.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial8_2) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorTiePilot", bArmorTiePilot);
 
 		OutlineButtonEntity bArmorAtstPilot = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		MobDefaultBiped bipedAtst = new MobDefaultBiped(player.worldObj);
 		QuestUtils.arm(bipedAtst, Resources.armors[8]);
 		bArmorAtstPilot.setup(bipedAtst, preRenderArmorButton, postRenderEmpty);
+		bArmorAtstPilot.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial2) || player.capabilities.isCreativeMode;
 		listBArmor.put("bArmorAtstPilot", bArmorAtstPilot);
 
 		x = 0;
@@ -195,6 +204,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 			GL11.glTranslatef(0.51f, 0, 0f);
 		}, postRenderEmpty);
+		bGunE11.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial1) || player.capabilities.isCreativeMode;
 		listBWeapons.put("bGunE11", bGunE11);
 
 		OutlineButtonItemStack bGunDlt19 = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
@@ -209,6 +219,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 			GL11.glTranslatef(0.2f, 0, 0.65f);
 		}, postRenderEmpty);
+		bGunDlt19.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial4_2) || player.capabilities.isCreativeMode;
 		listBWeapons.put("bGunDlt19", bGunDlt19);
 
 		x = 0;
@@ -229,6 +240,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glTranslatef(0.51f, 0, -0.3f);
 			GL11.glRotatef(90, 0, 1, 0);
 		}, postRenderEmpty);
+		bGunT21.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial6_2) || player.capabilities.isCreativeMode;
 		listBWeapons.put("bGunT21", bGunT21);
 
 		OutlineButtonItemStack bGunRt97c = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
@@ -246,6 +258,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glTranslatef(0f, 0, -0.3f);
 			GL11.glRotatef(90, 0, 1, 0);
 		}, postRenderEmpty);
+		bGunRt97c.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial4_2) || player.capabilities.isCreativeMode;
 		listBWeapons.put("bGunRt97c", bGunRt97c);
 
 		x = 0;
@@ -264,6 +277,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 			GL11.glTranslatef(0.3f, 0, 0.5f);
 		}, postRenderEmpty);
+		bGunScout.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial3_1) || player.capabilities.isCreativeMode;
 		listBWeapons.put("bGunScout", bGunScout);
 
 		x = 0;
@@ -338,6 +352,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 		}, postRenderEmpty);
+		bMiscTarget.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial0) || player.capabilities.isCreativeMode;
 		listBMisc.put("bMiscTarget", bMiscTarget);
 
 		OutlineButtonTileEntity bMiscGunRack = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
@@ -351,6 +366,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef(10, 1, 0, 0);
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
 		}, postRenderEmpty);
+		bMiscGunRack.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial0) || player.capabilities.isCreativeMode;
 		listBMisc.put("bMiscGunRack", bMiscGunRack);
 
 		fixItem = outlineButton ->
@@ -377,6 +393,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 		OutlineButtonItemStack bHHoth = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bHHoth.setup(new ItemStack(StarWarsItems.hyperdriveHoth), fixItem, postRenderEmpty, false, player);
+		bHHoth.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial6_1) || player.capabilities.isCreativeMode;
 		listBMisc.put("bHHoth", bHHoth);
 
 		x = 0;
@@ -394,14 +411,17 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360 + 90, 0, 1, 0);
 			GL11.glTranslatef(0, 0, 0.5f);
 		}, postRenderEmpty);
+		bMiscAntenna.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial4_2) || player.capabilities.isCreativeMode;
 		listBMisc.put("bMiscAntenna", bMiscAntenna);
 
 		OutlineButtonItemStack bHydrospanner = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bHydrospanner.setup(new ItemStack(StarWarsItems.hydrospanner), fixItem, postRenderEmpty, false, player);
+		bHydrospanner.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial2) || player.capabilities.isCreativeMode;
 		listBMisc.put("bHydrospanner", bHydrospanner);
 
 		OutlineButtonItemStack bHSpace = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bHSpace.setup(new ItemStack(StarWarsItems.hyperdriveSpace), fixItem, postRenderEmpty, false, player);
+		bHSpace.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial8_2) || player.capabilities.isCreativeMode;
 		listBMisc.put("bHSpace", bHSpace);
 
 		x = 0;
@@ -409,14 +429,17 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 		OutlineButtonItemStack bIdScanner = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bIdScanner.setup(new ItemStack(StarWarsItems.idScanner), fixItem, postRenderEmpty, false, player);
+		bIdScanner.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial4_2) || player.capabilities.isCreativeMode;
 		listBMisc.put("bIdScanner", bIdScanner);
 
 		OutlineButtonItemStack bDatapad = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bDatapad.setup(new ItemStack(StarWarsItems.dataPad), fixItem, postRenderEmpty, false, player);
+		bDatapad.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial6_2) || player.capabilities.isCreativeMode;
 		listBMisc.put("bDatapad", bDatapad);
 
 		OutlineButtonItemStack bHYavin = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bHYavin.setup(new ItemStack(StarWarsItems.hyperdriveYavin4), fixItem, postRenderEmpty, false, player);
+		bHYavin.enabled = ItemQuestLog.isQuestDone(player, QuestBank.imperial10_1) || player.capabilities.isCreativeMode;
 		listBMisc.put("bHYavin", bHYavin);
 
 		setTabArmor();
