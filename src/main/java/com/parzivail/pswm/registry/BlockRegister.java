@@ -4,9 +4,10 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.*;
 import com.parzivail.pswm.blocks.npc.*;
 import com.parzivail.pswm.blocks.ore.*;
+import com.parzivail.pswm.blocks.sensor.*;
 import com.parzivail.pswm.items.*;
 import com.parzivail.pswm.tileentities.*;
-import com.parzivail.pswm.vehicles.*;
+import com.parzivail.pswm.tileentities.sensor.*;
 import com.parzivail.util.block.BlockMultiHeight;
 import com.parzivail.util.block.ItemMultiHeightBlock;
 import com.parzivail.util.block.PBlockContainer;
@@ -23,28 +24,24 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
 
-		GameRegistry.registerTileEntity(TileEntitySensorEntity.class, "teSensorEntity");
 		GameRegistry.registerTileEntity(TileEntitySensorAtst.class, "teSensorQuestAtst");
 
-		GameRegistry.registerBlock(StarWarsMod.blockSensorXWing = new BlockSensorEntity(VehicXWing.class, 4, 4, 4), "blockSensorXWing");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorYWing = new BlockSensorEntity(VehicYWing.class, 4, 4, 4), "blockSensorYWing");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorAWing = new BlockSensorEntity(VehicAWing.class, 4, 4, 4), "blockSensorAWing");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorTIE = new BlockSensorEntity(VehicTIE.class, 4, 4, 4), "blockSensorTIE");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorTIEAdvanced = new BlockSensorEntity(VehicTIEAdvanced.class, 4, 4, 4), "blockSensorTIEAdvanced");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorTIEBomber = new BlockSensorEntity(VehicTIEBomber.class, 4, 4, 4), "blockSensorTIEBomber");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorTIEInterceptor = new BlockSensorEntity(VehicTIEInterceptor.class, 4, 4, 4), "blockSensorTIEInterceptor");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorSnowspeeder = new BlockSensorEntity(VehicSnowspeeder.class, 4, 4, 4), "blockSensorSnowspeeder");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorSkyhopper = new BlockSensorEntity(VehicSkyhopper.class, 4, 4, 4), "blockSensorSkyhopper");
-
-		GameRegistry.registerBlock(StarWarsMod.blockSensorATST = new BlockSensorEntity(VehicATST.class, 3, 4, 3), "blockSensorATST");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorLandspeeder = new BlockSensorEntity(VehicLandspeeder.class, 3, 4, 3), "blockSensorLandspeeder");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorJakkuSpeeder = new BlockSensorEntity(VehicJakkuSpeeder.class, 3, 4, 3), "blockSensorJakkuSpeeder");
-
-		GameRegistry.registerBlock(StarWarsMod.blockSensorSpeederBike = new BlockSensorEntity(VehicSpeederBike.class, 2, 4, 2), "blockSensorSpeederBike");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorHothSpeederBike = new BlockSensorEntity(VehicHothSpeederBike.class, 2, 4, 2), "blockSensorHothSpeederBike");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorScootemaround = new BlockSensorEntity(VehicScootemaround.class, 2, 4, 2), "blockSensorScootemaround");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorScootemaroundHoth = new BlockSensorEntity(VehicScootemaroundHoth.class, 2, 4, 2), "blockSensorScootemaroundHoth");
-		GameRegistry.registerBlock(StarWarsMod.blockSensorQuestAtst = new BlockSensorAtst(), "blockSensorQuestAtst");
+		StarWarsMod.blockSensorXWing = registerWithTileEntity(BlockSensorEntityXWing.class, TileEntitySensorEntityXWing.class);
+		StarWarsMod.blockSensorYWing = registerWithTileEntity(BlockSensorEntityYWing.class, TileEntitySensorEntityYWing.class);
+		StarWarsMod.blockSensorAWing = registerWithTileEntity(BlockSensorEntityAWing.class, TileEntitySensorEntityAWing.class);
+		StarWarsMod.blockSensorTIE = registerWithTileEntity(BlockSensorEntityTIE.class, TileEntitySensorEntityTIE.class);
+		StarWarsMod.blockSensorTIEAdvanced = registerWithTileEntity(BlockSensorEntityTIEAdvanced.class, TileEntitySensorEntityTIEAdvanced.class);
+		StarWarsMod.blockSensorTIEBomber = registerWithTileEntity(BlockSensorEntityTIEBomber.class, TileEntitySensorEntityTIEBomber.class);
+		StarWarsMod.blockSensorTIEInterceptor = registerWithTileEntity(BlockSensorEntityTIEInterceptor.class, TileEntitySensorEntityTIEInterceptor.class);
+		StarWarsMod.blockSensorSnowspeeder = registerWithTileEntity(BlockSensorEntitySnowspeeder.class, TileEntitySensorEntitySnowspeeder.class);
+		StarWarsMod.blockSensorSkyhopper = registerWithTileEntity(BlockSensorEntitySkyhopper.class, TileEntitySensorEntitySkyhopper.class);
+		StarWarsMod.blockSensorATST = registerWithTileEntity(BlockSensorEntityATST.class, TileEntitySensorEntityATST.class);
+		StarWarsMod.blockSensorLandspeeder = registerWithTileEntity(BlockSensorEntityLandspeeder.class, TileEntitySensorEntityLandspeeder.class);
+		StarWarsMod.blockSensorJakkuSpeeder = registerWithTileEntity(BlockSensorEntityJakkuSpeeder.class, TileEntitySensorEntityJakkuSpeeder.class);
+		StarWarsMod.blockSensorSpeederBike = registerWithTileEntity(BlockSensorEntitySpeederBike.class, TileEntitySensorEntitySpeederBike.class);
+		StarWarsMod.blockSensorHothSpeederBike = registerWithTileEntity(BlockSensorEntityHothSpeederBike.class, TileEntitySensorEntityHothSpeederBike.class);
+		StarWarsMod.blockSensorScootemaround = registerWithTileEntity(BlockSensorEntityScootemaround.class, TileEntitySensorEntityScootemaround.class);
+		StarWarsMod.blockSensorScootemaroundHoth = registerWithTileEntity(BlockSensorEntityScootemaroundHoth.class, TileEntitySensorEntityScootemaroundHoth.class);
 
 		StarWarsMod.blockAntenna = new BlockAntenna();
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");

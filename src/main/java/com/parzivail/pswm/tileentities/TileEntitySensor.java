@@ -5,9 +5,9 @@ import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntitySensor extends TileEntity
 {
-	AxisAlignedBB bb;
+	public AxisAlignedBB bb;
 
-	boolean checkCondition()
+	public boolean checkCondition()
 	{
 		return false;
 	}
@@ -22,7 +22,7 @@ public class TileEntitySensor extends TileEntity
 			runConditional();
 	}
 
-	void runConditional()
+	public void runConditional()
 	{
 	}
 }
