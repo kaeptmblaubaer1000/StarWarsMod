@@ -70,11 +70,14 @@ public class BlockLadder extends PBlockContainer
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
 	{
-		int meta = ((TileEntityLadder)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
-		if (meta % 2 == 0)
-			setBlockBounds(0, 0, 0.4f, 1, 1, 0.6f);
-		else
-			setBlockBounds(0.4f, 0, 0, 0.6f, 1, 1);
+		if (p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_) instanceof TileEntityLadder)
+		{
+			int meta = ((TileEntityLadder)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
+			if (meta % 2 == 0)
+				setBlockBounds(0, 0, 0.4f, 1, 1, 0.6f);
+			else
+				setBlockBounds(0.4f, 0, 0, 0.6f, 1, 1);
+		}
 	}
 
 	@Override
