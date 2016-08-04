@@ -8,6 +8,7 @@ import com.parzivail.pswm.items.ItemSpawnAstromech2;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipAstroDetails;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
@@ -101,6 +102,8 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
+		if (!QuestUtils.canRideInShip(player, this.getClass()))
+			return false;
 		ItemStack itemstack = player.inventory.getCurrentItem();
 
 		if (player.isSneaking())

@@ -19,6 +19,8 @@ public class QuestBank
 	public static Quest rebelRecruit = new RebelRecruit();
 	public static Quest empireRecruit = new ImperialRecruit();
 
+	public static Quest dontAcceptYou = new DontAcceptYourKindHere();
+
 	public static Quest rebel0 = new Rebel0();
 	public static Quest rebel1 = new Rebel1();
 	public static Quest rebel2 = new Rebel2();

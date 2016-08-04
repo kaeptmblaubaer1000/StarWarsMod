@@ -1,9 +1,11 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -39,6 +41,12 @@ public class VehicATST extends VehicleLandBase
 	public String getMovingSound()
 	{
 		return "vehicle.atst.move";
+	}
+
+	@Override
+	public boolean interact(EntityPlayer p_70085_1_)
+	{
+		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) ? super.interact(p_70085_1_) : false;
 	}
 
 	@Override

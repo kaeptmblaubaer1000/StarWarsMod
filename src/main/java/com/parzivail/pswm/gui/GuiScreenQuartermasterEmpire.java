@@ -6,7 +6,9 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.trooper.MobDefaultBiped;
 import com.parzivail.pswm.network.MessagePlayerBuyItem;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestBank;
+import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.pswm.tileentities.TileEntityGunRack;
@@ -81,6 +83,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
+
+	Consumer<EntityPlayer> onBuyClick = null;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -301,6 +305,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glTranslatef(-22f, -22, 0);
 			preRenderShips.accept(outlineButton);
 		}, postRenderEmpty);
+		bShipTie.enabled = (ItemQuestLog.isQuestDone(player, QuestBank.imperial8_3) && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE) == 0) || player.capabilities.isCreativeMode;
 		listBShips.put("bShipTie", bShipTie);
 
 		OutlineButtonEntity bShipTIEBomber = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
@@ -313,6 +318,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			if (outlineButton != null)
 				GL11.glTranslatef(-2.67f, 0, -0.5f);
 		}, postRenderEmpty);
+		bShipTIEBomber.enabled = (ItemQuestLog.isQuestDone(player, QuestBank.imperial9) && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_BOMBER) == 0) || player.capabilities.isCreativeMode;
 		listBShips.put("bShipTIEBomber", bShipTIEBomber);
 
 		x = 0;
@@ -326,6 +332,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glTranslatef(-20f, -20, 0);
 			preRenderShips.accept(outlineButton);
 		}, postRenderEmpty);
+		bShipTIEInterceptor.enabled = (ItemQuestLog.isQuestDone(player, QuestBank.imperial10_1) && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_INTERCEPTOR) == 0) || player.capabilities.isCreativeMode;
 		listBShips.put("bShipTIEInterceptor", bShipTIEInterceptor);
 
 		OutlineButtonEntity bShipTIEAdvanced = new OutlineButtonEntity(id++, x++ * 100 + 10, y * 100 + 40, 90, 90);
@@ -336,6 +343,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glTranslatef(-20f, -20, 0);
 			preRenderShips.accept(outlineButton);
 		}, postRenderEmpty);
+		bShipTIEAdvanced.enabled = (ItemQuestLog.isQuestDone(player, QuestBank.imperial10_2) && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_ADVANCED) == 0) || player.capabilities.isCreativeMode;
 		listBShips.put("bShipTIEAdvanced", bShipTIEAdvanced);
 
 		x = 0;
@@ -474,6 +482,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			}
 			else if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
 			{
+				if (onBuyClick != null && bBuy.getCurrentCost() <= QuestUtils.getPlayerBronzeCredits(player))
+					onBuyClick.accept(player);
 				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
 			}
 			else if (button.id == listBArmor.get("bArmorStorm").id)
@@ -481,6 +491,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = null;
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorStorm")).entity;
+
+				onBuyClick = null;
 
 				showingTitle = "Stormtrooper Body Armor";
 				showingDesc = "makes you unable to aim";
@@ -494,6 +506,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorSandtrooper")).entity;
 
+				onBuyClick = null;
+
 				showingTitle = "Rebel Low Temperature Gear";
 				showingDesc = "freezy";
 
@@ -505,6 +519,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = null;
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorSnowtrooper")).entity;
+
+				onBuyClick = null;
 
 				showingTitle = "Rebel X-Wing Pilot Jumpsuit";
 				showingDesc = "fly-y";
@@ -518,6 +534,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorScout")).entity;
 
+				onBuyClick = null;
+
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
 
@@ -529,6 +547,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = null;
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorTiePilot")).entity;
+
+				onBuyClick = null;
 
 				showingTitle = "Rebel A-Wing Pilot Jumpsuit";
 				showingDesc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book";
@@ -542,6 +562,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorAtstPilot")).entity;
 
+				onBuyClick = null;
+
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
 
@@ -553,6 +575,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = null;
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorAtatPilot")).entity;
+
+				onBuyClick = null;
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
 				showingDesc = "bomby";
@@ -567,6 +591,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
+				onBuyClick = null;
+
 				showingTitle = "BlasTech A-280C Blaster Rifle";
 				showingDesc = "shooty";
 
@@ -579,6 +605,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunDlt19")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
+
+				onBuyClick = null;
 
 				showingTitle = "BlasTech A-280C Blaster Rifle";
 				showingDesc = "shooty";
@@ -597,6 +625,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
+				onBuyClick = null;
+
 				showingTitle = "DDC T21 Sporting Pistol";
 				showingDesc = "pew pew";
 
@@ -613,6 +643,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = ((OutlineButtonItemStack)listBWeapons.get("bGunRt97c")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
+
+				onBuyClick = null;
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
 				showingDesc = "shooty mc'booty";
@@ -631,6 +663,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
+				onBuyClick = null;
+
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
 				showingDesc = "shooty mc'booty";
 
@@ -644,10 +678,17 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTie")).entity;
 
-				showingTitle = "Incom T-65 X-Wing Starfighter";
+				onBuyClick = player1 ->
+				{
+					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+				};
+
+				showingTitle = "TIE/LN Starfighter License";
 				showingDesc = "BAD-X (R)";
 
-				bBuy.setCurrentCost(-1);
+				bBuy.setCurrentCost(256);
+				buyItemStacks = new ItemStack[] {};
 			}
 			else if (button.id == listBShips.get("bShipTIEBomber").id)
 			{
@@ -656,10 +697,17 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTIEBomber")).entity;
 
-				showingTitle = "BTL Y-Wing Bomber";
+				onBuyClick = player1 ->
+				{
+					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_BOMBER);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+				};
+
+				showingTitle = "TIE/SA Bomber License";
 				showingDesc = "boom";
 
-				bBuy.setCurrentCost(-1);
+				bBuy.setCurrentCost(256);
+				buyItemStacks = new ItemStack[] {};
 			}
 			else if (button.id == listBShips.get("bShipTIEInterceptor").id)
 			{
@@ -668,10 +716,17 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTIEInterceptor")).entity;
 
-				showingTitle = "RZ-1 A-Wing Interceptor";
+				onBuyClick = player1 ->
+				{
+					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_INTERCEPTOR);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+				};
+
+				showingTitle = "TIE/IN Interceptor License";
 				showingDesc = "double pew";
 
-				bBuy.setCurrentCost(-1);
+				bBuy.setCurrentCost(256);
+				buyItemStacks = new ItemStack[] {};
 			}
 			else if (button.id == listBShips.get("bShipTIEAdvanced").id)
 			{
@@ -680,10 +735,17 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBShips.get("bShipTIEAdvanced")).entity;
 
-				showingTitle = "Incom T-47 Snowspeeder";
+				onBuyClick = player1 ->
+				{
+					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_ADVANCED);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+				};
+
+				showingTitle = "TIE Advanced x1 License";
 				showingDesc = "cold";
 
-				bBuy.setCurrentCost(-1);
+				bBuy.setCurrentCost(256);
+				buyItemStacks = new ItemStack[] {};
 			}
 			else if (button.id == listBMisc.get("bMiscTarget").id)
 			{
@@ -692,8 +754,11 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscTarget")).tileEntity;
 
+				onBuyClick = null;
+
 				showingTitle = "Target";
 				showingDesc = "aim better than a stormtrooper, at least";
+
 
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockTarget, 1) };
@@ -704,6 +769,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				stackShowing = null;
 				entityShowing = null;
 				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscGunRack")).tileEntity;
+
+				onBuyClick = null;
 
 				showingTitle = "Gun Rack";
 				showingDesc = "store yo guns";
@@ -718,6 +785,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscAntenna")).tileEntity;
 
+				onBuyClick = null;
+
 				showingTitle = "Antenna";
 				showingDesc = "listeny";
 
@@ -730,6 +799,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHydrospanner")).itemStack;
+
+				onBuyClick = null;
 
 				showingTitle = "hydroipashjdfgner";
 				showingDesc = "spanny";
@@ -744,6 +815,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bIdScanner")).itemStack;
 
+				onBuyClick = null;
+
 				showingTitle = "id scal;kajsndfler";
 				showingDesc = "scsnny";
 
@@ -756,6 +829,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bDatapad")).itemStack;
+
+				onBuyClick = null;
 
 				showingTitle = "dataiosudghpad";
 				showingDesc = "paddy7";
@@ -770,6 +845,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHHoth")).itemStack;
 
+				onBuyClick = null;
+
 				showingTitle = "hoth";
 				showingDesc = "2QR3qertag80[ohihofhg";
 
@@ -783,6 +860,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHSpace")).itemStack;
 
+				onBuyClick = null;
+
 				showingTitle = "space";
 				showingDesc = "dobuipsfh;bskjdfbnskjbg";
 
@@ -795,6 +874,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				tileShowing = null;
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHYavin")).itemStack;
+
+				onBuyClick = null;
 
 				showingTitle = "yavin";
 				showingDesc = "aliusdfghblsdhjgf";

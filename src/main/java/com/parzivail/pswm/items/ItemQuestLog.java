@@ -2,6 +2,7 @@ package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.network.MessageSetQuests;
 import com.parzivail.pswm.quest.IQuest;
 import com.parzivail.pswm.quest.NBTQuestTag;
@@ -159,6 +160,23 @@ public class ItemQuestLog extends Item
 		if (!stack.hasTagCompound())
 			return;
 		stack.stackTagCompound.setInteger("dimTravel" + String.valueOf(planetId), getDimTravel(stack, planetId) + 1);
+	}
+
+	public static String getSide(EntityPlayer player)
+	{
+		ItemStack stack = getQuestContainer(player);
+		if (stack == null || !stack.hasTagCompound())
+			return Resources.allegianceNoneFmt;
+		return stack.stackTagCompound.getString("side");
+	}
+
+	public static void setSide(EntityPlayer player, String side)
+	{
+		ItemStack stack = getQuestContainer(player);
+		if (stack == null || !stack.hasTagCompound())
+			return;
+		stack.stackTagCompound.setString("side", side);
+		StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, stack.stackTagCompound));
 	}
 
 	public static int getStat(EntityPlayer player, String statId)

@@ -7,7 +7,6 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemQuestLog;
-import com.parzivail.pswm.quest.QuestBank;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.IDebugProvider;
@@ -63,22 +62,24 @@ public class GuiPSWMOverlay extends Gui
 
 		GL11.glDisable(GL11.GL_LIGHTING);
 
-		if (ItemQuestLog.isQuestDone(StarWarsMod.mc.thePlayer, QuestBank.rebel1))
+		if (ItemQuestLog.getSide(StarWarsMod.mc.thePlayer).equals(Resources.allegianceRebelFmt))
 		{
 			GL11.glPushMatrix();
 			GL11.glColor4f(1, 1, 1, 1);
 			GL11.glTranslatef(6, 30, 10);
 			StarWarsMod.mc.renderEngine.bindTexture(swIcons);
 			GFX.drawTexture(0, 0, 33, 26, 16, 16);
+			GL11.glColor4f(1, 1, 1, 1);
 			GL11.glPopMatrix();
 		}
-		else if (ItemQuestLog.isQuestDone(StarWarsMod.mc.thePlayer, QuestBank.imperial1))
+		else if (ItemQuestLog.getSide(StarWarsMod.mc.thePlayer).equals(Resources.allegianceImperialFmt))
 		{
 			GL11.glPushMatrix();
-			GL11.glColor4f(1, 1, 1, 1);
+			GL11.glColor4f(0, 0, 0, 1);
 			GL11.glTranslatef(6, 30, 10);
 			StarWarsMod.mc.renderEngine.bindTexture(swIcons);
 			GFX.drawTexture(0, 0, 49, 26, 16, 16);
+			GL11.glColor4f(1, 1, 1, 1);
 			GL11.glPopMatrix();
 		}
 

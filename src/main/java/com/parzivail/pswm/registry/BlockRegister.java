@@ -24,8 +24,6 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockMV, "moistureVaporator");
 		GameRegistry.registerTileEntity(TileEntityMV.class, "teMoistureVaporator");
 
-		GameRegistry.registerTileEntity(TileEntitySensorAtst.class, "teSensorQuestAtst");
-
 		StarWarsMod.blockSensorXWing = registerWithTileEntity(BlockSensorEntityXWing.class, TileEntitySensorEntityXWing.class);
 		StarWarsMod.blockSensorYWing = registerWithTileEntity(BlockSensorEntityYWing.class, TileEntitySensorEntityYWing.class);
 		StarWarsMod.blockSensorAWing = registerWithTileEntity(BlockSensorEntityAWing.class, TileEntitySensorEntityAWing.class);
@@ -42,6 +40,8 @@ public class BlockRegister
 		StarWarsMod.blockSensorHothSpeederBike = registerWithTileEntity(BlockSensorEntityHothSpeederBike.class, TileEntitySensorEntityHothSpeederBike.class);
 		StarWarsMod.blockSensorScootemaround = registerWithTileEntity(BlockSensorEntityScootemaround.class, TileEntitySensorEntityScootemaround.class);
 		StarWarsMod.blockSensorScootemaroundHoth = registerWithTileEntity(BlockSensorEntityScootemaroundHoth.class, TileEntitySensorEntityScootemaroundHoth.class);
+
+		StarWarsMod.blockSensorQuestAtst = registerWithTileEntity(BlockSensorAtst.class, TileEntitySensorAtst.class);
 
 		StarWarsMod.blockAntenna = new BlockAntenna();
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");

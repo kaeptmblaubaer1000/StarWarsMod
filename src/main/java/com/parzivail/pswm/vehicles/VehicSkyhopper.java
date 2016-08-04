@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,6 +67,9 @@ public class VehicSkyhopper extends VehicleAirBase
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
+		if (!QuestUtils.canRideInShip(player, this.getClass()))
+			return false;
+
 		if (player.isSneaking())
 		{
 			if (!worldObj.isRemote)

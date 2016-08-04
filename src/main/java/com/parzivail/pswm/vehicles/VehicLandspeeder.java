@@ -1,8 +1,10 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class VehicLandspeeder extends VehicleLandBase
@@ -14,6 +16,12 @@ public class VehicLandspeeder extends VehicleLandBase
 		this.vehicYOffset = -0.3F;
 		this.moveModifier = 2.5F;
 		this.tiltMax = 3;
+	}
+
+	@Override
+	public boolean interact(EntityPlayer p_70085_1_)
+	{
+		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) ? super.interact(p_70085_1_) : false;
 	}
 
 	@Override

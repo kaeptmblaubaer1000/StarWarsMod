@@ -7,6 +7,7 @@ import com.parzivail.pswm.items.ItemSpawnAstromech;
 import com.parzivail.pswm.items.ItemSpawnAstromech2;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipAstroDetails;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -97,6 +98,8 @@ public class VehicYWing extends VehicleAirBase
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
+		if (!QuestUtils.canRideInShip(player, this.getClass()))
+			return false;
 		ItemStack itemstack = player.inventory.getCurrentItem();
 
 		if (player.isSneaking())

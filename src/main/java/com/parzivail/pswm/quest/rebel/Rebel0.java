@@ -1,5 +1,7 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,6 +47,7 @@ public class Rebel0 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		ItemQuestLog.setSide(player, Resources.allegianceRebelFmt);
 		setQuestDone(player, this);
 	}
 

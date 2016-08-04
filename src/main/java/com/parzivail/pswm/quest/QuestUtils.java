@@ -3,12 +3,16 @@ package com.parzivail.pswm.quest;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.util.vehicle.VehicleBase;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
 
 /**
  * Created by Colby on 5/5/2016.
@@ -166,5 +170,67 @@ public class QuestUtils
 			if (player.getCurrentArmor(i) == null || !(armor.isInstance(player.getCurrentArmor(i).getItem())))
 				return false;
 		return true;
+	}
+
+	public static boolean canRideInShip(EntityPlayer player, Class<? extends VehicleBase> shipClass)
+	{
+		if (player.capabilities.isCreativeMode)
+			return true;
+
+		String ship = shipClass.getSimpleName();
+
+		ArrayList<String> rebels = new ArrayList<>();
+		rebels.add("VehicXWing");
+		rebels.add("VehicAWing");
+		rebels.add("VehicYWing");
+		rebels.add("VehicSnowspeeder");
+		ArrayList<String> imperials = new ArrayList<>();
+		imperials.add("VehicTIE");
+		imperials.add("VehicTIEAdvanced");
+		imperials.add("VehicTIEBomber");
+		imperials.add("VehicTIEInterceptor");
+
+		switch (ship)
+		{
+			case "VehicXWing":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_XWING) > 0)
+					return true;
+				break;
+			case "VehicAWing":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_AWING) > 0)
+					return true;
+				break;
+			case "VehicYWing":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_YWING) > 0)
+					return true;
+				break;
+			case "VehicSnowspeeder":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_T47) > 0)
+					return true;
+				break;
+			case "VehicTIE":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE) > 0)
+					return true;
+				break;
+			case "VehicTIEAdvanced":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_ADVANCED) > 0)
+					return true;
+				break;
+			case "VehicTIEBomber":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_BOMBER) > 0)
+					return true;
+				break;
+			case "VehicTIEInterceptor":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_INTERCEPTOR) > 0)
+					return true;
+				break;
+		}
+
+		if (ItemQuestLog.getStat(player, QuestStats.LICENSE_XWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_AWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_YWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_T47) > 0)
+			return true;
+		else if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_ADVANCED) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_BOMBER) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_INTERCEPTOR) > 0)
+			return true;
+
+		return false;
 	}
 }
