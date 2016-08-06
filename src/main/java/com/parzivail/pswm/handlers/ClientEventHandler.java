@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
+import com.parzivail.pswm.force.ItemHolocron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.gui.AnimationHyperspace;
 import com.parzivail.pswm.gui.GuiBinocs;
@@ -35,6 +36,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -43,6 +45,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -51,11 +54,16 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.File;
 import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class ClientEventHandler
 {
 	public static boolean cursorOpen = true;
 	public static boolean isCursorAnim = false;
+
+	static HashMap<String, ArrayList<ItemStack>> playerRespawnItems = new HashMap<>();
 
 	@SideOnly(Side.CLIENT)
 	public static PlayerHelper playerHelper;
@@ -123,6 +131,24 @@ public class ClientEventHandler
 		ItemStack item = fovUpdateEvent.entity.inventory.getCurrentItem();
 		if (item != null && (item.getItem() instanceof ItemBinoculars || item.getItem() instanceof ItemBinocularsHoth) && ItemBinoculars.getEnabled(item) && StarWarsMod.mc.gameSettings.thirdPersonView == 0)
 			fovUpdateEvent.newfov = fovUpdateEvent.fov / ItemBinoculars.getZoom(item);
+	}
+
+	@SubscribeEvent
+	public void onDrop(PlayerDropsEvent event)
+	{
+		Iterator<EntityItem> i = event.drops.iterator();
+		while (i.hasNext())
+		{
+			ArrayList<ItemStack> s = new ArrayList<>();
+			EntityItem n = i.next();
+			if (n.getEntityItem().getItem() instanceof ItemQuestLog || n.getEntityItem().getItem() instanceof ItemHolocron)
+			{
+				Lumberjack.log("Saved " + n.getEntityItem());
+				s.add(n.getEntityItem());
+				i.remove();
+			}
+			playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
+		}
 	}
 
 	@SubscribeEvent

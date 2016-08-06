@@ -74,6 +74,18 @@ public class CommonEventHandler
 	public void logOut(PlayerRespawnEvent event)
 	{
 		this.resetRobes(event);
+
+		Lumberjack.log(ClientEventHandler.playerRespawnItems.get(event.player.getCommandSenderName()));
+		if (ClientEventHandler.playerRespawnItems.get(event.player.getCommandSenderName()) != null)
+		{
+			ArrayList<ItemStack> itemStacks = ClientEventHandler.playerRespawnItems.get(event.player.getCommandSenderName());
+			for (ItemStack stack : itemStacks)
+			{
+				Lumberjack.log("Returned " + stack);
+				event.player.inventory.addItemStackToInventory(stack);
+			}
+			ClientEventHandler.playerRespawnItems.remove(event.player.getCommandSenderName());
+		}
 	}
 
 	@SubscribeEvent
