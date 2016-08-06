@@ -27,6 +27,7 @@ public class VehicleBase extends EntityLiving
 	public static final int ROT_PLACE_SNAP = 90;
 
 	public static int YAW_DW = 16;
+	public static int PITCH_DW = 17;
 
 	public VehicleBase(World p_i1689_1_)
 	{
@@ -41,6 +42,8 @@ public class VehicleBase extends EntityLiving
 		super.entityInit();
 		this.dataWatcher.addObject(YAW_DW, 0f);
 		this.dataWatcher.setObjectWatched(YAW_DW);
+		this.dataWatcher.addObject(PITCH_DW, 0f);
+		this.dataWatcher.setObjectWatched(PITCH_DW);
 	}
 
 	@Override
@@ -49,6 +52,7 @@ public class VehicleBase extends EntityLiving
 		super.writeToNBT(p_70109_1_);
 		p_70109_1_.setTag("Rotation", this.newFloatNBTList(this.getRealYaw(), this.rotationPitch));
 		p_70109_1_.setFloat("realYaw", this.getRealYaw());
+		p_70109_1_.setFloat("realPitch", this.getRealPitch());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -67,6 +71,7 @@ public class VehicleBase extends EntityLiving
 	{
 		super.readFromNBT(p_70020_1_);
 		this.setRealYaw(p_70020_1_.getFloat("realYaw"));
+		this.setRealPitch(p_70020_1_.getFloat("realPitch"));
 	}
 
 	public float getRealYaw()
@@ -78,6 +83,17 @@ public class VehicleBase extends EntityLiving
 	{
 		this.dataWatcher.updateObject(YAW_DW, realYaw);
 		this.dataWatcher.setObjectWatched(YAW_DW);
+	}
+
+	public float getRealPitch()
+	{
+		return this.dataWatcher.getWatchableObjectFloat(PITCH_DW);
+	}
+
+	public void setRealPitch(float realPitch)
+	{
+		this.dataWatcher.updateObject(PITCH_DW, realPitch);
+		this.dataWatcher.setObjectWatched(PITCH_DW);
 	}
 
 	@Override
@@ -148,9 +164,15 @@ public class VehicleBase extends EntityLiving
 		this.setRotation(this.rotationYawLast, this.rotationPitchLast);
 
 		if (this.riddenByEntity == null)
+		{
 			this.renderYawOffset = this.rotationYawLast = this.rotationYaw = (float)(this.newRotationYaw = getRealYaw());
+			this.rotationPitch = this.rotationPitchLast = (float)(this.newRotationPitch = getRealPitch());
+		}
 		else
+		{
 			this.setRealYaw(this.riddenByEntity.rotationYaw);
+			this.setRealPitch(this.riddenByEntity.rotationPitch);
+		}
 
 		if (worldObj.isAirBlock((int)posX, (int)posY - 1, (int)posZ))
 		{
