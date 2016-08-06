@@ -2,6 +2,7 @@ package com.parzivail.pswm;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
+import com.parzivail.pswm.blocks.BlockHothSign;
 import com.parzivail.pswm.commands.CommandJediRobes;
 import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
@@ -185,6 +186,9 @@ public class StarWarsMod
 	public static PBlock blockHothSandbag;
 	public static PBlock blockHothSnowCut;
 	public static PBlock blockHothBaseDoor;
+
+	public static BlockHothSign blockHothSign;
+	public static BlockHothSign blockHothSignStanding;
 
 	public static Block blockCrate1;
 	public static PBlockContainer blockFloorLight;

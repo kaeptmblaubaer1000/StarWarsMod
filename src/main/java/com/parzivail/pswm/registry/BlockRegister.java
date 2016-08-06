@@ -47,6 +47,12 @@ public class BlockRegister
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");
 		GameRegistry.registerTileEntity(TileEntityAntenna.class, "teAntenna");
 
+		StarWarsMod.blockHothSign = new BlockHothSign(false);
+		GameRegistry.registerBlock(StarWarsMod.blockHothSign, "blockHothSign");
+		StarWarsMod.blockHothSignStanding = new BlockHothSign(true);
+		GameRegistry.registerBlock(StarWarsMod.blockHothSignStanding, "blockHothSignStanding");
+		GameRegistry.registerTileEntity(TileEntityHothSign.class, "teHothSign");
+
 		StarWarsMod.blockMovingLightSource = new BlockMovingLightSource();
 		GameRegistry.registerBlock(StarWarsMod.blockMovingLightSource, "blockMovingLightSource");
 		GameRegistry.registerTileEntity(TileEntityMovingLightSource.class, "teMovingLightSource");

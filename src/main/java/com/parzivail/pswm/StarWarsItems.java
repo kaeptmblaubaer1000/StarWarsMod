@@ -54,6 +54,8 @@ public class StarWarsItems
 	public static Item reactorCore;
 	public static Item dataPad;
 
+	public static Item hothSign;
+
 	public static Item airsealGel;
 	public static Item apexSeal;
 	public static Item cyclingFieldEnergizer;

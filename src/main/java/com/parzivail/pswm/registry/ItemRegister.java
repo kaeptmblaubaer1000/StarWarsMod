@@ -73,6 +73,9 @@ public class ItemRegister
 		StarWarsItems.powerpack = new ItemPowerpack();
 		GameRegistry.registerItem(StarWarsItems.powerpack, "powerpack");
 
+		StarWarsItems.hothSign = new ItemHothSign();
+		GameRegistry.registerItem(StarWarsItems.hothSign, "hothSign");
+
 		StarWarsItems.holocron = new ItemHolocron();
 		GameRegistry.registerItem(StarWarsItems.holocron, "holocron");
 
