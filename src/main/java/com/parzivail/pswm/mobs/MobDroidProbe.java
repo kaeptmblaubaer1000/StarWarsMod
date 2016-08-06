@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -48,6 +49,8 @@ public class MobDroidProbe extends EntityDroidBase implements IRangedAttackMob
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
+		if (p_82196_1_ instanceof EntityPlayer && ItemQuestLog.getSide((EntityPlayer)p_82196_1_).equals(Resources.allegianceImperialFmt))
+			return;
 		playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
 		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
