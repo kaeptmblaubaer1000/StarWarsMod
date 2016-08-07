@@ -1,6 +1,8 @@
 package com.parzivail.pswm.quest.imperial;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.util.world.ItemUtils;
@@ -55,6 +57,7 @@ public class Imperial10_2 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 10), true));
 		setQuestDone(player, this);
 	}
 

@@ -1,10 +1,14 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.armor.ArmorTiePilot;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
@@ -65,6 +69,7 @@ public class Imperial8_3 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 8), true));
 		setQuestDone(player, this);
 	}
 

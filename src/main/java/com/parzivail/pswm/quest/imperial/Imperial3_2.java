@@ -1,7 +1,9 @@
 package com.parzivail.pswm.quest.imperial;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.armor.ArmorScoutTrooper;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestUtils;
@@ -60,6 +62,7 @@ public class Imperial3_2 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 3), true));
 		setQuestDone(player, this);
 	}
 

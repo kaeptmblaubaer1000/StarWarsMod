@@ -1,6 +1,8 @@
 package com.parzivail.pswm.quest.rebel;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.util.world.ItemUtils;
@@ -85,6 +87,7 @@ public class Rebel6 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 6), true));
 		setQuestDone(player, this);
 	}
 
