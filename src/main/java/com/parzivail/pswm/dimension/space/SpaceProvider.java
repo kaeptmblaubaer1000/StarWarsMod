@@ -46,7 +46,8 @@ public class SpaceProvider extends WorldProvider
 	@SideOnly(Side.CLIENT)
 	public IRenderHandler getSkyRenderer()
 	{
-		this.skyRenderer = new DrawSpaceSky();
+		if (this.skyRenderer == null)
+			this.skyRenderer = new DrawSpaceSky();
 		return this.skyRenderer;
 	}
 

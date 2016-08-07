@@ -1,18 +1,9 @@
 package com.parzivail.pswm.rendering;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.rendering.helper.PSWMEntityRenderer;
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
 import net.minecraftforge.client.IRenderHandler;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Sphere;
@@ -21,78 +12,35 @@ import java.util.Random;
 
 public class DrawSpaceSky extends IRenderHandler
 {
-	private static ResourceLocation sunTexture = new ResourceLocation(Resources.MODID, "textures/environment/hoth_sun.png");
-	private static ResourceLocation moon1Texture = new ResourceLocation(Resources.MODID, "textures/environment/hoth_moon.png");
-	private static Vec3 moon1Offset = Vec3.createVectorHelper(-20, 0, 10);
-	private static float moon1SizeMod = 1.0F;
-	private static Vec3 moon2Offset = Vec3.createVectorHelper(-44, 0, 0);
-	private static float moon2SizeMod = 1.25F;
-	private static Vec3 moon3Offset = Vec3.createVectorHelper(4, 0, -10);
-	private static float moon3SizeMod = 3.0F;
 	public static int starList = GLAllocation.generateDisplayLists(3);
 	public static int glSkyList = starList + 1;
-	public static int glSkyList2 = starList + 2;
-	private static float sunSize = 32.0F;
-	private static float moonSize = 32.0F;
+
+	Sphere s = new Sphere();
 
 	public DrawSpaceSky()
 	{
-		GL11.glPushMatrix();
-		GL11.glNewList(starList, 4864);
+		GL11.glNewList(glSkyList, 4864);
+		GL11.glColor4f(0, 0, 0, 1);
+		s.draw(110, 50, 50);
+		GL11.glColor4f(1, 1, 1, 1);
 		this.renderStars();
 		GL11.glEndList();
-		GL11.glPopMatrix();
-		Tessellator tessellator = Tessellator.instance;
-		GL11.glNewList(glSkyList, 4864);
-		byte byte2 = 64;
-		int i = 256 / byte2 + 2;
-		float f = 16.0F;
-		for (int j = -byte2 * i; j <= byte2 * i; j += byte2)
-			for (int l = -byte2 * i; l <= byte2 * i; l += byte2)
-			{
-				tessellator.startDrawingQuads();
-				tessellator.addVertex(j + 0, f, l + 0);
-				tessellator.addVertex(j + byte2, f, l + 0);
-				tessellator.addVertex(j + byte2, f, l + byte2);
-				tessellator.addVertex(j + 0, f, l + byte2);
-				tessellator.draw();
-			}
-		GL11.glEndList();
-	}
-
-	public float getSkyBrightness(float par1)
-	{
-		float var2 = FMLClientHandler.instance().getClient().theWorld.getCelestialAngle(par1);
-		float var3 = 1.0F - (MathHelper.sin(var2 * 3.1415927F * 2.0F) * 2.0F + 0.25F);
-		if (var3 < 0.0F)
-			var3 = 0.0F;
-		if (var3 > 1.0F)
-			var3 = 1.0F;
-		return var3 * var3 * 1.0F;
 	}
 
 	@Override
 	public void render(float partialTicks, WorldClient world, Minecraft mc)
 	{
-		GL11.glDisable(3553);
-		GL11.glDepthMask(false);
-		GL11.glEnable(2912);
-		GL11.glColor3f(0, 0, 0);
-		GL11.glDisable(GL11.GL_FOG);
-		if (StarWarsMod.mc.entityRenderer instanceof PSWMEntityRenderer)
-			new Sphere().draw(((PSWMEntityRenderer)StarWarsMod.mc.entityRenderer).getThirdPersonDistance() * 0.9f, 10, 10);
-		GL11.glEnable(GL11.GL_FOG);
-		GL11.glDisable(2912);
-		GL11.glDisable(3008);
-		GL11.glEnable(3042);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		RenderHelper.disableStandardItemLighting();
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_CULL_FACE);
 
-		GL11.glColor4f(1, 1, 1, 1);
-		this.renderStars();
+		GL11.glCallList(glSkyList);
 
-		GL11.glEnable(3553);
-		GL11.glDepthMask(true);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_BLEND);
 	}
 
 	private void renderStars()
