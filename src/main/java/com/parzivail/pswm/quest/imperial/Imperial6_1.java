@@ -4,7 +4,6 @@ import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import com.parzivail.pswm.quest.QuestStats;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
@@ -46,7 +45,6 @@ public class Imperial6_1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		Lumberjack.log(ItemQuestLog.getStat(player, QuestStats.ARRESTED_NPCS));
 		return !isQuestDone(player, this) && imperial5.isQuestComplete(player) && ItemQuestLog.getStat(player, QuestStats.ARRESTED_NPCS) >= 2;
 	}
 

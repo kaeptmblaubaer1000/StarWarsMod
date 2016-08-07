@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
@@ -33,7 +32,6 @@ public class AchievementTrigger
 		if (ItemQuestLog.getQuestContainer(event.player) != null && !event.player.worldObj.isRemote)
 		{
 			ItemQuestLog.addDimTravel(ItemQuestLog.getQuestContainer(event.player), event.toDim);
-			Lumberjack.log(ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(event.player), event.toDim));
 		}
 	}
 

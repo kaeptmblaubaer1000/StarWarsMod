@@ -22,7 +22,6 @@ import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
 import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -75,13 +74,11 @@ public class CommonEventHandler
 	{
 		this.resetRobes(event);
 
-		Lumberjack.log(ClientEventHandler.playerRespawnItems.get(event.player.getCommandSenderName()));
 		if (ClientEventHandler.playerRespawnItems.get(event.player.getCommandSenderName()) != null)
 		{
 			ArrayList<ItemStack> itemStacks = ClientEventHandler.playerRespawnItems.get(event.player.getCommandSenderName());
 			for (ItemStack stack : itemStacks)
 			{
-				Lumberjack.log("Returned " + stack);
 				event.player.inventory.addItemStackToInventory(stack);
 			}
 			ClientEventHandler.playerRespawnItems.remove(event.player.getCommandSenderName());
@@ -179,7 +176,6 @@ public class CommonEventHandler
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT);
 					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
-					Lumberjack.log(ItemQuestLog.getStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT));
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
@@ -191,7 +187,6 @@ public class CommonEventHandler
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, stat);
 					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
-					Lumberjack.log(ItemQuestLog.getStat(StarWarsMod.mc.thePlayer, stat));
 				}
 			}
 		}

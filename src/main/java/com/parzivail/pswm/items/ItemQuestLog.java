@@ -7,7 +7,6 @@ import com.parzivail.pswm.network.MessageSetQuests;
 import com.parzivail.pswm.quest.IQuest;
 import com.parzivail.pswm.quest.NBTQuestTag;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -42,7 +41,6 @@ public class ItemQuestLog extends Item
 			return;
 
 		NBTTagCompound co = getQuests(stack).setQuestDone(quest.getID()).getCompound();
-		Lumberjack.log(co);
 		StarWarsMod.network.sendToServer(new MessageSetQuests(player, co));
 	}
 

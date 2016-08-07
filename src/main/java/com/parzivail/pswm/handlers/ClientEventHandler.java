@@ -143,7 +143,6 @@ public class ClientEventHandler
 			EntityItem n = i.next();
 			if (n.getEntityItem().getItem() instanceof ItemQuestLog || n.getEntityItem().getItem() instanceof ItemHolocron)
 			{
-				Lumberjack.log("Saved " + n.getEntityItem());
 				s.add(n.getEntityItem());
 				i.remove();
 			}
