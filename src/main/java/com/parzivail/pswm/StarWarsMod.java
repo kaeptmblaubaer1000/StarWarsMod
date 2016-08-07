@@ -150,6 +150,11 @@ public class StarWarsMod
 
 	public static PBlockContainer blockSensorQuestAtst;
 
+	public static PBlockContainer blockSensorMobTauntaun;
+	public static PBlockContainer blockSensorMobBantha;
+	public static PBlockContainer blockSensorMobDewback;
+	public static PBlockContainer blockSensorMobWampa;
+
 	public static PBlock blockThorolideOre;
 	public static PBlock blockCortosisOre;
 	public static PBlock blockDiatiumOre;
