@@ -669,7 +669,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				showingDesc = "shooty mc'booty";
 
 				bBuy.setCurrentCost(64);
-				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 4) };
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 5) };
 			}
 			else if (button.id == listBShips.get("bShipTie").id)
 			{
