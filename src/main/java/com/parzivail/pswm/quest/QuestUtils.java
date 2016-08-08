@@ -2,7 +2,6 @@ package com.parzivail.pswm.quest;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
@@ -117,14 +116,9 @@ public class QuestUtils
 		GFX.renderItem(2, 13, new ItemStack(StarWarsItems.imperialCredit, 0));*/
 	}
 
-	public static boolean getIsPlayerOnPlanet(int dim, EntityPlayer player)
-	{
-		return player.capabilities.isCreativeMode || player.dimension == dim;
-	}
-
 	public static int getPlayerBronzeCredits(EntityPlayer player)
 	{
-		return player.capabilities.isCreativeMode ? Integer.MAX_VALUE : countCredits();
+		return player.capabilities.isCreativeMode ? Integer.MAX_VALUE : countCredits(player);
 	}
 
 	public static int countCredits(EntityPlayer player)
@@ -141,11 +135,6 @@ public class QuestUtils
 					credits += stack.stackSize * 4096;
 			}
 		return credits;
-	}
-
-	public static int countCredits()
-	{
-		return countCredits(StarWarsMod.mc.thePlayer);
 	}
 
 	public static void setRightTexture(TileEntityStaticNpc staticNpc, RenderHuman biped)
