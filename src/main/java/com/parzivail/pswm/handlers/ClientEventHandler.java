@@ -137,6 +137,7 @@ public class ClientEventHandler
 	public void onDrop(PlayerDropsEvent event)
 	{
 		Iterator<EntityItem> i = event.drops.iterator();
+
 		while (i.hasNext())
 		{
 			ArrayList<ItemStack> s = new ArrayList<>();
