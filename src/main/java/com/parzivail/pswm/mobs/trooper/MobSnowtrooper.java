@@ -1,28 +1,30 @@
 package com.parzivail.pswm.mobs.trooper;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.UUID;
 
+import static com.parzivail.pswm.Resources.MODID;
+import static com.parzivail.pswm.StarWarsItems.*;
+import static java.lang.Integer.valueOf;
+import static java.util.UUID.fromString;
+import static net.minecraft.util.MathHelper.getRandomDoubleInRange;
+
 public class MobSnowtrooper extends MobTrooper
 {
-	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final UUID field_110189_bq = fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt = null;
@@ -30,20 +32,20 @@ public class MobSnowtrooper extends MobTrooper
 	public MobSnowtrooper(World par1World)
 	{
 		super(par1World);
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.snowtrooperHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.snowtrooperChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.snowtrooperLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.snowtrooperBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(snowtrooperHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(snowtrooperChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(snowtrooperLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(snowtrooperBoots, 1));
 		switch (rand.nextInt(3))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
+				setCurrentItemOrArmor(0, blasterRifle.getMeta("Stormtrooper"));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Dlt19"));
+				setCurrentItemOrArmor(0, blasterHeavy.getMeta("Dlt19"));
 				break;
 			case 2:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("T21"));
+				setCurrentItemOrArmor(0, blasterHeavy.getMeta("T21"));
 				break;
 		}
 	}
@@ -97,14 +99,6 @@ public class MobSnowtrooper extends MobTrooper
 	}
 
 	@Override
-	protected void applyEntityAttributes()
-	{
-		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D);
-	}
-
-	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		Entity entity = source.getEntity();
@@ -130,8 +124,8 @@ public class MobSnowtrooper extends MobTrooper
 	{
 		if (angryAt != null)
 		{
-			playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
-			worldObj.spawnEntityInWorld(new com.parzivail.pswm.entities.EntityBlasterRifleBolt(worldObj, this, getAttackTarget()));
+			playSound(MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)getRandomDoubleInRange(rand, -0.2D, 0.2D));
+			worldObj.spawnEntityInWorld(new EntityBlasterRifleBolt(worldObj, this, getAttackTarget()));
 		}
 	}
 
@@ -145,19 +139,19 @@ public class MobSnowtrooper extends MobTrooper
 	protected void entityInit()
 	{
 		super.entityInit();
-		getDataWatcher().addObject(25, Integer.valueOf(rand.nextInt(2)));
+		getDataWatcher().addObject(25, valueOf(rand.nextInt(2)));
 	}
 
 	@Override
 	protected String getDeathSound()
 	{
-		return Resources.MODID + ":" + "mob.stormtrooper.die";
+		return MODID + ":" + "mob.stormtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return Resources.MODID + ":" + "mob.stormtrooper.hit";
+		return MODID + ":" + "mob.stormtrooper.hit";
 	}
 
 	@Override
@@ -165,23 +159,7 @@ public class MobSnowtrooper extends MobTrooper
 	{
 		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
 		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
-			return Resources.MODID + ":" + "mob.sandtrooper.droid";
-		return Resources.MODID + ":" + "mob.stormtrooper.say";
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		if (angryAt != entityToAttack && !worldObj.isRemote)
-		{
-			IAttributeInstance iattributeinstance = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-			iattributeinstance.removeModifier(field_110190_br);
-
-			if (entityToAttack != null)
-				iattributeinstance.applyModifier(field_110190_br);
-		}
-
-		angryAt = entityToAttack;
-		super.onUpdate();
+			return MODID + ":" + "mob.sandtrooper.droid";
+		return MODID + ":" + "mob.stormtrooper.say";
 	}
 }

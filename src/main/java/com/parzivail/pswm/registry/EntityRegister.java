@@ -19,10 +19,16 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobSnowtrooper.class, "snowtrooper", 0xF9FFD4, 0x919191);
 		EntityUtils.registerWithSpawnEgg(MobAtatPilot.class, "atatPilot", 0xFFFFFF, 0x919191);
 		EntityUtils.registerWithSpawnEgg(MobTiePilot.class, "tiePilot", 0x000000, 0x919191);
+		EntityUtils.registerWithSpawnEgg(MobImperialOfficer.class, "imperialOfficer", 0x000000, 0x919191);
+		EntityUtils.registerWithSpawnEgg(MobAtstPilot.class, "atstPilot", 0x000000, 0x919191);
 
 		EntityUtils.registerWithSpawnEgg(MobEndorRebel.class, "endorRebel", 0x17BF3E, 0x318F47);
 		EntityUtils.registerWithSpawnEgg(MobHothRebel.class, "hothRebel", 0xF0F4FF, 0xE3EDCE);
 		EntityUtils.registerWithSpawnEgg(MobRebelPilot.class, "rebelPilot", 0xF0A646, 0xD9D8D7);
+		EntityUtils.registerWithSpawnEgg(MobRebelPilotA.class, "rebelPilotA", 0xF0A646, 0xD9D8D7);
+		EntityUtils.registerWithSpawnEgg(MobRebelPilotY.class, "rebelPilotY", 0xF0A646, 0xD9D8D7);
+		EntityUtils.registerWithSpawnEgg(MobRebelWorker.class, "rebelWorker", 0xF0A646, 0xD9D8D7);
+		EntityUtils.registerWithSpawnEgg(MobRebelTechnician.class, "rebelTechnician", 0xF0A646, 0xD9D8D7);
 
 		EntityUtils.registerWithSpawnEgg(MobBountyhunter.class, "bountyhunter", 0x3EA877, 0x9CBD8F);
 

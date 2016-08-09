@@ -1,10 +1,13 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
+import com.parzivail.pswm.mobs.MobDroidProtocol;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -19,26 +22,20 @@ import static java.lang.Integer.valueOf;
 import static java.util.UUID.fromString;
 import static net.minecraft.util.MathHelper.getRandomDoubleInRange;
 
-public class MobRebelPilot extends MobTrooper
+public class MobAtstPilot extends MobTrooper
 {
 	private static final UUID field_110189_bq = fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt = null;
 
-	public MobRebelPilot(World par1World)
+	public MobAtstPilot(World par1World)
 	{
 		super(par1World);
-		setCurrentItemOrArmor(4, new ItemStack(rebelPilotHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(rebelPilotChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(rebelPilotLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(rebelPilotBoots, 1));
-		switch (rand.nextInt(2))
-		{
-			case 1:
-				setCurrentItemOrArmor(0, blasterPistol.getMeta("Dh17"));
-				break;
-		}
+		setCurrentItemOrArmor(4, new ItemStack(atstPilotHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(atstPilotChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(atstPilotLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(atstPilotBoots, 1));
 	}
 
 	@Override
@@ -99,9 +96,9 @@ public class MobRebelPilot extends MobTrooper
 			for (int i = 0; i < list.size(); i++)
 			{
 				Entity entity1 = (Entity)list.get(i);
-				if (entity1 instanceof MobRebelPilot)
+				if (entity1 instanceof MobAtstPilot)
 				{
-					MobRebelPilot s = (MobRebelPilot)entity1;
+					MobAtstPilot s = (MobAtstPilot)entity1;
 					s.becomeAngryAt(entity);
 				}
 			}
@@ -142,18 +139,21 @@ public class MobRebelPilot extends MobTrooper
 	@Override
 	protected String getDeathSound()
 	{
-		return MODID + ":" + "mob.rebel.die";
+		return MODID + ":" + "mob.stormtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return MODID + ":" + "mob.rebel.hit";
+		return MODID + ":" + "mob.stormtrooper.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return MODID + ":" + "mob.rebel.say";
+		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
+		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
+			return MODID + ":" + "mob.sandtrooper.droid";
+		return MODID + ":" + "mob.stormtrooper.say";
 	}
 }

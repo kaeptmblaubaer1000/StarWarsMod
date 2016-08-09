@@ -36,6 +36,35 @@ public class MathUtils
 	}
 
 	/**
+	 * Check if a List contains any object of type.
+	 *
+	 * @param list The list to check
+	 * @return If the List contains
+	 */
+	public static boolean isAnyOfType(List list, Class c)
+	{
+		for (Object o : list)
+			if (c.isInstance(o))
+				return true;
+		return false;
+	}
+
+	/**
+	 * Check to see how many of a type is in a List
+	 *
+	 * @param list The list to check
+	 * @return How many the List contains
+	 */
+	public static int howManyOfType(List list, Class c)
+	{
+		int i = 0;
+		for (Object o : list)
+			if (c.isInstance(o))
+				i++;
+		return i;
+	}
+
+	/**
 	 * Linear Interpolation
 	 *
 	 * @param start   The start value

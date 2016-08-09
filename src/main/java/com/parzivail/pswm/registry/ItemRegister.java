@@ -437,6 +437,18 @@ public class ItemRegister
 		//StarWarsMod.fleetBoots = new ArmorRebelFleet(StarWarsMod.fleetArmorMat, 1, 3);
 		//GameRegistry.registerItem(StarWarsMod.fleetBoots, "fleetBoots");
 
+		StarWarsItems.atstPilotHelmet = new ArmorAtstPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
+		GameRegistry.registerItem(StarWarsItems.atstPilotHelmet, "atstPilotHelmet");
+
+		StarWarsItems.atstPilotChest = new ArmorAtstPilot(StarWarsMod.atatPilotArmorMat, 1, 1);
+		GameRegistry.registerItem(StarWarsItems.atstPilotChest, "atstPilotChest");
+
+		StarWarsItems.atstPilotLegs = new ArmorAtstPilot(StarWarsMod.atatPilotArmorMat, 1, 2);
+		GameRegistry.registerItem(StarWarsItems.atstPilotLegs, "atstPilotLegs");
+
+		StarWarsItems.atstPilotBoots = new ArmorAtstPilot(StarWarsMod.atatPilotArmorMat, 1, 3);
+		GameRegistry.registerItem(StarWarsItems.atstPilotBoots, "atstPilotBoots");
+
 		StarWarsItems.atatPilotHelmet = new ArmorAtatPilot(StarWarsMod.atatPilotArmorMat, 1, 0);
 		GameRegistry.registerItem(StarWarsItems.atatPilotHelmet, "atatPilotHelmet");
 

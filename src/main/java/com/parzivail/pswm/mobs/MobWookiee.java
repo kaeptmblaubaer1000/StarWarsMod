@@ -1,14 +1,9 @@
 package com.parzivail.pswm.mobs;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,9 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static com.parzivail.pswm.Resources.MODID;
+import static com.parzivail.pswm.StarWarsItems.bowcaster;
+import static com.parzivail.pswm.utils.LootGenUtils.baseRarity;
+import static com.parzivail.pswm.utils.LootGenUtils.getWeightedItemFromList;
+import static java.util.UUID.fromString;
+import static net.minecraft.entity.SharedMonsterAttributes.*;
+
 public class MobWookiee extends EntityMob implements IMob
 {
-	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final UUID field_110189_bq = fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt;
@@ -39,9 +41,9 @@ public class MobWookiee extends EntityMob implements IMob
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2D);
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+		getEntityAttribute(attackDamage).setBaseValue(2D);
+		getEntityAttribute(maxHealth).setBaseValue(15.0D);
+		getEntityAttribute(movementSpeed).setBaseValue(0.25D);
 	}
 
 	@Override
@@ -75,11 +77,11 @@ public class MobWookiee extends EntityMob implements IMob
 	public void dropFewItems(boolean par1, int par2)
 	{
 		List<WeightedLoot> drop = new ArrayList();
-		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.bowcaster, 1), LootGenUtils.baseRarity / 2.0F));
+		drop.add(new WeightedLoot(new ItemStack(bowcaster, 1), baseRarity / 2.0F));
 		switch (rand.nextInt(5))
 		{
 			case 0:
-				entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0.0F);
+				entityDropItem(getWeightedItemFromList(drop, rand), 0.0F);
 		}
 	}
 
@@ -103,34 +105,18 @@ public class MobWookiee extends EntityMob implements IMob
 	@Override
 	protected String getDeathSound()
 	{
-		return Resources.MODID + ":" + "mob.wookiee.die";
+		return MODID + ":" + "mob.wookiee.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return Resources.MODID + ":" + "mob.wookiee.hit";
+		return MODID + ":" + "mob.wookiee.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return Resources.MODID + ":" + "mob.wookiee.say";
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		if (angryAt != entityToAttack && !worldObj.isRemote)
-		{
-			IAttributeInstance iattributeinstance = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-			iattributeinstance.removeModifier(field_110190_br);
-
-			if (entityToAttack != null)
-				iattributeinstance.applyModifier(field_110190_br);
-		}
-
-		angryAt = entityToAttack;
-		super.onUpdate();
+		return MODID + ":" + "mob.wookiee.say";
 	}
 }

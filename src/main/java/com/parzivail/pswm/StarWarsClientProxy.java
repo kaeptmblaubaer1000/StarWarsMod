@@ -27,7 +27,6 @@ import com.parzivail.util.ui.ShaderHelper;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -71,27 +70,34 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobTauntaun.class, new RenderTauntaun(new ModelTaunNew(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBantha.class, new RenderBantha(new ModelBanthaNew(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobWampa.class, new RenderWampa(new ModelWampa(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobTusken.class, new RenderTusken(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobTusken.class, new RenderTusken());
 		RenderingRegistry.registerEntityRenderingHandler(MobDroidGNK.class, new RenderGNK(new ModelDroidGNK(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobGamorrean.class, new RenderGamorrean(new ModelGamorrean(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobDewback.class, new RenderDewback(new ModelDewback(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobTatooineCommoner.class, new RenderCommoner(new ModelPBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBith.class, new RenderBith(new ModelBith(), 0.5F));
 
-		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobStormtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobScouttrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobSnowtrooper.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobAtatPilot.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobStormtrooper.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobScouttrooper.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobSnowtrooper.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobAtatPilot.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobAtstPilot.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobImperialOfficer.class, new RenderHuman());
 
-		RenderingRegistry.registerEntityRenderingHandler(MobEndorRebel.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobHothRebel.class, new RenderHuman(new ModelBiped(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilot.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobEndorRebel.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobHothRebel.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilot.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilotA.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilotY.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelWorker.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelTechnician.class, new RenderHuman());
 
-		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman());
 
-		RenderingRegistry.registerEntityRenderingHandler(MobDefaultBiped.class, new RenderHuman(new ModelBiped(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(MobDefaultBiped.class, new RenderHuman());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderPPlayer());
 

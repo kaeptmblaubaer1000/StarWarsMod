@@ -83,7 +83,7 @@ public class AiFreqMove extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if (this.freq == 0 || this.entity.getRNG().nextInt(this.freq) != 0)
+		if (this.freq == 0 || this.entity.getRNG().nextInt(this.freq) == 0)
 		{
 			Vec3 vec3 = this.findRandomTarget(this.entity, this.maxDistance, this.maxDistance);
 			if (vec3 == null)

@@ -15,7 +15,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -50,7 +49,7 @@ public class GuiQuestNpc extends GuiScreen
 
 	public GuiQuestNpc(Quest quest, EntityPlayer player, TileEntityStaticNpc questGiver)
 	{
-		this.biped = new RenderHuman(new ModelBiped(), 0.5f, texture);
+		this.biped = new RenderHuman(texture);
 		biped.setRenderManager(RenderManager.instance);
 
 		this.mc = Minecraft.getMinecraft();

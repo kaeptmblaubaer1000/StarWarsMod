@@ -1,6 +1,7 @@
 package com.parzivail.pswm.rendering.item;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.mobs.MobEwok;
 import com.parzivail.pswm.models.weapons.ModelSpear;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,7 +48,20 @@ public class RenderSpear implements IItemRenderer
 				GL11.glPopMatrix();
 				break;
 			case EQUIPPED:
-				if (data[1] instanceof EntityPlayer)
+				if (data[1] instanceof MobEwok)
+				{
+					GL11.glPushMatrix();
+					GL11.glDisable(GL11.GL_CULL_FACE);
+					GL11.glScalef(0.05F, -0.05F, 0.05F);
+					GL11.glRotatef(48, 0, 1, 0);
+					GL11.glRotatef(90, 0, 0, 1);
+					GL11.glRotatef(90, 1, 0, 0);
+					GL11.glTranslatef(-20, 13.5f, -6);
+					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					GL11.glEnable(GL11.GL_CULL_FACE);
+					GL11.glPopMatrix();
+				}
+				else
 				{
 					GL11.glPushMatrix();
 					GL11.glDisable(GL11.GL_CULL_FACE);
@@ -64,19 +78,6 @@ public class RenderSpear implements IItemRenderer
 					GL11.glTranslatef(22, -3, 0);
 					GL11.glRotatef(90, 0, 0, 1);
 					GL11.glRotatef(-90, 1, 0, 0);
-					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
-				}
-				else
-				{
-					GL11.glPushMatrix();
-					GL11.glDisable(GL11.GL_CULL_FACE);
-					GL11.glScalef(0.05F, -0.05F, 0.05F);
-					GL11.glRotatef(48, 0, 1, 0);
-					GL11.glRotatef(90, 0, 0, 1);
-					GL11.glRotatef(90, 1, 0, 0);
-					GL11.glTranslatef(-20, 13.5f, -6);
 					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 					GL11.glEnable(GL11.GL_CULL_FACE);
 					GL11.glPopMatrix();

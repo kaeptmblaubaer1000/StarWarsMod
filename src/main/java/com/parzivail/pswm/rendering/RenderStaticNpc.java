@@ -7,7 +7,6 @@ import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.P3D;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -25,7 +24,7 @@ public class RenderStaticNpc extends TileEntitySpecialRenderer
 
 	public RenderStaticNpc()
 	{
-		this.biped = new RenderHuman(new ModelBiped(), 0.5f, texture);
+		this.biped = new RenderHuman(texture);
 		biped.setRenderManager(RenderManager.instance);
 	}
 

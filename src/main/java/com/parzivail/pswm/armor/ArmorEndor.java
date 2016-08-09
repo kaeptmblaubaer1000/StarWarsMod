@@ -42,7 +42,7 @@ public class ArmorEndor extends ItemArmor
 				h2 = new ModelBackpackEndor();
 			return h2;
 		}
-		if (armorSlot == 0)
+		if (itemstack.getItem() == StarWarsItems.endorHelmet)
 		{
 			if (h == null)
 				h = new ModelEndorHelmet();

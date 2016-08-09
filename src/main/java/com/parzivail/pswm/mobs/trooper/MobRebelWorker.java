@@ -14,43 +14,20 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.parzivail.pswm.Resources.MODID;
-import static com.parzivail.pswm.StarWarsItems.*;
 import static java.lang.Integer.valueOf;
 import static java.util.UUID.fromString;
 import static net.minecraft.util.MathHelper.getRandomDoubleInRange;
 
-public class MobRebelPilot extends MobTrooper
+public class MobRebelWorker extends MobTrooper
 {
 	private static final UUID field_110189_bq = fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt = null;
 
-	public MobRebelPilot(World par1World)
+	public MobRebelWorker(World par1World)
 	{
 		super(par1World);
-		setCurrentItemOrArmor(4, new ItemStack(rebelPilotHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(rebelPilotChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(rebelPilotLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(rebelPilotBoots, 1));
-		switch (rand.nextInt(2))
-		{
-			case 1:
-				setCurrentItemOrArmor(0, blasterPistol.getMeta("Dh17"));
-				break;
-		}
-	}
-
-	@Override
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-
-	@Override
-	protected boolean canDespawn()
-	{
-		return false;
 	}
 
 	@Override
@@ -95,13 +72,12 @@ public class MobRebelPilot extends MobTrooper
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
-			for (int i = 0; i < list.size(); i++)
+			List<Entity> list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (Entity aList : list)
 			{
-				Entity entity1 = (Entity)list.get(i);
-				if (entity1 instanceof MobRebelPilot)
+				if (aList instanceof MobRebelWorker)
 				{
-					MobRebelPilot s = (MobRebelPilot)entity1;
+					MobRebelWorker s = (MobRebelWorker)aList;
 					s.becomeAngryAt(entity);
 				}
 			}
@@ -131,6 +107,18 @@ public class MobRebelPilot extends MobTrooper
 	{
 		super.entityInit();
 		getDataWatcher().addObject(25, valueOf(rand.nextInt(2)));
+	}
+
+	@Override
+	public boolean isAIEnabled()
+	{
+		return true;
+	}
+
+	@Override
+	protected boolean canDespawn()
+	{
+		return false;
 	}
 
 	@Override

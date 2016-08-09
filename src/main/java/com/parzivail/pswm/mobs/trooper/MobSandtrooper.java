@@ -1,31 +1,34 @@
 package com.parzivail.pswm.mobs.trooper;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
-import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static com.parzivail.pswm.Resources.MODID;
+import static com.parzivail.pswm.StarWarsItems.*;
+import static com.parzivail.pswm.utils.LootGenUtils.baseRarity;
+import static com.parzivail.pswm.utils.LootGenUtils.getWeightedItemFromList;
+import static java.lang.Integer.valueOf;
+import static java.util.UUID.fromString;
+import static net.minecraft.util.MathHelper.getRandomDoubleInRange;
+
 public class MobSandtrooper extends MobTrooper
 {
-	private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
+	private static final UUID field_110189_bq = fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt = null;
@@ -33,23 +36,23 @@ public class MobSandtrooper extends MobTrooper
 	public MobSandtrooper(World par1World)
 	{
 		super(par1World);
-		setCurrentItemOrArmor(4, new ItemStack(StarWarsItems.sandtrooperHelmet, 1));
-		setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.sandtrooperChest, 1));
-		setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.sandtrooperLegs, 1));
-		setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.sandtrooperBoots, 1));
+		setCurrentItemOrArmor(4, new ItemStack(sandtrooperHelmet, 1));
+		setCurrentItemOrArmor(3, new ItemStack(sandtrooperChest, 1));
+		setCurrentItemOrArmor(2, new ItemStack(sandtrooperLegs, 1));
+		setCurrentItemOrArmor(1, new ItemStack(sandtrooperBoots, 1));
 		switch (rand.nextInt(4))
 		{
 			case 0:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Stormtrooper"));
+				setCurrentItemOrArmor(0, blasterRifle.getMeta("Stormtrooper"));
 				break;
 			case 1:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("T21"));
+				setCurrentItemOrArmor(0, blasterHeavy.getMeta("T21"));
 				break;
 			case 2:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Dlt19"));
+				setCurrentItemOrArmor(0, blasterHeavy.getMeta("Dlt19"));
 				break;
 			case 3:
-				setCurrentItemOrArmor(0, StarWarsItems.blasterHeavy.getMeta("Rt97c"));
+				setCurrentItemOrArmor(0, blasterHeavy.getMeta("Rt97c"));
 				break;
 		}
 	}
@@ -103,14 +106,6 @@ public class MobSandtrooper extends MobTrooper
 	}
 
 	@Override
-	protected void applyEntityAttributes()
-	{
-		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D);
-	}
-
-	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		Entity entity = source.getEntity();
@@ -136,8 +131,8 @@ public class MobSandtrooper extends MobTrooper
 	{
 		if (angryAt != null)
 		{
-			playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
-			worldObj.spawnEntityInWorld(new com.parzivail.pswm.entities.EntityBlasterRifleBolt(worldObj, this, getAttackTarget()));
+			playSound(MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)getRandomDoubleInRange(rand, -0.2D, 0.2D));
+			worldObj.spawnEntityInWorld(new EntityBlasterRifleBolt(worldObj, this, getAttackTarget()));
 		}
 	}
 
@@ -151,13 +146,13 @@ public class MobSandtrooper extends MobTrooper
 	public void dropFewItems(boolean par1, int par2)
 	{
 		List<WeightedLoot> drop = new ArrayList();
-		drop.add(new WeightedLoot(StarWarsItems.blasterRifle.getMeta("Stormtrooper"), LootGenUtils.baseRarity / 2.0F));
-		drop.add(new WeightedLoot(StarWarsItems.blasterHeavy.getMeta("T21"), LootGenUtils.baseRarity / 2.0F));
-		drop.add(new WeightedLoot(StarWarsItems.blasterHeavy.getMeta("Rt97c"), LootGenUtils.baseRarity / 2.0F));
+		drop.add(new WeightedLoot(blasterRifle.getMeta("Stormtrooper"), baseRarity / 2.0F));
+		drop.add(new WeightedLoot(blasterHeavy.getMeta("T21"), baseRarity / 2.0F));
+		drop.add(new WeightedLoot(blasterHeavy.getMeta("Rt97c"), baseRarity / 2.0F));
 		switch (rand.nextInt(5))
 		{
 			case 0:
-				entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0.0F);
+				entityDropItem(getWeightedItemFromList(drop, rand), 0.0F);
 		}
 	}
 
@@ -165,7 +160,7 @@ public class MobSandtrooper extends MobTrooper
 	protected void entityInit()
 	{
 		super.entityInit();
-		getDataWatcher().addObject(25, Integer.valueOf(rand.nextInt(2)));
+		getDataWatcher().addObject(25, valueOf(rand.nextInt(2)));
 	}
 
 	@Override
@@ -177,13 +172,13 @@ public class MobSandtrooper extends MobTrooper
 	@Override
 	protected String getDeathSound()
 	{
-		return Resources.MODID + ":" + "mob.sandtrooper.die";
+		return MODID + ":" + "mob.sandtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return Resources.MODID + ":" + "mob.sandtrooper.hit";
+		return MODID + ":" + "mob.sandtrooper.hit";
 	}
 
 	@Override
@@ -191,23 +186,7 @@ public class MobSandtrooper extends MobTrooper
 	{
 		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
 		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
-			return Resources.MODID + ":" + "mob.sandtrooper.droid";
-		return Resources.MODID + ":" + "mob.sandtrooper.say";
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		if (angryAt != entityToAttack && !worldObj.isRemote)
-		{
-			IAttributeInstance iattributeinstance = getEntityAttribute(SharedMonsterAttributes.movementSpeed);
-			iattributeinstance.removeModifier(field_110190_br);
-
-			if (entityToAttack != null)
-				iattributeinstance.applyModifier(field_110190_br);
-		}
-
-		angryAt = entityToAttack;
-		super.onUpdate();
+			return MODID + ":" + "mob.sandtrooper.droid";
+		return MODID + ":" + "mob.sandtrooper.say";
 	}
 }
