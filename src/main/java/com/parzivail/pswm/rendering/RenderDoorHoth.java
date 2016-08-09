@@ -2,6 +2,7 @@ package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.entities.EntityTilePassthrough;
+import com.parzivail.pswm.mobs.MobTauntaun;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.models.blocks.ModelDoorHoth;
 import com.parzivail.pswm.tileentities.TileEntityDoorHoth;
@@ -53,6 +54,7 @@ public class RenderDoorHoth extends TileEntitySpecialRenderer
 
 		ents.removeIf(entity -> entity instanceof EntityBat);
 		ents.removeIf(entity -> entity instanceof MobWampa);
+		ents.removeIf(entity -> entity instanceof MobTauntaun);
 		ents.removeIf(entity -> entity instanceof VehicleBase);
 		ents.removeIf(entity -> entity instanceof EntityPlayer && ((EntityPlayer)entity).isPlayerSleeping());
 
