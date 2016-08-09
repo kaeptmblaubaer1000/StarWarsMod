@@ -2,19 +2,19 @@ package com.parzivail.pswm.tileentities.sensor;
 
 import com.parzivail.pswm.mobs.trooper.*;
 
-public class TileEntitySensorImperialHeadquarters extends TileEntitySensorPeoplePlace
+public class TileEntitySensorStructureImperialHeadquarters extends TileEntitySensorPeoplePlace
 {
-	public TileEntitySensorImperialHeadquarters()
+	public TileEntitySensorStructureImperialHeadquarters()
 	{
 		this.rX = 20;
 		this.rY = 20;
 		this.rZ = 20;
-		this.entityMax = 30;
+		this.entityMax = 15;
 	}
 
 	public MobTrooper getNewTrooper()
 	{
-		switch (this.worldObj.rand.nextInt(5))
+		switch (this.worldObj.rand.nextInt(6))
 		{
 			case 0:
 				return new MobScouttrooper(this.worldObj);
