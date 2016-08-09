@@ -191,7 +191,8 @@ public class MobBantha extends EntityHorse implements IShearable
 		{
 			setHorseTamed(true);
 			playLivingSound();
-			spawnHorseParticles(true);
+			if (worldObj.isRemote)
+				spawnHorseParticles(true);
 		}
 		else if (itemstack != null && itemstack.getItem() == Items.bucket)
 		{

@@ -1,6 +1,6 @@
 package com.parzivail.pswm.tileentities.sensor;
 
-import com.parzivail.pswm.mobs.MobTauntaun;
+import com.parzivail.pswm.mobs.MobDewback;
 import com.parzivail.pswm.tileentities.TileEntitySensor;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
@@ -14,7 +14,7 @@ public class TileEntitySensorMobDewback extends TileEntitySensor
 
 	public TileEntitySensorMobDewback()
 	{
-		this.needle = MobTauntaun.class;
+		this.needle = MobDewback.class;
 		this.rX = 4;
 		this.rY = 4;
 		this.rZ = 4;
