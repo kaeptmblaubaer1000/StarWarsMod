@@ -1,10 +1,8 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
-import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,12 +21,6 @@ public class VehicSkyhopper extends VehicleAirBase
 		this.vehicYOffset = 0F;
 		this.moveModifier = 1.75F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnSkyhopper, 1);
 	}
 
 	@Override
@@ -67,9 +59,6 @@ public class VehicSkyhopper extends VehicleAirBase
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
-		if (!QuestUtils.canRideInShip(player, this.getClass()))
-			return false;
-
 		if (player.isSneaking())
 		{
 			if (!worldObj.isRemote)

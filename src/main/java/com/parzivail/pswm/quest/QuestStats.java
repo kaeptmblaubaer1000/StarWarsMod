@@ -20,4 +20,6 @@ public class QuestStats
 	public static final String LICENSE_TIE_BOMBER = "LICENSE_TIE_BOMBER";
 	public static final String LICENSE_TIE_ADVANCED = "LICENSE_TIE_ADVANCED";
 	public static final String LICENSE_TIE_INTERCEPTOR = "LICENSE_TIE_INTERCEPTOR";
+	public static final String LICENSE_LANDSPEEDER = "LICENSE_LANDSPEEDER";
+	public static final String LICENSE_JAKKU_SPEEDER = "LICENSE_JAKKU_SPEEDER";
 }

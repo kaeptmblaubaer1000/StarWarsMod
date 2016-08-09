@@ -366,7 +366,6 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		RenderHelper.enableStandardItemLighting();
 
 		if (zoomPlanet == null && animationZoom.getTick() == 0)
 		{
@@ -409,9 +408,6 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glPopMatrix();
 		}
 
-		GL11.glEnable(GL11.GL_LIGHTING);
-		RenderHelper.enableStandardItemLighting();
-
 		this.buttonList.stream().filter(b -> PlanetInformation.getPlanet(((GuiButton)b).displayString) != null).forEach(b -> {
 			OutlineButtonModel buttonModel = (OutlineButtonModel)b;
 			PlanetInformation info = PlanetInformation.getPlanet(buttonModel.displayString);
@@ -441,6 +437,9 @@ public class GuiScreenHyperdrive extends GuiScreen
 			}
 		});
 
+		GL11.glEnable(GL11.GL_LIGHTING);
+		RenderHelper.enableStandardItemLighting();
+
 		buttonClose.visible = buttonEatHyperdrive.visible = buttonTravel.visible = zoomPlanet != null && animationZoom.isDone();
 
 		PlanetInformation planet = zoomPlanet;
@@ -449,6 +448,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 		if (planet != null)
 		{
+			GL11.glDisable(GL11.GL_LIGHTING);
 			GLPalette.glColorI(GLPalette.WHITE);
 			GL11.glPushMatrix();
 			GL11.glScalef(2, 2, 1);
@@ -497,9 +497,11 @@ public class GuiScreenHyperdrive extends GuiScreen
 			StarWarsMod.mc.fontRenderer.drawString(nativeSpecies.substring(0, (int)MathUtils.lerp(0, nativeSpecies.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 250, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
 			for (String t : planet.getNativeSpecies())
 				StarWarsMod.mc.fontRenderer.drawString(t.substring(0, (int)MathUtils.lerp(0, t.length(), (float)animationZoom.getTick() / animationZoom.getLength())), 260, y += StarWarsMod.mc.fontRenderer.FONT_HEIGHT, GLPalette.BRIGHT_YELLOW);
+
+			GL11.glEnable(GL11.GL_LIGHTING);
 		}
 
-		if (MathUtils.oneIn(150))
+		if (MathUtils.oneIn(275))
 		{
 			TradeRoute r = MathUtils.getRandomElement(routes);
 			int type = StarWarsMod.rngGeneral.nextInt(7);

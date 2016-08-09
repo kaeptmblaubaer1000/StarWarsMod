@@ -37,7 +37,7 @@ public class ItemHyperdriveIlum extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != ConfigOptions.dimIlumId && world.isRemote)
+			if (player.isSneaking() && player.dimension != ConfigOptions.dimIlumId && world.isRemote && player.capabilities.isCreativeMode)
 			{
 				player.timeUntilPortal = 20;
 				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimIlumId));

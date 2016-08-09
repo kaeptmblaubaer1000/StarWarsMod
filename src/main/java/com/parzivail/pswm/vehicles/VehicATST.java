@@ -1,6 +1,5 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,12 +20,6 @@ public class VehicATST extends VehicleLandBase
 		this.moveModifier = 0.8F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
 		this.stepHeight = 3;
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnAtst, 1);
 	}
 
 	@Override

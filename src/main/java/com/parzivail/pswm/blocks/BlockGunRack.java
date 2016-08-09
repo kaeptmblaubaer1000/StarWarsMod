@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemBlasterHeavy;
 import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
-import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.tileentities.TileEntityGunRack;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
@@ -21,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -98,7 +98,7 @@ public class BlockGunRack extends PBlockContainer implements IDebugProvider
 			{
 				TileEntityGunRack gunRack = (TileEntityGunRack)world.getTileEntity(x, y, z);
 				ItemStack itemStack = gunRack.popGun();
-				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, itemStack));
+				player.inventory.mainInventory[player.inventory.currentItem] = itemStack;
 			}
 			else if (player.getHeldItem().getItem() instanceof ItemBlasterRifle || player.getHeldItem().getItem() instanceof ItemBlasterHeavy)
 			{
@@ -106,12 +106,25 @@ public class BlockGunRack extends PBlockContainer implements IDebugProvider
 				{
 					TileEntityGunRack gunRack = (TileEntityGunRack)world.getTileEntity(x, y, z);
 					if (gunRack.pushGun(player.getHeldItem()))
-						StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, null));
+						player.inventory.mainInventory[player.inventory.currentItem] = null;
 				}
 			}
 		}
 		world.markBlockForUpdate(x, y, z);
 		return true;
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+	{
+		if (p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_) instanceof TileEntityRotate)
+		{
+			int meta = ((TileEntityRotate)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
+			if (meta % 2 == 0)
+				setBlockBounds(0, 0, 0.2f, 1, 1.3f, 0.8f);
+			else
+				setBlockBounds(0.2f, 0, 0, 0.8f, 1.3f, 1);
+		}
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,7 +13,7 @@ public class VehicLandspeeder extends VehicleLandBase
 		super(par1World);
 		this.setSize(2.0F, 2.0F);
 		this.vehicYOffset = -0.3F;
-		this.moveModifier = 2.5F;
+		this.moveModifier = 3.5F;
 		this.tiltMax = 3;
 	}
 
@@ -30,12 +29,6 @@ public class VehicLandspeeder extends VehicleLandBase
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(4.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.255D);
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnLandspeeder, 1);
 	}
 
 	@Override

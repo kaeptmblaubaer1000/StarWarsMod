@@ -3,18 +3,19 @@ package com.parzivail.pswm.tileentities.sensor;
 import com.parzivail.pswm.mobs.trooper.MobImperialOfficer;
 import com.parzivail.pswm.mobs.trooper.MobScouttrooper;
 import com.parzivail.pswm.mobs.trooper.MobTrooper;
+import net.minecraft.entity.EntityLiving;
 
 public class TileEntitySensorStructureImperialEndorShield extends TileEntitySensorPeoplePlace
 {
 	public TileEntitySensorStructureImperialEndorShield()
 	{
-		this.rX = 10;
-		this.rY = 10;
-		this.rZ = 10;
-		this.entityMax = 5;
+		this.rX = 20;
+		this.rY = 20;
+		this.rZ = 20;
+		this.entityMax = 4;
 	}
 
-	public MobTrooper getNewTrooper()
+	public MobTrooper getNewEntity()
 	{
 		switch (this.worldObj.rand.nextInt(2))
 		{
@@ -25,5 +26,11 @@ public class TileEntitySensorStructureImperialEndorShield extends TileEntitySens
 			default:
 				return null;
 		}
+	}
+
+	@Override
+	public Class<? extends EntityLiving> getEntityNeedleClass()
+	{
+		return MobTrooper.class;
 	}
 }

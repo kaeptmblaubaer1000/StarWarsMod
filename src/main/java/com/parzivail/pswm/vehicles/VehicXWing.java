@@ -37,13 +37,6 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		this.moveModifier = 1.75F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
 	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnXwing, 1);
-	}
-
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{

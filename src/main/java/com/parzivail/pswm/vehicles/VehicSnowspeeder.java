@@ -1,7 +1,6 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,12 +22,6 @@ public class VehicSnowspeeder extends VehicleAirBase
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) ? super.interact(p_70085_1_) : false;
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnSnowspeeder, 1);
 	}
 
 	@Override

@@ -11,8 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-
 /**
  * Created by Colby on 5/5/2016.
  */
@@ -168,17 +166,6 @@ public class QuestUtils
 
 		String ship = shipClass.getSimpleName();
 
-		ArrayList<String> rebels = new ArrayList<>();
-		rebels.add("VehicXWing");
-		rebels.add("VehicAWing");
-		rebels.add("VehicYWing");
-		rebels.add("VehicSnowspeeder");
-		ArrayList<String> imperials = new ArrayList<>();
-		imperials.add("VehicTIE");
-		imperials.add("VehicTIEAdvanced");
-		imperials.add("VehicTIEBomber");
-		imperials.add("VehicTIEInterceptor");
-
 		switch (ship)
 		{
 			case "VehicXWing":
@@ -213,6 +200,20 @@ public class QuestUtils
 				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_INTERCEPTOR) > 0)
 					return true;
 				break;
+			case "VehicLandspeeder":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_LANDSPEEDER) > 0)
+					return true;
+				break;
+			case "VehicJakkuSpeeder":
+				if (ItemQuestLog.getStat(player, QuestStats.LICENSE_JAKKU_SPEEDER) > 0)
+					return true;
+				break;
+			case "VehicSpeederBike":
+				return true;
+			case "VehicHothSpeederBike":
+				return true;
+			case "VehicATST":
+				return true;
 		}
 
 		if (ItemQuestLog.getStat(player, QuestStats.LICENSE_XWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_AWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_YWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_T47) > 0)

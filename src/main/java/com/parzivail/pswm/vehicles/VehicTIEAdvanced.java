@@ -1,7 +1,6 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
@@ -18,12 +17,6 @@ public class VehicTIEAdvanced extends VehicleAirBase
 		this.vehicYOffset = -3F;
 		this.moveModifier = 1.75F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0D);
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnTieAdvanced, 1);
 	}
 
 	@Override

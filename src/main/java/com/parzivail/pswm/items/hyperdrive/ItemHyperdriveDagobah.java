@@ -37,7 +37,7 @@ public class ItemHyperdriveDagobah extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != ConfigOptions.dimDagobahId && world.isRemote)
+			if (player.isSneaking() && player.dimension != ConfigOptions.dimDagobahId && world.isRemote && player.capabilities.isCreativeMode)
 			{
 				player.timeUntilPortal = 20;
 				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimDagobahId));

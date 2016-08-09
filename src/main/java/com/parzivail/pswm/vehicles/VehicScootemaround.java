@@ -1,6 +1,5 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -98,12 +97,6 @@ public class VehicScootemaround extends VehicleLandBase
 				return true;
 			}
 		return false;
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnScootemaround, 1);
 	}
 
 	@Override

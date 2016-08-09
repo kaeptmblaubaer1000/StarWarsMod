@@ -36,7 +36,7 @@ public class ItemHyperdriveEarth extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != 0 && world.isRemote)
+			if (player.isSneaking() && player.dimension != 0 && world.isRemote && player.capabilities.isCreativeMode)
 			{
 				player.timeUntilPortal = 20;
 				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, 0));

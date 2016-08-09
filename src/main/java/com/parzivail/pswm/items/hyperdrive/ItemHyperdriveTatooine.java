@@ -3,7 +3,12 @@ package com.parzivail.pswm.items.hyperdrive;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.dimension.PlanetInformation;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.network.MessageHyperdrive;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
+import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.TextUtils;
@@ -40,7 +45,21 @@ public class ItemHyperdriveTatooine extends Item
 			if (player.isSneaking() && player.dimension != ConfigOptions.dimTatooineId && world.isRemote)
 			{
 				player.timeUntilPortal = 20;
-				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimTatooineId));
+				if (ItemQuestLog.getQuestContainer(player) != null)
+				{
+					ItemQuestLog.setHasHyperdrive(ItemQuestLog.getQuestContainer(player), PlanetInformation.getPlanet("tatooine").getInternalName());
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
+					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, null));
+					StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimTatooineId));
+				}
+				else if (player.capabilities.isCreativeMode)
+				{
+					StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimTatooineId));
+				}
+				else
+				{
+					GuiToast.makeText("No Quest Log!", GuiToast.TIME_SHORT).show();
+				}
 			}
 		}
 		catch (Exception e)

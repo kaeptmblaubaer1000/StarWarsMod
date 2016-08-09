@@ -1,18 +1,19 @@
 package com.parzivail.pswm.tileentities.sensor;
 
 import com.parzivail.pswm.mobs.trooper.*;
+import net.minecraft.entity.EntityLiving;
 
 public class TileEntitySensorStructureImperialHeadquarters extends TileEntitySensorPeoplePlace
 {
 	public TileEntitySensorStructureImperialHeadquarters()
 	{
-		this.rX = 20;
-		this.rY = 20;
-		this.rZ = 20;
-		this.entityMax = 15;
+		this.rX = 30;
+		this.rY = 30;
+		this.rZ = 30;
+		this.entityMax = 8;
 	}
 
-	public MobTrooper getNewTrooper()
+	public MobTrooper getNewEntity()
 	{
 		switch (this.worldObj.rand.nextInt(6))
 		{
@@ -31,5 +32,11 @@ public class TileEntitySensorStructureImperialHeadquarters extends TileEntitySen
 			default:
 				return null;
 		}
+	}
+
+	@Override
+	public Class<? extends EntityLiving> getEntityNeedleClass()
+	{
+		return MobTrooper.class;
 	}
 }

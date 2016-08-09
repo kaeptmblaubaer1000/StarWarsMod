@@ -82,12 +82,6 @@ public class VehicYWing extends VehicleAirBase
 	}
 
 	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnYwing, 1);
-	}
-
-	@Override
 	public String getCommandSenderName()
 	{
 		if (this.hasCustomNameTag())

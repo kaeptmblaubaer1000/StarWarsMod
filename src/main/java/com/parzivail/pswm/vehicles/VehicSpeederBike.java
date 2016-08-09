@@ -1,6 +1,5 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.vehicle.VehicleLandBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,7 +13,7 @@ public class VehicSpeederBike extends VehicleLandBase
 		super(par1World);
 		this.setSize(1.0F, 2.0F);
 		this.vehicYOffset = -0.4F;
-		this.moveModifier = 3.0F;
+		this.moveModifier = 4.5F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
 	}
 
@@ -22,12 +21,6 @@ public class VehicSpeederBike extends VehicleLandBase
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) ? super.interact(p_70085_1_) : false;
-	}
-
-	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		this.dropItem(StarWarsItems.spawnSpeederBike, 1);
 	}
 
 	@Override

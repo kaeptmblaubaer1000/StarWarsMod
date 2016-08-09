@@ -3,6 +3,7 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFollowEntity;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestStats;
@@ -10,6 +11,8 @@ import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
 import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
@@ -28,14 +31,21 @@ public class MobTatooineCommoner extends EntityCreature implements IParziNPC
 	public MobTatooineCommoner(World p_i1748_1_)
 	{
 		super(p_i1748_1_);
+		setSize(0.5F, 1.5F);
 		dw = super.getDataWatcher();
 		this.tasks.addTask(0, aiFollowEntity = new AiFollowEntity(this, null, 0.5f));
+		getNavigator().setEnterDoors(true);
+		this.tasks.addTask(1, new AiFreqMove(this, 0.3f, 20));
+		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 	}
 
 	@Override
-	public boolean isAIEnabled()
+	protected void applyEntityAttributes()
 	{
-		return true;
+		super.applyEntityAttributes();
+		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(50.0D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
 	}
 
 	@Override

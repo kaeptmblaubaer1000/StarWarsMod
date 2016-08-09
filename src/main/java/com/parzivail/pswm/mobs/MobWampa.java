@@ -3,18 +3,18 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class MobWampa extends EntityMob implements IMob
+public class MobWampa extends EntityCreature implements IMob
 {
 	public MobWampa(World par1World)
 	{
@@ -32,7 +32,6 @@ public class MobWampa extends EntityMob implements IMob
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(25.0D);
-		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(15.0D);
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(45.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
 	}

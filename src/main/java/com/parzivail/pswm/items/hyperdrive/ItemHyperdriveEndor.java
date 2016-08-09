@@ -37,7 +37,7 @@ public class ItemHyperdriveEndor extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != ConfigOptions.dimEndorId && world.isRemote)
+			if (player.isSneaking() && player.dimension != ConfigOptions.dimEndorId && world.isRemote && player.capabilities.isCreativeMode)
 			{
 				player.timeUntilPortal = 20;
 				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimEndorId));

@@ -37,7 +37,7 @@ public class ItemHyperdriveKashyyyk extends Item
 	{
 		try
 		{
-			if (player.isSneaking() && player.dimension != ConfigOptions.dimKashyyykId && world.isRemote)
+			if (player.isSneaking() && player.dimension != ConfigOptions.dimKashyyykId && world.isRemote && player.capabilities.isCreativeMode)
 			{
 				player.timeUntilPortal = 20;
 				StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimKashyyykId));

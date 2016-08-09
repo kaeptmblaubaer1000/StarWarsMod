@@ -3,15 +3,11 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
+public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 {
 	private int angerLevel;
 	private Entity angryAt = null;
@@ -55,7 +51,6 @@ public class MobTusken extends EntityMob implements IMob, IRangedAttackMob
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
-		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
 	}
 

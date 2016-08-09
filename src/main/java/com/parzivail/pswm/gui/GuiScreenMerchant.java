@@ -3,7 +3,11 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.network.MessagePlayerBuyItem;
+import com.parzivail.pswm.network.MessageSetQuestLogNbt;
+import com.parzivail.pswm.quest.QuestStats;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.tileentities.TileEntityMV;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
 import com.parzivail.pswm.vehicles.VehicJakkuSpeeder;
@@ -57,6 +61,8 @@ public class GuiScreenMerchant extends GuiScreen
 	Consumer<OutlineButton> fixSaddle;
 	Consumer<OutlineButton> fixBinocs;
 	Consumer<OutlineButton> currentFix = null;
+
+	Consumer<EntityPlayer> onBuyClick = null;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -229,6 +235,8 @@ public class GuiScreenMerchant extends GuiScreen
 		{
 			if (button.id == bBuy.id && bBuy.getCurrentCost() != -1)
 			{
+				if (onBuyClick != null && bBuy.getCurrentCost() <= QuestUtils.getPlayerBronzeCredits(player))
+					onBuyClick.accept(player);
 				StarWarsMod.network.sendToServer(new MessagePlayerBuyItem(player, buyItemStacks, bBuy.getCurrentCost()));
 			}
 			else if (button.id == listBMisc.get("bMiscMV").id)
@@ -238,6 +246,8 @@ public class GuiScreenMerchant extends GuiScreen
 				stackShowing = null;
 				entityShowing = null;
 				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscMV")).tileEntity;
+
+				onBuyClick = null;
 
 				showingTitle = "mv";
 				showingDesc = "water";
@@ -253,6 +263,8 @@ public class GuiScreenMerchant extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscSaddle")).itemStack;
 
+				onBuyClick = null;
+
 				showingTitle = "saddle";
 				showingDesc = "sitty";
 
@@ -266,6 +278,8 @@ public class GuiScreenMerchant extends GuiScreen
 				tileShowing = null;
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscBinocs")).itemStack;
+
+				onBuyClick = null;
 
 				showingTitle = "binocs";
 				showingDesc = "see-y";
@@ -281,10 +295,17 @@ public class GuiScreenMerchant extends GuiScreen
 				stackShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBMisc.get("bShipLandspeeder")).entity;
 
+				onBuyClick = player1 ->
+				{
+					ItemQuestLog.addStat(player1, QuestStats.LICENSE_LANDSPEEDER);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+				};
+
 				showingTitle = "land";
 				showingDesc = "speeder";
 
-				bBuy.setCurrentCost(-1);
+				bBuy.setCurrentCost(256);
+				buyItemStacks = new ItemStack[] {};
 			}
 			else if (button.id == listBMisc.get("bShipjakku").id)
 			{
@@ -294,10 +315,17 @@ public class GuiScreenMerchant extends GuiScreen
 				stackShowing = null;
 				entityShowing = ((OutlineButtonEntity)listBMisc.get("bShipjakku")).entity;
 
+				onBuyClick = player1 ->
+				{
+					ItemQuestLog.addStat(player1, QuestStats.LICENSE_JAKKU_SPEEDER);
+					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+				};
+
 				showingTitle = "jak";
 				showingDesc = "ku";
 
-				bBuy.setCurrentCost(-1);
+				bBuy.setCurrentCost(320);
+				buyItemStacks = new ItemStack[] {};
 			}
 		}
 	}

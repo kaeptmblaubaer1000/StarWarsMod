@@ -1,6 +1,5 @@
 package com.parzivail.pswm.tileentities.sensor;
 
-import com.parzivail.pswm.mobs.trooper.MobTrooper;
 import com.parzivail.pswm.tileentities.TileEntitySensor;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.Lumberjack;
@@ -22,10 +21,10 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 
 	public TileEntitySensorPeoplePlace()
 	{
-		this.rX = 20;
-		this.rY = 20;
-		this.rZ = 20;
-		this.entityMax = 30;
+		this.rX = 30;
+		this.rY = 30;
+		this.rZ = 30;
+		this.entityMax = 15;
 	}
 
 	@Override
@@ -40,15 +39,16 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 		if (!worldObj.isRemote)
 		{
 			List<EntityLiving> entitiesInAabb = this.worldObj.getEntitiesWithinAABB(Entity.class, this.bb.expand(rX, rY, rZ));
-			int troopers = MathUtils.howManyOfType(entitiesInAabb, MobTrooper.class);
+
+			int entities = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClass());
 
 			if (MathUtils.howManyOfType(entitiesInAabb, EntityPlayer.class) > 0) // Uh oh, slaughterer alert!
 			{
 				long currentTime = System.currentTimeMillis();
-				if (currentTime >= nextTime && troopers < entityMax) // The time has come
+				if (currentTime >= nextTime && entities < entityMax) // The time has come
 				{
 					spawnANewOne(); // hit em wit it
-					Lumberjack.log("Spawned one because i think one was killed. Troopers: " + troopers);
+					Lumberjack.log("Spawned one because i think one was killed. entities: " + entities);
 					int n = getRandomTimeNext();
 					nextTime = currentTime + n; // (but not too much)
 					Lumberjack.log("Waiting " + n + "ms...");
@@ -57,10 +57,10 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 			else
 			{
 				// Nobody here, populate!
-				if (troopers < entityMax)
+				if (entities < entityMax)
 				{
 					spawnANewOne();
-					Lumberjack.log("Spawned one because player outside range. Troopers: " + troopers);
+					Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
 				}
 			}
 		}
@@ -77,7 +77,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 		}
 		while (worldObj.getBlock(x, y - 1, z) == Blocks.air && worldObj.getBlock(x, y + 1, z) != Blocks.air);
 
-		MobTrooper entity = getNewTrooper();
+		EntityLiving entity = getNewEntity();
 		entity.setLocationAndAngles(x, y, z, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
 		worldObj.spawnEntityInWorld(entity);
 	}
@@ -87,5 +87,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 		return MathUtils.randomRange(60000, 300000); // between 1 and 5 minutes
 	}
 
-	public abstract MobTrooper getNewTrooper();
+	public abstract EntityLiving getNewEntity();
+
+	public abstract Class<? extends EntityLiving> getEntityNeedleClass();
 }

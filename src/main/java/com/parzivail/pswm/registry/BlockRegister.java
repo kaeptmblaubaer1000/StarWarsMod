@@ -47,6 +47,12 @@ public class BlockRegister
 		StarWarsMod.blockSensorMobDewback = registerWithTileEntity(BlockSensorMobDewback.class, TileEntitySensorMobDewback.class);
 		StarWarsMod.blockSensorMobBantha = registerWithTileEntity(BlockSensorMobBantha.class, TileEntitySensorMobBantha.class);
 		StarWarsMod.blockSensorMobWampa = registerWithTileEntity(BlockSensorMobWampa.class, TileEntitySensorMobWampa.class);
+		StarWarsMod.blockSensorStructureTusken = registerWithTileEntity(BlockSensorTusken.class, TileEntitySensorStructureTusken.class);
+
+		StarWarsMod.blockSensorStructureEwok = registerWithTileEntity(BlockSensorEwok.class, TileEntitySensorStructureEwok.class);
+		StarWarsMod.blockSensorStructureJawa = registerWithTileEntity(BlockSensorJawa.class, TileEntitySensorStructureJawa.class);
+		StarWarsMod.blockSensorStructureTatooineCommoner = registerWithTileEntity(BlockSensorTatooineCommoner.class, TileEntitySensorStructureTatooineCommoner.class);
+		StarWarsMod.blockSensorStructureWookiee = registerWithTileEntity(BlockSensorWookiee.class, TileEntitySensorStructureWookiee.class);
 
 		StarWarsMod.blockSensorRebelMassassi = registerWithTileEntity(BlockSensorRebelMassassi.class, TileEntitySensorStructureRebelMassassi.class);
 		StarWarsMod.blockSensorRebelEcho = registerWithTileEntity(BlockSensorRebelEcho.class, TileEntitySensorStructureRebelEcho.class);

@@ -1,23 +1,18 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.utils.LootGenUtils;
-import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MobJawa extends EntityMob implements IMob
+public class MobJawa extends EntityCreature implements IMob
 {
 	private int angerLevel;
 	private Entity angryAt;
@@ -33,7 +28,6 @@ public class MobJawa extends EntityMob implements IMob
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(0.325D);
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
 	}
@@ -66,20 +60,6 @@ public class MobJawa extends EntityMob implements IMob
 	}
 
 	@Override
-	public void dropFewItems(boolean par1, int par2)
-	{
-		List<WeightedLoot> drop = new ArrayList();
-		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.hiltMetelCompound, 1), LootGenUtils.baseRarity));
-		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.droidCaller, 1), LootGenUtils.baseRarity / 1.2F));
-		drop.add(new WeightedLoot(StarWarsItems.blasterRifle.getMeta("Ionization"), LootGenUtils.baseRarity / 2.0F));
-		switch (rand.nextInt(5))
-		{
-			case 0:
-				entityDropItem(LootGenUtils.getWeightedItemFromList(drop, rand), 0.0F);
-		}
-	}
-
-	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -95,7 +75,7 @@ public class MobJawa extends EntityMob implements IMob
 	@Override
 	public boolean getCanSpawnHere()
 	{
-		return worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL && isValidLightLevel() && rand.nextInt(20) == 0;
+		return true;
 	}
 
 	@Override
@@ -114,12 +94,6 @@ public class MobJawa extends EntityMob implements IMob
 	protected String getLivingSound()
 	{
 		return Resources.MODID + ":" + "mob.jawa.say";
-	}
-
-	@Override
-	protected boolean isValidLightLevel()
-	{
-		return true;
 	}
 
 	@Override
