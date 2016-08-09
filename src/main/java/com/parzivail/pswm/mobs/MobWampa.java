@@ -40,7 +40,7 @@ public class MobWampa extends EntityCreature implements IMob
 	public boolean getCanSpawnHere()
 	{
 		int i = MathHelper.floor_double(boundingBox.minY);
-		if (i >= 63)
+		if (i >= 40)
 			return false;
 		int j = MathHelper.floor_double(posX);
 		int k = MathHelper.floor_double(posZ);
