@@ -156,7 +156,14 @@ public class StarWarsMod
 	public static PBlockContainer blockSensorMobWampa;
 
 	public static PBlockContainer blockSensorRebelMassassi;
+	public static PBlockContainer blockSensorRebelEcho;
+	public static PBlockContainer blockSensorRebelHothGenerator;
+	public static PBlockContainer blockSensorRebelEndor;
+
 	public static PBlockContainer blockSensorImperialHeadquarters;
+	public static PBlockContainer blockSensorImperialEndorShield;
+	public static PBlockContainer blockSensorImperialTatooine;
+	public static PBlockContainer blockSensorImperialHoth;
 
 	public static PBlock blockThorolideOre;
 	public static PBlock blockCortosisOre;

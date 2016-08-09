@@ -1,20 +1,20 @@
 package com.parzivail.pswm.blocks.sensor;
 
 import com.parzivail.pswm.blocks.BlockSensor;
-import com.parzivail.pswm.tileentities.sensor.TileEntitySensorStructureRebelEcho;
+import com.parzivail.pswm.tileentities.sensor.TileEntitySensorStructureRebelEndor;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockSensorRebelEcho extends BlockSensor
+public class BlockSensorRebelEndor extends BlockSensor
 {
-	public BlockSensorRebelEcho()
+	public BlockSensorRebelEndor()
 	{
-		super("rebelEcho");
+		super("rebelEndor");
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntitySensorStructureRebelEcho();
+		return new TileEntitySensorStructureRebelEndor();
 	}
 }
