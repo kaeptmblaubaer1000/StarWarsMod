@@ -8,7 +8,7 @@ public class TileEntitySensorStructureTatooineCommoner extends TileEntitySensorP
 	public TileEntitySensorStructureTatooineCommoner()
 	{
 		this.rX = 30;
-		this.rY = 30;
+		this.rY = 3;
 		this.rZ = 30;
 		this.entityMax = 5;
 	}

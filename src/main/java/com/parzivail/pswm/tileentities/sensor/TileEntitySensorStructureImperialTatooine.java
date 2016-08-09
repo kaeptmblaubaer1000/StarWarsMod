@@ -10,7 +10,7 @@ public class TileEntitySensorStructureImperialTatooine extends TileEntitySensorP
 	public TileEntitySensorStructureImperialTatooine()
 	{
 		this.rX = 30;
-		this.rY = 30;
+		this.rY = 3;
 		this.rZ = 30;
 		this.entityMax = 5;
 	}

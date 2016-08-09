@@ -11,7 +11,7 @@ public class TileEntitySensorStructureRebelEndor extends TileEntitySensorPeopleP
 	public TileEntitySensorStructureRebelEndor()
 	{
 		this.rX = 40;
-		this.rY = 40;
+		this.rY = 3;
 		this.rZ = 40;
 		this.entityMax = 5;
 	}

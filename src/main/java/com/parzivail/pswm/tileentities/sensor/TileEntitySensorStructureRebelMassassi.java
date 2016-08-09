@@ -8,7 +8,7 @@ public class TileEntitySensorStructureRebelMassassi extends TileEntitySensorPeop
 	public TileEntitySensorStructureRebelMassassi()
 	{
 		this.rX = 30;
-		this.rY = 30;
+		this.rY = 3;
 		this.rZ = 30;
 		this.entityMax = 5;
 	}

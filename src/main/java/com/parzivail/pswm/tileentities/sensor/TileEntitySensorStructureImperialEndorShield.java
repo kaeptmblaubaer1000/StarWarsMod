@@ -10,7 +10,7 @@ public class TileEntitySensorStructureImperialEndorShield extends TileEntitySens
 	public TileEntitySensorStructureImperialEndorShield()
 	{
 		this.rX = 20;
-		this.rY = 20;
+		this.rY = 3;
 		this.rZ = 20;
 		this.entityMax = 4;
 	}
