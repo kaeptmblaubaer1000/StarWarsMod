@@ -1,6 +1,7 @@
 package com.parzivail.pswm.dimension.space;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.asteroid.*;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.world.World;
@@ -45,6 +46,8 @@ public class BiomeGenSpace extends BiomeGenPSWM
 	@Override
 	public void decorate(World world, Random par2Random, int chunkX, int chunkZ)
 	{
+		StructureBank.getBaSingStation().spawn(world, chunkX, 125, chunkZ, 0, 0);
+
 		if (MathUtils.oneIn(8))
 		{
 			locY = MathUtils.randomRange(10, 200);

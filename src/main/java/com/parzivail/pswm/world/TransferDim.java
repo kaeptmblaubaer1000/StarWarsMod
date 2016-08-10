@@ -1,6 +1,8 @@
 package com.parzivail.pswm.world;
 
+import com.parzivail.pswm.Resources;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
@@ -47,6 +49,19 @@ public class TransferDim extends Teleporter
 		else
 		{
 			teleportInternal(entity);
+		}
+
+		if (entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)entity;
+			if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimTatooineId)
+			{
+				player.setPositionAndUpdate(0.5f, worldserver.getHeightValue(0, 0), 0.5f);
+			}
+			else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimSpaceId)
+			{
+				player.setPositionAndUpdate(11.5f, 157, 49.5f);
+			}
 		}
 	}
 

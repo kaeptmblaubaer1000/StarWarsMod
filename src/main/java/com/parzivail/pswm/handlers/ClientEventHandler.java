@@ -286,7 +286,6 @@ public class ClientEventHandler
 			if (logInEvent.world.provider.dimensionId == ConfigOptions.dimSpaceId && logInEvent.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) == Blocks.air)
 			{
 				logInEvent.world.setBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ, Blocks.stone);
-				Lumberjack.debug(logInEvent.world.provider.dimensionId);
 			}
 		}
 	}

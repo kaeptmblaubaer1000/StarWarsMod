@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class BiomeGenTatooine extends BiomeGenPSWM
 {
-	private int locY = 0;
+	public int locY = 0;
 
 	public BiomeGenTatooine(int biomeId)
 	{
