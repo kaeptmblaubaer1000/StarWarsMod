@@ -2,7 +2,6 @@ package com.parzivail.pswm.dimension.yavin;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.StructureBank;
-import com.parzivail.pswm.world.gen.WorldGenYavinTempleRuins;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.*;
@@ -52,7 +51,7 @@ public class BiomeGenYavin extends BiomeGenPSWM
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
-			new WorldGenYavinTempleRuins().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			//new WorldGenYavinTempleRuins().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
 		}
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
