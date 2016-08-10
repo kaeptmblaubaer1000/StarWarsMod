@@ -1,7 +1,6 @@
 package com.parzivail.pswm.dimension.yavin;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
-import com.parzivail.pswm.world.StructureBank;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.*;
@@ -74,8 +73,6 @@ public class BiomeGenYavin extends BiomeGenPSWM
 			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
 		}
-
-		StructureBank.yavinTemple.spawn(par1World, chunkX, SPAWN_Y, chunkZ);
 	}
 
 	@Override

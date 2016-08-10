@@ -1,7 +1,7 @@
 package com.parzivail.pswm.dimension.endor;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
-import com.parzivail.pswm.world.gen.*;
+import com.parzivail.pswm.world.gen.WorldGenBetterForest;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
@@ -78,29 +78,6 @@ public class BiomeGenEndor extends BiomeGenPSWM
 				case 2:
 					new WorldGenShrub(2, 0).generate(par1World, par2Random, k, i1, l);
 			}
-		}
-
-		int k = chunkX + par2Random.nextInt(16) + 8;
-		int l = chunkZ + par2Random.nextInt(16) + 8;
-		int i1 = par1World.getHeightValue(k, l);
-
-		if (i1 < 30 || par2Random.nextInt(4) != 0)
-			return;
-
-		switch (par2Random.nextInt(4))
-		{
-			case 0:
-				new WorldGenEndorTree1().generate(par1World, par2Random, k, i1, l);
-				break;
-			case 1:
-				new WorldGenEndorTree2().generate(par1World, par2Random, k, i1, l);
-				break;
-			case 2:
-				new WorldGenEndorTree3().generate(par1World, par2Random, k, i1, l);
-				break;
-			case 3:
-				new WorldGenEndorTree4().generate(par1World, par2Random, k, i1, l);
-				break;
 		}
 	}
 }

@@ -135,15 +135,19 @@ public class Schematic
 		return blockInfos.length;
 	}
 
-	public void spawn(World world, int chunkX, int spawnY, int chunkZ)
+	public void spawn(World world, int chunkX, int spawnY, int chunkZ, int posChunkX, int posChunkZ)
 	{
-		if (chunkX >= 0 && chunkX < width && chunkZ >= 0 && chunkZ < length)
+		int pX = posChunkX * 16;
+		int pZ = posChunkZ * 16;
+		int fCX = (chunkX - pX);
+		int fCZ = (chunkZ - pZ);
+		if (fCX >= 0 && fCX < width && fCZ >= 0 && fCZ < length)
 		{
-			int nX = Math.min(chunkX + 16, width - 1);
-			int nZ = Math.min(chunkZ + 16, length - 1);
+			int nX = Math.min(fCX + 16, width - 1);
+			int nZ = Math.min(fCZ + 16, length - 1);
 
-			for (int x = chunkX; x < nX; x++)
-				for (int z = chunkZ; z < nZ; z++)
+			for (int x = fCX; x < nX; x++)
+				for (int z = fCZ; z < nZ; z++)
 					for (int y = 0; y < height; y++)
 					{
 						BlockInfo bi = getBlockAt(x, y, z);
@@ -152,10 +156,10 @@ public class Schematic
 							Block b = pack.blockMap.get((int)bi.block);
 							if (b != null)
 							{
-								WorldUtils.b(world, x, y + spawnY, z, b, bi.metadata);
-								WorldUtils.m(world, x, y + spawnY, z, bi.metadata);
+								WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, bi.metadata);
+								WorldUtils.m(world, pX + x, y + spawnY, pZ + z, bi.metadata);
 
-								// TODO: tile entities and entity spawns
+								// TODO: lever-chest spawns
 
 								// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
 
@@ -164,10 +168,10 @@ public class Schematic
 									NBTTagCompound compound = getTileNbtAt(x, y, z);
 									if (compound != null)
 									{
-										TileEntity t = world.getTileEntity(x, y + spawnY, z);
-										compound.setInteger("x", x);
+										TileEntity t = world.getTileEntity(pX + x, y + spawnY, pZ + z);
+										compound.setInteger("x", pX + x);
 										compound.setInteger("y", y + spawnY);
-										compound.setInteger("z", z);
+										compound.setInteger("z", pZ + z);
 										if (t != null)
 										{
 											t.readFromNBT(compound);

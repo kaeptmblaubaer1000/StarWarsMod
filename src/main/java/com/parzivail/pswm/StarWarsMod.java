@@ -419,7 +419,7 @@ public class StarWarsMod
 
 		DamageSourceRegister.registerAll();
 
-		StructureBank.loadAll();
+		StructureBank.loadBlockMaps();
 
 		proxy.registerRendering();
 
