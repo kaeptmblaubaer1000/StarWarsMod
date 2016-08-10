@@ -2,7 +2,6 @@ package com.parzivail.pswm.tileentities.sensor;
 
 import com.parzivail.pswm.tileentities.TileEntitySensor;
 import com.parzivail.util.math.MathUtils;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,10 +47,10 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 				if (currentTime >= nextTime && entities < entityMax) // The time has come
 				{
 					spawnANewOne(); // hit em wit it
-					Lumberjack.log("Spawned one because i think one was killed. entities: " + entities);
+					//Lumberjack.log("Spawned one because i think one was killed. entities: " + entities);
 					int n = getRandomTimeNext();
 					nextTime = currentTime + n; // (but not too much)
-					Lumberjack.log("Waiting " + n + "ms...");
+					//Lumberjack.log("Waiting " + n + "ms...");
 				}
 			}
 			else
@@ -60,7 +59,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 				if (entities < entityMax)
 				{
 					spawnANewOne();
-					Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
+					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
 				}
 			}
 		}
