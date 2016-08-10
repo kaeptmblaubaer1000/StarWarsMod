@@ -1,10 +1,10 @@
 package com.parzivail.pswm.quest;
 
 import com.parzivail.pswm.quest.imperial.*;
-import com.parzivail.pswm.quest.jedi.Jedi1_1;
-import com.parzivail.pswm.quest.jedi.Jedi1_2;
+import com.parzivail.pswm.quest.jedi.Jedi1;
 import com.parzivail.pswm.quest.jedi.Jedi2;
 import com.parzivail.pswm.quest.jedi.Jedi3;
+import com.parzivail.pswm.quest.jedi.JediObiWan;
 import com.parzivail.pswm.quest.rebel.*;
 import com.parzivail.pswm.quest.sith.Sith1;
 import com.parzivail.pswm.quest.sith.Sith2;
@@ -15,6 +15,9 @@ public class QuestBank
 {
 	public static Quest questNotAvailable = new QuestNotAvailable();
 	public static Quest noQuestLog = new QuestNoQuestLog();
+
+	public static Quest questNotAvailableYoda = new QuestNotAvailableYoda();
+	public static Quest noQuestLogYoda = new QuestNoQuestLogYoda();
 
 	public static Quest rebelRecruit = new RebelRecruit();
 	public static Quest empireRecruit = new ImperialRecruit();
@@ -58,8 +61,8 @@ public class QuestBank
 	public static Quest imperial10_1 = new Imperial10_1();
 	public static Quest imperial10_2 = new Imperial10_2();
 
-	public static Quest jedi1_1 = new Jedi1_1();
-	public static Quest jedi1_2 = new Jedi1_2();
+	public static Quest jediObiWan = new JediObiWan();
+	public static Quest jedi1 = new Jedi1();
 	public static Quest jedi2 = new Jedi2();
 	public static Quest jedi3 = new Jedi3();
 
@@ -68,7 +71,7 @@ public class QuestBank
 	public static Quest sith3 = new Sith3();
 	public static Quest sith3_PostSaber = new Sith3_PostSaber();
 
-	public static Quest[] quests = { rebel0, rebel1, rebel2, rebel3, rebel4, rebel5, rebel6, rebel6_PostEndor, rebel7, rebel8, rebel8_PostArmor, rebel8_Yavin, rebel9, rebel10, rebel10_Over, imperial0, imperial1, imperial2, imperial3_2, imperial3_1, imperial4_1, imperial4_2, imperial4_3, imperial5, imperial6_1, imperial6_2, imperial6_3, imperial7, imperial8_1, imperial8_2, imperial8_3, imperial9, imperial10_1, imperial10_2, jedi1_1, jedi1_2, jedi2, jedi3, sith1, sith2, sith3, sith3_PostSaber };
+	public static Quest[] quests = { rebel0, rebel1, rebel2, rebel3, rebel4, rebel5, rebel6, rebel6_PostEndor, rebel7, rebel8, rebel8_PostArmor, rebel8_Yavin, rebel9, rebel10, rebel10_Over, imperial0, imperial1, imperial2, imperial3_2, imperial3_1, imperial4_1, imperial4_2, imperial4_3, imperial5, imperial6_1, imperial6_2, imperial6_3, imperial7, imperial8_1, imperial8_2, imperial8_3, imperial9, imperial10_1, imperial10_2, jedi1, jedi2, jedi3, sith1, sith2, sith3, sith3_PostSaber };
 
 	public static Quest getQuestByName(String name)
 	{

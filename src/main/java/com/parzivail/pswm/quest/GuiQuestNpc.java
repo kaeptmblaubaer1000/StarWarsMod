@@ -3,7 +3,9 @@ package com.parzivail.pswm.quest;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.rendering.RenderHuman;
+import com.parzivail.pswm.rendering.RenderNpcYoda;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpcYoda;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
@@ -31,6 +33,7 @@ public class GuiQuestNpc extends GuiScreen
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/parzi.png");
 
 	private final RenderHuman biped;
+	private final RenderNpcYoda yoda;
 
 	private EntityPlayer player;
 	private TileEntityStaticNpc questGiver;
@@ -50,6 +53,7 @@ public class GuiQuestNpc extends GuiScreen
 	public GuiQuestNpc(Quest quest, EntityPlayer player, TileEntityStaticNpc questGiver)
 	{
 		this.biped = new RenderHuman(texture);
+		this.yoda = new RenderNpcYoda();
 		biped.setRenderManager(RenderManager.instance);
 
 		this.mc = Minecraft.getMinecraft();
@@ -114,7 +118,7 @@ public class GuiQuestNpc extends GuiScreen
 		for (String line : words)
 			this.drawCenteredString(this.mc.fontRenderer, line.substring(0, (int)(line.length() * ((float)ticker.getTick() / ticker.getLength()))), x, (yy += this.mc.fontRenderer.FONT_HEIGHT), GLPalette.WHITE);
 
-		if (questGiver != null && questGiver.getInternalEntity() != null)
+		if (questGiver instanceof TileEntityStaticNpc && !(questGiver instanceof TileEntityStaticNpcYoda) && questGiver.getInternalEntity() != null)
 		{
 			GL11.glPushMatrix();
 			GL11.glEnable(GL11.GL_LIGHTING);
@@ -143,6 +147,11 @@ public class GuiQuestNpc extends GuiScreen
 		{
 			case Resources.allegianceJediFmt:
 				GFX.drawTexture(0, 0, 0, 26, 16, 16);
+				if (questGiver instanceof TileEntityStaticNpcYoda)
+				{
+					GL11.glTranslatef(-123, 0, 0);
+					GFX.drawTexture(0, 0, 0, 26, 16, 16);
+				}
 				break;
 			case Resources.allegianceSithFmt:
 				GFX.drawTexture(0, 0, 17, 26, 16, 16);

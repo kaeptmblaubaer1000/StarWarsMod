@@ -108,6 +108,9 @@ public class QuestUtils
 				entity.setCurrentItemOrArmor(2, new ItemStack(StarWarsItems.rebelYPilotLegs, 1));
 				entity.setCurrentItemOrArmor(1, new ItemStack(StarWarsItems.rebelYPilotBoots, 1));
 				break;
+			case "robes":
+				entity.setCurrentItemOrArmor(3, new ItemStack(StarWarsItems.jediRobes, 1));
+				break;
 		}
 		/*
 		GFX.drawTextShadow(mc.fontRenderer, String.valueOf(QuestUtils.countCredits()), 17, 17, 1, GLPalette.SW_YELLOW);

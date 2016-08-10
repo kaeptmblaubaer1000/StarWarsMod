@@ -1,11 +1,17 @@
 package com.parzivail.pswm.quest.sith;
 
+import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.sith1;
 import static com.parzivail.util.ui.TextUtils.makeObfuscated;
 
 /**
@@ -16,7 +22,7 @@ public class Sith2 extends Quest
 	public Sith2()
 	{
 		this.tree = new DialogTree();
-		this.tree.npcHeader = "So you have returned, with the Sith Holocron no less. Do you sense it's power?";
+		this.tree.npcHeader = "So you have returned, with the Sith Artifact no less. Do you sense it's power?";
 		this.tree.response1 = "Yes, I can feel a heat flowing through me, an ancient power awakening inside of my mind.";
 		this.tree.response1DT = new DialogTree();
 		this.tree.response1DT.npcHeader = "Good, good. Let it flow through you, invite The Dark Side into your heart and let it feed your mind. That is the first step towards becoming an Apprentice.";
@@ -37,7 +43,7 @@ public class Sith2 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && sith1.isQuestComplete(player) && ItemUtils.hasItems(player, new ItemStack(StarWarsItems.sithArtifact, 1));
 	}
 
 	@Override
@@ -49,6 +55,7 @@ public class Sith2 extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.jediRobes, 1, 1), true));
 		return isQuestDone(player, this);
 	}
 

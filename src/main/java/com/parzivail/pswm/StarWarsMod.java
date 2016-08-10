@@ -241,13 +241,14 @@ public class StarWarsMod
 	public static PBlockContainer blockStaticNpcRebelTantor;
 	public static PBlockContainer blockStaticNpcRebelDreis;
 	public static PBlockContainer blockStaticNpcRecruiterRebel;
+
 	public static PBlockContainer blockStaticNpcImperialCody;
 	public static PBlockContainer blockStaticNpcImperialDaala;
 	public static PBlockContainer blockStaticNpcImperialFurgan;
 	public static PBlockContainer blockStaticNpcImperialVeers;
 	public static PBlockContainer blockStaticNpcRecruiterEmpire;
-	public static PBlockContainer blockStaticNpcRebelYavinQuartermaster;
 
+	public static PBlockContainer blockStaticNpcRebelYavinQuartermaster;
 	public static PBlockContainer blockStaticNpcEmpireEndorQuartermaster;
 
 	public static PBlockContainer blockStaticNpcMerchant;
@@ -256,6 +257,11 @@ public class StarWarsMod
 	public static PBlockContainer blockStaticNpcCorellian;
 
 	public static PBlockContainer blockStaticNpcJawaQuartermaster;
+
+	public static PBlockContainer blockStaticNpcYoda;
+	public static PBlockContainer blockStaticNpcObiWan;
+
+	public static PBlockContainer blockStaticNpcSith;
 
 	public static Block blockHyperdrive;
 

@@ -233,6 +233,8 @@ public class StarWarsItems
 
 	public static Item leiasBuns;
 
+	public static Item sithArtifact;
+
 	public static Item holocron;
 
 	public static Item questContainer;

@@ -79,6 +79,9 @@ public class ItemRegister
 		StarWarsItems.holocron = new ItemHolocron();
 		GameRegistry.registerItem(StarWarsItems.holocron, "holocron");
 
+		StarWarsItems.sithArtifact = new ItemSithArtifact();
+		GameRegistry.registerItem(StarWarsItems.sithArtifact, "sithArtifact");
+
 		StarWarsItems.questContainer = new ItemQuestLog();
 		GameRegistry.registerItem(StarWarsItems.questContainer, "questContainer");
 

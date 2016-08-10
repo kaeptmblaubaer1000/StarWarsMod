@@ -51,7 +51,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
-			new WorldGenEndorBase().generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			//gen endor base
 		}
 
 		for (int j = 0; j < this.theBiomeDecorator.grassPerChunk; j++)

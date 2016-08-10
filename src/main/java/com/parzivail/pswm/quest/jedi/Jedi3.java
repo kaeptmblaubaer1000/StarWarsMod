@@ -1,11 +1,14 @@
 package com.parzivail.pswm.quest.jedi;
 
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.jedi2;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -72,7 +75,7 @@ public class Jedi3 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && jedi2.isQuestComplete(player) && ItemUtils.hasAnyOfType(player, ItemLightsaber.class);
 	}
 
 	@Override

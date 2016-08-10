@@ -192,6 +192,15 @@ public class BlockRegister
 		StarWarsMod.blockStaticNpcRecruiterEmpire = new BlockNpcRecruiterEmpire();
 		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRecruiterEmpire, "blockStaticNpcRecruiterEmpire");
 
+		StarWarsMod.blockStaticNpcYoda = new BlockNpcJediYoda();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcYoda, "blockStaticNpcYoda");
+
+		StarWarsMod.blockStaticNpcObiWan = new BlockNpcJediObiWan();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcObiWan, "blockStaticNpcObiWan");
+
+		StarWarsMod.blockStaticNpcSith = new BlockNpcSith();
+		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcSith, "blockStaticNpcSith");
+
 		StarWarsMod.blockStaticNpcRebelYavinQuartermaster = new BlockNpcRebelYavinQuartermaster();
 		GameRegistry.registerBlock(StarWarsMod.blockStaticNpcRebelYavinQuartermaster, "blockStaticNpcRebelYavinQuartermaster");
 
@@ -215,6 +224,7 @@ public class BlockRegister
 
 		GameRegistry.registerTileEntity(TileEntityStaticNpc.class, "teStaticNpc");
 		GameRegistry.registerTileEntity(TileEntityStaticNpcJawa.class, "teStaticNpcJawa");
+		GameRegistry.registerTileEntity(TileEntityStaticNpcYoda.class, "teStaticNpcYoda");
 
 		StarWarsMod.blockBasket = new BlockBasket();
 		GameRegistry.registerBlock(StarWarsMod.blockBasket, "basket");

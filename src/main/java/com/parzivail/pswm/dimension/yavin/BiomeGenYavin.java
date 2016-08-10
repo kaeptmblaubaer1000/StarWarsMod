@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class BiomeGenYavin extends BiomeGenPSWM
 {
-	private static final int SPAWN_Y = 10;
+	private static final int SPAWN_Y = 9;
 
 	public BiomeGenYavin(int biomeId)
 	{

@@ -276,6 +276,6 @@ public class Resources
 
 	public static final String skinDefault = "default";
 
-	//                                      0             1            2             3               4              5              6               7           8            9             10            11
-	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot", "aWingPilot", "yWingPilot", "shadowtrooper" };
+	//                                      0             1            2             3               4              5              6               7           8            9             10            11               12
+	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot", "aWingPilot", "yWingPilot", "shadowtrooper", "robes" };
 }

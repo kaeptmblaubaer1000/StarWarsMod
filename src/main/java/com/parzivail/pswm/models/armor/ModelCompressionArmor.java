@@ -3,7 +3,7 @@ package com.parzivail.pswm.models.armor;
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemArmor;
@@ -53,7 +53,7 @@ public class ModelCompressionArmor extends ModelBiped
 		}
 	}
 
-	protected void adjustEL(EntityLiving entity, ItemStack stack, float p)
+	protected void adjustEL(EntityLivingBase entity, ItemStack stack, float p)
 	{
 		this._model.heldItemRight = stack != null ? 1 : 0;
 		this._model.isSneak = entity.isSneaking();
@@ -84,9 +84,9 @@ public class ModelCompressionArmor extends ModelBiped
 				this._model.render(entity, f, f1, f2, f3, f4, f5);
 			}
 		}
-		else if (entity instanceof EntityLiving)
+		else if (entity instanceof EntityLivingBase)
 		{
-			EntityLiving el = (EntityLiving)entity;
+			EntityLivingBase el = (EntityLivingBase)entity;
 			this.adjustEL(el, el.getEquipmentInSlot(0), f5);
 			StarWarsMod.mc.renderEngine.bindTexture(a);
 			this._model.render(entity, f, f1, f2, f3, f4, f5);

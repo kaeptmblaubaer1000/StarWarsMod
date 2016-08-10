@@ -33,6 +33,7 @@ public class EntityRegister
 		EntityUtils.registerWithSpawnEgg(MobBountyhunter.class, "bountyhunter", 0x3EA877, 0x9CBD8F);
 
 		EntityUtils.registerEntity(MobDefaultBiped.class, "defaultBiped");
+		EntityUtils.registerEntity(MobYodaBiped.class, "yodaBiped");
 
 		EntityUtils.registerWithSpawnEgg(MobWookiee.class, "wookiee", 9916186, 3940362);
 		EntityUtils.registerWithSpawnEgg(MobTusken.class, "tusken", 16776627, 6184522);

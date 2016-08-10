@@ -2,7 +2,6 @@ package com.parzivail.pswm.dimension.dagobah;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
-import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.block.Block;
@@ -76,7 +75,7 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 		//else if (chunkX == 64 && chunkZ == 32)
 		//	new WorldGenYodaTree_2_1().generate(par1World, chunkX, this.structureY, chunkZ);
 
-		StructureBank.yodaTree.spawn(par1World, chunkX, structureY, chunkZ);
+		//StructureBank.yodaTree.spawn(par1World, chunkX, structureY, chunkZ);
 
 		if (chunkX >= 0 && chunkX <= 64 && chunkZ >= 0 && chunkZ <= 64)
 		{

@@ -1,11 +1,14 @@
 package com.parzivail.pswm.quest.sith;
 
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
+import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.sith3;
 import static com.parzivail.util.ui.TextUtils.makeObfuscated;
 
 /**
@@ -46,7 +49,7 @@ public class Sith3_PostSaber extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this);
+		return !isQuestDone(player, this) && sith3.isQuestComplete(player) && ItemUtils.hasAnyOfType(player, ItemLightsaber.class);
 	}
 
 	@Override
@@ -76,6 +79,6 @@ public class Sith3_PostSaber extends Quest
 	@Override
 	public String getID()
 	{
-		return "The Weapon of a Sith";
+		return " The Weapon of a Sith ";
 	}
 }

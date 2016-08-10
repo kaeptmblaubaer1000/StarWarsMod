@@ -3,8 +3,6 @@ package com.parzivail.pswm.dimension.tatooine;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
 import com.parzivail.pswm.world.gen.WorldGenMV;
-import com.parzivail.pswm.world.gen.WorldGenSuperTatooineHomestead;
-import com.parzivail.pswm.world.gen.WorldGenTatooineHomestead;
 import com.parzivail.pswm.world.gen.moseisleynew.*;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
@@ -55,8 +53,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			WorldGenSuperTatooineHomestead worldGenSuperHomestead = new WorldGenSuperTatooineHomestead();
-			worldGenSuperHomestead.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			//gen super homestead
 		}
 		if (par2Random.nextInt(30) == 0)
 		{
@@ -69,8 +66,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			WorldGenTatooineHomestead worldGenHomestead = new WorldGenTatooineHomestead();
-			worldGenHomestead.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) - 3, l);
+			//gen normal homestead
 		}
 	}
 

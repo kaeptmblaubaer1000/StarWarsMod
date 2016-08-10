@@ -98,6 +98,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman());
 
 		RenderingRegistry.registerEntityRenderingHandler(MobDefaultBiped.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobYodaBiped.class, new RenderNpcYoda());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, new RenderPPlayer());
 
@@ -207,6 +208,10 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockTable2), new RenderBlockMudTable());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockMV), new RenderBlockMV());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpc.class, new RenderStaticNpc());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpcJawa.class, new RenderStaticNpcJawa());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpcYoda.class, new RenderStaticNpcYoda());
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new RenderAntenna());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
@@ -219,8 +224,6 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFieldEmitter.class, new RenderFieldEmitter());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBactaTank.class, new RenderBactaTank());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientJediStatue.class, new RenderAncientJediStatue());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpc.class, new RenderStaticNpc());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStaticNpcJawa.class, new RenderStaticNpcJawa());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHyperdrive.class, new RenderHyperdrive());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightsaberForge.class, new RenderLightsaberForge());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrystalCompressor.class, new RenderCrystalCompressor());

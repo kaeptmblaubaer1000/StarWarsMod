@@ -112,4 +112,12 @@ public class ItemUtils
 				r += player.inventory.mainInventory[i].stackSize;
 		return r;
 	}
+
+	public static boolean hasAnyOfType(EntityPlayer player, Class<? extends Item> itemClass)
+	{
+		for (int i = 0; i < player.inventory.mainInventory.length; ++i)
+			if (player.inventory.mainInventory[i] != null && itemClass.isInstance(player.inventory.mainInventory[i].getItem()))
+				return true;
+		return false;
+	}
 }

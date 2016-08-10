@@ -175,7 +175,8 @@ public class CommonEventHandler
 					StarWarsMod.shipSpecialWeaponCooldown = 200;
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer) != null)
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
@@ -186,7 +187,8 @@ public class CommonEventHandler
 					String stat = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber ? QuestStats.BOMBS_DROPPED_EMPIRE : QuestStats.BOMBS_DROPPED_REBEL;
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, stat);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer) != null)
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
 				}
 			}
 		}
@@ -400,8 +402,7 @@ public class CommonEventHandler
 				if (ItemLightsaber.isOn(event.player.getCurrentEquippedItem()))
 				{
 					int blockX = MathHelper.floor_double(event.player.posX);
-					int blockY = MathHelper.floor_double(event.player.posY - 0.2D -
-							event.player.getYOffset());
+					int blockY = MathHelper.floor_double(event.player.posY - 0.2D - event.player.getYOffset());
 					int blockZ = MathHelper.floor_double(event.player.posZ);
 
 					if (event.player.worldObj.getBlock(blockX, blockY, blockZ) == Blocks.air)
@@ -551,7 +552,8 @@ public class CommonEventHandler
 	private void updateDeflect(PowerDeflect power1)
 	{
 		if (power1.isRunning)
-			StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entityObj -> {
+			StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entityObj ->
+			{
 				Entity entity = (Entity)entityObj;
 				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
 			});
