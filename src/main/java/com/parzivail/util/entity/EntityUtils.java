@@ -169,7 +169,7 @@ public class EntityUtils
 	}
 
 	/**
-	 * Registers an Entity with FML, and creates a spawn egg
+	 * Registers an Entity with FML, and creates a genComposite egg
 	 *
 	 * @param mobClass The class to register
 	 * @param mobName  The name of the entity

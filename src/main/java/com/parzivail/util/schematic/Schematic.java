@@ -135,7 +135,7 @@ public class Schematic
 		return blockInfos.length;
 	}
 
-	public void spawn(World world, int chunkX, int spawnY, int chunkZ, int posChunkX, int posChunkZ)
+	public void genComposite(World world, int chunkX, int spawnY, int chunkZ, int posChunkX, int posChunkZ)
 	{
 		int pX = posChunkX * 16;
 		int pZ = posChunkZ * 16;

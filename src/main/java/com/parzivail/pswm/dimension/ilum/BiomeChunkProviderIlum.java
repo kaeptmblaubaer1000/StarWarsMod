@@ -331,7 +331,7 @@ public class BiomeChunkProviderIlum extends ChunkProviderGenerate
 	}
 
 	/**
-	 * Returns a list of creatures of the specified type that can spawn at the
+	 * Returns a list of creatures of the specified type that can genComposite at the
 	 * given location.
 	 */
 	@Override

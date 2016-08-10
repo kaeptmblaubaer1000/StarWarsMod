@@ -1,8 +1,9 @@
 package com.parzivail.pswm.world;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
@@ -43,25 +44,32 @@ public class TransferDim extends Teleporter
 		if (entity.ridingEntity != null)
 		{
 			teleport(entity.ridingEntity);
-			teleportInternal(entity);
 			entity.mountEntity(null);
+			teleportInternal(entity);
 		}
 		else
 		{
 			teleportInternal(entity);
+			if (entity instanceof EntityLivingBase)
+				putInRightPlace((EntityLivingBase)entity);
+			if (entity instanceof VehicleAirBase)
+			{
+				VehicleAirBase vehicleAirBase = (VehicleAirBase)entity;
+				vehicleAirBase.setRealPitch(-90);
+				vehicleAirBase.setRealYaw(0);
+			}
 		}
+	}
 
-		if (entity instanceof EntityPlayer)
+	public void putInRightPlace(EntityLivingBase entity)
+	{
+		if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimTatooineId)
 		{
-			EntityPlayer player = (EntityPlayer)entity;
-			if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimTatooineId)
-			{
-				player.setPositionAndUpdate(0.5f, worldserver.getHeightValue(0, 0), 0.5f);
-			}
-			else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimSpaceId)
-			{
-				player.setPositionAndUpdate(11.5f, 157, 49.5f);
-			}
+			entity.setPositionAndUpdate(0.5f, worldserver.getHeightValue(0, 0), 0.5f);
+		}
+		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimSpaceId)
+		{
+			entity.setPositionAndUpdate(11.5f, 157, 49.5f);
 		}
 	}
 

@@ -54,6 +54,6 @@ public class BiomeGenHoth extends BiomeGenPSWM
 			//gen hoth generator
 		}
 
-		//StructureBank.ilumTemple.spawn(par1World, chunkX, 1, chunkZ);
+		//StructureBank.ilumTemple.genComposite(par1World, chunkX, 1, chunkZ);
 	}
 }

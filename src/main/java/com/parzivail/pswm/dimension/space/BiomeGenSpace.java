@@ -46,7 +46,7 @@ public class BiomeGenSpace extends BiomeGenPSWM
 	@Override
 	public void decorate(World world, Random par2Random, int chunkX, int chunkZ)
 	{
-		StructureBank.getBaSingStation().spawn(world, chunkX, 125, chunkZ, 0, 0);
+		StructureBank.getBaSingStation().genComposite(world, chunkX, 125, chunkZ, 0, 0);
 
 		if (MathUtils.oneIn(8))
 		{

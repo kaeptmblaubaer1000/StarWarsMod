@@ -38,7 +38,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
@@ -281,11 +280,6 @@ public class ClientEventHandler
 				if (player.worldObj.isRemote)
 					new AnimationHyperspace(3500, true).start();
 				ItemQuestLog.setInHyperspace(qlog, false);
-			}
-
-			if (logInEvent.world.provider.dimensionId == ConfigOptions.dimSpaceId && logInEvent.world.getBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ) == Blocks.air)
-			{
-				logInEvent.world.setBlock((int)player.posX, (int)player.posY - 1, (int)player.posZ, Blocks.stone);
 			}
 		}
 	}

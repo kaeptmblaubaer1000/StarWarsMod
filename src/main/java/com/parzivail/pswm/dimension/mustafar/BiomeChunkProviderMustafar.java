@@ -613,7 +613,7 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 	}
 
 	/**
-	 * Returns a list of creatures of the specified type that can spawn at the
+	 * Returns a list of creatures of the specified type that can genComposite at the
 	 * given location.
 	 */
 	public List getPossibleCreatures(EnumCreatureType p_73155_1_, int p_73155_2_, int p_73155_3_, int p_73155_4_)

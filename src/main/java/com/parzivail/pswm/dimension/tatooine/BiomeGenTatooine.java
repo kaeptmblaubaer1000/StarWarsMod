@@ -49,7 +49,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		StructureBank.getMosEisley().spawn(par1World, chunkX, locY, chunkZ, 2, 2);
+		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY, chunkZ, 2, 2);
 
 		if (par2Random.nextInt(400) == 0)
 		{
