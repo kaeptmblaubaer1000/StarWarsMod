@@ -124,6 +124,7 @@ public class StarWarsMod
 	public static PBlock blockIlumStone;
 	public static PBlock blockSpaceLamp;
 	public static PBlock blockDagobahMud;
+	public static PBlock blockHardpackSnow;
 	public static PBlockContainer blockHangingCauldron;
 	public static PBlockContainer blockHangingBucket;
 	public static PBlockContainer blockBasket;

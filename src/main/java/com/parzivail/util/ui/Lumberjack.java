@@ -46,6 +46,16 @@ public class Lumberjack
 	}
 
 	/**
+	 * Prints a message to log
+	 *
+	 * @param message The message to print
+	 */
+	public static void log(Object message, Object... params)
+	{
+		info(String.format(String.valueOf(message), params));
+	}
+
+	/**
 	 * Prints a message to log only
 	 *
 	 * @param message The message to print

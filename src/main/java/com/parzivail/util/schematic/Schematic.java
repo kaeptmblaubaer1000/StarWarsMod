@@ -5,6 +5,7 @@ package com.parzivail.util.schematic;
  */
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockGunRack;
 import com.parzivail.pswm.world.NbtBlockMap;
 import com.parzivail.util.ui.Lumberjack;
@@ -12,6 +13,7 @@ import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -159,6 +161,8 @@ public class Schematic
 							Block b = pack.blockMap.get((int)bi.block);
 							if (b != null)
 							{
+								if (b == Blocks.snow)
+									b = StarWarsMod.blockHardpackSnow;
 								WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, bi.metadata);
 								WorldUtils.m(world, pX + x, y + spawnY, pZ + z, bi.metadata);
 
@@ -171,28 +175,28 @@ public class Schematic
 									NBTTagCompound compound = getTileNbtAt(x, y, z);
 									if (compound != null)
 									{
+										NBTTagCompound newTile = (NBTTagCompound)compound.copy();
 										TileEntity t = world.getTileEntity(pX + x, y + spawnY, pZ + z);
 										if (t != null)
 										{
-											compound.setInteger("x", pX + x);
-											compound.setInteger("y", y + spawnY);
-											compound.setInteger("z", pZ + z);
+											newTile.setInteger("x", pX + x);
+											newTile.setInteger("y", y + spawnY);
+											newTile.setInteger("z", pZ + z);
 
 											// reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
 											if (b instanceof BlockGunRack)
 											{
-												NBTTagList nbttaglist = compound.getTagList("guns", 10);
+												NBTTagList nbttaglist = newTile.getTagList("guns", 10);
 												NBTTagList newList = fixItemStacks(nbttaglist);
-												compound.setTag("guns", newList);
+												newTile.setTag("guns", newList);
 											}
 											else if (b instanceof BlockChest)
 											{
-												NBTTagList nbttaglist = compound.getTagList("Items", 10);
+												NBTTagList nbttaglist = newTile.getTagList("Items", 10);
 												NBTTagList newList = fixItemStacks(nbttaglist);
-												compound.setTag("Items", newList);
+												newTile.setTag("Items", newList);
 											}
-
-											t.readFromNBT(compound);
+											t.readFromNBT(newTile);
 										}
 									}
 								}
@@ -209,7 +213,7 @@ public class Schematic
 		{
 			NBTTagCompound item = nbttaglist.getCompoundTagAt(i);
 			int oldId = item.getInteger("id");
-			int newId = pack.translateId(oldId);
+			int newId = pack.translateItemId(oldId);
 			item.setInteger("id", newId);
 			newList.appendTag(item);
 		}

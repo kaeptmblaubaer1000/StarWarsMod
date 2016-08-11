@@ -319,6 +319,9 @@ public class BlockRegister
 		StarWarsMod.blockDagobahMud = new BlockDagobahMud();
 		GameRegistry.registerBlock(StarWarsMod.blockDagobahMud, "dagobahMud");
 
+		StarWarsMod.blockHardpackSnow = new BlockUnmeltingSnow();
+		GameRegistry.registerBlock(StarWarsMod.blockHardpackSnow, "blockHardpackSnow");
+
 		StarWarsMod.blockEndorBaseWall = new BlockEndorBaseWall();
 		GameRegistry.registerBlock(StarWarsMod.blockEndorBaseWall, ItemEndorBaseWall.class, "endorBaseWall");
 
