@@ -49,12 +49,13 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(400) == 0)
+		if (par2Random.nextInt(1000) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			//gen super homestead
+			StructureBank.getHomesteadBig().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
 		}
+
 		if (par2Random.nextInt(30) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -62,14 +63,35 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 			WorldGenMV worldGenMV = new WorldGenMV();
 			worldGenMV.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 2, l);
 		}
-		if (par2Random.nextInt(300) == 0)
+
+		if (par2Random.nextInt(800) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			//gen normal homestead
+			StructureBank.getHomestead().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 4, chunkZ);
 		}
 
-		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY, chunkZ, 2, 2);
+		if (par2Random.nextInt(800) == 0)
+		{
+			int k = chunkX + par2Random.nextInt(16) + 8;
+			int l = chunkZ + par2Random.nextInt(16) + 8;
+			StructureBank.getEscapePod().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+		}
+
+		if (par2Random.nextInt(800) == 0)
+		{
+			int k = chunkX + par2Random.nextInt(16) + 8;
+			int l = chunkZ + par2Random.nextInt(16) + 8;
+			StructureBank.getSandCrawler().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
+		}
+
+		if (par2Random.nextInt(900) == 0)
+		{
+			StructureBank.getTuskenVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+		}
+
+		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY - 3, chunkZ, 2, 2);
 		StructureBank.getObiWanHut().genComposite(par1World, chunkX, locY, chunkZ, -15, -15);
+		StructureBank.getImperialTatooine().genComposite(par1World, chunkX, locY, chunkZ, -15, 15);
 	}
 }

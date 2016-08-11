@@ -16,7 +16,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -162,71 +161,29 @@ public class Schematic
 				for (int z = fCZ; z < nZ; z++)
 					for (int y = 0; y < height; y++)
 					{
-						BlockInfo bi = getBlockAt(x, y, z);
-						if (bi != null)
-						{
-							Block b = pack.blockMap.get((int)bi.block);
-							if (b != null)
-							{
-								if (b == Blocks.torch)
-								{
-									torches.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
-									continue;
-								}
-								else if (b == Blocks.snow)
-									b = StarWarsMod.blockHardpackSnow;
-								WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, bi.metadata);
-								WorldUtils.m(world, pX + x, y + spawnY, pZ + z, bi.metadata);
-
-								if (b instanceof ITileEntityProvider)
-								{
-									NBTTagCompound compound = getTileNbtAt(x, y, z);
-									if (compound != null)
-									{
-										NBTTagCompound newTile = (NBTTagCompound)compound.copy();
-										TileEntity t = world.getTileEntity(pX + x, y + spawnY, pZ + z);
-										if (t != null)
-										{
-											newTile.setInteger("x", pX + x);
-											newTile.setInteger("y", y + spawnY);
-											newTile.setInteger("z", pZ + z);
-
-											// reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
-											if (b instanceof BlockGunRack)
-											{
-												NBTTagList nbttaglist = newTile.getTagList("guns", 10);
-												NBTTagList newList = fixItemStacks(nbttaglist);
-												newTile.setTag("guns", newList);
-											}
-											else if (b instanceof BlockChest)
-											{
-												NBTTagList nbttaglist = newTile.getTagList("Items", 10);
-												NBTTagList newList = fixItemStacks(nbttaglist);
-												newTile.setTag("Items", newList);
-											}
-											t.readFromNBT(newTile);
-										}
-									}
-
-									if (b == Blocks.chest)
-									{
-										TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
-										if ((t.getStackInSlot(0) != null && t.getStackInSlot(0).getItem() == Item.getItemFromBlock(Blocks.lever)) && (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol))
-										{
-											WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-											WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
-
-											MobDroidProtocol p = new MobDroidProtocol(world);
-											p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
-											world.spawnEntityInWorld(p);
-										}
-									}
-								}
-							}
-						}
+						gen(world, spawnY, pX, pZ, torches, x, z, y);
 					}
 		}
 
+		genTorches(world, torches);
+	}
+
+	public void genFull(World world, int posChunkX, int spawnY, int posChunkZ)
+	{
+		HashMap<Vec3, BlockInfo> torches = new HashMap<>();
+
+		for (int x = 0; x < width; x++)
+			for (int z = 0; z < length; z++)
+				for (int y = 0; y < height; y++)
+				{
+					gen(world, spawnY, posChunkX, posChunkZ, torches, x, z, y);
+				}
+
+		genTorches(world, torches);
+	}
+
+	private void genTorches(World world, HashMap<Vec3, BlockInfo> torches)
+	{
 		for (Vec3 p : torches.keySet())
 		{
 			int x = (int)p.xCoord;
@@ -236,6 +193,72 @@ public class Schematic
 			Block b = pack.blockMap.get((int)bi.block);
 			WorldUtils.b(world, x, y, z, b, bi.metadata);
 			WorldUtils.m(world, x, y, z, bi.metadata);
+		}
+	}
+
+	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3, BlockInfo> torches, int x, int z, int y)
+	{
+		BlockInfo bi = getBlockAt(x, y, z);
+		if (bi != null)
+		{
+			Block b = pack.blockMap.get((int)bi.block);
+			if (b != null)
+			{
+				if (b == Blocks.torch)
+				{
+					torches.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
+					return;
+				}
+				else if (b == Blocks.snow)
+					b = StarWarsMod.blockHardpackSnow;
+				WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, bi.metadata);
+				WorldUtils.m(world, pX + x, y + spawnY, pZ + z, bi.metadata);
+
+				if (b instanceof ITileEntityProvider)
+				{
+					NBTTagCompound compound = getTileNbtAt(x, y, z);
+					if (compound != null)
+					{
+						NBTTagCompound newTile = (NBTTagCompound)compound.copy();
+						TileEntity t = world.getTileEntity(pX + x, y + spawnY, pZ + z);
+						if (t != null)
+						{
+							newTile.setInteger("x", pX + x);
+							newTile.setInteger("y", y + spawnY);
+							newTile.setInteger("z", pZ + z);
+
+							// reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
+							if (b instanceof BlockGunRack)
+							{
+								NBTTagList nbttaglist = newTile.getTagList("guns", 10);
+								NBTTagList newList = fixItemStacks(nbttaglist);
+								newTile.setTag("guns", newList);
+							}
+							else if (b instanceof BlockChest)
+							{
+								NBTTagList nbttaglist = newTile.getTagList("Items", 10);
+								NBTTagList newList = fixItemStacks(nbttaglist);
+								newTile.setTag("Items", newList);
+							}
+							t.readFromNBT(newTile);
+						}
+					}
+
+					if (b == Blocks.chest)
+					{
+						TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
+						if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol)
+						{
+							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+
+							MobDroidProtocol p = new MobDroidProtocol(world);
+							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+							world.spawnEntityInWorld(p);
+						}
+					}
+				}
+			}
 		}
 	}
 

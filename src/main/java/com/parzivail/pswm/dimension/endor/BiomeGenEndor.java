@@ -52,12 +52,6 @@ public class BiomeGenEndor extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(200) == 0)
-		{
-			int k = chunkX + 4;
-			int l = chunkZ + 4;
-			//gen endor base
-		}
 
 		for (int j = 0; j < this.theBiomeDecorator.grassPerChunk; j++)
 		{
@@ -91,6 +85,17 @@ public class BiomeGenEndor extends BiomeGenPSWM
 			}
 		}
 
+		if (par2Random.nextInt(600) == 0)
+		{
+			StructureBank.getEndorShield().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
+		}
+
+		if (par2Random.nextInt(600) == 0)
+		{
+			StructureBank.getEwokVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
+		}
+
 		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY, chunkZ, 25, 0);
+		StructureBank.getRebelEndor().genComposite(par1World, chunkX, locY, chunkZ, -25, 0);
 	}
 }

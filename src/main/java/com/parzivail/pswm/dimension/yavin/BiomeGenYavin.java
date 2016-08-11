@@ -76,6 +76,7 @@ public class BiomeGenYavin extends BiomeGenPSWM
 		}
 
 		StructureBank.getGreatTemple().genComposite(par1World, chunkX, SPAWN_Y, chunkZ, 0, 0);
+		StructureBank.getYavinTempleRuin().genComposite(par1World, chunkX, par1World.getHeightValue(-320, -320) - 7, chunkZ, -20, -20);
 	}
 
 	@Override

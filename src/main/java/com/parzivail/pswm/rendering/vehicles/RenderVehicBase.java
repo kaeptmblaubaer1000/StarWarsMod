@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import com.parzivail.util.vehicle.VehicleBase;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
@@ -28,9 +28,9 @@ public class RenderVehicBase extends RenderLiving
 	protected void preRenderCallback(EntityLivingBase entity, float f)
 	{
 		GL11.glScalef(3.0F, 3.0F, 3.0F);
-		if (entity instanceof VehicleBase)
+		if (entity instanceof VehicleAirBase)
 		{
-			VehicleBase vehicle = (VehicleBase)entity;
+			VehicleAirBase vehicle = (VehicleAirBase)entity;
 			GL11.glTranslatef(0, -1F, 0);
 			float pitch = vehicle.getRealPitch();
 			float roll = -vehicle.tilt;

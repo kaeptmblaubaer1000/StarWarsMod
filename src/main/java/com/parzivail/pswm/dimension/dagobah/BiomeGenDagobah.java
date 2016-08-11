@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.dagobah;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenDagobahSwamp;
 import com.parzivail.util.math.MathUtils;
 import net.minecraft.block.Block;
@@ -57,25 +58,7 @@ public class BiomeGenDagobah extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		//if (chunkX == 0 && chunkZ == 0)
-		//{
-		//	this.structureY = ;
-		//	while (!(par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.grass || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.dirt || par1World.getBlock(chunkX, this.structureY, chunkZ) == Blocks.water))
-		//		this.structureY--;
-		//	new WorldGenYodaTree_0_0().generate(par1World, chunkX, this.structureY, chunkZ);
-		//}
-		//else if (chunkX == 0 && chunkZ == 32)
-		//	new WorldGenYodaTree_0_1().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
-		//else if (chunkX == 32 && chunkZ == 0)
-		//	new WorldGenYodaTree_1_0().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
-		//else if (chunkX == 32 && chunkZ == 32)
-		//	new WorldGenYodaTree_1_1().generate(par1World, par2Random, chunkX, this.structureY, chunkZ);
-		//else if (chunkX == 64 && chunkZ == 0)
-		//	new WorldGenYodaTree_2_0().generate(par1World, chunkX, this.structureY, chunkZ);
-		//else if (chunkX == 64 && chunkZ == 32)
-		//	new WorldGenYodaTree_2_1().generate(par1World, chunkX, this.structureY, chunkZ);
-
-		//StructureBank.yodaTree.genComposite(par1World, chunkX, structureY, chunkZ);
+		StructureBank.getYodaHut().genComposite(par1World, chunkX, structureY, chunkZ, 0, 0);
 
 		if (chunkX >= 0 && chunkX <= 64 && chunkZ >= 0 && chunkZ <= 64)
 		{

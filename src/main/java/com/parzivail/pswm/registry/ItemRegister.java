@@ -506,35 +506,41 @@ public class ItemRegister
 		StarWarsItems.hyperdriveMotivator = new ItemHyperdriveMotivator();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveMotivator, "hyperdriveMotivator");
 
+		StarWarsItems.hyperdriveEarth = new ItemHyperdriveEarth();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveEarth, "hyperdriveEarth");
+
 		StarWarsItems.hyperdriveTatooine = new ItemHyperdriveTatooine();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveTatooine, "hyperdriveTatooine");
 
-		StarWarsItems.hyperdriveMustafar = new ItemHyperdriveMustafar();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveMustafar, "hyperdriveMustafar");
+		StarWarsItems.hyperdriveHoth = new ItemHyperdriveHoth();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveHoth, "hyperdriveHoth");
 
 		StarWarsItems.hyperdriveSpace = new ItemHyperdriveSpace();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveSpace, "hyperdriveSpace");
 
-		StarWarsItems.hyperdriveIlum = new ItemHyperdriveIlum();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveIlum, "hyperdriveIlum");
+		StarWarsItems.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveYavin4, "hyperdriveYavinFour");
+
+		StarWarsItems.hyperdriveEndor = new ItemHyperdriveEndor();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveEndor, "hyperdriveEndor");
 
 		StarWarsItems.hyperdriveDagobah = new ItemHyperdriveDagobah();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveDagobah, "hyperdriveDagobah");
 
-		StarWarsItems.hyperdriveEarth = new ItemHyperdriveEarth();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveEarth, "hyperdriveEarth");
+		StarWarsItems.hyperdriveIlum = new ItemHyperdriveIlum();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveIlum, "hyperdriveIlum");
+
+		StarWarsItems.hyperdriveKashyyyk = new ItemHyperdriveKashyyyk();
+		GameRegistry.registerItem(StarWarsItems.hyperdriveKashyyyk, "hyperdriveKashyyyk");
+
+		//StarWarsItems.hyperdriveMustafar = new ItemHyperdriveMustafar();
+		//GameRegistry.registerItem(StarWarsItems.hyperdriveMustafar, "hyperdriveMustafar");
 
 		StarWarsItems.spawnHothSpeederBike = new ItemSpawnHothSpeederBike();
 		GameRegistry.registerItem(StarWarsItems.spawnHothSpeederBike, "spawnHothSpeederBike");
 
 		StarWarsItems.spawnSpeederBike = new ItemSpawnSpeederBike();
 		GameRegistry.registerItem(StarWarsItems.spawnSpeederBike, "spawnSpeederBike");
-
-		StarWarsItems.hyperdriveHoth = new ItemHyperdriveHoth();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveHoth, "hyperdriveHoth");
-
-		StarWarsItems.hyperdriveKashyyyk = new ItemHyperdriveKashyyyk();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveKashyyyk, "hyperdriveKashyyyk");
 
 		StarWarsItems.spawnLandspeeder = new ItemSpawnLandspeeder();
 		GameRegistry.registerItem(StarWarsItems.spawnLandspeeder, "spawnLandspeeder");
@@ -550,12 +556,6 @@ public class ItemRegister
 
 		StarWarsItems.spawnNpcXwing = new ItemSpawnNpcXWing();
 		GameRegistry.registerItem(StarWarsItems.spawnNpcXwing, "spawnNpcXwing");
-
-		StarWarsItems.hyperdriveYavin4 = new ItemHyperdriveYavinFour();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveYavin4, "hyperdriveYavinFour");
-
-		StarWarsItems.hyperdriveEndor = new ItemHyperdriveEndor();
-		GameRegistry.registerItem(StarWarsItems.hyperdriveEndor, "hyperdriveEndor");
 
 		StarWarsItems.droidCaller = new ItemDroidCaller();
 		GameRegistry.registerItem(StarWarsItems.droidCaller, "droidCaller");

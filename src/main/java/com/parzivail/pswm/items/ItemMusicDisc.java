@@ -1,7 +1,6 @@
 package com.parzivail.pswm.items;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -32,7 +31,7 @@ public class ItemMusicDisc extends ItemRecord
 		this.field_150929_a = songName;
 		this.maxStackSize = 1;
 		this.setUnlocalizedName(Resources.MODID + "." + this.name);
-		this.setCreativeTab(StarWarsMod.StarWarsTab);
+		this.setCreativeTab(null);
 		records.put(this.field_150929_a, this);
 	}
 

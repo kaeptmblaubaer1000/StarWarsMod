@@ -69,11 +69,15 @@ public class TransferDim extends Teleporter
 		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimSpaceId)
 		{
-			entity.setPositionAndUpdate(11.5f, 157, 49.5f);
+			entity.setPositionAndUpdate(11.5f, 157, 47.5f);
 		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
 		{
 			entity.setPositionAndUpdate(270.5f, 54, 248.5f);
+		}
+		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimDagobahId)
+		{
+			entity.setPositionAndUpdate(55.5f, 68, 19.5f);
 		}
 	}
 

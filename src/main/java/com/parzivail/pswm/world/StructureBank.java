@@ -12,6 +12,7 @@ public class StructureBank
 	private static Schematic endorBase;
 	private static Schematic endorShield;
 	private static Schematic escapePod;
+	private static Schematic ewokVillage;
 	private static Schematic greatTemple;
 	private static Schematic homesteadBig;
 	private static Schematic homestead;
@@ -23,6 +24,7 @@ public class StructureBank
 	private static Schematic mosEisley;
 	private static Schematic obiWanHut;
 	private static Schematic rebelEndor;
+	private static Schematic sandCrawler;
 	private static Schematic tuskenVillage;
 	private static Schematic wookieeVillage;
 	private static Schematic yavinTempleRuin;
@@ -36,8 +38,8 @@ public class StructureBank
 
 		greatTemple = new Schematic("final/greattemplefinal", mobsFinal);
 		hothEcho = new Schematic("final/hothecho", mobsFinal);
-		ilumTemple = new Schematic("final/ilumtemplesmooth", mobsFinal);
-		wookieeVillage = new Schematic("final/wookieevillage", mobsFinal);
+		ilumTemple = new Schematic("final/ilumtemplesmoothfinal", mobsFinal);
+		wookieeVillage = new Schematic("final/wookieevillagefinal", mobsFinal);
 		mosEisley = new Schematic("final/moseisleyfinal", mobsFinal);
 
 		Lumberjack.info("Block Maps, reporting for duty!");
@@ -51,7 +53,7 @@ public class StructureBank
 	public static Schematic getBaSingStation()
 	{
 		if (baSingStation == null)
-			baSingStation = new Schematic("final/basingstation", mobsFinal);
+			baSingStation = new Schematic("final/basingstationfinal", mobsFinal);
 		return baSingStation;
 	}
 
@@ -74,6 +76,13 @@ public class StructureBank
 		if (escapePod == null)
 			escapePod = new Schematic("final/escapepodfinal", mobsFinal);
 		return escapePod;
+	}
+
+	public static Schematic getEwokVillage()
+	{
+		if (ewokVillage == null)
+			ewokVillage = new Schematic("final/ewokvillagefinal", mobsFinal);
+		return ewokVillage;
 	}
 
 	public static Schematic getHomesteadBig()
@@ -129,7 +138,7 @@ public class StructureBank
 	public static Schematic getObiWanHut()
 	{
 		if (obiWanHut == null)
-			obiWanHut = new Schematic("final/obiwanhut", mobsFinal);
+			obiWanHut = new Schematic("final/obiwanhutfinal", mobsFinal);
 		return obiWanHut;
 	}
 
@@ -138,6 +147,13 @@ public class StructureBank
 		if (rebelEndor == null)
 			rebelEndor = new Schematic("final/rebelendor", mobsFinal);
 		return rebelEndor;
+	}
+
+	public static Schematic getSandCrawler()
+	{
+		if (sandCrawler == null)
+			sandCrawler = new Schematic("final/sandcrawlerfinal", mobsFinal);
+		return sandCrawler;
 	}
 
 	public static Schematic getTuskenVillage()
@@ -162,7 +178,7 @@ public class StructureBank
 	public static Schematic getYodaHut()
 	{
 		if (yodaHut == null)
-			yodaHut = new Schematic("final/yodahutfinal", mobsFinal);
+			yodaHut = new Schematic("final/yodatreefinal", mobsFinal);
 		return yodaHut;
 	}
 }
