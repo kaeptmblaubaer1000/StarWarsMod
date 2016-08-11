@@ -123,6 +123,7 @@ public class RenderGunRack extends TileEntitySpecialRenderer
 				GL11.glRotatef(80, 1, 0, 0);
 				P3D.glScalef(0.72);
 			}
+			RenderManager.instance.itemRenderer.renderItem(null, gun, 0, IItemRenderer.ItemRenderType.ENTITY);
 		}
 		else if (type instanceof ItemBlasterHeavy)
 		{
@@ -163,8 +164,8 @@ public class RenderGunRack extends TileEntitySpecialRenderer
 				GL11.glRotatef(-86, 1, 0, 0);
 				P3D.glScalef(0.65);
 			}
+			RenderManager.instance.itemRenderer.renderItem(null, gun, 0, IItemRenderer.ItemRenderType.ENTITY);
 		}
-		RenderManager.instance.itemRenderer.renderItem(null, gun, 0, IItemRenderer.ItemRenderType.ENTITY);
 		GL11.glPopMatrix();
 	}
 }

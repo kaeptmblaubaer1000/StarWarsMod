@@ -5,10 +5,12 @@ package com.parzivail.util.schematic;
  */
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.blocks.BlockGunRack;
 import com.parzivail.pswm.world.NbtBlockMap;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
@@ -164,19 +166,32 @@ public class Schematic
 
 								// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
 
-								// TODO: reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
-
 								if (b instanceof ITileEntityProvider)
 								{
 									NBTTagCompound compound = getTileNbtAt(x, y, z);
 									if (compound != null)
 									{
 										TileEntity t = world.getTileEntity(pX + x, y + spawnY, pZ + z);
-										compound.setInteger("x", pX + x);
-										compound.setInteger("y", y + spawnY);
-										compound.setInteger("z", pZ + z);
 										if (t != null)
 										{
+											compound.setInteger("x", pX + x);
+											compound.setInteger("y", y + spawnY);
+											compound.setInteger("z", pZ + z);
+
+											// reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
+											if (b instanceof BlockGunRack)
+											{
+												NBTTagList nbttaglist = compound.getTagList("guns", 10);
+												NBTTagList newList = fixItemStacks(nbttaglist);
+												compound.setTag("guns", newList);
+											}
+											else if (b instanceof BlockChest)
+											{
+												NBTTagList nbttaglist = compound.getTagList("Items", 10);
+												NBTTagList newList = fixItemStacks(nbttaglist);
+												compound.setTag("Items", newList);
+											}
+
 											t.readFromNBT(compound);
 										}
 									}
@@ -185,5 +200,19 @@ public class Schematic
 						}
 					}
 		}
+	}
+
+	private NBTTagList fixItemStacks(NBTTagList nbttaglist)
+	{
+		NBTTagList newList = new NBTTagList();
+		for (int i = 0; i < nbttaglist.tagCount(); i++)
+		{
+			NBTTagCompound item = nbttaglist.getCompoundTagAt(i);
+			int oldId = item.getInteger("id");
+			int newId = pack.translateId(oldId);
+			item.setInteger("id", newId);
+			newList.appendTag(item);
+		}
+		return newList;
 	}
 }

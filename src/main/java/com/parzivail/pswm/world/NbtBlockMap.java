@@ -53,4 +53,9 @@ public class NbtBlockMap
 		}
 
 	}
+
+	public int translateId(int id)
+	{
+		return Block.getIdFromBlock(blockMap.get(id));
+	}
 }
