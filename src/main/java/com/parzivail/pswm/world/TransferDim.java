@@ -71,6 +71,10 @@ public class TransferDim extends Teleporter
 		{
 			entity.setPositionAndUpdate(11.5f, 157, 49.5f);
 		}
+		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
+		{
+			entity.setPositionAndUpdate(270.5f, 54, 248.5f);
+		}
 	}
 
 	private void teleportInternal(Entity entity)

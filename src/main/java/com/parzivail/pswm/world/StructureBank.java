@@ -34,13 +34,17 @@ public class StructureBank
 	{
 		mobsFinal = new NbtBlockMap("mobs-final-map");
 
+		greatTemple = new Schematic("final/greattemplefinal", mobsFinal);
+		hothEcho = new Schematic("final/hothecho", mobsFinal);
+		ilumTemple = new Schematic("final/ilumtemplesmooth", mobsFinal);
+		wookieeVillage = new Schematic("final/wookieevillage", mobsFinal);
+		mosEisley = new Schematic("final/moseisleyfinal", mobsFinal);
+
 		Lumberjack.info("Block Maps, reporting for duty!");
 	}
 
 	public static Schematic getGreatTemple()
 	{
-		if (greatTemple == null)
-			greatTemple = new Schematic("final/greattemplefinal", mobsFinal);
 		return greatTemple;
 	}
 
@@ -88,8 +92,6 @@ public class StructureBank
 
 	public static Schematic getHothEcho()
 	{
-		if (hothEcho == null)
-			hothEcho = new Schematic("final/hothecho", mobsFinal);
 		return hothEcho;
 	}
 
@@ -102,8 +104,6 @@ public class StructureBank
 
 	public static Schematic getIlumTemple()
 	{
-		if (ilumTemple == null)
-			ilumTemple = new Schematic("final/ilumtemplesmooth", mobsFinal);
 		return ilumTemple;
 	}
 
@@ -123,8 +123,6 @@ public class StructureBank
 
 	public static Schematic getMosEisley()
 	{
-		if (mosEisley == null)
-			mosEisley = new Schematic("final/moseisleyfinal", mobsFinal);
 		return mosEisley;
 	}
 
@@ -151,8 +149,6 @@ public class StructureBank
 
 	public static Schematic getWookieeVillage()
 	{
-		if (wookieeVillage == null)
-			wookieeVillage = new Schematic("final/wookieevillage", mobsFinal);
 		return wookieeVillage;
 	}
 

@@ -1,7 +1,9 @@
 package com.parzivail.pswm.dimension.kashyyyk;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenMegaKashyyykJungle;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -11,6 +13,8 @@ import java.util.Random;
 
 public class BiomeGenKashyyyk extends BiomeGenPSWM
 {
+	private final int structureY;
+
 	public BiomeGenKashyyyk(int biomeId)
 	{
 		super(biomeId);
@@ -41,6 +45,8 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
+
+		structureY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 	}
 
 	@Override
@@ -66,6 +72,8 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
 		}
+
+		StructureBank.getWookieeVillage().genComposite(par1World, chunkX, structureY, chunkZ, 0, 0);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.ilum;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
@@ -43,12 +44,6 @@ public class BiomeGenIlum extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		// if (par2Random.nextInt(100) == 0)
-		// {
-		// int k = chunkX + 4;
-		// int l = chunkZ + 4;
-		// new WorldGenHothGenerator().generate(par1World, par2Random, k,
-		// par1World.getHeightValue(k, l) - 3, l);
-		// }
+		StructureBank.getIlumTemple().genComposite(par1World, chunkX, 30, chunkZ, 0, 0);
 	}
 }

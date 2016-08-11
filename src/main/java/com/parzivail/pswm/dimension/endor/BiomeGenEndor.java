@@ -1,7 +1,9 @@
 package com.parzivail.pswm.dimension.endor;
 
 import com.parzivail.pswm.dimension.BiomeGenPSWM;
+import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.pswm.world.gen.WorldGenBetterForest;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenBigTree;
@@ -12,6 +14,8 @@ import java.util.Random;
 
 public class BiomeGenEndor extends BiomeGenPSWM
 {
+	public int locY = 0;
+
 	public BiomeGenEndor(int biomeId)
 	{
 		super(biomeId);
@@ -42,6 +46,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 		this.spawnableCaveCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
+		this.locY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 	}
 
 	@Override
@@ -58,26 +63,34 @@ public class BiomeGenEndor extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
-			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
-			worldgenerator.generate(par1World, par2Random, k, i1, l);
+			if (par1World.getHeightValue(k, l) > 20)
+			{
+				int i1 = par2Random.nextInt(par1World.getHeightValue(k, l) * 2);
+				WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
+				worldgenerator.generate(par1World, par2Random, k, i1, l);
+			}
 		}
 
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			int i1 = par1World.getHeightValue(k, l);
-
-			switch (par2Random.nextInt(3))
+			if (par1World.getHeightValue(k, l) > 20)
 			{
-				case 0:
-					new WorldGenBigTree(true).generate(par1World, par2Random, k, i1, l);
-				case 1:
-					new WorldGenBetterForest().generate(par1World, par2Random, k, i1, l, 10, 8, 0);
-				case 2:
-					new WorldGenShrub(2, 0).generate(par1World, par2Random, k, i1, l);
+				int i1 = par1World.getHeightValue(k, l);
+
+				switch (par2Random.nextInt(3))
+				{
+					case 0:
+						new WorldGenBigTree(true).generate(par1World, par2Random, k, i1, l);
+					case 1:
+						new WorldGenBetterForest().generate(par1World, par2Random, k, i1, l, 10, 8, 0);
+					case 2:
+						new WorldGenShrub(2, 0).generate(par1World, par2Random, k, i1, l);
+				}
 			}
 		}
+
+		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY, chunkZ, 25, 0);
 	}
 }

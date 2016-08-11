@@ -49,8 +49,6 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY, chunkZ, 2, 2);
-
 		if (par2Random.nextInt(400) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -70,5 +68,8 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			//gen normal homestead
 		}
+
+		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY, chunkZ, 2, 2);
+		StructureBank.getObiWanHut().genComposite(par1World, chunkX, locY, chunkZ, -15, -15);
 	}
 }

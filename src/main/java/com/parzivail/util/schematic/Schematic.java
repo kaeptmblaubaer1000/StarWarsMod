@@ -34,6 +34,7 @@ public class Schematic
 
 	public Schematic(String schematic, NbtBlockMap pack)
 	{
+		Lumberjack.log("Loading schematic " + schematic + "...");
 		try
 		{
 			InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/schematics/" + schematic + ".schematic");
@@ -162,6 +163,8 @@ public class Schematic
 								// TODO: lever-chest spawns
 
 								// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
+
+								// TODO: reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
 
 								if (b instanceof ITileEntityProvider)
 								{
