@@ -7,6 +7,8 @@ package com.parzivail.util.schematic;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockGunRack;
+import com.parzivail.pswm.items.ItemSpawnProtocol;
+import com.parzivail.pswm.mobs.MobDroidProtocol;
 import com.parzivail.pswm.world.NbtBlockMap;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.world.WorldUtils;
@@ -14,14 +16,18 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Schematic
@@ -146,6 +152,7 @@ public class Schematic
 		int pZ = posChunkZ * 16;
 		int fCX = (chunkX - pX);
 		int fCZ = (chunkZ - pZ);
+		HashMap<Vec3, BlockInfo> torches = new HashMap<>();
 		if (fCX >= 0 && fCX < width && fCZ >= 0 && fCZ < length)
 		{
 			int nX = Math.min(fCX + 16, width - 1);
@@ -161,14 +168,15 @@ public class Schematic
 							Block b = pack.blockMap.get((int)bi.block);
 							if (b != null)
 							{
-								if (b == Blocks.snow)
+								if (b == Blocks.torch)
+								{
+									torches.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
+									continue;
+								}
+								else if (b == Blocks.snow)
 									b = StarWarsMod.blockHardpackSnow;
 								WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, bi.metadata);
 								WorldUtils.m(world, pX + x, y + spawnY, pZ + z, bi.metadata);
-
-								// TODO: lever-chest spawns
-
-								// TODO: make list of torches and go back and place them in a 2nd pass so they don't fall off
 
 								if (b instanceof ITileEntityProvider)
 								{
@@ -199,10 +207,35 @@ public class Schematic
 											t.readFromNBT(newTile);
 										}
 									}
+
+									if (b == Blocks.chest)
+									{
+										TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
+										if ((t.getStackInSlot(0) != null && t.getStackInSlot(0).getItem() == Item.getItemFromBlock(Blocks.lever)) && (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol))
+										{
+											WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+											WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+
+											MobDroidProtocol p = new MobDroidProtocol(world);
+											p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+											world.spawnEntityInWorld(p);
+										}
+									}
 								}
 							}
 						}
 					}
+		}
+
+		for (Vec3 p : torches.keySet())
+		{
+			int x = (int)p.xCoord;
+			int y = (int)p.yCoord;
+			int z = (int)p.zCoord;
+			BlockInfo bi = torches.get(p);
+			Block b = pack.blockMap.get((int)bi.block);
+			WorldUtils.b(world, x, y, z, b, bi.metadata);
+			WorldUtils.m(world, x, y, z, bi.metadata);
 		}
 	}
 
