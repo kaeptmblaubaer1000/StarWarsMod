@@ -10,6 +10,7 @@ public class BlockSensorTatooineCommoner extends BlockSensor
 	public BlockSensorTatooineCommoner()
 	{
 		super("tatooineCommoner");
+		this.setCreativeTab(null);
 	}
 
 	@Override

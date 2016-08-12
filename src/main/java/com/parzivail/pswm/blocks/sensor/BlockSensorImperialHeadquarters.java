@@ -10,6 +10,7 @@ public class BlockSensorImperialHeadquarters extends BlockSensor
 	public BlockSensorImperialHeadquarters()
 	{
 		super("imperialHeadquarters");
+		this.setCreativeTab(null);
 	}
 
 	@Override

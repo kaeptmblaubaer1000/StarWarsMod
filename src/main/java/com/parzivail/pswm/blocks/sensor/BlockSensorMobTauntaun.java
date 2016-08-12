@@ -11,6 +11,7 @@ public class BlockSensorMobTauntaun extends BlockSensor
 	public BlockSensorMobTauntaun()
 	{
 		super(MobTauntaun.class.getSimpleName());
+		this.setCreativeTab(null);
 	}
 
 	@Override

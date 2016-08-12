@@ -11,6 +11,7 @@ public class BlockSensorMobWampa extends BlockSensor
 	public BlockSensorMobWampa()
 	{
 		super(MobWampa.class.getSimpleName());
+		this.setCreativeTab(null);
 	}
 
 	@Override

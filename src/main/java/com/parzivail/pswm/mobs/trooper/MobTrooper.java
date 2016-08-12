@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,13 +33,15 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 		super(world);
 		setSize(0.5F, 1.5F);
 		getNavigator().setEnterDoors(true);
+		getNavigator().setCanSwim(true);
 		this.tasks.addTask(0, new EntityAIFollowOwner(this, 1.0D, 4.0F, 2.0F));
 		this.tasks.addTask(1, trooperAttack = new AiTrooperAttack(this, 1.0D, 20, 60, 15.0F));
 		this.tasks.addTask(2, new AiFreqMove(this, 1, 20));
 		this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		this.setTamed(false);
 	}
 
@@ -55,7 +56,6 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 
 	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		Lumberjack.log("test2");
 		playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
 		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}

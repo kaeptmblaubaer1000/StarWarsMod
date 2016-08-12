@@ -1,5 +1,6 @@
 package com.parzivail.pswm.quest.rebel;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
@@ -80,6 +81,7 @@ public class Rebel3 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 3), true));
 		setQuestDone(player, this);
 	}

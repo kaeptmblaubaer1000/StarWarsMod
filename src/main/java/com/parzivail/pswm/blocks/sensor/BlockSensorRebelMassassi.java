@@ -10,6 +10,7 @@ public class BlockSensorRebelMassassi extends BlockSensor
 	public BlockSensorRebelMassassi()
 	{
 		super("rebelMassassi");
+		this.setCreativeTab(null);
 	}
 
 	@Override

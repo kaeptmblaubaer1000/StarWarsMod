@@ -27,6 +27,7 @@ public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 	public MobTusken(World par1World)
 	{
 		super(par1World);
+		getNavigator().setCanSwim(true);
 		getNavigator().setEnterDoors(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 20));

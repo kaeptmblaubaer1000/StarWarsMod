@@ -19,6 +19,7 @@ public class MobWampa extends EntityCreature implements IMob
 	public MobWampa(World par1World)
 	{
 		super(par1World);
+		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
 		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));

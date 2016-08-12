@@ -10,6 +10,7 @@ public class BlockSensorEwok extends BlockSensor
 	public BlockSensorEwok()
 	{
 		super("ewok");
+		this.setCreativeTab(null);
 	}
 
 	@Override

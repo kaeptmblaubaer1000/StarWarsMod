@@ -17,6 +17,7 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	{
 		super(par1World);
 		setSize(0.5F, 1.5F);
+		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new AiFollowType(this, MobDroidProtocol.class, 0.5f, 10));
 		tasks.addTask(1, new AiFreqMove(this, 0.5f, 0));
 		setCurrentItemOrArmor(0, new net.minecraft.item.ItemStack(StarWarsItems.ewokSpear, 1));

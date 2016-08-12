@@ -1,5 +1,6 @@
 package com.parzivail.pswm.quest.imperial;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.armor.ArmorSandtrooper;
@@ -67,6 +68,7 @@ public class Imperial4_3 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 4), true));
 		setQuestDone(player, this);
 	}

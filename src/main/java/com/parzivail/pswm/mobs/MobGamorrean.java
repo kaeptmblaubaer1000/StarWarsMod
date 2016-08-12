@@ -30,6 +30,7 @@ public class MobGamorrean extends EntityCreature implements IMob
 	public MobGamorrean(World par1World)
 	{
 		super(par1World);
+		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 		switch (rngGeneral.nextInt(3))
 		{

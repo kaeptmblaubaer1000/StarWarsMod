@@ -10,6 +10,7 @@ public class BlockSensorImperialEndorShield extends BlockSensor
 	public BlockSensorImperialEndorShield()
 	{
 		super("rebelImperialShieldGen");
+		this.setCreativeTab(null);
 	}
 
 	@Override

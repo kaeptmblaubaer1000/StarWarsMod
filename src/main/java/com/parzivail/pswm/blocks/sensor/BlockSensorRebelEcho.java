@@ -10,6 +10,7 @@ public class BlockSensorRebelEcho extends BlockSensor
 	public BlockSensorRebelEcho()
 	{
 		super("rebelEcho");
+		this.setCreativeTab(null);
 	}
 
 	@Override

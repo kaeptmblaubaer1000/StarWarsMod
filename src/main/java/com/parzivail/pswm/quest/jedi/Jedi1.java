@@ -110,6 +110,7 @@ public class Jedi1 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.holocron, 1), true));
 		setQuestDone(player, this);
 	}

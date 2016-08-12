@@ -32,6 +32,7 @@ public class MobTatooineCommoner extends EntityCreature implements IParziNPC
 	{
 		super(p_i1748_1_);
 		setSize(0.5F, 1.5F);
+		getNavigator().setCanSwim(true);
 		dw = super.getDataWatcher();
 		this.tasks.addTask(0, aiFollowEntity = new AiFollowEntity(this, null, 0.5f));
 		getNavigator().setEnterDoors(true);

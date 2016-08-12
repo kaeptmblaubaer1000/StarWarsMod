@@ -219,6 +219,30 @@ public class GuiScreenMerchant extends GuiScreen
 		}, postRenderEmpty);
 		listBMisc.put("bShipjakku", bShipjakku);
 
+		OutlineButtonItemStack bMiscShard = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bMiscShard.setup(new ItemStack(StarWarsItems.lightsaberCrystal, 1, 11), fixBinocs = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glTranslatef(0, 12, 0);
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(-14, 0, -1);
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+			GL11.glRotatef(90, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
+			GL11.glRotatef(18, 1, 0, 0);
+			GL11.glRotatef(18, 0, 0, 1);
+			GL11.glRotatef(-1, 0, 0, 1);
+			GL11.glRotatef(-2, 0, 1, 0);
+		}, postRenderEmpty, false, player);
+		listBMisc.put("bMiscShard", bMiscShard);
+
 		setTabMisc();
 	}
 
@@ -326,6 +350,22 @@ public class GuiScreenMerchant extends GuiScreen
 
 				bBuy.setCurrentCost(320);
 				buyItemStacks = new ItemStack[] {};
+			}
+			else if (button.id == listBMisc.get("bMiscShard").id)
+			{
+				currentFix = fixBinocs;
+
+				tileShowing = null;
+				entityShowing = null;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscShard")).itemStack;
+
+				onBuyClick = null;
+
+				showingTitle = "shard";
+				showingDesc = "idk what this is";
+
+				bBuy.setCurrentCost(640);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.lightsaberCrystal, 1, 11) };
 			}
 		}
 	}

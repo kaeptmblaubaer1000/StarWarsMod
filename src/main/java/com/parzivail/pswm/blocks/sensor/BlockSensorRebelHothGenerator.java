@@ -10,6 +10,7 @@ public class BlockSensorRebelHothGenerator extends BlockSensor
 	public BlockSensorRebelHothGenerator()
 	{
 		super("rebelHothGen");
+		this.setCreativeTab(null);
 	}
 
 	@Override

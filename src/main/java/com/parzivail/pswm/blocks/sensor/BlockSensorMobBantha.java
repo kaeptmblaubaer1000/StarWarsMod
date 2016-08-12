@@ -11,6 +11,7 @@ public class BlockSensorMobBantha extends BlockSensor
 	public BlockSensorMobBantha()
 	{
 		super(MobBantha.class.getSimpleName());
+		this.setCreativeTab(null);
 	}
 
 	@Override

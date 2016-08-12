@@ -33,6 +33,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	{
 		super(par1World);
 		setSize(3.0F, 3.0F);
+		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 

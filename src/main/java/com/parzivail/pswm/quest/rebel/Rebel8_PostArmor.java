@@ -1,18 +1,19 @@
 package com.parzivail.pswm.quest.rebel;
 
-import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.armor.ArmorRebelPilot;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
-import com.parzivail.pswm.quest.QuestBank;
-import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import static com.parzivail.pswm.StarWarsItems.silverImperialCredit;
+import static com.parzivail.pswm.StarWarsMod.network;
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebel8_Yavin;
+import static com.parzivail.pswm.quest.QuestUtils.hasOnArmor;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -48,7 +49,7 @@ public class Rebel8_PostArmor extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this) && QuestBank.rebel8_Yavin.isQuestComplete(player) && QuestUtils.hasOnArmor(player, ArmorRebelPilot.class);
+		return !isQuestDone(player, this) && rebel8_Yavin.isQuestComplete(player) && hasOnArmor(player, ArmorRebelPilot.class);
 	}
 
 	@Override
@@ -66,7 +67,8 @@ public class Rebel8_PostArmor extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
-		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 8), true));
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
+		network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(silverImperialCredit, 8), true));
 		setQuestDone(player, this);
 	}
 

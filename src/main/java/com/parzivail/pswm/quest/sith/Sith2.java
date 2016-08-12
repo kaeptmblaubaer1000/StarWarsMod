@@ -1,5 +1,6 @@
 package com.parzivail.pswm.quest.sith;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
@@ -55,6 +56,7 @@ public class Sith2 extends Quest
 	@Override
 	public boolean isQuestComplete(EntityPlayer player)
 	{
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.jediRobes, 1, 1), true));
 		return isQuestDone(player, this);
 	}

@@ -33,7 +33,7 @@ public class BlockNpcBase extends PBlockContainer implements IDebugProvider
 		super("staticNpc." + id, Material.iron);
 		this.aff = aff;
 		this.skin = skin;
-		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
+		this.setCreativeTab(null);
 		setBlockBounds(0, 0, 0, 1, 2, 1);
 		setBlockUnbreakable();
 

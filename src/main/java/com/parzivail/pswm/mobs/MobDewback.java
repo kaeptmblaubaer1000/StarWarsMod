@@ -22,6 +22,7 @@ public class MobDewback extends EntityHorse
 	{
 		super(par1World);
 		setSize(2.0F, 2.0F);
+		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 

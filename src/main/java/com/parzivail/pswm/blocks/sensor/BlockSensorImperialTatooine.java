@@ -10,6 +10,7 @@ public class BlockSensorImperialTatooine extends BlockSensor
 	public BlockSensorImperialTatooine()
 	{
 		super("rebelImperialTatooine");
+		this.setCreativeTab(null);
 	}
 
 	@Override

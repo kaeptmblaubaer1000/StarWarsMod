@@ -1,5 +1,6 @@
 package com.parzivail.pswm.quest.sith;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
@@ -67,6 +68,7 @@ public class Sith3_PostSaber extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		setQuestDone(player, this);
 	}
 

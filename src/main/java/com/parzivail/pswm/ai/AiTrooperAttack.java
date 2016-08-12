@@ -1,10 +1,14 @@
 package com.parzivail.pswm.ai;
 
-import com.parzivail.pswm.mobs.trooper.MobTrooper;
-import com.parzivail.util.ui.Lumberjack;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.armor.*;
+import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.mobs.trooper.*;
+import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 
 /**
@@ -67,19 +71,48 @@ public class AiTrooperAttack extends EntityAIBase
 	 */
 	public boolean shouldExecute()
 	{
-		EntityLivingBase entitylivingbase = this.entityHost.getAttackTarget();
+		EntityLivingBase entity = this.entityHost.getAttackTarget();
 
-		if (entitylivingbase == null)
+		if (entity == null)
 		{
 			return false;
 		}
-		else
+		else if (shouldIAttack(entity))
 		{
-			this.attackTarget = entitylivingbase;
+			this.attackTarget = entity;
 			return true;
 		}
+		return false;
 	}
 
+	private boolean shouldIAttack(EntityLivingBase entity)
+	{
+		if (isARebel(rangedAttackEntityHost))
+			return isAnImperial(entity);
+		else if (isAnImperial(rangedAttackEntityHost))
+			return isARebel(entity);
+		return false;
+	}
+
+	private boolean isARebel(EntityLivingBase entity)
+	{
+		if (entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)entity;
+			return QuestUtils.hasOnArmor(player, ArmorEndor.class) || QuestUtils.hasOnArmor(player, ArmorHoth.class) || QuestUtils.hasOnArmor(player, ArmorRebelAPilot.class) || QuestUtils.hasOnArmor(player, ArmorRebelPilot.class) || QuestUtils.hasOnArmor(player, ArmorRebelYPilot.class) || ItemQuestLog.getSide(player).equals(Resources.allegianceRebelFmt);
+		}
+		return (entity instanceof MobEndorRebel || entity instanceof MobHothRebel || entity instanceof MobRebelPilot || entity instanceof MobRebelPilotA || entity instanceof MobRebelPilotY || entity instanceof MobRebelTechnician || entity instanceof MobRebelWorker);
+	}
+
+	private boolean isAnImperial(EntityLivingBase entity)
+	{
+		if (entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)entity;
+			return QuestUtils.hasOnArmor(player, ArmorAtatPilot.class) || QuestUtils.hasOnArmor(player, ArmorAtstPilot.class) || QuestUtils.hasOnArmor(player, ArmorSandtrooper.class) || QuestUtils.hasOnArmor(player, ArmorScoutTrooper.class) || QuestUtils.hasOnArmor(player, ArmorShadowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorSnowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorStormtrooper.class) || QuestUtils.hasOnArmor(player, ArmorTiePilot.class) || ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt);
+		}
+		return (entity instanceof MobAtatPilot || entity instanceof MobAtstPilot || entity instanceof MobImperialOfficer || entity instanceof MobSandtrooper || entity instanceof MobScouttrooper || entity instanceof MobSnowtrooper || entity instanceof MobStormtrooper || entity instanceof MobTiePilot);
+	}
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
@@ -147,7 +180,6 @@ public class AiTrooperAttack extends EntityAIBase
 				f1 = 1.0F;
 			}
 
-			Lumberjack.log("test1");
 			this.rangedAttackEntityHost.rangeAttack(this.attackTarget, f1);
 			this.rangedAttackTime = MathHelper.floor_float(f * (float)(this.maxRangedAttackTime - this.minRangeAttackTime) + (float)this.minRangeAttackTime);
 		}

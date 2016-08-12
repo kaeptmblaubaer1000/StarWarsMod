@@ -4,10 +4,8 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.util.IParziNPC;
 import com.parzivail.util.entity.trade.WeightedTradeItem;
 import net.minecraft.entity.DataWatcher;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
@@ -15,7 +13,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MobBith extends EntityVillager implements IParziNPC
+public class MobBith extends EntityCreature implements IParziNPC
 {
 	private EntityPlayer buyingPlayer;
 	private MerchantRecipeList buyingList;
@@ -30,13 +28,8 @@ public class MobBith extends EntityVillager implements IParziNPC
 	public MobBith(World p_i1748_1_)
 	{
 		super(p_i1748_1_);
+		getNavigator().setCanSwim(true);
 		dw = super.getDataWatcher();
-	}
-
-	@Override
-	public EntityVillager createChild(EntityAgeable p_90011_1_)
-	{
-		return null;
 	}
 
 	public MerchantRecipeList createTradesByProfession(MerchantRecipeList list, int type)
@@ -56,29 +49,9 @@ public class MobBith extends EntityVillager implements IParziNPC
 	}
 
 	@Override
-	public void func_110297_a_(ItemStack p_110297_1_)
-	{
-		if (!worldObj.isRemote && livingSoundTime > -getTalkInterval() + 20)
-		{
-			livingSoundTime = -getTalkInterval();
-
-			if (p_110297_1_ != null)
-				playSound(Resources.MODID + ":" + "mob.bith.trade", getSoundVolume(), getSoundPitch());
-			else
-				playSound(Resources.MODID + ":" + "mob.bith.notrade", getSoundVolume(), getSoundPitch());
-		}
-	}
-
-	@Override
 	public String getCommandSenderName()
 	{
 		return officialNames[getType()];
-	}
-
-	@Override
-	public EntityPlayer getCustomer()
-	{
-		return buyingPlayer;
 	}
 
 	@Override
@@ -117,17 +90,6 @@ public class MobBith extends EntityVillager implements IParziNPC
 	public boolean getPlaying()
 	{
 		return dw.getWatchableObjectInt(26) == 1;
-	}
-
-	@Override
-	public MerchantRecipeList getRecipes(EntityPlayer p_70934_1_)
-	{
-		if (buyingList == null)
-		{
-			buyingList = new MerchantRecipeList();
-			buyingList = createTradesByProfession(buyingList, getType());
-		}
-		return buyingList;
 	}
 
 	@Override
@@ -178,23 +140,6 @@ public class MobBith extends EntityVillager implements IParziNPC
 		 * this.setPlaying(false); }
 		 */
 
-	}
-
-	@Override
-	public void setCustomer(EntityPlayer p_70932_1_)
-	{
-		buyingPlayer = p_70932_1_;
-	}
-
-	@Override
-	public void setPlaying(boolean b)
-	{
-		dw.updateObject(26, Integer.valueOf(b ? 1 : 0));
-	}
-
-	@Override
-	public void useRecipe(MerchantRecipe p_70933_1_)
-	{
 	}
 
 	@Override

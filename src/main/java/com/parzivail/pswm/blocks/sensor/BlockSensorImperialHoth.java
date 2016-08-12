@@ -10,6 +10,7 @@ public class BlockSensorImperialHoth extends BlockSensor
 	public BlockSensorImperialHoth()
 	{
 		super("rebelImperialHoth");
+		this.setCreativeTab(null);
 	}
 
 	@Override

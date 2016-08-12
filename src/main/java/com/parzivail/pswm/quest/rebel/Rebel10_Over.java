@@ -1,17 +1,19 @@
 package com.parzivail.pswm.quest.rebel;
 
-import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
-import com.parzivail.pswm.quest.QuestBank;
-import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import static com.parzivail.pswm.StarWarsItems.silverImperialCredit;
+import static com.parzivail.pswm.StarWarsItems.tieSchematics;
+import static com.parzivail.pswm.StarWarsMod.network;
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebel10;
+import static com.parzivail.util.world.ItemUtils.hasItems;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -42,7 +44,7 @@ public class Rebel10_Over extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this) && QuestBank.rebel10.isQuestComplete(player) && ItemUtils.hasItems(player, new ItemStack(StarWarsItems.tieSchematics, 1));
+		return !isQuestDone(player, this) && rebel10.isQuestComplete(player) && hasItems(player, new ItemStack(tieSchematics, 1));
 	}
 
 	@Override
@@ -60,7 +62,8 @@ public class Rebel10_Over extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
-		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 10), true));
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
+		network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(silverImperialCredit, 10), true));
 		setQuestDone(player, this);
 	}
 

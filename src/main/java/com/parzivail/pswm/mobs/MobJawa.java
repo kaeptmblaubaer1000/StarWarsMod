@@ -21,6 +21,7 @@ public class MobJawa extends EntityCreature implements IMob
 	{
 		super(par1World);
 		setSize(0.5F, 1.5F);
+		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new AiFreqMove(this, 1, 0));
 	}
 

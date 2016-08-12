@@ -1,5 +1,6 @@
 package com.parzivail.pswm.quest.jedi;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
@@ -56,6 +57,7 @@ public class Jedi2 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.hyperdriveIlum, 1), true));
 		setQuestDone(player, this);
 	}

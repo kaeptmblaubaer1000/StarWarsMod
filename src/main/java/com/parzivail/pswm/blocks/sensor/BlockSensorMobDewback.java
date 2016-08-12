@@ -11,6 +11,7 @@ public class BlockSensorMobDewback extends BlockSensor
 	public BlockSensorMobDewback()
 	{
 		super(MobDewback.class.getSimpleName());
+		this.setCreativeTab(null);
 	}
 
 	@Override

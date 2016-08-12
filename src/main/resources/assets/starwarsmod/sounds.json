@@ -8,6 +8,12 @@
       }
     ]
   },
+  "quest.complete": {
+    "category": "neutral",
+    "sounds": [
+      "quest/questcomplete"
+    ]
+  },
   "blastdoor.pressure": {
     "category": "neutral",
     "sounds": [

@@ -10,6 +10,7 @@ public class BlockSensorJawa extends BlockSensor
 	public BlockSensorJawa()
 	{
 		super("jawa");
+		this.setCreativeTab(null);
 	}
 
 	@Override

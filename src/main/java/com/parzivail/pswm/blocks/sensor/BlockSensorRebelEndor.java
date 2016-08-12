@@ -10,6 +10,7 @@ public class BlockSensorRebelEndor extends BlockSensor
 	public BlockSensorRebelEndor()
 	{
 		super("rebelEndor");
+		this.setCreativeTab(null);
 	}
 
 	@Override

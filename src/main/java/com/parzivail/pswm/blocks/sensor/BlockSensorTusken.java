@@ -10,6 +10,7 @@ public class BlockSensorTusken extends BlockSensor
 	public BlockSensorTusken()
 	{
 		super("tusken");
+		this.setCreativeTab(null);
 	}
 
 	@Override

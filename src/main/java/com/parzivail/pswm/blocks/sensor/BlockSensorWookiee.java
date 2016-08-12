@@ -10,6 +10,7 @@ public class BlockSensorWookiee extends BlockSensor
 	public BlockSensorWookiee()
 	{
 		super("wookiee");
+		this.setCreativeTab(null);
 	}
 
 	@Override

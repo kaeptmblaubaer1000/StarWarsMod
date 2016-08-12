@@ -1,16 +1,17 @@
 package com.parzivail.pswm.quest.rebel;
 
-import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
-import com.parzivail.pswm.quest.QuestBank;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import static com.parzivail.pswm.StarWarsItems.silverImperialCredit;
+import static com.parzivail.pswm.StarWarsMod.network;
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
+import static com.parzivail.pswm.quest.QuestBank.rebel6;
 
 /**
  * Created by Colby on 5/8/2016.
@@ -62,7 +63,7 @@ public class Rebel7 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		return !isQuestDone(player, this) && QuestBank.rebel6.isQuestComplete(player);
+		return !isQuestDone(player, this) && rebel6.isQuestComplete(player);
 	}
 
 	@Override
@@ -80,7 +81,8 @@ public class Rebel7 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
-		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 7), true));
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
+		network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(silverImperialCredit, 7), true));
 		setQuestDone(player, this);
 	}
 

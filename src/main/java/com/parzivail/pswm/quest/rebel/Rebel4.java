@@ -1,13 +1,14 @@
 package com.parzivail.pswm.quest.rebel;
 
-import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import static com.parzivail.pswm.StarWarsItems.silverImperialCredit;
+import static com.parzivail.pswm.StarWarsMod.network;
 import static com.parzivail.pswm.items.ItemQuestLog.isQuestDone;
 import static com.parzivail.pswm.items.ItemQuestLog.setQuestDone;
 import static com.parzivail.pswm.quest.QuestBank.rebel3;
@@ -83,7 +84,8 @@ public class Rebel4 extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
-		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.silverImperialCredit, 4), true));
+		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
+		network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(silverImperialCredit, 4), true));
 		setQuestDone(player, this);
 	}
 

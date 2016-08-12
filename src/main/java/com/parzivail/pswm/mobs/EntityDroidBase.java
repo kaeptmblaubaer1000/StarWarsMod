@@ -9,5 +9,6 @@ public abstract class EntityDroidBase extends EntityTameable implements IDebugPr
 	public EntityDroidBase(World world)
 	{
 		super(world);
+		getNavigator().setAvoidsWater(true);
 	}
 }
