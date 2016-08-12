@@ -71,7 +71,7 @@ public class ArmorJediRobes extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i < 2; i++)
 			par3List.add(new ItemStack(this, 1, i));
 	}
 
@@ -79,7 +79,7 @@ public class ArmorJediRobes extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.icons = new IIcon[6];
+		this.icons = new IIcon[2];
 		for (int i = 0; i < this.icons.length; i++)
 			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + i);
 	}

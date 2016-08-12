@@ -3,7 +3,9 @@ package com.parzivail.pswm.items.weapons;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.armor.ArmorShadowtrooper;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.math.IntColorComparator;
 import com.parzivail.util.math.MathUtils;
@@ -192,6 +194,18 @@ public class ItemLightsaber extends ItemSword
 			{
 				vPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
 				aPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
+			}
+			if (QuestUtils.hasOnArmor((EntityPlayer)victim, ArmorShadowtrooper.class))
+			{
+
+				stack.stackTagCompound.setBoolean(nbtBladeOn, false);
+				stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
+				if (attacker instanceof EntityPlayer)
+				{
+					EntityPlayer player = (EntityPlayer)attacker;
+					player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
+					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+				}
 			}
 		}
 
