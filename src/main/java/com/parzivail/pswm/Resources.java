@@ -65,7 +65,6 @@ public class Resources
 		public static int lightsaberDamage;
 
 		public static boolean enableCreditsOverlay;
-		public static boolean enableBlasterFire;
 		public static boolean enableBuckets;
 		public static boolean enableGlobalLeaderboard;
 		public static boolean enableLightsaberHum;
@@ -109,7 +108,6 @@ public class Resources
 			enableCreditsOverlay = config.get(CAT_GUI, "Enable GUI Overlay", true, "Whether or not the PSWM overlay is visible").getBoolean();
 
 			enableLightsaberHum = config.get(CAT_ITEMS, "Enable Lightsaber Idle Sound", true, "Whether or not lightsabers hum when idle").getBoolean();
-			enableBlasterFire = config.get(CAT_ITEMS, "Enable Blaster Fire", true, "Whether or not blaster bolts create fire on impact").setRequiresMcRestart(true).getBoolean();
 			enableBuckets = true;
 
 			enableLightsaberLight = config.get(CAT_ITEMS, "Enable Lightsaber Lighting", true, "Whether or not lightsabers are a light source").getBoolean();

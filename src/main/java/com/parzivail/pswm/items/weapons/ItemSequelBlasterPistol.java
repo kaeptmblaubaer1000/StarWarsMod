@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterPistolBolt;
+import com.parzivail.pswm.entities.EntityBlasterVariableBolt;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.relauncher.Side;
@@ -152,7 +152,7 @@ public class ItemSequelBlasterPistol extends Item
 
 		if (!world.isRemote && getCooldown(stack) < 15)
 		{
-			world.spawnEntityInWorld(new EntityBlasterPistolBolt(world, player));
+			world.spawnEntityInWorld(new EntityBlasterVariableBolt(world, player, 2.0f));
 
 			setCooldown(stack, getCooldown(stack) + 1);
 			setTicksSinceLastShot(stack, 0);

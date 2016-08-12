@@ -76,7 +76,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicNpcLandspeeder.class, "landspeederNpc");
 		EntityUtils.registerEntity(VehicNpcXWing.class, "xwingNpc");
 		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuSpeeder");
-		EntityUtils.registerEntity(EntityBlasterPistolBolt.class, "blasterBolt");
+		EntityUtils.registerEntity(EntityBlasterVariableBolt.class, "blasterBolt");
 		EntityUtils.registerEntity(EntityBlasterEzraBolt.class, "blasterEzraBolt");
 		EntityUtils.registerEntity(EntityBlasterRifleBolt.class, "blasterRifleBolt");
 		EntityUtils.registerEntity(EntityBlasterHeavyBolt.class, "blasterHeavyBolt");

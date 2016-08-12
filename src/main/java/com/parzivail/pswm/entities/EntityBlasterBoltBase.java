@@ -1,7 +1,6 @@
 package com.parzivail.pswm.entities;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
@@ -13,7 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -164,23 +162,17 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 					}
 					else
 					{
-						pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
-						pos.entityHit.setFire(8);
-						this.setDead();
+						hit(pos);
 					}
 				}
 				else
 				{
-					pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
-					pos.entityHit.setFire(8);
-					this.setDead();
+					hit(pos);
 				}
 			}
 			else
 			{
-				pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
-				pos.entityHit.setFire(8);
-				this.setDead();
+				hit(pos);
 			}
 		}
 		else if (pos.typeOfHit == MovingObjectType.BLOCK)
@@ -189,14 +181,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 			if (!this.worldObj.isRemote)
 			{
 				Block b0 = this.worldObj.getBlock(pos.blockX, pos.blockY, pos.blockZ);
-				Block b = this.worldObj.getBlock(pos.blockX, pos.blockY + 1, pos.blockZ);
-				if (b0 != StarWarsMod.blockTarget)
-				{
-					if (b == Blocks.air && ConfigOptions.enableBlasterFire)
-						this.worldObj.setBlock(pos.blockX, pos.blockY + 1, pos.blockZ, Blocks.fire);
-					this.setDead();
-				}
-				else
+				if (b0 == StarWarsMod.blockTarget)
 				{
 					TileEntityTarget te = (TileEntityTarget)this.worldObj.getTileEntity(pos.blockX, pos.blockY, pos.blockZ);
 					te.isHit = true;
@@ -212,6 +197,20 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 				}
 			}
 		}
+	}
+
+	private void hit(MovingObjectPosition pos)
+	{
+		pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
+		double f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+		double k = 1;
+
+		if (f4 > 0.0F)
+		{
+			pos.entityHit.addVelocity(this.motionX * k * 0.6000000238418579D / f4, 0.1D, this.motionZ * k * 0.6000000238418579D / f4);
+		}
+		this.setDead();
 	}
 
 	@Override

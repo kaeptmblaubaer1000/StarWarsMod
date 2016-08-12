@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterRifleBolt;
+import com.parzivail.pswm.entities.EntityBlasterVariableBolt;
 import com.parzivail.pswm.utils.BlasterUtils;
 import com.parzivail.util.ui.KeyboardUtils;
 import com.parzivail.util.ui.LangUtils;
@@ -147,7 +147,7 @@ public class ItemBlasterRifle extends Item
 
 				if (!world.isRemote && BlasterUtils.getCooldown(stack) < 15)
 				{
-					world.spawnEntityInWorld(new EntityBlasterRifleBolt(world, player));
+					world.spawnEntityInWorld(new EntityBlasterVariableBolt(world, player, stack.getItemDamage() == 1 ? 7.5f : (stack.getItemDamage() == 3 ? 8f : 6.5f)));
 
 					BlasterUtils.setCooldown(stack, BlasterUtils.getCooldown(stack) + 1);
 					BlasterUtils.setTicksSinceLastShot(stack, 0);

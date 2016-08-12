@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterHeavyBolt;
+import com.parzivail.pswm.entities.EntityBlasterVariableBolt;
 import com.parzivail.pswm.utils.BlasterUtils;
 import com.parzivail.util.ui.KeyboardUtils;
 import com.parzivail.util.ui.LangUtils;
@@ -153,7 +153,7 @@ public class ItemBlasterHeavy extends Item
 
 				if (!world.isRemote && BlasterUtils.getCooldown(stack) < 15)
 				{
-					world.spawnEntityInWorld(new EntityBlasterHeavyBolt(world, player));
+					world.spawnEntityInWorld(new EntityBlasterVariableBolt(world, player, 9f));
 
 					BlasterUtils.setCooldown(stack, BlasterUtils.getCooldown(stack) + 1);
 					BlasterUtils.setTicksSinceLastShot(stack, 0);
