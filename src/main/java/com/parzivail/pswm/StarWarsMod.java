@@ -539,6 +539,7 @@ public class StarWarsMod
 		this.registerMessage(MessageUpdateTarget.class);
 		this.registerMessage(MessagePlayerBuyItem.class);
 		this.registerMessage(MessageSetQuestLogNbt.class);
+		this.registerMessage(MessageEntityAlterMotionClient.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
