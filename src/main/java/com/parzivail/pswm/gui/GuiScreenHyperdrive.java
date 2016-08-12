@@ -421,7 +421,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 
 			buttonModel.visible = info == zoomPlanet || info == oldZoomPlanet || (zoomPlanet == null && animationZoom.getTick() == 0);
 
-			if (buttonModel.visible && buttonModel.isHover())
+			if (buttonModel.visible && buttonModel.isHover() && canMoveToPlanet(info.getInternalName()))
 			{
 				StarWarsMod.mc.fontRenderer.drawString(info.getName(), 4, 4, GLPalette.BRIGHT_YELLOW);
 				int color = GLPalette.BRIGHT_YELLOW;

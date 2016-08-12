@@ -42,7 +42,9 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 			List<EntityLiving> entitiesInAabb = this.worldObj.getEntitiesWithinAABB(Entity.class, this.bb.expand(rX, rY, rZ));
 
 			int entities = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClass());
-			int entitiesOther = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClassOther());
+			int entitiesOther = 0;
+			if (getEntityNeedleClassOther() != null)
+				entitiesOther = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClassOther());
 
 			if (MathUtils.howManyOfType(entitiesInAabb, EntityPlayer.class) > 0) // Uh oh, slaughterer alert!
 			{
@@ -51,7 +53,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 				{
 					if (entities < entityMax)
 						spawnANewOne(); // hit em wit it
-					if (entitiesOther < otherMax)
+					if (entitiesOther < otherMax && getEntityNeedleClassOther() != null)
 						spawnANewOther(); // hit em wit it
 					//Lumberjack.log("Spawned one because i think one was killed. entities: " + entities);
 					int n = getRandomTimeNext();

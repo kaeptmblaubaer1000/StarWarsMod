@@ -53,7 +53,7 @@ public class StructureBank
 	public static Schematic getBaSingStation()
 	{
 		if (baSingStation == null)
-			baSingStation = new Schematic("final/basingstationfinal", mobsFinal);
+			baSingStation = new Schematic("final/basingstationextendedfinal", mobsFinal);
 		return baSingStation;
 	}
 

@@ -86,6 +86,22 @@ public class WorldRegister
 
 		MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainGenHandler());
 
+		PlanetInformation space = new PlanetInformation();
+		space.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/space.png"));
+		space.setDimensionId(ConfigOptions.dimSpaceId);
+		space.setName("Wild Space");
+		space.setPosition(15f, 8.4f);
+		space.setAffiliation(Resources.allegianceNone);
+		space.setDescription("Wild Space full of asteroids and home to the nearest space station to here, Ba Sing Station.");
+		space.setSuns(0);
+		space.setMoons(0);
+		space.addNativeSpecies("N/A");
+		space.addTerrain("Vacuum");
+		space.addTerrain("Asteroids");
+		space.addResource("N/A");
+		space.setHyperdrive(StarWarsItems.hyperdriveSpace);
+		Resources.planetInformation.add(space);
+
 		PlanetInformation alderaan = new PlanetInformation();
 		alderaan.setCubeTexture(new ResourceLocation(Resources.MODID + ":" + "textures/models/planets/planetAlderaan.png"));
 		alderaan.setDimensionId(Resources.ConfigOptions.dimAlderaanId);

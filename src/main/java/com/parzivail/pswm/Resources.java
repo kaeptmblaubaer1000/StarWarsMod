@@ -146,6 +146,7 @@ public class Resources
 			planetTextures.put(dimDQarId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDQar.png"));
 			planetTextures.put(dimAhchToId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetAhchTo.png"));
 			planetTextures.put(dimDeathStarId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDeathStar.png"));
+			planetTextures.put(dimSpaceId, new ResourceLocation(MODID + ":" + "textures/models/planets/space.png"));
 
 			planetInformation = new ArrayList<>();
 
