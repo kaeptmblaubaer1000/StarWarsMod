@@ -38,7 +38,7 @@ public class ArmorRebelAPilot extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 1)
-			return Resources.MODID + ":" + "textures/models/rebelPilotArmorLayer2.png";
-		return Resources.MODID + ":" + "textures/models/rebelPilotArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/rebelAPilotArmorLayer2.png";
+		return Resources.MODID + ":" + "textures/models/rebelAPilotArmorLayer1.png";
 	}
 }
