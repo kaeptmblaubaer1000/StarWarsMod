@@ -1,5 +1,6 @@
 package com.parzivail.pswm.tileentities.sensor;
 
+import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
 import net.minecraft.entity.EntityLiving;
 
@@ -11,6 +12,7 @@ public class TileEntitySensorStructureRebelEcho extends TileEntitySensorPeoplePl
 		this.rY = 3;
 		this.rZ = 30;
 		this.entityMax = 5;
+		this.otherMax = 2;
 	}
 
 	public MobTrooper getNewEntity()
@@ -36,5 +38,31 @@ public class TileEntitySensorStructureRebelEcho extends TileEntitySensorPeoplePl
 	public Class<? extends EntityLiving> getEntityNeedleClass()
 	{
 		return MobTrooper.class;
+	}
+
+	@Override
+	public EntityLiving getNewEntityOther()
+	{
+		switch (this.worldObj.rand.nextInt(5))
+		{
+			case 0:
+				return new MobDroidProtocol2(this.worldObj);
+			case 1:
+				return new MobDroidAstromech(this.worldObj);
+			case 2:
+				return new MobDroidAstromech2(this.worldObj);
+			case 3:
+				return new MobDroidSurgical(this.worldObj);
+			case 4:
+				return new MobDroidGNK(this.worldObj);
+			default:
+				return null;
+		}
+	}
+
+	@Override
+	public Class<? extends EntityLiving> getEntityNeedleClassOther()
+	{
+		return EntityDroidBase.class;
 	}
 }

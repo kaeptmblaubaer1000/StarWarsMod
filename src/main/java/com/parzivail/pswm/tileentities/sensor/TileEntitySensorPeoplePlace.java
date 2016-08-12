@@ -17,6 +17,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 	protected int rZ;
 	private long nextTime = 0;
 	protected int entityMax;
+	protected int otherMax;
 
 	public TileEntitySensorPeoplePlace()
 	{
@@ -24,6 +25,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 		this.rY = 30;
 		this.rZ = 30;
 		this.entityMax = 15;
+		this.entityMax = 0;
 	}
 
 	@Override
@@ -40,13 +42,17 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 			List<EntityLiving> entitiesInAabb = this.worldObj.getEntitiesWithinAABB(Entity.class, this.bb.expand(rX, rY, rZ));
 
 			int entities = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClass());
+			int entitiesOther = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClassOther());
 
 			if (MathUtils.howManyOfType(entitiesInAabb, EntityPlayer.class) > 0) // Uh oh, slaughterer alert!
 			{
 				long currentTime = System.currentTimeMillis();
-				if (currentTime >= nextTime && entities < entityMax) // The time has come
+				if (currentTime >= nextTime) // The time has come
 				{
-					spawnANewOne(); // hit em wit it
+					if (entities < entityMax)
+						spawnANewOne(); // hit em wit it
+					if (entitiesOther < otherMax)
+						spawnANewOther(); // hit em wit it
 					//Lumberjack.log("Spawned one because i think one was killed. entities: " + entities);
 					int n = getRandomTimeNext();
 					nextTime = currentTime + n; // (but not too much)
@@ -59,6 +65,12 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 				if (entities < entityMax)
 				{
 					spawnANewOne();
+					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
+				}
+				// Nobody here, populate!
+				if (entitiesOther < otherMax)
+				{
+					spawnANewOther();
 					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
 				}
 			}
@@ -81,6 +93,22 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 		worldObj.spawnEntityInWorld(entity);
 	}
 
+	private void spawnANewOther()
+	{
+		int x, y, z;
+		do
+		{
+			x = (int)((double)this.xCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * (double)this.rX);
+			y = this.yCoord + 1;
+			z = (int)((double)this.zCoord + (this.worldObj.rand.nextDouble() - this.worldObj.rand.nextDouble()) * (double)this.rZ);
+		}
+		while (worldObj.getBlock(x, y - 1, z) == Blocks.air && worldObj.getBlock(x, y + 1, z) != Blocks.air);
+
+		EntityLiving entity = getNewEntityOther();
+		entity.setLocationAndAngles(x, y, z, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
+		worldObj.spawnEntityInWorld(entity);
+	}
+
 	public int getRandomTimeNext()
 	{
 		return MathUtils.randomRange(60000, 300000); // between 1 and 5 minutes
@@ -89,4 +117,14 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 	public abstract EntityLiving getNewEntity();
 
 	public abstract Class<? extends EntityLiving> getEntityNeedleClass();
+
+	public EntityLiving getNewEntityOther()
+	{
+		return null;
+	}
+
+	public Class<? extends EntityLiving> getEntityNeedleClassOther()
+	{
+		return null;
+	}
 }
