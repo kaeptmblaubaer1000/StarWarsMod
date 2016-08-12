@@ -7,10 +7,14 @@ package com.parzivail.util.schematic;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockGunRack;
+import com.parzivail.pswm.items.ItemSpawnAstromech;
 import com.parzivail.pswm.items.ItemSpawnProtocol;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
+import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.pswm.world.NbtBlockMap;
 import com.parzivail.util.ui.Lumberjack;
+import com.parzivail.util.world.ItemUtils;
 import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
@@ -247,12 +251,25 @@ public class Schematic
 					if (b == Blocks.chest)
 					{
 						TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
-						if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol)
+						if (ItemUtils.isChestEmpty(t))
+						{
+							LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, t);
+						}
+						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol)
 						{
 							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
 							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
 
 							MobDroidProtocol p = new MobDroidProtocol(world);
+							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+							world.spawnEntityInWorld(p);
+						}
+						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnAstromech)
+						{
+							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+
+							MobDroidAstromech p = new MobDroidAstromech(world);
 							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
 							world.spawnEntityInWorld(p);
 						}

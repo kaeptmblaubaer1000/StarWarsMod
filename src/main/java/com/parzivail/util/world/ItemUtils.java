@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntityChest;
 
 public class ItemUtils
 {
@@ -119,5 +120,13 @@ public class ItemUtils
 			if (player.inventory.mainInventory[i] != null && itemClass.isInstance(player.inventory.mainInventory[i].getItem()))
 				return true;
 		return false;
+	}
+
+	public static boolean isChestEmpty(TileEntityChest t)
+	{
+		for (int i = 0; i < t.getSizeInventory(); i++)
+			if (t.getStackInSlot(i) != null)
+				return false;
+		return true;
 	}
 }
