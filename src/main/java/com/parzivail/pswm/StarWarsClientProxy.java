@@ -195,12 +195,33 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromechBb8, new RenderSpawnAstromechBB8());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnMouse, new RenderSpawnMouse());
 
-		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
-		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
-		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
-		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
-		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
-		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderPowerPack());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnScootemaround, new RenderSpawnScootemaround());
+		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnScootemaroundHoth, new RenderSpawnScootemaroundHoth());
+
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockPipeMass), new RenderBlockPipeMass());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockFloorLight), new RenderBlockFloorLight());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockFloorLight2), new RenderBlockFloorLight2());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockLadder), new RenderBlockLadder());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHolotableMass), new RenderBlockHolotableMass());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockPipeClampedMass), new RenderBlockPipeClampedMass());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockPipeSleevedMass), new RenderBlockPipeSleevedMass());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHothCeilingLight), new RenderBlockHothCeilingLight());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHothCeilingLight2), new RenderBlockHothCeilingLight2());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockMedicalConsole), new RenderBlockMedicalConsole());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockMedicalConsole2), new RenderBlockMedicalConsole2());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockConsoleHoth1), new RenderBlockConsoleHoth1());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockConsoleHoth2), new RenderBlockConsoleHoth2());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockConsoleHoth3), new RenderBlockConsoleHoth3());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockPanelHoth), new RenderBlockPanelHoth());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockPipeDoubleOffsetBot), new RenderBlockPipeDoubleOffsetBot());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockPipeDoubleOffsetBotSpecial), new RenderBlockPipeDoubleOffsetBotSpecial());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockCrate1), new RenderBlockCrate1());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHothCrate1), new RenderBlockHothCrate1());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHothCrate2), new RenderBlockHothCrate2());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockGunRack), new RenderBlockGunRack());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockDoorHoth), new RenderBlockDoorHoth());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockTarget), new RenderBlockTarget());
 
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHyperdrive), new RenderBlockHyperdrive());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHangingBucket), new RenderBlockHangingBucket());

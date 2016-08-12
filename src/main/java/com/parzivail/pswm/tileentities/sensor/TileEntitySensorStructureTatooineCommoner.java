@@ -16,7 +16,15 @@ public class TileEntitySensorStructureTatooineCommoner extends TileEntitySensorP
 
 	public EntityLiving getNewEntity()
 	{
-		return new MobTatooineCommoner(this.worldObj);
+		switch (this.worldObj.rand.nextInt(2))
+		{
+			case 0:
+				return new MobTatooineCommoner(this.worldObj);
+			case 1:
+				return new MobBith(this.worldObj);
+			default:
+				return null;
+		}
 	}
 
 	@Override
@@ -30,11 +38,11 @@ public class TileEntitySensorStructureTatooineCommoner extends TileEntitySensorP
 	{
 		switch (this.worldObj.rand.nextInt(4))
 		{
-			case 1:
+			case 0:
 				return new MobDroidAstromech2(this.worldObj);
-			case 2:
+			case 1:
 				return new MobDroidGNK(this.worldObj);
-			case 3:
+			case 2:
 				return new MobDroidMouse(this.worldObj);
 			default:
 				return null;

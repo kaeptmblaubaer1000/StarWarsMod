@@ -100,8 +100,8 @@ public class ItemRegister
 		StarWarsItems.spawnXwing = new ItemSpawnXWing();
 		GameRegistry.registerItem(StarWarsItems.spawnXwing, "spawnXWing");
 
-		StarWarsItems.spawnTrainingRemote = new ItemSpawnTrainingRemote();
-		GameRegistry.registerItem(StarWarsItems.spawnTrainingRemote, "spawnTrainingRemote");
+		//StarWarsItems.spawnTrainingRemote = new ItemSpawnTrainingRemote();
+		//GameRegistry.registerItem(StarWarsItems.spawnTrainingRemote, "spawnTrainingRemote");
 
 		StarWarsItems.spawnYwing = new ItemSpawnYWing();
 		GameRegistry.registerItem(StarWarsItems.spawnYwing, "spawnYWing");
@@ -134,8 +134,8 @@ public class ItemRegister
 		StarWarsItems.binoculars = new ItemBinocularsTatooine();
 		GameRegistry.registerItem(StarWarsItems.binoculars, "binoculars");
 
-		StarWarsItems.binocularsNew = new ItemBinocularsNew();
-		GameRegistry.registerItem(StarWarsItems.binocularsNew, "binocularsNew");
+		//StarWarsItems.binocularsNew = new ItemBinocularsNew();
+		//GameRegistry.registerItem(StarWarsItems.binocularsNew, "binocularsNew");
 
 		StarWarsItems.idScanner = new ItemIDScanner();
 		GameRegistry.registerItem(StarWarsItems.idScanner, "idScanner");
