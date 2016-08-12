@@ -166,14 +166,12 @@ public class PNBTSerial
 
 	private static Field[] getClassFields(Class<?> clazz)
 	{
-		if (fieldCache.containsValue(clazz))
+		if (fieldCache.containsKey(clazz))
 			return fieldCache.get(clazz);
 		else
 		{
 			Field[] fields = clazz.getFields();
-			Arrays.sort(fields, (Field f1, Field f2) -> {
-				return f1.getName().compareTo(f2.getName());
-			});
+			Arrays.sort(fields, (Field f1, Field f2) -> f1.getName().compareTo(f2.getName()));
 			fieldCache.put(clazz, fields);
 			return fields;
 		}
