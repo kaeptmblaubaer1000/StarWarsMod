@@ -302,6 +302,7 @@ public class StarWarsMod
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
 		this.checkJavaVersion();
 		this.checkModVersion();
+		this.addLaunch();
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
 	}
 
@@ -341,6 +342,27 @@ public class StarWarsMod
 		else
 		{
 			Lumberjack.log("Confirmed client using Java 1.8+");
+		}
+	}
+
+	private void addLaunch()
+	{
+		InputStream in = null;
+		try
+		{
+			in = new URL(Resources.launchAddLink + "?mod=pswmlaunch").openStream();
+			String s = IOUtils.toString(in);
+			Lumberjack.log("Launch log OK");
+			IOUtils.closeQuietly(in);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (in != null)
+				IOUtils.closeQuietly(in);
 		}
 	}
 

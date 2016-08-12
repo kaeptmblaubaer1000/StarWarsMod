@@ -195,6 +195,13 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnAstromechBb8, new RenderSpawnAstromechBB8());
 		MinecraftForgeClient.registerItemRenderer(StarWarsItems.spawnMouse, new RenderSpawnMouse());
 
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+		//MinecraftForgeClient.registerItemRenderer(StarWarsItems.powerpack, new RenderSpawnMouse());
+
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHyperdrive), new RenderBlockHyperdrive());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHangingBucket), new RenderBlockHangingBucket());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(StarWarsMod.blockHangingCauldron), new RenderBlockHangingCauldron());
