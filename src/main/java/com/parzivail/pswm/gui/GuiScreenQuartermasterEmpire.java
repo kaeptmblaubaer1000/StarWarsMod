@@ -958,6 +958,11 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 	{
 		this.drawBg2();
 
+		GL11.glColor4f(1, 1, 1, 1);
+
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+
 		if (stackShowing != null)
 		{
 			GL11.glPushMatrix();
