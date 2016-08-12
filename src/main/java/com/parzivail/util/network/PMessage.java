@@ -7,6 +7,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -115,6 +116,8 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	{
 		int dim = buf.readInt();
 		int id = buf.readInt();
+		if (MinecraftServer.getServer() == null)
+			return Minecraft.getMinecraft().theWorld.getEntityByID(id);
 		Lumberjack.log("%s %s %s %s", dim, id, MinecraftServer.getServer(), MinecraftServer.getServer().worldServerForDimension(dim));
 		return MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
 	}
