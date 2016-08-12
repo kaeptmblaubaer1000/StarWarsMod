@@ -3,6 +3,7 @@ package com.parzivail.pswm.ai;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.armor.*;
 import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.mobs.MobDroidProbe;
 import com.parzivail.pswm.mobs.trooper.*;
 import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.EntityLiving;
@@ -111,7 +112,7 @@ public class AiTrooperAttack extends EntityAIBase
 			EntityPlayer player = (EntityPlayer)entity;
 			return QuestUtils.hasOnArmor(player, ArmorAtatPilot.class) || QuestUtils.hasOnArmor(player, ArmorAtstPilot.class) || QuestUtils.hasOnArmor(player, ArmorSandtrooper.class) || QuestUtils.hasOnArmor(player, ArmorScoutTrooper.class) || QuestUtils.hasOnArmor(player, ArmorShadowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorSnowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorStormtrooper.class) || QuestUtils.hasOnArmor(player, ArmorTiePilot.class) || ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt);
 		}
-		return (entity instanceof MobAtatPilot || entity instanceof MobAtstPilot || entity instanceof MobImperialOfficer || entity instanceof MobSandtrooper || entity instanceof MobScouttrooper || entity instanceof MobSnowtrooper || entity instanceof MobStormtrooper || entity instanceof MobTiePilot);
+		return (entity instanceof MobDroidProbe || entity instanceof MobAtatPilot || entity instanceof MobAtstPilot || entity instanceof MobImperialOfficer || entity instanceof MobSandtrooper || entity instanceof MobScouttrooper || entity instanceof MobSnowtrooper || entity instanceof MobStormtrooper || entity instanceof MobTiePilot);
 	}
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing

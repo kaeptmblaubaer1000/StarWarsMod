@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.pswm.mobs.MobDroidProbe;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -42,6 +43,7 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
 		this.setTamed(false);
 	}
 
