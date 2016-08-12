@@ -40,6 +40,7 @@ public class PowerPull extends PowerBase
 				e.motionX += lookVec.xCoord;
 				e.motionY += lookVec.yCoord;
 				e.motionZ += lookVec.zCoord;
+				e.isAirBorne = true;
 
 				if (e instanceof EntityPlayer)
 					((EntityPlayer)e).velocityChanged = true;

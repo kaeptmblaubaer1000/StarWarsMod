@@ -1,23 +1,21 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 
-public class MessageEntityAlterMotion extends PMessage<MessageEntityAlterMotion>
+public class MessageEntityAlterMotionClient extends PMessage<MessageEntityAlterMotionClient>
 {
 	public Entity entity;
 	public Vec3 motion;
 
-	public MessageEntityAlterMotion()
+	public MessageEntityAlterMotionClient()
 	{
 	}
 
-	public MessageEntityAlterMotion(Entity entity, Vec3 motion)
+	public MessageEntityAlterMotionClient(Entity entity, Vec3 motion)
 	{
 		this.entity = entity;
 		this.motion = motion;
@@ -32,9 +30,6 @@ public class MessageEntityAlterMotion extends PMessage<MessageEntityAlterMotion>
 			this.entity.motionY += this.motion.yCoord;
 			this.entity.motionZ += this.motion.zCoord;
 			this.entity.isAirBorne = true;
-
-			if (this.entity instanceof EntityPlayerMP)
-				StarWarsMod.network.sendTo(new MessageEntityAlterMotionClient(entity, motion), (EntityPlayerMP)this.entity);
 		}
 		return null;
 	}

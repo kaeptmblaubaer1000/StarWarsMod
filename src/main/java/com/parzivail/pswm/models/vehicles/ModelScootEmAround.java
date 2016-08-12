@@ -145,14 +145,17 @@ public class ModelScootEmAround extends ModelBase
 
 		this.shape1.render(f5);
 
-		GL11.glPushMatrix();
-		ShaderHelper.setColor(1, 0.2f, 0.2f, 1);
-		ShaderHelper.useShader(ShaderHelper.glowSolid);
-		GL11.glTranslatef(0, 1.187f, 0);
-		this.Light2.render(f5);
-		this.Light1.render(f5);
-		ShaderHelper.releaseShader();
-		GL11.glPopMatrix();
+		if (entity != null)
+		{
+			GL11.glPushMatrix();
+			ShaderHelper.setColor(1, 0.2f, 0.2f, 1);
+			ShaderHelper.useShader(ShaderHelper.glowSolid);
+			GL11.glTranslatef(0, 1.187f, 0);
+			this.Light2.render(f5);
+			this.Light1.render(f5);
+			ShaderHelper.releaseShader();
+			GL11.glPopMatrix();
+		}
 	}
 
 	/**

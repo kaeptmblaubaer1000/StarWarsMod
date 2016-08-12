@@ -36,11 +36,12 @@ public class RenderSpawnScootemaround implements IItemRenderer
 			case INVENTORY:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.065F, -0.065F, 0.065F);
+				GL11.glScalef(0.045F, -0.045F, 0.045F);
 				GL11.glTranslatef(-9.0f, -2.0f, 1f);
 				GL11.glRotatef(0, 0, 0, 1);
 				GL11.glRotatef(260, 0, 1, 0);
 				GL11.glTranslatef(-10, 0, 0);
+				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glScalef(1, 1, -1);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
