@@ -52,6 +52,8 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
+		StructureBank.getWookieeVillage().genComposite(par1World, chunkX, structureY, chunkZ, 0, 0);
+
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -72,8 +74,6 @@ public class BiomeGenKashyyyk extends BiomeGenPSWM
 			WorldGenerator worldgenerator = this.getRandomWorldGenForGrass(par2Random);
 			worldgenerator.generate(par1World, par2Random, k, i1, l);
 		}
-
-		StructureBank.getWookieeVillage().genComposite(par1World, chunkX, structureY, chunkZ, 0, 0);
 	}
 
 	@Override

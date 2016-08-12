@@ -95,7 +95,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 			StructureBank.getEwokVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
 		}
 
-		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY, chunkZ, 25, 0);
-		StructureBank.getRebelEndor().genComposite(par1World, chunkX, locY, chunkZ, -25, 0);
+		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY - 6, chunkZ, 25, 0);
+		StructureBank.getRebelEndor().genComposite(par1World, chunkX, locY - 6, chunkZ, -25, 0);
 	}
 }

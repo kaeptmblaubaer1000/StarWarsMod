@@ -53,41 +53,36 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			StructureBank.getHomesteadBig().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			StructureBank.getHomesteadBig().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
 		}
-
-		if (par2Random.nextInt(30) == 0)
+		else if (par2Random.nextInt(30) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			WorldGenMV worldGenMV = new WorldGenMV();
 			worldGenMV.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 2, l);
 		}
-
-		if (par2Random.nextInt(800) == 0)
+		else if (par2Random.nextInt(1200) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			StructureBank.getHomestead().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 4, chunkZ);
 		}
-
-		if (par2Random.nextInt(800) == 0)
+		else if (par2Random.nextInt(1200) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			StructureBank.getEscapePod().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			StructureBank.getEscapePod().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 1, chunkZ);
 		}
-
-		if (par2Random.nextInt(800) == 0)
+		else if (par2Random.nextInt(1200) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			StructureBank.getSandCrawler().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
 		}
-
-		if (par2Random.nextInt(900) == 0)
+		else if (par2Random.nextInt(1000) == 0)
 		{
-			StructureBank.getTuskenVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ), chunkZ);
+			StructureBank.getTuskenVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
 		}
 
 		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY - 3, chunkZ, 2, 2);

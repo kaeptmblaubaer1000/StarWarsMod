@@ -48,14 +48,14 @@ public class BiomeGenHoth extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(800) == 0)
+		if (par2Random.nextInt(1200) == 0)
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
 			StructureBank.getHothGenerator().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 10, chunkZ);
 		}
 
-		StructureBank.getHothEcho().genComposite(par1World, chunkX, structureY, chunkZ, 23, 0);
-		StructureBank.getImperialHoth().genComposite(par1World, chunkX, structureY, chunkZ, -23, 0);
+		StructureBank.getHothEcho().genComposite(par1World, chunkX, structureY - 3, chunkZ, 23, 0);
+		StructureBank.getImperialHoth().genComposite(par1World, chunkX, structureY - 5, chunkZ, -23, 0);
 	}
 }

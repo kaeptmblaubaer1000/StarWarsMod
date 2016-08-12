@@ -60,7 +60,7 @@ public class StructureBank
 	public static Schematic getEndorBase()
 	{
 		if (endorBase == null)
-			endorBase = new Schematic("final/endorbasefinal", mobsFinal);
+			endorBase = new Schematic("final/endorimperialfinal", mobsFinal);
 		return endorBase;
 	}
 
