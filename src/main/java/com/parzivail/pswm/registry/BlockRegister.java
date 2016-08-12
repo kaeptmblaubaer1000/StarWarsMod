@@ -378,12 +378,12 @@ public class BlockRegister
 		StarWarsMod.blockPanelHoth = registerWithTileEntity(BlockPanelHoth.class, TileEntityPanelHoth.class);
 		StarWarsMod.blockHothCeilingLight = registerWithTileEntity(BlockHothCeilingLight.class, TileEntityHothCeilingLight.class);
 
-		StarWarsMod.blockPipeDoubleOffsetTopSpecial = registerWithTileEntity(BlockPipeDoubleOffsetTopSpecial.class, TileEntityPipeDoubleOffsetTopSpecial.class);
+		//StarWarsMod.blockPipeDoubleOffsetTopSpecial = registerWithTileEntity(BlockPipeDoubleOffsetTopSpecial.class, TileEntityPipeDoubleOffsetTopSpecial.class);
 		StarWarsMod.blockMedicalConsole = registerWithTileEntity(BlockMedicalConsole.class, TileEntityMedicalConsole.class);
 		StarWarsMod.blockMedicalConsole2 = registerWithTileEntity(BlockMedicalConsole2.class, TileEntityMedicalConsole2.class);
 		StarWarsMod.blockPipeDoubleOffsetBot = registerWithTileEntity(BlockPipeDoubleOffsetBot.class, TileEntityPipeDoubleOffsetBot.class);
 		StarWarsMod.blockPipeDoubleOffsetBotSpecial = registerWithTileEntity(BlockPipeDoubleOffsetBotSpecial.class, TileEntityPipeDoubleOffsetBotSpecial.class);
-		StarWarsMod.blockPipeDoubleOffsetTop = registerWithTileEntity(BlockPipeDoubleOffsetTop.class, TileEntityPipeDoubleOffsetTop.class);
+		//StarWarsMod.blockPipeDoubleOffsetTop = registerWithTileEntity(BlockPipeDoubleOffsetTop.class, TileEntityPipeDoubleOffsetTop.class);
 		StarWarsMod.blockFloorLight2 = registerWithTileEntity(BlockFloorLight2.class, TileEntityFloorLight2.class);
 		StarWarsMod.blockHothCrate1 = registerWithTileEntity(BlockCrateHoth1.class, TileEntityCrateHoth1.class);
 		StarWarsMod.blockHothCrate2 = registerWithTileEntity(BlockCrateHoth2.class, TileEntityCrateHoth2.class);
