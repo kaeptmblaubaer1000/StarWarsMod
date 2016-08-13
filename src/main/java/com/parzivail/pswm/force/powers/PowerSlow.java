@@ -16,7 +16,7 @@ public class PowerSlow extends PowerBase
 		this.costMult = 75;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 15 * 40; // 40 ticks/second
+		this.rechargeTime = 15 * 20; // 40 ticks/second
 		this.recharge = 0;
 	}
 

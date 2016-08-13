@@ -22,6 +22,7 @@ import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
 import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
+import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -535,6 +536,7 @@ public class CommonEventHandler
 		else
 			power.setEntityTargetId(-1);
 		shouldPowerSync = oldId != power.getEntityTargetId();
+		Lumberjack.log(power.getDurationForLevel(power.currentLevel));
 	}
 
 	private void coolPower(PowerBase power)

@@ -15,7 +15,7 @@ public class PowerHeal extends PowerBase
 		this.costMult = 50;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 8 * 40; // 40 ticks/second
+		this.rechargeTime = 8 * 20; // 40 ticks/second
 		this.recharge = 0;
 	}
 

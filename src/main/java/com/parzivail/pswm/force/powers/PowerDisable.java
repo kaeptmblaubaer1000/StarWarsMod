@@ -16,7 +16,7 @@ public class PowerDisable extends PowerBase
 		this.costMult = 60;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 41;
-		this.rechargeTime = 10 * 40; // 40 ticks/second
+		this.rechargeTime = 10 * 20; // 40 ticks/second
 		this.recharge = 0;
 	}
 
