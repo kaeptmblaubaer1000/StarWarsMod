@@ -64,6 +64,12 @@ public class PowerBase
 		return compound;
 	}
 
+	@Override
+	public String toString()
+	{
+		return serialize().toString();
+	}
+
 	/**
 	 * Sets up the power with the specified NBT
 	 *

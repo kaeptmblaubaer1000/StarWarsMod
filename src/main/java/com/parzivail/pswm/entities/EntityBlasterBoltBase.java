@@ -7,6 +7,7 @@ import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.tileentities.TileEntityTarget;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -155,6 +156,8 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 				{
 					ItemStack stack = Cron.getHolocron(entityPlayer);
 					PowerBase active = Cron.getActive(stack);
+
+					Lumberjack.log(active);
 
 					if (active != null && active.name.equalsIgnoreCase("deflect") && active.isRunning)
 					{
