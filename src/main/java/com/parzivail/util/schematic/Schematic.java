@@ -169,38 +169,38 @@ public class Schematic
 					}
 		}
 
-		genTorches(world, torches);
+		genSecondPass(world, torches);
 	}
 
 	public void genFull(World world, int posChunkX, int spawnY, int posChunkZ)
 	{
-		HashMap<Vec3, BlockInfo> torches = new HashMap<>();
+		HashMap<Vec3, BlockInfo> secondPass = new HashMap<>();
 
 		for (int x = 0; x < width; x++)
 			for (int z = 0; z < length; z++)
 				for (int y = 0; y < height; y++)
 				{
-					gen(world, spawnY, posChunkX, posChunkZ, torches, x, z, y);
+					gen(world, spawnY, posChunkX, posChunkZ, secondPass, x, z, y);
 				}
 
-		genTorches(world, torches);
+		genSecondPass(world, secondPass);
 	}
 
-	private void genTorches(World world, HashMap<Vec3, BlockInfo> torches)
+	private void genSecondPass(World world, HashMap<Vec3, BlockInfo> secondPass)
 	{
-		for (Vec3 p : torches.keySet())
+		for (Vec3 p : secondPass.keySet())
 		{
 			int x = (int)p.xCoord;
 			int y = (int)p.yCoord;
 			int z = (int)p.zCoord;
-			BlockInfo bi = torches.get(p);
+			BlockInfo bi = secondPass.get(p);
 			Block b = pack.blockMap.get((int)bi.block);
 			WorldUtils.b(world, x, y, z, b, bi.metadata);
 			WorldUtils.m(world, x, y, z, bi.metadata);
 		}
 	}
 
-	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3, BlockInfo> torches, int x, int z, int y)
+	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3, BlockInfo> secondPass, int x, int z, int y)
 	{
 		BlockInfo bi = getBlockAt(x, y, z);
 		if (bi != null)
@@ -208,9 +208,9 @@ public class Schematic
 			Block b = pack.blockMap.get((int)bi.block);
 			if (b != null)
 			{
-				if (b == Blocks.torch)
+				if (b == Blocks.torch || b == Blocks.bed || b == Blocks.wall_sign)
 				{
-					torches.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
+					secondPass.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
 					return;
 				}
 				else if (b == Blocks.snow)
