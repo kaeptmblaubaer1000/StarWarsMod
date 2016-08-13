@@ -51,7 +51,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.io.File;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -188,16 +187,16 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load loadEvent)
 	{
-		File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
+		//File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
 
-		try
-		{
-			StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
-		}
-		catch (NullPointerException e)
-		{
-			Lumberjack.debug("Couldn't save NBT map. Probably connecting to a server.");
-		}
+		//try
+		//{
+		//	StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
+		//}
+		//catch (NullPointerException e)
+		//{
+		//	Lumberjack.debug("Couldn't save NBT map. Probably connecting to a server.");
+		//}
 	}
 
 	@SubscribeEvent
@@ -455,12 +454,12 @@ public class ClientEventHandler
 		StarWarsMod.isOverlayOnscreen = false;
 		if (ClientEventHandler.renderHelper.isFirstPerson())
 		{
-			guiBinocs.onRenderGui(event);
+			GuiBinocs.onRenderGui(event);
 
 			guiVehicle.onRenderGui(event);
 		}
 
-		guiBlaster.onRenderGui(event);
+		GuiBlaster.onRenderGui(event);
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen);

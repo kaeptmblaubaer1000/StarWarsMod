@@ -1,10 +1,8 @@
 package com.parzivail.pswm.rendering.force;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.force.powers.PowerLightning;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,12 +27,7 @@ public class RenderSithLightning
 		{
 			EntityPlayer player = (EntityPlayer)entity;
 
-			if (player.getCommandSenderName().equals(StarWarsMod.mc.thePlayer.getCommandSenderName()))
-				player = StarWarsMod.mc.thePlayer;
-
 			PowerBase active = Cron.getActive(player);
-
-			Lumberjack.log("%s: %s", player, active);
 
 			if (active != null && active.name.equals("lightning") && active.isRunning)
 			{
