@@ -1,11 +1,13 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.util.vehicle.VehicleLandBase;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -53,11 +55,13 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 		if (i < 0 || i >= ridersDatawatcherIds.length)
 			return null;
 
-		Entity e = this.worldObj.getPlayerEntityByName(getEntityIdAtIndex(i));
+		if (!getEntityIdAtIndex(i).isEmpty())
+		{
+			Entity e = this.worldObj.getPlayerEntityByName(getEntityIdAtIndex(i));
 
-		if (e instanceof EntityPlayer)
-			return (EntityPlayer)e;
-
+			if (e instanceof EntityPlayer)
+				return (EntityPlayer)e;
+		}
 		return null;
 	}
 
@@ -153,13 +157,20 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 							switch (i)
 							{
 								default:
-									entityPlayerMP.playerNetServerHandler.setPlayerLocation(this.posX, this.posY, this.posZ, entityPlayerMP.rotationYawHead, entityPlayerMP.rotationPitch);
+									setPlayerPosition(entityPlayerMP);
 									break;
 							}
 						}
 					}
 				}
 		}
+	}
+
+	private void setPlayerPosition(EntityPlayerMP entityPlayerMP)
+	{
+		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, this.posX, "lastPosX", "field_147373_o");
+		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, this.posY, "lastPosY", "field_147382_p");
+		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, this.posZ, "lastPosZ", "field_147381_q");
 	}
 
 	@Override
