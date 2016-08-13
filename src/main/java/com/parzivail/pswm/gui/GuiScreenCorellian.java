@@ -164,8 +164,8 @@ public class GuiScreenCorellian extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bEarth")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Earth";
+				showingDesc = "To tell you the truth kid, I've never been there, and I can only imagine how weird it's inhabitants are.";
 
 				bBuy.setCurrentCost(45);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEarth, 1) };
@@ -178,8 +178,8 @@ public class GuiScreenCorellian extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bTatooine")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Tatooine";
+				showingDesc = "If I need to explain to you what Tatooine is, you might need to see a Medical Droid.";
 
 				bBuy.setCurrentCost(45);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveTatooine, 1) };
@@ -192,8 +192,8 @@ public class GuiScreenCorellian extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bEndor")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Endor";
+				showingDesc = "I got help captive there by these crazy little bears once.  I don't want to talk about it.";
 
 				bBuy.setCurrentCost(55);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEndor, 1) };
@@ -206,8 +206,8 @@ public class GuiScreenCorellian extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bKashyyyk")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Kashyyyk";
+				showingDesc = "The Wookiee planet.  A good friend of mine's from there.";
 
 				bBuy.setCurrentCost(55);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveKashyyyk, 1) };
@@ -220,8 +220,8 @@ public class GuiScreenCorellian extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bHoth")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Hoth";
+				showingDesc = "It's cold and you should know something about the Tauntauns, they smell way worse on the inside.";
 
 				bBuy.setCurrentCost(65);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
@@ -234,8 +234,8 @@ public class GuiScreenCorellian extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bSpace")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Wild Space";
+				showingDesc = "Ba-Sing Station's a nice place, check it out if you've got a ship.  Be careful of the asteroids though.";
 
 				bBuy.setCurrentCost(45);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };

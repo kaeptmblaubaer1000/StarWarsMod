@@ -218,7 +218,7 @@ public class GuiScreenJawa extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidAstromech")).entity;
 
 				showingTitle = "R2-Series Astromech Droid";
-				showingDesc = "beep";
+				showingDesc = "Gip-tama-san-ja, rra-ti.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech, 1) };
@@ -230,7 +230,7 @@ public class GuiScreenJawa extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidAstromech2")).entity;
 
 				showingTitle = "R5-Series Astromech Droid";
-				showingDesc = "boop";
+				showingDesc = "Oya-washa-lapi, h-wahh!";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech2, 1) };
@@ -242,7 +242,7 @@ public class GuiScreenJawa extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidProtocol")).entity;
 
 				showingTitle = "3PO-Series Protocol Droid";
-				showingDesc = "boop";
+				showingDesc = "Kumaka-chinsa-pusah, mama-lu-lu.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnProtocol, 1) };
@@ -254,7 +254,7 @@ public class GuiScreenJawa extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidAstromechBb8")).entity;
 
 				showingTitle = "BB-Series Astromech Droid";
-				showingDesc = "boop";
+				showingDesc = "Ekaiagu-nani, h-bahh!";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromechBb8, 1) };
@@ -266,7 +266,7 @@ public class GuiScreenJawa extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBDroids.get("bDroidGonk")).entity;
 
 				showingTitle = "GNK Power Droid";
-				showingDesc = "boop";
+				showingDesc = "Ete-myamay-e, eeiyay-a saba.";
 
 				bBuy.setCurrentCost(48);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnGonk, 1) };
@@ -279,7 +279,7 @@ public class GuiScreenJawa extends GuiScreen
 				tileShowing = null;
 
 				showingTitle = "Ionization Blaster";
-				showingDesc = "shooty";
+				showingDesc = "Huto-isekka, utinni!";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 2) };
@@ -292,7 +292,7 @@ public class GuiScreenJawa extends GuiScreen
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscCaller")).itemStack;
 
 				showingTitle = "Droid Caller";
-				showingDesc = "zip";
+				showingDesc = "Iswa-hamasada, oo-o-hu.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.droidCaller, 1) };
@@ -305,7 +305,7 @@ public class GuiScreenJawa extends GuiScreen
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bMiscHacker")).itemStack;
 
 				showingTitle = "Droid Hacker";
-				showingDesc = "*hacker voice* i'm in";
+				showingDesc = "Mabet mabet qwas, hun shaka-do!";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.droidHacker, 1) };
