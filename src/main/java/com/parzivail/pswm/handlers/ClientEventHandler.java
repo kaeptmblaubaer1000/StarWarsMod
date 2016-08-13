@@ -175,7 +175,7 @@ public class ClientEventHandler
 					active.health = 0;
 				}
 
-				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, active.serialize()));
+				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(entityPlayer, active.serialize()));
 			}
 
 			if (active.name.equals("deflect") && active.isRunning)
