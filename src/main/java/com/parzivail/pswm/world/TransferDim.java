@@ -41,48 +41,45 @@ public class TransferDim extends Teleporter
 		if (entity == null)
 			return;
 
-		if (entity.ridingEntity != null)
-		{
-			teleport(entity.ridingEntity);
-			entity.mountEntity(null);
-			teleportInternal(entity);
-		}
-		else
-		{
-			teleportInternal(entity);
-			if (entity instanceof EntityLivingBase)
-				putInRightPlace((EntityLivingBase)entity);
-			if (entity instanceof VehicleAirBase)
-			{
-				VehicleAirBase vehicleAirBase = (VehicleAirBase)entity;
-				vehicleAirBase.setRealPitch(-90);
-				vehicleAirBase.setRealYaw(0);
-			}
-		}
+		teleportInternal(entity);
 	}
 
 	public void putInRightPlace(EntityLivingBase entity)
 	{
+		if (entity instanceof VehicleAirBase)
+		{
+			VehicleAirBase vehicleAirBase = (VehicleAirBase)entity;
+			vehicleAirBase.setRealYaw(0);
+			vehicleAirBase.setRealPitch(0);
+		}
+
 		if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimTatooineId)
 		{
-			entity.setPositionAndUpdate(0.5f, worldserver.getHeightValue(0, 0), 0.5f);
+			entity.setPosition(0.5f, worldserver.getHeightValue(0, 0), 0.5f);
 		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimSpaceId)
 		{
-			entity.setPositionAndUpdate(9.5f, 157, 45.5f);
+			entity.setPosition(9.5f, 157, 45.5f);
+
+			if (entity instanceof VehicleAirBase)
+			{
+				VehicleAirBase vehicleAirBase = (VehicleAirBase)entity;
+				vehicleAirBase.setRealYaw(90);
+			}
 		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
 		{
-			entity.setPositionAndUpdate(270.5f, 54, 248.5f);
+			entity.setPosition(270.5f, 54, 248.5f);
 		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimDagobahId)
 		{
-			entity.setPositionAndUpdate(55.5f, 68, 19.5f);
+			entity.setPosition(55.5f, 68, 19.5f);
 		}
 	}
 
 	private void teleportInternal(Entity entity)
 	{
+		worldserver.theChunkProviderServer.unloadChunksIfNotNearSpawn((int)entity.posX >> 4, (int)entity.posZ >> 4);
 		double dx = this.worldserver.getSpawnPoint().posX;
 		double dz = this.worldserver.getSpawnPoint().posZ;
 		double dy = 250.0D;
@@ -98,10 +95,18 @@ public class TransferDim extends Teleporter
 		entity.setPosition(dx, dy, dz);
 		entity.setPosition(dx, dy, dz);
 
+		if (entity instanceof EntityLivingBase)
+		{
+			putInRightPlace((EntityLivingBase)entity);
+			putInRightPlace((EntityLivingBase)entity);
+			putInRightPlace((EntityLivingBase)entity);
+		}
+
 		if (entity instanceof EntityPlayerMP && entity.worldObj.provider.dimensionId != this.worldserver.provider.dimensionId)
 			MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension((EntityPlayerMP)entity, this.worldserver.provider.dimensionId, this);
 		else if (entity.worldObj.provider.dimensionId != this.worldserver.provider.dimensionId)
 			transferEntityToDimension(MinecraftServer.getServer().getConfigurationManager(), entity, this.worldserver.provider.dimensionId, this);
+		worldserver.theChunkProviderServer.loadChunk((int)entity.posX >> 4, (int)entity.posZ >> 4);
 	}
 
 	private void transferEntityToDimension(ServerConfigurationManager manager, Entity entity, int newDimension, Teleporter teleporter)
@@ -112,6 +117,7 @@ public class TransferDim extends Teleporter
 		WorldServer worldserver1 = manager.getServerInstance().worldServerForDimension(entity.dimension);
 		worldserver.removeEntity(entity);
 		entity.isDead = false;
+		entity.travelToDimension(newDimension);
 		manager.transferEntityToWorld(entity, j, worldserver, worldserver1, teleporter);
 	}
 }

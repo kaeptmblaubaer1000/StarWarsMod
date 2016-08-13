@@ -2,17 +2,12 @@ package com.parzivail.pswm.models.armor;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.rendering.ArmorRenderHelper;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
-import static com.parzivail.pswm.StarWarsMod.mc;
 
 /**
  * ModelBiped - Either Mojang or a mod author
@@ -31,11 +26,10 @@ public class ModelBackpackStorm extends ModelBiped
 
 	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/backpackStorm.png");
 	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/stormtrooperArmorLayer1.png");
-	private static ModelCompressionArmor armorModel;
+	private static ModelBiped armorModel = new ModelBiped(0.4f);
 
-	public ModelBackpackStorm(ItemArmor armor)
+	public ModelBackpackStorm()
 	{
-		armorModel = new ModelCompressionArmor(0.4f, armor);
 		this.textureWidth = 64;
 		this.textureHeight = 32;
 		this.shape9_3 = new ModelRenderer(this, 0, 0);
@@ -83,13 +77,10 @@ public class ModelBackpackStorm extends ModelBiped
 		if (entity instanceof EntityLivingBase)
 		{
 			EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
-			mc.renderEngine.bindTexture(texture2);
+			StarWarsMod.mc.renderEngine.bindTexture(texture2);
 			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
 			armorModel.onGround = entityLivingBase.getSwingProgress(f5);
-			if (entity instanceof EntityPlayer)
-				ArmorRenderHelper.renderModel(armorModel, (EntityPlayer)entity, f, f1, f2, f3, f4, f5);
-			else
-				armorModel.render(entity, f, f1, f2, f3, f4, f5);
+			armorModel.render(entity, f, f1, f2, f3, f4, f5);
 		}
 	}
 
