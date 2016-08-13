@@ -266,8 +266,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "eeeeeeeeeeee3";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech EE-3 Blaster Rifle";
+				showingDesc = "A rifle that packs more punch than the normal stuff.  It's perfect for bounty hunters and scoundrels alike.";
 
 				bBuy.setCurrentCost(128);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 1) };
@@ -279,8 +279,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "dl444444";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech DL-44 Heavy Blaster Pistol";
+				showingDesc = "A pistol famous for it's powerful punch and supposedly used by a famous smuggler.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 0) };
@@ -292,8 +292,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "dl188888888888";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech DL-18 Blaster Pistol";
+				showingDesc = "The standard sidearm of the sleemos of the galaxy.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 1) };
@@ -305,8 +305,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "s-ee four14 see";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech SE-14C";
+				showingDesc = "A bigger pistol that lacks the punch of the DL-44.  Again, traditionally favored by scoundrels.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 6) };
@@ -318,8 +318,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "dee aech fourteen see";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech DH-17 Blaster Pistol";
+				showingDesc = "A fairly common and well-liked blaster pistol.  I even hear the Rebellion uses it.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 2) };
@@ -331,8 +331,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "UUUUUH! UH! UH! UH! UUUUUH!";
-				showingDesc = "shooty";
+				showingTitle = "Tusken Gaffi Stick";
+				showingDesc = "Tuskens make these by hand and they hurt like heck if you get hit by one.";
 
 				bBuy.setCurrentCost(128);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.gaffiStick, 1) };
@@ -344,8 +344,8 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				entityShowing = null;
 				tileShowing = null;
 
-				showingTitle = "vibrolance";
-				showingDesc = "shooty";
+				showingTitle = "Vibro-Lance";
+				showingDesc = "It's a big stick with a blade on it.  I think you get the idea.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.vibroLance, 1) };

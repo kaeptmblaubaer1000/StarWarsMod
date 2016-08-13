@@ -273,8 +273,8 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "mv";
-				showingDesc = "water";
+				showingTitle = "GX-8 Moisture Vaporator";
+				showingDesc = "The standard model and a hard worker, well worth the investment.";
 
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockMV, 1) };
@@ -289,8 +289,8 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Saddle";
+				showingDesc = "Just what you need if you're going to be riding any Banthas or Dewbacks.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(Items.saddle, 1) };
@@ -305,8 +305,8 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "binocs";
-				showingDesc = "see-y";
+				showingTitle = "Macrobinoculars";
+				showingDesc = "Always keep a pair of these on ya if you wanna be safe from Tusken attacks.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.binoculars, 1) };
@@ -325,8 +325,8 @@ public class GuiScreenMerchant extends GuiScreen
 					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
 				};
 
-				showingTitle = "land";
-				showingDesc = "speeder";
+				showingTitle = "X-34 Landspeeder";
+				showingDesc = "A great work-horse speeder that'll last for a long time.  It's not as fast as the Swoop Speeder I've got, but it'll get the job done.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -345,8 +345,8 @@ public class GuiScreenMerchant extends GuiScreen
 					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
 				};
 
-				showingTitle = "jak";
-				showingDesc = "ku";
+				showingTitle = "Swoop Speeder";
+				showingDesc = "Some scavenger girl came through here and sold this for cheap.  This machine is fast and lean, you won't find anything else like it in Mos Eisley.";
 
 				bBuy.setCurrentCost(320);
 				buyItemStacks = new ItemStack[] {};
@@ -361,8 +361,8 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "shard";
-				showingDesc = "idk what this is";
+				showingTitle = "Unknown";
+				showingDesc = "I don't know what this thing is, but it seems to have some kind of dark energy coming from it.";
 
 				bBuy.setCurrentCost(640);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.lightsaberCrystal, 1, 11) };

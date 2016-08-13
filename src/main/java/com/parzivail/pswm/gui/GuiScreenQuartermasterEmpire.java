@@ -495,7 +495,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Stormtrooper Body Armor";
-				showingDesc = "makes you unable to aim";
+				showingDesc = "Standard Stormtrooper Armor.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.stormtrooperHelmet, 1), new ItemStack(StarWarsItems.stormtrooperChest, 1), new ItemStack(StarWarsItems.stormtrooperLegs, 1), new ItemStack(StarWarsItems.stormtrooperBoots, 1) };
@@ -508,8 +508,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "Rebel Low Temperature Gear";
-				showingDesc = "freezy";
+				showingTitle = "Sandtrooper Body Armor";
+				showingDesc = "Used by troops in desert environments.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.sandtrooperHelmet, 1), new ItemStack(StarWarsItems.sandtrooperChest, 1), new ItemStack(StarWarsItems.sandtrooperLegs, 1), new ItemStack(StarWarsItems.sandtrooperBoots, 1) };
@@ -522,8 +522,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "Rebel X-Wing Pilot Jumpsuit";
-				showingDesc = "fly-y";
+				showingTitle = "Snowtrooper Body Armor";
+				showingDesc = "Used by troops in arctic environments.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.snowtrooperHelmet, 1), new ItemStack(StarWarsItems.snowtrooperChest, 1), new ItemStack(StarWarsItems.snowtrooperLegs, 1), new ItemStack(StarWarsItems.snowtrooperBoots, 1) };
@@ -536,8 +536,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
-				showingDesc = "bomby";
+				showingTitle = "Scout Trooper Body Armor";
+				showingDesc = "Used by scouts in forest and jungle environments";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.scoutTrooperHelmet, 1), new ItemStack(StarWarsItems.scoutTrooperChest, 1), new ItemStack(StarWarsItems.scoutTrooperLegs, 1), new ItemStack(StarWarsItems.scoutTrooperBoots, 1) };
@@ -550,8 +550,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "Rebel A-Wing Pilot Jumpsuit";
-				showingDesc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book";
+				showingTitle = "TIE Pilot Body Armor";
+				showingDesc = "Flightsuit used by our pilots.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.tiePilotHelmet, 1), new ItemStack(StarWarsItems.tiePilotChest, 1), new ItemStack(StarWarsItems.tiePilotLegs, 1), new ItemStack(StarWarsItems.tiePilotBoots, 1) };
@@ -564,8 +564,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
-				showingDesc = "bomby";
+				showingTitle = "AT-ST Pilot Body Armor";
+				showingDesc = "Flightsuit used by AT-ST pilots.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.atstPilotHelmet, 1), new ItemStack(StarWarsItems.atstPilotChest, 1), new ItemStack(StarWarsItems.atstPilotLegs, 1), new ItemStack(StarWarsItems.atstPilotBoots, 1) };
@@ -578,8 +578,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
-				showingDesc = "bomby";
+				showingTitle = "AT-AT Pilot Body Armor";
+				showingDesc = "Flightsuit used by AT-AT pilots.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.atatPilotHelmet, 1), new ItemStack(StarWarsItems.atatPilotChest, 1), new ItemStack(StarWarsItems.atatPilotLegs, 1), new ItemStack(StarWarsItems.atatPilotBoots, 1) };
@@ -593,8 +593,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "BlasTech A-280C Blaster Rifle";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech E-11 Blaster Rifle";
+				showingDesc = "The standard issue Blaster Rifle.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 4) };
@@ -608,8 +608,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "BlasTech A-280C Blaster Rifle";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech DLT-19 Heavy Blaster Rifle";
+				showingDesc = "The standard issue Heavy Blaster Rifle.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterHeavy, 1, 0) };
@@ -627,8 +627,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "DDC T21 Sporting Pistol";
-				showingDesc = "pew pew";
+				showingTitle = "T21 Light Repeating Blaster";
+				showingDesc = "An alternate Heavy Blaster Rifle fit for all tough environments.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterHeavy, 1, 1) };
@@ -646,8 +646,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "BlasTech DL-21 Blaster Pistol";
-				showingDesc = "shooty mc'booty";
+				showingTitle = "BlasTech RT-97C Heavy Blaster Rifle";
+				showingDesc = "An alternate Heavy Blaster Rifle fit for all tough environments.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterHeavy, 1, 2) };
@@ -665,8 +665,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "BlasTech DL-21 Blaster Pistol";
-				showingDesc = "shooty mc'booty";
+				showingTitle = "BlasTech EC-17 Blaster Pistol";
+				showingDesc = "The standard issue sidearm for scouts.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 5) };
@@ -685,7 +685,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				};
 
 				showingTitle = "TIE/LN Starfighter License";
-				showingDesc = "BAD-X (R)";
+				showingDesc = "The standard TIE model, equipped with 2 Laser Cannons.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -704,7 +704,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				};
 
 				showingTitle = "TIE/SA Bomber License";
-				showingDesc = "boom";
+				showingDesc = "The Bomber variation of the TIE, equipped with 2 Laser Cannons and capable of dropping bombs.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -723,7 +723,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				};
 
 				showingTitle = "TIE/IN Interceptor License";
-				showingDesc = "double pew";
+				showingDesc = "The Interceptor variation of the TIE, equipped with 2 Laser Cannons and boasts a higher top speed than all other models.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -742,7 +742,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				};
 
 				showingTitle = "TIE Advanced x1 License";
-				showingDesc = "cold";
+				showingDesc = "An experimental TIE variation.  Equipped with 2 Laser Cannons.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -757,7 +757,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Target";
-				showingDesc = "aim better than a stormtrooper, at least";
+				showingDesc = "For training use only.";
 
 
 				bBuy.setCurrentCost(16);
@@ -773,7 +773,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Gun Rack";
-				showingDesc = "store yo guns";
+				showingDesc = "Standard gun racks.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockGunRack, 1) };
@@ -788,7 +788,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Antenna";
-				showingDesc = "listeny";
+				showingDesc = "A mobile terrain visualizer and assessment device.  Fixable with a Hydrospanner";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockAntenna, 1) };
@@ -802,8 +802,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "hydroipashjdfgner";
-				showingDesc = "spanny";
+				showingTitle = "Hydrospanner";
+				showingDesc = "A mechanical repair tool, can be used to fix Antennas.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hydrospanner, 1) };
@@ -817,8 +817,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "id scal;kajsndfler";
-				showingDesc = "scsnny";
+				showingTitle = "ID Scanner";
+				showingDesc = "Checks credentials against Imperial database.  Used to catch smugglers.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.idScanner, 1) };
@@ -832,8 +832,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "dataiosudghpad";
-				showingDesc = "paddy7";
+				showingTitle = "Datapad";
+				showingDesc = "Standard datapad.  Capable of scanning and storing data from Probe Droids.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.dataPad, 1) };
@@ -847,8 +847,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "hoth";
-				showingDesc = "2QR3qertag80[ohihofhg";
+				showingTitle = "Hoth";
+				showingDesc = "Arctic planet with a large Rebellion installation.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
@@ -862,8 +862,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "space";
-				showingDesc = "dobuipsfh;bskjdfbnskjbg";
+				showingTitle = "Wild Space";
+				showingDesc = "Where pilots go to train.  Ba-Sing Station is shared with the Rebellion in the interest of fighter development";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
@@ -877,8 +877,8 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "yavin";
-				showingDesc = "aliusdfghblsdhjgf";
+				showingTitle = "Yavin 4";
+				showingDesc = "Forest planet and location of a large Rebellion installation.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveYavin4, 1) };

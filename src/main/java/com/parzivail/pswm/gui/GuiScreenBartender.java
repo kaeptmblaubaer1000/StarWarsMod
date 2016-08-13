@@ -176,8 +176,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bBanthaChop")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Bantha Chop";
+				showingDesc = "A hunk of meat fresh from a Bantha.";
 
 				bBuy.setCurrentCost(8);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaChop, 1) };
@@ -190,8 +190,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bBanthaChopCooked")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Cooked Bantha Chop";
+				showingDesc = "Delicious cooked meat perfect for the hungry scavenger.";
 
 				bBuy.setCurrentCost(12);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaChopCooked, 1) };
@@ -204,8 +204,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bBanthaPlatter")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Bantha Platter";
+				showingDesc = "Somewhat of a delicacy, and high priced becaude of it.  Bantha served with hearty sides, it's a perfect meal after a day on the moisture farm.";
 
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaPlatter, 1) };
@@ -218,8 +218,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bDewRibs")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Dewback Ribs";
+				showingDesc = "Not in the mood for Bantha?  Have some Dewback instead.  It tastes like chicken, we promise.";
 
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.dewbackRibs, 1) };
@@ -232,8 +232,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bChasuka")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Chasuka";
+				showingDesc = "A leafy green treat perfect for when you want something a little more healthy.";
 
 				bBuy.setCurrentCost(8);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.chasuka, 1) };
@@ -246,8 +246,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bCanron")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Canron";
+				showingDesc = "A Jellied dessert that will melt the heart of even the toughest bounty hunters.";
 
 				bBuy.setCurrentCost(8);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.canron, 1) };
@@ -260,8 +260,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bAcidbeets")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Acid Beets";
+				showingDesc = "Be careful with these, they've got a bit of a kick to 'em.";
 
 				bBuy.setCurrentCost(12);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.acidBeets, 1) };
@@ -274,8 +274,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bGorrnar")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Gorrnar";
+				showingDesc = "Eat at your own risk, Wookiee food is notoriously spicy.";
 
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.gorrnar, 1) };
@@ -288,8 +288,8 @@ public class GuiScreenBartender extends GuiScreen
 				entityShowing = null;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bBanthaMilk")).itemStack;
 
-				showingTitle = "saddle";
-				showingDesc = "sitty";
+				showingTitle = "Bantha Milk";
+				showingDesc = "The sweet blue nectar of the mighty Bantha.";
 
 				bBuy.setCurrentCost(8);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.banthaMilk, 1) };

@@ -92,7 +92,7 @@ public class WorldRegister
 		space.setName("Wild Space");
 		space.setPosition(15f, 8.4f);
 		space.setAffiliation(Resources.allegianceNone);
-		space.setDescription("Wild Space full of asteroids and home to the nearest space station to here, Ba Sing Station.");
+		space.setDescription("Home to the neutral Ba-Sing Station, where many young pilots come to train.  The asteroids that surround the station make for great maneuvering practice");
 		space.setSuns(0);
 		space.setMoons(0);
 		space.addNativeSpecies("N/A");
@@ -128,7 +128,7 @@ public class WorldRegister
 		hoth.setName("Hoth");
 		hoth.setPosition(4.6f, 13.8f);
 		hoth.setAffiliation(Resources.allegianceRebel);
-		hoth.setDescription("Hoth is the sixth planet of the remote Hoth system. A desolate world covered with ice and snow, located in the Anoat sector, a rarely-traveled portion of the Outer Rim Territories. Home to a large Rebel base.");
+		hoth.setDescription("The sixth planet of the remote Hoth system. A desolate world covered with ice and snow, located in the Anoat sector, a rarely-traveled portion of the Outer Rim Territories. Home to a large Rebel base.");
 		hoth.setSuns(1);
 		hoth.setMoons(3);
 		hoth.addNativeSpecies("Tauntaun");
@@ -181,7 +181,7 @@ public class WorldRegister
 		dagobah.setName("Dagobah");
 		dagobah.setPosition(7.5f, 14.4f);
 		dagobah.setAffiliation(Resources.allegianceJedi);
-		dagobah.setDescription("Dagobah is a planet in the Dagobah system, and one of the purest places in the galaxy within the Force. A remote world of swamps and forests, it serves as a refuge for Jedi Grand Master Yoda during his exile since the destruction of the Jedi Order.");
+		dagobah.setDescription("A remote planet in the Dagobah system, and one of the purest places in the galaxy within the Force. A remote world of swamps and forests, it serves as a refuge for the Jedi Grand Master since the destruction of the Jedi Order.");
 		dagobah.setMoons(1);
 		dagobah.setSuns(1);
 		dagobah.addNativeSpecies("Snakes");
@@ -236,7 +236,7 @@ public class WorldRegister
 		tatooine.setName("Tatooine");
 		tatooine.setPosition(12.35f, 11.75f);
 		tatooine.setAffiliation(Resources.allegianceNone);
-		tatooine.setDescription("Tatooine is a sparsely inhabited desert planet located in the galaxy's Outer Rim Territories. Part of a binary star system, the planet is oppressed by a scorching sun, resulting in a lack of necessary surface water.");
+		tatooine.setDescription("A sparsely inhabited desert planet located in the galaxy's Outer Rim Territories. Part of a binary star system, the planet is oppressed by a scorching sun, resulting in a lack of necessary surface water.");
 		tatooine.setSuns(2);
 		tatooine.setMoons(3);
 		tatooine.addNativeSpecies("Tusken Raider");
@@ -270,7 +270,7 @@ public class WorldRegister
 		ilum.setName("Ilum");
 		ilum.setPosition(1.9f, 2.4f);
 		ilum.setAffiliation(Resources.allegianceJedi);
-		ilum.setDescription("Ilum is an arctic planet located in the Unknown Regions. It was used by the Jedi Order for the Gathering, a rite of passage in which Jedi younglings must find and harvest kyber crystals for their lightsabers.");
+		ilum.setDescription("An ancient arctic planet located in the Unknown Regions. It was used by the Jedi Order for the Gathering, a rite of passage in which Jedi younglings must find and harvest kyber crystals for their lightsabers.");
 		ilum.setSuns(1);
 		ilum.setMoons(2);
 		ilum.addNativeSpecies("None");
@@ -299,7 +299,7 @@ public class WorldRegister
 		kashyyyk.setName("Kashyyyk");
 		kashyyyk.setPosition(10.75f, 4.7f);
 		kashyyyk.setAffiliation(Resources.allegianceNone);
-		kashyyyk.setDescription("Kashyyyk is a temperate jungle planet orbiting around a single star located in the Mytaranor sector of the Mid Rim, and has a complement of three moons. It was a member of the Galactic Republic and after the Clone Wars endured enslavement under the Galactic Empire.");
+		kashyyyk.setDescription("A temperate jungle planet orbiting around a single star located in the Mytaranor sector of the Mid Rim, and has a complement of three moons. It was a member of the Galactic Republic and after the Clone Wars endured enslavement under the Galactic Empire.");
 		kashyyyk.addNativeSpecies("Wookiee");
 		kashyyyk.addTerrain("Forests");
 		kashyyyk.addResource("None");
@@ -385,7 +385,7 @@ public class WorldRegister
 		yavin4.setInternalName("Yavin4");
 		yavin4.setPosition(10.6f, 1.0f);
 		yavin4.setAffiliation(Resources.allegianceRebel);
-		yavin4.setDescription("Yavin 4 is one of three habitable moons orbiting the gas giant Yavin. It is mainly covered in jungle and rainforest, and despite being remote and unheard of, it plays an important role in galactic events. Serves as the main headquarters of the Rebel Alliance.");
+		yavin4.setDescription("One of three habitable moons orbiting the gas giant Yavin. It is mainly covered in jungle and rainforest, and despite being remote and unheard of, it plays an important role in galactic events. Serves as the main headquarters of the Rebel Alliance.");
 		yavin4.setMoons(0);
 		yavin4.setSuns(1);
 		yavin4.addNativeSpecies("None");

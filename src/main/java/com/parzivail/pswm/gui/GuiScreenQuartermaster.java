@@ -477,7 +477,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorEndor")).entity;
 
 				showingTitle = "Rebel Forest Gear";
-				showingDesc = "Hidey";
+				showingDesc = "Standard issue for forest and jungle environments.";
 
 				onBuyClick = null;
 
@@ -491,7 +491,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorHoth")).entity;
 
 				showingTitle = "Rebel Low Temperature Gear";
-				showingDesc = "freezy";
+				showingDesc = "Standard issue for arctic environments.";
 
 				onBuyClick = null;
 
@@ -506,7 +506,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorXPilot")).entity;
 
 				showingTitle = "Rebel X-Wing Pilot Jumpsuit";
-				showingDesc = "fly-y";
+				showingDesc = "The standard issue flightsuit for X-Wing pilots.";
 
 				onBuyClick = null;
 
@@ -520,7 +520,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				entityShowing = ((OutlineButtonEntity)listBArmor.get("bArmorYPilot")).entity;
 
 				showingTitle = "Rebel Y-Wing Pilot Jumpsuit";
-				showingDesc = "bomby";
+				showingDesc = "The standard issue flightsuit for Y-Wing pilots.";
 
 				onBuyClick = null;
 
@@ -536,7 +536,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Rebel A-Wing Pilot Jumpsuit";
-				showingDesc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book";
+				showingDesc = "The standard issue flightsuit for A-Wing pilots.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.rebelAPilotHelmet, 1), new ItemStack(StarWarsItems.rebelAPilotChest, 1), new ItemStack(StarWarsItems.rebelAPilotLegs, 1), new ItemStack(StarWarsItems.rebelAPilotBoots, 1) };
@@ -550,8 +550,8 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "BlasTech A-280C Blaster Rifle";
-				showingDesc = "shooty";
+				showingTitle = "BlasTech A-280 Blaster Rifle";
+				showingDesc = "Our standard issue Blaster Rifle.  It's got more than enough firepower to take down Stormtroopers.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterRifle, 1, 0) };
@@ -570,7 +570,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "DDC Defender Sporting Pistol";
-				showingDesc = "pew pew";
+				showingDesc = "A target pistol which boasts good accuracy.";
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 3) };
 
 				bBuy.setCurrentCost(24);
@@ -589,7 +589,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "BlasTech DL-21 Blaster Pistol";
-				showingDesc = "shooty mc'booty";
+				showingDesc = "A great cold weather pistol.";
 
 				bBuy.setCurrentCost(24);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 4) };
@@ -603,8 +603,8 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "dh17";
-				showingDesc = "shooty mc'booty";
+				showingTitle = "BlasTech DH-17";
+				showingDesc = "A good all-around pistol which excels in close-quarters combat.";
 
 				bBuy.setCurrentCost(24);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.blasterPistol, 1, 2) };
@@ -623,7 +623,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				};
 
 				showingTitle = "Incom T-65 X-Wing Starfighter License";
-				showingDesc = "BAD-X (R)";
+				showingDesc = "Our main starfighter.  It's got 4 Laser Cannons, Proton Torpedoes, and S-Foils that open and close which make it a very versatile fighter.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -642,7 +642,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				};
 
 				showingTitle = "BTL Y-Wing Bomber License";
-				showingDesc = "boom";
+				showingDesc = "A design that withstood the trials of The Clone Wars.  Although, our models are a bit more stripped down for ease of maintenance, they're still more than capable of dropping bombs accurately.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -661,7 +661,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				};
 
 				showingTitle = "RZ-1 A-Wing Interceptor License";
-				showingDesc = "double pew";
+				showingDesc = "Our Interceptor and the fastest ship we've got.  With 2 Laser Cannons and a higher top speed than the X-Wing, it'll fly circles around TIE Fighters.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -680,7 +680,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				};
 
 				showingTitle = "Incom T-47 Snowspeeder License";
-				showingDesc = "cold";
+				showingDesc = "Civilian airspeeders we modified for use in cold-weather environments.  It's equipped with 2 Laser Cannons, but it is NOT capable of space flight.";
 
 				bBuy.setCurrentCost(256);
 				buyItemStacks = new ItemStack[] {};
@@ -695,7 +695,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Target";
-				showingDesc = "aim better than a stormtrooper, at least";
+				showingDesc = "A good way to stay sharp outside combat.";
 
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockTarget, 1) };
@@ -710,7 +710,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Gun Rack";
-				showingDesc = "store yo guns";
+				showingDesc = "Standard gun racks, what goes in comes right back out.";
 
 				bBuy.setCurrentCost(32);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockGunRack, 1) };
@@ -725,7 +725,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Antenna";
-				showingDesc = "listeny";
+				showingDesc = "A mobile terrain visualizer and assessment device.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockAntenna, 1) };
@@ -740,7 +740,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Bacta Tank";
-				showingDesc = "healy";
+				showingDesc = "Hop in one of these if you get yourself hurt, the Bacta will fix you right up.";
 
 				bBuy.setCurrentCost(128);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockBactaTank, 1) };
@@ -754,7 +754,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "R2-Series Astromech Droid";
-				showingDesc = "beep";
+				showingDesc = "Make sure to bring one of these guys along in an X or Y-Wing, they control the use of target lock.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech, 1) };
@@ -768,7 +768,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "R5-Series Astromech Droid";
-				showingDesc = "boop";
+				showingDesc = "Make sure to bring one of these guys along in an X or Y-Wing, they control the use of target lock.";
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.spawnAstromech2, 1) };
@@ -782,8 +782,8 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "hoth";
-				showingDesc = "2QR3qertag80[ohihofhg";
+				showingTitle = "Hoth";
+				showingDesc = "Be sure to bundle up and stock up before you ship off to Echo Base.  And be careful of the Wampas.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
@@ -797,8 +797,8 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "space";
-				showingDesc = "dobuipsfh;bskjdfbnskjbg";
+				showingTitle = "Wild Space";
+				showingDesc = "Yep, you guessed it, empty space.  Ba-Sing Station is where all the young pilots go to train.  Be careful out there Ace.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
@@ -812,8 +812,8 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = null;
 
-				showingTitle = "endor";
-				showingDesc = "theoforestmoon";
+				showingTitle = "Endor";
+				showingDesc = "The Empire has a huge base there, but we've got a detachment of Commandos on the ground doing constant recon.";
 
 				bBuy.setCurrentCost(0);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEndor, 1) };
