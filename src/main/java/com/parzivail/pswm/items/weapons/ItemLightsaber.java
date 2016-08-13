@@ -192,8 +192,7 @@ public class ItemLightsaber extends ItemSword
 			ItemStack aHolding = aPlayer.inventory.getCurrentItem();
 			if (vHolding != null && vHolding.getItem() instanceof ItemLightsaber && vPlayer.isBlocking() && aHolding != null && aHolding.getItem() instanceof ItemLightsaber)
 			{
-				vPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
-				aPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.crash", 1, 1);
+				vPlayer.worldObj.playSound(aPlayer.posX, aPlayer.posY, aPlayer.posZ, Resources.MODID + ":" + "item.lightsaber.crash", 1, 1, true);
 			}
 			if (QuestUtils.hasOnArmor((EntityPlayer)victim, ArmorShadowtrooper.class))
 			{

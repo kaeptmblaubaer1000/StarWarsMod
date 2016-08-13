@@ -149,7 +149,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 				if (entityPlayer.isBlocking() && entityPlayer.inventory.getCurrentItem() != null && entityPlayer.inventory.getCurrentItem().getItem() instanceof ItemLightsaber && ItemLightsaber.isOn(entityPlayer.inventory.getCurrentItem()))
 				{
 					recreate(entityPlayer);
-					entityPlayer.playSound(Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D));
+					pos.entityHit.worldObj.playSound(pos.entityHit.posX, pos.entityHit.posY, pos.entityHit.posZ, Resources.MODID + ":" + "item.lightsaber.deflect", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(this.rand, -0.2D, 0.2D), true);
 				}
 				else if (Cron.getHolocron(entityPlayer) != null)
 				{
