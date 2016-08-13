@@ -1,14 +1,11 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.util.vehicle.VehicleLandBase;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.network.play.server.S08PacketPlayerPosLook;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -169,11 +166,7 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 
 	private void setPlayerPosition(EntityPlayerMP entityPlayerMP)
 	{
-		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, false, "hasMoved", "field_147380_r");
-		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, this.posX, "lastPosX", "field_147373_o");
-		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, this.posY, "lastPosY", "field_147382_p");
-		ReflectionHelper.setPrivateValue(NetHandlerPlayServer.class, entityPlayerMP.playerNetServerHandler, this.posZ, "lastPosZ", "field_147381_q");
-		entityPlayerMP.playerNetServerHandler.sendPacket(new S08PacketPlayerPosLook(this.posX, this.posY, this.posZ, entityPlayerMP.cameraYaw, entityPlayerMP.cameraPitch, false));
+		entityPlayerMP.playerNetServerHandler.setPlayerLocation(posX, posY, posZ, entityPlayerMP.getRotationYawHead(), entityPlayerMP.rotationPitch);
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class RenderVehicBase extends RenderLiving
 			{
 				vehicle.rotationPitch = vehicle.getRealPitch();
 			}
-			GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F);
+			//GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F);
 			GL11.glTranslatef(0, 1F, 0);
 			GL11.glRotatef(roll, 0.0F, 0.0F, 1.0F);
 		}
