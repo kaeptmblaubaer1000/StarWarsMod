@@ -352,6 +352,15 @@ public class CommonEventHandler
 									coolFlag = false;
 								}
 								break;
+							case "deflect":
+								PowerDeflect powerDeflect = (PowerDeflect)powerBase;
+								if (!powerDeflect.isRunning)
+								{
+									powerDeflect.isRunning = true;
+									powerDeflect.recharge = 0;
+									coolFlag = false;
+								}
+								break;
 							case "lightning":
 								if (!powerBase.isRunning)
 								{
