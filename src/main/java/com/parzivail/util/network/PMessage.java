@@ -1,7 +1,6 @@
 package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
-import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -118,7 +117,6 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		int id = buf.readInt();
 		if (MinecraftServer.getServer() == null)
 			return Minecraft.getMinecraft().theWorld.getEntityByID(id);
-		Lumberjack.log("%s %s %s %s", dim, id, MinecraftServer.getServer(), MinecraftServer.getServer().worldServerForDimension(dim));
 		return MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
 	}
 

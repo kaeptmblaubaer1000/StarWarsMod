@@ -44,7 +44,7 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 	private String getEntityIdAtIndex(int i)
 	{
 		if (i < 0 || i >= ridersDatawatcherIds.length)
-			return null;
+			return "";
 		return this.dataWatcher.getWatchableObjectString(ridersDatawatcherIds[i]);
 	}
 
@@ -180,7 +180,7 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 
 		for (int i = 0; i < ridersDatawatcherIds.length; i++)
 		{
-			setRiderAtIndex(i, getEntityIdAtIndex(i));
+			setRiderAtIndex(i, compound.getString("rider" + ridersDatawatcherIds[i]));
 		}
 	}
 
