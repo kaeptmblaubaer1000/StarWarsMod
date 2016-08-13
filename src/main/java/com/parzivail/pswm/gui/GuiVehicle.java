@@ -508,21 +508,50 @@ public class GuiVehicle
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder)
 				{
-					VehicSnowspeeder vehic = (VehicSnowspeeder)StarWarsMod.mc.thePlayer.ridingEntity;
+					VehicSnowspeeder snowspeeder = (VehicSnowspeeder)StarWarsMod.mc.thePlayer.ridingEntity;
 
 					event.resolution.getScaledWidth();
 					event.resolution.getScaledHeight();
 
-					updateFiring();
+					float radarCenterX = event.resolution.getScaledWidth() * (107 / 216F);
+					float radarCenterY = event.resolution.getScaledHeight() * (119 / 144F);
 
-					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
+					float textCenterX = event.resolution.getScaledWidth() * (79.5f / 216F);
+					float textCenterY = event.resolution.getScaledHeight() * (137 / 144F);
+
+					float entiCenterX = event.resolution.getScaledWidth() * (124 / 216F);
+					float entiCenterY = event.resolution.getScaledHeight() * (107 / 144F);
+
+					float entiCenterMaxX = event.resolution.getScaledWidth() * (138 / 216F);
+					float entiCenterMaxY = event.resolution.getScaledHeight() * (131 / 144F);
+
+					float scale = event.resolution.getScaledWidth() * (14 / 216f);
+
+					if (System.currentTimeMillis() / 1000 % 2 == 0)
+						GFX.renderOverlay(Resources.xwingOverlayBack1);
+					else
+						GFX.renderOverlay(Resources.xwingOverlayBack2);
+
+					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { snowspeeder });
+
+					for (Entity p : snowspeeder.nearby)
+					{
+						if (p instanceof VehicXWing || p instanceof VehicAWing)
+							GFX.drawHollowCircle(radarCenterX + (int)(snowspeeder.posX - p.posX) / 5F, radarCenterY + (int)(snowspeeder.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+							GFX.drawHollowCircle(radarCenterX + (int)(snowspeeder.posX - p.posX) / 5F, radarCenterY + (int)(snowspeeder.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+						if (p instanceof EntityPlayer)
+							GFX.drawHollowCircle(radarCenterX + (int)(snowspeeder.posX - p.posX) / 5F, radarCenterY + (int)(snowspeeder.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+					}
+
+					updateFiring();
 
 					int color = GLPalette.ANALOG_GREEN;
 
 					if (e != null)
 						color = GLPalette.ANALOG_RED;
 
-					if (vehic.getTargetLock())
+					if (snowspeeder.getTargetLock())
 						color = GLPalette.ORANGE;
 
 					if (e != null && lastTarget == null)
@@ -539,6 +568,43 @@ public class GuiVehicle
 					lastTarget = e;
 
 					GFX.renderOverlay(Resources.snowspeederOverlay);
+
+					GFX.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
+
+					String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
+
+					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+
+					if (lookString != s)
+					{
+						lookString = s;
+						lookStringPos = 0;
+					}
+					else if (lookStringNextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
+					{
+						lookStringPos++;
+						lookStringNextTime = System.currentTimeMillis() + 100;
+					}
+
+					GFX.renderOverlay(GFX.planetTextureFromDim(snowspeeder.dimension), -4.215f * scale, -0.455f * scale);
+
+					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GLPalette.YELLOW, true);
+
+					if (e != null)
+					{
+						GL11.glPushMatrix();
+
+						if (e instanceof VehicXWing)
+							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicTIE)
+							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicTIEInterceptor)
+							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicAWing)
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+
+						GL11.glPopMatrix();
+					}
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper)
 				{
@@ -547,7 +613,44 @@ public class GuiVehicle
 					event.resolution.getScaledWidth();
 					event.resolution.getScaledHeight();
 
+					float radarCenterX = event.resolution.getScaledWidth() * (91.4f / 216F);
+					float radarCenterY = event.resolution.getScaledHeight() * (124.5f / 144F);
+
+					float textCenterX = event.resolution.getScaledWidth() * (75 / 216F);
+					float textCenterY = event.resolution.getScaledHeight() * (140.7f / 144F);
+
+					float entiCenterX = event.resolution.getScaledWidth() * (112 / 216F);
+					float entiCenterY = event.resolution.getScaledHeight() * (129 / 144F);
+
+					float entiCenterMaxX = event.resolution.getScaledWidth() * (126 / 216F);
+					float entiCenterMaxY = event.resolution.getScaledHeight() * (139 / 144F);
+
+					float arbiCenterX = event.resolution.getScaledWidth() * (128 / 216F);
+					float arbiCenterY = event.resolution.getScaledHeight() * (128 / 144F);
+
+					float arbiCenterMaxX = event.resolution.getScaledWidth() * (131 / 216F);
+					float arbiCenterMaxY = event.resolution.getScaledHeight() * (138 / 144F);
+
+					float scale = event.resolution.getScaledWidth() * (14 / 216f);
+
+					if (System.currentTimeMillis() / 1000 % 2 == 0)
+						GFX.renderOverlay(Resources.skyhoppeBack);
+					else
+						GFX.renderOverlay(Resources.skyhoppeBack2);
+
+					for (Entity p : vehic.nearby)
+					{
+						if (p instanceof VehicXWing || p instanceof VehicAWing)
+							GFX.drawHollowCircle(radarCenterX + (int)(vehic.posX - p.posX) / 5F, radarCenterY + (int)(vehic.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+						if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+							GFX.drawHollowCircle(radarCenterX + (int)(vehic.posX - p.posX) / 5F, radarCenterY + (int)(vehic.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+						if (p instanceof EntityPlayer)
+							GFX.drawHollowCircle(radarCenterX + (int)(vehic.posX - p.posX) / 5F, radarCenterY + (int)(vehic.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+					}
+
 					updateFiring();
+
+					GFX.renderOverlay(GFX.planetTextureFromDim(vehic.dimension), -1.07f * scale, -0.055f * scale);
 
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
 
@@ -572,7 +675,78 @@ public class GuiVehicle
 
 					lastTarget = e;
 
+					if (randomCharNextTime <= System.currentTimeMillis())
+					{
+						MathUtils.shuffleArray(Resources.randomCharArray);
+						if (StarWarsMod.rngGeneral.nextInt(4) == 0)
+							this.randomChar1 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(4) == 0)
+							this.randomChar2 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						if (StarWarsMod.rngGeneral.nextInt(4) == 0)
+							this.randomChar3 = String.valueOf(Resources.randomCharArray[StarWarsMod.rngGeneral.nextInt(Resources.randomCharArray.length)]);
+						randomCharNextTime = System.currentTimeMillis() + 250;
+					}
+
+					GL11.glPushMatrix();
+					GL11.glScalef(0.6f, 0.6f, 0.6f);
+					FontManager.aurebesh.drawString(this.randomChar1, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) - 9, GLPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(this.randomChar2, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f), GLPalette.YELLOW, true);
+					FontManager.aurebesh.drawString(this.randomChar3, (int)((arbiCenterX + arbiCenterMaxX) / 2f * 1 / 0.6f), (int)((arbiCenterY + arbiCenterMaxY) / 2f * 1 / 0.6f) + 9, GLPalette.YELLOW, true);
+					GL11.glPopMatrix();
+
+					GFX.renderOverlay(Resources.awingPitch1, 0, (int)((1 - vehic.move / vehic.moveModifier) * 14));
+					GFX.renderOverlay(Resources.awingPitch2, 0, -Math.abs((int)(vehic.rotationYaw / 180 * 8)) + 16);
+
 					GFX.renderOverlay(Resources.skyhopperOverlay);
+
+					GFX.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
+
+					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
+
+					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+
+					if (lookString != s)
+					{
+						lookString = s;
+						lookStringPos = 0;
+					}
+					else if (lookStringNextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
+					{
+						lookStringPos++;
+						lookStringNextTime = System.currentTimeMillis() + 100;
+					}
+
+					GL11.glPushMatrix();
+					GL11.glScalef(0.5f, 0.5f, 0.5f);
+					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX * 2, (int)textCenterY * 2, GLPalette.YELLOW, true);
+					GL11.glPopMatrix();
+
+					if (e != null)
+					{
+						GL11.glPushMatrix();
+
+						lastTarget = e;
+
+						if (e instanceof VehicleAirBase)
+							((VehicleAirBase)e).setTargetLock(true);
+
+						if (e instanceof VehicXWing)
+							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicTIE)
+							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.00085f * scale);
+						else if (e instanceof VehicTIEInterceptor)
+							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.00085f * scale);
+						else if (e instanceof VehicAWing)
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0009f * scale);
+
+						GL11.glPopMatrix();
+					}
+					else if (lastTarget != null)
+					{
+						if (lastTarget instanceof VehicleAirBase)
+							((VehicleAirBase)lastTarget).setTargetLock(true);
+						lastTarget = null;
+					}
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
 				{
@@ -610,37 +784,110 @@ public class GuiVehicle
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
-					VehicYWing vehic = (VehicYWing)StarWarsMod.mc.thePlayer.ridingEntity;
+					VehicYWing ywing = (VehicYWing)StarWarsMod.mc.thePlayer.ridingEntity;
 
 					event.resolution.getScaledWidth();
 					event.resolution.getScaledHeight();
 
-					updateFiring();
+					float radarCenterX = event.resolution.getScaledWidth() * (107 / 216F);
+					float radarCenterY = event.resolution.getScaledHeight() * (119 / 144F);
 
-					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
+					float textCenterX = event.resolution.getScaledWidth() * (79.5f / 216F);
+					float textCenterY = event.resolution.getScaledHeight() * (137 / 144F);
 
-					int color = GLPalette.ANALOG_GREEN;
+					float entiCenterX = event.resolution.getScaledWidth() * (124 / 216F);
+					float entiCenterY = event.resolution.getScaledHeight() * (107 / 144F);
 
-					if (e != null)
-						color = GLPalette.ANALOG_RED;
+					float entiCenterMaxX = event.resolution.getScaledWidth() * (138 / 216F);
+					float entiCenterMaxY = event.resolution.getScaledHeight() * (131 / 144F);
 
-					// if (vehic.getTargetLock())
-					// dist = GLPalette.ORANGE;
+					float scale = event.resolution.getScaledWidth() * (14 / 216f);
 
-					if (e != null && lastTarget == null)
-						new AnimationCrosshairClose(color).start();
+					if (System.currentTimeMillis() / 1000 % 2 == 0)
+						GFX.renderOverlay(Resources.xwingOverlayBack1);
+					else
+						GFX.renderOverlay(Resources.xwingOverlayBack2);
 
-					if (e == null && lastTarget != null)
-						new AnimationCrosshairOpen(color).start();
+					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { ywing });
 
-					if (!ClientEventHandler.isCursorAnim)
-						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+					if (ywing.getHasAstro())
+					{
+						for (Entity p : ywing.nearby)
+						{
+							if (p instanceof VehicXWing || p instanceof VehicAWing)
+								GFX.drawHollowCircle(radarCenterX + (int)(ywing.posX - p.posX) / 5F, radarCenterY + (int)(ywing.posZ - p.posZ) / 5F, 1, 5, 2, GLPalette.ANALOG_GREEN);
+							if (p instanceof VehicTIE || p instanceof VehicTIEInterceptor)
+								GFX.drawHollowCircle(radarCenterX + (int)(ywing.posX - p.posX) / 5F, radarCenterY + (int)(ywing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFFB7181F);
+							if (p instanceof EntityPlayer)
+								GFX.drawHollowCircle(radarCenterX + (int)(ywing.posX - p.posX) / 5F, radarCenterY + (int)(ywing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
+						}
 
-					updateTargetLock(e);
+						updateFiring();
 
-					lastTarget = e;
+						int color = GLPalette.ANALOG_GREEN;
+
+						if (e != null)
+							color = GLPalette.ANALOG_RED;
+
+						if (ywing.getTargetLock())
+							color = GLPalette.ORANGE;
+
+						if (e != null && lastTarget == null)
+							new AnimationCrosshairClose(color).start();
+
+						if (e == null && lastTarget != null)
+							new AnimationCrosshairOpen(color).start();
+
+						if (!ClientEventHandler.isCursorAnim)
+							GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
+
+						updateTargetLock(e);
+
+						lastTarget = e;
+					}
+					else
+					{
+						GFX.drawFancyCursor(event, 0, GLPalette.GREY);
+					}
 
 					GFX.renderOverlay(Resources.ywingOverlay);
+
+					GFX.drawHollowTriangle(radarCenterX, radarCenterY, 3, StarWarsMod.mc.thePlayer.rotationYaw, 2, GLPalette.ANALOG_GREEN);
+
+					String s = e == null || !ywing.getHasAstro() ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
+
+					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+
+					if (lookString != s)
+					{
+						lookString = s;
+						lookStringPos = 0;
+					}
+					else if (lookStringNextTime <= System.currentTimeMillis() && lookStringPos < lookString.length())
+					{
+						lookStringPos++;
+						lookStringNextTime = System.currentTimeMillis() + 100;
+					}
+
+					GFX.renderOverlay(GFX.planetTextureFromDim(ywing.dimension), -4.215f * scale, -0.455f * scale);
+
+					FontManager.aurebesh.drawString(s.substring(0, lookStringPos) + block, (int)textCenterX, (int)textCenterY, GLPalette.YELLOW, true);
+
+					if (e != null)
+					{
+						GL11.glPushMatrix();
+
+						if (e instanceof VehicXWing)
+							VehicleLineDraw.drawXWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicTIE)
+							VehicleLineDraw.drawTie((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicTIEInterceptor)
+							VehicleLineDraw.drawTieInterceptor((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+						else if (e instanceof VehicAWing)
+							VehicleLineDraw.drawAWing((entiCenterX + entiCenterMaxX) / 2f, (entiCenterY + entiCenterMaxY) / 2f, 1, GLPalette.ANALOG_GREEN, 0.0012f * scale);
+
+						GL11.glPopMatrix();
+					}
 				}
 			}
 		}

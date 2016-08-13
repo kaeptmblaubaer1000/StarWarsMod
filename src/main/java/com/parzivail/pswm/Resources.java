@@ -208,6 +208,8 @@ public class Resources
 	public static final ResourceLocation snowspeederOverlay = new ResourceLocation(Resources.MODID, "textures/gui/snowspeeder/snowspeeder.png");
 
 	public static final ResourceLocation skyhopperOverlay = new ResourceLocation(Resources.MODID, "textures/gui/skyhopper/skyhopper.png");
+	public static final ResourceLocation skyhoppeBack = new ResourceLocation(Resources.MODID, "textures/gui/skyhopper/skyhopperBack.png");
+	public static final ResourceLocation skyhoppeBack2 = new ResourceLocation(Resources.MODID, "textures/gui/skyhopper/skyhopperBack2.png");
 
 	public static final ResourceLocation atstOverlay = new ResourceLocation(Resources.MODID, "textures/gui/atst/atst.png");
 

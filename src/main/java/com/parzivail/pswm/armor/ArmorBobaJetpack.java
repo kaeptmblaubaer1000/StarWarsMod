@@ -40,7 +40,7 @@ public class ArmorBobaJetpack extends ItemArmor
 		if (itemstack.getItem() == StarWarsItems.bobaJetpackChest)
 		{
 			if (h == null)
-				h = new ModelJetpack();
+				h = new ModelJetpack(this);
 			return h;
 		}
 		return null;

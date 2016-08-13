@@ -28,7 +28,7 @@ public class ArmorSandtrooper extends ItemArmor
 		if (itemstack.getItem() == StarWarsItems.sandtrooperChest)
 		{
 			if (h == null)
-				h = new ModelBackpackSand();
+				h = new ModelBackpackSand(this);
 			return h;
 		}
 		if (c == null)

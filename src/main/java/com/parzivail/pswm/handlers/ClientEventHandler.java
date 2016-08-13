@@ -293,7 +293,7 @@ public class ClientEventHandler
 			{
 				GFX.changeCameraDist(4);
 
-				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+				//event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{
@@ -323,7 +323,8 @@ public class ClientEventHandler
 			{
 				GFX.changeCameraDist(4);
 
-				//event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+				if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSkyhopper || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicSnowspeeder)
+					event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
 			}
 			else
 			{

@@ -28,7 +28,7 @@ public class ArmorSnowtrooper extends ItemArmor
 		if (itemstack.getItem() == StarWarsItems.snowtrooperChest)
 		{
 			if (h == null)
-				h = new ModelBackpackSnow();
+				h = new ModelBackpackSnow(this);
 			return h;
 		}
 		if (c == null)

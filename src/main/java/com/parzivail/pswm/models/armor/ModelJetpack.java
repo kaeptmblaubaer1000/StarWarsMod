@@ -1,13 +1,17 @@
 package com.parzivail.pswm.models.armor;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.rendering.ArmorRenderHelper;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import static com.parzivail.pswm.StarWarsMod.mc;
 
 /**
  * Z-6 Jetpack - Undefined Created using Tabula 4.1.1
@@ -28,10 +32,11 @@ public class ModelJetpack extends ModelBiped
 	public ModelRenderer Jetpack6;
 
 	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/bobaArmorLayer1.png");
-	private static ModelBiped armorModel = new ModelBiped(0.5f);
+	private static ModelCompressionArmor armorModel;
 
-	public ModelJetpack()
+	public ModelJetpack(ItemArmor armor)
 	{
+		armorModel = new ModelCompressionArmor(0.4f, armor);
 		this.textureWidth = 256;
 		this.textureHeight = 256;
 		this.Jetpack11 = new ModelRenderer(this, 0, 118);
@@ -93,10 +98,13 @@ public class ModelJetpack extends ModelBiped
 		if (entity instanceof EntityLivingBase)
 		{
 			EntityLivingBase entityLivingBase = (EntityLivingBase)entity;
-			StarWarsMod.mc.renderEngine.bindTexture(texture2);
+			mc.renderEngine.bindTexture(texture2);
 			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
 			armorModel.onGround = entityLivingBase.getSwingProgress(f5);
-			armorModel.render(entity, f, f1, f2, f3, f4, f5);
+			if (entity instanceof EntityPlayer)
+				ArmorRenderHelper.renderModel(armorModel, (EntityPlayer)entity, f, f1, f2, f3, f4, f5);
+			else
+				armorModel.render(entity, f, f1, f2, f3, f4, f5);
 		}
 	}
 

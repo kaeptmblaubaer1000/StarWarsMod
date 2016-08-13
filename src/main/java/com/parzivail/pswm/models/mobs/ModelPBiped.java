@@ -160,11 +160,7 @@ public class ModelPBiped extends ModelBiped
 				}
 			}
 
-			if (player.ridingEntity instanceof VehicScootemaround)
-			{
-
-			}
-			else if (this.isRiding)
+			if (this.isRiding && !(player.ridingEntity instanceof VehicScootemaround))
 			{
 				this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
 				this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
@@ -173,6 +169,7 @@ public class ModelPBiped extends ModelBiped
 				this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
 				this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
 			}
+
 		}
 	}
 }

@@ -6,8 +6,12 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import static com.parzivail.pswm.rendering.ArmorRenderHelper.renderModel;
 
 /**
  * ModelBiped - Either Mojang or a mod author
@@ -28,10 +32,11 @@ public class ModelBackpackHoth extends ModelBiped
 
 	public static ResourceLocation texture1 = new ResourceLocation(Resources.MODID, "textures/models/backpackHoth.png");
 	public static ResourceLocation texture2 = new ResourceLocation(Resources.MODID, "textures/models/hothArmorLayer1.png");
-	private static ModelBiped armorModel = new ModelBiped(0.4f);
+	private static ModelCompressionArmor armorModel;
 
-	public ModelBackpackHoth()
+	public ModelBackpackHoth(ItemArmor armor)
 	{
+		armorModel = new ModelCompressionArmor(0.4f, armor);
 		this.textureWidth = 64;
 		this.textureHeight = 32;
 		this.parent = new ModelRenderer(this, 0, 0);
@@ -93,7 +98,12 @@ public class ModelBackpackHoth extends ModelBiped
 			StarWarsMod.mc.renderEngine.bindTexture(texture2);
 			this.doRotationStuff(entityLivingBase, entityLivingBase.getHeldItem());
 			armorModel.onGround = entityLivingBase.getSwingProgress(f5);
-			armorModel.render(entity, f, f1, f2, f3, f4, f5);
+			if (entity instanceof EntityPlayer)
+				renderModel(armorModel, (EntityPlayer)entity, f, f1, f2, f3, f4, f5);
+			else if (entity instanceof EntityPlayer)
+				renderModel(armorModel, (EntityPlayer)entity, f, f1, f2, f3, f4, f5);
+			else
+				armorModel.render(entity, f, f1, f2, f3, f4, f5);
 		}
 	}
 
