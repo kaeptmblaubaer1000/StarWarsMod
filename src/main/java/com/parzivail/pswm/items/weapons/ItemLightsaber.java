@@ -204,6 +204,7 @@ public class ItemLightsaber extends ItemSword
 					EntityPlayer player = (EntityPlayer)attacker;
 					player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
 					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+					return false;
 				}
 			}
 		}
