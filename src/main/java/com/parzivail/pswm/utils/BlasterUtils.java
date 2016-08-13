@@ -58,7 +58,7 @@ public class BlasterUtils
 			EntityPlayer p = (EntityPlayer)entity;
 			if (p.inventory.consumeInventoryItem(StarWarsItems.powerpack))
 			{
-				setShotsLeft(stack, 10);
+				setShotsLeft(stack, 15);
 				return true;
 			}
 		}
