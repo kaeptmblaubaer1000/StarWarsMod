@@ -3,8 +3,8 @@
 ####################
 
 // Damage Sources
-death.attack.blaster.player=%1$s blasted %2$s to bits
-death.attack.saber.player=%2$s was no match for the lightsaber of %1$s
+death.attack.blaster.player=%2$s blasted %1$s to bits
+death.attack.saber.player=%1$s was no match for the lightsaber of %2$s
 
 // Items
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
