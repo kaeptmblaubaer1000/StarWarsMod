@@ -16,6 +16,7 @@ import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
@@ -336,6 +337,7 @@ public class CommonEventHandler
 					if (powerBase != null && powerBase.recharge <= 0)
 					{
 						boolean coolFlag = true;
+						StatTrack.addStat("useForcePower-" + powerBase.name);
 						switch (powerBase.name)
 						{
 							case "defend":
