@@ -3,6 +3,7 @@ package com.parzivail.pswm.rendering.force;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.force.powers.PowerLightning;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,6 +29,8 @@ public class RenderSithLightning
 			EntityPlayer player = (EntityPlayer)entity;
 
 			PowerBase active = Cron.getActive(player);
+
+			Lumberjack.log(active);
 
 			if (active != null && active.name.equals("lightning") && active.isRunning)
 			{

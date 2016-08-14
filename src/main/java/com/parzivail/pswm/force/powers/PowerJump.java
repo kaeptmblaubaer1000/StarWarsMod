@@ -1,5 +1,6 @@
 package com.parzivail.pswm.force.powers;
 
+import com.parzivail.pswm.Resources;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 
@@ -21,6 +22,8 @@ public class PowerJump extends PowerBase
 	{
 		if (this.recharge == 0)
 		{
+			player.worldObj.playSound(player.posX, player.posY, player.posZ, Resources.MODID + ":" + "force.push", 1, 1, true);
+
 			player.motionY = 0.41999998688697815D;
 
 			player.motionY += (this.currentLevel + 1) * 0.11F;

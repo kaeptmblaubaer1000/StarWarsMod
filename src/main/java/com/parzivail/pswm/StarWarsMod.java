@@ -542,6 +542,7 @@ public class StarWarsMod
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);
 		this.registerMessageClient(MessageHolocronRefreshClientPowers.class);
+		this.registerMessageClient(MessageHolocronSetClientActive.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
