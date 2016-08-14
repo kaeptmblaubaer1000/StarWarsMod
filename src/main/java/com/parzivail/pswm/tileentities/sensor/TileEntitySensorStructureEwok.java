@@ -10,7 +10,7 @@ public class TileEntitySensorStructureEwok extends TileEntitySensorPeoplePlace
 		this.rX = 50;
 		this.rY = 3;
 		this.rZ = 50;
-		this.entityMax = 5;
+		this.entityMax = 15;
 	}
 
 	public EntityLiving getNewEntity()

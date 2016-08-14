@@ -11,11 +11,11 @@ public class TileEntitySensorStructureImperialHoth extends TileEntitySensorPeopl
 {
 	public TileEntitySensorStructureImperialHoth()
 	{
-		this.rX = 3;
+		this.rX = 30;
 		this.rY = 3;
-		this.rZ = 3;
-		this.entityMax = 5;
-		this.otherMax = 2;
+		this.rZ = 30;
+		this.entityMax = 7;
+		this.otherMax = 4;
 	}
 
 	public MobTrooper getNewEntity()

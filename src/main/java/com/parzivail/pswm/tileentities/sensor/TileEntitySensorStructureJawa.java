@@ -7,10 +7,10 @@ public class TileEntitySensorStructureJawa extends TileEntitySensorPeoplePlace
 {
 	public TileEntitySensorStructureJawa()
 	{
-		this.rX = 30;
+		this.rX = 25;
 		this.rY = 3;
-		this.rZ = 30;
-		this.entityMax = 5;
+		this.rZ = 25;
+		this.entityMax = 8;
 	}
 
 	public EntityLiving getNewEntity()

@@ -53,7 +53,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			StructureBank.getHomesteadBig().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
+			StructureBank.getHomesteadBig().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 1, chunkZ);
 		}
 		else if (par2Random.nextInt(30) == 0)
 		{
@@ -72,13 +72,13 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			StructureBank.getEscapePod().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 1, chunkZ);
+			StructureBank.getEscapePod().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
 		}
 		else if (par2Random.nextInt(2400) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
-			StructureBank.getSandCrawler().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
+			StructureBank.getSandCrawler().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 4, chunkZ);
 		}
 		else if (par2Random.nextInt(2400) == 0)
 		{
@@ -86,7 +86,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		}
 
 		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY - 3, chunkZ, 2, 2);
-		StructureBank.getObiWanHut().genComposite(par1World, chunkX, locY, chunkZ, -15, -15);
+		StructureBank.getObiWanHut().genComposite(par1World, chunkX, locY - 5, chunkZ, -15, -15);
 		StructureBank.getImperialTatooine().genComposite(par1World, chunkX, locY - 3, chunkZ, -15, 15);
 	}
 }

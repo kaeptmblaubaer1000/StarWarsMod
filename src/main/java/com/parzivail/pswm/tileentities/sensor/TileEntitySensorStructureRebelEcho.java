@@ -11,8 +11,8 @@ public class TileEntitySensorStructureRebelEcho extends TileEntitySensorPeoplePl
 		this.rX = 30;
 		this.rY = 3;
 		this.rZ = 30;
-		this.entityMax = 5;
-		this.otherMax = 2;
+		this.entityMax = 8;
+		this.otherMax = 4;
 	}
 
 	public MobTrooper getNewEntity()

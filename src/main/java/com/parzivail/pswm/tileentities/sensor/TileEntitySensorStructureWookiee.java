@@ -10,7 +10,7 @@ public class TileEntitySensorStructureWookiee extends TileEntitySensorPeoplePlac
 		this.rX = 30;
 		this.rY = 3;
 		this.rZ = 30;
-		this.entityMax = 5;
+		this.entityMax = 10;
 	}
 
 	public EntityLiving getNewEntity()

@@ -16,8 +16,8 @@ public class TileEntitySensorStructureImperialEndorShield extends TileEntitySens
 		this.rX = 20;
 		this.rY = 3;
 		this.rZ = 20;
-		this.entityMax = 4;
-		this.otherMax = 1;
+		this.entityMax = 5;
+		this.otherMax = 2;
 	}
 
 	public MobTrooper getNewEntity()

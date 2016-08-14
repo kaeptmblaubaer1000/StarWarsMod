@@ -52,7 +52,7 @@ public class BiomeGenHoth extends BiomeGenPSWM
 		{
 			int k = chunkX + 4;
 			int l = chunkZ + 4;
-			StructureBank.getHothGenerator().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 10, chunkZ);
+			StructureBank.getHothGenerator().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 6, chunkZ);
 		}
 
 		StructureBank.getHothEcho().genComposite(par1World, chunkX, structureY - 3, chunkZ, 23, 0);

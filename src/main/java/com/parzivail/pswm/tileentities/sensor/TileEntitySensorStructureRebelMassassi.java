@@ -11,8 +11,8 @@ public class TileEntitySensorStructureRebelMassassi extends TileEntitySensorPeop
 		this.rX = 30;
 		this.rY = 3;
 		this.rZ = 30;
-		this.entityMax = 5;
-		this.otherMax = 3;
+		this.entityMax = 12;
+		this.otherMax = 5;
 	}
 
 	public MobTrooper getNewEntity()
