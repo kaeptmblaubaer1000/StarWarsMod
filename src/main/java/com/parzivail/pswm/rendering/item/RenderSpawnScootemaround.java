@@ -52,7 +52,7 @@ public class RenderSpawnScootemaround implements IItemRenderer
 				{
 					GL11.glPushMatrix();
 					GL11.glDisable(GL11.GL_CULL_FACE);
-					GL11.glScalef(0.05F, -0.05F, 0.05F);
+					GL11.glScalef(0.03F, -0.03F, 0.03F);
 					GL11.glRotatef(-40, 0, 1, 0);
 					GL11.glRotatef(24, 0, 0, 1);
 					GL11.glTranslatef(19, 7, 0);
@@ -60,7 +60,7 @@ public class RenderSpawnScootemaround implements IItemRenderer
 					GL11.glRotatef(90, 0, 0, -1);
 					GL11.glRotatef(90, 1, 0, 0);
 					GL11.glRotatef(88, -1, 0, 0);
-					GL11.glTranslatef(-1.5f, -13, 30);
+					GL11.glTranslatef(-1.5f, -4, 40);
 					GL11.glScalef(-1, -1, 1);
 					GL11.glRotatef(90, 0, 0, 1);
 					GL11.glRotatef(90, 0, 0, 1);

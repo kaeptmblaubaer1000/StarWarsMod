@@ -18,8 +18,8 @@ import org.lwjgl.opengl.GL11;
 public class ModelVentressHilt extends ModelBase implements IHandlesRender
 {
 
-	ResourceLocation tA = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/revan2_A.png");
-	ResourceLocation tB = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/revan2_B.png");
+	ResourceLocation tA = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/ventress_A.png");
+	ResourceLocation tB = new ResourceLocation(Resources.MODID, "textures/models/lightsabers/ventress_B.png");
 
     public ModelRenderer Shape1;
     public ModelRenderer Shape2;
