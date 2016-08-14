@@ -6,6 +6,7 @@ import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
+import com.parzivail.pswm.network.MessageSpawnClientParticle;
 import com.parzivail.pswm.tileentities.TileEntityTarget;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -64,7 +65,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 		}
 	}
 
-
 	public EntityBlasterBoltBase(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase, float damage)
 	{
 		this(par1World, par2EntityLivingBase, damage);
@@ -115,17 +115,17 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	{
 		Block block = this.worldObj.getBlock(blockX, blockY, blockZ);
 
-		for (int i = 0; i < 40; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			double motionX = -this.motionX * 0.08f;
 			double motionY = this.rand.nextDouble() * 0.05f;
 			double motionZ = -this.motionZ * 0.08f;
-			this.worldObj.spawnParticle("smoke", this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
+			StarWarsMod.network.sendToDimension(new MessageSpawnClientParticle("smoke", this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ), this.worldObj.provider.dimensionId);
 
 			motionX = -this.motionX * 0.02f;
 			motionY = this.rand.nextDouble() * 0.02f;
 			motionZ = -this.motionZ * 0.02f;
-			this.worldObj.spawnParticle("blockdust_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(blockX, blockY, blockZ), this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ);
+			StarWarsMod.network.sendToDimension(new MessageSpawnClientParticle("blockdust_" + Block.getIdFromBlock(block) + "_" + this.worldObj.getBlockMetadata(blockX, blockY, blockZ), this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ), this.worldObj.provider.dimensionId);
 		}
 
 		this.playSound(Resources.MODID + ":" + "fx.bolt.hit", 1, 1);
@@ -158,6 +158,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 
 					if (active != null && active.name.equalsIgnoreCase("deflect") && active.isRunning)
 					{
+						deflectFX();
 						recreate(entityPlayer);
 					}
 					else
@@ -196,6 +197,17 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 					}
 				}
 			}
+		}
+	}
+
+	protected void deflectFX()
+	{
+		for (int i = 0; i < 40; i++)
+		{
+			double motionX = -this.motionX * 0.08f;
+			double motionY = this.rand.nextDouble() * 0.05f;
+			double motionZ = -this.motionZ * 0.08f;
+			StarWarsMod.network.sendToDimension(new MessageSpawnClientParticle("magicCrit", this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ), this.worldObj.provider.dimensionId);
 		}
 	}
 

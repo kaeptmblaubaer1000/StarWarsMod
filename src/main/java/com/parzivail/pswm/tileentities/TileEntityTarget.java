@@ -1,5 +1,6 @@
 package com.parzivail.pswm.tileentities;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.block.TileEntityRotate;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
@@ -9,6 +10,12 @@ public class TileEntityTarget extends TileEntityRotate
 	public boolean isHit = false;
 	public long hitTime = -1;
 	public int hits = 0;
+	public boolean altSkin = false;
+
+	public TileEntityTarget()
+	{
+		altSkin = StarWarsMod.rngGeneral.nextBoolean();
+	}
 
 	@Override
 	public AxisAlignedBB getRenderBoundingBox()
@@ -25,11 +32,17 @@ public class TileEntityTarget extends TileEntityRotate
 			this.isHit = false;
 	}
 
+	public boolean isAltSkin()
+	{
+		return altSkin;
+	}
+
 	@Override
 	public void writeToNBT(NBTTagCompound p_145841_1_)
 	{
 		super.writeToNBT(p_145841_1_);
 
+		p_145841_1_.setBoolean("altSkin", altSkin);
 		p_145841_1_.setBoolean("hit", isHit);
 		p_145841_1_.setLong("hitTime", hitTime);
 		p_145841_1_.setInteger("hits", hits);
@@ -40,6 +53,7 @@ public class TileEntityTarget extends TileEntityRotate
 	{
 		super.readFromNBT(p_145839_1_);
 
+		this.altSkin = p_145839_1_.getBoolean("altSkin");
 		this.isHit = p_145839_1_.getBoolean("hit");
 		hitTime = p_145839_1_.getLong("hitTime");
 		hits = p_145839_1_.getInteger("hits");
