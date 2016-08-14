@@ -37,7 +37,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 		this.fillerBlock = Blocks.dirt;
 
 		this.theBiomeDecorator.grassPerChunk = 8;
-		this.theBiomeDecorator.treesPerChunk = 2;
+		this.theBiomeDecorator.treesPerChunk = 4;
 		this.theBiomeDecorator.deadBushPerChunk = -999;
 		this.theBiomeDecorator.reedsPerChunk = 3;
 		this.theBiomeDecorator.cactiPerChunk = -999;
@@ -65,19 +65,28 @@ public class BiomeGenEndor extends BiomeGenPSWM
 			}
 		}
 
-		if (par2Random.nextInt(600) == 0)
+		if (par2Random.nextInt(1200) == 0)
 		{
-			StructureBank.getEndorShield().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
+			StructureBank.getEndorShield().genFull(par1World, chunkX, locY - 6, chunkZ);
+
+			genSomeTrees(par1World, par2Random, chunkX, chunkZ);
 		}
 
-		if (par2Random.nextInt(600) == 0)
+		if (par2Random.nextInt(1200) == 0)
 		{
-			StructureBank.getEwokVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
+			StructureBank.getEwokVillage().genFull(par1World, chunkX, locY - 6, chunkZ);
+
+			genSomeTrees(par1World, par2Random, chunkX, chunkZ);
 		}
 
 		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY - 6, chunkZ, 25, 0);
 		StructureBank.getRebelEndor().genComposite(par1World, chunkX, locY - 6, chunkZ, -25, 0);
 
+		genSomeTrees(par1World, par2Random, chunkX, chunkZ);
+	}
+
+	private void genSomeTrees(World par1World, Random par2Random, int chunkX, int chunkZ)
+	{
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -91,7 +100,7 @@ public class BiomeGenEndor extends BiomeGenPSWM
 					case 0:
 						new WorldGenBigTree(true).generate(par1World, par2Random, k, i1, l);
 					case 1:
-						new WorldGenBetterForest().generate(par1World, par2Random, k, i1, l, 10, 8, 0);
+						new WorldGenBetterForest().generate(par1World, par2Random, k, i1, l, 30, 5, 0);
 					case 2:
 						new WorldGenShrub(2, 0).generate(par1World, par2Random, k, i1, l);
 				}

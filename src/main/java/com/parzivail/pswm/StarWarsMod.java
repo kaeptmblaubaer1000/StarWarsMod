@@ -510,45 +510,54 @@ public class StarWarsMod
 	{
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
 
-		this.registerMessage(MessageEntityGrab.class);
-		this.registerMessage(MessageAddEffectTo.class);
-		this.registerMessage(MessageHoloTableUpdate.class);
-		this.registerMessage(MessageCreateDestructionBolt.class);
-		this.registerMessage(MessageEntityAlterMotion.class);
-		this.registerMessage(MessageHyperdrive.class);
-		this.registerMessage(MessageEntityHurt.class);
-		this.registerMessage(MessageTransmute.class);
-		this.registerMessage(MessageEntityReverse.class);
-		this.registerMessage(MessageRobesIntNBT.class);
-		this.registerMessage(MessageRobesStringNBT.class);
-		this.registerMessage(MessageSFoil.class);
-		this.registerMessage(MessageHeal.class);
-		this.registerMessage(MessageDrainKnowledge.class);
-		this.registerMessage(MessageShipTargetLock.class);
-		this.registerMessage(MessageCreateBlasterBolt.class);
-		this.registerMessage(MessageSetPlayerHolding.class);
-		this.registerMessage(MessageTransferHyperdrive.class);
-		this.registerMessage(MessageSpawn.class);
-		this.registerMessage(MessageThrowSaber.class);
-		this.registerMessage(MessageHolocronRefreshPowers.class);
-		this.registerMessage(MessageHolocronSetActive.class);
-		this.registerMessage(MessagePlayerRemoveItems.class);
-		this.registerMessage(MessageShipAstroDetails.class);
-		this.registerMessage(MessageShipHoverMode.class);
-		this.registerMessage(MessageSetQuests.class);
-		this.registerMessage(MessageUpdateTarget.class);
-		this.registerMessage(MessagePlayerBuyItem.class);
-		this.registerMessage(MessageSetQuestLogNbt.class);
-		this.registerMessage(MessageEntityAlterMotionClient.class);
+		this.registerMessageServer(MessageEntityGrab.class);
+		this.registerMessageServer(MessageAddEffectTo.class);
+		this.registerMessageServer(MessageHoloTableUpdate.class);
+		this.registerMessageServer(MessageCreateDestructionBolt.class);
+		this.registerMessageServer(MessageEntityAlterMotion.class);
+		this.registerMessageServer(MessageHyperdrive.class);
+		this.registerMessageServer(MessageEntityHurt.class);
+		this.registerMessageServer(MessageTransmute.class);
+		this.registerMessageServer(MessageEntityReverse.class);
+		this.registerMessageServer(MessageRobesIntNBT.class);
+		this.registerMessageServer(MessageRobesStringNBT.class);
+		this.registerMessageServer(MessageSFoil.class);
+		this.registerMessageServer(MessageHeal.class);
+		this.registerMessageServer(MessageDrainKnowledge.class);
+		this.registerMessageServer(MessageShipTargetLock.class);
+		this.registerMessageServer(MessageCreateBlasterBolt.class);
+		this.registerMessageServer(MessageSetPlayerHolding.class);
+		this.registerMessageServer(MessageTransferHyperdrive.class);
+		this.registerMessageServer(MessageSpawn.class);
+		this.registerMessageServer(MessageThrowSaber.class);
+		this.registerMessageServer(MessageHolocronRefreshPowers.class);
+		this.registerMessageServer(MessageHolocronSetActive.class);
+		this.registerMessageServer(MessagePlayerRemoveItems.class);
+		this.registerMessageServer(MessageShipAstroDetails.class);
+		this.registerMessageServer(MessageShipHoverMode.class);
+		this.registerMessageServer(MessageSetQuests.class);
+		this.registerMessageServer(MessageUpdateTarget.class);
+		this.registerMessageServer(MessagePlayerBuyItem.class);
+		this.registerMessageServer(MessageSetQuestLogNbt.class);
+		this.registerMessageClient(MessageSpawnClientParticle.class);
+		this.registerMessageClient(MessageEntityAlterClientMotion.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}
 
 	@SuppressWarnings("unchecked")
-	private void registerMessage(Class messageHandler)
+	private void registerMessageServer(Class messageHandler)
 	{
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.SERVER);
-		Lumberjack.debug("Registered packet \"" + messageHandler + "\" as packet ID " + packetId);
+		Lumberjack.debug("Registered server packet \"" + messageHandler + "\" as packet ID " + packetId);
+		packetId += 1;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void registerMessageClient(Class messageHandler)
+	{
+		network.registerMessage(messageHandler, messageHandler, packetId, Side.CLIENT);
+		Lumberjack.debug("Registered client packet \"" + messageHandler + "\" as packet ID " + packetId);
 		packetId += 1;
 	}
 

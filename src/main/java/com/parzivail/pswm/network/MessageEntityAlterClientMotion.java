@@ -6,16 +6,16 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 
-public class MessageEntityAlterMotionClient extends PMessage<MessageEntityAlterMotionClient>
+public class MessageEntityAlterClientMotion extends PMessage<MessageEntityAlterClientMotion>
 {
 	public Entity entity;
 	public Vec3 motion;
 
-	public MessageEntityAlterMotionClient()
+	public MessageEntityAlterClientMotion()
 	{
 	}
 
-	public MessageEntityAlterMotionClient(Entity entity, Vec3 motion)
+	public MessageEntityAlterClientMotion(Entity entity, Vec3 motion)
 	{
 		this.entity = entity;
 		this.motion = motion;

@@ -49,7 +49,7 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 	@Override
 	public void decorate(World par1World, Random par2Random, int chunkX, int chunkZ)
 	{
-		if (par2Random.nextInt(1000) == 0)
+		if (par2Random.nextInt(2000) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
@@ -62,25 +62,25 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 			WorldGenMV worldGenMV = new WorldGenMV();
 			worldGenMV.generate(par1World, par2Random, k, par1World.getHeightValue(k, l) + 2, l);
 		}
-		else if (par2Random.nextInt(1200) == 0)
+		else if (par2Random.nextInt(2400) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			StructureBank.getHomestead().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 4, chunkZ);
 		}
-		else if (par2Random.nextInt(1200) == 0)
+		else if (par2Random.nextInt(3000) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			StructureBank.getEscapePod().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 1, chunkZ);
 		}
-		else if (par2Random.nextInt(1200) == 0)
+		else if (par2Random.nextInt(2400) == 0)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
 			int l = chunkZ + par2Random.nextInt(16) + 8;
 			StructureBank.getSandCrawler().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
 		}
-		else if (par2Random.nextInt(1000) == 0)
+		else if (par2Random.nextInt(2400) == 0)
 		{
 			StructureBank.getTuskenVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 2, chunkZ);
 		}
