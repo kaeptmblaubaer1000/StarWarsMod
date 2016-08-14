@@ -30,6 +30,7 @@ public class MessageEntityAlterClientMotion extends PMessage<MessageEntityAlterC
 			this.entity.motionY += this.motion.yCoord;
 			this.entity.motionZ += this.motion.zCoord;
 			this.entity.isAirBorne = true;
+			this.entity.velocityChanged = true;
 		}
 		return null;
 	}

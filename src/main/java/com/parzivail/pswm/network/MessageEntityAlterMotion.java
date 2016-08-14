@@ -2,6 +2,7 @@ package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.network.PMessage;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.Entity;
@@ -32,9 +33,9 @@ public class MessageEntityAlterMotion extends PMessage<MessageEntityAlterMotion>
 			this.entity.motionZ += this.motion.zCoord;
 			this.entity.isAirBorne = true;
 
-			//Lumberjack.log(entity);
+			Lumberjack.log(entity);
 
-			StarWarsMod.network.sendToDimension(new MessageEntityAlterClientMotion(entity, motion), this.entity.worldObj.provider.dimensionId);
+			StarWarsMod.network.sendToAll(new MessageEntityAlterClientMotion(entity, motion));
 		}
 		return null;
 	}
