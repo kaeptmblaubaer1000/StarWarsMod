@@ -1,5 +1,6 @@
 package com.parzivail.pswm.force.powers;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageEntityAlterMotion;
 import com.parzivail.util.entity.EntityUtils;
@@ -46,6 +47,8 @@ public class PowerPull extends PowerBase
 					((EntityPlayer)e).velocityChanged = true;
 
 				StarWarsMod.network.sendToServer(new MessageEntityAlterMotion(e, lookVec));
+
+				player.worldObj.playSound(player.posX, player.posY, player.posZ, Resources.MODID + ":" + "force.pull", 1, 1, true);
 			}
 
 			return true;

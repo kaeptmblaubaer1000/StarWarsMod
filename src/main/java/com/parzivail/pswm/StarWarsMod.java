@@ -541,6 +541,7 @@ public class StarWarsMod
 		this.registerMessageServer(MessageSetQuestLogNbt.class);
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);
+		this.registerMessageClient(MessageHolocronRefreshClientPowers.class);
 
 		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
 	}

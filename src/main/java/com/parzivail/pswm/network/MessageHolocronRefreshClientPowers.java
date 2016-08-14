@@ -1,7 +1,6 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -9,16 +8,16 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class MessageHolocronRefreshPowers extends PMessage<MessageHolocronRefreshPowers>
+public class MessageHolocronRefreshClientPowers extends PMessage<MessageHolocronRefreshClientPowers>
 {
 	public EntityPlayer player;
 	public NBTTagCompound compound;
 
-	public MessageHolocronRefreshPowers()
+	public MessageHolocronRefreshClientPowers()
 	{
 	}
 
-	public MessageHolocronRefreshPowers(EntityPlayer player, NBTTagCompound compound)
+	public MessageHolocronRefreshClientPowers(EntityPlayer player, NBTTagCompound compound)
 	{
 		this.player = player;
 		this.compound = compound;
@@ -30,7 +29,6 @@ public class MessageHolocronRefreshPowers extends PMessage<MessageHolocronRefres
 		if (this.player == null || this.player.inventory == null || Cron.getHolocron(player) == null || Cron.getHolocron(player).stackTagCompound == null)
 			return null;
 		Cron.getHolocron(player).stackTagCompound.setTag(Resources.nbtPowers, compound);
-		StarWarsMod.network.sendToAll(new MessageHolocronRefreshClientPowers(this.player, this.compound));
 		return null;
 	}
 

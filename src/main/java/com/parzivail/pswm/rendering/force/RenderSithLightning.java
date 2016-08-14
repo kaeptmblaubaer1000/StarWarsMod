@@ -18,7 +18,7 @@ public class RenderSithLightning
 
 	private boolean isClient(EntityPlayer player)
 	{
-		return player == Minecraft.getMinecraft().thePlayer;
+		return player == mc.thePlayer;
 	}
 
 	public void onWorldRender(RenderWorldLastEvent event)

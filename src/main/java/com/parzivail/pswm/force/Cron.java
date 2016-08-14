@@ -46,7 +46,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets a ship's Holocron
+	 * Gets a player's Holocron
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The holocron {@link ItemStack}
@@ -66,7 +66,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets a ship's active power
+	 * Gets a player's active power
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return A {@link PowerBase} instance
@@ -80,7 +80,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the side of a ship
+	 * Gets the side of a player
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The side as a string
@@ -108,7 +108,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the level of a ship
+	 * Gets the level of a player
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The level as an int
@@ -180,7 +180,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the upgrade points of a ship
+	 * Gets the upgrade points of a player
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The upgrade points as an int
@@ -194,7 +194,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the upgrade points of a ship
+	 * Gets the upgrade points of a player
 	 *
 	 * @param stack The {@link ItemHolocron} stack to query
 	 * @return The upgrade points as an int
@@ -207,7 +207,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the XP of a ship
+	 * Gets the XP of a player
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The XP as an int
@@ -268,7 +268,7 @@ public class Cron
 	}
 
 	/**
-	 * Initializes a new copy of a power and populates the values with those of the ship
+	 * Initializes a new copy of a power and populates the values with those of the player
 	 *
 	 * @param player The {@link EntityPlayer} to copy
 	 * @param power  The power to init
@@ -283,7 +283,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the power NBT of a ship, creating a new {@link NBTTagCompound} of powers if none was found
+	 * Gets the power NBT of a player, creating a new {@link NBTTagCompound} of powers if none was found
 	 *
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The {@link NBTTagCompound} of powers
@@ -310,7 +310,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the power NBT of a ship, creating a new {@link NBTTagCompound} of powers if none was found
+	 * Gets the power NBT of a player, creating a new {@link NBTTagCompound} of powers if none was found
 	 *
 	 * @param stack The {@link ItemHolocron} stack to query
 	 * @return The {@link NBTTagCompound} of powers
@@ -323,7 +323,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the level of a ship
+	 * Gets the level of a player
 	 *
 	 * @param stack The {@link ItemHolocron} stack to query
 	 * @return The level as an int
@@ -447,7 +447,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the powers available to a ship at a given level and side
+	 * Gets the powers available to a player at a given level and side
 	 * @param side The side to query
 	 * @param level The level to query
 	 * @return An {@link ArrayList} of powers
@@ -495,7 +495,7 @@ public class Cron
 	}
 
 	/**
-	 * Gets the proper title of a ship at a given level and side
+	 * Gets the proper title of a player at a given level and side
 	 * @param side The side to query
 	 * @param level The level to query
 	 * @return The proper title

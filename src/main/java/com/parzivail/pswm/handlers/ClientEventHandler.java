@@ -20,7 +20,6 @@ import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
-import com.parzivail.pswm.rendering.force.RenderJediDefense;
 import com.parzivail.pswm.rendering.force.RenderSithLightning;
 import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
@@ -75,8 +74,6 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	private static GuiBinocs guiBinocs;
 	@SideOnly(Side.CLIENT)
-	private static RenderJediDefense renderJediDefense;
-	@SideOnly(Side.CLIENT)
 	private static RenderSithLightning renderSithLightning;
 	@SideOnly(Side.CLIENT)
 	private static RenderLightsaber renderLightsaber;
@@ -94,7 +91,6 @@ public class ClientEventHandler
 		playerHelper = new PlayerHelper(Minecraft.getMinecraft());
 		soundManager = new SoundManager();
 		soundManager.init();
-		renderJediDefense = new RenderJediDefense();
 		renderSithLightning = new RenderSithLightning();
 		modelCloak = new ModelJediCloak();
 		guiVehicle = new GuiVehicle();
@@ -509,8 +505,6 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void renderWorldLastEvent(RenderWorldLastEvent event)
 	{
-		ClientEventHandler.renderJediDefense.onWorldRender(event);
-
 		ClientEventHandler.renderSithLightning.onWorldRender(event);
 	}
 }
