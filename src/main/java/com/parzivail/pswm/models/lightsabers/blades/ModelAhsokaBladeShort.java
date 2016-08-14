@@ -77,7 +77,7 @@ public class ModelAhsokaBladeShort extends ModelBase implements IHandlesRender
 					if (player.isBlocking())
 					{
 						GL11.glRotatef(40, 0, 0, 1);
-						GL11.glTranslatef(0, -8, -3);
+						GL11.glTranslatef(-5, -10, 0);
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);

@@ -386,7 +386,7 @@ public class ModelRevan2Hilt extends ModelBase implements IHandlesRender
 				break;
 			case INVENTORY:
 				GL11.glScalef(0.042f, 0.042f, 0.042f);
-				GL11.glTranslatef(-25, 3, 0);
+				GL11.glTranslatef(-18, 3, 0);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(90, 1, 0, 0);

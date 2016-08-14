@@ -79,8 +79,8 @@ public class ModelDarksaberBladeMedium extends ModelBase implements IHandlesRend
 					EntityPlayer player = (EntityPlayer)data[1];
 					if (player.isBlocking())
 					{
-						GL11.glRotatef(40, 0, 0, 1);
-						GL11.glTranslatef(0, -8, -3);
+						GL11.glRotatef(-40, 0, 1, 0);
+						GL11.glTranslatef(0, -2, -16);
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
@@ -101,9 +101,10 @@ public class ModelDarksaberBladeMedium extends ModelBase implements IHandlesRend
 					if (player.isBlocking())
 					{
 						GL11.glRotatef(-20, 0, 0, 1);
-						GL11.glRotatef(70, 0, 1, 0);
+						GL11.glRotatef(70, 0, 0, 1);
 						GL11.glRotatef(30, 1, 0, 0);
-						GL11.glTranslatef(-4, 20, 15);
+						GL11.glTranslatef(-30, 20, -5);
+						GL11.glTranslatef(30, -30, 20);
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);

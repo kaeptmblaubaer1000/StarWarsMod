@@ -316,7 +316,7 @@ public class ModelAhsokaHilt extends ModelBase implements IHandlesRender
 					if (player.isBlocking())
 					{
 						GL11.glRotatef(40, 0, 0, 1);
-						GL11.glTranslatef(0, -8, -3);
+						GL11.glTranslatef(-5, -10, 0);
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
@@ -337,10 +337,8 @@ public class ModelAhsokaHilt extends ModelBase implements IHandlesRender
 					EntityPlayer player = (EntityPlayer)data[1];
 					if (player.isBlocking())
 					{
-						GL11.glRotatef(-20, 0, 0, 1);
-						GL11.glRotatef(70, 0, 1, 0);
-						GL11.glRotatef(30, 1, 0, 0);
-						GL11.glTranslatef(-4, 20, 15);
+						GL11.glRotatef(30, 0, 0, 1);
+
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);

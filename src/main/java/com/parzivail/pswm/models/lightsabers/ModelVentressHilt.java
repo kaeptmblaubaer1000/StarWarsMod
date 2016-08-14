@@ -288,8 +288,8 @@ public class ModelVentressHilt extends ModelBase implements IHandlesRender
 				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
-				GL11.glScalef(0.045f, 0.045f, 0.045f);
-				GL11.glTranslatef(-7, 8, 0);
+				GL11.glScalef(0.05f, 0.05f, 0.05f);
+				GL11.glTranslatef(-15, 8, 0);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(0, 1, 0, 0);

@@ -260,9 +260,7 @@ public class ModelRevanHilt extends ModelBase implements IHandlesRender
 					if (player.isBlocking())
 					{
 						GL11.glRotatef(-20, 0, 0, 1);
-						GL11.glRotatef(70, 0, 1, 0);
-						GL11.glRotatef(30, 1, 0, 0);
-						GL11.glTranslatef(-4, 12, 15);
+
 					}
 				}
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);

@@ -274,13 +274,13 @@ public class RenderLightsaber implements IItemRenderer
 		}
 		else if (s.equals("revan2"))
 		{
-			GL11.glTranslatef(0, 0.475f, 0);
-			GL11.glScalef(1.2f, 1.2f, 1.2f);
+			GL11.glTranslatef(0, 0.02f, 0);
+			GL11.glScalef(1.05f, 1.05f, 1.05f);
 		}
 		else if (s.equals("ventress"))
 		{
-			GL11.glTranslatef(0, 0.475f, 0);
-			GL11.glScalef(1.2f, 1.2f, 1.2f);
+			GL11.glTranslatef(0, 0.2f, 0);
+			GL11.glScalef(1.3f, 1.3f, 1.3f);
 		}
 	}
 }
