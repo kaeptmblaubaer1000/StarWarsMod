@@ -77,22 +77,22 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobTatooineCommoner.class, new RenderCommoner(new ModelPBiped(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(MobBith.class, new RenderBith(new ModelBith(), 0.5F));
 
-		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobStormtrooper.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobScouttrooper.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobSnowtrooper.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobAtatPilot.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobAtstPilot.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobImperialOfficer.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobSandtrooper.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobStormtrooper.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobScouttrooper.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobSnowtrooper.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobAtatPilot.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobTiePilot.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobAtstPilot.class, new RenderHuman(RenderHuman.textureSteve));
+		RenderingRegistry.registerEntityRenderingHandler(MobImperialOfficer.class, new RenderHuman(RenderHuman.textureImperialOfficer));
 
 		RenderingRegistry.registerEntityRenderingHandler(MobEndorRebel.class, new RenderHuman());
 		RenderingRegistry.registerEntityRenderingHandler(MobHothRebel.class, new RenderHuman());
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilot.class, new RenderHuman());
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilotA.class, new RenderHuman());
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilotY.class, new RenderHuman());
-		RenderingRegistry.registerEntityRenderingHandler(MobRebelWorker.class, new RenderHuman());
+		RenderingRegistry.registerEntityRenderingHandler(MobRebelWorker.class, new RenderHuman(RenderHuman.textureRebelWorker));
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelTechnician.class, new RenderHuman());
 
 		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman());

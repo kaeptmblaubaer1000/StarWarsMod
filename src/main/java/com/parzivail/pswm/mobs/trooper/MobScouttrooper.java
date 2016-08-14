@@ -1,8 +1,5 @@
 package com.parzivail.pswm.mobs.trooper;
 
-import com.parzivail.pswm.mobs.MobDroidAstromech;
-import com.parzivail.pswm.mobs.MobDroidProtocol;
-import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -37,21 +34,18 @@ public class MobScouttrooper extends MobTrooper
 	@Override
 	protected String getDeathSound()
 	{
-		return MODID + ":" + "mob.sandtrooper.die";
+		return MODID + ":" + "mob.stormtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return MODID + ":" + "mob.sandtrooper.hit";
+		return MODID + ":" + "mob.stormtrooper.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
-		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
-			return MODID + ":" + "mob.sandtrooper.droid";
-		return MODID + ":" + "mob.sandtrooper.say";
+		return getImperialSound();
 	}
 }

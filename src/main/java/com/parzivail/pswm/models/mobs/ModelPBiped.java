@@ -1,15 +1,10 @@
 package com.parzivail.pswm.models.mobs;
 
-import com.parzivail.pswm.items.weapons.ItemBlasterHeavy;
-import com.parzivail.pswm.items.weapons.ItemBlasterPistol;
-import com.parzivail.pswm.items.weapons.ItemBlasterRifle;
-import com.parzivail.pswm.items.weapons.ItemWookieeBowcaster;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.pswm.vehicles.VehicScootemaround;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.MathHelper;
 
 /**
@@ -141,24 +136,6 @@ public class ModelPBiped extends ModelBiped
 		else if (p_78087_7_ instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)p_78087_7_;
-			if (player.getHeldItem() != null)
-			{
-				Item i = player.getHeldItem().getItem();
-
-				if (i instanceof ItemBlasterRifle || i instanceof ItemBlasterHeavy || i instanceof ItemWookieeBowcaster)
-				{
-					this.bipedRightArm.rotateAngleX = -1.5F;
-					this.bipedRightArm.rotateAngleY = -0.1F;
-
-					this.bipedLeftArm.rotateAngleX = -1.5F;
-					this.bipedLeftArm.rotateAngleY = 1F;
-				}
-				else if (i instanceof ItemBlasterPistol)
-				{
-					this.bipedRightArm.rotateAngleX = -1.5F;
-					this.bipedRightArm.rotateAngleY = -0.1F;
-				}
-			}
 
 			if (this.isRiding && !(player.ridingEntity instanceof VehicScootemaround))
 			{

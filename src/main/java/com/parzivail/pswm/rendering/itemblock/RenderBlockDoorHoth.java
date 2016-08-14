@@ -51,9 +51,10 @@ public class RenderBlockDoorHoth implements IItemRenderer
 			case EQUIPPED:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glRotatef(90, 0, 1, 0);
-				GL11.glScalef(1, 1, -1);
-				GL11.glTranslatef(0, -1, 0);
+				GL11.glRotatef(45, 0, 1, 0);
+				GL11.glScalef(0.25f, 0.25f, -0.25f);
+				GL11.glTranslatef(-0.5f, 1.5f, -5f);
+				GL11.glRotatef(45, 1, 0, 0);
 				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
@@ -72,8 +73,8 @@ public class RenderBlockDoorHoth implements IItemRenderer
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
 				GL11.glRotatef(90, 0, 1, 0);
-				GL11.glScalef(1, 1, -1);
-				GL11.glTranslatef(0, -1, 0);
+				GL11.glScalef(0.65f, 0.65f, -0.65f);
+				GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
 				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();

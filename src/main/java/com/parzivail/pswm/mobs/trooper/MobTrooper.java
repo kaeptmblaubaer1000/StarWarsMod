@@ -1,10 +1,12 @@
 package com.parzivail.pswm.mobs.trooper;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProbe;
+import com.parzivail.pswm.mobs.MobDroidProtocol;
+import com.parzivail.pswm.mobs.MobWampa;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,6 +21,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
+
+import static com.parzivail.pswm.Resources.MODID;
 
 /**
  * Created by Colby on 7/6/2016.
@@ -41,6 +45,7 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 		this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobWampa.class, 0, true));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
@@ -58,7 +63,7 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 
 	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
+		playSound(MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
 		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
@@ -120,6 +125,12 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 	}
 
 	@Override
+	public String getCommandSenderName()
+	{
+		return "Trooper";
+	}
+
+	@Override
 	public boolean isAIEnabled()
 	{
 		return true;
@@ -148,5 +159,30 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 	protected Entity findPlayerToAttack()
 	{
 		return angerLevel == 0 ? null : super.findPlayerToAttack();
+	}
+
+	@Override
+	protected String getDeathSound()
+	{
+		return MODID + ":" + "mob.rebel.die";
+	}
+
+	@Override
+	protected String getHurtSound()
+	{
+		return MODID + ":" + "mob.rebel.hit";
+	}
+
+	protected String getRebelSound()
+	{
+		return MODID + ":" + "mob.rebel.say";
+	}
+
+	protected String getImperialSound()
+	{
+		EntityTameable e = (EntityTameable)worldObj.findNearestEntityWithinAABB(EntityTameable.class, boundingBox.expand(10.0D, 10.0D, 10.0D), this);
+		if (e instanceof MobDroidAstromech || e instanceof MobDroidProtocol)
+			return MODID + ":" + "mob.sandtrooper.droid";
+		return MODID + ":" + "mob.stormtrooper.say";
 	}
 }

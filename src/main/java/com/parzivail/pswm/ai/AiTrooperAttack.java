@@ -88,6 +88,8 @@ public class AiTrooperAttack extends EntityAIBase
 
 	private boolean shouldIAttack(EntityLivingBase entity)
 	{
+		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null)
+			return false;
 		if (isARebel(rangedAttackEntityHost))
 			return isAnImperial(entity);
 		else if (isAnImperial(rangedAttackEntityHost))

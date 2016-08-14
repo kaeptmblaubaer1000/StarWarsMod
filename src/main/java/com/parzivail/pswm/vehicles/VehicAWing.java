@@ -16,7 +16,8 @@ public class VehicAWing extends VehicleAirBase
 		this.setSize(3.0F, 5.0F);
 		this.vehicYOffset = -3F;
 		this.moveModifier = 2F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 
 	@Override

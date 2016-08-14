@@ -5,6 +5,7 @@ package com.parzivail.util.schematic;
  */
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockGunRack;
 import com.parzivail.pswm.items.ItemSpawnAstromech;
@@ -20,6 +21,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -169,38 +171,38 @@ public class Schematic
 					}
 		}
 
-		genTorches(world, torches);
+		genSecondPass(world, torches);
 	}
 
 	public void genFull(World world, int posChunkX, int spawnY, int posChunkZ)
 	{
-		HashMap<Vec3, BlockInfo> torches = new HashMap<>();
+		HashMap<Vec3, BlockInfo> secondPass = new HashMap<>();
 
 		for (int x = 0; x < width; x++)
 			for (int z = 0; z < length; z++)
 				for (int y = 0; y < height; y++)
 				{
-					gen(world, spawnY, posChunkX, posChunkZ, torches, x, z, y);
+					gen(world, spawnY, posChunkX, posChunkZ, secondPass, x, z, y);
 				}
 
-		genTorches(world, torches);
+		genSecondPass(world, secondPass);
 	}
 
-	private void genTorches(World world, HashMap<Vec3, BlockInfo> torches)
+	private void genSecondPass(World world, HashMap<Vec3, BlockInfo> secondPass)
 	{
-		for (Vec3 p : torches.keySet())
+		for (Vec3 p : secondPass.keySet())
 		{
 			int x = (int)p.xCoord;
 			int y = (int)p.yCoord;
 			int z = (int)p.zCoord;
-			BlockInfo bi = torches.get(p);
+			BlockInfo bi = secondPass.get(p);
 			Block b = pack.blockMap.get((int)bi.block);
 			WorldUtils.b(world, x, y, z, b, bi.metadata);
 			WorldUtils.m(world, x, y, z, bi.metadata);
 		}
 	}
 
-	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3, BlockInfo> torches, int x, int z, int y)
+	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3, BlockInfo> secondPass, int x, int z, int y)
 	{
 		BlockInfo bi = getBlockAt(x, y, z);
 		if (bi != null)
@@ -208,9 +210,9 @@ public class Schematic
 			Block b = pack.blockMap.get((int)bi.block);
 			if (b != null)
 			{
-				if (b == Blocks.torch)
+				if (b == Blocks.torch || b == Blocks.bed || b == Blocks.wall_sign)
 				{
-					torches.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
+					secondPass.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), bi);
 					return;
 				}
 				else if (b == Blocks.snow)
@@ -251,7 +253,17 @@ public class Schematic
 					if (b == Blocks.chest)
 					{
 						TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
-						if (ItemUtils.isChestEmpty(t))
+						if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id && pX + x == 189 && y + spawnY == 110 && pZ + z == 145)
+						{
+							for (int i = 0; i < 27; i++)
+								t.setInventorySlotContents(i, new ItemStack(StarWarsItems.xwingSchematics, 1));
+						}
+						else if (world.provider.dimensionId == Resources.ConfigOptions.dimEndorId && pX + x == 480 && y + spawnY == 63 && pZ + z == 129)
+						{
+							for (int i = 0; i < 27; i++)
+								t.setInventorySlotContents(i, new ItemStack(StarWarsItems.tieSchematics, 1));
+						}
+						else if (ItemUtils.isChestEmpty(t))
 						{
 							LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, t);
 						}

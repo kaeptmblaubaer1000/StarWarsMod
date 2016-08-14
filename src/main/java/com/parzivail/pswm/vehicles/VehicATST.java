@@ -18,7 +18,8 @@ public class VehicATST extends VehicleLandBase
 		this.setSize(3.0F, 9.0F);
 		this.vehicYOffset = 0F;
 		this.moveModifier = 0.8F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 		this.stepHeight = 3;
 	}
 

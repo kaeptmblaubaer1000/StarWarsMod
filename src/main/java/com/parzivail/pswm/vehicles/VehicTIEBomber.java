@@ -15,7 +15,8 @@ public class VehicTIEBomber extends VehicleAirBase
 		this.setSize(3.0F, 7.0F);
 		this.vehicYOffset = -3F;
 		this.moveModifier = 1.75F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 
 	@Override

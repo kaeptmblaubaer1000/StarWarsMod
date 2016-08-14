@@ -65,6 +65,19 @@ public class BiomeGenEndor extends BiomeGenPSWM
 			}
 		}
 
+		if (par2Random.nextInt(600) == 0)
+		{
+			StructureBank.getEndorShield().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
+		}
+
+		if (par2Random.nextInt(600) == 0)
+		{
+			StructureBank.getEwokVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
+		}
+
+		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY - 6, chunkZ, 25, 0);
+		StructureBank.getRebelEndor().genComposite(par1World, chunkX, locY - 6, chunkZ, -25, 0);
+
 		for (int j = 0; j < this.theBiomeDecorator.treesPerChunk; j++)
 		{
 			int k = chunkX + par2Random.nextInt(16) + 8;
@@ -84,18 +97,5 @@ public class BiomeGenEndor extends BiomeGenPSWM
 				}
 			}
 		}
-
-		if (par2Random.nextInt(600) == 0)
-		{
-			StructureBank.getEndorShield().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
-		}
-
-		if (par2Random.nextInt(600) == 0)
-		{
-			StructureBank.getEwokVillage().genFull(par1World, chunkX, par1World.getHeightValue(chunkX, chunkZ) - 5, chunkZ);
-		}
-
-		StructureBank.getEndorBase().genComposite(par1World, chunkX, locY - 6, chunkZ, 25, 0);
-		StructureBank.getRebelEndor().genComposite(par1World, chunkX, locY - 6, chunkZ, -25, 0);
 	}
 }

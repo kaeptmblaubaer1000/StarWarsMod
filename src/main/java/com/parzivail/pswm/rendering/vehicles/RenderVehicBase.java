@@ -35,12 +35,14 @@ public class RenderVehicBase extends RenderLiving
 			GL11.glTranslatef(0, -1F, 0);
 			float pitch = vehicle.getRealPitch();
 			float roll = -vehicle.tilt;
-			if (f > 0.5F)
-			{
-				vehicle.rotationPitch = vehicle.getRealPitch();
-			}
 			if (vehicle.riddenByEntity == StarWarsMod.mc.thePlayer)
 				GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F);
+			else
+				vehicle.rotationPitch = pitch;
+			//float n = 0.4f;
+			//float y = Math.abs(pitch / 90f) * n;
+			//if (entity instanceof VehicAWing)
+			//	GL11.glTranslatef(0, n - y, (1 - ((pitch + 90) / 90f)) * n);
 			GL11.glTranslatef(0, 1F, 0);
 			GL11.glRotatef(roll, 0.0F, 0.0F, 1.0F);
 		}

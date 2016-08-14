@@ -28,7 +28,7 @@ public class ArmorHoth extends ItemArmor
 		if (itemstack.getItem() == StarWarsItems.hothChest)
 		{
 			if (h == null)
-				h = new ModelBackpackHoth(this);
+				h = new ModelBackpackHoth();
 			return h;
 		}
 		if (c == null)

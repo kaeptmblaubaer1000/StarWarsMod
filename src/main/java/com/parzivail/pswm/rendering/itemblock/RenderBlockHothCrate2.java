@@ -51,9 +51,11 @@ public class RenderBlockHothCrate2 implements IItemRenderer
 			case EQUIPPED:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glRotatef(90, 0, 1, 0);
-				GL11.glScalef(1, 1, -1);
-				GL11.glTranslatef(0, -1, 0);
+				GL11.glRotatef(45, 0, 1, 0);
+				GL11.glScalef(0.5f, 0.5f, -0.5f);
+				GL11.glTranslatef(.5f, 0.5f, -2);
+				GL11.glRotatef(45, 1, 0, 0);
+				GL11.glRotatef(-180, 0, 1, 0);
 				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
@@ -72,12 +74,11 @@ public class RenderBlockHothCrate2 implements IItemRenderer
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
 				GL11.glRotatef(90, 0, 1, 0);
-				GL11.glScalef(1, 1, -1);
-				GL11.glTranslatef(0, -1, 0);
+				GL11.glScalef(0.85f, 0.85f, -0.85f);
+				GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
 				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
-				break;
 		}
 		GL11.glPopMatrix();
 	}

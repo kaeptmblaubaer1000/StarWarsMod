@@ -15,6 +15,8 @@ public class VehicLandspeeder extends VehicleLandBase
 		this.vehicYOffset = -0.3F;
 		this.moveModifier = 3.5F;
 		this.tiltMax = 3;
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 
 	@Override

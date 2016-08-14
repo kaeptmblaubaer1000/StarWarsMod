@@ -14,7 +14,8 @@ public class VehicHothSpeederBike extends VehicleLandBase
 		this.setSize(1.0F, 2.0F);
 		this.vehicYOffset = -0.4F;
 		this.moveModifier = 4.5F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 
 	@Override

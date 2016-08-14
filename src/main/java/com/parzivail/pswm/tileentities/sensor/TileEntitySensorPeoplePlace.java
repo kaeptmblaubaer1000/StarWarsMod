@@ -70,7 +70,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
 				}
 				// Nobody here, populate!
-				if (entitiesOther < otherMax)
+				if (entitiesOther < otherMax && getEntityNeedleClassOther() != null)
 				{
 					spawnANewOther();
 					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
@@ -107,8 +107,11 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 		while (worldObj.getBlock(x, y - 1, z) == Blocks.air && worldObj.getBlock(x, y + 1, z) != Blocks.air);
 
 		EntityLiving entity = getNewEntityOther();
-		entity.setLocationAndAngles(x, y, z, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
-		worldObj.spawnEntityInWorld(entity);
+		if (entity != null)
+		{
+			entity.setLocationAndAngles(x, y, z, this.worldObj.rand.nextFloat() * 360.0F, 0.0F);
+			worldObj.spawnEntityInWorld(entity);
+		}
 	}
 
 	public int getRandomTimeNext()
