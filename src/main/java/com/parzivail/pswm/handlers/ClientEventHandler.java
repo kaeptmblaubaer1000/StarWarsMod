@@ -133,17 +133,18 @@ public class ClientEventHandler
 	{
 		Iterator<EntityItem> i = event.drops.iterator();
 
+		ArrayList<ItemStack> s = new ArrayList<>();
 		while (i.hasNext())
 		{
-			ArrayList<ItemStack> s = new ArrayList<>();
 			EntityItem n = i.next();
 			if (n.getEntityItem().getItem() instanceof ItemQuestLog || n.getEntityItem().getItem() instanceof ItemHolocron)
 			{
 				s.add(n.getEntityItem());
 				i.remove();
 			}
-			playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
 		}
+		playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
+		Lumberjack.log(s);
 	}
 
 	@SubscribeEvent
