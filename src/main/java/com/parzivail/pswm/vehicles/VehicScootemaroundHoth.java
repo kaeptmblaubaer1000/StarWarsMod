@@ -20,6 +20,8 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 		this.vehicYOffset = 0.3F;
 		this.moveModifier = 1.25F;
 		this.tiltMax = 0;
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 
 	@Override

@@ -35,7 +35,8 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		this.setSize(3.0F, 6.0F);
 		this.vehicYOffset = -3F;
 		this.moveModifier = 1.75F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60);
+		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
