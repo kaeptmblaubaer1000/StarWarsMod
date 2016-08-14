@@ -69,8 +69,8 @@ public class RenderLightsaber implements IItemRenderer
 		blades.put("ahsoka", new IHandlesRender[] { new ModelAhsokaBladeShort(), new ModelAhsokaBladeMedium(), new ModelAhsokaBladeLong() });
 		blades.put("darksaber", new IHandlesRender[] { new ModelDarksaberBladeShort(), new ModelDarksaberBladeMedium(), new ModelDarksaberBladeLong() });
 		blades.put("pike", new IHandlesRender[] { new ModelPikeBladeShort(), new ModelPikeBladeMedium(), new ModelPikeBladeLong() });
-		blades.put("revan2", new IHandlesRender[] { new ModelRevan2BladeLong(), new ModelRevan2BladeLong(), new ModelRevan2BladeLong() });
-		blades.put("ventress", new IHandlesRender[] { new ModelVentressBladeLong(), new ModelVentressBladeLong(), new ModelVentressBladeLong() });
+		blades.put("revan2", new IHandlesRender[] { new ModelRevan2BladeShort(), new ModelRevan2BladeMedium(), new ModelRevan2BladeLong() });
+		blades.put("ventress", new IHandlesRender[] { new ModelVentressBladeShort(), new ModelVentressBladeMedium(), new ModelVentressBladeLong() });
 
 	}
 
@@ -265,12 +265,22 @@ public class RenderLightsaber implements IItemRenderer
 		else if (s.equals("darksaber"))
 		{
 			GL11.glTranslatef(0, 0.36f, 0);
-			GL11.glScalef(1.25f, 1.25f, 1.25f);
+			GL11.glScalef(1.1f, 1.1f, 1.1f);
 		}
 		else if (s.equals("pike"))
 		{
-			GL11.glTranslatef(0, 0.785f, 0);
-			GL11.glScalef(0.65f, 0.65f, 0.65f);
+			GL11.glTranslatef(0, 0.2f, 0);
+			GL11.glScalef(0.58f, 0.58f, 0.58f);
+		}
+		else if (s.equals("revan2"))
+		{
+			GL11.glTranslatef(0, 0.475f, 0);
+			GL11.glScalef(1.2f, 1.2f, 1.2f);
+		}
+		else if (s.equals("ventress"))
+		{
+			GL11.glTranslatef(0, 0.475f, 0);
+			GL11.glScalef(1.2f, 1.2f, 1.2f);
 		}
 	}
 }
