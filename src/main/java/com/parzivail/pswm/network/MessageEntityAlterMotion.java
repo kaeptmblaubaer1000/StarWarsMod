@@ -5,7 +5,6 @@ import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 
 public class MessageEntityAlterMotion extends PMessage<MessageEntityAlterMotion>
@@ -35,8 +34,7 @@ public class MessageEntityAlterMotion extends PMessage<MessageEntityAlterMotion>
 
 			//Lumberjack.log(entity);
 
-			if (this.entity instanceof EntityPlayerMP)
-				StarWarsMod.network.sendTo(new MessageEntityAlterClientMotion(entity, motion), (EntityPlayerMP)this.entity);
+			StarWarsMod.network.sendToDimension(new MessageEntityAlterClientMotion(entity, motion), this.entity.worldObj.provider.dimensionId);
 		}
 		return null;
 	}
