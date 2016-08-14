@@ -158,7 +158,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 
 					if (active != null && active.name.equalsIgnoreCase("deflect") && active.isRunning)
 					{
-						deflectFX();
+						deflectFX(this);
 						recreate(entityPlayer);
 					}
 					else
@@ -200,14 +200,14 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 		}
 	}
 
-	protected void deflectFX()
+	public static void deflectFX(Entity entity)
 	{
 		for (int i = 0; i < 40; i++)
 		{
-			double motionX = -this.motionX * 0.08f;
-			double motionY = this.rand.nextDouble() * 0.05f;
-			double motionZ = -this.motionZ * 0.08f;
-			StarWarsMod.network.sendToDimension(new MessageSpawnClientParticle("magicCrit", this.posX + (this.rand.nextFloat() - 0.5f) / 3, this.posY + (this.rand.nextFloat() - 0.5f) / 3, this.posZ + (this.rand.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ), this.worldObj.provider.dimensionId);
+			double motionX = -entity.motionX * 0.08f;
+			double motionY = StarWarsMod.rngGeneral.nextDouble() * 0.05f;
+			double motionZ = -entity.motionZ * 0.08f;
+			StarWarsMod.network.sendToDimension(new MessageSpawnClientParticle("magicCrit", entity.posX + (StarWarsMod.rngGeneral.nextFloat() - 0.5f) / 3, entity.posY + (StarWarsMod.rngGeneral.nextFloat() - 0.5f) / 3, entity.posZ + (StarWarsMod.rngGeneral.nextFloat() - 0.5f) / 3, motionX, motionY, motionZ), entity.worldObj.provider.dimensionId);
 		}
 	}
 

@@ -3,6 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.ItemHolocron;
 import com.parzivail.pswm.force.powers.PowerBase;
@@ -132,17 +133,18 @@ public class ClientEventHandler
 	{
 		Iterator<EntityItem> i = event.drops.iterator();
 
+		ArrayList<ItemStack> s = new ArrayList<>();
 		while (i.hasNext())
 		{
-			ArrayList<ItemStack> s = new ArrayList<>();
 			EntityItem n = i.next();
 			if (n.getEntityItem().getItem() instanceof ItemQuestLog || n.getEntityItem().getItem() instanceof ItemHolocron)
 			{
 				s.add(n.getEntityItem());
 				i.remove();
 			}
-			playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
 		}
+		playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
+		Lumberjack.log(s);
 	}
 
 	@SubscribeEvent
@@ -171,12 +173,19 @@ public class ClientEventHandler
 					active.health = 0;
 				}
 
+				if (event.source.getEntity() != null)
+					EntityBlasterBoltBase.deflectFX(event.source.getEntity());
+
 				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(entityPlayer, active.serialize()));
 			}
 
 			if (active.name.equals("deflect") && active.isRunning)
 				if (event.source.isProjectile())
+				{
+					if (event.source.getEntity() != null)
+						EntityBlasterBoltBase.deflectFX(event.source.getEntity());
 					event.setCanceled(true);
+				}
 		}
 	}
 

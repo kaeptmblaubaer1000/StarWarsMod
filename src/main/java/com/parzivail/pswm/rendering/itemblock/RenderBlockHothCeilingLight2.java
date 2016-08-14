@@ -42,7 +42,7 @@ public class RenderBlockHothCeilingLight2 implements IItemRenderer
 				GL11.glTranslatef(0f, 0.1f, 0);
 				P3D.glScalef(0.75f);
 				GL11.glTranslatef(-.03f, -.6f, 0);
-				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
+				this.render.renderTileEntityAt(null, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
 				break;
@@ -53,7 +53,7 @@ public class RenderBlockHothCeilingLight2 implements IItemRenderer
 				GL11.glScalef(0.5f, 0.5f, -0.5f);
 				GL11.glTranslatef(-0.5f, 0.5f, -2.5f);
 				GL11.glRotatef(45, 1, 0, 0);
-				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
+				this.render.renderTileEntityAt(null, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
 				break;
@@ -63,7 +63,7 @@ public class RenderBlockHothCeilingLight2 implements IItemRenderer
 				GL11.glScalef(1.5f, 1.5f, -1.5f);
 				GL11.glTranslatef(3, -1, 0.5f);
 				GL11.glRotatef(135, 0, 1, 0);
-				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
+				this.render.renderTileEntityAt(null, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
 				break;
@@ -73,7 +73,7 @@ public class RenderBlockHothCeilingLight2 implements IItemRenderer
 				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glScalef(0.85f, 0.85f, -0.85f);
 				GL11.glTranslatef(-0.5f, 0.4f, -0.5f);
-				this.render.renderTileEntityAt(tile, 0, 0, 0, 0);
+				this.render.renderTileEntityAt(null, 0, 0, 0, 0);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
 				break;

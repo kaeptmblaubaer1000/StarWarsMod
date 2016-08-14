@@ -127,10 +127,10 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 				p_70085_1_.mountEntity(this);
 				return true;
 			}
-			else
-			{
-				return this.addRider(p_70085_1_);
-			}
+			//else
+			//{
+			//	return this.addRider(p_70085_1_);
+			//}
 		}
 		return false;
 	}

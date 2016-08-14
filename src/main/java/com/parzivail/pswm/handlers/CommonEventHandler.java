@@ -362,12 +362,12 @@ public class CommonEventHandler
 								}
 								break;
 							case "lightning":
-								if (!powerBase.isRunning)
-								{
-									powerBase.isRunning = true;
-									powerBase.recharge = 0;
-									coolFlag = false;
-								}
+								//if (!powerBase.isRunning)
+								//{
+								//	powerBase.isRunning = true;
+								//	powerBase.recharge = 0;
+								//	coolFlag = false;
+								//}
 								break;
 							case "grab":
 								if (powerBase.isRunning)
@@ -471,7 +471,7 @@ public class CommonEventHandler
 					updateGrab((PowerGrab)power);
 					break;
 				case "lightning":
-					updateLightning((PowerLightning)power);
+					//updateLightning((PowerLightning)power);
 					break;
 				case "defend":
 					updateDefend((PowerDefend)power);
