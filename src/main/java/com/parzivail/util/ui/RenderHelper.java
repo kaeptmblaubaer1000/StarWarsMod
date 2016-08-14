@@ -43,8 +43,10 @@ public class RenderHelper
 	public static void renderEntity(Entity el, float partialTicks)
 	{
 		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
 		Render render = getEntityClassRenderObject(el.getClass());
 		render.doRender(el, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks);
+		GL11.glPopAttrib();
 		GL11.glPopMatrix();
 	}
 

@@ -3,6 +3,7 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessagePlayerRemoveItems;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
@@ -468,6 +469,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 						StarWarsMod.network.sendToServer(new MessagePlayerRemoveItems(player, new ItemStack[] { new ItemStack(StarWarsItems.apexSeal, 1) }));
 				}
 				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stackShowing, !holdingSaber));
+				player.addStat(StarWarsAchievements.craftLightsaber, 1);
 				StarWarsMod.mc.currentScreen = null;
 				StarWarsMod.mc.setIngameFocus();
 			}

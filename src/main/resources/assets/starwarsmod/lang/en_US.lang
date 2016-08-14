@@ -379,34 +379,57 @@ itemGroup.tabStarWarsBlocks=Original Trilogy Blocks
 // Achievements
 achievement.starwarsmod.becomeJedi=No such thing as luck!
 achievement.starwarsmod.becomeJedi.desc=Craft some Jedi Robes and begin your journey!
+
 achievement.starwarsmod.craftHyperdrive=Kessel Run in 12 Parsecs!
 achievement.starwarsmod.craftHyperdrive.desc=Craft your first Hyperdrive Engine!
+
 achievement.starwarsmod.craftLightsaber=Elegant combat!
 achievement.starwarsmod.craftLightsaber.desc=Craft your first lightsaber!
+
 achievement.starwarsmod.fireBlaster=Han shot first!
 achievement.starwarsmod.fireBlaster.desc=Fire a blaster!
+
 achievement.starwarsmod.travelTatooine=Beware the Sandpeople!
 achievement.starwarsmod.travelTatooine.desc=Travel to Tatooine!
+
 achievement.starwarsmod.travelHoth=They smell worse inside!
 achievement.starwarsmod.travelHoth.desc=Travel to Hoth!
+
 achievement.starwarsmod.travelYavin=That's no moon!
 achievement.starwarsmod.travelYavin.desc=Travel to Yavin 4!
+
 achievement.starwarsmod.travelEndor=Secret back entrance!
 achievement.starwarsmod.travelEndor.desc=Travel to Endor!
+
 achievement.starwarsmod.travelKashyyyk=Walking carpet!
 achievement.starwarsmod.travelKashyyyk.desc=Travel to Kashyyyk!
 
+achievement.starwarsmod.travelSpace=Destination Unknown!
+achievement.starwarsmod.travelSpace.desc=Travel to Space!
+
+achievement.starwarsmod.travelIlum=Back to Roots!
+achievement.starwarsmod.travelIlum.desc=Travel to Ilum!
+
+achievement.starwarsmod.travelDagobah=Slimy Mudhole!
+achievement.starwarsmod.travelDagobah.desc=Travel to Dagobah!
+
+achievement.starwarsmod.ezraBlaster=Not a Pickpocket!
+achievement.starwarsmod.ezraBlaster.desc=Use Ezra's Secret Blaster!
+
 // Keys
 key.starwarsmod=Star Wars
-key.starwarsmod.shootVehicle=Fire Lasers (in Starfighters)
-key.starwarsmod.toggleSFoil=Toggle S Foil (in X-Wing)
+key.starwarsmod.shootVehicle=Fire Lasers (in vehicles)
+key.starwarsmod.toggleSFoil=Toggle Special WIngs
 key.starwarsmod.robeGui=Open Jedi Robes GUI
 key.starwarsmod.robePower=Use Selected Robe Power
 key.starwarsmod.robePowerNext=Prev. Robe Power
 key.starwarsmod.robePowerPrev=Next Robe Power
 key.starwarsmod.lsForge=Creative Lightsaber Forge
 key.starwarsmod.debug=DEBUG
-key.starwarsmod.quest=Quest Log
+key.starwarsmod.lsToggle=Toggle Lightsaber
+key.starwarsmod.shipHoverMode=Toggle Hover Mode (in Starfighters)
+key.starwarsmod.shipHyperdrive=Open Galaxy Map (in Starfighters)
+key.starwarsmod.shootSpecial=Shoot Special (in Starfighters)
 
 // Force
 force.power.jump=Jump

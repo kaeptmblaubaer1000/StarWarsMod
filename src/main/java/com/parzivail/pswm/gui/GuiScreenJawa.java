@@ -427,10 +427,10 @@ public class GuiScreenJawa extends GuiScreen
 			GL11.glPopMatrix();
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			GL11.glEnable(GL11.GL_LIGHTING);
-			RenderHelper.enableStandardItemLighting();
+			//GL11.glEnable(GL11.GL_LIGHTING);
+			//RenderHelper.enableStandardItemLighting();
 
-			GLPalette.glColorI(GLPalette.WHITE);
+			GL11.glColor4f(1, 1, 1, 1);
 
 			GL11.glTranslatef(330, 160, 130);
 			if (entityShowing instanceof VehicleAirBase)
@@ -458,7 +458,6 @@ public class GuiScreenJawa extends GuiScreen
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 
 			GL11.glPopMatrix();
-			GL11.glDisable(GL11.GL_LIGHTING);
 		}
 		else if (tileShowing != null)
 		{
