@@ -32,7 +32,7 @@ public class Cron
 		powers.put("jump", PowerJump.class);
 		powers.put("push", PowerPush.class);
 		powers.put("pull", PowerPull.class);
-		powers.put("lightning", PowerLightning.class);
+		//powers.put("lightning", PowerLightning.class);
 		powers.put("destruction", PowerDestruction.class);
 		powers.put("defend", PowerDefend.class);
 		powers.put("deflect", PowerDeflect.class);

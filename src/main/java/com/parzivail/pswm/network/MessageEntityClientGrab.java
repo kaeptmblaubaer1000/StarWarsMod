@@ -1,6 +1,5 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -8,17 +7,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Vec3;
 
-public class MessageEntityGrab extends PMessage<MessageEntityGrab>
+public class MessageEntityClientGrab extends PMessage<MessageEntityClientGrab>
 {
 	public Entity entity;
 	public EntityPlayer grabber;
 	public float distance;
 
-	public MessageEntityGrab()
+	public MessageEntityClientGrab()
 	{
 	}
 
-	public MessageEntityGrab(Entity entity, EntityPlayer grabber, float distance)
+	public MessageEntityClientGrab(Entity entity, EntityPlayer grabber, float distance)
 	{
 		this.entity = entity;
 		this.grabber = grabber;
@@ -48,7 +47,6 @@ public class MessageEntityGrab extends PMessage<MessageEntityGrab>
 				this.entity.motionZ = 0;
 				this.entity.setLocationAndAngles(look.xCoord, look.yCoord, look.zCoord, this.grabber.rotationYawHead, this.grabber.rotationPitch);
 			}
-			StarWarsMod.network.sendToAll(new MessageEntityClientGrab(this.entity, this.grabber, this.distance));
 		}
 		catch (Exception e)
 		{
