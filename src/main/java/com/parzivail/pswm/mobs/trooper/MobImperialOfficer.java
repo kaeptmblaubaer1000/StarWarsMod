@@ -19,18 +19,18 @@ public class MobImperialOfficer extends MobTrooper
 	@Override
 	protected String getDeathSound()
 	{
-		return MODID + ":" + "mob.rebel.die";
+		return MODID + ":" + "mob.stormtrooper.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return MODID + ":" + "mob.rebel.hit";
+		return MODID + ":" + "mob.stormtrooper.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return MODID + ":" + "mob.rebel.say";
+		return getImperialSound();
 	}
 }
