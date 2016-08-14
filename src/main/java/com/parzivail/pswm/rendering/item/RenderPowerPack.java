@@ -35,10 +35,10 @@ public class RenderPowerPack implements IItemRenderer
 			case INVENTORY:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.095F, -0.095F, 0.095F);
+				GL11.glScalef(0.13f, -0.13f, 0.13f);
 				GL11.glTranslatef(-4, -5f, 5f);
 				GL11.glRotatef(25, 0, 0, 1);
-				GL11.glTranslatef(6, -7, 3);
+				GL11.glTranslatef(6, -7, -4);
 				GL11.glScalef(1, 1, -1);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
@@ -47,14 +47,21 @@ public class RenderPowerPack implements IItemRenderer
 			case EQUIPPED:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.06F, -0.06F, 0.06F);
+				GL11.glScalef(0.05F, -0.05F, 0.05F);
 				GL11.glRotatef(-40, 0, 1, 0);
-				GL11.glRotatef(22, 0, 0, 1);
-				GL11.glTranslatef(27, -7, 2);
+				GL11.glRotatef(24, 0, 0, 1);
+				GL11.glTranslatef(19, 7, 0);
+				GL11.glRotatef(90, 1, 0, 0);
 				GL11.glRotatef(90, 0, 0, -1);
-				GL11.glTranslatef(5, -20, 0);
-				GL11.glScalef(1, 1, -1);
-				GL11.glTranslatef(-3, 2, 0);
+				GL11.glRotatef(90, 1, 0, 0);
+				GL11.glRotatef(88, -1, 0, 0);
+				GL11.glTranslatef(-2.75f, 25, 38);
+				GL11.glScalef(-1, -1, 1);
+				GL11.glRotatef(90, 0, 0, 1);
+				GL11.glRotatef(90, 0, 0, 1);
+				GL11.glRotatef(4, 0, 0, 1);
+				GL11.glRotatef(-45, 1, 0, 0);
+				GL11.glTranslatef(-1, -20, -30);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
@@ -71,7 +78,7 @@ public class RenderPowerPack implements IItemRenderer
 				GL11.glRotatef(30, 0, 1, 0);
 				GL11.glRotatef(180, 0, 0, 1);
 				GL11.glRotatef(180, 1, 0, 0);
-				GL11.glTranslatef(0, 0, -1.5f);
+				GL11.glTranslatef(0, 0, -8);
 				GL11.glScalef(1, 1, -1);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 				GL11.glEnable(GL11.GL_CULL_FACE);
@@ -80,7 +87,7 @@ public class RenderPowerPack implements IItemRenderer
 			default:
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_CULL_FACE);
-				GL11.glScalef(0.05F, -0.05F, 0.05F);
+				GL11.glScalef(0.06F, -0.06F, 0.06F);
 				GL11.glTranslatef(0, -8, 0);
 				GL11.glScalef(1, 1, -1);
 				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
