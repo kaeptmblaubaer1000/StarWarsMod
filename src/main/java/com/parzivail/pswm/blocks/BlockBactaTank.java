@@ -40,13 +40,13 @@ public class BlockBactaTank extends PBlockContainer implements IDebugProvider
 		if (tile instanceof TileEntityBactaTank)
 		{
 			TileEntityBactaTank t = (TileEntityBactaTank)tile;
-			if (t.getPlayerInside() != null)
+			if (!t.getPlayerInside().isEmpty())
 			{
-				list.add(LangUtils.translate("0.inside", t.getPlayerInside().getCommandSenderName()));
+				list.add(LangUtils.translate("0.inside", t.getPlayerInside()));
 				list.add(LangUtils.translate("0.ticks.inside", String.valueOf(t.getTicksInside())));
 			}
 			else
-				list.add("No ship inside");
+				list.add("No player inside");
 		}
 
 		return list;

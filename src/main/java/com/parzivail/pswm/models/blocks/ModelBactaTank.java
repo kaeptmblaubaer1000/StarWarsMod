@@ -255,6 +255,8 @@ public class ModelBactaTank extends ModelBase
 		this.shape43.render(f5);
 		this.shape37.render(f5);
 		this.shape20.render(f5);
+		GL11.glPushAttrib(GL11.GL_CULL_FACE);
+		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
 		ShaderHelper.setColor(0, 0, 1, 0.5f);
@@ -262,6 +264,7 @@ public class ModelBactaTank extends ModelBase
 		this.shape1.render(f5);
 		ShaderHelper.releaseShader();
 		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPopAttrib();
 	}
 
 	/**
