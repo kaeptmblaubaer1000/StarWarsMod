@@ -1,9 +1,11 @@
 package com.parzivail.pswm.world;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.ServerConfigurationManager;
@@ -56,6 +58,14 @@ public class TransferDim extends Teleporter
 		if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimTatooineId)
 		{
 			entity.setPosition(0.5f, worldserver.getHeightValue(0, 0), 0.5f);
+			if (entity instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer)entity;
+				if (ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt))
+				{
+					entity.setPosition(-219.5f, 66, 246.5f);
+				}
+			}
 		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimSpaceId)
 		{
@@ -74,6 +84,36 @@ public class TransferDim extends Teleporter
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimDagobahId)
 		{
 			entity.setPosition(55.5f, 68, 19.5f);
+		}
+		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimEndorId)
+		{
+			if (entity instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer)entity;
+				if (ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt))
+				{
+					entity.setPosition(508.5f, 63, 80.5f);
+				}
+				else if (ItemQuestLog.getSide(player).equals(Resources.allegianceRebelFmt))
+				{
+					entity.setPosition(-346.5f, 62, 41.5f);
+				}
+			}
+		}
+		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimHothId)
+		{
+			if (entity instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer)entity;
+				if (ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt))
+				{
+					entity.setPosition(-310.5f, 63, 6.5f);
+				}
+				else if (ItemQuestLog.getSide(player).equals(Resources.allegianceRebelFmt))
+				{
+					entity.setPosition(403.5f, 66, 77.5f);
+				}
+			}
 		}
 	}
 

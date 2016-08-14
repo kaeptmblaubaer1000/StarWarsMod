@@ -3,10 +3,10 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.mobs.trooper.MobTrooper;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
@@ -22,7 +22,7 @@ public class MobWampa extends EntityCreature implements IMob
 		getNavigator().setCanSwim(true);
 		tasks.addTask(0, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
-		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
 		setSize(2.0F, 3.0F);
@@ -75,11 +75,5 @@ public class MobWampa extends EntityCreature implements IMob
 	protected void dropFewItems(boolean p_70628_1_, int p_70628_2_)
 	{
 		this.dropItem(StarWarsItems.wampaHorn, 1);
-	}
-
-	@Override
-	protected boolean isAIEnabled()
-	{
-		return true;
 	}
 }

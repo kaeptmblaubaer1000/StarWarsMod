@@ -87,6 +87,6 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 
 		StructureBank.getMosEisley().genComposite(par1World, chunkX, locY - 3, chunkZ, 2, 2);
 		StructureBank.getObiWanHut().genComposite(par1World, chunkX, locY, chunkZ, -15, -15);
-		StructureBank.getImperialTatooine().genComposite(par1World, chunkX, locY, chunkZ, -15, 15);
+		StructureBank.getImperialTatooine().genComposite(par1World, chunkX, locY - 3, chunkZ, -15, 15);
 	}
 }
