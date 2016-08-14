@@ -92,18 +92,18 @@ public class ModelAhsokaBladeShort extends ModelBase implements IHandlesRender
 				GL11.glRotatef(75, 0, 0, 1);
 				GL11.glRotatef(85, 1, 0, 0);
 				GL11.glRotatef(90, 1, 0, 0);
-				GL11.glTranslatef(0, -5, -25);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
 					if (player.isBlocking())
 					{
-						GL11.glRotatef(-20, 0, 0, 1);
-						GL11.glRotatef(70, 0, 1, 0);
-						GL11.glRotatef(30, 1, 0, 0);
-						GL11.glTranslatef(-4, 20, 15);
+						GL11.glRotatef(-70, 0, 0, 1);
+						GL11.glTranslatef(-20, 20, 0);
+						GL11.glRotatef(100, 1, 0, 0);
+						GL11.glTranslatef(10, -40, 20);
 					}
 				}
+				GL11.glTranslatef(0, -5, -25);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				GL11.glPopMatrix();
 				break;
