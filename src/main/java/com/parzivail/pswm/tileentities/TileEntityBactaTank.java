@@ -96,7 +96,6 @@ public class TileEntityBactaTank extends TileEntity
 		if (getPlayerInside().isEmpty())
 		{
 			List<EntityPlayerMP> playersInRange = this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, getAABB());
-
 			if (playersInRange.size() > 0)
 			{
 				StatTrack.addStat("useBactaTank");
