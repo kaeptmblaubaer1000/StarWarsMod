@@ -36,7 +36,24 @@ item.starwarsmod.keleriumIngot.name=Kelerium Ingot
 item.starwarsmod.questContainer.name=Quest Log
 item.starwarsmod.slopeWizard.name=Slope Wizard
 item.starwarsmod.powerpack.name=Power Pack
-item.starwarsmod.holocronJedi.name=Jedi Holocron
+item.starwarsmod.holocron.name=Holocron
+item.starwarsmod.cyclingFieldEnergizer.name=Cycling Field Energizer
+item.starwarsmod.magneticStabilizingRing.name=Magnetic Stabilizing Ring
+item.starwarsmod.powerVortexRing.name=Power Vortex Ring
+item.starwarsmod.energyModulationCircuit.name=Energy Modulation Circuit
+item.starwarsmod.airsealGel.name=Airseal Gel
+item.starwarsmod.diatiumPowerCell.name=Diatium Power Cell
+item.starwarsmod.energyGate.name=Energy Gate
+item.starwarsmod.focusingCrystal.name=Focusing Crystal
+item.starwarsmod.apexSeal.name=Apex Seal
+item.starwarsmod.inertPowerInsulator.name=Inert Power Insulator
+item.starwarsmod.wampaHorn.name=Wampa Horn
+item.starwarsmod.tieSchematics.name=TIE/LN Starfighter Schematics
+item.starwarsmod.rebelDataDrive.name=Rebel Data Drive
+item.starwarsmod.reactorCore.name=Reactor Core
+item.starwarsmod.dataPad.name=Data Pad
+item.starwarsmod.xwingSchematics.name=T-65 X-Wing Starfighter Schematics
+item.starwarsmod.sithArtifact.name=Sith Artifact
 
 // Tools
 item.starwarsmod.droidCaller.name=Droid Caller
@@ -72,7 +89,7 @@ item.starwarsmod.blasterPistol.Dl18.name=BlasTech DL-18 Blaster Pistol
 item.starwarsmod.blasterPistol.Dh17.name=BlasTech DH-17 Blaster Pistol
 item.starwarsmod.blasterPistol.Sporting.name=D.D.C. Defender Blaster Pistol
 item.starwarsmod.blasterPistol.Dl21.name=BlasTech DL-21 Blaster Pistol
-item.starwarsmod.blasterPistol.Scout.name=Scout Blaster Pistol
+item.starwarsmod.blasterPistol.Scout.name=BlasTech EC-17 Blaster Pistol
 item.starwarsmod.blasterPistol.Se14c.name=BlasTech SE-14C Blaster Pistol
 
 item.starwarsmod.blasterHeavy.Dlt19.name=BlasTech DLT-19 Heavy Blaster Rifle
@@ -88,11 +105,7 @@ item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 
 // Music Discs
 item.starwarsmod.musicDisc.name=Music Disc
-item.starwarsmod.musicDiscTheme.desc=Star Wars - A New Hope by John Williams
-item.starwarsmod.musicDiscThrone.desc=Star Wars - Throne Room Theme by John Williams
-item.starwarsmod.musicDiscBinary.desc=Star Wars - The Princess Appears (Binary Sunset) by John Williams
-item.starwarsmod.musicDiscCantina.desc=Star Wars - Cantina Band by John Williams
-item.starwarsmod.musicDiscImperial.desc=Star Wars - Imperial March by John Williams
+item.starwarsmod.musicDiscdrift.desc=Tokyo Drift - Teriyaki Boyz
 
 // Hyperdrives
 item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
@@ -104,26 +117,27 @@ item.starwarsmod.hyperdriveEndor.name=Endor Hyperdrive
 item.starwarsmod.hyperdriveDagobah.name=Dagobah Hyperdrive
 item.starwarsmod.hyperdriveIlum.name=Ilum Hyperdrive
 item.starwarsmod.hyperdriveMustafar.name=Mustafar Hyperdrive
+item.starwarsmod.hyperdriveSpace.name=Space Hyperdrive
 
 // Droid Items
-item.starwarsmod.spawnAstromech.name=Astromech Droid
-item.starwarsmod.spawnAstromech2.name=Astromech Droid
-item.starwarsmod.spawnAstromechImperial.name=Astromech Droid
-item.starwarsmod.spawnAstromechImperial2.name=Astromech Droid
-item.starwarsmod.spawnProtocol.name=Protocol Droid
-item.starwarsmod.spawnProtocol2.name=Hoth Protocol Droid
+item.starwarsmod.spawnAstromech.name=R2-Series Astromech Droid
+item.starwarsmod.spawnAstromech2.name=R5-Series Astromech Droid
+item.starwarsmod.spawnAstromechImperial.name=R2-Series Astromech Droid
+item.starwarsmod.spawnAstromechImperial2.name=R5-Series Astromech Droid
+item.starwarsmod.spawnProtocol.name=3PO-Series Protocol Droid
+item.starwarsmod.spawnProtocol2.name=3PO-Series Protocol Droid
 item.starwarsmod.spawnGonk.name=GNK Power Droid
 item.starwarsmod.spawnSurgical.name=2-1B Surgical Droid
 item.starwarsmod.spawnMouse.name=MSE-6 Repair Droid
 item.starwarsmod.spawnProbe.name=Viper Probe Droid
 
 // Droids
-entity.starwarsmod.droidAstromech.name=Astromech Droid
-entity.starwarsmod.droidAstromech2.name=Astromech Droid
-entity.starwarsmod.droidAstromechImperial.name=Astromech Droid
-entity.starwarsmod.droidAstromechImperial2.name=Astromech Droid
-entity.starwarsmod.droidProtocol.name=Protocol Droid
-entity.starwarsmod.droidProtocol2.name=Hoth Protocol Droid
+entity.starwarsmod.droidAstromech.name=R2-Series Astromech Droid
+entity.starwarsmod.droidAstromech2.name=R5-Series Astromech Droid
+entity.starwarsmod.droidAstromechImperial.name=R2-Series Astromech Droid
+entity.starwarsmod.droidAstromechImperial2.name=R5-Series Astromech Droid
+entity.starwarsmod.droidProtocol.name=3PO-Series Protocol Droid
+entity.starwarsmod.droidProtocol2.name=3PO-Series Protocol Droid
 entity.starwarsmod.droidGonk.name=GNK Power Droid
 entity.starwarsmod.droidSurgical.name=2-1B Surgical Droid
 entity.starwarsmod.droidMouse.name=MSE-6 Repair Droid
@@ -136,12 +150,15 @@ item.starwarsmod.spawnLandspeeder.name=X-34 Landspeeder
 item.starwarsmod.spawnTIE.name=TIE/LN Starfighter
 item.starwarsmod.spawnTIEInterceptor.name=TIE/IN Interceptor
 item.starwarsmod.spawnTIEAdvanced.name=TIE Advanced x1
+item.starwarsmod.spawnTIEBomber.name=TIE/SA Bomber
 item.starwarsmod.spawnXwing.name=T-65 X-Wing Starfighter
 item.starwarsmod.spawnYwing.name=BTL Y-Wing Starfighter
 item.starwarsmod.spawnAwing.name=RZ-1 A-Wing Interceptor
 item.starwarsmod.spawnSkyhopper.name=T-16 Skyhopper
 item.starwarsmod.spawnSnowspeeder.name=T-47 Snowspeeder
 item.starwarsmod.spawnAtst.name=AT-ST
+item.starwarsmod.spawnScootemaround.name=Scoot-'Em-Around
+item.starwarsmod.spawnScootemaroundHoth.name=Scoot-'Em-Around
 
 // Vehicles
 entity.starwarsmod.speederBike.name=74-Z Speeder Bike
@@ -213,15 +230,42 @@ tile.starwarsmod.templeStoneStairsBrick.name=Temple Stone Stairs
 tile.starwarsmod.templeStoneStairsBrickFancy.name=Temple Stone Stairs
 tile.starwarsmod.templeStoneStairsSlabTop.name=Temple Stone Stairs
 tile.starwarsmod.templeStoneStairsSlabTopDark.name=Temple Stone Stairs
-tile.starwarsmod.staticNpcwelcome0.name=Static NPC
-tile.starwarsmod.staticNpcwelcome1.name=Static NPC
-tile.starwarsmod.staticNpcwelcome2.name=Static NPC
-tile.starwarsmod.staticNpcwelcome3.name=Static NPC
-tile.starwarsmod.staticNpcwelcome4.name=Static NPC
-tile.starwarsmod.staticNpcwelcome5.name=Static NPC
-tile.starwarsmod.staticNpcwelcome6.name=Static NPC
-tile.starwarsmod.staticNpcwelcome7.name=Static NPC
-tile.starwarsmod.staticNpcwelcome8.name=Static NPC
+tile.starwarsmod.lightsaberForge.name=Lightsaber Forge
+tile.starwarsmod.crystalCompressor.name=Crystal Compressor
+tile.starwarsmod.deathStarLightFence.name=Base Interior Fence (Lit)
+tile.starwarsmod.deathStarLightStairs.name=Base Interior Stairs (Lit)
+tile.starwarsmod.focusingCrystalOre.name=Focusing Crystal Ore
+tile.starwarsmod.hothSandbag.name=Base Interior Caution Strip
+tile.starwarsmod.hothSnowCut.name=Base Interior Snow
+tile.starwarsmod.hothDoor.name=Base Door Material
+tile.starwarsmod.pipeMass.name=Pipe
+tile.starwarsmod.floorLight.name=Floor Light
+tile.starwarsmod.ladder.name=Ladder
+tile.starwarsmod.holotableMass.name=Command Console
+tile.starwarsmod.pipeClampedMass.name=Pipe
+tile.starwarsmod.pipeSleevedMass.name=Pipe
+tile.starwarsmod.hothCeilingLight.name=Ceiling Light
+tile.starwarsmod.hothCeilingLight2.name=Ceiling Light
+tile.starwarsmod.blockConsoleHoth1.name=Command Console
+tile.starwarsmod.blockConsoleHoth2.name=Command Console
+tile.starwarsmod.blockConsoleHoth3.name=Command Console
+tile.starwarsmod.blockPanelHoth.name=Command Console
+tile.starwarsmod.medicalConsole.name=Command Console
+tile.starwarsmod.medicalConsole2.name=Command Console
+tile.starwarsmod.pipeDoubleOffsetBot.name=Pipe
+tile.starwarsmod.pipeDoubleOffsetBotSpecial.name=Pipe
+tile.starwarsmod.floorLight2.name=Floor Light
+tile.starwarsmod.crate1.name=Crate
+tile.starwarsmod.crateHoth1.name=Crate
+tile.starwarsmod.crateHoth2.name=Crate
+tile.starwarsmod.hardenedClayStairs.name=Sandcrawler Plating
+tile.starwarsmod.hardenedClaySlab.name=Sandcrawler Plating
+tile.starwarsmod.snowSlab.name=Snow Slab
+tile.starwarsmod.gunRack.name=Gun Rack
+tile.starwarsmod.doorHoth.name=Base Door
+tile.starwarsmod.target.name=Practice Target
+tile.starwarsmod.hardpackSnow.name=Hardpack Snow
+item.starwarsmod.hothSign.name=Sign
 
 // Armor
 item.starwarsmod.newJediRobes.name=Jedi Robes
@@ -258,6 +302,11 @@ item.starwarsmod.scoutTrooperChestplate.name=Scout Trooper Chestplate
 item.starwarsmod.scoutTrooperLeggings.name=Scout Trooper Leggings
 item.starwarsmod.scoutTrooperBoots.name=Scout Trooper Boots
 
+item.starwarsmod.shadowTrooperHelmet.name=Shadowtrooper Helmet
+item.starwarsmod.shadowTrooperChestplate.name=Shadowtrooper Chestplate
+item.starwarsmod.shadowTrooperLeggings.name=Shadowtrooper Leggings
+item.starwarsmod.shadowTrooperBoots.name=Shadowtrooper Boots
+
 item.starwarsmod.sandtrooperHelmet.name=Sandtrooper Helmet
 item.starwarsmod.sandtrooperChestplate.name=Sandtrooper Chestplate
 item.starwarsmod.sandtrooperLeggings.name=Sandtrooper Leggings
@@ -268,6 +317,16 @@ item.starwarsmod.rebelPilotChestplate.name=Rebel Pilot Chestplate
 item.starwarsmod.rebelPilotLeggings.name=Rebel Pilot Pants
 item.starwarsmod.rebelPilotBoots.name=Rebel Pilot Boots
 
+item.starwarsmod.rebelYPilotHelmet.name=Rebel Y-Wing Pilot Helmet
+item.starwarsmod.rebelYPilotChestplate.name=Rebel Y-Wing Pilot Chestplate
+item.starwarsmod.rebelYPilotLeggings.name=Rebel Y-Wing Pilot Pants
+item.starwarsmod.rebelYPilotBoots.name=Rebel Y-Wing Pilot Boots
+
+item.starwarsmod.rebelAPilotHelmet.name=Rebel A-Wing Pilot Helmet
+item.starwarsmod.rebelAPilotChestplate.name=Rebel A-Wing Pilot Chestplate
+item.starwarsmod.rebelAPilotLeggings.name=Rebel A-Wing Pilot Pants
+item.starwarsmod.rebelAPilotBoots.name=Rebel A-Wing Pilot Boots
+
 item.starwarsmod.rebelTrooperHelmet.name=Rebel Fleet Trooper Helmet
 item.starwarsmod.rebelTrooperChestplate.name=Rebel Fleet Trooper Chestplate
 item.starwarsmod.rebelTrooperLeggings.name=Rebel Fleet Trooper Pants
@@ -277,6 +336,11 @@ item.starwarsmod.atatPilotHelmet.name=AT-AT Pilot Helmet
 item.starwarsmod.atatPilotChestplate.name=AT-AT Pilot Chestplate
 item.starwarsmod.atatPilotLeggings.name=AT-AT Pilot Pants
 item.starwarsmod.atatPilotBoots.name=AT-AT Pilot Boots
+
+item.starwarsmod.atstPilotHelmet.name=AT-ST Pilot Helmet
+item.starwarsmod.atstPilotChestplate.name=AT-ST Pilot Chestplate
+item.starwarsmod.atstPilotLeggings.name=AT-ST Pilot Pants
+item.starwarsmod.atstPilotBoots.name=AT-ST Pilot Boots
 
 item.starwarsmod.tiePilotHelmet.name=TIE Pilot Helmet
 item.starwarsmod.tiePilotChestplate.name=TIE Pilot Chestplate
@@ -383,10 +447,10 @@ item.starwarsmod.sequelLightsaber.name=Lightsaber
 item.starwarsmod.sequelLightsaberOff.name=Lightsaber
 
 // Droid Items
-item.starwarsmod.spawnAstromechBb8.name=BB-8 Astromech Droid
+item.starwarsmod.spawnAstromechBb8.name=BB-Series Astromech Droid
 
 // Droids
-entity.starwarsmod.droidAstromechBb8.name=BB-8 Astromech Droid
+entity.starwarsmod.droidAstromechBb8.name=BB-Series Astromech Droid
 
 // Blasters
 item.starwarsmod.sequelBlasterRifle.F11d.name=F-11D Blaster Rifle
@@ -413,10 +477,10 @@ item.starwarsmod.stormtrooperSilverLeggings_new.name=First Order Stormtrooper Ca
 item.starwarsmod.stormtrooperSilverBoots_new.name=First Order Stormtrooper Captain's Boots
 
 // Vehicle Items
-item.starwarsmod.spawnJakkuSpeeder.name=Jakku Speeder
+item.starwarsmod.spawnJakkuSpeeder.name=Swoop Speeder
 
 // Vehicles
-entity.starwarsmod.jakkuSpeeder.name=Jakku Speeder
+entity.starwarsmod.jakkuSpeeder.name=Swoop Speeder
 
 // Blocks
 
