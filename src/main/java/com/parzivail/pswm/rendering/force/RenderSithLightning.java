@@ -3,18 +3,21 @@ package com.parzivail.pswm.rendering.force;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.force.powers.PowerLightning;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import org.lwjgl.opengl.GL11;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class RenderSithLightning
 {
+	public static HashMap<String, NBTTagCompound> playerPowers = new HashMap<>();
+
 	Minecraft mc = Minecraft.getMinecraft();
 
 	private boolean isClient(EntityPlayer player)
@@ -30,7 +33,11 @@ public class RenderSithLightning
 
 			PowerBase active = Cron.getActive(player);
 
-			Lumberjack.log(active);
+			if (active == null && playerPowers.containsKey(player.getCommandSenderName()) && playerPowers.get(player.getCommandSenderName()) != null && !isClient(player))
+			{
+				PowerBase power = Cron.initNewPower(playerPowers.get(player.getCommandSenderName()).getString("name"));
+				power.deserialize(playerPowers.get(player.getCommandSenderName()));
+			}
 
 			if (active != null && active.name.equals("lightning") && active.isRunning)
 			{
