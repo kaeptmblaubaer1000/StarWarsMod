@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -110,12 +111,12 @@ public class TileEntityBactaTank extends TileEntity
 				if (netPlayer.isSneaking())
 				{
 					setPlayerInsideId("");
-					netPlayer.playerNetServerHandler.setPlayerLocation(this.xCoord - 0.5f, this.yCoord, this.zCoord + 0.5f, 0, 0);
+					spitOutPlayer(netPlayer);
 				}
 				else if (ticksInside >= 720)
 				{
 					setPlayerInsideId("");
-					netPlayer.playerNetServerHandler.setPlayerLocation(this.xCoord - 0.5f, this.yCoord, this.zCoord + 0.5f, 0, 0);
+					spitOutPlayer(netPlayer);
 					netPlayer.setHealth(20);
 					netPlayer.curePotionEffects(new ItemStack(Items.milk_bucket));
 					ticksInside = 0;
@@ -129,5 +130,16 @@ public class TileEntityBactaTank extends TileEntity
 			else
 				setPlayerInsideId("");
 		}
+	}
+
+	private void spitOutPlayer(EntityPlayerMP netPlayer)
+	{
+		if (netPlayer.worldObj.getBlock(this.xCoord - 1, this.yCoord, this.zCoord + 1) == Blocks.air)
+			netPlayer.playerNetServerHandler.setPlayerLocation(this.xCoord - 0.5f, this.yCoord, this.zCoord + 0.5f, 0, 0);
+		else if (netPlayer.worldObj.getBlock(this.xCoord + 1, this.yCoord, this.zCoord + 1) == Blocks.air)
+			netPlayer.playerNetServerHandler.setPlayerLocation(this.xCoord + 0.5f, this.yCoord, this.zCoord + 0.5f, 0, 0);
+		else if (netPlayer.worldObj.getBlock(this.xCoord - 1, this.yCoord, this.zCoord - 1) == Blocks.air)
+			netPlayer.playerNetServerHandler.setPlayerLocation(this.xCoord - 0.5f, this.yCoord, this.zCoord - 0.5f, 0, 0);
+		netPlayer.playerNetServerHandler.setPlayerLocation(this.xCoord + 0.5f, this.yCoord, this.zCoord - 0.5f, 0, 0);
 	}
 }
