@@ -64,8 +64,8 @@ public class ModelYodaBladeLong extends ModelBase implements IHandlesRender
 				GL11.glRotatef(180, 1, 0, 0);
 				GL11.glRotatef(45, 0, 1, 0);
 				GL11.glRotatef(20, 0, 0, 1);
-				GL11.glRotatef(90, 1, 0, 0);
-				GL11.glTranslatef(9, -2, 22.8f);
+				GL11.glRotatef(270, 1, 0, 0);
+				GL11.glTranslatef(15, -1, -25.8f);
 				if (data[1] instanceof EntityPlayer)
 				{
 					EntityPlayer player = (EntityPlayer)data[1];
@@ -102,11 +102,12 @@ public class ModelYodaBladeLong extends ModelBase implements IHandlesRender
 				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
-				GL11.glScalef(0.045f, 0.045f, 0.045f);
-				GL11.glTranslatef(-21.5f, 3, 0);
+				GL11.glScalef(0.06f, 0.06f, 0.06f);
+				GL11.glTranslatef(-9.5f, 5, 0);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(90, 1, 0, 0);
+				GL11.glRotatef(180, 1, 0, 0);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				break;
 			default:

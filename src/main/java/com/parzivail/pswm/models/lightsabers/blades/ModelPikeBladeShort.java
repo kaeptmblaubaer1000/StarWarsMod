@@ -61,7 +61,7 @@ public class ModelPikeBladeShort extends ModelBase implements IHandlesRender
 				GL11.glPushMatrix();
 				GL11.glScalef(0.035f, 0.035f, 0.035f);
 				GL11.glRotatef(-90, 0, 0, 1);
-				GL11.glTranslatef(-30, -2, -2);
+				GL11.glTranslatef(-60, -2, -2);
 				this.render(null, 0, 0, 0, 0, 0, 0.625f);
 				GL11.glPopMatrix();
 				break;
@@ -109,8 +109,8 @@ public class ModelPikeBladeShort extends ModelBase implements IHandlesRender
 				GL11.glPopMatrix();
 				break;
 			case INVENTORY:
-				GL11.glScalef(0.045f, 0.045f, 0.045f);
-				GL11.glTranslatef(-10, 3, 0);
+				GL11.glScalef(0.028f, 0.028f, 0.028f);
+				GL11.glTranslatef(-31, 9, 0);
 				GL11.glRotatef(160, 0, 0, 1);
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glRotatef(90, 1, 0, 0);
