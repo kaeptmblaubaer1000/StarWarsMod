@@ -397,7 +397,6 @@ public class StarWarsMod
 		Lumberjack.info("This is Parzi's Star Wars Mod v" + Resources.VERSION);
 
 		instance = this;
-
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 
 		StarWarsMod.commonHandler = new CommonEventHandler();
