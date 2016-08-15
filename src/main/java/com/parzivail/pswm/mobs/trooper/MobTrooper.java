@@ -32,6 +32,7 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 {
 	private AiTrooperAttack trooperAttack;
 	private int angerLevel;
+
 	private Entity angryAt = null;
 
 	public MobTrooper(World world)
