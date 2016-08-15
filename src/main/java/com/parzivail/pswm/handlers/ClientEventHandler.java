@@ -143,7 +143,7 @@ public class ClientEventHandler
 			}
 		}
 		playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
-		Lumberjack.log(s);
+		//Lumberjack.log(s);
 	}
 
 	@SubscribeEvent
@@ -492,7 +492,7 @@ public class ClientEventHandler
 			if (StarWarsMod.rngGeneral.nextInt(100) <= Cron.getPercentForLevel(currentLevels))
 				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
 			int newLevels = currentLevels + 1;
-			Lumberjack.log("%s %s", newLevels, currentLevels);
+			//Lumberjack.log("%s %s", newLevels, currentLevels);
 			if (newLevels % 10 == 0 && currentLevels % 10 != 0)
 			{
 				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1);

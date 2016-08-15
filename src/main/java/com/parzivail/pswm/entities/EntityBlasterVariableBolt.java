@@ -1,6 +1,5 @@
 package com.parzivail.pswm.entities;
 
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -30,7 +29,7 @@ public class EntityBlasterVariableBolt extends EntityBlasterBoltBase
 	@Override
 	public void recreate(EntityPlayer hit)
 	{
-		Lumberjack.log(hit);
+		//Lumberjack.log(hit);
 		EntityBlasterBoltBase bolt = new EntityBlasterVariableBolt(this.worldObj, hit, 3.0f);
 		this.worldObj.spawnEntityInWorld(bolt);
 		this.setDead();
