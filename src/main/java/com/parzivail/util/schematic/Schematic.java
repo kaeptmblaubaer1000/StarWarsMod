@@ -8,6 +8,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockGunRack;
+import com.parzivail.pswm.blocks.BlockMV;
 import com.parzivail.pswm.items.ItemSpawnAstromech;
 import com.parzivail.pswm.items.ItemSpawnProtocol;
 import com.parzivail.pswm.items.weapons.ItemGaffiStick;
@@ -246,6 +247,10 @@ public class Schematic
 								NBTTagList nbttaglist = newTile.getTagList("Items", 10);
 								NBTTagList newList = fixItemStacks(nbttaglist);
 								newTile.setTag("Items", newList);
+							}
+							else if (b instanceof BlockMV)
+							{
+								newTile.setTag("droplets", new NBTTagCompound());
 							}
 							t.readFromNBT(newTile);
 						}
