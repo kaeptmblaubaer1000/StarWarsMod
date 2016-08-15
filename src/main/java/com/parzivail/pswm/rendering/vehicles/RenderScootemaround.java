@@ -12,7 +12,6 @@ public class RenderScootemaround extends RenderLandBase
 	public RenderScootemaround()
 	{
 		super(new ModelScootEmAround(), 0.5f);
-
 		this.scale = 1.25f;
 	}
 
