@@ -82,6 +82,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
+	Consumer<OutlineButton> fixPowerPack;
 
 	Consumer<EntityPlayer> onBuyClick = null;
 
@@ -384,9 +385,29 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			GL11.glRotatef(-2, 0, 1, 0);
 		};
 
+		fixPowerPack = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(10, -5, 8);
+			if (outlineButton == null)
+			{
+				GL11.glTranslatef(2, 0, 4);
+			}
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+		};
+
 		OutlineButtonItemStack bPowerPack = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixItem, postRenderEmpty, false, player);
+		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixPowerPack, postRenderEmpty, false, player);
 		bPowerPack.enabled = true;
+		bPowerPack.setRenderType(ItemRenderType.INVENTORY);
 		listBMisc.put("bPowerPack", bPowerPack);
 
 		OutlineButtonItemStack bHHoth = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
@@ -755,15 +776,13 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 			}
 			else if (button.id == listBMisc.get("bPowerPack").id)
 			{
-				currentFix = fixItem;
+				currentFix = fixPowerPack;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bPowerPack")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
 
-				onBuyClick = null;
-
 				showingTitle = "Power Pack";
-				showingDesc = "Power backs for your blaster. Essential for all use.";
+				showingDesc = "Power packs for your blaster. Essential for all use. Each pack powers your blaster for 15 shots.";
 
 				bBuy.setCurrentCost(10);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.powerpack, 1) };

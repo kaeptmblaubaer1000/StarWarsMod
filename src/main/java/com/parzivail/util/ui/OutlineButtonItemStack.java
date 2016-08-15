@@ -20,6 +20,7 @@ public class OutlineButtonItemStack extends OutlineButton
 	private boolean isSetup;
 	private ItemRenderer itemRenderer = RenderManager.instance.itemRenderer;
 	private boolean flat;
+	private IItemRenderer.ItemRenderType renderType = IItemRenderer.ItemRenderType.ENTITY;
 
 	public OutlineButtonItemStack(int id, int x, int y, int width, int height)
 	{
@@ -40,6 +41,11 @@ public class OutlineButtonItemStack extends OutlineButton
 	public void setup(ItemStack itemStack, Consumer<OutlineButton> preRender, Consumer<OutlineButton> postRender)
 	{
 		setup(itemStack, preRender, postRender, false, null);
+	}
+
+	public void setRenderType(IItemRenderer.ItemRenderType renderType)
+	{
+		this.renderType = renderType;
 	}
 
 	@Override
@@ -89,7 +95,7 @@ public class OutlineButtonItemStack extends OutlineButton
 				if (flat)
 					GFX.renderItem(0, 0, itemStack);
 				else
-					itemRenderer.renderItem(player, itemStack, 0, IItemRenderer.ItemRenderType.ENTITY);
+					itemRenderer.renderItem(player, itemStack, 0, renderType);
 				this.postRender.accept(this);
 				GL11.glPopMatrix();
 				GL11.glPopMatrix();

@@ -56,6 +56,7 @@ public class GuiScreenJawa extends GuiScreen
 	Consumer<OutlineButton> fixA280;
 	Consumer<OutlineButton> fixItem;
 	Consumer<OutlineButton> currentFix = null;
+	Consumer<OutlineButton> fixPowerPack;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -180,6 +181,34 @@ public class GuiScreenJawa extends GuiScreen
 		OutlineButtonItemStack bMiscHacker = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bMiscHacker.setup(new ItemStack(StarWarsItems.droidHacker), fixItem, postRenderEmpty, false, player);
 		listBMisc.put("bMiscHacker", bMiscHacker);
+
+		y++;
+		x = 0;
+
+		fixPowerPack = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(10, -5, 8);
+			if (outlineButton == null)
+			{
+				GL11.glTranslatef(2, 0, 4);
+			}
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+		};
+
+		OutlineButtonItemStack bPowerPack = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixPowerPack, postRenderEmpty, false, player);
+		bPowerPack.enabled = true;
+		bPowerPack.setRenderType(ItemRenderType.INVENTORY);
+		listBMisc.put("bPowerPack", bPowerPack);
 
 		setTabDroids();
 	}
@@ -309,6 +338,19 @@ public class GuiScreenJawa extends GuiScreen
 
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.droidHacker, 1) };
+			}
+			else if (button.id == listBMisc.get("bPowerPack").id)
+			{
+				currentFix = fixPowerPack;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bPowerPack")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "Power Pack";
+				showingDesc = "Ekaiagu-nani, oo-o-hu, eeiyay-a saba.";
+
+				bBuy.setCurrentCost(10);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.powerpack, 1) };
 			}
 		}
 	}

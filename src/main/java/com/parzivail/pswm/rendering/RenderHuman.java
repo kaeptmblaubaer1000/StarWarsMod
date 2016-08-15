@@ -31,6 +31,8 @@ public class RenderHuman extends RendererLivingEntity
 	public static ResourceLocation textureMerchant = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/generalMerchant.png");
 	public static ResourceLocation textureWeaponsDealer = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/weaponsDealer.png");
 
+	public static ResourceLocation textureSith = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/sith.png");
+
 	public static ResourceLocation textureRebelWorker = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/rebelWorker.png");
 	public static ResourceLocation textureRebelTechnician = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/rebelTechnician.png");
 

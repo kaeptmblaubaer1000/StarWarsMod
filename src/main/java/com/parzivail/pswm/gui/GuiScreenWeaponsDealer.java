@@ -39,9 +39,11 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 	private OutlineButton bTabWeapons;
 	private OutlineButton bTabMelee;
+	private OutlineButton bTabMisc;
 
 	private Map<String, OutlineButton> listBWeapons;
 	private Map<String, OutlineButton> listBMelee;
+	private Map<String, OutlineButton> listBMisc;
 
 	private ItemStack stackShowing;
 	private Entity entityShowing;
@@ -60,6 +62,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 	Consumer<OutlineButton> fixGaffi;
 	Consumer<OutlineButton> fixVibroLance;
 	Consumer<OutlineButton> currentFix = null;
+	Consumer<OutlineButton> fixPowerPack;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -81,9 +84,11 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 		int xTab = -40;
 		bTabWeapons = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("guns"), false);
 		bTabMelee = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("melee"), false);
+		bTabMisc = new OutlineButton(id++, xTab += 50, 10, 40, 20, LangUtils.translate("misc"), false);
 
 		buttonList.add(bTabWeapons);
 		buttonList.add(bTabMelee);
+		buttonList.add(bTabMisc);
 
 		ScaledResolution r = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 		bBuy = new OutlineButtonCreditCounter(id++, r.getScaledWidth() - 100, 10, 80, 20, player);
@@ -91,6 +96,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 
 		listBWeapons = new HashMap<>();
 		listBMelee = new HashMap<>();
+		listBMisc = new HashMap<>();
 
 		int x = 0;
 		int y = 0;
@@ -233,6 +239,34 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 		}, postRenderEmpty);
 		listBMelee.put("bMeleeVibroLance", bMeleeVibroLance);
 
+		x = 0;
+		y = 0;
+
+		fixPowerPack = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(10, -5, 8);
+			if (outlineButton == null)
+			{
+				GL11.glTranslatef(2, 0, 4);
+			}
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+		};
+
+		OutlineButtonItemStack bPowerPack = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixPowerPack, postRenderEmpty, false, player);
+		bPowerPack.enabled = true;
+		bPowerPack.setRenderType(ItemRenderType.INVENTORY);
+		listBMisc.put("bPowerPack", bPowerPack);
+
 		setTabGuns();
 	}
 
@@ -258,6 +292,10 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 			else if (button.id == bTabMelee.id)
 			{
 				setTabMelee();
+			}
+			else if (button.id == bTabMisc.id)
+			{
+				setTabMisc();
 			}
 			else if (button.id == listBWeapons.get("bGunEe3").id)
 			{
@@ -350,25 +388,53 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.vibroLance, 1) };
 			}
+			else if (button.id == listBMisc.get("bPowerPack").id)
+			{
+				currentFix = fixPowerPack;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bPowerPack")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				showingTitle = "Power Pack";
+				showingDesc = "Power packs for your blaster. Essential for all use. Each pack powers your blaster for 15 shots.";
+
+				bBuy.setCurrentCost(10);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.powerpack, 1) };
+			}
 		}
 	}
 
 	private void setTabGuns()
 	{
 		bTabWeapons.selected = true;
+		bTabMisc.selected = false;
 		bTabMelee.selected = false;
 
 		buttonList.addAll(listBWeapons.values());
+		buttonList.removeAll(listBMisc.values());
 		buttonList.removeAll(listBMelee.values());
 	}
 
 	private void setTabMelee()
 	{
 		bTabWeapons.selected = false;
+		bTabMisc.selected = false;
 		bTabMelee.selected = true;
 
 		buttonList.removeAll(listBWeapons.values());
+		buttonList.removeAll(listBMisc.values());
 		buttonList.addAll(listBMelee.values());
+	}
+
+	private void setTabMisc()
+	{
+		bTabWeapons.selected = false;
+		bTabMelee.selected = false;
+		bTabMisc.selected = true;
+
+		buttonList.removeAll(listBWeapons.values());
+		buttonList.removeAll(listBMelee.values());
+		buttonList.addAll(listBMisc.values());
 	}
 
 	public void drawBg2()
