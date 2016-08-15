@@ -633,8 +633,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_XWING);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_XWING);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "Incom T-65 X-Wing Starfighter License";
@@ -652,8 +655,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_YWING);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_YWING);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "BTL Y-Wing Bomber License";
@@ -671,8 +677,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_AWING);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_AWING);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "RZ-1 A-Wing Interceptor License";
@@ -690,8 +699,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_T47);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_T47);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "Incom T-47 Snowspeeder License";

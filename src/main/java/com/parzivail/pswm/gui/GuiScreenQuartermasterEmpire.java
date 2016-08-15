@@ -691,8 +691,11 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "TIE/LN Starfighter License";
@@ -710,8 +713,11 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_BOMBER);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_BOMBER);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "TIE/SA Bomber License";
@@ -729,8 +735,11 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_INTERCEPTOR);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_INTERCEPTOR);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "TIE/IN Interceptor License";
@@ -748,8 +757,11 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_ADVANCED);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_TIE_ADVANCED);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "TIE Advanced x1 License";

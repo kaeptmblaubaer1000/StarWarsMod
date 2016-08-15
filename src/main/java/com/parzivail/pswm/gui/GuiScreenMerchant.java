@@ -321,8 +321,11 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_LANDSPEEDER);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_LANDSPEEDER);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "X-34 Landspeeder";
@@ -341,8 +344,11 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_JAKKU_SPEEDER);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_JAKKU_SPEEDER);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "Swoop Speeder";

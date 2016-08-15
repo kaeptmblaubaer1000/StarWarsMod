@@ -43,6 +43,11 @@ public class TransferDim extends Teleporter
 		if (entity == null)
 			return;
 
+		if (entity.ridingEntity != null)
+		{
+			teleportInternal(entity.ridingEntity);
+			entity.mountEntity(null);
+		}
 		teleportInternal(entity);
 	}
 
@@ -119,7 +124,6 @@ public class TransferDim extends Teleporter
 
 	private void teleportInternal(Entity entity)
 	{
-		worldserver.theChunkProviderServer.unloadChunksIfNotNearSpawn((int)entity.posX >> 4, (int)entity.posZ >> 4);
 		double dx = this.worldserver.getSpawnPoint().posX;
 		double dz = this.worldserver.getSpawnPoint().posZ;
 		double dy = 250.0D;
@@ -131,22 +135,20 @@ public class TransferDim extends Teleporter
 		dy += 1.0D;
 		dz += 0.5D;
 		entity.setPosition(dx, dy, dz);
+		if (entity instanceof EntityLivingBase)
+			putInRightPlace((EntityLivingBase)entity);
 		entity.motionX = entity.motionY = entity.motionZ = 0.0D;
 		entity.setPosition(dx, dy, dz);
-		entity.setPosition(dx, dy, dz);
-
 		if (entity instanceof EntityLivingBase)
-		{
 			putInRightPlace((EntityLivingBase)entity);
+		entity.setPosition(dx, dy, dz);
+		if (entity instanceof EntityLivingBase)
 			putInRightPlace((EntityLivingBase)entity);
-			putInRightPlace((EntityLivingBase)entity);
-		}
 
 		if (entity instanceof EntityPlayerMP && entity.worldObj.provider.dimensionId != this.worldserver.provider.dimensionId)
 			MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension((EntityPlayerMP)entity, this.worldserver.provider.dimensionId, this);
 		else if (entity.worldObj.provider.dimensionId != this.worldserver.provider.dimensionId)
 			transferEntityToDimension(MinecraftServer.getServer().getConfigurationManager(), entity, this.worldserver.provider.dimensionId, this);
-		worldserver.theChunkProviderServer.loadChunk((int)entity.posX >> 4, (int)entity.posZ >> 4);
 	}
 
 	private void transferEntityToDimension(ServerConfigurationManager manager, Entity entity, int newDimension, Teleporter teleporter)
@@ -157,7 +159,6 @@ public class TransferDim extends Teleporter
 		WorldServer worldserver1 = manager.getServerInstance().worldServerForDimension(entity.dimension);
 		worldserver.removeEntity(entity);
 		entity.isDead = false;
-		entity.travelToDimension(newDimension);
 		manager.transferEntityToWorld(entity, j, worldserver, worldserver1, teleporter);
 	}
 }
