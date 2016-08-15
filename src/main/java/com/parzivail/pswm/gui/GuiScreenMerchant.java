@@ -243,6 +243,11 @@ public class GuiScreenMerchant extends GuiScreen
 		}, postRenderEmpty, false, player);
 		listBMisc.put("bMiscShard", bMiscShard);
 
+		OutlineButtonItemStack bPowerPack = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixBinocs, postRenderEmpty, false, player);
+		bPowerPack.enabled = true;
+		listBMisc.put("bPowerPack", bPowerPack);
+
 		setTabMisc();
 	}
 
@@ -366,6 +371,21 @@ public class GuiScreenMerchant extends GuiScreen
 
 				bBuy.setCurrentCost(640);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.lightsaberCrystal, 1, 11) };
+			}
+			else if (button.id == listBMisc.get("bPowerPack").id)
+			{
+				currentFix = fixBinocs;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bPowerPack")).itemStack;
+				entityShowing = null;
+				tileShowing = null;
+
+				onBuyClick = null;
+
+				showingTitle = "Power Pack";
+				showingDesc = "Power backs for your blaster. Essential for all use.";
+
+				bBuy.setCurrentCost(10);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.powerpack, 1) };
 			}
 		}
 	}

@@ -13,7 +13,10 @@ import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestBank;
 import com.parzivail.pswm.quest.QuestStats;
 import com.parzivail.pswm.quest.QuestUtils;
-import com.parzivail.pswm.tileentities.*;
+import com.parzivail.pswm.tileentities.TileEntityAntenna;
+import com.parzivail.pswm.tileentities.TileEntityBactaTank;
+import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
+import com.parzivail.pswm.tileentities.TileEntityTarget;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicSnowspeeder;
 import com.parzivail.pswm.vehicles.VehicXWing;
@@ -349,19 +352,10 @@ public class GuiScreenQuartermaster extends GuiScreen
 		bMiscTarget.enabled = ItemQuestLog.isQuestDone(player, QuestBank.rebel0) || player.capabilities.isCreativeMode;
 		listBMisc.put("bMiscTarget", bMiscTarget);
 
-		OutlineButtonTileEntity bMiscGunRack = new OutlineButtonTileEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bMiscGunRack.setup(new TileEntityGunRack(), fixGunRack = outlineButton ->
-		{
-			if (outlineButton != null)
-				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 27f, 50);
-			GL11.glTranslatef(0, 20, 0);
-			P3D.glScalef(22f);
-			GL11.glScalef(1, -1, 1);
-			GL11.glRotatef(10, 1, 0, 0);
-			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
-		}, postRenderEmpty);
-		bMiscGunRack.enabled = ItemQuestLog.isQuestDone(player, QuestBank.rebel0) || player.capabilities.isCreativeMode;
-		listBMisc.put("bMiscGunRack", bMiscGunRack);
+		OutlineButtonItemStack bPowerPack = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
+		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixItem, postRenderEmpty, false, player);
+		bPowerPack.enabled = true;
+		listBMisc.put("bPowerPack", bPowerPack);
 
 		OutlineButtonItemStack bHEndor = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
 		bHEndor.setup(new ItemStack(StarWarsItems.hyperdriveEndor), fixItem, postRenderEmpty, false, player);
@@ -700,20 +694,20 @@ public class GuiScreenQuartermaster extends GuiScreen
 				bBuy.setCurrentCost(16);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockTarget, 1) };
 			}
-			else if (button.id == listBMisc.get("bMiscGunRack").id)
+			else if (button.id == listBMisc.get("bPowerPack").id)
 			{
-				currentFix = fixGunRack;
-				stackShowing = null;
+				currentFix = fixItem;
+				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bPowerPack")).itemStack;
 				entityShowing = null;
-				tileShowing = ((OutlineButtonTileEntity)listBMisc.get("bMiscGunRack")).tileEntity;
+				tileShowing = null;
 
 				onBuyClick = null;
 
-				showingTitle = "Gun Rack";
-				showingDesc = "Standard gun racks, what goes in comes right back out.";
+				showingTitle = "Power Pack";
+				showingDesc = "Power backs for your blaster. Essential for all use.";
 
-				bBuy.setCurrentCost(32);
-				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsMod.blockGunRack, 1) };
+				bBuy.setCurrentCost(10);
+				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.powerpack, 1) };
 			}
 			else if (button.id == listBMisc.get("bMiscAntenna").id)
 			{
