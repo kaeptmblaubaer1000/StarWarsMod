@@ -871,7 +871,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				showingTitle = "Hoth";
 				showingDesc = "Arctic planet with a large Rebellion installation.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
 			}
 			else if (button.id == listBMisc.get("bHSpace").id)
@@ -886,7 +886,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				showingTitle = "Wild Space";
 				showingDesc = "Where pilots go to train.  Ba-Sing Station is shared with the Rebellion in the interest of fighter development";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
 			}
 			else if (button.id == listBMisc.get("bHYavin").id)
@@ -901,7 +901,7 @@ public class GuiScreenQuartermasterEmpire extends GuiScreen
 				showingTitle = "Yavin 4";
 				showingDesc = "Forest planet and location of a large Rebellion installation.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveYavin4, 1) };
 			}
 		}

@@ -104,6 +104,6 @@ public class Rebel4 extends Quest
 	@Override
 	public String getID()
 	{
-		return "Shhh, I’m hunting Wampa";
+		return "Shhh, I'm hunting Wampa";
 	}
 }

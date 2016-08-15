@@ -111,6 +111,7 @@ public class Jedi1 extends Quest
 	{
 		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.holocron, 1), true));
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.jediRobes, 1), true));
 		setQuestDone(player, this);
 	}
 

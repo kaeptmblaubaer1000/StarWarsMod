@@ -812,7 +812,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				showingTitle = "Hoth";
 				showingDesc = "Be sure to bundle up and stock up before you ship off to Echo Base.  And be careful of the Wampas.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
 			}
 			else if (button.id == listBMisc.get("bHSpace").id)
@@ -827,7 +827,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				showingTitle = "Wild Space";
 				showingDesc = "Yep, you guessed it, empty space.  Ba-Sing Station is where all the young pilots go to train.  Be careful out there Ace.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
 			}
 			else if (button.id == listBMisc.get("bHEndor").id)
@@ -842,7 +842,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				showingTitle = "Endor";
 				showingDesc = "The Empire has a huge base there, but we've got a detachment of Commandos on the ground doing constant recon.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEndor, 1) };
 			}
 		}

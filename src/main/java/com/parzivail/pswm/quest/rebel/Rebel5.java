@@ -23,7 +23,7 @@ public class Rebel5 extends Quest
 	public Rebel5()
 	{
 		DialogTree allresp = new DialogTree();
-		allresp.npcHeader = "Your first real assignment is to take out some of the Imperial Probe Droids that are constantly patrolling the planet.  Since you’ve done so well, feel free to take a T-47 Snowspeeder.  It’ll be faster, and its blasters will hit those Probe Droids hard.  Stop by the Quartermaster for some Rebel Pilot Armor too.  I want at least 5 of those droids.";
+		allresp.npcHeader = "Your first real assignment is to take out some of the Imperial Probe Droids that are constantly patrolling the planet.  Since you've done so well, feel free to take a T-47 Snowspeeder.  It'll be faster, and its blasters will hit those Probe Droids hard.  Stop by the Quartermaster for some Rebel Pilot Armor too.  I want at least 5 of those droids.";
 		allresp.response1 = "But I've never flown one of those before, sir!";
 		allresp.response1DT = new DialogTree();
 		allresp.response1DT.npcHeader = "I'm sure you'll figure it out quick enough, kid.";
@@ -104,6 +104,6 @@ public class Rebel5 extends Quest
 	@Override
 	public String getID()
 	{
-		return "It’s no Beggar’s Canyon";
+		return "It's no Beggar's Canyon";
 	}
 }
