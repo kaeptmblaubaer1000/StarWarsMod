@@ -36,7 +36,7 @@ public class Sith3 extends Quest
 		this.tree.response3DT.response1DT.response1DT.response1DT.npcHeader = "Hidden with a Black Market Dealer somewhere in Mos Eisley. You will have to buy the shard from him, as he knows not of it's power.";
 		this.tree.response3DT.response1DT.response1DT.response1DT.response1 = "Next";
 		this.tree.response3DT.response1DT.response1DT.response1DT.response1DT = new DialogTree();
-		this.tree.response3DT.response1DT.response1DT.response1DT.response1DT.npcHeader = "Hidden deep within the Imperial Base on Endor, in a secret chamber for their leader.";
+		this.tree.response3DT.response1DT.response1DT.response1DT.response1DT.npcHeader = "Hidden within the Imperial Base on Endor, on the ship used by their leader.";
 		this.tree.response3DT.response1DT.response1DT.response1DT.response1DT.response1 = "Next";
 		this.tree.response3DT.response1DT.response1DT.response1DT.response1DT.response1DT = new DialogTree();
 		this.tree.response3DT.response1DT.response1DT.response1DT.response1DT.response1DT.npcHeader = "As a reward for becoming my Apprentice, I will give you one of the shards, as I have kept it in my possession for safekeeping";
