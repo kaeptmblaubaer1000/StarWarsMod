@@ -1,8 +1,10 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiMelee;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,7 +33,9 @@ public class MobGamorrean extends EntityCreature implements IMob
 	{
 		super(par1World);
 		getNavigator().setCanSwim(true);
-		tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		tasks.addTask(0, new AiMelee(this, EntityPlayer.class, 1, false, 4));
+		tasks.addTask(1, new AiFreqMove(this, 1, 0));
+		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		switch (rngGeneral.nextInt(3))
 		{
 			case 0:
@@ -51,7 +55,7 @@ public class MobGamorrean extends EntityCreature implements IMob
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(maxHealth).setBaseValue(45.0D);
-		getEntityAttribute(movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(movementSpeed).setBaseValue(0.24D);
 	}
 
 	@Override
@@ -98,9 +102,16 @@ public class MobGamorrean extends EntityCreature implements IMob
 	}
 
 	@Override
-	public boolean getCanSpawnHere()
+	protected boolean isAIEnabled()
 	{
 		return true;
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		angryAt = entityToAttack;
+		super.onUpdate();
 	}
 
 	@Override

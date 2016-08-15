@@ -3,6 +3,7 @@
 ####################
 
 // Damage Sources
+death.attack.melee=%1$s was pummeled
 death.attack.blaster.player=%2$s blasted %1$s to bits
 death.attack.saber.player=%1$s was no match for the lightsaber of %2$s
 

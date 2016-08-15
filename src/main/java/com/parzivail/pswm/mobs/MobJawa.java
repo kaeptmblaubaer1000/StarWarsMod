@@ -96,11 +96,4 @@ public class MobJawa extends EntityCreature implements IMob
 	{
 		return Resources.MODID + ":" + "mob.jawa.say";
 	}
-
-	@Override
-	public void onUpdate()
-	{
-		angryAt = entityToAttack;
-		super.onUpdate();
-	}
 }

@@ -291,6 +291,7 @@ public class StarWarsMod
 	public static ArmorMaterial leiaBunsArmorMat;
 
 	public static DamageSource blasterDamageSource;
+	public static DamageSource meleeDamageSource;
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
 	public FMLPreInitializationEvent preInitEvent;

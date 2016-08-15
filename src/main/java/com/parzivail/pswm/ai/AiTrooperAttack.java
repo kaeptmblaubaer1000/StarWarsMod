@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.armor.*;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.MobDroidProbe;
+import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.trooper.*;
 import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.EntityLiving;
@@ -90,8 +91,10 @@ public class AiTrooperAttack extends EntityAIBase
 	{
 		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null)
 			return false;
+		if (entity instanceof MobWampa)
+			return true;
 		if (isARebel(rangedAttackEntityHost))
-			return isAnImperial(entity);
+			return isAnImperial(entity) || entity instanceof MobDroidProbe;
 		else if (isAnImperial(rangedAttackEntityHost))
 			return isARebel(entity);
 		return false;

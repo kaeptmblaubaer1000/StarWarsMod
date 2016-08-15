@@ -1,8 +1,10 @@
 package com.parzivail.util.math;
 
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class AnimationManager
@@ -16,13 +18,17 @@ public class AnimationManager
 	 */
 	public static void render(RenderGameOverlayEvent event)
 	{
-		Iterator<Animation> i = animations.iterator();
-
-		while (i.hasNext())
+		try
 		{
-			Animation t = i.next();
-			if (t.getRenderable())
-				t.render(event);
+			for (Animation t : animations)
+			{
+				if (t.getRenderable())
+					t.render(event);
+			}
+		}
+		catch (ConcurrentModificationException e)
+		{
+			Lumberjack.err("ConcurrentModificationException@AnimationManager.class:23");
 		}
 	}
 

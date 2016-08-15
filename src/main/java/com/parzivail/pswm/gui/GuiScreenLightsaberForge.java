@@ -118,6 +118,8 @@ public class GuiScreenLightsaberForge extends GuiScreen
 		boolean canGetSingleBladeBlaster = ItemUtils.hasItems(player, ItemLightsaber.getItemsForSingleBladeBlaster()) || player.capabilities.isCreativeMode;
 		boolean canGetSingleBladeShoto = ItemUtils.hasItems(player, ItemLightsaber.getItemsForSingleBladeShoto()) || player.capabilities.isCreativeMode;
 		boolean canGetDoubleBlade = ItemUtils.hasItems(player, ItemLightsaber.getItemsForDoubleBlade()) || player.capabilities.isCreativeMode;
+		boolean canGetCrossguard = ItemUtils.hasItems(player, ItemLightsaber.getItemsForCrossguard()) || player.capabilities.isCreativeMode;
+		boolean canGetPike = ItemUtils.hasItems(player, ItemLightsaber.getItemsForPike()) || player.capabilities.isCreativeMode;
 
 		int id = 0;
 		bTabHilts = new OutlineButton(id++, 10, 10, 40, 20, LangUtils.translate("hilts"), true);
@@ -194,6 +196,12 @@ public class GuiScreenLightsaberForge extends GuiScreen
 					break;
 				case "shoto":
 					b.enabled = canGetSingleBladeShoto;
+					break;
+				case "pike":
+					b.enabled = canGetPike;
+					break;
+				case "crossguard":
+					b.enabled = canGetCrossguard;
 					break;
 				default:
 					b.enabled = canGetSingleBlade;
@@ -427,7 +435,6 @@ public class GuiScreenLightsaberForge extends GuiScreen
 						break;
 				}
 
-				// TODO: make this still check against having enough for double blades
 				//setRightColor();
 			}
 			else if (button instanceof FilledColorButton)

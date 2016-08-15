@@ -10,6 +10,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.BlockGunRack;
 import com.parzivail.pswm.items.ItemSpawnAstromech;
 import com.parzivail.pswm.items.ItemSpawnProtocol;
+import com.parzivail.pswm.items.weapons.ItemGaffiStick;
 import com.parzivail.pswm.mobs.MobDroidAstromech;
 import com.parzivail.pswm.mobs.MobDroidProtocol;
 import com.parzivail.pswm.utils.LootGenUtils;
@@ -284,6 +285,11 @@ public class Schematic
 							MobDroidAstromech p = new MobDroidAstromech(world);
 							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
 							world.spawnEntityInWorld(p);
+						}
+						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemGaffiStick)
+						{
+							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
 						}
 					}
 				}
