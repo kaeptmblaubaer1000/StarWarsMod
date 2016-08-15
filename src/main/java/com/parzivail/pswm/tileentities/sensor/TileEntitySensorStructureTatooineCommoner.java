@@ -16,15 +16,7 @@ public class TileEntitySensorStructureTatooineCommoner extends TileEntitySensorP
 
 	public EntityLiving getNewEntity()
 	{
-		switch (this.worldObj.rand.nextInt(2))
-		{
-			case 0:
-				return new MobTatooineCommoner(this.worldObj);
-			case 1:
-				return new MobBith(this.worldObj);
-			default:
-				return null;
-		}
+		return new MobTatooineCommoner(this.worldObj);
 	}
 
 	@Override

@@ -42,18 +42,18 @@ public class GuiJediSith extends GuiScreen
 			if (button.id == this.jediButton.id)
 			{
 				Cron.addLeaderboardSide("jedi");
-				this.mc.displayGuiScreen(null);
-				this.mc.setIngameFocus();
 				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, Cron.SIDE_JEDI));
 				this.stack.stackTagCompound.setString(Resources.nbtSide, Cron.SIDE_JEDI);
+				StarWarsMod.mc.currentScreen = null;
+				StarWarsMod.mc.setIngameFocus();
 			}
 			else if (button.id == this.sithButton.id)
 			{
 				Cron.addLeaderboardSide("sith");
-				this.mc.displayGuiScreen(null);
-				this.mc.setIngameFocus();
 				StarWarsMod.network.sendToServer(new MessageRobesStringNBT(this.player, Resources.nbtSide, Cron.SIDE_SITH));
 				this.stack.stackTagCompound.setString(Resources.nbtSide, Cron.SIDE_SITH);
+				StarWarsMod.mc.currentScreen = null;
+				StarWarsMod.mc.setIngameFocus();
 			}
 	}
 
@@ -105,6 +105,12 @@ public class GuiJediSith extends GuiScreen
 		 * if (keyCode == 1) { this.mc.displayGuiScreen((GuiScreen)null);
 		 * this.mc.setIngameFocus(); }
 		 */
+	}
+
+	@Override
+	public boolean doesGuiPauseGame()
+	{
+		return false;
 	}
 
 	/**

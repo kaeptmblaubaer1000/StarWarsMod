@@ -10,7 +10,7 @@ public class TileEntitySensorStructureTusken extends TileEntitySensorPeoplePlace
 		this.rX = 30;
 		this.rY = 3;
 		this.rZ = 30;
-		this.entityMax = 5;
+		this.entityMax = 12;
 	}
 
 	public EntityLiving getNewEntity()

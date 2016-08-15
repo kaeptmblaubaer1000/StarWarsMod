@@ -40,7 +40,7 @@ public class StructureBank
 		hothEcho = new Schematic("final/hothecho", mobsFinal);
 		ilumTemple = new Schematic("final/ilumtemplesmoothfinal", mobsFinal);
 		wookieeVillage = new Schematic("final/wookieevillagefinal", mobsFinal);
-		mosEisley = new Schematic("final/moseisleyfinal", mobsFinal);
+		mosEisley = new Schematic("final/moseisleyactual", mobsFinal);
 
 		Lumberjack.info("Block Maps, reporting for duty!");
 	}

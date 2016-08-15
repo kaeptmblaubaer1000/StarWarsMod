@@ -148,6 +148,10 @@ public class QuestUtils
 			biped.overrideTexture = RenderHuman.textureMerchant;
 		else if (staticNpc.getAff().equals(Resources.allegianceWeaponDealerFmt))
 			biped.overrideTexture = RenderHuman.textureWeaponsDealer;
+		else if (staticNpc.getId().equals("empireRecruiter"))
+			biped.overrideTexture = RenderHuman.textureImperialOfficer;
+		else if (staticNpc.getId().equals("rebelRecruiter"))
+			biped.overrideTexture = RenderHuman.textureRebelTechnician;
 		else if (staticNpc.getAff().equals(Resources.allegianceImperialFmt))
 			biped.overrideTexture = RenderHuman.textureSteve;
 		else

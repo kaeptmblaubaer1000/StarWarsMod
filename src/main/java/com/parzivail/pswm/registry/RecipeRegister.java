@@ -49,6 +49,7 @@ public class RecipeRegister
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.titaniumChromiumIngot, 9), StarWarsMod.blockTitaniumChromiumBlock);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.hyperdriveTatooine), StarWarsItems.hyperdriveEngine, Blocks.sand);
 		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.bobaJetpackChest), StarWarsItems.bobaChest, StarWarsItems.bobaJetpack);
+		GameRegistry.addShapelessRecipe(new ItemStack(StarWarsItems.questContainer), StarWarsItems.chromiumDust, Items.book);
 		Lumberjack.info("Recipes, reporting for duty!");
 	}
 }
