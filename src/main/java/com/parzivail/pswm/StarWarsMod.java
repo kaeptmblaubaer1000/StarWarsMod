@@ -468,7 +468,7 @@ public class StarWarsMod
 	{
 		preInitEvent = event;
 
-		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION));
+		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION_MAJOR));
 
 		ConfigOptions.config = new Configuration(ConfigOptions.configFile, Resources.VERSION);
 
