@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderSpawnScootemaround implements IItemRenderer
 {
-	private static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/scootemaround.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/yavinScoot.png");
 
 	private ModelScootEmAround model;
 

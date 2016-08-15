@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderScootemaround extends RenderLandBase
 {
-	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/scootEmAround.png");
+	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/yavinScoot.png");
 
 	public RenderScootemaround()
 	{
