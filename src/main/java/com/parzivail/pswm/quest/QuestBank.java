@@ -19,6 +19,9 @@ public class QuestBank
 	public static Quest questNotAvailableYoda = new QuestNotAvailableYoda();
 	public static Quest noQuestLogYoda = new QuestNoQuestLogYoda();
 
+	public static Quest noQuestLogSith = new QuestNoQuestLogSith();
+	public static Quest noQuestSith = new QuestNotAvailableSith();
+
 	public static Quest rebelRecruit = new RebelRecruit();
 	public static Quest empireRecruit = new ImperialRecruit();
 
