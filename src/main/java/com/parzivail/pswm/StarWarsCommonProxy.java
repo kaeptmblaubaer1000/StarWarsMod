@@ -2,6 +2,7 @@ package com.parzivail.pswm;
 
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.util.ui.Lumberjack;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class StarWarsCommonProxy
 {
@@ -17,6 +18,10 @@ public class StarWarsCommonProxy
 	}
 
 	public void registerRendering()
+	{
+	}
+
+	public void showJediSithGui(PlayerPickupXpEvent event)
 	{
 	}
 }

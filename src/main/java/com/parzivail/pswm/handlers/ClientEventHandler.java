@@ -7,7 +7,10 @@ import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.ItemHolocron;
 import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.gui.*;
+import com.parzivail.pswm.gui.AnimationHyperspace;
+import com.parzivail.pswm.gui.GuiBinocs;
+import com.parzivail.pswm.gui.GuiBlaster;
+import com.parzivail.pswm.gui.GuiVehicle;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestLog;
@@ -499,7 +502,7 @@ public class ClientEventHandler
 				if (newLevels == 350 && currentLevels == 349)
 				{
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
-					Minecraft.getMinecraft().displayGuiScreen(new GuiJediSith(event.entityPlayer));
+					StarWarsMod.proxy.showJediSithGui(event);
 				}
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtLevel, currentLevels + 1));
 			}

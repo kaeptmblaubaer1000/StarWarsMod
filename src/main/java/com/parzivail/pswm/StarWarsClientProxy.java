@@ -3,6 +3,7 @@ package com.parzivail.pswm;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.font.FontManager;
+import com.parzivail.pswm.gui.GuiJediSith;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
@@ -30,6 +31,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -287,5 +289,11 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RegisterGuiOverlays.registerAll();
 
 		Lumberjack.log("Rendering registered!");
+	}
+
+	@Override
+	public void showJediSithGui(PlayerPickupXpEvent event)
+	{
+		Minecraft.getMinecraft().displayGuiScreen(new GuiJediSith(event.entityPlayer));
 	}
 }

@@ -6,8 +6,6 @@ import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.network.MessageRobesStringNBT;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.LangUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-@SideOnly(Side.CLIENT)
 public class GuiJediSith extends GuiScreen
 {
 	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/icons.png");
