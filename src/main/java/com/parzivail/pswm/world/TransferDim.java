@@ -86,6 +86,10 @@ public class TransferDim extends Teleporter
 		{
 			entity.setPosition(270.5f, 54, 248.5f);
 		}
+		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimIlumId)
+		{
+			entity.setPosition(13.5f, 208, 162.5f);
+		}
 		else if (worldserver.provider.dimensionId == Resources.ConfigOptions.dimDagobahId)
 		{
 			entity.setPosition(55.5f, 68, 19.5f);
