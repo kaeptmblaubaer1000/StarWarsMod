@@ -350,6 +350,7 @@ public class StarWarsMod
 	private void addLaunch()
 	{
 		StatTrack.addStat("launch");
+		StatTrack.addStat(Resources.VERSION);
 		InputStream in = null;
 		try
 		{

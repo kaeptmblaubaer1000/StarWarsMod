@@ -28,8 +28,6 @@ public class VehicTIEBomber extends VehicleAirBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "TIE/SA Bomber";
 	}
 

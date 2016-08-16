@@ -479,6 +479,7 @@ public class GuiScreenLightsaberForge extends GuiScreen
 				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stackShowing, !holdingSaber));
 				player.addStat(StarWarsAchievements.craftLightsaber, 1);
 				StatTrack.addStat("craftLightsaber");
+				StatTrack.addStat("hilt-" + stackShowing.stackTagCompound.getString(ItemLightsaber.nbtHilt));
 				StarWarsMod.mc.currentScreen = null;
 				StarWarsMod.mc.setIngameFocus();
 			}

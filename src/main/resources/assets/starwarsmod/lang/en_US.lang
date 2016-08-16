@@ -420,7 +420,7 @@ achievement.starwarsmod.ezraBlaster.desc=Use Ezra's Secret Blaster!
 // Keys
 key.starwarsmod=Star Wars
 key.starwarsmod.shootVehicle=Fire Lasers (in vehicles)
-key.starwarsmod.toggleSFoil=Toggle Special WIngs
+key.starwarsmod.toggleSFoil=Toggle Special Wings
 key.starwarsmod.robeGui=Open Jedi Robes GUI
 key.starwarsmod.robePower=Use Selected Robe Power
 key.starwarsmod.robePowerNext=Prev. Robe Power

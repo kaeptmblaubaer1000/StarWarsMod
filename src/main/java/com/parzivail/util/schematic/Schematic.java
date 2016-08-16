@@ -256,13 +256,20 @@ public class Schematic
 						}
 					}
 
+					if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id && pX + x == 190 && y + spawnY == 54 && pZ + z == 135)
+					{
+						WorldUtils.b(world, pX + x, y + spawnY, pZ + z, StarWarsMod.blockStaticNpcRebelDreis, 0);
+						WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+					}
+
 					if (b == Blocks.chest)
 					{
 						TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
-						if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id && pX + x == 189 && y + spawnY == 110 && pZ + z == 145)
+						if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
 						{
-							for (int i = 0; i < 27; i++)
-								t.setInventorySlotContents(i, new ItemStack(StarWarsItems.xwingSchematics, 1));
+							if (pX + x == 189 && y + spawnY == 110 && pZ + z == 145)
+								for (int i = 0; i < 27; i++)
+									t.setInventorySlotContents(i, new ItemStack(StarWarsItems.xwingSchematics, 1));
 						}
 						else if (world.provider.dimensionId == Resources.ConfigOptions.dimEndorId && pX + x == 480 && y + spawnY == 63 && pZ + z == 129)
 						{

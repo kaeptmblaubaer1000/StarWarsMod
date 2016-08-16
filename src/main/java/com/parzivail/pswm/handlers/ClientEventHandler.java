@@ -496,6 +496,8 @@ public class ClientEventHandler
 			if (newLevels % 10 == 0 && currentLevels % 10 != 0)
 			{
 				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1);
+				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
+				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtMaxXp, (int)((Math.floor(newLevels / Cron.POINTS_PER_LEVEL) + 1) * 100));
 				event.entityPlayer.addChatMessage(new ChatComponentText("[Holocron] Level up! You gained an upgrade point."));
 				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(Cron.getLevel(holocron) / Cron.POINTS_PER_LEVEL), Cron.getPoints(holocron))));
 				if (newLevels == 350 && currentLevels == 349)
@@ -503,7 +505,6 @@ public class ClientEventHandler
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
 					StarWarsMod.proxy.showJediSithGui(event);
 				}
-				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
 			}
 		}
 	}

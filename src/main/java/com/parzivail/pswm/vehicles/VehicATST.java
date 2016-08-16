@@ -26,8 +26,6 @@ public class VehicATST extends VehicleLandBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "All-Terrain Scout Transport";
 	}
 

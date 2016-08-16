@@ -27,8 +27,6 @@ public class VehicJakkuSpeeder extends VehicleLandBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "Swoop Speeder";
 	}
 

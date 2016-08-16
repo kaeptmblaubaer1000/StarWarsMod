@@ -28,8 +28,6 @@ public class VehicSnowspeeder extends VehicleAirBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "T-47 Snowspeeder";
 	}
 
