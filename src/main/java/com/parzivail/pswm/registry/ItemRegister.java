@@ -68,7 +68,6 @@ public class ItemRegister
 		StarWarsItems.hothSign = new ItemHothSign();
 		GameRegistry.registerItem(StarWarsItems.hothSign, "hothSign");
 
-		//---------------------------------------------------------------------
 
 		StarWarsItems.hyperdriveEarth = new ItemHyperdriveEarth();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveEarth, "hyperdriveEarth");
