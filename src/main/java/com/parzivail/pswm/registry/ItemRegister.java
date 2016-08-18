@@ -59,7 +59,7 @@ public class ItemRegister
 			GameRegistry.registerItem(StarWarsItems.spawnAstromechBb8, "spawnAstromechBb8");
 		}
 
-		StarWarsItems.recordDrift = new ItemMusicDisc("drift");
+		StarWarsItems.recordDrift = new ItemMusicDisc("Drift");
 		GameRegistry.registerItem(StarWarsItems.recordDrift, "recordDrift");
 
 		StarWarsItems.slopeWizard = new ItemSlopeWizard();
