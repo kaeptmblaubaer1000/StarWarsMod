@@ -38,7 +38,7 @@ public class ArmorShadowtrooper extends ItemArmor
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
 		if (slot == 1)
-			return Resources.MODID + ":" + "textures/models/shadowTrooperArmorLayer2.png";
-		return Resources.MODID + ":" + "textures/models/shadowTrooperArmorLayer1.png";
+			return Resources.MODID + ":" + "textures/models/shadowtrooperArmorLayer2.png";
+		return Resources.MODID + ":" + "textures/models/shadowtrooperArmorLayer1.png";
 	}
 }
