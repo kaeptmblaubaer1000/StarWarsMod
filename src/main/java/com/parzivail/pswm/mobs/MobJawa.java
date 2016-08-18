@@ -2,9 +2,11 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiMelee;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -22,7 +24,9 @@ public class MobJawa extends EntityCreature implements IMob
 		super(par1World);
 		setSize(0.5F, 1.5F);
 		getNavigator().setCanSwim(true);
-		tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		tasks.addTask(0, new AiMelee(this, EntityPlayer.class, 1, false, 1));
+		tasks.addTask(1, new AiFreqMove(this, 1, 0));
+		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 	}
 
 	@Override
@@ -30,7 +34,7 @@ public class MobJawa extends EntityCreature implements IMob
 	{
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5.0D);
-		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
 	}
 
 	@Override
@@ -58,6 +62,12 @@ public class MobJawa extends EntityCreature implements IMob
 	{
 		entityToAttack = p_70835_1_;
 		angerLevel = 400 + rand.nextInt(400);
+	}
+
+	@Override
+	protected boolean isAIEnabled()
+	{
+		return true;
 	}
 
 	@Override
