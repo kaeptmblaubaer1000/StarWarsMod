@@ -19,8 +19,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.util.UUID;
-
 public class RenderHuman extends RendererLivingEntity
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/parzi.png");
@@ -130,7 +128,7 @@ public class RenderHuman extends RendererLivingEntity
 					}
 					else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner")))
 					{
-						gameprofile = new GameProfile((UUID)null, nbttagcompound.getString("SkullOwner"));
+						gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
 					}
 				}
 

@@ -8,7 +8,6 @@ import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageSpawnClientParticle;
 import com.parzivail.pswm.tileentities.TileEntityTarget;
-import com.parzivail.pswm.utils.StatTrack;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,7 +30,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
 	{
 		super(par1World, par2, par4, par6);
-		//StatTrack.addStat("blaster");
 		this.damage = damage;
 	}
 
@@ -91,7 +89,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	public EntityBlasterBoltBase(World par1World, EntityLivingBase sender, float damage)
 	{
 		super(par1World, sender);
-		StatTrack.addStat("blaster");
 		this.sender = sender;
 		this.damage = damage;
 		this.setThrowableHeading(sender.getLookVec().xCoord, sender.getLookVec().yCoord, sender.getLookVec().zCoord, 1.0F, 1.0F);
@@ -100,7 +97,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	public EntityBlasterBoltBase(World par1World, float damage)
 	{
 		super(par1World);
-		StatTrack.addStat("blaster");
 		this.damage = damage;
 	}
 

@@ -58,7 +58,7 @@ public class AiTrooperAttack extends EntityAIBase
 		else
 		{
 			this.rangedAttackEntityHost = entityHost;
-			this.entityHost = (EntityLiving)entityHost;
+			this.entityHost = entityHost;
 			this.entityMoveSpeed = entityMoveSpeed;
 			this.minRangeAttackTime = minRangeAttackTime;
 			this.maxRangedAttackTime = maxRangeAttackTime;

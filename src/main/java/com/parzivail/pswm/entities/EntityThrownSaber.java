@@ -155,7 +155,7 @@ public class EntityThrownSaber extends EntityThrowable
 	{
 		if (getSender() instanceof EntityPlayer)
 		{
-			((EntityPlayer)getSender()).inventory.mainInventory[getSlot()] = getSaberStack();
+			getSender().inventory.mainInventory[getSlot()] = getSaberStack();
 		}
 	}
 
@@ -166,7 +166,7 @@ public class EntityThrownSaber extends EntityThrowable
 		int max = 8;
 
 		if (getSender() instanceof EntityPlayer)
-			max = (int)(8 * (Cron.getLevelOf((EntityPlayer)getSender(), "saberThrow") / (float)Cron.getMaxLevelOf((EntityPlayer)getSender(), "saberThrow")));
+			max = (int)(8 * (Cron.getLevelOf(getSender(), "saberThrow") / (float)Cron.getMaxLevelOf(getSender(), "saberThrow")));
 
 		if (this.timeAlive++ >= max || isReturning)
 			trackSender();

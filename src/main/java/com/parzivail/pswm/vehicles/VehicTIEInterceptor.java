@@ -22,7 +22,7 @@ public class VehicTIEInterceptor extends VehicleAirBase
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) ? super.interact(p_70085_1_) : false;
+		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) && super.interact(p_70085_1_);
 	}
 
 	@Override
