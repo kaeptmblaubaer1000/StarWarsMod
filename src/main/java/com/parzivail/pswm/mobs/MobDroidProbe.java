@@ -3,12 +3,13 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.mobs.trooper.MobTrooper;
 import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -20,9 +21,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class MobDroidProbe extends EntityDroidBase implements IRangedAttackMob
+public class MobDroidProbe extends EntityDroidBase implements IShootThings
 {
-	private EntityAIArrowAttack aiArrow;
+	private AiTrooperAttack aiArrow;
 
 	private EntityAITempt aiTempt;
 
@@ -30,11 +31,12 @@ public class MobDroidProbe extends EntityDroidBase implements IRangedAttackMob
 	{
 		super(par1World);
 		setSize(1.0F, 2.0F);
-		tasks.addTask(0, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+		tasks.addTask(0, aiArrow = new AiTrooperAttack(this, 1.0D, 20, 60, 15.0F));
 		tasks.addTask(1, aiSit);
 		tasks.addTask(2, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
 		tasks.addTask(3, aiTempt = new EntityAITempt(this, 0.6D, StarWarsItems.droidCaller, true));
 		tasks.addTask(4, new AiFreqMove(this, 1, 0));
+		targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 	}
 
@@ -47,7 +49,7 @@ public class MobDroidProbe extends EntityDroidBase implements IRangedAttackMob
 	}
 
 	@Override
-	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
+	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
 		if (p_82196_1_ instanceof EntityPlayer && ItemQuestLog.getSide((EntityPlayer)p_82196_1_).equals(Resources.allegianceImperialFmt))
 			return;
@@ -152,7 +154,7 @@ public class MobDroidProbe extends EntityDroidBase implements IRangedAttackMob
 					tasks.addTask(2, aiSit);
 					tasks.addTask(3, aiTempt = new EntityAITempt(this, 0.6D, StarWarsItems.droidHacker, true));
 					tasks.addTask(5, new net.minecraft.entity.ai.EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-					tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+					tasks.addTask(1, aiArrow = new AiTrooperAttack(this, 1.0D, 20, 60, 15.0F));
 					tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 					tasks.addTask(3, new EntityAILookIdle(this));
 					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));

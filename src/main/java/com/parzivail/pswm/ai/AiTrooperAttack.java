@@ -3,6 +3,7 @@ package com.parzivail.pswm.ai;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.armor.*;
 import com.parzivail.pswm.items.ItemQuestLog;
+import com.parzivail.pswm.mobs.IShootThings;
 import com.parzivail.pswm.mobs.MobDroidProbe;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.trooper.*;
@@ -25,7 +26,7 @@ public class AiTrooperAttack extends EntityAIBase
 	/**
 	 * The entity (as a RangedAttackMob) the AI instance has been applied to.
 	 */
-	private final MobTrooper rangedAttackEntityHost;
+	private final EntityLivingBase rangedAttackEntityHost;
 	private EntityLivingBase attackTarget;
 	/**
 	 * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to the
@@ -42,12 +43,12 @@ public class AiTrooperAttack extends EntityAIBase
 	private float field_96562_i;
 	private float field_82642_h;
 
-	public AiTrooperAttack(MobTrooper entityHost, double entityMoveSpeed, int maxRangeAttackTime, float p_i1649_5_)
+	public AiTrooperAttack(EntityLiving entityHost, double entityMoveSpeed, int maxRangeAttackTime, float p_i1649_5_)
 	{
 		this(entityHost, entityMoveSpeed, maxRangeAttackTime, maxRangeAttackTime, p_i1649_5_);
 	}
 
-	public AiTrooperAttack(MobTrooper entityHost, double entityMoveSpeed, int minRangeAttackTime, int maxRangeAttackTime, float p_i1650_6_)
+	public AiTrooperAttack(EntityLiving entityHost, double entityMoveSpeed, int minRangeAttackTime, int maxRangeAttackTime, float p_i1650_6_)
 	{
 		this.rangedAttackTime = -1;
 
@@ -89,12 +90,12 @@ public class AiTrooperAttack extends EntityAIBase
 
 	private boolean shouldIAttack(EntityLivingBase entity)
 	{
-		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null)
+		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null && !(this.rangedAttackEntityHost instanceof MobDroidProbe))
 			return false;
 		if (entity instanceof MobWampa)
 			return true;
 		if (isARebel(rangedAttackEntityHost))
-			return isAnImperial(entity) || entity instanceof MobDroidProbe;
+			return isAnImperial(entity);
 		else if (isAnImperial(rangedAttackEntityHost))
 			return isARebel(entity);
 		return false;
@@ -186,7 +187,7 @@ public class AiTrooperAttack extends EntityAIBase
 				f1 = 1.0F;
 			}
 
-			this.rangedAttackEntityHost.rangeAttack(this.attackTarget, f1);
+			((IShootThings)this.rangedAttackEntityHost).rangeAttack(this.attackTarget, f1);
 			this.rangedAttackTime = MathHelper.floor_float(f * (float)(this.maxRangedAttackTime - this.minRangeAttackTime) + (float)this.minRangeAttackTime);
 		}
 		else if (this.rangedAttackTime < 0)

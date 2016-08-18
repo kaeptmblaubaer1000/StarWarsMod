@@ -4,10 +4,7 @@ import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
-import com.parzivail.pswm.mobs.MobDroidAstromech;
-import com.parzivail.pswm.mobs.MobDroidProbe;
-import com.parzivail.pswm.mobs.MobDroidProtocol;
-import com.parzivail.pswm.mobs.MobWampa;
+import com.parzivail.pswm.mobs.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +25,7 @@ import static com.parzivail.pswm.Resources.MODID;
 /**
  * Created by Colby on 7/6/2016.
  */
-public abstract class MobTrooper extends EntityTameable implements IMob
+public abstract class MobTrooper extends EntityTameable implements IMob, IShootThings
 {
 	private AiTrooperAttack trooperAttack;
 	private int angerLevel;
@@ -50,8 +47,8 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobWampa.class, 0, true));
 		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		this.setTamed(false);
 	}
 
