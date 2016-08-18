@@ -1,10 +1,14 @@
 package com.parzivail.pswm.mobs;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
-import net.minecraft.entity.*;
+import com.parzivail.pswm.ai.AiShoot;
+import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -18,8 +22,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
+import static com.parzivail.pswm.Resources.MODID;
+
+public class MobTusken extends EntityCreature implements IMob, IShootThings
 {
+	private AiShoot aiShoot;
 	private int angerLevel;
 	private Entity angryAt = null;
 	private EntityAIArrowAttack aiArrow;
@@ -29,11 +36,6 @@ public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 		super(par1World);
 		getNavigator().setCanSwim(true);
 		getNavigator().setEnterDoors(true);
-		tasks.addTask(0, new AiMelee(this, EntityPlayer.class, 1, false, 3));
-		tasks.addTask(1, new AiFreqMove(this, 1, 20));
-		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
 		switch (rand.nextInt(3))
 		{
 			case 0:
@@ -41,9 +43,14 @@ public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 				break;
 			case 1:
 				setCurrentItemOrArmor(0, StarWarsItems.blasterRifle.getMeta("Cycler"));
-				tasks.addTask(1, aiArrow = new EntityAIArrowAttack(this, 1.0D, 20, 60, 15.0F));
+				this.tasks.addTask(0, aiShoot = new AiShoot(this, 1.0D, 20, 60, 15.0F));
 				break;
 		}
+		tasks.addTask(1, new AiMelee(this, EntityPlayer.class, 1, false, 3));
+		tasks.addTask(2, new AiFreqMove(this, 1, 20));
+		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
 	}
 
 	@Override
@@ -53,6 +60,12 @@ public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 		getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(10.0D);
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
+	}
+
+	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
+	{
+		playSound(MODID + ":" + "fx.shoot.cycler", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
+		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
 	@Override
@@ -76,13 +89,6 @@ public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 		return super.attackEntityFrom(source, amount);
 	}
 
-	@Override
-	public void attackEntityWithRangedAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
-	{
-		playSound(Resources.MODID + ":" + "item.blasterRifle.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
-		worldObj.spawnEntityInWorld(new com.parzivail.pswm.entities.EntityBlasterRifleBolt(worldObj, this, getAttackTarget()));
-	}
-
 	private void becomeAngryAt(Entity p_70835_1_)
 	{
 		entityToAttack = p_70835_1_;
@@ -104,19 +110,19 @@ public class MobTusken extends EntityCreature implements IMob, IRangedAttackMob
 	@Override
 	protected String getDeathSound()
 	{
-		return Resources.MODID + ":" + "mob.tusken.die";
+		return MODID + ":" + "mob.tusken.die";
 	}
 
 	@Override
 	protected String getHurtSound()
 	{
-		return Resources.MODID + ":" + "mob.tusken.hit";
+		return MODID + ":" + "mob.tusken.hit";
 	}
 
 	@Override
 	protected String getLivingSound()
 	{
-		return Resources.MODID + ":" + "mob.tusken.say";
+		return MODID + ":" + "mob.tusken.say";
 	}
 
 	@Override
