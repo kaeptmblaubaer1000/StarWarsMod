@@ -106,8 +106,6 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "Rebel Scoot-'Em-Around";
 	}
 

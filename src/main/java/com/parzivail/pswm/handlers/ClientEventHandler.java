@@ -17,7 +17,6 @@ import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
-import com.parzivail.pswm.network.MessageRobesIntNBT;
 import com.parzivail.pswm.rendering.IHandlesRender;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.pswm.rendering.force.ModelJediCloak;
@@ -144,7 +143,7 @@ public class ClientEventHandler
 			}
 		}
 		playerRespawnItems.put(event.entityPlayer.getCommandSenderName(), s);
-		Lumberjack.log(s);
+		//Lumberjack.log(s);
 	}
 
 	@SubscribeEvent
@@ -491,12 +490,14 @@ public class ClientEventHandler
 		{
 			int currentLevels = Cron.getLevel(holocron);
 			if (StarWarsMod.rngGeneral.nextInt(100) <= Cron.getPercentForLevel(currentLevels))
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtLevel, currentLevels + 1));
+				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
 			int newLevels = currentLevels + 1;
-			Lumberjack.log("%s %s", newLevels, currentLevels);
+			//Lumberjack.log("%s %s", newLevels, currentLevels);
 			if (newLevels % 10 == 0 && currentLevels % 10 != 0)
 			{
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1));
+				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1);
+				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
+				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtMaxXp, (int)((Math.floor(newLevels / Cron.POINTS_PER_LEVEL) + 1) * 100));
 				event.entityPlayer.addChatMessage(new ChatComponentText("[Holocron] Level up! You gained an upgrade point."));
 				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(Cron.getLevel(holocron) / Cron.POINTS_PER_LEVEL), Cron.getPoints(holocron))));
 				if (newLevels == 350 && currentLevels == 349)
@@ -504,7 +505,6 @@ public class ClientEventHandler
 					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
 					StarWarsMod.proxy.showJediSithGui(event);
 				}
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(event.entityPlayer, Resources.nbtLevel, currentLevels + 1));
 			}
 		}
 	}

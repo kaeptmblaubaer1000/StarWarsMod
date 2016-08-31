@@ -1,9 +1,12 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,8 +23,6 @@ import static com.parzivail.pswm.StarWarsItems.bowcaster;
 import static com.parzivail.pswm.utils.LootGenUtils.baseRarity;
 import static com.parzivail.pswm.utils.LootGenUtils.getWeightedItemFromList;
 import static java.util.UUID.fromString;
-import static net.minecraft.entity.SharedMonsterAttributes.maxHealth;
-import static net.minecraft.entity.SharedMonsterAttributes.movementSpeed;
 
 public class MobWookiee extends EntityCreature implements IMob
 {
@@ -35,16 +36,24 @@ public class MobWookiee extends EntityCreature implements IMob
 		super(par1World);
 		getNavigator().setCanSwim(true);
 		setSize(0.5F, 2.0F);
-		getNavigator().setEnterDoors(true);
-		tasks.addTask(0, new AiFreqMove(this, 1, 0));
+		getNavigator().setCanSwim(true);
+		tasks.addTask(0, new AiMelee(this, EntityPlayer.class, 1, false, 3));
+		tasks.addTask(1, new AiFreqMove(this, 1, 0));
+		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 	}
 
 	@Override
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		getEntityAttribute(maxHealth).setBaseValue(15.0D);
-		getEntityAttribute(movementSpeed).setBaseValue(0.25D);
+		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
+		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+	}
+
+	@Override
+	protected boolean isAIEnabled()
+	{
+		return true;
 	}
 
 	@Override

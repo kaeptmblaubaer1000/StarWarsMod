@@ -485,8 +485,6 @@ public class Cron
 				r.add("slow");
 			if (level > 40)
 				r.add("drainKnowledge");
-			if (level > 45)
-				r.add("lightning");
 			if (level > 50)
 				r.add("destruction");
 		}

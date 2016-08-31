@@ -14,6 +14,6 @@ public class BlockSensorAtst extends BlockSensor
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new TileEntitySensorAtst(40, 40, 40);
+		return new TileEntitySensorAtst();
 	}
 }

@@ -61,8 +61,6 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "T-65B X-Wing Starfighter";
 	}
 

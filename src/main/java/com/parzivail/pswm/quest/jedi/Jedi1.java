@@ -7,7 +7,6 @@ import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.DialogTree;
 import com.parzivail.pswm.quest.Quest;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -91,7 +90,7 @@ public class Jedi1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		Lumberjack.log(ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(player), Resources.ConfigOptions.dimDagobahId));
+		//Lumberjack.log(ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(player), Resources.ConfigOptions.dimDagobahId));
 		return !isQuestDone(player, this) && jediObiWan.isQuestComplete(player) && ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(player), Resources.ConfigOptions.dimDagobahId) > 0;
 	}
 
@@ -112,6 +111,7 @@ public class Jedi1 extends Quest
 	{
 		player.playSound(Resources.MODID + ":" + "quest.complete", 1, 1);
 		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.holocron, 1), true));
+		StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(StarWarsItems.jediRobes, 1), true));
 		setQuestDone(player, this);
 	}
 

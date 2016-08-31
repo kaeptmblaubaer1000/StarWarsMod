@@ -85,8 +85,6 @@ public class VehicYWing extends VehicleAirBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "BTL Y-Wing Starfighter";
 	}
 

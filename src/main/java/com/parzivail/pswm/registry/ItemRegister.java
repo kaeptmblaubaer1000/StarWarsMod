@@ -59,7 +59,7 @@ public class ItemRegister
 			GameRegistry.registerItem(StarWarsItems.spawnAstromechBb8, "spawnAstromechBb8");
 		}
 
-		StarWarsItems.recordDrift = new ItemMusicDisc("drift");
+		StarWarsItems.recordDrift = new ItemMusicDisc("Drift");
 		GameRegistry.registerItem(StarWarsItems.recordDrift, "recordDrift");
 
 		StarWarsItems.slopeWizard = new ItemSlopeWizard();
@@ -68,7 +68,6 @@ public class ItemRegister
 		StarWarsItems.hothSign = new ItemHothSign();
 		GameRegistry.registerItem(StarWarsItems.hothSign, "hothSign");
 
-		//---------------------------------------------------------------------
 
 		StarWarsItems.hyperdriveEarth = new ItemHyperdriveEarth();
 		GameRegistry.registerItem(StarWarsItems.hyperdriveEarth, "hyperdriveEarth");

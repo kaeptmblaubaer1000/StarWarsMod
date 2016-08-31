@@ -84,8 +84,6 @@ public class MobDewback extends EntityHorse
 	@Override
 	public String getCommandSenderName()
 	{
-		if (hasCustomNameTag())
-			return getCustomNameTag();
 		if (isChested())
 			return "Pack-Dewback";
 		return "Dewback";

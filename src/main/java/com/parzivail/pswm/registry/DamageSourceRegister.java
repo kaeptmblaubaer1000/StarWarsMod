@@ -11,6 +11,7 @@ public class DamageSourceRegister
 		StarWarsMod.blasterDamageSource = new DamageSource("blaster").setDamageBypassesArmor().setProjectile();
 		StarWarsMod.saberDamageSource = new DamageSource("saber").setDamageBypassesArmor();
 		StarWarsMod.roadkillDamageSource = new DamageSource("runOver");
+		StarWarsMod.meleeDamageSource = new DamageSource("melee");
 		Lumberjack.info("Damage Sources, reporting for duty!");
 	}
 }

@@ -12,7 +12,7 @@ public class QuestNotAvailableSith extends Quest
 	public QuestNotAvailableSith()
 	{
 		this.tree = new DialogTree();
-		this.tree.npcHeader = "Leave me.";
+		this.tree.npcHeader = "Leave me until you know of the power of The Dark Side.";
 	}
 
 	@Override

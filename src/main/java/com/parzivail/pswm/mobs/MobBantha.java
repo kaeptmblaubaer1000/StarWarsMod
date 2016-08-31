@@ -127,8 +127,6 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	public String getCommandSenderName()
 	{
-		if (hasCustomNameTag())
-			return getCustomNameTag();
 		if (isChested())
 			return "Pack-Bantha";
 		return "Bantha";

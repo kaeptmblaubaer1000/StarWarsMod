@@ -84,6 +84,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 	Consumer<OutlineButton> fixHolotable;
 	Consumer<OutlineButton> fixBacta;
 	Consumer<OutlineButton> fixItem;
+	Consumer<OutlineButton> fixPowerPack;
 	Consumer<OutlineButton> currentFix = null;
 
 	Consumer<EntityPlayer> onBuyClick = null;
@@ -352,9 +353,29 @@ public class GuiScreenQuartermaster extends GuiScreen
 		bMiscTarget.enabled = ItemQuestLog.isQuestDone(player, QuestBank.rebel0) || player.capabilities.isCreativeMode;
 		listBMisc.put("bMiscTarget", bMiscTarget);
 
+		fixPowerPack = outlineButton ->
+		{
+			if (outlineButton != null)
+				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
+			else
+			{
+				P3D.glScalef(0.75f);
+				GL11.glTranslatef(-1, -4, 0);
+			}
+			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glTranslatef(10, -5, 8);
+			if (outlineButton == null)
+			{
+				GL11.glTranslatef(2, 0, 4);
+			}
+			P3D.glScalef(24f);
+			GL11.glScalef(1, -1, 1);
+		};
+
 		OutlineButtonItemStack bPowerPack = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixItem, postRenderEmpty, false, player);
+		bPowerPack.setup(new ItemStack(StarWarsItems.powerpack), fixPowerPack, postRenderEmpty, false, player);
 		bPowerPack.enabled = true;
+		bPowerPack.setRenderType(ItemRenderType.INVENTORY);
 		listBMisc.put("bPowerPack", bPowerPack);
 
 		OutlineButtonItemStack bHEndor = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
@@ -612,8 +633,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_XWING);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_XWING);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "Incom T-65 X-Wing Starfighter License";
@@ -631,8 +655,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_YWING);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_YWING);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "BTL Y-Wing Bomber License";
@@ -650,8 +677,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_AWING);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_AWING);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "RZ-1 A-Wing Interceptor License";
@@ -669,8 +699,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					ItemQuestLog.addStat(player1, QuestStats.LICENSE_T47);
-					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					if (ItemQuestLog.getQuestContainer(player1) != null)
+					{
+						ItemQuestLog.addStat(player1, QuestStats.LICENSE_T47);
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+					}
 				};
 
 				showingTitle = "Incom T-47 Snowspeeder License";
@@ -696,7 +729,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 			}
 			else if (button.id == listBMisc.get("bPowerPack").id)
 			{
-				currentFix = fixItem;
+				currentFix = fixPowerPack;
 				stackShowing = ((OutlineButtonItemStack)listBMisc.get("bPowerPack")).itemStack;
 				entityShowing = null;
 				tileShowing = null;
@@ -704,7 +737,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				onBuyClick = null;
 
 				showingTitle = "Power Pack";
-				showingDesc = "Power backs for your blaster. Essential for all use.";
+				showingDesc = "Power packs for your blaster. Essential for all use. Each pack powers your blaster for 15 shots.";
 
 				bBuy.setCurrentCost(10);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.powerpack, 1) };
@@ -779,7 +812,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				showingTitle = "Hoth";
 				showingDesc = "Be sure to bundle up and stock up before you ship off to Echo Base.  And be careful of the Wampas.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveHoth, 1) };
 			}
 			else if (button.id == listBMisc.get("bHSpace").id)
@@ -794,7 +827,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				showingTitle = "Wild Space";
 				showingDesc = "Yep, you guessed it, empty space.  Ba-Sing Station is where all the young pilots go to train.  Be careful out there Ace.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveSpace, 1) };
 			}
 			else if (button.id == listBMisc.get("bHEndor").id)
@@ -809,7 +842,7 @@ public class GuiScreenQuartermaster extends GuiScreen
 				showingTitle = "Endor";
 				showingDesc = "The Empire has a huge base there, but we've got a detachment of Commandos on the ground doing constant recon.";
 
-				bBuy.setCurrentCost(0);
+				bBuy.setCurrentCost(64);
 				buyItemStacks = new ItemStack[] { new ItemStack(StarWarsItems.hyperdriveEndor, 1) };
 			}
 		}

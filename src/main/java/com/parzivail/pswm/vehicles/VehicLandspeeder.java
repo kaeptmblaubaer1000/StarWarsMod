@@ -22,7 +22,7 @@ public class VehicLandspeeder extends VehicleLandBase
 	@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
-		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) ? super.interact(p_70085_1_) : false;
+		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) && super.interact(p_70085_1_);
 	}
 
 	@Override
@@ -36,8 +36,6 @@ public class VehicLandspeeder extends VehicleLandBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "X-34 Landspeeder";
 	}
 

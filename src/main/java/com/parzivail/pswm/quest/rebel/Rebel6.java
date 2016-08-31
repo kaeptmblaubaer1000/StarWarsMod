@@ -103,6 +103,6 @@ public class Rebel6 extends Quest
 	@Override
 	public String getID()
 	{
-		return "That’s no moon!";
+		return "That's no moon!";
 	}
 }

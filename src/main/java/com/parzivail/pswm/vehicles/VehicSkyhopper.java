@@ -35,8 +35,6 @@ public class VehicSkyhopper extends VehicleAirBase
 	@Override
 	public String getCommandSenderName()
 	{
-		if (this.hasCustomNameTag())
-			return this.getCustomNameTag();
 		return "T-16 Skyhopper";
 	}
 

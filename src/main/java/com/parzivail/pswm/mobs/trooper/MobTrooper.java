@@ -1,12 +1,10 @@
 package com.parzivail.pswm.mobs.trooper;
 
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
-import com.parzivail.pswm.mobs.MobDroidAstromech;
-import com.parzivail.pswm.mobs.MobDroidProbe;
-import com.parzivail.pswm.mobs.MobDroidProtocol;
-import com.parzivail.pswm.mobs.MobWampa;
+import com.parzivail.pswm.mobs.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,10 +25,11 @@ import static com.parzivail.pswm.Resources.MODID;
 /**
  * Created by Colby on 7/6/2016.
  */
-public abstract class MobTrooper extends EntityTameable implements IMob
+public abstract class MobTrooper extends EntityTameable implements IMob, IShootThings
 {
 	private AiTrooperAttack trooperAttack;
 	private int angerLevel;
+
 	private Entity angryAt = null;
 
 	public MobTrooper(World world)
@@ -39,16 +38,17 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 		setSize(0.5F, 1.5F);
 		getNavigator().setEnterDoors(true);
 		getNavigator().setCanSwim(true);
-		this.tasks.addTask(0, new EntityAIFollowOwner(this, 1.0D, 4.0F, 2.0F));
-		this.tasks.addTask(1, trooperAttack = new AiTrooperAttack(this, 1.0D, 20, 60, 15.0F));
-		this.tasks.addTask(2, new AiFreqMove(this, 1, 20));
-		this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
+		this.tasks.addTask(0, trooperAttack = new AiTrooperAttack(this, 1.0D, 20, 60, 15.0F));
+		this.tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 4.0F, 2.0F));
+		tasks.addTask(2, new AiMelee(this, MobWampa.class, 1, false, 4));
+		this.tasks.addTask(3, new AiFreqMove(this, 1, 20));
+		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobWampa.class, 0, true));
-		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
-		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
+		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		this.setTamed(false);
 	}
 
@@ -92,6 +92,13 @@ public abstract class MobTrooper extends EntityTameable implements IMob
 			becomeAngryAt(entity);
 		}
 		return super.attackEntityFrom(source, amount);
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		angryAt = entityToAttack;
+		super.onUpdate();
 	}
 
 	public boolean interact(EntityPlayer p_70085_1_)

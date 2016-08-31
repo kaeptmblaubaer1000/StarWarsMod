@@ -8,15 +8,11 @@ public class TileEntitySensorAtst extends TileEntitySensor
 	private int rY;
 	private int rZ;
 
-	public TileEntitySensorAtst(int rX, int rY, int rZ)
-	{
-		this.rX = rX;
-		this.rY = rY;
-		this.rZ = rZ;
-	}
-
 	public TileEntitySensorAtst()
 	{
+		this.rX = 60;
+		this.rY = 20;
+		this.rZ = 60;
 	}
 
 	@Override

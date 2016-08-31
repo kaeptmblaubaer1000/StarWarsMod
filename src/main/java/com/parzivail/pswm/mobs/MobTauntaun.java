@@ -76,8 +76,6 @@ public class MobTauntaun extends EntityHorse
 	@Override
 	public String getCommandSenderName()
 	{
-		if (hasCustomNameTag())
-			return getCustomNameTag();
 		if (isChested())
 			return "Pack-Tauntaun";
 		return "Tauntaun";
@@ -123,7 +121,8 @@ public class MobTauntaun extends EntityHorse
 		{
 			setHorseTamed(true);
 			playLivingSound();
-			spawnHorseParticles(true);
+			if (p_70085_1_.worldObj.isRemote)
+				spawnHorseParticles(true);
 		}
 		return super.interact(p_70085_1_);
 	}

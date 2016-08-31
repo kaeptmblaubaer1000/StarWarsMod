@@ -50,8 +50,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
-//import com.rollbar.Rollbar;
-
 @Mod(modid = Resources.MODID,
      version = Resources.VERSION,
      name = "Parzi's Star Wars Mod",
@@ -291,15 +289,15 @@ public class StarWarsMod
 	public static ArmorMaterial leiaBunsArmorMat;
 
 	public static DamageSource blasterDamageSource;
+	public static DamageSource meleeDamageSource;
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
 	public FMLPreInitializationEvent preInitEvent;
 
-	//public static final Rollbar rollbar = new Rollbar("2f2f385fc5d24ecbbf91e62fb9818577", "production");
+	//public static final Rollbar rollbar = new Rollbar("6364f4dd34ff449e870620915d5c2f3d", "production");
 
 	public StarWarsMod()
 	{
-		//rollbar.handleUncaughtErrors();
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
 		this.checkJavaVersion();
 		this.checkModVersion();
@@ -349,6 +347,7 @@ public class StarWarsMod
 	private void addLaunch()
 	{
 		StatTrack.addStat("launch");
+		StatTrack.addStat(Resources.VERSION);
 		InputStream in = null;
 		try
 		{

@@ -21,7 +21,7 @@ public class BlockNpcSith extends BlockNpcBase
 	public Quest getQuestForPlayer(TileEntityStaticNpc questGiver, EntityPlayer player)
 	{
 		if (ItemQuestLog.getQuestContainer(player) == null)
-			return QuestBank.noQuestLog;
+			return QuestBank.noQuestLogSith;
 
 		if (QuestBank.sith1.canBeGivenQuest(player))
 			return QuestBank.sith1;
@@ -32,6 +32,6 @@ public class BlockNpcSith extends BlockNpcBase
 		else if (QuestBank.sith3_PostSaber.canBeGivenQuest(player))
 			return QuestBank.sith3_PostSaber;
 
-		return QuestBank.questNotAvailable;
+		return QuestBank.noQuestSith;
 	}
 }

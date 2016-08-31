@@ -19,8 +19,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.util.UUID;
-
 public class RenderHuman extends RendererLivingEntity
 {
 	public static ResourceLocation texture = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/parzi.png");
@@ -30,6 +28,8 @@ public class RenderHuman extends RendererLivingEntity
 	public static ResourceLocation textureCorellian = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/corellian.png");
 	public static ResourceLocation textureMerchant = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/generalMerchant.png");
 	public static ResourceLocation textureWeaponsDealer = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/weaponsDealer.png");
+
+	public static ResourceLocation textureSith = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/sith.png");
 
 	public static ResourceLocation textureRebelWorker = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/rebelWorker.png");
 	public static ResourceLocation textureRebelTechnician = new ResourceLocation(Resources.MODID + ":" + "textures/models/npc/rebelTechnician.png");
@@ -128,7 +128,7 @@ public class RenderHuman extends RendererLivingEntity
 					}
 					else if (nbttagcompound.hasKey("SkullOwner", 8) && !StringUtils.isNullOrEmpty(nbttagcompound.getString("SkullOwner")))
 					{
-						gameprofile = new GameProfile((UUID)null, nbttagcompound.getString("SkullOwner"));
+						gameprofile = new GameProfile(null, nbttagcompound.getString("SkullOwner"));
 					}
 				}
 

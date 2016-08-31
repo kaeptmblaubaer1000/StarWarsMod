@@ -121,22 +121,32 @@ public class ItemLightsaber extends ItemSword
 
 	public static ItemStack[] getItemsForSingleBlade()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 1), };
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 4), };
 	}
 
 	public static ItemStack[] getItemsForSingleBladeBlaster()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 2), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 2), new ItemStack(StarWarsItems.energyGate, 2), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 1), };
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 2), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 2), new ItemStack(StarWarsItems.energyGate, 2), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 6), };
 	}
 
 	public static ItemStack[] getItemsForSingleBladeShoto()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 2), };
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 8), };
 	}
 
 	public static ItemStack[] getItemsForDoubleBlade()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 2), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 2), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 2), new ItemStack(StarWarsItems.hiltMetelAlloy, 2), };
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 2), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 2), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 2), new ItemStack(StarWarsItems.hiltMetelAlloy, 8), };
+	}
+
+	public static ItemStack[] getItemsForCrossguard()
+	{
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 2), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 6), };
+	}
+
+	public static ItemStack[] getItemsForPike()
+	{
+		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 10), };
 	}
 
 	@Override
