@@ -16,6 +16,7 @@ public class RecipeRegister
 		GameRegistry.addSmelting(StarWarsItems.hiltMetelCompound, new ItemStack(StarWarsItems.hiltMetelAlloy, 1), 0.2F);
 		GameRegistry.addSmelting(StarWarsItems.titaniumChromiumDust, new ItemStack(StarWarsItems.titaniumChromiumIngot, 2), 0.2F);
 		GameRegistry.addSmelting(StarWarsItems.banthaChop, new ItemStack(StarWarsItems.banthaChopCooked, 1), 0.2F);
+		GameRegistry.addSmelting(StarWarsMod.blockCrystalOre, new ItemStack(StarWarsItems.lightsaberCrystal, 1), 0.2F);
 
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.plasmaEmitter, 1), "HGH", "HNH", "HRH", 'H', StarWarsItems.hiltMetelAlloy, 'N', Items.quartz, 'R', Blocks.diamond_block, 'G', Blocks.glass_pane);
 		GameRegistry.addShapedRecipe(new ItemStack(StarWarsItems.containmentField, 1), "AIA", "IEI", "AIA", 'A', StarWarsItems.titaniumChromiumIngot, 'I', Items.iron_ingot, 'E', Items.ender_eye);
