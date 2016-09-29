@@ -294,8 +294,6 @@ public class StarWarsMod
 	public static DamageSource roadkillDamageSource;
 	public FMLPreInitializationEvent preInitEvent;
 
-	//public static final Rollbar rollbar = new Rollbar("6364f4dd34ff449e870620915d5c2f3d", "production");
-
 	public StarWarsMod()
 	{
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod constructor ==========");
