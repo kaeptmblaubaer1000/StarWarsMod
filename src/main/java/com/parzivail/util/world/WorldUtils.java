@@ -82,11 +82,11 @@ public class WorldUtils
 
 	public static void b(World world, int x, int y, int z, Block block, int metadata)
 	{
-		setBlock(world, x, y, z, block, metadata, 1);
+		setBlock(world, x, y, z, block, metadata, 2 | 4);
 	}
 
 	public static void m(World world, int x, int y, int z, int metadata)
 	{
-		world.setBlockMetadataWithNotify(x, y, z, metadata, 1);
+		world.setBlockMetadataWithNotify(x, y, z, metadata, 2 | 4);
 	}
 }
