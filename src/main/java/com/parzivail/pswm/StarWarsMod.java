@@ -486,7 +486,7 @@ public class StarWarsMod
 		for (String key : gameDataSnapshot.idMap.keySet())
 		{
 			NBTTagCompound c = new NBTTagCompound();
-			c.setString("k", key.substring(1)); // substring because GameDataSnapshot adds a descriminator or something dumb
+			c.setString("k", key.substring(1)); // substring because GameDataSnapshot adds a discriminator or something dumb
 			c.setInteger("v", gameDataSnapshot.idMap.get(key));
 			blockMap.appendTag(c);
 		}
