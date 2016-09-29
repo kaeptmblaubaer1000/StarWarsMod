@@ -124,6 +124,8 @@ public class ItemUtils
 
 	public static boolean isChestEmpty(TileEntityChest t)
 	{
+		if (t == null)
+			return true;
 		for (int i = 0; i < t.getSizeInventory(); i++)
 			if (t.getStackInSlot(i) != null)
 				return false;

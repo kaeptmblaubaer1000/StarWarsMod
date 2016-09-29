@@ -274,43 +274,46 @@ public class Schematic
 				if (b == Blocks.chest)
 				{
 					TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
-					if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
+					if (t != null)
 					{
-						if (pX + x == 189 && y + spawnY == 110 && pZ + z == 145)
+						if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
+						{
+							if (pX + x == 189 && y + spawnY == 110 && pZ + z == 145)
+								for (int i = 0; i < 27; i++)
+									t.setInventorySlotContents(i, new ItemStack(StarWarsItems.xwingSchematics, 1));
+						}
+						else if (world.provider.dimensionId == Resources.ConfigOptions.dimEndorId && pX + x == 480 && y + spawnY == 63 && pZ + z == 129)
+						{
 							for (int i = 0; i < 27; i++)
-								t.setInventorySlotContents(i, new ItemStack(StarWarsItems.xwingSchematics, 1));
-					}
-					else if (world.provider.dimensionId == Resources.ConfigOptions.dimEndorId && pX + x == 480 && y + spawnY == 63 && pZ + z == 129)
-					{
-						for (int i = 0; i < 27; i++)
-							t.setInventorySlotContents(i, new ItemStack(StarWarsItems.tieSchematics, 1));
-					}
-					else if (ItemUtils.isChestEmpty(t))
-					{
-						LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, t);
-					}
-					else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol)
-					{
-						WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-						WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+								t.setInventorySlotContents(i, new ItemStack(StarWarsItems.tieSchematics, 1));
+						}
+						else if (ItemUtils.isChestEmpty(t))
+						{
+							LootGenUtils.fillLootChest(world.provider.dimensionId, world.rand, t);
+						}
+						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol)
+						{
+							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
 
-						MobDroidProtocol p = new MobDroidProtocol(world);
-						p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
-						world.spawnEntityInWorld(p);
-					}
-					else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnAstromech)
-					{
-						WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-						WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+							MobDroidProtocol p = new MobDroidProtocol(world);
+							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+							world.spawnEntityInWorld(p);
+						}
+						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnAstromech)
+						{
+							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
 
-						MobDroidAstromech p = new MobDroidAstromech(world);
-						p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
-						world.spawnEntityInWorld(p);
-					}
-					else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemGaffiStick)
-					{
-						WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-						WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+							MobDroidAstromech p = new MobDroidAstromech(world);
+							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+							world.spawnEntityInWorld(p);
+						}
+						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemGaffiStick)
+						{
+							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
+							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+						}
 					}
 				}
 			}
