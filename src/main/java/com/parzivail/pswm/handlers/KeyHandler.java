@@ -19,6 +19,7 @@ import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.entity.EntityUtils;
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.StarshipBase;
@@ -59,6 +60,7 @@ public class KeyHandler
 
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
+			GFX.changeCameraRoll(0);
 		}
 	}
 

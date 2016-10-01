@@ -1,10 +1,11 @@
 package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.utils.StatTrack;
-import net.minecraft.entity.Entity;
+import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
  */
 public class StarshipBase extends EntityLiving
 {
-	private ShipMovementHandler shipMovementHandler;
+	public ShipMovementHandler shipMovementHandler;
 	private boolean canMove = true;
 	private boolean canCollide = false;
 
@@ -22,22 +23,6 @@ public class StarshipBase extends EntityLiving
 	{
 		super(world);
 		shipMovementHandler = new ShipMovementHandler(this);
-	}
-
-	@Override
-	public void mountEntity(Entity entity)
-	{
-		super.mountEntity(entity);
-
-		shipMovementHandler.rotation = entity.getLookVec();
-	}
-
-	@Override
-	public void dismountEntity(Entity entity)
-	{
-		super.dismountEntity(entity);
-
-		shipMovementHandler.rotation.xCoord = 90;
 	}
 
 	@Override
@@ -57,6 +42,10 @@ public class StarshipBase extends EntityLiving
 	{
 		if (!this.worldObj.isRemote && this.riddenByEntity == null)
 		{
+			shipMovementHandler.rotation.xCoord = 90;
+
+			shipMovementHandler.velocity = Vec3.createVectorHelper(0, 0, 0);
+
 			player.mountEntity(this);
 			StatTrack.addStat("ride-" + this.getCommandSenderName().replaceAll("\\W", ""));
 			return true;
@@ -74,7 +63,15 @@ public class StarshipBase extends EntityLiving
 
 	private void calculateRotation()
 	{
-		this.setRotationFromVector(this.shipMovementHandler.rotation);
+		if (this.riddenByEntity == null)
+		{
+			shipMovementHandler.rotation.xCoord = 0;
+			shipMovementHandler.rotation.zCoord = 0;
+		} else
+		{
+			GFX.changeCameraRoll(-(float)shipMovementHandler.rotation.zCoord);
+			this.riddenByEntity.rotationPitch = (float)shipMovementHandler.rotation.xCoord;
+		}
 	}
 
 	public void setRotationFromVector(Vec3 vector)
@@ -90,29 +87,17 @@ public class StarshipBase extends EntityLiving
 	}
 
 	@Override
+	public void updateRiderPosition()
+	{
+		if (this.riddenByEntity != null)
+		{
+			this.riddenByEntity.setPosition(this.posX, this.posY, this.posZ);
+		}
+	}
+
+	@Override
 	public void onLivingUpdate()
 	{
-		/*
-			Enforce movement and rotation
-		 */
-		if (this.newPosRotationIncrements > 0)
-		{
-			double d0 = this.posX + (this.newPosX - this.posX) / (double)this.newPosRotationIncrements;
-			double d1 = this.posY + (this.newPosY - this.posY) / (double)this.newPosRotationIncrements;
-			double d2 = this.posZ + (this.newPosZ - this.posZ) / (double)this.newPosRotationIncrements;
-			double d3 = MathHelper.wrapAngleTo180_double(this.newRotationYaw - (double)this.rotationYaw);
-			this.rotationYaw = (float)((double)this.rotationYaw + d3 / (double)this.newPosRotationIncrements);
-			this.rotationPitch = (float)((double)this.rotationPitch + (this.newRotationPitch - (double)this.rotationPitch) / (double)this.newPosRotationIncrements);
-			--this.newPosRotationIncrements;
-			this.setPosition(d0, d1, d2);
-			this.setRotation(this.rotationYaw, this.rotationPitch);
-		} else if (!this.isClientWorld())
-		{
-			this.motionX *= 0.98D;
-			this.motionY *= 0.98D;
-			this.motionZ *= 0.98D;
-		}
-
 		/*
 			Stop movement if it's negligible
 		 */
@@ -142,12 +127,6 @@ public class StarshipBase extends EntityLiving
 			this.moveStrafing = 0.0F;
 			this.moveForward = 0.0F;
 			this.randomYawVelocity = 0.0F;
-		} else if (this.isClientWorld())
-		{
-			this.worldObj.theProfiler.startSection("oldAi");
-			this.updateEntityActionState();
-			this.worldObj.theProfiler.endSection();
-			this.rotationYawHead = this.rotationYaw;
 		}
 
 		this.worldObj.theProfiler.endSection();
@@ -170,6 +149,20 @@ public class StarshipBase extends EntityLiving
 		}
 
 		this.worldObj.theProfiler.endSection();
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound p_70020_1_)
+	{
+		super.readFromNBT(p_70020_1_);
+		shipMovementHandler.loadMovement(p_70020_1_);
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound p_70109_1_)
+	{
+		super.writeToNBT(p_70109_1_);
+		shipMovementHandler.saveMovement(p_70109_1_);
 	}
 
 	@Override

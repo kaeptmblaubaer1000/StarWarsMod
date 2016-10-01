@@ -715,12 +715,16 @@ public class ModelXWingNew extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
-			GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
-
+		GL11.glPushMatrix();
 		if (entity instanceof VehicXWing)
 		{
 			VehicXWing xwing = (VehicXWing)entity;
+
+			/*GL11.glTranslatef(this.MainParent.offsetX, this.MainParent.offsetY, this.MainParent.offsetZ);
+			GL11.glTranslatef(this.MainParent.rotationPointX * f5, this.MainParent.rotationPointY * f5, this.MainParent.rotationPointZ * f5);
+			GL11.glScaled(3.0D, 3.0D, 3.0D);
+			GL11.glTranslatef(-this.MainParent.offsetX, -this.MainParent.offsetY, -this.MainParent.offsetZ);
+			GL11.glTranslatef(-this.MainParent.rotationPointX * f5, -this.MainParent.rotationPointY * f5, -this.MainParent.rotationPointZ * f5);*/
 
 			this.WingLTopParent.rotateAngleZ = 0.314159f * xwing.getSFoil();
 			this.WingLBottomParent.rotateAngleZ = -0.314159f * xwing.getSFoil();
@@ -773,6 +777,7 @@ public class ModelXWingNew extends ModelBase
 				GL11.glPopMatrix();
 			}
 		}
+		GL11.glPopMatrix();
 	}
 
 	/**
