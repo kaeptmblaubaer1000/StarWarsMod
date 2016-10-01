@@ -1,5 +1,7 @@
 package com.parzivail.util.math;
 
+import net.minecraft.util.Vec3;
+
 import java.util.List;
 import java.util.Random;
 
@@ -44,8 +46,7 @@ public class MathUtils
 	public static boolean isAnyOfType(List list, Class c)
 	{
 		for (Object o : list)
-			if (c.isInstance(o))
-				return true;
+			if (c.isInstance(o)) return true;
 		return false;
 	}
 
@@ -59,8 +60,7 @@ public class MathUtils
 	{
 		int i = 0;
 		for (Object o : list)
-			if (c.isInstance(o))
-				i++;
+			if (c.isInstance(o)) i++;
 		return i;
 	}
 
@@ -172,5 +172,15 @@ public class MathUtils
 	public static float ceilToNearest(float f, float nearest)
 	{
 		return (float)(nearest * (Math.ceil(f / nearest)));
+	}
+
+	public static Vec3 multiply(Vec3 base, Vec3 multiplier)
+	{
+		return Vec3.createVectorHelper(base.xCoord * multiplier.xCoord, base.yCoord * multiplier.yCoord, base.zCoord * multiplier.zCoord);
+	}
+
+	public static Vec3 multiply(Vec3 base, float multiplier)
+	{
+		return Vec3.createVectorHelper(base.xCoord * multiplier, base.yCoord * multiplier, base.zCoord * multiplier);
 	}
 }

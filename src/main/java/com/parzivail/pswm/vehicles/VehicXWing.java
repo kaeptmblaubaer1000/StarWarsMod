@@ -1,29 +1,22 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.items.ItemSpawnAstromech;
-import com.parzivail.pswm.items.ItemSpawnAstromech2;
 import com.parzivail.pswm.network.MessageSFoil;
-import com.parzivail.pswm.network.MessageSetPlayerHolding;
-import com.parzivail.pswm.network.MessageShipAstroDetails;
-import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.vehicle.VehicleAirBase;
+import com.parzivail.util.vehicle.StarshipBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class VehicXWing extends VehicleAirBase implements IDebugProvider
+public class VehicXWing extends StarshipBase implements IDebugProvider
 {
 	private static int SFOIL_DW = 23;
 	public boolean isOpening = false;
@@ -33,8 +26,8 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	{
 		super(par1World);
 		this.setSize(3.0F, 6.0F);
-		this.vehicYOffset = -3F;
-		this.moveModifier = 1.75F;
+		//this.vehicYOffset = -3F;
+		//this.moveModifier = 1.75F;
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60);
 		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
@@ -70,11 +63,11 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		return Resources.MODID + ":" + "vehicle.xwing.die";
 	}
 
-	@Override
-	public String getMovingSound()
-	{
-		return "vehicle.xwing.move";
-	}
+	//@Override
+	//public String getMovingSound()
+	//{
+	//	return "vehicle.xwing.move";
+	//}
 
 	public float getSFoil()
 	{
@@ -94,6 +87,7 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 	@Override
 	public boolean interact(EntityPlayer player)
 	{
+		/*
 		if (!QuestUtils.canRideInShip(player, this.getClass()))
 			return false;
 		ItemStack itemstack = player.inventory.getCurrentItem();
@@ -131,7 +125,7 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 			}
 			return true;
 		}
-
+		*/
 		return super.interact(player);
 	}
 
@@ -165,7 +159,8 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 			for (int i = 0; i < 70; i++)
 			{
 				double motionX = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
-				double motionY = 0.03 * this.move;
+				//double motionY = 0.03 * this.move;
+				double motionY = 0.03;
 				motionY *= Math.max(1, 10 - (this.posY - ht));
 				double motionZ = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
 

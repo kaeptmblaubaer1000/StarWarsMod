@@ -73,7 +73,7 @@ public class StarWarsMod
 	public static int shipSpecialWeaponCooldown = 0;
 
 	static ClientEventHandler clientHandler;
-	private static CommonEventHandler commonHandler;
+	public static CommonEventHandler commonHandler;
 
 	@SidedProxy(clientSide = "com.parzivail.pswm.StarWarsClientProxy",
 	            serverSide = "com.parzivail.pswm.StarWarsCommonProxy")

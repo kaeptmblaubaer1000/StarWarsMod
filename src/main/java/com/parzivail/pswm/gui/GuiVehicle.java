@@ -74,6 +74,7 @@ public class GuiVehicle
 
 					if (xwing.getHasAstro())
 					{
+						/*
 						for (Entity p : xwing.nearby)
 						{
 							if (p instanceof VehicXWing || p instanceof VehicAWing)
@@ -83,6 +84,7 @@ public class GuiVehicle
 							if (p instanceof EntityPlayer)
 								GFX.drawHollowCircle(radarCenterX + (int)(xwing.posX - p.posX) / 5F, radarCenterY + (int)(xwing.posZ - p.posZ) / 5F, 1, 5, 2, 0xFF564AFF);
 						}
+						*/
 
 						updateFiring();
 
@@ -91,8 +93,8 @@ public class GuiVehicle
 						if (e != null)
 							color = GLPalette.ANALOG_RED;
 
-						if (xwing.getTargetLock())
-							color = GLPalette.ORANGE;
+						//if (xwing.getTargetLock())
+						//	color = GLPalette.ORANGE;
 
 						if (e != null && lastTarget == null)
 							new AnimationCrosshairClose(color).start();
