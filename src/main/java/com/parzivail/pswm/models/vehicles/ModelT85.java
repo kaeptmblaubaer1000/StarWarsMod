@@ -1,7 +1,15 @@
-package starwarsmod;
+package com.parzivail.pswm.models.vehicles;
 
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
+import com.parzivail.pswm.mobs.MobDroidAstromech;
+import com.parzivail.pswm.mobs.MobDroidAstromech2;
+import com.parzivail.pswm.vehicles.VehicT85;
+import com.parzivail.util.ui.P3D;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
@@ -80,8 +88,9 @@ public class ModelT85 extends ModelBase {
     public ModelRenderer gear3;
     public ModelRenderer gear5;
 
-    public ModelT85() {
-        this.textureWidth = 512;
+	public ModelT85()
+	{
+		this.textureWidth = 512;
         this.textureHeight = 512;
         this.shape25 = new ModelRenderer(this, 34, 430);
         this.shape25.setRotationPoint(0.0F, -0.8F, -5.0F);
@@ -324,77 +333,36 @@ public class ModelT85 extends ModelBase {
         this.shape54.setRotationPoint(-0.88F, -1.23F, -5.0F);
         this.shape54.addBox(-2.0F, -6.1F, 11.8F, 5, 2, 33, 0.0F);
         this.setRotateAngle(shape54, 0.0F, 0.0F, 1.0471975511965976F);
-        this.MainParent.addChild(this.shape25);
-        this.MainParent.addChild(this.shape12);
-        this.MainParent.addChild(this.shape27);
-        this.MainParent.addChild(this.gear1);
-        this.MainParent.addChild(this.shape23);
-        this.MainParent.addChild(this.shape53);
-        this.MainParent.addChild(this.shape26);
-        this.MainParent.addChild(this.shape41);
-        this.MainParent.addChild(this.shape11);
-        this.MainParent.addChild(this.shape49);
-        this.MainParent.addChild(this.shape35);
-        this.MainParent.addChild(this.shape43);
-        this.MainParent.addChild(this.gear3);
-        this.MainParent.addChild(this.shape14);
-        this.MainParent.addChild(this.shape19);
-        this.MainParent.addChild(this.shape50);
-        this.MainParent.addChild(this.shape57);
-        this.MainParent.addChild(this.shape8);
-        this.MainParent.addChild(this.shape36);
-        this.MainParent.addChild(this.shape37);
-        this.MainParent.addChild(this.shape16);
-        this.MainParent.addChild(this.shape18);
-        this.MainParent.addChild(this.shape29);
-        this.MainParent.addChild(this.gear2);
-        this.MainParent.addChild(this.shape48);
-        this.MainParent.addChild(this.shape52);
-        this.MainParent.addChild(this.shape58);
-        this.MainParent.addChild(this.shape21);
-        this.MainParent.addChild(this.shape28);
-        this.MainParent.addChild(this.shape46);
-        this.MainParent.addChild(this.gear5);
-        this.MainParent.addChild(this.shape3);
-        this.MainParent.addChild(this.shape2);
-        this.MainParent.addChild(this.shape9);
-        this.MainParent.addChild(this.shape55);
-        this.MainParent.addChild(this.shape13);
-        this.MainParent.addChild(this.gear4);
-        this.MainParent.addChild(this.shape34);
-        this.MainParent.addChild(this.shape4);
-        this.MainParent.addChild(this.shape22);
-        this.MainParent.addChild(this.shape31);
-        this.MainParent.addChild(this.shape59);
-        this.MainParent.addChild(this.shape33);
-        this.MainParent.addChild(this.shape30);
-        this.MainParent.addChild(this.shape7);
-        this.MainParent.addChild(this.shape6);
-        this.MainParent.addChild(this.shape61);
-        this.MainParent.addChild(this.shape10);
-        this.MainParent.addChild(this.shape20);
-        this.MainParent.addChild(this.shape51);
-        this.MainParent.addChild(this.shape39);
-        this.MainParent.addChild(this.shape5);
-        this.MainParent.addChild(this.shape45);
-        this.MainParent.addChild(this.shape17);
-        this.MainParent.addChild(this.shape38);
-        this.MainParent.addChild(this.shape44);
-        this.MainParent.addChild(this.shape32);
-        this.MainParent.addChild(this.shape42);
-        this.MainParent.addChild(this.shape60);
-        this.MainParent.addChild(this.gear6);
-        this.MainParent.addChild(this.shape15);
-        this.MainParent.addChild(this.shape24);
-        this.MainParent.addChild(this.shape40);
-        this.MainParent.addChild(this.shape47);
-        this.MainParent.addChild(this.shape56);
-        this.MainParent.addChild(this.shape54);
+
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-        GL11.glPushMatrix();
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
+	    if (entity != null && entity.riddenByEntity != StarWarsMod.mc.thePlayer)
+		    GL11.glRotatef(entity.prevRotationPitch, 1, 0, 0);
+	    boolean flag;
+	    if (entity instanceof VehicT85)
+	    {
+		    flag = entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ);
+
+		    this.gear1.isHidden = flag;
+		    this.gear2.isHidden = flag;
+		    this.gear3.isHidden = flag;
+		    this.gear4.isHidden = flag;
+		    this.gear5.isHidden = flag;
+		    this.gear6.isHidden = flag;
+
+		    flag = ClientEventHandler.renderHelper.isFirstPerson() && entity.riddenByEntity == StarWarsMod.mc.thePlayer;
+		    this.MainParent.isHidden = flag;
+
+		    if (flag)
+		    {
+			    GL11.glTranslatef(0, 0.4f, -0.3f);
+		    }
+	    }
+
+	    GL11.glPushMatrix();
         GL11.glTranslatef(this.dontparent_68.offsetX, this.dontparent_68.offsetY, this.dontparent_68.offsetZ);
         GL11.glTranslatef(this.dontparent_68.rotationPointX * f5, this.dontparent_68.rotationPointY * f5, this.dontparent_68.rotationPointZ * f5);
         GL11.glScaled(1.2D, 1.2D, 1.2D);
@@ -411,6 +379,25 @@ public class ModelT85 extends ModelBase {
         this.dontparent_69.render(f5);
         GL11.glPopMatrix();
         this.MainParent.render(f5);
+
+	    if (entity instanceof VehicT85)
+	    {
+		    VehicT85 t85 = (VehicT85)entity;
+		    if (t85.getHasAstro())
+		    {
+			    Entity astro = t85.getAstroType() == 0 ? new MobDroidAstromech(t85.worldObj) : new MobDroidAstromech2(t85.worldObj);
+			    GL11.glPushMatrix();
+			    GL11.glRotatef(180, 0, 1, 0);
+			    GL11.glRotatef(-9, 1, 0, 0);
+			    GL11.glScalef(1, -1, 1);
+			    P3D.glScalef(0.6f);
+			    GL11.glTranslatef(0, -2.43f, -1.22f);
+			    Render render = RenderManager.instance.getEntityRenderObject(astro);
+			    astro.setEntityId(1337);
+			    render.doRender(astro, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F);
+			    GL11.glPopMatrix();
+		    }
+	    }
     }
 
     /**

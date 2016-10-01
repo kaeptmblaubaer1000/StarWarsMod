@@ -546,6 +546,9 @@ public class ItemRegister
 		StarWarsItems.spawnYwing = new ItemSpawnYWing();
 		GameRegistry.registerItem(StarWarsItems.spawnYwing, "spawnYWing");
 
+		StarWarsItems.spawnT85 = new ItemSpawnT85();
+		GameRegistry.registerItem(StarWarsItems.spawnT85, "spawnT85");
+
 		StarWarsItems.spawnAwing = new ItemSpawnAWing();
 		GameRegistry.registerItem(StarWarsItems.spawnAwing, "spawnAWing");
 
