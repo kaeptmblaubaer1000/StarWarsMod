@@ -7,6 +7,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import org.lwjgl.util.vector.Quaternion;
 
 /**
  * Created by colby on 9/30/2016.
@@ -17,6 +18,7 @@ public class ShipMovementHandler
 	private static final double ROLL_SPEED = 1.25;
 	public Vec3 velocity;
 	public Vec3 rotation;
+	public Quaternion rotationQuat;
 
 	private StarshipBase ship;
 
@@ -28,9 +30,6 @@ public class ShipMovementHandler
 	public ShipMovementHandler(StarshipBase ship)
 	{
 		this.ship = ship;
-
-		ship.getDataWatcher().addObject(DW_ROLL, 0f);
-		ship.getDataWatcher().addObject(DW_PITCH, 0f);
 	}
 
 	void handleMovement()
@@ -38,7 +37,9 @@ public class ShipMovementHandler
 		checkVectors();
 
 		if ($(settings.keyBindForward) && ship.riddenByEntity == StarWarsMod.mc.thePlayer)
+		{
 			rotation.xCoord += PITCH_SPEED;
+		}
 
 		if ($(settings.keyBindBack) && ship.riddenByEntity == StarWarsMod.mc.thePlayer) rotation.xCoord -= PITCH_SPEED;
 
@@ -62,6 +63,11 @@ public class ShipMovementHandler
 		if (rotation == null)
 		{
 			rotation = Vec3.createVectorHelper(0, 0, 0);
+		}
+
+		if (rotationQuat == null)
+		{
+			rotationQuat = new Quaternion(0, 0, 0, 0);
 		}
 	}
 

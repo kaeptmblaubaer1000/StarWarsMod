@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import org.lwjgl.util.vector.Matrix4f;
 
 /**
  * Created by colby on 9/30/2016.
@@ -69,9 +70,61 @@ public class StarshipBase extends EntityLiving
 			shipMovementHandler.rotation.zCoord = 0;
 		} else
 		{
-			GFX.changeCameraRoll(-(float)shipMovementHandler.rotation.zCoord);
-			this.riddenByEntity.rotationPitch = (float)shipMovementHandler.rotation.xCoord;
+			GFX.changeCameraRoll((float)(-shipMovementHandler.rotation.zCoord));
+			this.riddenByEntity.rotationYaw = -(float)(shipMovementHandler.rotation.xCoord * MathHelper.sin((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
+			this.riddenByEntity.rotationPitch = (float)(shipMovementHandler.rotation.xCoord * MathHelper.cos((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
 		}
+	}
+
+	@Override
+	public Vec3 getLookVec()
+	{
+		float f1;
+		float f2;
+		float f3;
+		float f4;
+
+		f1 = MathHelper.cos((float)(-shipMovementHandler.rotation.yCoord * 0.017453292F - (float)Math.PI));
+		f2 = MathHelper.sin((float)(-shipMovementHandler.rotation.yCoord * 0.017453292F - (float)Math.PI));
+		f3 = -MathHelper.cos((float)(-shipMovementHandler.rotation.xCoord * 0.017453292F));
+		f4 = MathHelper.sin((float)(-shipMovementHandler.rotation.xCoord * 0.017453292F));
+		return Vec3.createVectorHelper((double)(f2 * f3), (double)f4, (double)(f1 * f3));
+	}
+
+	private Matrix4f Rotation(float angle, Vec3 v)
+	{
+		Matrix4f m = new Matrix4f();
+		// Angle in radians.
+		float radians = (float)Math.toRadians(angle);
+
+		// Rotations.
+		float s = MathHelper.sin(radians);
+		float c = MathHelper.cos(radians);
+		float t = 1.0F - c;
+
+		float x = (float)v.xCoord, y = (float)v.yCoord, z = (float)v.zCoord;
+
+		m.m00 = t * x * x + c;
+		m.m10 = t * x * y + s * z;
+		m.m20 = t * x * z - s * y;
+		m.m30 = 0.0F;
+
+		m.m01 = t * y * x - s * z;
+		m.m11 = t * y * y + c;
+		m.m21 = t * y * z + s * x;
+		m.m31 = 0.0F;
+
+		m.m02 = t * z * x + s * y;
+		m.m12 = t * z * y - s * x;
+		m.m22 = t * z * z + c;
+		m.m32 = 0.0F;
+
+		m.m03 = 0.0F;
+		m.m13 = 0.0F;
+		m.m23 = 0.0F;
+		m.m33 = 1.0F;
+
+		return m;
 	}
 
 	public void setRotationFromVector(Vec3 vector)
