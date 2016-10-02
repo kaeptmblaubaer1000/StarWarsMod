@@ -4,6 +4,7 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.gui.GuiJediSith;
+import com.parzivail.pswm.handlers.PMouseHandler;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
@@ -43,6 +44,8 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		StarWarsMod.mc = Minecraft.getMinecraft();
 
 		StarWarsMod.clientHandler.init();
+
+		StarWarsMod.mc.mouseHelper = new PMouseHandler();
 
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston") || ConfigOptions.enableBetaFeatures)
 		{

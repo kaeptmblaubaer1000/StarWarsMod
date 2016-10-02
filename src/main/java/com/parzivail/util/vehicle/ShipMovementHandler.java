@@ -14,8 +14,8 @@ import org.lwjgl.util.vector.Quaternion;
  */
 public class ShipMovementHandler
 {
-	private static final double PITCH_SPEED = 1.25;
-	private static final double ROLL_SPEED = 1.25;
+	private static final double PITCH_SPEED = 4;
+	private static final double ROLL_SPEED = 4;
 	public Vec3 velocity;
 	public Vec3 rotation;
 	public Quaternion rotationQuat;
