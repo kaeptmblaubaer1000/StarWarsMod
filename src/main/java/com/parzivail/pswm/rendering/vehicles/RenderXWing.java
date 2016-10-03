@@ -31,9 +31,9 @@ public class RenderXWing extends RenderVehicBase
 		{
 			StarshipBase vehicle = (StarshipBase)entity;
 
-			GL11.glRotated(vehicle.shipMovementHandler.rotation.zCoord, 0, 0, 1);
-			GL11.glRotated(vehicle.shipMovementHandler.rotation.yCoord, 0, 1, 0);
-			GL11.glRotated(vehicle.shipMovementHandler.rotation.xCoord, 1, 0, 0);
+			//GL11.glRotated(vehicle.shipMovementHandler.getRoll(), 0.0F, 0.0F, 1.0F);
+			//GL11.glRotated(MathHelper.cos((float)vehicle.shipMovementHandler.getRollRad()) * vehicle.shipMovementHandler.getPitch(), 1.0F, 0.0F, 0.0F);
+			//GL11.glRotated(MathHelper.sin((float)vehicle.shipMovementHandler.getRollRad()) * vehicle.shipMovementHandler.getPitch(), 0.0F, 1.0F, 0.0F);
 
 			GL11.glTranslatef(0, 0.95f, 0);
 		}

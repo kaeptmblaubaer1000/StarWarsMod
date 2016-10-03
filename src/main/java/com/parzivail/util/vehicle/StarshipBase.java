@@ -70,9 +70,13 @@ public class StarshipBase extends EntityLiving
 			shipMovementHandler.rotation.zCoord = 0;
 		} else
 		{
-			GFX.changeCameraRoll((float)(-shipMovementHandler.rotation.zCoord));
-			this.riddenByEntity.rotationYaw = -(float)(shipMovementHandler.rotation.xCoord * MathHelper.sin((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
-			this.riddenByEntity.rotationPitch = (float)(shipMovementHandler.rotation.xCoord * MathHelper.cos((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
+			GFX.changeCameraRoll((float)-shipMovementHandler.getRoll());
+			this.riddenByEntity.rotationYaw = (float)(MathHelper.sin((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
+			this.riddenByEntity.rotationPitch = (float)(MathHelper.cos((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
+
+			//GFX.changeCameraRoll((float)(-shipMovementHandler.rotation.zCoord));
+			//this.riddenByEntity.rotationYaw = -(float)(shipMovementHandler.rotation.xCoord * MathHelper.sin((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
+			//this.riddenByEntity.rotationPitch = (float)(shipMovementHandler.rotation.xCoord * MathHelper.cos((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
 		}
 	}
 

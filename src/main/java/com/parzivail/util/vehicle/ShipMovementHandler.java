@@ -71,6 +71,26 @@ public class ShipMovementHandler
 		}
 	}
 
+	public double getPitch()
+	{
+		return rotation.xCoord;
+	}
+
+	public double getRoll()
+	{
+		return rotation.zCoord;
+	}
+
+	public double getPitchRad()
+	{
+		return Math.toRadians(rotation.xCoord);
+	}
+
+	public double getRollRad()
+	{
+		return Math.toRadians(rotation.zCoord);
+	}
+
 	/**
 	 * Returns true if the specified key is pressed. Yes, I'm lazy.
 	 *
