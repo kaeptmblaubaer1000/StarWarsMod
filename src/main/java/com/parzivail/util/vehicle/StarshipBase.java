@@ -1,6 +1,7 @@
 package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.utils.StatTrack;
+import com.parzivail.util.math.RotatedAxes;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -77,6 +78,11 @@ public class StarshipBase extends EntityLiving
 			//this.riddenByEntity.rotationYaw = -(float)(shipMovementHandler.rotation.xCoord * MathHelper.sin((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
 			//this.riddenByEntity.rotationPitch = (float)(shipMovementHandler.rotation.xCoord * MathHelper.cos((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
 		}
+	}
+
+	public RotatedAxes getAxes()
+	{
+		return shipMovementHandler.rotatedAxes;
 	}
 
 	@Override

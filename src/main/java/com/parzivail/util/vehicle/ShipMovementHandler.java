@@ -2,6 +2,7 @@ package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageStarshipUpdateMovement;
+import com.parzivail.util.math.RotatedAxes;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,10 +28,12 @@ public class ShipMovementHandler
 	private static final int DW_ROLL = 16;
 
 	private static final GameSettings settings = StarWarsMod.mc.gameSettings;
+	public RotatedAxes rotatedAxes;
 
 	public ShipMovementHandler(StarshipBase ship)
 	{
 		this.ship = ship;
+		this.rotatedAxes = new RotatedAxes(0, 0, 0);
 	}
 
 	void handleMovement()
