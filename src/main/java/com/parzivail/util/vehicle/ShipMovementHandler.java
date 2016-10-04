@@ -7,6 +7,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Quaternion;
 
 /**
@@ -48,6 +49,7 @@ public class ShipMovementHandler
 		if ($(settings.keyBindRight) && ship.riddenByEntity == StarWarsMod.mc.thePlayer) rotation.zCoord -= ROLL_SPEED;
 
 		rotation.xCoord = MathHelper.clamp_double(rotation.xCoord, -90, 90);
+		rotation.zCoord = MathHelper.wrapAngleTo180_double(rotation.zCoord);
 
 		if (this.ship.worldObj.isRemote)
 			StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship, rotation, velocity));
@@ -69,6 +71,55 @@ public class ShipMovementHandler
 		{
 			rotationQuat = new Quaternion(0, 0, 0, 0);
 		}
+	}
+
+	public void applyRotations()
+	{
+		Vec3 left = Vec3.createVectorHelper(0, 0, 0);
+		Vec3 up = Vec3.createVectorHelper(0, 0, 0);
+		Vec3 forward = Vec3.createVectorHelper(0, 0, 0);
+
+		anglesToAxes(rotation, left, up, forward);
+
+		GL11.glRotated(rotation.xCoord, left.xCoord, left.yCoord, left.zCoord);
+		GL11.glRotated(rotation.yCoord, up.xCoord, up.yCoord, up.zCoord);
+		GL11.glRotated(rotation.zCoord, forward.xCoord, forward.yCoord, forward.zCoord);
+	}
+
+	void anglesToAxes(Vec3 angles, Vec3 left, Vec3 up, Vec3 forward)
+	{
+		float DEG2RAD = 3.141593f / 180f;
+		float sx, sy, sz, cx, cy, cz, theta;
+
+		// rotation angle about X-axis (pitch)
+		theta = (float)(angles.xCoord * DEG2RAD);
+		sx = MathHelper.sin(theta);
+		cx = MathHelper.cos(theta);
+
+		// rotation angle about Y-axis (yaw)
+		theta = (float)(angles.yCoord * DEG2RAD);
+		sy = MathHelper.sin(theta);
+		cy = MathHelper.cos(theta);
+
+		// rotation angle about Z-axis (roll)
+		theta = (float)(angles.zCoord * DEG2RAD);
+		sz = MathHelper.sin(theta);
+		cz = MathHelper.cos(theta);
+
+		// determine left axis
+		left.xCoord = cy * cz;
+		left.yCoord = sx * sy * cz + cx * sz;
+		left.zCoord = -cx * sy * cz + sx * sz;
+
+		// determine up axis
+		up.xCoord = -cy * sz;
+		up.yCoord = -sx * sy * sz + cx * cz;
+		up.zCoord = cx * sy * sz + sx * cz;
+
+		// determine forward axis
+		forward.xCoord = sy;
+		forward.yCoord = -sx * cy;
+		forward.zCoord = cx * cy;
 	}
 
 	public double getPitch()

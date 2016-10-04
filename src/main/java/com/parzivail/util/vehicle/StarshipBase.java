@@ -1,7 +1,6 @@
 package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.utils.StatTrack;
-import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -70,9 +69,9 @@ public class StarshipBase extends EntityLiving
 			shipMovementHandler.rotation.zCoord = 0;
 		} else
 		{
-			GFX.changeCameraRoll((float)-shipMovementHandler.getRoll());
-			this.riddenByEntity.rotationYaw = (float)(MathHelper.sin((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
-			this.riddenByEntity.rotationPitch = (float)(MathHelper.cos((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
+			//GFX.changeCameraRoll((float)-shipMovementHandler.getRoll());
+			//this.riddenByEntity.rotationYaw = 0;//(float)(MathHelper.sin((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
+			//this.riddenByEntity.rotationPitch = (float)shipMovementHandler.getPitch();//(float)(MathHelper.cos((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
 
 			//GFX.changeCameraRoll((float)(-shipMovementHandler.rotation.zCoord));
 			//this.riddenByEntity.rotationYaw = -(float)(shipMovementHandler.rotation.xCoord * MathHelper.sin((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));

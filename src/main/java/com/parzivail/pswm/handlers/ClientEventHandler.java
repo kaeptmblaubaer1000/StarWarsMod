@@ -29,6 +29,7 @@ import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.*;
+import com.parzivail.util.vehicle.StarshipBase;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -456,6 +457,14 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
+		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof StarshipBase)
+		{
+			StarshipBase vehicle = (StarshipBase)StarWarsMod.mc.thePlayer.ridingEntity;
+
+			GFX.drawCenteredString(100, 100, String.format("Pitch: %s", vehicle.shipMovementHandler.getPitch()), 0xFFFFFFFF);
+			GFX.drawCenteredString(100, 115, String.format("Roll: %s", vehicle.shipMovementHandler.getRoll()), 0xFFFFFFFF);
+		}
+
 		StarWarsMod.isOverlayOnscreen = false;
 		if (ClientEventHandler.renderHelper.isFirstPerson())
 		{
