@@ -1,13 +1,10 @@
 package com.parzivail.util.vehicle;
 
-import com.parzivail.util.math.RotatedAxes;
+import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import org.lwjgl.util.vector.Matrix4f;
 
 /**
  * Created by colby on 9/30/2016.
@@ -54,6 +51,7 @@ public class StarshipBase extends DrivenBase
 
 	private void starshipFly()
 	{
+		this.shipMovementHandler.tick();
 		this.handleMovementInput();
 		this.calculateVelocity();
 		this.calculateRotation();
@@ -67,62 +65,22 @@ public class StarshipBase extends DrivenBase
 			axes.setAngles(0, 0, 0);
 		} else
 		{
-			//GFX.changeCameraRoll((float)-shipMovementHandler.getRoll());
-			//this.riddenByEntity.rotationYaw = 0;//(float)(MathHelper.sin((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
-			//this.riddenByEntity.rotationPitch = (float)shipMovementHandler.getPitch();//(float)(MathHelper.cos((float)shipMovementHandler.getRollRad()) * shipMovementHandler.getPitch());
-
-			//GFX.changeCameraRoll((float)(-shipMovementHandler.rotation.zCoord));
-			//this.riddenByEntity.rotationYaw = -(float)(shipMovementHandler.rotation.xCoord * MathHelper.sin((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
-			//this.riddenByEntity.rotationPitch = (float)(shipMovementHandler.rotation.xCoord * MathHelper.cos((float)(-shipMovementHandler.rotation.zCoord / 180 * Math.PI)));
+			changePlayerCamera();
 		}
 	}
 
-	public RotatedAxes getAxes()
+	private void changePlayerCamera()
 	{
-		return shipMovementHandler.rotatedAxes;
-	}
+		float dYaw = (axes.getYaw() - prevRotationYaw);
+		float dPitch = (axes.getPitch() - prevRotationPitch);
+		float dRoll = (axes.getRoll() - prevRotationRoll);
 
-	private Matrix4f Rotation(float angle, Vec3 v)
-	{
-		Matrix4f m = new Matrix4f();
-		// Angle in radians.
-		float radians = (float)Math.toRadians(angle);
+		if (this.worldObj.isRemote) GFX.changeCameraRoll(-(prevRotationPitch + dPitch));
 
-		// Rotations.
-		float s = MathHelper.sin(radians);
-		float c = MathHelper.cos(radians);
-		float t = 1.0F - c;
-
-		float x = (float)v.xCoord, y = (float)v.yCoord, z = (float)v.zCoord;
-
-		m.m00 = t * x * x + c;
-		m.m10 = t * x * y + s * z;
-		m.m20 = t * x * z - s * y;
-		m.m30 = 0.0F;
-
-		m.m01 = t * y * x - s * z;
-		m.m11 = t * y * y + c;
-		m.m21 = t * y * z + s * x;
-		m.m31 = 0.0F;
-
-		m.m02 = t * z * x + s * y;
-		m.m12 = t * z * y - s * x;
-		m.m22 = t * z * z + c;
-		m.m32 = 0.0F;
-
-		m.m03 = 0.0F;
-		m.m13 = 0.0F;
-		m.m23 = 0.0F;
-		m.m33 = 1.0F;
-
-		return m;
-	}
-
-	public void setRotationFromVector(Vec3 vector)
-	{
-		double f3 = MathHelper.sqrt_double(vector.xCoord * vector.xCoord + vector.zCoord * vector.zCoord);
-		this.prevRotationYaw = this.rotationYaw = -(float)(Math.atan2(vector.xCoord, vector.zCoord) * 180.0D / Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(vector.yCoord, f3) * 180.0D / Math.PI);
+		//this.riddenByEntity.rotationPitch = prevRotationRoll + dRoll;
+		//this.riddenByEntity.rotationYaw = 180F - prevRotationYaw - dYaw;
+		//if (this.worldObj.isRemote)
+		//	GFX.changeCameraRoll(-(prevRotationPitch + dPitch));
 	}
 
 	private void calculateVelocity()
@@ -196,20 +154,6 @@ public class StarshipBase extends DrivenBase
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound p_70020_1_)
-	{
-		super.readFromNBT(p_70020_1_);
-		shipMovementHandler.loadMovement(p_70020_1_);
-	}
-
-	@Override
-	public void writeToNBT(NBTTagCompound p_70109_1_)
-	{
-		super.writeToNBT(p_70109_1_);
-		shipMovementHandler.saveMovement(p_70109_1_);
-	}
-
-	@Override
 	public ItemStack getHeldItem()
 	{
 		return null;
@@ -235,6 +179,6 @@ public class StarshipBase extends DrivenBase
 
 	public void handleMovementInput()
 	{
-		shipMovementHandler.handleMovement();
+		if (worldObj.isRemote) shipMovementHandler.handleMovement();
 	}
 }

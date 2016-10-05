@@ -461,8 +461,8 @@ public class ClientEventHandler
 		{
 			StarshipBase vehicle = (StarshipBase)StarWarsMod.mc.thePlayer.ridingEntity;
 
-			GFX.drawCenteredString(100, 100, String.format("Pitch: %s", vehicle.axes.getPitch()), 0xFFFFFFFF);
-			GFX.drawCenteredString(100, 115, String.format("Roll: %s", vehicle.axes.getRoll()), 0xFFFFFFFF);
+			GFX.drawCenteredString(100, 100, String.format("Pitch: %s", vehicle.axes.getRoll()), 0xFFFFFFFF);
+			GFX.drawCenteredString(100, 115, String.format("Roll: %s", vehicle.axes.getPitch()), 0xFFFFFFFF);
 		}
 
 		StarWarsMod.isOverlayOnscreen = false;

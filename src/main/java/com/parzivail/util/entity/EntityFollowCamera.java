@@ -4,7 +4,6 @@ import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.vehicle.StarshipBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityFollowCamera extends EntityLivingBase
@@ -35,7 +34,7 @@ public class EntityFollowCamera extends EntityLivingBase
 
 		Vector3f cameraPosition = new Vector3f();//-1F, 0.5F, 0F);
 		//cameraPosition.scale(ship.getDriveableType().cameraDistance);
-		cameraPosition = ship.getAxes().findLocalVectorGlobally(cameraPosition);
+		cameraPosition = ship.axes.findLocalVectorGlobally(cameraPosition);
 
 		//Lerp it
 		double dX = ship.posX + cameraPosition.x - posX;
@@ -46,10 +45,8 @@ public class EntityFollowCamera extends EntityLivingBase
 
 		setPosition(posX + dX * lerpAmount, posY + dY * lerpAmount, posZ + dZ * lerpAmount);
 
-		rotationYaw = ship.getAxes().getYaw() - 90F;
-		rotationPitch = ship.getAxes().getPitch();
-
-		rotationYaw = MathHelper.wrapAngleTo180_float(rotationYaw);
+		rotationYaw = ship.axes.getYaw() - 90F;
+		rotationPitch = ship.axes.getPitch();
 	}
 
 	@Override

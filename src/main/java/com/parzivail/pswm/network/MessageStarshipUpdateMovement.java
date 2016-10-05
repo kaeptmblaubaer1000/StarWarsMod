@@ -30,7 +30,7 @@ public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdat
 		if (this.entity instanceof StarshipBase)
 		{
 			StarshipBase ship = (StarshipBase)this.entity;
-			//ship.shipMovementHandler.rotation = rotation;
+			ship.shipMovementHandler.rotVel = rotation;
 			ship.shipMovementHandler.velocity = velocity;
 		}
 		return null;
