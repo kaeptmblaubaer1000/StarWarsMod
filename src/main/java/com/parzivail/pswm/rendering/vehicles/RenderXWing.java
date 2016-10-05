@@ -24,18 +24,19 @@ public class RenderXWing extends RenderVehicBase
 	}
 
 	@Override
-	protected void preRenderCallback(EntityLivingBase entity, float f)
+	protected void preRenderCallback(EntityLivingBase entity, float f1)
 	{
 		//GL11.glScalef(3.0F, 3.0F, 3.0F);
 		if (entity instanceof StarshipBase)
 		{
 			StarshipBase vehicle = (StarshipBase)entity;
 
-			vehicle.shipMovementHandler.applyRotations();
-
-			//GL11.glRotated(vehicle.shipMovementHandler.getRoll(), 0.0F, 0.0F, 1.0F);
-			//GL11.glRotated(MathHelper.cos((float)vehicle.shipMovementHandler.getRollRad()) * vehicle.shipMovementHandler.getPitch(), 1.0F, 0.0F, 0.0F);
-			//GL11.glRotated(MathHelper.sin((float)vehicle.shipMovementHandler.getRollRad()) * vehicle.shipMovementHandler.getPitch(), 0.0F, 1.0F, 0.0F);
+			float dYaw = (vehicle.axes.getYaw() - vehicle.prevRotationYaw);
+			float dPitch = (vehicle.axes.getPitch() - vehicle.prevRotationPitch);
+			float dRoll = (vehicle.axes.getRoll() - vehicle.prevRotationRoll);
+			GL11.glRotatef(180F - vehicle.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
+			GL11.glRotatef(vehicle.prevRotationPitch + dPitch * f1, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(vehicle.prevRotationRoll + dRoll * f1, 1.0F, 0.0F, 0.0F);
 
 			GL11.glTranslatef(0, 0.95f, 0);
 		}

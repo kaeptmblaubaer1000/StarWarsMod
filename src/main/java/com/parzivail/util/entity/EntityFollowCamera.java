@@ -4,6 +4,7 @@ import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.vehicle.StarshipBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityFollowCamera extends EntityLivingBase
@@ -48,8 +49,7 @@ public class EntityFollowCamera extends EntityLivingBase
 		rotationYaw = ship.getAxes().getYaw() - 90F;
 		rotationPitch = ship.getAxes().getPitch();
 
-		for (; rotationYaw - prevRotationYaw >= 180F; rotationYaw -= 360F) ;
-		for (; rotationYaw - prevRotationYaw < -180F; rotationYaw += 360F) ;
+		rotationYaw = MathHelper.wrapAngleTo180_float(rotationYaw);
 	}
 
 	@Override

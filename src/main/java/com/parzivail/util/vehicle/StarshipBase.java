@@ -1,8 +1,6 @@
 package com.parzivail.util.vehicle;
 
-import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.util.math.RotatedAxes;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,7 +12,7 @@ import org.lwjgl.util.vector.Matrix4f;
 /**
  * Created by colby on 9/30/2016.
  */
-public class StarshipBase extends EntityLiving
+public class StarshipBase extends DrivenBase
 {
 	public ShipMovementHandler shipMovementHandler;
 	private boolean canMove = true;
@@ -43,12 +41,12 @@ public class StarshipBase extends EntityLiving
 	{
 		if (!this.worldObj.isRemote && this.riddenByEntity == null)
 		{
-			shipMovementHandler.rotation.xCoord = 90;
+			axes.setAngles(0, 0, 0);
 
 			shipMovementHandler.velocity = Vec3.createVectorHelper(0, 0, 0);
 
 			player.mountEntity(this);
-			StatTrack.addStat("ride-" + this.getCommandSenderName().replaceAll("\\W", ""));
+			//StatTrack.addStat("ride-" + this.getCommandSenderName().replaceAll("\\W", ""));
 			return true;
 		}
 		return false;
@@ -66,8 +64,7 @@ public class StarshipBase extends EntityLiving
 	{
 		if (this.riddenByEntity == null)
 		{
-			shipMovementHandler.rotation.xCoord = 0;
-			shipMovementHandler.rotation.zCoord = 0;
+			axes.setAngles(0, 0, 0);
 		} else
 		{
 			//GFX.changeCameraRoll((float)-shipMovementHandler.getRoll());
@@ -83,21 +80,6 @@ public class StarshipBase extends EntityLiving
 	public RotatedAxes getAxes()
 	{
 		return shipMovementHandler.rotatedAxes;
-	}
-
-	@Override
-	public Vec3 getLookVec()
-	{
-		float f1;
-		float f2;
-		float f3;
-		float f4;
-
-		f1 = MathHelper.cos((float)(-shipMovementHandler.rotation.yCoord * 0.017453292F - (float)Math.PI));
-		f2 = MathHelper.sin((float)(-shipMovementHandler.rotation.yCoord * 0.017453292F - (float)Math.PI));
-		f3 = -MathHelper.cos((float)(-shipMovementHandler.rotation.xCoord * 0.017453292F));
-		f4 = MathHelper.sin((float)(-shipMovementHandler.rotation.xCoord * 0.017453292F));
-		return Vec3.createVectorHelper((double)(f2 * f3), (double)f4, (double)(f1 * f3));
 	}
 
 	private Matrix4f Rotation(float angle, Vec3 v)
