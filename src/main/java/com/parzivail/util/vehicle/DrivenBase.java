@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -267,11 +266,24 @@ public abstract class DrivenBase extends EntityLiving
 	public void updatePrevAngles()
 	{
 		//Correct angles that crossed the +/- 180 line, so that rendering doesnt make them swing 360 degrees in one tick.
-		double dYaw = MathHelper.wrapAngleTo180_double(axes.getYaw() - prevRotationYaw);
 
-		double dPitch = MathHelper.wrapAngleTo180_double(axes.getPitch() - prevRotationPitch);
+		double dYaw = axes.getYaw() - prevRotationYaw;
+		if (dYaw > 180)
+			prevRotationYaw += 360F;
+		if (dYaw < -180)
+			prevRotationYaw -= 360F;
 
-		double dRoll = MathHelper.wrapAngleTo180_double(axes.getRoll() - prevRotationRoll);
+		double dPitch = axes.getPitch() - prevRotationPitch;
+		if (dPitch > 180)
+			prevRotationPitch += 360F;
+		if (dPitch < -180)
+			prevRotationPitch -= 360F;
+
+		double dRoll = axes.getRoll() - prevRotationRoll;
+		if (dRoll > 180)
+			prevRotationRoll += 360F;
+		if (dRoll < -180)
+			prevRotationRoll -= 360F;
 	}
 
 	public void setRotation(float rotYaw, float rotPitch, float rotRoll)
