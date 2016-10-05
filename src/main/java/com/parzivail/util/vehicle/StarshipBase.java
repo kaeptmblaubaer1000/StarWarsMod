@@ -1,6 +1,5 @@
 package com.parzivail.util.vehicle;
 
-import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
@@ -75,7 +74,8 @@ public class StarshipBase extends DrivenBase
 		float dPitch = (axes.getPitch() - prevRotationPitch);
 		float dRoll = (axes.getRoll() - prevRotationRoll);
 
-		if (this.worldObj.isRemote) GFX.changeCameraRoll(-(prevRotationPitch + dPitch));
+		//if (this.worldObj.isRemote) GFX.changeCameraRoll(-(prevRotationPitch + dPitch));
+		this.riddenByEntity.rotationYaw = axes.getYaw();//180F - prevRotationYaw - dYaw;
 
 		//this.riddenByEntity.rotationPitch = prevRotationRoll + dRoll;
 		//this.riddenByEntity.rotationYaw = 180F - prevRotationYaw - dYaw;

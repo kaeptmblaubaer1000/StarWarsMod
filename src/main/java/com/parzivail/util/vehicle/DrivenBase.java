@@ -74,7 +74,16 @@ public abstract class DrivenBase extends EntityLiving
 				seats[i] = new EntitySeat(worldObj);
 				worldObj.spawnEntityInWorld(seats[i]);
 			}
+		}/*
+		camera = new EntityFollowCamera(worldObj, this);
+		if (!clientSide)
+		{
+			worldObj.spawnEntityInWorld(camera);
 		}
+		else
+		{
+			StarWarsMod.mc.renderViewEntity = camera;
+		}*/
 	}
 
 	@Override

@@ -1,14 +1,14 @@
 package com.parzivail.util.entity;
 
 import com.parzivail.util.lwjgl.Vector3f;
-import com.parzivail.util.vehicle.StarshipBase;
+import com.parzivail.util.vehicle.DrivenBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class EntityFollowCamera extends EntityLivingBase
 {
-	public StarshipBase ship;
+	public DrivenBase ship;
 
 	public EntityFollowCamera(World world)
 	{
@@ -16,7 +16,7 @@ public class EntityFollowCamera extends EntityLivingBase
 		setSize(0F, 0F);
 	}
 
-	public EntityFollowCamera(World world, StarshipBase d)
+	public EntityFollowCamera(World world, DrivenBase d)
 	{
 		this(world);
 		ship = d;
