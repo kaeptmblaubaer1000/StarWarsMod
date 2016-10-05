@@ -218,6 +218,8 @@ public class RotatedAxes
 		rotationPitch = (float)Math.atan2(-rotationMatrix.m10, Math.sqrt(rotationMatrix.m12 * rotationMatrix.m12 + rotationMatrix.m11 * rotationMatrix.m11)) * 180F / 3.14159265F;
 		rotationRoll = (float)Math.atan2(rotationMatrix.m12, rotationMatrix.m11) * 180F / 3.14159265F;
 
+		//Lumberjack.debug(String.format("%s: %s %s", rotationRoll, rotationMatrix.m12, rotationMatrix.m11));
+
 		/*
 		double xx = rotationMatrix.m00;
 		double xy = rotationMatrix.m10;

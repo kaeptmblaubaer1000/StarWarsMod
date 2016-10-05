@@ -1,6 +1,8 @@
 package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.util.lwjgl.Matrix4f;
+import com.parzivail.util.math.RotatedAxes;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -50,6 +52,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(Color.class, PMessage::readColor, PMessage::writeColor);
 		map(World.class, PMessage::readWorld, PMessage::writeWorld);
 		map(ItemStack[].class, PMessage::readItemStacks, PMessage::writeItemStacks);
+		map(RotatedAxes.class, PMessage::readRAxes, PMessage::writeRAxes);
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
@@ -131,6 +134,30 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	private static float readFloat(ByteBuf buf)
 	{
 		return buf.readFloat();
+	}
+
+	private static RotatedAxes readRAxes(ByteBuf buf)
+	{
+		Matrix4f mat = new Matrix4f();
+
+		mat.m00 = buf.readFloat();
+		mat.m01 = buf.readFloat();
+		mat.m02 = buf.readFloat();
+		mat.m03 = buf.readFloat();
+		mat.m10 = buf.readFloat();
+		mat.m11 = buf.readFloat();
+		mat.m12 = buf.readFloat();
+		mat.m13 = buf.readFloat();
+		mat.m20 = buf.readFloat();
+		mat.m21 = buf.readFloat();
+		mat.m22 = buf.readFloat();
+		mat.m23 = buf.readFloat();
+		mat.m30 = buf.readFloat();
+		mat.m31 = buf.readFloat();
+		mat.m32 = buf.readFloat();
+		mat.m33 = buf.readFloat();
+
+		return new RotatedAxes(mat);
 	}
 
 	private static int readInt(ByteBuf buf)
@@ -223,6 +250,27 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	private static void writeDouble(double d, ByteBuf buf)
 	{
 		buf.writeDouble(d);
+	}
+
+	private static void writeRAxes(RotatedAxes axes, ByteBuf buf)
+	{
+		Matrix4f mat = axes.getMatrix();
+		buf.writeFloat(mat.m00);
+		buf.writeFloat(mat.m01);
+		buf.writeFloat(mat.m02);
+		buf.writeFloat(mat.m03);
+		buf.writeFloat(mat.m10);
+		buf.writeFloat(mat.m11);
+		buf.writeFloat(mat.m12);
+		buf.writeFloat(mat.m13);
+		buf.writeFloat(mat.m20);
+		buf.writeFloat(mat.m21);
+		buf.writeFloat(mat.m22);
+		buf.writeFloat(mat.m23);
+		buf.writeFloat(mat.m30);
+		buf.writeFloat(mat.m31);
+		buf.writeFloat(mat.m32);
+		buf.writeFloat(mat.m33);
 	}
 
 	private static void writeEntity(Entity entity, ByteBuf buf)
@@ -358,14 +406,14 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		handler.getRight().write(f.get(this), buf);
 	}
 
-	public static interface Reader<T extends Object>
+	public interface Reader<T extends Object>
 	{
-		public T read(ByteBuf buf);
+		T read(ByteBuf buf);
 	}
 
-	public static interface Writer<T extends Object>
+	public interface Writer<T extends Object>
 	{
-		public void write(T t, ByteBuf buf);
+		void write(T t, ByteBuf buf);
 	}
 
 }

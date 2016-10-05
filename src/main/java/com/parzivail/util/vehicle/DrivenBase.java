@@ -129,7 +129,7 @@ public abstract class DrivenBase extends EntityLiving
 
 		//Unregister to Radar
 		//RadarRegistry.unregister(this);
-		if (worldObj.isRemote) camera.setDead();
+		if (worldObj.isRemote && camera != null) camera.setDead();
 
 		for (EntitySeat seat : seats)
 			if (seat != null) seat.setDead();

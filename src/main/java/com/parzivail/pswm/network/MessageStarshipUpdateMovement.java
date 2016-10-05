@@ -1,5 +1,6 @@
 package com.parzivail.pswm.network;
 
+import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.network.PMessage;
 import com.parzivail.util.vehicle.StarshipBase;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -10,17 +11,17 @@ import net.minecraft.util.Vec3;
 public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdateMovement>
 {
 	public Entity entity;
-	public Vec3 rotation;
 	public Vec3 velocity;
+	public RotatedAxes axes;
 
 	public MessageStarshipUpdateMovement()
 	{
 	}
 
-	public MessageStarshipUpdateMovement(Entity entity, Vec3 rotation, Vec3 velocity)
+	public MessageStarshipUpdateMovement(Entity entity, RotatedAxes axes, Vec3 velocity)
 	{
 		this.entity = entity;
-		this.rotation = rotation;
+		this.axes = axes;
 		this.velocity = velocity;
 	}
 
@@ -30,7 +31,7 @@ public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdat
 		if (this.entity instanceof StarshipBase)
 		{
 			StarshipBase ship = (StarshipBase)this.entity;
-			ship.shipMovementHandler.rotVel = rotation;
+			ship.shipMovementHandler.rotatedAxes = this.axes;
 			ship.shipMovementHandler.velocity = velocity;
 		}
 		return null;

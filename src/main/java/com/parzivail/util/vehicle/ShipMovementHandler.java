@@ -66,7 +66,7 @@ public class ShipMovementHandler
 
 		if (this.ship.worldObj.isRemote)
 		{
-			StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship, this.rotVel, velocity));
+			StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship, this.rotatedAxes, velocity));
 		}
 	}
 
