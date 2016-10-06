@@ -33,11 +33,6 @@ public abstract class DrivenBase extends EntityLiving
 	 */
 	public float prevRotationRoll;
 
-	/**
-	 * Angle of harvester aesthetic piece
-	 */
-	public float harvesterAngle;
-
 	public RotatedAxes prevAxes;
 	public RotatedAxes axes;
 
@@ -62,6 +57,7 @@ public abstract class DrivenBase extends EntityLiving
 		for (int i = 0; i < numSeats; i++)
 			seatOffsets[i] = Vec3.createVectorHelper(0, 0, 0);
 		initType(world.isRemote);
+		this.axes = new RotatedAxes(0, 0, 0);
 	}
 
 	protected void initType(boolean clientSide)

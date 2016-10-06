@@ -12,17 +12,19 @@ public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdat
 {
 	public Entity entity;
 	public Vec3 velocity;
+	public Vec3 rotVel;
 	public RotatedAxes axes;
 
 	public MessageStarshipUpdateMovement()
 	{
 	}
 
-	public MessageStarshipUpdateMovement(Entity entity, RotatedAxes axes, Vec3 velocity)
+	public MessageStarshipUpdateMovement(StarshipBase entity)
 	{
 		this.entity = entity;
-		this.axes = axes;
-		this.velocity = velocity;
+		this.axes = entity.axes;
+		this.velocity = entity.shipMovementHandler.velocity;
+		this.rotVel = entity.shipMovementHandler.rotVel;
 	}
 
 	@Override
@@ -31,8 +33,9 @@ public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdat
 		if (this.entity instanceof StarshipBase)
 		{
 			StarshipBase ship = (StarshipBase)this.entity;
-			ship.shipMovementHandler.rotatedAxes = this.axes;
-			ship.shipMovementHandler.velocity = velocity;
+			ship.axes = this.axes;
+			ship.shipMovementHandler.velocity = this.velocity;
+			ship.shipMovementHandler.rotVel = this.rotVel;
 		}
 		return null;
 	}

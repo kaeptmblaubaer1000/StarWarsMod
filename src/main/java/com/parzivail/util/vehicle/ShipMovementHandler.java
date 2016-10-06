@@ -2,7 +2,6 @@ package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageStarshipUpdateMovement;
-import com.parzivail.util.math.RotatedAxes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.settings.GameSettings;
@@ -25,12 +24,10 @@ public class ShipMovementHandler
 	private StarshipBase ship;
 
 	private static final GameSettings settings = StarWarsMod.mc.gameSettings;
-	public RotatedAxes rotatedAxes;
 
 	public ShipMovementHandler(StarshipBase ship)
 	{
 		this.ship = ship;
-		this.rotatedAxes = new RotatedAxes(0, 0, 0);
 		velocity = Vec3.createVectorHelper(0, 0, 0);
 		rotVel = Vec3.createVectorHelper(0, 0, 0);
 	}
@@ -66,7 +63,7 @@ public class ShipMovementHandler
 
 		if (this.ship.worldObj.isRemote)
 		{
-			StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship, this.rotatedAxes, velocity));
+			StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship));
 		}
 	}
 

@@ -1,7 +1,7 @@
 package com.parzivail.util.vehicle;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.ui.GFX;
+import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
@@ -82,9 +82,10 @@ public class StarshipBase extends DrivenBase
 		this.riddenByEntity.rotationPitch = prevRotationRoll + dRoll;
 		this.riddenByEntity.rotationYaw = 180F - prevRotationYaw - dYaw;
 
+		Lumberjack.debug(prevRotationRoll);
+
 		if (this.worldObj.isRemote)
 		{
-			StarWarsMod.mc.renderViewEntity = StarWarsMod.mc.thePlayer;
 			GFX.changeCameraRoll(-(prevRotationPitch + dPitch));
 		}
 	}
@@ -185,6 +186,6 @@ public class StarshipBase extends DrivenBase
 
 	public void handleMovementInput()
 	{
-		if (worldObj.isRemote) shipMovementHandler.handleMovement();
+		shipMovementHandler.handleMovement();
 	}
 }
