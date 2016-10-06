@@ -1,7 +1,6 @@
 package com.parzivail.util.vehicle;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageStarshipUpdateMovement;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.settings.GameSettings;
@@ -14,9 +13,9 @@ import net.minecraft.util.Vec3;
 public class ShipMovementHandler
 {
 	private static final float PITCH_SPEED = 2;
-	private static final float ROLL_SPEED = 5;
+	private static final float ROLL_SPEED = 0.5f;
 	private static final Vec3 EMPTY_VEC = Vec3.createVectorHelper(0, 0, 0);
-	private static final double ROLL_DRAG = 0.8;
+	private static final double ROLL_DRAG = 0.9;
 	private static final double PITCH_DRAG = 0.8;
 	public Vec3 velocity;
 	public Vec3 rotVel;
@@ -50,20 +49,22 @@ public class ShipMovementHandler
 
 	void tick()
 	{
-		this.rotVel.xCoord *= ROLL_DRAG;
-		this.rotVel.zCoord *= PITCH_DRAG;
-
-		if (Math.abs(this.rotVel.xCoord) < 0.01f) // Actually roll
-			this.rotVel.xCoord = 0;
-		else ship.rotatePitch((float)this.rotVel.xCoord);
-
-		if (Math.abs(this.rotVel.zCoord) < 0.01f) // Actually pitch
-			this.rotVel.zCoord = 0;
-		else ship.rotateRoll((float)this.rotVel.zCoord);
-
 		if (this.ship.worldObj.isRemote)
 		{
-			StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship));
+			this.rotVel.xCoord *= ROLL_DRAG;
+			this.rotVel.zCoord *= PITCH_DRAG;
+
+			if (Math.abs(this.rotVel.xCoord) < 0.01f) // Actually roll
+				this.rotVel.xCoord = 0;
+			else
+				ship.rotatePitch((float)this.rotVel.xCoord);
+
+			if (Math.abs(this.rotVel.zCoord) < 0.01f) // Actually pitch
+				this.rotVel.zCoord = 0;
+			else
+				ship.rotateRoll((float)this.rotVel.zCoord);
+
+			//StarWarsMod.network.sendToServer(new MessageStarshipUpdateMovement(this.ship));
 		}
 	}
 

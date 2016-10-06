@@ -461,8 +461,16 @@ public class ClientEventHandler
 		{
 			StarshipBase vehicle = (StarshipBase)StarWarsMod.mc.thePlayer.ridingEntity;
 
-			GFX.drawCenteredString(100, 100, String.format("Pitch: %s", vehicle.axes.getRoll()), 0xFFFFFFFF);
-			GFX.drawCenteredString(100, 115, String.format("Roll: %s", vehicle.axes.getPitch()), 0xFFFFFFFF);
+			float dYaw = (vehicle.axes.getYaw() - vehicle.prevRotationYaw);
+			float dPitch = (vehicle.axes.getPitch() - vehicle.prevRotationPitch);
+			float dRoll = (vehicle.axes.getRoll() - vehicle.prevRotationRoll);
+
+			GFX.drawCenteredString(100, 100, String.format("Roll: %s", vehicle.prevRotationPitch + dPitch), 0xFFFFFFFF);
+			GFX.drawCenteredString(100, 115, String.format("Pitch: %s", vehicle.prevRotationRoll + dRoll), 0xFFFFFFFF);
+			GFX.drawCenteredString(100, 130, String.format("Yaw: %s", vehicle.prevRotationYaw - dYaw), 0xFFFFFFFF);
+
+			GFX.drawCenteredString(400, 115, String.format("Pitch: %s", StarWarsMod.mc.thePlayer.rotationPitch), 0xFFFFFFFF);
+			GFX.drawCenteredString(400, 130, String.format("Yaw: %s", StarWarsMod.mc.thePlayer.rotationYaw), 0xFFFFFFFF);
 		}
 
 		StarWarsMod.isOverlayOnscreen = false;

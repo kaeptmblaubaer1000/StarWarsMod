@@ -1,7 +1,6 @@
 package com.parzivail.util.vehicle;
 
 import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
@@ -64,7 +63,8 @@ public class StarshipBase extends DrivenBase
 		if (this.riddenByEntity == null)
 		{
 			axes.setAngles(0, 0, 0);
-		} else
+		}
+		else
 		{
 			changePlayerCamera();
 		}
@@ -76,13 +76,8 @@ public class StarshipBase extends DrivenBase
 		float dYaw = (axes.getYaw() - prevRotationYaw);
 		float dRoll = (axes.getRoll() - prevRotationRoll);
 
-		//if (this.worldObj.isRemote) GFX.changeCameraRoll(-(prevRotationPitch + dPitch));
-		this.riddenByEntity.rotationYaw = axes.getYaw();//180F - prevRotationYaw - dYaw;
-
+		this.riddenByEntity.rotationYaw = 180 - (prevRotationYaw + dYaw);
 		this.riddenByEntity.rotationPitch = prevRotationRoll + dRoll;
-		this.riddenByEntity.rotationYaw = 180F - prevRotationYaw - dYaw;
-
-		Lumberjack.debug(prevRotationRoll);
 
 		if (this.worldObj.isRemote)
 		{

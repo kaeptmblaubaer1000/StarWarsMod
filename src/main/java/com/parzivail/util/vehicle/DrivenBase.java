@@ -26,7 +26,7 @@ public abstract class DrivenBase extends EntityLiving
 	/**
 	 * Server side rotation, as synced by PacketVehicleControl packets
 	 */
-	public double serverYaw, serverPitch;
+	public double serverYaw, serverPitch, serverRoll;
 
 	/**
 	 * Extra prevRoation field for smoothness in all 3 rotational axes
@@ -207,7 +207,7 @@ public abstract class DrivenBase extends EntityLiving
 		prevRotationYaw = axes.getYaw();
 		prevRotationPitch = axes.getPitch();
 		prevRotationRoll = axes.getRoll();
-		prevAxes = axes.clone();
+		//prevAxes = axes.clone();
 
 		if (riddenByEntity != null && riddenByEntity.isDead)
 		{
@@ -310,5 +310,31 @@ public abstract class DrivenBase extends EntityLiving
 	public double getSpeedXZ()
 	{
 		return Math.sqrt(motionX * motionX + motionZ * motionZ);
+	}
+
+	public void setPositionRotationAndMotion(double x, double y, double z, float yaw, float pitch, float roll, double motX, double motY, double motZ)
+	{
+		if (worldObj.isRemote)
+		{
+			serverPosX = x;
+			serverPosY = y;
+			serverPosZ = z;
+			serverYaw = yaw;
+			serverPitch = pitch;
+			serverRoll = roll;
+			serverPositionTransitionTicker = 5;
+		}
+		else
+		{
+			setPosition(x, y, z);
+			prevRotationYaw = yaw;
+			prevRotationPitch = pitch;
+			prevRotationRoll = roll;
+			setRotation(yaw, pitch, roll);
+		}
+		//Set the motions regardless of side.
+		motionX = motX;
+		motionY = motY;
+		motionZ = motZ;
 	}
 }
