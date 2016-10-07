@@ -4,11 +4,12 @@ import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityCamera extends EntityLivingBase
 {
-	public Pilotable driveable;
+	public Pilotable pilotable;
 
 	public EntityCamera(World world)
 	{
@@ -19,7 +20,7 @@ public class EntityCamera extends EntityLivingBase
 	public EntityCamera(World world, Pilotable d)
 	{
 		this(world);
-		driveable = d;
+		pilotable = d;
 		setPosition(d.posX, d.posY, d.posZ);
 	}
 
@@ -34,24 +35,19 @@ public class EntityCamera extends EntityLivingBase
 
 		Vector3f cameraPosition = new Vector3f();//-1F, 0.5F, 0F);
 		//cameraPosition.scale(drivable.getDriveableType().cameraDistance);
-		cameraPosition = driveable.axes.findLocalVectorGlobally(cameraPosition);
+		cameraPosition = pilotable.axes.findLocalVectorGlobally(cameraPosition);
 
 		//Lerp it
-		double dX = driveable.posX + cameraPosition.x - posX;
-		double dY = driveable.posY + cameraPosition.y - posY;
-		double dZ = driveable.posZ + cameraPosition.z - posZ;
+		double dX = pilotable.posX + cameraPosition.x - posX;
+		double dY = pilotable.posY + cameraPosition.y - posY;
+		double dZ = pilotable.posZ + cameraPosition.z - posZ;
 
 		float lerpAmount = 0.1F;
 
 		setPosition(posX + dX * lerpAmount, posY + dY * lerpAmount, posZ + dZ * lerpAmount);
 
-		rotationYaw = driveable.axes.getYaw() - 90F;
-		rotationPitch = driveable.axes.getPitch();
-
-		for (; rotationYaw - prevRotationYaw >= 180F; rotationYaw -= 360F)
-			;
-		for (; rotationYaw - prevRotationYaw < -180F; rotationYaw += 360F)
-			;
+		rotationYaw = MathHelper.wrapAngleTo180_float(pilotable.axes.getYaw() - 90F);
+		rotationPitch = MathHelper.wrapAngleTo180_float(pilotable.axes.getPitch());
 	}
 
 	@Override

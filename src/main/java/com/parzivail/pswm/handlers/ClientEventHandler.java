@@ -338,7 +338,7 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).driveable instanceof VehicXWing)
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).pilotable instanceof VehicXWing)
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
