@@ -117,8 +117,6 @@ public class EntityPlane extends DrivableBase
 	{
 		if (isDead)
 			return false;
-		if (worldObj.isRemote)
-			return false;
 
 		//Check each seat in order to see if the player can sit in it
 		for (int i = 0; i < numPassengers; i++)

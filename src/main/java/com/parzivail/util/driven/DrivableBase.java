@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -75,23 +76,22 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 		yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
+		initType(world.isRemote);
 	}
 
 	protected void initType(boolean clientSide)
 	{
+		if (seats != null)
+			for (EntitySeat seat : seats)
+				if (seat != null)
+					seat.setDead();
+
 		seats = new EntitySeat[numPassengers];
 		for (int i = 0; i < numPassengers; i++)
 		{
-			if (!clientSide)
-			{
-				seats[i] = new EntitySeat(worldObj, this, i);
-				worldObj.spawnEntityInWorld(seats[i]);
-			}
+			seats[i] = new EntitySeat(worldObj, this, i);
+			worldObj.spawnEntityInWorld(seats[i]);
 		}
-
-		//Register Plane to Radar on Spawning
-		//if(type.onRadar == true)
-		//	RadarRegistry.register(this);
 	}
 
 	@Override
@@ -329,23 +329,25 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 	}
 
 	@Override
+	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
+	{
+		this.setDead();
+		return true;
+	}
+
+	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
 
 		if (!worldObj.isRemote)
-		{
 			for (int i = 0; i < numPassengers; i++)
 			{
-				if (seats[i] == null || !seats[i].addedToChunk)
-				{
+				if (seats[i] == null)
 					seats[i] = new EntitySeat(worldObj, this, i);
+				if (!seats[i].addedToChunk)
 					worldObj.spawnEntityInWorld(seats[i]);
-				}
 			}
-		}
-
-		boolean driverIsCreative = seats != null && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && ((EntityPlayer)seats[0].riddenByEntity).capabilities.isCreativeMode;
 
 		prevRotationYaw = axes.getYaw();
 		prevRotationPitch = axes.getPitch();
