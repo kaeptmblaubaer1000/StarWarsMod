@@ -539,7 +539,9 @@ public class StarWarsMod
 		this.registerMessageServer(MessagePlayerBuyItem.class);
 		this.registerMessageServer(MessageSetQuestLogNbt.class);
 		//this.registerMessageServer(MessageStarshipUpdateMovement.class);
-		this.registerMessageServer(MessageSeatUpdate.class);
+
+		this.registerMessageDual(MessageSeatUpdate.class);
+		this.registerMessageDual(MessageDrivableControl.class);
 
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);
@@ -564,6 +566,13 @@ public class StarWarsMod
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.CLIENT);
 		Lumberjack.debug("Registered client packet \"" + messageHandler + "\" as packet ID " + packetId);
 		packetId += 1;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void registerMessageDual(Class messageHandler)
+	{
+		registerMessageClient(messageHandler);
+		registerMessageServer(messageHandler);
 	}
 
 	@EventHandler

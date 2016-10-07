@@ -235,10 +235,7 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 	{
 		if (ticksExisted > 1)
 			return;
-		if (riddenByEntity instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)riddenByEntity))
-		{
-		}
-		else
+		if (!(riddenByEntity instanceof EntityPlayer) || !StarWarsMod.proxy.isThePlayer((EntityPlayer)riddenByEntity))
 		{
 			if (syncFromServer)
 			{

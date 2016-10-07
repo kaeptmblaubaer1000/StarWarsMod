@@ -216,6 +216,7 @@ public class EntityPlane extends DrivableBase
 					varGear = !varGear;
 					player.addChatMessage(new ChatComponentText("Landing gear " + (varGear ? "down" : "up")));
 					toggleTimer = 10;
+
 					// TODO: packets
 					//FlansMod.getPacketHandler().sendToServer(new PacketDriveableControl(this));
 				}
