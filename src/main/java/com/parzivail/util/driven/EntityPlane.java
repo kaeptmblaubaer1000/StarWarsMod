@@ -119,7 +119,7 @@ public class EntityPlane extends DriveableBase
 			return false;
 
 		//Check each seat in order to see if the player can sit in it
-		for (int i = 0; i <= numPassengers; i++)
+		for (int i = 0; i < numPassengers; i++)
 		{
 			if (seats[i].interactFirst(entityplayer))
 			{
