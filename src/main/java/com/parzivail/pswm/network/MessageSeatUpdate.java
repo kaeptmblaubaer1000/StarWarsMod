@@ -22,7 +22,7 @@ public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 
 	public MessageSeatUpdate(EntitySeat seat)
 	{
-		entity = seat.pilotable;
+		entity = seat.parent;
 		seatId = seat.seatInfo.id;
 		yaw = seat.looking.getYaw();
 		pitch = seat.looking.getPitch();

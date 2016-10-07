@@ -338,7 +338,7 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).pilotable instanceof VehicXWing)
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).parent instanceof VehicXWing)
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
@@ -351,6 +351,7 @@ public class ClientEventHandler
 				GFX.changeCameraDist(15);
 
 				StarWarsMod.mc.renderViewEntity = ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getCamera();
+				GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicXWing);
 			}

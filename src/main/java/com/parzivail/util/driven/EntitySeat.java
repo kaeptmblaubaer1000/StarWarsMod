@@ -3,7 +3,6 @@ package com.parzivail.util.driven;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
-import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,10 +25,10 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	 * Set this to true when the client has found the parent drivable and connected them
 	 */
 	@SideOnly(Side.CLIENT)
-	public boolean foundPilotable;
-	private int pilotableID;
+	public boolean foundParent;
+	private int parentId;
 	private int seatID;
-	public Pilotable pilotable;
+	public Pilotable parent;
 
 	@SideOnly(Side.CLIENT)
 	public float playerRoll, prevPlayerRoll;
@@ -74,20 +73,22 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public EntitySeat(World world, Pilotable d, int id)
 	{
 		this(world);
-		pilotable = d;
-		pilotableID = d.getEntityId();
-		seatInfo = pilotable.getSeatData(id);
+		parent = d;
+		parentId = d.getEntityId();
+		seatInfo = parent.getSeatData(id);
 		driver = id == 0;
 		setPosition(d.posX, d.posY, d.posZ);
 		playerPosX = prevPlayerPosX = posX;
 		playerPosY = prevPlayerPosY = posY;
 		playerPosZ = prevPlayerPosZ = posZ;
 		looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
+		//updatePosition();
 	}
 
 	@Override
 	public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int i)
 	{
+		//setPosition(x, y, z);
 	}
 
 	public void getKeyInput()
@@ -97,19 +98,19 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
 		{
-			this.pilotable.rotateRoll(10);
+			this.parent.rotateRoll(10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindRight))
 		{
-			this.pilotable.rotateRoll(-10);
+			this.parent.rotateRoll(-10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindForward))
 		{
-			this.pilotable.rotatePitch(-10);
+			this.parent.rotatePitch(-10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindBack))
 		{
-			this.pilotable.rotatePitch(10);
+			this.parent.rotatePitch(10);
 		}
 	}
 
@@ -126,34 +127,34 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		getKeyInput();
 
 		//If on the client and the drivable parent has yet to be found, search for it
-		if (worldObj.isRemote && !foundPilotable)
+		if (worldObj.isRemote && !foundParent)
 		{
-			pilotable = (Pilotable)worldObj.getEntityByID(pilotableID);
-			if (pilotable == null)
+			parent = (Pilotable)worldObj.getEntityByID(parentId);
+			if (parent == null)
 				return;
-			foundPilotable = true;
-			pilotable.seats[seatID] = this;
-			seatInfo = pilotable.getSeatData(seatID);
+			foundParent = true;
+			parent.seats[seatID] = this;
+			seatInfo = parent.getSeatData(seatID);
 			looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-			playerPosX = prevPlayerPosX = posX = pilotable.posX;
-			playerPosY = prevPlayerPosY = posY = pilotable.posY;
-			playerPosZ = prevPlayerPosZ = posZ = pilotable.posZ;
+			playerPosX = prevPlayerPosX = posX = parent.posX;
+			playerPosY = prevPlayerPosY = posY = parent.posY;
+			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 		}
 
 		//If on the client
-		//		//DEBUG : Spawn particles along axes
 		//		if (worldObj.isRemote)
 		//		{
 		//			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && Pilotable.MOUSE_CONTROL_MODE)
 		//			{
 		//				looking = new RotatedAxes();
 		//			}
+		//			//DEBUG : Spawn particles along axes
 		//
-		//			Vector3f xAxis = pilotable.axes.findLocalAxesGlobally(looking).getXAxis();
-		//			Vector3f yAxis = pilotable.axes.findLocalAxesGlobally(looking).getYAxis();
-		//			Vector3f zAxis = pilotable.axes.findLocalAxesGlobally(looking).getZAxis();
-		//			Vector3f yOffset = pilotable.axes.findLocalVectorGlobally(new Vector3f(0F, riddenByEntity == null ? 0F : (float)riddenByEntity.getYOffset(), 0F));
+		//			Vector3f xAxis = parent.axes.findLocalAxesGlobally(looking).getXAxis();
+		//			Vector3f yAxis = parent.axes.findLocalAxesGlobally(looking).getYAxis();
+		//			Vector3f zAxis = parent.axes.findLocalAxesGlobally(looking).getZAxis();
+		//			Vector3f yOffset = parent.axes.findLocalVectorGlobally(new Vector3f(0F, riddenByEntity == null ? 0F : (float)riddenByEntity.getYOffset(), 0F));
 		//			for (int i = 0; i < 10; i++)
 		//			{
 		//				worldObj.spawnParticle("enchantmenttable", posX + xAxis.x * i * 0.3D + yOffset.x, posY + xAxis.y * i * 0.3D + yOffset.y, posZ + xAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
@@ -169,7 +170,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public void updatePosition()
 	{
 		//If we haven't found our drivable, give up
-		if (worldObj.isRemote && !foundPilotable)
+		if (worldObj.isRemote && !foundParent)
 			return;
 
 		prevPlayerPosX = playerPosX;
@@ -182,57 +183,56 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//Get the position of this seat on the drivable axes
 		Vector3f localPosition = new Vector3f(seatInfo.x / 16F, seatInfo.y / 16F, seatInfo.z / 16F);
 
-		if (pilotable != null)
+		if (parent != null)
 		{
 			//Rotate the offset vector by the turret yaw
-			if (pilotable.seats != null && pilotable.seats[0] != null && pilotable.seats[0].looking != null)
+			if (parent.seats != null && parent.seats[0] != null && parent.seats[0].looking != null)
 			{
-				RotatedAxes yawOnlyLooking = new RotatedAxes(pilotable.seats[0].looking.getYaw(), 0F, 0F);
+				RotatedAxes yawOnlyLooking = new RotatedAxes(parent.seats[0].looking.getYaw(), 0F, 0F);
 				Vector3f rotatedOffset = yawOnlyLooking.findLocalVectorGlobally(seatInfo.rotatedOffset);
 				Vector3f.add(localPosition, new Vector3f(rotatedOffset.x, 0F, rotatedOffset.z), localPosition);
 			}
 
-			Vector3f relativePosition = pilotable.axes.findLocalVectorGlobally(localPosition);
-			setPosition(pilotable.posX + relativePosition.x, pilotable.posY + relativePosition.y, pilotable.posZ + relativePosition.z);
+			Vector3f relativePosition = parent.axes.findLocalVectorGlobally(localPosition);
+			//Set the absol
+			setPosition(parent.posX + relativePosition.x, parent.posY + relativePosition.y, parent.posZ + relativePosition.z);
+		}
 
-			if (riddenByEntity != null)
+		if (riddenByEntity != null)
+		{
+			Vec3 yOffset = parent.rotate(0, riddenByEntity.getYOffset(), 0).toVec3();
+
+			playerPosX = posX + yOffset.xCoord;
+			playerPosY = posY + yOffset.yCoord;
+			playerPosZ = posZ + yOffset.zCoord;
+
+			riddenByEntity.lastTickPosX = riddenByEntity.prevPosX = prevPlayerPosX;
+			riddenByEntity.lastTickPosY = riddenByEntity.prevPosY = prevPlayerPosY;
+			riddenByEntity.lastTickPosZ = riddenByEntity.prevPosZ = prevPlayerPosZ;
+			riddenByEntity.setPosition(playerPosX, playerPosY, playerPosZ);
+
+			//Calculate the local look axes globally
+			RotatedAxes globalLookAxes = parent.axes.findLocalAxesGlobally(looking);
+			//Set the player's rotation based on this
+			playerYaw = -90F + globalLookAxes.getYaw();
+			playerPitch = globalLookAxes.getRoll();
+
+			double dYaw = MathHelper.wrapAngleTo180_float(playerYaw - prevPlayerYaw);
+
+			if (riddenByEntity instanceof EntityPlayer)
 			{
-				Vec3 yOffset = pilotable.rotate(0, riddenByEntity.getYOffset(), 0).toVec3();
+				riddenByEntity.prevRotationYaw = prevPlayerYaw;
+				riddenByEntity.prevRotationPitch = prevPlayerPitch;
 
-				playerPosX = posX + yOffset.xCoord;
-				playerPosY = posY + yOffset.yCoord;
-				playerPosZ = posZ + yOffset.zCoord;
+				riddenByEntity.rotationYaw = playerYaw;
+				riddenByEntity.rotationPitch = playerPitch;
+			}
 
-				riddenByEntity.lastTickPosX = riddenByEntity.prevPosX = prevPlayerPosX;
-				riddenByEntity.lastTickPosY = riddenByEntity.prevPosY = prevPlayerPosY;
-				riddenByEntity.lastTickPosZ = riddenByEntity.prevPosZ = prevPlayerPosZ;
-				riddenByEntity.setPosition(playerPosX, playerPosY, playerPosZ);
-
-				//Calculate the local look axes globally
-				RotatedAxes globalLookAxes = pilotable.axes.findLocalAxesGlobally(looking);
-				//Set the player's rotation based on this
-				playerYaw = -90F + globalLookAxes.getYaw();
-				playerPitch = globalLookAxes.getRoll();
-
-				Lumberjack.debug(playerPitch);
-
-				double dYaw = MathHelper.wrapAngleTo180_float(playerYaw - prevPlayerYaw);
-
-				if (riddenByEntity instanceof EntityPlayer)
-				{
-					riddenByEntity.prevRotationYaw = prevPlayerYaw;
-					riddenByEntity.prevRotationPitch = prevPlayerPitch;
-
-					riddenByEntity.rotationYaw = playerYaw;
-					riddenByEntity.rotationPitch = playerPitch;
-				}
-
-				//If the entity is a player, roll its view accordingly
-				if (worldObj.isRemote)
-				{
-					prevPlayerRoll = playerRoll;
-					playerRoll = -globalLookAxes.getRoll();
-				}
+			//If the entity is a player, roll its view accordingly
+			if (worldObj.isRemote)
+			{
+				prevPlayerRoll = playerRoll;
+				playerRoll = -globalLookAxes.getRoll();
 			}
 		}
 	}
@@ -255,7 +255,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	@SideOnly(Side.CLIENT)
 	public EntityLivingBase getCamera()
 	{
-		return pilotable.getCamera();
+		return parent.getCamera();
 	}
 
 	@Override
@@ -304,7 +304,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	{
 		if (isDead)
 			return false;
-
 		if (worldObj.isRemote)
 			return false;
 
@@ -314,7 +313,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			entityplayer.mountEntity(this);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -337,9 +335,9 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	@Override
 	public ItemStack getPickedResult(MovingObjectPosition target)
 	{
-		if (worldObj.isRemote && !foundPilotable)
+		if (worldObj.isRemote && !foundParent)
 			return null;
-		return pilotable.getPickedResult(target);
+		return parent.getPickedResult(target);
 	}
 
 	public float getPlayerRoll()
@@ -350,36 +348,36 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 	public float getCameraDistance()
 	{
-		return foundPilotable && seatID == 0 ? pilotable.cameraDistance : 5F;
+		return foundParent && seatID == 0 ? parent.cameraDistance : 5F;
 	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float f)
 	{
-		return !(worldObj.isRemote && !foundPilotable) && pilotable.attackEntityFrom(source, f);
+		return !(worldObj.isRemote && !foundParent) && parent.attackEntityFrom(source, f);
 	}
 
 	@Override
 	public void writeSpawnData(ByteBuf data)
 	{
-		data.writeInt(pilotableID);
+		data.writeInt(parentId);
 		data.writeInt(seatInfo.id);
 	}
 
 	@Override
 	public void readSpawnData(ByteBuf data)
 	{
-		pilotableID = data.readInt();
-		pilotable = (Pilotable)worldObj.getEntityByID(pilotableID);
+		parentId = data.readInt();
+		parent = (Pilotable)worldObj.getEntityByID(parentId);
 		seatID = data.readInt();
 		driver = seatID == 0;
-		if (pilotable != null)
+		if (parent != null)
 		{
-			seatInfo = pilotable.getSeatData(seatID);
+			seatInfo = parent.getSeatData(seatID);
 			looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-			playerPosX = prevPlayerPosX = posX = pilotable.posX;
-			playerPosY = prevPlayerPosY = posY = pilotable.posY;
-			playerPosZ = prevPlayerPosZ = posZ = pilotable.posZ;
+			playerPosX = prevPlayerPosX = posX = parent.posX;
+			playerPosY = prevPlayerPosY = posY = parent.posY;
+			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 		}
 
