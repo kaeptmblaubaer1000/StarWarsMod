@@ -1,8 +1,8 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.driven.DrivableBase;
 import com.parzivail.util.driven.EntitySeat;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -31,9 +31,9 @@ public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		DrivableBase drivable = null;
-		if (entity instanceof DrivableBase)
-			drivable = (DrivableBase)entity;
+		Pilotable drivable = null;
+		if (entity instanceof Pilotable)
+			drivable = (Pilotable)entity;
 
 		if (context.side == Side.SERVER)
 		{

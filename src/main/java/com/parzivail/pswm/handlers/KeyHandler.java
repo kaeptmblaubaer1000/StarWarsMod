@@ -65,9 +65,9 @@ public class KeyHandler
 
 	private void handleShipMovement()
 	{
-		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof StarshipBase)
+		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof Starship)
 		{
-			StarshipBase ship = (StarshipBase)StarWarsMod.mc.thePlayer.ridingEntity;
+			Starship ship = (Starship)StarWarsMod.mc.thePlayer.ridingEntity;
 			ship.handleMovementInput();
 		}*/
 	}

@@ -32,7 +32,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public boolean foundDriveable;
 	private int driveableID;
 	private int seatID;
-	public DrivableBase driveable;
+	public Pilotable driveable;
 
 	@SideOnly(Side.CLIENT)
 	public float playerRoll, prevPlayerRoll;
@@ -75,7 +75,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	/**
 	 * Server side seat constructor
 	 */
-	public EntitySeat(World world, DrivableBase d, int id)
+	public EntitySeat(World world, Pilotable d, int id)
 	{
 		this(world);
 		driveable = d;
@@ -139,7 +139,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundDriveable)
 		{
-			driveable = (DrivableBase)worldObj.getEntityByID(driveableID);
+			driveable = (Pilotable)worldObj.getEntityByID(driveableID);
 			if (driveable == null)
 				return;
 			foundDriveable = true;
@@ -155,7 +155,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//If on the client
 		//		if (worldObj.isRemote)
 		//		{
-		//			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && DrivableBase.MOUSE_CONTROL_MODE)
+		//			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && Pilotable.MOUSE_CONTROL_MODE)
 		//			{
 		//				looking = new RotatedAxes();
 		//			}
@@ -321,7 +321,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		prevLooking = looking.clone();
 
 		//Other seats should look around, but also the driver seat if mouse control mode is disabled
-		if (!driver || !DrivableBase.MOUSE_CONTROL_MODE)
+		if (!driver || !Pilotable.MOUSE_CONTROL_MODE)
 		{
 			float lookSpeed = 4F;
 
@@ -472,7 +472,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public void readSpawnData(ByteBuf data)
 	{
 		driveableID = data.readInt();
-		driveable = (DrivableBase)worldObj.getEntityByID(driveableID);
+		driveable = (Pilotable)worldObj.getEntityByID(driveableID);
 		seatID = data.readInt();
 		driver = seatID == 0;
 		if (driveable != null)

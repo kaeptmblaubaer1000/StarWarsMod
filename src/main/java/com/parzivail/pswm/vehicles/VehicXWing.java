@@ -4,7 +4,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.util.IDebugProvider;
-import com.parzivail.util.driven.EntityPlane;
+import com.parzivail.util.driven.Starship;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class VehicXWing extends EntityPlane implements IDebugProvider
+public class VehicXWing extends Starship implements IDebugProvider
 {
 	private static int SFOIL_DW = 23;
 	public boolean isOpening = false;

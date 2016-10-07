@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityPlane extends DrivableBase
+public class Starship extends Pilotable
 {
 	/**
 	 * The flap positions, used for renderering and for controlling the plane rotations
@@ -39,12 +39,12 @@ public class EntityPlane extends DrivableBase
 	 */
 	public int toggleTimer = 0;
 
-	public EntityPlane(World world)
+	public Starship(World world)
 	{
 		super(world);
 	}
 
-	public EntityPlane(World world, double x, double y, double z)
+	public Starship(World world, double x, double y, double z)
 	{
 		super(world);
 		setPosition(x, y, z);
@@ -54,7 +54,7 @@ public class EntityPlane extends DrivableBase
 		initType(false);
 	}
 
-	public EntityPlane(World world, double x, double y, double z, EntityPlayer placer)
+	public Starship(World world, double x, double y, double z, EntityPlayer placer)
 	{
 		this(world, x, y, z);
 		rotateYaw(placer.rotationYaw + 90F);

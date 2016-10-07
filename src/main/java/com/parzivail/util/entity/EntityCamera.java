@@ -1,6 +1,6 @@
 package com.parzivail.util.entity;
 
-import com.parzivail.util.driven.DrivableBase;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 public class EntityCamera extends EntityLivingBase
 {
-	public DrivableBase driveable;
+	public Pilotable driveable;
 
 	public EntityCamera(World world)
 	{
@@ -16,7 +16,7 @@ public class EntityCamera extends EntityLivingBase
 		setSize(0F, 0F);
 	}
 
-	public EntityCamera(World world, DrivableBase d)
+	public EntityCamera(World world, Pilotable d)
 	{
 		this(world);
 		driveable = d;

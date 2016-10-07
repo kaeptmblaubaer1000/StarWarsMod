@@ -477,9 +477,9 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
-		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof StarshipBase)
+		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof Starship)
 		{
-			StarshipBase vehicle = (StarshipBase)StarWarsMod.mc.thePlayer.ridingEntity;
+			Starship vehicle = (Starship)StarWarsMod.mc.thePlayer.ridingEntity;
 
 			float dYaw = (vehicle.axes.getYaw() - vehicle.prevRotationYaw);
 			float dPitch = (vehicle.axes.getPitch() - vehicle.prevRotationPitch);

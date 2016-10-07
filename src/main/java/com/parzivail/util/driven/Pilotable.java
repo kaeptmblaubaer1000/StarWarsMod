@@ -17,7 +17,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public abstract class DrivableBase extends Entity implements IEntityAdditionalSpawnData
+public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
 	static final boolean MOUSE_CONTROL_MODE = false;
 	private Seat DEFAULT_SEAT = new Seat(0, 0, 0);
@@ -60,9 +60,8 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 
 	public float cameraDistance = 1;
 	protected int numPassengers = 1;
-	public float moveDrag;
 
-	public DrivableBase(World world)
+	public Pilotable(World world)
 	{
 		super(world);
 		axes = new RotatedAxes();
@@ -142,11 +141,6 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 	public EntityLivingBase getCamera()
 	{
 		return camera;
-	}
-
-	protected boolean canSit(int seat)
-	{
-		return numPassengers > seat && seats[seat].riddenByEntity == null;
 	}
 
 	@Override
@@ -285,7 +279,7 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 		motionZ = d2;
 	}
 
-	public Vector3f getLookVector()
+	public Vector3f getLookVec3f()
 	{
 		return axes.getXAxis();
 	}
@@ -464,6 +458,7 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 
 	public Seat getSeatData(int id)
 	{
+		// TODO: make seats pull right info
 		return DEFAULT_SEAT;
 	}
 }

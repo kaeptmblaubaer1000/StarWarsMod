@@ -1,7 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.driven.DrivableBase;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -22,7 +22,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 	{
 	}
 
-	public MessageDrivableControl(DrivableBase drivable)
+	public MessageDrivableControl(Pilotable drivable)
 	{
 		entity = drivable;
 		posX = drivable.posX;
@@ -45,9 +45,9 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 	{
 		if (context.side == Side.SERVER)
 		{
-			DrivableBase drivable = null;
-			if (entity instanceof DrivableBase)
-				drivable = (DrivableBase)entity;
+			Pilotable drivable = null;
+			if (entity instanceof Pilotable)
+				drivable = (Pilotable)entity;
 			if (drivable != null)
 				drivable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 		}
@@ -55,9 +55,9 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 		{
 			if (StarWarsMod.mc.thePlayer == null || StarWarsMod.mc.thePlayer.worldObj == null)
 				return null;
-			DrivableBase drivable = null;
-			if (entity instanceof DrivableBase)
-				drivable = (DrivableBase)entity;
+			Pilotable drivable = null;
+			if (entity instanceof Pilotable)
+				drivable = (Pilotable)entity;
 			if (drivable != null)
 				drivable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 		}

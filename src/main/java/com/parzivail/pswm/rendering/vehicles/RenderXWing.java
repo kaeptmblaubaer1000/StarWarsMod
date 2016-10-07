@@ -2,7 +2,7 @@ package com.parzivail.pswm.rendering.vehicles;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.vehicles.ModelXWingNew;
-import com.parzivail.util.driven.EntityPlane;
+import com.parzivail.util.driven.Starship;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -21,7 +21,7 @@ public class RenderXWing extends Render
 		model = new ModelXWingNew();
 	}
 
-	public void render(EntityPlane entityPlane, double d, double d1, double d2, float f, float f1)
+	public void render(Starship entityPlane, double d, double d1, double d2, float f, float f1)
 	{
 		bindEntityTexture(entityPlane);
 		GL11.glPushMatrix();
@@ -47,7 +47,7 @@ public class RenderXWing extends Render
 	@Override
 	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1)
 	{
-		render((EntityPlane)entity, d, d1, d2, f, f1);
+		render((Starship)entity, d, d1, d2, f, f1);
 	}
 
 	@Override
