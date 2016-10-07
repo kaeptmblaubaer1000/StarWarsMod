@@ -48,23 +48,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	 * For smooth renderering
 	 */
 	public RotatedAxes prevLooking;
-	/**
-	 * Delay ticker for shooting guns
-	 */
-	public int gunDelay;
-	/**
-	 * Minigun speed
-	 */
-	public float minigunSpeed;
-	/**
-	 * Minigun angle for render
-	 */
-	public float minigunAngle;
-
-	/**
-	 * Sound delay ticker for looping sounds
-	 */
-	public int soundDelay;
 
 
 	private double playerPosX, playerPosY, playerPosZ;
@@ -122,11 +105,11 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
 		{
-			this.driveable.rotateRoll(-10);
+			this.driveable.rotateRoll(10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindRight))
 		{
-			this.driveable.rotateRoll(10);
+			this.driveable.rotateRoll(-10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindForward))
 		{
@@ -168,43 +151,27 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = driveable.posZ;
 			setPosition(posX, posY, posZ);
 		}
-		//Update gun delay ticker
-		if (gunDelay > 0)
-			gunDelay--;
-		//Update sound delay ticker
-		if (soundDelay > 0)
-			soundDelay--;
-
-		//updatePosition();
 
 		//If on the client
-		if (worldObj.isRemote)
-		{
-			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && DrivableBase.MOUSE_CONTROL_MODE)
-			{
-				looking = new RotatedAxes();
-			}
-			//DEBUG : Spawn particles along axes
-
-			Vector3f xAxis = driveable.axes.findLocalAxesGlobally(looking).getXAxis();
-			Vector3f yAxis = driveable.axes.findLocalAxesGlobally(looking).getYAxis();
-			Vector3f zAxis = driveable.axes.findLocalAxesGlobally(looking).getZAxis();
-			Vector3f yOffset = driveable.axes.findLocalVectorGlobally(new Vector3f(0F, riddenByEntity == null ? 0F : (float)riddenByEntity.getYOffset(), 0F));
-			for (int i = 0; i < 10; i++)
-			{
-				worldObj.spawnParticle("enchantmenttable", posX + xAxis.x * i * 0.3D + yOffset.x, posY + xAxis.y * i * 0.3D + yOffset.y, posZ + xAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-				worldObj.spawnParticle("smoke", posX + yAxis.x * i * 0.3D + yOffset.x, posY + yAxis.y * i * 0.3D + yOffset.y, posZ + yAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-				worldObj.spawnParticle("reddust", posX + zAxis.x * i * 0.3D + yOffset.x, posY + zAxis.y * i * 0.3D + yOffset.y, posZ + zAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-			}
-		}
-
-
-		if (riddenByEntity instanceof EntityPlayer && shooting)
-			pressKey(9, (EntityPlayer)riddenByEntity);
-
-		minigunSpeed *= 0.95F;
-		minigunAngle += minigunSpeed;
-		//prevLooking = looking.clone();
+		//		if (worldObj.isRemote)
+		//		{
+		//			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && DrivableBase.MOUSE_CONTROL_MODE)
+		//			{
+		//				looking = new RotatedAxes();
+		//			}
+		//			//DEBUG : Spawn particles along axes
+		//
+		//			Vector3f xAxis = driveable.axes.findLocalAxesGlobally(looking).getXAxis();
+		//			Vector3f yAxis = driveable.axes.findLocalAxesGlobally(looking).getYAxis();
+		//			Vector3f zAxis = driveable.axes.findLocalAxesGlobally(looking).getZAxis();
+		//			Vector3f yOffset = driveable.axes.findLocalVectorGlobally(new Vector3f(0F, riddenByEntity == null ? 0F : (float)riddenByEntity.getYOffset(), 0F));
+		//			for (int i = 0; i < 10; i++)
+		//			{
+		//				worldObj.spawnParticle("enchantmenttable", posX + xAxis.x * i * 0.3D + yOffset.x, posY + xAxis.y * i * 0.3D + yOffset.y, posZ + xAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
+		//				worldObj.spawnParticle("smoke", posX + yAxis.x * i * 0.3D + yOffset.x, posY + yAxis.y * i * 0.3D + yOffset.y, posZ + yAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
+		//				worldObj.spawnParticle("reddust", posX + zAxis.x * i * 0.3D + yOffset.x, posY + zAxis.y * i * 0.3D + yOffset.y, posZ + zAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
+		//			}
+		//		}
 	}
 
 	/**
@@ -353,11 +320,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		prevLooking = looking.clone();
 
-		//Driver seat should pass input to drivable
-		if (driver)
-		{
-			driveable.onMouseMoved(deltaX, deltaY);
-		}
 		//Other seats should look around, but also the driver seat if mouse control mode is disabled
 		if (!driver || !DrivableBase.MOUSE_CONTROL_MODE)
 		{
@@ -411,50 +373,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 			StarWarsMod.network.sendToServer(new MessageSeatUpdate(this));
 		}
-	}
-
-	public void updateKeyHeldState(int key, boolean held)
-	{
-		if (worldObj.isRemote && foundDriveable)
-		{
-			// TODO: packets
-			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKeyHeld(key, held));
-		}
-		if (driver)
-		{
-			driveable.updateKeyHeldState(key, held);
-		}
-		else if (key == 9)
-		{
-			shooting = held;
-		}
-	}
-
-	public boolean pressKey(int key, EntityPlayer player)
-	{
-		//Driver seat should pass input to drivable
-		if (driver && (!worldObj.isRemote || foundDriveable))
-		{
-			return driveable.pressKey(key, player);
-		}
-
-		if (worldObj.isRemote)
-		{
-			if (foundDriveable)
-			{
-				// TODO: packets
-				//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKey(key));
-				if (key == 9)
-					minigunSpeed += 0.1F;
-			}
-			return false;
-		}
-
-		//Exit key pressed
-		if (key == 6 && riddenByEntity != null)
-			riddenByEntity.mountEntity(null);
-
-		return false;
 	}
 
 	@Override
@@ -567,10 +485,5 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			setPosition(posX, posY, posZ);
 		}
 
-	}
-
-	public float getMinigunSpeed()
-	{
-		return minigunSpeed;
 	}
 }

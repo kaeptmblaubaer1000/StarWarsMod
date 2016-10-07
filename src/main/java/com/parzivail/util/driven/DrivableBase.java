@@ -44,15 +44,11 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 	 * Extra prevRoation field for smoothness in all 3 rotational axes
 	 */
 	public float prevRotationRoll;
+
 	/**
 	 * Angular velocity
 	 */
 	public Vector3f angularVelocity = new Vector3f(0F, 0F, 0F);
-
-	/**
-	 * Whether each mouse button is held
-	 */
-	public boolean leftMouseHeld = false, rightMouseHeld = false;
 
 	public RotatedAxes prevAxes;
 	public RotatedAxes axes;
@@ -141,15 +137,6 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 		camera = new EntityCamera(worldObj, this);
 		worldObj.spawnEntityInWorld(camera);
 	}
-
-	/**
-	 * Called with the movement of the mouse. Used in controlling vehicles if need be.
-	 *
-	 * @param deltaY
-	 * @param deltaX
-	 * @return if mouse movement was handled.
-	 */
-	public abstract void onMouseMoved(int deltaX, int deltaY);
 
 	@SideOnly(Side.CLIENT)
 	public EntityLivingBase getCamera()
@@ -298,29 +285,6 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 		motionZ = d2;
 	}
 
-	public boolean pressKey(int key, EntityPlayer player)
-	{
-		return false;
-	}
-
-	public void updateKeyHeldState(int key, boolean held)
-	{
-		if (worldObj.isRemote)
-		{
-			//TODO: packets
-			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKeyHeld(key, held));
-		}
-		switch (key)
-		{
-			case 9:
-				leftMouseHeld = held;
-				break;
-			case 8:
-				rightMouseHeld = held;
-				break;
-		}
-	}
-
 	public Vector3f getLookVector()
 	{
 		return axes.getXAxis();
@@ -362,15 +326,6 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 		}
 		if (riddenByEntity != null)
 			riddenByEntity.fallDistance = 0F;
-
-		boolean canThrust = (seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer);
-
-		//If the player jumps out or dies, smoothly return the throttle to 0 so the plane might actually come down again */
-		if ((seats[0] != null && seats[0].riddenByEntity == null) || !canThrust)
-		{
-			throttle *= 0.98F;
-			rightMouseHeld = leftMouseHeld = false;
-		}
 	}
 
 	@Override

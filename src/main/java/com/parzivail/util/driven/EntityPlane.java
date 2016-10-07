@@ -2,12 +2,9 @@ package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageDrivableControl;
-import com.parzivail.util.lwjgl.Vector3f;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -82,29 +79,6 @@ public class EntityPlane extends DrivableBase
 		varWing = tag.getBoolean("VarWing");
 	}
 
-	/**
-	 * Called with the movement of the mouse. Used in controlling vehicles if need be.
-	 *
-	 * @param deltaY
-	 * @param deltaX
-	 */
-	@Override
-	public void onMouseMoved(int deltaX, int deltaY)
-	{
-		if (!FMLCommonHandler.instance().getSide().isClient())
-			return;
-		if (!MOUSE_CONTROL_MODE)
-			return;
-
-		float sensitivity = 0.02F;
-
-		flapsPitchLeft -= sensitivity * deltaY;
-		flapsPitchRight -= sensitivity * deltaY;
-
-		flapsPitchLeft -= sensitivity * deltaX;
-		flapsPitchRight += sensitivity * deltaX;
-	}
-
 	@Override
 	public void setPositionRotationAndMotion(double x, double y, double z, float yaw, float pitch, float roll, double motX, double motY, double motZ, float velYaw, float velPitch, float velRoll, float throt, float steeringYaw)
 	{
@@ -130,165 +104,12 @@ public class EntityPlane extends DrivableBase
 	}
 
 	@Override
-	public boolean pressKey(int key, EntityPlayer player)
-	{
-		//Send keys which require server side updates to the server
-		if (worldObj.isRemote && (key == 6 || key == 8 || key == 9))
-		{
-			// TODO: packets
-			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKey(key));
-			return true;
-		}
-		boolean canThrust = (seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer);
-		switch (key)
-		{
-			case 0: //Accelerate : Increase the throttle, up to 1.
-			{
-				if (canThrust || throttle < 0F)
-				{
-					throttle += 0.002F;
-					if (throttle > 1F)
-						throttle = 1F;
-				}
-				return true;
-			}
-			case 1: //Decelerate : Decrease the throttle, down to -1, or 0 if the plane cannot reverse
-			{
-				if (canThrust || throttle > 0F)
-				{
-					throttle -= 0.005F;
-					if (throttle < -1F)
-						throttle = -1F;
-					if (throttle < 0F)
-						throttle = 0F;
-				}
-				return true;
-			}
-			case 2: //Left : Yaw the flaps left
-			{
-				flapsYaw -= 1F;
-				return true;
-			}
-			case 3: //Right : Yaw the flaps right
-			{
-				flapsYaw += 1F;
-				return true;
-			}
-			case 4: //Up : Pitch the flaps up
-			{
-				flapsPitchLeft += 1F;
-				flapsPitchRight += 1F;
-				return true;
-			}
-			case 5: //Down : Pitch the flaps down
-			{
-				flapsPitchLeft -= 1F;
-				flapsPitchRight -= 1F;
-				return true;
-			}
-			case 6: //Exit : Get out
-			{
-				if (seats[0].riddenByEntity != null)
-					seats[0].riddenByEntity.mountEntity(null);
-				return true;
-			}
-			case 8: //Drop bomb
-			case 9: //Shoot bullet
-			{
-				return super.pressKey(key, player);
-			}
-			case 11: //Roll left
-			{
-				flapsPitchLeft += 1F;
-				flapsPitchRight -= 1F;
-				return true;
-			}
-			case 12: //Roll right
-			{
-				flapsPitchLeft -= 1F;
-				flapsPitchRight += 1F;
-				return true;
-			}
-			case 13: // Gear
-			{
-				if (toggleTimer <= 0)
-				{
-					varGear = !varGear;
-					player.addChatMessage(new ChatComponentText("Landing gear " + (varGear ? "down" : "up")));
-					toggleTimer = 10;
-
-					StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
-				}
-				return true;
-			}
-			case 16: // Trim Button
-			{
-				axes.setAngles(axes.getYaw(), 0, 0);
-				return true;
-			}
-			case 17: //Park
-			{
-				break;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public void updateKeyHeldState(int key, boolean held)
-	{
-		super.updateKeyHeldState(key, held);
-		//On the server. For semi-auto weapons, shoot!
-		if (!worldObj.isRemote)
-		{
-			switch (key)
-			{
-				case 9: //Left Mouse
-				case 8: //Right Mouse
-			}
-		}
-	}
-
-	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
 
 		//Work out if this is the client side and the player is driving
 		boolean thePlayerIsDrivingThis = worldObj.isRemote && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)seats[0].riddenByEntity);
-
-		//Despawning
-		ticksSinceUsed++;
-		if (!worldObj.isRemote && seats[0].riddenByEntity != null)
-			ticksSinceUsed = 0;
-
-		//Shooting, inventories, etc.
-		//Decrement bomb and gun timers
-		if (bombDelay > 0)
-			bombDelay--;
-		if (gunDelay > 0)
-			gunDelay--;
-		if (toggleTimer > 0)
-			toggleTimer--;
-
-		//Return the flaps to their resting position
-		flapsYaw *= 0.9F;
-		flapsPitchLeft *= 0.9F;
-		flapsPitchRight *= 0.9F;
-
-		//Limit flap angles
-		if (flapsYaw > 20)
-			flapsYaw = 20;
-		if (flapsYaw < -20)
-			flapsYaw = -20;
-		if (flapsPitchRight > 20)
-			flapsPitchRight = 20;
-		if (flapsPitchRight < -20)
-			flapsPitchRight = -20;
-		if (flapsPitchLeft > 20)
-			flapsPitchLeft = 20;
-		if (flapsPitchLeft < -20)
-			flapsPitchLeft = -20;
 
 		//Player is not driving this. Update its position from server update packets 
 		if (worldObj.isRemote && !thePlayerIsDrivingThis)
@@ -313,105 +134,6 @@ public class EntityPlane extends DrivableBase
 			//If the drivable is at its server position and does not have the next update, it should just simulate itself as a server side plane would, so continue
 		}
 
-		//Movement
-
-		boolean canThrust = (seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer);
-
-		//Throttle handling
-		//Without a player, default to 0
-		//With a player default to 0.5 for helicopters (hover speed)
-		//And default to the range 0.25 ~ 0.5 for planes (taxi speed ~ take off speed)
-		float throttlePull = 0.99F;
-
-		//Get the speed of the plane
-		float lastTickSpeed = (float)getSpeedXYZ();
-
-		//Alter angles
-		//Sensitivity function
-		float sensitivityAdjust = (throttle > 0.5F ? 1.5F - throttle : 4F * throttle - 1F);
-		if (sensitivityAdjust < 0F)
-			sensitivityAdjust = 0F;
-		//Scalar
-		sensitivityAdjust *= 0.125F;
-
-		float yaw = flapsYaw * sensitivityAdjust;
-
-		//if(throttle < 0.2F)
-		//	sensitivityAdjust = throttle * 2.5F;
-		//Pitch according to the sum of flapsPitchLeft and flapsPitchRight / 2
-		float flapsPitch = (flapsPitchLeft + flapsPitchRight) / 2F;
-		float pitch = flapsPitch * sensitivityAdjust;
-
-		//Roll according to the difference between flapsPitchLeft and flapsPitchRight / 2
-		float flapsRoll = (flapsPitchRight - flapsPitchLeft) / 2F;
-		float roll = flapsRoll * sensitivityAdjust;
-
-		axes.rotateLocalYaw(yaw);
-		axes.rotateLocalPitch(pitch);
-		axes.rotateLocalRoll(-roll);
-
-		//Some constants
-		float g = 0.98F / 10F;
-		float drag = 1F - (0.05F * this.moveDrag);
-
-		float throttleScaled = 0.01F;
-
-		if (!canThrust)
-			throttleScaled = 0;
-
-		int numPropsWorking = 0;
-		int numProps = 0;
-
-		float fuelConsumptionMultiplier = 2F;
-
-		//Apply forces
-		Vector3f forwards = (Vector3f)axes.getXAxis().normalise();
-
-		//Sanity limiter
-		if (lastTickSpeed > 2F)
-			lastTickSpeed = 2F;
-
-		float newSpeed = lastTickSpeed + throttleScaled * 2F;
-
-		//Calculate the amount to alter motion by
-		float proportionOfMotionToCorrect = 2F * throttle - 0.5F;
-		if (proportionOfMotionToCorrect < 0F)
-			proportionOfMotionToCorrect = 0F;
-		if (proportionOfMotionToCorrect > 0.5F)
-			proportionOfMotionToCorrect = 0.5F;
-
-		//Apply gravity
-		g = 0.98F / 20F;
-		motionY -= g;
-
-		float amountOfLift = 2F * g * throttle;
-		if (amountOfLift > g)
-			amountOfLift = g;
-
-		motionY += amountOfLift;
-
-		//Cut out some motion for correction
-		motionX *= 1F - proportionOfMotionToCorrect;
-		motionY *= 1F - proportionOfMotionToCorrect;
-		motionZ *= 1F - proportionOfMotionToCorrect;
-
-		//Add the corrected motion
-		motionX += proportionOfMotionToCorrect * newSpeed * forwards.x;
-		motionY += proportionOfMotionToCorrect * newSpeed * forwards.y;
-		motionZ += proportionOfMotionToCorrect * newSpeed * forwards.z;
-
-		//Apply drag
-		motionX *= drag;
-		motionY *= drag;
-		motionZ *= drag;
-
-		double motion = Math.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ);
-		if (motion > 10)
-		{
-			motionX *= 10 / motion;
-			motionY *= 10 / motion;
-			motionZ *= 10 / motion;
-		}
 
 		for (EntitySeat seat : seats)
 		{
@@ -429,8 +151,6 @@ public class EntityPlane extends DrivableBase
 			serverYaw = axes.getYaw();
 		}
 
-		//If this is the server, send position updates to everyone, having received them from the driver
-		float updateSpeed = 0.01F;
 		if (!worldObj.isRemote)// && (Math.abs(posX - prevPosX) > updateSpeed || Math.abs(posY - prevPosY) > updateSpeed || Math.abs(posZ - prevPosZ) > updateSpeed))
 		{
 			StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
