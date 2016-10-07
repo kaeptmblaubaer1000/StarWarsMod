@@ -433,6 +433,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public Entity getControllingEntity()
 	{
+		if (seats == null || seats.length == 0 || seats[0] == null)
+			return null;
 		return seats[0].getControllingEntity();
 	}
 
