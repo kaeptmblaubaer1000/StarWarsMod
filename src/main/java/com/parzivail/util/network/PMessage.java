@@ -1,8 +1,6 @@
 package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
-import com.parzivail.util.lwjgl.Matrix4f;
-import com.parzivail.util.math.RotatedAxes;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -52,7 +50,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(Color.class, PMessage::readColor, PMessage::writeColor);
 		map(World.class, PMessage::readWorld, PMessage::writeWorld);
 		map(ItemStack[].class, PMessage::readItemStacks, PMessage::writeItemStacks);
-		map(RotatedAxes.class, PMessage::readRAxes, PMessage::writeRAxes);
+		//map(RotatedAxes.class, PMessage::readRAxes, PMessage::writeRAxes);
 	}
 
 	private static boolean acceptField(Field f, Class<?> type)
@@ -136,7 +134,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		return buf.readFloat();
 	}
 
-	private static RotatedAxes readRAxes(ByteBuf buf)
+	/*private static RotatedAxes readRAxes(ByteBuf buf)
 	{
 		Matrix4f mat = new Matrix4f();
 
@@ -158,7 +156,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		mat.m33 = buf.readFloat();
 
 		return new RotatedAxes(mat);
-	}
+	}*/
 
 	private static int readInt(ByteBuf buf)
 	{
@@ -252,7 +250,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		buf.writeDouble(d);
 	}
 
-	private static void writeRAxes(RotatedAxes axes, ByteBuf buf)
+	/*private static void writeRAxes(RotatedAxes axes, ByteBuf buf)
 	{
 		Matrix4f mat = axes.getMatrix();
 		buf.writeFloat(mat.m00);
@@ -271,7 +269,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		buf.writeFloat(mat.m31);
 		buf.writeFloat(mat.m32);
 		buf.writeFloat(mat.m33);
-	}
+	}*/
 
 	private static void writeEntity(Entity entity, ByteBuf buf)
 	{

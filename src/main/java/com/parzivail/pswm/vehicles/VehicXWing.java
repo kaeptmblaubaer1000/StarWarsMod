@@ -6,7 +6,7 @@ import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.vehicle.StarshipBase;
+import com.parzivail.util.vehicle.VehicleAirBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class VehicXWing extends StarshipBase implements IDebugProvider
+public class VehicXWing extends VehicleAirBase implements IDebugProvider
 {
 	private static int SFOIL_DW = 23;
 	public boolean isOpening = false;

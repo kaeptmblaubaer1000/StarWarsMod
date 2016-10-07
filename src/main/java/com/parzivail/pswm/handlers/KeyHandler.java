@@ -22,7 +22,6 @@ import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.vehicle.StarshipBase;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.block.material.Material;
@@ -66,11 +65,11 @@ public class KeyHandler
 
 	private void handleShipMovement()
 	{
-		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof StarshipBase)
+		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof StarshipBase)
 		{
 			StarshipBase ship = (StarshipBase)StarWarsMod.mc.thePlayer.ridingEntity;
 			ship.handleMovementInput();
-		}
+		}*/
 	}
 
 	private void handleLightsabers()
