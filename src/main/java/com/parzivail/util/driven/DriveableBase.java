@@ -241,8 +241,6 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	{
 		super.setDead();
 
-		//Unregister to Radar
-		//RadarRegistry.unregister(this);
 		if (worldObj.isRemote)
 			camera.setDead();
 
@@ -254,9 +252,6 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	@Override
 	public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
 	{
-		//Do nothing. Like a boss.
-		// TODO: perhaps send the player flying??
-		//Sounds good. ^ 
 	}
 
 	@Override
@@ -354,6 +349,7 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	{
 		if (worldObj.isRemote)
 		{
+			// TODO: packets
 			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKeyHeld(key, held));
 		}
 		switch (key)

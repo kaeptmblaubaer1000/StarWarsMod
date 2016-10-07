@@ -413,6 +413,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		{
 			if (foundDriveable)
 			{
+				// TODO: packets
 				//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKey(key));
 				if (key == 9)
 					minigunSpeed += 0.1F;
