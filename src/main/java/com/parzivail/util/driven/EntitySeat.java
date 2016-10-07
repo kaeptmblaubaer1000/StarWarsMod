@@ -4,6 +4,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSeatUpdate;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -114,27 +115,32 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 	public void getKeyInput()
 	{
+		if (!(this.getControllingEntity() instanceof EntityPlayer))
+			return;
+
+		EntityPlayer player = (EntityPlayer)this.getControllingEntity();
+
 		if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
 		{
-			this.driveable.rotatePitch(10);
+			this.driveable.rotateRoll(-10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindRight))
 		{
-			this.driveable.rotatePitch(-10);
+			this.driveable.rotateRoll(10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindForward))
 		{
-			this.driveable.rotateRoll(10);
+			this.driveable.rotatePitch(-10);
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindBack))
 		{
-			this.driveable.rotateRoll(-10);
+			this.driveable.rotatePitch(10);
 		}
 	}
 
 	private boolean $(KeyBinding key)
 	{
-		return key.getIsKeyPressed() && this.getControllingEntity() instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)this.getControllingEntity());
+		return key.getIsKeyPressed() && this.getControllingEntity() instanceof EntityPlayer/* && StarWarsMod.proxy.isThePlayer((EntityPlayer)this.getControllingEntity())*/;
 	}
 
 	@Override
@@ -252,8 +258,10 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			//Calculate the local look axes globally
 			RotatedAxes globalLookAxes = driveable.axes.findLocalAxesGlobally(looking);
 			//Set the player's rotation based on this
-			playerYaw = globalLookAxes.getYaw();
-			playerPitch = globalLookAxes.getPitch();
+			playerYaw = -90F + globalLookAxes.getYaw();
+			playerPitch = globalLookAxes.getRoll();
+
+			Lumberjack.debug(playerPitch);
 
 			double dYaw = MathHelper.wrapAngleTo180_float(playerYaw - prevPlayerYaw);
 

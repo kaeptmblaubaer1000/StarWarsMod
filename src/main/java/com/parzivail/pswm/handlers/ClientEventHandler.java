@@ -350,11 +350,16 @@ public class ClientEventHandler
 			{
 				GFX.changeCameraDist(15);
 
+				StarWarsMod.mc.renderViewEntity = ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getCamera();
+
 				event.setCanceled(event.entity.ridingEntity instanceof VehicXWing);
 			}
 		}
 		else
+		{
+			StarWarsMod.mc.renderViewEntity = StarWarsMod.mc.thePlayer;
 			GFX.changeCameraDist(4);
+		}
 
 		if (event.entity instanceof EntityPlayer && ((EntityPlayer)event.entity).ridingEntity instanceof VehicleAirBase)
 		{

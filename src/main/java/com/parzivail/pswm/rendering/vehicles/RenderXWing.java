@@ -31,12 +31,13 @@ public class RenderXWing extends Render
 		float dRoll = MathHelper.wrapAngleTo180_float(entityPlane.axes.getRoll() - entityPlane.prevRotationRoll);
 		GL11.glRotatef(180F - entityPlane.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(entityPlane.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(entityPlane.prevRotationRoll + dRoll * f1, 1.0F, 0.0F, 0.0F);
+		GL11.glRotatef(-(entityPlane.prevRotationRoll + dRoll * f1), 1.0F, 0.0F, 0.0F);
 
 		GL11.glColor4f(1, 1, 1, 1);
 		GL11.glScalef(3, 3, 3);
 		if (model != null)
 		{
+			GL11.glRotatef(-90, 0, 1, 0);
 			model.render(entityPlane, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
 		}
 
