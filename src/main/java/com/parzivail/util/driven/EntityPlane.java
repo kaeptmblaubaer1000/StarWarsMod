@@ -9,7 +9,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityPlane extends DriveableBase
+public class EntityPlane extends DrivableBase
 {
 	/**
 	 * The flap positions, used for renderering and for controlling the plane rotations
@@ -293,7 +293,7 @@ public class EntityPlane extends DriveableBase
 		//Player is not driving this. Update its position from server update packets 
 		if (worldObj.isRemote && !thePlayerIsDrivingThis)
 		{
-			//The driveable is currently moving towards its server position. Continue doing so.
+			//The drivable is currently moving towards its server position. Continue doing so.
 			if (serverPositionTransitionTicker > 0)
 			{
 				double x = posX + (serverPosX - posX) / serverPositionTransitionTicker;
@@ -310,7 +310,7 @@ public class EntityPlane extends DriveableBase
 				setRotation(rotationYaw, rotationPitch, rotationRoll);
 				//return;
 			}
-			//If the driveable is at its server position and does not have the next update, it should just simulate itself as a server side plane would, so continue
+			//If the drivable is at its server position and does not have the next update, it should just simulate itself as a server side plane would, so continue
 		}
 
 		//Movement

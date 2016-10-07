@@ -25,13 +25,13 @@ import java.util.List;
 public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 {
 	/**
-	 * Set this to true when the client has found the parent driveable and connected them
+	 * Set this to true when the client has found the parent drivable and connected them
 	 */
 	@SideOnly(Side.CLIENT)
 	public boolean foundDriveable;
 	private int driveableID;
 	private int seatID;
-	public DriveableBase driveable;
+	public DrivableBase driveable;
 
 	@SideOnly(Side.CLIENT)
 	public float playerRoll, prevPlayerRoll;
@@ -91,7 +91,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	/**
 	 * Server side seat constructor
 	 */
-	public EntitySeat(World world, DriveableBase d, int id)
+	public EntitySeat(World world, DrivableBase d, int id)
 	{
 		this(world);
 		driveable = d;
@@ -121,10 +121,10 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//prevPosZ = posZ;
 
 
-		//If on the client and the driveable parent has yet to be found, search for it
+		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundDriveable)
 		{
-			driveable = (DriveableBase)worldObj.getEntityByID(driveableID);
+			driveable = (DrivableBase)worldObj.getEntityByID(driveableID);
 			if (driveable == null)
 				return;
 			foundDriveable = true;
@@ -148,7 +148,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//If on the client
 		if (worldObj.isRemote)
 		{
-			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && DriveableBase.MOUSE_CONTROL_MODE)
+			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && DrivableBase.MOUSE_CONTROL_MODE)
 			{
 				looking = new RotatedAxes();
 			}
@@ -176,11 +176,11 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	}
 
 	/**
-	 * Set the position to be that of the driveable plus the local position, rotated
+	 * Set the position to be that of the drivable plus the local position, rotated
 	 */
 	public void updatePosition()
 	{
-		//If we haven't found our driveable, give up
+		//If we haven't found our drivable, give up
 		if (worldObj.isRemote && !foundDriveable)
 			return;
 
@@ -191,7 +191,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		prevPlayerYaw = playerYaw;
 		prevPlayerPitch = playerPitch;
 
-		//Get the position of this seat on the driveable axes
+		//Get the position of this seat on the drivable axes
 		Vector3f localPosition = new Vector3f(seatInfo.x / 16F, seatInfo.y / 16F, seatInfo.z / 16F);
 
 		//Rotate the offset vector by the turret yaw
@@ -202,10 +202,10 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			Vector3f.add(localPosition, new Vector3f(rotatedOffset.x, 0F, rotatedOffset.z), localPosition);
 		}
 
-		//If this seat is connected to the turret, then its position vector on the driveable axes needs an extra rotation in it
-		//if(driveable.rotateWithTurret(seatInfo) && driveable.seats[0] != null)
-		//localPosition = driveable.seats[0].looking.findLocalVectorGlobally(localPosition);
-		//Get the position of this seat globally, but positionally relative to the driveable
+		//If this seat is connected to the turret, then its position vector on the drivable axes needs an extra rotation in it
+		//if(drivable.rotateWithTurret(seatInfo) && drivable.seats[0] != null)
+		//localPosition = drivable.seats[0].looking.findLocalVectorGlobally(localPosition);
+		//Get the position of this seat globally, but positionally relative to the drivable
 		Vector3f relativePosition = driveable.axes.findLocalVectorGlobally(localPosition);
 		//Set the absol
 		setPosition(driveable.posX + relativePosition.x, driveable.posY + relativePosition.y, driveable.posZ + relativePosition.z);
@@ -294,13 +294,13 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tags)
 	{
-		//Do not read. Spawn with driveable
+		//Do not read. Spawn with drivable
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tags)
 	{
-		//Do not write. Spawn with driveable
+		//Do not write. Spawn with drivable
 	}
 
 	@Override
@@ -323,13 +323,13 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		prevLooking = looking.clone();
 
-		//Driver seat should pass input to driveable
+		//Driver seat should pass input to drivable
 		if (driver)
 		{
 			driveable.onMouseMoved(deltaX, deltaY);
 		}
 		//Other seats should look around, but also the driver seat if mouse control mode is disabled
-		if (!driver || !DriveableBase.MOUSE_CONTROL_MODE)
+		if (!driver || !DrivableBase.MOUSE_CONTROL_MODE)
 		{
 			float lookSpeed = 4F;
 
@@ -403,7 +403,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 	public boolean pressKey(int key, EntityPlayer player)
 	{
-		//Driver seat should pass input to driveable
+		//Driver seat should pass input to drivable
 		if (driver && (!worldObj.isRemote || foundDriveable))
 		{
 			return driveable.pressKey(key, player);
@@ -525,7 +525,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public void readSpawnData(ByteBuf data)
 	{
 		driveableID = data.readInt();
-		driveable = (DriveableBase)worldObj.getEntityByID(driveableID);
+		driveable = (DrivableBase)worldObj.getEntityByID(driveableID);
 		seatID = data.readInt();
 		driver = seatID == 0;
 		if (driveable != null)

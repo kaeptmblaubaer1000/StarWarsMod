@@ -16,7 +16,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public abstract class DriveableBase extends Entity implements IEntityAdditionalSpawnData
+public abstract class DrivableBase extends Entity implements IEntityAdditionalSpawnData
 {
 	static final boolean MOUSE_CONTROL_MODE = false;
 	private Seat DEFAULT_SEAT = new Seat(0, 0, 0);
@@ -65,7 +65,7 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	protected int numPassengers = 1;
 	public float moveDrag;
 
-	public DriveableBase(World world)
+	public DrivableBase(World world)
 	{
 		super(world);
 		axes = new RotatedAxes();
@@ -312,7 +312,7 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	{
 		if (worldObj.isRemote)
 		{
-			// TODO: packets
+			//TODO: packets
 			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKeyHeld(key, held));
 		}
 		switch (key)

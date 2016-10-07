@@ -26,7 +26,7 @@ public class Seat
 	 */
 	public String gunName;
 	/**
-	 * Auto assigned by driveable type. Indicates what ammo slot the gun should take from
+	 * Auto assigned by drivable type. Indicates what ammo slot the gun should take from
 	 */
 	public int gunnerID;
 	/**

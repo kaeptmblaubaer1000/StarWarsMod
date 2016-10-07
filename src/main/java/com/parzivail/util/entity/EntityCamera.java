@@ -1,6 +1,6 @@
 package com.parzivail.util.entity;
 
-import com.parzivail.util.driven.DriveableBase;
+import com.parzivail.util.driven.DrivableBase;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 
 public class EntityCamera extends EntityLivingBase
 {
-	public DriveableBase driveable;
+	public DrivableBase driveable;
 
 	public EntityCamera(World world)
 	{
@@ -16,7 +16,7 @@ public class EntityCamera extends EntityLivingBase
 		setSize(0F, 0F);
 	}
 
-	public EntityCamera(World world, DriveableBase d)
+	public EntityCamera(World world, DrivableBase d)
 	{
 		this(world);
 		driveable = d;
@@ -33,7 +33,7 @@ public class EntityCamera extends EntityLivingBase
 		prevPosZ = posZ;
 
 		Vector3f cameraPosition = new Vector3f();//-1F, 0.5F, 0F);
-		//cameraPosition.scale(driveable.getDriveableType().cameraDistance);
+		//cameraPosition.scale(drivable.getDriveableType().cameraDistance);
 		cameraPosition = driveable.axes.findLocalVectorGlobally(cameraPosition);
 
 		//Lerp it
