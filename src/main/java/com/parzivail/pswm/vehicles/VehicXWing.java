@@ -4,10 +4,9 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.driven.EntityPlane;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.vehicle.VehicleAirBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class VehicXWing extends VehicleAirBase implements IDebugProvider
+public class VehicXWing extends EntityPlane implements IDebugProvider
 {
 	private static int SFOIL_DW = 23;
 	public boolean isOpening = false;
@@ -28,8 +27,8 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		this.setSize(3.0F, 6.0F);
 		//this.vehicYOffset = -3F;
 		//this.moveModifier = 1.75F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60);
-		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
+		//this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60);
+		//this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
@@ -57,11 +56,11 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		return "T-65B X-Wing Starfighter";
 	}
 
-	@Override
-	public String getDeathSound()
-	{
-		return Resources.MODID + ":" + "vehicle.xwing.die";
-	}
+	//@Override
+	//public String getDeathSound()
+	//{
+	//	return Resources.MODID + ":" + "vehicle.xwing.die";
+	//}
 
 	//@Override
 	//public String getMovingSound()
@@ -84,50 +83,50 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		return this.dataWatcher.getWatchableObjectInt(SFOIL_DW + 2);
 	}
 
-	@Override
-	public boolean interact(EntityPlayer player)
-	{
-		/*
-		if (!QuestUtils.canRideInShip(player, this.getClass()))
-			return false;
-		ItemStack itemstack = player.inventory.getCurrentItem();
-
-		if (player.isSneaking())
-		{
-			if (getHasAstro())
-			{
-				if (worldObj.isRemote)
-				{
-					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, false, 0));
-					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
-					setHasAstro(false);
-				}
-			}
-			else if (itemstack != null)
-			{
-				if (itemstack.getItem() instanceof ItemSpawnAstromech)
-				{
-					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 0));
-					setHasAstro(true);
-					setAstroType(0);
-				}
-				else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
-				{
-					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 1));
-					setHasAstro(true);
-					setAstroType(1);
-				}
-			}
-			else
-			{
-				if (!worldObj.isRemote)
-					player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
-			}
-			return true;
-		}
-		*/
-		return super.interact(player);
-	}
+	//	@Override
+	//	public boolean interact(EntityPlayer player)
+	//	{
+	//		/*
+	//		if (!QuestUtils.canRideInShip(player, this.getClass()))
+	//			return false;
+	//		ItemStack itemstack = player.inventory.getCurrentItem();
+	//
+	//		if (player.isSneaking())
+	//		{
+	//			if (getHasAstro())
+	//			{
+	//				if (worldObj.isRemote)
+	//				{
+	//					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, false, 0));
+	//					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
+	//					setHasAstro(false);
+	//				}
+	//			}
+	//			else if (itemstack != null)
+	//			{
+	//				if (itemstack.getItem() instanceof ItemSpawnAstromech)
+	//				{
+	//					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 0));
+	//					setHasAstro(true);
+	//					setAstroType(0);
+	//				}
+	//				else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
+	//				{
+	//					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 1));
+	//					setHasAstro(true);
+	//					setAstroType(1);
+	//				}
+	//			}
+	//			else
+	//			{
+	//				if (!worldObj.isRemote)
+	//					player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
+	//			}
+	//			return true;
+	//		}
+	//		*/
+	//		return super.interact(player);
+	//	}
 
 	@Override
 	public void onUpdate()
