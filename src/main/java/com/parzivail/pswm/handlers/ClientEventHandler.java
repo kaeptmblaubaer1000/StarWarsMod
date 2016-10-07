@@ -25,6 +25,7 @@ import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.util.driven.EntitySeat;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.math.AnimationManager;
@@ -335,6 +336,21 @@ public class ClientEventHandler
 				GFX.changeCameraDist(15);
 
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
+			}
+		}
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).driveable instanceof VehicXWing)
+		{
+			if (ClientEventHandler.renderHelper.isFirstPerson())
+			{
+				GFX.changeCameraDist(4);
+
+				//event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+			}
+			else
+			{
+				GFX.changeCameraDist(15);
+
+				event.setCanceled(event.entity.ridingEntity instanceof VehicXWing);
 			}
 		}
 		else

@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,10 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemLead;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -114,6 +112,31 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//setPosition(x, y, z);
 	}
 
+	public void getKeyInput()
+	{
+		if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
+		{
+			this.driveable.rotatePitch(10);
+		}
+		if ($(StarWarsMod.mc.gameSettings.keyBindRight))
+		{
+			this.driveable.rotatePitch(-10);
+		}
+		if ($(StarWarsMod.mc.gameSettings.keyBindForward))
+		{
+			this.driveable.rotateRoll(10);
+		}
+		if ($(StarWarsMod.mc.gameSettings.keyBindBack))
+		{
+			this.driveable.rotateRoll(-10);
+		}
+	}
+
+	private boolean $(KeyBinding key)
+	{
+		return key.getIsKeyPressed() && this.getControllingEntity() instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)this.getControllingEntity());
+	}
+
 	@Override
 	public void onUpdate()
 	{
@@ -122,6 +145,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//prevPosY = posY;
 		//prevPosZ = posZ;
 
+		getKeyInput();
 
 		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundDriveable)
@@ -162,9 +186,9 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			Vector3f yOffset = driveable.axes.findLocalVectorGlobally(new Vector3f(0F, riddenByEntity == null ? 0F : (float)riddenByEntity.getYOffset(), 0F));
 			for (int i = 0; i < 10; i++)
 			{
-				//worldObj.spawnParticle("enchantmenttable", 	posX + xAxis.x * i * 0.3D + yOffset.x, posY + xAxis.y * i * 0.3D + yOffset.y, posZ + xAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-				//worldObj.spawnParticle("smoke", 			posX + yAxis.x * i * 0.3D + yOffset.x, posY + yAxis.y * i * 0.3D + yOffset.y, posZ + yAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-				//worldObj.spawnParticle("reddust", 			posX + zAxis.x * i * 0.3D + yOffset.x, posY + zAxis.y * i * 0.3D + yOffset.y, posZ + zAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
+				worldObj.spawnParticle("enchantmenttable", posX + xAxis.x * i * 0.3D + yOffset.x, posY + xAxis.y * i * 0.3D + yOffset.y, posZ + xAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
+				worldObj.spawnParticle("smoke", posX + yAxis.x * i * 0.3D + yOffset.x, posY + yAxis.y * i * 0.3D + yOffset.y, posZ + yAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
+				worldObj.spawnParticle("reddust", posX + zAxis.x * i * 0.3D + yOffset.x, posY + zAxis.y * i * 0.3D + yOffset.y, posZ + zAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
 			}
 		}
 
@@ -228,14 +252,10 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			//Calculate the local look axes globally
 			RotatedAxes globalLookAxes = driveable.axes.findLocalAxesGlobally(looking);
 			//Set the player's rotation based on this
-			playerYaw = -90F + globalLookAxes.getYaw();
+			playerYaw = globalLookAxes.getYaw();
 			playerPitch = globalLookAxes.getPitch();
 
-			double dYaw = playerYaw - prevPlayerYaw;
-			if (dYaw > 180)
-				prevPlayerYaw += 360F;
-			if (dYaw < -180)
-				prevPlayerYaw -= 360F;
+			double dYaw = MathHelper.wrapAngleTo180_float(playerYaw - prevPlayerYaw);
 
 			if (riddenByEntity instanceof EntityPlayer)
 			{

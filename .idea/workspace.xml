@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="packets work 2">
+    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="ents">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/EntityRegister.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/EntityRegister.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityPlane.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityPlane.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
     </list>
     <ignored path="StarWarsMod.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,51 +40,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RenderXWing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java">
+      <file leaf-file-name="EntitySeat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-243">
-              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+            <state relative-caret-position="214">
+              <caret line="255" column="52" selection-start-line="255" selection-start-column="52" selection-end-line="255" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrivableBase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java">
+      <file leaf-file-name="ClientEventHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="83" column="5" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="350" column="41" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntityRegister.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/EntityRegister.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VehicXWing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="861">
-              <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityPlane.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EntityPlane.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityPlane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2834">
-              <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+            <state relative-caret-position="402">
+              <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -93,6 +75,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="681">
               <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderXWing.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="34" column="80" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -149,12 +141,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/models/vehicles/ModelXWingNew.java" />
         <option value="$USER_HOME$/AppData/Local/Temp/Temp1_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/driveables/EntityDriveable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/vehicle/DrivenBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/vehicle/StarshipBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/vehicle/ShipMovementHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/network/PMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageStarshipUpdateMovement.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityDriveable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/math/RotatedAxes.java" />
@@ -164,18 +154,20 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/hologram/vehicle/RenderHologramXWing.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DriveableBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSeatUpdate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
         <option value="$USER_HOME$/AppData/Local/Temp/Temp2_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/network/PacketDriveableControl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageDrivableControl.java" />
         <option value="$USER_HOME$/AppData/Local/Temp/Temp2_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/FlansMod.java" />
         <option value="$USER_HOME$/AppData/Local/Temp/Temp2_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/network/PacketHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityPlane.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/EntityRegister.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
       </list>
     </option>
   </component>
@@ -910,7 +902,14 @@
       <option name="project" value="LOCAL" />
       <updated>1475866156463</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="ents">
+      <created>1475867113020</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1475867113020</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -985,7 +984,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="remove rollbar, just to make sure committing is ACTUALLY working" />
     <MESSAGE value="ship rework start" />
     <MESSAGE value="math? no." />
     <MESSAGE value="ship rotate start" />
@@ -1010,7 +1008,8 @@
     <MESSAGE value="seats done" />
     <MESSAGE value="packets work" />
     <MESSAGE value="packets work 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="packets work 2" />
+    <MESSAGE value="ents" />
+    <option name="LAST_COMMIT_MESSAGE" value="ents" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1023,21 +1022,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/driveables/EntityDriveable.java" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/driveables/EntityPlane.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/entity/EntityFollowCamera.java" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp1_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/RotatedAxes.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/client/renderer/EntityRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-825">
           <caret line="558" column="108" selection-start-line="558" selection-start-column="108" selection-end-line="558" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -1112,14 +1101,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
           <caret line="67" column="10" selection-start-line="67" selection-start-column="8" selection-end-line="71" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="521" column="38" selection-start-line="521" selection-start-column="38" selection-end-line="521" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1244,14 +1225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5730">
-          <caret line="382" column="0" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp2_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/network/PacketPlaneControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1302,38 +1275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageDrivableControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityPlane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2834">
-          <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/entity/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1342,10 +1283,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="83" column="5" selection-start-line="83" selection-start-column="5" selection-end-line="83" selection-end-column="5" />
+        <state relative-caret-position="3163">
+          <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1354,6 +1295,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp2_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/driveables/EntityDriveable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="129" column="9" selection-start-line="129" selection-start-column="9" selection-end-line="131" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/CommonEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="107" selection-start-line="19" selection-start-column="107" selection-end-line="19" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageDrivableControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="62" column="9" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderXWing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="34" column="80" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/DrivableBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="350" column="41" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Temp2_FlansMod-1.7.10.zip/FlansMod-1.7.10/src/main/java/com/flansmod/common/PlayerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1704">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="255" column="52" selection-start-line="255" selection-start-column="52" selection-end-line="255" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityPlane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
           <folding />
         </state>
       </provider>

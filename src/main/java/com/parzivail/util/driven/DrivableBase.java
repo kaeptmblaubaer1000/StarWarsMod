@@ -81,16 +81,14 @@ public abstract class DrivableBase extends Entity implements IEntityAdditionalSp
 
 	protected void initType(boolean clientSide)
 	{
-		if (seats != null)
-			for (EntitySeat seat : seats)
-				if (seat != null)
-					seat.setDead();
-
 		seats = new EntitySeat[numPassengers];
-		for (int i = 0; i < numPassengers; i++)
+		if (!clientSide)
 		{
-			seats[i] = new EntitySeat(worldObj, this, i);
-			worldObj.spawnEntityInWorld(seats[i]);
+			for (int i = 0; i < numPassengers; i++)
+			{
+				seats[i] = new EntitySeat(worldObj, this, i);
+				worldObj.spawnEntityInWorld(seats[i]);
+			}
 		}
 	}
 

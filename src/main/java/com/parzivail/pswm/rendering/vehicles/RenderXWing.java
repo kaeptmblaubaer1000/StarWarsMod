@@ -6,6 +6,7 @@ import com.parzivail.util.driven.EntityPlane;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -25,32 +26,15 @@ public class RenderXWing extends Render
 		bindEntityTexture(entityPlane);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d, (float)d1, (float)d2);
-		float dYaw = (entityPlane.axes.getYaw() - entityPlane.prevRotationYaw);
-		for (; dYaw > 180F; dYaw -= 360F)
-		{
-		}
-		for (; dYaw <= -180F; dYaw += 360F)
-		{
-		}
-		float dPitch = (entityPlane.axes.getPitch() - entityPlane.prevRotationPitch);
-		for (; dPitch > 180F; dPitch -= 360F)
-		{
-		}
-		for (; dPitch <= -180F; dPitch += 360F)
-		{
-		}
-		float dRoll = (entityPlane.axes.getRoll() - entityPlane.prevRotationRoll);
-		for (; dRoll > 180F; dRoll -= 360F)
-		{
-		}
-		for (; dRoll <= -180F; dRoll += 360F)
-		{
-		}
+		float dYaw = MathHelper.wrapAngleTo180_float(entityPlane.axes.getYaw() - entityPlane.prevRotationYaw);
+		float dPitch = MathHelper.wrapAngleTo180_float(entityPlane.axes.getPitch() - entityPlane.prevRotationPitch);
+		float dRoll = MathHelper.wrapAngleTo180_float(entityPlane.axes.getRoll() - entityPlane.prevRotationRoll);
 		GL11.glRotatef(180F - entityPlane.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(entityPlane.prevRotationPitch + dPitch * f1, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(entityPlane.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(entityPlane.prevRotationRoll + dRoll * f1, 1.0F, 0.0F, 0.0F);
 
-		//GL11.glScalef(modelScale, modelScale, modelScale);
+		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glScalef(3, 3, 3);
 		if (model != null)
 		{
 			model.render(entityPlane, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
