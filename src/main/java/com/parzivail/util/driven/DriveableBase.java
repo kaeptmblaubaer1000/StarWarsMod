@@ -4,7 +4,6 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.entity.EntityCamera;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
-import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,6 +19,7 @@ import net.minecraft.world.World;
 public abstract class DriveableBase extends Entity implements IEntityAdditionalSpawnData
 {
 	static final boolean MOUSE_CONTROL_MODE = false;
+	private Seat DEFAULT_SEAT = new Seat(0, 0, 0);
 
 	public boolean syncFromServer = true;
 	/**
@@ -36,16 +36,9 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	public double serverYaw, serverPitch, serverRoll;
 
 	/**
-	 * The shortName of the driveable type, used to obtain said type
-	 */
-	public String driveableType;
-
-	/**
 	 * The throttle, in the range -1, 1 is multiplied by the maxThrottle (or maxNegativeThrottle) from the plane type to obtain the thrust
 	 */
 	public float throttle;
-
-	public boolean fuelling;
 	/**
 	 * Extra prevRoation field for smoothness in all 3 rotational axes
 	 */
@@ -60,37 +53,10 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	 */
 	public boolean leftMouseHeld = false, rightMouseHeld = false;
 
-	/**
-	 * Shoot delay variables
-	 */
-	public int shootDelayPrimary, shootDelaySecondary;
-	/**
-	 * Minigun speed variables
-	 */
-	public float minigunSpeedPrimary, minigunSpeedSecondary;
-	/**
-	 * Current gun variables for alternating weapons.
-	 */
-	public int currentGunPrimary, currentGunSecondary;
-
-	/**
-	 * Angle of harvester aesthetic piece
-	 */
-	public float harvesterAngle;
-
 	public RotatedAxes prevAxes;
 	public RotatedAxes axes;
 
 	public EntitySeat[] seats;
-
-	/**
-	 * The ID of the slot that we are pulling fuel from. -1 means we have not found one
-	 */
-	private int foundFuel = -1;
-	/**
-	 * True if we need fuel but could not find any in the inventory. Reset when the inventory updated
-	 */
-	public boolean couldNotFindFuel = false;
 
 	@SideOnly(Side.CLIENT)
 	public EntityLivingBase camera;
@@ -113,8 +79,8 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 
 	protected void initType(boolean clientSide)
 	{
-		seats = new EntitySeat[numPassengers + 1];
-		for (int i = 0; i < numPassengers + 1; i++)
+		seats = new EntitySeat[numPassengers];
+		for (int i = 0; i < numPassengers; i++)
 		{
 			if (!clientSide)
 			{
@@ -131,7 +97,6 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tag)
 	{
-		tag.setString("Type", driveableType);
 		tag.setFloat("RotationYaw", axes.getYaw());
 		tag.setFloat("RotationPitch", axes.getPitch());
 		tag.setFloat("RotationRoll", axes.getRoll());
@@ -151,8 +116,6 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	@Override
 	public void writeSpawnData(ByteBuf data)
 	{
-		ByteBufUtils.writeUTF8String(data, driveableType);
-
 		data.writeFloat(axes.getYaw());
 		data.writeFloat(axes.getPitch());
 		data.writeFloat(axes.getRoll());
@@ -198,7 +161,7 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 
 	protected boolean canSit(int seat)
 	{
-		return numPassengers >= seat && seats[seat].riddenByEntity == null;
+		return numPassengers > seat && seats[seat].riddenByEntity == null;
 	}
 
 	@Override
@@ -375,7 +338,7 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 
 		if (!worldObj.isRemote)
 		{
-			for (int i = 0; i < numPassengers + 1; i++)
+			for (int i = 0; i < numPassengers; i++)
 			{
 				if (seats[i] == null || !seats[i].addedToChunk)
 				{
@@ -549,6 +512,6 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 
 	public Seat getSeatData(int id)
 	{
-		return null;
+		return DEFAULT_SEAT;
 	}
 }
