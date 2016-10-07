@@ -10,35 +10,6 @@ import net.minecraft.world.World;
 
 public class Starship extends Pilotable
 {
-	/**
-	 * The flap positions, used for renderering and for controlling the plane rotations
-	 */
-	public float flapsYaw, flapsPitchLeft, flapsPitchRight;
-	/**
-	 * Position of looping engine sound
-	 */
-	public int soundPosition;
-	/**
-	 * The angle of the propeller for the renderer
-	 */
-	public float propAngle;
-	/**
-	 * Weapon delays
-	 */
-	public int bombDelay, gunDelay;
-	/**
-	 * Despawn timer
-	 */
-	public int ticksSinceUsed = 0;
-	/**
-	 * Mostly aesthetic model variables. Gear actually has a variable hitbox
-	 */
-	public boolean varGear = true, varDoor = false, varWing = false;
-	/**
-	 * Delayer for gear, door and wing buttons
-	 */
-	public int toggleTimer = 0;
-
 	public Starship(World world)
 	{
 		super(world);
@@ -65,25 +36,6 @@ public class Starship extends Pilotable
 	{
 		super.writeEntityToNBT(tag);
 		tag.setTag("Pos", this.newDoubleNBTList(this.posX, this.posY + 1D, this.posZ));
-		tag.setBoolean("VarGear", varGear);
-		tag.setBoolean("VarDoor", varDoor);
-		tag.setBoolean("VarWing", varWing);
-	}
-
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound tag)
-	{
-		super.readEntityFromNBT(tag);
-		varGear = tag.getBoolean("VarGear");
-		varDoor = tag.getBoolean("VarDoor");
-		varWing = tag.getBoolean("VarWing");
-	}
-
-	@Override
-	public void setPositionRotationAndMotion(double x, double y, double z, float yaw, float pitch, float roll, double motX, double motY, double motZ, float velYaw, float velPitch, float velRoll, float throt, float steeringYaw)
-	{
-		super.setPositionRotationAndMotion(x, y, z, yaw, pitch, roll, motX, motY, motZ, velYaw, velPitch, velRoll, throt, steeringYaw);
-		flapsYaw = steeringYaw;
 	}
 
 	@Override
@@ -94,12 +46,8 @@ public class Starship extends Pilotable
 
 		//Check each seat in order to see if the player can sit in it
 		for (int i = 0; i < numPassengers; i++)
-		{
 			if (seats[i].interactFirst(entityplayer))
-			{
 				return true;
-			}
-		}
 		return false;
 	}
 
@@ -129,9 +77,7 @@ public class Starship extends Pilotable
 				--serverPositionTransitionTicker;
 				setPosition(x, y, z);
 				setRotation(rotationYaw, rotationPitch, rotationRoll);
-				//return;
 			}
-			//If the drivable is at its server position and does not have the next update, it should just simulate itself as a server side plane would, so continue
 		}
 
 
@@ -151,7 +97,7 @@ public class Starship extends Pilotable
 			serverYaw = axes.getYaw();
 		}
 
-		if (!worldObj.isRemote)// && (Math.abs(posX - prevPosX) > updateSpeed || Math.abs(posY - prevPosY) > updateSpeed || Math.abs(posZ - prevPosZ) > updateSpeed))
+		if (!worldObj.isRemote)
 		{
 			StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
 		}
