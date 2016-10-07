@@ -300,4 +300,10 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 	{
 		Minecraft.getMinecraft().displayGuiScreen(new GuiJediSith(event.entityPlayer));
 	}
+
+	@Override
+	public boolean isThePlayer(EntityPlayer entity)
+	{
+		return entity == StarWarsMod.mc.thePlayer;
+	}
 }
