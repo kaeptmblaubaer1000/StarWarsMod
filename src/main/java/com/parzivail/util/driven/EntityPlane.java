@@ -1,8 +1,10 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.util.lwjgl.Vector3f;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
@@ -217,8 +219,7 @@ public class EntityPlane extends DrivableBase
 					player.addChatMessage(new ChatComponentText("Landing gear " + (varGear ? "down" : "up")));
 					toggleTimer = 10;
 
-					// TODO: packets
-					//FlansMod.getPacketHandler().sendToServer(new PacketDriveableControl(this));
+					StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
 				}
 				return true;
 			}
@@ -423,8 +424,7 @@ public class EntityPlane extends DrivableBase
 		//Calculate movement on the client and then send position, rotation etc to the server
 		if (thePlayerIsDrivingThis)
 		{
-			// TODO: packets
-			//FlansMod.getPacketHandler().sendToServer(new PacketPlaneControl(this));
+			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
 			serverPosX = posX;
 			serverPosY = posY;
 			serverPosZ = posZ;
@@ -435,8 +435,7 @@ public class EntityPlane extends DrivableBase
 		float updateSpeed = 0.01F;
 		if (!worldObj.isRemote)// && (Math.abs(posX - prevPosX) > updateSpeed || Math.abs(posY - prevPosY) > updateSpeed || Math.abs(posZ - prevPosZ) > updateSpeed))
 		{
-			// TODO: packets
-			//FlansMod.getPacketHandler().sendToAllAround(new PacketPlaneControl(this), posX, posY, posZ, FlansMod.driveableUpdateRange, dimension);
+			StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
 		}
 	}
 }
