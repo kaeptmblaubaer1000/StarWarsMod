@@ -1,5 +1,7 @@
 package com.parzivail.util.driven;
 
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSeatUpdate;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -379,8 +381,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			//Now set the new angles
 			looking.setAngles(newYaw, newPitch, 0F);
 
-			// TODO: packets
-			//FlansMod.getPacketHandler().sendToServer(new PacketSeatUpdates(this));
+			StarWarsMod.network.sendToServer(new MessageSeatUpdate(this));
 		}
 	}
 
