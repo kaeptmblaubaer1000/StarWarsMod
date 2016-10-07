@@ -19,6 +19,8 @@ import net.minecraft.world.World;
 
 public abstract class DriveableBase extends Entity implements IEntityAdditionalSpawnData
 {
+	static final boolean MOUSE_CONTROL_MODE = false;
+
 	public boolean syncFromServer = true;
 	/**
 	 * Ticks since last server update. Use to smoothly transition to new position
@@ -94,7 +96,8 @@ public abstract class DriveableBase extends Entity implements IEntityAdditionalS
 	public EntityLivingBase camera;
 
 	public float cameraDistance = 1;
-	private int numPassengers = 1;
+	protected int numPassengers = 1;
+	public float moveDrag;
 
 	public DriveableBase(World world)
 	{

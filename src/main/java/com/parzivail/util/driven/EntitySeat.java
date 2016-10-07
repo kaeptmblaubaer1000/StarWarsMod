@@ -24,7 +24,6 @@ import java.util.List;
 
 public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 {
-	private static final boolean MOUSE_CONTROL_MODE = false;
 	/**
 	 * Set this to true when the client has found the parent driveable and connected them
 	 */
@@ -149,7 +148,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//If on the client
 		if (worldObj.isRemote)
 		{
-			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && MOUSE_CONTROL_MODE)
+			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && DriveableBase.MOUSE_CONTROL_MODE)
 			{
 				looking = new RotatedAxes();
 			}
@@ -330,7 +329,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			driveable.onMouseMoved(deltaX, deltaY);
 		}
 		//Other seats should look around, but also the driver seat if mouse control mode is disabled
-		if (!driver || !MOUSE_CONTROL_MODE)
+		if (!driver || !DriveableBase.MOUSE_CONTROL_MODE)
 		{
 			float lookSpeed = 4F;
 
