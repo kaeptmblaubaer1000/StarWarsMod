@@ -379,6 +379,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			//Now set the new angles
 			looking.setAngles(newYaw, newPitch, 0F);
 
+			// TODO: packets
 			//FlansMod.getPacketHandler().sendToServer(new PacketSeatUpdates(this));
 		}
 	}
@@ -387,6 +388,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	{
 		if (worldObj.isRemote && foundDriveable)
 		{
+			// TODO: packets
 			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKeyHeld(key, held));
 		}
 		if (driver)

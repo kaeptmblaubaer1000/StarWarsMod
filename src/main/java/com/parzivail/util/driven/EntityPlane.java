@@ -4,10 +4,8 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.lwjgl.Vector3f;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -137,6 +135,7 @@ public class EntityPlane extends DriveableBase
 		//Send keys which require server side updates to the server
 		if (worldObj.isRemote && (key == 6 || key == 8 || key == 9))
 		{
+			// TODO: packets
 			//FlansMod.getPacketHandler().sendToServer(new PacketDriveableKey(key));
 			return true;
 		}
@@ -217,6 +216,7 @@ public class EntityPlane extends DriveableBase
 					varGear = !varGear;
 					player.addChatMessage(new ChatComponentText("Landing gear " + (varGear ? "down" : "up")));
 					toggleTimer = 10;
+					// TODO: packets
 					//FlansMod.getPacketHandler().sendToServer(new PacketDriveableControl(this));
 				}
 				return true;
@@ -384,14 +384,7 @@ public class EntityPlane extends DriveableBase
 		g = 0.98F / 20F;
 		motionY -= g;
 
-		//Apply lift
-		int numWingsIntact = 0;
-		if (isPartIntact(EnumDriveablePart.rightWing))
-			numWingsIntact++;
-		if (isPartIntact(EnumDriveablePart.leftWing))
-			numWingsIntact++;
-
-		float amountOfLift = 2F * g * throttle * numWingsIntact / 2F;
+		float amountOfLift = 2F * g * throttle;
 		if (amountOfLift > g)
 			amountOfLift = g;
 
@@ -412,8 +405,6 @@ public class EntityPlane extends DriveableBase
 		motionY *= drag;
 		motionZ *= drag;
 
-		data.fuelInTank -= throttleScaled * fuelConsumptionMultiplier * data.engine.fuelConsumption;
-
 		double motion = Math.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ);
 		if (motion > 10)
 		{
@@ -421,120 +412,6 @@ public class EntityPlane extends DriveableBase
 			motionY *= 10 / motion;
 			motionZ *= 10 / motion;
 		}
-
-		for (EntityWheel wheel : wheels)
-		{
-			if (wheel != null && worldObj != null)
-				if (type.floatOnWater && worldObj.isAnyLiquid(wheel.boundingBox))
-				{
-					motionY += type.buoyancy;
-				}
-		}
-
-		//Move the wheels first
-		for (EntityWheel wheel : wheels)
-		{
-			if (wheel != null)
-			{
-				wheel.prevPosY = wheel.posY;
-				wheel.moveEntity(motionX, motionY, motionZ);
-			}
-		}
-
-		//Update wheels
-		for (int i = 0; i < 2; i++)
-		{
-			Vector3f amountToMoveCar = new Vector3f(motionX / 2F, motionY / 2F, motionZ / 2F);
-
-			for (EntityWheel wheel : wheels)
-			{
-				if (wheel == null)
-					continue;
-
-				//Hacky way of forcing the car to step up blocks
-				onGround = true;
-				wheel.onGround = true;
-
-				//Update angles
-				wheel.rotationYaw = axes.getYaw();
-
-				//Pull wheels towards car
-				Vector3f targetWheelPos = axes.findLocalVectorGlobally(getPlaneType().wheelPositions[wheel.ID].position);
-				Vector3f currentWheelPos = new Vector3f(wheel.posX - posX, wheel.posY - posY, wheel.posZ - posZ);
-
-				float targetWheelLength = targetWheelPos.length();
-				float currentWheelLength = currentWheelPos.length();
-
-				float dLength = targetWheelLength - currentWheelLength;
-				float dAngle = Vector3f.angle(targetWheelPos, currentWheelPos);
-
-				//if(dLength > 0.01F || dAngle > 1F)
-				{
-					//Now Lerp by wheelSpringStrength and work out the new positions		
-					float newLength = currentWheelLength + dLength * type.wheelSpringStrength;
-					Vector3f rotateAround = Vector3f.cross(targetWheelPos, currentWheelPos, null);
-
-					Matrix4f mat = new Matrix4f();
-					mat.m00 = currentWheelPos.x;
-					mat.m10 = currentWheelPos.y;
-					mat.m20 = currentWheelPos.z;
-					mat.rotate(dAngle * type.wheelSpringStrength, rotateAround);
-
-					axes.rotateGlobal(-dAngle * type.wheelSpringStrength, rotateAround);
-
-					Vector3f newWheelPos = new Vector3f(mat.m00, mat.m10, mat.m20);
-					newWheelPos.normalise().scale(newLength);
-
-					//The proportion of the spring adjustment that is applied to the wheel. 1 - this is applied to the plane
-					float wheelProportion = 0.75F;
-
-					//wheel.motionX = (newWheelPos.x - currentWheelPos.x) * wheelProportion;
-					//wheel.motionY = (newWheelPos.y - currentWheelPos.y) * wheelProportion;
-					//wheel.motionZ = (newWheelPos.z - currentWheelPos.z) * wheelProportion;
-
-					Vector3f amountToMoveWheel = new Vector3f();
-
-					amountToMoveWheel.x = (newWheelPos.x - currentWheelPos.x) * (1F - wheelProportion);
-					amountToMoveWheel.y = (newWheelPos.y - currentWheelPos.y) * (1F - wheelProportion);
-					amountToMoveWheel.z = (newWheelPos.z - currentWheelPos.z) * (1F - wheelProportion);
-
-					amountToMoveCar.x -= (newWheelPos.x - currentWheelPos.x) * (1F - wheelProportion);
-					amountToMoveCar.y -= (newWheelPos.y - currentWheelPos.y) * (1F - wheelProportion);
-					amountToMoveCar.z -= (newWheelPos.z - currentWheelPos.z) * (1F - wheelProportion);
-
-					//The difference between how much the wheel moved and how much it was meant to move. i.e. the reaction force from the block
-					//amountToMoveCar.x += ((wheel.posX - wheel.prevPosX) - (motionX)) * 0.616F / wheels.length;
-					amountToMoveCar.y += ((wheel.posY - wheel.prevPosY) - (motionY)) * 0.5F / wheels.length;
-					//amountToMoveCar.z += ((wheel.posZ - wheel.prevPosZ) - (motionZ)) * 0.0616F / wheels.length;
-
-					wheel.moveEntity(amountToMoveWheel.x, amountToMoveWheel.y, amountToMoveWheel.z);
-
-				}
-			}
-
-			moveEntity(amountToMoveCar.x, amountToMoveCar.y, amountToMoveCar.z);
-
-		}
-
-		checkForCollisions();
-
-		//Sounds
-		//Starting sound
-		if (throttle > 0.01F && throttle < 0.2F && soundPosition == 0 && hasEnoughFuel())
-		{
-			PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.startSound, false);
-			soundPosition = type.startSoundLength;
-		}
-		//Flying sound
-		if (throttle > 0.2F && soundPosition == 0 && hasEnoughFuel())
-		{
-			PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.engineSound, false);
-			soundPosition = type.engineSoundLength;
-		}
-
-		//Sound decrementer
-		if (soundPosition > 0)
-			soundPosition--;
 
 		for (EntitySeat seat : seats)
 		{
@@ -545,7 +422,8 @@ public class EntityPlane extends DriveableBase
 		//Calculate movement on the client and then send position, rotation etc to the server
 		if (thePlayerIsDrivingThis)
 		{
-			FlansMod.getPacketHandler().sendToServer(new PacketPlaneControl(this));
+			// TODO: packets
+			//FlansMod.getPacketHandler().sendToServer(new PacketPlaneControl(this));
 			serverPosX = posX;
 			serverPosY = posY;
 			serverPosZ = posZ;
@@ -556,80 +434,8 @@ public class EntityPlane extends DriveableBase
 		float updateSpeed = 0.01F;
 		if (!worldObj.isRemote)// && (Math.abs(posX - prevPosX) > updateSpeed || Math.abs(posY - prevPosY) > updateSpeed || Math.abs(posZ - prevPosZ) > updateSpeed))
 		{
-			FlansMod.getPacketHandler().sendToAllAround(new PacketPlaneControl(this), posX, posY, posZ, FlansMod.driveableUpdateRange, dimension);
+			// TODO: packets
+			//FlansMod.getPacketHandler().sendToAllAround(new PacketPlaneControl(this), posX, posY, posZ, FlansMod.driveableUpdateRange, dimension);
 		}
-	}
-
-	@Override
-	public void setDead()
-	{
-		super.setDead();
-		for (EntityWheel wheel : wheels)
-			if (wheel != null)
-				wheel.setDead();
-	}
-
-	@Override
-	public boolean gearDown()
-	{
-		return varGear;
-	}
-
-	public boolean attackEntityFrom(DamageSource damagesource, float i, boolean doDamage)
-	{
-		if (worldObj.isRemote || isDead)
-			return true;
-
-		PlaneType type = PlaneType.getPlane(driveableType);
-
-		if (damagesource.damageType.equals("player") && damagesource.getEntity().onGround && (seats[0] == null || seats[0].riddenByEntity == null))
-		{
-			ItemStack planeStack = new ItemStack(type.item, 1, 0);
-			planeStack.stackTagCompound = new NBTTagCompound();
-			driveableData.writeToNBT(planeStack.stackTagCompound);
-			entityDropItem(planeStack, 0.5F);
-			setDead();
-		}
-		return true;
-	}
-
-	@Override
-	public boolean canHitPart(EnumDriveablePart part)
-	{
-		return varGear || (part != EnumDriveablePart.coreWheel && part != EnumDriveablePart.leftWingWheel && part != EnumDriveablePart.rightWingWheel && part != EnumDriveablePart.tailWheel);
-	}
-
-	@Override
-	public boolean attackEntityFrom(DamageSource damagesource, float i)
-	{
-		return attackEntityFrom(damagesource, i, true);
-	}
-
-	public PlaneType getPlaneType()
-	{
-		return PlaneType.getPlane(driveableType);
-	}
-
-	@Override
-	protected void dropItemsOnPartDeath(Vector3f midpoint, DriveablePart part)
-	{
-	}
-
-	@Override
-	public String getBombInventoryName()
-	{
-		return "Bombs";
-	}
-
-	@Override
-	public String getMissileInventoryName()
-	{
-		return "Missiles";
-	}
-
-	@Override
-	public boolean hasMouseControlMode()
-	{
-		return true;
 	}
 }
