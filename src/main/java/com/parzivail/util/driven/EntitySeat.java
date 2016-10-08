@@ -66,7 +66,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		setSize(1F, 1F);
 		prevLooking = new RotatedAxes();
 		looking = new RotatedAxes();
-		Lumberjack.debug("created anew");
 	}
 
 	/**
@@ -151,7 +150,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 
-			Lumberjack.debug("searching...");
+			Lumberjack.debug("[Seat] Searching for parent...");
 		}
 
 		getKeyInput();
@@ -249,9 +248,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		riddenByEntity.posX = playerPosX;
 		riddenByEntity.posY = playerPosY;
 		riddenByEntity.posZ = playerPosZ;
-
-		//riddenByEntity.setPosition(playerPosX, playerPosY, playerPosZ);
-		Lumberjack.debug(riddenByEntity.posX);
 	}
 
 	@SideOnly(Side.CLIENT)
