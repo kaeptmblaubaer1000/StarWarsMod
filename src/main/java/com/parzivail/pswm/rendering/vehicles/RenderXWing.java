@@ -21,24 +21,25 @@ public class RenderXWing extends Render
 		model = new ModelXWingNew();
 	}
 
-	public void render(Starship entityPlane, double d, double d1, double d2, float f, float f1)
+	public void render(Starship starship, double d, double d1, double d2, float f, float f1)
 	{
-		bindEntityTexture(entityPlane);
+		bindEntityTexture(starship);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d, (float)d1, (float)d2);
-		float dYaw = MathHelper.wrapAngleTo180_float(entityPlane.axes.getYaw() - entityPlane.prevRotationYaw);
-		float dPitch = MathHelper.wrapAngleTo180_float(entityPlane.axes.getPitch() - entityPlane.prevRotationPitch);
-		float dRoll = MathHelper.wrapAngleTo180_float(entityPlane.axes.getRoll() - entityPlane.prevRotationRoll);
-		GL11.glRotatef(180F - entityPlane.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(entityPlane.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(-(entityPlane.prevRotationRoll + dRoll * f1), 1.0F, 0.0F, 0.0F);
+		float dYaw = MathHelper.wrapAngleTo180_float(starship.axes.getYaw() - starship.prevRotationYaw);
+		float dPitch = MathHelper.wrapAngleTo180_float(starship.axes.getPitch() - starship.prevRotationPitch);
+		float dRoll = MathHelper.wrapAngleTo180_float(starship.axes.getRoll() - starship.prevRotationRoll);
+		GL11.glRotatef(180F - starship.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(starship.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(-(starship.prevRotationRoll + dRoll * f1), 1.0F, 0.0F, 0.0F);
 
 		GL11.glColor4f(1, 1, 1, 1);
 		GL11.glScalef(3, 3, 3);
 		if (model != null)
 		{
 			GL11.glRotatef(-90, 0, 1, 0);
-			model.render(entityPlane, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
+			GL11.glTranslatef(starship.getRenderOffset().x / 16f, starship.getRenderOffset().y / 16f, starship.getRenderOffset().z / 16f);
+			model.render(starship, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
 		}
 
 		GL11.glPopMatrix();

@@ -4,7 +4,9 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageSFoil;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.driven.Seat;
 import com.parzivail.util.driven.Starship;
+import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,10 +27,8 @@ public class VehicXWing extends Starship implements IDebugProvider
 	{
 		super(par1World);
 		this.setSize(3.0F, 6.0F);
-		//this.vehicYOffset = -3F;
-		//this.moveModifier = 1.75F;
-		//this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60);
-		//this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
+
+		renderOffset = new Vector3f(0, -9, 0);
 	}
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
@@ -224,5 +224,17 @@ public class VehicXWing extends Starship implements IDebugProvider
 	{
 		this.dataWatcher.updateObject(SFOIL_DW + 2, astroType);
 		this.dataWatcher.setObjectWatched(SFOIL_DW + 2);
+	}
+
+	@Override
+	public Seat getSeatData(int id)
+	{
+		switch (id)
+		{
+			case 0:
+				return new Seat(-15, 0, 0);
+			default:
+				return super.getSeatData(id);
+		}
 	}
 }

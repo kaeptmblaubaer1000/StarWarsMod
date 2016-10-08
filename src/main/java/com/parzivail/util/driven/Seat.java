@@ -80,15 +80,15 @@ public class Seat
 	/**
 	 * Type file driver seat constructor with yaw and pitch limiters
 	 */
-	public Seat(int dx, int dy, int dz, float y1, float y2, float p1, float p2)
+	public Seat(int dx, int dy, int dz, float yMin, float yMax, float pMin, float pMax)
 	{
 		id = 0;
 		x = dx;
 		y = dy;
 		z = dz;
-		minYaw = y1;
-		maxYaw = y2;
-		minPitch = p1;
-		maxPitch = p2;
+		minYaw = yMin;
+		maxYaw = yMax;
+		minPitch = pMin;
+		maxPitch = pMax;
 	}
 }

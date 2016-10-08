@@ -23,6 +23,8 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.VehicNpcXWing;
 import com.parzivail.pswm.weaponry.WeaponDSTurret;
+import com.parzivail.util.driven.EntitySeat;
+import com.parzivail.util.entity.EntityCamera;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.ShaderHelper;
@@ -155,6 +157,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterEzraBolt.class, new RenderBlasterBolt(GLPalette.ELECTRIC_BLUE));
 		RenderingRegistry.registerEntityRenderingHandler(EntityProtonTorpedo.class, new RenderWarhead(0xFFB20046));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBomb.class, new RenderWarhead(GLPalette.BLACK));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntitySeat.class, new RenderBlank());
+		RenderingRegistry.registerEntityRenderingHandler(EntityCamera.class, new RenderBlank());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityThrownSaber.class, new RenderThrownSaber());
 

@@ -91,26 +91,36 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		//setPosition(x, y, z);
 	}
 
-	public void getKeyInput()
+	private void getKeyInput()
 	{
 		if (!(this.getControllingEntity() instanceof EntityPlayer))
 			return;
 
 		if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
 		{
-			this.parent.rotateRoll(10);
+			this.parent.angularVelocity.z += 4;
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindRight))
 		{
-			this.parent.rotateRoll(-10);
+			this.parent.angularVelocity.z -= 4;
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindForward))
 		{
-			this.parent.rotatePitch(-10);
+			this.parent.angularVelocity.x -= 2;
 		}
 		if ($(StarWarsMod.mc.gameSettings.keyBindBack))
 		{
-			this.parent.rotatePitch(10);
+			this.parent.angularVelocity.x += 2;
+		}
+		if ($(StarWarsMod.mc.gameSettings.keyBindJump))
+		{
+			this.parent.throttle += this.parent.maxThrottle / 10f;
+			this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
+		}
+		if ($(StarWarsMod.mc.gameSettings.keyBindSneak))
+		{
+			this.parent.throttle -= this.parent.maxThrottle / 10f;
+			this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
 		}
 	}
 
@@ -125,6 +135,15 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		super.onUpdate();
 
 		getKeyInput();
+
+		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG);
+		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
+			this.parent.angularVelocity.x = 0;
+		if (Math.abs(this.parent.angularVelocity.z) < 0.01f)
+			this.parent.angularVelocity.z = 0;
+
+		this.parent.rotateRoll(this.parent.angularVelocity.z);
+		this.parent.rotatePitch(this.parent.angularVelocity.x);
 
 		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
@@ -141,27 +160,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 		}
-
-		//If on the client
-		//		if (worldObj.isRemote)
-		//		{
-		//			if (driver && riddenByEntity == Minecraft.getMinecraft().thePlayer && Pilotable.MOUSE_CONTROL_MODE)
-		//			{
-		//				looking = new RotatedAxes();
-		//			}
-		//			//DEBUG : Spawn particles along axes
-		//
-		//			Vector3f xAxis = parent.axes.findLocalAxesGlobally(looking).getXAxis();
-		//			Vector3f yAxis = parent.axes.findLocalAxesGlobally(looking).getYAxis();
-		//			Vector3f zAxis = parent.axes.findLocalAxesGlobally(looking).getZAxis();
-		//			Vector3f yOffset = parent.axes.findLocalVectorGlobally(new Vector3f(0F, riddenByEntity == null ? 0F : (float)riddenByEntity.getYOffset(), 0F));
-		//			for (int i = 0; i < 10; i++)
-		//			{
-		//				worldObj.spawnParticle("enchantmenttable", posX + xAxis.x * i * 0.3D + yOffset.x, posY + xAxis.y * i * 0.3D + yOffset.y, posZ + xAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-		//				worldObj.spawnParticle("smoke", posX + yAxis.x * i * 0.3D + yOffset.x, posY + yAxis.y * i * 0.3D + yOffset.y, posZ + yAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-		//				worldObj.spawnParticle("reddust", posX + zAxis.x * i * 0.3D + yOffset.x, posY + zAxis.y * i * 0.3D + yOffset.y, posZ + zAxis.z * i * 0.3D + yOffset.z, 0, 0, 0);
-		//			}
-		//		}
 	}
 
 	/**
@@ -194,7 +192,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			}
 
 			Vector3f relativePosition = parent.axes.findLocalVectorGlobally(localPosition);
-			//Set the absol
 			setPosition(parent.posX + relativePosition.x, parent.posY + relativePosition.y, parent.posZ + relativePosition.z);
 		}
 
@@ -247,6 +244,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			riddenByEntity.prevRotationYaw = prevPlayerYaw;
 			riddenByEntity.prevRotationPitch = prevPlayerPitch;
 		}
+
 		riddenByEntity.lastTickPosX = riddenByEntity.prevPosX = prevPlayerPosX;
 		riddenByEntity.lastTickPosY = riddenByEntity.prevPosY = prevPlayerPosY;
 		riddenByEntity.lastTickPosZ = riddenByEntity.prevPosZ = prevPlayerPosZ;

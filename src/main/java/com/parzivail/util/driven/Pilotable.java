@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
 	static final boolean MOUSE_CONTROL_MODE = false;
+	public static final float ANGULAR_DRAG = 0.8f;
 	private Seat DEFAULT_SEAT = new Seat(0, 0, 0);
 
 	public boolean syncFromServer = true;
@@ -40,6 +41,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	 * The throttle, in the range -1, 1 is multiplied by the maxThrottle (or maxNegativeThrottle) from the plane type to obtain the thrust
 	 */
 	public float throttle;
+	public float maxThrottle = 1f;
 	/**
 	 * Extra prevRoation field for smoothness in all 3 rotational axes
 	 */
@@ -60,6 +62,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public float cameraDistance = 1;
 	protected int numPassengers = 1;
+	protected Vector3f renderOffset = new Vector3f(0, 0, 0);
 
 	public Pilotable(World world)
 	{
@@ -85,6 +88,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				worldObj.spawnEntityInWorld(seats[i]);
 			}
 		}
+	}
+
+	public Vector3f getRenderOffset()
+	{
+		return renderOffset;
 	}
 
 	@Override
@@ -320,6 +328,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		}
 		if (riddenByEntity != null)
 			riddenByEntity.fallDistance = 0F;
+
+		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 	}
 
 	@Override
@@ -436,26 +446,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		if (seats == null || seats.length == 0 || seats[0] == null)
 			return null;
 		return seats[0].getControllingEntity();
-	}
-
-	public double getSpeedXYZ()
-	{
-		return Math.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ);
-	}
-
-	public double getSpeedXZ()
-	{
-		return Math.sqrt(motionX * motionX + motionZ * motionZ);
-	}
-
-	public float getPlayerRoll()
-	{
-		return axes.getRoll();
-	}
-
-	public float getCameraDistance()
-	{
-		return cameraDistance;
 	}
 
 	public Seat getSeatData(int id)

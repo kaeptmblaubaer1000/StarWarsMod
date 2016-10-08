@@ -1,7 +1,9 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.network.MessageDrivableControl;
+import com.parzivail.util.lwjgl.Vector3f;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -80,6 +82,7 @@ public class Starship extends Pilotable
 			}
 		}
 
+		calculateMotion();
 
 		for (EntitySeat seat : seats)
 		{
@@ -101,5 +104,34 @@ public class Starship extends Pilotable
 		{
 			StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
 		}
+	}
+
+	private void calculateMotion()
+	{
+		Vector3f forwards = (Vector3f)axes.getXAxis().normalise();
+
+		//Apply gravity
+		PlanetInformation info = PlanetInformation.getPlanet(this.worldObj.provider.dimensionId);
+		float g = info == null ? 0.98f / 20f : info.getGravity();
+
+		motionY -= g;
+
+		float amountOfLift = 2F * g * throttle;
+		if (amountOfLift > g)
+			amountOfLift = g;
+
+		motionY += amountOfLift;
+
+		//Add the corrected motion
+		motionX += throttle * forwards.x;
+		motionY += throttle * forwards.y;
+		motionZ += throttle * forwards.z;
+
+		float drag = info == null ? 0.75f : info.getAtmosphericDrag();
+
+		//Apply drag
+		motionX *= drag;
+		motionY *= drag;
+		motionZ *= drag;
 	}
 }

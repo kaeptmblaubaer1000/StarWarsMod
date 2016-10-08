@@ -27,14 +27,12 @@ public class EntityCamera extends EntityLivingBase
 	@Override
 	public void onUpdate()
 	{
-		//super.onUpdate();
-
 		prevPosX = posX;
 		prevPosY = posY;
 		prevPosZ = posZ;
 
-		Vector3f cameraPosition = new Vector3f();//-1F, 0.5F, 0F);
-		//cameraPosition.scale(drivable.getDriveableType().cameraDistance);
+		Vector3f cameraPosition = new Vector3f();
+		cameraPosition.scale(pilotable.cameraDistance);
 		cameraPosition = pilotable.axes.findLocalVectorGlobally(cameraPosition);
 
 		//Lerp it
