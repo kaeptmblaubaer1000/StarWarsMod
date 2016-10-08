@@ -41,7 +41,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	 * The throttle, in the range -1, 1 is multiplied by the maxThrottle (or maxNegativeThrottle) from the plane type to obtain the thrust
 	 */
 	public float throttle;
-	public float maxThrottle = 1f;
+	public float maxThrottle = 0.25f;
 	/**
 	 * Extra prevRoation field for smoothness in all 3 rotational axes
 	 */
@@ -74,7 +74,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
-		initType(world.isRemote);
 	}
 
 	protected void initType(boolean clientSide)
@@ -106,7 +105,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag)
 	{
-		initType(false);
+		//initType(false);
 
 		prevRotationYaw = tag.getFloat("RotationYaw");
 		prevRotationPitch = tag.getFloat("RotationPitch");
@@ -304,6 +303,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		super.onUpdate();
 
+		maxThrottle = 0.4f;
+
+		if (seats == null)
+			initType(worldObj.isRemote);
+
 		if (!worldObj.isRemote)
 			for (int i = 0; i < numPassengers; i++)
 			{
@@ -312,6 +316,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				if (!seats[i].addedToChunk)
 					worldObj.spawnEntityInWorld(seats[i]);
 			}
+
+		//if (!this.worldObj.isRemote)
+		//	StarWarsMod.network.sendToDimension(new MessageSetSeats(this, this.seats), this.dimension);
 
 		prevRotationYaw = axes.getYaw();
 		prevRotationPitch = axes.getPitch();

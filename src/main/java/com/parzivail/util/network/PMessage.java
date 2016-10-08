@@ -1,6 +1,7 @@
 package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.util.driven.EntitySeat;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -50,6 +51,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(Color.class, PMessage::readColor, PMessage::writeColor);
 		map(World.class, PMessage::readWorld, PMessage::writeWorld);
 		map(ItemStack[].class, PMessage::readItemStacks, PMessage::writeItemStacks);
+		map(EntitySeat[].class, PMessage::readSeats, PMessage::writeSeats);
 		//map(RotatedAxes.class, PMessage::readRAxes, PMessage::writeRAxes);
 	}
 
@@ -175,6 +177,15 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		for (int i = 0; i < count; i++)
 			stacks.add(readItemStack(buf));
 		return stacks.toArray(new ItemStack[count]);
+	}
+
+	private static EntitySeat[] readSeats(ByteBuf buf)
+	{
+		ArrayList<EntitySeat> stacks = new ArrayList<>();
+		int count = readInt(buf);
+		for (int i = 0; i < count; i++)
+			stacks.add((EntitySeat)readEntity(buf));
+		return stacks.toArray(new EntitySeat[count]);
 	}
 
 	private static long readLong(ByteBuf buf)
@@ -304,6 +315,13 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		writeInt(stack.length, buf);
 		for (ItemStack stack1 : stack)
 			ByteBufUtils.writeItemStack(buf, stack1);
+	}
+
+	private static void writeSeats(EntitySeat[] stack, ByteBuf buf)
+	{
+		writeInt(stack.length, buf);
+		for (EntitySeat stack1 : stack)
+			writeEntity(stack1, buf);
 	}
 
 	private static void writeLong(long l, ByteBuf buf)

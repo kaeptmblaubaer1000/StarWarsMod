@@ -1,19 +1,15 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.driven.EntitySeat;
-import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.Entity;
 
 public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 {
-	public int seatId;
-	public float yaw, pitch;
+	public double posX, posY, posZ;
+	public double motX, motY, motZ;
 	public Entity entity;
 
 	public MessageSeatUpdate()
@@ -22,38 +18,33 @@ public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 
 	public MessageSeatUpdate(EntitySeat seat)
 	{
-		entity = seat.parent;
-		seatId = seat.seatInfo.id;
-		yaw = seat.looking.getYaw();
-		pitch = seat.looking.getPitch();
+		entity = seat;
+		posX = seat.posX;
+		posY = seat.posY;
+		posZ = seat.posZ;
+		motX = seat.motionX;
+		motY = seat.motionY;
+		motZ = seat.motionZ;
 	}
 
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		Pilotable drivable = null;
-		if (entity instanceof Pilotable)
-			drivable = (Pilotable)entity;
+		EntitySeat seat = null;
+		if (entity instanceof EntitySeat)
+			seat = (EntitySeat)entity;
+		if (seat != null)
+		{
+			seat.setPosition(posX, posY, posZ);
+			seat.motionX = motX;
+			seat.motionY = motY;
+			seat.motionZ = motZ;
 
-		if (context.side == Side.SERVER)
-		{
-			if (drivable != null)
+			if (seat.riddenByEntity != null)
 			{
-				drivable.seats[seatId].prevLooking = drivable.seats[seatId].looking.clone();
-				drivable.seats[seatId].looking.setAngles(yaw, pitch, 0F);
-				//If on the server, update all surrounding players with these new angles
-				StarWarsMod.network.sendToAllAround(this, new NetworkRegistry.TargetPoint(drivable.dimension, drivable.posX, drivable.posY, drivable.posZ, 100));
-			}
-		}
-		else if (context.side == Side.CLIENT)
-		{
-			if (drivable != null)
-			{
-				//If this is the player who sent the packet in the first place, don't read it
-				if (drivable.seats[seatId] == null || drivable.seats[seatId].riddenByEntity == StarWarsMod.mc.thePlayer)
-					return null;
-				drivable.seats[seatId].prevLooking = drivable.seats[seatId].looking.clone();
-				drivable.seats[seatId].looking.setAngles(yaw, pitch, 0F);
+				seat.riddenByEntity.lastTickPosX = seat.riddenByEntity.prevPosX = seat.riddenByEntity.posX = posX;
+				seat.riddenByEntity.lastTickPosY = seat.riddenByEntity.prevPosY = seat.riddenByEntity.posY = posY;
+				seat.riddenByEntity.lastTickPosZ = seat.riddenByEntity.prevPosZ = seat.riddenByEntity.posZ = posZ;
 			}
 		}
 

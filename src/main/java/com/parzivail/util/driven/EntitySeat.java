@@ -3,6 +3,7 @@ package com.parzivail.util.driven;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -65,6 +66,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		setSize(1F, 1F);
 		prevLooking = new RotatedAxes();
 		looking = new RotatedAxes();
+		Lumberjack.debug("created anew");
 	}
 
 	/**
@@ -126,24 +128,13 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 	private boolean $(KeyBinding key)
 	{
-		return key.getIsKeyPressed() && this.getControllingEntity() instanceof EntityPlayer/* && StarWarsMod.proxy.isThePlayer((EntityPlayer)this.getControllingEntity())*/;
+		return key.getIsKeyPressed() && this.getControllingEntity() instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)this.getControllingEntity());
 	}
 
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-
-		getKeyInput();
-
-		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG);
-		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
-			this.parent.angularVelocity.x = 0;
-		if (Math.abs(this.parent.angularVelocity.z) < 0.01f)
-			this.parent.angularVelocity.z = 0;
-
-		this.parent.rotateRoll(this.parent.angularVelocity.z);
-		this.parent.rotatePitch(this.parent.angularVelocity.x);
 
 		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
@@ -159,7 +150,20 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosY = prevPlayerPosY = posY = parent.posY;
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
+
+			Lumberjack.debug("searching...");
 		}
+
+		getKeyInput();
+
+		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG);
+		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
+			this.parent.angularVelocity.x = 0;
+		if (Math.abs(this.parent.angularVelocity.z) < 0.01f)
+			this.parent.angularVelocity.z = 0;
+
+		this.parent.rotateRoll(this.parent.angularVelocity.z);
+		this.parent.rotatePitch(this.parent.angularVelocity.x);
 	}
 
 	/**
@@ -214,8 +218,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerYaw = -90F + globalLookAxes.getYaw();
 			playerPitch = globalLookAxes.getRoll();
 
-			double dYaw = MathHelper.wrapAngleTo180_float(playerYaw - prevPlayerYaw);
-
 			if (riddenByEntity instanceof EntityPlayer)
 			{
 				riddenByEntity.prevRotationYaw = prevPlayerYaw;
@@ -244,10 +246,12 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			riddenByEntity.prevRotationYaw = prevPlayerYaw;
 			riddenByEntity.prevRotationPitch = prevPlayerPitch;
 		}
+		riddenByEntity.posX = playerPosX;
+		riddenByEntity.posY = playerPosY;
+		riddenByEntity.posZ = playerPosZ;
 
-		riddenByEntity.lastTickPosX = riddenByEntity.prevPosX = prevPlayerPosX;
-		riddenByEntity.lastTickPosY = riddenByEntity.prevPosY = prevPlayerPosY;
-		riddenByEntity.lastTickPosZ = riddenByEntity.prevPosZ = prevPlayerPosZ;
+		//riddenByEntity.setPosition(playerPosX, playerPosY, playerPosZ);
+		Lumberjack.debug(riddenByEntity.posX);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -302,8 +306,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	{
 		if (isDead)
 			return false;
-		if (worldObj.isRemote)
-			return false;
 
 		//Put them in the seat
 		if (riddenByEntity == null)
@@ -322,12 +324,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public boolean isDead()
 	{
 		return isDead;
-	}
-
-	@Override
-	public void setDead()
-	{
-		super.setDead();
 	}
 
 	@Override

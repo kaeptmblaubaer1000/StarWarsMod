@@ -45,21 +45,26 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 	{
 		if (context.side == Side.SERVER)
 		{
-			Pilotable drivable = null;
+			Pilotable pilotable = null;
 			if (entity instanceof Pilotable)
-				drivable = (Pilotable)entity;
-			if (drivable != null)
-				drivable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+				pilotable = (Pilotable)entity;
+			if (pilotable != null)
+				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 		}
 		else if (context.side == Side.CLIENT)
 		{
 			if (StarWarsMod.mc.thePlayer == null || StarWarsMod.mc.thePlayer.worldObj == null)
 				return null;
-			Pilotable drivable = null;
+			Pilotable pilotable = null;
 			if (entity instanceof Pilotable)
-				drivable = (Pilotable)entity;
-			if (drivable != null)
-				drivable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+				pilotable = (Pilotable)entity;
+			if (pilotable != null)
+			{
+				if (pilotable.seats[0] != null && pilotable.seats[0].riddenByEntity == StarWarsMod.mc.thePlayer)
+					return null;
+
+				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+			}
 		}
 
 		return null;

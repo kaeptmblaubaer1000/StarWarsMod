@@ -48,8 +48,9 @@ public class Starship extends Pilotable
 
 		//Check each seat in order to see if the player can sit in it
 		for (int i = 0; i < numPassengers; i++)
-			if (seats[i].interactFirst(entityplayer))
+			if (seats[i] != null && seats[i].interactFirst(entityplayer))
 				return true;
+
 		return false;
 	}
 
@@ -82,22 +83,20 @@ public class Starship extends Pilotable
 			}
 		}
 
-		calculateMotion();
-
 		for (EntitySeat seat : seats)
-		{
 			if (seat != null)
 				seat.updatePosition();
-		}
 
 		//Calculate movement on the client and then send position, rotation etc to the server
 		if (thePlayerIsDrivingThis)
 		{
-			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
+			calculateMotion();
+
 			serverPosX = posX;
 			serverPosY = posY;
 			serverPosZ = posZ;
 			serverYaw = axes.getYaw();
+			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
 		}
 
 		if (!worldObj.isRemote)
@@ -122,7 +121,7 @@ public class Starship extends Pilotable
 
 		motionY += amountOfLift;
 
-		//Add the corrected motion
+		//Add the corrected pos
 		motionX += throttle * forwards.x;
 		motionY += throttle * forwards.y;
 		motionZ += throttle * forwards.z;
