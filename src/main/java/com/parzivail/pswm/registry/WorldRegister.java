@@ -95,6 +95,8 @@ public class WorldRegister
 		space.setDescription("Home to the neutral Ba-Sing Station, where many young pilots come to train.  The asteroids that surround the station make for great maneuvering practice");
 		space.setSuns(0);
 		space.setMoons(0);
+		space.setGravity(0F);
+		space.setAtmosphericDrag(1F);
 		space.addNativeSpecies("N/A");
 		space.addTerrain("Vacuum");
 		space.addTerrain("Asteroids");
@@ -131,6 +133,8 @@ public class WorldRegister
 		hoth.setDescription("The sixth planet of the remote Hoth system. A desolate world covered with ice and snow, located in the Anoat sector, a rarely-traveled portion of the Outer Rim Territories. Home to a large Rebel base.");
 		hoth.setSuns(1);
 		hoth.setMoons(3);
+		hoth.setGravity(0.98F / 20);
+		hoth.setAtmosphericDrag(0.75F);
 		hoth.addNativeSpecies("Tauntaun");
 		hoth.addNativeSpecies("Wampa");
 		hoth.addTerrain("Ice Caves");
@@ -162,6 +166,8 @@ public class WorldRegister
 		earth.addNativeSpecies("Human");
 		earth.setSuns(1);
 		earth.setMoons(1);
+		earth.setGravity(0.98F / 20);
+		earth.setAtmosphericDrag(0.75F);
 		earth.setHyperdrive(StarWarsItems.hyperdriveEarth);
 		Resources.planetInformation.add(earth);
 
@@ -184,6 +190,8 @@ public class WorldRegister
 		dagobah.setDescription("A remote planet in the Dagobah system, and one of the purest places in the galaxy within the Force. A remote world of swamps and forests, it serves as a refuge for the Jedi Grand Master since the destruction of the Jedi Order.");
 		dagobah.setMoons(1);
 		dagobah.setSuns(1);
+		dagobah.setGravity(0.98F / 20);
+		dagobah.setAtmosphericDrag(0.75F);
 		dagobah.addNativeSpecies("Snakes");
 		dagobah.addTerrain("Swamps");
 		dagobah.addTerrain("Bogs");
@@ -211,6 +219,8 @@ public class WorldRegister
 		endor.setDescription("Endor (also known as the Forest Moon of Endor and the Sanctuary Moon) is a small forested moon orbiting the gas giant planet of Endor and is the farthest moon away from it. Home to the Headquarters of the Galactic Empire.");
 		endor.setSuns(1);
 		endor.setMoons(0);
+		endor.setGravity(0.98F / 20);
+		endor.setAtmosphericDrag(0.75F);
 		endor.addNativeSpecies("Ewok");
 		endor.addTerrain("Forests");
 		endor.addTerrain("Mountains");
@@ -239,6 +249,8 @@ public class WorldRegister
 		tatooine.setDescription("A sparsely inhabited desert planet located in the galaxy's Outer Rim Territories. Part of a binary star system, the planet is oppressed by a scorching sun, resulting in a lack of necessary surface water.");
 		tatooine.setSuns(2);
 		tatooine.setMoons(3);
+		tatooine.setGravity(0.98F / 20);
+		tatooine.setAtmosphericDrag(0.75F);
 		tatooine.addNativeSpecies("Tusken Raider");
 		tatooine.addNativeSpecies("Jawa");
 		tatooine.addNativeSpecies("Gamorrean Guard");
@@ -273,6 +285,8 @@ public class WorldRegister
 		ilum.setDescription("An ancient arctic planet located in the Unknown Regions. It was used by the Jedi Order for the Gathering, a rite of passage in which Jedi younglings must find and harvest kyber crystals for their lightsabers.");
 		ilum.setSuns(1);
 		ilum.setMoons(2);
+		ilum.setGravity(0.98F / 20);
+		ilum.setAtmosphericDrag(0.75F);
 		ilum.addNativeSpecies("None");
 		ilum.addTerrain("Caverns");
 		ilum.addTerrain("Crystal Caves");
@@ -305,6 +319,8 @@ public class WorldRegister
 		kashyyyk.addResource("None");
 		kashyyyk.setSuns(1);
 		kashyyyk.setMoons(3);
+		kashyyyk.setGravity(0.98F / 20);
+		kashyyyk.setAtmosphericDrag(0.75F);
 		kashyyyk.setHyperdrive(StarWarsItems.hyperdriveKashyyyk);
 		Resources.planetInformation.add(kashyyyk);
 
@@ -388,6 +404,8 @@ public class WorldRegister
 		yavin4.setDescription("One of three habitable moons orbiting the gas giant Yavin. It is mainly covered in jungle and rainforest, and despite being remote and unheard of, it plays an important role in galactic events. Serves as the main headquarters of the Rebel Alliance.");
 		yavin4.setMoons(0);
 		yavin4.setSuns(1);
+		yavin4.setGravity(0.98F / 20);
+		yavin4.setAtmosphericDrag(0.75F);
 		yavin4.addNativeSpecies("None");
 		yavin4.addResource("Kelerium");
 		yavin4.addTerrain("Jungles");
