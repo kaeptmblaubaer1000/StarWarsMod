@@ -24,7 +24,6 @@ public class Starship extends Pilotable
 		prevPosX = x;
 		prevPosY = y;
 		prevPosZ = z;
-		initType(false);
 	}
 
 	public Starship(World world, double x, double y, double z, EntityPlayer placer)

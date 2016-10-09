@@ -28,6 +28,7 @@ public class MessageSetSeats extends PMessage<MessageSetSeats>
 		Pilotable ship = null;
 		if (entity instanceof Pilotable)
 			ship = (Pilotable)entity;
+
 		if (ship != null)
 			ship.seats = seats;
 

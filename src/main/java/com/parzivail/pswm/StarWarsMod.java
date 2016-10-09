@@ -542,6 +542,7 @@ public class StarWarsMod
 
 		this.registerMessageDual(MessageDrivableControl.class);
 
+		this.registerMessageClient(MessageSetSeats.class);
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);
 		this.registerMessageClient(MessageHolocronRefreshClientPowers.class);

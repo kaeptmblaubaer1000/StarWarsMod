@@ -150,7 +150,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 
-			Lumberjack.debug("[Seat] Searching for parent...");
+			Lumberjack.debug("[Seat@" + this + "] Searching for parent...");
 		}
 
 		getKeyInput();
@@ -300,7 +300,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) //interact : change back when Forge updates
 	{
-		if (isDead)
+		if (isDead || this.worldObj.isRemote)
 			return false;
 
 		//Put them in the seat

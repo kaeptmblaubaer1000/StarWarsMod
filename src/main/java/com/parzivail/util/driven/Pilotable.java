@@ -1,6 +1,7 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetSeats;
 import com.parzivail.util.entity.EntityCamera;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
@@ -74,19 +75,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
-	}
 
-	protected void initType(boolean clientSide)
-	{
 		seats = new EntitySeat[numPassengers];
-		if (!clientSide)
-		{
-			for (int i = 0; i < numPassengers; i++)
-			{
-				seats[i] = new EntitySeat(worldObj, this, i);
-				worldObj.spawnEntityInWorld(seats[i]);
-			}
-		}
 	}
 
 	public Vector3f getRenderOffset()
@@ -126,8 +116,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		try
 		{
-			initType(true);
-
 			axes.setAngles(data.readFloat(), data.readFloat(), data.readFloat());
 			prevRotationYaw = axes.getYaw();
 			prevRotationPitch = axes.getPitch();
@@ -305,17 +293,22 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		maxThrottle = 0.4f;
 
-		if (seats == null)
-			initType(worldObj.isRemote);
-
 		if (!worldObj.isRemote)
+		{
+			boolean seatChanged = false;
 			for (int i = 0; i < numPassengers; i++)
 			{
 				if (seats[i] == null)
+				{
 					seats[i] = new EntitySeat(worldObj, this, i);
+					seatChanged = true;
+				}
 				if (!seats[i].addedToChunk)
 					worldObj.spawnEntityInWorld(seats[i]);
 			}
+			if (seatChanged)
+				StarWarsMod.network.sendToDimension(new MessageSetSeats(this, seats), worldObj.provider.dimensionId);
+		}
 
 		//if (!this.worldObj.isRemote)
 		//	StarWarsMod.network.sendToDimension(new MessageSetSeats(this, this.seats), this.dimension);
