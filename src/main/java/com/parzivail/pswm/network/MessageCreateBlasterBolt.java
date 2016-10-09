@@ -4,6 +4,8 @@ import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.util.entity.EntityUtils;
+import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -43,15 +45,17 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 		switch (this.type)
 		{
 			case BlasterBoltType.XWING:
-				if (this.sender.ridingEntity instanceof VehicXWing)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicXWing)
 				{
+					VehicXWing vehicXWing = (VehicXWing)EntityUtils.getShipRiding(this.sender);
 					float yaw = this.sender.rotationYaw;
 					float ax = (float)Math.cos(Math.toRadians(yaw));
 					float az = (float)Math.sin(Math.toRadians(yaw));
 					float dy = 0.5f;
 
-					VehicXWing vehicXWing = (VehicXWing)this.sender.ridingEntity;
 					dy += vehicXWing.getSFoil() * 1.5f;
+
+					Vector3f center = vehicXWing.getLookVec3f();
 
 					float r = 5.5f;
 
@@ -61,7 +65,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 						{
 							EntityXWingBolt bolt1 = new EntityXWingBolt(world); // bottom right
 							bolt1.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt1.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt1.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
 							bolt1.setSender(this.sender);
 							bolt1.setTarget(target);
 							world.spawnEntityInWorld(bolt1);
@@ -70,7 +74,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 						{
 							EntityXWingBolt bolt2 = new EntityXWingBolt(world); // bottom left
 							bolt2.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt2.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt2.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
 							bolt2.setSender(this.sender);
 							bolt2.setTarget(target);
 							world.spawnEntityInWorld(bolt2);
@@ -82,7 +86,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 						{
 							EntityXWingBolt bolt3 = new EntityXWingBolt(world); // top right
 							bolt3.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt3.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt3.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
 							bolt3.setSender(this.sender);
 							bolt3.setTarget(target);
 							world.spawnEntityInWorld(bolt3);
@@ -91,7 +95,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 						{
 							EntityXWingBolt bolt4 = new EntityXWingBolt(world); // top left
 							bolt4.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt4.setThrowableHeading(this.sender.getLookVec().xCoord, this.sender.getLookVec().yCoord, this.sender.getLookVec().zCoord, 1.0F, 1.0F);
+							bolt4.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
 							bolt4.setSender(this.sender);
 							bolt4.setTarget(target);
 							world.spawnEntityInWorld(bolt4);
@@ -100,7 +104,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				}
 				break;
 			case BlasterBoltType.PROTON:
-				if (this.sender.ridingEntity instanceof VehicXWing)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicXWing)
 				{
 					float yaw = this.sender.rotationYaw;
 
@@ -128,14 +132,14 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				}
 				break;
 			case BlasterBoltType.BOMB:
-				if (this.sender.ridingEntity instanceof VehicYWing || this.sender.ridingEntity instanceof VehicTIEBomber)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicYWing || EntityUtils.getShipRiding(this.sender) instanceof VehicTIEBomber)
 				{
 					float yaw = this.sender.rotationYaw;
 
 					float ax = (float)Math.cos(Math.toRadians(yaw)) / 2;
 					float az = (float)Math.sin(Math.toRadians(yaw)) / 2;
 
-					if (this.sender.ridingEntity instanceof VehicYWing)
+					if (EntityUtils.getShipRiding(this.sender) instanceof VehicYWing)
 					{
 						ax *= 15;
 						az *= 15;
@@ -172,7 +176,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				world.spawnEntityInWorld(bolt2);
 				break;
 			case BlasterBoltType.ATST:
-				if (this.sender.ridingEntity instanceof VehicATST)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicATST)
 				{
 					float yaw = this.sender.rotationYaw;
 					float ax = (float)Math.cos(Math.toRadians(yaw));
@@ -202,7 +206,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				}
 				break;
 			case BlasterBoltType.AWING:
-				if (this.sender.ridingEntity instanceof VehicAWing)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicAWing)
 				{
 					float yaw = this.sender.rotationYaw;
 					float ax = (float)Math.cos(Math.toRadians(yaw));
@@ -238,7 +242,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				world.spawnEntityInWorld(bolt1x);
 				break;
 			case BlasterBoltType.SNOWSPEEDER:
-				if (this.sender.ridingEntity instanceof VehicSnowspeeder)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicSnowspeeder)
 				{
 					float yaw = this.sender.rotationYaw;
 					float ax = (float)Math.cos(Math.toRadians(yaw));
@@ -293,7 +297,7 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 				}
 				break;
 			case BlasterBoltType.YWING:
-				if (this.sender.ridingEntity instanceof VehicYWing)
+				if (EntityUtils.getShipRiding(this.sender) instanceof VehicYWing)
 				{
 					yaw = this.sender.rotationYaw;
 					ax = (float)Math.cos(Math.toRadians(yaw));

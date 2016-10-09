@@ -207,8 +207,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public void setPositionAndRotation2(double d, double d1, double d2, float f, float f1, int i)
 	{
-		if (ticksExisted > 1)
-			return;
 		if (!(riddenByEntity instanceof EntityPlayer) || !StarWarsMod.proxy.isThePlayer((EntityPlayer)riddenByEntity))
 		{
 			if (syncFromServer)

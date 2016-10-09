@@ -2,7 +2,7 @@ package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageForceRider;
-import com.parzivail.pswm.network.MessageSetPlayerPosition;
+import com.parzivail.pswm.network.MessageSetPosition;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
@@ -30,8 +30,11 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	 */
 	@SideOnly(Side.CLIENT)
 	public boolean foundParent;
-	private int parentId;
-	private int seatID;
+	@SideOnly(Side.CLIENT)
+	public boolean foundRider;
+	public int parentId;
+	public int riderId;
+	public int seatID;
 	public Pilotable parent;
 
 	@SideOnly(Side.CLIENT)
@@ -41,7 +44,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public boolean driver;
 
 	/**
-	 * A set of axes used to calculate where the player is looking, x axis is the direction of looking, y is up
+	 * A set of axes used to calculate where the entity is looking, x axis is the direction of looking, y is up
 	 */
 	public RotatedAxes looking;
 	/**
@@ -50,7 +53,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public RotatedAxes prevLooking;
 
 
-	private double playerPosX, playerPosY, playerPosZ;
+	public double playerPosX, playerPosY, playerPosZ;
 	private float playerYaw, playerPitch;
 	/**
 	 * For smoothness
@@ -139,19 +142,11 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	{
 		super.onUpdate();
 
-		if (this.riddenByEntity instanceof EntityPlayer)
-		{
-			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
-				StarWarsMod.network.sendTo(new MessageForceRider(this, this.riddenByEntity), (EntityPlayerMP)this.riddenByEntity);
-			else
-				StarWarsMod.network.sendToServer(new MessageSetPlayerPosition((EntityPlayer)this.riddenByEntity, playerPosX, playerPosY, playerPosZ));
-		}
-
-		Lumberjack.debug(riddenByEntity);
-
 		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
 		{
+			Lumberjack.debug("[Seat] Searching for parent...");
+
 			parent = (Pilotable)worldObj.getEntityByID(parentId);
 			if (parent == null)
 				return;
@@ -164,7 +159,26 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 
-			Lumberjack.debug("[Seat] Searching for parent...");
+			Lumberjack.debug("[Seat] Found parent");
+		}
+
+		foundRider = riddenByEntity != null;
+
+		//If on the client and the drivable parent has yet to be found, search for it
+		if (worldObj.isRemote && !foundRider)
+		{
+			Lumberjack.debug("[Seat] Searching for rider... eid " + riderId);
+
+			Entity e = worldObj.getEntityByID(riderId);
+			if (e == null)
+				return;
+			else
+				e.mountEntity(this);
+			foundRider = true;
+			parent.seats[seatID] = this;
+			seatInfo = parent.getSeatData(seatID);
+
+			Lumberjack.debug("[Seat] Found rider");
 		}
 
 		getKeyInput();
@@ -177,6 +191,16 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		this.parent.rotateRoll(this.parent.angularVelocity.z);
 		this.parent.rotatePitch(this.parent.angularVelocity.x);
+
+		if (this.riddenByEntity instanceof EntityPlayer)
+		{
+			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
+				StarWarsMod.network.sendToDimension(new MessageForceRider(this, this.riddenByEntity), this.dimension);
+			else
+			{
+				StarWarsMod.network.sendToServer(new MessageSetPosition(this, playerPosX, playerPosY, playerPosZ));
+			}
+		}
 	}
 
 	/**
@@ -227,7 +251,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 			//Calculate the local look axes globally
 			RotatedAxes globalLookAxes = parent.axes.findLocalAxesGlobally(looking);
-			//Set the player's rotation based on this
+			//Set the entity's rotation based on this
 			playerYaw = -90F + globalLookAxes.getYaw();
 			playerPitch = globalLookAxes.getRoll();
 
@@ -240,7 +264,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 				riddenByEntity.rotationPitch = playerPitch;
 			}
 
-			//If the entity is a player, roll its view accordingly
+			//If the entity is a entity, roll its view accordingly
 			if (worldObj.isRemote)
 			{
 				prevPlayerRoll = playerRoll;

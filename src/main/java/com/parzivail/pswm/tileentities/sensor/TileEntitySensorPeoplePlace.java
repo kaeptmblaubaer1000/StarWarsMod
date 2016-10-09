@@ -67,13 +67,13 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 				if (entities < entityMax)
 				{
 					spawnANewOne();
-					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
+					//Lumberjack.log("Spawned one because entity outside range. entities: " + (entities + 1));
 				}
 				// Nobody here, populate!
 				if (entitiesOther < otherMax && getEntityNeedleClassOther() != null)
 				{
 					spawnANewOther();
-					//Lumberjack.log("Spawned one because player outside range. entities: " + (entities + 1));
+					//Lumberjack.log("Spawned one because entity outside range. entities: " + (entities + 1));
 				}
 			}
 		}

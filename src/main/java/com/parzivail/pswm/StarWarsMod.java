@@ -539,7 +539,7 @@ public class StarWarsMod
 		this.registerMessageServer(MessagePlayerBuyItem.class);
 		this.registerMessageServer(MessageSetQuestLogNbt.class);
 		this.registerMessageServer(MessageSeatUpdate.class);
-		this.registerMessageServer(MessageSetPlayerPosition.class);
+		this.registerMessageServer(MessageSetPosition.class);
 
 		this.registerMessageDual(MessageDrivableControl.class);
 

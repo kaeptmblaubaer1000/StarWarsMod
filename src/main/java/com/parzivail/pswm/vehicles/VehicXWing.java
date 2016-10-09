@@ -1,8 +1,14 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.items.ItemSpawnAstromech;
+import com.parzivail.pswm.items.ItemSpawnAstromech2;
 import com.parzivail.pswm.network.MessageSFoil;
+import com.parzivail.pswm.network.MessageSetPlayerHolding;
+import com.parzivail.pswm.network.MessageShipAstroDetails;
+import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.driven.Seat;
 import com.parzivail.util.driven.Starship;
@@ -11,6 +17,7 @@ import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -30,6 +37,7 @@ public class VehicXWing extends Starship implements IDebugProvider
 
 		renderOffset = new Vector3f(0, -9, 0);
 	}
+
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
@@ -83,50 +91,50 @@ public class VehicXWing extends Starship implements IDebugProvider
 		return this.dataWatcher.getWatchableObjectInt(SFOIL_DW + 2);
 	}
 
-	//	@Override
-	//	public boolean interact(EntityPlayer player)
-	//	{
-	//		/*
-	//		if (!QuestUtils.canRideInShip(player, this.getClass()))
-	//			return false;
-	//		ItemStack itemstack = player.inventory.getCurrentItem();
-	//
-	//		if (player.isSneaking())
-	//		{
-	//			if (getHasAstro())
-	//			{
-	//				if (worldObj.isRemote)
-	//				{
-	//					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, false, 0));
-	//					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
-	//					setHasAstro(false);
-	//				}
-	//			}
-	//			else if (itemstack != null)
-	//			{
-	//				if (itemstack.getItem() instanceof ItemSpawnAstromech)
-	//				{
-	//					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 0));
-	//					setHasAstro(true);
-	//					setAstroType(0);
-	//				}
-	//				else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
-	//				{
-	//					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, player, true, 1));
-	//					setHasAstro(true);
-	//					setAstroType(1);
-	//				}
-	//			}
-	//			else
-	//			{
-	//				if (!worldObj.isRemote)
-	//					player.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
-	//			}
-	//			return true;
-	//		}
-	//		*/
-	//		return super.interact(player);
-	//	}
+	@Override
+	public boolean interactFirst(EntityPlayer entity)
+	{
+
+		if (!QuestUtils.canRideInShip(entity, this.getClass()))
+			return false;
+		ItemStack itemstack = entity.inventory.getCurrentItem();
+
+		if (entity.isSneaking())
+		{
+			if (getHasAstro())
+			{
+				if (worldObj.isRemote)
+				{
+					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, entity, false, 0));
+					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(entity, new ItemStack(getAstroType() == 0 ? StarWarsItems.spawnAstromech : StarWarsItems.spawnAstromech2), true));
+					setHasAstro(false);
+				}
+			}
+			else if (itemstack != null)
+			{
+				if (itemstack.getItem() instanceof ItemSpawnAstromech)
+				{
+					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, entity, true, 0));
+					setHasAstro(true);
+					setAstroType(0);
+				}
+				else if (itemstack.getItem() instanceof ItemSpawnAstromech2)
+				{
+					StarWarsMod.network.sendToServer(new MessageShipAstroDetails(this, entity, true, 1));
+					setHasAstro(true);
+					setAstroType(1);
+				}
+			}
+			else
+			{
+				if (!worldObj.isRemote)
+					entity.openGui(StarWarsMod.instance, Resources.GUI_HYPERDRIVE, this.worldObj, 0, 0, 0);
+			}
+			return true;
+		}
+
+		return super.interactFirst(entity);
+	}
 
 	@Override
 	public void onUpdate()
@@ -153,7 +161,7 @@ public class VehicXWing extends Starship implements IDebugProvider
 
 		int ht = this.worldObj.getHeightValue((int)this.posX, (int)this.posZ) - 1;
 
-		if (this.worldObj.getBlock((int)this.posX, ht, (int)this.posZ) == Blocks.water && this.worldObj.isRemote && this.riddenByEntity instanceof EntityPlayer)
+		if (this.worldObj.getBlock((int)this.posX, ht, (int)this.posZ) == Blocks.water && this.worldObj.isRemote && this.seats[0] != null && this.seats[0].riddenByEntity instanceof EntityPlayer)
 		{
 			for (int i = 0; i < 70; i++)
 			{
@@ -163,11 +171,11 @@ public class VehicXWing extends Starship implements IDebugProvider
 				motionY *= Math.max(1, 10 - (this.posY - ht));
 				double motionZ = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
 
-				float sXa = MathHelper.cos((float)Math.toRadians(this.rotationYaw)) * 7;
-				float sZa = MathHelper.sin((float)Math.toRadians(this.rotationYaw)) * 7;
+				float sXa = MathHelper.cos((float)Math.toRadians(this.axes.getYaw())) * 7;
+				float sZa = MathHelper.sin((float)Math.toRadians(this.axes.getYaw())) * 7;
 
-				float sXb = MathHelper.cos((float)Math.toRadians(this.rotationYaw + 180)) * 7;
-				float sZb = MathHelper.sin((float)Math.toRadians(this.rotationYaw + 180)) * 7;
+				float sXb = MathHelper.cos((float)Math.toRadians(this.axes.getYaw() + 180)) * 7;
+				float sZb = MathHelper.sin((float)Math.toRadians(this.axes.getYaw() + 180)) * 7;
 
 				float width = 1f;
 

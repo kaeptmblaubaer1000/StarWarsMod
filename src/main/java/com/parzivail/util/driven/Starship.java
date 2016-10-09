@@ -45,7 +45,7 @@ public class Starship extends Pilotable
 		if (isDead)
 			return false;
 
-		//Check each seat in order to see if the player can sit in it
+		//Check each seat in order to see if the entity can sit in it
 		for (int i = 0; i < numPassengers; i++)
 			if (seats[i] != null && seats[i].interactFirst(entityplayer))
 				return true;
@@ -64,7 +64,7 @@ public class Starship extends Pilotable
 			return;
 		}
 
-		//Work out if this is the client side and the player is driving
+		//Work out if this is the client side and the entity is driving
 		boolean thePlayerIsDrivingThis = worldObj.isRemote && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)seats[0].riddenByEntity);
 
 		//Player is not driving this. Update its position from server update packets 

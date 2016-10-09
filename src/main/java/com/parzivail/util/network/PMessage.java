@@ -2,6 +2,7 @@ package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
 import com.parzivail.util.driven.EntitySeat;
+import com.parzivail.util.driven.Pilotable;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -123,6 +124,30 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		return MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
 	}
 
+	private static EntitySeat readEntitySeat(ByteBuf buf)
+	{
+		int dim = buf.readInt();
+		int id = buf.readInt();
+		EntitySeat seat;
+		if (MinecraftServer.getServer() == null)
+		{
+			seat = (EntitySeat)Minecraft.getMinecraft().theWorld.getEntityByID(id);
+		}
+		else
+		{
+			seat = (EntitySeat)MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
+		}
+		seat.parentId = buf.readInt();
+		seat.seatID = buf.readInt();
+		seat.parent = (Pilotable)readEntity(buf);
+		seat.driver = buf.readBoolean();
+		seat.playerPosX = (int)buf.readDouble();
+		seat.playerPosY = (int)buf.readDouble();
+		seat.playerPosZ = (int)buf.readDouble();
+		seat.riderId = buf.readInt();
+		return seat;
+	}
+
 	private static EntityCooldownEntry readEntityCooldownEntry(ByteBuf buf)
 	{
 		Entity e = readEntity(buf);
@@ -184,7 +209,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		ArrayList<EntitySeat> stacks = new ArrayList<>();
 		int count = readInt(buf);
 		for (int i = 0; i < count; i++)
-			stacks.add((EntitySeat)readEntity(buf));
+			stacks.add(readEntitySeat(buf));
 		return stacks.toArray(new EntitySeat[count]);
 	}
 
@@ -288,6 +313,20 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		buf.writeInt(entity.getEntityId());
 	}
 
+	private static void writeEntitySeat(EntitySeat entity, ByteBuf buf)
+	{
+		buf.writeInt(entity.dimension);
+		buf.writeInt(entity.getEntityId());
+		buf.writeInt(entity.parentId);
+		buf.writeInt(entity.seatID);
+		writeEntity(entity.parent, buf);
+		buf.writeBoolean(entity.driver);
+		buf.writeDouble(entity.playerPosX);
+		buf.writeDouble(entity.playerPosY);
+		buf.writeDouble(entity.playerPosZ);
+		buf.writeInt(entity.riderId);
+	}
+
 	private static void writeEntityCooldownEntry(EntityCooldownEntry entry, ByteBuf buf)
 	{
 		writeEntity(entry.entity, buf);
@@ -321,7 +360,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	{
 		writeInt(stack.length, buf);
 		for (EntitySeat stack1 : stack)
-			writeEntity(stack1, buf);
+			writeEntitySeat(stack1, buf);
 	}
 
 	private static void writeLong(long l, ByteBuf buf)

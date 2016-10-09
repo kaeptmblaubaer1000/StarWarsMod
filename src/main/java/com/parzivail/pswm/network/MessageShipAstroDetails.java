@@ -2,7 +2,6 @@ package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.util.network.PMessage;
-import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.Entity;
@@ -19,7 +18,7 @@ public class MessageShipAstroDetails extends PMessage<MessageShipAstroDetails>
 	{
 	}
 
-	public MessageShipAstroDetails(VehicleAirBase ship, EntityPlayer player, boolean astro, int type)
+	public MessageShipAstroDetails(Entity ship, EntityPlayer player, boolean astro, int type)
 	{
 		this.ship = ship;
 		this.astro = astro;

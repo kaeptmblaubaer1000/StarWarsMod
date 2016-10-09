@@ -90,7 +90,7 @@ public class Jedi1 extends Quest
 	@Override
 	public boolean canBeGivenQuest(EntityPlayer player)
 	{
-		//Lumberjack.log(ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(player), Resources.ConfigOptions.dimDagobahId));
+		//Lumberjack.log(ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(entity), Resources.ConfigOptions.dimDagobahId));
 		return !isQuestDone(player, this) && jediObiWan.isQuestComplete(player) && ItemQuestLog.getDimTravel(ItemQuestLog.getQuestContainer(player), Resources.ConfigOptions.dimDagobahId) > 0;
 	}
 

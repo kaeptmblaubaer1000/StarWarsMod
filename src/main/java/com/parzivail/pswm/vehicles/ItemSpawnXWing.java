@@ -38,7 +38,7 @@ public class ItemSpawnXWing extends net.minecraft.item.Item
 			if (!world.isRemote)
 			{
 				VehicXWing newVehic = new VehicXWing(world);
-				//newVehic.onPlacedBy(player);
+				//newVehic.onPlacedBy(entity);
 				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
 				world.spawnEntityInWorld(newVehic);
 			}

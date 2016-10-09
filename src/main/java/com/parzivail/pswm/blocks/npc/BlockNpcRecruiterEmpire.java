@@ -23,7 +23,7 @@ public class BlockNpcRecruiterEmpire extends BlockNpcBase
 		if (ItemQuestLog.getQuestContainer(player) == null)
 			return QuestBank.noQuestLog;
 
-		//if (ItemQuestLog.getSide(player).equals(Resources.allegianceRebelFmt))
+		//if (ItemQuestLog.getSide(entity).equals(Resources.allegianceRebelFmt))
 		//	return QuestBank.dontAcceptYou;
 
 		if (QuestBank.empireRecruit.canBeGivenQuest(player))

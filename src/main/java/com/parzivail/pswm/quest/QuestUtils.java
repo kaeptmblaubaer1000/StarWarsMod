@@ -5,7 +5,7 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.rendering.RenderHuman;
 import com.parzivail.pswm.tileentities.TileEntityStaticNpc;
-import com.parzivail.util.vehicle.VehicleBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
@@ -168,7 +168,7 @@ public class QuestUtils
 		return true;
 	}
 
-	public static boolean canRideInShip(EntityPlayer player, Class<? extends VehicleBase> shipClass)
+	public static boolean canRideInShip(EntityPlayer player, Class<? extends Entity> shipClass)
 	{
 		if (player.capabilities.isCreativeMode)
 			return true;

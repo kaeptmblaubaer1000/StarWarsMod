@@ -42,7 +42,7 @@ public class QuestNotAvailable extends Quest
 	@Override
 	public void end(EntityPlayer player)
 	{
-		//setQuestDone(player, this);
+		//setQuestDone(entity, this);
 	}
 
 	@Override

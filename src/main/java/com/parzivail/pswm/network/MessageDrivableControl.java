@@ -1,6 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.driven.EntitySeat;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
@@ -17,6 +18,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 	public float throttle;
 	public float steeringYaw;
 	public Entity entity;
+	public EntitySeat[] seats;
 
 	public MessageDrivableControl()
 	{
@@ -38,6 +40,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 		avely = drivable.angularVelocity.y;
 		avelz = drivable.angularVelocity.z;
 		throttle = drivable.throttle;
+		seats = drivable.seats;
 	}
 
 	@Override
@@ -49,7 +52,16 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 			if (entity instanceof Pilotable)
 				pilotable = (Pilotable)entity;
 			if (pilotable != null)
+			{
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+
+				pilotable.seats = seats;
+				for (EntitySeat seat : pilotable.seats)
+				{
+					seat.updatePosition();
+					seat.setPosition(seat.playerPosX, seat.playerPosY, seat.playerPosZ);
+				}
+			}
 		}
 		else if (context.side == Side.CLIENT)
 		{
@@ -64,6 +76,13 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 					return null;
 
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+
+				pilotable.seats = seats;
+				for (EntitySeat seat : pilotable.seats)
+				{
+					seat.updatePosition();
+					seat.setPosition(seat.playerPosX, seat.playerPosY, seat.playerPosZ);
+				}
 			}
 		}
 

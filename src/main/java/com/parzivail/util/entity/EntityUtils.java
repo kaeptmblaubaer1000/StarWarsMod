@@ -189,6 +189,13 @@ public class EntityUtils
 
 	public static boolean isRiding(Entity entity, Class<? extends Entity> clazz)
 	{
-		return clazz.isInstance(entity.ridingEntity) || (entity.ridingEntity instanceof EntitySeat && clazz.isInstance(((EntitySeat)entity.ridingEntity).parent));
+		return !(entity == null || entity.ridingEntity == null) && (clazz.isInstance(entity.ridingEntity) || (entity.ridingEntity instanceof EntitySeat && clazz.isInstance(((EntitySeat)entity.ridingEntity).parent)));
+	}
+
+	public static Entity getShipRiding(Entity entity)
+	{
+		if (!(entity.ridingEntity instanceof EntitySeat))
+			return null;
+		return ((EntitySeat)entity.ridingEntity).parent;
 	}
 }

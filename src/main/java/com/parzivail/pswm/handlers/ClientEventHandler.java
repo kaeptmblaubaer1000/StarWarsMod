@@ -361,6 +361,7 @@ public class ClientEventHandler
 		{
 			StarWarsMod.mc.renderViewEntity = StarWarsMod.mc.thePlayer;
 			GFX.changeCameraDist(4);
+			GFX.changeCameraRoll(0);
 		}
 
 		if (event.entity instanceof EntityPlayer && EntityUtils.isRiding(((EntityPlayer)event.entity).ridingEntity, EntitySeat.class))

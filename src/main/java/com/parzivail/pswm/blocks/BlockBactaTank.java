@@ -46,7 +46,7 @@ public class BlockBactaTank extends PBlockContainer implements IDebugProvider
 				list.add(LangUtils.translate("0.ticks.inside", String.valueOf(t.getTicksInside())));
 			}
 			else
-				list.add("No player inside");
+				list.add("No entity inside");
 		}
 
 		return list;

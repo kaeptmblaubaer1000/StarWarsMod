@@ -43,8 +43,10 @@ public class RenderBlasterBolt extends Render
 	public void doRender(Entity entity, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
 	{
 		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_CULL_FACE);
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glTranslatef((float)p_76986_2_, (float)p_76986_4_, (float)p_76986_6_);
+		GL11.glPushAttrib(GL11.GL_ALPHA_TEST);
 		GL11.glEnable(GL11.GL_ALPHA_TEST);
 		GL11.glRotatef(entity.rotationPitch, -MathHelper.cos((float)Math.toRadians(entity.rotationYaw)), 0, MathHelper.sin((float)Math.toRadians(entity.rotationYaw)));
 		GL11.glRotatef(entity.rotationYaw, 0, 1, 0);
@@ -58,8 +60,8 @@ public class RenderBlasterBolt extends Render
 		this.model.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 		ShaderHelper.releaseShader();
 
-		GL11.glDisable(GL11.GL_ALPHA_TEST);
-		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glPopAttrib();
+		GL11.glPopAttrib();
 
 		GL11.glPopMatrix();
 	}
