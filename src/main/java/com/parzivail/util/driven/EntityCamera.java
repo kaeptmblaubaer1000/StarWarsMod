@@ -1,6 +1,5 @@
-package com.parzivail.util.entity;
+package com.parzivail.util.driven;
 
-import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -40,7 +39,7 @@ public class EntityCamera extends EntityLivingBase
 		double dY = pilotable.posY + cameraPosition.y - posY;
 		double dZ = pilotable.posZ + cameraPosition.z - posZ;
 
-		float lerpAmount = 0.1F;
+		float lerpAmount = 0.5F;
 
 		setPosition(posX + dX * lerpAmount, posY + dY * lerpAmount, posZ + dZ * lerpAmount);
 

@@ -1,37 +1,36 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.util.driven.EntitySeat;
-import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.Entity;
 
-public class MessageSetSeats extends PMessage<MessageSetSeats>
+public class MessageForceRider extends PMessage<MessageForceRider>
 {
 	public Entity entity;
-	public EntitySeat[] seats;
+	public Entity rider;
 
-	public MessageSetSeats()
+	public MessageForceRider()
 	{
 	}
 
-	public MessageSetSeats(Pilotable entity, EntitySeat[] seats)
+	public MessageForceRider(EntitySeat seat, Entity rider)
 	{
-		this.entity = entity;
-		this.seats = seats;
+		this.entity = seat;
+		this.rider = rider;
 	}
 
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		Pilotable ship = null;
-		if (entity instanceof Pilotable)
-			ship = (Pilotable)entity;
+		EntitySeat seat = null;
+		if (entity instanceof EntitySeat)
+			seat = (EntitySeat)entity;
 
-		if (ship != null)
+		if (seat != null)
 		{
-			ship.seats = seats;
+			seat.riddenByEntity = rider;
 		}
 
 		return null;

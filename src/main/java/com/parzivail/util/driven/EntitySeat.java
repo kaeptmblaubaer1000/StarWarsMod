@@ -1,6 +1,8 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageForceRider;
+import com.parzivail.pswm.network.MessageSetPlayerPosition;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
@@ -12,6 +14,7 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -66,6 +69,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		setSize(1F, 1F);
 		prevLooking = new RotatedAxes();
 		looking = new RotatedAxes();
+		Lumberjack.debug("make seat via server load");
 	}
 
 	/**
@@ -83,7 +87,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		playerPosY = prevPlayerPosY = posY;
 		playerPosZ = prevPlayerPosZ = posZ;
 		looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-		//updatePosition();
+		Lumberjack.debug("make seat");
 	}
 
 	@Override
@@ -135,6 +139,16 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	{
 		super.onUpdate();
 
+		if (this.riddenByEntity instanceof EntityPlayer)
+		{
+			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
+				StarWarsMod.network.sendTo(new MessageForceRider(this, this.riddenByEntity), (EntityPlayerMP)this.riddenByEntity);
+			else
+				StarWarsMod.network.sendToServer(new MessageSetPlayerPosition((EntityPlayer)this.riddenByEntity, playerPosX, playerPosY, playerPosZ));
+		}
+
+		Lumberjack.debug(riddenByEntity);
+
 		//If on the client and the drivable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
 		{
@@ -150,7 +164,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 
-			Lumberjack.debug("[Seat@" + this + "] Searching for parent...");
+			Lumberjack.debug("[Seat] Searching for parent...");
 		}
 
 		getKeyInput();

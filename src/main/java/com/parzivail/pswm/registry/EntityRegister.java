@@ -6,8 +6,8 @@ import com.parzivail.pswm.mobs.trooper.*;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.VehicNpcXWing;
+import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.EntitySeat;
-import com.parzivail.util.entity.EntityCamera;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.Lumberjack;
 

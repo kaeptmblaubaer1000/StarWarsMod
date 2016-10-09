@@ -214,47 +214,47 @@ public class ClientEventHandler
 
 			byte pos = (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing) ? BlasterPosition.getNextXwingPosition() : BlasterPosition.getNextPosition();
 
-			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing && !((VehicXWing)playerInteractEvent.entityPlayer.ridingEntity).getHasAstro())
+			if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicXWing.class) && !((VehicXWing)playerInteractEvent.entityPlayer.ridingEntity).getHasAstro())
 				targetted = null;
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicYWing && !((VehicYWing)playerInteractEvent.entityPlayer.ridingEntity).getHasAstro())
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicYWing.class) && !((VehicYWing)playerInteractEvent.entityPlayer.ridingEntity).getHasAstro())
 				targetted = null;
 
-			if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSpeederBike || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicHothSpeederBike)
+			if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicSpeederBike.class) || EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicHothSpeederBike.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SPEEDER, null, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicXWing.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.XWING, targetted, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicYWing)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicYWing.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.YWING, targetted, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicAWing)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicAWing.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.AWING, targetted, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSnowspeeder)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicSnowspeeder.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SNOWSPEEDER, targetted, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicSkyhopper)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicSkyhopper.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.SKYHOPPER, targetted, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicATST)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicATST.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.ATST, null, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "fx.shoot.bike", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.entityPlayer.worldObj.rand, -0.2D, 0.2D));
 			}
-			else if (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIE || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEInterceptor || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEAdvanced || playerInteractEvent.entityPlayer.ridingEntity instanceof VehicTIEBomber)
+			else if (EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicTIE.class) || EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicTIEInterceptor.class) || EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicTIEAdvanced.class) || EntityUtils.isRiding(playerInteractEvent.entityPlayer.ridingEntity, VehicTIEBomber.class))
 			{
 				StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(playerInteractEvent.entityPlayer, BlasterBoltType.TIE, targetted, pos));
 				playerInteractEvent.entityPlayer.playSound(Resources.MODID + ":" + "vehicle.tie.fire", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(playerInteractEvent.world.rand, -0.2D, 0.2D));
@@ -363,7 +363,7 @@ public class ClientEventHandler
 			GFX.changeCameraDist(4);
 		}
 
-		if (event.entity instanceof EntityPlayer && ((EntityPlayer)event.entity).ridingEntity instanceof VehicleAirBase)
+		if (event.entity instanceof EntityPlayer && EntityUtils.isRiding(((EntityPlayer)event.entity).ridingEntity, EntitySeat.class))
 		{
 			if (event.isCancelable())
 				event.setCanceled(true);

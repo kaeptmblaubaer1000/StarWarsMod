@@ -2,6 +2,7 @@ package com.parzivail.util.entity;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.EntityDroidBase;
+import com.parzivail.util.driven.EntitySeat;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -184,5 +185,10 @@ public class EntityUtils
 		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), mobClass);
 		EntityList.entityEggs.put(Integer.valueOf(mobId), new EntityList.EntityEggInfo(mobId, bgColor, fgColor));
 		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + String.valueOf(mobId));
+	}
+
+	public static boolean isRiding(Entity entity, Class<? extends Entity> clazz)
+	{
+		return clazz.isInstance(entity.ridingEntity) || (entity.ridingEntity instanceof EntitySeat && clazz.isInstance(((EntitySeat)entity.ridingEntity).parent));
 	}
 }

@@ -58,6 +58,12 @@ public class Starship extends Pilotable
 	{
 		super.onUpdate();
 
+		if (seats == null)
+		{
+			// Wait for server to sync seats
+			return;
+		}
+
 		//Work out if this is the client side and the player is driving
 		boolean thePlayerIsDrivingThis = worldObj.isRemote && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)seats[0].riddenByEntity);
 
