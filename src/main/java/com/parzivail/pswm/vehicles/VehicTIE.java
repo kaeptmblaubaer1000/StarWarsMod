@@ -1,29 +1,22 @@
 package com.parzivail.pswm.vehicles;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.quest.QuestUtils;
-import com.parzivail.util.vehicle.VehicleAirBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.player.EntityPlayer;
+import com.parzivail.util.driven.Seat;
+import com.parzivail.util.driven.Starship;
 import net.minecraft.world.World;
 
-public class VehicTIE extends VehicleAirBase
+public class VehicTIE extends Starship
 {
 	public VehicTIE(World par1World)
 	{
 		super(par1World);
 		this.setSize(3.0F, 7.0F);
-		this.vehicYOffset = -3F;
-		this.moveModifier = 1.75F;
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50);
-		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
 
-	@Override
+	/*@Override
 	public boolean interact(EntityPlayer p_70085_1_)
 	{
 		return QuestUtils.canRideInShip(p_70085_1_, this.getClass()) && super.interact(p_70085_1_);
-	}
+	}*/
 
 	@Override
 	public String getCommandSenderName()
@@ -31,7 +24,7 @@ public class VehicTIE extends VehicleAirBase
 		return "TIE/LN Starfighter";
 	}
 
-	@Override
+	/*@Override
 	public String getDeathSound()
 	{
 		return Resources.MODID + ":" + "vehicle.tie.die";
@@ -41,5 +34,17 @@ public class VehicTIE extends VehicleAirBase
 	public String getMovingSound()
 	{
 		return "vehicle.tie.move";
+	}*/
+
+	@Override
+	public Seat getSeatData(int id)
+	{
+		switch (id)
+		{
+			case 0:
+				return new Seat(-15, 0, 0);
+			default:
+				return super.getSeatData(id);
+		}
 	}
 }

@@ -26,6 +26,7 @@ import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.driven.EntitySeat;
+import com.parzivail.util.driven.Starship;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.math.AnimationManager;
@@ -338,7 +339,7 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).parent instanceof VehicXWing)
+		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).parent instanceof Starship)
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
@@ -353,7 +354,7 @@ public class ClientEventHandler
 				StarWarsMod.mc.renderViewEntity = ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getCamera();
 				GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 
-				event.setCanceled(event.entity.ridingEntity instanceof VehicXWing);
+				event.setCanceled(event.entity.ridingEntity instanceof Starship);
 			}
 		}
 		else

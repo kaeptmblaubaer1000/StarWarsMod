@@ -5,13 +5,14 @@ import com.parzivail.pswm.models.vehicles.ModelTIE;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderTIE extends RenderVehicBase
+public class RenderTIE extends RenderStarship
 {
-	public static ResourceLocation texture = new ResourceLocation(Resources.MODID, "textures/models/tie.png");
+	public static ResourceLocation texture;
 
 	public RenderTIE()
 	{
-		super(new ModelTIE(), 0.5f);
+		model = new ModelTIE();
+		texture = new ResourceLocation(Resources.MODID, "textures/models/tie.png");
 	}
 
 	@Override

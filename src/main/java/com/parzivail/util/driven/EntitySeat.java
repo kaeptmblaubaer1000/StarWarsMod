@@ -150,6 +150,8 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
 
+			StarWarsMod.mc.thePlayer.mountEntity(this);
+
 			Lumberjack.debug("[Seat] Searching for parent...");
 		}
 
