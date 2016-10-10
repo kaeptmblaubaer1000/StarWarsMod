@@ -4,6 +4,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,6 +25,8 @@ public class Starship extends Pilotable
 		prevPosX = x;
 		prevPosY = y;
 		prevPosZ = z;
+		Lumberjack.debug("starship init");
+		initType(world.isRemote);
 	}
 
 	public Starship(World world, double x, double y, double z, EntityPlayer placer)
@@ -44,6 +47,12 @@ public class Starship extends Pilotable
 	{
 		if (isDead)
 			return false;
+
+		if (seats == null)
+		{
+			Lumberjack.debug("starship interactfirst");
+			initType(entityplayer.worldObj.isRemote);
+		}
 
 		//Check each seat in order to see if the entity can sit in it
 		for (int i = 0; i < numPassengers; i++)

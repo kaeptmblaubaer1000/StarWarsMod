@@ -34,7 +34,7 @@ public class RenderStarship extends Render
 		if (model != null)
 		{
 			GL11.glRotatef(-90, 0, 1, 0);
-			GL11.glTranslatef(starship.getRenderOffset().x / 16f, starship.getRenderOffset().y / 16f, starship.getRenderOffset().z / 16f);
+			GL11.glTranslatef(0, -0.85f, 0);
 			model.render(starship, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
 		}
 

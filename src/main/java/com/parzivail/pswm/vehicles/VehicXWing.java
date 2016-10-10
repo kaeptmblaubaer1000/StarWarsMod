@@ -30,12 +30,15 @@ public class VehicXWing extends Starship implements IDebugProvider
 	public boolean isOpening = false;
 	public boolean isClosing = false;
 
+	public static final Vector3f POS_ENGINE_TL = new Vector3f(39.5f, 4.5f, -10.5f);
+	public static final Vector3f POS_ENGINE_TR = new Vector3f(39.5f, 4.5f, -10.5f);
+	public static final Vector3f POS_ENGINE_BL = new Vector3f(39.5f, 14.5f, -10.5f);
+	public static final Vector3f POS_ENGINE_BR = new Vector3f(39.5f, 14.5f, -10.5f);
+
 	public VehicXWing(World par1World)
 	{
 		super(par1World);
 		this.setSize(3.0F, 6.0F);
-
-		renderOffset = new Vector3f(0, -9, 0);
 	}
 
 	@Override
@@ -94,7 +97,6 @@ public class VehicXWing extends Starship implements IDebugProvider
 	@Override
 	public boolean interactFirst(EntityPlayer entity)
 	{
-
 		if (!QuestUtils.canRideInShip(entity, this.getClass()))
 			return false;
 		ItemStack itemstack = entity.inventory.getCurrentItem();
@@ -192,6 +194,20 @@ public class VehicXWing extends Starship implements IDebugProvider
 				}
 
 			}
+		}
+
+		if (this.worldObj.isRemote)
+		{
+			Vector3f tL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TL);
+			Vector3f tR = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TR);
+			Vector3f bL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_BL);
+			Vector3f bR = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_BR);
+
+			String n = "flame";
+			this.worldObj.spawnParticle(n, tL.x, tL.y, tL.z, 0, 0, 0);
+			this.worldObj.spawnParticle(n, tR.x, tR.y, tR.z, 0, 0, 0);
+			this.worldObj.spawnParticle(n, bL.x, bL.y, bL.z, 0, 0, 0);
+			this.worldObj.spawnParticle(n, bR.x, bR.y, bR.z, 0, 0, 0);
 		}
 	}
 

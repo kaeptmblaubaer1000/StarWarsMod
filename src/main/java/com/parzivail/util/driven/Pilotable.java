@@ -1,7 +1,6 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageSetSeats;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
@@ -63,7 +62,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public float cameraDistance = 1;
 	protected int numPassengers = 1;
-	protected Vector3f renderOffset = new Vector3f(0, 0, 0);
 
 	public Pilotable(World world)
 	{
@@ -75,13 +73,19 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
-		seats = new EntitySeat[numPassengers];
-		Lumberjack.debug("make pilotable");
 	}
 
-	public Vector3f getRenderOffset()
+	protected void initType(boolean clientSide)
 	{
-		return renderOffset;
+		seats = new EntitySeat[numPassengers];
+		for (int i = 0; i < numPassengers; i++)
+		{
+			if (!clientSide)
+			{
+				seats[i] = new EntitySeat(worldObj, this, i);
+				worldObj.spawnEntityInWorld(seats[i]);
+			}
+		}
 	}
 
 	@Override
@@ -95,7 +99,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag)
 	{
-		//initType(false);
+		Lumberjack.debug("read NBT");
+		initType(false);
 
 		prevRotationYaw = tag.getFloat("RotationYaw");
 		prevRotationPitch = tag.getFloat("RotationPitch");
@@ -116,11 +121,13 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		try
 		{
+			Lumberjack.debug("read SpawnData");
+			initType(false);
+
 			axes.setAngles(data.readFloat(), data.readFloat(), data.readFloat());
 			prevRotationYaw = axes.getYaw();
 			prevRotationPitch = axes.getPitch();
 			prevRotationRoll = axes.getRoll();
-
 		}
 		catch (Exception e)
 		{
@@ -272,6 +279,15 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		motionZ = d2;
 	}
 
+	public Vector3f getInWorldPositionOf(Vector3f modelCoordinate)
+	{
+		Vector3f coord = new Vector3f(modelCoordinate);
+		coord.scale(1 / 16f); // Convert from model coordinated to vehicle local world coordinates
+		Vector3f found = this.axes.findLocalVectorGlobally(coord);
+		found.translate((float)posX, (float)posY, (float)posZ);
+		return found; // convert from local to global world coordinates
+	}
+
 	public Vector3f getLookVec3f()
 	{
 		return axes.getXAxis();
@@ -291,18 +307,18 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		maxThrottle = 0.4f;
 
-		if (seats[0] == null && !worldObj.isRemote)
-		{
-			for (int i = 0; i < numPassengers; i++)
-			{
-				if (seats[i] == null)
-					seats[i] = new EntitySeat(worldObj, this, i);
-				if (!seats[i].addedToChunk)
-					worldObj.spawnEntityInWorld(seats[i]);
-			}
-
-			StarWarsMod.network.sendToDimension(new MessageSetSeats(this, seats), worldObj.provider.dimensionId);
-		}
+		//		if (seats[0] == null && !worldObj.isRemote)
+		//		{
+		//			for (int i = 0; i < numPassengers; i++)
+		//			{
+		//				if (seats[i] == null)
+		//					seats[i] = new EntitySeat(worldObj, this, i);
+		//				if (!seats[i].addedToChunk)
+		//					worldObj.spawnEntityInWorld(seats[i]);
+		//			}
+		//
+		//			StarWarsMod.network.sendToDimension(new MessageSetSeats(this, seats), worldObj.provider.dimensionId);
+		//		}
 
 		//if (!this.worldObj.isRemote)
 		//	StarWarsMod.network.sendToDimension(new MessageSetSeats(this, this.seats), this.dimension);

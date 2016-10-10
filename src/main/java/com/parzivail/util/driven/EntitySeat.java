@@ -1,8 +1,6 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageForceRider;
-import com.parzivail.pswm.network.MessageSetPosition;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
@@ -14,7 +12,6 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -141,12 +138,14 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public void onUpdate()
 	{
 		super.onUpdate();
+		//prevPosX = posX;
+		//prevPosY = posY;
+		//prevPosZ = posZ;
 
-		//If on the client and the drivable parent has yet to be found, search for it
+
+		//If on the client and the driveable parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
 		{
-			Lumberjack.debug("[Seat] Searching for parent...");
-
 			parent = (Pilotable)worldObj.getEntityByID(parentId);
 			if (parent == null)
 				return;
@@ -154,31 +153,11 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			parent.seats[seatID] = this;
 			seatInfo = parent.getSeatData(seatID);
 			looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
+			prevLooking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
 			playerPosX = prevPlayerPosX = posX = parent.posX;
 			playerPosY = prevPlayerPosY = posY = parent.posY;
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
-
-			Lumberjack.debug("[Seat] Found parent");
-		}
-
-		foundRider = riddenByEntity != null;
-
-		//If on the client and the drivable parent has yet to be found, search for it
-		if (worldObj.isRemote && !foundRider)
-		{
-			Lumberjack.debug("[Seat] Searching for rider... eid " + riderId);
-
-			Entity e = worldObj.getEntityByID(riderId);
-			if (e == null)
-				return;
-			else
-				e.mountEntity(this);
-			foundRider = true;
-			parent.seats[seatID] = this;
-			seatInfo = parent.getSeatData(seatID);
-
-			Lumberjack.debug("[Seat] Found rider");
 		}
 
 		getKeyInput();
@@ -192,15 +171,15 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		this.parent.rotateRoll(this.parent.angularVelocity.z);
 		this.parent.rotatePitch(this.parent.angularVelocity.x);
 
-		if (this.riddenByEntity instanceof EntityPlayer)
-		{
-			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
-				StarWarsMod.network.sendToDimension(new MessageForceRider(this, this.riddenByEntity), this.dimension);
-			else
-			{
-				StarWarsMod.network.sendToServer(new MessageSetPosition(this, playerPosX, playerPosY, playerPosZ));
-			}
-		}
+		//		if (this.riddenByEntity instanceof EntityPlayer)
+		//		{
+		//			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
+		//				StarWarsMod.network.sendToDimension(new MessageForceRider(this, this.riddenByEntity), this.dimension);
+		//			else
+		//			{
+		//				StarWarsMod.network.sendToServer(new MessageSetPosition(this, playerPosX, playerPosY, playerPosZ));
+		//			}
+		//		}
 	}
 
 	/**
@@ -314,13 +293,15 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tags)
 	{
-		//Do not read. Spawn with drivable
+		this.parentId = tags.getInteger("parentId");
+		this.riderId = tags.getInteger("riderId");
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tags)
 	{
-		//Do not write. Spawn with drivable
+		tags.setInteger("parentId", this.parentId);
+		tags.setInteger("riderId", this.riderId);
 	}
 
 	@Override
@@ -345,6 +326,8 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		if (riddenByEntity == null)
 		{
 			entityplayer.mountEntity(this);
+			this.riderId = entityplayer.getEntityId();
+			this.foundRider = true;
 			return true;
 		}
 		return false;
