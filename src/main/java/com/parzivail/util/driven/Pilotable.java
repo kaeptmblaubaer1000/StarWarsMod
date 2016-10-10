@@ -19,43 +19,25 @@ import net.minecraft.world.World;
 
 public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
-	static final boolean MOUSE_CONTROL_MODE = false;
-	public static final float ANGULAR_DRAG = 0.8f;
 	private Seat DEFAULT_SEAT = new Seat(0, 0, 0);
+	public EntitySeat[] seats;
 
 	public boolean syncFromServer = true;
-	/**
-	 * Ticks since last server update. Use to smoothly transition to new position
-	 */
-	public int serverPositionTransitionTicker;
-	/**
-	 * Server side position, as synced by PacketVehicleControl packets
-	 */
 	public double serverPosX, serverPosY, serverPosZ;
-	/**
-	 * Server side rotation, as synced by PacketVehicleControl packets
-	 */
-	public double serverYaw, serverPitch, serverRoll;
+	public int serverPositionTransitionTicker;
 
-	/**
-	 * The throttle, in the range -1, 1 is multiplied by the maxThrottle (or maxNegativeThrottle) from the plane type to obtain the thrust
-	 */
 	public float throttle;
+
 	public float maxThrottle = 0.25f;
-	/**
-	 * Extra prevRoation field for smoothness in all 3 rotational axes
-	 */
 	public float prevRotationRoll;
 
-	/**
-	 * Angular velocity
-	 */
-	public Vector3f angularVelocity = new Vector3f(0F, 0F, 0F);
+	public double serverYaw, serverPitch, serverRoll;
 
 	public RotatedAxes prevAxes;
 	public RotatedAxes axes;
 
-	public EntitySeat[] seats;
+	public Vector3f angularVelocity = new Vector3f(0F, 0F, 0F);
+	public static final float ANGULAR_DRAG = 0.8f;
 
 	@SideOnly(Side.CLIENT)
 	public EntityLivingBase camera;
@@ -109,32 +91,15 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	}
 
 	@Override
-	public void writeSpawnData(ByteBuf data)
+	public void writeSpawnData(ByteBuf buffer)
 	{
-		data.writeFloat(axes.getYaw());
-		data.writeFloat(axes.getPitch());
-		data.writeFloat(axes.getRoll());
+		// Do nothing
 	}
 
 	@Override
 	public void readSpawnData(ByteBuf data)
 	{
-		try
-		{
-			Lumberjack.debug("read SpawnData");
-			initType(false);
-
-			axes.setAngles(data.readFloat(), data.readFloat(), data.readFloat());
-			prevRotationYaw = axes.getYaw();
-			prevRotationPitch = axes.getPitch();
-			prevRotationRoll = axes.getRoll();
-		}
-		catch (Exception e)
-		{
-			super.setDead();
-			e.printStackTrace();
-		}
-
+		// Create camera ASAP
 		camera = new EntityCamera(worldObj, this);
 		worldObj.spawnEntityInWorld(camera);
 	}
