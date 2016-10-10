@@ -57,18 +57,18 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		renderDistanceWeight = 200D;
 	}
 
-	protected void initType(boolean clientSide)
+	void initType(boolean clientSide)
 	{
-		if (seats == null)
+		if (seats != null)
+			return;
+
+		seats = new EntitySeat[numPassengers];
+		for (int i = 0; i < numPassengers; i++)
 		{
-			seats = new EntitySeat[numPassengers];
-			for (int i = 0; i < numPassengers; i++)
+			if (!clientSide)
 			{
-				if (!clientSide)
-				{
-					seats[i] = new EntitySeat(worldObj, this, i);
-					worldObj.spawnEntityInWorld(seats[i]);
-				}
+				seats[i] = new EntitySeat(worldObj, this, i);
+				worldObj.spawnEntityInWorld(seats[i]);
 			}
 		}
 	}
