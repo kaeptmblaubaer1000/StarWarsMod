@@ -59,13 +59,16 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	protected void initType(boolean clientSide)
 	{
-		seats = new EntitySeat[numPassengers];
-		for (int i = 0; i < numPassengers; i++)
+		if (seats == null)
 		{
-			if (!clientSide)
+			seats = new EntitySeat[numPassengers];
+			for (int i = 0; i < numPassengers; i++)
 			{
-				seats[i] = new EntitySeat(worldObj, this, i);
-				worldObj.spawnEntityInWorld(seats[i]);
+				if (!clientSide)
+				{
+					seats[i] = new EntitySeat(worldObj, this, i);
+					worldObj.spawnEntityInWorld(seats[i]);
+				}
 			}
 		}
 	}
@@ -91,15 +94,32 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	}
 
 	@Override
-	public void writeSpawnData(ByteBuf buffer)
+	public void writeSpawnData(ByteBuf data)
 	{
-		// Do nothing
+		data.writeFloat(axes.getYaw());
+		data.writeFloat(axes.getPitch());
+		data.writeFloat(axes.getRoll());
 	}
 
 	@Override
 	public void readSpawnData(ByteBuf data)
 	{
-		// Create camera ASAP
+		try
+		{
+			Lumberjack.debug("read SpawnData");
+			initType(false);
+
+			axes.setAngles(data.readFloat(), data.readFloat(), data.readFloat());
+			prevRotationYaw = axes.getYaw();
+			prevRotationPitch = axes.getPitch();
+			prevRotationRoll = axes.getRoll();
+		}
+		catch (Exception e)
+		{
+			super.setDead();
+			e.printStackTrace();
+		}
+
 		camera = new EntityCamera(worldObj, this);
 		worldObj.spawnEntityInWorld(camera);
 	}
