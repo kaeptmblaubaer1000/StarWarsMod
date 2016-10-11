@@ -17,7 +17,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 	public float throttle;
 	public float steeringYaw;
 	public Entity entity;
-	//public EntitySeat[] seats;
+	//public EntitySeatOld[] seats;
 
 	public MessageDrivableControl()
 	{
@@ -55,7 +55,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 
 				//pilotable.seats = seats;
-				//for (EntitySeat seat : pilotable.seats)
+				//for (EntitySeatOld seat : pilotable.seats)
 				//{
 				//	seat.updatePosition();
 				//	seat.setPosition(seat.playerPosX, seat.playerPosY, seat.playerPosZ);
@@ -77,7 +77,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 
 				//pilotable.seats = seats;
-				//for (EntitySeat seat : pilotable.seats)
+				//for (EntitySeatOld seat : pilotable.seats)
 				//{
 				//	seat.updatePosition();
 				//	seat.setPosition(seat.playerPosX, seat.playerPosY, seat.playerPosZ);

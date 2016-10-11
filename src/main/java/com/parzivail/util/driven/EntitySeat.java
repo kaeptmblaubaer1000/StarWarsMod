@@ -1,168 +1,63 @@
 package com.parzivail.util.driven;
 
-import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
+/**
+ * Created by colby on 10/11/2016.
+ */
+public class EntitySeat extends Entity
 {
-	/**
-	 * Set this to true when the client has found the parent drivable and connected them
-	 */
-	@SideOnly(Side.CLIENT)
-	public boolean foundParent;
-	@SideOnly(Side.CLIENT)
-	public boolean foundRider;
-	public int parentId;
-	public int riderId;
-	public int seatID;
 	public Pilotable parent;
+	private Seat seatInfo;
+
+	public RotatedAxes looking;
+	public RotatedAxes prevLooking;
 
 	@SideOnly(Side.CLIENT)
 	public float playerRoll, prevPlayerRoll;
 
-	public Seat seatInfo;
-	public boolean driver;
-
-	/**
-	 * A set of axes used to calculate where the entity is looking, x axis is the direction of looking, y is up
-	 */
-	public RotatedAxes looking;
-	/**
-	 * For smooth renderering
-	 */
-	public RotatedAxes prevLooking;
-
-
-	public double playerPosX, playerPosY, playerPosZ;
 	private float playerYaw, playerPitch;
-	/**
-	 * For smoothness
-	 */
-	private double prevPlayerPosX, prevPlayerPosY, prevPlayerPosZ;
 	private float prevPlayerYaw, prevPlayerPitch;
 
+	public double playerPosX, playerPosY, playerPosZ;
+	private double prevPlayerPosX, prevPlayerPosY, prevPlayerPosZ;
 
-	/**
-	 * Default constructor for spawning client side
-	 * Should not be called server side EVER
-	 */
 	public EntitySeat(World world)
 	{
 		super(world);
 		setSize(1F, 1F);
 		prevLooking = new RotatedAxes();
 		looking = new RotatedAxes();
-		Lumberjack.debug("make seat via server load");
 	}
 
-	/**
-	 * Server side seat constructor
-	 */
-	public EntitySeat(World world, Pilotable d, int id)
+	public EntitySeat(World world, Pilotable parent, int seatId)
 	{
-		this(world);
-		parent = d;
-		parentId = d.getEntityId();
-		seatInfo = parent.getSeatData(id);
-		driver = id == 0;
-		setPosition(d.posX, d.posY, d.posZ);
+		super(world);
+		this.parent = parent;
+		this.seatInfo = parent.getSeatData(seatId);
 		playerPosX = prevPlayerPosX = posX;
 		playerPosY = prevPlayerPosY = posY;
 		playerPosZ = prevPlayerPosZ = posZ;
 		looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-		Lumberjack.debug("make seat");
-	}
-
-	@Override
-	public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int i)
-	{
-		//setPosition(x, y, z);
-	}
-
-	private void getKeyInput()
-	{
-		if (!(this.getControllingEntity() instanceof EntityPlayer))
-			return;
-
-		if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
-		{
-			this.parent.angularVelocity.z += 4;
-		}
-		if ($(StarWarsMod.mc.gameSettings.keyBindRight))
-		{
-			this.parent.angularVelocity.z -= 4;
-		}
-		if ($(StarWarsMod.mc.gameSettings.keyBindForward))
-		{
-			this.parent.angularVelocity.x -= 2;
-		}
-		if ($(StarWarsMod.mc.gameSettings.keyBindBack))
-		{
-			this.parent.angularVelocity.x += 2;
-		}
-		if ($(StarWarsMod.mc.gameSettings.keyBindJump))
-		{
-			this.parent.throttle += this.parent.maxThrottle / 10f;
-			this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
-		}
-		if ($(StarWarsMod.mc.gameSettings.keyBindSneak))
-		{
-			this.parent.throttle -= this.parent.maxThrottle / 10f;
-			this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
-		}
-	}
-
-	private boolean $(KeyBinding key)
-	{
-		return key.getIsKeyPressed() && this.getControllingEntity() instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)this.getControllingEntity());
 	}
 
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-		//prevPosX = posX;
-		//prevPosY = posY;
-		//prevPosZ = posZ;
 
-
-		//If on the client and the driveable parent has yet to be found, search for it
-		if (worldObj.isRemote && !foundParent)
-		{
-			parent = (Pilotable)worldObj.getEntityByID(parentId);
-			if (parent == null)
-				return;
-			foundParent = true;
-			parent.seats[seatID] = this;
-			seatInfo = parent.getSeatData(seatID);
-			looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-			prevLooking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-			playerPosX = prevPlayerPosX = posX = parent.posX;
-			playerPosY = prevPlayerPosY = posY = parent.posY;
-			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
-			setPosition(posX, posY, posZ);
-		}
-
-		getKeyInput();
-
-		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG);
+		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG_COEFFICIENT);
 		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
 			this.parent.angularVelocity.x = 0;
 		if (Math.abs(this.parent.angularVelocity.z) < 0.01f)
@@ -170,16 +65,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		this.parent.rotateRoll(this.parent.angularVelocity.z);
 		this.parent.rotatePitch(this.parent.angularVelocity.x);
-
-		//		if (this.riddenByEntity instanceof EntityPlayer)
-		//		{
-		//			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
-		//				StarWarsMod.network.sendToDimension(new MessageForceRider(this, this.riddenByEntity), this.dimension);
-		//			else
-		//			{
-		//				StarWarsMod.network.sendToServer(new MessageSetPosition(this, playerPosX, playerPosY, playerPosZ));
-		//			}
-		//		}
 	}
 
 	/**
@@ -187,10 +72,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	 */
 	public void updatePosition()
 	{
-		//If we haven't found our drivable, give up
-		if (worldObj.isRemote && !foundParent)
-			return;
-
 		prevPlayerPosX = playerPosX;
 		prevPlayerPosY = playerPosY;
 		prevPlayerPosZ = playerPosZ;
@@ -253,6 +134,27 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	}
 
 	@Override
+	public boolean attackEntityFrom(DamageSource source, float f)
+	{
+		return parent.attackEntityFrom(source, f);
+	}
+
+	@Override
+	public boolean interactFirst(EntityPlayer entityplayer) //interact : change back when Forge updates
+	{
+		if (isDead)
+			return false;
+
+		//Put them in the seat
+		if (riddenByEntity == null)
+		{
+			entityplayer.mountEntity(this);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public void updateRiderPosition()
 	{
 		if (riddenByEntity instanceof EntityPlayer)
@@ -267,70 +169,88 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		riddenByEntity.posZ = playerPosZ;
 	}
 
-	@SideOnly(Side.CLIENT)
-	public EntityLivingBase getCamera()
-	{
-		return parent.getCamera();
-	}
-
-	@Override
-	public boolean canBeCollidedWith()
-	{
-		return !isDead;
-	}
-
 	@Override
 	protected void entityInit()
 	{
+		// Do nothing.
 	}
 
-	@Override
-	public float getShadowSize()
+	public void acceptInput(ShipInput input)
 	{
-		return 4.0F;
-	}
-
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound tags)
-	{
-		this.parentId = tags.getInteger("parentId");
-		this.riderId = tags.getInteger("riderId");
-	}
-
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound tags)
-	{
-		tags.setInteger("parentId", this.parentId);
-		tags.setInteger("riderId", this.riderId);
-	}
-
-	@Override
-	public boolean writeToNBTOptional(NBTTagCompound tags)
-	{
-		return false;
-	}
-
-	@Override
-	public boolean writeMountToNBT(NBTTagCompound tags)
-	{
-		return false;
-	}
-
-	@Override
-	public boolean interactFirst(EntityPlayer entityplayer) //interact : change back when Forge updates
-	{
-		if (isDead || this.worldObj.isRemote)
-			return false;
-
-		//Put them in the seat
-		if (riddenByEntity == null)
+		if (!checkParentNullity() || !isDriver())
+			return;
+		switch (input)
 		{
-			entityplayer.mountEntity(this);
-			this.riderId = entityplayer.getEntityId();
-			this.foundRider = true;
-			return true;
+			case RollLeft:
+				this.parent.angularVelocity.z += 4;
+				break;
+			case RollRight:
+				this.parent.angularVelocity.z -= 4;
+				break;
+			case PitchUp:
+				this.parent.angularVelocity.x += 2;
+				break;
+			case PitchDown:
+				this.parent.angularVelocity.x -= 2;
+				break;
+			case YawLeft:
+				break;
+			case YawRight:
+				break;
+			case ThrottleUp:
+				this.parent.throttle += this.parent.maxThrottle / 10f;
+				this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
+				break;
+			case ThrottleDown:
+				this.parent.throttle -= this.parent.maxThrottle / 10f;
+				this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
+				break;
+			case BlasterFire:
+				break;
+			case SpecialAesthetic:
+				break;
+			case SpecialWeapon:
+				break;
 		}
-		return false;
+	}
+
+	private boolean checkParentNullity()
+	{
+		if (this.parent == null)
+		{
+			Lumberjack.err("Cannot locate parent!");
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound nbt)
+	{
+		int parentId = nbt.getInteger("parentID");
+		int seatId = nbt.getInteger("seatID");
+
+		if (parentId != 0)
+		{
+			Entity e = this.worldObj.getEntityByID(parentId);
+			if (e instanceof Pilotable)
+				parent = (Pilotable)e;
+		}
+
+		if (parent != null)
+			seatInfo = parent.getSeatData(seatId);
+	}
+
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound nbt)
+	{
+		nbt.setInteger("parentID", (parent != null) ? parent.getEntityId() : 0);
+		nbt.setInteger("seatID", (seatInfo != null) ? parent.getEntityId() : 0);
+	}
+
+	public boolean isDriver()
+	{
+		return seatInfo.id == 0;
 	}
 
 	public Entity getControllingEntity()
@@ -338,59 +258,9 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		return riddenByEntity;
 	}
 
-	public boolean isDead()
-	{
-		return isDead;
-	}
-
-	@Override
-	public ItemStack getPickedResult(MovingObjectPosition target)
-	{
-		if (worldObj.isRemote && !foundParent)
-			return null;
-		return parent.getPickedResult(target);
-	}
-
 	public float getPlayerRoll()
 	{
 		playerRoll = MathHelper.wrapAngleTo180_float(playerRoll);
 		return playerRoll;
-	}
-
-	public float getCameraDistance()
-	{
-		return foundParent && seatID == 0 ? parent.cameraDistance : 5F;
-	}
-
-	@Override
-	public boolean attackEntityFrom(DamageSource source, float f)
-	{
-		return !(worldObj.isRemote && !foundParent) && parent.attackEntityFrom(source, f);
-	}
-
-	@Override
-	public void writeSpawnData(ByteBuf data)
-	{
-		data.writeInt(parentId);
-		data.writeInt(seatInfo.id);
-	}
-
-	@Override
-	public void readSpawnData(ByteBuf data)
-	{
-		parentId = data.readInt();
-		parent = (Pilotable)worldObj.getEntityByID(parentId);
-		seatID = data.readInt();
-		driver = seatID == 0;
-		if (parent != null)
-		{
-			seatInfo = parent.getSeatData(seatID);
-			looking.setAngles((seatInfo.minYaw + seatInfo.maxYaw) / 2, 0F, 0F);
-			playerPosX = prevPlayerPosX = posX = parent.posX;
-			playerPosY = prevPlayerPosY = posY = parent.posY;
-			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
-			setPosition(posX, posY, posZ);
-		}
-
 	}
 }

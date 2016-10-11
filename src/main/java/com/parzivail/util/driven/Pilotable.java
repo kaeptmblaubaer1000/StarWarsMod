@@ -37,7 +37,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public RotatedAxes axes;
 
 	public Vector3f angularVelocity = new Vector3f(0F, 0F, 0F);
-	public static final float ANGULAR_DRAG = 0.8f;
+	public static final float ANGULAR_DRAG_COEFFICIENT = 0.8f;
 
 	@SideOnly(Side.CLIENT)
 	public EntityLivingBase camera;
@@ -63,9 +63,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			return;
 
 		seats = new EntitySeat[numPassengers];
-		for (int i = 0; i < numPassengers; i++)
+		if (!clientSide)
 		{
-			if (!clientSide)
+			for (int i = 0; i < numPassengers; i++)
 			{
 				seats[i] = new EntitySeat(worldObj, this, i);
 				worldObj.spawnEntityInWorld(seats[i]);
@@ -297,7 +297,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		//			for (int i = 0; i < numPassengers; i++)
 		//			{
 		//				if (seats[i] == null)
-		//					seats[i] = new EntitySeat(worldObj, this, i);
+		//					seats[i] = new EntitySeatOld(worldObj, this, i);
 		//				if (!seats[i].addedToChunk)
 		//					worldObj.spawnEntityInWorld(seats[i]);
 		//			}

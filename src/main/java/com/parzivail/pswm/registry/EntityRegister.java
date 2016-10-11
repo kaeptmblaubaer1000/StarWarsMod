@@ -7,7 +7,7 @@ import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.VehicNpcXWing;
 import com.parzivail.util.driven.EntityCamera;
-import com.parzivail.util.driven.EntitySeat;
+import com.parzivail.util.driven.EntitySeatOld;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.Lumberjack;
 
@@ -61,7 +61,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(MobDroidMouse.class, "droidMouse");
 		EntityUtils.registerEntity(MobDroidTrainingRemote.class, "droidTrainingRemote");
 		EntityUtils.registerEntity(VehicHothSpeederBike.class, "hothSpeederBike");
-		EntityUtils.registerEntity(EntitySeat.class, "xwing");
+		EntityUtils.registerEntity(EntitySeatOld.class, "xwing");
 		EntityUtils.registerEntity(EntityCamera.class, "xwing");
 		EntityUtils.registerEntity(VehicTIE.class, "tie");
 		EntityUtils.registerEntity(VehicTIEBomber.class, "tieBomber");

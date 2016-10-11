@@ -137,14 +137,14 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		{
 			seat = (EntitySeat)MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
 		}
-		seat.parentId = buf.readInt();
-		seat.seatID = buf.readInt();
+		//seat.parentId = buf.readInt();
+		//seat.seatID = buf.readInt();
 		seat.parent = (Pilotable)readEntity(buf);
-		seat.driver = buf.readBoolean();
+		//seat.driver = buf.readBoolean();
 		seat.playerPosX = (int)buf.readDouble();
 		seat.playerPosY = (int)buf.readDouble();
 		seat.playerPosZ = (int)buf.readDouble();
-		seat.riderId = buf.readInt();
+		//seat.riderId = buf.readInt();
 		return seat;
 	}
 
@@ -317,14 +317,14 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	{
 		buf.writeInt(entity.dimension);
 		buf.writeInt(entity.getEntityId());
-		buf.writeInt(entity.parentId);
-		buf.writeInt(entity.seatID);
+		//buf.writeInt(entity.parentId);
+		//buf.writeInt(entity.seatID);
 		writeEntity(entity.parent, buf);
-		buf.writeBoolean(entity.driver);
+		//buf.writeBoolean(entity.driver);
 		buf.writeDouble(entity.playerPosX);
 		buf.writeDouble(entity.playerPosY);
 		buf.writeDouble(entity.playerPosZ);
-		buf.writeInt(entity.riderId);
+		//buf.writeInt(entity.riderId);
 	}
 
 	private static void writeEntityCooldownEntry(EntityCooldownEntry entry, ByteBuf buf)

@@ -22,21 +22,9 @@ public class Seat
 	 */
 	public float minPitch = -89F, maxPitch = 89F;
 	/**
-	 * The name of the gun model this seat is connected to. Gun model names are specified in the model files
-	 */
-	public String gunName;
-	/**
-	 * Auto assigned by drivable type. Indicates what ammo slot the gun should take from
-	 */
-	public int gunnerID;
-	/**
 	 * For turret mounted seats on tanks, the seat will be positioned differently according to this offset and the yaw of the turret
 	 */
 	public Vector3f rotatedOffset = new Vector3f();
-	/**
-	 * Where the bullets come from
-	 */
-	public Vector3f gunOrigin = new Vector3f();
 
 	/**
 	 * Type file constructor. Line from type file should be of one of the following forms
@@ -50,17 +38,12 @@ public class Seat
 		x = Integer.parseInt(split[2]);
 		y = Integer.parseInt(split[3]);
 		z = Integer.parseInt(split[4]);
-		gunOrigin = new Vector3f(x, y, z);
 		if (split.length > 6)
 		{
 			minYaw = Float.parseFloat(split[6]);
 			maxYaw = Float.parseFloat(split[7]);
 			minPitch = Float.parseFloat(split[8]);
 			maxPitch = Float.parseFloat(split[9]);
-			if (split.length > 10)
-			{
-				gunName = split[11];
-			}
 		}
 	}
 

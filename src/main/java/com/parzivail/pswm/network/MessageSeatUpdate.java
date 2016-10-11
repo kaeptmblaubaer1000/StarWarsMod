@@ -1,14 +1,8 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.driven.EntitySeat;
-import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.Entity;
 
 public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 {
@@ -19,18 +13,18 @@ public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 	{
 	}
 
-	public MessageSeatUpdate(EntitySeat seat)
+	public MessageSeatUpdate(byte nil/*EntitySeatOld seat*/)
 	{
-		entityId = seat.parent.getEntityId();
+		/*entityId = seat.parent.getEntityId();
 		seatId = seat.seatInfo.id;
 		yaw = seat.looking.getYaw();
-		pitch = seat.looking.getPitch();
+		pitch = seat.looking.getPitch();*/
 	}
 
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		if (context.side == Side.SERVER)
+		/*if (context.side == Side.SERVER)
 		{
 			Pilotable pilotable = null;
 			for (Object obj : context.getServerHandler().playerEntity.worldObj.loadedEntityList)
@@ -69,7 +63,7 @@ public class MessageSeatUpdate extends PMessage<MessageSeatUpdate>
 				pilotable.seats[seatId].prevLooking = pilotable.seats[seatId].looking.clone();
 				pilotable.seats[seatId].looking.setAngles(yaw, pitch, 0F);
 			}
-		}
+		}*/
 		return null;
 	}
 }

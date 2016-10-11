@@ -339,7 +339,7 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat && ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).parent instanceof Starship)
+		else if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Starship)
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
@@ -351,7 +351,9 @@ public class ClientEventHandler
 			{
 				GFX.changeCameraDist(15);
 
-				StarWarsMod.mc.renderViewEntity = ((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getCamera();
+				Starship s = (Starship)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
+
+				StarWarsMod.mc.renderViewEntity = s.getCamera();
 				GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 
 				event.setCanceled(event.entity.ridingEntity instanceof Starship);
