@@ -1,9 +1,9 @@
 package com.parzivail.pswm.vehicles;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
-public class ItemSpawnXWing extends net.minecraft.item.Item
+public class ItemSpawnXWing extends ItemSpawnVehicle
 {
 	public String name = "spawnXwing";
 
@@ -32,16 +32,8 @@ public class ItemSpawnXWing extends net.minecraft.item.Item
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par1, float par2, float par3, float par4)
+	protected Pilotable getVehicle(ItemStack itemstack, World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		if (player.capabilities.isCreativeMode || player.inventory.consumeInventoryItem(StarWarsItems.spawnXwing))
-			if (!world.isRemote)
-			{
-				VehicXWing newVehic = new VehicXWing(world);
-				//newVehic.onPlacedBy(entity);
-				newVehic.setPosition(x + 0.5D, y + 1, z + 0.5D);
-				world.spawnEntityInWorld(newVehic);
-			}
-		return true;
+		return new VehicXWing(world, i, j, k);
 	}
 }

@@ -53,13 +53,6 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 			if (pilotable != null)
 			{
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
-
-				//pilotable.seats = seats;
-				//for (EntitySeatOld seat : pilotable.seats)
-				//{
-				//	seat.updatePosition();
-				//	seat.setPosition(seat.playerPosX, seat.playerPosY, seat.playerPosZ);
-				//}
 			}
 		}
 		else if (context.side == Side.CLIENT)
@@ -75,13 +68,6 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 					return null;
 
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
-
-				//pilotable.seats = seats;
-				//for (EntitySeatOld seat : pilotable.seats)
-				//{
-				//	seat.updatePosition();
-				//	seat.setPosition(seat.playerPosX, seat.playerPosY, seat.playerPosZ);
-				//}
 			}
 		}
 

@@ -2,6 +2,7 @@ package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.handlers.KeyHandler;
+import com.parzivail.pswm.network.MessageEntityKill;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
@@ -46,6 +47,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public float cameraDistance = 1;
 	protected int numPassengers = 1;
 
+	private boolean hasInit = false;
+
 	public Pilotable(World world)
 	{
 		super(world);
@@ -53,10 +56,10 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		prevAxes = new RotatedAxes();
 		preventEntitySpawning = true;
 		setSize(1F, 1F);
-		yOffset = 6F / 16F;
+		//yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
-		initType(this.worldObj.isRemote);
+		forceSpawn = true;
 	}
 
 	void initType(boolean clientSide)
@@ -67,9 +70,25 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			for (int i = 0; i < numPassengers; i++)
 			{
 				seats[i] = new EntitySeat(worldObj, this, i);
+				seats[i].setPosition(posX, posY, posZ);
 				worldObj.spawnEntityInWorld(seats[i]);
 			}
 		}
+		hasInit = true;
+	}
+
+	@Override
+	public boolean interactFirst(EntityPlayer entityplayer)
+	{
+		if (isDead)
+			return false;
+
+		//Check each seat in order to see if the entity can sit in it
+		for (int i = 0; i < numPassengers; i++)
+			if (seats[i] != null && seats[i].interactFirst(entityplayer))
+				return true;
+
+		return false;
 	}
 
 	@Override
@@ -280,13 +299,16 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
 	{
-		this.setDead();
+		StarWarsMod.network.sendToServer(new MessageEntityKill(this));
 		return true;
 	}
 
 	@Override
 	public void onUpdate()
 	{
+		if (!hasInit)
+			initType(this.worldObj.isRemote);
+
 		super.onUpdate();
 
 		if (this.worldObj.isRemote)

@@ -41,6 +41,12 @@ public class VehicXWing extends Starship implements IDebugProvider
 		this.setSize(3.0F, 6.0F);
 	}
 
+	public VehicXWing(World world, double i, double j, double k)
+	{
+		super(world, i, j, k);
+		this.setSize(3.0F, 6.0F);
+	}
+
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{

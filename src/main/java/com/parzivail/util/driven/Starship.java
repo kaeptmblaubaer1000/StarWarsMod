@@ -5,7 +5,6 @@ import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.ui.Lumberjack;
-import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
@@ -42,35 +41,9 @@ public class Starship extends Pilotable
 	}
 
 	@Override
-	public boolean interactFirst(EntityPlayer entityplayer)
-	{
-		if (isDead)
-			return false;
-
-		if (seats == null)
-		{
-			Lumberjack.debug("starship interactfirst");
-			initType(entityplayer.worldObj.isRemote);
-		}
-
-		//Check each seat in order to see if the entity can sit in it
-		for (int i = 0; i < numPassengers; i++)
-			if (seats[i] != null && seats[i].interactFirst(entityplayer))
-				return true;
-
-		return false;
-	}
-
-	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
-
-		if (seats == null)
-		{
-			// Wait for server to sync seats
-			return;
-		}
 
 		//Work out if this is the client side and the entity is driving
 		boolean thePlayerIsDrivingThis = worldObj.isRemote && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)seats[0].riddenByEntity);
@@ -112,10 +85,10 @@ public class Starship extends Pilotable
 			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
 		}
 
-		if (!worldObj.isRemote)
-		{
-			StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
-		}
+		//if (!worldObj.isRemote)
+		//{
+		//	StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
+		//}
 	}
 
 	private void calculateMotion()
