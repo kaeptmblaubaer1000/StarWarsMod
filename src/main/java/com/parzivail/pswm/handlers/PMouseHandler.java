@@ -5,7 +5,7 @@ package com.parzivail.pswm.handlers;
  */
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.driven.EntitySeatOld;
+import com.parzivail.util.driven.EntitySeat;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.MouseHelper;
@@ -17,7 +17,7 @@ public class PMouseHandler extends MouseHelper
 	@Override
 	public void mouseXYChange()
 	{
-		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeatOld)
+		if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof EntitySeat)
 			return;
 
 		this.deltaX = Mouse.getDX();

@@ -2,7 +2,7 @@ package com.parzivail.util.entity;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.mobs.EntityDroidBase;
-import com.parzivail.util.driven.EntitySeatOld;
+import com.parzivail.util.driven.EntitySeat;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -189,13 +189,13 @@ public class EntityUtils
 
 	public static boolean isRiding(Entity entity, Class<? extends Entity> clazz)
 	{
-		return !(entity == null || entity.ridingEntity == null) && (clazz.isInstance(entity.ridingEntity) || (entity.ridingEntity instanceof EntitySeatOld && clazz.isInstance(((EntitySeatOld)entity.ridingEntity).parent)));
+		return !(entity == null || entity.ridingEntity == null) && (clazz.isInstance(entity.ridingEntity) || (entity.ridingEntity instanceof EntitySeat && clazz.isInstance(((EntitySeat)entity.ridingEntity).parent)));
 	}
 
 	public static Entity getShipRiding(Entity entity)
 	{
-		if (!(entity.ridingEntity instanceof EntitySeatOld))
+		if (!(entity.ridingEntity instanceof EntitySeat))
 			return null;
-		return ((EntitySeatOld)entity.ridingEntity).parent;
+		return ((EntitySeat)entity.ridingEntity).parent;
 	}
 }

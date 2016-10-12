@@ -1,6 +1,7 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.KeyHandler;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.Lumberjack;
@@ -55,13 +56,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
+		initType(this.worldObj.isRemote);
 	}
 
 	void initType(boolean clientSide)
 	{
-		if (seats != null)
-			return;
-
 		seats = new EntitySeat[numPassengers];
 		if (!clientSide)
 		{
@@ -106,9 +105,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		try
 		{
-			Lumberjack.debug("read SpawnData");
-			initType(false);
-
 			axes.setAngles(data.readFloat(), data.readFloat(), data.readFloat());
 			prevRotationYaw = axes.getYaw();
 			prevRotationPitch = axes.getPitch();
@@ -120,8 +116,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			e.printStackTrace();
 		}
 
-		camera = new EntityCamera(worldObj, this);
-		worldObj.spawnEntityInWorld(camera);
+		if (this.camera == null)
+		{
+			camera = new EntityCamera(worldObj, this);
+			worldObj.spawnEntityInWorld(camera);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -290,6 +289,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		super.onUpdate();
 
+		if (this.worldObj.isRemote)
+			KeyHandler.handleVehicleMovement();
+
 		maxThrottle = 0.4f;
 
 		//		if (seats[0] == null && !worldObj.isRemote)
@@ -447,5 +449,18 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		// TODO: make seats pull right info
 		return DEFAULT_SEAT;
+	}
+
+	public boolean isControlling(EntityPlayer thePlayer)
+	{
+		return getControllingEntity() != null && thePlayer != null && getControllingEntity().getEntityId() == thePlayer.getEntityId();
+	}
+
+	public void acceptInput(ShipInput input)
+	{
+		if (this.seats[0] == null)
+			return;
+
+		this.seats[0].acceptInput(input);
 	}
 }

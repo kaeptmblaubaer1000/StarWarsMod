@@ -43,7 +43,7 @@ public class EntitySeat extends Entity
 
 	public EntitySeat(World world, Pilotable parent, int seatId)
 	{
-		super(world);
+		this(world);
 		this.parent = parent;
 		this.seatInfo = parent.getSeatData(seatId);
 		playerPosX = prevPlayerPosX = posX;
@@ -65,6 +65,8 @@ public class EntitySeat extends Entity
 
 		this.parent.rotateRoll(this.parent.angularVelocity.z);
 		this.parent.rotatePitch(this.parent.angularVelocity.x);
+
+		Lumberjack.debug(String.format("%s\t%s\t%s\t%s", posX, posY, posZ, isDead));
 	}
 
 	/**

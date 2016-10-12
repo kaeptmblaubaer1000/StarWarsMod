@@ -26,7 +26,6 @@ public class Starship extends Pilotable
 		prevPosY = y;
 		prevPosZ = z;
 		Lumberjack.debug("starship init");
-		initType(world.isRemote);
 	}
 
 	public Starship(World world, double x, double y, double z, EntityPlayer placer)

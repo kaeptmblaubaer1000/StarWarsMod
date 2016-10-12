@@ -18,6 +18,8 @@ import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.util.driven.ShipInput;
+import com.parzivail.util.driven.Starship;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GuiToast;
@@ -26,6 +28,7 @@ import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -55,21 +58,43 @@ public class KeyHandler
 
 		handleQuestAndForce();
 
-		handleShipMovement();
-
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
 			GFX.changeCameraRoll(0);
 		}
 	}
 
-	private void handleShipMovement()
+	public static void handleVehicleMovement()
 	{
-		/*if (StarWarsMod.mc.thePlayer != null && EntityUtils.isRiding(StarWarsMod.mc.thePlayer, Starship.class))
+		if (StarWarsMod.mc.thePlayer != null && EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Starship)
 		{
-			Starship ship = (Starship)StarWarsMod.mc.thePlayer.ridingEntity;
-			ship.handleMovementInput();
-		}*/
+			Starship ship = (Starship)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
+			if (ship != null && ship.isControlling(StarWarsMod.mc.thePlayer))
+			{
+				if ($(StarWarsMod.mc.gameSettings.keyBindLeft))
+					ship.acceptInput(ShipInput.RollLeft);
+
+				if ($(StarWarsMod.mc.gameSettings.keyBindRight))
+					ship.acceptInput(ShipInput.RollRight);
+
+				if ($(StarWarsMod.mc.gameSettings.keyBindForward))
+					ship.acceptInput(ShipInput.PitchDown);
+
+				if ($(StarWarsMod.mc.gameSettings.keyBindBack))
+					ship.acceptInput(ShipInput.PitchUp);
+
+				if ($(StarWarsMod.mc.gameSettings.keyBindJump))
+					ship.acceptInput(ShipInput.ThrottleUp);
+
+				if ($(StarWarsMod.mc.gameSettings.keyBindSneak))
+					ship.acceptInput(ShipInput.ThrottleDown);
+			}
+		}
+	}
+
+	private static boolean $(KeyBinding key)
+	{
+		return key.getIsKeyPressed();
 	}
 
 	private void handleLightsabers()
