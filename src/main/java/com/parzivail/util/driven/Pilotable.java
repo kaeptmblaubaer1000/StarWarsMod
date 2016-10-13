@@ -1,7 +1,9 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.handlers.KeyHandler;
+import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.pswm.network.MessageEntityKill;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
@@ -16,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -62,7 +65,17 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		forceSpawn = true;
 	}
 
-	void initType(boolean clientSide)
+	public Pilotable(World world, double x, double y, double z)
+	{
+		this(world);
+		setPosition(x, y, z);
+		prevPosX = x;
+		prevPosY = y;
+		prevPosZ = z;
+		Lumberjack.debug("pilotable init");
+	}
+
+	private void initType(boolean clientSide)
 	{
 		seats = new EntitySeat[numPassengers];
 		if (!clientSide)
@@ -349,6 +362,51 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			riddenByEntity.fallDistance = 0F;
 
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
+
+		//Work out if this is the client side and the entity is driving
+		boolean thePlayerIsDrivingThis = worldObj.isRemote && seats[0] != null && seats[0].riddenByEntity instanceof EntityPlayer && StarWarsMod.proxy.isThePlayer((EntityPlayer)seats[0].riddenByEntity);
+
+		//Player is not driving this. Update its position from server update packets
+		if (worldObj.isRemote && !thePlayerIsDrivingThis)
+		{
+			//The drivable is currently moving towards its server position. Continue doing so.
+			if (serverPositionTransitionTicker > 0)
+			{
+				double x = posX + (serverPosX - posX) / serverPositionTransitionTicker;
+				double y = posY + (serverPosY - posY) / serverPositionTransitionTicker;
+				double z = posZ + (serverPosZ - posZ) / serverPositionTransitionTicker;
+				double dYaw = MathHelper.wrapAngleTo180_double(serverYaw - axes.getYaw());
+				double dPitch = MathHelper.wrapAngleTo180_double(serverPitch - axes.getPitch());
+				double dRoll = MathHelper.wrapAngleTo180_double(serverRoll - axes.getRoll());
+				rotationYaw = (float)(axes.getYaw() + dYaw / serverPositionTransitionTicker);
+				rotationPitch = (float)(axes.getPitch() + dPitch / serverPositionTransitionTicker);
+				float rotationRoll = (float)(axes.getRoll() + dRoll / serverPositionTransitionTicker);
+				--serverPositionTransitionTicker;
+				setPosition(x, y, z);
+				setRotation(rotationYaw, rotationPitch, rotationRoll);
+			}
+		}
+
+		for (EntitySeat seat : seats)
+			if (seat != null)
+				seat.updatePosition();
+
+		//Calculate movement on the client and then send position, rotation etc to the server
+		if (thePlayerIsDrivingThis)
+		{
+			calculateMotion();
+
+			serverPosX = posX;
+			serverPosY = posY;
+			serverPosZ = posZ;
+			serverYaw = axes.getYaw();
+			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
+		}
+
+		//if (!worldObj.isRemote)
+		//{
+		//	StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
+		//}
 	}
 
 	@Override
@@ -484,5 +542,34 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			return;
 
 		this.seats[0].acceptInput(input);
+	}
+
+	private void calculateMotion()
+	{
+		Vector3f forwards = (Vector3f)axes.getXAxis().normalise();
+
+		//Apply gravity
+		PlanetInformation info = PlanetInformation.getPlanet(this.worldObj.provider.dimensionId);
+		float g = info == null ? 0.98f / 20f : info.getGravity();
+
+		motionY -= g;
+
+		float amountOfLift = 2F * g * throttle;
+		if (amountOfLift > g)
+			amountOfLift = g;
+
+		motionY += amountOfLift;
+
+		//Add the corrected pos
+		motionX += throttle * forwards.x;
+		motionY += throttle * forwards.y;
+		motionZ += throttle * forwards.z;
+
+		float drag = info == null ? 0.75f : info.getAtmosphericDrag();
+
+		//Apply drag
+		motionX *= drag;
+		motionY *= drag;
+		motionZ *= drag;
 	}
 }

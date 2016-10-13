@@ -1,6 +1,6 @@
 package com.parzivail.pswm.rendering.vehicles;
 
-import com.parzivail.util.driven.Starship;
+import com.parzivail.util.driven.Pilotable;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -17,17 +17,17 @@ public class RenderStarship extends Render
 		shadowSize = 0.5F;
 	}
 
-	public void render(Starship starship, double d, double d1, double d2, float f, float f1)
+	public void render(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
 	{
-		bindEntityTexture(starship);
+		bindEntityTexture(pilotable);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d, (float)d1, (float)d2);
-		float dYaw = MathHelper.wrapAngleTo180_float(starship.axes.getYaw() - starship.prevRotationYaw);
-		float dPitch = MathHelper.wrapAngleTo180_float(starship.axes.getPitch() - starship.prevRotationPitch);
-		float dRoll = MathHelper.wrapAngleTo180_float(starship.axes.getRoll() - starship.prevRotationRoll);
-		GL11.glRotatef(180F - starship.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(starship.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(-(starship.prevRotationRoll + dRoll * f1), 1.0F, 0.0F, 0.0F);
+		float dYaw = MathHelper.wrapAngleTo180_float(pilotable.axes.getYaw() - pilotable.prevRotationYaw);
+		float dPitch = MathHelper.wrapAngleTo180_float(pilotable.axes.getPitch() - pilotable.prevRotationPitch);
+		float dRoll = MathHelper.wrapAngleTo180_float(pilotable.axes.getRoll() - pilotable.prevRotationRoll);
+		GL11.glRotatef(180F - pilotable.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(pilotable.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(-(pilotable.prevRotationRoll + dRoll * f1), 1.0F, 0.0F, 0.0F);
 
 		GL11.glColor4f(1, 1, 1, 1);
 		GL11.glScalef(3, 3, 3);
@@ -35,7 +35,7 @@ public class RenderStarship extends Render
 		{
 			GL11.glRotatef(-90, 0, 1, 0);
 			GL11.glTranslatef(0, -0.85f, 0);
-			model.render(starship, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
+			model.render(pilotable, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
 		}
 
 		GL11.glPopMatrix();
@@ -44,7 +44,7 @@ public class RenderStarship extends Render
 	@Override
 	public void doRender(Entity entity, double d, double d1, double d2, float f, float f1)
 	{
-		render((Starship)entity, d, d1, d2, f, f1);
+		render((Pilotable)entity, d, d1, d2, f, f1);
 	}
 
 	@Override

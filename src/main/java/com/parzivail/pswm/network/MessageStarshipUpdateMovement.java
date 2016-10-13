@@ -15,7 +15,7 @@ public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdat
 	{
 	}
 
-	/*public MessageStarshipUpdateMovement(Starship vehic)
+	/*public MessageStarshipUpdateMovement(Pilotable vehic)
 	{
 		this.vehic = vehic;
 		posX = vehic.posX;
@@ -33,9 +33,9 @@ public class MessageStarshipUpdateMovement extends PMessage<MessageStarshipUpdat
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		/*if (this.vehic instanceof Starship)
+		/*if (this.vehic instanceof Pilotable)
 		{
-			Starship ssb = ((Starship)vehic);
+			Pilotable ssb = ((Pilotable)vehic);
 			ssb.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ);
 			ssb.shipMovementHandler.throttle = this.throttle;
 		}

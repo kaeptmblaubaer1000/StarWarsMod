@@ -70,7 +70,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		setSize(1F, 1F);
 		prevLooking = new RotatedAxes();
 		looking = new RotatedAxes();
-		Lumberjack.debug("make seat via server load");
+		Lumberjack.debug("make seat via packet from server");
 	}
 
 	/**
@@ -78,7 +78,10 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	 */
 	public EntitySeat(World world, Pilotable d, int id)
 	{
-		this(world);
+		super(world);
+		setSize(1F, 1F);
+		prevLooking = new RotatedAxes();
+		looking = new RotatedAxes();
 		parent = d;
 		parentId = d.getEntityId();
 		seatInfo = parent.getSeatData(id);
@@ -115,12 +118,15 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		this.parent.rotatePitch(this.parent.angularVelocity.x);
 
 
-		//If on the client and the driveable parent has yet to be found, search for it
+		//If on the client and the parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
 		{
 			parent = (Pilotable)worldObj.getEntityByID(parentId);
 			if (parent == null)
+			{
+				Lumberjack.debug("Unable to find parent");
 				return;
+			}
 			foundParent = true;
 			parent.seats[seatID] = this;
 			seatInfo = parent.getSeatData(seatID);
@@ -130,6 +136,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			playerPosY = prevPlayerPosY = posY = parent.posY;
 			playerPosZ = prevPlayerPosZ = posZ = parent.posZ;
 			setPosition(posX, posY, posZ);
+			Lumberjack.debug("Found parent");
 		}
 
 		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG_COEFFICIENT);
@@ -289,7 +296,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) //interact : change back when Forge updates
 	{
-		if (isDead || this.worldObj.isRemote)
+		if (isDead/* || this.worldObj.isRemote*/)
 			return false;
 
 		//Put them in the seat
@@ -300,6 +307,8 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			this.foundRider = true;
 			return true;
 		}
+
+		Lumberjack.debug(riddenByEntity);
 		return false;
 	}
 

@@ -10,8 +10,8 @@ import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.network.MessageShipAstroDetails;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.util.IDebugProvider;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.Seat;
-import com.parzivail.util.driven.Starship;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class VehicXWing extends Starship implements IDebugProvider
+public class VehicXWing extends Pilotable implements IDebugProvider
 {
 	private static int SFOIL_DW = 23;
 	public boolean isOpening = false;

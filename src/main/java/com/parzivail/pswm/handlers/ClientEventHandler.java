@@ -26,7 +26,7 @@ import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.driven.EntitySeat;
-import com.parzivail.util.driven.Starship;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.entity.PlayerHelper;
 import com.parzivail.util.math.AnimationManager;
@@ -339,7 +339,7 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Starship)
+		else if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable)
 		{
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
@@ -351,12 +351,12 @@ public class ClientEventHandler
 			{
 				GFX.changeCameraDist(15);
 
-				Starship s = (Starship)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
+				Pilotable s = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
 
 				StarWarsMod.mc.renderViewEntity = s.getCamera();
 				GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 
-				event.setCanceled(event.entity.ridingEntity instanceof Starship);
+				event.setCanceled(event.entity.ridingEntity instanceof Pilotable);
 			}
 		}
 		else
@@ -482,9 +482,9 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
-		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof Starship)
+		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof Pilotable)
 		{
-			Starship vehicle = (Starship)StarWarsMod.mc.thePlayer.ridingEntity;
+			Pilotable vehicle = (Pilotable)StarWarsMod.mc.thePlayer.ridingEntity;
 
 			float dYaw = (vehicle.axes.getYaw() - vehicle.prevRotationYaw);
 			float dPitch = (vehicle.axes.getPitch() - vehicle.prevRotationPitch);

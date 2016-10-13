@@ -18,8 +18,8 @@ import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
-import com.parzivail.util.driven.Starship;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GuiToast;
@@ -66,9 +66,9 @@ public class KeyHandler
 
 	public static void handleVehicleMovement()
 	{
-		if (StarWarsMod.mc.thePlayer != null && EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Starship)
+		if (StarWarsMod.mc.thePlayer != null && EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable)
 		{
-			Starship ship = (Starship)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
+			Pilotable ship = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
 			if (ship != null && ship.isControlling(StarWarsMod.mc.thePlayer))
 			{
 				if ($(StarWarsMod.mc.gameSettings.keyBindLeft))

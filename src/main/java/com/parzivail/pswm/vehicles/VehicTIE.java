@@ -1,10 +1,10 @@
 package com.parzivail.pswm.vehicles;
 
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.Seat;
-import com.parzivail.util.driven.Starship;
 import net.minecraft.world.World;
 
-public class VehicTIE extends Starship
+public class VehicTIE extends Pilotable
 {
 	public VehicTIE(World par1World)
 	{
