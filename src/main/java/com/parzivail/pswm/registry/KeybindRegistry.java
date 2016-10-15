@@ -49,7 +49,7 @@ public class KeybindRegistry
 		KeybindRegistry.keyShootProton = registerKeybind("shootSpecial", Keyboard.KEY_I);
 		KeybindRegistry.keyShipHyperdrive = registerKeybind("shipHyperdrive", Keyboard.KEY_U);
 		KeybindRegistry.keyShipHoverMode = registerKeybind("shipHoverMode", Keyboard.KEY_Y);
-		if (Resources.IS_DEV_ENVIRONVENT)
+		if (Resources.IS_DEV_ENVIRONMENT)
 		{
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 		}

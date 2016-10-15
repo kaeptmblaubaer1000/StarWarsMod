@@ -13,7 +13,7 @@ public class StarWarsCommonProxy
 
 		if (ConfigOptions.enableBetaFeatures)
 		{
-			Resources.IS_DEV_ENVIRONVENT = true;
+			Resources.IS_DEV_ENVIRONMENT = true;
 			Lumberjack.info("Debug/Beta mechanics implemented!");
 		}
 	}

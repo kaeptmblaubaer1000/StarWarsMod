@@ -148,7 +148,8 @@ public class Resources
 			planetTextures.put(dimDeathStarId, new ResourceLocation(MODID + ":" + "textures/models/planets/planetDeathStar.png"));
 			planetTextures.put(dimSpaceId, new ResourceLocation(MODID + ":" + "textures/models/planets/space.png"));
 
-			planetInformation = new ArrayList<>();
+			if (planetInformation == null)
+				planetInformation = new ArrayList<>();
 
 			Lumberjack.info("Configuration loaded!");
 		}
@@ -156,11 +157,11 @@ public class Resources
 
 	// Core
 	public static final String MODID = "starwarsmod";
-	public static final String VERSION = "1.3.3";
-	public static final String VERSION_MAJOR = "1.3";
+	public static final String VERSION = "1.4.0";
+	public static final String CONFIG_VERSION = "1.3";
 	public static String ONLINE_VERSION = "";
 
-	public static boolean IS_DEV_ENVIRONVENT = false;
+	public static boolean IS_DEV_ENVIRONMENT = false;
 
 	public static boolean IS_SEQUEL_RELEASE = true;
 
@@ -225,22 +226,13 @@ public class Resources
 	public static final ResourceLocation yavinTexture = new ResourceLocation(Resources.MODID, "textures/gui/planets/yavin.png");
 	public static final ResourceLocation tatooineTexture = new ResourceLocation(Resources.MODID, "textures/gui/planets/tatooine.png");
 
-	// Force Textures
-	public static final ResourceLocation capeTexture = new ResourceLocation(Resources.MODID, "textures/force/cloak.png");
-
 	// Misc
 	public static final char[] randomCharArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?$".toCharArray();
 
 	// NBT Keys
 	public static final String nbtLevel = "level";
-	public static final String nbtActive = "active";
-	public static final String nbtIsRunning = "isRunning";
-	public static final String nbtActiveHealth = "activeHealth";
-	public static final String nbtActiveLevel = "activeLevel";
-	public static final String nbtIsUsingDuration = "isDuration";
 
 	public static final String nbtMaster = "master";
-	public static final String nbtEntityTarget = "target";
 	public static final String nbtXp = "xp";
 	public static final String nbtMaxXp = "maxxp";
 	public static final String nbtSide = "side";
@@ -262,14 +254,14 @@ public class Resources
 	public static final String allegianceNone = "None";
 	public static final String allegianceJedi = "Jedi";
 	public static final String allegianceSith = "Sith";
-	public static final String allegianceNewRepublic = "New Republic";
+	//public static final String allegianceNewRepublic = "New Republic";
 	public static final String allegianceRebel = "Rebel Alliance";
 	public static final String allegianceImperial = "Galactic Empire";
 
 	public static final String allegianceNoneFmt = "none";
 	public static final String allegianceJediFmt = "jedi";
 	public static final String allegianceSithFmt = "sith";
-	public static final String allegianceNewRepublicFmt = "newrepublic";
+	//public static final String allegianceNewRepublicFmt = "newrepublic";
 	public static final String allegianceRebelFmt = "rebelalliance";
 	public static final String allegianceImperialFmt = "galacticempire";
 	public static final String allegianceJawaFmt = "jawa";
@@ -277,8 +269,6 @@ public class Resources
 	public static final String allegianceWeaponDealerFmt = "weapondealer";
 	public static final String allegianceBartenderFmt = "bartender";
 	public static final String allegianceMerchantFmt = "merchant";
-
-	public static final String skinDefault = "default";
 
 	//                                      0             1            2             3               4              5              6               7           8            9             10            11               12
 	public static final String[] armors = { "rebelPilot", "rebelHoth", "rebelEndor", "stormtrooper", "sandtrooper", "snowtrooper", "scoutTrooper", "tiePilot", "atatPilot", "aWingPilot", "yWingPilot", "shadowtrooper", "robes" };

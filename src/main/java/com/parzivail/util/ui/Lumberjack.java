@@ -16,7 +16,7 @@ public class Lumberjack
 	 */
 	public static void debug(Object message)
 	{
-		if (Resources.IS_DEV_ENVIRONVENT)
+		if (Resources.IS_DEV_ENVIRONMENT)
 			log(message);
 	}
 

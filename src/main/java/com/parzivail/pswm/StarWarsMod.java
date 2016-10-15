@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.blocks.BlockHothSign;
 import com.parzivail.pswm.commands.CommandJediRobes;
-import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.handlers.CommonEventHandler;
 import com.parzivail.pswm.handlers.GuiHandler;
@@ -449,7 +448,7 @@ public class StarWarsMod
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) throws UserError
+	public void preInit(FMLPreInitializationEvent event)
 	{
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod preInit() ==========");
 
@@ -466,7 +465,7 @@ public class StarWarsMod
 	{
 		preInitEvent = event;
 
-		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.VERSION_MAJOR));
+		ConfigOptions.configFile = new File(event.getSuggestedConfigurationFile().getPath().replace(Resources.MODID, "pswm-" + Resources.CONFIG_VERSION));
 
 		ConfigOptions.config = new Configuration(ConfigOptions.configFile, Resources.VERSION);
 
@@ -538,15 +537,10 @@ public class StarWarsMod
 		this.registerMessageServer(MessageUpdateTarget.class);
 		this.registerMessageServer(MessagePlayerBuyItem.class);
 		this.registerMessageServer(MessageSetQuestLogNbt.class);
-		this.registerMessageServer(MessageSetPosition.class);
 		this.registerMessageServer(MessageEntityKill.class);
 
 		this.registerMessageDual(MessageDrivableControl.class);
-		this.registerMessageDual(MessageSeatUpdate.class);
 
-		this.registerMessageClient(MessageSetSeatRiderID.class);
-		this.registerMessageClient(MessageForceRider.class);
-		this.registerMessageClient(MessageSetSeats.class);
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);
 		this.registerMessageClient(MessageHolocronRefreshClientPowers.class);

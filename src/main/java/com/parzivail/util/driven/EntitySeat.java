@@ -268,23 +268,43 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	}
 
 	@Override
-	protected void readEntityFromNBT(NBTTagCompound tags)
+	public void readFromNBT(NBTTagCompound p_70020_1_)
 	{
-		this.parentId = tags.getInteger("parentId");
-		this.riderId = tags.getInteger("riderId");
+		Lumberjack.debug("Read SEAT");
+		this.parentId = p_70020_1_.getInteger("parentId");
+		int riderId = p_70020_1_.getInteger("riderId");
+		if (riderId > 0)
+		{
+			Entity e = this.worldObj.getEntityByID(riderId);
+			if (e != null)
+			{
+				Lumberjack.debug("Re-mounted " + e);
+				e.mountEntity(this);
+			}
+			else
+				Lumberjack.debug("Failed to remount, e=null");
+		}
+		else
+			Lumberjack.debug("Failed to remount, riderId=0");
 	}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound tags)
+	protected void readEntityFromNBT(NBTTagCompound p_70037_1_)
 	{
-		tags.setInteger("parentId", this.parentId);
-		tags.setInteger("riderId", this.riderId);
+
 	}
 
 	@Override
-	public boolean writeToNBTOptional(NBTTagCompound tags)
+	protected void writeEntityToNBT(NBTTagCompound p_70014_1_)
 	{
-		return false;
+
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound p_70109_1_)
+	{
+		p_70109_1_.setInteger("parentId", this.parentId);
+		p_70109_1_.setInteger("riderId", this.riddenByEntity == null ? 0 : this.riddenByEntity.getEntityId());
 	}
 
 	@Override

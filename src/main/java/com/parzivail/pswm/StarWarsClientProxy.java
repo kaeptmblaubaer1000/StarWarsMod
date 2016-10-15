@@ -51,7 +51,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 
 		if (Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("StarWarsMod") || Minecraft.getMinecraft().getSession().getUsername().equalsIgnoreCase("weaston") || ConfigOptions.enableBetaFeatures)
 		{
-			Resources.IS_DEV_ENVIRONVENT = true;
+			Resources.IS_DEV_ENVIRONMENT = true;
 			Lumberjack.info("Debug/Beta mechanics implemented!");
 			Lumberjack.info("Please be warned, beta features may not be fully implemented, or may crash!");
 		}

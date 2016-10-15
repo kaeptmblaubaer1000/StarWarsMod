@@ -30,10 +30,10 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 	public boolean isOpening = false;
 	public boolean isClosing = false;
 
-	public static final Vector3f POS_ENGINE_TL = new Vector3f(39.5f, 4.5f, -10.5f);
-	public static final Vector3f POS_ENGINE_TR = new Vector3f(39.5f, 4.5f, -10.5f);
-	public static final Vector3f POS_ENGINE_BL = new Vector3f(39.5f, 14.5f, -10.5f);
-	public static final Vector3f POS_ENGINE_BR = new Vector3f(39.5f, 14.5f, -10.5f);
+	public static Vector3f POS_ENGINE_TL = new Vector3f(-58.5f, 14f, -15.5f);
+	public static Vector3f POS_ENGINE_TR = new Vector3f(-58.5f, 14f, 15.5f);
+	public static Vector3f POS_ENGINE_BL = new Vector3f(-52.5f, -2f, -15.5f);
+	public static Vector3f POS_ENGINE_BR = new Vector3f(-52.5f, -2f, 15.5f);
 
 	public VehicXWing(World par1World)
 	{

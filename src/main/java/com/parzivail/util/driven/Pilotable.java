@@ -72,7 +72,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		prevPosX = x;
 		prevPosY = y;
 		prevPosZ = z;
-		Lumberjack.debug("pilotable init");
 	}
 
 	private void initType(boolean clientSide)
@@ -175,7 +174,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public AxisAlignedBB getCollisionBox(Entity entity)
 	{
-		return null;//entity.boundingBox;
+		return null;
 	}
 
 	@Override
@@ -297,11 +296,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public Vector3f getInWorldPositionOf(Vector3f modelCoordinate)
 	{
-		Vector3f coord = new Vector3f(modelCoordinate);
-		coord.scale(1 / 16f); // Convert from model coordinated to vehicle local world coordinates
-		Vector3f found = this.axes.findLocalVectorGlobally(coord);
-		found.translate((float)posX, (float)posY, (float)posZ);
-		return found; // convert from local to global world coordinates
+		Vector3f localPosition = new Vector3f(modelCoordinate.x / 8f, modelCoordinate.y / 8f, modelCoordinate.z / 8f);
+		Vector3f relativePosition = axes.findLocalVectorGlobally(localPosition);
+		return new Vector3f(posX + relativePosition.x, posY + relativePosition.y, posZ + relativePosition.z);
 	}
 
 	public Vector3f getLookVec3f()
