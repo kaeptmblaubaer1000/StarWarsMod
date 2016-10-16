@@ -129,7 +129,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		if (this.parent == null || this.parent.angularVelocity == null)
 			return;
 
-		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG_COEFFICIENT);
+		this.parent.angularVelocity.scale(parent.shipInfo.angularDragCoefficient);
 		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
 			this.parent.angularVelocity.x = 0;
 		if (Math.abs(this.parent.angularVelocity.z) < 0.01f)
@@ -338,7 +338,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 	public float getCameraDistance()
 	{
-		return foundParent && seatID == 0 ? parent.cameraDistance : 5F;
+		return foundParent && seatID == 0 ? parent.shipInfo.cameraDistance : 5F;
 	}
 
 	@Override
@@ -396,12 +396,12 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			case YawRight:
 				break;
 			case ThrottleUp:
-				this.parent.throttle += this.parent.maxThrottle / 10f;
-				this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
+				this.parent.throttle += this.parent.shipInfo.maxThrottle * this.parent.shipInfo.throttleStep;
+				this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.shipInfo.maxThrottle);
 				break;
 			case ThrottleDown:
-				this.parent.throttle -= this.parent.maxThrottle / 10f;
-				this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.maxThrottle);
+				this.parent.throttle -= this.parent.shipInfo.maxThrottle * this.parent.shipInfo.throttleStep;
+				this.parent.throttle = MathHelper.clamp_float(this.parent.throttle, 0, this.parent.shipInfo.maxThrottle);
 				break;
 			case BlasterFire:
 				break;

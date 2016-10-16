@@ -14,6 +14,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
@@ -23,37 +24,31 @@ import net.minecraft.world.World;
 
 public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
-	private Seat DEFAULT_SEAT = new Seat(0, 0, 0);
-	public EntitySeat[] seats;
-
-	public boolean syncFromServer = true;
-	public double serverPosX, serverPosY, serverPosZ;
-	public int serverPositionTransitionTicker;
-
+	protected ShipInfo shipInfo;
 	public float throttle;
 
-	public float maxThrottle = 0.25f;
+	public EntitySeat[] seats;
+
 	public float prevRotationRoll;
-
 	public double serverYaw, serverPitch, serverRoll;
-
 	public RotatedAxes prevAxes;
 	public RotatedAxes axes;
 
 	public Vector3f angularVelocity = new Vector3f(0F, 0F, 0F);
-	public static final float ANGULAR_DRAG_COEFFICIENT = 0.8f;
 
 	@SideOnly(Side.CLIENT)
 	public EntityLivingBase camera;
 
-	public float cameraDistance = 1;
-	protected int numPassengers = 1;
+	public boolean syncFromServer = true;
+	public double serverPosX, serverPosY, serverPosZ;
+	public int serverPositionTransitionTicker;
 
 	private boolean hasInit = false;
 
 	public Pilotable(World world)
 	{
 		super(world);
+		shipInfo = createShipInfo();
 		axes = new RotatedAxes();
 		prevAxes = new RotatedAxes();
 		preventEntitySpawning = true;
@@ -62,7 +57,18 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
 		forceSpawn = true;
-		seats = new EntitySeat[numPassengers];
+		seats = new EntitySeat[shipInfo.numPassengers];
+		setupShipData();
+	}
+
+	protected void setupShipData()
+	{
+
+	}
+
+	private ShipInfo createShipInfo()
+	{
+		return new ShipInfo();
 	}
 
 	public Pilotable(World world, double x, double y, double z)
@@ -76,7 +82,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	private void createSeats()
 	{
-		for (int i = 0; i < numPassengers; i++)
+		for (int i = 0; i < shipInfo.numPassengers; i++)
 		{
 			seats[i] = new EntitySeat(worldObj, this, i);
 			seats[i].setPosition(posX, posY, posZ);
@@ -92,7 +98,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			return false;
 
 		//Check each seat in order to see if the entity can sit in it
-		for (int i = 0; i < numPassengers; i++)
+		for (int i = 0; i < shipInfo.numPassengers; i++)
 			if (seats[i] != null && seats[i].interactFirst(entityplayer))
 				return true;
 
@@ -317,8 +323,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		if (this.worldObj.isRemote)
 			KeyHandler.handleVehicleMovement();
 
-		maxThrottle = 0.4f;
-
 		prevRotationYaw = axes.getYaw();
 		prevRotationPitch = axes.getPitch();
 		prevRotationRoll = axes.getRoll();
@@ -381,6 +385,41 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			serverPosZ = posZ;
 			serverYaw = axes.getYaw();
 			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
+		}
+
+		int ht = this.worldObj.getHeightValue((int)this.posX, (int)this.posZ) - 1;
+
+		if (this.worldObj.getBlock((int)this.posX, ht, (int)this.posZ) == Blocks.water && this.worldObj.isRemote && this.seats[0] != null && this.seats[0].riddenByEntity instanceof EntityPlayer)
+		{
+			for (int i = 0; i < 70; i++)
+			{
+				double motionX = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
+				//double motionY = 0.03 * this.move;
+				double motionY = 0.03;
+				motionY *= Math.max(1, 10 - (this.posY - ht));
+				double motionZ = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
+
+				float sXa = MathHelper.cos((float)Math.toRadians(this.axes.getYaw())) * 7;
+				float sZa = MathHelper.sin((float)Math.toRadians(this.axes.getYaw())) * 7;
+
+				float sXb = MathHelper.cos((float)Math.toRadians(this.axes.getYaw() + 180)) * 7;
+				float sZb = MathHelper.sin((float)Math.toRadians(this.axes.getYaw() + 180)) * 7;
+
+				float width = 1f;
+
+				String n = "wake";
+				String n2 = "explode";
+
+				this.worldObj.spawnParticle(n, this.posX + sXa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
+				this.worldObj.spawnParticle(n, this.posX + sXb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
+
+				if (i % 5 == 0)
+				{
+					this.worldObj.spawnParticle(n2, this.posX + sXa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
+					this.worldObj.spawnParticle(n2, this.posX + sXb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
+				}
+
+			}
 		}
 	}
 
@@ -502,8 +541,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public Seat getSeatData(int id)
 	{
-		// TODO: make seats pull right info
-		return DEFAULT_SEAT;
+		return shipInfo.seatInfo[id];
 	}
 
 	public boolean isControlling(EntityPlayer thePlayer)

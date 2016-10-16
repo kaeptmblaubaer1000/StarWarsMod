@@ -291,7 +291,6 @@ public class StarWarsMod
 	public static DamageSource meleeDamageSource;
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
-	public static boolean canMoveMouse = true;
 	public FMLPreInitializationEvent preInitEvent;
 
 	public StarWarsMod()

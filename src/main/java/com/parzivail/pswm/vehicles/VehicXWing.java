@@ -16,10 +16,8 @@ import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -38,13 +36,18 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 	public VehicXWing(World par1World)
 	{
 		super(par1World);
-		this.setSize(3.0F, 6.0F);
 	}
 
 	public VehicXWing(World world, double i, double j, double k)
 	{
 		super(world, i, j, k);
+	}
+
+	@Override
+	protected void setupShipData()
+	{
 		this.setSize(3.0F, 6.0F);
+		this.shipInfo.seatInfo = new Seat[] { new Seat(-15, 0, 0) };
 	}
 
 	@Override
@@ -167,41 +170,6 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 		if ((this.isOpening || this.isClosing) && this.riddenByEntity instanceof EntityPlayer)
 			StarWarsMod.network.sendToServer(new MessageSFoil((EntityPlayer)this.riddenByEntity, this.getSFoil()));
 
-		int ht = this.worldObj.getHeightValue((int)this.posX, (int)this.posZ) - 1;
-
-		if (this.worldObj.getBlock((int)this.posX, ht, (int)this.posZ) == Blocks.water && this.worldObj.isRemote && this.seats[0] != null && this.seats[0].riddenByEntity instanceof EntityPlayer)
-		{
-			for (int i = 0; i < 70; i++)
-			{
-				double motionX = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
-				//double motionY = 0.03 * this.move;
-				double motionY = 0.03;
-				motionY *= Math.max(1, 10 - (this.posY - ht));
-				double motionZ = StarWarsMod.rngGeneral.nextGaussian() * 0.03D;
-
-				float sXa = MathHelper.cos((float)Math.toRadians(this.axes.getYaw())) * 7;
-				float sZa = MathHelper.sin((float)Math.toRadians(this.axes.getYaw())) * 7;
-
-				float sXb = MathHelper.cos((float)Math.toRadians(this.axes.getYaw() + 180)) * 7;
-				float sZb = MathHelper.sin((float)Math.toRadians(this.axes.getYaw() + 180)) * 7;
-
-				float width = 1f;
-
-				String n = "wake";
-				String n2 = "explode";
-
-				this.worldObj.spawnParticle(n, this.posX + sXa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
-				this.worldObj.spawnParticle(n, this.posX + sXb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
-
-				if (i % 5 == 0)
-				{
-					this.worldObj.spawnParticle(n2, this.posX + sXa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
-					this.worldObj.spawnParticle(n2, this.posX + sXb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
-				}
-
-			}
-		}
-
 		if (this.worldObj.isRemote)
 		{
 			Vector3f tL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TL);
@@ -254,17 +222,5 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 	{
 		this.dataWatcher.updateObject(SFOIL_DW + 2, astroType);
 		this.dataWatcher.setObjectWatched(SFOIL_DW + 2);
-	}
-
-	@Override
-	public Seat getSeatData(int id)
-	{
-		switch (id)
-		{
-			case 0:
-				return new Seat(-15, 0, 0);
-			default:
-				return super.getSeatData(id);
-		}
 	}
 }
