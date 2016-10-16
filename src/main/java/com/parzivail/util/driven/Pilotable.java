@@ -319,22 +319,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		maxThrottle = 0.4f;
 
-		//		if (seats[0] == null && !worldObj.isRemote)
-		//		{
-		//			for (int i = 0; i < numPassengers; i++)
-		//			{
-		//				if (seats[i] == null)
-		//					seats[i] = new EntitySeatOld(worldObj, this, i);
-		//				if (!seats[i].addedToChunk)
-		//					worldObj.spawnEntityInWorld(seats[i]);
-		//			}
-		//
-		//			StarWarsMod.network.sendToDimension(new MessageSetSeats(this, seats), worldObj.provider.dimensionId);
-		//		}
-
-		//if (!this.worldObj.isRemote)
-		//	StarWarsMod.network.sendToDimension(new MessageSetSeats(this, this.seats), this.dimension);
-
 		prevRotationYaw = axes.getYaw();
 		prevRotationPitch = axes.getPitch();
 		prevRotationRoll = axes.getRoll();
