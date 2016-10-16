@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="god forbid I say &quot;it's fixed&quot;">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageForceRider.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSeatUpdate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSetPosition.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSetSeatRiderID.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSetSeats.java" afterPath="" />
+    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="i was wrong. things are still very broken.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/Resources.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/Resources.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsCommonProxy.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsCommonProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/KeybindRegistry.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/KeybindRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/Lumberjack.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/Lumberjack.java" />
     </list>
     <ignored path="StarWarsMod.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pilotable.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Pilotable.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="298" column="115" selection-start-line="298" selection-start-column="115" selection-end-line="298" selection-end-column="115" />
+            <state relative-caret-position="-3193">
+              <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -74,17 +61,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="585">
-              <caret line="216" column="70" selection-start-line="216" selection-start-column="70" selection-end-line="216" selection-end-column="70" />
+              <caret line="215" column="70" selection-start-line="215" selection-start-column="70" selection-end-line="215" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EntitySeat.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EntitySeat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1318">
-              <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+            <state relative-caret-position="508">
+              <caret line="289" column="0" selection-start-line="289" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,10 +152,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Starship.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/Resources.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Seat.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" />
       </list>
     </option>
   </component>
@@ -751,13 +738,6 @@
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
     </task>
-    <task id="LOCAL-00005" summary="math? no.">
-      <created>1475366357766</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1475366357766</updated>
-    </task>
     <task id="LOCAL-00006" summary="ship rotate start">
       <created>1475441391498</created>
       <option name="number" value="00006" />
@@ -1094,7 +1074,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476317052984</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="i was wrong. things are still very broken.">
+      <created>1476572321298</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1476572321299</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1108,7 +1095,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22296543" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1128,7 +1115,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1401919" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2251951" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2251951" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1170,7 +1157,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="ents" />
     <MESSAGE value="stuff" />
     <MESSAGE value="turning out very well" />
     <MESSAGE value="still workin well" />
@@ -1195,7 +1181,8 @@
     <MESSAGE value="work" />
     <MESSAGE value="ships still broken" />
     <MESSAGE value="god forbid I say &quot;it's fixed&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="god forbid I say &quot;it's fixed&quot;" />
+    <MESSAGE value="i was wrong. things are still very broken." />
+    <option name="LAST_COMMIT_MESSAGE" value="i was wrong. things are still very broken." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1552,22 +1539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="216" column="70" selection-start-line="216" selection-start-column="70" selection-end-line="216" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="298" column="115" selection-start-line="298" selection-start-column="115" selection-end-line="298" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/mobs/MobTatooineCommoner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -1610,8 +1581,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1318">
-          <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
+        <state relative-caret-position="508">
+          <caret line="289" column="0" selection-start-line="289" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="215" column="70" selection-start-line="215" selection-start-column="70" selection-end-line="215" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3193">
+          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
           <folding />
         </state>
       </provider>

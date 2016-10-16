@@ -7,7 +7,6 @@ import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.pswm.network.MessageEntityKill;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
-import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -63,6 +62,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
 		forceSpawn = true;
+		seats = new EntitySeat[numPassengers];
 	}
 
 	public Pilotable(World world, double x, double y, double z)
@@ -74,17 +74,13 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		prevPosZ = z;
 	}
 
-	private void initType(boolean clientSide)
+	private void createSeats()
 	{
-		seats = new EntitySeat[numPassengers];
-		if (!clientSide)
+		for (int i = 0; i < numPassengers; i++)
 		{
-			for (int i = 0; i < numPassengers; i++)
-			{
-				seats[i] = new EntitySeat(worldObj, this, i);
-				seats[i].setPosition(posX, posY, posZ);
-				worldObj.spawnEntityInWorld(seats[i]);
-			}
+			seats[i] = new EntitySeat(worldObj, this, i);
+			seats[i].setPosition(posX, posY, posZ);
+			worldObj.spawnEntityInWorld(seats[i]);
 		}
 		hasInit = true;
 	}
@@ -114,9 +110,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound tag)
 	{
-		Lumberjack.debug("read NBT");
-		initType(false);
-
 		prevRotationYaw = tag.getFloat("RotationYaw");
 		prevRotationPitch = tag.getFloat("RotationPitch");
 		prevRotationRoll = tag.getFloat("RotationRoll");
@@ -316,8 +309,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public void onUpdate()
 	{
-		if (!hasInit)
-			initType(this.worldObj.isRemote);
+		if (!hasInit && !worldObj.isRemote)
+			createSeats();
 
 		super.onUpdate();
 
