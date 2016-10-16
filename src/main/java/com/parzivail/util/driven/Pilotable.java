@@ -335,6 +335,12 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		if (riddenByEntity != null)
 			riddenByEntity.fallDistance = 0F;
 
+		if (seats[0] != null && seats[0].riddenByEntity == null && worldObj.isRemote)
+		{
+			this.throttle = 0;
+			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
+		}
+
 		this.moveEntity(this.motionX, this.motionY, this.motionZ);
 
 		//Work out if this is the client side and the entity is driving
@@ -376,11 +382,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			serverYaw = axes.getYaw();
 			StarWarsMod.network.sendToServer(new MessageDrivableControl(this));
 		}
-
-		//if (!worldObj.isRemote)
-		//{
-		//	StarWarsMod.network.sendToAllAround(new MessageDrivableControl(this), new NetworkRegistry.TargetPoint(dimension, posX, posY, posZ, 100));
-		//}
 	}
 
 	@Override

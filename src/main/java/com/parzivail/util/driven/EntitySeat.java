@@ -104,19 +104,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 	public void onUpdate()
 	{
 		super.onUpdate();
-		//prevPosX = posX;
-		//prevPosY = posY;
-		//prevPosZ = posZ;
-
-		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG_COEFFICIENT);
-		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
-			this.parent.angularVelocity.x = 0;
-		if (Math.abs(this.parent.angularVelocity.z) < 0.01f)
-			this.parent.angularVelocity.z = 0;
-
-		this.parent.rotateRoll(this.parent.angularVelocity.z);
-		this.parent.rotatePitch(this.parent.angularVelocity.x);
-
 
 		//If on the client and the parent has yet to be found, search for it
 		if (worldObj.isRemote && !foundParent)
@@ -139,6 +126,9 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 			Lumberjack.debug("Found parent");
 		}
 
+		if (this.parent == null || this.parent.angularVelocity == null)
+			return;
+
 		this.parent.angularVelocity.scale(Pilotable.ANGULAR_DRAG_COEFFICIENT);
 		if (Math.abs(this.parent.angularVelocity.x) < 0.01f)
 			this.parent.angularVelocity.x = 0;
@@ -147,16 +137,6 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 
 		this.parent.rotateRoll(this.parent.angularVelocity.z);
 		this.parent.rotatePitch(this.parent.angularVelocity.x);
-
-		//		if (this.riddenByEntity instanceof EntityPlayer)
-		//		{
-		//			if (!worldObj.isRemote && this.riddenByEntity instanceof EntityPlayerMP)
-		//				StarWarsMod.network.sendToDimension(new MessageForceRider(this, this.riddenByEntity), this.dimension);
-		//			else
-		//			{
-		//				StarWarsMod.network.sendToServer(new MessageSetPosition(this, playerPosX, playerPosY, playerPosZ));
-		//			}
-		//		}
 	}
 
 	/**
