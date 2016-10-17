@@ -11,4 +11,5 @@ public class ShipInfo
 	public float angularDragCoefficient = 0.8f;
 	public float maxThrottle = 0.4f;
 	public float throttleStep = 0.1f;
+	public float cameraFloatDampening = 0.5f;
 }

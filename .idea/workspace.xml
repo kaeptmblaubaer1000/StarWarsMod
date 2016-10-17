@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="ship ship shippy ship">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java" />
+    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="ship shippy shipship">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityCamera.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityCamera.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java" />
     </list>
     <ignored path="StarWarsMod.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,8 +42,8 @@
       <file leaf-file-name="StarWarsMod.java" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="292" column="52" selection-start-line="292" selection-start-column="52" selection-end-line="292" selection-end-column="52" />
+            <state relative-caret-position="207">
+              <caret line="352" column="41" selection-start-line="352" selection-start-column="41" selection-end-line="352" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -54,8 +52,18 @@
       <file leaf-file-name="Pilotable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="399">
+              <caret line="150" column="32" selection-start-line="150" selection-start-column="32" selection-end-line="150" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityCamera.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityCamera.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,8 +72,8 @@
       <file leaf-file-name="VehicXWing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-465">
-              <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+            <state relative-caret-position="360">
+              <caret line="34" column="76" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -74,28 +82,18 @@
       <file leaf-file-name="EntitySeat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="395" column="26" selection-start-line="395" selection-start-column="26" selection-end-line="395" selection-end-column="26" />
+            <state relative-caret-position="936">
+              <caret line="407" column="34" selection-start-line="407" selection-start-column="34" selection-end-line="407" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VehicAWing.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicAWing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="46" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShipInfo.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShipInfo.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+            <state relative-caret-position="195">
+              <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -141,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/ItemSpawnTIE.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/vehicles/RenderTIE.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/entity/EntityCamera.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityCamera.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/entity/PlayerHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSetPlayerPosition.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSetPosition.java" />
@@ -176,10 +173,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Seat.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/models/vehicles/ModelTIE.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityCamera.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java" />
       </list>
     </option>
   </component>
@@ -788,13 +786,6 @@
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
     </task>
-    <task id="LOCAL-00009" summary="getting there">
-      <created>1475544685936</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1475544685936</updated>
-    </task>
     <task id="LOCAL-00010" summary="flans codebase integration. remind me to publicly thank flans.">
       <created>1475620303260</created>
       <option name="number" value="00010" />
@@ -1131,7 +1122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476651702063</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="ship shippy shipship">
+      <created>1476652964641</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1476652964641</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1207,7 +1205,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="cleanup start" />
     <MESSAGE value="cleanup 2" />
     <MESSAGE value="cleanup 3" />
     <MESSAGE value="cleanup 4" />
@@ -1232,7 +1229,8 @@
     <MESSAGE value="stuff" />
     <MESSAGE value="seems better, needs more testing" />
     <MESSAGE value="ship ship shippy ship" />
-    <option name="LAST_COMMIT_MESSAGE" value="ship ship shippy ship" />
+    <MESSAGE value="ship shippy shipship" />
+    <option name="LAST_COMMIT_MESSAGE" value="ship shippy shipship" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1245,30 +1243,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/crash-reports/crash-2016-10-08_18.15.24-server.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crash-reports/crash-2016-10-09_10.55.27-client.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crash-reports/crash-2016-10-09_20.20.28-server.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crash-reports/crash-2016-10-09_20.24.24-server.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1597,30 +1571,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="292" column="52" selection-start-line="292" selection-start-column="52" selection-end-line="292" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicATST.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1629,26 +1579,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicAWing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicXWing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-465">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+        <state relative-caret-position="360">
+          <caret line="34" column="76" selection-start-line="34" selection-start-column="76" selection-end-line="34" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="150" column="32" selection-start-line="150" selection-start-column="32" selection-end-line="150" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntitySeat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="395" column="26" selection-start-line="395" selection-start-column="26" selection-end-line="395" selection-end-column="26" />
+        <state relative-caret-position="936">
+          <caret line="407" column="34" selection-start-line="407" selection-start-column="34" selection-end-line="407" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/VehicAWing.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/util/MathHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="46" />
+        <state relative-caret-position="227">
+          <caret line="210" column="24" selection-start-line="210" selection-start-column="24" selection-end-line="210" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EntityCamera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/Lumberjack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsMod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="352" column="41" selection-start-line="352" selection-start-column="41" selection-end-line="352" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
           <folding />
         </state>
       </provider>

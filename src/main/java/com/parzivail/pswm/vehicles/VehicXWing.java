@@ -18,6 +18,7 @@ import com.parzivail.util.ui.LangUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -187,7 +188,7 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 
 	public void setSFoil(float f)
 	{
-		this.dataWatcher.updateObject(SFOIL_DW, f);
+		this.dataWatcher.updateObject(SFOIL_DW, MathHelper.clamp_float(f, 0, 1));
 		this.dataWatcher.setObjectWatched(SFOIL_DW);
 	}
 
