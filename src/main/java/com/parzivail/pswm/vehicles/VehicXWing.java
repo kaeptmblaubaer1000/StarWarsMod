@@ -171,19 +171,19 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 		if ((this.isOpening || this.isClosing) && this.riddenByEntity instanceof EntityPlayer)
 			StarWarsMod.network.sendToServer(new MessageSFoil((EntityPlayer)this.riddenByEntity, this.getSFoil()));
 
-		if (this.worldObj.isRemote)
-		{
-			Vector3f tL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TL);
-			Vector3f tR = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TR);
-			Vector3f bL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_BL);
-			Vector3f bR = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_BR);
-
-			String n = "flame";
-			this.worldObj.spawnParticle(n, tL.x, tL.y, tL.z, 0, 0, 0);
-			this.worldObj.spawnParticle(n, tR.x, tR.y, tR.z, 0, 0, 0);
-			this.worldObj.spawnParticle(n, bL.x, bL.y, bL.z, 0, 0, 0);
-			this.worldObj.spawnParticle(n, bR.x, bR.y, bR.z, 0, 0, 0);
-		}
+		//		if (this.worldObj.isRemote)
+		//		{
+		//			Vector3f tL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TL);
+		//			Vector3f tR = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_TR);
+		//			Vector3f bL = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_BL);
+		//			Vector3f bR = this.getInWorldPositionOf(VehicXWing.POS_ENGINE_BR);
+		//
+		//			String n = "flame";
+		//			this.worldObj.spawnParticle(n, tL.x, tL.y, tL.z, 0, 0, 0);
+		//			this.worldObj.spawnParticle(n, tR.x, tR.y, tR.z, 0, 0, 0);
+		//			this.worldObj.spawnParticle(n, bL.x, bL.y, bL.z, 0, 0, 0);
+		//			this.worldObj.spawnParticle(n, bR.x, bR.y, bR.z, 0, 0, 0);
+		//		}
 	}
 
 	public void setSFoil(float f)

@@ -33,13 +33,15 @@ public class ShipGuiHandler
 				GL11.glDisable(GL11.GL_LIGHTING);
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 
+				// Center of screen
 				GL11.glTranslated(event.resolution.getScaledWidth_double() / 2f, event.resolution.getScaledHeight_double() / 2f, 200);
 
 				float pitch = ship.prevRotationPitch + MathHelper.wrapAngleTo180_float(ship.axes.getPitch() - ship.prevRotationPitch) * event.partialTicks;
 				float roll = ship.prevRotationRoll + MathHelper.wrapAngleTo180_float(ship.axes.getRoll() - ship.prevRotationRoll) * event.partialTicks;
 
+				// Reverse roll and pitch to find horizon
 				GL11.glRotatef(roll, 0, 0, 1);
-				GL11.glTranslatef(0, -pitch * 2.75f, 0);
+				GL11.glTranslated(0, -pitch * Math.PI + Math.sin(-pitch / 180f) * -15, 0);
 
 				GLPalette.glColorI(GLPalette.ANALOG_GREEN);
 
