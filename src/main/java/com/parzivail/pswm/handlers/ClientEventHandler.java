@@ -345,14 +345,16 @@ public class ClientEventHandler
 		}
 		else if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable)
 		{
+			Pilotable s = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
+
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
 				GFX.changeCameraDist(4);
+				s.data.cameraDistance = 1;
 			}
 			else
 			{
-				Pilotable s = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
-
+				s.data.cameraDistance = s.data.cameraDistanceMax;
 				StarWarsMod.mc.renderViewEntity = s != null ? s.getCamera() : StarWarsMod.mc.thePlayer;
 			}
 			GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());

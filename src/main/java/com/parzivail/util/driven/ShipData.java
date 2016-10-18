@@ -9,6 +9,7 @@ public class ShipData
 	public Seat[] seatInfo = new Seat[0];
 
 	public float cameraDistance = 10;
+	public float cameraDistanceMax = 10;
 	public float cameraFloatDampening = 0.5f;
 
 	public float angularDragCoefficient = 0.8f;

@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
-	protected ShipData data;
+	public ShipData data;
 	public float throttle;
 
 	public EntitySeat[] seats;
