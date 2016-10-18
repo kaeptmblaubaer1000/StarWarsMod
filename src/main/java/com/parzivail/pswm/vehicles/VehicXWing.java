@@ -48,7 +48,7 @@ public class VehicXWing extends Pilotable implements IDebugProvider
 	protected void setupShipData()
 	{
 		this.setSize(3.0F, 6.0F);
-		this.shipInfo.seatInfo = new Seat[] { new Seat(-15, 0, 0) };
+		this.data.seatInfo = new Seat[] { new Seat(-15, 0, 0) };
 	}
 
 	@Override

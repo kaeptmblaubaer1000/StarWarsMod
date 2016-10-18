@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
-	protected ShipInfo shipInfo;
+	protected ShipData data;
 	public float throttle;
 
 	public EntitySeat[] seats;
@@ -48,7 +48,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public Pilotable(World world)
 	{
 		super(world);
-		shipInfo = createShipInfo();
+		data = createShipInfo();
 		axes = new RotatedAxes();
 		prevAxes = new RotatedAxes();
 		preventEntitySpawning = true;
@@ -57,7 +57,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		ignoreFrustumCheck = true;
 		renderDistanceWeight = 200D;
 		forceSpawn = true;
-		seats = new EntitySeat[shipInfo.numPassengers];
+		seats = new EntitySeat[data.numPassengers];
 		setupShipData();
 	}
 
@@ -66,9 +66,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	}
 
-	private ShipInfo createShipInfo()
+	private ShipData createShipInfo()
 	{
-		return new ShipInfo();
+		return new ShipData();
 	}
 
 	public Pilotable(World world, double x, double y, double z)
@@ -82,7 +82,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	private void createSeats()
 	{
-		for (int i = 0; i < shipInfo.numPassengers; i++)
+		for (int i = 0; i < data.numPassengers; i++)
 		{
 			seats[i] = new EntitySeat(worldObj, this, i);
 			seats[i].setPosition(posX, posY, posZ);
@@ -98,7 +98,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			return false;
 
 		//Check each seat in order to see if the entity can sit in it
-		for (int i = 0; i < shipInfo.numPassengers; i++)
+		for (int i = 0; i < data.numPassengers; i++)
 			if (seats[i] != null && seats[i].interactFirst(entityplayer))
 				return true;
 
@@ -541,7 +541,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public Seat getSeatData(int id)
 	{
-		return shipInfo.seatInfo[id];
+		return data.seatInfo[id];
 	}
 
 	public boolean isControlling(EntityPlayer thePlayer)

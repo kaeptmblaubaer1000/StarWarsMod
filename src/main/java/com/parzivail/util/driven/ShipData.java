@@ -3,7 +3,7 @@ package com.parzivail.util.driven;
 /**
  * Created by colby on 10/16/2016.
  */
-public class ShipInfo
+public class ShipData
 {
 	public int numPassengers = 1;
 	public Seat[] seatInfo = new Seat[0];

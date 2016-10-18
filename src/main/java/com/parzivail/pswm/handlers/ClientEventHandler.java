@@ -52,6 +52,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
+import java.io.File;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -193,16 +194,19 @@ public class ClientEventHandler
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load loadEvent)
 	{
-		//File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
+		if (Resources.IS_DEV_ENVIRONMENT)
+		{
+			File dir = StarWarsMod.instance.preInitEvent.getModConfigurationDirectory();
 
-		//try
-		//{
-		//	StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
-		//}
-		//catch (NullPointerException e)
-		//{
-		//	Lumberjack.debug("Couldn't save NBT map. Probably connecting to a server.");
-		//}
+			try
+			{
+				StarWarsMod.saveNbtMappings(new File(dir, loadEvent.world.getSaveHandler().loadWorldInfo().getWorldName() + "-map.nbt"));
+			}
+			catch (NullPointerException e)
+			{
+				Lumberjack.debug("Couldn't save NBT map. Probably connecting to a server.");
+			}
+		}
 	}
 
 	@SubscribeEvent
@@ -345,7 +349,7 @@ public class ClientEventHandler
 			{
 				GFX.changeCameraDist(4);
 
-				//event.setCanceled(event.entity == StarWarsMod.mc.thePlayer.ridingEntity);
+				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer || event.entity == EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer));
 			}
 			else
 			{
@@ -353,11 +357,11 @@ public class ClientEventHandler
 
 				Pilotable s = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
 
-				StarWarsMod.mc.renderViewEntity = s.getCamera();
+				StarWarsMod.mc.renderViewEntity = s != null ? s.getCamera() : StarWarsMod.mc.thePlayer;
 				GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
-
-				event.setCanceled(event.entity.ridingEntity instanceof Pilotable);
 			}
+			ShipGuiHandler.drawGui(ClientEventHandler.renderHelper.isFirstPerson());
+			event.setCanceled(event.entity == StarWarsMod.mc.thePlayer);
 		}
 		else
 		{

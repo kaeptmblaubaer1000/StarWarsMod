@@ -31,7 +31,7 @@ public class EntityCamera extends EntityLivingBase
 		prevPosZ = posZ;
 
 		Vector3f cameraPosition = new Vector3f();
-		cameraPosition.scale(pilotable.shipInfo.cameraDistance);
+		cameraPosition.scale(pilotable.data.cameraDistance);
 		cameraPosition = pilotable.axes.findLocalVectorGlobally(cameraPosition);
 
 		//Lerp it
@@ -39,7 +39,7 @@ public class EntityCamera extends EntityLivingBase
 		double dY = pilotable.posY + cameraPosition.y - posY;
 		double dZ = pilotable.posZ + cameraPosition.z - posZ;
 
-		setPosition(posX + dX * pilotable.shipInfo.cameraFloatDampening, posY + dY * pilotable.shipInfo.cameraFloatDampening, posZ + dZ * pilotable.shipInfo.cameraFloatDampening);
+		setPosition(posX + dX * pilotable.data.cameraFloatDampening, posY + dY * pilotable.data.cameraFloatDampening, posZ + dZ * pilotable.data.cameraFloatDampening);
 
 		rotationYaw = MathHelper.wrapAngleTo180_float(pilotable.axes.getYaw() - 90F);
 		rotationPitch = MathHelper.wrapAngleTo180_float(pilotable.axes.getPitch());
