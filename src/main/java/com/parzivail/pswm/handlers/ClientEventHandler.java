@@ -348,19 +348,14 @@ public class ClientEventHandler
 			if (ClientEventHandler.renderHelper.isFirstPerson())
 			{
 				GFX.changeCameraDist(4);
-
-				event.setCanceled(event.entity == StarWarsMod.mc.thePlayer || event.entity == EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer));
 			}
 			else
 			{
-				GFX.changeCameraDist(15);
-
 				Pilotable s = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
 
 				StarWarsMod.mc.renderViewEntity = s != null ? s.getCamera() : StarWarsMod.mc.thePlayer;
-				GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 			}
-			ShipGuiHandler.drawGui(ClientEventHandler.renderHelper.isFirstPerson());
+			GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 			event.setCanceled(event.entity == StarWarsMod.mc.thePlayer);
 		}
 		else
@@ -486,28 +481,17 @@ public class ClientEventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
-		/*if (StarWarsMod.mc.thePlayer != null && StarWarsMod.mc.thePlayer.ridingEntity instanceof Pilotable)
-		{
-			Pilotable vehicle = (Pilotable)StarWarsMod.mc.thePlayer.ridingEntity;
-
-			float dYaw = (vehicle.axes.getYaw() - vehicle.prevRotationYaw);
-			float dPitch = (vehicle.axes.getPitch() - vehicle.prevRotationPitch);
-			float dRoll = (vehicle.axes.getRoll() - vehicle.prevRotationRoll);
-
-			GFX.drawCenteredString(100, 100, String.format("Roll: %s", vehicle.prevRotationPitch + dPitch), 0xFFFFFFFF);
-			GFX.drawCenteredString(100, 115, String.format("Pitch: %s", vehicle.prevRotationRoll + dRoll), 0xFFFFFFFF);
-			GFX.drawCenteredString(100, 130, String.format("Yaw: %s", vehicle.prevRotationYaw - dYaw), 0xFFFFFFFF);
-
-			GFX.drawCenteredString(400, 115, String.format("Pitch: %s", StarWarsMod.mc.thePlayer.rotationPitch), 0xFFFFFFFF);
-			GFX.drawCenteredString(400, 130, String.format("Yaw: %s", StarWarsMod.mc.thePlayer.rotationYaw), 0xFFFFFFFF);
-		}*/
-
 		StarWarsMod.isOverlayOnscreen = false;
 		if (ClientEventHandler.renderHelper.isFirstPerson())
 		{
 			GuiBinocs.onRenderGui(event);
 
 			guiVehicle.onRenderGui(event);
+		}
+
+		if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable)
+		{
+			ShipGuiHandler.drawGui(ClientEventHandler.renderHelper.isFirstPerson(), event);
 		}
 
 		GuiBlaster.onRenderGui(event);

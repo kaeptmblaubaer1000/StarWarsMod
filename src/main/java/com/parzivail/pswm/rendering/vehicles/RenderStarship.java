@@ -1,6 +1,9 @@
 package com.parzivail.pswm.rendering.vehicles;
 
+import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -19,6 +22,8 @@ public class RenderStarship extends Render
 
 	public void render(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
 	{
+		if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) == pilotable && ClientEventHandler.renderHelper.isFirstPerson())
+			return;
 		bindEntityTexture(pilotable);
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)d, (float)d1, (float)d2);

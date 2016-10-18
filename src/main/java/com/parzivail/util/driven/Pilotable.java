@@ -247,6 +247,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				}
 
 				serverPositionTransitionTicker = 3;
+				this.setPosition(d, d1, d2);
 			}
 			serverPosX = d;
 			serverPosY = d1;
