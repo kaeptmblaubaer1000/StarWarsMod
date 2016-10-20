@@ -875,6 +875,22 @@ public class GFX
 	}
 
 	/**
+	 * Draws a solid color rectangle with the specified coordinates and color without setup.
+	 * Args: x1, y1, x2, y2, color
+	 */
+	public static void rectangle(float x, float y, float w, float h, boolean fill)
+	{
+		GL11.glPushMatrix();
+		GL11.glBegin(fill ? GL11.GL_TRIANGLE_FAN : GL11.GL_LINE_LOOP);
+		GL11.glVertex2f(x, y + h);
+		GL11.glVertex2f(x + w, y + h);
+		GL11.glVertex2f(x + w, y);
+		GL11.glVertex2f(x, y);
+		GL11.glEnd();
+		GL11.glPopMatrix();
+	}
+
+	/**
 	 * Draws a solid color rectangle with the specified coordinates and color.
 	 * Args: x1, y1, x2, y2, color
 	 */

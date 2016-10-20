@@ -357,7 +357,6 @@ public class ClientEventHandler
 				s.data.cameraDistance = s.data.cameraDistanceMax;
 				StarWarsMod.mc.renderViewEntity = s != null ? s.getCamera() : StarWarsMod.mc.thePlayer;
 			}
-			GFX.changeCameraRoll(((EntitySeat)StarWarsMod.mc.thePlayer.ridingEntity).getPlayerRoll());
 			event.setCanceled(event.entity == StarWarsMod.mc.thePlayer);
 		}
 		else

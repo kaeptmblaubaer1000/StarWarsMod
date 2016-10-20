@@ -9,11 +9,17 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 
+import java.awt.*;
+
 /**
  * Created by colby on 10/17/2016.
  */
 public class ShipGuiHandler
 {
+	private static Color RED = new Color(GLPalette.ANALOG_RED);
+	private static Color YELLOW = new Color(GLPalette.ORANGE);
+	private static Color GREEN = new Color(GLPalette.ACID_GREEN);
+
 	public static void drawGui(boolean firstPerson, RenderGameOverlayEvent.Pre event)
 	{
 		if (!(EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable))
@@ -21,7 +27,21 @@ public class ShipGuiHandler
 
 		Pilotable ship = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
 
-		if (firstPerson && ship != null)
+		// I'd like to point out that this
+		// is impossible, but IntelliJ likes
+		// to complain about 'this might be
+		// null' warnings so, here. happy?
+		if (ship == null)
+			return;
+
+		// this-partial-tick ship stats
+		float pitch = ship.prevRotationPitch + MathHelper.wrapAngleTo180_float(ship.axes.getPitch() - ship.prevRotationPitch) * event.partialTicks;
+		float roll = ship.prevRotationRoll + MathHelper.wrapAngleTo180_float(ship.axes.getRoll() - ship.prevRotationRoll) * event.partialTicks;
+		float yaw = ship.prevRotationYaw + MathHelper.wrapAngleTo180_float(ship.axes.getYaw() - ship.prevRotationYaw) * event.partialTicks;
+
+		GFX.changeCameraRoll(-(ship.prevRotationRoll + MathHelper.wrapAngleTo180_float(ship.axes.getRoll() - ship.prevRotationRoll)));
+
+		if (firstPerson)
 		{
 			StarWarsMod.isOverlayOnscreen = true;
 
@@ -30,23 +50,23 @@ public class ShipGuiHandler
 				GL11.glPushMatrix();
 				GL11.glDisable(GL11.GL_LIGHTING);
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
+				GL11.glDisable(GL11.GL_BLEND);
 
-				// Center of screen
-				GL11.glTranslated(event.resolution.getScaledWidth_double() / 2f, event.resolution.getScaledHeight_double() / 2f, 200);
-
-				float pitch = ship.prevRotationPitch + MathHelper.wrapAngleTo180_float(ship.axes.getPitch() - ship.prevRotationPitch) * event.partialTicks;
-				float roll = ship.prevRotationRoll + MathHelper.wrapAngleTo180_float(ship.axes.getRoll() - ship.prevRotationRoll) * event.partialTicks;
-				float yaw = ship.prevRotationYaw + MathHelper.wrapAngleTo180_float(ship.axes.getYaw() - ship.prevRotationYaw) * event.partialTicks;
+				GL11.glLineWidth(2);
 
 				/*
 				 * Horizon Line
 				 */
 				GL11.glPushMatrix();
+
+				// Center of screen
+				GL11.glTranslated(event.resolution.getScaledWidth_double() / 2f, event.resolution.getScaledHeight_double() / 2f, 200);
+
 				// Reverse roll and pitch to find horizon
 				GL11.glRotatef(roll, 0, 0, 1);
-				GL11.glTranslated(0, -pitch * 3 + Math.sin(-pitch / 180f) * -15, 0);
+				GL11.glTranslated(0, -pitch * 3.28f, 0);
 
-				GLPalette.glColorI(GLPalette.ANALOG_GREEN);
+				GLPalette.glColorI(GLPalette.ACID_GREEN);
 
 				// Left indicator
 				GFX.drawLine(0, 0, 4, 4);
@@ -54,6 +74,7 @@ public class ShipGuiHandler
 				// Right indicator
 				GFX.drawLine(0, 0, -4, 4);
 				GFX.drawLine(-4, 4, -20, 4);
+
 				GL11.glPopMatrix();
 
 				/*
@@ -64,7 +85,8 @@ public class ShipGuiHandler
 				float rad = 30;
 				float radi = 28; // inner
 
-				GL11.glTranslated(0, event.resolution.getScaledHeight_double() / 2f - 10, 0);
+				// Center of screen
+				GL11.glTranslated(event.resolution.getScaledWidth_double() / 2f, event.resolution.getScaledHeight_double() - 10, 200);
 
 				GL11.glPushMatrix();
 				GL11.glRotatef(-(yaw + 2.5f), 0, 0, 1);
@@ -88,9 +110,57 @@ public class ShipGuiHandler
 
 				GL11.glPopMatrix();
 
+				/*
+				 * Ship Health Bar
+				 */
+				GL11.glPushMatrix();
+
+				// Center of screen
+				GL11.glTranslated(5, event.resolution.getScaledHeight_double() - 50, 200);
+
+				GFX.rectangle(0, 8, 45, 10, false);
+				GFX.rectangle(0, 33, 45, 10, false);
+
+				float s = 10;
+
+				float shipHealth = ((float)(System.currentTimeMillis() % ((int)(s * 1000) + 1)) / (s * 1000));
+				float shieldHealth = 1 - ((float)(System.currentTimeMillis() % ((int)(s * 1000) + 1)) / (s * 1000));
+
+				healthColor(shipHealth);
+				GFX.rectangle(1, 9, 43 * shipHealth, 8, true);
+				healthColor(shieldHealth);
+				GFX.rectangle(1, 34, 43 * shieldHealth, 8, true);
+				GLPalette.glColorI(GLPalette.ACID_GREEN);
+
+				GL11.glEnable(GL11.GL_TEXTURE_2D);
+				GFX.drawText(StarWarsMod.mc.fontRenderer, "Fuselage Integrity", 0, 0, 0.5f, GLPalette.ACID_GREEN);
+				GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shipHealth * 100)), 47, 11, 0.5f, GLPalette.ACID_GREEN);
+				GFX.drawText(StarWarsMod.mc.fontRenderer, "Shield Integrity", 0, 25, 0.5f, GLPalette.ACID_GREEN);
+				GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shieldHealth * 100)), 47, 36, 0.5f, GLPalette.ACID_GREEN);
+				GL11.glDisable(GL11.GL_TEXTURE_2D);
+				GL11.glPopMatrix();
+
+
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 				GL11.glPopMatrix();
 			}
 		}
+	}
+
+	private static void healthColor(float energy)
+	{
+		if (energy < 0.5)
+			lerp(YELLOW, RED, energy * 2);
+		else
+			lerp(GREEN, YELLOW, (energy - 0.5) * 2);
+	}
+
+	static private void lerp(Color x, Color y, double p)
+	{
+		double v = 1 - p;
+		double r = x.getRed() * p + y.getRed() * v;
+		double g = x.getGreen() * p + y.getGreen() * v;
+		double b = x.getBlue() * p + y.getBlue() * v;
+		GL11.glColor4d(r / 255f, g / 255f, b / 255f, 1f);
 	}
 }
