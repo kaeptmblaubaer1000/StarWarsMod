@@ -7,10 +7,7 @@ import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.ItemHolocron;
 import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.gui.AnimationHyperspace;
-import com.parzivail.pswm.gui.GuiBinocs;
-import com.parzivail.pswm.gui.GuiBlaster;
-import com.parzivail.pswm.gui.GuiVehicle;
+import com.parzivail.pswm.gui.*;
 import com.parzivail.pswm.items.ItemBinoculars;
 import com.parzivail.pswm.items.ItemBinocularsHoth;
 import com.parzivail.pswm.items.ItemQuestLog;
@@ -343,28 +340,12 @@ public class ClientEventHandler
 				event.setCanceled(event.entity.ridingEntity instanceof VehicleAirBase);
 			}
 		}
-		else if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable)
-		{
-			Pilotable s = (Pilotable)EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer);
 
-			if (ClientEventHandler.renderHelper.isFirstPerson())
-			{
-				GFX.changeCameraDist(4);
-				s.data.cameraDistance = 1;
-			}
-			else
-			{
-				s.data.cameraDistance = s.data.cameraDistanceMax;
-				StarWarsMod.mc.renderViewEntity = s != null ? s.getCamera() : StarWarsMod.mc.thePlayer;
-			}
-			event.setCanceled(event.entity == StarWarsMod.mc.thePlayer);
-		}
-		else
-		{
-			StarWarsMod.mc.renderViewEntity = StarWarsMod.mc.thePlayer;
-			GFX.changeCameraDist(4);
-			GFX.changeCameraRoll(0);
-		}
+		if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable && StarWarsMod.mc.currentScreen == null)
+			StarWarsMod.mc.displayGuiScreen(new GuiShipKeyCapture());
+
+		if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable && event.entity == StarWarsMod.mc.thePlayer && ClientEventHandler.renderHelper.isFirstPerson() && event.isCancelable())
+			event.setCanceled(true);
 
 		if (event.entity instanceof EntityPlayer && EntityUtils.isRiding(((EntityPlayer)event.entity).ridingEntity, EntitySeat.class))
 		{

@@ -34,6 +34,20 @@ public class ShipGuiHandler
 		if (ship == null)
 			return;
 
+		if (ClientEventHandler.renderHelper.getCameraMode() == 2)
+			ClientEventHandler.renderHelper.setCameraMode(0);
+
+		if (ClientEventHandler.renderHelper.isFirstPerson())
+		{
+			ship.data.cameraDistance = 1;
+		}
+		else
+		{
+			ship.data.cameraDistance = ship.data.cameraDistanceMax;
+		}
+
+		StarWarsMod.mc.renderViewEntity = ship != null ? ship.getCamera() : StarWarsMod.mc.thePlayer;
+
 		// this-partial-tick ship stats
 		float pitch = ship.prevRotationPitch + MathHelper.wrapAngleTo180_float(ship.axes.getPitch() - ship.prevRotationPitch) * event.partialTicks;
 		float roll = ship.prevRotationRoll + MathHelper.wrapAngleTo180_float(ship.axes.getRoll() - ship.prevRotationRoll) * event.partialTicks;
@@ -121,10 +135,8 @@ public class ShipGuiHandler
 				GFX.rectangle(0, 8, 45, 10, false);
 				GFX.rectangle(0, 33, 45, 10, false);
 
-				float s = 10;
-
-				float shipHealth = ((float)(System.currentTimeMillis() % ((int)(s * 1000) + 1)) / (s * 1000));
-				float shieldHealth = 1 - ((float)(System.currentTimeMillis() % ((int)(s * 1000) + 1)) / (s * 1000));
+				float shipHealth = ship.data.shipHealth / ship.data.shipHealthMax;
+				float shieldHealth = ship.data.shieldHealth / ship.data.shieldHealthMax;
 
 				healthColor(shipHealth);
 				GFX.rectangle(1, 9, 43 * shipHealth, 8, true);

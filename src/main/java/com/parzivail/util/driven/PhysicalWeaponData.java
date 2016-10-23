@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public class PhysicalWeaponData implements IPowered, IStarshipWeapon
 {
-	int amountRemaining;
+	public int amountRemaining;
 
 	@Override
 	public float calculateAmbientPowerDrain()

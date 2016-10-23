@@ -27,27 +27,6 @@ public class Seat
 	public Vector3f rotatedOffset = new Vector3f();
 
 	/**
-	 * Type file constructor. Line from type file should be of one of the following forms
-	 * Passenger ID x y z
-	 * Passenger ID x y z minYaw maxYaw minPitch maxPitch
-	 * Passenger ID x y z minYaw maxYaw minPitch maxPitch gunType.shortName gunName
-	 */
-	public Seat(String[] split)
-	{
-		id = Integer.parseInt(split[1]);
-		x = Integer.parseInt(split[2]);
-		y = Integer.parseInt(split[3]);
-		z = Integer.parseInt(split[4]);
-		if (split.length > 6)
-		{
-			minYaw = Float.parseFloat(split[6]);
-			maxYaw = Float.parseFloat(split[7]);
-			minPitch = Float.parseFloat(split[8]);
-			maxPitch = Float.parseFloat(split[9]);
-		}
-	}
-
-	/**
 	 * Type file driver seat constructor. Line from type file should be of one of the following forms
 	 * Driver x y z
 	 * Pilot x y z

@@ -3,8 +3,9 @@ package com.parzivail.util.driven;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.dimension.PlanetInformation;
 import com.parzivail.pswm.handlers.KeyHandler;
+import com.parzivail.pswm.network.MessageDamageShip;
 import com.parzivail.pswm.network.MessageDrivableControl;
-import com.parzivail.pswm.network.MessageEntityKill;
+import com.parzivail.pswm.network.MessageShipData;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -309,8 +310,21 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
 	{
-		StarWarsMod.network.sendToServer(new MessageEntityKill(this));
+		StarWarsMod.network.sendToServer(new MessageDamageShip(this, p_70097_1_, p_70097_2_));
 		return true;
+	}
+
+	public void processDamage(String damageType, float amount)
+	{
+		if (amount > data.shieldHealth)
+		{
+			data.shipHealth -= amount - data.shieldHealth;
+			data.shieldHealth = 0;
+		}
+		else
+			data.shipHealth -= amount;
+
+		StarWarsMod.network.sendToDimension(new MessageShipData(this), dimension);
 	}
 
 	@Override
@@ -556,6 +570,14 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			return;
 
 		this.seats[0].acceptInput(input);
+	}
+
+	public void keyTyped(char eventCharacter, int eventKey, boolean eventKeyState)
+	{
+		if (this.seats[0] == null)
+			return;
+
+		this.seats[0].keyTyped(eventCharacter, eventKey, eventKeyState);
 	}
 
 	private void calculateMotion()

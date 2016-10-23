@@ -21,10 +21,11 @@ public class ShipData
 
 	public boolean cloakingActive = false;
 
-	public float shipHealthPercentage = 1;
-	public float shieldHealthPercentage = 1;
+	public float shipHealth = 100;
+	public float shieldHealth = 100;
+	public float shipHealthMax = 100;
+	public float shieldHealthMax = 100;
 
 	public float energyTotalPercentage = 1;
 	public float energyPercentDrainPerMinute = 1;
-
 }

@@ -32,6 +32,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import org.lwjgl.input.Keyboard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -92,7 +93,7 @@ public class KeyHandler
 
 	private static boolean $(KeyBinding key)
 	{
-		return key.getIsKeyPressed();
+		return Keyboard.isKeyDown(key.getKeyCode());
 	}
 
 	private void handleLightsabers()

@@ -1,8 +1,7 @@
 package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
-import com.parzivail.util.driven.EntitySeat;
-import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.driven.*;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -53,6 +52,7 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 		map(World.class, PMessage::readWorld, PMessage::writeWorld);
 		map(ItemStack[].class, PMessage::readItemStacks, PMessage::writeItemStacks);
 		map(EntitySeat[].class, PMessage::readSeats, PMessage::writeSeats);
+		map(ShipData.class, PMessage::readShipData, PMessage::writeShipData);
 		//map(RotatedAxes.class, PMessage::readRAxes, PMessage::writeRAxes);
 	}
 
@@ -113,6 +113,106 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 	private static double readDouble(ByteBuf buf)
 	{
 		return buf.readDouble();
+	}
+
+	private static ShipData readShipData(ByteBuf buf)
+	{
+		ShipData data = new ShipData();
+		data.numPassengers = readInt(buf);
+		//Brute keep data.seatInfo
+
+		data.cameraDistance = readFloat(buf);
+		data.cameraDistanceMax = readFloat(buf);
+		data.cameraFloatDampening = readFloat(buf);
+
+		data.angularDragCoefficient = readFloat(buf);
+		data.maxThrottle = readFloat(buf);
+		data.throttleStep = readFloat(buf);
+
+		data.energyWeaponData = readEnergyWeaponData(buf);
+		data.physicalWeaponData = readPhysicalWeaponData(buf);
+
+		data.cloakingActive = readBoolean(buf);
+
+		data.shipHealth = readFloat(buf);
+		data.shieldHealth = readFloat(buf);
+		data.shipHealthMax = readFloat(buf);
+		data.shieldHealthMax = readFloat(buf);
+
+		data.energyTotalPercentage = readFloat(buf);
+		data.energyPercentDrainPerMinute = readFloat(buf);
+		return data;
+	}
+
+	private static PhysicalWeaponData[] readPhysicalWeaponData(ByteBuf buf)
+	{
+		int amount = readInt(buf);
+		PhysicalWeaponData[] data = new PhysicalWeaponData[amount];
+		for (int i = 0; i < amount; i++)
+		{
+			data[i] = new PhysicalWeaponData();
+			data[i].amountRemaining = readInt(buf);
+		}
+		return data;
+	}
+
+	private static EnergyWeaponData[] readEnergyWeaponData(ByteBuf buf)
+	{
+		int amount = readInt(buf);
+		EnergyWeaponData[] data = new EnergyWeaponData[amount];
+		for (int i = 0; i < amount; i++)
+		{
+			data[i] = new EnergyWeaponData();
+			data[i].enabled = readBoolean(buf);
+			data[i].overheatTimer = readFloat(buf);
+		}
+		return data;
+	}
+
+	public static void writeShipData(ShipData data, ByteBuf buf)
+	{
+		writeInt(data.numPassengers, buf);
+		//Brute keep data.seatInfo
+
+		writeFloat(data.cameraDistance, buf);
+		writeFloat(data.cameraDistanceMax, buf);
+		writeFloat(data.cameraFloatDampening, buf);
+
+		writeFloat(data.angularDragCoefficient, buf);
+		writeFloat(data.maxThrottle, buf);
+		writeFloat(data.throttleStep, buf);
+
+		writeEnergyWeaponData(data.energyWeaponData, buf);
+		writePhysicalWeaponData(data.physicalWeaponData, buf);
+
+		writeBoolean(data.cloakingActive, buf);
+
+		writeFloat(data.shipHealth, buf);
+		writeFloat(data.shieldHealth, buf);
+		writeFloat(data.shipHealthMax, buf);
+		writeFloat(data.shieldHealthMax, buf);
+
+		writeFloat(data.energyTotalPercentage, buf);
+		writeFloat(data.energyPercentDrainPerMinute, buf);
+	}
+
+	private static void writePhysicalWeaponData(PhysicalWeaponData[] data, ByteBuf buf)
+	{
+		writeInt(data.length, buf);
+		for (PhysicalWeaponData aData : data)
+		{
+			writeInt(aData.amountRemaining, buf);
+		}
+	}
+
+	private static void writeEnergyWeaponData(EnergyWeaponData[] data, ByteBuf buf)
+	{
+		writeInt(data.length, buf);
+		for (EnergyWeaponData aData : data)
+		{
+			writeBoolean(aData.enabled, buf);
+			writeFloat(aData.overheatTimer, buf);
+		}
 	}
 
 	private static Entity readEntity(ByteBuf buf)

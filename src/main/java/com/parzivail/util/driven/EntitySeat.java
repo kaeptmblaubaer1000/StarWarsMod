@@ -1,12 +1,16 @@
 package com.parzivail.util.driven;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
+import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.gui.GuiChat;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -409,6 +413,49 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 				break;
 			case SpecialWeapon:
 				break;
+		}
+	}
+
+	public void keyTyped(char eventCharacter, int eventKey, boolean eventKeyState)
+	{
+		if (eventKey == StarWarsMod.mc.gameSettings.keyBindSneak.getKeyCode() && this.riddenByEntity != null)
+		{
+			this.riddenByEntity.mountEntity(null);
+			GFX.changeCameraRoll(0);
+			StarWarsMod.mc.displayGuiScreen(null);
+		}
+		else if (eventKey == 1)
+		{
+			StarWarsMod.mc.displayGuiScreen(null);
+			StarWarsMod.mc.displayInGameMenu();
+		}
+		else if (eventKey == 59)
+		{
+			StarWarsMod.mc.gameSettings.hideGUI = !StarWarsMod.mc.gameSettings.hideGUI;
+		}
+		else if (eventKey == 61)
+		{
+			StarWarsMod.mc.gameSettings.showDebugInfo = !StarWarsMod.mc.gameSettings.showDebugInfo;
+		}
+		else if (eventKey == 63)
+		{
+			StarWarsMod.mc.gameSettings.thirdPersonView = (StarWarsMod.mc.gameSettings.thirdPersonView + 1) % 2;
+		}
+		else if (eventKey == 66)
+		{
+			StarWarsMod.mc.gameSettings.smoothCamera = !StarWarsMod.mc.gameSettings.smoothCamera;
+		}
+		else if (eventKey == StarWarsMod.mc.gameSettings.keyBindInventory.getKeyCode())
+		{
+			StarWarsMod.mc.displayGuiScreen(new GuiInventory(StarWarsMod.mc.thePlayer));
+		}
+		else if (eventKey == StarWarsMod.mc.gameSettings.keyBindChat.getKeyCode())
+		{
+			StarWarsMod.mc.displayGuiScreen(new GuiChat());
+		}
+		else if (eventKey == StarWarsMod.mc.gameSettings.keyBindCommand.getKeyCode())
+		{
+			StarWarsMod.mc.displayGuiScreen(new GuiChat("/"));
 		}
 	}
 
