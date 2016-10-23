@@ -55,19 +55,21 @@ public class ShipGuiHandler
 
 		GFX.changeCameraRoll(-(ship.prevRotationRoll + MathHelper.wrapAngleTo180_float(ship.axes.getRoll() - ship.prevRotationRoll)));
 
-		if (firstPerson)
+		StarWarsMod.isOverlayOnscreen = true;
+
+		if (event.type == RenderGameOverlayEvent.ElementType.HOTBAR)
 		{
-			StarWarsMod.isOverlayOnscreen = true;
+			GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glDisable(GL11.GL_BLEND);
 
-			if (event.type == RenderGameOverlayEvent.ElementType.HOTBAR)
+			GL11.glLineWidth(2);
+
+			GLPalette.glColorI(GLPalette.ACID_GREEN);
+
+			if (firstPerson)
 			{
-				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_LIGHTING);
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
-				GL11.glDisable(GL11.GL_BLEND);
-
-				GL11.glLineWidth(2);
-
 				/*
 				 * Horizon Line
 				 */
@@ -80,8 +82,6 @@ public class ShipGuiHandler
 				GL11.glRotatef(roll, 0, 0, 1);
 				GL11.glTranslated(0, -pitch * 3.28f, 0);
 
-				GLPalette.glColorI(GLPalette.ACID_GREEN);
-
 				// Left indicator
 				GFX.drawLine(0, 0, 4, 4);
 				GFX.drawLine(4, 4, 20, 4);
@@ -90,72 +90,72 @@ public class ShipGuiHandler
 				GFX.drawLine(-4, 4, -20, 4);
 
 				GL11.glPopMatrix();
+			}
 
 				/*
 				 * Compass
 				 */
-				GL11.glPushMatrix();
+			GL11.glPushMatrix();
 
-				float rad = 30;
-				float radi = 28; // inner
+			float rad = 30;
+			float radi = 28; // inner
 
-				// Center of screen
-				GL11.glTranslated(event.resolution.getScaledWidth_double() / 2f, event.resolution.getScaledHeight_double() - 10, 200);
+			// Center of screen
+			GL11.glTranslated(event.resolution.getScaledWidth_double() / 2f, event.resolution.getScaledHeight_double() - 10, 200);
 
-				GL11.glPushMatrix();
-				GL11.glRotatef(-(yaw + 2.5f), 0, 0, 1);
-				for (float i = (float)(-Math.PI); i < Math.PI; i += (2 * Math.PI) / 36f)
-				{
-					GL11.glBegin(GL11.GL_LINE_STRIP);
-					float n = (float)(i - Math.PI / 2f);
-					GL11.glVertex2d(MathHelper.cos(n) * rad, MathHelper.sin(n) * rad);
-					GL11.glVertex2d(MathHelper.cos(n) * radi, MathHelper.sin(n) * radi);
-					GL11.glEnd();
-				}
-				GL11.glPopMatrix();
+			GL11.glPushMatrix();
+			GL11.glRotatef(-(yaw + 2.5f), 0, 0, 1);
+			for (float i = (float)(-Math.PI); i < Math.PI; i += (2 * Math.PI) / 36f)
+			{
+				GL11.glBegin(GL11.GL_LINE_STRIP);
+				float n = (float)(i - Math.PI / 2f);
+				GL11.glVertex2d(MathHelper.cos(n) * rad, MathHelper.sin(n) * rad);
+				GL11.glVertex2d(MathHelper.cos(n) * radi, MathHelper.sin(n) * radi);
+				GL11.glEnd();
+			}
+			GL11.glPopMatrix();
 
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				rad += 1;
-				GFX.drawText(StarWarsMod.mc.fontRenderer, "S", MathHelper.cos((float)Math.toRadians(-yaw)) * rad, MathHelper.sin((float)Math.toRadians(-yaw)) * rad, 0.5f, -(yaw - 90), GLPalette.ACID_GREEN);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, "E", MathHelper.cos((float)Math.toRadians(-(yaw + 90))) * rad, MathHelper.sin((float)Math.toRadians(-(yaw + 90))) * rad, 0.5f, -(yaw), GLPalette.ACID_GREEN);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, "N", MathHelper.cos((float)Math.toRadians(-(yaw + 180))) * rad, MathHelper.sin((float)Math.toRadians(-(yaw + 180))) * rad, 0.5f, -(yaw + 90), GLPalette.ACID_GREEN);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, "W", MathHelper.cos((float)Math.toRadians(-(yaw - 90))) * rad, MathHelper.sin((float)Math.toRadians(-(yaw - 90))) * rad, 0.5f, -(yaw - 180), GLPalette.ACID_GREEN);
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			rad += 1;
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "S", MathHelper.cos((float)Math.toRadians(-yaw)) * rad, MathHelper.sin((float)Math.toRadians(-yaw)) * rad, 0.5f, -(yaw - 90), GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "E", MathHelper.cos((float)Math.toRadians(-(yaw + 90))) * rad, MathHelper.sin((float)Math.toRadians(-(yaw + 90))) * rad, 0.5f, -(yaw), GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "N", MathHelper.cos((float)Math.toRadians(-(yaw + 180))) * rad, MathHelper.sin((float)Math.toRadians(-(yaw + 180))) * rad, 0.5f, -(yaw + 90), GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "W", MathHelper.cos((float)Math.toRadians(-(yaw - 90))) * rad, MathHelper.sin((float)Math.toRadians(-(yaw - 90))) * rad, 0.5f, -(yaw - 180), GLPalette.ACID_GREEN);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-				GL11.glPopMatrix();
+			GL11.glPopMatrix();
 
 				/*
 				 * Ship Health Bar
 				 */
-				GL11.glPushMatrix();
+			GL11.glPushMatrix();
 
-				// Center of screen
-				GL11.glTranslated(5, event.resolution.getScaledHeight_double() - 50, 200);
+			// Center of screen
+			GL11.glTranslated(5, event.resolution.getScaledHeight_double() - 50, 200);
 
-				GFX.rectangle(0, 8, 45, 10, false);
-				GFX.rectangle(0, 33, 45, 10, false);
+			GFX.rectangle(0, 8, 45, 10, false);
+			GFX.rectangle(0, 33, 45, 10, false);
 
-				float shipHealth = ship.data.shipHealth / ship.data.shipHealthMax;
-				float shieldHealth = ship.data.shieldHealth / ship.data.shieldHealthMax;
+			float shipHealth = ship.data.shipHealth / ship.data.shipHealthMax;
+			float shieldHealth = ship.data.shieldHealth / ship.data.shieldHealthMax;
 
-				healthColor(shipHealth);
-				GFX.rectangle(1, 9, 43 * shipHealth, 8, true);
-				healthColor(shieldHealth);
-				GFX.rectangle(1, 34, 43 * shieldHealth, 8, true);
-				GLPalette.glColorI(GLPalette.ACID_GREEN);
+			healthColor(shipHealth);
+			GFX.rectangle(1, 9, 43 * shipHealth, 8, true);
+			healthColor(shieldHealth);
+			GFX.rectangle(1, 34, 43 * shieldHealth, 8, true);
+			GLPalette.glColorI(GLPalette.ACID_GREEN);
 
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, "Fuselage Integrity", 0, 0, 0.5f, GLPalette.ACID_GREEN);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shipHealth * 100)), 47, 11, 0.5f, GLPalette.ACID_GREEN);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, "Shield Integrity", 0, 25, 0.5f, GLPalette.ACID_GREEN);
-				GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shieldHealth * 100)), 47, 36, 0.5f, GLPalette.ACID_GREEN);
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
-				GL11.glPopMatrix();
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "Fuselage Integrity", 0, 0, 0.5f, GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shipHealth * 100)), 47, 11, 0.5f, GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "Shield Integrity", 0, 25, 0.5f, GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shieldHealth * 100)), 47, 36, 0.5f, GLPalette.ACID_GREEN);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glPopMatrix();
 
 
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				GL11.glPopMatrix();
-			}
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GL11.glPopMatrix();
 		}
 	}
 

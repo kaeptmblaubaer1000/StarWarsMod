@@ -9,8 +9,6 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiShipKeyCapture extends GuiScreen
 {
-	public static final boolean[] keyStates = new boolean[Keyboard.KEYBOARD_SIZE];
-
 	public GuiShipKeyCapture()
 	{
 	}
