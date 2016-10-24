@@ -85,7 +85,7 @@ public class KeyHandler
 				if ($(StarWarsMod.mc.gameSettings.keyBindJump))
 					ship.acceptInput(ShipInput.ThrottleUp);
 
-				if ($(StarWarsMod.mc.gameSettings.keyBindSneak))
+				if ($(StarWarsMod.mc.gameSettings.keyBindSprint))
 					ship.acceptInput(ShipInput.ThrottleDown);
 			}
 		}

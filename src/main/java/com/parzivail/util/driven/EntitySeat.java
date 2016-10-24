@@ -1,6 +1,7 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.network.MessageSetMount;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.GFX;
@@ -307,12 +308,12 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		if (riddenByEntity == null)
 		{
 			entityplayer.mountEntity(this);
+			StarWarsMod.network.sendToServer(new MessageSetMount(entityplayer, this));
 			this.riderId = entityplayer.getEntityId();
 			this.foundRider = true;
 			return true;
 		}
 
-		Lumberjack.debug(riddenByEntity);
 		return false;
 	}
 
@@ -421,6 +422,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData
 		if (eventKey == StarWarsMod.mc.gameSettings.keyBindSneak.getKeyCode() && this.riddenByEntity != null)
 		{
 			this.riddenByEntity.mountEntity(null);
+			StarWarsMod.network.sendToServer(new MessageSetMount(this.riddenByEntity, null));
 			GFX.changeCameraRoll(0);
 			StarWarsMod.mc.displayGuiScreen(null);
 		}

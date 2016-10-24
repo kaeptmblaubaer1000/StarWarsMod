@@ -3,6 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.entity.EntityUtils;
+import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import net.minecraft.util.MathHelper;
@@ -92,9 +93,9 @@ public class ShipGuiHandler
 				GL11.glPopMatrix();
 			}
 
-				/*
-				 * Compass
-				 */
+			/*
+			 * Compass
+			 */
 			GL11.glPushMatrix();
 
 			float rad = 30;
@@ -125,9 +126,45 @@ public class ShipGuiHandler
 
 			GL11.glPopMatrix();
 
-				/*
-				 * Ship Health Bar
-				 */
+			/*
+			 * Altimeter
+			 */
+			GL11.glPushMatrix();
+
+			// Center of screen
+			GL11.glTranslated(event.resolution.getScaledWidth_double() - 20, event.resolution.getScaledHeight_double() / 2f, 200);
+
+			GL11.glPushMatrix();
+			float representMod = 5;
+			float nearest = MathUtils.floorToNearest((float)ship.posY, representMod);
+			float yDiff = (float)ship.posY - nearest;
+
+			float numOffset = -(yDiff * representMod) / 2f;
+
+			GFX.drawLine(0, -100, 0, 100);
+
+			GFX.drawLine(-2, 0, -7, -5);
+			GFX.drawLine(-2, 0, -7, 5);
+
+			for (float i = -2; i < 2; i++)
+			{
+				GFX.drawLine(-6, 50 * i - numOffset, 0, 50 * i - numOffset);
+			}
+			GL11.glPopMatrix();
+
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			for (float i = -2; i < 2; i++)
+			{
+				GFX.drawText(StarWarsMod.mc.fontRenderer, String.valueOf(nearest - i * representMod), 2, 50 * i - numOffset - 1.6f, 0.5f, GLPalette.ACID_GREEN);
+			}
+			GFX.drawCenteredText(StarWarsMod.mc.fontRenderer, "Alti", 0, -105, 0.5f, GLPalette.ACID_GREEN);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+			GL11.glPopMatrix();
+
+			/*
+			 * Ship Health Bar
+			 */
 			GL11.glPushMatrix();
 
 			// Center of screen
@@ -139,9 +176,9 @@ public class ShipGuiHandler
 			float shipHealth = ship.data.shipHealth / ship.data.shipHealthMax;
 			float shieldHealth = ship.data.shieldHealth / ship.data.shieldHealthMax;
 
-			healthColor(shipHealth);
+			triPointLerp(shipHealth, RED, YELLOW, GREEN);
 			GFX.rectangle(1, 9, 43 * shipHealth, 8, true);
-			healthColor(shieldHealth);
+			triPointLerp(shieldHealth, RED, YELLOW, GREEN);
 			GFX.rectangle(1, 34, 43 * shieldHealth, 8, true);
 			GLPalette.glColorI(GLPalette.ACID_GREEN);
 
@@ -153,18 +190,39 @@ public class ShipGuiHandler
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glPopMatrix();
 
+			/*
+			 * Ship Throttle Bar
+			 */
+			GL11.glPushMatrix();
+
+			GL11.glTranslatef(5, 5, 0);
+
+			GFX.rectangle(0, 8, 45, 10, false);
+
+			float shipThrottle = ship.throttle / ship.data.maxThrottle;
+
+			triPointLerp(shipThrottle, RED, GREEN, YELLOW);
+			GFX.rectangle(1, 9, 43 * shipThrottle, 8, true);
+			GLPalette.glColorI(GLPalette.ACID_GREEN);
+
+			GL11.glEnable(GL11.GL_TEXTURE_2D);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, "Throttle", 0, 0, 0.5f, GLPalette.ACID_GREEN);
+			GFX.drawText(StarWarsMod.mc.fontRenderer, String.format("%s%%", (int)(shipThrottle * 100)), 47, 11, 0.5f, GLPalette.ACID_GREEN);
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glPopMatrix();
+
 
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glPopMatrix();
 		}
 	}
 
-	private static void healthColor(float energy)
+	private static void triPointLerp(float energy, Color a, Color b, Color c)
 	{
 		if (energy < 0.5)
-			lerp(YELLOW, RED, energy * 2);
+			lerp(b, a, energy * 2);
 		else
-			lerp(GREEN, YELLOW, (energy - 0.5) * 2);
+			lerp(c, b, (energy - 0.5) * 2);
 	}
 
 	static private void lerp(Color x, Color y, double p)

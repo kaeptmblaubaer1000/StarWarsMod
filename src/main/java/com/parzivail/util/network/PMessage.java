@@ -409,6 +409,12 @@ public class PMessage<REQ extends PMessage> implements Serializable, IMessage, I
 
 	private static void writeEntity(Entity entity, ByteBuf buf)
 	{
+		if (entity == null)
+		{
+			buf.writeInt(0);
+			buf.writeInt(0);
+			return;
+		}
 		buf.writeInt(entity.dimension);
 		buf.writeInt(entity.getEntityId());
 	}
