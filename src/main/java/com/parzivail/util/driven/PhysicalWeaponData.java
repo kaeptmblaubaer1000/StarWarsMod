@@ -1,11 +1,13 @@
 package com.parzivail.util.driven;
 
+import com.parzivail.pswm.customship.IEnergyConsumer;
+import com.parzivail.pswm.customship.IStarshipWeapon;
 import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * Created by colby on 10/17/2016.
  */
-public class PhysicalWeaponData implements IPowered, IStarshipWeapon
+public class PhysicalWeaponData implements IEnergyConsumer, IStarshipWeapon
 {
 	public int amountRemaining;
 
