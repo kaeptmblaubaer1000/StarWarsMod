@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="throttle and altimeter">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyProducer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipPart.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipWeapon.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SEnergyWeapon.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPhysicalWeapon.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPowerPlant.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SShield.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStarshipEngine.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/STargetingComputer.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/IStarshipWeapon.java" afterPath="" />
+    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="custom ship framework start">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SHyperdrive.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStealthTech.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EnergyWeaponData.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/EnergyWeaponData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/PhysicalWeaponData.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/PhysicalWeaponData.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/IPowered.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyConsumer.java" />
     </list>
     <ignored path="StarWarsMod.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,11 +68,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SPowerPlant.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SPowerPlant.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPowerPlant.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="75" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
+            <state relative-caret-position="120">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SHyperdrive.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SHyperdrive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SStarshipEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStarshipEngine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SStealthTech.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStealthTech.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -118,8 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/EntityRegister.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageSetSeatRiderID.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/network/MessageForceRider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/PMouseHandler.java" />
@@ -169,6 +186,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipWeapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SShield.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/STargetingComputer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SHyperdrive.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStealthTech.java" />
       </list>
     </option>
   </component>
@@ -758,13 +777,6 @@
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
     </task>
-    <task id="LOCAL-00020" summary="progress 3">
-      <created>1475859344909</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1475859344909</updated>
-    </task>
     <task id="LOCAL-00021" summary="progress 4">
       <created>1475859441148</created>
       <option name="number" value="00021" />
@@ -1101,7 +1113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1477336145162</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="custom ship framework start">
+      <created>1477443219421</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1477443219421</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1177,7 +1196,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="seems stable" />
     <MESSAGE value="back to networking basics -- seems to work the same. still isolating ship despawn issue" />
     <MESSAGE value="Should fix boot issue once and for all &lt;crosses fingers&gt;" />
     <MESSAGE value="THAT should fix it" />
@@ -1202,7 +1220,8 @@
     <MESSAGE value="ships more wooty and less buggy" />
     <MESSAGE value="ships actually less buggy" />
     <MESSAGE value="throttle and altimeter" />
-    <option name="LAST_COMMIT_MESSAGE" value="throttle and altimeter" />
+    <MESSAGE value="custom ship framework start" />
+    <option name="LAST_COMMIT_MESSAGE" value="custom ship framework start" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1217,20 +1236,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/vehicles/ItemSpawnXWing.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/world/chunk/Chunk.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="851" column="55" selection-start-line="851" selection-start-column="55" selection-end-line="851" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/client/gui/ScaledResolution.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -1515,14 +1520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ShipGuiHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
@@ -1555,18 +1552,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStarshipEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipWeapon.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/STargetingComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1579,18 +1576,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/STargetingComputer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPowerPlant.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPowerPlant.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SHyperdrive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="75" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
+        <state relative-caret-position="105">
+          <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStarshipEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStealthTech.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
           <folding />
         </state>
       </provider>
