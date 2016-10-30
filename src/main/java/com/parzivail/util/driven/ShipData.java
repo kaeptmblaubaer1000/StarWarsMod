@@ -20,12 +20,17 @@ public class ShipData
 	public PhysicalWeaponData[] physicalWeaponData = new PhysicalWeaponData[0];
 
 	public boolean cloakingActive = false;
+	public boolean shieldActive = false;
+	public boolean stealthActive = false;
 
 	public float shipHealth = 100;
 	public float shieldHealth = 100;
 	public float shipHealthMax = 100;
 	public float shieldHealthMax = 100;
 
+	public int numPhysicalWeapons = 20;
+
 	public float energyTotalPercentage = 1;
 	public float energyPercentDrainPerMinute = 1;
+	public float maxEnergyUnits = 10000;
 }

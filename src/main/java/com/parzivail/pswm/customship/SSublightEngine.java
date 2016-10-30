@@ -6,7 +6,7 @@ import com.parzivail.util.math.MathUtils;
 /**
  * Created by colby on 10/25/2016.
  */
-public abstract class SStarshipEngine implements IStarshipPart, IEnergyConsumer
+public abstract class SSublightEngine implements IStarshipPart, IEnergyConsumer
 {
 	public abstract float getSpeed();
 
