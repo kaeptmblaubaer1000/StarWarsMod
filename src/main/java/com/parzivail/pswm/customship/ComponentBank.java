@@ -25,7 +25,7 @@ public class ComponentBank
 			new DPowerPlant("DXR-4 reactor", ManufacturerBank.MANDALMOTORS, 100, 25),
 			new DPowerPlant("I-a2b Solar Ionization Reactor", ManufacturerBank.SFS, 300, 50),
 			new DPowerPlant("I-s3a Solar Ionization Reactor", ManufacturerBank.SFS, 400, 60),
-			new DPowerPlant("Modified Class-4T3 Power Generator", ManufacturerBank.EKOSOAN, 500, 90),
+			new DPowerPlant("Modified Class-4T3 Power Generator", ManufacturerBank.EKSOAN, 500, 90),
 			new DPowerPlant("O2K Cryogenic Power Cell", ManufacturerBank.VINOP, 200, 40),
 			new DPowerPlant("O4-Z Cryogenic Power Generator", ManufacturerBank.NOVALDEX, 500, 100)
 	};

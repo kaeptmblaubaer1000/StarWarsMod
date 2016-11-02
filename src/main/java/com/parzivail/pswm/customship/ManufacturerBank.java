@@ -14,7 +14,7 @@ public class ManufacturerBank
 	public static final String THIODYNE = "Thiodyne";
 	public static final String MPS = "MPS";
 	public static final String MANDALMOTORS = "MandalMotors";
-	public static final String EKOSOAN = "Ekosan";
+	public static final String EKSOAN = "Eksoan";
 	public static final String VINOP = "Vinop";
 	public static final String CHEPAT = "Chepat";
 	public static final String SIRPLEX = "Sirplex";
