@@ -30,6 +30,12 @@ public class EntityCamera extends EntityLivingBase
 		prevPosY = posY;
 		prevPosZ = posZ;
 
+		if (pilotable == null)
+		{
+			this.setDead();
+			return;
+		}
+
 		Vector3f cameraPosition = new Vector3f(-1, 0, 0);
 		cameraPosition.scale(pilotable.data.cameraDistance);
 		cameraPosition = pilotable.axes.findLocalVectorGlobally(cameraPosition);

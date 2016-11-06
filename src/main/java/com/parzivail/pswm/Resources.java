@@ -190,6 +190,7 @@ public class Resources
 	public static final int GUI_WEAPONS_DEALER = guiCounter++;
 	public static final int GUI_CORELLIAN = guiCounter++;
 	public static final int GUI_BARTENDER = guiCounter++;
+	public static final int GUI_SHIPWRIGHT = guiCounter++;
 
 	// TIE Overlays
 	public static final ResourceLocation tieOverlay = new ResourceLocation(Resources.MODID, "textures/gui/tie/tie.png");

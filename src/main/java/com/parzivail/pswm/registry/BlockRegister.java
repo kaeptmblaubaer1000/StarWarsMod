@@ -64,6 +64,8 @@ public class BlockRegister
 		StarWarsMod.blockSensorImperialTatooine = registerWithTileEntity(BlockSensorImperialTatooine.class, TileEntitySensorStructureImperialTatooine.class);
 		StarWarsMod.blockSensorImperialHoth = registerWithTileEntity(BlockSensorImperialHoth.class, TileEntitySensorStructureImperialHoth.class);
 
+		StarWarsMod.blockShipwright = registerWithTileEntity(BlockShipwright.class, TileEntityShipwright.class);
+
 		StarWarsMod.blockAntenna = new BlockAntenna();
 		GameRegistry.registerBlock(StarWarsMod.blockAntenna, "blockAntenna");
 		GameRegistry.registerTileEntity(TileEntityAntenna.class, "teAntenna");

@@ -170,6 +170,8 @@ public class StarWarsMod
 	public static PBlockContainer blockSensorImperialTatooine;
 	public static PBlockContainer blockSensorImperialHoth;
 
+	public static PBlockContainer blockShipwright;
+
 	public static PBlock blockThorolideOre;
 	public static PBlock blockCortosisOre;
 	public static PBlock blockDiatiumOre;

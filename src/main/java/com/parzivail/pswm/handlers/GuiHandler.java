@@ -55,6 +55,8 @@ public class GuiHandler implements IGuiHandler
 			return new GuiScreenBartender(player, (TileEntityStaticNpc)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_JAWA)
 			return new GuiScreenJawa(player);
+		else if (id == Resources.GUI_SHIPWRIGHT)
+			return new GuiShipwright(player);
 		return null;
 	}
 
@@ -65,7 +67,7 @@ public class GuiHandler implements IGuiHandler
 			return new ContainerMV(player.inventory, (TileEntityMV)world.getTileEntity(x, y, z));
 		else if (id == Resources.GUI_HOLOTABLE)
 			return new ContainerHoloTable((TileEntityHoloTableBase)world.getTileEntity(x, y, z));
-		else if (id == Resources.GUI_QUARTERMASTER || id == Resources.GUI_QUARTERMASTER_EMPIRE || id == Resources.GUI_QUESTNPC || id == Resources.GUI_ANTENNA || id == Resources.GUI_QUEST || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH)
+		else if (id == Resources.GUI_QUARTERMASTER || id == Resources.GUI_QUARTERMASTER_EMPIRE || id == Resources.GUI_QUESTNPC || id == Resources.GUI_ANTENNA || id == Resources.GUI_QUEST || id == Resources.GUI_LSFORGE || id == Resources.GUI_SCANNER || id == Resources.GUI_HYPERDRIVE || id == Resources.GUI_ROBES || id == Resources.GUI_JEDI_SITH || id == Resources.GUI_SHIPWRIGHT)
 			return new ContainerClient();
 		else if (id == Resources.GUI_CRYSTALCOMPRESSOR)
 			return new ContainerCrystalCompressor(player.inventory, (TileEntityCrystalCompressor)world.getTileEntity(x, y, z));

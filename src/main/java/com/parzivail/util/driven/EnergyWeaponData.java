@@ -13,24 +13,6 @@ public class EnergyWeaponData implements IEnergyConsumer, IStarshipWeapon
 	public float overheatTimer = 1;
 
 	@Override
-	public float calculateAmbientPowerDrain()
-	{
-		return 0;
-	}
-
-	@Override
-	public float calculatePowerDrainPerUse()
-	{
-		return 0;
-	}
-
-	@Override
-	public boolean hasPowerRequirements()
-	{
-		return true;
-	}
-
-	@Override
 	public boolean canUse(EntityPlayer user)
 	{
 		return false;
@@ -40,5 +22,41 @@ public class EnergyWeaponData implements IEnergyConsumer, IStarshipWeapon
 	public void use(EntityPlayer user)
 	{
 
+	}
+
+	@Override
+	public String getPartDesignation()
+	{
+		return null;
+	}
+
+	@Override
+	public String getPartManufacturer()
+	{
+		return null;
+	}
+
+	@Override
+	public float getWeight()
+	{
+		return 0;
+	}
+
+	@Override
+	public float getAmbientPowerDrain(Pilotable ship)
+	{
+		return 0;
+	}
+
+	@Override
+	public float getPowerDrainPerUse(Pilotable ship)
+	{
+		return 0;
+	}
+
+	@Override
+	public boolean hasSufficientPower(Pilotable ship)
+	{
+		return false;
 	}
 }

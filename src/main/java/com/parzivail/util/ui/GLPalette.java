@@ -967,6 +967,15 @@ public class GLPalette
 		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
 	}
 
+	public static void glColorI(int rgb, int a)
+	{
+		int alpha = a & 0xFF;
+		int red = rgb >> 16 & 0xFF;
+		int green = rgb >> 8 & 0xFF;
+		int blue = rgb & 0xFF;
+		GL11.glColor4f(red / 255f, green / 255f, blue / 255f, alpha / 255f);
+	}
+
 	/**
 	 * Turns a packed RGB color into a Color
 	 *
