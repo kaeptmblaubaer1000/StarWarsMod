@@ -113,7 +113,7 @@ public class Animation
 	 */
 	public boolean isDone()
 	{
-		return reverse ? this.tick == 0 : this.tick == this.length;
+		return reverse ? this.tick <= 0 : this.tick >= this.length;
 	}
 
 	/**

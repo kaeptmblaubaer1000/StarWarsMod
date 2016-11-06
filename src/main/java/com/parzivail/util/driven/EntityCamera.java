@@ -32,7 +32,6 @@ public class EntityCamera extends EntityLivingBase
 
 		if (pilotable == null)
 		{
-			this.setDead();
 			return;
 		}
 
@@ -49,6 +48,12 @@ public class EntityCamera extends EntityLivingBase
 
 		rotationYaw = MathHelper.wrapAngleTo180_float(pilotable.axes.getYaw() - 90F);
 		rotationPitch = MathHelper.wrapAngleTo180_float(pilotable.axes.getPitch());
+	}
+
+	@Override
+	public String getCommandSenderName()
+	{
+		return "Camera";
 	}
 
 	@Override

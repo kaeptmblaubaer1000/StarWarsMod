@@ -6,6 +6,9 @@ import com.parzivail.pswm.tileentities.TileEntityShipwright;
 import com.parzivail.util.IDebugProvider;
 import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.driven.EntityCamera;
+import com.parzivail.util.lwjgl.Vector2f;
+import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.math.Animation;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import java.util.List;
 
@@ -70,10 +74,19 @@ public class BlockShipwright extends PBlockContainer implements IDebugProvider
 		if (world.isRemote)
 		{
 			player.openGui(StarWarsMod.instance, Resources.GUI_SHIPWRIGHT, world, x, y, z);
-			EntityCamera camera = new EntityCamera(world);
-			world.spawnEntityInWorld(camera);
-			camera.copyLocationAndAnglesFrom(player);
-			StarWarsMod.mc.renderViewEntity = camera;
+			StarWarsMod.camera = new EntityCamera(world);
+			world.spawnEntityInWorld(StarWarsMod.camera);
+			Animation cameraSwing = new Animation(20, false, true)
+			{
+				@Override
+				public void render(RenderGameOverlayEvent event)
+				{
+					float mod = (getTick() + event.partialTicks) / (float)getLength();
+					StarWarsMod.cameraPosition = new Vector3f(x + 0.5f, y + 0.5f + 3 * mod, z + 0.5f - 3 * mod);
+					StarWarsMod.cameraRotation = new Vector2f(-70 * mod + 90, 45 * mod);
+				}
+			};
+			cameraSwing.start();
 		}
 		return true;
 	}

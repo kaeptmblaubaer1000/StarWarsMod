@@ -344,11 +344,6 @@ public class ClientEventHandler
 		if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable && StarWarsMod.mc.currentScreen == null)
 			StarWarsMod.mc.displayGuiScreen(new GuiShipKeyCapture());
 
-		if (StarWarsMod.mc.currentScreen instanceof GuiShipwright)
-		{
-
-		}
-
 		if (EntityUtils.getShipRiding(StarWarsMod.mc.thePlayer) instanceof Pilotable && event.entity == StarWarsMod.mc.thePlayer && ClientEventHandler.renderHelper.isFirstPerson() && event.isCancelable())
 			event.setCanceled(true);
 
@@ -482,6 +477,9 @@ public class ClientEventHandler
 		}
 
 		GuiBlaster.onRenderGui(event);
+
+		if (StarWarsMod.camera != null && StarWarsMod.cameraPosition != null && StarWarsMod.cameraRotation != null)
+			StarWarsMod.camera.setPositionAndRotation(StarWarsMod.cameraPosition.x, StarWarsMod.cameraPosition.y, StarWarsMod.cameraPosition.z, StarWarsMod.cameraRotation.y, StarWarsMod.cameraRotation.x);
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen || StarWarsMod.mc.currentScreen instanceof GuiShipwright);

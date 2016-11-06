@@ -49,6 +49,8 @@ public class GuiShipwright extends GuiScreen
 	@Override
 	public void drawScreen(int x, int y, float n)
 	{
+		StarWarsMod.mc.renderViewEntity = StarWarsMod.camera;
+
 		GL11.glPushMatrix();
 
 		GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!

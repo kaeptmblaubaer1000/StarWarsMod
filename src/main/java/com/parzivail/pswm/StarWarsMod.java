@@ -15,6 +15,9 @@ import com.parzivail.pswm.tabs.StarWarsTabBlocks;
 import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.util.block.*;
+import com.parzivail.util.driven.EntityCamera;
+import com.parzivail.util.lwjgl.Vector2f;
+import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -294,6 +297,10 @@ public class StarWarsMod
 	public static DamageSource saberDamageSource;
 	public static DamageSource roadkillDamageSource;
 	public FMLPreInitializationEvent preInitEvent;
+
+	public static EntityCamera camera;
+	public static Vector3f cameraPosition;
+	public static Vector2f cameraRotation;
 
 	public StarWarsMod()
 	{
