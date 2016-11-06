@@ -479,7 +479,11 @@ public class ClientEventHandler
 		GuiBlaster.onRenderGui(event);
 
 		if (StarWarsMod.camera != null && StarWarsMod.cameraPosition != null && StarWarsMod.cameraRotation != null)
+		{
 			StarWarsMod.camera.setPositionAndRotation(StarWarsMod.cameraPosition.x, StarWarsMod.cameraPosition.y, StarWarsMod.cameraPosition.z, StarWarsMod.cameraRotation.y, StarWarsMod.cameraRotation.x);
+			if (StarWarsMod.camera.isEntityAlive())
+				StarWarsMod.mc.renderViewEntity = StarWarsMod.camera;
+		}
 
 		if (event.isCancelable() && (event.type == RenderGameOverlayEvent.ElementType.CROSSHAIRS || event.type == RenderGameOverlayEvent.ElementType.CHAT || event.type == RenderGameOverlayEvent.ElementType.HELMET || event.type == RenderGameOverlayEvent.ElementType.HOTBAR || event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.HEALTHMOUNT || event.type == RenderGameOverlayEvent.ElementType.EXPERIENCE || event.type == RenderGameOverlayEvent.ElementType.FOOD || event.type == RenderGameOverlayEvent.ElementType.ARMOR || event.type == RenderGameOverlayEvent.ElementType.JUMPBAR))
 			event.setCanceled(StarWarsMod.isOverlayOnscreen || StarWarsMod.mc.currentScreen instanceof GuiShipwright);

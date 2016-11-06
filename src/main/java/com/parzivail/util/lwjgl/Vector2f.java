@@ -31,6 +31,8 @@
  */
 package com.parzivail.util.lwjgl;
 
+import com.parzivail.util.math.MathUtils;
+
 import java.io.Serializable;
 import java.nio.FloatBuffer;
 
@@ -321,4 +323,8 @@ public class Vector2f extends Vector implements Serializable, ReadableVector2f, 
 		this.y = y;
 	}
 
+	public Vector2f lerp(Vector2f vector2f, float mod)
+	{
+		return new Vector2f(MathUtils.lerp(x, vector2f.x, mod), MathUtils.lerp(y, vector2f.y, mod));
+	}
 }

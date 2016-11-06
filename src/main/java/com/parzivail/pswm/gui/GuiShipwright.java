@@ -1,12 +1,17 @@
 package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.util.lwjgl.Vector2f;
+import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 
 public class GuiShipwright extends GuiScreen
@@ -36,8 +41,25 @@ public class GuiShipwright extends GuiScreen
 	public void onGuiClosed()
 	{
 		super.onGuiClosed();
-		StarWarsMod.mc.renderViewEntity.setDead();
-		StarWarsMod.mc.renderViewEntity = StarWarsMod.mc.thePlayer;
+
+		Vector3f originalPos = new Vector3f(StarWarsMod.cameraPosition);
+		Vector2f originalRot = new Vector2f(StarWarsMod.cameraRotation);
+		Animation cameraSwing = new Animation(20, false, true)
+		{
+			@Override
+			public void render(RenderGameOverlayEvent event)
+			{
+				float mod = (getTick() + event.partialTicks) / (float)getLength();
+				StarWarsMod.cameraPosition = originalPos.lerp(new Vector3f(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY - 1.5f, StarWarsMod.mc.thePlayer.posZ), mod);
+				StarWarsMod.cameraRotation = originalRot.lerp(new Vector2f(StarWarsMod.mc.thePlayer.rotationPitch, MathHelper.wrapAngleTo180_float(StarWarsMod.mc.thePlayer.rotationYaw)), mod);
+			}
+		};
+		cameraSwing.setOnAnimationEnd(animation ->
+		{
+			StarWarsMod.mc.renderViewEntity = StarWarsMod.mc.thePlayer;
+			StarWarsMod.camera.setDead();
+		});
+		cameraSwing.start();
 	}
 
 	@Override
@@ -49,8 +71,6 @@ public class GuiShipwright extends GuiScreen
 	@Override
 	public void drawScreen(int x, int y, float n)
 	{
-		StarWarsMod.mc.renderViewEntity = StarWarsMod.camera;
-
 		GL11.glPushMatrix();
 
 		GL11.glDisable(GL11.GL_LIGHTING); // fix for dimming bug!

@@ -31,6 +31,7 @@
  */
 package com.parzivail.util.lwjgl;
 
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.util.Vec3;
 
 import java.io.Serializable;
@@ -389,5 +390,10 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
 	public float getZ()
 	{
 		return z;
+	}
+
+	public Vector3f lerp(Vector3f vector3f, float mod)
+	{
+		return new Vector3f(MathUtils.lerp(x, vector3f.x, mod), MathUtils.lerp(y, vector3f.y, mod), MathUtils.lerp(z, vector3f.z, mod));
 	}
 }
