@@ -22,6 +22,7 @@ import com.parzivail.pswm.sound.SoundManager;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.EntitySeat;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.entity.EntityUtils;
@@ -480,7 +481,7 @@ public class ClientEventHandler
 
 		if (StarWarsMod.camera != null && StarWarsMod.cameraPosition != null && StarWarsMod.cameraRotation != null)
 		{
-			StarWarsMod.camera.setPositionAndRotation(StarWarsMod.cameraPosition.x, StarWarsMod.cameraPosition.y, StarWarsMod.cameraPosition.z, StarWarsMod.cameraRotation.y, StarWarsMod.cameraRotation.x);
+			EntityCamera.loadAnglesFromStored();
 			if (StarWarsMod.camera.isEntityAlive())
 				StarWarsMod.mc.renderViewEntity = StarWarsMod.camera;
 		}

@@ -1,5 +1,6 @@
 package com.parzivail.util.driven;
 
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -80,4 +81,8 @@ public class EntityCamera extends EntityLivingBase
 		return null;
 	}
 
+	public static void loadAnglesFromStored()
+	{
+		StarWarsMod.camera.setPositionAndRotation(StarWarsMod.cameraPosition.x, StarWarsMod.cameraPosition.y, StarWarsMod.cameraPosition.z, StarWarsMod.cameraRotation.y, StarWarsMod.cameraRotation.x);
+	}
 }

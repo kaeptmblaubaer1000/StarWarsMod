@@ -38,7 +38,7 @@ public class ComponentBank
 	};
 
 	public static final DTargetingComputer[] targetingComputers = new DTargetingComputer[] {
-			new DTargetingComputer("ANs-5d \"Lock Track\" Full-Spectrum Transceiver", ManufacturerBank.FABRITECH, 10, 100),
+			new DTargetingComputer("ANs-5d Full-Spectrum Transceiver", ManufacturerBank.FABRITECH, 10, 100),
 			new DTargetingComputer("K-64 Targeting System", ManufacturerBank.NEUROSAAV, 5, 50),
 			new DTargetingComputer("SI 5g7 \"Quickscan\" Imaging System", ManufacturerBank.FABRITECH, 12, 125),
 			new DTargetingComputer("T-s9a Targeting Computer", ManufacturerBank.SFS, 8, 75),
