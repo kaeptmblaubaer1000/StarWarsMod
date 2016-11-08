@@ -1,5 +1,10 @@
 package com.parzivail.pswm.customship;
 
+import com.parzivail.pswm.Resources;
+import net.minecraft.util.ResourceLocation;
+
+import java.util.HashMap;
+
 /**
  * Created by colby on 10/30/2016.
  */
@@ -34,4 +39,39 @@ public class ManufacturerBank
 	public static final String CYRICEPT = "Cyricept";
 	public static final String ADVANCEDMICROMATERIALS = "Advanced Micromaterials, Inc.";
 	public static final String SANTHESIENAR = "Santhe/Sienar Technologies";
+
+	public static final HashMap<String, ResourceLocation> LOGOS = new HashMap<>();
+
+	static
+	{
+		LOGOS.put(ADVANCEDMICROMATERIALS, new ResourceLocation(Resources.MODID, "textures/logos/advancedmicromaterials.png")); //need
+		LOGOS.put(ARAKYD, new ResourceLocation(Resources.MODID, "textures/logos/arakyd.png"));
+		LOGOS.put(ARMATEK, new ResourceLocation(Resources.MODID, "textures/logos/armatek.png"));
+		LOGOS.put(CHEPAT, new ResourceLocation(Resources.MODID, "textures/logos/chepat.png"));
+		LOGOS.put(CORELLIANENGCORP, new ResourceLocation(Resources.MODID, "textures/logos/corellianeng.png"));
+		LOGOS.put(CYRICEPT, new ResourceLocation(Resources.MODID, "textures/logos/cyricept.png")); //need
+		LOGOS.put(EKSOAN, new ResourceLocation(Resources.MODID, "textures/logos/eksoan.png"));
+		LOGOS.put(FABRITECH, new ResourceLocation(Resources.MODID, "textures/logos/fabritech.png"));
+		LOGOS.put(FORBESTECHCO, new ResourceLocation(Resources.MODID, "textures/logos/forbestechcho.png")); //need
+		LOGOS.put(INCOM, new ResourceLocation(Resources.MODID, "textures/logos/incom.png"));
+		LOGOS.put(ISUSIM, new ResourceLocation(Resources.MODID, "textures/logos/isusim.png"));
+		LOGOS.put(KOENSAYR, new ResourceLocation(Resources.MODID, "textures/logos/koensayr.png"));
+		LOGOS.put(KRUPX, new ResourceLocation(Resources.MODID, "textures/logos/krupx.png"));
+		LOGOS.put(MANDALMOTORS, new ResourceLocation(Resources.MODID, "textures/logos/mandalmotors.png"));
+		LOGOS.put(MERRSONN, new ResourceLocation(Resources.MODID, "textures/logos/merrsonn.png"));
+		LOGOS.put(MPS, new ResourceLocation(Resources.MODID, "textures/logos/mps.png"));
+		LOGOS.put(NEUROSAAV, new ResourceLocation(Resources.MODID, "textures/logos/neurosaav.png"));
+		LOGOS.put(NOVALDEX, new ResourceLocation(Resources.MODID, "textures/logos/novaldex.png"));
+		LOGOS.put(RENDILI, new ResourceLocation(Resources.MODID, "textures/logos/rendili.png"));
+		LOGOS.put(SANTHESIENAR, new ResourceLocation(Resources.MODID, "textures/logos/santhesienar.png"));
+		LOGOS.put(SFS, new ResourceLocation(Resources.MODID, "textures/logos/sienarfleetsystems.png"));
+		LOGOS.put(SIRPLEX, new ResourceLocation(Resources.MODID, "textures/logos/sirplex.png"));
+		LOGOS.put(SOROSUUB, new ResourceLocation(Resources.MODID, "textures/logos/sorosuub.png"));
+		LOGOS.put(SUWANTEK, new ResourceLocation(Resources.MODID, "textures/logos/suwantek.png"));
+		LOGOS.put(TAIMBAK, new ResourceLocation(Resources.MODID, "textures/logos/taimbak.png"));
+		LOGOS.put(THIODYNE, new ResourceLocation(Resources.MODID, "textures/logos/thiodyne.png"));
+		LOGOS.put(TWINSTAR, new ResourceLocation(Resources.MODID, "textures/logos/twinstar.png"));
+		LOGOS.put(UBRIKKIAN, new ResourceLocation(Resources.MODID, "textures/logos/ubrikkian.png"));
+		LOGOS.put(VINOP, new ResourceLocation(Resources.MODID, "textures/logos/vinop.png"));
+	}
 }

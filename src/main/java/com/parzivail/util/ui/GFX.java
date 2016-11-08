@@ -1294,6 +1294,37 @@ public class GFX
 	}
 
 	/**
+	 * Renders an overlay on-screen
+	 *
+	 * @param texture     The resource to render
+	 * @param x           The x position of the texture
+	 * @param y           The y position of the texture
+	 * @param w           The width of the texture
+	 * @param h           The height of the texture
+	 */
+	public static void renderImage(ResourceLocation texture, float x, float y, float w, float h)
+	{
+		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		mc.getTextureManager().bindTexture(texture);
+		GL11.glColor4f(1, 1, 1, 1);
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawingQuads();
+		tessellator.addVertexWithUV(x, h + y, -90, 0, 1);
+		tessellator.addVertexWithUV(w + x, h + y, -90, 1, 1);
+		tessellator.addVertexWithUV(w + x, y, -90, 1, 0);
+		tessellator.addVertexWithUV(x, y, -90, 0, 0);
+		tessellator.draw();
+
+		GL11.glPopAttrib();
+	}
+
+	/**
 	 * Renders a string on-screen
 	 *
 	 * @param x      The x position of the string

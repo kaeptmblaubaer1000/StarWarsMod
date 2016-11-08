@@ -87,9 +87,11 @@ public class OutlineDropdown<T> extends GuiButton
 					GLPalette.glColorI(GLPalette.DARK_GREY, 0x80);
 					break;
 				case 1:
+					textColor = this.selected ? GLPalette.BLACK : GLPalette.WHITE;
 					GLPalette.glColorI(this.selected ? GLPalette.SW_YELLOW : GLPalette.DARK_SW_YELLOW, 0x80);
 					break;
 				case 2:
+					textColor = GLPalette.BLACK;
 					GLPalette.glColorI(GLPalette.SW_YELLOW);
 					break;
 				default:

@@ -3,18 +3,17 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.customship.ComponentBank;
 import com.parzivail.pswm.customship.IStarshipPart;
+import com.parzivail.pswm.customship.ManufacturerBank;
 import com.parzivail.util.lwjgl.Vector2f;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.Animation;
-import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.OutlineDropdown;
-import com.parzivail.util.ui.OutlineDropdownItem;
+import com.parzivail.util.ui.*;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -31,13 +30,25 @@ public class GuiShipwright extends GuiScreen
 	private final int inwardness = 3;
 
 	private List<OutlineDropdown<IStarshipPart>> dropdownList = new ArrayList<>();
+	private OutlineButton bCustomLeft;
+	private OutlineButton bCustomRight;
+	private OutlineButton bPaintjobLeft;
+	private OutlineButton bPaintjobRight;
+
+	private int indexCustom = 0;
+	private int maxCustom = 3;
+	private int indexPaintjob = 0;
+	private int maxPaintjob = 3;
 
 	private static Rectangle partListRegion;
 	private int partListScroll = 3;
 	private int partListTotalContentHeight;
 
+	private IStarshipPart currentPartInfo;
+
 	public GuiShipwright(EntityPlayer player)
 	{
+		this.player = player;
 	}
 
 	@Override
@@ -53,7 +64,39 @@ public class GuiShipwright extends GuiScreen
 					((OutlineDropdown)button).expand();
 				updateDropdowns();
 			}
+			else if (button instanceof OutlineDropdownItem)
+			{
+				OutlineDropdownItem b = ((OutlineDropdownItem)button);
+				if (!b.getTags().isEmpty() && b.getTags().get(0) instanceof IStarshipPart)
+				{
+					IStarshipPart part = (IStarshipPart)b.getTags().get(0);
+					showInfoFor(part);
+				}
+			}
+			else if (button.id == bCustomLeft.id && maxCustom > 0)
+				indexCustom = wrap(-1, indexCustom, maxCustom);
+			else if (button.id == bCustomRight.id && maxCustom > 0)
+				indexCustom = wrap(1, indexCustom, maxCustom);
+			else if (button.id == bPaintjobLeft.id && maxPaintjob > 0)
+				indexPaintjob = wrap(-1, indexPaintjob, maxPaintjob);
+			else if (button.id == bPaintjobRight.id && maxPaintjob > 0)
+				indexPaintjob = wrap(1, indexPaintjob, maxPaintjob);
 		}
+	}
+
+	private void showInfoFor(IStarshipPart part)
+	{
+		currentPartInfo = part;
+	}
+
+	private int wrap(int add, int current, int max)
+	{
+		int n = current + add;
+		if (n < 0)
+			n = max - 1;
+		else if (n >= max)
+			n = 0;
+		return n;
 	}
 
 	private void updateDropdowns()
@@ -81,100 +124,113 @@ public class GuiShipwright extends GuiScreen
 	{
 		r = new ScaledResolution(StarWarsMod.mc, StarWarsMod.mc.displayWidth, StarWarsMod.mc.displayHeight);
 
-		int headerHeight = 10;
+		int headerHeight = 8;
 		int subHeight = 8;
+		int dropdownIndent = 0;
+		String dropdownItemPrefix = "> ";
+		int dropdownHoverIndent = 1;
+		int id = 0;
 
-		OutlineDropdown<IStarshipPart> bEngines = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Engines", false);
+		OutlineDropdown<IStarshipPart> bEngines = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Engines", false);
 		dropdownList.add(bEngines);
 
 		for (IStarshipPart part : ComponentBank.energyWeapons)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bEngines.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bPowerPlants = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Power Plants", false);
+		OutlineDropdown<IStarshipPart> bPowerPlants = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Power Plants", false);
 		dropdownList.add(bPowerPlants);
 
 		for (IStarshipPart part : ComponentBank.powerPlants)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bPowerPlants.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bShields = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Shields", false);
+		OutlineDropdown<IStarshipPart> bShields = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Shields", false);
 		dropdownList.add(bShields);
 
 		for (IStarshipPart part : ComponentBank.shields)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bShields.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bTargetingComputers = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Targeting Computers", false);
+		OutlineDropdown<IStarshipPart> bTargetingComputers = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Targeting Computers", false);
 		dropdownList.add(bTargetingComputers);
 
 		for (IStarshipPart part : ComponentBank.targetingComputers)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bTargetingComputers.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bEnergyWeapons = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Energy Weapons", false);
+		OutlineDropdown<IStarshipPart> bEnergyWeapons = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Energy Weapons", false);
 		dropdownList.add(bEnergyWeapons);
 
 		for (IStarshipPart part : ComponentBank.energyWeapons)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bEnergyWeapons.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bPhysicalWeapons = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Physical Weapons", false);
+		OutlineDropdown<IStarshipPart> bPhysicalWeapons = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Physical Weapons", false);
 		dropdownList.add(bPhysicalWeapons);
 
 		for (IStarshipPart part : ComponentBank.physicalWeapons)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bPhysicalWeapons.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bHyperdrive = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Hyperdrives", false);
+		OutlineDropdown<IStarshipPart> bHyperdrive = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Hyperdrives", false);
 		dropdownList.add(bHyperdrive);
 
 		for (IStarshipPart part : ComponentBank.hyperdrives)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bHyperdrive.addChild(partOutlineDropdownItem);
 		}
 
-		OutlineDropdown<IStarshipPart> bStealthTech = new OutlineDropdown<>(0, inwardness + 1, inwardness + 1, 100, headerHeight, 2, "Cloaking", false);
+		OutlineDropdown<IStarshipPart> bStealthTech = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Cloaking", false);
 		dropdownList.add(bStealthTech);
 
 		for (IStarshipPart part : ComponentBank.stealthTech)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
-			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(1, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags);
+			OutlineDropdownItem<IStarshipPart> partOutlineDropdownItem = new OutlineDropdownItem<>(id++, 0, 0, 100, subHeight, part.getPartDesignation(), false, tags, dropdownItemPrefix, dropdownHoverIndent);
 			bStealthTech.addChild(partOutlineDropdownItem);
 		}
 
 		updateDropdowns();
 
 		partListRegion = new Rectangle(inwardness, inwardness, 102, 175);
+
+		bCustomLeft = new OutlineButton(id++, inwardness + 5, inwardness + partListRegion.getHeight() + 5, 8, 15, "<", false);
+		bCustomRight = new OutlineButton(id++, inwardness + 89, inwardness + partListRegion.getHeight() + 5, 8, 15, ">", false);
+		bPaintjobLeft = new OutlineButton(id++, inwardness + 5, inwardness + partListRegion.getHeight() + 25, 8, 15, "<", false);
+		bPaintjobRight = new OutlineButton(id++, inwardness + 89, inwardness + partListRegion.getHeight() + 25, 8, 15, ">", false);
+		buttonList.add(bCustomLeft);
+		buttonList.add(bCustomRight);
+		buttonList.add(bPaintjobLeft);
+		buttonList.add(bPaintjobRight);
 	}
 
 	@Override
@@ -259,30 +315,86 @@ public class GuiShipwright extends GuiScreen
 		GL11.glTranslatef(r.getScaledWidth() / 2f * (1 - lerp), r.getScaledHeight() / 2f * (1 - lerp), 0);
 		GL11.glScalef(lerp, lerp, 1);
 
-		GLPalette.glColorI(GLPalette.ALMOST_BLACK, 0x55);
+		GL11.glPushMatrix();
+
+		GLPalette.glColorI(GLPalette.ALMOST_BLACK, 0x77);
 		GFX.drawRectangle(inwardness, inwardness, r.getScaledWidth() - 2 * inwardness, r.getScaledHeight() - 2 * inwardness, true);
 
 		GLPalette.glColorI(GLPalette.SW_YELLOW);
 		GFX.drawRectangle(inwardness, inwardness, r.getScaledWidth() - 2 * inwardness, r.getScaledHeight() - 2 * inwardness, false);
 
+		GL11.glLineWidth(2);
+
 		handleScrolling(x, y);
 
-		GL11.glTranslatef(0, 0, 5);
+		/*
+			Draw Custom Part / Paintjob region
+		 */
+		GLPalette.glColorI(GLPalette.SW_YELLOW);
+		GFX.rectangle(inwardness, inwardness + partListRegion.getHeight(), 102, 74, false);
 
-		for (Object aButtonList : this.buttonList)
-			((GuiButton)aButtonList).drawButton(this.mc, x, y);
+		GFX.drawCenteredText(mc.fontRenderer, "Hull #" + String.valueOf(indexCustom + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bCustomLeft.yPosition + 4, 1, GLPalette.WHITE);
+		GFX.drawCenteredText(mc.fontRenderer, "Paint Job #" + String.valueOf(indexPaintjob + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bPaintjobLeft.yPosition + 4, 1, GLPalette.WHITE);
 
+		/*
+			Draw Part Info region
+		 */
+		GLPalette.glColorI(GLPalette.SW_YELLOW);
+		GFX.rectangle(inwardness + 102, inwardness + partListRegion.getHeight(), 372, 74, false);
+
+		if (currentPartInfo != null)
+		{
+			ResourceLocation logoTexture = ManufacturerBank.LOGOS.get(currentPartInfo.getPartManufacturer());
+			GFX.renderImage(logoTexture, inwardness + 104, inwardness + partListRegion.getHeight() + 19, 37.5f, 37.5f);
+			GFX.rectangle(inwardness + 104, inwardness + partListRegion.getHeight() + 19, 37.5f, 37.5f, false);
+
+			GFX.drawText(mc.fontRenderer, currentPartInfo.getPartDesignation(), inwardness + 144, inwardness + partListRegion.getHeight() + 2, 1, GLPalette.WHITE);
+
+			GFX.drawText(mc.fontRenderer, "Manufacturer:", inwardness + 144, inwardness + partListRegion.getHeight() + 12, 0.5f, GLPalette.SW_YELLOW);
+			GFX.drawText(mc.fontRenderer, currentPartInfo.getPartManufacturer(), inwardness + 184, inwardness + partListRegion.getHeight() + 12, 0.5f, GLPalette.WHITE);
+
+			GFX.drawText(mc.fontRenderer, "Weight:", inwardness + 144, inwardness + partListRegion.getHeight() + 19, 0.5f, GLPalette.SW_YELLOW);
+			GFX.drawText(mc.fontRenderer, String.format("%s kg", currentPartInfo.getWeight()), inwardness + 184, inwardness + partListRegion.getHeight() + 19, 0.5f, GLPalette.WHITE);
+		}
+
+		/*
+			Draw part region
+		 */
 		GFX.rectangle(partListRegion.getX(), partListRegion.getY(), partListRegion.getWidth(), partListRegion.getHeight(), false);
 
 		float contentSize = partListTotalContentHeight;
 		float windowSize = partListRegion.getHeight();
 		float trackSize = windowSize;
+		float minimalGripSize = 20;
+		float gripWidth = 2;
 
+		GFX.startGlScissor(partListRegion.getX() + 1, partListRegion.getY() + 1, partListRegion.getWidth() - 1 + (int)gripWidth, partListRegion.getHeight() - 2);
+		drawScrollbar(contentSize, windowSize, trackSize, minimalGripSize, gripWidth);
+		for (OutlineDropdown d : dropdownList)
+			d.drawButton(mc, x, y);
+		GFX.endGlScissor();
+
+		GL11.glPushMatrix();
+		GL11.glTranslatef(0, 0, 5);
+
+		for (Object aButtonList : this.buttonList)
+			((GuiButton)aButtonList).drawButton(this.mc, x, y);
+		GL11.glPopMatrix();
+
+		GL11.glPopMatrix();
+
+		GL11.glPopMatrix();
+
+		GL11.glDisable(GL11.GL_LINE_SMOOTH);
+		GL11.glEnable(GL11.GL_LIGHTING); // end of fix
+
+		GL11.glPopMatrix();
+	}
+
+	private void drawScrollbar(float contentSize, float windowSize, float trackSize, float minimalGripSize, float gripWidth)
+	{
 		float windowContentRatio = windowSize / contentSize;
 		float gripSize = trackSize * windowContentRatio;
-
-		float minimalGripSize = 20;
-		float gripWidth = 3;
 
 		if (gripSize < minimalGripSize)
 			gripSize = minimalGripSize;
@@ -295,18 +407,7 @@ public class GuiShipwright extends GuiScreen
 		float trackScrollAreaSize = trackSize - gripSize;
 		float gripPositionOnTrack = trackScrollAreaSize * windowPositionRatio;
 
-		GFX.startGlScissor(partListRegion.getX() + 1, partListRegion.getY() + 1, partListRegion.getWidth() - 1 + (int)gripWidth, partListRegion.getHeight() - 2);
 		GFX.rectangle(partListRegion.getX() + partListRegion.getWidth(), inwardness + gripPositionOnTrack, gripWidth, gripSize, true);
-		for (OutlineDropdown d : dropdownList)
-			d.drawButton(mc, x, y);
-		GFX.endGlScissor();
-
-		GL11.glPopMatrix();
-
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_LIGHTING); // end of fix
-
-		GL11.glPopMatrix();
 	}
 
 	private void handleScrolling(int x, int y)

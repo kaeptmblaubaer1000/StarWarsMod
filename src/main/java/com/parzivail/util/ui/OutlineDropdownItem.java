@@ -11,12 +11,16 @@ public class OutlineDropdownItem<T> extends GuiButton
 {
 	public boolean selected;
 	private List<T> tags;
+	private String prefix;
+	private int hoverIndent;
 
-	public OutlineDropdownItem(int id, int x, int y, int w, int h, String text, boolean selected, List<T> tags)
+	public OutlineDropdownItem(int id, int x, int y, int w, int h, String text, boolean selected, List<T> tags, String prefix, int hoverIndent)
 	{
 		super(id, x, y, w, h, text);
 		this.selected = selected;
 		this.tags = tags;
+		this.prefix = prefix;
+		this.hoverIndent = hoverIndent;
 	}
 
 	public boolean isHover()
@@ -42,6 +46,8 @@ public class OutlineDropdownItem<T> extends GuiButton
 
 			int textColor = GLPalette.WHITE;
 
+			int indent = 0;
+
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glLineWidth(3);
 			switch (k)
@@ -53,6 +59,7 @@ public class OutlineDropdownItem<T> extends GuiButton
 					textColor = GLPalette.WHITE;
 					break;
 				case 2:
+					indent = hoverIndent;
 					textColor = GLPalette.SW_YELLOW;
 					break;
 				default:
@@ -60,7 +67,9 @@ public class OutlineDropdownItem<T> extends GuiButton
 			}
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-			GFX.drawText(fontrenderer, this.displayString, this.xPosition + 2, this.yPosition + (this.height - 4) / 2, 0.5f, textColor);
+			String finalText = TextUtils.maxLength(fontrenderer, String.format("%s%s", prefix, this.displayString), this.width - 4 - indent, 0.5f);
+
+			GFX.drawText(fontrenderer, finalText, this.xPosition + 2 + indent, this.yPosition + (this.height - 4) / 2, 0.5f, textColor);
 		}
 		GL11.glPopMatrix();
 	}

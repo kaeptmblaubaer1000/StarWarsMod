@@ -1,5 +1,7 @@
 package com.parzivail.util.ui;
 
+import net.minecraft.client.gui.FontRenderer;
+
 import java.util.StringTokenizer;
 
 public class TextUtils
@@ -80,7 +82,6 @@ public class TextUtils
 	 */
 	public static String[] splitIntoLine(String input, int maxCharInLine)
 	{
-
 		StringTokenizer tok = new StringTokenizer(input, " ");
 		StringBuilder output = new StringBuilder(input.length());
 		int lineLen = 0;
@@ -180,5 +181,23 @@ public class TextUtils
 	public static String upperFirst(String s)
 	{
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
+	}
+
+	public static String maxLength(FontRenderer fr, String displayString, int maxLengthPx, float scale)
+	{
+		maxLengthPx /= scale;
+
+		if (fr.getStringWidth(displayString) <= maxLengthPx)
+			return displayString;
+
+		int ellipsisLength = fr.getStringWidth("...");
+		String fnl;
+		for (int i = displayString.length(); i >= 1; i--)
+		{
+			fnl = displayString.substring(0, i);
+			if (fr.getStringWidth(fnl) + ellipsisLength <= maxLengthPx)
+				return displayString.substring(0, i) + "...";
+		}
+		return displayString;
 	}
 }
