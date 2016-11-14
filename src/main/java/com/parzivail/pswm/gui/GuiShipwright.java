@@ -41,6 +41,15 @@ public class GuiShipwright extends GuiScreen
 	private int maxPaintjob = 3;
 
 	private static Rectangle partListRegion;
+	private static Rectangle extrasRegion;
+	private static Rectangle partInfoRegion;
+	private static Rectangle shipInfoRegion;
+	private static Rectangle shipNameRegion;
+	private static FixedSize partListSize;
+	private static FixedSize extrasSize;
+	private static FixedSize partInfoSize;
+	private static FixedSize shipInfoSize;
+	private static FixedSize shipNameSize;
 	private int partListScroll = 3;
 	private int partListTotalContentHeight;
 
@@ -123,6 +132,8 @@ public class GuiShipwright extends GuiScreen
 	public void initGui()
 	{
 		r = new ScaledResolution(StarWarsMod.mc, StarWarsMod.mc.displayWidth, StarWarsMod.mc.displayHeight);
+		float w = r.getScaledWidth() - 2 * inwardness;
+		float h = r.getScaledHeight() - 2 * inwardness;
 
 		int headerHeight = 8;
 		int subHeight = 8;
@@ -130,6 +141,8 @@ public class GuiShipwright extends GuiScreen
 		String dropdownItemPrefix = "> ";
 		int dropdownHoverIndent = 1;
 		int id = 0;
+
+		dropdownList.clear();
 
 		OutlineDropdown<IStarshipPart> bEngines = new OutlineDropdown<>(id++, inwardness + 1, inwardness + 1, 100, headerHeight, dropdownIndent, "Engines", false);
 		dropdownList.add(bEngines);
@@ -221,7 +234,15 @@ public class GuiShipwright extends GuiScreen
 
 		updateDropdowns();
 
-		partListRegion = new Rectangle(inwardness, inwardness, 102, 175);
+		partListSize = new FixedSize(0.22f, 0.75f);
+		extrasSize = new FixedSize(0.22f, 0.25f);
+		partInfoSize = new FixedSize(0.58f, 0.25f);
+		shipInfoSize = new FixedSize(0.2f, 0.25f);
+		shipNameSize = new FixedSize(0.25f, 0.05f);
+
+		partListRegion = new Rectangle(inwardness, inwardness, (int)(w * partInfoSize.getWPercent()), (int)(h * partInfoSize.getHPercent()));
+		extrasRegion = new Rectangle(inwardness, inwardness + partListRegion.getHeight(), (int)(w * extrasSize.getWPercent()), (int)(h * extrasSize.getHPercent()));
+		partInfoRegion = new Rectangle(inwardness, inwardness + partListRegion.getHeight(), (int)(w * partInfoSize.getWPercent()), (int)(h * partInfoSize.getHPercent()));
 
 		bCustomLeft = new OutlineButton(id++, inwardness + 5, inwardness + partListRegion.getHeight() + 5, 8, 15, "<", false);
 		bCustomRight = new OutlineButton(id++, inwardness + 89, inwardness + partListRegion.getHeight() + 5, 8, 15, ">", false);
@@ -317,7 +338,7 @@ public class GuiShipwright extends GuiScreen
 
 		GL11.glPushMatrix();
 
-		GLPalette.glColorI(GLPalette.ALMOST_BLACK, 0x77);
+		GLPalette.glColorI(GLPalette.ALMOST_BLACK, 0x88);
 		GFX.drawRectangle(inwardness, inwardness, r.getScaledWidth() - 2 * inwardness, r.getScaledHeight() - 2 * inwardness, true);
 
 		GLPalette.glColorI(GLPalette.SW_YELLOW);
