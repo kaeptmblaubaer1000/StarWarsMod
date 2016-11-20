@@ -20,6 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Rectangle;
 
 import java.awt.*;
 
@@ -88,7 +89,12 @@ public class GFX
 		GL11.glColor4f(1, 1, 1, 1);
 	}
 
-	public static void startGlScissor(int x, int y, int width, int height)
+	public static void scissor(Rectangle r)
+	{
+		scissor(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+	}
+
+	public static void scissor(int x, int y, int width, int height)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 		ScaledResolution reso = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
@@ -111,7 +117,7 @@ public class GFX
 		}
 	}
 
-	public static void endGlScissor()
+	public static void endScissor()
 	{
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 	}
@@ -916,6 +922,15 @@ public class GFX
 		GL11.glVertex2f(x, y);
 		GL11.glEnd();
 		GL11.glPopMatrix();
+	}
+
+	/**
+	 * Draws a solid color rectangle with the specified coordinates and color without setup.
+	 * Args: x1, y1, x2, y2, color
+	 */
+	public static void rectangle(Rectangle r, boolean fill)
+	{
+		rectangle(r.getX(), r.getY(), r.getWidth(), r.getHeight(), fill);
 	}
 
 	/**
