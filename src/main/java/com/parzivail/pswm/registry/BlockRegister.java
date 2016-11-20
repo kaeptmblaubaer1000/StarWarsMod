@@ -371,10 +371,12 @@ public class BlockRegister
 		StarWarsMod.blockFloorLight = registerWithTileEntity(BlockFloorLight.class, TileEntityFloorLight.class);
 		StarWarsMod.blockHolotableMass = registerWithTileEntity(BlockHolotableMass.class, TileEntityHolotableMass.class);
 		StarWarsMod.blockLadder = registerWithTileEntity(BlockLadder.class, TileEntityLadder.class);
+		StarWarsMod.blockGenerator = registerWithTileEntity(BlockGenerator.class, TileEntityGenerator.class);
 		StarWarsMod.blockPipeClampedMass = registerWithTileEntity(BlockPipeClampedMass.class, TileEntityPipeClampedMass.class);
 		StarWarsMod.blockPipeMass = registerWithTileEntity(BlockPipeMass.class, TileEntityPipeMass.class);
 		StarWarsMod.blockPipeSleevedMass = registerWithTileEntity(BlockPipeSleevedMass.class, TileEntityPipeSleevedMass.class);
 		StarWarsMod.blockConsoleHoth1 = registerWithTileEntity(BlockConsoleHoth1.class, TileEntityConsoleHoth1.class);
+		StarWarsMod.blockMV2 = registerWithTileEntity(BlockMV2.class, TileEntityMV2.class);
 		StarWarsMod.blockConsoleHoth2 = registerWithTileEntity(BlockConsoleHoth2.class, TileEntityConsoleHoth2.class);
 		StarWarsMod.blockConsoleHoth3 = registerWithTileEntity(BlockConsoleHoth3.class, TileEntityConsoleHoth3.class);
 		StarWarsMod.blockPanelHoth = registerWithTileEntity(BlockPanelHoth.class, TileEntityPanelHoth.class);
@@ -388,6 +390,9 @@ public class BlockRegister
 		//StarWarsMod.blockPipeDoubleOffsetTop = registerWithTileEntity(BlockPipeDoubleOffsetTop.class, TileEntityPipeDoubleOffsetTop.class);
 		StarWarsMod.blockFloorLight2 = registerWithTileEntity(BlockFloorLight2.class, TileEntityFloorLight2.class);
 		StarWarsMod.blockHothCrate1 = registerWithTileEntity(BlockCrateHoth1.class, TileEntityCrateHoth1.class);
+		StarWarsMod.blockCrateMosEspa = registerWithTileEntity(BlockCrateMosEspa.class, TileEntityCrateMosEspa.class);
+		StarWarsMod.blockCrateVilla = registerWithTileEntity(BlockCrateVilla.class, TileEntityCrateVilla.class);
+		StarWarsMod.blockGirder = registerWithTileEntity(BlockGirder.class, TileEntityGirder.class);
 		StarWarsMod.blockHothCrate2 = registerWithTileEntity(BlockCrateHoth2.class, TileEntityCrateHoth2.class);
 		StarWarsMod.blockGunRack = registerWithTileEntity(BlockGunRack.class, TileEntityGunRack.class);
 		StarWarsMod.blockDoorHoth = registerWithTileEntity(BlockDoorHoth.class, TileEntityDoorHoth.class);

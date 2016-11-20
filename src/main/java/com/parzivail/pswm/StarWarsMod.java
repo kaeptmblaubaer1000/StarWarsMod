@@ -129,6 +129,11 @@ public class StarWarsMod
 	public static PBlockContainer blockHangingCauldron;
 	public static PBlockContainer blockHangingBucket;
 	public static PBlockContainer blockBasket;
+	public static PBlockContainer blockGenerator;
+	public static PBlockContainer blockMV2;
+	public static PBlockContainer blockCrateMosEspa;
+	public static PBlockContainer blockCrateVilla;
+	public static PBlockContainer blockGirder;
 	public static PBlockContainer blockBactaTank;
 
 	public static PBlockContainer blockMovingLightSource;
