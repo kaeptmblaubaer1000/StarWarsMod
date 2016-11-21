@@ -48,6 +48,11 @@ public class DStealthTech extends SStealthTech
 		return ship.data.stealthActive ? energyPerTick : 0;
 	}
 
+	public float getEnergyPerTick()
+	{
+		return energyPerTick;
+	}
+
 	@Override
 	public float getPowerDrainPerUse(Pilotable ship)
 	{

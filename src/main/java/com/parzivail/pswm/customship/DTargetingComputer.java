@@ -45,6 +45,11 @@ public class DTargetingComputer extends STargetingComputer
 		return energyPerTick;
 	}
 
+	public float getEnergyPerTick()
+	{
+		return energyPerTick;
+	}
+
 	@Override
 	public float getPowerDrainPerUse(Pilotable ship)
 	{

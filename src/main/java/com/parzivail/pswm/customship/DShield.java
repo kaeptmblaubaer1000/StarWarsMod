@@ -47,6 +47,11 @@ public class DShield extends SShield
 		return ship.data.shieldActive ? energyPerTick : 0;
 	}
 
+	public float getEnergyPerTick()
+	{
+		return energyPerTick;
+	}
+
 	@Override
 	public float getPowerDrainPerUse(Pilotable ship)
 	{

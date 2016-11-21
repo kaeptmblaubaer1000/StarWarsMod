@@ -73,5 +73,6 @@ public class ManufacturerBank
 		LOGOS.put(TWINSTAR, new ResourceLocation(Resources.MODID, "textures/logos/twinstar.png"));
 		LOGOS.put(UBRIKKIAN, new ResourceLocation(Resources.MODID, "textures/logos/ubrikkian.png"));
 		LOGOS.put(VINOP, new ResourceLocation(Resources.MODID, "textures/logos/vinop.png"));
+		LOGOS.put("Rey", new ResourceLocation(Resources.MODID, "textures/logos/rey.png"));
 	}
 }

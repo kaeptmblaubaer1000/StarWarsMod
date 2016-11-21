@@ -1,9 +1,8 @@
 package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.customship.ComponentBank;
-import com.parzivail.pswm.customship.IStarshipPart;
-import com.parzivail.pswm.customship.ManufacturerBank;
+import com.parzivail.pswm.customship.*;
+import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.lwjgl.Vector2f;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.Animation;
@@ -52,7 +51,10 @@ public class GuiShipwright extends GuiScreen
 	private int partListScroll = 0;
 	private int partListTotalContentHeight;
 
+	private Pilotable ship;
+
 	private IStarshipPart currentPartInfo;
+	ArrayList<Tuple<String, String>> infos = new ArrayList<>();
 
 	public GuiShipwright(EntityPlayer player)
 	{
@@ -95,6 +97,47 @@ public class GuiShipwright extends GuiScreen
 	private void showInfoFor(IStarshipPart part)
 	{
 		currentPartInfo = part;
+
+		infos.clear();
+
+		infos.add(new Tuple<>("Manufacturer", currentPartInfo.getPartManufacturer()));
+		infos.add(new Tuple<>("Weight", currentPartInfo.getWeight() + "kg"));
+
+		if (currentPartInfo instanceof DSublightEngine)
+		{
+			infos.add(new Tuple<>("EU/t Idle", ((DSublightEngine)currentPartInfo).getEnergyIdle() + "eu"));
+			infos.add(new Tuple<>("EU/t Full Thrust", ((DSublightEngine)currentPartInfo).getEnergyFull() + "eu"));
+			infos.add(new Tuple<>("Max Speed", ((DSublightEngine)currentPartInfo).getSpeed() + "kph"));
+		}
+		else if (currentPartInfo instanceof DPowerPlant)
+		{
+			infos.add(new Tuple<>("EU/t Produce", ((DPowerPlant)currentPartInfo).getAmbientPowerGeneration() + "eu"));
+		}
+		else if (currentPartInfo instanceof DShield)
+		{
+			infos.add(new Tuple<>("EU/t Consume", ((DShield)currentPartInfo).getEnergyPerTick() + "eu"));
+			infos.add(new Tuple<>("Durability", ((DShield)currentPartInfo).getShieldDurability() + "sbd"));
+		}
+		else if (currentPartInfo instanceof DTargetingComputer)
+		{
+			infos.add(new Tuple<>("EU/t Consume", ((DTargetingComputer)currentPartInfo).getEnergyPerTick() + "eu"));
+			infos.add(new Tuple<>("Range", ((DTargetingComputer)currentPartInfo).getRange() + "m"));
+		}
+		else if (currentPartInfo instanceof DEnergyWeapon)
+		{
+			infos.add(new Tuple<>("EU/shot", ((DEnergyWeapon)currentPartInfo).getPowerDrainPerUse(ship) + "eu"));
+		}
+		else if (currentPartInfo instanceof DHyperdrive)
+		{
+			infos.add(new Tuple<>("Class", String.valueOf(((DHyperdrive)currentPartInfo).getHyperdriveClass())));
+		}
+		else if (currentPartInfo instanceof DStealthTech)
+		{
+			infos.add(new Tuple<>("EU/t Active", ((DStealthTech)currentPartInfo).getEnergyPerTick() + "eu"));
+			infos.add(new Tuple<>("Cloaking Time", ((DStealthTech)currentPartInfo).getCloakingTime() + "s"));
+			infos.add(new Tuple<>("Visible (Players)", ((DStealthTech)currentPartInfo).isVisibleToPlayers() ? "Yes" : "No"));
+			infos.add(new Tuple<>("Visible (Radar)", ((DStealthTech)currentPartInfo).isVisibleToRadar() ? "Yes" : "No"));
+		}
 	}
 
 	private int wrap(int add, int current, int max)
@@ -109,7 +152,7 @@ public class GuiShipwright extends GuiScreen
 
 	private void updateDropdowns()
 	{
-		partListTotalContentHeight = 0;
+		partListTotalContentHeight = 2;
 		int yOffset = 1 + partListScroll;
 		for (OutlineDropdown<IStarshipPart> d : dropdownList)
 		{
@@ -134,14 +177,6 @@ public class GuiShipwright extends GuiScreen
 		float w = r.getScaledWidth();
 		float h = r.getScaledHeight();
 
-		int headerHeight = 8;
-		int subHeight = 8;
-		int dropdownIndent = 0;
-		String dropdownItemPrefix = "> ";
-		int dropdownHoverIndent = 1;
-		int id = 0;
-		int dropdownWidth = partListRegion.getWidth() - 2;
-
 		partListSize = new FixedSize(0.22f, 0.75f);
 		extrasSize = new FixedSize(0.22f, 0.25f);
 		partInfoSize = new FixedSize(0.58f, 0.25f);
@@ -154,12 +189,20 @@ public class GuiShipwright extends GuiScreen
 		shipInfoRegion = new Rectangle(extrasRegion.getWidth() + partInfoRegion.getWidth(), partListRegion.getHeight(), (int)(w * shipInfoSize.getWPercent()), (int)(h * shipInfoSize.getHPercent()));
 		shipNameRegion = new Rectangle(partListRegion.getWidth(), partListRegion.getHeight(), (int)(w * shipNameSize.getWPercent()), (int)(h * shipNameSize.getHPercent()));
 
+		int headerHeight = 8;
+		int subHeight = 8;
+		int dropdownIndent = 0;
+		String dropdownItemPrefix = "> ";
+		int dropdownHoverIndent = 1;
+		int id = 0;
+		int dropdownWidth = partListRegion.getWidth() - 2;
+
 		dropdownList.clear();
 
 		OutlineDropdown<IStarshipPart> bEngines = new OutlineDropdown<>(id++, 1, 1, dropdownWidth, headerHeight, dropdownIndent, "Engines", false);
 		dropdownList.add(bEngines);
 
-		for (IStarshipPart part : ComponentBank.energyWeapons)
+		for (IStarshipPart part : ComponentBank.sublightEngines)
 		{
 			ArrayList<IStarshipPart> tags = new ArrayList<>();
 			tags.add(part);
@@ -346,7 +389,7 @@ public class GuiShipwright extends GuiScreen
 		//GLPalette.glColorI(GLPalette.SW_YELLOW);
 		//GFX.drawRectangle(inwardness, inwardness, r.getScaledWidth() - 2 * inwardness, r.getScaledHeight() - 2 * inwardness, false);
 
-		int GUI_BG = GLPalette.DARK_BLUE_GREY;
+		int GUI_BG = GLPalette.ALMOST_BLACK;
 		int GUI_FG = GLPalette.SW_YELLOW;
 
 		GL11.glLineWidth(2);
@@ -356,7 +399,7 @@ public class GuiShipwright extends GuiScreen
 		/*
 			Draw Custom Part / Paintjob region
 		 */
-		GLPalette.glColorI(GUI_BG);
+		GLPalette.glColorI(GUI_BG, 0x88);
 		GFX.rectangle(extrasRegion, true);
 		GLPalette.glColorI(GUI_FG);
 		GFX.rectangle(extrasRegion, false);
@@ -367,10 +410,11 @@ public class GuiShipwright extends GuiScreen
 		GFX.drawCenteredText(mc.fontRenderer, "Paint Job #" + String.valueOf(indexPaintjob + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bPaintjobLeft.yPosition + 4, 1, GLPalette.WHITE);
 
 		GFX.endScissor();
+
 		/*
 			Draw Part Info region
 		 */
-		GLPalette.glColorI(GUI_BG);
+		GLPalette.glColorI(GUI_BG, 0x88);
 		GFX.rectangle(partInfoRegion, true);
 		GLPalette.glColorI(GUI_FG);
 		GFX.rectangle(partInfoRegion, false);
@@ -379,24 +423,36 @@ public class GuiShipwright extends GuiScreen
 
 		if (currentPartInfo != null)
 		{
+			float tS = partInfoRegion.getHeight() - 4;
+			float tX = extrasRegion.getWidth() + 2;
+			float tY = partListRegion.getHeight() + 2;
 			ResourceLocation logoTexture = ManufacturerBank.LOGOS.get(currentPartInfo.getPartManufacturer());
-			GFX.renderImage(logoTexture, 104, partListRegion.getHeight() + 19, 37.5f, 37.5f);
-			GFX.rectangle(104, partListRegion.getHeight() + 19, 37.5f, 37.5f, false);
+			GFX.renderImage(logoTexture, tX, tY, tS, tS);
+			GFX.rectangle(tX, tY, tS, tS, false);
 
-			GFX.drawText(mc.fontRenderer, currentPartInfo.getPartDesignation(), 144, partListRegion.getHeight() + 2, 1, GLPalette.WHITE);
+			GFX.drawText(mc.fontRenderer, currentPartInfo.getPartDesignation(), tX + tS + 2, partListRegion.getHeight() + 2, 1, GLPalette.WHITE);
 
-			GFX.drawText(mc.fontRenderer, "Manufacturer:", 144, partListRegion.getHeight() + 12, 0.5f, GLPalette.SW_YELLOW);
-			GFX.drawText(mc.fontRenderer, currentPartInfo.getPartManufacturer(), 184, partListRegion.getHeight() + 12, 0.5f, GLPalette.WHITE);
+			int cY = partListRegion.getHeight() + 2 + mc.fontRenderer.FONT_HEIGHT + 4;
+			//int cX =
+			for (Tuple<String, String> info : infos)
+			{
+				GFX.drawText(mc.fontRenderer, info.getA(), tX + tS + 2, cY, 0.5f, GLPalette.SW_YELLOW);
+				GFX.drawText(mc.fontRenderer, info.getB(), partInfoRegion.getX() + partInfoRegion.getWidth() - mc.fontRenderer.getStringWidth(info.getB()) / 2f - 2, cY, 0.5f, GLPalette.WHITE);
 
-			GFX.drawText(mc.fontRenderer, "Weight:", 144, partListRegion.getHeight() + 19, 0.5f, GLPalette.SW_YELLOW);
-			GFX.drawText(mc.fontRenderer, String.format("%s kg", currentPartInfo.getWeight()), 184, partListRegion.getHeight() + 19, 0.5f, GLPalette.WHITE);
+				GLPalette.glColorI(GLPalette.SW_YELLOW);
+				GL11.glLineWidth(1);
+				GFX.drawLine(tX + tS + 2 + mc.fontRenderer.getStringWidth(info.getA()) / 2f + 2, cY + mc.fontRenderer.FONT_HEIGHT / 3f, partInfoRegion.getX() + partInfoRegion.getWidth() - mc.fontRenderer.getStringWidth(info.getB()) / 2f - 4, cY + mc.fontRenderer.FONT_HEIGHT / 3f);
+				GL11.glLineWidth(2);
+				cY += mc.fontRenderer.FONT_HEIGHT / 2f + 4;
+			}
 		}
 
 		GFX.endScissor();
+
 		/*
 			Draw part list region
 		 */
-		GLPalette.glColorI(GUI_BG);
+		GLPalette.glColorI(GUI_BG, 0x88);
 		GFX.rectangle(partListRegion, true);
 		GLPalette.glColorI(GUI_FG);
 		GFX.rectangle(partListRegion, false);
@@ -416,7 +472,7 @@ public class GuiShipwright extends GuiScreen
 		/*
 			Draw Ship Info
 		 */
-		GLPalette.glColorI(GUI_BG);
+		GLPalette.glColorI(GUI_BG, 0x88);
 		GFX.rectangle(shipInfoRegion, true);
 		GLPalette.glColorI(GUI_FG);
 		GFX.rectangle(shipInfoRegion, false);

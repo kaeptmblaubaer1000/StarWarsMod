@@ -1,7 +1,5 @@
 package com.parzivail.pswm.customship;
 
-import com.parzivail.util.driven.Pilotable;
-
 /**
  * Created by colby on 10/30/2016.
  */
@@ -39,7 +37,7 @@ public class DPowerPlant extends SPowerPlant
 	}
 
 	@Override
-	public float getAmbientPowerGeneration(Pilotable ship)
+	public float getAmbientPowerGeneration()
 	{
 		return energyPerTick;
 	}

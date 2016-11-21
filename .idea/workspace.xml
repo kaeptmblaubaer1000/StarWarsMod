@@ -2,9 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="gui stuff">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/Tuple.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderShipwright.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGirder.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGirder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPowerPlant.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPowerPlant.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyProducer.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyProducer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ManufacturerBank.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ManufacturerBank.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/GuiShipwright.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/GuiShipwright.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GFX.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GFX.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGirder.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGirder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityShipwright.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityShipwright.java" />
     </list>
     <ignored path="StarWarsMod.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,58 +54,58 @@
       <file leaf-file-name="GuiShipwright.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/GuiShipwright.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="142" column="58" selection-start-line="142" selection-start-column="58" selection-end-line="142" selection-end-column="58" />
+            <state relative-caret-position="481">
+              <caret line="443" column="278" selection-start-line="443" selection-start-column="278" selection-end-line="443" selection-end-column="278" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FixedSize.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/FixedSize.java">
+      <file leaf-file-name="DTargetingComputer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="330">
+              <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutlineDropdown.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdown.java">
+      <file leaf-file-name="DShield.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="89" column="82" selection-start-line="89" selection-start-column="82" selection-end-line="89" selection-end-column="82" />
+            <state relative-caret-position="324">
+              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutlineDropdownItem.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdownItem.java">
+      <file leaf-file-name="DStealthTech.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
+            <state relative-caret-position="268">
+              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/TextUtils.java">
+      <file leaf-file-name="DEnergyWeapon.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DEnergyWeapon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2820">
-              <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+            <state relative-caret-position="215">
+              <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ComponentBank.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ComponentBank.java">
+      <file leaf-file-name="DSublightEngine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DSublightEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="64" column="62" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
+            <state relative-caret-position="105">
+              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -127,13 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/PhysicalWeapon.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipEngine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/StarshipEngine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyProducer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/PowerPlant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPowerPlant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStarshipWeapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipWeapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SShield.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/STargetingComputer.java" />
@@ -143,18 +149,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SStealthTech.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipPart.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DSublightEngine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPowerPlant.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/PowerPlantBank.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SublightEngineBank.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DEnergyWeapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPhysicalWeapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPhysicalWeapon.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DHyperdrive.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityShipwright.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/BlockRegister.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GLPalette.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/Resources.java" />
@@ -170,13 +171,25 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockShipwright.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ComponentBank.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ManufacturerBank.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/TextUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdown.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdownItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/ProportionalSize.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/FixedSize.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GFX.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGirder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGirder.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityShipwright.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderShipwright.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ManufacturerBank.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPowerPlant.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/Tuple.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/GuiShipwright.java" />
       </list>
     </option>
@@ -351,6 +364,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="rendering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StarWarsMod" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StarWarsMod" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.parzivail" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pswm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="handlers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
@@ -399,28 +434,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StarWarsMod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StarWarsMod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.parzivail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pswm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -456,25 +469,25 @@
       <recent name="com.parzivail.pswm.customship" />
       <recent name="com.parzivail.customship" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\driven" />
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\entity" />
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\math" />
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\pswm\models\vehicles" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.parzivail.util.ui" />
-      <recent name="com.parzivail.pswm.gui" />
-      <recent name="com.parzivail.pswm.tileentities" />
-      <recent name="com.parzivail.pswm.blocks" />
-      <recent name="com.parzivail.pswm.customship" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.parzivail.pswm.gui" />
       <recent name="com.parzivail.pswm.customship" />
       <recent name="com.parzivail.pswm.network" />
       <recent name="com.parzivail.pswm.handlers" />
       <recent name="com.parzivail.util.driven" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.parzivail.pswm.rendering" />
+      <recent name="com.parzivail.util.ui" />
+      <recent name="com.parzivail.pswm.gui" />
+      <recent name="com.parzivail.pswm.tileentities" />
+      <recent name="com.parzivail.pswm.blocks" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\driven" />
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\entity" />
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\math" />
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\pswm\models\vehicles" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Client">
@@ -754,13 +767,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
-    </task>
-    <task id="LOCAL-00031" summary="still workin well">
-      <created>1475874440416</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1475874440416</updated>
     </task>
     <task id="LOCAL-00032" summary="cleanup start">
       <created>1475874687026</created>
@@ -1098,7 +1104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479087221919</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="gui stuff">
+      <created>1479682439137</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1479682439137</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1130,7 +1143,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1401919" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22296543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22296543" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1214,133 +1227,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPowerPlant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SublightEngineBank.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPowerPlant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="43" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IEnergyConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SShield.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="64" selection-start-line="5" selection-start-column="64" selection-end-line="5" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="62" column="20" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SPhysicalWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DEnergyWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="63" column="133" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPhysicalWeapon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DHyperdrive.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="30" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="23" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/Pilotable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="607">
-          <caret line="102" column="51" selection-start-line="102" selection-start-column="51" selection-end-line="102" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ShipGuiHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="143" column="42" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DSublightEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GLPalette.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="972" column="35" selection-start-line="972" selection-start-column="35" selection-end-line="972" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/GuiHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/PhysicalWeaponData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1366,6 +1252,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="301" column="41" selection-start-line="301" selection-start-column="41" selection-end-line="301" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1454,13 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityShipwright.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockShipwright.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="706">
@@ -1497,13 +1377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ManufacturerBank.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.lwjgl.lwjgl/lwjgl/2.9.1/ccedb5b6f96913c6f78bc10249e747ded90baa51/lwjgl-2.9.1-sources.jar!/org/lwjgl/opengl/GL11.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
@@ -1518,34 +1391,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ComponentBank.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockAntenna.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="64" column="62" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
+        <state relative-caret-position="-975">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/TextUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2820">
-          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="57" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdownItem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGirder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
+        <state relative-caret-position="210">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdown.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockLadder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="89" column="82" selection-start-line="89" selection-start-column="82" selection-end-line="89" selection-end-column="82" />
+        <state relative-caret-position="30">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-150">
+          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGirder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="35" column="67" selection-start-line="35" selection-start-column="67" selection-end-line="35" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="36" column="67" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -1558,18 +1455,162 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdown.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="89" column="82" selection-start-line="89" selection-start-column="82" selection-end-line="89" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/TextUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/OutlineDropdownItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/StarWarsClientProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="301" column="101" selection-start-line="301" selection-start-column="101" selection-end-line="301" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/tileentities/TileEntityShipwright.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="58" selection-start-line="8" selection-start-column="58" selection-end-line="8" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderStaticNpc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GFX.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+        <state relative-caret-position="223">
+          <caret line="251" column="23" selection-start-line="251" selection-start-column="23" selection-end-line="251" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/rendering/RenderShipwright.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ManufacturerBank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="75" column="90" selection-start-line="75" selection-start-column="90" selection-end-line="75" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/ComponentBank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/IStarshipPart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/SSublightEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DSublightEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DPowerPlant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DStealthTech.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DShield.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DTargetingComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="49" column="8" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DEnergyWeapon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/Tuple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/GuiShipwright.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="142" column="58" selection-start-line="142" selection-start-column="58" selection-end-line="142" selection-end-column="58" />
+        <state relative-caret-position="481">
+          <caret line="443" column="278" selection-start-line="443" selection-start-column="278" selection-end-line="443" selection-end-column="278" />
           <folding />
         </state>
       </provider>

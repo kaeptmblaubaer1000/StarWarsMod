@@ -4,10 +4,14 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityGenerator;
 import com.parzivail.util.block.PBlockContainer;
+import com.parzivail.util.block.TileEntityRotate;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockGenerator extends PBlockContainer
@@ -37,6 +41,18 @@ public class BlockGenerator extends PBlockContainer
 	public boolean isOpaqueCube()
 	{
 		return false;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack item)
+	{
+		TileEntity tile = world.getTileEntity(x, y, z);
+		if (tile instanceof TileEntityRotate)
+		{
+			TileEntityRotate te = (TileEntityRotate)tile;
+			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
+			te.setFacing(l);
+		}
 	}
 
 	@Override

@@ -49,12 +49,6 @@ public class BlockGirder extends PBlockContainer implements IDebugProvider
 	}
 
 	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
-	{
-		this.setBlockBounds(0.1f, 0, 0.1f, 0.9f, 0.8f, 0.9f);
-	}
-
-	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
 		TileEntity tile = world.getTileEntity(x, y, z);
@@ -82,6 +76,19 @@ public class BlockGirder extends PBlockContainer implements IDebugProvider
 			TileEntityRotate te = (TileEntityRotate)tile;
 			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
 			te.setFacing(l);
+		}
+	}
+
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_)
+	{
+		if (p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_) instanceof TileEntityRotate)
+		{
+			int meta = ((TileEntityRotate)p_149719_1_.getTileEntity(p_149719_2_, p_149719_3_, p_149719_4_)).getFacing();
+			if (meta % 2 == 0)
+				setBlockBounds(0, 0, 0.4f, 1, 1, 0.6f);
+			else
+				setBlockBounds(0.4f, 0, 0, 0.6f, 1, 1);
 		}
 	}
 
