@@ -28,6 +28,7 @@ public class GuiShipwright extends GuiScreen
 	public static float lerp = 0;
 
 	private List<OutlineDropdown<IStarshipPart>> dropdownList = new ArrayList<>();
+	private OutlineDropdown<Pilotable> dropdownShips;
 	private OutlineButton bCustomLeft;
 	private OutlineButton bCustomRight;
 	private OutlineButton bPaintjobLeft;
@@ -43,18 +44,23 @@ public class GuiShipwright extends GuiScreen
 	private static Rectangle partInfoRegion;
 	private static Rectangle shipInfoRegion;
 	private static Rectangle shipNameRegion;
+	private static Rectangle chooseShipRegion;
 	private static FixedSize partListSize;
 	private static FixedSize extrasSize;
 	private static FixedSize partInfoSize;
 	private static FixedSize shipInfoSize;
 	private static FixedSize shipNameSize;
+	private static FixedSize chooseShipSize;
 	private int partListScroll = 0;
+	private int chooseShipScroll = 0;
 	private int partListTotalContentHeight;
 
 	private Pilotable ship;
 
 	private IStarshipPart currentPartInfo;
 	ArrayList<Tuple<String, String>> infos = new ArrayList<>();
+	private int sw;
+	private int sh;
 
 	public GuiShipwright(EntityPlayer player)
 	{
@@ -82,15 +88,22 @@ public class GuiShipwright extends GuiScreen
 					IStarshipPart part = (IStarshipPart)b.getTags().get(0);
 					showInfoFor(part);
 				}
+				else if (!b.getTags().isEmpty() && b.getTags().get(0) instanceof Pilotable)
+				{
+					ship = (Pilotable)b.getTags().get(0);
+				}
 			}
-			else if (button.id == bCustomLeft.id && maxCustom > 0)
-				indexCustom = wrap(-1, indexCustom, maxCustom);
-			else if (button.id == bCustomRight.id && maxCustom > 0)
-				indexCustom = wrap(1, indexCustom, maxCustom);
-			else if (button.id == bPaintjobLeft.id && maxPaintjob > 0)
-				indexPaintjob = wrap(-1, indexPaintjob, maxPaintjob);
-			else if (button.id == bPaintjobRight.id && maxPaintjob > 0)
-				indexPaintjob = wrap(1, indexPaintjob, maxPaintjob);
+			else if (ship != null)
+			{
+				if (button.id == bCustomLeft.id && maxCustom > 0)
+					indexCustom = wrap(-1, indexCustom, maxCustom);
+				else if (button.id == bCustomRight.id && maxCustom > 0)
+					indexCustom = wrap(1, indexCustom, maxCustom);
+				else if (button.id == bPaintjobLeft.id && maxPaintjob > 0)
+					indexPaintjob = wrap(-1, indexPaintjob, maxPaintjob);
+				else if (button.id == bPaintjobRight.id && maxPaintjob > 0)
+					indexPaintjob = wrap(1, indexPaintjob, maxPaintjob);
+			}
 		}
 	}
 
@@ -153,11 +166,11 @@ public class GuiShipwright extends GuiScreen
 	private void updateDropdowns()
 	{
 		partListTotalContentHeight = 2;
-		int yOffset = 1 + partListScroll;
+		int partsYOffset = 1 + partListScroll;
 		for (OutlineDropdown<IStarshipPart> d : dropdownList)
 		{
-			d.yPosition = yOffset;
-			yOffset += d.getHeight();
+			d.yPosition = partsYOffset;
+			partsYOffset += d.getHeight();
 			partListTotalContentHeight += d.getHeight();
 		}
 
@@ -174,20 +187,22 @@ public class GuiShipwright extends GuiScreen
 	public void initGui()
 	{
 		r = new ScaledResolution(StarWarsMod.mc, StarWarsMod.mc.displayWidth, StarWarsMod.mc.displayHeight);
-		float w = r.getScaledWidth();
-		float h = r.getScaledHeight();
+		sw = r.getScaledWidth();
+		sh = r.getScaledHeight();
 
 		partListSize = new FixedSize(0.22f, 0.75f);
 		extrasSize = new FixedSize(0.22f, 0.25f);
 		partInfoSize = new FixedSize(0.58f, 0.25f);
 		shipInfoSize = new FixedSize(0.2f, 0.25f);
 		shipNameSize = new FixedSize(0.25f, 0.05f);
+		chooseShipSize = new FixedSize(0.5f, 0.5f);
 
-		partListRegion = new Rectangle(0, 0, (int)(w * partListSize.getWPercent()), (int)(h * partListSize.getHPercent()));
-		extrasRegion = new Rectangle(0, partListRegion.getHeight(), (int)(w * extrasSize.getWPercent()), (int)(h * extrasSize.getHPercent()));
-		partInfoRegion = new Rectangle(extrasRegion.getWidth(), partListRegion.getHeight(), (int)(w * partInfoSize.getWPercent()), (int)(h * partInfoSize.getHPercent()));
-		shipInfoRegion = new Rectangle(extrasRegion.getWidth() + partInfoRegion.getWidth(), partListRegion.getHeight(), (int)(w * shipInfoSize.getWPercent()), (int)(h * shipInfoSize.getHPercent()));
-		shipNameRegion = new Rectangle(partListRegion.getWidth(), partListRegion.getHeight(), (int)(w * shipNameSize.getWPercent()), (int)(h * shipNameSize.getHPercent()));
+		partListRegion = new Rectangle(0, 0, (int)(sw * partListSize.getWPercent()), (int)(sh * partListSize.getHPercent()));
+		extrasRegion = new Rectangle(0, partListRegion.getHeight(), (int)(sw * extrasSize.getWPercent()), (int)(sh * extrasSize.getHPercent()));
+		partInfoRegion = new Rectangle(extrasRegion.getWidth(), partListRegion.getHeight(), (int)(sw * partInfoSize.getWPercent()), (int)(sh * partInfoSize.getHPercent()));
+		shipInfoRegion = new Rectangle(extrasRegion.getWidth() + partInfoRegion.getWidth(), partListRegion.getHeight(), (int)(sw * shipInfoSize.getWPercent()), (int)(sh * shipInfoSize.getHPercent()));
+		shipNameRegion = new Rectangle(partListRegion.getWidth(), partListRegion.getHeight(), (int)(sw * shipNameSize.getWPercent()), (int)(sh * shipNameSize.getHPercent()));
+		chooseShipRegion = new Rectangle((int)(sw * 0.25f), (int)(sh * 0.25f), (int)(sw * chooseShipSize.getWPercent()), (int)(sh * chooseShipSize.getHPercent()));
 
 		int headerHeight = 8;
 		int subHeight = 8;
@@ -289,6 +304,21 @@ public class GuiShipwright extends GuiScreen
 
 		updateDropdowns();
 
+		dropdownShips = new OutlineDropdown<>(id++, (int)(sw * 0.25f), (int)(sh * 0.25f), (int)(sw * chooseShipSize.getWPercent()) - 1, headerHeight, 0, "Available Ships", false);
+		for (Object o : player.worldObj.getEntitiesWithinAABB(Pilotable.class, player.boundingBox.expand(20, 5, 20)))
+		{
+			if (!(o instanceof Pilotable))
+				continue;
+
+			Pilotable s = (Pilotable)o;
+
+			ArrayList<Pilotable> tags = new ArrayList<>();
+			tags.add(s);
+			OutlineDropdownItem<Pilotable> item = new OutlineDropdownItem<>(id++, 0, 0, (int)(sw * chooseShipSize.getWPercent()) - 1, subHeight, String.format("%s (%sm)", s.getCommandSenderName(), dist(s, player)), false, tags, dropdownItemPrefix, dropdownHoverIndent);
+			dropdownShips.addChild(item);
+		}
+		dropdownShips.expand();
+
 		bCustomLeft = new OutlineButton(id++, 5, partListRegion.getHeight() + 5, 8, 15, "<", false);
 		bCustomRight = new OutlineButton(id++, 89, partListRegion.getHeight() + 5, 8, 15, ">", false);
 		bPaintjobLeft = new OutlineButton(id++, 5, partListRegion.getHeight() + 25, 8, 15, "<", false);
@@ -299,36 +329,56 @@ public class GuiShipwright extends GuiScreen
 		buttonList.add(bPaintjobRight);
 	}
 
+	private Object dist(Pilotable s, EntityPlayer player)
+	{
+		return Math.ceil(s.getDistanceToEntity(player));
+	}
+
 	@Override
 	protected void mouseClicked(int mX, int mY, int button)
 	{
 		if (button == 0)
 		{
-			for (Object aButtonList : this.buttonList)
+			if (ship != null)
 			{
-				GuiButton guibutton = (GuiButton)aButtonList;
-
-				if (guibutton.mousePressed(this.mc, mX, mY))
+				for (Object aButtonList : this.buttonList)
 				{
-					guibutton.func_146113_a(this.mc.getSoundHandler());
-					this.actionPerformed(guibutton);
+					GuiButton guibutton = (GuiButton)aButtonList;
+
+					if (guibutton.mousePressed(this.mc, mX, mY))
+					{
+						guibutton.func_146113_a(this.mc.getSoundHandler());
+						this.actionPerformed(guibutton);
+					}
+				}
+
+				for (OutlineDropdown<IStarshipPart> d : dropdownList)
+				{
+					if (d.mousePressed(this.mc, mX, mY) && partListRegion.contains(mX, mY))
+					{
+						d.func_146113_a(this.mc.getSoundHandler());
+						this.actionPerformed(d);
+					}
+
+					d.getChildren().stream().filter(p -> p.mousePressed(this.mc, mX, mY) && partListRegion.contains(mX, mY)).forEach(p ->
+					{
+						p.func_146113_a(this.mc.getSoundHandler());
+						this.actionPerformed(p);
+					});
 				}
 			}
 
-			for (OutlineDropdown<IStarshipPart> d : dropdownList)
+			if (dropdownShips.mousePressed(this.mc, mX, mY) && chooseShipRegion.contains(mX, mY))
 			{
-				if (d.mousePressed(this.mc, mX, mY) && partListRegion.contains(mX, mY))
-				{
-					d.func_146113_a(this.mc.getSoundHandler());
-					this.actionPerformed(d);
-				}
-
-				d.getChildren().stream().filter(p -> p.mousePressed(this.mc, mX, mY) && partListRegion.contains(mX, mY)).forEach(p ->
-				{
-					p.func_146113_a(this.mc.getSoundHandler());
-					this.actionPerformed(p);
-				});
+				dropdownShips.func_146113_a(this.mc.getSoundHandler());
+				this.actionPerformed(dropdownShips);
 			}
+
+			dropdownShips.getChildren().stream().filter(p -> p.mousePressed(this.mc, mX, mY) && chooseShipRegion.contains(mX, mY)).forEach(p ->
+			{
+				p.func_146113_a(this.mc.getSoundHandler());
+				this.actionPerformed(p);
+			});
 		}
 	}
 
@@ -396,100 +446,123 @@ public class GuiShipwright extends GuiScreen
 
 		handleScrolling(x, y);
 
+		if (ship == null)
+		{
+			GFX.drawCenteredOutlineText(mc.fontRenderer, "Select a ship to customize.", sw / 2f, 30 - mc.fontRenderer.FONT_HEIGHT, 2, 0.7f, GLPalette.SW_YELLOW, GLPalette.ALMOST_BLACK);
+
+			GLPalette.glColorI(GUI_BG, 0x88);
+			GFX.rectangle(chooseShipRegion, true);
+			GLPalette.glColorI(GUI_FG);
+			GFX.rectangle(chooseShipRegion, false);
+
+			float contentSize = dropdownShips.getHeight() + 2;
+			float windowSize = chooseShipRegion.getHeight();
+			float trackSize = windowSize;
+			float minimalGripSize = 20;
+			float gripWidth = 2;
+
+			GFX.scissor(chooseShipRegion.getX() + 1, chooseShipRegion.getY() + 1, chooseShipRegion.getWidth() - 1 + (int)gripWidth, chooseShipRegion.getHeight() - 2);
+			drawScrollbar(chooseShipRegion, contentSize, windowSize, trackSize, minimalGripSize, gripWidth);
+			dropdownShips.drawButton(mc, x, y);
+			GFX.endScissor();
+		}
+		else
+		{
 		/*
 			Draw Custom Part / Paintjob region
 		 */
-		GLPalette.glColorI(GUI_BG, 0x88);
-		GFX.rectangle(extrasRegion, true);
-		GLPalette.glColorI(GUI_FG);
-		GFX.rectangle(extrasRegion, false);
+			GLPalette.glColorI(GUI_BG, 0x88);
+			GFX.rectangle(extrasRegion, true);
+			GLPalette.glColorI(GUI_FG);
+			GFX.rectangle(extrasRegion, false);
 
-		GFX.scissor(extrasRegion);
+			GFX.scissor(extrasRegion);
 
-		GFX.drawCenteredText(mc.fontRenderer, "Hull #" + String.valueOf(indexCustom + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bCustomLeft.yPosition + 4, 1, GLPalette.WHITE);
-		GFX.drawCenteredText(mc.fontRenderer, "Paint Job #" + String.valueOf(indexPaintjob + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bPaintjobLeft.yPosition + 4, 1, GLPalette.WHITE);
+			GFX.drawCenteredText(mc.fontRenderer, "Hull #" + String.valueOf(indexCustom + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bCustomLeft.yPosition + 4, 1, GLPalette.WHITE);
+			GFX.drawCenteredText(mc.fontRenderer, "Paint Job #" + String.valueOf(indexPaintjob + 1), (bCustomLeft.xPosition + bPaintjobLeft.width + bPaintjobRight.xPosition) / 2f, bPaintjobLeft.yPosition + 4, 1, GLPalette.WHITE);
 
-		GFX.endScissor();
+			GFX.endScissor();
 
 		/*
 			Draw Part Info region
 		 */
-		GLPalette.glColorI(GUI_BG, 0x88);
-		GFX.rectangle(partInfoRegion, true);
-		GLPalette.glColorI(GUI_FG);
-		GFX.rectangle(partInfoRegion, false);
+			GLPalette.glColorI(GUI_BG, 0x88);
+			GFX.rectangle(partInfoRegion, true);
+			GLPalette.glColorI(GUI_FG);
+			GFX.rectangle(partInfoRegion, false);
 
-		GFX.scissor(partInfoRegion);
+			GFX.scissor(partInfoRegion);
 
-		if (currentPartInfo != null)
-		{
-			float tS = partInfoRegion.getHeight() - 4;
-			float tX = extrasRegion.getWidth() + 2;
-			float tY = partListRegion.getHeight() + 2;
-			ResourceLocation logoTexture = ManufacturerBank.LOGOS.get(currentPartInfo.getPartManufacturer());
-			GFX.renderImage(logoTexture, tX, tY, tS, tS);
-			GFX.rectangle(tX, tY, tS, tS, false);
-
-			GFX.drawText(mc.fontRenderer, currentPartInfo.getPartDesignation(), tX + tS + 2, partListRegion.getHeight() + 2, 1, GLPalette.WHITE);
-
-			int cY = partListRegion.getHeight() + 2 + mc.fontRenderer.FONT_HEIGHT + 4;
-			//int cX =
-			for (Tuple<String, String> info : infos)
+			if (currentPartInfo != null)
 			{
-				GFX.drawText(mc.fontRenderer, info.getA(), tX + tS + 2, cY, 0.5f, GLPalette.SW_YELLOW);
-				GFX.drawText(mc.fontRenderer, info.getB(), partInfoRegion.getX() + partInfoRegion.getWidth() - mc.fontRenderer.getStringWidth(info.getB()) / 2f - 2, cY, 0.5f, GLPalette.WHITE);
+				float tS = partInfoRegion.getHeight() - 4;
+				float tX = extrasRegion.getWidth() + 2;
+				float tY = partListRegion.getHeight() + 2;
+				ResourceLocation logoTexture = ManufacturerBank.LOGOS.get(currentPartInfo.getPartManufacturer());
+				GFX.renderImage(logoTexture, tX, tY, tS, tS);
+				GFX.rectangle(tX, tY, tS, tS, false);
 
-				GLPalette.glColorI(GLPalette.SW_YELLOW);
+				GFX.drawText(mc.fontRenderer, currentPartInfo.getPartDesignation(), tX + tS + 2, partListRegion.getHeight() + 2, 1, GLPalette.WHITE);
+
+				int cY = partListRegion.getHeight() + 2 + mc.fontRenderer.FONT_HEIGHT + 4;
+				//int cX =
 				GL11.glLineWidth(1);
-				GFX.drawLine(tX + tS + 2 + mc.fontRenderer.getStringWidth(info.getA()) / 2f + 2, cY + mc.fontRenderer.FONT_HEIGHT / 3f, partInfoRegion.getX() + partInfoRegion.getWidth() - mc.fontRenderer.getStringWidth(info.getB()) / 2f - 4, cY + mc.fontRenderer.FONT_HEIGHT / 3f);
-				GL11.glLineWidth(2);
-				cY += mc.fontRenderer.FONT_HEIGHT / 2f + 4;
-			}
-		}
+				for (Tuple<String, String> info : infos)
+				{
+					GFX.drawText(mc.fontRenderer, info.getA(), tX + tS + 2, cY, 0.5f, GLPalette.SW_YELLOW);
+					GFX.drawText(mc.fontRenderer, info.getB(), partInfoRegion.getX() + partInfoRegion.getWidth() - mc.fontRenderer.getStringWidth(info.getB()) / 2f - 2, cY, 0.5f, GLPalette.WHITE);
 
-		GFX.endScissor();
+					GLPalette.glColorI(GLPalette.SW_YELLOW, 0x80);
+					GFX.drawLine(tX + tS + 2 + mc.fontRenderer.getStringWidth(info.getA()) / 2f + 2, cY + mc.fontRenderer.FONT_HEIGHT / 2f - 1, partInfoRegion.getX() + partInfoRegion.getWidth() - mc.fontRenderer.getStringWidth(info.getB()) / 2f - 4, cY + mc.fontRenderer.FONT_HEIGHT / 2f - 1);
+					cY += mc.fontRenderer.FONT_HEIGHT / 2f + 4;
+				}
+				GL11.glLineWidth(2);
+			}
+
+			GFX.endScissor();
 
 		/*
 			Draw part list region
 		 */
-		GLPalette.glColorI(GUI_BG, 0x88);
-		GFX.rectangle(partListRegion, true);
-		GLPalette.glColorI(GUI_FG);
-		GFX.rectangle(partListRegion, false);
+			GLPalette.glColorI(GUI_BG, 0x88);
+			GFX.rectangle(partListRegion, true);
+			GLPalette.glColorI(GUI_FG);
+			GFX.rectangle(partListRegion, false);
 
-		float contentSize = partListTotalContentHeight;
-		float windowSize = partListRegion.getHeight();
-		float trackSize = windowSize;
-		float minimalGripSize = 20;
-		float gripWidth = 2;
+			float contentSize = partListTotalContentHeight;
+			float windowSize = partListRegion.getHeight();
+			float trackSize = windowSize;
+			float minimalGripSize = 20;
+			float gripWidth = 2;
 
-		GFX.scissor(partListRegion.getX() + 1, partListRegion.getY() + 1, partListRegion.getWidth() - 1 + (int)gripWidth, partListRegion.getHeight() - 2);
-		drawScrollbar(contentSize, windowSize, trackSize, minimalGripSize, gripWidth);
-		for (OutlineDropdown d : dropdownList)
-			d.drawButton(mc, x, y);
-		GFX.endScissor();
+			GFX.scissor(partListRegion.getX() + 1, partListRegion.getY() + 1, partListRegion.getWidth() - 1 + (int)gripWidth, partListRegion.getHeight() - 2);
+			drawScrollbar(partListRegion, contentSize, windowSize, trackSize, minimalGripSize, gripWidth);
+			for (OutlineDropdown d : dropdownList)
+				d.drawButton(mc, x, y);
+			GFX.endScissor();
 
 		/*
 			Draw Ship Info
 		 */
-		GLPalette.glColorI(GUI_BG, 0x88);
-		GFX.rectangle(shipInfoRegion, true);
-		GLPalette.glColorI(GUI_FG);
-		GFX.rectangle(shipInfoRegion, false);
+			GLPalette.glColorI(GUI_BG, 0x88);
+			GFX.rectangle(shipInfoRegion, true);
+			GLPalette.glColorI(GUI_FG);
+			GFX.rectangle(shipInfoRegion, false);
 
-		GFX.scissor(shipInfoRegion);
+			GFX.scissor(shipInfoRegion);
 
-		GFX.endScissor();
+			GFX.endScissor();
 
 		/*
 			Draw MC buttons, etc.
 		 */
-		GL11.glPushMatrix();
-		GL11.glTranslatef(0, 0, 5);
+			GL11.glPushMatrix();
+			GL11.glTranslatef(0, 0, 5);
 
-		for (Object aButtonList : this.buttonList)
-			((GuiButton)aButtonList).drawButton(this.mc, x, y);
-		GL11.glPopMatrix();
+			for (Object aButtonList : this.buttonList)
+				((GuiButton)aButtonList).drawButton(this.mc, x, y);
+			GL11.glPopMatrix();
+		}
 
 		GL11.glPopMatrix();
 
@@ -501,7 +574,7 @@ public class GuiShipwright extends GuiScreen
 		GL11.glPopMatrix();
 	}
 
-	private void drawScrollbar(float contentSize, float windowSize, float trackSize, float minimalGripSize, float gripWidth)
+	private void drawScrollbar(Rectangle region, float contentSize, float windowSize, float trackSize, float minimalGripSize, float gripWidth)
 	{
 		float windowContentRatio = windowSize / contentSize;
 		float gripSize = trackSize * windowContentRatio;
@@ -517,7 +590,7 @@ public class GuiShipwright extends GuiScreen
 		float trackScrollAreaSize = trackSize - gripSize;
 		float gripPositionOnTrack = trackScrollAreaSize * windowPositionRatio;
 
-		GFX.rectangle(partListRegion.getX() + partListRegion.getWidth(), gripPositionOnTrack - 2, gripWidth, gripSize + 2, true);
+		GFX.rectangle(region.getX() + region.getWidth(), gripPositionOnTrack - 2, gripWidth, gripSize + 2, true);
 	}
 
 	private void handleScrolling(int x, int y)
@@ -538,6 +611,23 @@ public class GuiShipwright extends GuiScreen
 
 			if (partListTotalContentHeight > partListRegion.getHeight() && bottom < partListRegion.getX() + partListRegion.getHeight())
 				partListScroll = -partListTotalContentHeight + partListRegion.getHeight() + 1;
+
+			updateDropdowns();
+		}
+		else if (chooseShipRegion.contains(x, y))
+		{
+			if (dropdownShips.getHeight() > chooseShipRegion.getHeight())
+				chooseShipScroll += dw;
+			else if (chooseShipScroll < 0)
+				chooseShipScroll = 0;
+
+			if (chooseShipScroll > 0)
+				chooseShipScroll = 0;
+
+			int bottom = chooseShipScroll + dropdownShips.getHeight() - 1;
+
+			if (dropdownShips.getHeight() > chooseShipRegion.getHeight() && bottom < chooseShipRegion.getX() + chooseShipRegion.getHeight())
+				chooseShipScroll = -dropdownShips.getHeight() + chooseShipRegion.getHeight() + 1;
 
 			updateDropdowns();
 		}

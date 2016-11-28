@@ -290,6 +290,19 @@ public class GFX
 	}
 
 	/**
+	 * Draws some centered text
+	 */
+	public static void drawOutlineText(FontRenderer font, String s, float x, float y, float scale, float outlineSize, int color, int outlineColor)
+	{
+		drawText(font, s, x + outlineSize, y + outlineSize, scale, outlineColor);
+		drawText(font, s, x - outlineSize, y + outlineSize, scale, outlineColor);
+		drawText(font, s, x + outlineSize, y - outlineSize, scale, outlineColor);
+		drawText(font, s, x - outlineSize, y - outlineSize, scale, outlineColor);
+
+		drawText(font, s, x, y, scale, color);
+	}
+
+	/**
 	 * Draws some text
 	 */
 	public static void drawTextShadowCenter(FontRenderer font, String s, float x, float y, float scale, int color)
@@ -316,6 +329,19 @@ public class GFX
 		font.drawString(s, -font.getStringWidth(s) / 2, 0, color);
 		GL11.glPopAttrib();
 		GL11.glPopMatrix();
+	}
+
+	/**
+	 * Draws some centered text
+	 */
+	public static void drawCenteredOutlineText(FontRenderer font, String s, float x, float y, float scale, float outlineSize, int color, int outlineColor)
+	{
+		drawCenteredText(font, s, x + outlineSize, y + outlineSize, scale, outlineColor);
+		drawCenteredText(font, s, x - outlineSize, y + outlineSize, scale, outlineColor);
+		drawCenteredText(font, s, x + outlineSize, y - outlineSize, scale, outlineColor);
+		drawCenteredText(font, s, x - outlineSize, y - outlineSize, scale, outlineColor);
+
+		drawCenteredText(font, s, x, y, scale, color);
 	}
 
 	/**
