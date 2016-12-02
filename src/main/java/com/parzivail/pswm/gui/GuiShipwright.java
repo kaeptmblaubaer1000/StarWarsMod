@@ -380,6 +380,10 @@ public class GuiShipwright extends GuiScreen
 				this.actionPerformed(p);
 			});
 		}
+
+		Animation a = new AnimationScrambleText("This is some test text", sw / 2f, 70 - mc.fontRenderer.FONT_HEIGHT / 2, 1, GLPalette.WHITE, 5);
+		//a.setOnAnimationEnd(animation -> {isTextDone = true;});
+		a.start();
 	}
 
 	@Override

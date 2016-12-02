@@ -23,7 +23,7 @@ public class GLPalette
 	public static int ADOBE = 0xFFBD6C48;
 	public static int ALGAE = 0xFF54AC68;
 	public static int ALGAE_GREEN = 0xFF21C36F;
-	public static int ALMOST_BLACK = 0xFF070D0D;
+	public static int ALMOST_BLACK = 0xFF0D0D0D;
 	public static int AMBER = 0xFFFEB308;
 	public static int AMETHYST = 0xFF9B5FC0;
 	public static int APPLE = 0xFF6ECB3C;
