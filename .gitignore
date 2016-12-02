@@ -55,6 +55,7 @@ Temporary Items
 bin/
 build/
 eclipse/
+.idea/
 
 default_textures/
 faithful32pack/
