@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="gitignore">
+    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="IGNORE DANG YOU">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -63,7 +63,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
+            <state relative-caret-position="241">
               <caret line="57" column="6" lean-forward="false" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
               <folding />
             </state>
@@ -74,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GFX.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4125">
-              <caret line="281" column="5" lean-forward="true" selection-start-line="281" selection-start-column="5" selection-end-line="288" selection-end-column="27" />
+              <caret line="281" column="5" lean-forward="false" selection-start-line="281" selection-start-column="5" selection-end-line="288" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -635,13 +635,6 @@
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
     </task>
-    <task id="LOCAL-00035" summary="cleanup 4">
-      <created>1475875398886</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1475875398886</updated>
-    </task>
     <task id="LOCAL-00036" summary="rotating 95% done">
       <created>1475877042947</created>
       <option name="number" value="00036" />
@@ -978,7 +971,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480708142477</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="IGNORE DANG YOU">
+      <created>1480708233089</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1480708233090</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1054,7 +1054,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="seems better, needs more testing" />
     <MESSAGE value="ship ship shippy ship" />
     <MESSAGE value="ship shippy shipship" />
     <MESSAGE value="ShipInfo data move" />
@@ -1079,7 +1078,8 @@
     <MESSAGE value="gui stuff" />
     <MESSAGE value="untested text class" />
     <MESSAGE value="gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <MESSAGE value="IGNORE DANG YOU" />
+    <option name="LAST_COMMIT_MESSAGE" value="IGNORE DANG YOU" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1406,7 +1406,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/util/ui/GFX.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4125">
-          <caret line="281" column="5" lean-forward="true" selection-start-line="281" selection-start-column="5" selection-end-line="288" selection-end-column="27" />
+          <caret line="281" column="5" lean-forward="false" selection-start-line="281" selection-start-column="5" selection-end-line="288" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1438,7 +1438,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
+        <state relative-caret-position="241">
           <caret line="57" column="6" lean-forward="false" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
           <folding />
         </state>
