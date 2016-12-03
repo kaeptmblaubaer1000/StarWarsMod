@@ -21,7 +21,6 @@ public class BlockGenerator extends PBlockContainer
 		super("generator", Material.iron);
 		setCreativeTab(StarWarsMod.StarWarsTabBlocks);
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.5F, 0.8F);
-
 		setHardness(50.0F);
 		this.setHarvestLevel("pickaxe", HarvestLevel.IRON);
 	}

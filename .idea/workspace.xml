@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="IGNORE DANG YOU">
+    <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="workin?">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java" />
     </list>
@@ -73,8 +73,8 @@
       <file leaf-file-name="BlockGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="254">
+              <caret line="22" column="59" lean-forward="false" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -746,13 +746,6 @@
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
     </task>
-    <task id="LOCAL-00036" summary="rotating 95% done">
-      <created>1475877042947</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1475877042947</updated>
-    </task>
     <task id="LOCAL-00037" summary="wooty ships">
       <created>1475958063898</created>
       <option name="number" value="00037" />
@@ -1089,7 +1082,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480708233090</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="workin?">
+      <created>1480726021557</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1480726021557</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1165,7 +1165,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="ship ship shippy ship" />
     <MESSAGE value="ship shippy shipship" />
     <MESSAGE value="ShipInfo data move" />
     <MESSAGE value="starship weapon start" />
@@ -1190,7 +1189,8 @@
     <MESSAGE value="untested text class" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="IGNORE DANG YOU" />
-    <option name="LAST_COMMIT_MESSAGE" value="IGNORE DANG YOU" />
+    <MESSAGE value="workin?" />
+    <option name="LAST_COMMIT_MESSAGE" value="workin?" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1508,8 +1508,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/blocks/BlockGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="254">
+          <caret line="22" column="59" lean-forward="false" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
           <folding />
         </state>
       </provider>
