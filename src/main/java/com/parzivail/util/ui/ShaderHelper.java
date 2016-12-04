@@ -17,13 +17,21 @@ public final class ShaderHelper
 	private static final int FRAG = ARBFragmentShader.GL_FRAGMENT_SHADER_ARB;
 
 	public static int glowSolid = 0;
+	public static int outline2d = 0;
 
 	private static int previousShader = 0;
 
+	// lightsaber color
 	private static float r;
 	private static float g;
 	private static float b;
 	private static float a;
+
+	// outlining
+	private static float width;
+	private static float height;
+	private static float outlineSize;
+	private static int color;
 
 	public static void setColor(float r, float g, float b, float a)
 	{
@@ -58,12 +66,21 @@ public final class ShaderHelper
 		setColor(red / 255f * rN, green / 255f * rN, blue / 255f * rN, 0.98f);
 	}
 
+	public static void setOutline2dParams(float width, float height, float outlineSize, int color)
+	{
+		ShaderHelper.width = width;
+		ShaderHelper.height = height;
+		ShaderHelper.outlineSize = outlineSize;
+		ShaderHelper.color = color;
+	}
+
 	public static void initShaders()
 	{
 		if (!useShaders())
 			return;
 
 		glowSolid = createProgramFor("glowSolid");
+		outline2d = createProgramFor("outline2d");
 	}
 
 	public static void useShader(int shader)

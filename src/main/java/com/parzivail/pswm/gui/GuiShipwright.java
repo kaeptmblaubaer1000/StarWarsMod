@@ -2,6 +2,7 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.customship.*;
+import com.parzivail.pswm.font.FontManager;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.lwjgl.Vector2f;
 import com.parzivail.util.lwjgl.Vector3f;
@@ -61,6 +62,8 @@ public class GuiShipwright extends GuiScreen
 	ArrayList<Tuple<String, String>> infos = new ArrayList<>();
 	private int sw;
 	private int sh;
+
+	private TextScramble testText;
 
 	public GuiShipwright(EntityPlayer player)
 	{
@@ -327,6 +330,8 @@ public class GuiShipwright extends GuiScreen
 		buttonList.add(bCustomRight);
 		buttonList.add(bPaintjobLeft);
 		buttonList.add(bPaintjobRight);
+
+		testText = new TextScramble(FontManager.aurebeshHi, "Test text", 50, 50, 1, GLPalette.WHITE, Text.SHADOW, 2);
 	}
 
 	private Object dist(Pilotable s, EntityPlayer player)
@@ -381,9 +386,11 @@ public class GuiShipwright extends GuiScreen
 			});
 		}
 
-		Animation a = new AnimationScrambleText("This is some test text", sw / 2f, 70 - mc.fontRenderer.FONT_HEIGHT / 2, 1, GLPalette.WHITE, 5);
-		//a.setOnAnimationEnd(animation -> {isTextDone = true;});
-		a.start();
+		//		Animation a = new AnimationScrambleText("This is some test text", sw / 2f, 70 - mc.fontRenderer.FONT_HEIGHT / 2, 1, GLPalette.WHITE, 2);
+		//		//a.setOnAnimationEnd(animation -> {isTextDone = true;});
+		//		a.start();
+
+		testText.scramble();
 	}
 
 	@Override
@@ -447,6 +454,8 @@ public class GuiShipwright extends GuiScreen
 		int GUI_FG = GLPalette.SW_YELLOW;
 
 		GL11.glLineWidth(2);
+
+		testText.render(r);
 
 		handleScrolling(x, y);
 

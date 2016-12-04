@@ -12,6 +12,7 @@ public class FontManager
 {
 	@SideOnly(Side.CLIENT)
 	public static FontRenderer aurebesh;
+	public static FontRenderer aurebeshHi;
 
 	private static FontRenderer createFont(String file, boolean small)
 	{
@@ -25,5 +26,6 @@ public class FontManager
 	public static void registerAll()
 	{
 		aurebesh = createFont("textures/font/aurebesh.png", false);
+		aurebeshHi = createFont("textures/font/aurebesh_hi.png", false);
 	}
 }

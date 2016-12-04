@@ -152,4 +152,12 @@ public class Animation
 		else
 			this.tick++;
 	}
+
+	public void reset()
+	{
+		if (reverse)
+			this.tick = this.length;
+		else
+			this.tick = 0;
+	}
 }

@@ -1,6 +1,6 @@
 package com.parzivail.pswm.gui;
 
-import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.font.FontManager;
 import com.parzivail.util.math.Animation;
 import com.parzivail.util.ui.GFX;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -49,7 +49,7 @@ public class AnimationScrambleText extends Animation
 
 		newText += c;
 
-		GFX.drawText(StarWarsMod.mc.fontRenderer, newText, x, y, scale, color);
+		GFX.drawText(FontManager.aurebeshHi, newText, x, y, scale, color);
 
 		lastTick = tick;
 	}
