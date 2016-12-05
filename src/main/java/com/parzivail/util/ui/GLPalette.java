@@ -1031,4 +1031,30 @@ public class GLPalette
 		double b = ca.getBlue() * percent + cb.getBlue() * v;
 		GL11.glColor4d(r / 255f, g / 255f, b / 255f, 1f);
 	}
+
+	public static void lerpColor3(float percent, int ca, int cb, int cc)
+	{
+		if (percent < 0.5)
+			lerpColor2(percent * 2, cb, ca);
+		else
+			lerpColor2((percent - 0.5) * 2, cc, cb);
+	}
+
+	public static void lerpColor2(double percent, int ca, int cb)
+	{
+		double v = 1 - percent;
+
+		int ared = ca >> 16 & 0xFF;
+		int agreen = ca >> 8 & 0xFF;
+		int ablue = ca & 0xFF;
+
+		int bred = cb >> 16 & 0xFF;
+		int bgreen = cb >> 8 & 0xFF;
+		int bblue = cb & 0xFF;
+
+		double r = ared * percent + bred * v;
+		double g = agreen * percent + bgreen * v;
+		double b = ablue * percent + bblue * v;
+		GL11.glColor4d(r / 255f, g / 255f, b / 255f, 1f);
+	}
 }
