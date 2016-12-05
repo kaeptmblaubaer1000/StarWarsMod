@@ -1014,4 +1014,21 @@ public class GLPalette
 	{
 		return -16777216 | rgb;
 	}
+
+	public static void lerpColor3(float percent, Color ca, Color cb, Color cc)
+	{
+		if (percent < 0.5)
+			lerpColor2(percent * 2, cb, ca);
+		else
+			lerpColor2((percent - 0.5) * 2, cc, cb);
+	}
+
+	public static void lerpColor2(double percent, Color ca, Color cb)
+	{
+		double v = 1 - percent;
+		double r = ca.getRed() * percent + cb.getRed() * v;
+		double g = ca.getGreen() * percent + cb.getGreen() * v;
+		double b = ca.getBlue() * percent + cb.getBlue() * v;
+		GL11.glColor4d(r / 255f, g / 255f, b / 255f, 1f);
+	}
 }

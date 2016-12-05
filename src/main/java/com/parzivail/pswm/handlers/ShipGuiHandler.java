@@ -17,9 +17,9 @@ import java.awt.*;
  */
 public class ShipGuiHandler
 {
-	private static Color RED = new Color(GLPalette.ANALOG_RED);
-	private static Color YELLOW = new Color(GLPalette.ORANGE);
-	private static Color GREEN = new Color(GLPalette.ACID_GREEN);
+	public static Color RED = new Color(GLPalette.ANALOG_RED);
+	public static Color YELLOW = new Color(GLPalette.ORANGE);
+	public static Color GREEN = new Color(GLPalette.ACID_GREEN);
 
 	public static void drawGui(boolean firstPerson, RenderGameOverlayEvent.Pre event)
 	{
@@ -176,9 +176,9 @@ public class ShipGuiHandler
 			float shipHealth = ship.data.shipHealth / ship.data.shipHealthMax;
 			float shieldHealth = ship.data.shieldHealth / ship.data.shieldHealthMax;
 
-			triPointLerp(shipHealth, RED, YELLOW, GREEN);
+			GLPalette.lerpColor3(shipHealth, RED, YELLOW, GREEN);
 			GFX.rectangle(1, 9, 43 * shipHealth, 8, true);
-			triPointLerp(shieldHealth, RED, YELLOW, GREEN);
+			GLPalette.lerpColor3(shieldHealth, RED, YELLOW, GREEN);
 			GFX.rectangle(1, 34, 43 * shieldHealth, 8, true);
 			GLPalette.glColorI(GLPalette.ACID_GREEN);
 
@@ -201,7 +201,7 @@ public class ShipGuiHandler
 
 			float shipThrottle = ship.throttle / ship.data.maxThrottle;
 
-			triPointLerp(shipThrottle, RED, GREEN, YELLOW);
+			GLPalette.lerpColor3(shipThrottle, RED, GREEN, YELLOW);
 			GFX.rectangle(1, 9, 43 * shipThrottle, 8, true);
 			GLPalette.glColorI(GLPalette.ACID_GREEN);
 
@@ -217,20 +217,4 @@ public class ShipGuiHandler
 		}
 	}
 
-	private static void triPointLerp(float energy, Color a, Color b, Color c)
-	{
-		if (energy < 0.5)
-			lerp(b, a, energy * 2);
-		else
-			lerp(c, b, (energy - 0.5) * 2);
-	}
-
-	static private void lerp(Color x, Color y, double p)
-	{
-		double v = 1 - p;
-		double r = x.getRed() * p + y.getRed() * v;
-		double g = x.getGreen() * p + y.getGreen() * v;
-		double b = x.getBlue() * p + y.getBlue() * v;
-		GL11.glColor4d(r / 255f, g / 255f, b / 255f, 1f);
-	}
 }

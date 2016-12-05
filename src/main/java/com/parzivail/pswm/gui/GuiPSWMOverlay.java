@@ -54,11 +54,11 @@ public class GuiPSWMOverlay extends Gui
 
 		RenderHelper.disableStandardItemLighting();
 
+		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
+
 		GFX.drawTextShadow(mc.fontRenderer, "PSWM v" + Resources.VERSION, 5, 5, 1, GLPalette.SW_YELLOW);
 		GFX.drawTextShadow(mc.fontRenderer, String.valueOf(QuestUtils.getPlayerBronzeCredits(StarWarsMod.mc.thePlayer)), 17, 17, 1, GLPalette.SW_YELLOW);
 		GFX.renderItem(2, 13, new ItemStack(StarWarsItems.imperialCredit, 0));
-
-		ScaledResolution r = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
 
 		GL11.glDisable(GL11.GL_LIGHTING);
 

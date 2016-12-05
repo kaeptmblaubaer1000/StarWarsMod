@@ -396,4 +396,9 @@ public class Vector3f extends Vector implements Serializable, ReadableVector3f, 
 	{
 		return new Vector3f(MathUtils.lerp(x, vector3f.x, mod), MathUtils.lerp(y, vector3f.y, mod), MathUtils.lerp(z, vector3f.z, mod));
 	}
+
+	public static Vector3f fromVec3(Vec3 vec3)
+	{
+		return new Vector3f(vec3.xCoord, vec3.yCoord, vec3.zCoord);
+	}
 }

@@ -76,6 +76,11 @@ public class Animation
 		return this.tick;
 	}
 
+	public void setTick(int tick)
+	{
+		this.tick = tick;
+	}
+
 	/**
 	 * Gets whether or not the animation loops
 	 *
@@ -86,6 +91,11 @@ public class Animation
 		return this.loop;
 	}
 
+	public void setLoop(boolean loop)
+	{
+		this.loop = loop;
+	}
+
 	/**
 	 * Gets the length of the animation
 	 *
@@ -94,6 +104,11 @@ public class Animation
 	public int getLength()
 	{
 		return this.length;
+	}
+
+	public void setLength(int length)
+	{
+		this.length = length;
 	}
 
 	/**
@@ -139,7 +154,10 @@ public class Animation
 	public void stop()
 	{
 		if (AnimationManager.animations.contains(this))
+		{
 			AnimationManager.animations.remove(this);
+			onAnimationEnd.accept(this);
+		}
 	}
 
 	/**

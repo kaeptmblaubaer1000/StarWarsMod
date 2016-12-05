@@ -34,8 +34,34 @@ public class GFX
 	private static ResourceLocation vignetteTexPath = new ResourceLocation("textures/misc/vignette.png");
 	private static ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
 	private static float prevVignetteBrightness = 1.0F;
-	private static Point[] cursorFrom = { new Point(0, 2), new Point(0, 0), new Point(2, 0), new Point(8, 0), new Point(10, 0), new Point(10, 2), new Point(10, 8), new Point(10, 10), new Point(8, 10), new Point(2, 10), new Point(0, 10), new Point(0, 8) };
-	private static Point[] cursorTo = { new Point(5, 4), new Point(5, 2), new Point(5, 0), new Point(6, 5), new Point(8, 5), new Point(10, 5), new Point(5, 6), new Point(5, 8), new Point(5, 10), new Point(4, 5), new Point(2, 5), new Point(0, 5) };
+	private static Point[] cursorFrom = {
+			new Point(0, 2),
+			new Point(0, 0),
+			new Point(2, 0),
+			new Point(8, 0),
+			new Point(10, 0),
+			new Point(10, 2),
+			new Point(10, 8),
+			new Point(10, 10),
+			new Point(8, 10),
+			new Point(2, 10),
+			new Point(0, 10),
+			new Point(0, 8)
+	};
+	private static Point[] cursorTo = {
+			new Point(5, 4),
+			new Point(5, 2),
+			new Point(5, 0),
+			new Point(6, 5),
+			new Point(8, 5),
+			new Point(10, 5),
+			new Point(5, 6),
+			new Point(5, 8),
+			new Point(5, 10),
+			new Point(4, 5),
+			new Point(2, 5),
+			new Point(0, 5)
+	};
 
 	/**
 	 * Draws a rectangle
@@ -398,7 +424,8 @@ public class GFX
 		try
 		{
 			ReflectionHelper.setPrivateValue(EntityRenderer.class, StarWarsMod.mc.entityRenderer, roll, "camRoll", "field_78495_O", "R");
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			Lumberjack.warn("Unable to change camera roll!");
 			e.printStackTrace();
@@ -1337,11 +1364,11 @@ public class GFX
 	/**
 	 * Renders an overlay on-screen
 	 *
-	 * @param texture     The resource to render
-	 * @param x           The x position of the texture
-	 * @param y           The y position of the texture
-	 * @param w           The width of the texture
-	 * @param h           The height of the texture
+	 * @param texture The resource to render
+	 * @param x       The x position of the texture
+	 * @param y       The y position of the texture
+	 * @param w       The width of the texture
+	 * @param h       The height of the texture
 	 */
 	public static void renderImage(ResourceLocation texture, float x, float y, float w, float h)
 	{

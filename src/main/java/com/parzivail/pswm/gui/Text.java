@@ -2,7 +2,6 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.util.ui.GLPalette;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -24,7 +23,7 @@ public class Text
 	public int outlineColor = GLPalette.ALMOST_BLACK;
 	public int options;
 
-	public float shadowDistance = 1f;
+	public float shadowDistance = 0.5f;
 	public float outlineDistance = 0.5f;
 
 	public Text(FontRenderer font, String text, float x, float y, float scale, int color, int options)
@@ -38,7 +37,7 @@ public class Text
 		this.options = options;
 	}
 
-	public void render(ScaledResolution r)
+	public void render()
 	{
 		drawText(getText());
 	}
@@ -48,8 +47,8 @@ public class Text
 		GL11.glPushMatrix();
 		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glTranslatef(x, y, 0);
 		GL11.glScalef(scale, scale, 1);
-		GL11.glTranslatef(x / scale, y / scale, 0);
 
 		if (hasOption(CENTER))
 			GL11.glTranslatef(-font.getStringWidth(text) / 2f, 0, 0);
@@ -72,6 +71,71 @@ public class Text
 					GL11.glPopMatrix();
 				}
 		}
+
+		font.drawString(text, 0, 0, color, false);
+
+		GL11.glPopAttrib();
+		GL11.glPopMatrix();
+	}
+
+	public static void quickNormalText(FontRenderer font, String text, float x, float y, float scale, int color, boolean center)
+	{
+		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glTranslatef(x, y, 0);
+		GL11.glScalef(scale, scale, 1);
+
+		if (center)
+			GL11.glTranslatef(-font.getStringWidth(text) / 2f, 0, 0);
+
+		font.drawString(text, 0, 0, color, false);
+
+		GL11.glPopAttrib();
+		GL11.glPopMatrix();
+	}
+
+	public static void quickOutlineText(FontRenderer font, String text, float x, float y, float scale, int color, float outlineDistance, int outlineColor, boolean center)
+	{
+		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glTranslatef(x, y, 0);
+		GL11.glScalef(scale, scale, 1);
+
+		if (center)
+			GL11.glTranslatef(-font.getStringWidth(text) / 2f, 0, 0);
+
+		for (float i = -outlineDistance; i <= outlineDistance; i += outlineDistance / 2f)
+			for (float j = -outlineDistance; j <= outlineDistance; j += outlineDistance / 2)
+			{
+				GL11.glPushMatrix();
+				GL11.glTranslatef(i, j, 0);
+				font.drawString(text, 0, 0, outlineColor, false);
+				GL11.glPopMatrix();
+			}
+
+		font.drawString(text, 0, 0, color, false);
+
+		GL11.glPopAttrib();
+		GL11.glPopMatrix();
+	}
+
+	public static void quickShadowText(FontRenderer font, String text, float x, float y, float scale, int color, float shadowDistance, boolean center)
+	{
+		GL11.glPushMatrix();
+		GL11.glPushAttrib(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glTranslatef(x, y, 0);
+		GL11.glScalef(scale, scale, 1);
+
+		if (center)
+			GL11.glTranslatef(-font.getStringWidth(text) / 2f, 0, 0);
+
+		GL11.glPushMatrix();
+		GL11.glTranslatef(shadowDistance, shadowDistance, 0);
+		font.drawString(text, 0, 0, GLPalette.ALMOST_BLACK, false);
+		GL11.glPopMatrix();
 
 		font.drawString(text, 0, 0, color, false);
 

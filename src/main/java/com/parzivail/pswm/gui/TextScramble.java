@@ -2,7 +2,6 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.util.math.Animation;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.ScaledResolution;
 
 /**
  * Created by Colby on 12/2/2016.
@@ -33,6 +32,8 @@ public class TextScramble extends Text
 
 	public void scramble()
 	{
+		if (isScrambling)
+			scrambleAnim.stop();
 		isScrambling = true;
 		scrambleAnim.start();
 	}
@@ -42,7 +43,7 @@ public class TextScramble extends Text
 		return randomChars[(int)Math.floor(Math.random() * randomChars.length)];
 	}
 
-	public void render(ScaledResolution r)
+	public void render()
 	{
 		if (isScrambling)
 		{
@@ -60,8 +61,13 @@ public class TextScramble extends Text
 		else
 		{
 			this.setText(this.originalText);
-			super.render(r);
+			super.render();
 		}
+	}
+
+	public void setTicksPerChar(int ticksPerChar)
+	{
+		scrambleAnim.setLength(ticksPerChar * originalText.length());
 	}
 
 	@Override
@@ -69,5 +75,10 @@ public class TextScramble extends Text
 	{
 		super.setText(text);
 		this.originalText = text;
+	}
+
+	public Animation getAnimation()
+	{
+		return scrambleAnim;
 	}
 }

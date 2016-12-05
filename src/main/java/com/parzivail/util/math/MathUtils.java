@@ -1,5 +1,6 @@
 package com.parzivail.util.math;
 
+import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.util.Vec3;
 
 import java.util.List;
@@ -182,5 +183,10 @@ public class MathUtils
 	public static Vec3 multiply(Vec3 base, float multiplier)
 	{
 		return Vec3.createVectorHelper(base.xCoord * multiplier, base.yCoord * multiplier, base.zCoord * multiplier);
+	}
+
+	public static float getAngleBetweenVectors(Vector3f v1, Vector3f v2)
+	{
+		return Math.abs((float)Math.toDegrees(Vector3f.angle(v1, v2)));
 	}
 }

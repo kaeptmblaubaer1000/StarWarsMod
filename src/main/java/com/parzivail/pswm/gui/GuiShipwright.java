@@ -2,7 +2,6 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.customship.*;
-import com.parzivail.pswm.font.FontManager;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.lwjgl.Vector2f;
 import com.parzivail.util.lwjgl.Vector3f;
@@ -63,7 +62,7 @@ public class GuiShipwright extends GuiScreen
 	private int sw;
 	private int sh;
 
-	private TextScramble testText;
+	private TextScramble selectShipText;
 
 	public GuiShipwright(EntityPlayer player)
 	{
@@ -331,7 +330,8 @@ public class GuiShipwright extends GuiScreen
 		buttonList.add(bPaintjobLeft);
 		buttonList.add(bPaintjobRight);
 
-		testText = new TextScramble(FontManager.aurebeshHi, "Test text", 50, 50, 1, GLPalette.WHITE, Text.SHADOW, 2);
+		selectShipText = new TextScramble(mc.fontRenderer, "Select a ship to customize.", sw / 2f, 30 - mc.fontRenderer.FONT_HEIGHT, 2, GLPalette.SW_YELLOW, Text.CENTER | Text.OUTLINE, 2);
+		selectShipText.scramble();
 	}
 
 	private Object dist(Pilotable s, EntityPlayer player)
@@ -389,8 +389,6 @@ public class GuiShipwright extends GuiScreen
 		//		Animation a = new AnimationScrambleText("This is some test text", sw / 2f, 70 - mc.fontRenderer.FONT_HEIGHT / 2, 1, GLPalette.WHITE, 2);
 		//		//a.setOnAnimationEnd(animation -> {isTextDone = true;});
 		//		a.start();
-
-		testText.scramble();
 	}
 
 	@Override
@@ -455,13 +453,13 @@ public class GuiShipwright extends GuiScreen
 
 		GL11.glLineWidth(2);
 
-		testText.render(r);
-
 		handleScrolling(x, y);
 
 		if (ship == null)
 		{
-			GFX.drawCenteredOutlineText(mc.fontRenderer, "Select a ship to customize.", sw / 2f, 30 - mc.fontRenderer.FONT_HEIGHT, 2, 0.7f, GLPalette.SW_YELLOW, GLPalette.ALMOST_BLACK);
+			//GFX.drawCenteredOutlineText(mc.fontRenderer, "Select a ship to customize.", sw / 2f, 30 - mc.fontRenderer.FONT_HEIGHT, 2, 0.7f, GLPalette.SW_YELLOW, GLPalette.ALMOST_BLACK);
+
+			selectShipText.render();
 
 			GLPalette.glColorI(GUI_BG, 0x88);
 			GFX.rectangle(chooseShipRegion, true);
@@ -481,6 +479,7 @@ public class GuiShipwright extends GuiScreen
 		}
 		else
 		{
+
 		/*
 			Draw Custom Part / Paintjob region
 		 */
