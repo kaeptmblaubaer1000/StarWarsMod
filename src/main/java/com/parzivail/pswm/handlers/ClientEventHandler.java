@@ -3,6 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.customship.MultilockHandler;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.ItemHolocron;
@@ -535,7 +536,7 @@ public class ClientEventHandler
 	{
 		ClientEventHandler.renderSithLightning.onWorldRender(event);
 
-		ShipGuiHandler.renderMultiLock(event);
+		MultilockHandler.renderMultiLock(event.partialTicks);
 	}
 
 }
