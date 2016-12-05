@@ -3,6 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.customship.MultilockHandler;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.ItemHolocron;
@@ -27,23 +28,19 @@ import com.parzivail.util.driven.EntitySeat;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.entity.PlayerHelper;
-import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.AnimationManager;
-import com.parzivail.util.math.Cone;
 import com.parzivail.util.ui.*;
 import com.parzivail.util.vehicle.VehicleAirBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -59,10 +56,6 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glEnd;
 
 public class ClientEventHandler
 {
@@ -543,71 +536,7 @@ public class ClientEventHandler
 	{
 		ClientEventHandler.renderSithLightning.onWorldRender(event);
 
-		float angle = 20;
-		List<Entity> ents = Cone.getEntitiesInCone((List<Entity>)StarWarsMod.mc.thePlayer.worldObj.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(100, 100, 100)), new Vector3f(StarWarsMod.mc.thePlayer.posX, StarWarsMod.mc.thePlayer.posY, StarWarsMod.mc.thePlayer.posZ), 50, angle, Vector3f.fromVec3(StarWarsMod.mc.thePlayer.getLookVec()));
-
-		GL11.glPushMatrix();
-		GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
-		GL11.glEnable(GL11.GL_LINE_SMOOTH);
-		GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
-
-		float lowAngle = angle;
-		Entity lowEntity = null;
-
-		Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(event.partialTicks);
-
-		for (Entity e : ents)
-		{
-			if (e == StarWarsMod.mc.renderViewEntity || e.getDistanceSqToEntity(StarWarsMod.mc.renderViewEntity) < 1)
-				continue;
-
-			float a = Cone.getAngleBetween(StarWarsMod.mc.renderViewEntity, e);
-			if (a <= lowAngle)
-			{
-				lowAngle = a;
-				lowEntity = e;
-			}
-
-			GL11.glPushMatrix();
-			GL11.glTranslated(-(pos.xCoord - 0.5), -(pos.yCoord - 0.5f), -(pos.zCoord - 0.5));
-			GL11.glTranslated(e.posX - 0.5f, e.posY, e.posZ - 0.5f);
-			GL11.glRotatef(-RenderManager.instance.playerViewY, 0, 1, 0);
-			GL11.glRotatef(RenderManager.instance.playerViewX, 1, 0, 0);
-
-			GLPalette.lerpColor3(1 - a / angle, ShipGuiHandler.RED, ShipGuiHandler.YELLOW, ShipGuiHandler.GREEN);
-			drawCrosshair();
-			GL11.glPopMatrix();
-		}
-
-		if (lowEntity != null)
-		{
-			GLPalette.lerpColor3(1 - lowAngle / angle, ShipGuiHandler.RED, ShipGuiHandler.YELLOW, ShipGuiHandler.GREEN);
-			GL11.glTranslated(-(pos.xCoord - 0.5), -(pos.yCoord - 0.5f), -(pos.zCoord - 0.5));
-			GL11.glPushMatrix();
-			glBegin(GL11.GL_LINE_STRIP);
-			GL11.glVertex3d(lowEntity.posX - 0.5f, lowEntity.posY, lowEntity.posZ - 0.5f);
-			GL11.glVertex3d(pos.xCoord - 0.5, pos.yCoord - 0.5f, pos.zCoord - 0.5);
-			glEnd();
-			GL11.glPopMatrix();
-		}
-
-		GL11.glDisable(GL11.GL_LINE_SMOOTH);
-		GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
-		GL11.glPopMatrix();
+		MultilockHandler.renderMultiLock(event.partialTicks);
 	}
 
-	private void drawCrosshair()
-	{
-		GFX.drawLine(-0.5f, -0.5f, -0.5f, -0.25f);
-		GFX.drawLine(-0.5f, -0.5f, -0.25f, -0.5f);
-
-		GFX.drawLine(0.5f, 0.5f, 0.5f, 0.25f);
-		GFX.drawLine(0.5f, 0.5f, 0.25f, 0.5f);
-
-		GFX.drawLine(-0.5f, 0.5f, -0.5f, 0.25f);
-		GFX.drawLine(-0.5f, 0.5f, -0.25f, 0.5f);
-
-		GFX.drawLine(0.5f, -0.5f, 0.5f, -0.25f);
-		GFX.drawLine(0.5f, -0.5f, 0.25f, -0.5f);
-	}
 }

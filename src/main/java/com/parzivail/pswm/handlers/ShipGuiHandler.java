@@ -216,5 +216,4 @@ public class ShipGuiHandler
 			GL11.glPopMatrix();
 		}
 	}
-
 }
