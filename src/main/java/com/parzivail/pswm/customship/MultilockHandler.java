@@ -49,6 +49,7 @@ public class MultilockHandler
 				continue;
 
 			float a = Cone.getAngleBetween(StarWarsMod.mc.renderViewEntity, e);
+
 			if (a <= lowAngle)
 			{
 				lowAngle = a;
