@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ace8ec81-2d48-4521-a13b-609ef749f162" name="Default" comment="Fix PSWM-106">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/items/ItemDataPad.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/items/ItemDataPad.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java" />
     </list>
     <ignored path="StarWarsMod.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,11 +77,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemDataPad.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ItemDataPad.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/items/ItemDataPad.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="463">
               <caret line="49" column="17" lean-forward="true" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyHandler.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="161" column="118" lean-forward="false" selection-start-line="161" selection-start-column="118" selection-end-line="161" selection-end-column="118" />
               <folding />
             </state>
           </provider>
@@ -125,7 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/DHyperdrive.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/util/driven/ShipData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/registry/BlockRegister.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/Resources.java" />
@@ -176,6 +185,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/ClientEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/customship/MultilockHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/items/ItemDataPad.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java" />
       </list>
     </option>
   </component>
@@ -268,32 +278,6 @@
               <option name="myItemId" value="com.parzivail" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StarWarsMod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StarWarsMod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.parzivail" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="math" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -331,7 +315,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="items" />
+              <option name="myItemId" value="handlers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -362,11 +346,12 @@
       <recent name="com.parzivail.pswm.customship" />
       <recent name="com.parzivail.customship" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\driven" />
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\entity" />
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\math" />
-      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\pswm\models\vehicles" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.parzivail.pswm.gui" />
+      <recent name="com.parzivail.pswm.customship" />
+      <recent name="com.parzivail.pswm.network" />
+      <recent name="com.parzivail.pswm.handlers" />
+      <recent name="com.parzivail.util.driven" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.parzivail.pswm.gui" />
@@ -375,12 +360,11 @@
       <recent name="com.parzivail.pswm.tileentities" />
       <recent name="com.parzivail.pswm.blocks" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.parzivail.pswm.gui" />
-      <recent name="com.parzivail.pswm.customship" />
-      <recent name="com.parzivail.pswm.network" />
-      <recent name="com.parzivail.pswm.handlers" />
-      <recent name="com.parzivail.util.driven" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\driven" />
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\entity" />
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\util\math" />
+      <recent name="E:\Forge\Mods\StarWarsMod\src\main\java\com\parzivail\pswm\models\vehicles" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Client">
@@ -558,13 +542,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1475111029906</updated>
-    </task>
-    <task id="LOCAL-00040" summary="here's a TIE. also that issue isn't fixed that i thought was fixed. screw me">
-      <created>1475972204321</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1475972204321</updated>
     </task>
     <task id="LOCAL-00041" summary="whoops">
       <created>1475972217308</created>
@@ -902,7 +879,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480961209986</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Fix PSWM-106">
+      <created>1481735753946</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1481735753946</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1028,7 +1012,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/lang/Thread.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_92/src.zip!/java/net/URLClassLoader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/gui/AnimationHyperspace.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1352,6 +1335,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="463">
           <caret line="49" column="17" lean-forward="true" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/parzivail/pswm/handlers/KeyHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="161" column="118" lean-forward="false" selection-start-line="161" selection-start-column="118" selection-end-line="161" selection-end-column="118" />
           <folding />
         </state>
       </provider>

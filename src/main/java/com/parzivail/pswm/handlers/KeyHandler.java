@@ -134,7 +134,7 @@ public class KeyHandler
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
 		{
-			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
+			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null && Cron.getActive(StarWarsMod.mc.thePlayer) != null)
 			{
 				String current = Cron.getActive(StarWarsMod.mc.thePlayer).name;
 				ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
@@ -159,7 +159,7 @@ public class KeyHandler
 
 		if (KeybindRegistry.keyRobePowerPrev.isPressed())
 		{
-			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
+			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null && Cron.getActive(StarWarsMod.mc.thePlayer) != null)
 			{
 				String current = Cron.getActive(StarWarsMod.mc.thePlayer).name;
 				ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
