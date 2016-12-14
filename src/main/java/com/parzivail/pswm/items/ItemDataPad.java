@@ -29,27 +29,28 @@ public class ItemDataPad extends Item
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
 	{
-		if (StarWarsMod.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY)
+		if (world.isRemote)
 		{
-			Entity e = StarWarsMod.mc.objectMouseOver.entityHit;
-
-			if (stack.stackTagCompound == null)
-				stack.stackTagCompound = new NBTTagCompound();
-
-			if (e instanceof MobDroidProbe && !stack.stackTagCompound.hasKey(String.valueOf(e.getEntityId())))
+			if (StarWarsMod.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY)
 			{
-				if (world.isRemote)
+				Entity e = StarWarsMod.mc.objectMouseOver.entityHit;
+
+				if (stack.stackTagCompound == null)
+					stack.stackTagCompound = new NBTTagCompound();
+
+				if (e instanceof MobDroidProbe && !stack.stackTagCompound.hasKey(String.valueOf(e.getEntityId())))
 				{
 					GuiToast.makeText("Data Transmitted!", GuiToast.TIME_SHORT).show();
 					ItemQuestLog.addStat(player, QuestStats.PROBE_DATA);
 					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
+
+					stack.stackTagCompound.setBoolean(String.valueOf(e.getEntityId()), true);
 				}
-				stack.stackTagCompound.setBoolean(String.valueOf(e.getEntityId()), true);
-			}
-			else
-			{
-				if (world.isRemote)
-					GuiToast.makeText("You can't scan that!", GuiToast.TIME_SHORT).show();
+				else
+				{
+					if (world.isRemote)
+						GuiToast.makeText("You can't scan that!", GuiToast.TIME_SHORT).show();
+				}
 			}
 		}
 
