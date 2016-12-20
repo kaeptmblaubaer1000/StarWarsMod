@@ -1,6 +1,7 @@
 package com.parzivail.util.block;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.registry.RegistryModel;
 import com.parzivail.pswm.tile.PTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -44,5 +45,10 @@ public class PBlock extends Block
 		if (this.ib == null)
 			this.ib = createItemBlock();
 		return this.ib;
+	}
+
+	public void registerAllTypes()
+	{
+		RegistryModel.register(this, Variants.INVENTORY);
 	}
 }

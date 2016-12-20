@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "normal": {
-      "model": "pswm:infrastructure"
-    }
-  }
+	"variants": {
+		"normal": {
+			"model": "pswm:infrastructure"
+		}
+	}
 }
