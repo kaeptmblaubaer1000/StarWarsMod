@@ -6,6 +6,7 @@ import com.parzivail.util.register.RegisterUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.Tuple;
 
 /**
  * Created by colby on 12/18/2016.
@@ -19,8 +20,8 @@ public class PBlock extends Block
 		super(material);
 		this.name = name;
 		this.setCreativeTab(PSWM.tabBlocks);
-		RegisterUtils.registerBlock(this, name);
-		PSWM.proxy.registerItemRenderer(new ItemBlock(this), 0, name);
+		Tuple<PBlock, ItemBlock> re = RegisterUtils.registerBlock(this, name);
+		PSWM.proxy.registerItemRenderer(re.getSecond(), 0, name);
 	}
 
 	public PTileEntity getAssociatedTileEntity()

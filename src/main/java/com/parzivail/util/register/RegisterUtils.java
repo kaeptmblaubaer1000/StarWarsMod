@@ -8,6 +8,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
@@ -31,18 +32,17 @@ public class RegisterUtils
 		return item;
 	}
 
-	public static <T extends PBlock> T registerBlock(T block, String name)
+	public static <T extends PBlock> Tuple<T, ItemBlock> registerBlock(T block, String name)
 	{
-		ItemBlock itemBlock = new ItemBlockMeta(block);
-		registerBlock(block, itemBlock, name);
-		return block;
+		ItemBlock itemBlock = new ItemBlock(block);
+		return registerBlock(block, itemBlock, name);
 	}
 
 	@SuppressWarnings("unchecked")
-	public static <T extends PBlock> T registerBlock(ItemBlock itemBlock, String name)
+	public static <T extends Block> Tuple<T, ItemBlock> registerBlock(ItemBlock itemBlock, String name)
 	{
 		Block block = itemBlock.getBlock();
-		return (T)registerBlock(block, itemBlock, name);
+		return (Tuple<T, ItemBlock>)registerBlock(block, itemBlock, name);
 	}
 
 	public static <T extends Block> T registerBlock(T block, String name, IProperty<?> property)
@@ -53,7 +53,7 @@ public class RegisterUtils
 		return block;
 	}
 
-	public static <T extends Block> T registerBlock(T block, ItemBlock itemBlock, String name)
+	public static <T extends Block> Tuple<T, ItemBlock> registerBlock(T block, ItemBlock itemBlock, String name)
 	{
 		if (!name.equals(name.toLowerCase(Locale.US)))
 		{
@@ -66,7 +66,7 @@ public class RegisterUtils
 
 		register(block, name);
 		register(itemBlock, name);
-		return block;
+		return new Tuple<T, ItemBlock>(block, itemBlock);
 	}
 
 	public static <T extends PBlock> T registerBlockNoItem(T block, String name)
