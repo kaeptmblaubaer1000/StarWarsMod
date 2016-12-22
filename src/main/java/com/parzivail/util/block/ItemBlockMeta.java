@@ -1,23 +1,83 @@
 package com.parzivail.util.block;
 
-import com.parzivail.pswm.Resources;
-import net.minecraft.item.ItemBlock;
+import com.parzivail.util.LocUtils;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemColored;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * Created by colby on 12/19/2016.
- */
-public class ItemBlockMeta extends ItemBlock
+import javax.annotation.Nonnull;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+
+public class ItemBlockMeta extends ItemColored
 {
-	public ItemBlockMeta(PBlock block)
+
+	protected IProperty mappingProperty;
+
+	public ItemBlockMeta(Block block)
 	{
-		super(block);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
-		this.setRegistryName(Resources.MODID, block.getName());
+		super(block, true);
 	}
 
-	public int getMetadata(int damage)
+	@Nonnull
+	@Override
+	public String getUnlocalizedName(@Nonnull ItemStack stack)
 	{
-		return damage;
+		if (mappingProperty == null)
+		{
+			return super.getUnlocalizedName(stack);
+		}
+
+		IBlockState state = block.getStateFromMeta(stack.getMetadata());
+		String name = state.getValue(mappingProperty).toString().toLowerCase(Locale.US);
+		return super.getUnlocalizedName(stack) + "." + name;
+	}
+
+	public static void setMappingProperty(Block block, IProperty<?> property)
+	{
+		((ItemBlockMeta)Item.getItemFromBlock(block)).mappingProperty = property;
+	}
+
+	@Override
+	public void addInformation(@Nonnull ItemStack stack, @Nonnull EntityPlayer playerIn, @Nonnull List<String> tooltip, boolean advanced)
+	{
+		if (I18n.canTranslate(this.getUnlocalizedName(stack) + ".tooltip"))
+		{
+			tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(this.getUnlocalizedName(stack) + ".tooltip")));
+		}
+		else if (I18n.canTranslate(super.getUnlocalizedName(stack) + ".tooltip"))
+		{
+			tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(super.getUnlocalizedName(stack) + ".tooltip")));
+		}
+		super.addInformation(stack, playerIn, tooltip, advanced);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerItemModels()
+	{
+		final Item item = this;
+		final ResourceLocation loc = GameData.getBlockRegistry().getNameForObject(block);
+
+
+		for (Comparable o : (Collection<Comparable>)mappingProperty.getAllowedValues())
+		{
+			int meta = block.getMetaFromState(block.getDefaultState().withProperty(mappingProperty, o));
+			String name = mappingProperty.getName(o);
+
+			ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(loc, mappingProperty.getName() + "=" + name));
+		}
 	}
 }

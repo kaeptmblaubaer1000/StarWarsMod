@@ -17,10 +17,10 @@ public class Lumberjack
 	 *
 	 * @param message The message to print
 	 */
-	public static void debug(Object message)
+	public static void debug(Object message, Object... params)
 	{
 		if (Resources.IS_DEV_ENVIRONMENT)
-			log(message);
+			log(message, params);
 	}
 
 	/**

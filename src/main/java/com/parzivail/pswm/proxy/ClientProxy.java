@@ -1,22 +1,27 @@
 package com.parzivail.pswm.proxy;
 
-import com.parzivail.pswm.registry.PRegister;
-import com.parzivail.util.common.InitPhase;
+import com.parzivail.util.Util;
+import com.parzivail.util.block.Variants;
 import com.parzivail.util.common.Lumberjack;
-import net.minecraftforge.fml.relauncher.Side;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 
 /**
  * Created by colby on 12/18/2016.
  */
 public class ClientProxy extends CommonProxy
 {
-	public void preinit(Side side)
+	@Override
+	public void preinit()
 	{
-		super.preinit(Side.SERVER);
-		for (PRegister register : regfilter.filter(o -> o.getPhase() == InitPhase.PRE && o.getSide() == Side.CLIENT))
-		{
-			Lumberjack.log("REGISTER: %s@%s", register.getName(), side);
-			register.registerAll();
-		}
+		super.preinit();
+	}
+
+	@Override
+	public void registerItemRenderer(Item item, int meta, String id)
+	{
+		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Util.identifier(id), Variants.INVENTORY));
+		Lumberjack.debug("Registered renderer for item %s@%s", Util.identifier(id), Variants.INVENTORY);
 	}
 }

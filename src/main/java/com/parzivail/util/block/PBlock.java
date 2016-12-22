@@ -1,8 +1,8 @@
 package com.parzivail.util.block;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.registry.RegistryModel;
+import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.tile.PTileEntity;
+import com.parzivail.util.register.RegisterUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -13,14 +13,14 @@ import net.minecraft.item.ItemBlock;
 public class PBlock extends Block
 {
 	private String name;
-	private ItemBlock ib;
 
 	public PBlock(String name, Material material)
 	{
 		super(material);
 		this.name = name;
-		this.setRegistryName(Resources.MODID, this.name);
-		this.setUnlocalizedName(this.name);
+		this.setCreativeTab(PSWM.tabBlocks);
+		RegisterUtils.registerBlock(this, name);
+		PSWM.proxy.registerItemRenderer(new ItemBlock(this), 0, name);
 	}
 
 	public PTileEntity getAssociatedTileEntity()
@@ -31,24 +31,5 @@ public class PBlock extends Block
 	public String getName()
 	{
 		return name;
-	}
-
-	public ItemBlock createItemBlock()
-	{
-		ItemBlock ib = new ItemBlock(this);
-		ib.setRegistryName(Resources.MODID, this.name);
-		return ib;
-	}
-
-	public ItemBlock getAssociatedItemBlock()
-	{
-		if (this.ib == null)
-			this.ib = createItemBlock();
-		return this.ib;
-	}
-
-	public void registerAllTypes()
-	{
-		RegistryModel.register(this, Variants.INVENTORY);
 	}
 }

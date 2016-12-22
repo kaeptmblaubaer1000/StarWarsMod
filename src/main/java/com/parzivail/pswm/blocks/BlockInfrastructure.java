@@ -1,18 +1,16 @@
 package com.parzivail.pswm.blocks;
 
-import com.parzivail.pswm.registry.RegistryModel;
-import com.parzivail.util.block.ItemBlockMeta;
 import com.parzivail.util.block.PBlock;
-import com.parzivail.util.block.Variants;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -28,59 +26,45 @@ public class BlockInfrastructure extends PBlock
 	{
 		super("infrastructure", Material.IRON);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-		//this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.INFRA_LIGHT));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumType.INFRA_LIGHT));
 	}
 
-	//	@Override
-	//	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
-	//	{
-	//		list.add(new ItemStack(itemIn, 1, 0));
-	//		//list.add(new ItemStack(itemIn, 1, 1));
-	//	}
-	//
-	//	@Override
-	//	protected BlockStateContainer createBlockState()
-	//	{
-	//		return new BlockStateContainer(this, TYPE);
-	//	}
-	//
-	//	@Override
-	//	public IBlockState getStateFromMeta(int meta)
-	//	{
-	//		return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
-	//	}
-	//
-	//	@Override
-	//	public int getMetaFromState(IBlockState state)
-	//	{
-	//		EnumType type = (EnumType)state.getValue(TYPE);
-	//		return type.getID();
-	//	}
-	//
-	//	@Override
-	//	public int damageDropped(IBlockState state)
-	//	{
-	//		return getMetaFromState(state);
-	//	}
+	@Override
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	{
+		for (EnumType t : EnumType.values())
+			list.add(new ItemStack(itemIn, 1, t.getID()));
+	}
+
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, TYPE);
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return getDefaultState().withProperty(TYPE, EnumType.values()[meta]);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		EnumType type = (EnumType)state.getValue(TYPE);
+		return type.getID();
+	}
+
+	@Override
+	public int damageDropped(IBlockState state)
+	{
+		return getMetaFromState(state);
+	}
 
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
 		return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
-	}
-
-	@Override
-	public ItemBlock createItemBlock()
-	{
-		return new ItemBlockMeta(this);
-	}
-
-	@Override
-	public void registerAllTypes()
-	{
-		RegistryModel.register(this, 0, Variants.INVENTORY);
-		//		for (EnumType t : EnumType.values())
-		//			RegistryModel.register(this, t.getID(), t.getName());
 	}
 
 	public enum EnumType implements IStringSerializable
