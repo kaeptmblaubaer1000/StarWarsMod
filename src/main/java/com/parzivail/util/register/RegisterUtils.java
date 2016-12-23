@@ -26,7 +26,7 @@ public class RegisterUtils
 			throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Item: %s", name));
 		}
 
-		item.setUnlocalizedName(Util.prefix(name));
+		item.setUnlocalizedName(Util.moddot(name));
 		item.setRegistryName(Util.getResource(name));
 		GameRegistry.register(item);
 		return item;
@@ -60,7 +60,7 @@ public class RegisterUtils
 			throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Block: %s", name));
 		}
 
-		String prefixedName = Util.prefix(name);
+		String prefixedName = Util.moddot(name);
 		block.setUnlocalizedName(prefixedName);
 		itemBlock.setUnlocalizedName(prefixedName);
 
@@ -76,7 +76,7 @@ public class RegisterUtils
 			throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Block: %s", name));
 		}
 
-		String prefixedName = Util.prefix(name);
+		String prefixedName = Util.moddot(name);
 		block.setUnlocalizedName(prefixedName);
 
 		register(block, name);
@@ -97,6 +97,6 @@ public class RegisterUtils
 			throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! TE: %s", name));
 		}
 
-		GameRegistry.registerTileEntity(teClazz, Util.prefix(name));
+		GameRegistry.registerTileEntity(teClazz, Util.moddot(name));
 	}
 }

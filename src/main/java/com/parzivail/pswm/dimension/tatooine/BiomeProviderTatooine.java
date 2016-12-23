@@ -1,14 +1,10 @@
 package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.util.common.OpenSimplexNoise;
-import net.minecraft.block.BlockTallGrass;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.storage.WorldInfo;
 
 import java.util.ArrayList;
@@ -21,28 +17,16 @@ import java.util.Random;
  */
 public class BiomeProviderTatooine extends BiomeProvider
 {
-
 	public static final List<Biome> allowedBiomes = Arrays.asList(Biomes.DESERT, Biomes.DESERT_HILLS);
-	private final BiomeCache biomeCache;
 	private List<Biome> biomesToSpawnIn;
 	private OpenSimplexNoise biomeNoise;
 
-	private BiomeProviderTatooine()
-	{
-		this.biomeCache = new BiomeCache(this);
-		this.biomesToSpawnIn = new ArrayList<Biome>();
-		this.biomesToSpawnIn.addAll(allowedBiomes);
-	}
-
-	private BiomeProviderTatooine(long seed)
-	{
-		this();
-		this.biomeNoise = new OpenSimplexNoise(seed);
-	}
-
 	public BiomeProviderTatooine(WorldInfo info)
 	{
-		this(info.getSeed());
+		super(info);
+		this.biomesToSpawnIn = new ArrayList<>();
+		this.biomesToSpawnIn.addAll(allowedBiomes);
+		this.biomeNoise = new OpenSimplexNoise(info.getSeed());
 	}
 
 	@Override
@@ -52,28 +36,30 @@ public class BiomeProviderTatooine extends BiomeProvider
 	}
 
 	/**
-	 * Gets a WorldGen appropriate for this biome.
-	 */
-	public WorldGenerator getRandomWorldGenForGrass(Random rand)
-	{
-		return new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
-	}
-
-	/**
 	 * Returns an array of biomes for the location input.
 	 */
 	@Override
 	public Biome[] getBiomesForGeneration(Biome[] biomes, int x, int y, int width, int height)
 	{
+		if (biomes == null || biomes.length < width * height)
+		{
+			biomes = new Biome[width * height];
+		}
+
 		for (int _y = 0; _y < height; _y++)
 		{
 			for (int _x = 0; _x < width; _x++)
 			{
-				double v = biomeNoise.eval(x + width, y + height);
-				biomes[_y * height + _x] = v > 0.5 ? Biomes.DESERT_HILLS : Biomes.DESERT;
+				biomes[_y * height + _x] = getBiomeAtXY(x + _x, y + _y);
 			}
 		}
 		return biomes;
+	}
+
+	public Biome getBiomeAtXY(float x, float y)
+	{
+		double v = biomeNoise.eval(x, y);
+		return v > 0.5 ? Biomes.DESERT_HILLS : Biomes.DESERT;
 	}
 
 	/**
@@ -156,6 +142,5 @@ public class BiomeProviderTatooine extends BiomeProvider
 	@Override
 	public void cleanupCache()
 	{
-		this.biomeCache.cleanupCache();
 	}
 }

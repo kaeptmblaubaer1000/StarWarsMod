@@ -11,7 +11,6 @@ import net.minecraft.world.chunk.IChunkGenerator;
 
 public class WorldProviderTatooine extends WorldProvider
 {
-
 	public static final int MID_HEIGHT = 63;
 	public static final int MAX_HEIGHT = 256;
 	public static final int INTER_HEIGHT = MAX_HEIGHT - MID_HEIGHT;
@@ -30,7 +29,7 @@ public class WorldProviderTatooine extends WorldProvider
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkProviderTatooine(worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled());
+		return new ChunkProviderTatooine(this, worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled());
 	}
 
 	@Override

@@ -75,6 +75,6 @@ public class BlockRegister
 		PBlocks.titaniumChromiumBlock = new BasicBlock("titanium_chromium_block");
 		PBlocks.titaniumOre = new BasicBlock("titanium_ore");
 
-		Lumberjack.log("[BLOCKS] Prepare to orbit the planet Yavin.");
+		Lumberjack.log("[BLOCKS] Estimated time to firing range: 15 minutes.");
 	}
 }

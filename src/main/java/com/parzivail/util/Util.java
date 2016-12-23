@@ -10,12 +10,12 @@ import java.util.Locale;
  */
 public class Util
 {
-	public static String prefix(String name)
+	public static String moddot(String name)
 	{
 		return String.format("%s.%s", Resources.MODID, name.toLowerCase(Locale.US));
 	}
 
-	public static String identifier(String name)
+	public static String modcolon(String name)
 	{
 		return String.format("%s:%s", Resources.MODID, name.toLowerCase(Locale.US));
 	}

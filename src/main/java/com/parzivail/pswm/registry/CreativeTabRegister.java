@@ -24,6 +24,6 @@ public class CreativeTabRegister
 			}
 		};
 
-		Lumberjack.log("[TABS] Standby alert: Death Star approaching.");
+		Lumberjack.log("[TABS]Standby alert: Death Star approaching.");
 	}
 }

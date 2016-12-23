@@ -20,15 +20,17 @@ public class DimensionInfo
 	public static void register()
 	{
 		DimensionManager.registerDimension(tatooineId, tatooineDimension);
+
+		Lumberjack.log("[DIMS] Prepare to orbit the planet Yavin.");
 	}
 
 	public static void teleportPlayerTo(EntityPlayerMP player, int id)
 	{
 		long time = System.currentTimeMillis();
 
-		Teleporter teleporter = new InstantTeleporter(player.getServer().worldServerForDimension(tatooineId));
+		Teleporter teleporter = new InstantTeleporter(player.getServer().worldServerForDimension(id));
 		PlayerList pl = player.getServer().getPlayerList();
-		pl.transferPlayerToDimension(player, tatooineId, teleporter);
+		pl.transferPlayerToDimension(player, id, teleporter);
 
 		long time2 = System.currentTimeMillis();
 
