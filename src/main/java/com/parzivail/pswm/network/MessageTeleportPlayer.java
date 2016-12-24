@@ -1,6 +1,6 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.util.network.PMessage;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -29,7 +29,7 @@ public class MessageTeleportPlayer extends PMessage<MessageTeleportPlayer>
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		PSWM.proxy.teleport((EntityPlayerMP)entity, targetDim);
+		EventHandler.queuePlayerDestination((EntityPlayerMP)entity, targetDim);
 
 		return null;
 	}

@@ -52,6 +52,7 @@ public class CommonProxy
 
 	public void teleport(EntityPlayerMP entity, int id)
 	{
+		Lumberjack.debug("Teleporting %s to %s", entity.getName(), id);
 		DimensionInfo.teleportPlayerTo(entity, id);
 	}
 }

@@ -51,10 +51,16 @@ public class ChunkProviderTatooine implements IChunkGenerator
 				double height = simplexNoise.eval((cx * 16 + x) / 200d, (cz * 16 + z) / 200d) + 0.5;
 				height = 100 + height * 50;
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
-				for (int y = 1; y <= height; y++)
+				int finalHeight = (int)height;
+				for (int y = 1; y <= finalHeight; y++)
 				{
-					if (y > height * 0.6)
+					double sandThreshold = height * 0.9;
+					double sandstoneThreshold = height * 0.6;
+
+					if (y >= sandThreshold)
 						primer.setBlockState(x, y, z, Blocks.SAND.getDefaultState());
+					else if (y >= sandstoneThreshold && y < sandThreshold)
+						primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
 					else
 						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
 				}
@@ -67,20 +73,12 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.setBlocksInChunk(x, z, chunkprimer);
 
-		if (this.settings.useCaves)
-		{
-			this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
-		}
-
-		if (this.settings.useRavines)
-		{
-			this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
-		}
+		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
+		this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
 
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
-
 		chunk.generateSkylightMap();
-		chunk.enqueueRelightChecks();
+		chunk.checkLight();
 		return chunk;
 	}
 
