@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy
 	public EntityPlayerMP getPlayer()
 	{
 		PlayerList list = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList();
-		UUID player = PSWM.mc.thePlayer.getPersistentID();
+		UUID player = PSWM.mc.player.getPersistentID();
 		return list.getPlayerByUUID(player);
 	}
 

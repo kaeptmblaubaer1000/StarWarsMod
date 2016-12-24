@@ -12,27 +12,28 @@ import net.minecraft.world.chunk.IChunkGenerator;
 public class WorldProviderTatooine extends WorldProvider
 {
 	@Override
-	protected void createBiomeProvider()
+	protected void init()
 	{
-		this.biomeProvider = new BiomeProviderTatooine(worldObj.getWorldInfo());
+		this.hasSkyLight = true;
+		this.biomeProvider = new BiomeProviderTatooine(world.getWorldInfo());
 	}
 
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkProviderTatooine(this, worldObj, worldObj.getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled());
+		return new ChunkProviderTatooine(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
 	}
 
 	@Override
 	public String getWelcomeMessage()
 	{
-		return "Jumping out of Hyperspace near " + this.worldObj.getWorldInfo().getWorldName();
+		return "Jumping out of Hyperspace near " + this.world.getWorldInfo().getWorldName();
 	}
 
 	@Override
 	public String getDepartMessage()
 	{
-		return "Blasting out of " + this.worldObj.getWorldInfo().getWorldName();
+		return "Blasting out of " + this.world.getWorldInfo().getWorldName();
 	}
 
 	@Override

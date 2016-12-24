@@ -31,7 +31,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 	private OpenSimplexNoise simplexNoise;
 	private Random rand;
 
-	public ChunkProviderTatooine(WorldProviderTatooine worldProviderTatooine, World worldIn, long seed, boolean mapFeaturesEnabledIn)
+	public ChunkProviderTatooine(World worldIn, long seed, boolean mapFeaturesEnabledIn)
 	{
 		{
 			caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
@@ -49,7 +49,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 			for (int z = 0; z < 16; z++)
 			{
 				double height = simplexNoise.eval((cx * 16 + x) / 200d, (cz * 16 + z) / 200d) + 0.5;
-				height = 100 + height * 50;
+				height = 100 + height * 15;
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
 				int finalHeight = (int)height;
 				for (int y = 1; y <= finalHeight; y++)
@@ -78,7 +78,6 @@ public class ChunkProviderTatooine implements IChunkGenerator
 
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		chunk.generateSkylightMap();
-		chunk.checkLight();
 		return chunk;
 	}
 

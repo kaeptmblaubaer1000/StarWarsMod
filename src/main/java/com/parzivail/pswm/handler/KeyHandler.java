@@ -15,11 +15,11 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug.isPressed())
 		{
-			if (PSWM.mc.thePlayer.dimension == 0)
+			if (PSWM.mc.player.dimension == 0)
 			{
 				NetworkHandler.INSTANCE.sendToServer(new MessageTeleportPlayer(PSWM.proxy.getPlayer(), DimensionInfo.tatooineId));
 			}
-			else if (PSWM.mc.thePlayer.dimension == DimensionInfo.tatooineId)
+			else if (PSWM.mc.player.dimension == DimensionInfo.tatooineId)
 			{
 				NetworkHandler.INSTANCE.sendToServer(new MessageTeleportPlayer(PSWM.proxy.getPlayer(), 0));
 			}

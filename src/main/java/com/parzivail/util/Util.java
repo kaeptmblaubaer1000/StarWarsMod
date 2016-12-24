@@ -24,4 +24,12 @@ public class Util
 	{
 		return new ResourceLocation(Resources.MODID, res);
 	}
+
+	public static Integer[] toIntegerArray(int[] b)
+	{
+		Integer[] a = new Integer[b.length];
+		for (int i = 0; i < a.length; i++)
+			a[i] = b[i];
+		return a;
+	}
 }

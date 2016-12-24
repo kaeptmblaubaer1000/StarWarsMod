@@ -26,7 +26,7 @@ public final class ModelRegisterUtil
 	 */
 	public static void registerItemModel(ItemStack itemStack, ResourceLocation name)
 	{
-		if (itemStack.func_190916_E() > 0 && name != null)
+		if (itemStack.getCount() > 0 && name != null)
 		{
 			// tell the loader to load the model
 			ModelLoader.registerItemVariants(itemStack.getItem(), name);
