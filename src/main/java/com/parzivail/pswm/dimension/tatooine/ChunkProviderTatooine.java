@@ -2,7 +2,6 @@ package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.util.common.OpenSimplexNoise;
 import net.minecraft.block.BlockFalling;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -25,13 +24,8 @@ import java.util.Random;
  */
 public class ChunkProviderTatooine implements IChunkGenerator
 {
-	protected static final IBlockState STONE = Blocks.STONE.getDefaultState();
 	private final World worldObj;
-	private final double[] heightMap;
-	private final WorldProviderTatooine worldProvider;
 	private ChunkProviderSettings settings = new ChunkProviderSettings.Factory().build();
-	private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
-	private double[] depthBuffer = new double[256];
 	private MapGenBase caveGenerator = new MapGenCaves();
 	private MapGenBase ravineGenerator = new MapGenRavine();
 	private OpenSimplexNoise simplexNoise;
@@ -39,13 +33,11 @@ public class ChunkProviderTatooine implements IChunkGenerator
 
 	public ChunkProviderTatooine(WorldProviderTatooine worldProviderTatooine, World worldIn, long seed, boolean mapFeaturesEnabledIn)
 	{
-		this.worldProvider = worldProviderTatooine;
 		{
 			caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
 			ravineGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(ravineGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVINE);
 		}
 		this.worldObj = worldIn;
-		this.heightMap = new double[825];
 		simplexNoise = new OpenSimplexNoise(seed);
 		rand = new Random(seed);
 	}
@@ -88,6 +80,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 
 		chunk.generateSkylightMap();
+		chunk.enqueueRelightChecks();
 		return chunk;
 	}
 
@@ -123,6 +116,6 @@ public class ChunkProviderTatooine implements IChunkGenerator
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
 		// TODO: GENERATE STRUCTURES (AGAIN) HERE
-		// TODO: maybe some sort of generate-everything method?
+		// maybe some sort of generate-everything method?
 	}
 }

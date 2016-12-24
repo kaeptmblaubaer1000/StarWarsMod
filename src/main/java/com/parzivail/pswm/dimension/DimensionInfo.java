@@ -4,7 +4,6 @@ import com.parzivail.pswm.dimension.tatooine.WorldProviderTatooine;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
 import net.minecraftforge.common.DimensionManager;
@@ -26,15 +25,12 @@ public class DimensionInfo
 
 	public static void teleportPlayerTo(EntityPlayerMP player, int id)
 	{
-		long time = System.currentTimeMillis();
-
 		Teleporter teleporter = new InstantTeleporter(player.getServer().worldServerForDimension(id));
-		PlayerList pl = player.getServer().getPlayerList();
-		pl.transferPlayerToDimension(player, id, teleporter);
+		player.mcServer.getPlayerList().transferPlayerToDimension(player, id, teleporter);
+	}
 
-		long time2 = System.currentTimeMillis();
-
-		Lumberjack.debug("It took %s seconds to teleport", (time2 - time) / 1000.0F);
+	public void changeDimension(EntityPlayerMP entity, int dimensionIn)
+	{
 	}
 
 	public static void placePlayer(InstantTeleporter teleporter, Entity entity)
