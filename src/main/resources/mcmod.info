@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pswm",
+  "name": "Parzi's Star Wars Mod",
+  "description": "Explore the Galaxy!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://www.parzivail.com/mods/tswm/",
+  "updateUrl": "",
+  "authorList": ["parzivail", "weaston"],
+  "credits": "See credits page on site for credits.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
