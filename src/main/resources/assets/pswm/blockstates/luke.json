@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"textures": {
+	  "#main": "pswm:luke"
+	},
+	"model": "pswm:luke.obj"
+  },
+  "variants": {
+	"normal": [
+	  {}
+	],
+	"inventory": [
+	  {
+		"transform": "forge:default-block"
+	  }
+	]
+  }
+}

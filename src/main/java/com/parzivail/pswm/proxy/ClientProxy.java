@@ -1,9 +1,7 @@
 package com.parzivail.pswm.proxy;
 
 import com.parzivail.pswm.PSWM;
-import com.parzivail.pswm.models.guns.ItemModelTESR;
-import com.parzivail.pswm.models.guns.ModelA280;
-import com.parzivail.pswm.models.guns.TModelA280;
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.Util;
 import com.parzivail.util.block.Variants;
@@ -14,9 +12,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.server.management.PlayerList;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.util.UUID;
@@ -34,8 +31,8 @@ public class ClientProxy extends CommonProxy
 
 		KeybindRegistry.register();
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TModelA280.class, new ItemModelTESR(new ModelA280()));
-		ForgeHooksClient.registerTESRItemStack(Items.APPLE, 0, TModelA280.class);
+		OBJLoader.INSTANCE.addDomain(Resources.MODID);
+		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("luke"), "inventory"));
 	}
 
 	@Override
