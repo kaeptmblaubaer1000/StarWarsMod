@@ -26,7 +26,7 @@ public class CompositeTerrain
 		layers.add(layer);
 	}
 
-	private double getHeightAt(int x, int z)
+	public double getHeightAt(int x, int z)
 	{
 		double value = 0;
 		for (TerrainLayer terrainLayer : layers)

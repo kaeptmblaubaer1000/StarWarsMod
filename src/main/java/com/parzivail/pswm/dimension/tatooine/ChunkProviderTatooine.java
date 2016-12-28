@@ -1,6 +1,8 @@
 package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.util.common.OpenSimplexNoise;
+import com.parzivail.util.worldgen.CompositeTerrain;
+import com.parzivail.util.worldgen.TerrainLayer;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -30,6 +32,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 	private MapGenBase ravineGenerator = new MapGenRavine();
 	private OpenSimplexNoise simplexNoise;
 	private Random rand;
+	private CompositeTerrain terrain;
 
 	public ChunkProviderTatooine(World worldIn, long seed, boolean mapFeaturesEnabledIn)
 	{
@@ -40,6 +43,8 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		this.worldObj = worldIn;
 		simplexNoise = new OpenSimplexNoise(seed);
 		rand = new Random(seed);
+
+		terrain = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 18, 30, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 50, 0.5, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Subtract, 60, 0.8, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Multiply, 1000, 0.2, true));
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)
@@ -48,8 +53,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		{
 			for (int z = 0; z < 16; z++)
 			{
-				double height = simplexNoise.eval((cx * 16 + x) / 200d, (cz * 16 + z) / 200d) + 0.5;
-				height = 100 + height * 15;
+				double height = terrain.getHeightAt((cx * 16 + x), (cz * 16 + z)) + 60;
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
 				int finalHeight = (int)height;
 				for (int y = 1; y <= finalHeight; y++)

@@ -1,6 +1,9 @@
 package com.parzivail.pswm.proxy;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.models.guns.ItemModelTESR;
+import com.parzivail.pswm.models.guns.ModelA280;
+import com.parzivail.pswm.models.guns.TModelA280;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.Util;
 import com.parzivail.util.block.Variants;
@@ -8,9 +11,12 @@ import com.parzivail.util.common.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.server.management.PlayerList;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import java.util.UUID;
@@ -27,6 +33,9 @@ public class ClientProxy extends CommonProxy
 		PSWM.mc = Minecraft.getMinecraft();
 
 		KeybindRegistry.register();
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TModelA280.class, new ItemModelTESR(new ModelA280()));
+		ForgeHooksClient.registerTESRItemStack(Items.APPLE, 0, TModelA280.class);
 	}
 
 	@Override
