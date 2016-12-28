@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension.tatooine;
 
+import com.parzivail.pswm.bank.PBlocks;
 import com.parzivail.util.common.OpenSimplexNoise;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.QuadrapositeTerrain;
@@ -63,9 +64,9 @@ public class ChunkProviderTatooine implements IChunkGenerator
 					double sandstoneThreshold = height * 0.6;
 
 					if (y >= sandThreshold)
-						primer.setBlockState(x, y, z, Blocks.SAND.getDefaultState());
+						primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
 					else if (y >= sandstoneThreshold && y < sandThreshold)
-						primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
+						primer.setBlockState(x, y, z, PBlocks.tatooineSand1.getDefaultState());
 					else
 						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
 				}

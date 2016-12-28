@@ -1,5 +1,7 @@
 package com.parzivail.util.worldgen;
 
+import net.minecraft.util.math.MathHelper;
+
 /**
  * Created by colby on 12/28/2016.
  */
@@ -19,7 +21,7 @@ public class QuadrapositeTerrain
 
 	public double getHeightAt(int x, int z)
 	{
-		double l = lerpNoise.GetValue(x, z);
+		double l = MathHelper.clamp(lerpNoise.GetValue(x, z), 0, 1);
 		double y = 0;
 		if (0 <= l && l <= 1 / 3f)
 			y += (1 - 3 * l) * terrains[0].getHeightAt(x, z);
