@@ -1,10 +1,10 @@
-package com.parzivail.pswm.dimension.tatooine;
+package com.parzivail.pswm.dimension.dagobah;
 
 import com.parzivail.pswm.bank.PBlocks;
 import com.parzivail.util.common.OpenSimplexNoise;
 import com.parzivail.util.worldgen.CompositeTerrain;
-import com.parzivail.util.worldgen.QuadrapositeTerrain;
 import com.parzivail.util.worldgen.TerrainLayer;
+import com.parzivail.util.worldgen.TripositeTerrain;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -26,7 +26,7 @@ import java.util.Random;
 /**
  * Created by colby on 12/22/2016.
  */
-public class ChunkProviderTatooine implements IChunkGenerator
+public class ChunkProviderDagobah implements IChunkGenerator
 {
 	private final World worldObj;
 	private ChunkProviderSettings settings = new ChunkProviderSettings.Factory().build();
@@ -34,9 +34,9 @@ public class ChunkProviderTatooine implements IChunkGenerator
 	private MapGenBase ravineGenerator = new MapGenRavine();
 	private OpenSimplexNoise simplexNoise;
 	private Random rand;
-	private QuadrapositeTerrain terrain;
+	private TripositeTerrain terrain;
 
-	public ChunkProviderTatooine(World worldIn, long seed, boolean mapFeaturesEnabledIn)
+	public ChunkProviderDagobah(World worldIn, long seed, boolean mapFeaturesEnabledIn)
 	{
 		{
 			caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
@@ -46,7 +46,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		simplexNoise = new OpenSimplexNoise(seed);
 		rand = new Random(seed);
 
-		terrain = new QuadrapositeTerrain(new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 50, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 30, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 75, 10, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 30, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 20, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 50, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 30, 1, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 150, 20, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 50, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 20, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 50, 20, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 30, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 120, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 20, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 75, 70, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 50, true)), new TerrainLayer(seed, TerrainLayer.Method.Add, 800, 1, true));
+		terrain = new TripositeTerrain(new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 50, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 30, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 75, 10, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 30, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 20, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 50, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 30, 1, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 150, 20, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 50, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 20, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 50, 20, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 30, true)), new TerrainLayer(seed, TerrainLayer.Method.Add, 800, 1, true));
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)
@@ -60,15 +60,21 @@ public class ChunkProviderTatooine implements IChunkGenerator
 				int finalHeight = (int)height;
 				for (int y = 1; y <= finalHeight; y++)
 				{
-					double sandThreshold = height * 0.9;
-					double sandstoneThreshold = height * 0.6;
+					double mudThreshold = height * 0.9;
+					double dirtThreshold = height * 0.6;
 
-					if (y >= sandThreshold)
-						primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
-					else if (y >= sandstoneThreshold && y < sandThreshold)
-						primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
+					// TODO: mud only near waterline
+
+					if (y >= mudThreshold)
+						primer.setBlockState(x, y, z, PBlocks.dagobahMud.getDefaultState());
+					else if (y >= dirtThreshold && y < mudThreshold)
+						primer.setBlockState(x, y, z, Blocks.DIRT.getDefaultState());
 					else
 						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
+				}
+				for (int y = finalHeight + 1; y < 70; y++) // water level
+				{
+					primer.setBlockState(x, y, z, Blocks.WATER.getDefaultState());
 				}
 			}
 		}
