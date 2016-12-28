@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.util.common.OpenSimplexNoise;
 import com.parzivail.util.worldgen.CompositeTerrain;
+import com.parzivail.util.worldgen.QuadrapositeTerrain;
 import com.parzivail.util.worldgen.TerrainLayer;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -32,7 +33,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 	private MapGenBase ravineGenerator = new MapGenRavine();
 	private OpenSimplexNoise simplexNoise;
 	private Random rand;
-	private CompositeTerrain terrain;
+	private QuadrapositeTerrain terrain;
 
 	public ChunkProviderTatooine(World worldIn, long seed, boolean mapFeaturesEnabledIn)
 	{
@@ -44,7 +45,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		simplexNoise = new OpenSimplexNoise(seed);
 		rand = new Random(seed);
 
-		terrain = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 18, 30, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 50, 0.5, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Subtract, 60, 0.8, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Multiply, 1000, 0.2, true));
+		terrain = new QuadrapositeTerrain(new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 50, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 30, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 75, 10, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 30, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 20, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 50, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 30, 1, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 150, 20, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 50, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 20, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 50, 20, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 30, true)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 50, 120, true), new TerrainLayer(seed + 1, TerrainLayer.Method.Multiply, 20, 0.1, true), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 75, 70, true), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 800, 50, true)), new TerrainLayer(seed, TerrainLayer.Method.Add, 800, 1, true));
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)
