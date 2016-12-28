@@ -5,7 +5,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Created by colby on 12/28/2016.
  */
-public class QuadrapositeTerrain
+public class QuadrapositeTerrain implements IHeightmap
 {
 	private final CompositeTerrain[] terrains = new CompositeTerrain[4];
 	private final TerrainLayer lerpNoise;

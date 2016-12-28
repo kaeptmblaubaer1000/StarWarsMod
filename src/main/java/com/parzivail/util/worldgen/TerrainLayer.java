@@ -13,20 +13,17 @@ public class TerrainLayer
 	public boolean normalize = true;
 	private OpenSimplexNoise noise;
 
-	public TerrainLayer(long seed, Method method, double scale, double range, boolean normalize)
+	public TerrainLayer(long seed, Method method, double scale, double range)
 	{
 		this.method = method;
 		this.scale = scale;
 		this.range = range;
-		this.normalize = normalize;
 		noise = new OpenSimplexNoise(seed);
 	}
 
 	public double GetValue(double x, double y)
 	{
-		double noiseVal = noise.eval(x / scale, y / scale);
-		if (normalize)
-			noiseVal += 0.5f;
+		double noiseVal = noise.eval(x / scale, y / scale) + 0.5f;
 		noiseVal *= range;
 		return noiseVal;
 	}

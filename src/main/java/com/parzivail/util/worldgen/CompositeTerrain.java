@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by colby on 12/27/2016.
  */
-public class CompositeTerrain
+public class CompositeTerrain implements IHeightmap
 {
 	private List<TerrainLayer> layers;
 

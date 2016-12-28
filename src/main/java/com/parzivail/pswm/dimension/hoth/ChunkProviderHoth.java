@@ -1,13 +1,14 @@
-package com.parzivail.pswm.dimension.dagobah;
+package com.parzivail.pswm.dimension.hoth;
 
-import com.parzivail.pswm.bank.PBlocks;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.IHeightmap;
 import com.parzivail.util.worldgen.TerrainLayer;
+import com.parzivail.util.worldgen.TripositeTerrain;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * Created by colby on 12/22/2016.
  */
-public class ChunkProviderDagobah implements IChunkGenerator
+public class ChunkProviderHoth implements IChunkGenerator
 {
 	private final World worldObj;
 	private final int waterLevel;
@@ -31,7 +32,7 @@ public class ChunkProviderDagobah implements IChunkGenerator
 	private MapGenBase ravineGenerator = new MapGenRavine();
 	private final IHeightmap terrain;
 
-	public ChunkProviderDagobah(World worldIn, long seed)
+	public ChunkProviderHoth(World worldIn, long seed)
 	{
 		caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
 		ravineGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(ravineGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVINE);
@@ -39,7 +40,13 @@ public class ChunkProviderDagobah implements IChunkGenerator
 		this.worldObj = worldIn;
 
 		waterLevel = 4;
-		terrain = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Multiply, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 5, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Multiply, 20, 0.4), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 30, 5));
+		CompositeTerrain hothFlatland = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Multiply, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Multiply, 40, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 20, 5), new TerrainLayer(seed + 6, TerrainLayer.Method.Multiply, 10, 0.1), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 200, 20));
+
+		CompositeTerrain hothHills = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Multiply, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Multiply, 40, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 20, 5), new TerrainLayer(seed + 6, TerrainLayer.Method.Multiply, 10, 0.1), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 100, 25));
+
+		CompositeTerrain hothHugeHills = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Multiply, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Multiply, 40, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 50, 5), new TerrainLayer(seed + 6, TerrainLayer.Method.Add, 10, 0.2), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 150, 40));
+
+		terrain = new TripositeTerrain(hothFlatland, hothHills, hothHugeHills, new TerrainLayer(seed, TerrainLayer.Method.Add, 800, 1));
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)
@@ -51,25 +58,18 @@ public class ChunkProviderDagobah implements IChunkGenerator
 				int baseHeight = 60;
 				double height = terrain.getHeightAt((cx * 16 + x), (cz * 16 + z));
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
-				int finalHeight = baseHeight + (int)height;
+				int finalHeight = MathHelper.clamp(baseHeight + (int)height, 0, 255);
 				for (int y = 1; y <= finalHeight; y++)
 				{
-					double mudThreshold = height * 0.9;
-					double dirtThreshold = height * 0.6;
+					double snowThreshold = height * 0.8;
 
-					// TODO: mud only near waterline
-
-					if (y >= mudThreshold)
-						primer.setBlockState(x, y, z, PBlocks.dagobahMud.getDefaultState());
-					else if (y >= dirtThreshold && y < mudThreshold)
-						primer.setBlockState(x, y, z, Blocks.DIRT.getDefaultState());
+					if (y >= snowThreshold)
+						primer.setBlockState(x, y, z, Blocks.SNOW.getDefaultState());
 					else
 						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
 				}
-				for (int y = finalHeight + 1; y <= baseHeight + waterLevel; y++) // water level
-				{
-					primer.setBlockState(x, y, z, Blocks.WATER.getDefaultState());
-				}
+				if (finalHeight + 1 <= 255)
+					primer.setBlockState(x, finalHeight + 1, z, Blocks.SNOW_LAYER.getDefaultState());
 			}
 		}
 	}

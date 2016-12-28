@@ -17,7 +17,7 @@ public class KeyHandler
 		{
 			if (PSWM.mc.player.dimension == 0)
 			{
-				NetworkHandler.INSTANCE.sendToServer(new MessageTeleportPlayer(PSWM.proxy.getPlayer(), DimensionInfo.dagobahId));
+				NetworkHandler.INSTANCE.sendToServer(new MessageTeleportPlayer(PSWM.proxy.getPlayer(), DimensionInfo.hothId));
 			}
 			else if (PSWM.mc.player.dimension != 0)
 			{

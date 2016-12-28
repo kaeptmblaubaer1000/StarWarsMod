@@ -21,7 +21,7 @@ public class WorldProviderDagobah extends WorldProvider
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkProviderDagobah(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled());
+		return new ChunkProviderDagobah(world, world.getSeed());
 	}
 
 	@Override

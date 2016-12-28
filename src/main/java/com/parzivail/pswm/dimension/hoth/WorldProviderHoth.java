@@ -1,4 +1,4 @@
-package com.parzivail.pswm.dimension.tatooine;
+package com.parzivail.pswm.dimension.hoth;
 
 import com.parzivail.pswm.dimension.DimensionInfo;
 import net.minecraft.world.DimensionType;
@@ -9,19 +9,19 @@ import net.minecraft.world.chunk.IChunkGenerator;
  * Created by colby on 12/22/2016.
  */
 
-public class WorldProviderTatooine extends WorldProvider
+public class WorldProviderHoth extends WorldProvider
 {
 	@Override
 	protected void init()
 	{
 		this.hasSkyLight = true;
-		this.biomeProvider = new BiomeProviderTatooine(world.getWorldInfo());
+		this.biomeProvider = new BiomeProviderHoth(world.getWorldInfo());
 	}
 
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkProviderTatooine(world, world.getSeed());
+		return new ChunkProviderHoth(world, world.getSeed());
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class WorldProviderTatooine extends WorldProvider
 	@Override
 	public String getSaveFolder()
 	{
-		return "TATOOINE";
+		return "HOTH";
 	}
 
 	@Override
