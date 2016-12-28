@@ -66,7 +66,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 					if (y >= sandThreshold)
 						primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
 					else if (y >= sandstoneThreshold && y < sandThreshold)
-						primer.setBlockState(x, y, z, PBlocks.tatooineSand1.getDefaultState());
+						primer.setBlockState(x, y, z, Blocks.RED_SANDSTONE.getDefaultState());
 					else
 						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
 				}
