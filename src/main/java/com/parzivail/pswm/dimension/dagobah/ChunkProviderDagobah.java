@@ -2,7 +2,7 @@ package com.parzivail.pswm.dimension.dagobah;
 
 import com.parzivail.pswm.bank.PBlocks;
 import com.parzivail.util.worldgen.CompositeTerrain;
-import com.parzivail.util.worldgen.IHeightmap;
+import com.parzivail.util.worldgen.ITerrainHeightmap;
 import com.parzivail.util.worldgen.TerrainLayer;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -29,7 +29,7 @@ public class ChunkProviderDagobah implements IChunkGenerator
 	private final int waterLevel;
 	private MapGenBase caveGenerator = new MapGenCaves();
 	private MapGenBase ravineGenerator = new MapGenRavine();
-	private final IHeightmap terrain;
+	private final ITerrainHeightmap terrain;
 
 	public ChunkProviderDagobah(World worldIn, long seed)
 	{

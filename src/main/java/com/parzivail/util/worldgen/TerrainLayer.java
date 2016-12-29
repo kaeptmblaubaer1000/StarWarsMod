@@ -10,7 +10,6 @@ public class TerrainLayer
 	public Method method = TerrainLayer.Method.Add;
 	public double scale = 200;
 	public double range = 20;
-	public boolean normalize = true;
 	private OpenSimplexNoise noise;
 
 	public TerrainLayer(long seed, Method method, double scale, double range)

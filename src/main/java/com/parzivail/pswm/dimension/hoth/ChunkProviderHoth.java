@@ -1,9 +1,9 @@
 package com.parzivail.pswm.dimension.hoth;
 
 import com.parzivail.util.worldgen.CompositeTerrain;
-import com.parzivail.util.worldgen.IHeightmap;
+import com.parzivail.util.worldgen.ITerrainHeightmap;
+import com.parzivail.util.worldgen.MultiCompositeTerrain;
 import com.parzivail.util.worldgen.TerrainLayer;
-import com.parzivail.util.worldgen.TripositeTerrain;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -30,7 +30,7 @@ public class ChunkProviderHoth implements IChunkGenerator
 	private final int waterLevel;
 	private MapGenBase caveGenerator = new MapGenCaves();
 	private MapGenBase ravineGenerator = new MapGenRavine();
-	private final IHeightmap terrain;
+	private final ITerrainHeightmap terrain;
 
 	public ChunkProviderHoth(World worldIn, long seed)
 	{
@@ -46,7 +46,7 @@ public class ChunkProviderHoth implements IChunkGenerator
 
 		CompositeTerrain hothHugeHills = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Multiply, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Multiply, 40, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 50, 5), new TerrainLayer(seed + 6, TerrainLayer.Method.Add, 10, 0.2), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 150, 40));
 
-		terrain = new TripositeTerrain(hothFlatland, hothHills, hothHugeHills, new TerrainLayer(seed, TerrainLayer.Method.Add, 800, 1));
+		terrain = new MultiCompositeTerrain(seed, 800, hothFlatland, hothHills, hothHugeHills);
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)

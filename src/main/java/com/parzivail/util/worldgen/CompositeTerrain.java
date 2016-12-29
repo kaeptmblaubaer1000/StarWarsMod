@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by colby on 12/27/2016.
  */
-public class CompositeTerrain implements IHeightmap
+public class CompositeTerrain implements ITerrainHeightmap
 {
 	private List<TerrainLayer> layers;
 
@@ -46,5 +46,17 @@ public class CompositeTerrain implements IHeightmap
 			}
 		}
 		return value;
+	}
+
+	@Override
+	public double getBiomeLerpAmount(int x, int z)
+	{
+		return 1;
+	}
+
+	@Override
+	public double[] getBiomeWeightsAt(int x, int z)
+	{
+		return new double[] { 1 };
 	}
 }

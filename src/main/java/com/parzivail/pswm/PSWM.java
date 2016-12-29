@@ -1,5 +1,6 @@
 package com.parzivail.pswm;
 
+import com.parzivail.pswm.commands.CommandSWDim;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.proxy.CommonProxy;
 import com.parzivail.util.common.Lumberjack;
@@ -9,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,5 +48,11 @@ public class PSWM
 		proxy.init();
 
 		Lumberjack.debug("INIT+=+=+=+=+PSWM=+=+=+=+=+END");
+	}
+
+	@Mod.EventHandler
+	public void serverLoad(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandSWDim());
 	}
 }
