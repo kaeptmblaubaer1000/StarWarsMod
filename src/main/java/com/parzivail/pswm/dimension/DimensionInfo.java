@@ -53,9 +53,7 @@ public class DimensionInfo
 		player.connection.sendPacket(new SPacketRespawn(player.dimension, worldserver1.getDifficulty(), worldserver1.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
 		plist.updatePermissionLevel(player);
 		player.setDropItemsWhenDead(false);
-		worldserver.removeEntity(player);
-		//worldserver.removeEntityDangerously(player);
-		player.isDead = false;
+		worldserver.removeEntityDangerously(player);
 		plist.transferEntityToWorld(player, i, worldserver, worldserver1, teleporter);
 		plist.preparePlayer(player, worldserver);
 		player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, player.rotationYaw, player.rotationPitch);
