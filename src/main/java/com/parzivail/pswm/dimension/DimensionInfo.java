@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension;
 
 import com.parzivail.pswm.dimension.dagobah.WorldProviderDagobah;
 import com.parzivail.pswm.dimension.hoth.WorldProviderHoth;
+import com.parzivail.pswm.dimension.ilum.WorldProviderIlum;
 import com.parzivail.pswm.dimension.tatooine.WorldProviderTatooine;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.Entity;
@@ -27,12 +28,15 @@ public class DimensionInfo
 	public static final DimensionType dagobahDimension = DimensionType.register("Dagobah", "_dagobah", dagobahId, WorldProviderDagobah.class, false);
 	public static final int hothId = 22;
 	public static final DimensionType hothDimension = DimensionType.register("Hoth", "_hoth", hothId, WorldProviderHoth.class, false);
+	public static final int ilumId = 23;
+	public static final DimensionType ilumDimension = DimensionType.register("Ilum", "_ilum", ilumId, WorldProviderIlum.class, false);
 
 	public static void register()
 	{
 		DimensionManager.registerDimension(tatooineId, tatooineDimension);
 		DimensionManager.registerDimension(dagobahId, dagobahDimension);
 		DimensionManager.registerDimension(hothId, hothDimension);
+		DimensionManager.registerDimension(ilumId, ilumDimension);
 
 		Lumberjack.log("[DIMS] Prepare to orbit the planet Yavin.");
 	}
