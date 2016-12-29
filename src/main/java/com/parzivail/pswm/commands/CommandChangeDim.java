@@ -12,20 +12,20 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommandSWDim implements ICommand
+public class CommandChangeDim implements ICommand
 {
 	private List<String> aliases;
 
 	@Override
 	public String getName()
 	{
-		return "swdim";
+		return "cd";
 	}
 
 	@Override
 	public String getUsage(ICommandSender sender)
 	{
-		return "swdim <dimension ID>";
+		return "cd <dimension ID>";
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class CommandSWDim implements ICommand
 		if (aliases == null)
 		{
 			aliases = new ArrayList<>();
-			aliases.add("swdim");
+			aliases.add("cd");
 		}
 		return aliases;
 	}

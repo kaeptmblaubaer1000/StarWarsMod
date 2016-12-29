@@ -1,6 +1,6 @@
 package com.parzivail.pswm;
 
-import com.parzivail.pswm.commands.CommandSWDim;
+import com.parzivail.pswm.commands.CommandChangeDim;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.proxy.CommonProxy;
 import com.parzivail.util.common.Lumberjack;
@@ -53,6 +53,6 @@ public class PSWM
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		event.registerServerCommand(new CommandSWDim());
+		event.registerServerCommand(new CommandChangeDim());
 	}
 }

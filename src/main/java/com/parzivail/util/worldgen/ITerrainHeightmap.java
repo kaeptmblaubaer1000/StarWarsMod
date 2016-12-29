@@ -24,7 +24,12 @@ public interface ITerrainHeightmap
 	double getBiomeLerpAmount(int x, int z);
 
 	/**
-	 * Gets the weight (0<=x<=1) of each biome in the terrain for the specified position
+	 * Gets the weight (0<=x<=1) of each biome in the terrain for the specified position.
+	 *
+	 * Use this in the future to determine mob spawns, etc.
+	 * Say, if the mountain biome [length - 1], which *should* be the tallest, has a lerp
+	 * value > 0.8, meaning the current position is > 80% that biome, spawn some mountain-faring
+	 * billy goats. If the biome [0] > 0.8, it's > 80% "flatlands" per se, so spawn some sheep or something.
 	 *
 	 * @param x The x position
 	 * @param z The y position
