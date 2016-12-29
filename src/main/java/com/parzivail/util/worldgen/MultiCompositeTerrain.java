@@ -40,7 +40,7 @@ public class MultiCompositeTerrain implements ITerrainHeightmap
 	public double[] getBiomeWeightsAt(int x, int z)
 	{
 		// Use this in the future to determine mob spawns, etc.
-		// Say, if the mountian biome [length - a], which *should* be the tallest, has a lerp
+		// Say, if the mountian biome [length - 1], which *should* be the tallest, has a lerp
 		// value > 0.8, meaning the current position is > 80% that biome, spawn some mountian-faring
 		// billy goats. If the biome [0] > 0.8, it's > 80% "flatlands" per se, so spawn some sheep or something.
 		double[] r = new double[terrains.length];
