@@ -7,11 +7,11 @@ import net.minecraft.util.math.MathHelper;
  */
 public class MultiCompositeTerrain implements ITerrainHeightmap
 {
-	private final CompositeTerrain[] terrains;
+	private final ITerrainHeightmap[] terrains;
 	private final float n;
 	private final TerrainLayer lerpNoise;
 
-	public MultiCompositeTerrain(long seed, int noiseScale, CompositeTerrain... terrains)
+	public MultiCompositeTerrain(long seed, int noiseScale, ITerrainHeightmap... terrains)
 	{
 		this.lerpNoise = new TerrainLayer(seed, TerrainLayer.Method.Add, noiseScale, 1);
 		this.terrains = terrains;

@@ -2,6 +2,7 @@ package com.parzivail.pswm.dimension.ilum;
 
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
+import com.parzivail.util.worldgen.MultiCompositeTerrain;
 import com.parzivail.util.worldgen.TerrainLayer;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -39,7 +40,9 @@ public class ChunkProviderIlum implements IChunkGenerator
 		this.worldObj = worldIn;
 
 		waterLevel = 0;
-		terrain = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Add, 40, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 50, 30), new TerrainLayer(seed + 6, TerrainLayer.Method.Add, 200, 20), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 200, 20));
+		ITerrainHeightmap smallHills = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 0.4), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 200, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Add, 40, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 50, 30), new TerrainLayer(seed + 6, TerrainLayer.Method.Add, 200, 20), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 200, 20));
+		ITerrainHeightmap beefyHills = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Method.Add, 20, 2), new TerrainLayer(seed + 1, TerrainLayer.Method.Add, 500, 5), new TerrainLayer(seed + 2, TerrainLayer.Method.Add, 20, 3), new TerrainLayer(seed + 3, TerrainLayer.Method.Add, 10, 5), new TerrainLayer(seed + 4, TerrainLayer.Method.Add, 60, 2), new TerrainLayer(seed + 5, TerrainLayer.Method.Add, 50, 35), new TerrainLayer(seed + 6, TerrainLayer.Method.Add, 400, 150), new TerrainLayer(seed + 7, TerrainLayer.Method.Add, 100, 30));
+		terrain = new MultiCompositeTerrain(seed, 500, smallHills, beefyHills);
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)
