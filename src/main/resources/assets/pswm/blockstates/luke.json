@@ -1,18 +1,91 @@
 {
   "forge_marker": 1,
   "defaults": {
-	"textures": {
-	  "#main": "pswm:luke"
-	},
 	"model": "pswm:luke.obj"
   },
   "variants": {
-	"normal": [
-	  {}
-	],
 	"inventory": [
 	  {
-		"transform": "forge:default-block"
+		"transform": {
+		  "thirdperson_righthand": {
+			"rotation": [
+			  {
+				"z": -90
+			  }
+			],
+			"translation": [
+			  0.4,
+			  -1,
+			  1.3913
+			],
+			"scale": [
+			  0.5,
+			  0.5,
+			  0.5
+			]
+		  },
+		  "thirdperson_lefthand": {
+			"rotation": [
+			  {
+				"z": -90
+			  }
+			],
+			"translation": [
+			  0.4,
+			  -1,
+			  1.3913
+			],
+			"scale": [
+			  -0.5,
+			  0.5,
+			  0.5
+			]
+		  },
+		  "gui": {
+			"rotation": [
+			  {
+				"y": -45
+			  },
+			  {
+				"z": -45
+			  }
+			],
+			"scale": [
+			  0.8,
+			  0.8,
+			  0.8
+			]
+		  },
+		  "ground": {
+			"rotation": [
+			  {
+				"z": -90
+			  }
+			],
+			"translation": [
+			  0,
+			  3,
+			  0
+			],
+			"scale": [
+			  0.25,
+			  0.25,
+			  0.25
+			]
+		  },
+		  "fixed": {
+			"rotation": [
+			  {
+				"z": -90
+			  }
+			],
+			"scale": [
+			  0.75,
+			  0.75,
+			  0.75
+			]
+		  }
+		}
 	  }
 	]
   }
