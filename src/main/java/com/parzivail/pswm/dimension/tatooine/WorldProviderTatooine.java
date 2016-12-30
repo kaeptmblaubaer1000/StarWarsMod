@@ -3,6 +3,7 @@ package com.parzivail.pswm.dimension.tatooine;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
 
 /**
@@ -15,7 +16,7 @@ public class WorldProviderTatooine extends WorldProvider
 	protected void init()
 	{
 		this.hasSkyLight = true;
-		this.biomeProvider = new BiomeProviderTatooine(world.getWorldInfo());
+		this.biomeProvider = new BiomeProviderSingle(DimensionInfo.biomeTatooine);
 	}
 
 	@Override

@@ -54,17 +54,15 @@ public class ChunkProviderDagobah implements IChunkGenerator
 				int finalHeight = baseHeight + (int)height;
 				for (int y = 1; y <= finalHeight; y++)
 				{
-					double mudThreshold = height * 0.9;
-					double dirtThreshold = height * 0.6;
+					double grassThreshold = baseHeight + waterLevel + 1 + (height / 60);
+					double mudThreshold = baseHeight + waterLevel - 5;
 
-					// TODO: mud only near waterline
-
-					if (y >= mudThreshold)
+					if (y >= grassThreshold)
+						primer.setBlockState(x, y, z, Blocks.GRASS.getDefaultState());
+					else if (y >= mudThreshold && y < grassThreshold)
 						primer.setBlockState(x, y, z, PBlocks.dagobahMud.getDefaultState());
-					else if (y >= dirtThreshold && y < mudThreshold)
-						primer.setBlockState(x, y, z, Blocks.DIRT.getDefaultState());
 					else
-						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
+						primer.setBlockState(x, y, z, Blocks.DIRT.getDefaultState());
 				}
 				for (int y = finalHeight + 1; y <= baseHeight + waterLevel; y++) // water level
 				{

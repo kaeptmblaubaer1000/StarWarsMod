@@ -3,6 +3,7 @@ package com.parzivail.pswm.dimension.ilum;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
 
 /**
@@ -15,7 +16,7 @@ public class WorldProviderIlum extends WorldProvider
 	protected void init()
 	{
 		this.hasSkyLight = true;
-		this.biomeProvider = new BiomeProviderIlum(world.getWorldInfo());
+		this.biomeProvider = new BiomeProviderSingle(DimensionInfo.biomeIlum);
 	}
 
 	@Override
