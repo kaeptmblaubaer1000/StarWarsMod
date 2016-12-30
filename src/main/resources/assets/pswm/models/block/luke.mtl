@@ -1,2 +1,6 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 30.12.2016 10:37:40
+
 newmtl main
+kd 1 1 1
 map_Kd pswm:luke

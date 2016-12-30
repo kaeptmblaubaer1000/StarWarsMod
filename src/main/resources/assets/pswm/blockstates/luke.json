@@ -1,7 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-	"model": "pswm:luke.obj"
+	"model": "pswm:luke.obj",
+	"custom": {
+	  "flipUVs": "v"
+	}
   },
   "variants": {
 	"inventory": [
