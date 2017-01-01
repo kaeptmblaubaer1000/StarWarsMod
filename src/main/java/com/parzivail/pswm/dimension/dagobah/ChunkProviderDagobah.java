@@ -38,7 +38,7 @@ public class ChunkProviderDagobah implements IChunkGenerator
 
 		this.worldObj = worldIn;
 
-		waterLevel = 2;
+		waterLevel = 7;
 		terrain = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Function.Turbulent, TerrainLayer.Method.Add, 300, 3), new TerrainLayer(seed + 1, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 300, 0.5), new TerrainLayer(seed + 2, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 50, 12), new TerrainLayer(seed + 3, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 60, 0.8), new TerrainLayer(seed + 4, TerrainLayer.Function.InvTurbulent, TerrainLayer.Method.Add, 20, 5), new TerrainLayer(seed + 5, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 80, 2));
 	}
 
