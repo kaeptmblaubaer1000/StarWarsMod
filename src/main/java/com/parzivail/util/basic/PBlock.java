@@ -1,4 +1,4 @@
-package com.parzivail.util.block;
+package com.parzivail.util.basic;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.tile.PTileEntity;

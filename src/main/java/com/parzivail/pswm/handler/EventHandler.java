@@ -2,7 +2,12 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.util.common.Lumberjack;
+import com.parzivail.util.driven.EntityCamera;
+import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -32,6 +37,37 @@ public class EventHandler
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
 		keyHandler.onKeyInput(event);
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onRenderGui(RenderGameOverlayEvent.Pre event)
+	{
+		if (PSWM.camera != null && PSWM.cameraPosition != null && PSWM.cameraRotation != null)
+		{
+			EntityCamera.loadAnglesFromStored();
+			if (PSWM.camera.isEntityAlive())
+				PSWM.mc.setRenderViewEntity(PSWM.camera);
+		}
+
+		if (PSWM.mc.player.getRidingEntity() instanceof Pilotable)
+		{
+			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
+			PSWM.mc.setRenderViewEntity(ship.getCamera() != null ? ship.getCamera() : PSWM.mc.player);
+
+			if (PSWM.mc.gameSettings.thirdPersonView == 2)
+				PSWM.mc.gameSettings.thirdPersonView = 0;
+		}
+		else
+		{
+			GFX.changeCameraRoll(0);
+		}
+	}
+
+	@SubscribeEvent
+	public void onCameraSetup(EntityViewRenderEvent.CameraSetup event)
+	{
+		event.setRoll(GFX.cameraRoll);
 	}
 
 	@SubscribeEvent

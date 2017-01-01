@@ -1,7 +1,8 @@
 package com.parzivail.pswm.registry;
 
+import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.bank.PBlocks;
-import com.parzivail.util.block.BasicBlock;
+import com.parzivail.util.basic.BasicBlock;
 import com.parzivail.util.common.Lumberjack;
 
 /**
@@ -75,6 +76,6 @@ public class BlockRegister
 		PBlocks.titaniumChromiumBlock = new BasicBlock("titanium_chromium_block");
 		PBlocks.titaniumOre = new BasicBlock("titanium_ore");
 
-		Lumberjack.log("[BLOCKS] Estimated time to firing range: 15 minutes.");
+		Lumberjack.log(PSWM.getNextRegisterMessage("BLOCKS"));
 	}
 }

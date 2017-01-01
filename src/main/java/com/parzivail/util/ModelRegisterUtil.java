@@ -1,6 +1,6 @@
 package com.parzivail.util;
 
-import com.parzivail.util.block.ItemBlockMeta;
+import com.parzivail.util.basic.ItemBlockMeta;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -54,7 +54,7 @@ public final class ModelRegisterUtil
 	}
 
 	/**
-	 * Registers the item of the given block with its registry name for all metadata values for the inventory variant
+	 * Registers the item of the given basic with its registry name for all metadata values for the inventory variant
 	 */
 	public static ResourceLocation registerItemModel(Block block)
 	{
@@ -75,7 +75,7 @@ public final class ModelRegisterUtil
 			}
 			else
 			{
-				Lumberjack.err("Trying to register an ItemBlockMeta model for a non itemblockmeta block: " + block.getRegistryName());
+				Lumberjack.err("Trying to register an ItemBlockMeta model for a non itemblockmeta basic: " + block.getRegistryName());
 			}
 		}
 	}

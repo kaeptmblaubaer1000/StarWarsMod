@@ -1,6 +1,6 @@
 package com.parzivail.pswm.bank;
 
-import com.parzivail.util.block.BasicBlock;
+import com.parzivail.util.basic.BasicBlock;
 
 /**
  * Created by colby on 12/18/2016.

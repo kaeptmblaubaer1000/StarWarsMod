@@ -57,10 +57,10 @@ public enum OBJLoader implements ICustomModelLoader
 			}
 			catch (FileNotFoundException e)
 			{
-				if (modelLocation.getResourcePath().startsWith("models/block/"))
-					resource = manager.getResource(new ResourceLocation(file.getResourceDomain(), "models/item/" + file.getResourcePath().substring("models/block/".length())));
+				if (modelLocation.getResourcePath().startsWith("models/basic/"))
+					resource = manager.getResource(new ResourceLocation(file.getResourceDomain(), "models/item/" + file.getResourcePath().substring("models/basic/".length())));
 				else if (modelLocation.getResourcePath().startsWith("models/item/"))
-					resource = manager.getResource(new ResourceLocation(file.getResourceDomain(), "models/block/" + file.getResourcePath().substring("models/item/".length())));
+					resource = manager.getResource(new ResourceLocation(file.getResourceDomain(), "models/basic/" + file.getResourcePath().substring("models/item/".length())));
 				else
 					throw e;
 			}

@@ -1,6 +1,6 @@
 package com.parzivail.pswm.blocks;
 
-import com.parzivail.util.block.PBlock;
+import com.parzivail.util.basic.PBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;

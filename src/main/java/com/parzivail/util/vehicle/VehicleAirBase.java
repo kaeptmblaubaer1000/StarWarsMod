@@ -1,0 +1,209 @@
+package com.parzivail.util.vehicle;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class VehicleAirBase extends VehicleBase
+{
+	public static int TGTLOCK_DW = 14;
+	public static int HOVERMD_DW = 15;
+	public float renderPitchLast;
+	public float renderRollLast;
+	public float gravity = 0.015F;
+	public float move = 0f;
+	public boolean wasMoving = false;
+	public boolean nowMoving = false;
+	public List<Entity> nearby = new ArrayList<>();
+	private EnumParticleTypes[] explosionComponents = {
+			EnumParticleTypes.SMOKE_LARGE,
+			EnumParticleTypes.FLAME,
+			EnumParticleTypes.LAVA,
+			EnumParticleTypes.EXPLOSION_LARGE,
+			EnumParticleTypes.SNOW_SHOVEL,
+			EnumParticleTypes.REDSTONE
+	};
+
+	public VehicleAirBase(World p_i1689_1_)
+	{
+		super(p_i1689_1_);
+		this.renderPitchLast = this.rotationPitch;
+		this.renderRollLast = 0;
+	}
+
+	@Override
+	protected void applyEntityAttributes()
+	{
+		super.applyEntityAttributes();
+		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
+	}
+
+	@Override
+	public boolean canBePushed()
+	{
+		return false;
+	}
+
+	@Override
+	public void entityInit()
+	{
+		super.entityInit();
+		// TODO
+		//		this.dataWatcher.addObject(TGTLOCK_DW, 0);
+		//		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
+		//		this.dataWatcher.addObject(HOVERMD_DW, 1);
+		//		this.dataWatcher.setObjectWatched(HOVERMD_DW);
+	}
+
+	// TODO
+	//	@Override
+	//	public void fall(float distance)
+	//	{
+	//		distance = ForgeHooks.onLivingFall(this, distance);
+	//		// Lumberjack.log(this.motionY);
+	//		super.fall(distance);
+	//		PotionEffect potioneffect = this.getActivePotionEffect(Potion.jump);
+	//		float f1 = potioneffect != null ? (float)(potioneffect.getAmplifier() + 1) : 0.0F;
+	//		int i = MathHelper.ceiling_float_int(distance - 3.0F - f1);
+	//
+	//		if (i > 0)
+	//		{
+	//			this.playSound(this.func_146067_o(i), 1.0F, 1.0F);
+	//			if (!(distance <= 3 || this.motionY > -0.3F || getHoverMode()))
+	//				this.attackEntityFrom(DamageSource.fall, i);
+	//			int j = MathHelper.floor_double(this.posX);
+	//			int k = MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset);
+	//			int l = MathHelper.floor_double(this.posZ);
+	//			Block basic = this.worldObj.getBlock(j, k, l);
+	//
+	//			if (basic.getMaterial() != Material.air)
+	//			{
+	//				Block.SoundType soundtype = basic.stepSound;
+	//				this.playSound(soundtype.getStepResourcePath(), soundtype.getVolume() * 0.5F, soundtype.getPitch() * 0.75F);
+	//			}
+	//		}
+	//	}
+	//
+	//	public boolean getTargetLock()
+	//	{
+	//		return this.dataWatcher.getWatchableObjectInt(TGTLOCK_DW) == 1;
+	//	}
+	//
+	//	public void setTargetLock(boolean f)
+	//	{
+	//		this.dataWatcher.updateObject(TGTLOCK_DW, f ? 1 : 0);
+	//		this.dataWatcher.setObjectWatched(TGTLOCK_DW);
+	//	}
+	//
+	//	public boolean getHoverMode()
+	//	{
+	//		return this.dataWatcher.getWatchableObjectInt(HOVERMD_DW) == 1;
+	//	}
+	//
+	//	public void setHoverMode(boolean f)
+	//	{
+	//		this.dataWatcher.updateObject(HOVERMD_DW, f ? 1 : 0);
+	//		this.dataWatcher.setObjectWatched(HOVERMD_DW);
+	//	}
+
+	@Override
+	public void moveEntityWithHeading(float strafe, float forward)
+	{
+		if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof EntityPlayer)
+		{
+			EntityPlayer riddenByPlayer = (EntityPlayer)this.getPassengers().get(0);
+
+			this.motionY = -(riddenByPlayer.rotationPitch / 180F) * this.move;
+
+			if (this.move != 0)
+			{
+				this.rotationPitchLast = this.rotationPitch = riddenByPlayer.rotationPitch;
+			}
+			this.renderYawOffset = this.rotationYawLast = this.rotationYaw = riddenByPlayer.rotationYaw;
+			this.setRotation(this.rotationYaw, this.rotationPitch);
+
+			strafe = riddenByPlayer.moveStrafing * 0.5F;
+			forward = riddenByPlayer.moveForward;
+
+			if (forward > 0)
+				this.move += 0.05f;
+
+			if (forward < 0)
+				this.move -= 0.05f;
+
+			if (this.move < 0)
+				this.move = 0;
+
+			// TODO
+			//			if (getHoverMode() && this.move > this.moveModifier / 5f)
+			//				this.move = this.moveModifier / 5f;
+			//			else if (this.move > this.moveModifier)
+			this.move = this.moveModifier;
+
+			forward = this.move / 8.0F * (1 - Math.abs(riddenByPlayer.rotationPitch / 90F));
+
+			this.gravity = 0.8f * ((this.moveModifier - this.move) / this.moveModifier);
+
+			// TODO
+			//			if (!getHoverMode())
+			//				this.motionY -= this.gravity;
+
+			float f2 = MathHelper.sin((float)(this.rotationYaw * Math.PI / 180.0F));
+			float f3 = MathHelper.cos((float)(this.rotationYaw * Math.PI / 180.0F));
+			this.motionX += -0.4F * f2 * forward;
+			this.motionZ += 0.4F * f3 * forward;
+
+			this.stepHeight = 1.0F;
+			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
+			if (!this.world.isRemote) // this.setAIMoveSpeed(p_70612_2_);
+				super.moveEntityWithHeading(strafe, forward);
+		}
+		else if (!this.world.isRemote)
+			super.moveEntityWithHeading(strafe, forward);
+	}
+
+	@Override
+	public void onDeath(DamageSource source)
+	{
+		super.onDeath(source);
+
+		if (this.world.isRemote)
+			for (EnumParticleTypes comp : this.explosionComponents)
+				for (int i = 0; i < 20 + this.rand.nextInt(20); i++)
+				{
+					double motionX = this.rand.nextGaussian() * 0.2D;
+					double motionY = this.rand.nextGaussian() * 0.2D;
+					double motionZ = this.rand.nextGaussian() * 0.2D;
+					this.world.spawnParticle(comp, this.posX + this.rand.nextFloat() * this.width * 2.0F - this.width, this.posY + 0.5D + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0F - this.width, motionX, motionY, motionZ);
+				}
+
+		if (source.getDamageType().equals("fall") || source.isProjectile())
+			this.world.createExplosion(this, this.posX, this.posY, this.posZ, 5, true);
+	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		this.nowMoving = this.posX != this.prevPosX || this.posY != this.prevPosY || this.posZ != this.prevPosZ;
+
+		this.wasMoving = this.nowMoving;
+
+		// TODO
+		//		if (this.ticksExisted % 5 == 0) // update radar
+		//			if (this.world != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
+		//			{
+		//				this.nearby.clear();
+		//				this.nearby.addAll(((List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> entity != this).collect(Collectors.toList()));
+		//				this.nearby.addAll(((List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> !(entity.ridingEntity instanceof VehicleAirBase)).collect(Collectors.toList()));
+		//			}
+	}
+}

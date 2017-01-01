@@ -1,6 +1,6 @@
 package com.parzivail.pswm.tile;
 
-import com.parzivail.util.block.PBlock;
+import com.parzivail.util.basic.PBlock;
 import net.minecraft.tileentity.TileEntity;
 
 /**

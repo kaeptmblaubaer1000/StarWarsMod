@@ -1,6 +1,7 @@
 package com.parzivail.util.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,6 +42,7 @@ public abstract class PMessage<REQ extends PMessage> implements Serializable, IM
 		mapHandler(BlockPos.class, PMessage::readBlockPos, PMessage::writeBlockPos);
 
 		mapHandler(EntityPlayer.class, PMessage::readPlayer, PMessage::writePlayer);
+		mapHandler(Entity.class, PMessage::readEntity, PMessage::writeEntity);
 	}
 
 	// The thing you override!
@@ -163,6 +165,19 @@ public abstract class PMessage<REQ extends PMessage> implements Serializable, IM
 	}
 
 	private static void writePlayer(EntityPlayer b, ByteBuf buf)
+	{
+		writeLong(b.getUniqueID().getLeastSignificantBits(), buf);
+		writeLong(b.getUniqueID().getMostSignificantBits(), buf);
+	}
+
+	private static Entity readEntity(ByteBuf buf)
+	{
+		long lsb = readLong(buf);
+		long msb = readLong(buf);
+		return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityFromUuid(new UUID(msb, lsb));
+	}
+
+	private static void writeEntity(Entity b, ByteBuf buf)
 	{
 		writeLong(b.getUniqueID().getLeastSignificantBits(), buf);
 		writeLong(b.getUniqueID().getMostSignificantBits(), buf);

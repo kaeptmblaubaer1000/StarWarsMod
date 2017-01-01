@@ -1,4 +1,4 @@
-package com.parzivail.util.block;
+package com.parzivail.util.basic;
 
 import com.parzivail.util.LocUtils;
 import net.minecraft.block.Block;

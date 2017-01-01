@@ -1,5 +1,6 @@
 package com.parzivail.pswm.registry;
 
+import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.client.settings.KeyBinding;
@@ -23,7 +24,7 @@ public class KeybindRegistry
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 		}
 
-		Lumberjack.log("[KEYS] All wings report in.");
+		Lumberjack.log(PSWM.getNextRegisterMessage("KEYS"));
 	}
 
 	private static KeyBinding registerKeybind(String keyName, int keyCode)

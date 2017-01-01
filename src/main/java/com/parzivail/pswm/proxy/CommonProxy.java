@@ -5,10 +5,16 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.handler.NetworkHandler;
+import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.pswm.network.MessageTeleportPlayer;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.CreativeTabRegister;
+import com.parzivail.pswm.registry.ItemRegister;
+import com.parzivail.pswm.vehicle.VehicXWing;
+import com.parzivail.util.EntityUtils;
 import com.parzivail.util.common.Lumberjack;
+import com.parzivail.util.driven.EntityCamera;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,8 +30,12 @@ public class CommonProxy
 		DimensionInfo.register();
 		CreativeTabRegister.register();
 		BlockRegister.register();
+		ItemRegister.register();
 
 		NetworkHandler.register(MessageTeleportPlayer.class, Side.SERVER);
+		NetworkHandler.register(MessageDrivableControl.class, Side.SERVER);
+		NetworkHandler.register(MessageDrivableControl.class, Side.CLIENT);
+		Lumberjack.log(PSWM.getNextRegisterMessage("NET"));
 	}
 
 	public void init()
@@ -34,6 +44,12 @@ public class CommonProxy
 
 		PSWM.eventHandler = new EventHandler();
 		MinecraftForge.EVENT_BUS.register(PSWM.eventHandler);
+	}
+
+	public void postinit()
+	{
+		EntityUtils.registerWithSpawnEgg(VehicXWing.class, "xwing", 0, 0);
+		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 
 	public EntityPlayerMP getPlayer()
@@ -54,5 +70,10 @@ public class CommonProxy
 	{
 		Lumberjack.debug("Teleporting %s to %s", entity.getName(), id);
 		DimensionInfo.teleportPlayerTo(entity, id);
+	}
+
+	public boolean isThePlayer(EntityPlayer entityPlayer)
+	{
+		return false;
 	}
 }

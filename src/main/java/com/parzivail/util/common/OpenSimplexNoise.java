@@ -105,7 +105,7 @@ public class OpenSimplexNoise
 		double dx0 = x - xb;
 		double dy0 = y - yb;
 
-		//We'll be defining these inside the next block and using them afterwards.
+		//We'll be defining these inside the next basic and using them afterwards.
 		double dx_ext, dy_ext;
 		int xsv_ext, ysv_ext;
 
@@ -245,7 +245,7 @@ public class OpenSimplexNoise
 		double dy0 = y - yb;
 		double dz0 = z - zb;
 
-		//We'll be defining these inside the next block and using them afterwards.
+		//We'll be defining these inside the next basic and using them afterwards.
 		double dx_ext0, dy_ext0, dz_ext0;
 		double dx_ext1, dy_ext1, dz_ext1;
 		int xsv_ext0, ysv_ext0, zsv_ext0;
@@ -929,7 +929,7 @@ public class OpenSimplexNoise
 		double dz0 = z - zb;
 		double dw0 = w - wb;
 
-		//We'll be defining these inside the next block and using them afterwards.
+		//We'll be defining these inside the next basic and using them afterwards.
 		double dx_ext0, dy_ext0, dz_ext0, dw_ext0;
 		double dx_ext1, dy_ext1, dz_ext1, dw_ext1;
 		double dx_ext2, dy_ext2, dz_ext2, dw_ext2;

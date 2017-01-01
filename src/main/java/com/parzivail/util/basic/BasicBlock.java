@@ -1,4 +1,4 @@
-package com.parzivail.util.block;
+package com.parzivail.util.basic;
 
 import net.minecraft.block.material.Material;
 

@@ -1,4 +1,4 @@
-package com.parzivail.util.block;
+package com.parzivail.util.basic;
 
 /**
  * Created by colby on 12/18/2016.

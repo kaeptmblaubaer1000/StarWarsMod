@@ -1,8 +1,8 @@
 package com.parzivail.util.register;
 
 import com.parzivail.util.Util;
-import com.parzivail.util.block.ItemBlockMeta;
-import com.parzivail.util.block.PBlock;
+import com.parzivail.util.basic.ItemBlockMeta;
+import com.parzivail.util.basic.PBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.Item;
