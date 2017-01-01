@@ -34,7 +34,6 @@ public class InstantTeleporter extends Teleporter
 	@Override
 	public boolean makePortal(Entity entity)
 	{
-		DimensionInfo.placePlayer(this, entity);
 		return true;
 	}
 

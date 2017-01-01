@@ -46,7 +46,7 @@ public class WorldProviderHoth extends WorldProvider
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionInfo.tatooineDimension;
+		return DimensionInfo.hothDimension;
 	}
 
 }

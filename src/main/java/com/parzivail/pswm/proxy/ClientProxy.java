@@ -52,10 +52,4 @@ public class ClientProxy extends CommonProxy
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Util.modcolon(id), Variants.INVENTORY));
 		Lumberjack.debug("Registered renderer for item %s@%s", Util.modcolon(id), Variants.INVENTORY);
 	}
-
-	@Override
-	public void teleportPlayer(int id)
-	{
-
-	}
 }

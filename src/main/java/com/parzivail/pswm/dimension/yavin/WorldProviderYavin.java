@@ -1,4 +1,4 @@
-package com.parzivail.pswm.dimension.dagobah;
+package com.parzivail.pswm.dimension.yavin;
 
 import com.parzivail.pswm.dimension.DimensionInfo;
 import net.minecraft.world.DimensionType;
@@ -10,19 +10,19 @@ import net.minecraft.world.chunk.IChunkGenerator;
  * Created by colby on 12/22/2016.
  */
 
-public class WorldProviderDagobah extends WorldProvider
+public class WorldProviderYavin extends WorldProvider
 {
 	@Override
 	protected void init()
 	{
 		this.hasSkyLight = true;
-		this.biomeProvider = new BiomeProviderSingle(DimensionInfo.biomeDagobah);
+		this.biomeProvider = new BiomeProviderSingle(DimensionInfo.biomeYavin);
 	}
 
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkProviderDagobah(world, world.getSeed());
+		return new ChunkProviderYavin(world, world.getSeed());
 	}
 
 	@Override
@@ -40,13 +40,13 @@ public class WorldProviderDagobah extends WorldProvider
 	@Override
 	public String getSaveFolder()
 	{
-		return "DAGOBAH";
+		return "YAVIN";
 	}
 
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionInfo.dagobahDimension;
+		return DimensionInfo.yavinDimension;
 	}
 
 }

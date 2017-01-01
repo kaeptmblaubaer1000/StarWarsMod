@@ -40,13 +40,13 @@ public class WorldProviderIlum extends WorldProvider
 	@Override
 	public String getSaveFolder()
 	{
-		return "HOTH";
+		return "ILUM";
 	}
 
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionInfo.tatooineDimension;
+		return DimensionInfo.ilumDimension;
 	}
 
 }

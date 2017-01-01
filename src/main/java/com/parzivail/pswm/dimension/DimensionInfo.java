@@ -8,20 +8,26 @@ import com.parzivail.pswm.dimension.ilum.BiomeIlum;
 import com.parzivail.pswm.dimension.ilum.WorldProviderIlum;
 import com.parzivail.pswm.dimension.tatooine.BiomeTatooine;
 import com.parzivail.pswm.dimension.tatooine.WorldProviderTatooine;
+import com.parzivail.pswm.dimension.yavin.BiomeYavin;
+import com.parzivail.pswm.dimension.yavin.WorldProviderYavin;
 import com.parzivail.util.common.Lumberjack;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketEntityEffect;
 import net.minecraft.network.play.server.SPacketPlayerAbilities;
 import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.management.PlayerList;
+import net.minecraft.util.Tuple;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import javax.vecmath.Vector2f;
+import javax.vecmath.Vector3d;
 
 /**
  * Created by colby on 12/22/2016.
@@ -40,6 +46,9 @@ public class DimensionInfo
 	public static int ilumId = 23;
 	public static Biome biomeIlum;
 	public static DimensionType ilumDimension;
+	public static int yavinId = 24;
+	public static Biome biomeYavin;
+	public static DimensionType yavinDimension;
 
 	public static void register()
 	{
@@ -47,21 +56,25 @@ public class DimensionInfo
 		dagobahDimension = DimensionType.register("Dagobah", "_dagobah", dagobahId, WorldProviderDagobah.class, false);
 		hothDimension = DimensionType.register("Hoth", "_hoth", hothId, WorldProviderHoth.class, false);
 		ilumDimension = DimensionType.register("Ilum", "_ilum", ilumId, WorldProviderIlum.class, false);
+		yavinDimension = DimensionType.register("Yavin 4", "_yavin", yavinId, WorldProviderYavin.class, false);
 
 		biomeTatooine = new BiomeTatooine();
 		biomeDagobah = new BiomeDagobah();
 		biomeHoth = new BiomeHoth();
 		biomeIlum = new BiomeIlum();
+		biomeYavin = new BiomeYavin();
 
 		DimensionManager.registerDimension(tatooineId, tatooineDimension);
 		DimensionManager.registerDimension(dagobahId, dagobahDimension);
 		DimensionManager.registerDimension(hothId, hothDimension);
 		DimensionManager.registerDimension(ilumId, ilumDimension);
+		DimensionManager.registerDimension(yavinId, yavinDimension);
 
 		GameRegistry.register(biomeTatooine);
 		GameRegistry.register(biomeDagobah);
 		GameRegistry.register(biomeHoth);
 		GameRegistry.register(biomeIlum);
+		GameRegistry.register(biomeYavin);
 
 		Lumberjack.log("[DIMS] Prepare to orbit the planet Yavin.");
 	}
@@ -74,6 +87,7 @@ public class DimensionInfo
 
 	public static void transferPlayerToDimension(EntityPlayerMP player, int dimensionIn, net.minecraft.world.Teleporter teleporter)
 	{
+		player.setPortal(new BlockPos(0, 0, 0));
 		PlayerList plist = player.mcServer.getPlayerList();
 		int i = player.dimension;
 		WorldServer worldserver = player.mcServer.worldServerForDimension(player.dimension);
@@ -85,7 +99,8 @@ public class DimensionInfo
 		worldserver.removeEntityDangerously(player);
 		plist.transferEntityToWorld(player, i, worldserver, worldserver1, teleporter);
 		plist.preparePlayer(player, worldserver);
-		player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, player.rotationYaw, player.rotationPitch);
+		Tuple<Vector3d, Vector2f> pos = placePlayer(dimensionIn);
+		player.connection.setPlayerLocation(pos.getFirst().x, pos.getFirst().y, pos.getFirst().z, pos.getSecond().x, pos.getSecond().y);
 		player.interactionManager.setWorld(worldserver1);
 		player.connection.sendPacket(new SPacketPlayerAbilities(player.capabilities));
 		plist.updateTimeAndWeatherForPlayer(player, worldserver1);
@@ -99,9 +114,9 @@ public class DimensionInfo
 		net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, i, dimensionIn);
 	}
 
-	public static void placePlayer(InstantTeleporter teleporter, Entity entity)
+	public static Tuple<Vector3d, Vector2f> placePlayer(int dimension)
 	{
 		// TODO: spawns per planet
-		entity.setLocationAndAngles(0, teleporter.getTerrainHeightAt(0, 0), 0, entity.rotationYaw, 0.0F);
+		return new Tuple<>(new Vector3d(0, 10, 0), new Vector2f(0, 0));
 	}
 }
