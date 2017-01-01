@@ -12,16 +12,9 @@ import com.parzivail.pswm.dimension.yavin.BiomeYavin;
 import com.parzivail.pswm.dimension.yavin.WorldProviderYavin;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.play.server.SPacketEntityEffect;
-import net.minecraft.network.play.server.SPacketPlayerAbilities;
-import net.minecraft.network.play.server.SPacketRespawn;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.Tuple;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -87,31 +80,9 @@ public class DimensionInfo
 
 	public static void transferPlayerToDimension(EntityPlayerMP player, int dimensionIn, net.minecraft.world.Teleporter teleporter)
 	{
-		player.setPortal(new BlockPos(0, 0, 0));
-		PlayerList plist = player.mcServer.getPlayerList();
-		int i = player.dimension;
-		WorldServer worldserver = player.mcServer.worldServerForDimension(player.dimension);
-		player.dimension = dimensionIn;
-		WorldServer worldserver1 = player.mcServer.worldServerForDimension(player.dimension);
-		player.connection.sendPacket(new SPacketRespawn(player.dimension, worldserver1.getDifficulty(), worldserver1.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
-		plist.updatePermissionLevel(player);
-		player.setDropItemsWhenDead(false);
-		worldserver.removeEntityDangerously(player);
-		plist.transferEntityToWorld(player, i, worldserver, worldserver1, teleporter);
-		plist.preparePlayer(player, worldserver);
+		player.mcServer.getPlayerList().transferPlayerToDimension(player, dimensionIn, teleporter);
 		Tuple<Vector3d, Vector2f> pos = placePlayer(dimensionIn);
 		player.connection.setPlayerLocation(pos.getFirst().x, pos.getFirst().y, pos.getFirst().z, pos.getSecond().x, pos.getSecond().y);
-		player.interactionManager.setWorld(worldserver1);
-		player.connection.sendPacket(new SPacketPlayerAbilities(player.capabilities));
-		plist.updateTimeAndWeatherForPlayer(player, worldserver1);
-		plist.syncPlayerInventory(player);
-		player.setDropItemsWhenDead(true);
-
-		for (PotionEffect potioneffect : player.getActivePotionEffects())
-		{
-			player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potioneffect));
-		}
-		net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, i, dimensionIn);
 	}
 
 	public static Tuple<Vector3d, Vector2f> placePlayer(int dimension)
