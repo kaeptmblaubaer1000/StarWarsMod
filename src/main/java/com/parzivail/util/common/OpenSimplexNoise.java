@@ -98,7 +98,7 @@ public class OpenSimplexNoise
 		double xins = xs - xsb;
 		double yins = ys - ysb;
 
-		//Sum those together to get a value that determines which region we're in.
+		//Sum those together to get a value that determines which region we'reset in.
 		double inSum = xins + yins;
 
 		//Positions relative to origin point.
@@ -132,7 +132,7 @@ public class OpenSimplexNoise
 		}
 
 		if (inSum <= 1)
-		{ //We're inside the triangle (2-Simplex) at (0,0)
+		{ //We'reset inside the triangle (2-Simplex) at (0,0)
 			double zins = 1 - inSum;
 			if (zins > xins || zins > yins)
 			{ //(0,0) is one of the closest two triangular vertices
@@ -160,7 +160,7 @@ public class OpenSimplexNoise
 			}
 		}
 		else
-		{ //We're inside the triangle (2-Simplex) at (1,1)
+		{ //We'reset inside the triangle (2-Simplex) at (1,1)
 			double zins = 2 - inSum;
 			if (zins < xins || zins < yins)
 			{ //(0,0) is one of the closest two triangular vertices
@@ -237,7 +237,7 @@ public class OpenSimplexNoise
 		double yins = ys - ysb;
 		double zins = zs - zsb;
 
-		//Sum those together to get a value that determines which region we're in.
+		//Sum those together to get a value that determines which region we'reset in.
 		double inSum = xins + yins + zins;
 
 		//Positions relative to origin point.
@@ -253,7 +253,7 @@ public class OpenSimplexNoise
 
 		double value = 0;
 		if (inSum <= 1)
-		{ //We're inside the tetrahedron (3-Simplex) at (0,0,0)
+		{ //We'reset inside the tetrahedron (3-Simplex) at (0,0,0)
 
 			//Determine which two of (0,0,1), (0,1,0), (1,0,0) are closest.
 			byte aPoint = 0x01;
@@ -414,7 +414,7 @@ public class OpenSimplexNoise
 			}
 		}
 		else if (inSum >= 2)
-		{ //We're inside the tetrahedron (3-Simplex) at (1,1,1)
+		{ //We'reset inside the tetrahedron (3-Simplex) at (1,1,1)
 
 			//Determine which two tetrahedral vertices are the closest, out of (1,1,0), (1,0,1), (0,1,1) but not (1,1,1).
 			byte aPoint = 0x06;
@@ -578,7 +578,7 @@ public class OpenSimplexNoise
 			}
 		}
 		else
-		{ //We're inside the octahedron (Rectified 3-Simplex) in between.
+		{ //We'reset inside the octahedron (Rectified 3-Simplex) in between.
 			double aScore;
 			byte aPoint;
 			boolean aIsFurtherSide;
@@ -920,7 +920,7 @@ public class OpenSimplexNoise
 		double zins = zs - zsb;
 		double wins = ws - wsb;
 
-		//Sum those together to get a value that determines which region we're in.
+		//Sum those together to get a value that determines which region we'reset in.
 		double inSum = xins + yins + zins + wins;
 
 		//Positions relative to origin point.
@@ -939,7 +939,7 @@ public class OpenSimplexNoise
 
 		double value = 0;
 		if (inSum <= 1)
-		{ //We're inside the pentachoron (4-Simplex) at (0,0,0,0)
+		{ //We'reset inside the pentachoron (4-Simplex) at (0,0,0,0)
 
 			//Determine which two of (0,0,0,1), (0,0,1,0), (0,1,0,0), (1,0,0,0) are closest.
 			byte aPoint = 0x01;
@@ -1187,7 +1187,7 @@ public class OpenSimplexNoise
 			}
 		}
 		else if (inSum >= 3)
-		{ //We're inside the pentachoron (4-Simplex) at (1,1,1,1)
+		{ //We'reset inside the pentachoron (4-Simplex) at (1,1,1,1)
 			//Determine which two of (1,1,1,0), (1,1,0,1), (1,0,1,1), (0,1,1,1) are closest.
 			byte aPoint = 0x0E;
 			double aScore = xins;
@@ -1439,7 +1439,7 @@ public class OpenSimplexNoise
 			}
 		}
 		else if (inSum <= 2)
-		{ //We're inside the first dispentachoron (Rectified 4-Simplex)
+		{ //We'reset inside the first dispentachoron (Rectified 4-Simplex)
 			double aScore;
 			byte aPoint;
 			boolean aIsBiggerSide = true;
@@ -1975,7 +1975,7 @@ public class OpenSimplexNoise
 			}
 		}
 		else
-		{ //We're inside the second dispentachoron (Rectified 4-Simplex)
+		{ //We'reset inside the second dispentachoron (Rectified 4-Simplex)
 			double aScore;
 			byte aPoint;
 			boolean aIsBiggerSide = true;

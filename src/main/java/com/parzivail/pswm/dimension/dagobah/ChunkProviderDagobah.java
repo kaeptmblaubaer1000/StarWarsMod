@@ -1,9 +1,10 @@
 package com.parzivail.pswm.dimension.dagobah;
 
-import com.parzivail.pswm.bank.PBlocks;
+import com.parzivail.pswm.PSWM;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
 import com.parzivail.util.worldgen.TerrainLayer;
+import net.minecraft.block.BlockDirt;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -60,7 +61,7 @@ public class ChunkProviderDagobah implements IChunkGenerator
 					if (y >= grassThreshold)
 						primer.setBlockState(x, y, z, Blocks.GRASS.getDefaultState());
 					else if (y >= mudThreshold && y < grassThreshold)
-						primer.setBlockState(x, y, z, PBlocks.dagobahMud.getDefaultState());
+						primer.setBlockState(x, y, z, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.PODZOL));
 					else
 						primer.setBlockState(x, y, z, Blocks.DIRT.getDefaultState());
 				}
@@ -93,6 +94,11 @@ public class ChunkProviderDagobah implements IChunkGenerator
 
 		// this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 		// TODO: GEN STRUCTURES HERE
+
+		BlockPos blockpos = new BlockPos(i, 0, j);
+		Biome biome = this.worldObj.getBiome(blockpos.add(16, 0, 16));
+
+		biome.decorate(this.worldObj, PSWM.rngGeneral, new BlockPos(i, 0, j));
 
 		BlockFalling.fallInstantly = false;
 	}

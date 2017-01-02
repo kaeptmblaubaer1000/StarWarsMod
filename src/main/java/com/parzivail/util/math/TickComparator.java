@@ -9,7 +9,7 @@ package com.parzivail.util.math;
 public class TickComparator
 {
 	/**
-	 * Set this every tick to whatever you're checking
+	 * Set this every tick to whatever you'reset checking
 	 **/
 	public boolean is = false;
 	private boolean was = false;

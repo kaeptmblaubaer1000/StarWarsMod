@@ -83,12 +83,12 @@ public class MathUtils
 	/**
 	 * Re-maps a value from one range to another
 	 *
-	 * @param n       The value to re-map
+	 * @param n       The value to reset-map
 	 * @param in_min  The min for the first range
 	 * @param in_max  The max for the first range
 	 * @param out_min The min for the second range
 	 * @param out_max The max for the second range
-	 * @return The re-mapped value
+	 * @return The reset-mapped value
 	 */
 	public static float map(float n, float in_min, float in_max, float out_min, float out_max)
 	{
