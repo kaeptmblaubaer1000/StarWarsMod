@@ -7,6 +7,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenTrees;
+import net.minecraft.world.gen.feature.WorldGenWaterlily;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
@@ -15,8 +17,9 @@ import java.util.Random;
  */
 public class BiomeDagobah extends Biome
 {
-	WorldGenTrees trees = new WorldGenTrees(true, 8, Blocks.LOG.getDefaultState(), Blocks.LEAVES.getDefaultState(), true);
+	WorldGenTrees trees = new WorldGenTrees(true, 10, Blocks.LOG.getDefaultState(), Blocks.LEAVES.getDefaultState(), true);
 	HaltonSequence haltonSequence = new HaltonSequence();
+	public WorldGenerator waterlilyGen = new WorldGenWaterlily();
 
 	public BiomeDagobah()
 	{
@@ -28,7 +31,7 @@ public class BiomeDagobah extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 4; i++)
 		{
 			haltonSequence.increment();
 			int k = (int)(haltonSequence.mCurrentPos.getX() * 16);
@@ -39,6 +42,32 @@ public class BiomeDagobah extends Biome
 			if (trees.generate(worldIn, rand, blockpos))
 			{
 				trees.generateSaplings(worldIn, rand, blockpos);
+			}
+		}
+
+		for (int k3 = 0; k3 < 4; ++k3)
+		{
+			int l7 = rand.nextInt(16) + 8;
+			int k11 = rand.nextInt(16) + 8;
+			int i15 = worldIn.getHeight(pos.add(l7, 0, k11)).getY() * 2;
+
+			if (i15 > 0)
+			{
+				int j18 = rand.nextInt(i15);
+				BlockPos blockpos4;
+				BlockPos blockpos7;
+
+				for (blockpos4 = pos.add(l7, j18, k11); blockpos4.getY() > 0; blockpos4 = blockpos7)
+				{
+					blockpos7 = blockpos4.down();
+
+					if (!worldIn.isAirBlock(blockpos7))
+					{
+						break;
+					}
+				}
+
+				this.waterlilyGen.generate(worldIn, rand, blockpos4);
 			}
 		}
 	}
