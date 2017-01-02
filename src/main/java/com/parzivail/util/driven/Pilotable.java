@@ -41,7 +41,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public Vector3f angularVelocity = new Vector3f(0F, 0F, 0F);
 
 	@SideOnly(Side.CLIENT)
-	public EntityLivingBase camera;
+	public EntityCamera camera;
 
 	public double serverPosX, serverPosY, serverPosZ;
 	public int serverPositionTransitionTicker;
@@ -372,6 +372,23 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		this.rotateRoll(this.angularVelocity.z);
 		this.rotatePitch(this.angularVelocity.x);
+
+		if (camera == null)
+			return;
+
+		Vector3f cameraPosition = new Vector3f(-1, 0, 0);
+		cameraPosition.scale(data.cameraDistance);
+		cameraPosition = axes.findLocalVectorGlobally(cameraPosition);
+
+		//Lerp it
+		double dX = posX + cameraPosition.x - camera.posX;
+		double dY = posY + cameraPosition.y - camera.posY;
+		double dZ = posZ + cameraPosition.z - camera.posZ;
+
+		camera.setPosition(camera.posX + dX * data.cameraFloatDampening, camera.posY + dY * data.cameraFloatDampening, camera.posZ + dZ * data.cameraFloatDampening);
+
+		camera.rotationYaw = MathHelper.wrapDegrees(axes.getYaw() - 90F);
+		camera.rotationPitch = MathHelper.wrapDegrees(axes.getPitch());
 	}
 
 	@Override
@@ -592,5 +609,15 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		motionX *= drag;
 		motionY *= drag;
 		motionZ *= drag;
+	}
+
+	public void setRiderPosition(int i, Entity e)
+	{
+		e.setPosition(this.posX, this.posY, this.posZ);
+	}
+
+	public boolean canPassengerSteer()
+	{
+		return false;
 	}
 }

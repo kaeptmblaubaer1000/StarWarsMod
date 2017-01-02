@@ -27,11 +27,9 @@ public class RenderStarship extends Render<Pilotable>
 
 	public void render(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
 	{
-		if (PSWM.mc.player.getRidingEntity() == pilotable && PSWM.mc.gameSettings.thirdPersonView == 0)
-			return;
 		bindEntityTexture(pilotable);
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float)d, (float)d1, (float)d2);
+		GL11.glTranslated(d, d1, d2);
 		float dYaw = MathHelper.wrapDegrees(pilotable.axes.getYaw() - pilotable.prevRotationYaw);
 		float dPitch = MathHelper.wrapDegrees(pilotable.axes.getPitch() - pilotable.prevRotationPitch);
 		float dRoll = MathHelper.wrapDegrees(pilotable.axes.getRoll() - pilotable.prevRotationRoll);
@@ -41,13 +39,16 @@ public class RenderStarship extends Render<Pilotable>
 		if (PSWM.mc.player.getRidingEntity() == pilotable)
 			GFX.changeCameraRoll(-(pilotable.prevRotationRoll + dRoll * f1));
 
-		GL11.glColor4f(1, 1, 1, 1);
-		GL11.glScalef(3, 3, 3);
-		if (model != null)
+		if (PSWM.mc.player.getRidingEntity() != pilotable || PSWM.mc.gameSettings.thirdPersonView != 0)
 		{
-			GL11.glRotatef(-90, 0, 1, 0);
-			GL11.glTranslatef(0, -0.85f, 0);
-			model.render(pilotable, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
+			GL11.glColor4f(1, 1, 1, 1);
+			GL11.glScalef(3, 3, 3);
+			if (model != null)
+			{
+				GL11.glRotatef(-90, 0, 1, 0);
+				GL11.glTranslatef(0, -0.85f, 0);
+				model.render(pilotable, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
+			}
 		}
 
 		GL11.glPopMatrix();

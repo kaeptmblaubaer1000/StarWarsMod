@@ -60,6 +60,8 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public boolean isThePlayer(EntityPlayer entityPlayer)
 	{
+		if (entityPlayer == null)
+			return false;
 		return entityPlayer.getEntityId() == PSWM.mc.player.getEntityId();
 	}
 }

@@ -1,6 +1,7 @@
 package com.parzivail.pswm.network;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.handler.NetworkHandler;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.network.PMessage;
 import net.minecraft.entity.Entity;
@@ -53,6 +54,10 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 			if (pilotable != null)
 			{
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+				int i = 0;
+				for (Entity e : pilotable.getPassengers())
+					pilotable.setRiderPosition(i++, e);
+				NetworkHandler.INSTANCE.sendToDimension(new MessageDrivableControl(pilotable), pilotable.dimension);
 			}
 		}
 		else if (context.side == Side.CLIENT)
@@ -64,8 +69,12 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 				pilotable = (Pilotable)entity;
 			if (pilotable != null)
 			{
-				if (pilotable.getControllingPassenger() == PSWM.mc.player)
-					return null;
+				int i = 0;
+				for (Entity e : pilotable.getPassengers())
+					pilotable.setRiderPosition(i++, e);
+
+				//				if (pilotable.getControllingPassenger() == PSWM.mc.player)
+				//					return null;
 
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 			}

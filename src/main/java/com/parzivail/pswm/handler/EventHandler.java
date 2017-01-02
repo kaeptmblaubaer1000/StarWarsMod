@@ -43,13 +43,6 @@ public class EventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
-		if (PSWM.camera != null && PSWM.cameraPosition != null && PSWM.cameraRotation != null)
-		{
-			EntityCamera.loadAnglesFromStored();
-			if (PSWM.camera.isEntityAlive())
-				PSWM.mc.setRenderViewEntity(PSWM.camera);
-		}
-
 		if (PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
 			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
@@ -61,6 +54,14 @@ public class EventHandler
 		else
 		{
 			GFX.changeCameraRoll(0);
+			if (PSWM.camera != null && PSWM.cameraPosition != null && PSWM.cameraRotation != null)
+			{
+				EntityCamera.loadAnglesFromStored();
+				if (PSWM.camera.isEntityAlive())
+					PSWM.mc.setRenderViewEntity(PSWM.camera);
+			}
+			else
+				PSWM.mc.setRenderViewEntity(PSWM.mc.player);
 		}
 	}
 

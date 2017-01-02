@@ -20,7 +20,18 @@ public class Lumberjack
 	public static void debug(Object message, Object... params)
 	{
 		if (Resources.IS_DEV_ENVIRONMENT)
-			log(message, params);
+		{
+			StackTraceElement[] trace = Thread.currentThread().getStackTrace();
+			if (trace.length >= 3)
+			{
+				StackTraceElement stack = trace[2];
+				log("<%s@%s> %s", stack.getMethodName(), stack.getClassName(), String.format(String.valueOf(message), params));
+			}
+			else
+			{
+				log("<Unknown Stack> %s", String.format(String.valueOf(message), params));
+			}
+		}
 	}
 
 	/**

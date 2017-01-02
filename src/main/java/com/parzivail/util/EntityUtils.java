@@ -163,7 +163,7 @@ public class EntityUtils
 		while (EntityList.getClassFromID(mobId) != null)
 			while (EntityList.getClassFromID(mobId) != null)
 				mobId += 1;
-		EntityRegistry.registerModEntity(new ResourceLocation(Resources.MODID, mobName), entityClass, mobName, mobId, PSWM.instance, 80, 20, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(Resources.MODID, mobName), entityClass, mobName, mobId, PSWM.instance, 80, 1, true);
 		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + String.valueOf(mobId));
 	}
 
@@ -179,7 +179,7 @@ public class EntityUtils
 	{
 		while (EntityList.getClassFromID(mobId) != null)
 			mobId += 1;
-		EntityRegistry.registerModEntity(new ResourceLocation(Resources.MODID, mobName), mobClass, mobName, mobId, PSWM.instance, 80, 20, true, bgColor, fgColor);
+		EntityRegistry.registerModEntity(new ResourceLocation(Resources.MODID, mobName), mobClass, mobName, mobId, PSWM.instance, 80, 1, true, bgColor, fgColor);
 		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + String.valueOf(mobId));
 	}
 }

@@ -51,7 +51,7 @@ public class ChunkProviderIlum implements IChunkGenerator
 		{
 			for (int z = 0; z < 16; z++)
 			{
-				int baseHeight = 60;
+				int baseHeight = 15;
 				double height = terrain.getHeightAt((cx * 16 + x), (cz * 16 + z));
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
 				int finalHeight = MathHelper.clamp(baseHeight + (int)height, 0, 255);
