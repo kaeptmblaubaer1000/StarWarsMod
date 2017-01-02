@@ -54,6 +54,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 			if (pilotable != null)
 			{
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+
 				int i = 0;
 				for (Entity e : pilotable.getPassengers())
 					pilotable.setRiderPosition(i++, e);
@@ -69,14 +70,12 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 				pilotable = (Pilotable)entity;
 			if (pilotable != null)
 			{
+				if (pilotable.getControllingPassenger() != PSWM.mc.player)
+					pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
+
 				int i = 0;
 				for (Entity e : pilotable.getPassengers())
 					pilotable.setRiderPosition(i++, e);
-
-				//				if (pilotable.getControllingPassenger() == PSWM.mc.player)
-				//					return null;
-
-				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 			}
 		}
 

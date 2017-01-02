@@ -48,7 +48,7 @@ public class CommonProxy
 
 	public void postinit()
 	{
-		EntityUtils.registerWithSpawnEgg(VehicXWing.class, "xwing", 0, 0);
+		EntityUtils.registerEntity(VehicXWing.class, "xwing");
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 

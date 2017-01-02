@@ -53,7 +53,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		axes = new RotatedAxes();
 		prevAxes = new RotatedAxes();
 		preventEntitySpawning = true;
-		setSize(1F, 1F);
+		setSize(2F, 2F);
 		//yOffset = 6F / 16F;
 		ignoreFrustumCheck = true;
 		setRenderDistanceWeight(200);
@@ -230,6 +230,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		throttle = throt;
 	}
 
+	@Override
+	public void setPositionAndRotation(double x, double y, double z, float yaw, float pitch)
+	{
+
+	}
 
 	@Override
 	public void setVelocity(double d, double d1, double d2)
@@ -285,7 +290,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		prevRotationRoll = axes.getRoll();
 		prevAxes = axes.clone();
 
-		if (getControllingPassenger() == null && world.isRemote)
+		if (getInternalControllingPassenger() == null && world.isRemote)
 		{
 			this.throttle = 0;
 			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
@@ -294,7 +299,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
 		//Work out if this is the client side and the entity is driving
-		boolean thePlayerIsDrivingThis = getControllingPassenger() instanceof EntityPlayer && PSWM.proxy.isThePlayer((EntityPlayer)this.getPassengers().get(0));
+		boolean thePlayerIsDrivingThis = getInternalControllingPassenger() instanceof EntityPlayer && PSWM.proxy.isThePlayer((EntityPlayer)this.getPassengers().get(0));
 
 		//Player is not driving this. Update its position from server update packets
 		if (world.isRemote && !thePlayerIsDrivingThis)
@@ -372,23 +377,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		this.rotateRoll(this.angularVelocity.z);
 		this.rotatePitch(this.angularVelocity.x);
-
-		if (camera == null)
-			return;
-
-		Vector3f cameraPosition = new Vector3f(-1, 0, 0);
-		cameraPosition.scale(data.cameraDistance);
-		cameraPosition = axes.findLocalVectorGlobally(cameraPosition);
-
-		//Lerp it
-		double dX = posX + cameraPosition.x - camera.posX;
-		double dY = posY + cameraPosition.y - camera.posY;
-		double dZ = posZ + cameraPosition.z - camera.posZ;
-
-		camera.setPosition(camera.posX + dX * data.cameraFloatDampening, camera.posY + dY * data.cameraFloatDampening, camera.posZ + dZ * data.cameraFloatDampening);
-
-		camera.rotationYaw = MathHelper.wrapDegrees(axes.getYaw() - 90F);
-		camera.rotationPitch = MathHelper.wrapDegrees(axes.getPitch());
 	}
 
 	@Override
@@ -483,6 +471,14 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public Entity getControllingPassenger()
 	{
+		return null;
+		//		if (this.getPassengers().isEmpty())
+		//			return null;
+		//		return this.getPassengers().get(0);
+	}
+
+	public Entity getInternalControllingPassenger()
+	{
 		if (this.getPassengers().isEmpty())
 			return null;
 		return this.getPassengers().get(0);
@@ -490,12 +486,12 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public boolean isControlling(EntityPlayer thePlayer)
 	{
-		return getControllingPassenger() != null && thePlayer != null && getControllingPassenger().getEntityId() == thePlayer.getEntityId();
+		return getInternalControllingPassenger() != null && thePlayer != null && getInternalControllingPassenger().getEntityId() == thePlayer.getEntityId();
 	}
 
 	public void acceptInput(ShipInput input)
 	{
-		if (this.getControllingPassenger() == null)
+		if (this.getInternalControllingPassenger() == null)
 			return;
 
 		switch (input)
@@ -614,10 +610,5 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public void setRiderPosition(int i, Entity e)
 	{
 		e.setPosition(this.posX, this.posY, this.posZ);
-	}
-
-	public boolean canPassengerSteer()
-	{
-		return false;
 	}
 }
