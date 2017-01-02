@@ -28,19 +28,17 @@ public class BiomeDagobah extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 3; i++)
 		{
-			for (int j = 0; j < 4; ++j)
-			{
-				int k = i * 4 + 1 + 8 + rand.nextInt(3);
-				int l = j * 4 + 1 + 8 + rand.nextInt(3);
-				BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-				trees.setDecorationDefaults();
+			haltonSequence.increment();
+			int k = (int)(haltonSequence.mCurrentPos.getX() * 16);
+			int l = (int)(haltonSequence.mCurrentPos.getZ() * 16);
+			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
+			trees.setDecorationDefaults();
 
-				if (trees.generate(worldIn, rand, blockpos))
-				{
-					trees.generateSaplings(worldIn, rand, blockpos);
-				}
+			if (trees.generate(worldIn, rand, blockpos))
+			{
+				trees.generateSaplings(worldIn, rand, blockpos);
 			}
 		}
 	}
