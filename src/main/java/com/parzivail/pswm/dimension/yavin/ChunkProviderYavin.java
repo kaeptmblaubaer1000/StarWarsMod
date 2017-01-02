@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension.yavin;
 
+import com.parzivail.pswm.PSWM;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
 import com.parzivail.util.worldgen.TerrainLayer;
@@ -93,6 +94,11 @@ public class ChunkProviderYavin implements IChunkGenerator
 
 		// this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
 		// TODO: GEN STRUCTURES HERE
+
+		BlockPos blockpos = new BlockPos(i, 0, j);
+		Biome biome = this.worldObj.getBiome(blockpos.add(16, 0, 16));
+
+		biome.decorate(this.worldObj, PSWM.rngGeneral, new BlockPos(i, 0, j));
 
 		BlockFalling.fallInstantly = false;
 	}
