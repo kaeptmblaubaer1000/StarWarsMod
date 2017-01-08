@@ -14,10 +14,13 @@ import com.parzivail.pswm.dimension.yavin.BiomeYavin;
 import com.parzivail.pswm.dimension.yavin.WorldProviderYavin;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -98,6 +101,14 @@ public class DimensionInfo
 	public static Tuple<Vector3d, Vector2f> placePlayer(MinecraftServer mcServer, int dimension)
 	{
 		// TODO: spawns per planet
-		return new Tuple<>(new Vector3d(0, mcServer.worldServerForDimension(dimension).getHeight(0, 0), 0), new Vector2f(0, 0));
+		return new Tuple<>(new Vector3d(0, getHeight(mcServer.worldServerForDimension(dimension), 0, 0), 0), new Vector2f(0, 0));
+	}
+
+	private static double getHeight(WorldServer worldServer, int x, int z)
+	{
+		int i = 255;
+		for (; i > 0 && worldServer.getBlockState(new BlockPos(x, i, z)).getBlock() == Blocks.AIR; i--)
+			;
+		return i;
 	}
 }

@@ -25,15 +25,18 @@ public class GeneratorEndorTree
 		this.maxHeight = maxHeight;
 	}
 
-	public void generateTrunk(World world, Random random, BlockPos pos, int trunkHeight)
+	public void generateTrunk(World world, Random random, BlockPos pos, int trunkHeight, boolean thick)
 	{
 		for (int i = 0; i < trunkHeight; i++)
 		{
 			this.setLog(world, pos);
-			this.setLog(world, pos.north());
-			this.setLog(world, pos.east());
-			this.setLog(world, pos.south());
-			this.setLog(world, pos.west());
+			if (thick)
+			{
+				this.setLog(world, pos.north());
+				this.setLog(world, pos.east());
+				this.setLog(world, pos.south());
+				this.setLog(world, pos.west());
+			}
 			pos = pos.up();
 		}
 	}
@@ -56,7 +59,7 @@ public class GeneratorEndorTree
 		return true;
 	}
 
-	public void generateLeafLayer(World world, Random rand, BlockPos pos, int leafLayerNum)
+	public void generateLeafLayer(World world, Random rand, BlockPos pos, int leafLayerNum, boolean thick)
 	{
 		//Repeat in intervals of 6, 2 small radius, 4 large
 		int index = leafLayerNum % 5;
@@ -67,7 +70,7 @@ public class GeneratorEndorTree
 		//			leavesRadius = 3;
 		//		else
 		//			leavesRadius = 5;
-		leavesRadius = index + 2;
+		leavesRadius = index + (thick ? 2 : 0);
 
 		//This may break for larger radii however it will do for this purpose
 		double increment = 0.1D;
@@ -84,16 +87,13 @@ public class GeneratorEndorTree
 		}
 	}
 
-	public boolean generate(World world, Random random, BlockPos pos)
+	public boolean generate(World world, Random random, BlockPos pos, boolean thick)
 	{
 		if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
 			return false;
 
 		// Choose heights
-		int height = MathUtils.randomRange(this.minHeight, this.maxHeight);
-
-		// Move up to space above ground
-		pos = pos.up();
+		int height = MathUtils.randomRange((int)(this.minHeight / (thick ? 1f : 2f)), (int)(this.maxHeight / (thick ? 1f : 2f)));
 
 		BlockPos trunkTop = pos;
 		//Move upwards until the block above this is air
@@ -109,13 +109,13 @@ public class GeneratorEndorTree
 		int trunkHeight = height - baseHeight;
 
 		//Generate the trunk to 1 block below the height
-		this.generateTrunk(world, random, pos, height - 1);
+		this.generateTrunk(world, random, pos, height - 1, thick);
 
 		//Generate the layers of leaves
 		int max = (int)(trunkHeight * 0.75);
 		for (int i = 0; i < max; i++)
 		{
-			this.generateLeafLayer(world, random, pos.up(height - i), i);
+			this.generateLeafLayer(world, random, pos.up(height - i), i, thick);
 		}
 
 		return true;

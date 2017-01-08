@@ -40,14 +40,11 @@ public class BiomeEndor extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		if (MathUtils.oneIn(3))
-		{
-			haltonSequence.increment();
-			int k = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
-			int l = (int)(haltonSequence.mCurrentPos.getZ() * 16) + 8;
-			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-			endorTree.generate(worldIn, rand, blockpos);
-		}
+		haltonSequence.increment();
+		int tk = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
+		int tl = (int)(haltonSequence.mCurrentPos.getZ() * 16) + 8;
+		BlockPos tblockpos = worldIn.getHeight(pos.add(tk, 0, tl));
+		endorTree.generate(worldIn, rand, tblockpos, MathUtils.oneIn(4));
 
 		if (MathUtils.oneIn(5))
 		{
