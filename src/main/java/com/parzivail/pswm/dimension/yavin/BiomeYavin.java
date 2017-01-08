@@ -3,7 +3,6 @@ package com.parzivail.pswm.dimension.yavin;
 import com.parzivail.pswm.worldgen.GeneratorEndorTree;
 import com.parzivail.util.Util;
 import com.parzivail.util.math.HaltonSequence;
-import com.parzivail.util.math.MathUtils;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -40,19 +39,18 @@ public class BiomeYavin extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		if (MathUtils.oneIn(3))
+		for (int i = 0; i < 4; i++)
 		{
 			haltonSequence.increment();
 			int k = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
 			int l = (int)(haltonSequence.mCurrentPos.getZ() * 16) + 8;
 			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-			//			trees.setDecorationDefaults();
-			//
-			//			if (trees.generate(worldIn, rand, blockpos))
-			//			{
-			//				trees.generateSaplings(worldIn, rand, blockpos);
-			//			}
-			endorTree.generate(worldIn, rand, blockpos);
+			trees.setDecorationDefaults();
+
+			if (trees.generate(worldIn, rand, blockpos))
+			{
+				trees.generateSaplings(worldIn, rand, blockpos);
+			}
 		}
 
 		for (int i = 0; i < 8; i++)

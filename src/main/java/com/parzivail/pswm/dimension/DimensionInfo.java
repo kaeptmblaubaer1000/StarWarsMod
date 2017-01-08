@@ -2,6 +2,8 @@ package com.parzivail.pswm.dimension;
 
 import com.parzivail.pswm.dimension.dagobah.BiomeDagobah;
 import com.parzivail.pswm.dimension.dagobah.WorldProviderDagobah;
+import com.parzivail.pswm.dimension.endor.BiomeEndor;
+import com.parzivail.pswm.dimension.endor.WorldProviderEndor;
 import com.parzivail.pswm.dimension.hoth.BiomeHoth;
 import com.parzivail.pswm.dimension.hoth.WorldProviderHoth;
 import com.parzivail.pswm.dimension.ilum.BiomeIlum;
@@ -12,6 +14,7 @@ import com.parzivail.pswm.dimension.yavin.BiomeYavin;
 import com.parzivail.pswm.dimension.yavin.WorldProviderYavin;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
@@ -42,6 +45,9 @@ public class DimensionInfo
 	public static int yavinId = 24;
 	public static Biome biomeYavin;
 	public static DimensionType yavinDimension;
+	public static int endorId = 25;
+	public static Biome biomeEndor;
+	public static DimensionType endorDimension;
 
 	public static void register()
 	{
@@ -50,24 +56,28 @@ public class DimensionInfo
 		hothDimension = DimensionType.register("Hoth", "_hoth", hothId, WorldProviderHoth.class, false);
 		ilumDimension = DimensionType.register("Ilum", "_ilum", ilumId, WorldProviderIlum.class, false);
 		yavinDimension = DimensionType.register("Yavin 4", "_yavin", yavinId, WorldProviderYavin.class, false);
+		endorDimension = DimensionType.register("Forest Moon of Endor", "_endor", endorId, WorldProviderEndor.class, false);
 
 		biomeTatooine = new BiomeTatooine();
 		biomeDagobah = new BiomeDagobah();
 		biomeHoth = new BiomeHoth();
 		biomeIlum = new BiomeIlum();
 		biomeYavin = new BiomeYavin();
+		biomeEndor = new BiomeEndor();
 
 		DimensionManager.registerDimension(tatooineId, tatooineDimension);
 		DimensionManager.registerDimension(dagobahId, dagobahDimension);
 		DimensionManager.registerDimension(hothId, hothDimension);
 		DimensionManager.registerDimension(ilumId, ilumDimension);
 		DimensionManager.registerDimension(yavinId, yavinDimension);
+		DimensionManager.registerDimension(endorId, endorDimension);
 
 		GameRegistry.register(biomeTatooine);
 		GameRegistry.register(biomeDagobah);
 		GameRegistry.register(biomeHoth);
 		GameRegistry.register(biomeIlum);
 		GameRegistry.register(biomeYavin);
+		GameRegistry.register(biomeEndor);
 
 		Lumberjack.log("[DIMS] Prepare to orbit the planet Yavin.");
 	}
@@ -81,13 +91,13 @@ public class DimensionInfo
 	public static void transferPlayerToDimension(EntityPlayerMP player, int dimensionIn, net.minecraft.world.Teleporter teleporter)
 	{
 		player.mcServer.getPlayerList().transferPlayerToDimension(player, dimensionIn, teleporter);
-		Tuple<Vector3d, Vector2f> pos = placePlayer(dimensionIn);
+		Tuple<Vector3d, Vector2f> pos = placePlayer(player.mcServer, dimensionIn);
 		player.connection.setPlayerLocation(pos.getFirst().x, pos.getFirst().y, pos.getFirst().z, pos.getSecond().x, pos.getSecond().y);
 	}
 
-	public static Tuple<Vector3d, Vector2f> placePlayer(int dimension)
+	public static Tuple<Vector3d, Vector2f> placePlayer(MinecraftServer mcServer, int dimension)
 	{
 		// TODO: spawns per planet
-		return new Tuple<>(new Vector3d(0, 10, 0), new Vector2f(0, 0));
+		return new Tuple<>(new Vector3d(0, mcServer.worldServerForDimension(dimension).getHeight(0, 0), 0), new Vector2f(0, 0));
 	}
 }

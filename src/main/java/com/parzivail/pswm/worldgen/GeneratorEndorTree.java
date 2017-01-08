@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -58,25 +59,26 @@ public class GeneratorEndorTree
 	public void generateLeafLayer(World world, Random rand, BlockPos pos, int leafLayerNum)
 	{
 		//Repeat in intervals of 6, 2 small radius, 4 large
-		int index = leafLayerNum % 7;
+		int index = leafLayerNum % 5;
 		int leavesRadius;
 
 		//Alternate between a smaller radius and a larger radius
-		if (index < 2)
-			leavesRadius = 3;
-		else
-			leavesRadius = 5;
+		//		if (index < 2)
+		//			leavesRadius = 3;
+		//		else
+		//			leavesRadius = 5;
+		leavesRadius = index + 2;
 
 		//This may break for larger radii however it will do for this purpose
-		double increment = 0.05D;
+		double increment = 0.1D;
 
 		for (int radius = leavesRadius; radius >= 0; radius--)
 		{
 			for (double angle = 0.0F; angle <= Math.PI * 2; angle += increment)
 			{
-				BlockPos leavesPos = pos.add(Math.round(radius * Math.cos(angle)), 0, Math.round(radius * Math.sin(angle)));
+				BlockPos leavesPos = pos.add(Math.round(radius * MathHelper.cos((float)angle)), 0, Math.round(radius * MathHelper.sin((float)angle)));
 
-				if (radius < leavesRadius || index < 2 || rand.nextInt(4) == 0)
+				if (radius < leavesRadius && !MathUtils.oneIn(2))
 					this.setLeaves(world, leavesPos);
 			}
 		}
@@ -84,18 +86,11 @@ public class GeneratorEndorTree
 
 	public boolean generate(World world, Random random, BlockPos pos)
 	{
-		// Move down until we reach the ground
-		while (pos.getY() > 1 && world.isAirBlock(pos) || world.getBlockState(pos).getBlock().isLeaves(world.getBlockState(pos), world, pos))
-		{
-			pos = pos.down();
-		}
+		if (!world.getBlockState(pos.down()).isSideSolid(world, pos.down(), EnumFacing.UP))
+			return false;
 
 		// Choose heights
 		int height = MathUtils.randomRange(this.minHeight, this.maxHeight);
-		if (height < 20)
-		{
-			return false;
-		}
 
 		// Move up to space above ground
 		pos = pos.up();
@@ -117,7 +112,8 @@ public class GeneratorEndorTree
 		this.generateTrunk(world, random, pos, height - 1);
 
 		//Generate the layers of leaves
-		for (int i = 0; i < trunkHeight * 0.75F; i++)
+		int max = (int)(trunkHeight * 0.75);
+		for (int i = 0; i < max; i++)
 		{
 			this.generateLeafLayer(world, random, pos.up(height - i), i);
 		}
