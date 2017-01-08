@@ -1,8 +1,11 @@
 package com.parzivail.pswm.dimension.yavin;
 
+import com.parzivail.pswm.worldgen.GeneratorEndorTree;
 import com.parzivail.util.Util;
 import com.parzivail.util.math.HaltonSequence;
-import net.minecraft.block.BlockTallGrass;
+import com.parzivail.util.math.MathUtils;
+import net.minecraft.block.*;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,6 +25,11 @@ public class BiomeYavin extends Biome
 	HaltonSequence haltonSequence = new HaltonSequence();
 	public WorldGenerator tallgrassGen = new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
 
+	private static final IBlockState JUNGLE_LOG = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE);
+	private static final IBlockState JUNGLE_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.DECAYABLE, false);
+
+	GeneratorEndorTree endorTree = new GeneratorEndorTree(JUNGLE_LOG, JUNGLE_LEAF, 40, 50);
+
 	public BiomeYavin()
 	{
 		super(new BiomeProperties("Yavin 4").setBaseBiome("yavin").setRainfall(0.5f).setTemperature(1));
@@ -32,18 +40,19 @@ public class BiomeYavin extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		for (int i = 0; i < 4; i++)
+		if (MathUtils.oneIn(3))
 		{
 			haltonSequence.increment();
-			int k = (int)(haltonSequence.mCurrentPos.getX() * 16);
-			int l = (int)(haltonSequence.mCurrentPos.getZ() * 16);
+			int k = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
+			int l = (int)(haltonSequence.mCurrentPos.getZ() * 16) + 8;
 			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-			trees.setDecorationDefaults();
-
-			if (trees.generate(worldIn, rand, blockpos))
-			{
-				trees.generateSaplings(worldIn, rand, blockpos);
-			}
+			//			trees.setDecorationDefaults();
+			//
+			//			if (trees.generate(worldIn, rand, blockpos))
+			//			{
+			//				trees.generateSaplings(worldIn, rand, blockpos);
+			//			}
+			endorTree.generate(worldIn, rand, blockpos);
 		}
 
 		for (int i = 0; i < 8; i++)
