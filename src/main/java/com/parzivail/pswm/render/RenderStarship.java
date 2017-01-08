@@ -30,14 +30,14 @@ public class RenderStarship extends Render<Pilotable>
 		bindEntityTexture(pilotable);
 		GL11.glPushMatrix();
 		GL11.glTranslated(d, d1, d2);
-		float dYaw = MathHelper.wrapDegrees(pilotable.axes.getYaw() - pilotable.prevRotationYaw);
-		float dPitch = MathHelper.wrapDegrees(pilotable.axes.getPitch() - pilotable.prevRotationPitch);
-		float dRoll = MathHelper.wrapDegrees(pilotable.axes.getRoll() - pilotable.prevRotationRoll);
-		GL11.glRotatef(180F - pilotable.prevRotationYaw - dYaw * f1, 0.0F, 1.0F, 0.0F);
-		GL11.glRotatef(pilotable.prevRotationPitch + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
-		GL11.glRotatef(-(pilotable.prevRotationRoll + dRoll * f1), 1.0F, 0.0F, 0.0F);
+		float dYaw = MathHelper.wrapDegrees(pilotable.axes.getYaw() - pilotable.prevAxes.getYaw());
+		float dPitch = MathHelper.wrapDegrees(pilotable.axes.getPitch() - pilotable.prevAxes.getPitch());
+		float dRoll = MathHelper.wrapDegrees(pilotable.axes.getRoll() - pilotable.prevAxes.getRoll());
+		GL11.glRotatef(180F - pilotable.prevAxes.getYaw() - dYaw * f1, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(pilotable.prevAxes.getPitch() + dPitch * f1 + 180, 0.0F, 0.0F, 1.0F);
+		GL11.glRotatef(-(pilotable.prevAxes.getRoll() + dRoll * f1), 1.0F, 0.0F, 0.0F);
 		if (PSWM.mc.player.getRidingEntity() == pilotable)
-			GFX.changeCameraRoll(-(pilotable.prevRotationRoll + dRoll * f1));
+			GFX.changeCameraRoll(-(pilotable.prevAxes.getRoll() + dRoll * f1));
 
 		if (PSWM.mc.player.getRidingEntity() != pilotable || PSWM.mc.gameSettings.thirdPersonView != 0)
 		{

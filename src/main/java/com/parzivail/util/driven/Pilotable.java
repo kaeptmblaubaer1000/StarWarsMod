@@ -214,26 +214,19 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			serverRoll = roll;
 			serverPositionTransitionTicker = 5;
 		}
-		else
-		{
-			setPosition(x, y, z);
-			prevRotationYaw = yaw;
-			prevRotationPitch = pitch;
-			prevRotationRoll = roll;
-			setRotation(yaw, pitch, roll);
-		}
+
+		setPosition(x, y, z);
+		prevRotationYaw = yaw;
+		prevRotationPitch = pitch;
+		prevRotationRoll = roll;
+		setRotation(yaw, pitch, roll);
+
 		//Set the motions regardless of side.
 		motionX = motX;
 		motionY = motY;
 		motionZ = motZ;
 		angularVelocity = new Vector3f(velYaw, velPitch, velRoll);
 		throttle = throt;
-	}
-
-	@Override
-	public void setPositionAndRotation(double x, double y, double z, float yaw, float pitch)
-	{
-
 	}
 
 	@Override
@@ -471,10 +464,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public Entity getControllingPassenger()
 	{
-		return null;
-		//		if (this.getPassengers().isEmpty())
-		//			return null;
-		//		return this.getPassengers().get(0);
+		return getInternalControllingPassenger();
 	}
 
 	public Entity getInternalControllingPassenger()
