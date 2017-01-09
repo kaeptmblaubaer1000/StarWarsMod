@@ -26,9 +26,21 @@ public class BiomeDagobah extends Biome
 
 	public BiomeDagobah()
 	{
-		super(new BiomeProperties("Dagobah").setBaseBiome("dagobah").setRainfall(1).setTemperature(1));
+		super(new BiomeProperties("Dagobah").setBaseBiome("dagobah").setRainfall(1).setTemperature(1).setWaterColor(0x000000));
 		this.setRegistryName(Util.modcolon(this.getBiomeName().toLowerCase()));
 		haltonSequence.reset();
+	}
+
+	@Override
+	public int getModdedBiomeFoliageColor(int original)
+	{
+		return getModdedBiomeGrassColor(original);
+	}
+
+	@Override
+	public int getModdedBiomeGrassColor(int original)
+	{
+		return 0x002900;
 	}
 
 	@Override

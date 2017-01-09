@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -32,9 +34,21 @@ public class BiomeEndor extends Biome
 
 	public BiomeEndor()
 	{
-		super(new BiomeProperties("Forest Moon of Endor").setBaseBiome("endor").setRainfall(0.5f).setTemperature(1));
+		super(new BiomeProperties("Forest Moon of Endor").setBaseBiome("endor").setRainfall(0.5f).setTemperature(1).setWaterColor(0x000018));
 		this.setRegistryName(Util.modcolon(this.getBiomeName().toLowerCase()));
 		haltonSequence.reset();
+	}
+
+	@SideOnly(Side.CLIENT)
+	public int getGrassColorAtPos(BlockPos pos)
+	{
+		return 6975545;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public int getFoliageColorAtPos(BlockPos pos)
+	{
+		return 6975545;
 	}
 
 	@Override

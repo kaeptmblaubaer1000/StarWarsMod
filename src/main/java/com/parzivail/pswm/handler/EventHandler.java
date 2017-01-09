@@ -1,6 +1,7 @@
 package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.Pilotable;
@@ -62,6 +63,31 @@ public class EventHandler
 			}
 			else
 				PSWM.mc.setRenderViewEntity(PSWM.mc.player);
+		}
+	}
+
+	@SubscribeEvent
+	public void onFogDensityQuery(EntityViewRenderEvent.FogDensity event)
+	{
+		if (PSWM.mc.player.dimension == DimensionInfo.dagobahId)
+		{
+			event.setDensity(0.1f);
+			if (event.isCancelable())
+				event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
+	public void onFogColorQuery(EntityViewRenderEvent.FogColors event)
+	{
+		if (PSWM.mc.player.dimension == DimensionInfo.dagobahId)
+		{
+			float n = 0.4f;
+			event.setRed(n);
+			event.setGreen(n + 0.02f);
+			event.setBlue(n + 0.05f);
+			if (event.isCancelable())
+				event.setCanceled(true);
 		}
 	}
 
