@@ -101,7 +101,7 @@ public class DimensionInfo
 	public static Tuple<Vector3d, Vector2f> placePlayer(MinecraftServer mcServer, int dimension)
 	{
 		// TODO: spawns per planet
-		return new Tuple<>(new Vector3d(0, getHeight(mcServer.worldServerForDimension(dimension), 0, 0), 0), new Vector2f(0, 0));
+		return new Tuple<>(new Vector3d(0, getHeight(mcServer.worldServerForDimension(dimension), 0, 0) + 1, 0), new Vector2f(0, 0));
 	}
 
 	private static double getHeight(WorldServer worldServer, int x, int z)
