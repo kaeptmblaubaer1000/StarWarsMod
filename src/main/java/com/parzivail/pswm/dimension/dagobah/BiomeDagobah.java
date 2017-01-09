@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension.dagobah;
 
+import com.parzivail.pswm.worldgen.GeneratorMangroveTree;
 import com.parzivail.util.Util;
 import com.parzivail.util.math.HaltonSequence;
 import net.minecraft.block.BlockTallGrass;
@@ -23,6 +24,7 @@ public class BiomeDagobah extends Biome
 	HaltonSequence haltonSequence = new HaltonSequence();
 	public WorldGenerator waterlilyGen = new WorldGenWaterlily();
 	public WorldGenerator tallgrassGen = new WorldGenTallGrass(BlockTallGrass.EnumType.GRASS);
+	GeneratorMangroveTree mangroveTree = new GeneratorMangroveTree(Blocks.LOG.getDefaultState(), Blocks.LEAVES.getDefaultState(), 7, 10);
 
 	public BiomeDagobah()
 	{
@@ -54,9 +56,14 @@ public class BiomeDagobah extends Biome
 			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
 			trees.setDecorationDefaults();
 
-			if (trees.generate(worldIn, rand, blockpos))
+			switch (rand.nextInt(2))
 			{
-				trees.generateSaplings(worldIn, rand, blockpos);
+				case 0:
+					trees.generate(worldIn, rand, blockpos);
+					break;
+				case 1:
+					mangroveTree.generate(worldIn, rand, blockpos);
+					break;
 			}
 		}
 
