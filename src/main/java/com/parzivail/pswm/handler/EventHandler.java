@@ -9,6 +9,7 @@ import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -66,14 +67,14 @@ public class EventHandler
 		}
 	}
 
-	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public void onFogDensityQuery(EntityViewRenderEvent.FogDensity event)
 	{
 		if (PSWM.mc.player.dimension == DimensionInfo.dagobahId)
 		{
 			event.setDensity(0.1f);
-			if (event.isCancelable())
-				event.setCanceled(true);
+			event.setCanceled(true);
 		}
 	}
 
@@ -86,8 +87,6 @@ public class EventHandler
 			event.setRed(n);
 			event.setGreen(n + 0.02f);
 			event.setBlue(n + 0.05f);
-			if (event.isCancelable())
-				event.setCanceled(true);
 		}
 	}
 
