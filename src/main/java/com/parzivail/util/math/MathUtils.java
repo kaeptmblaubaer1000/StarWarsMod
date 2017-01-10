@@ -15,6 +15,9 @@ public class MathUtils
 		_rand = new Random();
 	}
 
+	public static final double TWO_PI = Math.PI * 2;
+	public static final double TWO_PI_OVER_EIGHT = TWO_PI / 8;
+
 	/**
 	 * Gets a random value from an array
 	 *

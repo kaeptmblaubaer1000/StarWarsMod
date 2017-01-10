@@ -8,6 +8,8 @@ import com.parzivail.pswm.dimension.hoth.BiomeHoth;
 import com.parzivail.pswm.dimension.hoth.WorldProviderHoth;
 import com.parzivail.pswm.dimension.ilum.BiomeIlum;
 import com.parzivail.pswm.dimension.ilum.WorldProviderIlum;
+import com.parzivail.pswm.dimension.scarif.BiomeScarif;
+import com.parzivail.pswm.dimension.scarif.WorldProviderScarif;
 import com.parzivail.pswm.dimension.tatooine.BiomeTatooine;
 import com.parzivail.pswm.dimension.tatooine.WorldProviderTatooine;
 import com.parzivail.pswm.dimension.yavin.BiomeYavin;
@@ -51,6 +53,9 @@ public class DimensionInfo
 	public static int endorId = 25;
 	public static Biome biomeEndor;
 	public static DimensionType endorDimension;
+	public static int scarifId = 26;
+	public static Biome biomeScarif;
+	public static DimensionType scarifDimension;
 
 	public static void register()
 	{
@@ -60,6 +65,7 @@ public class DimensionInfo
 		ilumDimension = DimensionType.register("Ilum", "_ilum", ilumId, WorldProviderIlum.class, false);
 		yavinDimension = DimensionType.register("Yavin 4", "_yavin", yavinId, WorldProviderYavin.class, false);
 		endorDimension = DimensionType.register("Forest Moon of Endor", "_endor", endorId, WorldProviderEndor.class, false);
+		scarifDimension = DimensionType.register("Scarif", "_scarif", scarifId, WorldProviderScarif.class, false);
 
 		biomeTatooine = new BiomeTatooine();
 		biomeDagobah = new BiomeDagobah();
@@ -67,13 +73,14 @@ public class DimensionInfo
 		biomeIlum = new BiomeIlum();
 		biomeYavin = new BiomeYavin();
 		biomeEndor = new BiomeEndor();
+		biomeScarif = new BiomeScarif();
 
 		DimensionManager.registerDimension(tatooineId, tatooineDimension);
 		DimensionManager.registerDimension(dagobahId, dagobahDimension);
 		DimensionManager.registerDimension(hothId, hothDimension);
 		DimensionManager.registerDimension(ilumId, ilumDimension);
 		DimensionManager.registerDimension(yavinId, yavinDimension);
-		DimensionManager.registerDimension(endorId, endorDimension);
+		DimensionManager.registerDimension(scarifId, scarifDimension);
 
 		GameRegistry.register(biomeTatooine);
 		GameRegistry.register(biomeDagobah);
@@ -81,6 +88,7 @@ public class DimensionInfo
 		GameRegistry.register(biomeIlum);
 		GameRegistry.register(biomeYavin);
 		GameRegistry.register(biomeEndor);
+		GameRegistry.register(biomeScarif);
 
 		Lumberjack.log("[DIMS] Prepare to orbit the planet Yavin.");
 	}
