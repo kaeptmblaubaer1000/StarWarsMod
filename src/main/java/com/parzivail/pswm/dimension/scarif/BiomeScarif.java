@@ -1,8 +1,10 @@
 package com.parzivail.pswm.dimension.scarif;
 
+import com.parzivail.pswm.worldgen.GeneratorBigBush;
 import com.parzivail.pswm.worldgen.GeneratorPalmTree;
 import com.parzivail.util.Util;
 import com.parzivail.util.math.HaltonSequence;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
@@ -21,7 +23,8 @@ public class BiomeScarif extends Biome
 {
 	HaltonSequence haltonSequence = new HaltonSequence();
 	private static final IBlockState JUNGLE_LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE).withProperty(BlockLeaves.DECAYABLE, false);
-	GeneratorPalmTree palmTree = new GeneratorPalmTree(Blocks.LOG.getDefaultState(), JUNGLE_LEAF, 7, 12);
+	GeneratorPalmTree palmTree = new GeneratorPalmTree(Blocks.LOG.getDefaultState(), JUNGLE_LEAF, 10, 17);
+	GeneratorBigBush bigBush = new GeneratorBigBush(JUNGLE_LEAF, 3, 5);
 
 	public BiomeScarif()
 	{
@@ -45,7 +48,7 @@ public class BiomeScarif extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < rand.nextInt(4); i++)
 		{
 			haltonSequence.increment();
 			int k = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
@@ -53,6 +56,16 @@ public class BiomeScarif extends Biome
 			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
 
 			palmTree.generate(worldIn, rand, blockpos);
+		}
+
+		for (int i = 0; i < MathUtils.randomRange(8, 15); i++)
+		{
+			haltonSequence.increment();
+			int k = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
+			int l = (int)(haltonSequence.mCurrentPos.getZ() * 16) + 8;
+			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
+
+			bigBush.generate(worldIn, rand, blockpos);
 		}
 	}
 }
