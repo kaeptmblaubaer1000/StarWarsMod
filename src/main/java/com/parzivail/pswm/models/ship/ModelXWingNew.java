@@ -6,6 +6,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -721,11 +722,17 @@ public class ModelXWingNew extends ModelBase
 			GL11.glTranslatef(-this.MainParent.offsetX, -this.MainParent.offsetY, -this.MainParent.offsetZ);
 			GL11.glTranslatef(-this.MainParent.rotationPointX * f5, -this.MainParent.rotationPointY * f5, -this.MainParent.rotationPointZ * f5);*/
 
-			// TODO
-			//			this.WingLTopParent.rotateAngleZ = 0.314159f * xwing.getSFoil();
-			//			this.WingLBottomParent.rotateAngleZ = -0.314159f * xwing.getSFoil();
-			//			this.WingRTopParent.rotateAngleZ = -0.314159f * xwing.getSFoil();
-			//			this.WingRBottomParent.rotateAngleZ = 0.314159f * xwing.getSFoil();
+			if (xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent < 1)
+				xwing.sFoilPercent += 0.05f * f4;
+			if (!xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent > 0)
+				xwing.sFoilPercent -= 0.05f * f4;
+
+			xwing.sFoilPercent = MathHelper.clamp(xwing.sFoilPercent, 0, 1);
+
+			this.WingLTopParent.rotateAngleZ = xwing.sFoilOpenAngle * xwing.sFoilPercent;
+			this.WingLBottomParent.rotateAngleZ = -xwing.sFoilOpenAngle * xwing.sFoilPercent;
+			this.WingRTopParent.rotateAngleZ = -xwing.sFoilOpenAngle * xwing.sFoilPercent;
+			this.WingRBottomParent.rotateAngleZ = xwing.sFoilOpenAngle * xwing.sFoilPercent;
 
 			boolean flag = this.Gear1.isHidden = entity.world.isAirBlock(new BlockPos((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ));
 			this.Gear1.isHidden = flag;

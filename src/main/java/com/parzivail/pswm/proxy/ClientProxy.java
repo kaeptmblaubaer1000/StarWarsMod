@@ -39,7 +39,7 @@ public class ClientProxy extends CommonProxy
 		com.parzivail.util.loader.OBJLoader.INSTANCE.addDomain(Resources.MODID);
 		//		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("luke"), "inventory"));
 
-		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, manager -> new RenderXWing(manager));
+		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, RenderXWing::new);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public boolean isThePlayer(EntityPlayer entityPlayer)
 	{
-		if (entityPlayer == null)
+		if (entityPlayer == null || PSWM.mc == null || PSWM.mc.player == null)
 			return false;
 		return entityPlayer.getEntityId() == PSWM.mc.player.getEntityId();
 	}
