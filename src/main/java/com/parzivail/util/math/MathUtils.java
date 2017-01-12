@@ -195,4 +195,9 @@ public class MathUtils
 	{
 		return Math.abs((float)Math.toDegrees(Vector3f.angle(new Vector3f(v1), v2)));
 	}
+
+	public static float getPartialTicksFromAge(float age)
+	{
+		return (float)(age - Math.floor(age));
+	}
 }

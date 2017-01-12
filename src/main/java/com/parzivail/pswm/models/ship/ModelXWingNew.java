@@ -2,6 +2,7 @@ package com.parzivail.pswm.models.ship;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.vehicle.VehicXWing;
+import com.parzivail.util.math.MathUtils;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -722,10 +723,12 @@ public class ModelXWingNew extends ModelBase
 			GL11.glTranslatef(-this.MainParent.offsetX, -this.MainParent.offsetY, -this.MainParent.offsetZ);
 			GL11.glTranslatef(-this.MainParent.rotationPointX * f5, -this.MainParent.rotationPointY * f5, -this.MainParent.rotationPointZ * f5);*/
 
+			float pt = MathUtils.getPartialTicksFromAge(f2);
+
 			if (xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent < 1)
-				xwing.sFoilPercent += 0.05f * f4;
+				xwing.sFoilPercent += 0.5f * pt;
 			if (!xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent > 0)
-				xwing.sFoilPercent -= 0.05f * f4;
+				xwing.sFoilPercent -= 0.5f * pt;
 
 			xwing.sFoilPercent = MathHelper.clamp(xwing.sFoilPercent, 0, 1);
 
