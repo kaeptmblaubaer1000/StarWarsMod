@@ -3,8 +3,12 @@ package com.parzivail.pswm.proxy;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.pswm.render.RenderTIE;
+import com.parzivail.pswm.render.RenderTIEStriker;
 import com.parzivail.pswm.render.RenderUWing;
 import com.parzivail.pswm.render.RenderXWing;
+import com.parzivail.pswm.vehicle.VehicTIE;
+import com.parzivail.pswm.vehicle.VehicTIEStriker;
 import com.parzivail.pswm.vehicle.VehicUWing;
 import com.parzivail.pswm.vehicle.VehicXWing;
 import com.parzivail.util.Util;
@@ -43,6 +47,8 @@ public class ClientProxy extends CommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, RenderXWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicUWing.class, RenderUWing::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEStriker.class, RenderTIEStriker::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, RenderTIE::new);
 	}
 
 	@Override

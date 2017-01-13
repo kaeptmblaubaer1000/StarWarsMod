@@ -9,4 +9,6 @@ public class PItems
 {
 	public static Item spawnXwing;
 	public static Item spawnUwing;
+	public static Item spawnTIEStriker;
+	public static Item spawnTIE;
 }

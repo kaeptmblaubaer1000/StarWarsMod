@@ -10,6 +10,8 @@ import com.parzivail.pswm.network.MessageTeleportPlayer;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.CreativeTabRegister;
 import com.parzivail.pswm.registry.ItemRegister;
+import com.parzivail.pswm.vehicle.VehicTIE;
+import com.parzivail.pswm.vehicle.VehicTIEStriker;
 import com.parzivail.pswm.vehicle.VehicUWing;
 import com.parzivail.pswm.vehicle.VehicXWing;
 import com.parzivail.util.EntityUtils;
@@ -51,6 +53,8 @@ public class CommonProxy
 	{
 		EntityUtils.registerEntity(VehicXWing.class, "xwing");
 		EntityUtils.registerEntity(VehicUWing.class, "uwing");
+		EntityUtils.registerEntity(VehicTIEStriker.class, "tiestriker");
+		EntityUtils.registerEntity(VehicTIE.class, "tie");
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 
