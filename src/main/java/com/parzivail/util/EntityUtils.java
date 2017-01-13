@@ -4,7 +4,6 @@ import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -160,11 +159,9 @@ public class EntityUtils
 	 */
 	public static void registerEntity(Class<? extends Entity> entityClass, String mobName)
 	{
-		while (EntityList.getClassFromID(mobId) != null)
-			while (EntityList.getClassFromID(mobId) != null)
-				mobId += 1;
 		EntityRegistry.registerModEntity(new ResourceLocation(Resources.MODID, mobName), entityClass, mobName, mobId, PSWM.instance, 80, 20, true);
 		Lumberjack.debug("Registered entity \"" + mobName + "\" as ID " + String.valueOf(mobId));
+		mobId++;
 	}
 
 	/**
@@ -177,9 +174,8 @@ public class EntityUtils
 	 */
 	public static void registerWithSpawnEgg(Class<? extends Entity> mobClass, String mobName, int bgColor, int fgColor)
 	{
-		while (EntityList.getClassFromID(mobId) != null)
-			mobId += 1;
 		EntityRegistry.registerModEntity(new ResourceLocation(Resources.MODID, mobName), mobClass, mobName, mobId, PSWM.instance, 80, 20, true, bgColor, fgColor);
 		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + String.valueOf(mobId));
+		mobId++;
 	}
 }

@@ -8,4 +8,5 @@ import net.minecraft.item.Item;
 public class PItems
 {
 	public static Item spawnXwing;
+	public static Item spawnUwing;
 }

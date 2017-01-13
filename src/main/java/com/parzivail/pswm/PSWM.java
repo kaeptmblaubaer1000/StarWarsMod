@@ -53,13 +53,13 @@ public class PSWM
 		script.add("(Red Leader): All wings report in.");
 		script.add("(Red Squadron): Standing by.");
 		script.add("(Red Leader): Lock S-foils in attack position.");
-		script.add("(Red Leader): We'reset passing through their magnetic field. Hold tight! Switch your deflectors on Double-Front.");
+		script.add("(Red Leader): We're passing through their magnetic field. Hold tight! Switch your deflectors on Double-Front.");
 		script.add("(Wedge): Look at the size of that thing!");
 		script.add("(Red Leader): Cut the chatter, Red Two. Accelerate to attack speed. This is it, boys!");
 		script.add("(Gold Leader): Red Leader, this is Gold Leader.");
 		script.add("(Red Leader): I copy, Gold Leader.");
-		script.add("(Gold Leader): We'reset starting for the target shaft now.");
-		script.add("(Red Leader): We'reset in position. I'm going to cut across the axis and try and draw their fire.");
+		script.add("(Gold Leader): We're starting for the target shaft now.");
+		script.add("(Red Leader): We're in position. I'm going to cut across the axis and try and draw their fire.");
 
 		return script.toArray(new String[script.size()]);
 	}

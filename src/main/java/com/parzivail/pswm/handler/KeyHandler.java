@@ -2,6 +2,7 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.pswm.vehicle.VehicUWing;
 import com.parzivail.pswm.vehicle.VehicXWing;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
@@ -22,6 +23,11 @@ public class KeyHandler
 			{
 				VehicXWing xWing = (VehicXWing)PSWM.mc.player.getRidingEntity();
 				xWing.getDataManager().set(VehicXWing.S_FOILS_OPEN, !xWing.getDataManager().get(VehicXWing.S_FOILS_OPEN));
+			}
+			else if (PSWM.mc.player.getRidingEntity() instanceof VehicUWing)
+			{
+				VehicUWing uWing = (VehicUWing)PSWM.mc.player.getRidingEntity();
+				uWing.getDataManager().set(VehicUWing.S_FOILS_OPEN, !uWing.getDataManager().get(VehicUWing.S_FOILS_OPEN));
 			}
 		}
 	}

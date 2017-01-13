@@ -723,7 +723,7 @@ public class ModelXWingNew extends ModelBase
 			GL11.glTranslatef(-this.MainParent.offsetX, -this.MainParent.offsetY, -this.MainParent.offsetZ);
 			GL11.glTranslatef(-this.MainParent.rotationPointX * f5, -this.MainParent.rotationPointY * f5, -this.MainParent.rotationPointZ * f5);*/
 
-			float pt = MathUtils.getPartialTicksFromAge(f2);
+			float pt = MathUtils.frac(f2);
 
 			if (xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent < 1)
 				xwing.sFoilPercent += 0.5f * pt;

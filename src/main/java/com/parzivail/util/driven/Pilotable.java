@@ -275,6 +275,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	{
 		super.onUpdate();
 
+		this.ticksExisted++;
+
 		if (this.world.isRemote)
 			KeyHandler.handleVehicleMovement();
 

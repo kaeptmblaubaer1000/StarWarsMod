@@ -3,7 +3,9 @@ package com.parzivail.pswm.proxy;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.pswm.render.RenderUWing;
 import com.parzivail.pswm.render.RenderXWing;
+import com.parzivail.pswm.vehicle.VehicUWing;
 import com.parzivail.pswm.vehicle.VehicXWing;
 import com.parzivail.util.Util;
 import com.parzivail.util.basic.Variants;
@@ -40,6 +42,7 @@ public class ClientProxy extends CommonProxy
 		//		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("luke"), "inventory"));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, RenderXWing::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicUWing.class, RenderUWing::new);
 	}
 
 	@Override
