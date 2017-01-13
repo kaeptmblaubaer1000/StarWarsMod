@@ -17,4 +17,12 @@ public class VehicUWing extends PilotableSFoils
 	{
 		super(world, i, j, k, (float)Math.toRadians(120), 20);
 	}
+
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+		this.data.cameraDistance = 20;
+	}
 }

@@ -71,4 +71,9 @@ public class PilotableSFoils extends Pilotable
 
 		this.sFoilOpenAngle = MathHelper.clamp(this.sFoilOpenAngle, 0, sFoilOpenMaxAngle);
 	}
+
+	public float getsFoilAngle(float partialTicks)
+	{
+		return MathHelper.clamp(sFoilOpenAngle + (sFoilOpenMaxAngle / sFoilOpenTicks) * partialTicks * sFoilDirection, 0, sFoilOpenMaxAngle);
+	}
 }

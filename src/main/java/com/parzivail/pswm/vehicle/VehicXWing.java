@@ -10,11 +10,11 @@ public class VehicXWing extends PilotableSFoils
 {
 	public VehicXWing(World world)
 	{
-		super(world, (float)Math.toRadians(18), 20);
+		super(world, (float)Math.toRadians(10), 20);
 	}
 
 	public VehicXWing(World world, double i, double j, double k)
 	{
-		super(world, i, j, k, (float)Math.toRadians(120), 20);
+		super(world, i, j, k, (float)Math.toRadians(10), 20);
 	}
 }

@@ -2,12 +2,10 @@ package com.parzivail.pswm.models.ship;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.vehicle.VehicXWing;
-import com.parzivail.util.math.MathUtils;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -710,7 +708,7 @@ public class ModelXWingNew extends ModelBase
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void render(Entity entity, float f, float f1, float f2, float f3, float pt, float f5)
 	{
 		GL11.glPushMatrix();
 		if (entity instanceof VehicXWing)
@@ -723,19 +721,10 @@ public class ModelXWingNew extends ModelBase
 			GL11.glTranslatef(-this.MainParent.offsetX, -this.MainParent.offsetY, -this.MainParent.offsetZ);
 			GL11.glTranslatef(-this.MainParent.rotationPointX * f5, -this.MainParent.rotationPointY * f5, -this.MainParent.rotationPointZ * f5);*/
 
-			float pt = MathUtils.frac(f2);
-
-			if (xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent < 1)
-				xwing.sFoilPercent += 0.5f * pt;
-			if (!xwing.getDataManager().get(VehicXWing.S_FOILS_OPEN) && xwing.sFoilPercent > 0)
-				xwing.sFoilPercent -= 0.5f * pt;
-
-			xwing.sFoilPercent = MathHelper.clamp(xwing.sFoilPercent, 0, 1);
-
-			this.WingLTopParent.rotateAngleZ = xwing.sFoilOpenAngle * xwing.sFoilPercent;
-			this.WingLBottomParent.rotateAngleZ = -xwing.sFoilOpenAngle * xwing.sFoilPercent;
-			this.WingRTopParent.rotateAngleZ = -xwing.sFoilOpenAngle * xwing.sFoilPercent;
-			this.WingRBottomParent.rotateAngleZ = xwing.sFoilOpenAngle * xwing.sFoilPercent;
+			this.WingLTopParent.rotateAngleZ = xwing.getsFoilAngle(pt);
+			this.WingLBottomParent.rotateAngleZ = -xwing.getsFoilAngle(pt);
+			this.WingRTopParent.rotateAngleZ = -xwing.getsFoilAngle(pt);
+			this.WingRBottomParent.rotateAngleZ = xwing.getsFoilAngle(pt);
 
 			boolean flag = this.Gear1.isHidden = entity.world.isAirBlock(new BlockPos((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ));
 			this.Gear1.isHidden = flag;
