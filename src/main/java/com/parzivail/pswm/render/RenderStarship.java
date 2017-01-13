@@ -47,7 +47,7 @@ public class RenderStarship extends Render<Pilotable>
 			{
 				GL11.glRotatef(-90, 0, 1, 0);
 				GL11.glTranslatef(0, -0.85f, 0);
-				model.render(pilotable, (float)d, (float)d1, (float)d2, f, f1, 0.0625f);
+				model.render(pilotable, (float)d, (float)d1, (float)d2, f, f1, 1 / 16f);
 			}
 		}
 

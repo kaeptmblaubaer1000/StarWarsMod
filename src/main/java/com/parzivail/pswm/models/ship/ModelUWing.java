@@ -562,15 +562,15 @@ public class ModelUWing extends ModelBase
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void render(Entity entity, float f, float f1, float f2, float f3, float pt, float f5)
 	{
 		GL11.glPushMatrix();
 		if (entity instanceof VehicUWing)
 		{
 			VehicUWing uWing = (VehicUWing)entity;
 
-			this.WingLParent.rotateAngleY = -uWing.sFoilOpenAngle;
-			this.WingRParent.rotateAngleY = -uWing.sFoilOpenAngle;
+			this.WingLParent.rotateAngleY = -uWing.sFoilOpenAngle + (uWing.sFoilOpenMaxAngle / uWing.sFoilOpenTicks) * pt * -uWing.sFoilDirection;
+			this.WingRParent.rotateAngleY = -uWing.sFoilOpenAngle + (uWing.sFoilOpenMaxAngle / uWing.sFoilOpenTicks) * pt * -uWing.sFoilDirection;
 		}
 		this.BodyMainParent.render(f5);
 		GL11.glPopMatrix();
