@@ -2,9 +2,8 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.vehicle.VehicUWing;
-import com.parzivail.pswm.vehicle.VehicXWing;
 import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.driven.PilotableSFoils;
 import com.parzivail.util.driven.ShipInput;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -19,15 +18,10 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			if (PSWM.mc.player.getRidingEntity() instanceof VehicXWing)
+			if (PSWM.mc.player.getRidingEntity() instanceof PilotableSFoils)
 			{
-				VehicXWing xWing = (VehicXWing)PSWM.mc.player.getRidingEntity();
-				xWing.getDataManager().set(VehicXWing.S_FOILS_OPEN, !xWing.getDataManager().get(VehicXWing.S_FOILS_OPEN));
-			}
-			else if (PSWM.mc.player.getRidingEntity() instanceof VehicUWing)
-			{
-				VehicUWing uWing = (VehicUWing)PSWM.mc.player.getRidingEntity();
-				uWing.getDataManager().set(VehicUWing.S_FOILS_OPEN, !uWing.getDataManager().get(VehicUWing.S_FOILS_OPEN));
+				PilotableSFoils pilotableSFoils = (PilotableSFoils)PSWM.mc.player.getRidingEntity();
+				pilotableSFoils.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !pilotableSFoils.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package com.parzivail.pswm.models.ship;
 
+import com.parzivail.pswm.vehicle.VehicTIEStriker;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -302,8 +303,15 @@ public class ModelTIEStriker extends ModelBase
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	public void render(Entity entity, float f, float f1, float f2, float f3, float pt, float f5)
 	{
+		if (entity instanceof VehicTIEStriker)
+		{
+			VehicTIEStriker tieStriker = (VehicTIEStriker)entity;
+
+			this.BodyPanel_32.rotateAngleZ = -3.6128315516282616F + (tieStriker.sFoilOpenMaxAngle - tieStriker.getsFoilAngle(pt));
+			this.BodyPanel_9.rotateAngleZ = tieStriker.getsFoilAngle(pt);
+		}
 		this.BodyPanel_7.render(f5);
 		this.Cockpit_1.render(f5);
 		this.BodyPanel_8.render(f5);
@@ -312,9 +320,9 @@ public class ModelTIEStriker extends ModelBase
 		this.BodyPanel_5.render(f5);
 		this.BodyPanel_6.render(f5);
 		this.Laser_55.render(f5);
-		this.BodyPanel_32.render(f5);
+		this.BodyPanel_32.render(f5);//
 		this.Laser_56.render(f5);
-		this.BodyPanel_9.render(f5);
+		this.BodyPanel_9.render(f5);//
 		this.BodyPanel_4.render(f5);
 	}
 
