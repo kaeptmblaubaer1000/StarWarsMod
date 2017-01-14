@@ -215,7 +215,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			serverPositionTransitionTicker = 5;
 		}
 
-		setPosition(x, y, z);
+		//setPosition(x, y, z);
 		prevRotationYaw = yaw;
 		prevRotationPitch = pitch;
 		prevRotationRoll = roll;
@@ -277,9 +277,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		this.ticksExisted++;
 
-		if (this.world.isRemote)
-			KeyHandler.handleVehicleMovement();
-
 		prevRotationYaw = axes.getYaw();
 		prevRotationPitch = axes.getPitch();
 		prevRotationRoll = axes.getRoll();
@@ -290,8 +287,6 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			this.throttle = 0;
 			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
 		}
-
-		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
 		//Work out if this is the client side and the entity is driving
 		boolean thePlayerIsDrivingThis = getInternalControllingPassenger() instanceof EntityPlayer && PSWM.proxy.isThePlayer((EntityPlayer)this.getPassengers().get(0));
@@ -325,15 +320,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		//Calculate movement on the client and then send position, rotation etc to the server
 		if (thePlayerIsDrivingThis)
-		{
-			calculateMotion();
-
-			serverPosX = posX;
-			serverPosY = posY;
-			serverPosZ = posZ;
-			serverYaw = axes.getYaw();
-			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
-		}
+			KeyHandler.handleVehicleMovement();
 
 		int ht = this.world.getHeight((int)this.posX, (int)this.posZ) - 1;
 
@@ -372,6 +359,18 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		this.rotateRoll(this.angularVelocity.z);
 		this.rotatePitch(this.angularVelocity.x);
+
+		calculateMotion();
+		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+		if (thePlayerIsDrivingThis)
+		{
+			serverPosX = posX;
+			serverPosY = posY;
+			serverPosZ = posZ;
+			serverYaw = axes.getYaw();
+			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
+		}
 	}
 
 	@Override
@@ -597,10 +596,5 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		motionX *= drag;
 		motionY *= drag;
 		motionZ *= drag;
-	}
-
-	public void setRiderPosition(int i, Entity e)
-	{
-		e.setPosition(this.posX, this.posY, this.posZ);
 	}
 }
