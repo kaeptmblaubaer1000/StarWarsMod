@@ -3,6 +3,7 @@ package com.parzivail.pswm.dimension.yavin;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
+import com.parzivail.util.worldgen.MultiCompositeTerrain;
 import com.parzivail.util.worldgen.TerrainLayer;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -29,7 +30,7 @@ public class ChunkProviderYavin implements IChunkGenerator
 	private final int waterLevel;
 	private MapGenBase caveGenerator = new MapGenCaves();
 	private MapGenBase ravineGenerator = new MapGenRavine();
-	private ITerrainHeightmap terrain;
+	public ITerrainHeightmap terrain;
 
 	public ChunkProviderYavin(World worldIn, long seed)
 	{
@@ -39,8 +40,8 @@ public class ChunkProviderYavin implements IChunkGenerator
 		}
 		this.worldObj = worldIn;
 
-		waterLevel = 17;
-		terrain = new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Function.Turbulent, TerrainLayer.Method.Add, 300, 1), new TerrainLayer(seed + 1, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 300, 0.5), new TerrainLayer(seed + 2, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 50, 15), new TerrainLayer(seed + 3, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 60, 0.8), new TerrainLayer(seed + 4, TerrainLayer.Function.InvTurbulent, TerrainLayer.Method.Add, 20, 5), new TerrainLayer(seed + 5, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 80, 1.8), new TerrainLayer(seed + 6, TerrainLayer.Function.Klump, TerrainLayer.Method.Add, 50, 20));
+		waterLevel = 1;
+		terrain = new MultiCompositeTerrain(seed, 800, new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 200, 2), new TerrainLayer(seed + 1, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 400, 2), new TerrainLayer(seed + 2, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 50, 0.8), new TerrainLayer(seed + 3, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 100, 2), new TerrainLayer(seed + 4, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 100, 4)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 200, 4), new TerrainLayer(seed + 1, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 400, 4), new TerrainLayer(seed + 2, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 50, 1), new TerrainLayer(seed + 3, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 100, 4), new TerrainLayer(seed + 4, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 100, 6)), new CompositeTerrain(new TerrainLayer(seed, TerrainLayer.Function.Turbulent, TerrainLayer.Method.Add, 300, 1), new TerrainLayer(seed + 1, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 300, 0.5), new TerrainLayer(seed + 2, TerrainLayer.Function.Simplex, TerrainLayer.Method.Add, 50, 15), new TerrainLayer(seed + 3, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 60, 0.8), new TerrainLayer(seed + 4, TerrainLayer.Function.InvTurbulent, TerrainLayer.Method.Add, 20, 5), new TerrainLayer(seed + 5, TerrainLayer.Function.Simplex, TerrainLayer.Method.Multiply, 80, 2)));
 	}
 
 	public void setBlocksInChunk(int cx, int cz, ChunkPrimer primer)

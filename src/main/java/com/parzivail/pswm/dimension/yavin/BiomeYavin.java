@@ -3,12 +3,14 @@ package com.parzivail.pswm.dimension.yavin;
 import com.parzivail.pswm.worldgen.GeneratorEndorTree;
 import com.parzivail.util.Util;
 import com.parzivail.util.math.HaltonSequence;
+import com.parzivail.util.worldgen.ITerrainHeightmap;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -39,7 +41,7 @@ public class BiomeYavin extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 4 * getTerrain(worldIn).getBiomeLerpAmount(pos.getX(), pos.getZ()); i++)
 		{
 			haltonSequence.increment();
 			int k = (int)(haltonSequence.mCurrentPos.getX() * 16) + 8;
@@ -78,5 +80,14 @@ public class BiomeYavin extends Biome
 				this.tallgrassGen.generate(worldIn, rand, blockpos4);
 			}
 		}
+	}
+
+	private ITerrainHeightmap getTerrain(World worldIn)
+	{
+		if (!(worldIn.getChunkProvider() instanceof ChunkProviderServer))
+			return null;
+		if (!(((ChunkProviderServer)worldIn.getChunkProvider()).chunkGenerator instanceof ChunkProviderYavin))
+			return null;
+		return ((ChunkProviderYavin)(((ChunkProviderServer)worldIn.getChunkProvider()).chunkGenerator)).terrain;
 	}
 }

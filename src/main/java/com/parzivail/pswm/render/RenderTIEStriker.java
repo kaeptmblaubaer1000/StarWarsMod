@@ -12,6 +12,6 @@ public class RenderTIEStriker extends RenderStarship
 {
 	public RenderTIEStriker(RenderManager manager)
 	{
-		super(manager, new ModelTIEStriker(), new ResourceLocation(Resources.MODID, "textures/models/striker.png"));
+		super(manager, new ModelTIEStriker(), new ResourceLocation(Resources.MODID, "textures/models/tiestriker.png"));
 	}
 }
