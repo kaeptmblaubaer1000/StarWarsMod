@@ -80,6 +80,7 @@ public class DimensionInfo
 		DimensionManager.registerDimension(hothId, hothDimension);
 		DimensionManager.registerDimension(ilumId, ilumDimension);
 		DimensionManager.registerDimension(yavinId, yavinDimension);
+		DimensionManager.registerDimension(endorId, endorDimension);
 		DimensionManager.registerDimension(scarifId, scarifDimension);
 
 		GameRegistry.register(biomeTatooine);

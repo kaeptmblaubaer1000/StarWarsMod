@@ -49,10 +49,7 @@ public class BiomeYavin extends Biome
 			BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
 			trees.setDecorationDefaults();
 
-			if (trees.generate(worldIn, rand, blockpos))
-			{
-				trees.generateSaplings(worldIn, rand, blockpos);
-			}
+			trees.generate(worldIn, rand, blockpos);
 		}
 
 		for (int i = 0; i < 8; i++)
