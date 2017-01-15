@@ -59,7 +59,7 @@ public class EntityCamera extends EntityLivingBase
 
 		Vector3f cameraPosition;
 		if (pilotable instanceof PilotableLand)
-			cameraPosition = new Vector3f(-1, 1, 0);
+			cameraPosition = new Vector3f(-1, 2, 0);
 		else // Default pilotable (starship)
 			cameraPosition = new Vector3f(-1, 0, 0);
 		cameraPosition.scale(pilotable.data.cameraDistance);

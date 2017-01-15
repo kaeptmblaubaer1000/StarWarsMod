@@ -21,7 +21,7 @@ public class VehicJR4Swoop extends PilotableLand
 	@Override
 	protected void setupShipData()
 	{
-		this.data.cameraDistance = 2;
+		this.data.cameraDistance = 1;
 		this.data.throttleStep = 0.1f;
 		this.data.maxThrottle = 0.3f;
 		this.stepHeight = 2;
