@@ -45,6 +45,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public double serverPosX, serverPosY, serverPosZ;
 	public int serverPositionTransitionTicker;
+	public float dYaw;
+	public float prevDYaw;
 
 	public Pilotable(World world)
 	{
@@ -281,6 +283,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		prevRotationPitch = axes.getPitch();
 		prevRotationRoll = axes.getRoll();
 		prevAxes = axes.clone();
+		prevDYaw = dYaw;
 
 		if (getInternalControllingPassenger() == null && world.isRemote)
 		{
@@ -361,9 +364,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		this.rotatePitch(this.angularVelocity.x);
 		this.rotateYaw(this.angularVelocity.y);
 
-		boolean r = this.world.isRemote;
 		this.rotationYaw = axes.getYaw() - 90;
 		this.rotationPitch = axes.getPitch();
+		this.dYaw = MathHelper.wrapDegrees(axes.getYaw() - prevAxes.getYaw());
 
 		calculateMotion();
 		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);

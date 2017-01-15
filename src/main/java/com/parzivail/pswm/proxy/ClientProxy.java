@@ -2,6 +2,8 @@ package com.parzivail.pswm.proxy;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.handler.EventHandler;
+import com.parzivail.pswm.handler.KeyHandler;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.render.*;
 import com.parzivail.pswm.vehicle.*;
@@ -31,6 +33,8 @@ public class ClientProxy extends CommonProxy
 	{
 		super.preinit();
 		PSWM.mc = Minecraft.getMinecraft();
+
+		EventHandler.keyHandler = new KeyHandler();
 
 		KeybindRegistry.register();
 

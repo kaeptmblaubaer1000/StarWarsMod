@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -26,7 +25,8 @@ import java.util.Map;
  */
 public class EventHandler
 {
-	private static final KeyHandler keyHandler = new KeyHandler();
+	@SideOnly(Side.CLIENT)
+	public static KeyHandler keyHandler;
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
@@ -82,8 +82,8 @@ public class EventHandler
 	{
 	}
 
+	@SubscribeEvent(receiveCanceled = true)
 	@SideOnly(Side.CLIENT)
-	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public void onFogDensityQuery(EntityViewRenderEvent.FogDensity event)
 	{
 		if (PSWM.mc.player.dimension == DimensionInfo.dagobahId)
@@ -94,6 +94,7 @@ public class EventHandler
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onFogColorQuery(EntityViewRenderEvent.FogColors event)
 	{
 		if (PSWM.mc.player.dimension == DimensionInfo.dagobahId)
@@ -106,6 +107,7 @@ public class EventHandler
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onCameraSetup(EntityViewRenderEvent.CameraSetup event)
 	{
 		event.setRoll(GFX.cameraRoll);

@@ -44,8 +44,8 @@ public class KeybindRegistry
 
 		KeybindRegistry.keyShipThrottleUp = registerKeybind("shipThrottleUp", Keyboard.KEY_R);
 		KeybindRegistry.keyShipThrottleDown = registerKeybind("shipThrottleDown", Keyboard.KEY_F);
-		KeybindRegistry.keyShipPitchDown = registerKeybind("shipPitchUp", Keyboard.KEY_S);
-		KeybindRegistry.keyShipPitchUp = registerKeybind("shipPitchDown", Keyboard.KEY_W);
+		KeybindRegistry.keyShipPitchDown = registerKeybind("shipPitchDown", Keyboard.KEY_S);
+		KeybindRegistry.keyShipPitchUp = registerKeybind("shipPitchUp", Keyboard.KEY_W);
 		KeybindRegistry.keyShipRollLeft = registerKeybind("shipRollLeft", Keyboard.KEY_A);
 		KeybindRegistry.keyShipRollRight = registerKeybind("shipRollRight", Keyboard.KEY_D);
 		KeybindRegistry.keyShipBankLeft = registerKeybind("shipBankLeft", Keyboard.KEY_Z);
