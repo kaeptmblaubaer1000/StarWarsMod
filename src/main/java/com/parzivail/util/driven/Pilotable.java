@@ -528,6 +528,9 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				break;
 			case SpecialWeapon:
 				break;
+			case ResetPitchRoll:
+				this.axes.setAngles(axes.getYaw(), 0, 0);
+				break;
 		}
 	}
 
@@ -587,13 +590,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		//		float g = info == null ? 0.98f / 20f : info.getGravity();
 		float g = 0.98f / 20f;
 
-		motionY -= g;
-
-		float amountOfLift = 2F * g * throttle;
-		if (amountOfLift > g)
-			amountOfLift = g;
-
-		motionY += amountOfLift;
+		motionY -= g * (1 - (throttle / data.maxThrottle));
 
 		//Add the corrected pos
 		motionX += throttle * forwards.x;

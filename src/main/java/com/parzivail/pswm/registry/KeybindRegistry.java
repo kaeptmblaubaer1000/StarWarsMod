@@ -34,6 +34,8 @@ public class KeybindRegistry
 	public static KeyBinding keyShipBankRight;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyShipToggleSFoils;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipResetPitchRoll;
 
 	public static void register()
 	{
@@ -51,6 +53,7 @@ public class KeybindRegistry
 		KeybindRegistry.keyShipBankLeft = registerKeybind("shipBankLeft", Keyboard.KEY_Z);
 		KeybindRegistry.keyShipBankRight = registerKeybind("shipBankRight", Keyboard.KEY_C);
 		KeybindRegistry.keyShipToggleSFoils = registerKeybind("shipToggleSFoils", Keyboard.KEY_X);
+		KeybindRegistry.keyShipResetPitchRoll = registerKeybind("shipResetPitchRoll", Keyboard.KEY_V);
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("KEYS"));
 	}

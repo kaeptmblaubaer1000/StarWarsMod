@@ -67,6 +67,9 @@ public class KeyHandler
 
 				if ($(KeybindRegistry.keyShipBankRight))
 					ship.acceptInput(ShipInput.BankRight);
+
+				if ($(KeybindRegistry.keyShipResetPitchRoll))
+					ship.acceptInput(ShipInput.ResetPitchRoll);
 			}
 		}
 	}

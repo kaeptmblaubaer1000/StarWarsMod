@@ -9,11 +9,9 @@ import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.pswm.network.MessageTeleportPlayer;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.CreativeTabRegister;
+import com.parzivail.pswm.registry.EntityRegister;
 import com.parzivail.pswm.registry.ItemRegister;
-import com.parzivail.pswm.vehicle.*;
-import com.parzivail.util.EntityUtils;
 import com.parzivail.util.common.Lumberjack;
-import com.parzivail.util.driven.EntityCamera;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -48,12 +46,7 @@ public class CommonProxy
 
 	public void postinit()
 	{
-		EntityUtils.registerEntity(VehicXWing.class, "xwing");
-		EntityUtils.registerEntity(VehicUWing.class, "uwing");
-		EntityUtils.registerEntity(VehicTIEStriker.class, "tiestriker");
-		EntityUtils.registerEntity(VehicTIE.class, "tie");
-		EntityUtils.registerEntity(VehicJR4Swoop.class, "jr4swoop");
-		EntityUtils.registerEntity(EntityCamera.class, "camera");
+		EntityRegister.register();
 	}
 
 	public EntityPlayerMP getPlayer()

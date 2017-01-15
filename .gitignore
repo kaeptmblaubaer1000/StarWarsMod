@@ -37,3 +37,11 @@ saves/
 usercache.json
 usernamecache.json
 /screenshots/
+banned-ips.json
+banned-players.json
+eula.txt
+hs_err_pid16488.log
+ops.json
+server.properties
+whitelist.json
+world/

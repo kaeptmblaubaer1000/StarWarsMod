@@ -2,12 +2,12 @@ package com.parzivail.util.driven;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.math.RotatedAxes;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -72,8 +72,26 @@ public class EntityCamera extends EntityLivingBase
 
 		setPosition(posX + dX * pilotable.data.cameraFloatDampening, posY + dY * pilotable.data.cameraFloatDampening, posZ + dZ * pilotable.data.cameraFloatDampening);
 
-		rotationYaw = MathHelper.wrapDegrees(pilotable.axes.getYaw() - 90F);
-		rotationPitch = MathHelper.wrapDegrees(pilotable.axes.getPitch());
+		rotationYaw = pilotable.axes.getYaw() - 90F;
+		rotationPitch = pilotable.axes.getPitch();
+
+		updatePrevAngles(pilotable.axes);
+	}
+
+	public void updatePrevAngles(RotatedAxes axes)
+	{
+		//Correct angles that crossed the +/- 180 line, so that rendering doesnt make them swing 360 degrees in one tick.
+		double dYaw = axes.getYaw() - prevRotationYaw;
+		if (dYaw > 180)
+			prevRotationYaw += 360F;
+		if (dYaw < -180)
+			prevRotationYaw -= 360F;
+
+		double dPitch = axes.getPitch() - prevRotationPitch;
+		if (dPitch > 180)
+			prevRotationPitch += 360F;
+		if (dPitch < -180)
+			prevRotationPitch -= 360F;
 	}
 
 	@Override
