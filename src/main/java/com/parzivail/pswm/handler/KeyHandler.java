@@ -24,6 +24,17 @@ public class KeyHandler
 				pilotableSFoils.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !pilotableSFoils.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
 			}
 		}
+		if (KeybindRegistry.keyShipToggleSFoils.isPressed())
+		{
+			if (PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
+			{
+				Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
+				if (ship != null && ship.isControlling(PSWM.mc.player))
+				{
+					ship.acceptInput(ShipInput.SFoil);
+				}
+			}
+		}
 	}
 
 	public static void handleVehicleMovement()
@@ -33,23 +44,29 @@ public class KeyHandler
 			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
 			if (ship != null && ship.isControlling(PSWM.mc.player))
 			{
-				if ($(PSWM.mc.gameSettings.keyBindLeft))
-					ship.acceptInput(ShipInput.Left);
+				if ($(KeybindRegistry.keyShipRollLeft))
+					ship.acceptInput(ShipInput.RollLeft);
 
-				if ($(PSWM.mc.gameSettings.keyBindRight))
-					ship.acceptInput(ShipInput.Right);
+				if ($(KeybindRegistry.keyShipRollRight))
+					ship.acceptInput(ShipInput.RollRight);
 
-				if ($(PSWM.mc.gameSettings.keyBindForward))
-					ship.acceptInput(ShipInput.Up);
+				if ($(KeybindRegistry.keyShipPitchDown))
+					ship.acceptInput(ShipInput.PitchDown);
 
-				if ($(PSWM.mc.gameSettings.keyBindBack))
-					ship.acceptInput(ShipInput.Down);
+				if ($(KeybindRegistry.keyShipPitchUp))
+					ship.acceptInput(ShipInput.PitchUp);
 
-				if ($(PSWM.mc.gameSettings.keyBindJump))
+				if ($(KeybindRegistry.keyShipThrottleUp))
 					ship.acceptInput(ShipInput.ThrottleUp);
 
-				if ($(PSWM.mc.gameSettings.keyBindSprint))
+				if ($(KeybindRegistry.keyShipThrottleDown))
 					ship.acceptInput(ShipInput.ThrottleDown);
+
+				if ($(KeybindRegistry.keyShipBankLeft))
+					ship.acceptInput(ShipInput.BankLeft);
+
+				if ($(KeybindRegistry.keyShipBankRight))
+					ship.acceptInput(ShipInput.BankRight);
 			}
 		}
 	}

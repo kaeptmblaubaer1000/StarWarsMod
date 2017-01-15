@@ -66,7 +66,9 @@ public class RenderStarship extends Render<Pilotable>
 
 	public float getTilt(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
 	{
-		return 0;
+		float dYaw = -2 * MathHelper.wrapDegrees(pilotable.axes.getYaw() - pilotable.prevAxes.getYaw());
+		//GFX.changeCameraRoll(-dYaw / 2f);
+		return dYaw;
 	}
 
 	@Nullable

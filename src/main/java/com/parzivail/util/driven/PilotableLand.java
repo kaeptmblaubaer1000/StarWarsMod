@@ -24,15 +24,15 @@ public abstract class PilotableLand extends Pilotable
 
 		switch (input)
 		{
-			case Left:
+			case RollLeft:
 				this.angularVelocity.y -= 1;
 				break;
-			case Right:
+			case RollRight:
 				this.angularVelocity.y += 1;
 				break;
-			case Down:
+			case PitchDown:
 				break;
-			case Up:
+			case PitchUp:
 				break;
 			case ThrottleUp:
 				this.throttle += this.data.maxThrottle * this.data.throttleStep;
@@ -44,7 +44,7 @@ public abstract class PilotableLand extends Pilotable
 				break;
 			case BlasterFire:
 				break;
-			case SpecialAesthetic:
+			case SFoil:
 				break;
 			case SpecialWeapon:
 				break;

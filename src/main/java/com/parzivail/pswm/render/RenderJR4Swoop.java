@@ -5,7 +5,6 @@ import com.parzivail.pswm.models.ship.ModelJR4Swoop;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 
 /**
  * Created by colby on 1/1/2017.
@@ -25,13 +24,5 @@ public class RenderJR4Swoop extends RenderStarship
 		this.zOffset = -0.7f;
 		this.scale = 1;
 		super.render(pilotable, d, d1, d2, f, f1);
-	}
-
-	@Override
-	public float getTilt(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
-	{
-		float dYaw = -2 * MathHelper.wrapDegrees(pilotable.axes.getYaw() - pilotable.prevAxes.getYaw());
-		//GFX.changeCameraRoll(-dYaw / 2f);
-		return dYaw;
 	}
 }

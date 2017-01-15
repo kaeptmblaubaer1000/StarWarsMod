@@ -16,6 +16,24 @@ public class KeybindRegistry
 {
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyDebug;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipThrottleUp;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipThrottleDown;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipPitchDown;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipPitchUp;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipRollLeft;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipRollRight;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipBankLeft;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipBankRight;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipToggleSFoils;
 
 	public static void register()
 	{
@@ -23,6 +41,16 @@ public class KeybindRegistry
 		{
 			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
 		}
+
+		KeybindRegistry.keyShipThrottleUp = registerKeybind("shipThrottleUp", Keyboard.KEY_R);
+		KeybindRegistry.keyShipThrottleDown = registerKeybind("shipThrottleDown", Keyboard.KEY_F);
+		KeybindRegistry.keyShipPitchDown = registerKeybind("shipPitchUp", Keyboard.KEY_S);
+		KeybindRegistry.keyShipPitchUp = registerKeybind("shipPitchDown", Keyboard.KEY_W);
+		KeybindRegistry.keyShipRollLeft = registerKeybind("shipRollLeft", Keyboard.KEY_A);
+		KeybindRegistry.keyShipRollRight = registerKeybind("shipRollRight", Keyboard.KEY_D);
+		KeybindRegistry.keyShipBankLeft = registerKeybind("shipBankLeft", Keyboard.KEY_Z);
+		KeybindRegistry.keyShipBankRight = registerKeybind("shipBankRight", Keyboard.KEY_C);
+		KeybindRegistry.keyShipToggleSFoils = registerKeybind("shipToggleSFoils", Keyboard.KEY_X);
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("KEYS"));
 	}

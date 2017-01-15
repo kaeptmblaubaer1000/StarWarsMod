@@ -492,17 +492,23 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		switch (input)
 		{
-			case Left:
+			case RollLeft:
 				this.angularVelocity.z += 2;
 				break;
-			case Right:
+			case RollRight:
 				this.angularVelocity.z -= 2;
 				break;
-			case Down:
+			case PitchDown:
 				this.angularVelocity.x += 1;
 				break;
-			case Up:
+			case PitchUp:
 				this.angularVelocity.x -= 1;
+				break;
+			case BankLeft:
+				this.angularVelocity.y -= 1;
+				break;
+			case BankRight:
+				this.angularVelocity.y += 1;
 				break;
 			case ThrottleUp:
 				this.throttle += this.data.maxThrottle * this.data.throttleStep;
@@ -514,7 +520,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				break;
 			case BlasterFire:
 				break;
-			case SpecialAesthetic:
+			case SFoil:
+				this.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !this.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
 				break;
 			case SpecialWeapon:
 				break;
@@ -597,5 +604,23 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		motionX *= drag;
 		motionY *= drag;
 		motionZ *= drag;
+	}
+
+	@Override
+	public void updatePassenger(Entity passenger)
+	{
+		super.updatePassenger(passenger);
+		applyYawToEntity(passenger);
+	}
+
+	protected void applyYawToEntity(Entity entityToUpdate)
+	{
+		float rYaw = this.axes.getYaw() - 90;
+		entityToUpdate.setRenderYawOffset(rYaw);
+		float f = MathHelper.wrapDegrees(entityToUpdate.rotationYaw - rYaw);
+		float f1 = MathHelper.clamp(f, -105.0F, 105.0F);
+		entityToUpdate.prevRotationYaw += f1 - f;
+		entityToUpdate.rotationYaw += f1 - f;
+		entityToUpdate.setRotationYawHead(entityToUpdate.rotationYaw);
 	}
 }
