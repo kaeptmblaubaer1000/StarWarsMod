@@ -96,6 +96,8 @@ public class DimensionInfo
 
 	public static void teleportPlayerTo(EntityPlayerMP player, int id)
 	{
+		if (player.getServer().worldServerForDimension(id) == null)
+			return;
 		Teleporter teleporter = new InstantTeleporter(player.getServer().worldServerForDimension(id));
 		transferPlayerToDimension(player, id, teleporter);
 	}

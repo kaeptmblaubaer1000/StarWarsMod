@@ -488,16 +488,16 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		switch (input)
 		{
 			case RollLeft:
-				this.angularVelocity.z += 4;
+				this.angularVelocity.z += 2;
 				break;
 			case RollRight:
-				this.angularVelocity.z -= 4;
+				this.angularVelocity.z -= 2;
 				break;
 			case PitchUp:
-				this.angularVelocity.x += 2;
+				this.angularVelocity.x += 1;
 				break;
 			case PitchDown:
-				this.angularVelocity.x -= 2;
+				this.angularVelocity.x -= 1;
 				break;
 			case YawLeft:
 				break;
