@@ -10,6 +10,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -1401,5 +1402,11 @@ public class GFX
 	{
 		mc.entityRenderer.setupOverlayRendering();
 		mc.fontRendererObj.drawStringWithShadow(string, x, y, color);
+	}
+
+	public static void changeRenderEntity(Entity e)
+	{
+		PSWM.mc.setRenderViewEntity(e);
+		PSWM.mc.getRenderManager().renderViewEntity = e;
 	}
 }

@@ -9,6 +9,7 @@ import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -41,17 +42,25 @@ public class EventHandler
 		keyHandler.onKeyInput(event);
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(receiveCanceled = true)
 	@SideOnly(Side.CLIENT)
-	public void onRenderGui(RenderGameOverlayEvent.Pre event)
+	public void onRenderPlayerPre(RenderPlayerEvent.Pre event)
+	{
+		PSWM.mc.setRenderViewEntity(PSWM.mc.player);
+		PSWM.mc.getRenderManager().renderViewEntity = PSWM.mc.player;
+	}
+
+	@SubscribeEvent(receiveCanceled = true)
+	@SideOnly(Side.CLIENT)
+	public void onRenderPlayerPost(RenderPlayerEvent.Post event)
 	{
 		if (PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
-			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
-			PSWM.mc.setRenderViewEntity(ship.getCamera() != null ? ship.getCamera() : PSWM.mc.player);
-
 			if (PSWM.mc.gameSettings.thirdPersonView == 2)
 				PSWM.mc.gameSettings.thirdPersonView = 0;
+
+			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
+			GFX.changeRenderEntity(ship.getCamera() != null && PSWM.mc.gameSettings.thirdPersonView != 0 ? ship.getCamera() : PSWM.mc.player);
 		}
 		else
 		{
@@ -60,11 +69,17 @@ public class EventHandler
 			{
 				EntityCamera.loadAnglesFromStored();
 				if (PSWM.camera.isEntityAlive())
-					PSWM.mc.setRenderViewEntity(PSWM.camera);
+					GFX.changeRenderEntity(PSWM.camera);
 			}
 			else
-				PSWM.mc.setRenderViewEntity(PSWM.mc.player);
+				GFX.changeRenderEntity(PSWM.mc.player);
 		}
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onRenderGui(RenderGameOverlayEvent.Pre event)
+	{
 	}
 
 	@SideOnly(Side.CLIENT)

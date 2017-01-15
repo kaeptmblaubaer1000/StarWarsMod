@@ -25,7 +25,7 @@ public class ItemSpawnVehicle extends BasicItem
 		float k = (float)entityplayer.posZ;
 		if (!world.isRemote)
 		{
-			world.spawnEntity(getVehicle(world, entityplayer, i, j, k));
+			world.spawnEntity(getVehicle(world, entityplayer, i, j + 1, k));
 		}
 		if (!entityplayer.isCreative())
 			itemstack.shrink(1);

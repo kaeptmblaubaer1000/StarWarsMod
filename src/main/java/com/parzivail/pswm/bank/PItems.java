@@ -11,4 +11,5 @@ public class PItems
 	public static Item spawnUwing;
 	public static Item spawnTIEStriker;
 	public static Item spawnTIE;
+	public static Item spawnJR4Swoop;
 }

@@ -34,16 +34,16 @@ public class KeyHandler
 			if (ship != null && ship.isControlling(PSWM.mc.player))
 			{
 				if ($(PSWM.mc.gameSettings.keyBindLeft))
-					ship.acceptInput(ShipInput.RollLeft);
+					ship.acceptInput(ShipInput.Left);
 
 				if ($(PSWM.mc.gameSettings.keyBindRight))
-					ship.acceptInput(ShipInput.RollRight);
+					ship.acceptInput(ShipInput.Right);
 
 				if ($(PSWM.mc.gameSettings.keyBindForward))
-					ship.acceptInput(ShipInput.PitchDown);
+					ship.acceptInput(ShipInput.Up);
 
 				if ($(PSWM.mc.gameSettings.keyBindBack))
-					ship.acceptInput(ShipInput.PitchUp);
+					ship.acceptInput(ShipInput.Down);
 
 				if ($(PSWM.mc.gameSettings.keyBindJump))
 					ship.acceptInput(ShipInput.ThrottleUp);

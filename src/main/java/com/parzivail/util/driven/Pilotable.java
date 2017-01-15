@@ -359,6 +359,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		this.rotateRoll(this.angularVelocity.z);
 		this.rotatePitch(this.angularVelocity.x);
+		this.rotateYaw(this.angularVelocity.y);
+
+		boolean r = this.world.isRemote;
+		this.rotationYaw = axes.getYaw() - 90;
+		this.rotationPitch = axes.getPitch();
 
 		calculateMotion();
 		this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
@@ -487,21 +492,17 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 		switch (input)
 		{
-			case RollLeft:
+			case Left:
 				this.angularVelocity.z += 2;
 				break;
-			case RollRight:
+			case Right:
 				this.angularVelocity.z -= 2;
 				break;
-			case PitchUp:
+			case Down:
 				this.angularVelocity.x += 1;
 				break;
-			case PitchDown:
+			case Up:
 				this.angularVelocity.x -= 1;
-				break;
-			case YawLeft:
-				break;
-			case YawRight:
 				break;
 			case ThrottleUp:
 				this.throttle += this.data.maxThrottle * this.data.throttleStep;
@@ -567,7 +568,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		}
 	}
 
-	private void calculateMotion()
+	protected void calculateMotion()
 	{
 		Vector3f forwards = (Vector3f)axes.getXAxis().normalise();
 

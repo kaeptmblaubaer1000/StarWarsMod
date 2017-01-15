@@ -2,10 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.bank.PItems;
-import com.parzivail.pswm.vehicle.ItemSpawnTIE;
-import com.parzivail.pswm.vehicle.ItemSpawnTIEStriker;
-import com.parzivail.pswm.vehicle.ItemSpawnUWing;
-import com.parzivail.pswm.vehicle.ItemSpawnXWing;
+import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.common.Lumberjack;
 
 /**
@@ -19,6 +16,7 @@ public class ItemRegister
 		PItems.spawnUwing = new ItemSpawnUWing();
 		PItems.spawnTIEStriker = new ItemSpawnTIEStriker();
 		PItems.spawnTIE = new ItemSpawnTIE();
+		PItems.spawnJR4Swoop = new ItemSpawnJR4Swoop();
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("ITEMS"));
 	}

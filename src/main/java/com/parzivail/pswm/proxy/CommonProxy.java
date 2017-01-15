@@ -10,10 +10,7 @@ import com.parzivail.pswm.network.MessageTeleportPlayer;
 import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.CreativeTabRegister;
 import com.parzivail.pswm.registry.ItemRegister;
-import com.parzivail.pswm.vehicle.VehicTIE;
-import com.parzivail.pswm.vehicle.VehicTIEStriker;
-import com.parzivail.pswm.vehicle.VehicUWing;
-import com.parzivail.pswm.vehicle.VehicXWing;
+import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.EntityUtils;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
@@ -55,6 +52,7 @@ public class CommonProxy
 		EntityUtils.registerEntity(VehicUWing.class, "uwing");
 		EntityUtils.registerEntity(VehicTIEStriker.class, "tiestriker");
 		EntityUtils.registerEntity(VehicTIE.class, "tie");
+		EntityUtils.registerEntity(VehicJR4Swoop.class, "jr4swoop");
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 

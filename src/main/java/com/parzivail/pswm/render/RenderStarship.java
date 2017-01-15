@@ -16,6 +16,9 @@ public class RenderStarship extends Render<Pilotable>
 {
 	private ResourceLocation tex;
 	public ModelBase model;
+	public float scale = 3;
+	public float zOffset = 0;
+	public boolean disableFirst = true;
 
 	public RenderStarship(RenderManager manager, ModelBase model, ResourceLocation resourceLocation)
 	{
@@ -39,14 +42,15 @@ public class RenderStarship extends Render<Pilotable>
 		if (PSWM.mc.player.getRidingEntity() == pilotable)
 			GFX.changeCameraRoll(-(pilotable.prevAxes.getRoll() + dRoll * f1));
 
-		if (PSWM.mc.player.getRidingEntity() != pilotable || PSWM.mc.gameSettings.thirdPersonView != 0)
+		if (PSWM.mc.player.getRidingEntity() != pilotable || (PSWM.mc.gameSettings.thirdPersonView != 0 || !disableFirst))
 		{
 			GL11.glColor4f(1, 1, 1, 1);
-			GL11.glScalef(3, 3, 3);
+			GL11.glScalef(scale, scale, scale);
 			if (model != null)
 			{
 				GL11.glRotatef(-90, 0, 1, 0);
-				GL11.glTranslatef(0, -0.85f, 0);
+				GL11.glTranslatef(0, -0.85f + zOffset, 0);
+				GL11.glRotatef(getTilt(pilotable, d, d1, d2, f, f1), 0, 0, 1);
 				model.render(pilotable, (float)d, (float)d1, (float)d2, f, f1, 1 / 16f);
 			}
 		}
@@ -58,6 +62,11 @@ public class RenderStarship extends Render<Pilotable>
 	public void doRender(Pilotable entity, double d, double d1, double d2, float f, float f1)
 	{
 		render(entity, d, d1, d2, f, f1);
+	}
+
+	public float getTilt(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
+	{
+		return 0;
 	}
 
 	@Nullable

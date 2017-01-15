@@ -5,5 +5,5 @@ package com.parzivail.util.driven;
  */
 public enum ShipInput
 {
-	RollLeft, RollRight, PitchUp, PitchDown, YawLeft, YawRight, ThrottleUp, ThrottleDown, BlasterFire, SpecialAesthetic, SpecialWeapon
+	Left, Right, Down, Up, ThrottleUp, ThrottleDown, BlasterFire, SpecialAesthetic, SpecialWeapon
 }
