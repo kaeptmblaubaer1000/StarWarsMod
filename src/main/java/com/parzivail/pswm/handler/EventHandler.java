@@ -80,6 +80,7 @@ public class EventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
+		ShipGuiHandler.drawGui(PSWM.mc.gameSettings.thirdPersonView == 0, event);
 	}
 
 	@SubscribeEvent(receiveCanceled = true)

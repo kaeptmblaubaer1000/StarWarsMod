@@ -5,8 +5,11 @@ import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.PilotableSFoils;
 import com.parzivail.util.driven.ShipInput;
+import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Controller;
 import org.lwjgl.input.Keyboard;
 
 /**
@@ -14,6 +17,13 @@ import org.lwjgl.input.Keyboard;
  */
 public class KeyHandler
 {
+	public static Controller joystick;
+	public static Vector3f joystickValue;
+	public static Vector3f prevJoystickValue;
+	public static int currentJoystick = -1; // TODO: make this a config option
+	public static float joystickThrottle;
+	public static boolean joystickEnabled = false;
+
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
@@ -24,16 +34,10 @@ public class KeyHandler
 				pilotableSFoils.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !pilotableSFoils.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
 			}
 		}
-		if (KeybindRegistry.keyShipToggleSFoils.isPressed())
+		if (KeybindRegistry.keyToggleJoystick.isPressed())
 		{
-			if (PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
-			{
-				Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
-				if (ship != null && ship.isControlling(PSWM.mc.player))
-				{
-					ship.acceptInput(ShipInput.SFoil);
-				}
-			}
+			joystickEnabled = !joystickEnabled;
+			PSWM.mc.player.sendMessage(new TextComponentString(String.format("Joystick %s", joystickEnabled ? "enabled" : "disabled")));
 		}
 	}
 
@@ -70,6 +74,9 @@ public class KeyHandler
 
 				if ($(KeybindRegistry.keyShipResetPitchRoll))
 					ship.acceptInput(ShipInput.ResetPitchRoll);
+
+				if (joystickEnabled)
+					ship.acceptJoystickInput();
 			}
 		}
 	}
@@ -77,5 +84,12 @@ public class KeyHandler
 	private static boolean $(KeyBinding key)
 	{
 		return Keyboard.isKeyDown(key.getKeyCode());
+	}
+
+	public static void tickJoystick()
+	{
+		joystickValue = new Vector3f(joystick.getXAxisValue(), joystick.getYAxisValue(), -joystick.getRZAxisValue());
+		if (joystick.getAxisCount() >= 4)
+			joystickThrottle = joystick.getAxisValue(3);
 	}
 }

@@ -20,6 +20,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Controllers;
 
 import java.util.UUID;
 
@@ -49,6 +51,26 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, RenderTIE::new);
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicJR4Swoop.class, RenderJR4Swoop::new);
+
+		try
+		{
+			Controllers.create();
+			Lumberjack.log("%s joysticks detected.", Controllers.getControllerCount());
+			for (int i = 0; i < Controllers.getControllerCount(); i++)
+			{
+				Lumberjack.log("Controller %s:\t%s", i, Controllers.getController(i).getName());
+			}
+			if (Controllers.getControllerCount() > 0 && KeyHandler.currentJoystick != -1)
+			{
+				KeyHandler.joystick = Controllers.getController(KeyHandler.currentJoystick);
+				Lumberjack.log("Joystick %s detected, usable for Flight.", KeyHandler.joystick.getName());
+			}
+		}
+		catch (LWJGLException e)
+		{
+			Lumberjack.log("Unable to detect joysticks.");
+			e.printStackTrace();
+		}
 	}
 
 	@Override

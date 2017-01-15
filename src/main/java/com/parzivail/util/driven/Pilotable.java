@@ -623,4 +623,21 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		entityToUpdate.rotationYaw += f1 - f;
 		entityToUpdate.setRotationYawHead(entityToUpdate.rotationYaw);
 	}
+
+	public void acceptJoystickInput()
+	{
+		KeyHandler.tickJoystick();
+
+		KeyHandler.joystickValue.scale(2);
+		Vector3f d = KeyHandler.joystickValue;
+		rotatePitch(d.getY());
+		rotateYaw(d.getX());
+		rotateRoll(d.getZ());
+
+		if (KeyHandler.joystick.getAxisCount() >= 4)
+		{
+			this.throttle = (-KeyHandler.joystickThrottle + 1) / 2 * this.data.maxThrottle;
+			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
+		}
+	}
 }
