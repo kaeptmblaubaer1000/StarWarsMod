@@ -45,3 +45,9 @@ ops.json
 server.properties
 whitelist.json
 world/
+hs_err_pid11000.log
+hs_err_pid14512.log
+hs_err_pid19324.log
+replay_pid11000.log
+replay_pid14512.log
+replay_pid19324.log
