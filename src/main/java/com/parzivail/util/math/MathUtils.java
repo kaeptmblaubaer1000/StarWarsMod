@@ -100,13 +100,13 @@ public class MathUtils
 	}
 
 	/**
-	 * Gets the distance between two points
+	 * Gets the distance between two clothPoints
 	 *
 	 * @param x1 The first point's X
 	 * @param y1 The first point's Y
 	 * @param x2 The second point's X
 	 * @param y2 The second point's X
-	 * @return The distance between the two points
+	 * @return The distance between the two clothPoints
 	 */
 	public static float distance(float x1, float y1, float x2, float y2)
 	{

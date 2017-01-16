@@ -5,7 +5,7 @@ public class Spline2D
 	private Spline splineX;
 	private Spline splineY;
 	/**
-	 * Total length tracing the points on the spline
+	 * Total length tracing the clothPoints on the spline
 	 */
 	private double length;
 
@@ -48,7 +48,7 @@ public class Spline2D
 
 		if (x.length < 2)
 		{
-			throw new IllegalArgumentException("Spline edges must have at least two points.");
+			throw new IllegalArgumentException("Spline edges must have at least two clothPoints.");
 		}
 
 		/*
@@ -60,7 +60,7 @@ public class Spline2D
 		t[0] = 0.0; // start point is always 0.0
 
 		// Calculate the partial proportions of each section between each set
-		// of points and the total length of sum of all sections
+		// of clothPoints and the total length of sum of all sections
 		for (int i = 1; i < t.length; i++)
 		{
 			double lx = x[i] - x[i - 1];

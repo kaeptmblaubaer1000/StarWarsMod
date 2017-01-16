@@ -271,7 +271,7 @@ public class OpenSimplexNoise
 				aPoint = 0x04;
 			}
 
-			//Now we determine the two lattice points not part of the tetrahedron that may contribute.
+			//Now we determine the two lattice clothPoints not part of the tetrahedron that may contribute.
 			//This depends on the closest two tetrahedral vertices, including (0,0,0)
 			double wins = 1 - inSum;
 			if (wins > aScore || wins > bScore)
@@ -432,7 +432,7 @@ public class OpenSimplexNoise
 				aPoint = 0x03;
 			}
 
-			//Now we determine the two lattice points not part of the tetrahedron that may contribute.
+			//Now we determine the two lattice clothPoints not part of the tetrahedron that may contribute.
 			//This depends on the closest two tetrahedral vertices, including (1,1,1)
 			double wins = 3 - inSum;
 			if (wins < aScore || wins < bScore)
@@ -651,13 +651,13 @@ public class OpenSimplexNoise
 				}
 			}
 
-			//Where each of the two closest points are determines how the extra two vertices are calculated.
+			//Where each of the two closest clothPoints are determines how the extra two vertices are calculated.
 			if (aIsFurtherSide == bIsFurtherSide)
 			{
 				if (aIsFurtherSide)
-				{ //Both closest points on (1,1,1) side
+				{ //Both closest clothPoints on (1,1,1) side
 
-					//One of the two extra points is (1,1,1)
+					//One of the two extra clothPoints is (1,1,1)
 					dx_ext0 = dx0 - 1 - 3 * SQUISH_CONSTANT_3D;
 					dy_ext0 = dy0 - 1 - 3 * SQUISH_CONSTANT_3D;
 					dz_ext0 = dz0 - 1 - 3 * SQUISH_CONSTANT_3D;
@@ -696,9 +696,9 @@ public class OpenSimplexNoise
 					}
 				}
 				else
-				{//Both closest points on (0,0,0) side
+				{//Both closest clothPoints on (0,0,0) side
 
-					//One of the two extra points is (0,0,0)
+					//One of the two extra clothPoints is (0,0,0)
 					dx_ext0 = dx0;
 					dy_ext0 = dy0;
 					dz_ext0 = dz0;
@@ -967,7 +967,7 @@ public class OpenSimplexNoise
 				aPoint = 0x08;
 			}
 
-			//Now we determine the three lattice points not part of the pentachoron that may contribute.
+			//Now we determine the three lattice clothPoints not part of the pentachoron that may contribute.
 			//This depends on the closest two pentachoron vertices, including (0,0,0,0)
 			double uins = 1 - inSum;
 			if (uins > aScore || uins > bScore)
@@ -1214,7 +1214,7 @@ public class OpenSimplexNoise
 				aPoint = 0x07;
 			}
 
-			//Now we determine the three lattice points not part of the pentachoron that may contribute.
+			//Now we determine the three lattice clothPoints not part of the pentachoron that may contribute.
 			//This depends on the closest two pentachoron vertices, including (0,0,0,0)
 			double uins = 4 - inSum;
 			if (uins < aScore || uins < bScore)
@@ -1561,11 +1561,11 @@ public class OpenSimplexNoise
 				aIsBiggerSide = false;
 			}
 
-			//Where each of the two closest points are determines how the extra three vertices are calculated.
+			//Where each of the two closest clothPoints are determines how the extra three vertices are calculated.
 			if (aIsBiggerSide == bIsBiggerSide)
 			{
 				if (aIsBiggerSide)
-				{ //Both closest points on the bigger side
+				{ //Both closest clothPoints on the bigger side
 					byte c1 = (byte)(aPoint | bPoint);
 					byte c2 = (byte)(aPoint & bPoint);
 					if ((c1 & 0x01) == 0)
@@ -1656,8 +1656,8 @@ public class OpenSimplexNoise
 
 				}
 				else
-				{ //Both closest points on the smaller side
-					//One of the two extra points is (0,0,0,0)
+				{ //Both closest clothPoints on the smaller side
+					//One of the two extra clothPoints is (0,0,0,0)
 					xsv_ext2 = xsb;
 					ysv_ext2 = ysb;
 					zsv_ext2 = zsb;
@@ -1667,7 +1667,7 @@ public class OpenSimplexNoise
 					dz_ext2 = dz0;
 					dw_ext2 = dw0;
 
-					//Other two points are based on the omitted axes.
+					//Other two clothPoints are based on the omitted axes.
 					byte c = (byte)(aPoint | bPoint);
 
 					if ((c & 0x01) == 0)
@@ -2097,11 +2097,11 @@ public class OpenSimplexNoise
 				aIsBiggerSide = false;
 			}
 
-			//Where each of the two closest points are determines how the extra three vertices are calculated.
+			//Where each of the two closest clothPoints are determines how the extra three vertices are calculated.
 			if (aIsBiggerSide == bIsBiggerSide)
 			{
 				if (aIsBiggerSide)
-				{ //Both closest points on the bigger side
+				{ //Both closest clothPoints on the bigger side
 					byte c1 = (byte)(aPoint & bPoint);
 					byte c2 = (byte)(aPoint | bPoint);
 
@@ -2178,8 +2178,8 @@ public class OpenSimplexNoise
 					}
 				}
 				else
-				{ //Both closest points on the smaller side
-					//One of the two extra points is (1,1,1,1)
+				{ //Both closest clothPoints on the smaller side
+					//One of the two extra clothPoints is (1,1,1,1)
 					xsv_ext2 = xsb + 1;
 					ysv_ext2 = ysb + 1;
 					zsv_ext2 = zsb + 1;
@@ -2189,7 +2189,7 @@ public class OpenSimplexNoise
 					dz_ext2 = dz0 - 1 - 4 * SQUISH_CONSTANT_4D;
 					dw_ext2 = dw0 - 1 - 4 * SQUISH_CONSTANT_4D;
 
-					//Other two points are based on the shared axes.
+					//Other two clothPoints are based on the shared axes.
 					byte c = (byte)(aPoint & bPoint);
 
 					if ((c & 0x01) != 0)

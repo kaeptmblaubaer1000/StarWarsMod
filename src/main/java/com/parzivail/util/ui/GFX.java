@@ -3,6 +3,7 @@ package com.parzivail.util.ui;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.util.common.Lumberjack;
+import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -1408,5 +1409,15 @@ public class GFX
 	{
 		PSWM.mc.setRenderViewEntity(e);
 		PSWM.mc.getRenderManager().renderViewEntity = e;
+	}
+
+	public static void glNormal1v(Vector3f v)
+	{
+		GL11.glNormal3f(v.getX(), v.getY(), v.getZ());
+	}
+
+	public static void glVertex1v(Vector3f v)
+	{
+		GL11.glVertex3f(v.getX(), v.getY(), v.getZ());
 	}
 }

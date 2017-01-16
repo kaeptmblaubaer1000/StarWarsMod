@@ -2,8 +2,9 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.util.cloth.Cloth;
+import com.parzivail.util.cloth.ClothSettings;
 import com.parzivail.util.driven.Pilotable;
-import com.parzivail.util.driven.PilotableSFoils;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.client.settings.KeyBinding;
@@ -28,11 +29,7 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			if (PSWM.mc.player.getRidingEntity() instanceof PilotableSFoils)
-			{
-				PilotableSFoils pilotableSFoils = (PilotableSFoils)PSWM.mc.player.getRidingEntity();
-				pilotableSFoils.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !pilotableSFoils.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
-			}
+			EventHandler.cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 50, 100);
 		}
 		if (KeybindRegistry.keyToggleJoystick.isPressed())
 		{

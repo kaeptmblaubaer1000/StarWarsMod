@@ -2,10 +2,14 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.dimension.DimensionInfo;
+import com.parzivail.util.cloth.Cloth;
+import com.parzivail.util.cloth.ClothSettings;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.ui.GFX;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -15,6 +19,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,9 +30,14 @@ import java.util.Map;
  */
 public class EventHandler
 {
+	private static final Vector3f GRAVITY = new Vector3f(0, -0.01f, 0);
 	@SideOnly(Side.CLIENT)
 	public static KeyHandler keyHandler;
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
+
+	public static Cloth cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 50, 100);
+	private Vector3f lastPlayerPos;
+	private Vector3f playerPos;
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
 	{
@@ -54,6 +64,28 @@ public class EventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderPlayerPost(RenderPlayerEvent.Post event)
 	{
+		if (!(PSWM.mc.player.getRidingEntity() instanceof Pilotable))
+		{
+			GL11.glPushMatrix();
+			//GL11.glTranslated(-PSWM.mc.player.posX, -PSWM.mc.player.posY, -PSWM.mc.player.posZ);
+			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glRotatef(-PSWM.mc.player.renderYawOffset, 0, 1, 0);
+			GL11.glTranslatef(-0.3f, 1.4f, -0.13f);
+			GL11.glDisable(GL11.GL_BLEND);
+			GL11.glEnable(GL11.GL_LIGHTING);
+			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_AMBIENT, RenderHelper.setColorBuffer(0.3f, 0.3f, 0.3f, 0));
+			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(0.4f, 0.4f, 0.4f, 0));
+			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_POSITION, RenderHelper.setColorBuffer(0f, -4f, 4f, 0));
+			GL11.glEnable(GL11.GL_LIGHT7);
+			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
+			cloth.drawShaded();
+			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glDisable(GL11.GL_LIGHT7);
+			GL11.glEnable(GL11.GL_CULL_FACE);
+			GL11.glPopMatrix();
+		}
+
 		if (PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
 			if (PSWM.mc.gameSettings.thirdPersonView == 2)
@@ -112,6 +144,19 @@ public class EventHandler
 	public void onCameraSetup(EntityViewRenderEvent.CameraSetup event)
 	{
 		event.setRoll(GFX.cameraRoll);
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void onClientTick(TickEvent.ClientTickEvent event)
+	{
+		if (PSWM.mc == null || PSWM.mc.player == null)
+			return;
+		cloth.addForce(GRAVITY);
+		float move = (float)Math.abs((PSWM.mc.player.posX - PSWM.mc.player.prevPosX) * (PSWM.mc.player.posZ - PSWM.mc.player.prevPosZ));
+		cloth.addWindForce(new Vector3f(0, -100 * (PSWM.mc.player.posY - PSWM.mc.player.prevPosY), -400 * move));
+		cloth.checkCollision();
+		cloth.timeStep();
 	}
 
 	@SubscribeEvent
