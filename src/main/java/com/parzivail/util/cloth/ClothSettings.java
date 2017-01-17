@@ -5,7 +5,7 @@ package com.parzivail.util.cloth;
  */
 public class ClothSettings
 {
-	public float damping = 0.01f;
+	public float damping = 0.03f;
 	public float timeStepSize2 = 1 / 20f;
 	public int constraintIterations = 20;
 }

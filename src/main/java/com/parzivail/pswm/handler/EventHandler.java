@@ -35,7 +35,7 @@ public class EventHandler
 	public static KeyHandler keyHandler;
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
-	public static Cloth cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 50, 100);
+	public static Cloth cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 10, 20);
 	private Vector3f lastPlayerPos;
 	private Vector3f playerPos;
 
@@ -154,7 +154,7 @@ public class EventHandler
 			return;
 		cloth.addForce(GRAVITY);
 		float move = (float)Math.abs((PSWM.mc.player.posX - PSWM.mc.player.prevPosX) * (PSWM.mc.player.posZ - PSWM.mc.player.prevPosZ));
-		cloth.addWindForce(new Vector3f(0, -100 * (PSWM.mc.player.posY - PSWM.mc.player.prevPosY), -400 * move));
+		cloth.addWindForce(new Vector3f(0, -25 * (PSWM.mc.player.posY - PSWM.mc.player.prevPosY), -100 * move));
 		cloth.checkCollision();
 		cloth.timeStep();
 	}

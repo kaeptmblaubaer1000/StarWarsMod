@@ -2,8 +2,6 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.util.cloth.Cloth;
-import com.parzivail.util.cloth.ClothSettings;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
@@ -29,7 +27,7 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			EventHandler.cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 50, 100);
+			//EventHandler.cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 50, 100);
 		}
 		if (KeybindRegistry.keyToggleJoystick.isPressed())
 		{
