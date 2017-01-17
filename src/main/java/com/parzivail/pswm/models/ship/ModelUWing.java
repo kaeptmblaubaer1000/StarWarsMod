@@ -569,8 +569,8 @@ public class ModelUWing extends ModelBase
 		{
 			VehicUWing uWing = (VehicUWing)entity;
 
-			this.WingLParent.rotateAngleY = -uWing.getsFoilAngle(pt);
-			this.WingRParent.rotateAngleY = -uWing.getsFoilAngle(pt);
+			this.WingLParent.rotateAngleY = -uWing.getSFoilAngle(pt);
+			this.WingRParent.rotateAngleY = -uWing.getSFoilAngle(pt);
 		}
 		this.BodyMainParent.render(f5);
 		GL11.glPopMatrix();

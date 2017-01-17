@@ -17,6 +17,19 @@ public class ItemRegister
 		PItems.spawnTIEStriker = new ItemSpawnTIEStriker();
 		PItems.spawnTIE = new ItemSpawnTIE();
 		PItems.spawnJR4Swoop = new ItemSpawnJR4Swoop();
+		PItems.spawnAWing = new ItemSpawnAWing();
+		PItems.spawnHothScoot = new ItemSpawnHothScoot();
+		PItems.spawnJakkuSpeeder = new ItemSpawnJakkuSpeeder();
+		PItems.spawnLandspeeder = new ItemSpawnLandspeeder();
+		PItems.spawnScootEmAround = new ItemSpawnScootEmAround();
+		PItems.spawnSkyhopper = new ItemSpawnSkyhopper();
+		PItems.spawnSnowspeeder = new ItemSpawnSnowspeeder();
+		PItems.spawnSpeederBike = new ItemSpawnSpeederBike();
+		PItems.spawnT85 = new ItemSpawnT85();
+		PItems.spawnTIEAdvanced = new ItemSpawnTIEAdvanced();
+		PItems.spawnTIEBomber = new ItemSpawnTIEBomber();
+		PItems.spawnTIEInterceptor = new ItemSpawnTIEInterceptor();
+		PItems.spawnYWing = new ItemSpawnYWing();
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("ITEMS"));
 	}

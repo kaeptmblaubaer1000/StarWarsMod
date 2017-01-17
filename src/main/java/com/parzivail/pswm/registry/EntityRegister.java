@@ -16,6 +16,19 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicTIEStriker.class, "tiestriker");
 		EntityUtils.registerEntity(VehicTIE.class, "tie");
 		EntityUtils.registerEntity(VehicJR4Swoop.class, "jr4swoop");
+		EntityUtils.registerEntity(VehicAWing.class, "awing");
+		EntityUtils.registerEntity(VehicHothScoot.class, "hothscoot");
+		EntityUtils.registerEntity(VehicJakkuSpeeder.class, "jakkuspeeder");
+		EntityUtils.registerEntity(VehicLandspeeder.class, "landspeeder");
+		EntityUtils.registerEntity(VehicScootEmAround.class, "scootemaround");
+		EntityUtils.registerEntity(VehicSkyhopper.class, "skyhopper");
+		EntityUtils.registerEntity(VehicSnowspeeder.class, "snowspeeder");
+		EntityUtils.registerEntity(VehicSpeederBike.class, "speederbike");
+		EntityUtils.registerEntity(VehicT85.class, "t85");
+		EntityUtils.registerEntity(VehicTIEAdvanced.class, "tieadvanced");
+		EntityUtils.registerEntity(VehicTIEBomber.class, "tiebomber");
+		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieinterceptor");
+		EntityUtils.registerEntity(VehicYWing.class, "ywing");
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 }

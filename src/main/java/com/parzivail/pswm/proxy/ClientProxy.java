@@ -49,7 +49,19 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicUWing.class, RenderUWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEStriker.class, RenderTIEStriker::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIE.class, RenderTIE::new);
-
+		RenderingRegistry.registerEntityRenderingHandler(VehicAWing.class, RenderAWing::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicHothScoot.class, RenderHothScoot::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicJakkuSpeeder.class, RenderJakkuSpeeder::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicLandspeeder.class, RenderLandspeeder::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicScootEmAround.class, RenderScootEmAround::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicSkyhopper.class, RenderSkyhopper::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicSnowspeeder.class, RenderSnowspeeder::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicSpeederBike.class, RenderSpeederBike::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicT85.class, RenderT85::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEAdvanced.class, RenderTIEAdvanced::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEBomber.class, RenderTIEBomber::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, RenderTIEInterceptor::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicYWing.class, RenderYWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicJR4Swoop.class, RenderJR4Swoop::new);
 
 		try

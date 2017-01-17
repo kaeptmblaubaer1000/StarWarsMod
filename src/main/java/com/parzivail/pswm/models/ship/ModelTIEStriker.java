@@ -309,8 +309,8 @@ public class ModelTIEStriker extends ModelBase
 		{
 			VehicTIEStriker tieStriker = (VehicTIEStriker)entity;
 
-			this.BodyPanel_32.rotateAngleZ = -3.6128315516282616F + (tieStriker.sFoilOpenMaxAngle - tieStriker.getsFoilAngle(pt));
-			this.BodyPanel_9.rotateAngleZ = tieStriker.getsFoilAngle(pt);
+			this.BodyPanel_32.rotateAngleZ = -3.6128315516282616F + (tieStriker.sFoilOpenMaxAngle - tieStriker.getSFoilAngle(pt));
+			this.BodyPanel_9.rotateAngleZ = tieStriker.getSFoilAngle(pt);
 		}
 		this.BodyPanel_7.render(f5);
 		this.Cockpit_1.render(f5);
