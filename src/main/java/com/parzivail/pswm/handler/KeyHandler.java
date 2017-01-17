@@ -29,6 +29,12 @@ public class KeyHandler
 		{
 			//EventHandler.phys = new Cloth(new LocalPhysSettings(), 0.6f, 1.25f, 50, 100);
 		}
+		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
+		{
+			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
+			if (ship != null && ship.isControlling(PSWM.mc.player))
+				ship.acceptInput(ShipInput.SFoil);
+		}
 		if (KeybindRegistry.keyToggleJoystick.isPressed())
 		{
 			joystickEnabled = !joystickEnabled;

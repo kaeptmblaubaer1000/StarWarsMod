@@ -10,24 +10,20 @@ import java.util.ArrayList;
 /**
  * Created by colby on 1/16/2017.
  */
-public class Cloth
+public class Cloth extends PhysObject
 {
-	private final LocalPhysSettings settings;
-
 	private int width;
 	private int height;
 
-	private PhysParticle[] particles;
-	private ArrayList<PhysConstraint> constraints;
-
 	public Cloth(LocalPhysSettings settings, float width, float height, int resolutionX, int resolutionY)
 	{
+		super(settings);
+
 		if (resolutionX < 2)
 			throw new IllegalArgumentException("X Resolution must be 2 or greater!");
 		if (resolutionY < 2)
 			throw new IllegalArgumentException("Y Resolution must be 2 or greater!");
 
-		this.settings = settings;
 		this.width = resolutionX;
 		this.height = resolutionY;
 
@@ -114,24 +110,6 @@ public class Cloth
 		GL11.glEnd();
 	}
 
-	public void timeStep()
-	{
-		for (int i = 0; i < settings.constraintIterations; i++) // iterate over all constraints several times
-		{
-			for (PhysConstraint c : constraints)
-				c.satisfyConstraint();
-		}
-
-		for (PhysParticle p : particles)
-			p.timeStep();
-	}
-
-	public void addForce(Vector3f dir)
-	{
-		for (PhysParticle p : particles)
-			p.addForce(dir);
-	}
-
 	public void addWindForce(Vector3f direction)
 	{
 		for (int x = 0; x < width - 1; x++)
@@ -140,18 +118,6 @@ public class Cloth
 			{
 				addWindForcesForTriangle(getParticle(x + 1, y), getParticle(x, y), getParticle(x, y + 1), direction);
 				addWindForcesForTriangle(getParticle(x + 1, y + 1), getParticle(x + 1, y), getParticle(x, y + 1), direction);
-			}
-		}
-	}
-
-	public void checkCollision()
-	{
-		for (PhysParticle p : particles)
-		{
-			CollisionResult result = p.getSceneCollision();
-			if (result.collides)
-			{
-				p.offsetPos(result.collisionVector);
 			}
 		}
 	}

@@ -7,20 +7,17 @@ import java.util.ArrayList;
 /**
  * Created by colby on 1/16/2017.
  */
-public class Rope
+public class Rope extends PhysObject
 {
-	private final LocalPhysSettings settings;
 	private int resolution;
-
-	private PhysParticle[] particles;
-	private ArrayList<PhysConstraint> constraints;
 
 	public Rope(LocalPhysSettings settings, Vector3f start, Vector3f end, int resolution)
 	{
+		super(settings);
+
 		if (resolution < 2)
 			throw new IllegalArgumentException("Resolution must be 2 or greater!");
 
-		this.settings = settings;
 		this.resolution = resolution;
 
 		particles = new PhysParticle[resolution];
@@ -35,38 +32,7 @@ public class Rope
 				constraints.add(new PhysConstraint(particles[i - 1], particles[i]));
 		}
 
-
 		particles[0].setMovable(false);
 		particles[1].setMovable(false);
-	}
-
-	public void timeStep()
-	{
-		for (int i = 0; i < settings.constraintIterations; i++) // iterate over all constraints several times
-		{
-			for (PhysConstraint c : constraints)
-				c.satisfyConstraint();
-		}
-
-		for (PhysParticle p : particles)
-			p.timeStep();
-	}
-
-	public void addForce(Vector3f dir)
-	{
-		for (PhysParticle p : particles)
-			p.addForce(dir);
-	}
-
-	public void checkCollision()
-	{
-		for (PhysParticle p : particles)
-		{
-			CollisionResult result = p.getSceneCollision();
-			if (result.collides)
-			{
-				p.offsetPos(result.collisionVector);
-			}
-		}
 	}
 }
