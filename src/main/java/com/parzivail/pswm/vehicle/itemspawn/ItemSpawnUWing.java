@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicUWing;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnYWing extends ItemSpawnVehicle
+public class ItemSpawnUWing extends ItemSpawnVehicle
 {
-	public static String name = "spawnywing";
+	public static String name = "spawnUwing";
 
-	public ItemSpawnYWing()
+	public ItemSpawnUWing()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnYWing extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicYWing(world, i, j, k);
+		return new VehicUWing(world, i, j, k);
 	}
 }

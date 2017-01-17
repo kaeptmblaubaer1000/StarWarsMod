@@ -328,7 +328,7 @@ public class ModelSpeederBike extends ModelBase
 			Pilotable vb = (Pilotable)entity;
 			float s = vb.throttle;
 
-			float tilt = MathHelper.wrapDegrees(vb.axes.getYaw() - vb.prevAxes.getYaw());
+			float tilt = 0.05f * MathHelper.wrapDegrees(vb.axes.getYaw() - vb.prevAxes.getYaw());
 
 			float rL = tilt;
 			float rR = -tilt;

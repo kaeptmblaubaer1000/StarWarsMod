@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicXWing;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnScootEmAround extends ItemSpawnVehicle
+public class ItemSpawnXWing extends ItemSpawnVehicle
 {
-	public static String name = "spawnscootemaround";
+	public static String name = "spawnXwing";
 
-	public ItemSpawnScootEmAround()
+	public ItemSpawnXWing()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnScootEmAround extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicScootEmAround(world, i, j, k);
+		return new VehicXWing(world, i, j, k);
 	}
 }

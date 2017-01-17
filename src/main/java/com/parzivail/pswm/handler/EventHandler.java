@@ -5,6 +5,7 @@ import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.driven.PilotableLand;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.phys.Cloth;
 import com.parzivail.util.phys.LocalPhysSettings;
@@ -54,8 +55,11 @@ public class EventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderPlayerPre(RenderPlayerEvent.Pre event)
 	{
-		PSWM.mc.setRenderViewEntity(PSWM.mc.player);
-		PSWM.mc.getRenderManager().renderViewEntity = PSWM.mc.player;
+		if (event.getEntityPlayer().getRidingEntity() instanceof PilotableLand)
+		{
+			PSWM.mc.setRenderViewEntity(PSWM.mc.player);
+			PSWM.mc.getRenderManager().renderViewEntity = PSWM.mc.player;
+		}
 	}
 
 	@SubscribeEvent(receiveCanceled = true)

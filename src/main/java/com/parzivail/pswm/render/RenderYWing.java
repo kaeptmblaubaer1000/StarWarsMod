@@ -13,5 +13,6 @@ public class RenderYWing extends RenderStarship
 	public RenderYWing(RenderManager manager)
 	{
 		super(manager, new ModelYWing(), new ResourceLocation(Resources.MODID, "textures/models/ywing.png"));
+		this.zOffset = -0.65f;
 	}
 }

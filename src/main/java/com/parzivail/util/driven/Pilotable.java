@@ -253,7 +253,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_)
 	{
 		// TODO
-		//StarWarsMod.network.sendToServer(new MessageDamageShip(this, p_70097_1_, p_70097_2_));
+		this.setDead();//StarWarsMod.network.sendToServer(new MessageDamageShip(this, p_70097_1_, p_70097_2_));
 		return true;
 	}
 
@@ -520,7 +520,8 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			case BlasterFire:
 				break;
 			case SFoil:
-				this.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !this.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
+				if (this instanceof PilotableSFoils)
+					this.getDataManager().set(PilotableSFoils.S_FOILS_OPEN, !this.getDataManager().get(PilotableSFoils.S_FOILS_OPEN));
 				break;
 			case SpecialWeapon:
 				break;
@@ -606,12 +607,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	public void updatePassenger(Entity passenger)
 	{
 		super.updatePassenger(passenger);
-		applyYawToEntity(passenger);
 	}
 
-	protected void applyYawToEntity(Entity entityToUpdate)
+	public void applyYawToEntity(Entity entityToUpdate, float lYaw)
 	{
-		float rYaw = this.axes.getYaw() - 90;
+		float rYaw = lYaw - 90;
 		entityToUpdate.setRenderYawOffset(rYaw);
 		float f = MathHelper.wrapDegrees(entityToUpdate.rotationYaw - rYaw);
 		float f1 = MathHelper.clamp(f, -105.0F, 105.0F);
@@ -635,5 +635,15 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			this.throttle = (-KeyHandler.joystickThrottle + 1) / 2 * this.data.maxThrottle;
 			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
 		}
+	}
+
+	public float getCameraZ()
+	{
+		return -1;
+	}
+
+	public float getCameraY()
+	{
+		return 0.5f;
 	}
 }

@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicTIE;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnJR4Swoop extends ItemSpawnVehicle
+public class ItemSpawnTIE extends ItemSpawnVehicle
 {
-	public static String name = "spawnjr4swoop";
+	public static String name = "spawntie";
 
-	public ItemSpawnJR4Swoop()
+	public ItemSpawnTIE()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnJR4Swoop extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicJR4Swoop(world, i, j, k);
+		return new VehicTIE(world, i, j, k);
 	}
 }

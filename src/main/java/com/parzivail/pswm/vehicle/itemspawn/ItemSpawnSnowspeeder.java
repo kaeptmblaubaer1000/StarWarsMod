@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicSnowspeeder;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnAWing extends ItemSpawnVehicle
+public class ItemSpawnSnowspeeder extends ItemSpawnVehicle
 {
-	public static String name = "spawnawing";
+	public static String name = "spawnsnowspeeder";
 
-	public ItemSpawnAWing()
+	public ItemSpawnSnowspeeder()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnAWing extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicAWing(world, i, j, k);
+		return new VehicSnowspeeder(world, i, j, k);
 	}
 }

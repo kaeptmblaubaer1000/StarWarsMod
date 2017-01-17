@@ -6,6 +6,7 @@ import com.parzivail.util.ui.GFX;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
@@ -56,6 +57,9 @@ public class RenderStarship extends Render<Pilotable>
 		}
 
 		GL11.glPopMatrix();
+
+		for (Entity e : pilotable.getPassengers())
+			pilotable.applyYawToEntity(e, pilotable.prevAxes.getYaw() - dYaw * f1);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicTIEInterceptor;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnTIEAdvanced extends ItemSpawnVehicle
+public class ItemSpawnTIEInterceptor extends ItemSpawnVehicle
 {
-	public static String name = "spawntieadvanced";
+	public static String name = "spawntieinterceptor";
 
-	public ItemSpawnTIEAdvanced()
+	public ItemSpawnTIEInterceptor()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnTIEAdvanced extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicTIEAdvanced(world, i, j, k);
+		return new VehicTIEInterceptor(world, i, j, k);
 	}
 }

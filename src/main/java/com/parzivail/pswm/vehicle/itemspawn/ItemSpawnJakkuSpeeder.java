@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicJakkuSpeeder;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnLandspeeder extends ItemSpawnVehicle
+public class ItemSpawnJakkuSpeeder extends ItemSpawnVehicle
 {
-	public static String name = "spawnlandspeeder";
+	public static String name = "spawnjakkuspeeder";
 
-	public ItemSpawnLandspeeder()
+	public ItemSpawnJakkuSpeeder()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnLandspeeder extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicLandspeeder(world, i, j, k);
+		return new VehicJakkuSpeeder(world, i, j, k);
 	}
 }

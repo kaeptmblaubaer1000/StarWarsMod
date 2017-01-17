@@ -1,12 +1,12 @@
 package com.parzivail.pswm.vehicle;
 
-import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.driven.PilotableLand;
 import net.minecraft.world.World;
 
 /**
  * Created by colby on 1/17/2017.
  */
-public class VehicScootEmAround extends Pilotable
+public class VehicScootEmAround extends PilotableLand
 {
 	public VehicScootEmAround(World world)
 	{

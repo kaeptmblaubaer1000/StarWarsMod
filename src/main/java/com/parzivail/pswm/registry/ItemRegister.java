@@ -2,7 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.bank.PItems;
-import com.parzivail.pswm.vehicle.*;
+import com.parzivail.pswm.vehicle.itemspawn.*;
 import com.parzivail.util.common.Lumberjack;
 
 /**

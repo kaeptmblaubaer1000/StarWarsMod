@@ -3,7 +3,6 @@ package com.parzivail.pswm.models.ship;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 
 /**
  * T-85 - Weaston
@@ -332,22 +331,22 @@ public class ModelT85 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		GL11.glPushMatrix();
-		GL11.glTranslatef(this.dontparent_68.offsetX, this.dontparent_68.offsetY, this.dontparent_68.offsetZ);
-		GL11.glTranslatef(this.dontparent_68.rotationPointX * f5, this.dontparent_68.rotationPointY * f5, this.dontparent_68.rotationPointZ * f5);
-		GL11.glScaled(1.2D, 1.2D, 1.2D);
-		GL11.glTranslatef(-this.dontparent_68.offsetX, -this.dontparent_68.offsetY, -this.dontparent_68.offsetZ);
-		GL11.glTranslatef(-this.dontparent_68.rotationPointX * f5, -this.dontparent_68.rotationPointY * f5, -this.dontparent_68.rotationPointZ * f5);
-		this.dontparent_68.render(f5);
-		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		GL11.glTranslatef(this.dontparent_69.offsetX, this.dontparent_69.offsetY, this.dontparent_69.offsetZ);
-		GL11.glTranslatef(this.dontparent_69.rotationPointX * f5, this.dontparent_69.rotationPointY * f5, this.dontparent_69.rotationPointZ * f5);
-		GL11.glScaled(1.2D, 1.2D, 1.2D);
-		GL11.glTranslatef(-this.dontparent_69.offsetX, -this.dontparent_69.offsetY, -this.dontparent_69.offsetZ);
-		GL11.glTranslatef(-this.dontparent_69.rotationPointX * f5, -this.dontparent_69.rotationPointY * f5, -this.dontparent_69.rotationPointZ * f5);
-		this.dontparent_69.render(f5);
-		GL11.glPopMatrix();
+		//		GL11.glPushMatrix();
+		//		GL11.glTranslatef(this.dontparent_68.offsetX, this.dontparent_68.offsetY, this.dontparent_68.offsetZ);
+		//		GL11.glTranslatef(this.dontparent_68.rotationPointX * f5, this.dontparent_68.rotationPointY * f5, this.dontparent_68.rotationPointZ * f5);
+		//		GL11.glScaled(1.2D, 1.2D, 1.2D);
+		//		GL11.glTranslatef(-this.dontparent_68.offsetX, -this.dontparent_68.offsetY, -this.dontparent_68.offsetZ);
+		//		GL11.glTranslatef(-this.dontparent_68.rotationPointX * f5, -this.dontparent_68.rotationPointY * f5, -this.dontparent_68.rotationPointZ * f5);
+		//		this.dontparent_68.render(f5);
+		//		GL11.glPopMatrix();
+		//		GL11.glPushMatrix();
+		//		GL11.glTranslatef(this.dontparent_69.offsetX, this.dontparent_69.offsetY, this.dontparent_69.offsetZ);
+		//		GL11.glTranslatef(this.dontparent_69.rotationPointX * f5, this.dontparent_69.rotationPointY * f5, this.dontparent_69.rotationPointZ * f5);
+		//		GL11.glScaled(1.2D, 1.2D, 1.2D);
+		//		GL11.glTranslatef(-this.dontparent_69.offsetX, -this.dontparent_69.offsetY, -this.dontparent_69.offsetZ);
+		//		GL11.glTranslatef(-this.dontparent_69.rotationPointX * f5, -this.dontparent_69.rotationPointY * f5, -this.dontparent_69.rotationPointZ * f5);
+		//		this.dontparent_69.render(f5);
+		//		GL11.glPopMatrix();
 		this.MainParent.render(f5);
 
 		// TODO

@@ -1,6 +1,7 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.vehicle.VehicT85;
 import com.parzivail.util.driven.Pilotable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,11 +9,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemSpawnSkyhopper extends ItemSpawnVehicle
+public class ItemSpawnT85 extends ItemSpawnVehicle
 {
-	public static String name = "spawnskyhopper";
+	public static String name = "spawnt85";
 
-	public ItemSpawnSkyhopper()
+	public ItemSpawnT85()
 	{
 		super(name);
 		this.setCreativeTab(PSWM.tabBlocks);
@@ -29,6 +30,6 @@ public class ItemSpawnSkyhopper extends ItemSpawnVehicle
 	@Override
 	protected Pilotable getVehicle(World world, EntityPlayer entityplayer, double i, double j, double k)
 	{
-		return new VehicSkyhopper(world, i, j, k);
+		return new VehicT85(world, i, j, k);
 	}
 }

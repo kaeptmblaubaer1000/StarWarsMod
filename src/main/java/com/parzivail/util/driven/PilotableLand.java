@@ -82,4 +82,24 @@ public abstract class PilotableLand extends Pilotable
 		motionY *= drag;
 		motionZ *= drag;
 	}
+
+	@Override
+	protected void setupShipData()
+	{
+		this.data.cameraDistance = 1;
+		this.data.throttleStep = 0.1f;
+		this.data.maxThrottle = 0.3f;
+		this.stepHeight = 2;
+	}
+
+	@Override
+	public double getMountedYOffset()
+	{
+		return 0.5f;
+	}
+
+	public float getCameraY()
+	{
+		return 2;
+	}
 }

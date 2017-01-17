@@ -17,4 +17,10 @@ public class VehicSnowspeeder extends Pilotable
 	{
 		super(world, i, j, k);
 	}
+
+	public float getCameraY()
+	{
+		this.data.cameraDistance = 5;
+		return 0.5f;
+	}
 }

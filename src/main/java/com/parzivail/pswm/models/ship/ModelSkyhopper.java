@@ -210,8 +210,8 @@ public class ModelSkyhopper extends ModelBase
 		{
 			PilotableSFoils skyhopper = (PilotableSFoils)entity;
 
-			this.WingLParent.rotateAngleZ = -1.0122909661567112F - (1.5f * skyhopper.getSFoilAngle(f5));
-			this.WingRParent.rotateAngleZ = 1.0122909661567112F + (1.5f * skyhopper.getSFoilAngle(f5));
+			this.WingLParent.rotateAngleZ = -1.0122909661567112F - skyhopper.getSFoilAngle(f5);
+			this.WingRParent.rotateAngleZ = 1.0122909661567112F + skyhopper.getSFoilAngle(f5);
 		}
 
 		this.MainParent.render(f5);

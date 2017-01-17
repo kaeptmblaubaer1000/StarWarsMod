@@ -1,4 +1,4 @@
-package com.parzivail.pswm.vehicle;
+package com.parzivail.pswm.vehicle.itemspawn;
 
 import com.parzivail.util.basic.BasicItem;
 import com.parzivail.util.driven.Pilotable;

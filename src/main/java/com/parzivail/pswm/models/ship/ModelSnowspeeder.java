@@ -335,11 +335,17 @@ public class ModelSnowspeeder extends ModelBase
 		{
 			Pilotable speeder = (Pilotable)entity;
 
-			float tilt = MathHelper.wrapDegrees(speeder.axes.getYaw() - speeder.prevAxes.getYaw());
-			if (tilt < 0)
+			float tilt = 0.2f * MathHelper.wrapDegrees(speeder.axes.getYaw() - speeder.prevAxes.getYaw());
+			if (tilt <= 0)
+			{
 				this.FlapL.rotateAngleX = tilt;
+				this.FlapR.rotateAngleX = 0;
+			}
 			else
-				this.FlapR.rotateAngleX = tilt;
+			{
+				this.FlapL.rotateAngleX = 0;
+				this.FlapR.rotateAngleX = -tilt;
+			}
 		}
 		this.BodyMain.render(f5);
 	}
