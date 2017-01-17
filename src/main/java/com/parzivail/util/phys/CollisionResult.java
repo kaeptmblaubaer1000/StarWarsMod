@@ -1,4 +1,4 @@
-package com.parzivail.util.cloth;
+package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
 

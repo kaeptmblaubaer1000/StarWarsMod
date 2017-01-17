@@ -1,13 +1,13 @@
-package com.parzivail.util.cloth;
+package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
 
 /**
  * Created by colby on 1/16/2017.
  */
-public class ClothParticle
+public class PhysParticle
 {
-	private final ClothSettings settings;
+	private final LocalPhysSettings settings;
 
 	private boolean movable;
 	private float mass;
@@ -16,7 +16,7 @@ public class ClothParticle
 	private Vector3f acceleration;
 	private Vector3f accumulatedNormal;
 
-	public ClothParticle(ClothSettings settings, Vector3f pos)
+	public PhysParticle(LocalPhysSettings settings, Vector3f pos)
 	{
 		this.settings = settings;
 		this.pos = new Vector3f(pos);

@@ -27,7 +27,7 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			//EventHandler.cloth = new Cloth(new ClothSettings(), 0.6f, 1.25f, 50, 100);
+			//EventHandler.phys = new Cloth(new LocalPhysSettings(), 0.6f, 1.25f, 50, 100);
 		}
 		if (KeybindRegistry.keyToggleJoystick.isPressed())
 		{

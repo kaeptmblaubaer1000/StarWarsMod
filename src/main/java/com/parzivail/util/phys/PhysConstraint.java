@@ -1,17 +1,17 @@
-package com.parzivail.util.cloth;
+package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
 
 /**
  * Created by colby on 1/16/2017.
  */
-public class ClothConstraint
+public class PhysConstraint
 {
 	private float restDistance;
-	public ClothParticle p1;
-	public ClothParticle p2;
+	public PhysParticle p1;
+	public PhysParticle p2;
 
-	public ClothConstraint(ClothParticle p1, ClothParticle p2)
+	public PhysConstraint(PhysParticle p1, PhysParticle p2)
 	{
 		this.p1 = p1;
 		this.p2 = p2;

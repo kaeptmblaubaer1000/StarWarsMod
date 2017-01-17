@@ -1,4 +1,4 @@
-package com.parzivail.util.cloth;
+package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.ui.GFX;
@@ -12,21 +12,26 @@ import java.util.ArrayList;
  */
 public class Cloth
 {
-	private final ClothSettings settings;
+	private final LocalPhysSettings settings;
 
 	private int width;
 	private int height;
 
-	private ClothParticle[] particles;
-	private ArrayList<ClothConstraint> constraints;
+	private PhysParticle[] particles;
+	private ArrayList<PhysConstraint> constraints;
 
-	public Cloth(ClothSettings settings, float width, float height, int resolutionX, int resolutionY)
+	public Cloth(LocalPhysSettings settings, float width, float height, int resolutionX, int resolutionY)
 	{
+		if (resolutionX < 2)
+			throw new IllegalArgumentException("X Resolution must be 2 or greater!");
+		if (resolutionY < 2)
+			throw new IllegalArgumentException("Y Resolution must be 2 or greater!");
+
 		this.settings = settings;
 		this.width = resolutionX;
 		this.height = resolutionY;
 
-		particles = new ClothParticle[resolutionX * resolutionY];
+		particles = new PhysParticle[resolutionX * resolutionY];
 		constraints = new ArrayList<>();
 
 		// creating particles in a grid of particles from (0,0,0) to (width,-height,0)
@@ -35,7 +40,7 @@ public class Cloth
 			for (int y = 0; y < resolutionY; y++)
 			{
 				Vector3f pos = new Vector3f(width * (x / (float)resolutionX), -height * (y / (float)resolutionY), 0);
-				particles[y * resolutionX + x] = new ClothParticle(settings, pos); // insert particle in column x at y'th row
+				particles[y * resolutionX + x] = new PhysParticle(settings, pos); // insert particle in column x at y'th row
 			}
 		}
 
@@ -78,7 +83,7 @@ public class Cloth
 
 	public void drawShaded()
 	{
-		for (ClothParticle p : particles)
+		for (PhysParticle p : particles)
 			p.resetNormal();
 
 		for (int x = 0; x < width - 1; x++)
@@ -113,17 +118,17 @@ public class Cloth
 	{
 		for (int i = 0; i < settings.constraintIterations; i++) // iterate over all constraints several times
 		{
-			for (ClothConstraint c : constraints)
+			for (PhysConstraint c : constraints)
 				c.satisfyConstraint();
 		}
 
-		for (ClothParticle p : particles)
+		for (PhysParticle p : particles)
 			p.timeStep();
 	}
 
 	public void addForce(Vector3f dir)
 	{
-		for (ClothParticle p : particles)
+		for (PhysParticle p : particles)
 			p.addForce(dir);
 	}
 
@@ -141,7 +146,7 @@ public class Cloth
 
 	public void checkCollision()
 	{
-		for (ClothParticle p : particles)
+		for (PhysParticle p : particles)
 		{
 			CollisionResult result = p.getSceneCollision();
 			if (result.collides)
@@ -151,17 +156,17 @@ public class Cloth
 		}
 	}
 
-	private ClothParticle getParticle(int x, int y)
+	private PhysParticle getParticle(int x, int y)
 	{
 		return particles[y * width + x];
 	}
 
-	private void makeConstraint(ClothParticle p1, ClothParticle p2)
+	private void makeConstraint(PhysParticle p1, PhysParticle p2)
 	{
-		constraints.add(new ClothConstraint(p1, p2));
+		constraints.add(new PhysConstraint(p1, p2));
 	}
 
-	private Vector3f calcTriangleNormal(ClothParticle p1, ClothParticle p2, ClothParticle p3)
+	private Vector3f calcTriangleNormal(PhysParticle p1, PhysParticle p2, PhysParticle p3)
 	{
 		Vector3f pos1 = new Vector3f(p1.getPos());
 		Vector3f pos2 = new Vector3f(p2.getPos());
@@ -173,7 +178,7 @@ public class Cloth
 		return Vector3f.cross(pos2, pos3, null);
 	}
 
-	private void addWindForcesForTriangle(ClothParticle p1, ClothParticle p2, ClothParticle p3, Vector3f dir)
+	private void addWindForcesForTriangle(PhysParticle p1, PhysParticle p2, PhysParticle p3, Vector3f dir)
 	{
 		Vector3f normal = calcTriangleNormal(p1, p2, p3);
 		Vector3f d = normal.normalise(null);
@@ -183,7 +188,7 @@ public class Cloth
 		p3.addForce(normal);
 	}
 
-	private void drawTriangle(ClothParticle p1, ClothParticle p2, ClothParticle p3, int color)
+	private void drawTriangle(PhysParticle p1, PhysParticle p2, PhysParticle p3, int color)
 	{
 		GLPalette.glColorI(color);
 
