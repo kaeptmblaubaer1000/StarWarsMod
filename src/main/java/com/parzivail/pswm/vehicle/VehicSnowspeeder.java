@@ -18,9 +18,14 @@ public class VehicSnowspeeder extends Pilotable
 		super(world, i, j, k);
 	}
 
-	public float getCameraY()
+	@Override
+	protected void setupShipData()
 	{
 		this.data.cameraDistance = 5;
+	}
+
+	public float getCameraY()
+	{
 		return 0.5f;
 	}
 }

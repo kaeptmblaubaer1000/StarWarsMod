@@ -18,9 +18,15 @@ public class VehicSpeederBike extends PilotableLand
 		super(world, i, j, k);
 	}
 
+	@Override
+	protected void setupShipData()
+	{
+		super.setupShipData();
+		this.data.cameraDistance = 1;
+	}
+
 	public float getCameraY()
 	{
-		this.data.cameraDistance = 1;
 		return 2.5f;
 	}
 }

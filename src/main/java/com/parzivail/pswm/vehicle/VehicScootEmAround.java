@@ -17,4 +17,12 @@ public class VehicScootEmAround extends PilotableLand
 	{
 		super(world, i, j, k);
 	}
+
+	@Override
+	protected void setupShipData()
+	{
+		super.setupShipData();
+		this.data.throttleStep = 0.05f;
+		this.data.maxThrottle = 0.1f;
+	}
 }

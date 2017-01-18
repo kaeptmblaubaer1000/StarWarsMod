@@ -17,4 +17,10 @@ public class VehicYWing extends Pilotable
 	{
 		super(world, i, j, k);
 	}
+
+	@Override
+	protected void setupShipData()
+	{
+		this.data.cameraDistance = 20;
+	}
 }

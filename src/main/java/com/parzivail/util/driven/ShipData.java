@@ -6,7 +6,6 @@ package com.parzivail.util.driven;
 public class ShipData
 {
 	public int numPassengers = 1;
-	public Seat[] seatInfo = new Seat[0];
 
 	public float cameraDistance = 10;
 	public float cameraDistanceMax = 10;

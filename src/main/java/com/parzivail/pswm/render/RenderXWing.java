@@ -2,7 +2,7 @@ package com.parzivail.pswm.render;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ship.ModelXWing;
-import com.parzivail.util.driven.Pilotable;
+import com.parzivail.util.driven.RenderStarship;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,13 +14,7 @@ public class RenderXWing extends RenderStarship
 	public RenderXWing(RenderManager manager)
 	{
 		super(manager, new ModelXWing(), new ResourceLocation(Resources.MODID, "textures/models/xwingnew.png"));
-	}
-
-	@Override
-	public void render(Pilotable pilotable, double d, double d1, double d2, float f, float f1)
-	{
 		this.zOffset = -0.65f;
 		this.scale = 2.1f;
-		super.render(pilotable, d, d1, d2, f, f1);
 	}
 }

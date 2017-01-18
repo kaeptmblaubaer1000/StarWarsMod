@@ -2,6 +2,7 @@ package com.parzivail.pswm.render;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ship.ModelYWing;
+import com.parzivail.util.driven.RenderStarship;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 

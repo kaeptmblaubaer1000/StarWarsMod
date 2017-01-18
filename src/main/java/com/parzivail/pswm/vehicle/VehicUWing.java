@@ -21,12 +21,6 @@ public class VehicUWing extends PilotableSFoils
 	@Override
 	protected void setupShipData()
 	{
-		this.data.cameraDistance = 20;
-	}
-
-	@Override
-	public void onUpdate()
-	{
-		super.onUpdate();
+		this.data.cameraDistance = 15;
 	}
 }
