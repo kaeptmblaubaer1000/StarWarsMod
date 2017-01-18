@@ -9,6 +9,7 @@ import com.parzivail.util.lwjgl.Vector2f;
 import com.parzivail.util.lwjgl.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -44,6 +45,7 @@ public class PSWM
 	public static PSWM instance;
 
 	private static String[] registerScript = getScript();
+	public static DamageSource blasterDamageSource;
 
 	private static String[] getScript()
 	{

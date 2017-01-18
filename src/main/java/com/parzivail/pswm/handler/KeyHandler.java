@@ -5,6 +5,8 @@ import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.phys.LocalPhysSettings;
+import com.parzivail.util.phys.Rope;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -27,13 +29,21 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			//EventHandler.phys = new Cloth(new LocalPhysSettings(), 0.6f, 1.25f, 50, 100);
+			LocalPhysSettings s = new LocalPhysSettings();
+			s.damping = 0.01f;
+			EventHandler.rope = new Rope(s, new Vector3f(10, 10, 10), new Vector3f(0, 0, 0), 20);
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
 			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
 			if (ship != null && ship.isControlling(PSWM.mc.player))
 				ship.acceptInput(ShipInput.SFoil);
+		}
+		if (KeybindRegistry.keyShipFire.isPressed())
+		{
+			Pilotable ship = (Pilotable)PSWM.mc.player.getRidingEntity();
+			if (ship != null && ship.isControlling(PSWM.mc.player))
+				ship.acceptInput(ShipInput.BlasterFire);
 		}
 		if (KeybindRegistry.keyToggleJoystick.isPressed())
 		{

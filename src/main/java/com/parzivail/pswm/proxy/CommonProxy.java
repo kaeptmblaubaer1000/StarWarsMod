@@ -5,6 +5,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.handler.NetworkHandler;
+import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageDrivableControl;
 import com.parzivail.pswm.network.MessageTeleportPlayer;
 import com.parzivail.pswm.registry.BlockRegister;
@@ -33,6 +34,7 @@ public class CommonProxy
 		NetworkHandler.register(MessageTeleportPlayer.class, Side.SERVER);
 		NetworkHandler.register(MessageDrivableControl.class, Side.SERVER);
 		NetworkHandler.register(MessageDrivableControl.class, Side.CLIENT);
+		NetworkHandler.register(MessageCreateBlasterBolt.class, Side.SERVER);
 		Lumberjack.log(PSWM.getNextRegisterMessage("NET"));
 	}
 

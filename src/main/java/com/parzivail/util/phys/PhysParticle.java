@@ -1,6 +1,11 @@
 package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.math.MathUtils;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 
 /**
  * Created by colby on 1/16/2017.
@@ -55,6 +60,11 @@ public class PhysParticle
 		return pos;
 	}
 
+	public void setPos(Vector3f pos)
+	{
+		this.pos = pos;
+	}
+
 	public void resetAceleration()
 	{
 		acceleration = new Vector3f(0, 0, 0);
@@ -86,10 +96,12 @@ public class PhysParticle
 		this.accumulatedNormal = new Vector3f(0, 0, 0);
 	}
 
-	public CollisionResult getSceneCollision()
+	public CollisionResult getSceneCollision(World world)
 	{
-		if (this.pos.z >= 0)
-			return new CollisionResult(true, new Vector3f(0, 0, -this.pos.z));
+		//if (this.pos.z >= 0) // capes only
+		//	return new CollisionResult(true, new Vector3f(0, 0, -this.pos.z));
+		if (world.getBlockState(new BlockPos(new Vec3i((int)Math.floor(this.pos.x), (int)Math.floor(this.pos.y), (int)Math.floor(this.pos.z)))).getBlock() != Blocks.AIR)
+			return new CollisionResult(true, new Vector3f(0, 1f - MathUtils.frac(this.pos.y), 0));
 		return CollisionResult.NO_COLLISION;
 	}
 }

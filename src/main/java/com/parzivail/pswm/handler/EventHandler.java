@@ -9,11 +9,15 @@ import com.parzivail.util.driven.PilotableLand;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.phys.Cloth;
 import com.parzivail.util.phys.LocalPhysSettings;
+import com.parzivail.util.phys.Rope;
 import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -35,8 +39,7 @@ public class EventHandler
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
 	public static Cloth cloth = new Cloth(new LocalPhysSettings(), 0.6f, 1.25f, 10, 20);
-	private Vector3f lastPlayerPos;
-	private Vector3f playerPos;
+	public static Rope rope = new Rope(new LocalPhysSettings(), new Vector3f(0, 0, 0), new Vector3f(10, 10, 10), 20);
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
 	{
@@ -66,28 +69,6 @@ public class EventHandler
 	@SideOnly(Side.CLIENT)
 	public void onRenderPlayerPost(RenderPlayerEvent.Post event)
 	{
-		//		if (!(PSWM.mc.player.getRidingEntity() instanceof Pilotable))
-		//		{
-		//			GL11.glPushMatrix();
-		//			//GL11.glTranslated(-PSWM.mc.player.posX, -PSWM.mc.player.posY, -PSWM.mc.player.posZ);
-		//			GL11.glDisable(GL11.GL_CULL_FACE);
-		//			GL11.glRotatef(-PSWM.mc.player.renderYawOffset, 0, 1, 0);
-		//			GL11.glTranslatef(-0.3f, 1.4f, -0.13f);
-		//			GL11.glDisable(GL11.GL_BLEND);
-		//			GL11.glEnable(GL11.GL_LIGHTING);
-		//			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_AMBIENT, RenderHelper.setColorBuffer(0.3f, 0.3f, 0.3f, 0));
-		//			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(0.4f, 0.4f, 0.4f, 0));
-		//			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_POSITION, RenderHelper.setColorBuffer(0f, -4f, 4f, 0));
-		//			GL11.glEnable(GL11.GL_LIGHT7);
-		//			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
-		//			cloth.drawShaded();
-		//			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
-		//			GL11.glDisable(GL11.GL_LIGHTING);
-		//			GL11.glDisable(GL11.GL_LIGHT7);
-		//			GL11.glEnable(GL11.GL_CULL_FACE);
-		//			GL11.glPopMatrix();
-		//		}
-
 		if (PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
 			if (PSWM.mc.gameSettings.thirdPersonView == 2)
@@ -112,6 +93,35 @@ public class EventHandler
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
+	public void onWorldDraw(RenderWorldLastEvent event)
+	{
+		//		if (!(PSWM.mc.player.getRidingEntity() instanceof Pilotable))
+		//		{
+		//			GL11.glLineWidth(4);
+		//			GL11.glPushMatrix();
+		//			GL11.glTranslated(-PSWM.mc.player.posX, -PSWM.mc.player.posY, -PSWM.mc.player.posZ);
+		//			GL11.glDisable(GL11.GL_CULL_FACE);
+		//			//GL11.glRotatef(-PSWM.mc.player.renderYawOffset, 0, 1, 0);
+		//			//GL11.glTranslatef(-0.3f, 1.4f, -0.13f);
+		//			GL11.glDisable(GL11.GL_BLEND);
+		//			GL11.glEnable(GL11.GL_LIGHTING);
+		//			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_AMBIENT, RenderHelper.setColorBuffer(0.3f, 0.3f, 0.3f, 0));
+		//			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_DIFFUSE, RenderHelper.setColorBuffer(0.4f, 0.4f, 0.4f, 0));
+		//			GL11.glLight(GL11.GL_LIGHT7, GL11.GL_POSITION, RenderHelper.setColorBuffer(0f, -4f, 4f, 0));
+		//			GL11.glEnable(GL11.GL_LIGHT7);
+		//			GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
+		//			//cloth.drawShaded();
+		//			rope.drawShaded();
+		//			GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
+		//			GL11.glDisable(GL11.GL_LIGHTING);
+		//			GL11.glDisable(GL11.GL_LIGHT7);
+		//			GL11.glEnable(GL11.GL_CULL_FACE);
+		//			GL11.glPopMatrix();
+		//		}
+	}
+
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		ShipGuiHandler.drawGui(PSWM.mc.gameSettings.thirdPersonView == 0, event);
@@ -126,6 +136,16 @@ public class EventHandler
 			event.setDensity(0.1f);
 			event.setCanceled(true);
 		}
+		else if (PSWM.mc.player.dimension == DimensionInfo.ilumId)
+		{
+			event.setDensity(0.05f);
+			event.setCanceled(true);
+		}
+		else if (PSWM.mc.player.dimension == DimensionInfo.hothId)
+		{
+			event.setDensity(0.02f);
+			event.setCanceled(true);
+		}
 	}
 
 	@SubscribeEvent
@@ -138,6 +158,20 @@ public class EventHandler
 			event.setRed(n);
 			event.setGreen(n + 0.02f);
 			event.setBlue(n + 0.05f);
+		}
+		else if (PSWM.mc.player.dimension == DimensionInfo.ilumId)
+		{
+			float n = 0.5f;
+			event.setRed(n);
+			event.setGreen(n);
+			event.setBlue(n);
+		}
+		else if (PSWM.mc.player.dimension == DimensionInfo.hothId)
+		{
+			float n = 0.9f;
+			event.setRed(n);
+			event.setGreen(n);
+			event.setBlue(n);
 		}
 	}
 
@@ -159,6 +193,11 @@ public class EventHandler
 		//		cloth.addWindForce(new Vector3f(0, -25 * (PSWM.mc.player.posY - PSWM.mc.player.prevPosY), -100 * move));
 		//		cloth.checkCollision();
 		//		cloth.timeStep();
+
+		//		rope.particles[rope.particles.length - 1].setPos(new Vector3f(PSWM.mc.player.posX, PSWM.mc.player.posY + 1, PSWM.mc.player.posZ));
+		//		rope.addForce(new Vector3f(0, -1, 0));
+		//		rope.checkCollision(PSWM.mc.world);
+		//		rope.timeStep();
 	}
 
 	@SubscribeEvent
@@ -173,6 +212,23 @@ public class EventHandler
 				PSWM.proxy.teleport(entry.getKey(), entry.getValue());
 				iterator.remove();
 			}
+		}
+		WorldServer world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(DimensionInfo.ilumId);
+		if (world != null)
+		{
+			world.setRainStrength(1);
+			world.setThunderStrength(1);
+		}
+		world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(DimensionInfo.dagobahId);
+		if (world != null)
+		{
+			world.setRainStrength(1);
+			world.setThunderStrength(1);
+		}
+		world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(DimensionInfo.hothId);
+		if (world != null)
+		{
+			world.setRainStrength(1);
 		}
 	}
 }

@@ -3,7 +3,10 @@ package com.parzivail.util.driven;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.handler.KeyHandler;
 import com.parzivail.pswm.handler.NetworkHandler;
+import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageDrivableControl;
+import com.parzivail.pswm.utils.BlasterBoltType;
+import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.GFX;
@@ -486,7 +489,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public void acceptInput(ShipInput input)
 	{
-		if (this.getInternalControllingPassenger() == null)
+		if (!(this.getInternalControllingPassenger() instanceof EntityPlayer))
 			return;
 
 		switch (input)
@@ -518,6 +521,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				this.throttle = MathHelper.clamp(this.throttle, 0, this.data.maxThrottle);
 				break;
 			case BlasterFire:
+				NetworkHandler.INSTANCE.sendToServer(new MessageCreateBlasterBolt((EntityPlayer)this.getInternalControllingPassenger(), BlasterBoltType.XWING, null, BlasterPosition.getNextXwingPosition()));
 				break;
 			case SFoil:
 				if (this instanceof PilotableSFoils)

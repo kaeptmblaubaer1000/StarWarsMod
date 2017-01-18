@@ -1,5 +1,8 @@
 package com.parzivail.pswm.registry;
 
+import com.parzivail.pswm.entity.EntityBlasterBoltBase;
+import com.parzivail.pswm.entity.EntityBlasterVariableBolt;
+import com.parzivail.pswm.entity.EntityXWingBolt;
 import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.EntityUtils;
 import com.parzivail.util.driven.EntityCamera;
@@ -29,6 +32,9 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicTIEBomber.class, "tiebomber");
 		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieinterceptor");
 		EntityUtils.registerEntity(VehicYWing.class, "ywing");
+		EntityUtils.registerEntity(EntityBlasterBoltBase.class, "blasterbolt");
+		EntityUtils.registerEntity(EntityBlasterVariableBolt.class, "variableblasterbolt");
+		EntityUtils.registerEntity(EntityXWingBolt.class, "xwingblasterbolt");
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 }

@@ -1,6 +1,8 @@
 package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.ui.GFX;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
@@ -34,5 +36,19 @@ public class Rope extends PhysObject
 
 		particles[0].setMovable(false);
 		particles[1].setMovable(false);
+	}
+
+	public void drawShaded()
+	{
+		GL11.glPushMatrix();
+		GL11.glTranslatef(0, 1 / 16f, 0);
+		GL11.glBegin(GL11.GL_LINE_STRIP);
+		for (PhysConstraint c : constraints)
+		{
+			GFX.glVertex1v(c.p1.getPos());
+			GFX.glVertex1v(c.p2.getPos());
+		}
+		GL11.glEnd();
+		GL11.glPopMatrix();
 	}
 }

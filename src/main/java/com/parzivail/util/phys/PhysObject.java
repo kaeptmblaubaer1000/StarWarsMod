@@ -1,6 +1,7 @@
 package com.parzivail.util.phys;
 
 import com.parzivail.util.lwjgl.Vector3f;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
@@ -11,8 +12,8 @@ public class PhysObject
 {
 	final LocalPhysSettings settings;
 
-	PhysParticle[] particles;
-	ArrayList<PhysConstraint> constraints;
+	public PhysParticle[] particles;
+	public ArrayList<PhysConstraint> constraints;
 
 	public PhysObject(LocalPhysSettings settings)
 	{
@@ -37,11 +38,11 @@ public class PhysObject
 			p.addForce(dir);
 	}
 
-	public void checkCollision()
+	public void checkCollision(World world)
 	{
 		for (PhysParticle p : particles)
 		{
-			CollisionResult result = p.getSceneCollision();
+			CollisionResult result = p.getSceneCollision(world);
 			if (result.collides)
 			{
 				p.offsetPos(result.collisionVector);

@@ -35,6 +35,8 @@ public class KeybindRegistry
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyShipToggleSFoils;
 	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyShipFire;
+	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyShipResetPitchRoll;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyToggleJoystick;
@@ -55,6 +57,7 @@ public class KeybindRegistry
 		KeybindRegistry.keyShipBankLeft = registerKeybind("shipBankLeft", Keyboard.KEY_Z);
 		KeybindRegistry.keyShipBankRight = registerKeybind("shipBankRight", Keyboard.KEY_C);
 		KeybindRegistry.keyShipToggleSFoils = registerKeybind("shipToggleSFoils", Keyboard.KEY_X);
+		KeybindRegistry.keyShipFire = registerKeybind("shipFire", Keyboard.KEY_G);
 		KeybindRegistry.keyShipResetPitchRoll = registerKeybind("shipResetPitchRoll", Keyboard.KEY_V);
 		KeybindRegistry.keyToggleJoystick = registerKeybind("toggleJoystick", Keyboard.KEY_NONE);
 
