@@ -1,6 +1,10 @@
 package com.parzivail.pswm.vehicle;
 
+import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.sound.MovingSoundXWing;
 import com.parzivail.util.driven.PilotableSFoils;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 /**
@@ -16,5 +20,15 @@ public class VehicXWing extends PilotableSFoils
 	public VehicXWing(World world, double i, double j, double k)
 	{
 		super(world, i, j, k, (float)Math.toRadians(10), 20);
+	}
+
+	@Override
+	public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
+	{
+		if (this.world.isRemote)
+		{
+			PSWM.mc.getSoundHandler().playSound(new MovingSoundXWing(player, this));
+		}
+		return super.processInitialInteract(player, hand);
 	}
 }

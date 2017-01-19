@@ -1,7 +1,7 @@
-package com.parzivail.pswm.render;
+package com.parzivail.pswm.render.ship;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.models.ship.ModelHothScoot;
+import com.parzivail.pswm.models.ship.ModelScootEmAround;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.RenderStarship;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -10,11 +10,11 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Created by colby on 1/17/2017.
  */
-public class RenderHothScoot extends RenderStarship
+public class RenderScootEmAround extends RenderStarship
 {
-	public RenderHothScoot(RenderManager manager)
+	public RenderScootEmAround(RenderManager manager)
 	{
-		super(manager, new ModelHothScoot(), new ResourceLocation(Resources.MODID, "textures/models/hothscoot.png"));
+		super(manager, new ModelScootEmAround(), new ResourceLocation(Resources.MODID, "textures/models/scootemaround.png"));
 		this.disableFirst = false;
 		this.zOffset = -0.65f;
 		this.scale = 1.2f;

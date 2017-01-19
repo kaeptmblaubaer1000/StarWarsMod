@@ -50,7 +50,7 @@ public final class ShaderHelper
 		setColor(red / 255f, green / 255f, blue / 255f, 1);
 	}
 
-	public static void setLightsaberColor(int color)
+	public static void setTransparentColor(int color)
 	{
 		int red = color >> 16 & 0xFF;
 		int green = color >> 8 & 0xFF;
@@ -58,7 +58,7 @@ public final class ShaderHelper
 		setColor(red / 255f, green / 255f, blue / 255f, 0.98f);
 	}
 
-	public static void setLightsaberColorDistort(int color)
+	public static void setDistortColor(int color)
 	{
 		float rN = (PSWM.rngGeneral.nextFloat() * 0.2f + 0.8f);
 		int red = color >> 16 & 0xFF;

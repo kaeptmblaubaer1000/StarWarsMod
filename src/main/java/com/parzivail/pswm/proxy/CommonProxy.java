@@ -12,6 +12,7 @@ import com.parzivail.pswm.registry.BlockRegister;
 import com.parzivail.pswm.registry.CreativeTabRegister;
 import com.parzivail.pswm.registry.EntityRegister;
 import com.parzivail.pswm.registry.ItemRegister;
+import com.parzivail.pswm.sound.PSoundEvents;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -36,6 +37,8 @@ public class CommonProxy
 		NetworkHandler.register(MessageDrivableControl.class, Side.CLIENT);
 		NetworkHandler.register(MessageCreateBlasterBolt.class, Side.SERVER);
 		Lumberjack.log(PSWM.getNextRegisterMessage("NET"));
+
+		PSoundEvents.registerSounds();
 	}
 
 	public void init()

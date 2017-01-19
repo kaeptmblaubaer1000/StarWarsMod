@@ -1,0 +1,10 @@
+{
+  "loop.engine.xwing": {
+	"sounds": [
+	  {
+		"name": "pswm:loop/engine/xwing",
+		"stream": true
+	  }
+	]
+  }
+}

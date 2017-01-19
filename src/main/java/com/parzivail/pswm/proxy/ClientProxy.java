@@ -2,14 +2,18 @@ package com.parzivail.pswm.proxy;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.entity.EntityBlasterBoltBase;
+import com.parzivail.pswm.entity.EntityXWingBolt;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.handler.KeyHandler;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.pswm.render.*;
+import com.parzivail.pswm.render.misc.RenderBlasterBolt;
+import com.parzivail.pswm.render.ship.*;
 import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.Util;
 import com.parzivail.util.basic.Variants;
 import com.parzivail.util.common.Lumberjack;
+import com.parzivail.util.ui.ShaderHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,6 +46,8 @@ public class ClientProxy extends CommonProxy
 
 		ModelLoaderRegistry.registerLoader(com.parzivail.util.loader.OBJLoader.INSTANCE);
 
+		ShaderHelper.initShaders();
+
 		com.parzivail.util.loader.OBJLoader.INSTANCE.addDomain(Resources.MODID);
 		//		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("luke"), "inventory"));
 
@@ -63,6 +69,9 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, RenderTIEInterceptor::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicYWing.class, RenderYWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicJR4Swoop.class, RenderJR4Swoop::new);
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBoltBase.class, manager -> new RenderBlasterBolt(manager, 0xc1461d));
+		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, manager -> new RenderBlasterBolt(manager, 0xc1461d, 2));
 
 		try
 		{

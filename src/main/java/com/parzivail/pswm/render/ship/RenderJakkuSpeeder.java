@@ -1,4 +1,4 @@
-package com.parzivail.pswm.render;
+package com.parzivail.pswm.render.ship;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.ship.ModelJakkuSpeeder;
