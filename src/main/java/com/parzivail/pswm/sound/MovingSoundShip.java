@@ -5,6 +5,7 @@ import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -13,18 +14,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Created by colby on 1/19/2017.
  */
 @SideOnly(Side.CLIENT)
-public class MovingSoundXWing extends MovingSound
+public class MovingSoundShip extends MovingSound
 {
 	private final EntityPlayer player;
 	private final Pilotable ship;
+	private final boolean basedOnMotion;
 
-	public MovingSoundXWing(EntityPlayer playerRiding, Pilotable ship)
+	public MovingSoundShip(EntityPlayer playerRiding, Pilotable ship, SoundEvent sound, boolean loop, boolean basedOnMotion)
 	{
-		super(PSoundEvents.XWING_INTERIOR_LOOP, SoundCategory.MASTER);
+		super(sound, SoundCategory.MASTER);
 		this.player = playerRiding;
 		this.ship = ship;
+		this.basedOnMotion = basedOnMotion;
 		this.attenuationType = ISound.AttenuationType.NONE;
-		this.repeat = true;
+		this.repeat = loop;
 		this.repeatDelay = 0;
 	}
 
@@ -37,14 +40,19 @@ public class MovingSoundXWing extends MovingSound
 		{
 			float f = (float)(this.ship.motionX * this.ship.motionX + this.ship.motionY * this.ship.motionY + this.ship.motionZ * this.ship.motionZ);
 
-			if (f >= 0.1f)
+			if (basedOnMotion)
 			{
-				this.volume = 0.0F + MathHelper.clamp(f / 5f, 0.0F, 1.0F) * 0.75F;
+				if (f >= 0.1f)
+				{
+					this.volume = 0.0F + MathHelper.clamp(f / 5f, 0.0F, 1.0F) * 0.75F;
+				}
+				else
+				{
+					this.volume = 0.0F;
+				}
 			}
 			else
-			{
-				this.volume = 0.0F;
-			}
+				volume = 1;
 		}
 		else
 		{

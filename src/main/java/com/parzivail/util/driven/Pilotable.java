@@ -5,6 +5,8 @@ import com.parzivail.pswm.handler.KeyHandler;
 import com.parzivail.pswm.handler.NetworkHandler;
 import com.parzivail.pswm.network.MessageCreateBlasterBolt;
 import com.parzivail.pswm.network.MessageDrivableControl;
+import com.parzivail.pswm.sound.MovingSoundShip;
+import com.parzivail.pswm.sound.PSoundEvents;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.util.lwjgl.Vector3f;
@@ -522,6 +524,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				break;
 			case BlasterFire:
 				NetworkHandler.INSTANCE.sendToServer(new MessageCreateBlasterBolt((EntityPlayer)this.getInternalControllingPassenger(), BlasterBoltType.XWING, null, BlasterPosition.getNextXwingPosition()));
+				PSWM.mc.getSoundHandler().playSound(new MovingSoundShip((EntityPlayer)this.getInternalControllingPassenger(), this, PSoundEvents.BLASTER_AP11, false, false));
 				break;
 			case SFoil:
 				if (this instanceof PilotableSFoils)

@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class PSoundEvents
 {
 	public static SoundEvent XWING_INTERIOR_LOOP;
+	public static SoundEvent BLASTER_AP11;
 
 	/**
 	 * Register the {@link SoundEvent}s.
@@ -20,6 +21,7 @@ public class PSoundEvents
 	public static void registerSounds()
 	{
 		XWING_INTERIOR_LOOP = registerSound("loop.engine.xwing");
+		BLASTER_AP11 = registerSound("blaster.ap11");
 		Lumberjack.log(PSWM.getNextRegisterMessage("SOUND"));
 	}
 

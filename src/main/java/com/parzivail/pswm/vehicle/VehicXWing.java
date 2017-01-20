@@ -1,7 +1,8 @@
 package com.parzivail.pswm.vehicle;
 
 import com.parzivail.pswm.PSWM;
-import com.parzivail.pswm.sound.MovingSoundXWing;
+import com.parzivail.pswm.sound.MovingSoundShip;
+import com.parzivail.pswm.sound.PSoundEvents;
 import com.parzivail.util.driven.PilotableSFoils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -27,7 +28,7 @@ public class VehicXWing extends PilotableSFoils
 	{
 		if (this.world.isRemote)
 		{
-			PSWM.mc.getSoundHandler().playSound(new MovingSoundXWing(player, this));
+			PSWM.mc.getSoundHandler().playSound(new MovingSoundShip(player, this, PSoundEvents.XWING_INTERIOR_LOOP, true, true));
 		}
 		return super.processInitialInteract(player, hand);
 	}

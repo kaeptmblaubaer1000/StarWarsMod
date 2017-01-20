@@ -6,5 +6,85 @@
 		"stream": true
 	  }
 	]
+  },
+  "blaster.a280": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/a280",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.ap11": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/ap11",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.atst": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/atst",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.dh17": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/dh17",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.dl44": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/dl44",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.e11": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/e11",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.ee3": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/ee3",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.rt97c": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/rt97c",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.se14c": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/se14c",
+		"stream": true
+	  }
+	]
+  },
+  "blaster.t21": {
+	"sounds": [
+	  {
+		"name": "pswm:blaster/t21",
+		"stream": true
+	  }
+	]
   }
 }
