@@ -1,6 +1,8 @@
 package com.parzivail.pswm.sound;
 
+import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
+import com.parzivail.util.common.Lumberjack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -18,6 +20,7 @@ public class PSoundEvents
 	public static void registerSounds()
 	{
 		XWING_INTERIOR_LOOP = registerSound("loop.engine.xwing");
+		Lumberjack.log(PSWM.getNextRegisterMessage("SOUND"));
 	}
 
 	/**

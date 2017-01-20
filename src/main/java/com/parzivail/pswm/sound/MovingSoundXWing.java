@@ -20,13 +20,12 @@ public class MovingSoundXWing extends MovingSound
 
 	public MovingSoundXWing(EntityPlayer playerRiding, Pilotable ship)
 	{
-		super(PSoundEvents.XWING_INTERIOR_LOOP, SoundCategory.AMBIENT);
+		super(PSoundEvents.XWING_INTERIOR_LOOP, SoundCategory.MASTER);
 		this.player = playerRiding;
 		this.ship = ship;
 		this.attenuationType = ISound.AttenuationType.NONE;
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.volume = 0.0F;
 	}
 
 	/**
