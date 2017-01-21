@@ -1,5 +1,6 @@
 package com.parzivail.pswm.registry;
 
+import com.parzivail.mobs.MobTauntaun;
 import com.parzivail.pswm.entity.EntityBlasterBoltBase;
 import com.parzivail.pswm.entity.EntityBlasterVariableBolt;
 import com.parzivail.pswm.entity.EntityXWingBolt;
@@ -37,6 +38,8 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityBlasterBoltBase.class, "blasterbolt");
 		EntityUtils.registerEntity(EntityBlasterVariableBolt.class, "variableblasterbolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "xwingblasterbolt");
+
+		EntityUtils.registerWithSpawnEgg(MobTauntaun.class, "tauntaun", 0xFFFFFF, 0x4ADCE8);
 
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}

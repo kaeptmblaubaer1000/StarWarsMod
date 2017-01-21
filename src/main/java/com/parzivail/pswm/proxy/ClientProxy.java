@@ -1,5 +1,6 @@
 package com.parzivail.pswm.proxy;
 
+import com.parzivail.mobs.MobTauntaun;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.entity.EntityBlasterBoltBase;
@@ -8,6 +9,7 @@ import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.handler.KeyHandler;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.render.misc.RenderBlasterBolt;
+import com.parzivail.pswm.render.mob.RenderTauntaun;
 import com.parzivail.pswm.render.ship.*;
 import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.Util;
@@ -73,6 +75,8 @@ public class ClientProxy extends CommonProxy
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBoltBase.class, manager -> new RenderBlasterBolt(manager, 0xc1461d));
 		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, manager -> new RenderBlasterBolt(manager, 0xc1461d, 2));
+
+		RenderingRegistry.registerEntityRenderingHandler(MobTauntaun.class, RenderTauntaun::new);
 
 		try
 		{
