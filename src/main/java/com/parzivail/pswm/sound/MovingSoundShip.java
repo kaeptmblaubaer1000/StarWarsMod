@@ -19,6 +19,7 @@ public class MovingSoundShip extends MovingSound
 	private final EntityPlayer player;
 	private final Pilotable ship;
 	private final boolean basedOnMotion;
+	private int ticksToStop = 20;
 
 	public MovingSoundShip(EntityPlayer playerRiding, Pilotable ship, SoundEvent sound, boolean loop, boolean basedOnMotion)
 	{
@@ -53,10 +54,13 @@ public class MovingSoundShip extends MovingSound
 			}
 			else
 				volume = 1;
+
+			ticksToStop = 20;
 		}
 		else
 		{
-			this.donePlaying = true;
+			volume = 0;
+			this.donePlaying = ticksToStop-- <= 0;
 		}
 	}
 }

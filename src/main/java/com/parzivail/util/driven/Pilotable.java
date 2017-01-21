@@ -24,6 +24,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -87,14 +88,23 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
 	{
-		if (!this.world.isRemote && this.getPassengers().isEmpty())
+		if (this.getPassengers().isEmpty())
 		{
-			player.startRiding(this);
+			if (world.isRemote)
+				playMovingSound(player);
+			else
+				player.startRiding(this);
 			// TODO
 			//StatTrack.addStat("ride-" + this.getCommandSenderName().replaceAll("\\W", ""));
 			return true;
 		}
 		return false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void playMovingSound(EntityPlayer player)
+	{
+
 	}
 
 	@Override
@@ -398,6 +408,27 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 	/**
 	 * Takes a vector (such as the origin of a seat / gun) and translates it from local coordinates to global coordinates
 	 */
+	public Vector3f rotateModel(Vector3f inVec)
+	{
+		Vector3f vec = new Vector3f(inVec);
+		vec.scale(1 / 16f);
+		float x = vec.x;
+		float z = vec.z;
+		vec.set(z, vec.y, -x);
+		return axes.findLocalVectorGlobally(vec);
+	}
+
+	/**
+	 * Takes a vector (such as the origin of a seat / gun) and translates it from local coordinates to global coordinates
+	 */
+	public Vector3f rotateModelInWorld(Vector3f inVec)
+	{
+		return Vector3f.add(rotateModel(inVec), new Vector3f(this.posX, this.posY, this.posZ), null);
+	}
+
+	/**
+	 * Takes a vector (such as the origin of a seat / gun) and translates it from local coordinates to global coordinates
+	 */
 	public Vector3f rotate(Vec3d inVec)
 	{
 		return rotate(inVec.xCoord, inVec.yCoord, inVec.zCoord);
@@ -524,7 +555,7 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				break;
 			case BlasterFire:
 				NetworkHandler.INSTANCE.sendToServer(new MessageCreateBlasterBolt((EntityPlayer)this.getInternalControllingPassenger(), BlasterBoltType.XWING, null, BlasterPosition.getNextXwingPosition()));
-				PSWM.mc.getSoundHandler().playSound(new MovingSoundShip((EntityPlayer)this.getInternalControllingPassenger(), this, PSoundEvents.BLASTER_AP11, false, false));
+				PSWM.mc.getSoundHandler().playSound(new MovingSoundShip((EntityPlayer)this.getInternalControllingPassenger(), this, getBlasterSound(), false, false));
 				break;
 			case SFoil:
 				if (this instanceof PilotableSFoils)
@@ -536,6 +567,11 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 				this.axes.setAngles(axes.getYaw(), 0, 0);
 				break;
 		}
+	}
+
+	private SoundEvent getBlasterSound()
+	{
+		return PSoundEvents.BLASTER_KX9;
 	}
 
 	public void keyTyped(char eventCharacter, int eventKey, boolean eventKeyState)

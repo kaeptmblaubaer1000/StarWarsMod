@@ -56,50 +56,23 @@ public class MessageCreateBlasterBolt extends PMessage<MessageCreateBlasterBolt>
 
 					Vector3f center = vehicXWing.getLookVec3f();
 
-					float r = 5.5f;
-
+					EntityXWingBolt bolt = new EntityXWingBolt(world); // bottom left
+					Vector3f bPos;
 					if ((pos & BlasterPosition.BOTTOM) == BlasterPosition.BOTTOM)
-					{
 						if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
-						{
-							EntityXWingBolt bolt1 = new EntityXWingBolt(world); // bottom right
-							bolt1.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt1.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
-							bolt1.setSender(this.sender);
-							bolt1.setTarget(target);
-							world.spawnEntity(bolt1);
-						}
+							bPos = vehicXWing.rotateModelInWorld(VehicXWing.RIGHT_BOTTOM_LASER);
 						else
-						{
-							EntityXWingBolt bolt2 = new EntityXWingBolt(world); // bottom left
-							bolt2.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() - dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt2.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
-							bolt2.setSender(this.sender);
-							bolt2.setTarget(target);
-							world.spawnEntity(bolt2);
-						}
-					}
+							bPos = vehicXWing.rotateModelInWorld(VehicXWing.LEFT_BOTTOM_LASER);
+					else if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
+						bPos = vehicXWing.rotateModelInWorld(VehicXWing.RIGHT_TOP_LASER);
 					else
-					{
-						if ((pos & BlasterPosition.RIGHT) == BlasterPosition.RIGHT)
-						{
-							EntityXWingBolt bolt3 = new EntityXWingBolt(world); // top right
-							bolt3.setLocationAndAngles(this.sender.posX + ax * r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt3.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
-							bolt3.setSender(this.sender);
-							bolt3.setTarget(target);
-							world.spawnEntity(bolt3);
-						}
-						else
-						{
-							EntityXWingBolt bolt4 = new EntityXWingBolt(world); // top left
-							bolt4.setLocationAndAngles(this.sender.posX + ax * -r, this.sender.posY + this.sender.getEyeHeight() + dy, this.sender.posZ + az * -r, this.sender.rotationYaw, this.sender.rotationPitch);
-							bolt4.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
-							bolt4.setSender(this.sender);
-							bolt4.setTarget(target);
-							world.spawnEntity(bolt4);
-						}
-					}
+						bPos = vehicXWing.rotateModelInWorld(VehicXWing.LEFT_TOP_LASER);
+
+					bolt.setPosition(bPos.x, bPos.y, bPos.z);
+					bolt.setThrowableHeading(center.x, center.y, center.z, 1.0F, 1.0F);
+					bolt.setSender(this.sender);
+					bolt.setTarget(target);
+					world.spawnEntity(bolt);
 				}
 				break;
 			// TODO
