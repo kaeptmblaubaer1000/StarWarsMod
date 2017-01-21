@@ -69,6 +69,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(VehicTIEInterceptor.class, RenderTIEInterceptor::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicYWing.class, RenderYWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicJR4Swoop.class, RenderJR4Swoop::new);
+		RenderingRegistry.registerEntityRenderingHandler(VehicT13.class, RenderT13::new);
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBoltBase.class, manager -> new RenderBlasterBolt(manager, 0xc1461d));
 		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, manager -> new RenderBlasterBolt(manager, 0xc1461d, 2));

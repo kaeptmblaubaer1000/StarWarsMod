@@ -30,6 +30,7 @@ public class ItemRegister
 		PItems.spawnTIEBomber = new ItemSpawnTIEBomber();
 		PItems.spawnTIEInterceptor = new ItemSpawnTIEInterceptor();
 		PItems.spawnYWing = new ItemSpawnYWing();
+		PItems.spawnT13 = new ItemSpawnT13();
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("ITEMS"));
 	}

@@ -21,7 +21,7 @@ public class KeyHandler
 	public static Controller joystick;
 	public static Vector3f joystickValue;
 	public static Vector3f prevJoystickValue;
-	public static int currentJoystick = -1; // TODO: make this a config option
+	public static int currentJoystick = 10; // TODO: make this a config option
 	public static float joystickThrottle;
 	public static boolean joystickEnabled = false;
 

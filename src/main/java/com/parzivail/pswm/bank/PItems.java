@@ -25,4 +25,5 @@ public class PItems
 	public static Item spawnTIEBomber;
 	public static Item spawnTIEInterceptor;
 	public static Item spawnYWing;
+	public static Item spawnT13;
 }

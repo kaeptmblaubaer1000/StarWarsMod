@@ -32,9 +32,12 @@ public class EntityRegister
 		EntityUtils.registerEntity(VehicTIEBomber.class, "tiebomber");
 		EntityUtils.registerEntity(VehicTIEInterceptor.class, "tieinterceptor");
 		EntityUtils.registerEntity(VehicYWing.class, "ywing");
+		EntityUtils.registerEntity(VehicT13.class, "t13");
+
 		EntityUtils.registerEntity(EntityBlasterBoltBase.class, "blasterbolt");
 		EntityUtils.registerEntity(EntityBlasterVariableBolt.class, "variableblasterbolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "xwingblasterbolt");
+
 		EntityUtils.registerEntity(EntityCamera.class, "camera");
 	}
 }
