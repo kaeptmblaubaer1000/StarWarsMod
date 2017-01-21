@@ -21,6 +21,12 @@ public class VehicYWing extends Pilotable
 	@Override
 	protected void setupShipData()
 	{
-		this.data.cameraDistance = 20;
+		this.data.cameraDistance = 25;
+	}
+
+	@Override
+	public float getCameraY()
+	{
+		return 0.3f;
 	}
 }

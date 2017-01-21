@@ -19,10 +19,10 @@ public class VehicT13 extends PilotableLand
 	}
 
 	@Override
-	public void onUpdate()
+	protected void setupShipData()
 	{
+		super.setupShipData();
 		this.data.cameraDistance = 1.2f;
-		super.onUpdate();
 	}
 
 	@Override

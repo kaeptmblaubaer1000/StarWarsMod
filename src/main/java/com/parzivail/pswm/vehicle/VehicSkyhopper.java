@@ -10,12 +10,12 @@ public class VehicSkyhopper extends PilotableSFoils
 {
 	public VehicSkyhopper(World world)
 	{
-		super(world, 1.75f, 40);
+		super(world, 1.75f, 20);
 	}
 
 	public VehicSkyhopper(World world, double i, double j, double k)
 	{
-		super(world, i, j, k, 1.75f, 40);
+		super(world, i, j, k, 1.75f, 20);
 	}
 
 	@Override
@@ -26,6 +26,6 @@ public class VehicSkyhopper extends PilotableSFoils
 
 	public float getCameraY()
 	{
-		return 0.4f;
+		return 0.6f;
 	}
 }
