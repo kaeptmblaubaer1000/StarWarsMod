@@ -1,6 +1,6 @@
-package com.parzivail.mobs;
+package com.parzivail.pswm.mobs;
 
-import com.parzivail.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiFreqMove;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.AbstractHorse;

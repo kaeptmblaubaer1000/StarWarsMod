@@ -1,5 +1,8 @@
 package com.parzivail.pswm.bank;
 
+import com.parzivail.pswm.blocks.*;
+import com.parzivail.pswm.blocks.hoth.*;
+import com.parzivail.pswm.blocks.pipe.*;
 import com.parzivail.util.basic.BasicBlock;
 
 /**
@@ -71,4 +74,47 @@ public class PBlocks
 	public static BasicBlock titaniumChromiumBlock;
 	public static BasicBlock titaniumOre;
 
+	public static BlockConsoleHoth1 consoleHoth1;
+	public static BlockConsoleHothCurved1 consoleHothCurved1;
+	public static BlockConsoleHothCurved2 consoleHothCurved2;
+	public static BlockConsoleHothCurved3 consoleHothCurved3;
+	public static BlockFloorLight floorLight;
+	public static BlockFloorLight2 floorLight2;
+	public static BlockHothCeilingLight hothCeilingLight;
+	public static BlockHothCrate1 hothCrate1;
+	public static BlockHothCrate2 hothCrate2;
+	public static BlockMedicalConsole medicalConsole;
+	public static BlockMedicalConsole2 medicalConsole2;
+	public static BlockPipeDoubleOffsetBot pipeDoubleOffsetBot;
+	public static BlockPipeDoubleOffsetBotSpecial pipeDoubleOffsetBotSpecial;
+	public static BlockPipeDoubleOffsetTop pipeDoubleOffsetTop;
+	public static BlockPipeDoubleOffsetTopSpecial pipeDoubleOffsetTopSpecial;
+	public static BlockPipesClampedMass pipesClampedMass;
+	public static BlockPipesMass pipesMass;
+	public static BlockPipesSleevedMass pipesSleevedMass;
+	public static BlockAncientJediStatue ancientJediStatue;
+	public static BlockAntenna antenna;
+	public static BlockBactaTank bactaTank;
+	public static BlockBasket basket;
+	public static BlockBlockTable blockTable;
+	public static BlockCrateMass1 crateMass1;
+	public static BlockCrateMosEspa crateMosEspa;
+	public static BlockCrateVilla crateVilla;
+	public static BlockCrystalCompressor crystalCompressor;
+	public static BlockDeathStarDoor deathStarDoor;
+	public static BlockDoorHoth doorHoth;
+	public static BlockGenerator generator;
+	public static BlockGirder girder;
+	public static BlockGunRack gunRack;
+	public static BlockHangingBucket hangingBucket;
+	public static BlockHangingCauldron hangingCauldron;
+	public static BlockHolotableMass holotableMass;
+	public static BlockHothCeilingLight2 hothCeilingLight2;
+	public static BlockHyperdriveBlock hyperdriveBlock;
+	public static BlockLadder ladder;
+	public static BlockLadderTop ladderTop;
+	public static BlockLightsaberForge lightsaberForge;
+	public static BlockMV mV;
+	public static BlockMV2 mV2;
+	public static BlockTarget target;
 }

@@ -1,6 +1,6 @@
 package com.parzivail.pswm.models.mobs;
 
-import com.parzivail.mobs.MobTauntaun;
+import com.parzivail.pswm.mobs.MobTauntaun;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

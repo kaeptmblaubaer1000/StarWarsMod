@@ -1,16 +1,22 @@
 package com.parzivail.pswm.proxy;
 
-import com.parzivail.mobs.MobTauntaun;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.entity.EntityBlasterBoltBase;
 import com.parzivail.pswm.entity.EntityXWingBolt;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.handler.KeyHandler;
+import com.parzivail.pswm.mobs.MobTauntaun;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.pswm.render.block.*;
+import com.parzivail.pswm.render.block.hoth.*;
+import com.parzivail.pswm.render.block.pipe.*;
 import com.parzivail.pswm.render.misc.RenderBlasterBolt;
 import com.parzivail.pswm.render.mob.RenderTauntaun;
 import com.parzivail.pswm.render.ship.*;
+import com.parzivail.pswm.tile.*;
+import com.parzivail.pswm.tile.hoth.*;
+import com.parzivail.pswm.tile.pipe.*;
 import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.Util;
 import com.parzivail.util.basic.Variants;
@@ -24,6 +30,7 @@ import net.minecraft.item.Item;
 import net.minecraft.server.management.PlayerList;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.lwjgl.LWJGLException;
@@ -77,6 +84,50 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityXWingBolt.class, manager -> new RenderBlasterBolt(manager, 0xc1461d, 2));
 
 		RenderingRegistry.registerEntityRenderingHandler(MobTauntaun.class, RenderTauntaun::new);
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConsoleHoth1.class, new RenderConsoleHoth1());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConsoleHothCurved1.class, new RenderConsoleHothCurved1());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConsoleHothCurved2.class, new RenderConsoleHothCurved2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityConsoleHothCurved3.class, new RenderConsoleHothCurved3());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFloorLight.class, new RenderFloorLight());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFloorLight2.class, new RenderFloorLight2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHothCeilingLight.class, new RenderHothCeilingLight());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHothCrate1.class, new RenderHothCrate1());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHothCrate2.class, new RenderHothCrate2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMedicalConsole.class, new RenderMedicalConsole());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMedicalConsole2.class, new RenderMedicalConsole2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetBot.class, new RenderPipeDoubleOffsetBot());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetBotSpecial.class, new RenderPipeDoubleOffsetBotSpecial());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetTop.class, new RenderPipeDoubleOffsetTop());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipeDoubleOffsetTopSpecial.class, new RenderPipeDoubleOffsetTopSpecial());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipesClampedMass.class, new RenderPipesClampedMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipesMass.class, new RenderPipesMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPipesSleevedMass.class, new RenderPipesSleevedMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAncientJediStatue.class, new RenderAncientJediStatue());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new RenderAntenna());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBactaTank.class, new RenderBactaTank());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBasket.class, new RenderBasket());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockTable.class, new RenderBlockTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrateMass1.class, new RenderCrateMass1());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrateMosEspa.class, new RenderCrateMosEspa());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrateVilla.class, new RenderCrateVilla());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCrystalCompressor.class, new RenderCrystalCompressor());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDeathStarDoor.class, new RenderDeathStarDoor());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDoorHoth.class, new RenderDoorHoth());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new RenderGenerator());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGirder.class, new RenderGirder());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGunRack.class, new RenderGunRack());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingBucket.class, new RenderHangingBucket());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHangingCauldron.class, new RenderHangingCauldron());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHolotableMass.class, new RenderHolotableMass());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHothCeilingLight2.class, new RenderHothCeilingLight2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHyperdriveBlock.class, new RenderHyperdriveBlock());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLadder.class, new RenderLadder());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLadderTop.class, new RenderLadderTop());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightsaberForge.class, new RenderLightsaberForge());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV.class, new RenderMV());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMV2.class, new RenderMV2());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTarget.class, new RenderTarget());
 
 		try
 		{

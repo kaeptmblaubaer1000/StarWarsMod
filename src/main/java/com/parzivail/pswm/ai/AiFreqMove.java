@@ -1,4 +1,4 @@
-package com.parzivail.ai;
+package com.parzivail.pswm.ai;
 
 import com.sun.javafx.geom.Vec3f;
 import net.minecraft.block.Block;

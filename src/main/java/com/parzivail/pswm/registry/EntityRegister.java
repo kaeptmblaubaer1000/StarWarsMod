@@ -1,9 +1,9 @@
 package com.parzivail.pswm.registry;
 
-import com.parzivail.mobs.MobTauntaun;
 import com.parzivail.pswm.entity.EntityBlasterBoltBase;
 import com.parzivail.pswm.entity.EntityBlasterVariableBolt;
 import com.parzivail.pswm.entity.EntityXWingBolt;
+import com.parzivail.pswm.mobs.MobTauntaun;
 import com.parzivail.pswm.vehicle.*;
 import com.parzivail.util.EntityUtils;
 import com.parzivail.util.driven.EntityCamera;
