@@ -28,8 +28,12 @@ public class RenderPTile extends TileEntitySpecialRenderer<TileEntityRotate>
 	public void renderTileEntityAt(TileEntityRotate te, double x, double y, double z, float partialTick, int destroyStage)
 	{
 		GL11.glPushMatrix();
-		GL11.glTranslated(x + 0.5, y, z + 0.5);
+
+		GL11.glDisable(GL11.GL_CULL_FACE);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glTranslated(x + 0.5, y + 1.5f, z + 0.5);
 		GL11.glScalef(1, -1, 1);
+		GL11.glColor4f(1, 1, 1, 1);
 
 		this.bindTexture(texture);
 		modelBase.render(passthrough.set(te), (float)x, (float)y, (float)z, partialTick, destroyStage, 0.0625f);

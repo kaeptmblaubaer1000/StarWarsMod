@@ -1,8 +1,7 @@
 package com.parzivail.pswm.blocks;
 
 import com.parzivail.pswm.tile.TileEntityAncientJediStatue;
-import com.parzivail.util.basic.PBlock;
-import net.minecraft.block.ITileEntityProvider;
+import com.parzivail.util.basic.PBlockTE;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -12,7 +11,7 @@ import javax.annotation.Nullable;
 /**
  * Created by colby on 1/29/2017.
  */
-public class BlockAncientJediStatue extends PBlock implements ITileEntityProvider
+public class BlockAncientJediStatue extends PBlockTE
 {
 	public BlockAncientJediStatue()
 	{

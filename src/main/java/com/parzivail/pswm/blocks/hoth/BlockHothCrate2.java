@@ -1,8 +1,7 @@
 package com.parzivail.pswm.blocks.hoth;
 
 import com.parzivail.pswm.tile.hoth.TileEntityHothCrate2;
-import com.parzivail.util.basic.PBlock;
-import net.minecraft.block.ITileEntityProvider;
+import com.parzivail.util.basic.PBlockTE;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -12,7 +11,7 @@ import javax.annotation.Nullable;
 /**
  * Created by colby on 1/29/2017.
  */
-public class BlockHothCrate2 extends PBlock implements ITileEntityProvider
+public class BlockHothCrate2 extends PBlockTE
 {
 	public BlockHothCrate2()
 	{

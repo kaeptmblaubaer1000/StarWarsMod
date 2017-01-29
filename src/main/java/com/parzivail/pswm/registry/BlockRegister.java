@@ -5,8 +5,12 @@ import com.parzivail.pswm.bank.PBlocks;
 import com.parzivail.pswm.blocks.*;
 import com.parzivail.pswm.blocks.hoth.*;
 import com.parzivail.pswm.blocks.pipe.*;
+import com.parzivail.pswm.tile.*;
+import com.parzivail.pswm.tile.hoth.*;
+import com.parzivail.pswm.tile.pipe.*;
 import com.parzivail.util.basic.BasicBlock;
 import com.parzivail.util.common.Lumberjack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created by colby on 12/21/2016.
@@ -122,6 +126,50 @@ public class BlockRegister
 		PBlocks.mV = new BlockMV();
 		PBlocks.mV2 = new BlockMV2();
 		PBlocks.target = new BlockTarget();
+
+		GameRegistry.registerTileEntity(TileEntityConsoleHoth1.class, "tile_consolehoth1");
+		GameRegistry.registerTileEntity(TileEntityConsoleHothCurved1.class, "tile_consolehothcurved1");
+		GameRegistry.registerTileEntity(TileEntityConsoleHothCurved2.class, "tile_consolehothcurved2");
+		GameRegistry.registerTileEntity(TileEntityConsoleHothCurved3.class, "tile_consolehothcurved3");
+		GameRegistry.registerTileEntity(TileEntityFloorLight.class, "tile_floorlight");
+		GameRegistry.registerTileEntity(TileEntityFloorLight2.class, "tile_floorlight2");
+		GameRegistry.registerTileEntity(TileEntityHothCeilingLight.class, "tile_hothceilinglight");
+		GameRegistry.registerTileEntity(TileEntityHothCrate1.class, "tile_hothcrate1");
+		GameRegistry.registerTileEntity(TileEntityHothCrate2.class, "tile_hothcrate2");
+		GameRegistry.registerTileEntity(TileEntityMedicalConsole.class, "tile_medicalconsole");
+		GameRegistry.registerTileEntity(TileEntityMedicalConsole2.class, "tile_medicalconsole2");
+		GameRegistry.registerTileEntity(TileEntityPipeDoubleOffsetBot.class, "tile_pipedoubleoffsetbot");
+		GameRegistry.registerTileEntity(TileEntityPipeDoubleOffsetBotSpecial.class, "tile_pipedoubleoffsetbotspecial");
+		GameRegistry.registerTileEntity(TileEntityPipeDoubleOffsetTop.class, "tile_pipedoubleoffsettop");
+		GameRegistry.registerTileEntity(TileEntityPipeDoubleOffsetTopSpecial.class, "tile_pipedoubleoffsettopspecial");
+		GameRegistry.registerTileEntity(TileEntityPipesClampedMass.class, "tile_pipesclampedmass");
+		GameRegistry.registerTileEntity(TileEntityPipesMass.class, "tile_pipesmass");
+		GameRegistry.registerTileEntity(TileEntityPipesSleevedMass.class, "tile_pipessleevedmass");
+		GameRegistry.registerTileEntity(TileEntityAncientJediStatue.class, "tile_ancientjedistatue");
+		GameRegistry.registerTileEntity(TileEntityAntenna.class, "tile_antenna");
+		GameRegistry.registerTileEntity(TileEntityBactaTank.class, "tile_bactatank");
+		GameRegistry.registerTileEntity(TileEntityBasket.class, "tile_basket");
+		GameRegistry.registerTileEntity(TileEntityBlockTable.class, "tile_blocktable");
+		GameRegistry.registerTileEntity(TileEntityCrateMass1.class, "tile_cratemass1");
+		GameRegistry.registerTileEntity(TileEntityCrateMosEspa.class, "tile_cratemosespa");
+		GameRegistry.registerTileEntity(TileEntityCrateVilla.class, "tile_cratevilla");
+		GameRegistry.registerTileEntity(TileEntityCrystalCompressor.class, "tile_crystalcompressor");
+		GameRegistry.registerTileEntity(TileEntityDeathStarDoor.class, "tile_deathstardoor");
+		GameRegistry.registerTileEntity(TileEntityDoorHoth.class, "tile_doorhoth");
+		GameRegistry.registerTileEntity(TileEntityGenerator.class, "tile_generator");
+		GameRegistry.registerTileEntity(TileEntityGirder.class, "tile_girder");
+		GameRegistry.registerTileEntity(TileEntityGunRack.class, "tile_gunrack");
+		GameRegistry.registerTileEntity(TileEntityHangingBucket.class, "tile_hangingbucket");
+		GameRegistry.registerTileEntity(TileEntityHangingCauldron.class, "tile_hangingcauldron");
+		GameRegistry.registerTileEntity(TileEntityHolotableMass.class, "tile_holotablemass");
+		GameRegistry.registerTileEntity(TileEntityHothCeilingLight2.class, "tile_hothceilinglight2");
+		GameRegistry.registerTileEntity(TileEntityHyperdriveBlock.class, "tile_hyperdriveblock");
+		GameRegistry.registerTileEntity(TileEntityLadder.class, "tile_ladder");
+		GameRegistry.registerTileEntity(TileEntityLadderTop.class, "tile_laddertop");
+		GameRegistry.registerTileEntity(TileEntityLightsaberForge.class, "tile_lightsaberforge");
+		GameRegistry.registerTileEntity(TileEntityMV.class, "tile_mv");
+		GameRegistry.registerTileEntity(TileEntityMV2.class, "tile_mv2");
+		GameRegistry.registerTileEntity(TileEntityTarget.class, "tile_target");
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("BLOCKS"));
 	}
