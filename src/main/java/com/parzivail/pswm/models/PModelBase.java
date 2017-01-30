@@ -1,6 +1,7 @@
 package com.parzivail.pswm.models;
 
 import com.google.common.base.Function;
+import com.parzivail.util.Group;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -16,18 +17,20 @@ import java.util.Collection;
  */
 public class PModelBase implements IModel
 {
+	ResourceLocation texture;
 	ModelBase model;
 
-	public PModelBase(Class<? extends ModelBase> modelClass)
+	public PModelBase(ModelResourceLocation location)
 	{
 		try
 		{
-			model = modelClass.newInstance();
+			model = location.getModelClass().newInstance();
 		}
 		catch (InstantiationException | IllegalAccessException e)
 		{
 			e.printStackTrace();
 		}
+		texture = location.getTexture();
 	}
 
 	@Override
@@ -39,13 +42,13 @@ public class PModelBase implements IModel
 	@Override
 	public Collection<ResourceLocation> getTextures()
 	{
-		return null;
+		return Group.of(texture);
 	}
 
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
 	{
-		return null;
+		return new PBakedModelBase(this, state, format, bakedTextureGetter);
 	}
 
 	@Override

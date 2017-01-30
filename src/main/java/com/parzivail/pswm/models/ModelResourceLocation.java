@@ -10,15 +10,22 @@ import net.minecraft.util.ResourceLocation;
 public class ModelResourceLocation extends ResourceLocation
 {
 	private Class<? extends ModelBase> clazz;
+	private ResourceLocation texture;
 
-	public ModelResourceLocation(Class<? extends ModelBase> clazz)
+	public ModelResourceLocation(Class<? extends ModelBase> clazz, ResourceLocation texture)
 	{
 		super(Resources.MODID, clazz.getName());
 		this.clazz = clazz;
+		this.texture = texture;
 	}
 
 	public Class<? extends ModelBase> getModelClass()
 	{
 		return clazz;
+	}
+
+	public ResourceLocation getTexture()
+	{
+		return texture;
 	}
 }

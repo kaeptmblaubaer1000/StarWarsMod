@@ -24,7 +24,7 @@ public class ModelBaseLoader implements ICustomModelLoader
 
 		ModelResourceLocation location = (ModelResourceLocation)modelLocation;
 
-		return new PModelBase(location.getModelClass());
+		return new PModelBase(location);
 	}
 
 	@Override
