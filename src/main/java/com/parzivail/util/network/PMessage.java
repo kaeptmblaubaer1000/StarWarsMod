@@ -174,7 +174,14 @@ public abstract class PMessage<REQ extends PMessage> implements Serializable, IM
 	{
 		long lsb = readLong(buf);
 		long msb = readLong(buf);
-		return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityFromUuid(new UUID(msb, lsb));
+		try
+		{
+			return FMLCommonHandler.instance().getMinecraftServerInstance().getEntityFromUuid(new UUID(msb, lsb));
+		}
+		catch (NullPointerException e)
+		{
+			return null;
+		}
 	}
 
 	private static void writeEntity(Entity b, ByteBuf buf)
