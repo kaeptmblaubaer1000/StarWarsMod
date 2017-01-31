@@ -26,6 +26,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.server.management.PlayerList;
 import net.minecraftforge.client.model.ModelLoader;
@@ -58,7 +59,7 @@ public class ClientProxy extends CommonProxy
 		ShaderHelper.initShaders();
 
 		com.parzivail.util.loader.OBJLoader.INSTANCE.addDomain(Resources.MODID);
-		//		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("luke"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("a280"), "inventory"));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, RenderXWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicUWing.class, RenderUWing::new);
