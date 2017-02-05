@@ -34,6 +34,7 @@ public class PSWM
 	public static EventHandler eventHandler;
 
 	public static CreativeTabs tabBlocks;
+	public static CreativeTabs tabWeapons;
 
 	@SideOnly(Side.CLIENT)
 	public static Minecraft mc;

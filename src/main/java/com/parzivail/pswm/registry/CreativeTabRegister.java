@@ -2,6 +2,7 @@ package com.parzivail.pswm.registry;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.bank.PBlocks;
+import com.parzivail.pswm.bank.PItems;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -21,6 +22,15 @@ public class CreativeTabRegister
 			public ItemStack getTabIconItem()
 			{
 				return new ItemStack(PBlocks.infraCrate);
+			}
+		};
+
+		PSWM.tabWeapons = new CreativeTabs(CreativeTabs.getNextID(), "pswmWeapons")
+		{
+			@SideOnly(Side.CLIENT)
+			public ItemStack getTabIconItem()
+			{
+				return new ItemStack(PItems.blasterA280);
 			}
 		};
 

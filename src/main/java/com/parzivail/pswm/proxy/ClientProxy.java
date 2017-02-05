@@ -2,6 +2,7 @@ package com.parzivail.pswm.proxy;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.bank.PItems;
 import com.parzivail.pswm.entity.EntityBlasterBoltBase;
 import com.parzivail.pswm.entity.EntityXWingBolt;
 import com.parzivail.pswm.handler.EventHandler;
@@ -26,7 +27,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.server.management.PlayerList;
 import net.minecraftforge.client.model.ModelLoader;
@@ -59,7 +59,20 @@ public class ClientProxy extends CommonProxy
 		ShaderHelper.initShaders();
 
 		com.parzivail.util.loader.OBJLoader.INSTANCE.addDomain(Resources.MODID);
-		ModelLoader.setCustomModelResourceLocation(Items.APPLE, 0, new ModelResourceLocation(Util.modcolon("a280"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterA280, 0, new ModelResourceLocation(Util.modcolon("a280"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterBowcaster, 0, new ModelResourceLocation(Util.modcolon("bowcaster"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterCycler, 0, new ModelResourceLocation(Util.modcolon("cycler"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterDh17, 0, new ModelResourceLocation(Util.modcolon("dh17"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterDl18, 0, new ModelResourceLocation(Util.modcolon("dl18"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterDl21, 0, new ModelResourceLocation(Util.modcolon("dl21"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterDl44, 0, new ModelResourceLocation(Util.modcolon("dl44"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterDlt19, 0, new ModelResourceLocation(Util.modcolon("dlt19"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterE11, 0, new ModelResourceLocation(Util.modcolon("e11"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterEc17, 0, new ModelResourceLocation(Util.modcolon("ec17"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterEe3, 0, new ModelResourceLocation(Util.modcolon("ee3"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterRt97c, 0, new ModelResourceLocation(Util.modcolon("rt97c"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterSe14c, 0, new ModelResourceLocation(Util.modcolon("se14c"), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(PItems.blasterSporting, 0, new ModelResourceLocation(Util.modcolon("sporting"), "inventory"));
 
 		RenderingRegistry.registerEntityRenderingHandler(VehicXWing.class, RenderXWing::new);
 		RenderingRegistry.registerEntityRenderingHandler(VehicUWing.class, RenderUWing::new);

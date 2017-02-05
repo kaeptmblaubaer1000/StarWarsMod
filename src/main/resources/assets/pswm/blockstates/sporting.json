@@ -1,0 +1,178 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+	"model": "pswm:sporting.obj",
+	"custom": {
+	  "flipUVs": "v"
+	}
+  },
+  "variants": {
+	"inventory": [
+	  {
+		"transform": {
+		  "firstperson_righthand": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 90
+			  },
+			  {
+				"z": 0
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  0.02,
+			  0.02,
+			  0.02
+			]
+		  },
+		  "firstperson_lefthand": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 90
+			  },
+			  {
+				"z": 0
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  -0.02,
+			  0.02,
+			  0.02
+			]
+		  },
+		  "thirdperson_righthand": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 90
+			  },
+			  {
+				"z": 0
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  0.02,
+			  0.02,
+			  0.02
+			]
+		  },
+		  "thirdperson_lefthand": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 90
+			  },
+			  {
+				"z": 0
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  -0.02,
+			  0.02,
+			  0.02
+			]
+		  },
+		  "gui": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 0
+			  },
+			  {
+				"z": -45
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  -0.02,
+			  0.02,
+			  0.02
+			]
+		  },
+		  "ground": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 90
+			  },
+			  {
+				"z": 0
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  0.02,
+			  0.02,
+			  0.02
+			]
+		  },
+		  "fixed": {
+			"rotation": [
+			  {
+				"x": 0
+			  },
+			  {
+				"y": 90
+			  },
+			  {
+				"z": 0
+			  }
+			],
+			"translation": [
+			  0,
+			  0.12,
+			  0
+			],
+			"scale": [
+			  0.02,
+			  0.02,
+			  0.02
+			]
+		  }
+		}
+	  }
+	]
+  }
+}
