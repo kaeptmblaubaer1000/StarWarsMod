@@ -1,12 +1,11 @@
 package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.gui.GuiTron;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
-import com.parzivail.util.phys.LocalPhysSettings;
-import com.parzivail.util.phys.Rope;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -29,9 +28,7 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
 		{
-			LocalPhysSettings s = new LocalPhysSettings();
-			s.damping = 0.01f;
-			EventHandler.rope = new Rope(s, new Vector3f(10, 10, 10), new Vector3f(0, 0, 0), 20);
+			PSWM.mc.displayGuiScreen(new GuiTron());
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
