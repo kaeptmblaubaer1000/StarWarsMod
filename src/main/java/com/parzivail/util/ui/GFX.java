@@ -276,22 +276,23 @@ public class GFX
 	/**
 	 * Draws some text
 	 */
-	public static void drawText(FontRenderer font, String s, float x, float y, float scale, int color)
+	public static int drawText(FontRenderer font, String s, float x, float y, float scale, int color)
 	{
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glScalef(scale, scale, 1);
 		GL11.glTranslatef(x / scale, y / scale, 0);
 		GLPalette.glColorI(color);
-		font.drawString(s, 0, 0, color);
+		int i = font.drawString(s, 0, 0, color);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
+		return i;
 	}
 
 	/**
 	 * Draws some text
 	 */
-	public static void drawText(FontRenderer font, String s, float x, float y, float scale, float angle, int color)
+	public static int drawText(FontRenderer font, String s, float x, float y, float scale, float angle, int color)
 	{
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -299,9 +300,10 @@ public class GFX
 		GL11.glTranslatef(x / scale, y / scale, 0);
 		GL11.glRotatef(angle, 0, 0, 1);
 		GLPalette.glColorI(color);
-		font.drawString(s, 0, 0, color);
+		int i = font.drawString(s, 0, 0, color);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glPopMatrix();
+		return i;
 	}
 
 	/**

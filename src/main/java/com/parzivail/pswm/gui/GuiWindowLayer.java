@@ -4,6 +4,7 @@ import com.parzivail.pswm.PSWM;
 import com.parzivail.util.lwjgl.Vector2f;
 import com.parzivail.util.ui.GFX;
 import com.parzivail.util.ui.GLPalette;
+import net.minecraft.client.gui.GuiButton;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.Rectangle;
@@ -23,7 +24,7 @@ public class GuiWindowLayer
 	private Rectangle btnCloseRectangle;
 	private Rectangle btnMinimizeRectangle;
 
-	private boolean minimized;
+	public boolean minimized;
 
 	private boolean dragging;
 	private Vector2f dragOffset;
@@ -65,7 +66,12 @@ public class GuiWindowLayer
 
 		GL11.glTranslatef(this.bounds.getX(), this.bounds.getY(), this.layer);
 
+		GL11.glPushMatrix();
 		this.drawInterior(mouseX, mouseY, partialTicks);
+		GL11.glPopMatrix();
+
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GLPalette.glColorI(GLPalette.WHITE);
 
 		GFX.rectangle(this.titleBarRectangle, true);
 		GFX.drawText(PSWM.mc.fontRendererObj, this.title, 0.8f, 0.8f, 0.5f, GLPalette.BLACK);
@@ -115,6 +121,18 @@ public class GuiWindowLayer
 	}
 
 	public void drawInterior(int mouseX, int mouseY, float partialTicks)
+	{
+	}
+
+	public void actionPerformed(GuiButton button)
+	{
+	}
+
+	public void updateScreen()
+	{
+	}
+
+	public void keyTyped(char typedChar, int keyCode)
 	{
 	}
 }

@@ -26,6 +26,7 @@ public class GuiTron extends PGui
 	public void initGui()
 	{
 		super.initGui();
+		this.removeAllWindows();
 		this.addWindow(new WindowCommandPrompt(this, new Rectangle(50, 50, 100, 150)));
 	}
 
