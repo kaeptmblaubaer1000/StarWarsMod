@@ -19,6 +19,7 @@ public class GuiWindowLayer
 	Rectangle bounds;
 	String title;
 	int layer;
+	int backgroundColor = GLPalette.BLACK;
 
 	Rectangle titleBarRectangle;
 	private Rectangle btnCloseRectangle;
@@ -58,7 +59,7 @@ public class GuiWindowLayer
 		for (int i = 0; i < this.mouse.length; i++)
 			this.mouse[i] = this.mouse[i] && (!this.minimized || this.titleBarRectangle.contains(mouseX, mouseY) || this.dragging);
 
-		GLPalette.glColorI(GLPalette.BLACK);
+		GLPalette.glColorI(this.backgroundColor);
 		GFX.rectangle(this.bounds, true);
 
 		GLPalette.glColorI(GLPalette.WHITE);

@@ -439,8 +439,12 @@ public class GFX
 	 */
 	public static void drawCenteredString(int x, int y, String string, int color)
 	{
-		mc.entityRenderer.setupOverlayRendering();
-		mc.fontRendererObj.drawStringWithShadow(string, x - mc.fontRendererObj.getStringWidth(string) / 2, y - mc.fontRendererObj.FONT_HEIGHT / 2, color);
+		drawText(mc.fontRendererObj, string, x - mc.fontRendererObj.getStringWidth(string) / 2, y - mc.fontRendererObj.FONT_HEIGHT / 2, 1, color);
+	}
+
+	public static void drawCenteredString(int x, int y, String string, float scale, int color)
+	{
+		drawText(mc.fontRendererObj, string, x - mc.fontRendererObj.getStringWidth(string) / 2, y - mc.fontRendererObj.FONT_HEIGHT / 2, scale, color);
 	}
 
 	public static void drawFancyCursor(RenderGameOverlayEvent event, float p, int color)

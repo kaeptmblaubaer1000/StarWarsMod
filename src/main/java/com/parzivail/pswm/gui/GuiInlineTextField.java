@@ -557,6 +557,9 @@ public class GuiInlineTextField extends Gui
 				drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, -16777216);
 			}
 
+			if (this.cursorPosition > this.text.length())
+				this.cursorPosition = this.text.length();
+
 			int i = this.isEnabled ? this.enabledColor : this.disabledColor;
 			int j = this.cursorPosition - this.lineScrollOffset;
 			int k = this.selectionEnd - this.lineScrollOffset;
@@ -567,8 +570,8 @@ public class GuiInlineTextField extends Gui
 			int i1 = this.enableBackgroundDrawing ? this.yPosition + (this.height - 8) / 2 : this.yPosition;
 			int j1 = l;
 
-			int pos = GFX.drawText(this.fontRendererInstance, s.substring(0, this.cursorPosition), this.xPosition, i1, 0.5f, i);
-			GFX.drawText(this.fontRendererInstance, s.substring(this.cursorPosition), this.xPosition + pos / 2f, i1, 0.5f, i);
+			int pos = GFX.drawText(this.fontRendererInstance, this.text.substring(0, this.cursorPosition), this.xPosition, i1, 0.5f, i);
+			GFX.drawText(this.fontRendererInstance, this.text.substring(this.cursorPosition), this.xPosition + pos / 2f, i1, 0.5f, i);
 
 			GFX.drawText(this.fontRendererInstance, "_", this.xPosition + (float)pos / 2f, (float)i1, 0.5f, i);
 		}
