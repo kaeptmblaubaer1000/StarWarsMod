@@ -34,6 +34,7 @@ public class ChunkProviderIlum implements IChunkGenerator
 
 	public ChunkProviderIlum(World worldIn, long seed)
 	{
+		seed = 0;
 		caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CAVE);
 		ravineGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(ravineGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.RAVINE);
 
