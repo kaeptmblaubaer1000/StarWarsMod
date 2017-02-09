@@ -12,9 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Colby on 2/8/2017.
@@ -28,11 +26,11 @@ public class NbtBlockMap
 	{
 		try
 		{
-			InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/nbtpacks/" + nbtpack + ".nbt");
+			InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/" + Resources.MODID + "/nbtpack/" + nbtpack + ".nbt");
 			NBTTagCompound tag = CompressedStreamTools.readCompressed(is);
 			NBTTagList map = (NBTTagList)tag.getTag("map");
 
-			List<String> skipped = new ArrayList<>();
+			int failed = 0;
 			for (int i = 0; i < map.tagCount(); i++)
 			{
 				NBTTagCompound compound = map.getCompoundTagAt(i);
@@ -45,13 +43,14 @@ public class NbtBlockMap
 				else if (item != null)
 					itemMap.put(id, item);
 				else
-					skipped.add(name);
+				{
+					failed++;
+					Lumberjack.err("Skipped unknown block/item: " + name);
+				}
 			}
-			if (!skipped.isEmpty())
-				Lumberjack.err("Skipped unknown blocks/items: " + String.join(", ", skipped));
 
 			is.close();
-			Lumberjack.log("Loaded nbtpack " + nbtpack + ", " + map.tagCount() + " key/value pairs");
+			Lumberjack.log("Init nbtpack " + nbtpack + ", " + (map.tagCount() - failed) + " loaded, " + failed + "failed");
 		}
 		catch (IOException e)
 		{

@@ -12,19 +12,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Colby on 2/8/2017.
+ * Created by Colby on 2/9/2017.
  */
-public class Schematic
+public class ChunkSchematic
 {
 	public int width;
 	public int height;
@@ -38,7 +36,7 @@ public class Schematic
 	private List<NBTTagCompound> tileEntities = new ArrayList<>();
 	private List<NBTTagCompound> entities = new ArrayList<>();
 
-	public Schematic(String schematic, NbtBlockMap pack)
+	public ChunkSchematic(String schematic, NbtBlockMap pack)
 	{
 		Lumberjack.log("Loading schematic " + schematic + "...");
 		try
@@ -149,100 +147,34 @@ public class Schematic
 		return blocks.length;
 	}
 
-	public void genComposite(World world, int chunkX, int spawnY, int chunkZ, int posChunkX, int posChunkZ)
+	private void genBlocks(ChunkPrimer primer, int chunkX, int chunkZ, int relativeX, int relativeY, int relativeZ)
 	{
-		int pX = posChunkX * 16;
-		int pZ = posChunkZ * 16;
-		int fCX = (chunkX - pX);
-		int fCZ = (chunkZ - pZ);
-		HashMap<Vec3i, BlockInfo> torches = new HashMap<>();
-		if (fCX >= 0 && fCX < width && fCZ >= 0 && fCZ < length)
-		{
-			int nX = Math.min(fCX + 16, width - 1);
-			int nZ = Math.min(fCZ + 16, length - 1);
-
-			for (int x = fCX; x < nX; x++)
-				for (int z = fCZ; z < nZ; z++)
-					for (int y = 0; y < height; y++)
-					{
-						gen(world, spawnY, pX, pZ, torches, x, z, y);
-					}
-		}
-
-		genSecondPass(world, torches);
-	}
-
-	public void genFull(World world, int posChunkX, int spawnY, int posChunkZ)
-	{
-		HashMap<Vec3i, BlockInfo> secondPass = new HashMap<>();
-
-		for (int x = 0; x < width; x++)
-			for (int z = 0; z < length; z++)
-				for (int y = 0; y < height; y++)
-				{
-					gen(world, spawnY, posChunkX, posChunkZ, secondPass, x, z, y);
-				}
-
-		genSecondPass(world, secondPass);
-	}
-
-	private void genSecondPass(World world, HashMap<Vec3i, BlockInfo> secondPass)
-	{
-		for (Vec3i p : secondPass.keySet())
-		{
-			int x = p.getX();
-			int y = p.getY();
-			int z = p.getZ();
-			BlockInfo bi = secondPass.get(p);
-			Block b = pack.blockMap.get((int)bi.block);
-			// TODO
-			//			WorldUtils.b(world, x, y, z, b, bi.metadata);
-			//			WorldUtils.m(world, x, y, z, bi.metadata);
-		}
-	}
-
-	private void genBlocksOnly(ChunkPrimer world, int spawnY, int pX, int pZ, HashMap<Vec3i, BlockInfo> secondPass, int x, int z, int y)
-	{
-		short block = getBlockAt(x, y, z);
-		byte metadata = getMetadataAt(x, y, z);
+		short block = getBlockAt(relativeX, relativeY, relativeZ);
+		byte metadata = getMetadataAt(relativeX, relativeY, relativeZ);
 
 		Block b = pack.blockMap.get((int)block);
 		if (b != null)
-			world.setBlockState(pX + x, y + spawnY, pZ + z, b.getStateFromMeta(metadata));
+			primer.setBlockState(chunkX + relativeX, relativeY, chunkZ + relativeZ, b.getStateFromMeta(metadata));
 	}
 
-	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3i, BlockInfo> secondPass, int x, int z, int y)
+	private void genTiles(World world, int chunkX, int chunkZ, int relativeX, int relativeY, int relativeZ)
 	{
-		short block = getBlockAt(x, y, z);
-		byte metadata = getMetadataAt(x, y, z);
-
+		short block = getBlockAt(relativeX, relativeY, relativeZ);
 		Block b = pack.blockMap.get((int)block);
 		if (b != null)
 		{
-			// TODO
-			//			if (b == Blocks.torch || b == Blocks.bed || b == Blocks.wall_sign)
-			//			{
-			//				secondPass.put(Vec3.createVectorHelper(pX + x, y + spawnY, pZ + z), new BlockInfo(block, metadata));
-			//				return;
-			//			}
-			//			else if (b == Blocks.snow)
-			//							b = StarWarsMod.blockHardpackSnow;
-			//			WorldUtils.m(world, pX + x, y + spawnY, pZ + z, metadata);
-
-			WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, metadata);
-
 			if (b instanceof ITileEntityProvider)
 			{
-				NBTTagCompound compound = getTileNbtAt(x, y, z);
+				NBTTagCompound compound = getTileNbtAt(relativeX, relativeY, relativeZ);
 				if (compound != null)
 				{
 					NBTTagCompound newTile = compound.copy();
-					TileEntity t = world.getTileEntity(new BlockPos(pX + x, y + spawnY, pZ + z));
+					TileEntity t = world.getTileEntity(new BlockPos(chunkX + relativeX, relativeY, chunkZ + relativeZ));
 					if (t != null)
 					{
-						newTile.setInteger("x", pX + x);
-						newTile.setInteger("y", y + spawnY);
-						newTile.setInteger("z", pZ + z);
+						newTile.setInteger("relativeX", chunkX + relativeX);
+						newTile.setInteger("relativeY", relativeY);
+						newTile.setInteger("relativeZ", chunkZ + relativeZ);
 
 						// reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
 						if (b instanceof BlockGunRack)
@@ -265,25 +197,25 @@ public class Schematic
 					}
 				}
 
-				// TODO
-				//				if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id && pX + x == 190 && y + spawnY == 54 && pZ + z == 135)
+				// TODO: this is the stuff that fixes little things here and there
+				//				if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id && chunkX + relativeX == 190 && relativeY + spawnY == 54 && chunkZ + relativeZ == 135)
 				//				{
-				//					WorldUtils.b(world, pX + x, y + spawnY, pZ + z, StarWarsMod.blockStaticNpcRebelDreis, 0);
-				//					WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+				//					WorldUtils.b(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, StarWarsMod.blockStaticNpcRebelDreis, 0);
+				//					WorldUtils.m(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, 0);
 				//				}
 
 				//				if (b == Blocks.chest)
 				//				{
-				//					TileEntityChest t = (TileEntityChest)world.getTileEntity(pX + x, y + spawnY, pZ + z);
+				//					TileEntityChest t = (TileEntityChest)world.getTileEntity(chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ);
 				//					if (t != null)
 				//					{
 				//						if (world.provider.dimensionId == Resources.ConfigOptions.dimYavin4Id)
 				//						{
-				//							if (pX + x == 189 && y + spawnY == 110 && pZ + z == 145)
+				//							if (chunkX + relativeX == 189 && relativeY + spawnY == 110 && chunkZ + relativeZ == 145)
 				//								for (int i = 0; i < 27; i++)
 				//									t.setInventorySlotContents(i, new ItemStack(StarWarsItems.xwingSchematics, 1));
 				//						}
-				//						else if (world.provider.dimensionId == Resources.ConfigOptions.dimEndorId && pX + x == 480 && y + spawnY == 63 && pZ + z == 129)
+				//						else if (world.provider.dimensionId == Resources.ConfigOptions.dimEndorId && chunkX + relativeX == 480 && relativeY + spawnY == 63 && chunkZ + relativeZ == 129)
 				//						{
 				//							for (int i = 0; i < 27; i++)
 				//								t.setInventorySlotContents(i, new ItemStack(StarWarsItems.tieSchematics, 1));
@@ -294,26 +226,26 @@ public class Schematic
 				//						}
 				//						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnProtocol)
 				//						{
-				//							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-				//							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+				//							WorldUtils.b(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, Blocks.air, 0);
+				//							WorldUtils.m(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, 0);
 				//
 				//							MobDroidProtocol p = new MobDroidProtocol(world);
-				//							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+				//							p.setPositionAndUpdate(chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ);
 				//							world.spawnEntityInWorld(p);
 				//						}
 				//						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemSpawnAstromech)
 				//						{
-				//							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-				//							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+				//							WorldUtils.b(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, Blocks.air, 0);
+				//							WorldUtils.m(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, 0);
 				//
 				//							MobDroidAstromech p = new MobDroidAstromech(world);
-				//							p.setPositionAndUpdate(pX + x, y + spawnY, pZ + z);
+				//							p.setPositionAndUpdate(chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ);
 				//							world.spawnEntityInWorld(p);
 				//						}
 				//						else if (t.getStackInSlot(1) != null && t.getStackInSlot(1).getItem() instanceof ItemGaffiStick)
 				//						{
-				//							WorldUtils.b(world, pX + x, y + spawnY, pZ + z, Blocks.air, 0);
-				//							WorldUtils.m(world, pX + x, y + spawnY, pZ + z, 0);
+				//							WorldUtils.b(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, Blocks.air, 0);
+				//							WorldUtils.m(world, chunkX + relativeX, relativeY + spawnY, chunkZ + relativeZ, 0);
 				//						}
 				//					}
 				//				}

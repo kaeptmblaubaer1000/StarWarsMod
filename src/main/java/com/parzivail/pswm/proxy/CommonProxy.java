@@ -13,6 +13,7 @@ import com.parzivail.pswm.registry.CreativeTabRegister;
 import com.parzivail.pswm.registry.EntityRegister;
 import com.parzivail.pswm.registry.ItemRegister;
 import com.parzivail.pswm.sound.PSoundEvents;
+import com.parzivail.pswm.structure.Structures;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -52,6 +53,8 @@ public class CommonProxy
 	public void postinit()
 	{
 		EntityRegister.register();
+
+		Structures.init();
 	}
 
 	public EntityPlayerMP getPlayer()
