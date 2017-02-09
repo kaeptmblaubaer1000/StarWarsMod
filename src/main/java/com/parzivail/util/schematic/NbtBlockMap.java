@@ -4,11 +4,11 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -67,22 +67,17 @@ public class NbtBlockMap
 
 	public static Item getItemFromName(String p_149684_0_)
 	{
-		// TODO
-		//		if (Item.itemRegistry.containsKey(p_149684_0_))
-		//		{
-		//			return (Item)Item.itemRegistry.getObject(p_149684_0_);
-		//		}
-		//		else
-		//		{
-		//			try
-		//			{
-		//				return (Item)Item.itemRegistry.getObjectById(Integer.parseInt(p_149684_0_));
-		//			}
-		//			catch (NumberFormatException numberformatexception)
-		//			{
-		//				return null;
-		//			}
-		//		}
-		return Items.AIR;
+		ResourceLocation resourceLocation = new ResourceLocation(p_149684_0_);
+		if (Item.REGISTRY.containsKey(resourceLocation))
+			return Item.REGISTRY.getObject(resourceLocation);
+		else
+			try
+			{
+				return Item.REGISTRY.getObjectById(Integer.parseInt(p_149684_0_));
+			}
+			catch (NumberFormatException numberformatexception)
+			{
+				return null;
+			}
 	}
 }

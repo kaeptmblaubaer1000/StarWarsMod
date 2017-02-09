@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkPrimer;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -200,6 +201,16 @@ public class Schematic
 		}
 	}
 
+	private void genBlocksOnly(ChunkPrimer world, int spawnY, int pX, int pZ, HashMap<Vec3i, BlockInfo> secondPass, int x, int z, int y)
+	{
+		short block = getBlockAt(x, y, z);
+		byte metadata = getMetadataAt(x, y, z);
+
+		Block b = pack.blockMap.get((int)block);
+		if (b != null)
+			world.setBlockState(pX + x, y + spawnY, pZ + z, b.getStateFromMeta(metadata));
+	}
+
 	private void gen(World world, int spawnY, int pX, int pZ, HashMap<Vec3i, BlockInfo> secondPass, int x, int z, int y)
 	{
 		short block = getBlockAt(x, y, z);
@@ -215,9 +226,10 @@ public class Schematic
 			//				return;
 			//			}
 			//			else if (b == Blocks.snow)
-			//				b = StarWarsMod.blockHardpackSnow;
-			//			WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, metadata);
+			//							b = StarWarsMod.blockHardpackSnow;
 			//			WorldUtils.m(world, pX + x, y + spawnY, pZ + z, metadata);
+
+			WorldUtils.b(world, pX + x, y + spawnY, pZ + z, b, metadata);
 
 			if (b instanceof ITileEntityProvider)
 			{
@@ -306,7 +318,6 @@ public class Schematic
 				//					}
 				//				}
 			}
-			b = null;
 		}
 	}
 
