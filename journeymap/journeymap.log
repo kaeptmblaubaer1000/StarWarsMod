@@ -1,0 +1,101 @@
+[15:34:41] [Client thread/INFO] [JMLogger] JourneyMap log initialized.
+[15:34:41] [Client thread/INFO] [JourneymapClient] initialize ENTER
+[15:34:41] [Client thread/TRACE] [ThemeFileHandler] Initializing themes ...
+[15:34:41] [Client thread/INFO] [PropertiesBase] core (FirstLoaded) Setting config file to version "5.4.3": journeymap.core.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] core (Valid) Creating config file: .\journeymap\config\5.4\journeymap.core.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] fullmap (FirstLoaded) Setting config file to version "5.4.3": journeymap.fullmap.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] fullmap (Valid) Creating config file: .\journeymap\config\5.4\journeymap.fullmap.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] minimap (Initialized) Setting config file to version "5.4.3": journeymap.minimap.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] minimap (Valid) Creating config file: .\journeymap\config\5.4\journeymap.minimap.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] minimap2 (FirstLoaded) Setting config file to version "5.4.3": journeymap.minimap2.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] minimap2 (Valid) Creating config file: .\journeymap\config\5.4\journeymap.minimap2.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] topo (FirstLoaded) Setting config file to version "5.4.3": journeymap.topo.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] topo (Valid) Creating config file: .\journeymap\config\5.4\journeymap.topo.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] webmap (FirstLoaded) Setting config file to version "5.4.3": journeymap.webmap.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] webmap (Valid) Creating config file: .\journeymap\config\5.4\journeymap.webmap.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] waypoint (FirstLoaded) Setting config file to version "5.4.3": journeymap.waypoint.config
+[15:34:41] [Client thread/INFO] [PropertiesBase] waypoint (Valid) Creating config file: .\journeymap\config\5.4\journeymap.waypoint.config
+[15:34:41] [Client thread/INFO] [?] Version: JourneyMap 13.19.1.2189-5.4.3, built with Forge 13.19.1.2189
+Forge: 13.19.1.2195
+Environment: os.name, os.arch, java.version, user.country, user.language=null, game language=en_us, locale=en_us
+Unlimited Features: 
+	RadarPlayers : singleplayer = true , multiplayer = true
+	RadarAnimals : singleplayer = true , multiplayer = true
+	RadarMobs : singleplayer = true , multiplayer = true
+	RadarVillagers : singleplayer = true , multiplayer = true
+	MapCaves : singleplayer = true , multiplayer = true
+MiniMapProperties{state=SavedOk, file=journeymap.minimap.config, configVersion=5.4.3, zoomLevel=0, showPlayers=true, frameAlpha=100, compassFontScale=1, terrainAlpha=100, showBiome=true, enabled=true, showPlayerHeading=true, showVillagers=true, sizePercent=30, showLocation=true, showMobs=true, showPets=true, showFps=false, preferredMapType=day, showCompass=true, mobDisplay=Small Dots, showReticle=true, orientation=North, shape=Circle, showSelf=true, locationFormat=xzyv, playerDisplay=Small Dots, showGrid=true, reticleOrientation=Compass, showWaypoints=true, showCaves=true, showAnimals=true, showMobHeading=true, showWaypointLabels=true, locationFormatVerbose=true, position=Top Right, fontScale=1}
+MiniMapProperties{state=SavedOk, file=journeymap.minimap2.config, configVersion=5.4.3, zoomLevel=0, showPlayers=true, frameAlpha=100, compassFontScale=1, terrainAlpha=100, showBiome=true, enabled=true, showPlayerHeading=true, showVillagers=true, sizePercent=30, showLocation=true, showMobs=true, showPets=true, showFps=false, preferredMapType=day, showCompass=true, mobDisplay=Small Dots, showReticle=true, orientation=North, shape=Rectangle, showSelf=true, locationFormat=xzyv, playerDisplay=Small Dots, showGrid=true, reticleOrientation=Compass, showWaypoints=true, showCaves=true, showAnimals=true, showMobHeading=true, showWaypointLabels=true, locationFormatVerbose=true, position=Top Right, fontScale=1}
+FullMapProperties{state=SavedOk, file=journeymap.fullmap.config, configVersion=5.4.3, mobDisplay=Small Dots, zoomLevel=0, showPlayers=true, showSelf=true, locationFormat=xzyv, playerDisplay=Small Dots, showGrid=true, showPlayerHeading=true, showVillagers=true, showWaypoints=true, showCaves=true, showAnimals=true, showMobHeading=true, showWaypointLabels=true, locationFormatVerbose=true, showMobs=true, showPets=true, fontScale=1, preferredMapType=day}
+WaypointProperties{state=SavedOk, file=journeymap.waypoint.config, configVersion=5.4.3, createDeathpoints=true, showName=true, maxDistance=0, autoHideLabel=true, showStaticBeam=true, minDistance=4, boldLabel=false, textureSmall=true, showDistance=true, showRotatingBeam=true, fontScale=2, showTexture=true, managerEnabled=true, beaconEnabled=true}
+WebMapProperties{state=SavedOk, file=journeymap.webmap.config, configVersion=5.4.3, zoomLevel=0, showWaypoints=true, showCaves=true, showSelf=true, port=8080, showGrid=true, enabled=false, googleMapApiDomain=.com, preferredMapType=day}
+CoreProperties{state=SavedOk, file=journeymap.core.config, configVersion=5.4.3, maxPlayersData=32, mapSurfaceAboveCaves=true, optionsManagerViewed=null, announceMod=true, colorPassive=#bbbbbb, renderOverlayEventTypeName=ALL, renderDistanceSurfaceMax=7, radarVerticalDistance=16, recordCacheStats=false, hideSneakingEntities=true, revealShape=Circle, alwaysMapSurface=false, colorVillager=#88e188, mapPlants=false, colorPet=#0077ff, radarLateralDistance=64, mapBathymetry=false, mapCrops=true, maxMobsData=32, mapPlantShadows=false, alwaysMapCaves=false, checkUpdates=true, browserPoll=2000, mappingEnabled=true, colorPlayer=#ffffff, tileHighDisplayQuality=true, cacheVillagersData=2200, logLevel=INFO, maxVillagersData=32, maxAnimalsData=32, mapTransparency=true, tileRenderType=1, caveIgnoreGlass=true, mapTopography=true, renderDistanceCaveMax=3, mapAntialiasing=true, colorSelf=#0000ff, cachePlayersData=2000, cacheMobsData=3000, renderDistanceSurfaceMin=4, cachePlayerData=1000, splashViewed=null, colorHostile=#ff0000, renderDistanceCaveMin=3, cacheAnimalsData=3100, themeName=Victorian, mapCaveLighting=true, renderDelay=2, renderOverlayPreEvent=true, autoMapPoll=2000}
+[15:34:41] [Client thread/INFO] [ClientAPI] [ClientAPI] built with JourneyMap API 1.3-SNAPSHOT
+[15:34:41] [Client thread/INFO] [PluginHelper] Initializing plugins with Client API: journeymap.client.api.impl.ClientAPI
+[15:34:41] [Client thread/INFO] [JourneymapClient] initialize EXIT, elapsed count 0 avg �ms
+[15:34:42] [Client thread/DEBUG] [JourneymapClient] postInitialize ENTER
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.ChatEventHandler registered in MinecraftForgeBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.StateTickHandler registered in FMLCommonHandlerBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.WorldEventHandler registered in MinecraftForgeBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.ChunkUpdateHandler registered in MinecraftForgeBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.WaypointBeaconHandler registered in MinecraftForgeBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.TextureAtlasHandler registered in MinecraftForgeBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.MiniMapOverlayHandler registered in MinecraftForgeBus
+[15:34:42] [Client thread/DEBUG] [EventHandlerManager] journeymap.client.forge.event.KeyEventHandler registered in FMLCommonHandlerBus
+[15:34:42] [Client thread/INFO] [IconSetFileHandler] Added entity icons from journeymap:icon/entity. Success: false
+[15:34:42] [Client thread/TRACE] [ThemeFileHandler] Initializing themes ...
+[15:34:42] [Client thread/INFO] [ThemeFileHandler] Preloaded theme textures: 58
+[15:34:43] [Client thread/DEBUG] [JourneymapClient] postInitialize EXIT, elapsed§8 count §r1§8 avg §r312.46§8ms§r
+[15:34:43] [JM-VersionCheck-1/INFO] [VersionCheck$1] Newer version online: JourneyMap 5.4.4 for Minecraft 1.11 on http://minecraft.curseforge.com/projects/journeymap-32274/files/2370308
+[15:34:52] [Client thread/INFO] [ColorManager] Loading blocks and textures...
+[15:34:52] [Client thread/INFO] [ColorManager] Cached colors from TextureAtlasSprites: 368
+[15:34:52] [Client thread/INFO] [ColorManager] Initialized 5394 block colors from mods and resource packs in 88ms
+[15:34:52] [Client thread/INFO] [ColorPalette] Color palette file generated with 504 colors in 45ms for: W:\Docs\GitHub\StarWarsMod-1.11\journeymap\colorpalette.json
+[15:34:52] [Client thread/INFO] [ColorManager] Updated color palette file: W:\Docs\GitHub\StarWarsMod-1.11\journeymap\colorpalette.json
+[15:34:57] [Server thread/INFO] [PropertiesBase] global (FirstLoaded) Setting config file to version "5.4.3": journeymap.server.global.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] global (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.global.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim22 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim22.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim22 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim22.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim21 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim21.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim21 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim21.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim20 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim20.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim20 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim20.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim-1 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim-1.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim-1 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim-1.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim26 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim26.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim26 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim26.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim25 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim25.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim25 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim25.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim24 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim24.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim24 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim24.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim1 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim1.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim1 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim1.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim23 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim23.config
+[15:34:57] [Server thread/INFO] [PropertiesBase] dim23 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim23.config
+[15:34:58] [Server thread/INFO] [PropertiesBase] dim0 (Initialized) Setting config file to version "5.4.3": journeymap.server.dim0.config
+[15:34:58] [Server thread/INFO] [PropertiesBase] dim0 (Valid) Creating config file: .\journeymap\server\5.4\journeymap.server.dim0.config
+[15:35:00] [Client thread/INFO] [ChatLog] JourneyMap: Press [J]
+[15:35:00] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): optionsManagerViewed=null
+[15:35:00] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): splashViewed=null
+[15:35:00] [Client thread/INFO] [TopoRenderer] Loading journeymap.topo.config
+[15:35:00] [Client thread/INFO] [WaypointStore] Loaded 0 waypoints from .\journeymap\data\sp\New World-----------------------------------------\waypoints
+[15:35:00] [Client thread/INFO] [JourneymapClient] Mapping started in .\journeymap\data\sp\New World-----------------------------------------\DIM20. Memory: 1083MB total, 383MB free 
+[15:35:06] [Client thread/INFO] [JourneymapClient] Mapping halted in .\journeymap\data\sp\New World-----------------------------------------\DIM20
+[15:35:07] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): optionsManagerViewed=null
+[15:35:07] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): splashViewed=null
+[15:35:07] [Client thread/INFO] [TopoRenderer] Loading journeymap.topo.config
+[15:35:07] [Client thread/INFO] [WaypointStore] Loaded 0 waypoints from .\journeymap\data\sp\New World-----------------------------------------\waypoints
+[15:35:07] [Client thread/INFO] [JourneymapClient] Mapping started in .\journeymap\data\sp\New World-----------------------------------------\DIM24. Memory: 1272MB total, 606MB free 
+[15:35:33] [Client thread/INFO] [JourneymapClient] Mapping halted in .\journeymap\data\sp\New World-----------------------------------------\DIM24
+[15:35:33] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): optionsManagerViewed=null
+[15:35:33] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): splashViewed=null
+[15:35:34] [Client thread/INFO] [TopoRenderer] Loading journeymap.topo.config
+[15:35:34] [Client thread/INFO] [WaypointStore] Loaded 0 waypoints from .\journeymap\data\sp\New World-----------------------------------------\waypoints
+[15:35:34] [Client thread/INFO] [JourneymapClient] Mapping started in .\journeymap\data\sp\New World-----------------------------------------\DIM25. Memory: 1272MB total, 222MB free 
+[15:36:19] [Client thread/INFO] [JourneymapClient] Mapping halted in .\journeymap\data\sp\New World-----------------------------------------\DIM25
+[15:36:20] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): optionsManagerViewed=null
+[15:36:20] [Client thread/WARN] [PropertiesBase] core (Initialized) Bad configField entry during updateFrom(): splashViewed=null
+[15:36:20] [Client thread/INFO] [TopoRenderer] Loading journeymap.topo.config
+[15:36:21] [Client thread/INFO] [WaypointStore] Loaded 0 waypoints from .\journeymap\data\sp\New World-----------------------------------------\waypoints
+[15:36:21] [Client thread/INFO] [JourneymapClient] Mapping started in .\journeymap\data\sp\New World-----------------------------------------\DIM20. Memory: 1682MB total, 858MB free 
+[15:37:54] [Client thread/INFO] [JourneymapClient] Mapping halted in .\journeymap\data\sp\New World-----------------------------------------\DIM20
