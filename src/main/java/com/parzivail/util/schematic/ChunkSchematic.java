@@ -24,6 +24,9 @@ import java.util.List;
  */
 public class ChunkSchematic
 {
+	private final int chunkX;
+	private final int y;
+	private final int chunkZ;
 	public int width;
 	public int height;
 	public int length;
@@ -31,13 +34,16 @@ public class ChunkSchematic
 	public short[] blocks;
 	public byte[] metadatas;
 
-	private NbtBlockMap pack;
+	private EmbeddedNbtBlockMap pack;
 
 	private List<NBTTagCompound> tileEntities = new ArrayList<>();
 	private List<NBTTagCompound> entities = new ArrayList<>();
 
-	public ChunkSchematic(String schematic, NbtBlockMap pack)
+	public ChunkSchematic(String schematic, int chunkX, int y, int chunkZ)
 	{
+		this.chunkX = chunkX;
+		this.y = y;
+		this.chunkZ = chunkZ;
 		Lumberjack.log("Loading schematic " + schematic + "...");
 		try
 		{
@@ -59,7 +65,7 @@ public class ChunkSchematic
 			is.close();
 			Lumberjack.log("Loaded schematic " + schematic);
 
-			this.pack = pack;
+			this.pack = new EmbeddedNbtBlockMap(tag);
 		}
 		catch (Exception e)
 		{
@@ -147,14 +153,35 @@ public class ChunkSchematic
 		return blocks.length;
 	}
 
-	private void genBlocks(ChunkPrimer primer, int chunkX, int chunkZ, int relativeX, int relativeY, int relativeZ)
+	public boolean tryGen(ChunkPrimer primer, int chunkX, int chunkZ, int bX, int bY, int bZ)
 	{
-		short block = getBlockAt(relativeX, relativeY, relativeZ);
-		byte metadata = getMetadataAt(relativeX, relativeY, relativeZ);
+		int relativeChunkX = chunkX - this.chunkX;
+		int relativeChunkZ = chunkZ - this.chunkZ;
+		int relativeY = bY - this.y;
 
-		Block b = pack.blockMap.get((int)block);
-		if (b != null)
-			primer.setBlockState(chunkX + relativeX, relativeY, chunkZ + relativeZ, b.getStateFromMeta(metadata));
+		if (relativeChunkX >= 0 && relativeChunkX * 16 < this.width && relativeChunkZ >= 0 && relativeChunkZ * 16 < this.length && relativeY >= 0 && relativeY < this.height)
+		{
+			genBlocks(primer, relativeChunkX, relativeY, relativeChunkZ, bX, bY, bZ);
+			return true;
+		}
+		return false;
+	}
+
+	private void genBlocks(ChunkPrimer primer, int relativeChunkX, int relativeChunkY, int relativeChunkZ, int localX, int localY, int localZ)
+	{
+		try
+		{
+			short block = getBlockAt(localX + relativeChunkX * 16, relativeChunkY, localZ + relativeChunkZ * 16);
+			byte metadata = getMetadataAt(localX + relativeChunkX * 16, relativeChunkY, localZ + relativeChunkZ * 16);
+
+			Block b = pack.blockMap.get((int)block);
+			if (b != null)
+				primer.setBlockState(localX, localY - 1, localZ, b.getStateFromMeta(metadata));
+		}
+		catch (Exception e)
+		{
+			throw e;
+		}
 	}
 
 	private void genTiles(World world, int chunkX, int chunkZ, int relativeX, int relativeY, int relativeZ)

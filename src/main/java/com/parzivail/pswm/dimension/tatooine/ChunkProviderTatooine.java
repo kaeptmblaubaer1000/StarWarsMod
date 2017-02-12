@@ -1,6 +1,7 @@
 package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.pswm.bank.PBlocks;
+import com.parzivail.pswm.structure.Structures;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
 import com.parzivail.util.worldgen.MultiCompositeTerrain;
@@ -52,17 +53,20 @@ public class ChunkProviderTatooine implements IChunkGenerator
 				double height = terrain.getHeightAt((cx * 16 + x), (cz * 16 + z)) + 60;
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
 				int finalHeight = (int)height;
-				for (int y = 1; y <= finalHeight; y++)
+				for (int y = 1; y <= 255; y++)
 				{
-					double sandThreshold = height * 0.9;
-					double sandstoneThreshold = height * 0.6;
+					if (!Structures.test.tryGen(primer, cx, cz, x, y, z) && y <= finalHeight)
+					{
+						double sandThreshold = height * 0.9;
+						double sandstoneThreshold = height * 0.6;
 
-					if (y >= sandThreshold)
-						primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
-					else if (y >= sandstoneThreshold && y < sandThreshold)
-						primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
-					else
-						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
+						if (y >= sandThreshold)
+							primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
+						else if (y >= sandstoneThreshold && y < sandThreshold)
+							primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
+						else
+							primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
+					}
 				}
 			}
 		}

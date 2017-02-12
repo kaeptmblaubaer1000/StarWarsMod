@@ -17,6 +17,7 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -45,6 +46,12 @@ public class EventHandler
 	{
 		queuedDestinations.put(player, destination);
 		Lumberjack.debug("Queued player %s to go to %s next tick.", player, destination);
+	}
+
+
+	@SubscribeEvent
+	public void onWorldLoad(WorldEvent.Load loadEvent)
+	{
 	}
 
 	@SubscribeEvent
