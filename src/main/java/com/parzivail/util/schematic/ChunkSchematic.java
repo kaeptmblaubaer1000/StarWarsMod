@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class ChunkSchematic
 {
-	private int chunkX;
+	private int x;
 	private int y;
-	private int chunkZ;
+	private int z;
 	public int width;
 	public int height;
 	public int length;
@@ -53,9 +53,11 @@ public class ChunkSchematic
 			height = tag.getShort("Height");
 			length = tag.getShort("Length");
 
-			this.chunkX = (int)Math.ceil(tag.getInteger("WEOriginX") / 16f);
 			this.y = tag.getInteger("WEOriginY");
-			this.chunkZ = (int)Math.ceil(tag.getInteger("WEOriginZ") / 16f);
+
+			this.x = tag.getInteger("WEOriginX");
+			this.y = tag.getInteger("WEOriginY");
+			this.z = tag.getInteger("WEOriginZ");
 
 			// read in block data; Vanilla lower byte array
 			loadBlocks(tag);
@@ -173,13 +175,14 @@ public class ChunkSchematic
 	{
 		if (!loaded)
 			return false;
-		int relativeChunkX = chunkX - this.chunkX;
-		int relativeChunkZ = chunkZ - this.chunkZ;
-		int relativeY = bY - this.y;
 
-		if (relativeChunkX >= 0 && relativeChunkX * 16 < this.width && relativeChunkZ >= 0 && relativeChunkZ * 16 < this.length && relativeY >= 0 && relativeY < this.height)
+		int relativeX = bX - this.x;
+		int relativeY = bY - this.y;
+		int relativeZ = bZ - this.z;
+
+		if (relativeX >= 0 && relativeX < this.width && relativeZ >= 0 && relativeZ < this.length && relativeY >= 0 && relativeY < this.height)
 		{
-			genBlocks(primer, relativeChunkX, relativeY, relativeChunkZ, bX, bY, bZ);
+			genBlocks(primer, relativeX, relativeY, relativeZ, bX, bY, bZ);
 			return true;
 		}
 		return false;
@@ -191,8 +194,8 @@ public class ChunkSchematic
 			return;
 		try
 		{
-			short block = getBlockAt(localX + relativeChunkX * 16, relativeChunkY, localZ + relativeChunkZ * 16);
-			byte metadata = getMetadataAt(localX + relativeChunkX * 16, relativeChunkY, localZ + relativeChunkZ * 16);
+			short block = getBlockAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
+			byte metadata = getMetadataAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
 
 			Block b = pack.blockMap.get((int)block);
 			if (b != null)
