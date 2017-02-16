@@ -54,7 +54,7 @@ public class EmbeddedNbtBlockMap
 			}
 		}
 
-		Lumberjack.log("Init EmbeddedNbtBlockMap, " + (map.tagCount() - failed) + " loaded, " + failed + "failed");
+		Lumberjack.log("Init EmbeddedNbtBlockMap, " + (map.tagCount() - failed) + " conversions loaded, " + failed + " failed");
 	}
 
 	public int translateItemId(int id)
