@@ -178,14 +178,13 @@ public class ChunkSchematic
 	{
 		if (!loaded)
 			return false;
-
-		int relativeX = bX - this.x;
+		int relativeChunkX = chunkX * 16 - this.x;
+		int relativeChunkZ = chunkZ * 16 - this.z;
 		int relativeY = bY - this.y;
-		int relativeZ = bZ - this.z;
 
-		if (relativeX >= 0 && relativeX < this.width && relativeZ >= 0 && relativeZ < this.length && relativeY >= 0 && relativeY < this.height)
+		if (relativeChunkX >= 0 && relativeChunkX < this.width && relativeChunkZ >= 0 && relativeChunkZ < this.length && relativeY >= 0 && relativeY < this.height)
 		{
-			genBlocks(primer, relativeX, relativeY, relativeZ, bX, bY, bZ);
+			genBlocks(primer, relativeChunkX, relativeY, relativeChunkZ, bX, bY, bZ);
 			return true;
 		}
 		return false;
