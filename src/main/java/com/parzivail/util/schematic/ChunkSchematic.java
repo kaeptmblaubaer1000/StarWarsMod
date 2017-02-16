@@ -134,20 +134,22 @@ public class ChunkSchematic
 
 	public short getBlockAt(int x, int y, int z)
 	{
-		if (!loaded)
+		int idx = (y * length + z) * width + x;
+		if (!loaded || idx >= blocks.length)
 			return 0;
 		//int i = (y * length + z) * width + x;
 		//return (i >= size()) ? null : blocks[i];
-		return blocks[(y * length + z) * width + x];
+		return blocks[idx];
 	}
 
 	public byte getMetadataAt(int x, int y, int z)
 	{
-		if (!loaded)
+		int idx = (y * length + z) * width + x;
+		if (!loaded || idx >= metadatas.length)
 			return 0;
 		//int i = (y * length + z) * width + x;
 		//return (i >= size()) ? null : blocks[i];
-		return metadatas[(y * length + z) * width + x];
+		return metadatas[idx];
 	}
 
 	public NBTTagCompound getTileNbtAt(int x, int y, int z)

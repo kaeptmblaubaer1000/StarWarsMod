@@ -1,6 +1,7 @@
 package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.pswm.bank.PBlocks;
+import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.pswm.structure.Structures;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
@@ -55,7 +56,7 @@ public class ChunkProviderTatooine implements IChunkGenerator
 				int finalHeight = (int)height;
 				for (int y = 1; y <= 255; y++)
 				{
-					if (!Structures.test.tryGen(primer, cx, cz, x, y, z) && y <= finalHeight)
+					if (!Structures.tryGenForDimension(DimensionInfo.tatooineId, primer, cx, cz, x, y, z) && y <= finalHeight)
 					{
 						double sandThreshold = height * 0.9;
 						double sandstoneThreshold = height * 0.6;
