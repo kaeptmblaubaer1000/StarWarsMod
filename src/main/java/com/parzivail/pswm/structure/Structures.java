@@ -12,6 +12,6 @@ public class Structures
 	public static void init()
 	{
 		// X Y Z format: smallest chunk X and Z, bottom Y to generate
-		test = new ChunkSchematic("test", -4, 66, 2);
+		test = new ChunkSchematic("test");
 	}
 }

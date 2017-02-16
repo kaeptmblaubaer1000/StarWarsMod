@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class ChunkSchematic
 {
-	private final int chunkX;
-	private final int y;
-	private final int chunkZ;
+	private int chunkX;
+	private int y;
+	private int chunkZ;
 	public int width;
 	public int height;
 	public int length;
@@ -39,11 +39,10 @@ public class ChunkSchematic
 	private List<NBTTagCompound> tileEntities = new ArrayList<>();
 	private List<NBTTagCompound> entities = new ArrayList<>();
 
-	public ChunkSchematic(String schematic, int chunkX, int y, int chunkZ)
+	public boolean loaded = false;
+
+	public ChunkSchematic(String schematic)
 	{
-		this.chunkX = chunkX;
-		this.y = y;
-		this.chunkZ = chunkZ;
 		Lumberjack.log("Loading schematic " + schematic + "...");
 		try
 		{
@@ -54,6 +53,10 @@ public class ChunkSchematic
 			height = tag.getShort("Height");
 			length = tag.getShort("Length");
 
+			this.chunkX = (int)Math.ceil(tag.getInteger("WEOriginX") / 16f);
+			this.y = tag.getInteger("WEOriginY");
+			this.chunkZ = (int)Math.ceil(tag.getInteger("WEOriginZ") / 16f);
+
 			// read in block data; Vanilla lower byte array
 			loadBlocks(tag);
 
@@ -63,9 +66,12 @@ public class ChunkSchematic
 			loadEntities(tag);
 
 			is.close();
-			Lumberjack.log("Loaded schematic " + schematic);
 
 			this.pack = new EmbeddedNbtBlockMap(tag);
+
+			loaded = true;
+
+			Lumberjack.log("Loaded schematic " + schematic);
 		}
 		catch (Exception e)
 		{
@@ -128,6 +134,8 @@ public class ChunkSchematic
 
 	public short getBlockAt(int x, int y, int z)
 	{
+		if (!loaded)
+			return 0;
 		//int i = (y * length + z) * width + x;
 		//return (i >= size()) ? null : blocks[i];
 		return blocks[(y * length + z) * width + x];
@@ -135,6 +143,8 @@ public class ChunkSchematic
 
 	public byte getMetadataAt(int x, int y, int z)
 	{
+		if (!loaded)
+			return 0;
 		//int i = (y * length + z) * width + x;
 		//return (i >= size()) ? null : blocks[i];
 		return metadatas[(y * length + z) * width + x];
@@ -142,6 +152,8 @@ public class ChunkSchematic
 
 	public NBTTagCompound getTileNbtAt(int x, int y, int z)
 	{
+		if (!loaded)
+			return null;
 		for (NBTTagCompound tileEntity : tileEntities)
 			if (tileEntity.getInteger("x") == x && tileEntity.getInteger("y") == y && tileEntity.getInteger("z") == z)
 				return tileEntity;
@@ -150,11 +162,15 @@ public class ChunkSchematic
 
 	public int size()
 	{
+		if (!loaded)
+			return 0;
 		return blocks.length;
 	}
 
 	public boolean tryGen(ChunkPrimer primer, int chunkX, int chunkZ, int bX, int bY, int bZ)
 	{
+		if (!loaded)
+			return false;
 		int relativeChunkX = chunkX - this.chunkX;
 		int relativeChunkZ = chunkZ - this.chunkZ;
 		int relativeY = bY - this.y;
@@ -169,6 +185,8 @@ public class ChunkSchematic
 
 	private void genBlocks(ChunkPrimer primer, int relativeChunkX, int relativeChunkY, int relativeChunkZ, int localX, int localY, int localZ)
 	{
+		if (!loaded)
+			return;
 		try
 		{
 			short block = getBlockAt(localX + relativeChunkX * 16, relativeChunkY, localZ + relativeChunkZ * 16);
@@ -176,7 +194,7 @@ public class ChunkSchematic
 
 			Block b = pack.blockMap.get((int)block);
 			if (b != null)
-				primer.setBlockState(localX, localY - 1, localZ, b.getStateFromMeta(metadata));
+				primer.setBlockState(localX, localY, localZ, b.getStateFromMeta(metadata));
 		}
 		catch (Exception e)
 		{
@@ -186,6 +204,8 @@ public class ChunkSchematic
 
 	private void genTiles(World world, int chunkX, int chunkZ, int relativeX, int relativeY, int relativeZ)
 	{
+		if (!loaded)
+			return;
 		short block = getBlockAt(relativeX, relativeY, relativeZ);
 		Block b = pack.blockMap.get((int)block);
 		if (b != null)
