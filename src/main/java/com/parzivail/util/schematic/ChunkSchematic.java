@@ -53,8 +53,6 @@ public class ChunkSchematic
 			height = tag.getShort("Height");
 			length = tag.getShort("Length");
 
-			this.y = tag.getInteger("WEOriginY");
-
 			this.x = tag.getInteger("WEOriginX");
 			this.y = tag.getInteger("WEOriginY");
 			this.z = tag.getInteger("WEOriginZ");
@@ -136,7 +134,7 @@ public class ChunkSchematic
 
 	public short getBlockAt(int x, int y, int z)
 	{
-		int idx = (y * length + z) * width + x;
+		int idx = getBlockIndex(x, y, z);
 		if (!loaded || idx >= blocks.length)
 			return 0;
 		//int i = (y * length + z) * width + x;
@@ -144,9 +142,14 @@ public class ChunkSchematic
 		return blocks[idx];
 	}
 
+	private int getBlockIndex(int x, int y, int z)
+	{
+		return (y * length + z) * width + x;
+	}
+
 	public byte getMetadataAt(int x, int y, int z)
 	{
-		int idx = (y * length + z) * width + x;
+		int idx = getBlockIndex(x, y, z);
 		if (!loaded || idx >= metadatas.length)
 			return 0;
 		//int i = (y * length + z) * width + x;
