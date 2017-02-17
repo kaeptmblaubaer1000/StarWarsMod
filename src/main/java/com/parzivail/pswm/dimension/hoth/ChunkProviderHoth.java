@@ -1,5 +1,7 @@
 package com.parzivail.pswm.dimension.hoth;
 
+import com.parzivail.pswm.dimension.DimensionInfo;
+import com.parzivail.pswm.structure.Structures;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
 import com.parzivail.util.worldgen.MultiCompositeTerrain;
@@ -62,12 +64,15 @@ public class ChunkProviderHoth implements IChunkGenerator
 				int finalHeight = MathHelper.clamp(baseHeight + (int)height, 0, 255);
 				for (int y = 1; y <= finalHeight; y++)
 				{
-					double snowThreshold = height * 0.8;
+					if (!Structures.tryGenForDimension(DimensionInfo.hothId, primer, cx, cz, x, y, z) && y <= finalHeight)
+					{
+						double snowThreshold = height * 0.8;
 
-					if (y >= snowThreshold)
-						primer.setBlockState(x, y, z, Blocks.SNOW.getDefaultState());
-					else
-						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
+						if (y >= snowThreshold)
+							primer.setBlockState(x, y, z, Blocks.SNOW.getDefaultState());
+						else
+							primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
+					}
 				}
 				if (finalHeight + 1 <= 255)
 					primer.setBlockState(x, finalHeight + 1, z, Blocks.SNOW_LAYER.getDefaultState());

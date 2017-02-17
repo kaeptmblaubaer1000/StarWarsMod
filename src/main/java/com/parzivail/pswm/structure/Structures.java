@@ -11,12 +11,14 @@ public class Structures
 {
 	public static ChunkSchematic test;
 	public static ChunkSchematic moseisley;
+	public static ChunkSchematic hothecho;
 
 	public static void init()
 	{
 		// X Y Z format: smallest chunk X and Z, bottom Y to generate
 		test = new ChunkSchematic("test");
 		moseisley = new ChunkSchematic("moseisley");
+		hothecho = new ChunkSchematic("hothecho");
 	}
 
 	public static boolean tryGenForDimension(int dimension, ChunkPrimer primer, int cx, int cz, int x, int y, int z)
@@ -26,6 +28,10 @@ public class Structures
 		{
 			didGenerate = didGenerate || Structures.test.tryGen(primer, cx, cz, x, y, z);
 			didGenerate = didGenerate || Structures.moseisley.tryGen(primer, cx, cz, x, y, z);
+		}
+		else if (dimension == DimensionInfo.hothId)
+		{
+			didGenerate = didGenerate || Structures.hothecho.tryGen(primer, cx, cz, x, y, z);
 		}
 		return didGenerate;
 	}

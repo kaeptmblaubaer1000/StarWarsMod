@@ -102,29 +102,39 @@ public class ChunkSchematic
 
 	private void loadBlocks(NBTTagCompound tag)
 	{
-		byte[] b_lower = tag.getByteArray("Blocks");
+		int[] temp = tag.getIntArray("FullBlocks");
+		blocks = new short[temp.length * 2];
 
-		byte[] addBlocks = new byte[0];
-		// Check and load Additional blocks array
-		if (tag.hasKey("AddBlocks"))
+		for (int i = 0; i < temp.length; i++)
 		{
-			addBlocks = tag.getByteArray("AddBlocks");
+			// Two shorts are saved in one int to transfer two block IDs
+			// Here we extract those shorts.
+			blocks[i * 2] = (short)((temp[i] & 0xFFFF0000) >> Short.SIZE);
+			blocks[i * 2 + 1] = (short)(temp[i] & 0xFFFF);
 		}
 
-		blocks = new short[b_lower.length];
 		metadatas = tag.getByteArray("Data");
 
-		short n;
-		for (int index = 0; index < b_lower.length; index++)
-		{
-			if (index >> 1 >= addBlocks.length)
-				n = (short)(b_lower[index] & 0xFF);
-			else if ((index & 1) == 0)
-				n = (short)(((addBlocks[index >> 1] & 0x0F) << 8) + (b_lower[index] & 0xFF));
-			else
-				n = (short)(((addBlocks[index >> 1] & 0xF0) << 4) + (b_lower[index] & 0xFF));
-			blocks[index] = n;
-		}
+		//		byte[] b_lower = tag.getByteArray("Blocks");
+		//
+		//		byte[] addBlocks = new byte[0];
+		//		// Check and load Additional blocks array
+		//		if (tag.hasKey("AddBlocks"))
+		//		{
+		//			addBlocks = tag.getByteArray("AddBlocks");
+		//		}
+		//
+		//		short n;
+		//		for (int index = 0; index < b_lower.length; index++)
+		//		{
+		//			if (index >> 1 >= addBlocks.length)
+		//				n = (short)(b_lower[index] & 0xFF);
+		//			else if ((index & 1) == 0)
+		//				n = (short)(((addBlocks[index >> 1] & 0x0F) << 8) + (b_lower[index] & 0xFF));
+		//			else
+		//				n = (short)(((addBlocks[index >> 1] & 0xF0) << 4) + (b_lower[index] & 0xFF));
+		//			blocks[index] = n;
+		//		}
 	}
 
 	public List<NBTTagCompound> getTileEntities()
