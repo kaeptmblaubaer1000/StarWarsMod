@@ -2,14 +2,12 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.dimension.DimensionInfo;
+import com.parzivail.util.camera.Boom;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.PilotableLand;
-import com.parzivail.util.lwjgl.Vector3f;
-import com.parzivail.util.phys.Cloth;
-import com.parzivail.util.phys.LocalPhysSettings;
-import com.parzivail.util.phys.Rope;
+import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.world.WorldServer;
@@ -34,13 +32,11 @@ import java.util.Map;
  */
 public class EventHandler
 {
-	private static final Vector3f GRAVITY = new Vector3f(0, -0.01f, 0);
 	@SideOnly(Side.CLIENT)
 	public static KeyHandler keyHandler;
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
-	public static Cloth cloth = new Cloth(new LocalPhysSettings(), 0.6f, 1.25f, 10, 20);
-	public static Rope rope = new Rope(new LocalPhysSettings(), new Vector3f(0, 0, 0), new Vector3f(10, 10, 10), 20);
+	public static Boom boom = new Boom(PSWM.mc, 40);
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
 	{
@@ -132,6 +128,8 @@ public class EventHandler
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		ShipGuiHandler.drawGui(PSWM.mc.gameSettings.thirdPersonView == 0, event);
+
+		AnimationManager.render(event);
 	}
 
 	@SubscribeEvent(receiveCanceled = true)
@@ -195,6 +193,10 @@ public class EventHandler
 	{
 		if (PSWM.mc == null || PSWM.mc.player == null)
 			return;
+
+		if (event.phase == TickEvent.Phase.START)
+			AnimationManager.tick();
+
 		//		cloth.addForce(GRAVITY);
 		//		float move = (float)Math.abs((PSWM.mc.player.posX - PSWM.mc.player.prevPosX) * (PSWM.mc.player.posZ - PSWM.mc.player.prevPosZ));
 		//		cloth.addWindForce(new Vector3f(0, -25 * (PSWM.mc.player.posY - PSWM.mc.player.prevPosY), -100 * move));

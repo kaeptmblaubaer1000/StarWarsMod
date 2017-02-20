@@ -15,7 +15,9 @@ import org.lwjgl.input.Keyboard;
 public class KeybindRegistry
 {
 	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyDebug;
+	public static KeyBinding keyDebug1;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyDebug2;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyShipThrottleUp;
 	@SideOnly(Side.CLIENT)
@@ -45,7 +47,8 @@ public class KeybindRegistry
 	{
 		if (Resources.IS_DEV_ENVIRONMENT)
 		{
-			KeybindRegistry.keyDebug = registerKeybind("debug", Keyboard.KEY_N);
+			KeybindRegistry.keyDebug1 = registerKeybind("debug", Keyboard.KEY_N);
+			KeybindRegistry.keyDebug2 = registerKeybind("also_debug", Keyboard.KEY_M);
 		}
 
 		KeybindRegistry.keyShipThrottleUp = registerKeybind("shipThrottleUp", Keyboard.KEY_R);

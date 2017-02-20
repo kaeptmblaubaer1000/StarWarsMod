@@ -1,8 +1,10 @@
 package com.parzivail.util.driven;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.util.camera.CameraSnapshot;
 import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
+import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -99,5 +101,17 @@ public class EntityCamera extends EntityLivingBase
 	public static void loadAnglesFromStored()
 	{
 		PSWM.camera.setPositionAndRotation(PSWM.cameraPosition.x, PSWM.cameraPosition.y, PSWM.cameraPosition.z, PSWM.cameraRotation.y, PSWM.cameraRotation.x);
+	}
+
+	public void loadAnglesFrom(CameraSnapshot cameraSnapshot)
+	{
+		setPositionAndRotation(cameraSnapshot.position.x, cameraSnapshot.position.y, cameraSnapshot.position.z, cameraSnapshot.rotation.getYaw(), cameraSnapshot.rotation.getPitch());
+		GFX.changeCameraRoll(cameraSnapshot.rotation.getRoll());
+	}
+
+	public void loadAnglesFrom(double x, double y, double z, double yaw, double pitch, double roll)
+	{
+		setPositionAndRotation(x, y, z, (float)yaw, (float)pitch);
+		GFX.changeCameraRoll((float)roll);
 	}
 }

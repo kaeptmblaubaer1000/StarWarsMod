@@ -1,11 +1,11 @@
 package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
-import com.parzivail.pswm.gui.GuiTron;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
+import com.parzivail.util.math.Animation;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -26,9 +26,26 @@ public class KeyHandler
 
 	public void onKeyInput(InputEvent.KeyInputEvent event)
 	{
-		if (KeybindRegistry.keyDebug != null && KeybindRegistry.keyDebug.isPressed())
+		if (KeybindRegistry.keyDebug1 != null && KeybindRegistry.keyDebug1.isPressed())
 		{
-			PSWM.mc.displayGuiScreen(new GuiTron());
+			if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+			{
+				EventHandler.boom.getSnapshots().clear();
+				PSWM.mc.player.sendMessage(new TextComponentString("Reset snapshots."));
+			}
+			else
+			{
+				EventHandler.boom.snapshotCamera(PSWM.mc.player);
+				PSWM.mc.player.sendMessage(new TextComponentString("Added new snapshot. Total: " + EventHandler.boom.getSnapshots().size()));
+			}
+		}
+		if (KeybindRegistry.keyDebug2 != null && KeybindRegistry.keyDebug2.isPressed())
+		{
+			EventHandler.boom.setLength(1000);
+			EventHandler.boom.start();
+			EventHandler.boom.setOnAnimationEnd(Animation::reset);
+
+			PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{

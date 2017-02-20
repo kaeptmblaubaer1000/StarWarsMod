@@ -7,9 +7,8 @@ import java.util.Arrays;
  *
  * @author krueger
  */
-class Spline
+public class Spline
 {
-
 	private double[] xx;
 	private double[] yy;
 
