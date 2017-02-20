@@ -41,7 +41,7 @@ public class KeyHandler
 		}
 		if (KeybindRegistry.keyDebug2 != null && KeybindRegistry.keyDebug2.isPressed())
 		{
-			EventHandler.boom.setLength(20 * EventHandler.boom.getSnapshots().size());
+			EventHandler.boom.setLength(40 * EventHandler.boom.getSnapshots().size());
 
 			if (EventHandler.boom.getTick() == 0)
 			{
