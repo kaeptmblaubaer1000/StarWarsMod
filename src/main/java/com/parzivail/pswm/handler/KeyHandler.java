@@ -1,7 +1,9 @@
 package com.parzivail.pswm.handler;
 
+import com.google.gson.Gson;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.registry.KeybindRegistry;
+import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
@@ -41,19 +43,27 @@ public class KeyHandler
 		}
 		if (KeybindRegistry.keyDebug2 != null && KeybindRegistry.keyDebug2.isPressed())
 		{
-			EventHandler.boom.setLength(40 * EventHandler.boom.getSnapshots().size());
-
-			if (EventHandler.boom.getTick() == 0)
+			if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
 			{
-				PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
-				EventHandler.boom.start();
+				Gson gson = new Gson();
+				Lumberjack.debug(gson.toJson(EventHandler.boom.getSerializedSnapshots()));
 			}
 			else
 			{
-				PSWM.mc.player.sendMessage(new TextComponentString("Stopping camera..."));
-				EventHandler.boom.stop();
+				EventHandler.boom.setLength(40 * EventHandler.boom.getSnapshots().size());
+
+				if (EventHandler.boom.getTick() == 0)
+				{
+					PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
+					EventHandler.boom.start();
+				}
+				else
+				{
+					PSWM.mc.player.sendMessage(new TextComponentString("Stopping camera..."));
+					EventHandler.boom.stop();
+				}
+				EventHandler.boom.setOnAnimationEnd(Animation::reset);
 			}
-			EventHandler.boom.setOnAnimationEnd(Animation::reset);
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{

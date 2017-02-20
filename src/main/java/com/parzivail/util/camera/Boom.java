@@ -1,5 +1,6 @@
 package com.parzivail.util.camera;
 
+import com.google.gson.JsonElement;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.lwjgl.Vector3f;
@@ -27,6 +28,7 @@ public class Boom extends Animation
 	private Spline3D rotationSpline;
 
 	private EntityCamera camera;
+	private JsonElement serializedSnapshots;
 
 	/**
 	 * Creates a new Boom
@@ -106,5 +108,13 @@ public class Boom extends Animation
 	public List<CameraSnapshot> getSnapshots()
 	{
 		return cameraSnapshots;
+	}
+
+	public List<CameraSnapshot.SerializedCameraSnapshot> getSerializedSnapshots()
+	{
+		List<CameraSnapshot.SerializedCameraSnapshot> scs = new ArrayList<>();
+		for (CameraSnapshot snapshot : cameraSnapshots)
+			scs.add(snapshot.createdSerializedSnapshot());
+		return scs;
 	}
 }

@@ -38,4 +38,27 @@ public class CameraSnapshot
 		}
 		return points;
 	}
+
+	public SerializedCameraSnapshot createdSerializedSnapshot()
+	{
+		return new SerializedCameraSnapshot(this);
+	}
+
+	public class SerializedCameraSnapshot
+	{
+		FPoint position;
+		FPoint rotation;
+
+		public SerializedCameraSnapshot(FPoint position, FPoint rotation)
+		{
+			this.position = position;
+			this.rotation = rotation;
+		}
+
+		public SerializedCameraSnapshot(CameraSnapshot cameraSnapshot)
+		{
+			this.position = new FPoint(cameraSnapshot.position);
+			this.rotation = new FPoint(cameraSnapshot.rotation.getYaw() + 180, cameraSnapshot.rotation.getPitch(), cameraSnapshot.rotation.getRoll());
+		}
+	}
 }
