@@ -36,7 +36,7 @@ public class EventHandler
 	public static KeyHandler keyHandler;
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
-	public static Boom boom = new Boom(PSWM.mc, 40);
+	public static Boom boom = new Boom(PSWM.mc, 100);
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
 	{

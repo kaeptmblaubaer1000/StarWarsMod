@@ -41,11 +41,19 @@ public class KeyHandler
 		}
 		if (KeybindRegistry.keyDebug2 != null && KeybindRegistry.keyDebug2.isPressed())
 		{
-			EventHandler.boom.setLength(1000);
-			EventHandler.boom.start();
-			EventHandler.boom.setOnAnimationEnd(Animation::reset);
+			EventHandler.boom.setLength(200);
 
-			PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
+			if (EventHandler.boom.getTick() == 0)
+			{
+				PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
+				EventHandler.boom.start();
+			}
+			else
+			{
+				PSWM.mc.player.sendMessage(new TextComponentString("Stopping camera..."));
+				EventHandler.boom.stop();
+			}
+			EventHandler.boom.setOnAnimationEnd(Animation::reset);
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{

@@ -69,8 +69,6 @@ public class Boom extends Animation
 		camera = new EntityCamera(minecraft.world);
 		minecraft.world.spawnEntity(camera);
 
-		GFX.changeRenderEntity(camera);
-
 		super.start();
 	}
 
@@ -101,6 +99,8 @@ public class Boom extends Animation
 		lerp = MathHelper.clamp(lerp, 0, 1);
 
 		camera.loadAnglesFrom(positionSpline.getSplineX().getValue(lerp), positionSpline.getSplineY().getValue(lerp), positionSpline.getSplineZ().getValue(lerp), rotationSpline.getSplineX().getValue(lerp) - 180, rotationSpline.getSplineY().getValue(lerp), rotationSpline.getSplineZ().getValue(lerp));
+
+		GFX.changeRenderEntity(camera);
 	}
 
 	public List<CameraSnapshot> getSnapshots()
