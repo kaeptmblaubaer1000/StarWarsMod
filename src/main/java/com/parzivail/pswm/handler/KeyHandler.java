@@ -48,7 +48,7 @@ public class KeyHandler
 			}
 			else
 			{
-				EventHandler.jib.loadFromFile("test");
+				//EventHandler.jib.loadFromFile("test");
 
 				EventHandler.jib.setLength(40 * EventHandler.jib.getSnapshots().size());
 
