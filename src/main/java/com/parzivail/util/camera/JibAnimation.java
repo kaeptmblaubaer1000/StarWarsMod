@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.apache.commons.io.IOUtils;
+import org.lwjgl.opengl.GL11;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class JibAnimation extends Animation
 
 	private EntityCamera camera;
 	private JsonElement serializedSnapshots;
+	private int renderList;
 
 	/**
 	 * Creates a new JibAnimation
@@ -73,6 +75,8 @@ public class JibAnimation extends Animation
 			return;
 
 		rebuildSplines();
+
+		renderPath();
 
 		camera = new EntityCamera(minecraft.world);
 		minecraft.world.spawnEntity(camera);
@@ -126,6 +130,13 @@ public class JibAnimation extends Animation
 		return scs;
 	}
 
+	public FPoint getPositionAt(float lerp)
+	{
+		lerp = MathHelper.clamp(lerp, 0, 1);
+
+		return positionSpline.getPoint(lerp);
+	}
+
 	public String exportJson()
 	{
 		Gson gson = new Gson();
@@ -166,5 +177,33 @@ public class JibAnimation extends Animation
 		}
 
 		return snapshots;
+	}
+
+	private void renderPath()
+	{
+		GL11.glNewList(renderList, GL11.GL_COMPILE);
+		GL11.glDisable(GL11.GL_CULL_FACE);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_TEXTURE_2D); // fix for dimming bug!
+		GL11.glBegin(GL11.GL_LINE_STRIP);
+		for (int i = 0; i < 100; i++)
+		{
+			FPoint point = getPositionAt(i / 100f);
+			GL11.glVertex3f(point.x, point.y, point.z);
+		}
+		GL11.glEnd();
+		GL11.glEnable(GL11.GL_TEXTURE_2D); // end of fix
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_LIGHT7);
+		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glEndList();
+	}
+
+	public int getRenderList()
+	{
+		if (renderList == 0)
+			renderList = GL11.glGenLists(1);
+		return renderList;
 	}
 }

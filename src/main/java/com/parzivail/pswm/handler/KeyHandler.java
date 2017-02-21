@@ -46,6 +46,11 @@ public class KeyHandler
 			{
 				Lumberjack.debug(EventHandler.jib.exportJson());
 			}
+			else if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL))
+			{
+				EventHandler.showingJib = !EventHandler.showingJib;
+				PSWM.mc.player.sendMessage(new TextComponentString("Jib visible: " + EventHandler.showingJib));
+			}
 			else
 			{
 				//EventHandler.jib.loadFromFile("test");

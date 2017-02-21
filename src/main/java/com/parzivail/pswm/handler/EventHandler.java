@@ -10,6 +10,7 @@ import com.parzivail.util.driven.PilotableLand;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GFX;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -22,6 +23,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -37,6 +39,7 @@ public class EventHandler
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
 	public static JibAnimation jib = new JibAnimation(PSWM.mc, 100);
+	public static boolean showingJib = false;
 
 	static
 	{
@@ -126,6 +129,16 @@ public class EventHandler
 		//			GL11.glEnable(GL11.GL_CULL_FACE);
 		//			GL11.glPopMatrix();
 		//		}
+
+		if (!showingJib)
+			return;
+
+		GL11.glLineWidth(4);
+		GL11.glPushMatrix();
+		Vec3d pos = PSWM.mc.getRenderViewEntity().getPositionEyes(event.getPartialTicks());
+		GL11.glTranslated(-pos.xCoord, -pos.yCoord + PSWM.mc.getRenderViewEntity().getEyeHeight(), -pos.zCoord);
+		GL11.glCallList(jib.getRenderList());
+		GL11.glPopMatrix();
 	}
 
 	@SubscribeEvent
