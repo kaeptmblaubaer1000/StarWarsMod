@@ -1,6 +1,5 @@
 package com.parzivail.util.camera;
 
-import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.FPoint;
 import com.parzivail.util.math.RotatedAxes;
 
@@ -11,10 +10,10 @@ import java.util.List;
  */
 public class CameraSnapshot
 {
-	public Vector3f position;
+	public FPoint position;
 	public RotatedAxes rotation;
 
-	public CameraSnapshot(Vector3f position, RotatedAxes rotation)
+	public CameraSnapshot(FPoint position, RotatedAxes rotation)
 	{
 		this.position = position;
 		this.rotation = rotation;
@@ -24,7 +23,7 @@ public class CameraSnapshot
 	{
 		FPoint[] points = new FPoint[cameraSnapshots.size()];
 		for (int i = 0; i < points.length; i++)
-			points[i] = new FPoint(cameraSnapshots.get(i).position);
+			points[i] = cameraSnapshots.get(i).position;
 		return points;
 	}
 
@@ -55,9 +54,13 @@ public class CameraSnapshot
 			this.rotation = rotation;
 		}
 
+		SerializedCameraSnapshot()
+		{
+		}
+
 		public SerializedCameraSnapshot(CameraSnapshot cameraSnapshot)
 		{
-			this.position = new FPoint(cameraSnapshot.position);
+			this.position = cameraSnapshot.position;
 			this.rotation = new FPoint(cameraSnapshot.rotation.getYaw() + 180, cameraSnapshot.rotation.getPitch(), cameraSnapshot.rotation.getRoll());
 		}
 	}

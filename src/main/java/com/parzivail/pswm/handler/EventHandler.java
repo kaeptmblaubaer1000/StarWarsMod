@@ -2,7 +2,7 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.dimension.DimensionInfo;
-import com.parzivail.util.camera.Boom;
+import com.parzivail.util.camera.JibAnimation;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
 import com.parzivail.util.driven.Pilotable;
@@ -36,7 +36,12 @@ public class EventHandler
 	public static KeyHandler keyHandler;
 	private static final HashMap<EntityPlayerMP, Integer> queuedDestinations = new HashMap<>();
 
-	public static Boom boom = new Boom(PSWM.mc, 100);
+	public static JibAnimation jib = new JibAnimation(PSWM.mc, 100);
+
+	static
+	{
+		jib.loadFromFile("test");
+	}
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
 	{

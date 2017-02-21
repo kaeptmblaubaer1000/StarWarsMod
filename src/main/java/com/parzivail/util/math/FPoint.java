@@ -27,12 +27,27 @@ public class FPoint
 	 *
 	 * @param x The x coordinate
 	 * @param y The y coordinate
+	 * @param z The z coordinate
 	 */
 	public FPoint(float x, float y, float z)
 	{
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+
+	/**
+	 * Creates a new 3D point in space
+	 *
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 * @param z The z coordinate
+	 */
+	public FPoint(double x, double y, double z)
+	{
+		this.x = (float)x;
+		this.y = (float)y;
+		this.z = (float)z;
 	}
 
 	/**

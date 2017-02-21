@@ -1,6 +1,5 @@
 package com.parzivail.pswm.handler;
 
-import com.google.gson.Gson;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.common.Lumberjack;
@@ -32,37 +31,38 @@ public class KeyHandler
 		{
 			if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
 			{
-				EventHandler.boom.getSnapshots().clear();
+				EventHandler.jib.getSnapshots().clear();
 				PSWM.mc.player.sendMessage(new TextComponentString("Reset snapshots."));
 			}
 			else
 			{
-				EventHandler.boom.snapshotCamera(PSWM.mc.player);
-				PSWM.mc.player.sendMessage(new TextComponentString("Added new snapshot. Total: " + EventHandler.boom.getSnapshots().size()));
+				EventHandler.jib.snapshotCamera(PSWM.mc.player);
+				PSWM.mc.player.sendMessage(new TextComponentString("Added new snapshot. Total: " + EventHandler.jib.getSnapshots().size()));
 			}
 		}
 		if (KeybindRegistry.keyDebug2 != null && KeybindRegistry.keyDebug2.isPressed())
 		{
 			if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
 			{
-				Gson gson = new Gson();
-				Lumberjack.debug(gson.toJson(EventHandler.boom.getSerializedSnapshots()));
+				Lumberjack.debug(EventHandler.jib.exportJson());
 			}
 			else
 			{
-				EventHandler.boom.setLength(40 * EventHandler.boom.getSnapshots().size());
+				EventHandler.jib.loadFromFile("test");
 
-				if (EventHandler.boom.getTick() == 0)
+				EventHandler.jib.setLength(40 * EventHandler.jib.getSnapshots().size());
+
+				if (EventHandler.jib.getTick() == 0)
 				{
 					PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
-					EventHandler.boom.start();
+					EventHandler.jib.start();
 				}
 				else
 				{
 					PSWM.mc.player.sendMessage(new TextComponentString("Stopping camera..."));
-					EventHandler.boom.stop();
+					EventHandler.jib.stop();
 				}
-				EventHandler.boom.setOnAnimationEnd(Animation::reset);
+				EventHandler.jib.setOnAnimationEnd(Animation::reset);
 			}
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
