@@ -54,23 +54,32 @@ public class ChunkProviderTatooine implements IChunkGenerator
 				double height = terrain.getHeightAt((cx * 16 + x), (cz * 16 + z)) + 60;
 				primer.setBlockState(x, 0, z, Blocks.BEDROCK.getDefaultState());
 				int finalHeight = (int)height;
-				for (int y = 1; y <= 255; y++)
+				for (int y = 1; y <= finalHeight; y++)
 				{
-					if (!Structures.tryGenForDimension(DimensionInfo.tatooineId, primer, cx, cz, x, y, z) && y <= finalHeight)
-					{
-						double sandThreshold = height * 0.9;
-						double sandstoneThreshold = height * 0.6;
+					double sandThreshold = height * 0.9;
+					double sandstoneThreshold = height * 0.6;
 
-						if (y >= sandThreshold)
-							primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
-						else if (y >= sandstoneThreshold && y < sandThreshold)
-							primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
-						else
-							primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
-					}
+					if (y >= sandThreshold)
+						primer.setBlockState(x, y, z, PBlocks.tatooineSand0.getDefaultState());
+					else if (y >= sandstoneThreshold && y < sandThreshold)
+						primer.setBlockState(x, y, z, Blocks.SANDSTONE.getDefaultState());
+					else
+						primer.setBlockState(x, y, z, Blocks.STONE.getDefaultState());
 				}
 			}
 		}
+	}
+
+	public void populate(int cx, int cz)
+	{
+		BlockFalling.fallInstantly = true;
+
+		for (int x = 0; x < 16; x++)
+			for (int z = 0; z < 16; z++)
+				for (int y = 1; y <= 255; y++)
+					Structures.tryGenForDimension(DimensionInfo.tatooineId, this.worldObj, cx, cz, x, y, z);
+
+		BlockFalling.fallInstantly = false;
 	}
 
 	public Chunk provideChunk(int x, int z)
@@ -84,18 +93,6 @@ public class ChunkProviderTatooine implements IChunkGenerator
 		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
 		chunk.generateSkylightMap();
 		return chunk;
-	}
-
-	public void populate(int x, int z)
-	{
-		BlockFalling.fallInstantly = true;
-		int i = x * 16;
-		int j = z * 16;
-
-		// this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
-		// TODO: GEN STRUCTURES HERE
-
-		BlockFalling.fallInstantly = false;
 	}
 
 	public boolean generateStructures(Chunk chunkIn, int x, int z)

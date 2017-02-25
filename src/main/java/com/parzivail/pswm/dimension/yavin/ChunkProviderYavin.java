@@ -1,6 +1,8 @@
 package com.parzivail.pswm.dimension.yavin;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.dimension.DimensionInfo;
+import com.parzivail.pswm.structure.Structures;
 import com.parzivail.util.worldgen.CompositeTerrain;
 import com.parzivail.util.worldgen.ITerrainHeightmap;
 import com.parzivail.util.worldgen.MultiCompositeTerrain;
@@ -88,14 +90,16 @@ public class ChunkProviderYavin implements IChunkGenerator
 		return chunk;
 	}
 
-	public void populate(int x, int z)
+	public void populate(int cx, int cz)
 	{
 		BlockFalling.fallInstantly = true;
-		int i = x * 16;
-		int j = z * 16;
+		int i = cx * 16;
+		int j = cz * 16;
 
-		// this.mineshaftGenerator.generateStructure(this.worldObj, this.rand, chunkpos);
-		// TODO: GEN STRUCTURES HERE
+		for (int x = 0; x < 16; x++)
+			for (int z = 0; z < 16; z++)
+				for (int y = 1; y <= 255; y++)
+					Structures.tryGenForDimension(DimensionInfo.yavinId, this.worldObj, cx, cz, x, y, z);
 
 		BlockPos blockpos = new BlockPos(i, 0, j);
 		Biome biome = this.worldObj.getBiome(blockpos.add(16, 0, 16));
