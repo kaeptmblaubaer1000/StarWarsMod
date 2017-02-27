@@ -1,5 +1,6 @@
 package com.parzivail.pswm.dimension;
 
+import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.dimension.dagobah.BiomeDagobah;
 import com.parzivail.pswm.dimension.dagobah.WorldProviderDagobah;
 import com.parzivail.pswm.dimension.endor.BiomeEndor;
@@ -91,7 +92,7 @@ public class DimensionInfo
 		GameRegistry.register(biomeEndor);
 		GameRegistry.register(biomeScarif);
 
-		Lumberjack.log("[DIMS] Prepare to orbit the planet Yavin.");
+		Lumberjack.log(PSWM.getNextRegisterMessage("DIMS"));
 	}
 
 	public static void teleportPlayerTo(EntityPlayerMP player, int id)
@@ -112,6 +113,8 @@ public class DimensionInfo
 	public static Tuple<Vector3d, Vector2f> placePlayer(MinecraftServer mcServer, int dimension)
 	{
 		// TODO: spawns per planet
+
+		// returning position + head rotation
 		return new Tuple<>(new Vector3d(0, getHeight(mcServer.worldServerForDimension(dimension), 0, 0) + 1, 0), new Vector2f(0, 0));
 	}
 

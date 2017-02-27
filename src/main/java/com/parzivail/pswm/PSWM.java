@@ -136,7 +136,7 @@ public class PSWM
 			int id = entry.getValue().ids.values().toArray(new Integer[0])[0]; // wtf
 
 			NBTTagCompound c = new NBTTagCompound();
-			c.setString("k", entry.toString()); // substring because GameDataSnapshot adds a discriminator or something dumb
+			c.setString("k", entry.toString());
 			c.setInteger("v", id);
 			blockMap.appendTag(c);
 		}
