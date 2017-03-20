@@ -1,6 +1,7 @@
 package com.parzivail.util.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.Serializable;
@@ -54,7 +56,11 @@ public abstract class PMessage<REQ extends PMessage> implements Serializable, IM
 	@Override
 	public final IMessage onMessage(REQ message, MessageContext context)
 	{
-		return message.handleMessage(context);
+		if (context.side == Side.CLIENT)
+			Minecraft.getMinecraft().addScheduledTask(() -> message.handleMessage(context));
+		else
+			FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> message.handleMessage(context));
+		return null;
 	}
 
 	@Override

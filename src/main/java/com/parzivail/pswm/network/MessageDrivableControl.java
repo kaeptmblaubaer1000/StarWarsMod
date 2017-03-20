@@ -65,7 +65,7 @@ public class MessageDrivableControl extends PMessage<MessageDrivableControl>
 			Pilotable pilotable = null;
 			if (entity instanceof Pilotable)
 				pilotable = (Pilotable)entity;
-			if (pilotable != null && pilotable.getControllingPassenger() != PSWM.mc.player)
+			if (pilotable != null)
 			{
 				pilotable.setPositionRotationAndMotion(posX, posY, posZ, yaw, pitch, roll, motX, motY, motZ, avelx, avely, avelz, throttle, steeringYaw);
 			}

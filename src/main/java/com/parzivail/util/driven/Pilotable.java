@@ -13,18 +13,23 @@ import com.parzivail.util.lwjgl.Vector3f;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.GFX;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
+import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockWall;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -33,6 +38,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public abstract class Pilotable extends Entity implements IEntityAdditionalSpawnData
 {
@@ -219,27 +226,10 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 
 	public void setPositionRotationAndMotion(double x, double y, double z, float yaw, float pitch, float roll, double motX, double motY, double motZ, float velYaw, float velPitch, float velRoll, float throt, float steeringYaw)
 	{
-		if (world.isRemote)
-		{
-			serverPosX = x;
-			serverPosY = y;
-			serverPosZ = z;
-			serverYaw = yaw;
-			serverPitch = pitch;
-			serverRoll = roll;
-			serverPositionTransitionTicker = 5;
-		}
-
-		//setPosition(x, y, z);
-		prevRotationYaw = yaw;
-		prevRotationPitch = pitch;
-		prevRotationRoll = roll;
 		setRotation(yaw, pitch, roll);
 
-		//Set the motions regardless of side.
-		motionX = motX;
-		motionY = motY;
-		motionZ = motZ;
+		//setPosition(x, y, z);
+
 		angularVelocity = new Vector3f(velYaw, velPitch, velRoll);
 		throttle = throt;
 	}
@@ -304,28 +294,28 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 		}
 
 		//Work out if this is the client side and the entity is driving
-		boolean thePlayerIsDrivingThis = getInternalControllingPassenger() instanceof EntityPlayer && PSWM.proxy.isThePlayer((EntityPlayer)this.getPassengers().get(0));
+		boolean thePlayerIsDrivingThis = getInternalControllingPassenger() instanceof EntityPlayer && PSWM.proxy.isThePlayer((EntityPlayer)getInternalControllingPassenger());
 
 		//Player is not driving this. Update its position from server update packets
-		if (world.isRemote && !thePlayerIsDrivingThis)
-		{
-			//The drivable is currently moving towards its server position. Continue doing so.
-			if (serverPositionTransitionTicker > 0)
-			{
-				double x = posX + (serverPosX - posX) / serverPositionTransitionTicker;
-				double y = posY + (serverPosY - posY) / serverPositionTransitionTicker;
-				double z = posZ + (serverPosZ - posZ) / serverPositionTransitionTicker;
-				double dYaw = MathHelper.wrapDegrees(serverYaw - axes.getYaw());
-				double dPitch = MathHelper.wrapDegrees(serverPitch - axes.getPitch());
-				double dRoll = MathHelper.wrapDegrees(serverRoll - axes.getRoll());
-				rotationYaw = (float)(axes.getYaw() + dYaw / serverPositionTransitionTicker);
-				rotationPitch = (float)(axes.getPitch() + dPitch / serverPositionTransitionTicker);
-				float rotationRoll = (float)(axes.getRoll() + dRoll / serverPositionTransitionTicker);
-				--serverPositionTransitionTicker;
-				setPosition(x, y, z);
-				setRotation(rotationYaw, rotationPitch, rotationRoll);
-			}
-		}
+		//		if (world.isRemote && !thePlayerIsDrivingThis)
+		//		{
+		//			//The drivable is currently moving towards its server position. Continue doing so.
+		//			if (serverPositionTransitionTicker > 0)
+		//			{
+		//				double x = posX + (serverPosX - posX) / serverPositionTransitionTicker;
+		//				double y = posY + (serverPosY - posY) / serverPositionTransitionTicker;
+		//				double z = posZ + (serverPosZ - posZ) / serverPositionTransitionTicker;
+		//				double dYaw = MathHelper.wrapDegrees(serverYaw - axes.getYaw());
+		//				double dPitch = MathHelper.wrapDegrees(serverPitch - axes.getPitch());
+		//				double dRoll = MathHelper.wrapDegrees(serverRoll - axes.getRoll());
+		//				rotationYaw = (float)(axes.getYaw() + dYaw / serverPositionTransitionTicker);
+		//				rotationPitch = (float)(axes.getPitch() + dPitch / serverPositionTransitionTicker);
+		//				float rotationRoll = (float)(axes.getRoll() + dRoll / serverPositionTransitionTicker);
+		//				--serverPositionTransitionTicker;
+		//				setPosition(x, y, z);
+		//				setRotation(rotationYaw, rotationPitch, rotationRoll);
+		//			}
+		//		}
 
 		this.angularVelocity.scale(data.angularDragCoefficient);
 		if (Math.abs(this.angularVelocity.x) < 0.01f)
@@ -389,6 +379,323 @@ public abstract class Pilotable extends Entity implements IEntityAdditionalSpawn
 			serverPosZ = posZ;
 			serverYaw = axes.getYaw();
 			NetworkHandler.INSTANCE.sendToServer(new MessageDrivableControl(this));
+		}
+	}
+
+	@Override
+	public void move(MoverType type, double x, double y, double z)
+	{
+		if (this.noClip)
+		{
+			this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, y, z));
+			this.resetPositionToBB();
+		}
+		else
+		{
+			this.world.theProfiler.startSection("move");
+			double d0 = this.posX;
+			double d1 = this.posY;
+			double d2 = this.posZ;
+
+			double d3 = x;
+			double d4 = y;
+			double d5 = z;
+			boolean flag = this.onGround;
+
+			if ((type == MoverType.SELF || type == MoverType.PLAYER) && flag)
+			{
+				for (double d6 = 0.05D; x != 0.0D && this.world.getCollisionBoxes(this, this.getEntityBoundingBox().offset(x, (double)(-this.stepHeight), 0.0D)).isEmpty(); d3 = x)
+				{
+					if (x < 0.05D && x >= -0.05D)
+					{
+						x = 0.0D;
+					}
+					else if (x > 0.0D)
+					{
+						x -= 0.05D;
+					}
+					else
+					{
+						x += 0.05D;
+					}
+				}
+
+				for (; z != 0.0D && this.world.getCollisionBoxes(this, this.getEntityBoundingBox().offset(0.0D, (double)(-this.stepHeight), z)).isEmpty(); d5 = z)
+				{
+					if (z < 0.05D && z >= -0.05D)
+					{
+						z = 0.0D;
+					}
+					else if (z > 0.0D)
+					{
+						z -= 0.05D;
+					}
+					else
+					{
+						z += 0.05D;
+					}
+				}
+
+				for (; x != 0.0D && z != 0.0D && this.world.getCollisionBoxes(this, this.getEntityBoundingBox().offset(x, (double)(-this.stepHeight), z)).isEmpty(); d5 = z)
+				{
+					if (x < 0.05D && x >= -0.05D)
+					{
+						x = 0.0D;
+					}
+					else if (x > 0.0D)
+					{
+						x -= 0.05D;
+					}
+					else
+					{
+						x += 0.05D;
+					}
+
+					d3 = x;
+
+					if (z < 0.05D && z >= -0.05D)
+					{
+						z = 0.0D;
+					}
+					else if (z > 0.0D)
+					{
+						z -= 0.05D;
+					}
+					else
+					{
+						z += 0.05D;
+					}
+				}
+			}
+
+			List<AxisAlignedBB> list1 = this.world.getCollisionBoxes(this, this.getEntityBoundingBox().addCoord(x, y, z));
+			AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
+
+			if (y != 0.0D)
+			{
+				int i = 0;
+
+				for (int j = list1.size(); i < j; ++i)
+				{
+					y = list1.get(i).calculateYOffset(this.getEntityBoundingBox(), y);
+				}
+
+				this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, y, 0.0D));
+			}
+
+			if (x != 0.0D)
+			{
+				int j4 = 0;
+
+				for (int l4 = list1.size(); j4 < l4; ++j4)
+				{
+					x = list1.get(j4).calculateXOffset(this.getEntityBoundingBox(), x);
+				}
+
+				if (x != 0.0D)
+				{
+					this.setEntityBoundingBox(this.getEntityBoundingBox().offset(x, 0.0D, 0.0D));
+				}
+			}
+
+			if (z != 0.0D)
+			{
+				int k4 = 0;
+
+				for (int i5 = list1.size(); k4 < i5; ++k4)
+				{
+					z = list1.get(k4).calculateZOffset(this.getEntityBoundingBox(), z);
+				}
+
+				if (z != 0.0D)
+				{
+					this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, 0.0D, z));
+				}
+			}
+
+			boolean flag1 = this.onGround || d4 != y && d4 < 0.0D;
+
+			if (this.stepHeight > 0.0F && flag1 && (d3 != x || d5 != z))
+			{
+				double d11 = x;
+				double d7 = y;
+				double d8 = z;
+				AxisAlignedBB axisalignedbb1 = this.getEntityBoundingBox();
+				this.setEntityBoundingBox(axisalignedbb);
+				y = (double)this.stepHeight;
+				List<AxisAlignedBB> list = this.world.getCollisionBoxes(this, this.getEntityBoundingBox().addCoord(d3, y, d5));
+				AxisAlignedBB axisalignedbb2 = this.getEntityBoundingBox();
+				AxisAlignedBB axisalignedbb3 = axisalignedbb2.addCoord(d3, 0.0D, d5);
+				double d9 = y;
+				int l = 0;
+
+				for (int i1 = list.size(); l < i1; ++l)
+				{
+					d9 = list.get(l).calculateYOffset(axisalignedbb3, d9);
+				}
+
+				axisalignedbb2 = axisalignedbb2.offset(0.0D, d9, 0.0D);
+				double d15 = d3;
+				int j1 = 0;
+
+				for (int k1 = list.size(); j1 < k1; ++j1)
+				{
+					d15 = list.get(j1).calculateXOffset(axisalignedbb2, d15);
+				}
+
+				axisalignedbb2 = axisalignedbb2.offset(d15, 0.0D, 0.0D);
+				double d16 = d5;
+				int l1 = 0;
+
+				for (int i2 = list.size(); l1 < i2; ++l1)
+				{
+					d16 = list.get(l1).calculateZOffset(axisalignedbb2, d16);
+				}
+
+				axisalignedbb2 = axisalignedbb2.offset(0.0D, 0.0D, d16);
+				AxisAlignedBB axisalignedbb4 = this.getEntityBoundingBox();
+				double d17 = y;
+				int j2 = 0;
+
+				for (int k2 = list.size(); j2 < k2; ++j2)
+				{
+					d17 = list.get(j2).calculateYOffset(axisalignedbb4, d17);
+				}
+
+				axisalignedbb4 = axisalignedbb4.offset(0.0D, d17, 0.0D);
+				double d18 = d3;
+				int l2 = 0;
+
+				for (int i3 = list.size(); l2 < i3; ++l2)
+				{
+					d18 = list.get(l2).calculateXOffset(axisalignedbb4, d18);
+				}
+
+				axisalignedbb4 = axisalignedbb4.offset(d18, 0.0D, 0.0D);
+				double d19 = d5;
+				int j3 = 0;
+
+				for (int k3 = list.size(); j3 < k3; ++j3)
+				{
+					d19 = list.get(j3).calculateZOffset(axisalignedbb4, d19);
+				}
+
+				axisalignedbb4 = axisalignedbb4.offset(0.0D, 0.0D, d19);
+				double d20 = d15 * d15 + d16 * d16;
+				double d10 = d18 * d18 + d19 * d19;
+
+				if (d20 > d10)
+				{
+					x = d15;
+					z = d16;
+					y = -d9;
+					this.setEntityBoundingBox(axisalignedbb2);
+				}
+				else
+				{
+					x = d18;
+					z = d19;
+					y = -d17;
+					this.setEntityBoundingBox(axisalignedbb4);
+				}
+
+				int l3 = 0;
+
+				for (int i4 = list.size(); l3 < i4; ++l3)
+				{
+					y = list.get(l3).calculateYOffset(this.getEntityBoundingBox(), y);
+				}
+
+				this.setEntityBoundingBox(this.getEntityBoundingBox().offset(0.0D, y, 0.0D));
+
+				if (d11 * d11 + d8 * d8 >= x * x + z * z)
+				{
+					x = d11;
+					y = d7;
+					z = d8;
+					this.setEntityBoundingBox(axisalignedbb1);
+				}
+			}
+
+			this.world.theProfiler.endSection();
+			this.world.theProfiler.startSection("rest");
+			this.resetPositionToBB();
+			this.isCollidedHorizontally = d3 != x || d5 != z;
+			this.isCollidedVertically = d4 != y;
+			this.onGround = this.isCollidedVertically && d4 < 0.0D;
+			this.isCollided = this.isCollidedHorizontally || this.isCollidedVertically;
+			int j5 = MathHelper.floor(this.posX);
+			int k = MathHelper.floor(this.posY - 0.20000000298023224D);
+			int k5 = MathHelper.floor(this.posZ);
+			BlockPos blockpos = new BlockPos(j5, k, k5);
+			IBlockState iblockstate = this.world.getBlockState(blockpos);
+
+			if (iblockstate.getMaterial() == Material.AIR)
+			{
+				BlockPos blockpos1 = blockpos.down();
+				IBlockState iblockstate1 = this.world.getBlockState(blockpos1);
+				Block block1 = iblockstate1.getBlock();
+
+				if (block1 instanceof BlockFence || block1 instanceof BlockWall || block1 instanceof BlockFenceGate)
+				{
+					iblockstate = iblockstate1;
+					blockpos = blockpos1;
+				}
+			}
+
+			this.updateFallState(y, this.onGround, iblockstate, blockpos);
+
+			if (d3 != x)
+			{
+				this.motionX = 0.0D;
+			}
+
+			if (d5 != z)
+			{
+				this.motionZ = 0.0D;
+			}
+
+			Block block = iblockstate.getBlock();
+
+			if (d4 != y)
+			{
+				block.onLanded(this.world, this);
+			}
+
+			if (this.canTriggerWalking() && !flag && !this.isRiding())
+			{
+				double d12 = this.posX - d0;
+				double d13 = this.posY - d1;
+				double d14 = this.posZ - d2;
+
+				if (block != Blocks.LADDER)
+				{
+					d13 = 0.0D;
+				}
+
+				if (block != null && this.onGround)
+				{
+					block.onEntityWalk(this.world, blockpos, this);
+				}
+
+				this.distanceWalkedModified = (float)((double)this.distanceWalkedModified + (double)MathHelper.sqrt(d12 * d12 + d14 * d14) * 0.6D);
+				this.distanceWalkedOnStepModified = (float)((double)this.distanceWalkedOnStepModified + (double)MathHelper.sqrt(d12 * d12 + d13 * d13 + d14 * d14) * 0.6D);
+
+			}
+
+			try
+			{
+				this.doBlockCollisions();
+			}
+			catch (Throwable throwable)
+			{
+				CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Checking entity block collision");
+				CrashReportCategory crashreportcategory = crashreport.makeCategory("Entity being checked for collision");
+				this.addEntityCrashInfo(crashreportcategory);
+				throw new ReportedException(crashreport);
+			}
+
+			this.world.theProfiler.endSection();
 		}
 	}
 

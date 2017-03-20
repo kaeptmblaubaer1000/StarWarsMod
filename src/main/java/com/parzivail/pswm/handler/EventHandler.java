@@ -43,7 +43,7 @@ public class EventHandler
 
 	static
 	{
-		jib.loadFromFile("test");
+		//jib.loadFromFile("test");
 	}
 
 	public static void queuePlayerDestination(EntityPlayerMP player, int destination)
@@ -51,7 +51,6 @@ public class EventHandler
 		queuedDestinations.put(player, destination);
 		Lumberjack.debug("Queued player %s to go to %s next tick.", player, destination);
 	}
-
 
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load loadEvent)

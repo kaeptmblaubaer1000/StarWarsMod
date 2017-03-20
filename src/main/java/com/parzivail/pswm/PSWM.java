@@ -121,6 +121,8 @@ public class PSWM
 
 	public static String getNextRegisterMessage(String context)
 	{
+		if (scriptIndex >= registerScript.length)
+			return context;
 		return String.format("[%s] %s", context, registerScript[scriptIndex++]);
 	}
 
