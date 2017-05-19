@@ -1,6 +1,9 @@
 package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.capability.ForcePowerProvider;
+import com.parzivail.pswm.capability.IForceCapability;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.util.camera.JibAnimation;
 import com.parzivail.util.common.Lumberjack;
@@ -9,13 +12,18 @@ import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.PilotableLand;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GFX;
+import com.parzivail.util.ui.GLPalette;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -55,6 +63,15 @@ public class EventHandler
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load loadEvent)
 	{
+	}
+
+	@SubscribeEvent
+	public void onAttach(AttachCapabilitiesEvent<Entity> event)
+	{
+		if (event.getObject() instanceof EntityPlayer)
+		{
+			event.addCapability(new ResourceLocation(Resources.MODID, "forceCap"), new ForcePowerProvider((EntityPlayer)event.getObject()));
+		}
 	}
 
 	@SubscribeEvent
@@ -145,6 +162,12 @@ public class EventHandler
 	public void onRenderGui(RenderGameOverlayEvent.Pre event)
 	{
 		ShipGuiHandler.drawGui(PSWM.mc.gameSettings.thirdPersonView == 0, event);
+
+		if (PSWM.mc.player.hasCapability(PSWM.FORCE_CAP, null))
+		{
+			IForceCapability f = PSWM.mc.player.getCapability(PSWM.FORCE_CAP, null);
+			GFX.drawText(PSWM.mc.fontRendererObj, f.getPowerName(), 100, 100, 1, GLPalette.WHITE);
+		}
 
 		AnimationManager.render(event);
 	}

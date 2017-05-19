@@ -1,5 +1,6 @@
 package com.parzivail.pswm;
 
+import com.parzivail.pswm.capability.IForceCapability;
 import com.parzivail.pswm.commands.CommandChangeDim;
 import com.parzivail.pswm.handler.EventHandler;
 import com.parzivail.pswm.proxy.CommonProxy;
@@ -14,6 +15,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -58,6 +61,9 @@ public class PSWM
 	private static String[] registerScript = getScript();
 	public static DamageSource blasterDamageSource;
 	public File modConfigDir;
+
+	@CapabilityInject(IForceCapability.class)
+	public static final Capability<IForceCapability> FORCE_CAP = null;
 
 	private static String[] getScript()
 	{
