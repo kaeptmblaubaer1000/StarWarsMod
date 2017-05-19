@@ -5,7 +5,7 @@ package com.parzivail.pswm.capability;
  */
 public class ForceXp implements IForceCapability
 {
-	int xp = 0;
+	int xp = 100;
 	int limit = 100;
 
 	@Override

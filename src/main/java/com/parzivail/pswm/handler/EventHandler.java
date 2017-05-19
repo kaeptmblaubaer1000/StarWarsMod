@@ -12,18 +12,20 @@ import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.PilotableLand;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPalette;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -68,10 +70,10 @@ public class EventHandler
 	@SubscribeEvent
 	public void onAttach(AttachCapabilitiesEvent<Entity> event)
 	{
-		if (event.getObject() instanceof EntityPlayer)
-		{
-			event.addCapability(new ResourceLocation(Resources.MODID, "forceCap"), new ForcePowerProvider((EntityPlayer)event.getObject()));
-		}
+		if (!(event.getObject() instanceof EntityPlayer))
+			return;
+
+		event.addCapability(new ResourceLocation(Resources.MODID, "forceXp"), new ForcePowerProvider());
 	}
 
 	@SubscribeEvent
@@ -163,13 +165,43 @@ public class EventHandler
 	{
 		ShipGuiHandler.drawGui(PSWM.mc.gameSettings.thirdPersonView == 0, event);
 
-		if (PSWM.mc.player.hasCapability(PSWM.FORCE_CAP, null))
-		{
-			IForceCapability f = PSWM.mc.player.getCapability(PSWM.FORCE_CAP, null);
-			GFX.drawText(PSWM.mc.fontRendererObj, f.getPowerName(), 100, 100, 1, GLPalette.WHITE);
-		}
-
 		AnimationManager.render(event);
+	}
+
+	@SubscribeEvent
+	public void onPlayerFalls(LivingFallEvent event)
+	{
+		Entity entity = event.getEntity();
+
+		if (entity.world.isRemote || !(entity instanceof EntityPlayerMP) || event.getDistance() < 3)
+			return;
+
+		EntityPlayer player = (EntityPlayer)entity;
+		IForceCapability mana = player.getCapability(ForcePowerProvider.FORCE_CAP, null);
+
+		float points = mana.getForceXp();
+		float cost = 5;
+
+		if (points > cost)
+		{
+			mana.consume((int)cost);
+
+			String message = String.format("You absorbed fall damage. It costed §7%d§r XP, you have §7%d§r XP left.", (int)cost, mana.getForceXp());
+			player.sendMessage(new TextComponentString(message));
+
+			event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerClone(PlayerEvent.Clone event)
+	{
+		EntityPlayer player = event.getEntityPlayer();
+		IForceCapability cap = player.getCapability(ForcePowerProvider.FORCE_CAP, null);
+		IForceCapability originalCap = event.getOriginal().getCapability(ForcePowerProvider.FORCE_CAP, null);
+
+		cap.set(originalCap.getForceXp());
+		cap.setLimit(originalCap.getForceXpLimit());
 	}
 
 	@SubscribeEvent(receiveCanceled = true)
