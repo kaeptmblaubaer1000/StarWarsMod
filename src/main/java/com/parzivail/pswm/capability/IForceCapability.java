@@ -5,5 +5,15 @@ package com.parzivail.pswm.capability;
  */
 public interface IForceCapability
 {
-	String getPowerName();
+	int getForceXp();
+
+	int getForceXpLimit();
+
+	boolean consume(int xp);
+
+	void produce(int xp);
+
+	void set(int xp);
+
+	void setLimit(int xp);
 }

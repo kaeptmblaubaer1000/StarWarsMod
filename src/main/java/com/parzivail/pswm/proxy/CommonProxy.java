@@ -3,7 +3,7 @@ package com.parzivail.pswm.proxy;
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.capability.ForceCapabilityStorage;
-import com.parzivail.pswm.capability.ForcePowerDefaultImpl;
+import com.parzivail.pswm.capability.ForceXp;
 import com.parzivail.pswm.capability.IForceCapability;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.pswm.handler.EventHandler;
@@ -51,7 +51,7 @@ public class CommonProxy
 		Lumberjack.log("This is Parzi's Star Wars Mod v" + Resources.VERSION);
 
 		PSWM.eventHandler = new EventHandler();
-		CapabilityManager.INSTANCE.register(IForceCapability.class, new ForceCapabilityStorage(), ForcePowerDefaultImpl.class);
+		CapabilityManager.INSTANCE.register(IForceCapability.class, new ForceCapabilityStorage(), ForceXp.class);
 		MinecraftForge.EVENT_BUS.register(PSWM.eventHandler);
 	}
 
