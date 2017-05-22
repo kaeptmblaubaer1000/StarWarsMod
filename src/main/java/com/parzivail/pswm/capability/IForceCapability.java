@@ -13,6 +13,8 @@ public interface IForceCapability
 
 	void produce(int xp);
 
+	void increment();
+
 	void set(int xp);
 
 	void setLimit(int xp);

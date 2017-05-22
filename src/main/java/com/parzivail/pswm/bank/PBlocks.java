@@ -4,6 +4,7 @@ import com.parzivail.pswm.blocks.*;
 import com.parzivail.pswm.blocks.hoth.*;
 import com.parzivail.pswm.blocks.pipe.*;
 import com.parzivail.util.basic.BasicBlock;
+import com.parzivail.util.basic.BasicStairs;
 
 /**
  * Created by colby on 12/18/2016.
@@ -21,10 +22,13 @@ public class PBlocks
 	public static BasicBlock infraForestPanel1;
 	public static BasicBlock infraForestPanel2;
 	public static BasicBlock infraForestPanel3;
+	public static BasicStairs infraForestStairs;
 	public static BasicBlock infraForestVine;
 	public static BasicBlock infraLight;
 	public static BasicBlock infraLightinset;
 	public static BasicBlock infraLightLit;
+	public static BasicBlock infraLightFloorLit;
+	public static BasicBlock infraGlass;
 	public static BasicBlock infraPanel1;
 	public static BasicBlock infraWhite;
 	public static BasicBlock chromiumOre;
@@ -73,6 +77,11 @@ public class PBlocks
 	public static BasicBlock thorolideOre;
 	public static BasicBlock titaniumChromiumBlock;
 	public static BasicBlock titaniumOre;
+	public static BasicBlock mudTable;
+	public static BasicStairs mudStairs;
+	public static BasicBlock fieldEmitter;
+	public static BasicBlock holoTable;
+	public static BasicBlock lightFence;
 
 	public static BlockConsoleHoth1 consoleHoth1;
 	public static BlockConsoleHothCurved1 consoleHothCurved1;

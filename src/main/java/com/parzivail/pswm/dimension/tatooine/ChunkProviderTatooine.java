@@ -1,8 +1,6 @@
 package com.parzivail.pswm.dimension.tatooine;
 
 import com.parzivail.pswm.bank.PBlocks;
-import com.parzivail.pswm.dimension.DimensionInfo;
-import com.parzivail.pswm.structure.Structures;
 import com.parzivail.util.worldgen.*;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
@@ -79,10 +77,11 @@ public class ChunkProviderTatooine implements IChunkGenerator
 	{
 		BlockFalling.fallInstantly = true;
 
-		for (int x = 0; x < 16; x++)
-			for (int z = 0; z < 16; z++)
-				for (int y = 1; y <= 255; y++)
-					Structures.tryGenForDimension(DimensionInfo.tatooineId, this.worldObj, cx, cz, x, y, z);
+		// TODO: move to primer
+		//		for (int x = 0; x < 16; x++)
+		//			for (int z = 0; z < 16; z++)
+		//				for (int y = 1; y <= 255; y++)
+		//					Structures.tryGenForDimension(DimensionInfo.tatooineId, this.worldObj, cx, cz, x, y, z);
 
 		BlockFalling.fallInstantly = false;
 	}

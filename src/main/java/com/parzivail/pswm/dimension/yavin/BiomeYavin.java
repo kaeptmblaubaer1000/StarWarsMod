@@ -41,6 +41,9 @@ public class BiomeYavin extends Biome
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos)
 	{
+		if (true)
+			return;
+
 		for (int i = 0; i < 4 * getTerrain(worldIn).getBiomeLerpAmount(pos.getX(), pos.getZ()); i++)
 		{
 			haltonSequence.increment();

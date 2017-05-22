@@ -200,7 +200,7 @@ public class ChunkSchematic
 		return false;
 	}
 
-	public boolean tryGen(World primer, int chunkX, int chunkZ, int bX, int bY, int bZ)
+	public boolean tryGenTiles(World primer, int chunkX, int chunkZ, int bX, int bY, int bZ)
 	{
 		if (!loaded)
 			return false;
@@ -210,7 +210,7 @@ public class ChunkSchematic
 
 		if (relativeChunkX >= 0 && relativeChunkX < this.width && relativeChunkZ >= 0 && relativeChunkZ < this.length && relativeY >= 0 && relativeY < this.height)
 		{
-			genBlocks(primer, chunkX, chunkZ, relativeChunkX, relativeY, relativeChunkZ, bX, bY, bZ);
+			genTiles(primer, chunkX, chunkZ, relativeChunkX, relativeY, relativeChunkZ, bX, bY, bZ);
 			return true;
 		}
 		return false;
@@ -226,7 +226,7 @@ public class ChunkSchematic
 			byte metadata = getMetadataAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
 
 			Block b = pack.blockMap.get((int)block);
-			if (b != null)
+			if (!(b instanceof ITileEntityProvider) && b != null)
 				primer.setBlockState(localX, localY, localZ, b.getStateFromMeta(metadata));
 		}
 		catch (Exception e)
@@ -235,7 +235,7 @@ public class ChunkSchematic
 		}
 	}
 
-	private void genBlocks(World primer, int chunkX, int chunkZ, int relativeChunkX, int relativeChunkY, int relativeChunkZ, int localX, int localY, int localZ)
+	private void genTiles(World primer, int chunkX, int chunkZ, int relativeChunkX, int relativeChunkY, int relativeChunkZ, int localX, int localY, int localZ)
 	{
 		if (!loaded)
 			return;
@@ -245,9 +245,9 @@ public class ChunkSchematic
 			byte metadata = getMetadataAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
 
 			Block b = pack.blockMap.get((int)block);
-			if (b != null)
+			if (b instanceof ITileEntityProvider)
 			{
-				primer.setBlockState(new BlockPos(localX + chunkX * 16, localY, localZ + chunkZ * 16), b.getStateFromMeta(metadata));
+				//primer.setBlockState(new BlockPos(localX + chunkX * 16, localY, localZ + chunkZ * 16), b.getStateFromMeta(metadata));
 				fixTileEntityAt(primer, chunkX, chunkZ, relativeChunkX, relativeChunkY, relativeChunkZ, localX, localY, localZ, b);
 			}
 		}

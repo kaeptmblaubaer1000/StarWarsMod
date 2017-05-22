@@ -32,7 +32,7 @@ public class RegisterUtils
 		return item;
 	}
 
-	public static <T extends PBlock> Tuple<T, ItemBlock> registerBlock(T block, String name)
+	public static <T extends Block> Tuple<T, ItemBlock> registerBlock(T block, String name)
 	{
 		ItemBlock itemBlock = new ItemBlock(block);
 		return registerBlock(block, itemBlock, name);

@@ -9,6 +9,7 @@ import com.parzivail.pswm.tile.*;
 import com.parzivail.pswm.tile.hoth.*;
 import com.parzivail.pswm.tile.pipe.*;
 import com.parzivail.util.basic.BasicBlock;
+import com.parzivail.util.basic.BasicStairs;
 import com.parzivail.util.common.Lumberjack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -30,10 +31,13 @@ public class BlockRegister
 		PBlocks.infraForestPanel1 = new BasicBlock("infra_forestpanel1");
 		PBlocks.infraForestPanel2 = new BasicBlock("infra_forestpanel2");
 		PBlocks.infraForestPanel3 = new BasicBlock("infra_forestpanel3");
+		PBlocks.infraForestStairs = new BasicStairs(PBlocks.infraForest.getDefaultState(), "infra_foreststairs");
 		PBlocks.infraForestVine = new BasicBlock("infra_forestvine");
 		PBlocks.infraLight = new BasicBlock("infra_light");
 		PBlocks.infraLightinset = new BasicBlock("infra_lightinset");
 		PBlocks.infraLightLit = new BasicBlock("infra_light_lit");
+		PBlocks.infraLightFloorLit = new BasicBlock("infra_light_floor_lit");
+		PBlocks.infraGlass = new BasicBlock("infra_glass");
 		PBlocks.infraPanel1 = new BasicBlock("infra_panel1");
 		PBlocks.infraWhite = new BasicBlock("infra_white");
 		PBlocks.chromiumOre = new BasicBlock("chromium_ore");
@@ -82,6 +86,11 @@ public class BlockRegister
 		PBlocks.thorolideOre = new BasicBlock("thorolide_ore");
 		PBlocks.titaniumChromiumBlock = new BasicBlock("titanium_chromium_block");
 		PBlocks.titaniumOre = new BasicBlock("titanium_ore");
+		PBlocks.mudTable = new BasicBlock("mud_table");
+		PBlocks.mudStairs = new BasicStairs(PBlocks.mudTable.getDefaultState(), "mud_stairs");
+		PBlocks.fieldEmitter = new BasicBlock("emitter");
+		PBlocks.holoTable = new BasicBlock("holotable");
+		PBlocks.lightFence = new BasicBlock("light_fence");
 
 		PBlocks.consoleHoth1 = new BlockConsoleHoth1();
 		PBlocks.consoleHothCurved1 = new BlockConsoleHothCurved1();

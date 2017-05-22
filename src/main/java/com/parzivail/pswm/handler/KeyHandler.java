@@ -1,13 +1,16 @@
 package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
+import com.parzivail.pswm.capability.ForceXpProvider;
+import com.parzivail.pswm.capability.IForceCapability;
+import com.parzivail.pswm.force.ForceHandler;
+import com.parzivail.pswm.force.ForcePowerAttribute;
 import com.parzivail.pswm.registry.KeybindRegistry;
-import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.Pilotable;
 import com.parzivail.util.driven.ShipInput;
 import com.parzivail.util.lwjgl.Vector3f;
-import com.parzivail.util.math.Animation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Controller;
@@ -29,46 +32,13 @@ public class KeyHandler
 	{
 		if (KeybindRegistry.keyDebug1 != null && KeybindRegistry.keyDebug1.isPressed())
 		{
-			if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
-			{
-				EventHandler.jib.getSnapshots().clear();
-				PSWM.mc.player.sendMessage(new TextComponentString("Reset snapshots."));
-			}
-			else
-			{
-				EventHandler.jib.snapshotCamera(PSWM.mc.player);
-				PSWM.mc.player.sendMessage(new TextComponentString("Added new snapshot. Total: " + EventHandler.jib.getSnapshots().size()));
-			}
+			EntityPlayer player = PSWM.mc.player;
+			IForceCapability forceXp = player.getCapability(ForceXpProvider.ForceXp, null);
+			forceXp.set(0);
 		}
 		if (KeybindRegistry.keyDebug2 != null && KeybindRegistry.keyDebug2.isPressed())
 		{
-			if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
-			{
-				Lumberjack.debug(EventHandler.jib.exportJson());
-			}
-			else if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL))
-			{
-				EventHandler.showingJib = !EventHandler.showingJib;
-				PSWM.mc.player.sendMessage(new TextComponentString("Jib visible: " + EventHandler.showingJib));
-			}
-			else
-			{
-				//EventHandler.jib.loadFromFile("test");
 
-				EventHandler.jib.setLength(40 * EventHandler.jib.getSnapshots().size());
-
-				if (EventHandler.jib.getTick() == 0)
-				{
-					PSWM.mc.player.sendMessage(new TextComponentString("Starting camera..."));
-					EventHandler.jib.start();
-				}
-				else
-				{
-					PSWM.mc.player.sendMessage(new TextComponentString("Stopping camera..."));
-					EventHandler.jib.stop();
-				}
-				EventHandler.jib.setOnAnimationEnd(Animation::reset);
-			}
 		}
 		if (KeybindRegistry.keyShipToggleSFoils.isPressed() && PSWM.mc.player != null && PSWM.mc.player.getRidingEntity() instanceof Pilotable)
 		{
@@ -86,6 +56,10 @@ public class KeyHandler
 		{
 			joystickEnabled = !joystickEnabled;
 			PSWM.mc.player.sendMessage(new TextComponentString(String.format("Joystick %s", joystickEnabled ? "enabled" : "disabled")));
+		}
+		if (KeybindRegistry.keyUseForcePower.isPressed() && ForceHandler.isCurrentPower(ForcePowerAttribute.SingleUse))
+		{
+			ForceHandler.useCurrentPower(PSWM.mc.player);
 		}
 	}
 

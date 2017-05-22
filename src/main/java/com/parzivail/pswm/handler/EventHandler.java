@@ -2,7 +2,7 @@ package com.parzivail.pswm.handler;
 
 import com.parzivail.pswm.PSWM;
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.capability.ForcePowerProvider;
+import com.parzivail.pswm.capability.ForceXpProvider;
 import com.parzivail.pswm.capability.IForceCapability;
 import com.parzivail.pswm.dimension.DimensionInfo;
 import com.parzivail.util.camera.JibAnimation;
@@ -17,14 +17,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -73,7 +71,7 @@ public class EventHandler
 		if (!(event.getObject() instanceof EntityPlayer))
 			return;
 
-		event.addCapability(new ResourceLocation(Resources.MODID, "forceXp"), new ForcePowerProvider());
+		event.addCapability(new ResourceLocation(Resources.MODID, "forceXp"), new ForceXpProvider());
 	}
 
 	@SubscribeEvent
@@ -165,40 +163,24 @@ public class EventHandler
 	{
 		ShipGuiHandler.drawGui(PSWM.mc.gameSettings.thirdPersonView == 0, event);
 
+		//		if (PSWM.mc != null && PSWM.mc.player != null)
+		//		{
+		//			EntityPlayer player = PSWM.mc.player;
+		//			IForceCapability forceXp = player.getCapability(ForceXpProvider.ForceXp, null);
+		//
+		//			GFX.drawRectangle(50, 50, 100, 10, false);
+		//			GFX.drawRectangle(50, 50, 100 * forceXp.getForceXp() / (float)forceXp.getForceXpLimit(), 10, true);
+		//		}
+
 		AnimationManager.render(event);
-	}
-
-	@SubscribeEvent
-	public void onPlayerFalls(LivingFallEvent event)
-	{
-		Entity entity = event.getEntity();
-
-		if (entity.world.isRemote || !(entity instanceof EntityPlayerMP) || event.getDistance() < 3)
-			return;
-
-		EntityPlayer player = (EntityPlayer)entity;
-		IForceCapability mana = player.getCapability(ForcePowerProvider.FORCE_CAP, null);
-
-		float points = mana.getForceXp();
-		float cost = 5;
-
-		if (points > cost)
-		{
-			mana.consume((int)cost);
-
-			String message = String.format("You absorbed fall damage. It costed §7%d§r XP, you have §7%d§r XP left.", (int)cost, mana.getForceXp());
-			player.sendMessage(new TextComponentString(message));
-
-			event.setCanceled(true);
-		}
 	}
 
 	@SubscribeEvent
 	public void onPlayerClone(PlayerEvent.Clone event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
-		IForceCapability cap = player.getCapability(ForcePowerProvider.FORCE_CAP, null);
-		IForceCapability originalCap = event.getOriginal().getCapability(ForcePowerProvider.FORCE_CAP, null);
+		IForceCapability cap = player.getCapability(ForceXpProvider.ForceXp, null);
+		IForceCapability originalCap = event.getOriginal().getCapability(ForceXpProvider.ForceXp, null);
 
 		cap.set(originalCap.getForceXp());
 		cap.setLimit(originalCap.getForceXpLimit());
@@ -267,18 +249,16 @@ public class EventHandler
 			return;
 
 		if (event.phase == TickEvent.Phase.START)
+		{
 			AnimationManager.tick();
 
-		//		cloth.addForce(GRAVITY);
-		//		float move = (float)Math.abs((PSWM.mc.player.posX - PSWM.mc.player.prevPosX) * (PSWM.mc.player.posZ - PSWM.mc.player.prevPosZ));
-		//		cloth.addWindForce(new Vector3f(0, -25 * (PSWM.mc.player.posY - PSWM.mc.player.prevPosY), -100 * move));
-		//		cloth.checkCollision();
-		//		cloth.timeStep();
-
-		//		rope.particles[rope.particles.length - 1].setPos(new Vector3f(PSWM.mc.player.posX, PSWM.mc.player.posY + 1, PSWM.mc.player.posZ));
-		//		rope.addForce(new Vector3f(0, -1, 0));
-		//		rope.checkCollision(PSWM.mc.world);
-		//		rope.timeStep();
+			if (PSWM.mc.player.ticksExisted % 20 == 0) //should be roughly 1 second
+			{
+				EntityPlayer player = PSWM.mc.player;
+				IForceCapability forceXp = player.getCapability(ForceXpProvider.ForceXp, null);
+				forceXp.increment();
+			}
+		}
 	}
 
 	@SubscribeEvent

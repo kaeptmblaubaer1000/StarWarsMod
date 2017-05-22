@@ -42,6 +42,8 @@ public class KeybindRegistry
 	public static KeyBinding keyShipResetPitchRoll;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyToggleJoystick;
+	@SideOnly(Side.CLIENT)
+	public static KeyBinding keyUseForcePower;
 
 	public static void register()
 	{
@@ -63,6 +65,7 @@ public class KeybindRegistry
 		KeybindRegistry.keyShipFire = registerKeybind("shipFire", Keyboard.KEY_G);
 		KeybindRegistry.keyShipResetPitchRoll = registerKeybind("shipResetPitchRoll", Keyboard.KEY_V);
 		KeybindRegistry.keyToggleJoystick = registerKeybind("toggleJoystick", Keyboard.KEY_NONE);
+		KeybindRegistry.keyUseForcePower = registerKeybind("useForcePower", Keyboard.KEY_B);
 
 		Lumberjack.log(PSWM.getNextRegisterMessage("KEYS"));
 	}

@@ -5,6 +5,7 @@ package com.parzivail.pswm.capability;
  */
 public class ForceXp implements IForceCapability
 {
+	private static final int SECONDS_TO_REFILL = 10;
 	int xp = 100;
 	int limit = 100;
 
@@ -36,6 +37,12 @@ public class ForceXp implements IForceCapability
 	public void produce(int xp)
 	{
 		this.xp = Math.min(this.xp + xp, limit);
+	}
+
+	@Override
+	public void increment()
+	{
+		this.produce(this.limit / SECONDS_TO_REFILL);
 	}
 
 	@Override

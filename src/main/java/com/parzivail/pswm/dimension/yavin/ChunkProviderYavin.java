@@ -77,15 +77,20 @@ public class ChunkProviderYavin implements IChunkGenerator
 		}
 	}
 
-	public Chunk provideChunk(int x, int z)
+	public Chunk provideChunk(int cx, int cz)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		this.setBlocksInChunk(x, z, chunkprimer);
+		this.setBlocksInChunk(cx, cz, chunkprimer);
 
-		this.caveGenerator.generate(this.worldObj, x, z, chunkprimer);
-		this.ravineGenerator.generate(this.worldObj, x, z, chunkprimer);
+		this.caveGenerator.generate(this.worldObj, cx, cz, chunkprimer);
+		this.ravineGenerator.generate(this.worldObj, cx, cz, chunkprimer);
 
-		Chunk chunk = new Chunk(this.worldObj, chunkprimer, x, z);
+		for (int x = 0; x < 16; x++)
+			for (int z = 0; z < 16; z++)
+				for (int y = 1; y <= 255; y++)
+					Structures.tryGenForDimension(DimensionInfo.yavinId, chunkprimer, cx, cz, x, y, z);
+
+		Chunk chunk = new Chunk(this.worldObj, chunkprimer, cx, cz);
 		chunk.generateSkylightMap();
 		return chunk;
 	}
@@ -96,10 +101,11 @@ public class ChunkProviderYavin implements IChunkGenerator
 		int i = cx * 16;
 		int j = cz * 16;
 
+		// TODO: don't place TEs from this chunk exactly, generate TEs from x*16+8,z*16+8 to x*16+16+8,z*16+16+8 (offset gen area by 8)
 		for (int x = 0; x < 16; x++)
 			for (int z = 0; z < 16; z++)
 				for (int y = 1; y <= 255; y++)
-					Structures.tryGenForDimension(DimensionInfo.yavinId, this.worldObj, cx, cz, x, y, z);
+					Structures.tryGenTilesForDimension(DimensionInfo.yavinId, this.worldObj, cx, cz, x, y, z);
 
 		BlockPos blockpos = new BlockPos(i, 0, j);
 		Biome biome = this.worldObj.getBiome(blockpos.add(16, 0, 16));
