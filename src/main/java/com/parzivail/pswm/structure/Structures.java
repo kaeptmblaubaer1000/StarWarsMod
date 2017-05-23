@@ -43,21 +43,21 @@ public class Structures
 		return didGenerate;
 	}
 
-	public static boolean tryGenTilesForDimension(int dimension, World primer, int cx, int cz, int x, int y, int z)
+	public static boolean tryGenTilesForDimension(int dimension, World primer, int cx, int cz)
 	{
 		boolean didGenerate = false;
 		if (dimension == DimensionInfo.tatooineId)
 		{
 			//didGenerate = didGenerate || Structures.test.tryGen(primer, cx, cz, x, y, z);
-			didGenerate = didGenerate || Structures.moseisley.tryGenTiles(primer, cx, cz, x, y, z);
+			didGenerate = didGenerate || Structures.moseisley.tryGenTiles(primer, cx, cz);
 		}
 		else if (dimension == DimensionInfo.yavinId)
 		{
-			didGenerate = didGenerate || Structures.greattemple.tryGenTiles(primer, cx, cz, x, y, z);
+			didGenerate = didGenerate || Structures.greattemple.tryGenTiles(primer, cx, cz);
 		}
 		else if (dimension == DimensionInfo.hothId)
 		{
-			didGenerate = didGenerate || Structures.hothecho.tryGenTiles(primer, cx, cz, x, y, z);
+			didGenerate = didGenerate || Structures.hothecho.tryGenTiles(primer, cx, cz);
 		}
 		return didGenerate;
 	}

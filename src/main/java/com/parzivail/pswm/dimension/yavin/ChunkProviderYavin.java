@@ -102,10 +102,7 @@ public class ChunkProviderYavin implements IChunkGenerator
 		int j = cz * 16;
 
 		// TODO: don't place TEs from this chunk exactly, generate TEs from x*16+8,z*16+8 to x*16+16+8,z*16+16+8 (offset gen area by 8)
-		for (int x = 0; x < 16; x++)
-			for (int z = 0; z < 16; z++)
-				for (int y = 1; y <= 255; y++)
-					Structures.tryGenTilesForDimension(DimensionInfo.yavinId, this.worldObj, cx, cz, x, y, z);
+		Structures.tryGenTilesForDimension(DimensionInfo.yavinId, this.worldObj, cx, cz);
 
 		BlockPos blockpos = new BlockPos(i, 0, j);
 		Biome biome = this.worldObj.getBiome(blockpos.add(16, 0, 16));

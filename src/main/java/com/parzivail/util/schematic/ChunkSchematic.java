@@ -200,17 +200,16 @@ public class ChunkSchematic
 		return false;
 	}
 
-	public boolean tryGenTiles(World primer, int chunkX, int chunkZ, int bX, int bY, int bZ)
+	public boolean tryGenTiles(World primer, int chunkX, int chunkZ)
 	{
 		if (!loaded)
 			return false;
 		int relativeChunkX = chunkX * 16 - this.x;
 		int relativeChunkZ = chunkZ * 16 - this.z;
-		int relativeY = bY - this.y;
 
-		if (relativeChunkX >= 0 && relativeChunkX < this.width && relativeChunkZ >= 0 && relativeChunkZ < this.length && relativeY >= 0 && relativeY < this.height)
+		if (relativeChunkX >= 0 && relativeChunkX < this.width && relativeChunkZ >= 0 && relativeChunkZ < this.length)
 		{
-			genTiles(primer, chunkX, chunkZ, relativeChunkX, relativeY, relativeChunkZ, bX, bY, bZ);
+			genTiles(primer, chunkX + 8, chunkZ + 8);
 			return true;
 		}
 		return false;
@@ -220,60 +219,59 @@ public class ChunkSchematic
 	{
 		if (!loaded)
 			return;
-		try
-		{
-			short block = getBlockAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
-			byte metadata = getMetadataAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
+		short block = getBlockAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
+		byte metadata = getMetadataAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
 
-			Block b = pack.blockMap.get((int)block);
-			if (!(b instanceof ITileEntityProvider) && b != null)
-				primer.setBlockState(localX, localY, localZ, b.getStateFromMeta(metadata));
-		}
-		catch (Exception e)
-		{
-			throw e;
-		}
+		Block b = pack.blockMap.get((int)block);
+		if (!(b instanceof ITileEntityProvider) && b != null)
+			primer.setBlockState(localX, localY, localZ, b.getStateFromMeta(metadata));
 	}
 
-	private void genTiles(World primer, int chunkX, int chunkZ, int relativeChunkX, int relativeChunkY, int relativeChunkZ, int localX, int localY, int localZ)
+	private void genTiles(World primer, int chunkX, int chunkZ)
 	{
 		if (!loaded)
 			return;
-		try
+
+		for (NBTTagCompound te : getTileEntities())
 		{
-			short block = getBlockAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
-			byte metadata = getMetadataAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
+			int schemX = te.getInteger("x");
+			int schemY = te.getInteger("y");
+			int schemZ = te.getInteger("z");
+
+			int realX = schemX + this.x;
+			int realY = schemY + this.y;
+			int realZ = schemZ + this.z;
+
+			if (realX < chunkX * 16 || realX >= chunkX * 16 + 16 || realZ < chunkZ * 16 || realZ >= chunkZ * 16 + 16)
+				continue;
+
+			short block = getBlockAt(schemX, schemY, schemZ);
 
 			Block b = pack.blockMap.get((int)block);
 			if (b instanceof ITileEntityProvider)
 			{
 				//primer.setBlockState(new BlockPos(localX + chunkX * 16, localY, localZ + chunkZ * 16), b.getStateFromMeta(metadata));
-				fixTileEntityAt(primer, chunkX, chunkZ, relativeChunkX, relativeChunkY, relativeChunkZ, localX, localY, localZ, b);
+				fixTileEntityAt(primer, realX, realY, realZ, b, te);
 			}
-		}
-		catch (Exception e)
-		{
-			throw e;
 		}
 	}
 
-	private void fixTileEntityAt(World world, int chunkX, int chunkZ, int relativeChunkX, int relativeChunkY, int relativeChunkZ, int localX, int localY, int localZ, Block b)
+	private void fixTileEntityAt(World world, int rx, int ry, int rz, Block b, NBTTagCompound te)
 	{
 		if (b instanceof ITileEntityProvider)
 		{
-			BlockPos worldBlockPos = new BlockPos(localX + chunkX * 16, localY, localZ + chunkZ * 16);
+			BlockPos worldBlockPos = new BlockPos(rx, ry, rz);
 
 			world.setBlockState(worldBlockPos, b.getDefaultState());
-			NBTTagCompound compound = getTileNbtAt(localX + relativeChunkX, relativeChunkY, localZ + relativeChunkZ);
-			if (compound != null)
+			if (te != null)
 			{
-				NBTTagCompound newTile = compound.copy();
+				NBTTagCompound newTile = te.copy();
 				TileEntity t = world.getTileEntity(worldBlockPos);
 				if (t != null)
 				{
-					newTile.setInteger("x", localX + chunkX * 16);
-					newTile.setInteger("y", localY);
-					newTile.setInteger("z", localZ + chunkZ * 16);
+					newTile.setInteger("x", rx);
+					newTile.setInteger("y", ry);
+					newTile.setInteger("z", rz);
 
 					// reverse-id-lookup all things that have itemstacks saved to NBT (gunracks, chests)
 					if (b instanceof BlockGunRack)

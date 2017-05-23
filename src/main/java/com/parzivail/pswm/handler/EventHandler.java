@@ -5,6 +5,7 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.capability.ForceXpProvider;
 import com.parzivail.pswm.capability.IForceCapability;
 import com.parzivail.pswm.dimension.DimensionInfo;
+import com.parzivail.util.camera.EnvironmentCubemap;
 import com.parzivail.util.camera.JibAnimation;
 import com.parzivail.util.common.Lumberjack;
 import com.parzivail.util.driven.EntityCamera;
@@ -16,7 +17,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -48,6 +48,8 @@ public class EventHandler
 
 	public static JibAnimation jib = new JibAnimation(PSWM.mc, 100);
 	public static boolean showingJib = false;
+
+	public EnvironmentCubemap skybox = new EnvironmentCubemap(new ResourceLocation(Resources.MODID, "textures/environment/kuat_skybox.png"));
 
 	static
 	{
@@ -146,14 +148,21 @@ public class EventHandler
 		//			GL11.glPopMatrix();
 		//		}
 
-		if (!showingJib)
-			return;
+		//		if (!showingJib)
+		//			return;
+		//
+		//		GL11.glLineWidth(4);
+		//		GL11.glPushMatrix();
+		//		Vec3d pos = PSWM.mc.getRenderViewEntity().getPositionEyes(event.getPartialTicks());
+		//		GL11.glTranslated(-pos.xCoord, -pos.yCoord + PSWM.mc.getRenderViewEntity().getEyeHeight(), -pos.zCoord);
+		//		GL11.glCallList(jib.getRenderList());
+		//		GL11.glPopMatrix();
 
-		GL11.glLineWidth(4);
 		GL11.glPushMatrix();
-		Vec3d pos = PSWM.mc.getRenderViewEntity().getPositionEyes(event.getPartialTicks());
-		GL11.glTranslated(-pos.xCoord, -pos.yCoord + PSWM.mc.getRenderViewEntity().getEyeHeight(), -pos.zCoord);
-		GL11.glCallList(jib.getRenderList());
+		GL11.glTranslatef(0, 2, 0);
+		int s = 400;
+		GL11.glScalef(s, s, s);
+		skybox.render();
 		GL11.glPopMatrix();
 	}
 
