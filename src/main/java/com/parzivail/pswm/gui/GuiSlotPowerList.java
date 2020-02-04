@@ -44,11 +44,11 @@ public class GuiSlotPowerList extends GuiScrollingList
 
 	public GuiSlotPowerList(GuiScreenJediRobes parent, ArrayList<GuiPowerListItem> powers, int listWidth)
 	{
-		super(parent.getMinecraftInstance(), listWidth, parent.height, 32, parent.height - 66 + 4, 10, 35);
+		super(Minecraft.getMinecraft(), listWidth, parent.height, 32, parent.height - 66 + 4, 10, 35);
 		this.parent = parent;
 		this.powers = powers;
 
-		this.client = parent.getMinecraftInstance();
+		this.client = Minecraft.getMinecraft();
 		this.listWidth = listWidth;
 		this.listHeight = parent.height;
 		this.top = 32;
@@ -98,7 +98,6 @@ public class GuiSlotPowerList extends GuiScrollingList
 		int var19;
 
 		float f = 256F;
-		float var17 = f;
 
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_FOG);
@@ -182,7 +181,7 @@ public class GuiSlotPowerList extends GuiScrollingList
 				{
 					if (var16 > 0)
 						var16 = -1;
-					else if (var16 < 0)
+					else
 						var16 = 1;
 
 					this.scrollDistance += var16 * this.slotHeight / 2;
@@ -201,10 +200,10 @@ public class GuiSlotPowerList extends GuiScrollingList
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		tesselator.startDrawingQuads();
 		tesselator.setColorOpaque_I(0x888888);
-		tesselator.addVertexWithUV(this.left, this.bottom, 0.0D, this.left / var17, (this.bottom + (int)this.scrollDistance) / var17);
-		tesselator.addVertexWithUV(this.right, this.bottom, 0.0D, this.right / var17, (this.bottom + (int)this.scrollDistance) / var17);
-		tesselator.addVertexWithUV(this.right, this.top, 0.0D, this.right / var17, (this.top + (int)this.scrollDistance) / var17);
-		tesselator.addVertexWithUV(this.left, this.top, 0.0D, this.left / var17, (this.top + (int)this.scrollDistance) / var17);
+		tesselator.addVertexWithUV(this.left, this.bottom, 0.0D, this.left / f, (this.bottom + (int)this.scrollDistance) / f);
+		tesselator.addVertexWithUV(this.right, this.bottom, 0.0D, this.right / f, (this.bottom + (int)this.scrollDistance) / f);
+		tesselator.addVertexWithUV(this.right, this.top, 0.0D, this.right / f, (this.top + (int)this.scrollDistance) / f);
+		tesselator.addVertexWithUV(this.left, this.top, 0.0D, this.left / f, (this.top + (int)this.scrollDistance) / f);
 		tesselator.draw();
 
 		// boxRight = this.listWidth / 2 - 92 - 16;
@@ -225,19 +224,18 @@ public class GuiSlotPowerList extends GuiScrollingList
 				if (this.field_25123_p && this.isSelected(var11))
 				{
 					var14 = boxLeft;
-					int var15 = boxRight;
 					GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 					GL11.glDisable(GL11.GL_TEXTURE_2D);
 					tesselator.startDrawingQuads();
 					tesselator.setColorOpaque_I(0xFFFFFF);
 					tesselator.addVertexWithUV(var14, var19 + var13 + 2, 0.0D, 0.0D, 1.0D);
-					tesselator.addVertexWithUV(var15, var19 + var13 + 2, 0.0D, 1.0D, 1.0D);
-					tesselator.addVertexWithUV(var15, var19 - 2, 0.0D, 1.0D, 0.0D);
+					tesselator.addVertexWithUV(boxRight, var19 + var13 + 2, 0.0D, 1.0D, 1.0D);
+					tesselator.addVertexWithUV(boxRight, var19 - 2, 0.0D, 1.0D, 0.0D);
 					tesselator.addVertexWithUV(var14, var19 - 2, 0.0D, 0.0D, 0.0D);
 					tesselator.setColorOpaque_I(0);
 					tesselator.addVertexWithUV(var14 + 1, var19 + var13 + 1, 0.0D, 0.0D, 1.0D);
-					tesselator.addVertexWithUV(var15 - 1, var19 + var13 + 1, 0.0D, 1.0D, 1.0D);
-					tesselator.addVertexWithUV(var15 - 1, var19 - 1, 0.0D, 1.0D, 0.0D);
+					tesselator.addVertexWithUV(boxRight - 1, var19 + var13 + 1, 0.0D, 1.0D, 1.0D);
+					tesselator.addVertexWithUV(boxRight - 1, var19 - 1, 0.0D, 1.0D, 0.0D);
 					tesselator.addVertexWithUV(var14 + 1, var19 - 1, 0.0D, 0.0D, 0.0D);
 					tesselator.draw();
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -306,8 +304,8 @@ public class GuiSlotPowerList extends GuiScrollingList
 		boolean isJedi = Arrays.asList(Cron.getJediPowers()).contains(power.power.name);
 		int c = isJedi ? (hasPower ? GLPalette.ANALOG_BLUE : GLPalette.BLUE) : (hasPower ? GLPalette.BRIGHT_RED : GLPalette.DARK_RED);
 		c = Arrays.asList(Cron.getBasicPowers()).contains(power.power.name) ? (hasPower ? GLPalette.BRIGHT_GREEN : GLPalette.MEDIUM_GREEN) : c;
-		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(power.localizedName, this.listWidth - 10), this.left + 3, var3 + 2, c);
-		this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(LangUtils.translate("level.0", power.power == null ? 0 : power.power.currentLevel), this.listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
+		Minecraft.getMinecraft().fontRenderer.drawString(Minecraft.getMinecraft().fontRenderer.trimStringToWidth(power.localizedName, this.listWidth - 10), this.left + 3, var3 + 2, c);
+		Minecraft.getMinecraft().fontRenderer.drawString(Minecraft.getMinecraft().fontRenderer.trimStringToWidth(LangUtils.translate("level.0", power.power == null ? 0 : power.power.currentLevel), this.listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
 	}
 
 	@Override

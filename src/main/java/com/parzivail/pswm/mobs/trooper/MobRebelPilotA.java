@@ -20,11 +20,9 @@ public class MobRebelPilotA extends MobTrooper
 		setCurrentItemOrArmor(3, new ItemStack(rebelAPilotChest, 1));
 		setCurrentItemOrArmor(2, new ItemStack(rebelAPilotLegs, 1));
 		setCurrentItemOrArmor(1, new ItemStack(rebelAPilotBoots, 1));
-		switch (rand.nextInt(2))
+		if (rand.nextInt(2) == 1)
 		{
-			case 1:
-				setCurrentItemOrArmor(0, blasterPistol.getMeta("Dh17"));
-				break;
+			setCurrentItemOrArmor(0, blasterPistol.getMeta("Dh17"));
 		}
 	}
 

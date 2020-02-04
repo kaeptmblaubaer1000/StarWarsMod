@@ -18,7 +18,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -56,13 +55,13 @@ public class GuiScreenMerchant extends GuiScreen
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixMV;
-	Consumer<OutlineButton> fixLandspeeder;
-	Consumer<OutlineButton> fixSaddle;
-	Consumer<OutlineButton> fixBinocs;
-	Consumer<OutlineButton> currentFix = null;
+	private Consumer<OutlineButton> fixMV;
+	private Consumer<OutlineButton> fixLandspeeder;
+	private Consumer<OutlineButton> fixSaddle;
+	private Consumer<OutlineButton> fixBinocs;
+	private Consumer<OutlineButton> currentFix = null;
 
-	Consumer<EntityPlayer> onBuyClick = null;
+	private Consumer<EntityPlayer> onBuyClick = null;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -94,15 +93,6 @@ public class GuiScreenMerchant extends GuiScreen
 
 		int x = 0;
 		int y = 0;
-
-		Consumer<OutlineButton> preRenderArmorButton = outlineButton ->
-		{
-			GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 3f, 50);
-			P3D.glScalef(23.25f);
-			GL11.glScalef(1, -1, 1);
-			GL11.glRotatef(10, 1, 0, 0);
-			GL11.glRotatef((System.currentTimeMillis() / 15) % 360, 0, 1, 0);
-		};
 
 		Consumer<OutlineButton> postRenderEmpty = outlineButton ->
 		{
@@ -321,10 +311,11 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					if (ItemQuestLog.getQuestContainer(player1) != null)
+					final ItemStack questLog = ItemQuestLog.getQuestContainer(player1);
+					if (questLog != null)
 					{
 						ItemQuestLog.addStat(player1, QuestStats.LICENSE_LANDSPEEDER);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, questLog.stackTagCompound));
 					}
 				};
 
@@ -344,10 +335,11 @@ public class GuiScreenMerchant extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					if (ItemQuestLog.getQuestContainer(player1) != null)
+					final ItemStack questLog = ItemQuestLog.getQuestContainer(player1);
+					if (questLog != null)
 					{
 						ItemQuestLog.addStat(player1, QuestStats.LICENSE_JAKKU_SPEEDER);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, questLog.stackTagCompound));
 					}
 				};
 

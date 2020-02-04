@@ -7,7 +7,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 public class AnimationCrosshairClose extends Animation
 {
-	int color;
+	private int color;
 
 	public AnimationCrosshairClose(int color)
 	{

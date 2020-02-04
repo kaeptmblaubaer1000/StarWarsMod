@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
 public class GuiMV extends GuiContainer
 {
 	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/mv.png");
-	TileEntityMV vaporator;
+	private TileEntityMV vaporator;
 
 	public GuiMV(InventoryPlayer player, TileEntityMV vap)
 	{

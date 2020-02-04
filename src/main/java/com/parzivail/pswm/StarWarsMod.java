@@ -26,6 +26,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
@@ -450,7 +452,7 @@ public class StarWarsMod
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) throws UserError
+	public void preInit(FMLPreInitializationEvent event)
 	{
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod preInit() ==========");
 

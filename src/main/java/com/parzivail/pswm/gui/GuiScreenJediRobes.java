@@ -7,16 +7,11 @@ import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
 import com.parzivail.pswm.network.MessageRobesIntNBT;
-import com.parzivail.util.ui.LangUtils;
-import com.parzivail.util.ui.Lumberjack;
-import com.parzivail.util.ui.TextEffects;
-import com.parzivail.util.ui.TextUtils;
+import com.parzivail.util.ui.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,7 +34,7 @@ public class GuiScreenJediRobes extends GuiScreen
 	private ItemStack stack;
 	private EntityPlayer player;
 
-	private int points = 0;
+	private int points;
 
 	public GuiScreenJediRobes(EntityPlayer player)
 	{
@@ -131,18 +126,6 @@ public class GuiScreenJediRobes extends GuiScreen
 			this.enableButton.enabled = false;
 		}
 		super.drawScreen(p_571_1_, p_571_2_, p_571_3_);
-	}
-
-	FontRenderer getFontRenderer()
-	{
-		/** The FontRenderer used by GuiScreen */
-		return this.fontRendererObj;
-	}
-
-	Minecraft getMinecraftInstance()
-	{
-		/** Reference to the Minecraft object. */
-		return this.mc;
 	}
 
 	boolean indexSelected(int var1)

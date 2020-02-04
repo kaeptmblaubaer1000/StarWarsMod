@@ -47,7 +47,7 @@ public class ItemHyperdriveTatooine extends Item
 				player.timeUntilPortal = 20;
 				if (ItemQuestLog.getQuestContainer(player) != null)
 				{
-					ItemQuestLog.setHasHyperdrive(ItemQuestLog.getQuestContainer(player), PlanetInformation.getPlanet("tatooine").getInternalName());
+					ItemQuestLog.setHasHyperdrive(ItemQuestLog.getQuestContainer(player), PlanetInformation.getPlanet("tatooine").getInternalName()); // FIXME: never trust the client
 					StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
 					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, null));
 					StarWarsMod.network.sendToServer(new MessageHyperdrive(player, ConfigOptions.dimTatooineId));

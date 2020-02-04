@@ -11,7 +11,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -48,8 +47,8 @@ public class GuiScreenBartender extends GuiScreen
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixItem;
-	Consumer<OutlineButton> currentFix = null;
+	private Consumer<OutlineButton> fixItem;
+	private Consumer<OutlineButton> currentFix = null;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;

@@ -44,7 +44,7 @@ public class ContainerMV extends Container
 					return null;
 				slot.onSlotChange(itemstack1, itemstack);
 			}
-			else if (slotNumber != 1 && slotNumber != 0)
+			else if (slotNumber != 1)
 			{
 				if (slotNumber >= 3 && slotNumber < 30)
 				{

@@ -92,7 +92,7 @@ public class ContainerCrystalCompressor extends Container
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if ((p_82846_2_ < 0 || p_82846_2_ > 2) && p_82846_2_ != 3)
+			if (p_82846_2_ > 2 && p_82846_2_ != 3)
 			{
 				if (SlotCrystal.canHold(itemstack))
 				{
@@ -101,14 +101,14 @@ public class ContainerCrystalCompressor extends Container
 						return null;
 					}
 				}
-				else if (p_82846_2_ >= 4 && p_82846_2_ < 31)
+				else if (p_82846_2_ < 31)
 				{
 					if (!this.mergeItemStack(itemstack1, 31, 40, false))
 					{
 						return null;
 					}
 				}
-				else if (p_82846_2_ >= 31 && p_82846_2_ < 40)
+				else if (p_82846_2_ < 40)
 				{
 					if (!this.mergeItemStack(itemstack1, 4, 31, false))
 					{

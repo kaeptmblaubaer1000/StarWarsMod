@@ -13,7 +13,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -53,10 +52,10 @@ public class GuiScreenJawa extends GuiScreen
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixA280;
-	Consumer<OutlineButton> fixItem;
-	Consumer<OutlineButton> currentFix = null;
-	Consumer<OutlineButton> fixPowerPack;
+	private Consumer<OutlineButton> fixA280;
+	private Consumer<OutlineButton> fixItem;
+	private Consumer<OutlineButton> currentFix = null;
+	private Consumer<OutlineButton> fixPowerPack;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -94,8 +93,7 @@ public class GuiScreenJawa extends GuiScreen
 		int x = 0;
 		int y = 0;
 
-		Consumer<OutlineButton> preRenderDroidsButton = outlineButton ->
-		{
+		Consumer<OutlineButton> preRenderDroidsButton = outlineButton -> {
 			GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 3f, 50);
 			if (outlineButton instanceof OutlineButtonEntity && !(((OutlineButtonEntity)outlineButton).entity instanceof MobDroidProtocol))
 				GL11.glTranslatef(0, -4, 0);
@@ -105,8 +103,7 @@ public class GuiScreenJawa extends GuiScreen
 			GL11.glRotatef((System.currentTimeMillis() / 15) % 360, 0, 1, 0);
 		};
 
-		Consumer<OutlineButton> postRenderEmpty = outlineButton ->
-		{
+		Consumer<OutlineButton> postRenderEmpty = outlineButton -> {
 		};
 
 		OutlineButtonEntity bDroidAstromech = new OutlineButtonEntity(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
@@ -139,8 +136,7 @@ public class GuiScreenJawa extends GuiScreen
 		y = 0;
 
 		OutlineButtonItemStack bGunIonization = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bGunIonization.setup(new ItemStack(StarWarsItems.blasterRifle, 1, 2), fixA280 = outlineButton ->
-		{
+		bGunIonization.setup(new ItemStack(StarWarsItems.blasterRifle, 1, 2), fixA280 = outlineButton -> {
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
 			P3D.glScalef(24f);
@@ -155,8 +151,7 @@ public class GuiScreenJawa extends GuiScreen
 		y = 0;
 
 		OutlineButtonItemStack bMiscCaller = new OutlineButtonItemStack(id++, x++ * 65 + 10, y * 65 + 40, 55, 55);
-		bMiscCaller.setup(new ItemStack(StarWarsItems.droidCaller), fixItem = outlineButton ->
-		{
+		bMiscCaller.setup(new ItemStack(StarWarsItems.droidCaller), fixItem = outlineButton -> {
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
 			else
@@ -185,8 +180,7 @@ public class GuiScreenJawa extends GuiScreen
 		y++;
 		x = 0;
 
-		fixPowerPack = outlineButton ->
-		{
+		fixPowerPack = outlineButton -> {
 			if (outlineButton != null)
 				GL11.glTranslatef(outlineButton.width / 2f, outlineButton.height - 30f, 50);
 			else

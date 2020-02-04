@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class AnimationHyperspace extends Animation
 {
-	private class Star
+	private static class Star
 	{
 		Point pos;
 		int dist;
@@ -24,7 +24,7 @@ public class AnimationHyperspace extends Animation
 		float g;
 		float b;
 
-		public Star(Point pos, int dist, float scale, int color)
+		Star(Point pos, int dist, float scale, int color)
 		{
 			this.dist = dist;
 			this.pos = pos;

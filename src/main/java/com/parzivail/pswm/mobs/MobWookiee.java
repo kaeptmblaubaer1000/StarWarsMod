@@ -62,10 +62,10 @@ public class MobWookiee extends EntityCreature implements IMob
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
-			for (int i = 0; i < list.size(); i++)
+			@SuppressWarnings("unchecked")
+			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (Entity entity1 : list)
 			{
-				Entity entity1 = (Entity)list.get(i);
 				if (entity1 instanceof MobWookiee)
 				{
 					MobWookiee wook = (MobWookiee)entity1;
@@ -86,12 +86,11 @@ public class MobWookiee extends EntityCreature implements IMob
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		List<WeightedLoot> drop = new ArrayList();
+		List<WeightedLoot> drop = new ArrayList<>();
 		drop.add(new WeightedLoot(new ItemStack(bowcaster, 1), baseRarity / 2.0F));
-		switch (rand.nextInt(5))
+		if (rand.nextInt(5) == 0)
 		{
-			case 0:
-				entityDropItem(getWeightedItemFromList(drop, rand), 0.0F);
+			entityDropItem(getWeightedItemFromList(drop, rand), 0.0F);
 		}
 	}
 

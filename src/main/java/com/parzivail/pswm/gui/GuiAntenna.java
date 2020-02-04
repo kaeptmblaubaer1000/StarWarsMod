@@ -2,13 +2,9 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
-import com.parzivail.util.ui.ConsoleKnobRange;
-import com.parzivail.util.ui.GFX;
-import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.P3D;
+import com.parzivail.util.ui.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
@@ -49,9 +45,6 @@ public class GuiAntenna extends GuiScreen
 	@Override
 	protected void actionPerformed(GuiButton button)
 	{
-		if (button.visible && button.enabled)
-		{
-		}
 	}
 
 	@Override

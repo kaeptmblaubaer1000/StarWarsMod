@@ -143,7 +143,7 @@ public class ItemQuestLog extends Item
 
 	public static void addTargetKill(ItemStack stack)
 	{
-		if (stack == null || stack == null || !stack.hasTagCompound())
+		if (stack == null || !stack.hasTagCompound())
 			return;
 		stack.stackTagCompound.setInteger("targetKills", getTargetKills(stack) + 1);
 	}
@@ -152,14 +152,14 @@ public class ItemQuestLog extends Item
 	{
 		if (stack == null || !stack.hasTagCompound())
 			return 0;
-		return stack.stackTagCompound.getInteger("dimTravel" + String.valueOf(planetId));
+		return stack.stackTagCompound.getInteger("dimTravel" + planetId);
 	}
 
 	public static void addDimTravel(ItemStack stack, int planetId)
 	{
 		if (stack == null || !stack.hasTagCompound())
 			return;
-		stack.stackTagCompound.setInteger("dimTravel" + String.valueOf(planetId), getDimTravel(stack, planetId) + 1);
+		stack.stackTagCompound.setInteger("dimTravel" + planetId, getDimTravel(stack, planetId) + 1);
 	}
 
 	public static String getSide(EntityPlayer player)

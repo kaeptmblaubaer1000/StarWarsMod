@@ -13,7 +13,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -54,15 +53,15 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixEe3;
-	Consumer<OutlineButton> fixDl44;
-	Consumer<OutlineButton> fixDl18;
-	Consumer<OutlineButton> fixSe14c;
-	Consumer<OutlineButton> fixDh17;
-	Consumer<OutlineButton> fixGaffi;
-	Consumer<OutlineButton> fixVibroLance;
-	Consumer<OutlineButton> currentFix = null;
-	Consumer<OutlineButton> fixPowerPack;
+	private Consumer<OutlineButton> fixEe3;
+	private Consumer<OutlineButton> fixDl44;
+	private Consumer<OutlineButton> fixDl18;
+	private Consumer<OutlineButton> fixSe14c;
+	private Consumer<OutlineButton> fixDh17;
+	private Consumer<OutlineButton> fixGaffi;
+	private Consumer<OutlineButton> fixVibroLance;
+	private Consumer<OutlineButton> currentFix = null;
+	private Consumer<OutlineButton> fixPowerPack;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -234,7 +233,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 			P3D.glScalef(16f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
-			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glRotatef(((long)(System.currentTimeMillis() / (outlineButton == null ? 30L : 15L))) % 360, 0, 1, 0);
 			GL11.glTranslatef(0.45f, 0, 0.57f);
 		}, postRenderEmpty);
 		listBMelee.put("bMeleeVibroLance", bMeleeVibroLance);
@@ -251,7 +250,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				P3D.glScalef(0.75f);
 				GL11.glTranslatef(-1, -4, 0);
 			}
-			GL11.glRotatef((System.currentTimeMillis() / (outlineButton == null ? 30 : 15)) % 360, 0, 1, 0);
+			GL11.glRotatef(((long)(System.currentTimeMillis() / (outlineButton == null ? 30 : 15))) % 360, 0, 1, 0);
 			GL11.glTranslatef(10, -5, 8);
 			if (outlineButton == null)
 			{

@@ -54,11 +54,9 @@ public class MobWampa extends EntityCreature implements IMob
 		int j = MathHelper.floor_double(posX);
 		int k = MathHelper.floor_double(posZ);
 		int l = worldObj.getBlockLightValue(j, i, k);
-		byte b0 = 4;
-		b0 = 7;
 		if (rand.nextInt(100) < 90)
 			return false;
-		return l <= rand.nextInt(b0) && super.getCanSpawnHere();
+		return l <= rand.nextInt(7) && super.getCanSpawnHere();
 	}
 
 	@Override

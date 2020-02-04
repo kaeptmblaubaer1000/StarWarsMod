@@ -20,7 +20,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -36,7 +35,7 @@ import java.util.function.Consumer;
 @SideOnly(Side.CLIENT)
 public class GuiScreenHyperdrive extends GuiScreen
 {
-	private class MovingShip
+	private static class MovingShip
 	{
 		FPoint position;
 		TradeRoute route;
@@ -283,7 +282,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 					}
 				}
 			}
-			else if (button.id == buttonTravel.id && ItemQuestLog.getHasHyperdrive(qlog, zoomPlanet.getInternalName()) && player.dimension != zoomPlanet.getDimensionId())
+			else if (button.id == buttonTravel.id && zoomPlanet != null && qlog != null && ItemQuestLog.getHasHyperdrive(qlog, zoomPlanet.getInternalName()) && player.dimension != zoomPlanet.getDimensionId())
 			{
 				AnimationHyperspace animationHyperspace = new AnimationHyperspace(3500, false);
 				animationHyperspace.setOnAnimationEnd(animation -> {
@@ -408,7 +407,7 @@ public class GuiScreenHyperdrive extends GuiScreen
 			GL11.glPopMatrix();
 		}
 
-		this.buttonList.stream().filter(b -> PlanetInformation.getPlanet(((GuiButton)b).displayString) != null).forEach(b -> {
+		this.buttonList.stream().filter(b -> PlanetInformation.getPlanet(b.displayString) != null).forEach(b -> {
 			OutlineButtonModel buttonModel = (OutlineButtonModel)b;
 			PlanetInformation info = PlanetInformation.getPlanet(buttonModel.displayString);
 			FPoint pt = galaxyCoordsToXy(info.getPosition().x, info.getPosition().y);

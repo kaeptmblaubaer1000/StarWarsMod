@@ -27,7 +27,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -70,24 +69,22 @@ public class GuiScreenQuartermaster extends GuiScreen
 	private String showingTitle = "";
 	private String showingDesc = "";
 
-	Consumer<OutlineButton> fixA280;
-	Consumer<OutlineButton> fixDefender;
-	Consumer<OutlineButton> fixDl21;
-	Consumer<OutlineButton> fixDh17;
-	Consumer<OutlineButton> fixXwing;
-	Consumer<OutlineButton> fixAwing;
-	Consumer<OutlineButton> fixYwing;
-	Consumer<OutlineButton> fixT47;
-	Consumer<OutlineButton> fixTarget;
-	Consumer<OutlineButton> fixGunRack;
-	Consumer<OutlineButton> fixAntenna;
-	Consumer<OutlineButton> fixHolotable;
-	Consumer<OutlineButton> fixBacta;
-	Consumer<OutlineButton> fixItem;
-	Consumer<OutlineButton> fixPowerPack;
-	Consumer<OutlineButton> currentFix = null;
+	private Consumer<OutlineButton> fixA280;
+	private Consumer<OutlineButton> fixDefender;
+	private Consumer<OutlineButton> fixDl21;
+	private Consumer<OutlineButton> fixDh17;
+	private Consumer<OutlineButton> fixXwing;
+	private Consumer<OutlineButton> fixAwing;
+	private Consumer<OutlineButton> fixYwing;
+	private Consumer<OutlineButton> fixT47;
+	private Consumer<OutlineButton> fixTarget;
+	private Consumer<OutlineButton> fixAntenna;
+	private Consumer<OutlineButton> fixBacta;
+	private Consumer<OutlineButton> fixItem;
+	private Consumer<OutlineButton> fixPowerPack;
+	private Consumer<OutlineButton> currentFix = null;
 
-	Consumer<EntityPlayer> onBuyClick = null;
+	private Consumer<EntityPlayer> onBuyClick = null;
 
 	private OutlineButtonCreditCounter bBuy;
 	private ItemStack[] buyItemStacks;
@@ -633,10 +630,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					if (ItemQuestLog.getQuestContainer(player1) != null)
+					final ItemStack questLog = ItemQuestLog.getQuestContainer(player1);
+					if (questLog != null)
 					{
 						ItemQuestLog.addStat(player1, QuestStats.LICENSE_XWING);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, questLog.stackTagCompound));
 					}
 				};
 
@@ -655,10 +653,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					if (ItemQuestLog.getQuestContainer(player1) != null)
+					final ItemStack questLog = ItemQuestLog.getQuestContainer(player1);
+					if (questLog != null)
 					{
 						ItemQuestLog.addStat(player1, QuestStats.LICENSE_YWING);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, questLog.stackTagCompound));
 					}
 				};
 
@@ -677,10 +676,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					if (ItemQuestLog.getQuestContainer(player1) != null)
+					final ItemStack questLog = ItemQuestLog.getQuestContainer(player1);
+					if (questLog != null)
 					{
 						ItemQuestLog.addStat(player1, QuestStats.LICENSE_AWING);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, questLog.stackTagCompound));
 					}
 				};
 
@@ -699,10 +699,11 @@ public class GuiScreenQuartermaster extends GuiScreen
 
 				onBuyClick = player1 ->
 				{
-					if (ItemQuestLog.getQuestContainer(player1) != null)
+					final ItemStack questLog = ItemQuestLog.getQuestContainer(player1);
+					if (questLog != null)
 					{
 						ItemQuestLog.addStat(player1, QuestStats.LICENSE_T47);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, ItemQuestLog.getQuestContainer(player1).stackTagCompound));
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player1, questLog.stackTagCompound));
 					}
 				};
 

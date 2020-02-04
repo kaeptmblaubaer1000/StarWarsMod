@@ -45,14 +45,13 @@ public class MobSandtrooper extends MobTrooper
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		List<WeightedLoot> drop = new ArrayList();
+		ArrayList<WeightedLoot> drop = new ArrayList<>();
 		drop.add(new WeightedLoot(blasterRifle.getMeta("Stormtrooper"), baseRarity / 2.0F));
 		drop.add(new WeightedLoot(blasterHeavy.getMeta("T21"), baseRarity / 2.0F));
 		drop.add(new WeightedLoot(blasterHeavy.getMeta("Rt97c"), baseRarity / 2.0F));
-		switch (rand.nextInt(5))
+		if (rand.nextInt(5) == 0)
 		{
-			case 0:
-				entityDropItem(getWeightedItemFromList(drop, rand), 0.0F);
+			entityDropItem(getWeightedItemFromList(drop, rand), 0.0F);
 		}
 	}
 

@@ -123,33 +123,63 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPopMatrix();
 		}
 
-		if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
+		if (this.mc.objectMouseOver != null)
 		{
-			MovingObjectPosition mop = this.mc.objectMouseOver;
-			Block block = this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
-
-			if (block != null)
+			if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.BLOCK && mc.gameSettings.showDebugInfo)
 			{
+				MovingObjectPosition mop = this.mc.objectMouseOver;
+				Block block = this.mc.theWorld.getBlock(mop.blockX, mop.blockY, mop.blockZ);
+
+				if (block != null)
+				{
+
+					ArrayList<String> s = new ArrayList<>();
+					s.add(LangUtils.translate("block.s.id.s", block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
+					s.add(LangUtils.translate("meta.0", this.mc.theWorld.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ)));
+					TileEntity tileEntity = this.mc.theWorld.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
+					s.add(LangUtils.translate("tile.0", tileEntity == null ? LangUtils.translate("none") : tileEntity.getClass().getName()));
+
+					boolean didChange = false;
+					if (block instanceof IDebugProvider)
+					{
+						IDebugProvider debugProvider = (IDebugProvider)block;
+
+						int ll = s.size();
+						debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
+						didChange = ll < s.size();
+					}
+
+					if (tileEntity instanceof TileEntityRotate && !didChange)
+					{
+						s.add(LangUtils.translate("rotate.0", ((TileEntityRotate)tileEntity).getFacing()));
+					}
+
+					GL11.glPushMatrix();
+					P3D.glScalef(0.5f);
+
+					int y = 0;
+					for (String line : s)
+					{
+						this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
+						y++;
+					}
+
+					GL11.glPopMatrix();
+				}
+			}
+			else if (this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
+			{
+				MovingObjectPosition mop = this.mc.objectMouseOver;
 
 				ArrayList<String> s = new ArrayList<>();
-				s.add(LangUtils.translate("block.s.id.s", block.getLocalizedName(), Item.getIdFromItem(Item.getItemFromBlock(block))));
-				s.add(LangUtils.translate("meta.0", this.mc.theWorld.getBlockMetadata(mop.blockX, mop.blockY, mop.blockZ)));
-				TileEntity tileEntity = this.mc.theWorld.getTileEntity(mop.blockX, mop.blockY, mop.blockZ);
-				s.add(LangUtils.translate("tile.0", tileEntity == null ? LangUtils.translate("none") : tileEntity.getClass().getName()));
+				s.add(LangUtils.translate("entity.s.eid.s", mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
+				s.add(LangUtils.translate("class.s", mop.entityHit.getClass().getName()));
 
-				boolean didChange = false;
-				if (block instanceof IDebugProvider)
+				if (mop.entityHit instanceof IDebugProvider)
 				{
-					IDebugProvider debugProvider = (IDebugProvider)block;
+					IDebugProvider debugProvider = (IDebugProvider)mop.entityHit;
 
-					int ll = s.size();
 					debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
-					didChange = ll < s.size();
-				}
-
-				if (tileEntity instanceof TileEntityRotate && !didChange)
-				{
-					s.add(LangUtils.translate("rotate.0", ((TileEntityRotate)tileEntity).getFacing()));
 				}
 
 				GL11.glPushMatrix();
@@ -164,33 +194,6 @@ public class GuiPSWMOverlay extends Gui
 
 				GL11.glPopMatrix();
 			}
-		}
-		else if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectType.ENTITY && mc.gameSettings.showDebugInfo)
-		{
-			MovingObjectPosition mop = this.mc.objectMouseOver;
-
-			ArrayList<String> s = new ArrayList<>();
-			s.add(LangUtils.translate("entity.s.eid.s", mop.entityHit.getCommandSenderName(), mop.entityHit.getEntityId()));
-			s.add(LangUtils.translate("class.s", mop.entityHit.getClass().getName()));
-
-			if (mop.entityHit instanceof IDebugProvider)
-			{
-				IDebugProvider debugProvider = (IDebugProvider)mop.entityHit;
-
-				debugProvider.getDebugText(s, this.mc.thePlayer, this.mc.theWorld, mop.blockX, mop.blockY, mop.blockZ);
-			}
-
-			GL11.glPushMatrix();
-			P3D.glScalef(0.5f);
-
-			int y = 0;
-			for (String line : s)
-			{
-				this.drawString(this.mc.fontRenderer, line, r.getScaledWidth() + 3, r.getScaledHeight() + 3 + (y * (this.mc.fontRenderer.FONT_HEIGHT + 2)), GLPalette.WHITE);
-				y++;
-			}
-
-			GL11.glPopMatrix();
 		}
 
 		RenderHelper.disableStandardItemLighting();

@@ -4,11 +4,11 @@ import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.font.FontManager;
 import com.parzivail.pswm.mobs.MobTatooineCommoner;
 import com.parzivail.util.IParziNPC;
+import com.parzivail.util.ui.GuiScreen;
 import com.parzivail.util.ui.P3D;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -22,10 +22,10 @@ import org.lwjgl.opengl.GL11;
 public class GuiIDScanner extends GuiScreen
 {
 	private static final ResourceLocation guiTexture = new ResourceLocation(Resources.MODID, "textures/gui/scanner.png");
-	EntityPlayer player;
-	Entity scanned;
-	boolean fraud = false;
-	long timeInit;
+	private EntityPlayer player;
+	private Entity scanned;
+	private boolean fraud = false;
+	private long timeInit;
 
 	public GuiIDScanner(EntityPlayer player)
 	{
@@ -60,7 +60,7 @@ public class GuiIDScanner extends GuiScreen
 			this.drawTexturedModalRect((r.getScaledWidth() - 151) / 2, (r.getScaledHeight() - 210) / 2, 0, 0, 151, 196);
 
 			long timeOpen = System.currentTimeMillis() - timeInit;
-			int strPos = 0;
+			int strPos;
 			if (timeOpen / 10 < 100)
 				strPos = (int)(timeOpen / 10);
 			else
@@ -82,7 +82,7 @@ public class GuiIDScanner extends GuiScreen
 
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glTranslatef(r.getScaledWidth() / 2 - 20, r.getScaledHeight() / 2 - 3, 10);
+			GL11.glTranslatef(r.getScaledWidth() / 2f - 20, r.getScaledHeight() / 2f - 3, 10);
 			P3D.glScalef(25f);
 			GL11.glRotatef(scanned.getRotationYawHead(), 0, 1, 0);
 			GL11.glScalef(1, -1, 1);

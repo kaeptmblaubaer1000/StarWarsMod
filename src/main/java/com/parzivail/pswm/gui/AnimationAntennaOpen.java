@@ -8,7 +8,7 @@ import com.parzivail.util.math.Animation;
  */
 public class AnimationAntennaOpen extends Animation
 {
-	TileEntityAntenna antenna;
+	private TileEntityAntenna antenna;
 
 	public AnimationAntennaOpen(TileEntityAntenna antenna)
 	{

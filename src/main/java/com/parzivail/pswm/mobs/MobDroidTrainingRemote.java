@@ -8,7 +8,6 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowOwner;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -59,7 +58,7 @@ public class MobDroidTrainingRemote extends EntityDroidBase
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(18, Byte.valueOf((byte)0));
+		dataWatcher.addObject(18, (byte)0);
 	}
 
 	@Override
@@ -100,9 +99,6 @@ public class MobDroidTrainingRemote extends EntityDroidBase
 	@Override
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
-		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
-		if (itemstack == null)
-			itemstack = new ItemStack(net.minecraft.init.Blocks.air);
 		return super.interact(par1EntityPlayer);
 	}
 

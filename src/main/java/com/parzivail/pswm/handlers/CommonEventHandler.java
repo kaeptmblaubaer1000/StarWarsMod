@@ -50,6 +50,7 @@ import net.minecraft.world.WorldServer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 //import static com.parzivail.pswm.utils.ForceUtils.activePower;
 
@@ -304,23 +305,25 @@ public class CommonEventHandler
 		{
 			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
 			{
-				String current = Cron.getActive(StarWarsMod.mc.thePlayer).name;
-				ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
-				int index = Arrays.asList(powers.toArray()).indexOf(current);
-				do
+				final PowerBase activePower = Cron.getActive(StarWarsMod.mc.thePlayer);
+				if (activePower != null)
 				{
-					index--;
-					if (index < 0)
-						index = powers.size() - 1;
-				}
-				while (Cron.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
-				if (index > -1 && !powers.get(index).equals(current))
-				{
-					if (index < 0)
-						index = powers.size() - 1;
-					PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
-					//activePower = selectedPower;
-					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
+					String current = activePower.name; // FIXME: NPE without any powers as none is active, getActive returns null. TODO: add null check
+					ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
+					int index = Arrays.asList(powers.toArray()).indexOf(current);
+					do
+					{
+						index--;
+						if (index < 0)
+							index = powers.size() - 1;
+					}
+					while (Cron.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
+					if (index > -1 && !powers.get(index).equals(current))
+					{
+						PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
+						//activePower = selectedPower;
+						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
+					}
 				}
 			}
 		}
@@ -333,7 +336,7 @@ public class CommonEventHandler
 				PowerBase powerBase = Cron.getActive(cron);
 				if (powerBase != null && Cron.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost() >= 0 && !Cron.isCooling(powerBase.name))
 				{
-					if (powerBase != null && powerBase.recharge <= 0)
+					if (powerBase.recharge <= 0)
 					{
 						boolean coolFlag = true;
 						StatTrack.addStat("useForcePower-" + powerBase.name);
@@ -561,12 +564,12 @@ public class CommonEventHandler
 	 * @param power1 The deflect power NBT Compound
 	 */
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("unchecked")
 	private void updateDeflect(PowerDeflect power1)
 	{
 		if (power1.isRunning)
-			StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entityObj ->
+			((List<Entity>) StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3))).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entity ->
 			{
-				Entity entity = (Entity)entityObj;
 				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
 			});
 	}
@@ -635,12 +638,7 @@ public class CommonEventHandler
 
 				int addition = (int)(maxxp / 100 * percent);
 
-				int total;
-
-				if (xp + addition < maxxp)
-					total = xp + addition;
-				else
-					total = maxxp;
+				int total = Math.min(xp + addition, maxxp);
 
 				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, total));
 			}
@@ -722,8 +720,6 @@ public class CommonEventHandler
 
 	/**
 	 * Resets the active robe power
-	 *
-	 * @param event
 	 */
 	private void resetRobes(PlayerEvent event)
 	{

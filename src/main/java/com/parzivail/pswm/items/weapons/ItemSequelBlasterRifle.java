@@ -172,11 +172,9 @@ public class ItemSequelBlasterRifle extends Item
 				stack.stackTagCompound = new NBTTagCompound();
 
 			if (!stack.stackTagCompound.hasKey("shotsLeft"))
-				switch (stack.getItemDamage())
-				{
-					default:
-						stack.stackTagCompound.setInteger("shotsLeft", 250);
-				}
+			{
+				stack.stackTagCompound.setInteger("shotsLeft", 250);
+			}
 
 			if (getTicksSinceLastShot(stack) <= 40 * ((getCooldown(stack) + 1) / 15f))
 				ItemSequelBlasterRifle.setTicksSinceLastShot(stack, getTicksSinceLastShot(stack) + 1);

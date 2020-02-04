@@ -47,9 +47,9 @@ public class GuiBinocs
 					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[0]);
 
 					String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;

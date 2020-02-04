@@ -116,7 +116,7 @@ public class EntityThrownSaber extends EntityThrowable
 				{
 					PowerBase powerBase = Cron.getActive(entityPlayer);
 
-					if (!powerBase.name.equalsIgnoreCase("deflect") && !powerBase.isRunning)
+					if (powerBase != null && !powerBase.name.equalsIgnoreCase("deflect") && !powerBase.isRunning)
 					{
 						pos.entityHit.attackEntityFrom(StarWarsMod.saberDamageSource, this.damage);
 						pos.entityHit.setFire(8);
@@ -144,7 +144,7 @@ public class EntityThrownSaber extends EntityThrowable
 		else if (pos.typeOfHit == MovingObjectType.BLOCK)
 			trackSender();
 
-		if (pos.entityHit == this.getSender() && this.getSender() instanceof EntityPlayer)
+		if (pos.entityHit == this.getSender() && this.getSender() != null)
 		{
 			givePlayerSaberBack();
 			this.setDead();
@@ -153,7 +153,7 @@ public class EntityThrownSaber extends EntityThrowable
 
 	private void givePlayerSaberBack()
 	{
-		if (getSender() instanceof EntityPlayer)
+		if (getSender() != null)
 		{
 			getSender().inventory.mainInventory[getSlot()] = getSaberStack();
 		}
@@ -165,7 +165,7 @@ public class EntityThrownSaber extends EntityThrowable
 		super.onUpdate();
 		int max = 8;
 
-		if (getSender() instanceof EntityPlayer)
+		if (getSender() != null)
 			max = (int)(8 * (Cron.getLevelOf(getSender(), "saberThrow") / (float)Cron.getMaxLevelOf(getSender(), "saberThrow")));
 
 		if (this.timeAlive++ >= max || isReturning)

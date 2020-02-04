@@ -44,8 +44,8 @@ public class MobBith extends EntityCreature implements IParziNPC
 	protected void entityInit()
 	{
 		super.entityInit();
-		getDataWatcher().addObject(25, Integer.valueOf(0));
-		getDataWatcher().addObject(26, Integer.valueOf(0));
+		getDataWatcher().addObject(25, 0);
+		getDataWatcher().addObject(26, 0);
 	}
 
 	@Override

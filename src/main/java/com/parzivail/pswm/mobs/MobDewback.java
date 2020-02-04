@@ -129,13 +129,6 @@ public class MobDewback extends EntityHorse
 	}
 
 	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_)
-	{
-		Object p_110161_1_1 = super.onSpawnWithEgg(p_110161_1_);
-		return (IEntityLivingData)p_110161_1_1;
-	}
-
-	@Override
 	public void updateRiderPosition()
 	{
 		super.updateRiderPosition();

@@ -90,8 +90,10 @@ public class BlockAntenna extends PBlockContainer implements IDebugProvider
 					new AnimationAntennaOpen(tile1).start();
 					if (world.isRemote)
 					{
-						ItemQuestLog.addStat(player, QuestStats.ANTENNAS_FIXED);
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, ItemQuestLog.getQuestContainer(player).stackTagCompound));
+						ItemQuestLog.addStat(player, QuestStats.ANTENNAS_FIXED); // FIXME: Never trust the client!
+						final ItemStack questLog = ItemQuestLog.getQuestContainer(player);
+						if (questLog != null)
+							StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(player, questLog.stackTagCompound));
 					}
 				}
 

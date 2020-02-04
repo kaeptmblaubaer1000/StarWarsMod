@@ -5,12 +5,12 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.network.MessageHoloTableUpdate;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.ui.GLPalette;
+import com.parzivail.util.ui.GuiScreen;
 import com.parzivail.util.ui.LangUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -32,9 +32,9 @@ public class GuiHoloTable extends GuiScreen
 	private GuiButton buttonOffsetZDown;
 	private GuiButton buttonRefresh;
 
-	private int offsetY = 0;
-	private int offsetX = 0;
-	private int offsetZ = 0;
+	private int offsetY;
+	private int offsetX;
+	private int offsetZ;
 	private Color rgb;
 	private int dim;
 	private int xCoord;

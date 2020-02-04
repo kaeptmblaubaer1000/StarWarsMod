@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class ArmorAtatPilot extends ItemArmor
 {
-	private String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
+	private static String[] names = { "Helmet", "Chestplate", "Leggings", "Boots" };
 	@SideOnly(Side.CLIENT)
 	ModelCompressionArmor c;
 
@@ -29,8 +29,8 @@ public class ArmorAtatPilot extends ItemArmor
 	public ArmorAtatPilot(ItemArmor.ArmorMaterial par2EnumArmorMaterial, int par3, int par4)
 	{
 		super(par2EnumArmorMaterial, par3, par4);
-		this.setUnlocalizedName(Resources.MODID + "." + "atatPilot" + this.names[par4]);
-		this.setTextureName(Resources.MODID + ":" + "atatPilot" + this.names[par4]);
+		this.setUnlocalizedName(Resources.MODID + "." + "atatPilot" + names[par4]);
+		this.setTextureName(Resources.MODID + ":" + "atatPilot" + names[par4]);
 		this.setCreativeTab(StarWarsMod.StarWarsTab);
 	}
 

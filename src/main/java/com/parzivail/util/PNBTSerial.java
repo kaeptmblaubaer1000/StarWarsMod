@@ -12,8 +12,8 @@ import java.util.HashMap;
 
 public class PNBTSerial
 {
-	private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap();
-	private static final HashMap<Class, Field[]> fieldCache = new HashMap();
+	private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap<>();
+	private static final HashMap<Class, Field[]> fieldCache = new HashMap<>();
 
 	static
 	{

@@ -54,7 +54,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		List<WeightedLoot> drop = new java.util.ArrayList();
+		ArrayList<WeightedLoot> drop = new ArrayList<>();
 		drop.add(new WeightedLoot(new ItemStack(StarWarsItems.banthaHorn, 1), LootGenUtils.baseRarity / 1.5F));
 		if (isBurning())
 			drop.add(new WeightedLoot(new ItemStack(StarWarsItems.banthaChopCooked, 1), LootGenUtils.baseRarity));
@@ -67,7 +67,7 @@ public class MobBantha extends EntityHorse implements IShearable
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(17, new Byte((byte)0));
+		dataWatcher.addObject(17, (byte)0);
 	}
 
 	@Override
@@ -234,13 +234,6 @@ public class MobBantha extends EntityHorse implements IShearable
 			ret.add(new ItemStack(Blocks.wool, 1, 12));
 		playSound("mob.sheep.shear", 1.0F, 1.0F);
 		return ret;
-	}
-
-	@Override
-	public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_)
-	{
-		Object p_110161_1_1 = super.onSpawnWithEgg(p_110161_1_);
-		return (IEntityLivingData)p_110161_1_1;
 	}
 
 	/**

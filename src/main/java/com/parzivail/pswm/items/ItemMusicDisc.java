@@ -15,11 +15,11 @@ import java.util.Map;
 
 public class ItemMusicDisc extends ItemRecord
 {
-	private static final Map records = new HashMap();
+	private static final Map<String, ItemMusicDisc> records = new HashMap<>();
 
 	public static ItemMusicDisc getRecord(String par0Str)
 	{
-		return (ItemMusicDisc)records.get(par0Str);
+		return records.get(par0Str);
 	}
 
 	public String name = "musicDisc";

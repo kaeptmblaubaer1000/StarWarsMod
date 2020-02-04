@@ -47,15 +47,14 @@ public class MobEwok extends EntityAnimal implements IAnimals
 	protected void entityInit()
 	{
 		super.entityInit();
-		getDataWatcher().addObject(25, Integer.valueOf(rand.nextInt(3)));
+		getDataWatcher().addObject(25, rand.nextInt(3));
 	}
 
 	protected Item dropItem()
 	{
-		switch (rand.nextInt(60))
+		if (rand.nextInt(60) == 36)
 		{
-			case 36:
-				dropItem(StarWarsItems.ewokSpear, 1);
+			dropItem(StarWarsItems.ewokSpear, 1);
 		}
 		return Item.getItemFromBlock(net.minecraft.init.Blocks.leaves);
 	}

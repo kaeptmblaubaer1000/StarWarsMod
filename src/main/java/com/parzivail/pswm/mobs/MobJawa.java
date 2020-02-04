@@ -43,10 +43,10 @@ public class MobJawa extends EntityCreature implements IMob
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
-			for (int i = 0; i < list.size(); i++)
+			@SuppressWarnings("unchecked")
+			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (Entity entity1 : list)
 			{
-				Entity entity1 = (Entity)list.get(i);
 				if (entity1 instanceof MobJawa)
 				{
 					MobJawa jawa = (MobJawa)entity1;
@@ -74,7 +74,7 @@ public class MobJawa extends EntityCreature implements IMob
 	protected void entityInit()
 	{
 		super.entityInit();
-		getDataWatcher().addObject(25, Integer.valueOf(rand.nextInt(2)));
+		getDataWatcher().addObject(25, rand.nextInt(2));
 	}
 
 	@Override

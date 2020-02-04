@@ -10,7 +10,7 @@ import java.util.List;
 
 class StarWarsAchievement extends Achievement
 {
-	public static List<Achievement> achievements = new ArrayList();
+	public static List<Achievement> achievements = new ArrayList<>();
 
 	StarWarsAchievement(String name, int x, int y, Item icon, Achievement parent)
 	{

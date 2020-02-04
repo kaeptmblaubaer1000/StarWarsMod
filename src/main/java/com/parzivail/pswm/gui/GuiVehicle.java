@@ -30,10 +30,10 @@ public class GuiVehicle
 
 	public static long randomCharNextTime = 0;
 
-	String randomChar1 = "C";
-	String randomChar2 = "N";
-	String randomChar3 = "D";
-	String randomChar4 = "L";
+	private String randomChar1 = "C";
+	private String randomChar2 = "N";
+	private String randomChar3 = "D";
+	private String randomChar4 = "L";
 
 	public static Entity lastTarget = null;
 
@@ -118,9 +118,9 @@ public class GuiVehicle
 
 					String s = e == null || !xwing.getHasAstro() ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;
@@ -248,9 +248,9 @@ public class GuiVehicle
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;
@@ -459,9 +459,9 @@ public class GuiVehicle
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;
@@ -573,9 +573,9 @@ public class GuiVehicle
 
 					String s = e == null ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;
@@ -703,9 +703,9 @@ public class GuiVehicle
 
 					String s = e == null ? "" : TextUtils.translateAurebeshLong(e.getCommandSenderName());
 
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;
@@ -747,40 +747,6 @@ public class GuiVehicle
 							((VehicleAirBase)lastTarget).setTargetLock(true);
 						lastTarget = null;
 					}
-				}
-				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicATST)
-				{
-					VehicATST vehic = (VehicATST)StarWarsMod.mc.thePlayer.ridingEntity;
-
-					event.resolution.getScaledWidth();
-					event.resolution.getScaledHeight();
-
-					updateFiring();
-
-					Entity e = EntityUtils.rayTrace(100, StarWarsMod.mc.thePlayer, new Entity[] { vehic });
-
-					int color = GLPalette.ANALOG_GREEN;
-
-					if (e != null)
-						color = GLPalette.ANALOG_RED;
-
-					// if (vehic.getTargetLock())
-					// dist = GLPalette.ORANGE;
-
-					if (e != null && lastTarget == null)
-						new AnimationCrosshairClose(color).start();
-
-					if (e == null && lastTarget != null)
-						new AnimationCrosshairOpen(color).start();
-
-					if (!ClientEventHandler.isCursorAnim)
-						GFX.drawFancyCursor(event, ClientEventHandler.cursorOpen ? 0 : 1, color);
-
-					updateTargetLock(e);
-
-					lastTarget = e;
-
-					GFX.renderOverlay(Resources.atstOverlay);
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
@@ -856,9 +822,9 @@ public class GuiVehicle
 
 					String s = e == null || !ywing.getHasAstro() ? "" : TextUtils.translateAurebesh(e.getCommandSenderName());
 
-					String block = s != "" && lookStringPos < lookString.length() ? "\u2588" : "";
+					String block = !s.equals("") && lookStringPos < lookString.length() ? "\u2588" : "";
 
-					if (lookString != s)
+					if (!lookString.equals(s))
 					{
 						lookString = s;
 						lookStringPos = 0;

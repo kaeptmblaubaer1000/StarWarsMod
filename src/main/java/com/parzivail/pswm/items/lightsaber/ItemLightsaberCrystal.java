@@ -17,9 +17,9 @@ import java.util.List;
 public class ItemLightsaberCrystal extends Item
 {
 	public String name = "lightsaberCrystal";
-	public String[] colors = { "red", "green", "blue", "black", "cyan", "gray", "pink", "purple", "white", "yellow", "prism", "shard" };
+	public static String[] colors = { "red", "green", "blue", "black", "cyan", "gray", "pink", "purple", "white", "yellow", "prism", "shard" };
 	@SideOnly(Side.CLIENT)
-	private IIcon[] icons;
+	private IIcon[] icons = new IIcon[colors.length];
 
 	public ItemLightsaberCrystal()
 	{
@@ -31,15 +31,17 @@ public class ItemLightsaberCrystal extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean b)
 	{
+		@SuppressWarnings("unchecked")
+		List<String> stringList = (List<String>) list;
 		if (stack != null && stack.getItemDamage() == 10)
 		{
-			list.add(LangUtils.translate("sabercrystal.prism1"));
-			list.add(LangUtils.translate("sabercrystal.prism2"));
+			stringList.add(LangUtils.translate("sabercrystal.prism1"));
+			stringList.add(LangUtils.translate("sabercrystal.prism2"));
 		}
 		else if (stack != null && stack.getItemDamage() == 11)
 		{
-			list.add(LangUtils.translate("sabercrystal.shard1"));
-			list.add(LangUtils.translate("sabercrystal.shard2"));
+			stringList.add(LangUtils.translate("sabercrystal.shard1"));
+			stringList.add(LangUtils.translate("sabercrystal.shard2"));
 		}
 	}
 
@@ -53,16 +55,21 @@ public class ItemLightsaberCrystal extends Item
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for (int x = 0; x < this.colors.length; x++)
-			par3List.add(new ItemStack(this, 1, x));
+		@SuppressWarnings("unchecked")
+		final List<ItemStack> itemList = (List<ItemStack>) par3List;
+		for (int x = 0; x < colors.length; x++)
+		{
+			itemList.add(new ItemStack(this, 1, x));
+		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.icons = new IIcon[this.colors.length];
 		for (int i = 0; i < this.icons.length; i++)
-			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + this.colors[i]);
+		{
+			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + colors[i]);
+		}
 	}
 }

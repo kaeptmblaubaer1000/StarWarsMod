@@ -39,13 +39,6 @@ public class ItemSlopeWizard extends Item
 			}
 		}
 
-		Block blockUsing = StarWarsMod.blockTempleStoneMH;
-
-		if (stack.stackTagCompound.hasKey("blockUsing") && Block.getBlockFromName(stack.stackTagCompound.getString("blockUsing")) != null)
-		{
-			blockUsing = Block.getBlockFromName(stack.stackTagCompound.getString("blockUsing"));
-		}
-
 		if (stack.stackTagCompound.getIntArray("firstPos").length == 0)
 		{
 			stack.stackTagCompound.setIntArray("firstPos", new int[] { x, y, z });
@@ -60,10 +53,10 @@ public class ItemSlopeWizard extends Item
 			int aY = posA[1];
 			int aZ = posA[2];
 
+			final double rise = Math.max(aY, y) - Math.min(aY, y);
 			if (aX == x)
 			{
 				// going in x direction
-				double rise = Math.max(aY, y) - Math.min(aY, y);
 				double run = Math.max(z, aZ) - Math.min(z, aZ);
 				double slope = rise / run;
 
@@ -103,7 +96,6 @@ public class ItemSlopeWizard extends Item
 			else if (aZ == z)
 			{
 				// going in x direction
-				double rise = Math.max(aY, y) - Math.min(aY, y);
 				double run = Math.max(x, aX) - Math.min(x, aX);
 				double slope = rise / run;
 

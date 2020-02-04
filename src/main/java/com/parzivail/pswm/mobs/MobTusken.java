@@ -74,10 +74,10 @@ public class MobTusken extends EntityCreature implements IMob, IShootThings
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
-			for (int i = 0; i < list.size(); i++)
+			@SuppressWarnings("unchecked")
+			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (Entity entity1 : list)
 			{
-				Entity entity1 = (Entity)list.get(i);
 				if (entity1 instanceof MobTusken)
 				{
 					MobTusken tusken = (MobTusken)entity1;

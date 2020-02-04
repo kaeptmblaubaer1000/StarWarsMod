@@ -25,10 +25,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class ItemLightsaber extends ItemSword
 {
@@ -43,11 +40,50 @@ public class ItemLightsaber extends ItemSword
 	public static final String nbtBlasterTimeout = "blasterTimeout";
 
 	// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
-	public static final String[] hilts = { "obiwan", "quigon", "maul", "padawan", "dooku", "luke1", "vader2", "luke2", "crossguard", "kanan", "ezra", "revan", "malgus", "doubleSith", "starkiller", "shoto", "plokoon", "inquisitor", "mace", "yoda", "ahsoka", "darksaber", "pike", "revan2", "ventress" };
-	public static Integer[] colorHex;
+	public static final String[] hilts = {
+			"obiwan",
+			"quigon",
+			"maul",
+			"padawan",
+			"dooku",
+			"luke1",
+			"vader2",
+			"luke2",
+			"crossguard",
+			"kanan",
+			"ezra",
+			"revan",
+			"malgus",
+			"doubleSith",
+			"starkiller",
+			"shoto",
+			"plokoon",
+			"inquisitor",
+			"mace",
+			"yoda",
+			"ahsoka",
+			"darksaber",
+			"pike",
+			"revan2",
+			"ventress"
+	};
+	public static int[] colorHex;
 	// public static final String[] colorName = { "yellow", "pink", "purple",
 	// "white", "gray", "orange", "teal", "black", "red", "green", "blue" };
-	private static Integer[] colorHexNew = { 0xFFFF2B, 0xFF00A4, 0xD100FF, 0xFFFFFF, 0xA0A0A0, 0x202020, 0xFF6A00, 0x2FD0F6, 0xFF0000, 0x00FF30, 0x3010DA, 0xFF5200 };
+	private static int[] colorHexNew = {
+			0xFFFF2B,
+			0xFF00A4,
+			0xD100FF,
+			0xFFFFFF,
+			0xA0A0A0,
+			0x202020,
+			0xFF6A00,
+			0x2FD0F6,
+			0xFF0000,
+			0x00FF30,
+			0x3010DA,
+			0xFF5200
+	};
 	//                                          0  1  2  3  4  5  6  7  8  9 10 11
 	public static HashMap<Integer, Integer> metaTable = new HashMap<Integer, Integer>()
 	{
@@ -69,11 +105,12 @@ public class ItemLightsaber extends ItemSword
 
 	static
 	{
-		ArrayList<Integer> n = new ArrayList<>();
-		for (Integer aColorHex : colorHexNew)
-			n.add(GLPalette.makeOpaque(aColorHex));
-		Collections.sort(n, new IntColorComparator());
-		colorHex = MathUtils.toIntArray(n);
+		colorHex = Arrays.stream(colorHexNew)
+		                 .mapToObj(GLPalette::makeOpaque)
+		                 .sorted(new IntColorComparator())
+		                 .mapToInt(i -> i)
+		                 .toArray(); // FIXME: still with boxing, sort after toArray
+		Arrays.sort(colorHex);
 	}
 
 	public int hiltIndex;
@@ -121,32 +158,92 @@ public class ItemLightsaber extends ItemSword
 
 	public static ItemStack[] getItemsForSingleBlade()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 4), };
+		return new ItemStack[] {
+				new ItemStack(StarWarsItems.magneticStabilizingRing, 1),
+				new ItemStack(StarWarsItems.energyModulationCircuit, 1),
+				new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1),
+				new ItemStack(StarWarsItems.focusingCrystal, 1),
+				new ItemStack(StarWarsItems.diatiumPowerCell, 1),
+				new ItemStack(StarWarsItems.energyGate, 1),
+				new ItemStack(StarWarsItems.powerVortexRing, 1),
+				new ItemStack(StarWarsItems.inertPowerInsulator, 1),
+				new ItemStack(StarWarsItems.hiltMetelAlloy, 4),
+				};
 	}
 
 	public static ItemStack[] getItemsForSingleBladeBlaster()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 2), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 2), new ItemStack(StarWarsItems.energyGate, 2), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 6), };
+		return new ItemStack[] {
+				new ItemStack(StarWarsItems.magneticStabilizingRing, 1),
+				new ItemStack(StarWarsItems.energyModulationCircuit, 2),
+				new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1),
+				new ItemStack(StarWarsItems.focusingCrystal, 1),
+				new ItemStack(StarWarsItems.diatiumPowerCell, 2),
+				new ItemStack(StarWarsItems.energyGate, 2),
+				new ItemStack(StarWarsItems.powerVortexRing, 1),
+				new ItemStack(StarWarsItems.inertPowerInsulator, 1),
+				new ItemStack(StarWarsItems.hiltMetelAlloy, 6),
+				};
 	}
 
 	public static ItemStack[] getItemsForSingleBladeShoto()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 8), };
+		return new ItemStack[] {
+				new ItemStack(StarWarsItems.magneticStabilizingRing, 1),
+				new ItemStack(StarWarsItems.energyModulationCircuit, 1),
+				new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1),
+				new ItemStack(StarWarsItems.focusingCrystal, 1),
+				new ItemStack(StarWarsItems.diatiumPowerCell, 1),
+				new ItemStack(StarWarsItems.energyGate, 1),
+				new ItemStack(StarWarsItems.powerVortexRing, 1),
+				new ItemStack(StarWarsItems.inertPowerInsulator, 1),
+				new ItemStack(StarWarsItems.hiltMetelAlloy, 8),
+				};
 	}
 
 	public static ItemStack[] getItemsForDoubleBlade()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 2), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 2), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 2), new ItemStack(StarWarsItems.hiltMetelAlloy, 8), };
+		return new ItemStack[] {
+				new ItemStack(StarWarsItems.magneticStabilizingRing, 2),
+				new ItemStack(StarWarsItems.energyModulationCircuit, 1),
+				new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1),
+				new ItemStack(StarWarsItems.focusingCrystal, 2),
+				new ItemStack(StarWarsItems.diatiumPowerCell, 1),
+				new ItemStack(StarWarsItems.energyGate, 1),
+				new ItemStack(StarWarsItems.powerVortexRing, 1),
+				new ItemStack(StarWarsItems.inertPowerInsulator, 2),
+				new ItemStack(StarWarsItems.hiltMetelAlloy, 8),
+				};
 	}
 
 	public static ItemStack[] getItemsForCrossguard()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 2), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 6), };
+		return new ItemStack[] {
+				new ItemStack(StarWarsItems.magneticStabilizingRing, 1),
+				new ItemStack(StarWarsItems.energyModulationCircuit, 1),
+				new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1),
+				new ItemStack(StarWarsItems.focusingCrystal, 2),
+				new ItemStack(StarWarsItems.diatiumPowerCell, 1),
+				new ItemStack(StarWarsItems.energyGate, 1),
+				new ItemStack(StarWarsItems.powerVortexRing, 1),
+				new ItemStack(StarWarsItems.inertPowerInsulator, 1),
+				new ItemStack(StarWarsItems.hiltMetelAlloy, 6),
+				};
 	}
 
 	public static ItemStack[] getItemsForPike()
 	{
-		return new ItemStack[] { new ItemStack(StarWarsItems.magneticStabilizingRing, 1), new ItemStack(StarWarsItems.energyModulationCircuit, 1), new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1), new ItemStack(StarWarsItems.focusingCrystal, 1), new ItemStack(StarWarsItems.diatiumPowerCell, 1), new ItemStack(StarWarsItems.energyGate, 1), new ItemStack(StarWarsItems.powerVortexRing, 1), new ItemStack(StarWarsItems.inertPowerInsulator, 1), new ItemStack(StarWarsItems.hiltMetelAlloy, 10), };
+		return new ItemStack[] {
+				new ItemStack(StarWarsItems.magneticStabilizingRing, 1),
+				new ItemStack(StarWarsItems.energyModulationCircuit, 1),
+				new ItemStack(StarWarsItems.cyclingFieldEnergizer, 1),
+				new ItemStack(StarWarsItems.focusingCrystal, 1),
+				new ItemStack(StarWarsItems.diatiumPowerCell, 1),
+				new ItemStack(StarWarsItems.energyGate, 1),
+				new ItemStack(StarWarsItems.powerVortexRing, 1),
+				new ItemStack(StarWarsItems.inertPowerInsulator, 1),
+				new ItemStack(StarWarsItems.hiltMetelAlloy, 10),
+				};
 	}
 
 	@Override
@@ -163,7 +260,6 @@ public class ItemLightsaber extends ItemSword
 		if (stack.stackTagCompound != null && stack.stackTagCompound.getBoolean(nbtBladeOn))
 			entityLiving.playSound(Resources.MODID + ":" + "item.lightsaber.swing", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(Item.itemRand, -0.2D, 0.2D));
 		return super.onEntitySwing(entityLiving, stack);
-
 	}
 
 	@Override
@@ -209,13 +305,10 @@ public class ItemLightsaber extends ItemSword
 
 				stack.stackTagCompound.setBoolean(nbtBladeOn, false);
 				stack.stackTagCompound.setInteger(nbtBladeTimeout, 10);
-				if (attacker instanceof EntityPlayer)
-				{
-					EntityPlayer player = (EntityPlayer)attacker;
-					player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
-					StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
-					return false;
-				}
+				EntityPlayer player = (EntityPlayer)attacker;
+				player.playSound(Resources.MODID + ":" + "item.lightsaber.fizz", 1.0F, 1.0F);
+				StarWarsMod.network.sendToServer(new MessageSetPlayerHolding(player, stack));
+				return false;
 			}
 		}
 
