@@ -5,6 +5,7 @@ import com.parzivail.pswm.armor.*;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.IShootThings;
 import com.parzivail.pswm.mobs.MobDroidProbe;
+import com.parzivail.pswm.mobs.MobTusken;
 import com.parzivail.pswm.mobs.MobWampa;
 import com.parzivail.pswm.mobs.trooper.*;
 import com.parzivail.pswm.quest.QuestUtils;
@@ -93,6 +94,10 @@ public class AiTrooperAttack extends EntityAIBase
 		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null && !(this.rangedAttackEntityHost instanceof MobDroidProbe))
 			return false;
 		if (entity instanceof MobWampa)
+			return true;
+		if (entity instanceof MobTusken)
+			return true;
+		if(entityHost.getLastAttacker() != null)
 			return true;
 		if (isARebel(rangedAttackEntityHost))
 			return isAnImperial(entity);

@@ -54,7 +54,6 @@ public class MobDroidSurgical extends EntityDroidBase
 	@Override
 	public void dropFewItems(boolean par1, int par2)
 	{
-		dropItem(StarWarsItems.spawnSurgical, 1);
 	}
 
 	@Override
@@ -66,7 +65,7 @@ public class MobDroidSurgical extends EntityDroidBase
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(18, (byte)0);
+		dataWatcher.addObject(18, Byte.valueOf((byte)0));
 	}
 
 	@Override
@@ -108,12 +107,19 @@ public class MobDroidSurgical extends EntityDroidBase
 		{
 			if (par1EntityPlayer.getUniqueID().equals(getOwner().getUniqueID()) && !worldObj.isRemote && !isBreedingItem(itemstack) && itemstack.getItem() == StarWarsItems.droidHacker)
 			{
-				aiSit.setSitting(!isSitting());
-				par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
-				isJumping = false;
+				if(!par1EntityPlayer.isSneaking()) {
+					aiSit.setSitting(!isSitting());
+					par1EntityPlayer.addChatMessage(new ChatComponentText(EntityUtils.getDroidSittingMessage(!isSitting())));
+					isJumping = false;
+				}
+
+				if(par1EntityPlayer.isSneaking()) {
+					this.setDead();
+					dropItem(StarWarsItems.spawnSurgical, 1);
+				}
 			}
 		}
-		else if (itemstack.getItem() == StarWarsItems.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
+		else if (itemstack != null && itemstack.getItem() == StarWarsItems.droidHacker && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
 			if (!worldObj.isRemote)
 				if (rand.nextInt(3) == 0)

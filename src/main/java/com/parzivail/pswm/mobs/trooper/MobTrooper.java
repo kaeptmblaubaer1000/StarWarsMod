@@ -12,8 +12,10 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -38,17 +40,21 @@ public abstract class MobTrooper extends EntityTameable implements IMob, IShootT
 		setSize(0.5F, 1.5F);
 		getNavigator().setEnterDoors(true);
 		getNavigator().setCanSwim(true);
-		this.tasks.addTask(0, trooperAttack = new AiTrooperAttack(this, 1.0D, 20, 60, 15.0F));
+		getNavigator().setAvoidsWater(true);
+		this.tasks.addTask(1, new EntityAISwimming(this));
+		this.tasks.addTask(0, trooperAttack = new AiTrooperAttack(this, 1.0D, 10, 30, 50.0F));
 		this.tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 4.0F, 2.0F));
 		tasks.addTask(2, new AiMelee(this, MobWampa.class, 1, false, 4));
 		this.tasks.addTask(3, new AiFreqMove(this, 1, 20));
 		this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.25D, false));
 		this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
 		this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+		this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, MobWampa.class, 0, true));
-		this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
-		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, MobTusken.class, 0, true));
+		this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, MobDroidProbe.class, 0, true));
+		this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, true));
 		this.setTamed(false);
 	}
 
@@ -67,29 +73,15 @@ public abstract class MobTrooper extends EntityTameable implements IMob, IShootT
 		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
-	private void becomeAngryAt(Entity p_70835_1_)
-	{
-		entityToAttack = p_70835_1_;
-		angerLevel = 400 + rand.nextInt(400);
-	}
-
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		Entity entity = source.getEntity();
-		if (entity instanceof EntityPlayer)
+		if (entity instanceof EntityLivingBase)
 		{
-			List list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
-			for (Object aList : list)
-			{
-				Entity entity1 = (Entity)aList;
-				if (entity1 instanceof MobTrooper)
-				{
-					MobTrooper s = (MobTrooper)entity1;
-					s.becomeAngryAt(entity);
-				}
-			}
-			becomeAngryAt(entity);
+			setAngry(true);
+			setLastAttacker(entity);
+			setRevengeTarget((EntityLivingBase) entity);
 		}
 		return super.attackEntityFrom(source, amount);
 	}
@@ -129,6 +121,63 @@ public abstract class MobTrooper extends EntityTameable implements IMob, IShootT
 		}
 
 		return super.interact(p_70085_1_);
+	}
+
+	public void setAttackTarget(EntityLivingBase p_70624_1_)
+	{
+		super.setAttackTarget(p_70624_1_);
+
+		if (p_70624_1_ == null)
+		{
+			this.setAngry(false);
+		}
+		else if (!this.isTamed())
+		{
+			this.setAngry(true);
+		}
+	}
+
+	/**
+	 * (abstract) Protected helper method to write subclass entity data to NBT.
+	 */
+	public void writeEntityToNBT(NBTTagCompound p_70014_1_)
+	{
+		super.writeEntityToNBT(p_70014_1_);
+		p_70014_1_.setBoolean("Angry", this.isAngry());
+	}
+
+	/**
+	 * (abstract) Protected helper method to read subclass entity data from NBT.
+	 */
+	public void readEntityFromNBT(NBTTagCompound p_70037_1_)
+	{
+		super.readEntityFromNBT(p_70037_1_);
+		this.setAngry(p_70037_1_.getBoolean("Angry"));
+	}
+
+	/**
+	 * Determines whether this wolf is angry or not.
+	 */
+	public boolean isAngry()
+	{
+		return (this.dataWatcher.getWatchableObjectByte(16) & 2) != 0;
+	}
+
+	/**
+	 * Sets whether this wolf is angry or not.
+	 */
+	public void setAngry(boolean p_70916_1_)
+	{
+		byte b0 = this.dataWatcher.getWatchableObjectByte(16);
+
+		if (p_70916_1_)
+		{
+			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
+		}
+		else
+		{
+			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
+		}
 	}
 
 	@Override
