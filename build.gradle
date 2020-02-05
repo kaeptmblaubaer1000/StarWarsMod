@@ -73,3 +73,7 @@ processResources
 runClient {
     args += ["--user"]
 }
+
+makeStart {
+    addResource(new File(projectDir, "GradleStart.java").toURL(), "GradleStart.java")
+}
