@@ -19,7 +19,7 @@ public class BlockCrystalOre extends BlockMultiTexture
 
 	static {
 		for (int i = 0; i < colors.length; i++) {
-			for (int j = 0; i < ItemLightsaberCrystal.colors.length; j++) {
+			for (int j = 0; j < ItemLightsaberCrystal.colors.length; j++) {
 				if (colors[i].equalsIgnoreCase(ItemLightsaberCrystal.colors[j])) {
 					crystals[i] = j;
 				}
