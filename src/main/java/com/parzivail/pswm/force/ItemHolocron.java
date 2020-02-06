@@ -2,6 +2,7 @@ package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.force.powers.PowerNaturalAwareness;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.Entity;
@@ -60,6 +61,15 @@ public class ItemHolocron extends Item
 
 			stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
 			stack.stackTagCompound.setTag(Resources.nbtPowers, Cron.makeNewPowersNBT());
+		}
+		if (!stack.stackTagCompound.hasKey("askedJediSith")) {
+			if (stack.stackTagCompound.getString(Resources.nbtSide).equals(Cron.SIDE_SITH)) {
+				stack.stackTagCompound.setBoolean("askedJediSith", true);
+			} else if (stack.stackTagCompound.getInteger(Resources.nbtLevel) > 34 && stack.stackTagCompound.getCompoundTag(Resources.nbtPowers).getCompoundTag("naturalAwareness").getInteger("currentLevel") > 0) {
+				stack.stackTagCompound.setBoolean("askedJediSith", true);
+			} else {
+				stack.stackTagCompound.setBoolean("askedJediSith", false);
+			}
 		}
 	}
 }

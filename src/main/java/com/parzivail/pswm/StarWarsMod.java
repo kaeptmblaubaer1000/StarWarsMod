@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.blocks.BlockHothSign;
 import com.parzivail.pswm.commands.CommandJediRobes;
-import com.parzivail.pswm.exception.UserError;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.handlers.CommonEventHandler;
 import com.parzivail.pswm.handlers.GuiHandler;
@@ -26,8 +25,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.relauncher.Side;
@@ -521,7 +518,7 @@ public class StarWarsMod
 		this.registerMessageServer(MessageEntityHurt.class);
 		this.registerMessageServer(MessageTransmute.class);
 		this.registerMessageServer(MessageEntityReverse.class);
-		this.registerMessageServer(MessageRobesIntNBT.class);
+		this.registerMessageServer(MessageHolocronSetXp.class);
 		this.registerMessageServer(MessageRobesStringNBT.class);
 		this.registerMessageServer(MessageSFoil.class);
 		this.registerMessageServer(MessageHeal.class);
@@ -540,6 +537,7 @@ public class StarWarsMod
 		this.registerMessageServer(MessageUpdateTarget.class);
 		this.registerMessageServer(MessagePlayerBuyItem.class);
 		this.registerMessageServer(MessageSetQuestLogNbt.class);
+		this.registerMessageServer(MessageHolocronUpgradePower.class);
 
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);

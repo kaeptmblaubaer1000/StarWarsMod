@@ -110,7 +110,6 @@ public class ItemLightsaber extends ItemSword
 		                 .sorted(new IntColorComparator())
 		                 .mapToInt(i -> i)
 		                 .toArray(); // FIXME: still with boxing, sort after toArray
-		Arrays.sort(colorHex);
 	}
 
 	public int hiltIndex;

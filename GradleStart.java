@@ -103,11 +103,11 @@ public class GradleStart extends GradleStartCommon
             final Field sysPathsField = ClassLoader.class.getDeclaredField("sys_paths");
             sysPathsField.setAccessible(true);
             sysPathsField.set(null, null);
-	    final Method initLibraryPathsMethod = ClassLoader.class.getDeclaredMethod("initLibraryPaths", void.class);
+	    final Method initLibraryPathsMethod = ClassLoader.class.getDeclaredMethod("initLibraryPaths");
 	    initLibraryPathsMethod.setAccessible(true);
 	    initLibraryPathsMethod.invoke(null);
         }
-        catch(Throwable t) {};
+        catch(Throwable t) {}
     }
 
     private void attemptLogin(Map<String, String> argMap)

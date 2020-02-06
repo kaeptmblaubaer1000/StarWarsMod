@@ -12,16 +12,16 @@ import net.minecraft.nbt.NBTTagCompound;
 public class MessageHolocronSetClientActive extends PMessage<MessageHolocronSetClientActive>
 {
 	public EntityPlayer player;
-	public NBTTagCompound compound;
+	public String power;
 
 	public MessageHolocronSetClientActive()
 	{
 	}
 
-	public MessageHolocronSetClientActive(EntityPlayer player, NBTTagCompound compound)
+	public MessageHolocronSetClientActive(EntityPlayer player, String power)
 	{
 		this.player = player;
-		this.compound = compound;
+		this.power = power;
 	}
 
 	@Override
@@ -30,11 +30,11 @@ public class MessageHolocronSetClientActive extends PMessage<MessageHolocronSetC
 		if (this.player == null)
 			return null;
 
-		RenderSithLightning.playerPowers.put(player.getCommandSenderName(), compound);
+		RenderSithLightning.playerPowers.put(player.getCommandSenderName(), power);
 
 		if (this.player.inventory == null || Cron.getHolocron(player) == null)
 			return null;
-		Cron.getHolocron(player).stackTagCompound.setTag(Resources.nbtWield, compound);
+		Cron.getHolocron(player).stackTagCompound.setString(Resources.nbtWield, power);
 		return null;
 	}
 

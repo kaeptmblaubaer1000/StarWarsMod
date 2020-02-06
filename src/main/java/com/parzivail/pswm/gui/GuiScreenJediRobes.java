@@ -1,12 +1,11 @@
 package com.parzivail.pswm.gui;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.PowerBase;
 import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
-import com.parzivail.pswm.network.MessageRobesIntNBT;
+import com.parzivail.pswm.network.MessageHolocronUpgradePower;
 import com.parzivail.util.ui.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -54,11 +53,8 @@ public class GuiScreenJediRobes extends GuiScreen
 		{
 			if (button.id == this.enableButton.id)
 			{
-				//ForceUtils.activePower = this.selectedPower.power;
-				NBTTagCompound powers = Cron.getPowers(stack);
-				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
-				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
-				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.serialize()));
+				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer));
+				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.name));
 			}
 			if (button.id == this.learnButton.id && this.selectedPower.power != null)
 			{
@@ -66,12 +62,12 @@ public class GuiScreenJediRobes extends GuiScreen
 				NBTTagCompound powers = Cron.getPowers(stack);
 				powers.setTag(this.selectedPower.power.name, this.selectedPower.power.serialize());
 				Lumberjack.debug(powers.getTag(this.selectedPower.power.name));
-				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer, powers));
+				StarWarsMod.network.sendToServer(new MessageHolocronUpgradePower(StarWarsMod.mc.thePlayer, this.selectedPower.power.name));
+				StarWarsMod.network.sendToServer(new MessageHolocronRefreshPowers(StarWarsMod.mc.thePlayer));
 
 				PowerBase active = Cron.getActive(StarWarsMod.mc.thePlayer);
 				if (active != null && active.name.equals(this.selectedPower.power.name))
-					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.serialize()));
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtRemainingPts, --this.points));
+					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, this.selectedPower.power.name));
 			}
 		}
 	}

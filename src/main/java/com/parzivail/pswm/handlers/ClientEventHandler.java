@@ -175,7 +175,7 @@ public class ClientEventHandler
 				if (event.source.getEntity() != null)
 					EntityBlasterBoltBase.deflectFX(event.source.getEntity());
 
-				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(entityPlayer, active.serialize()));
+				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(entityPlayer, active.name));
 			}
 
 			if (active.name.equals("deflect") && active.isRunning)

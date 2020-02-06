@@ -19,7 +19,7 @@ public class ItemLightsaberCrystal extends Item
 	public String name = "lightsaberCrystal";
 	public static String[] colors = { "red", "green", "blue", "black", "cyan", "gray", "pink", "purple", "white", "yellow", "prism", "shard" };
 	@SideOnly(Side.CLIENT)
-	private IIcon[] icons = new IIcon[colors.length];
+	private IIcon[] icons;
 
 	public ItemLightsaberCrystal()
 	{
@@ -67,6 +67,7 @@ public class ItemLightsaberCrystal extends Item
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
+		icons = new IIcon[colors.length];
 		for (int i = 0; i < this.icons.length; i++)
 		{
 			this.icons[i] = par1IconRegister.registerIcon(Resources.MODID + ":" + this.name + "_" + colors[i]);

@@ -13,7 +13,7 @@ public class StatTrack
 {
 	public static void addStat(String stat)
 	{
-		new Thread(() ->
+		/*new Thread(() ->
 		{
 			InputStream in = null;
 			try
@@ -31,6 +31,6 @@ public class StatTrack
 				if (in != null)
 					IOUtils.closeQuietly(in);
 			}
-		}).start();
+		}).start();*/
 	}
 }

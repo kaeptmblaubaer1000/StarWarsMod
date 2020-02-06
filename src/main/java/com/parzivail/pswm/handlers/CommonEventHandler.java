@@ -280,23 +280,28 @@ public class CommonEventHandler
 		{
 			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
 			{
-				String current = Cron.getActive(StarWarsMod.mc.thePlayer).name;
-				ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
-				int index = Arrays.asList(powers.toArray()).indexOf(current);
-				do
+				PowerBase power = Cron.getActive(StarWarsMod.mc.thePlayer);
+				if (power != null)
 				{
-					index++;
-					if (index >= powers.size())
-						index = 0;
-				}
-				while (Cron.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
-				if (index < powers.size() - 1 && !powers.get(index).equals(current))
-				{
-					if (index < 0)
-						index = powers.size() - 1;
-					PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
-					//activePower = selectedPower;
-					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
+
+					String current = power.name;
+					ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
+					int index = Arrays.asList(powers.toArray()).indexOf(current);
+					do
+					{
+						index++;
+						if (index >= powers.size())
+							index = 0;
+					}
+					while (Cron.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
+					if (index < powers.size() - 1 && !powers.get(index).equals(current))
+					{
+						if (index < 0)
+							index = powers.size() - 1;
+						PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
+						//activePower = selectedPower;
+						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.name));
+					}
 				}
 			}
 		}
@@ -322,7 +327,7 @@ public class CommonEventHandler
 					{
 						PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
 						//activePower = selectedPower;
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.serialize()));
+						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.name));
 					}
 				}
 			}
@@ -330,6 +335,7 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 		{
+			// FIXME: Definitely put this server-side
 			ItemStack cron;
 			if ((cron = Cron.getHolocron(StarWarsMod.mc.thePlayer)) != null)
 			{
@@ -394,17 +400,16 @@ public class CommonEventHandler
 						if (coolFlag)
 							coolPower(powerBase);
 
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.serialize()));
+						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.name));
 
-						StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, Cron.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost()));
+						StarWarsMod.network.sendToServer(new MessageHolocronSetXp(StarWarsMod.mc.thePlayer, Cron.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost()));
 					}
 				}
 			}
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.NORMAL,
-	                receiveCanceled = true)
+	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public void onEvent(TickEvent.PlayerTickEvent event)
 	{
 		if (!Resources.ConfigOptions.enableLightsaberLight)
@@ -498,7 +503,7 @@ public class CommonEventHandler
 			}
 
 			if (shouldPowerSync)
-				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.serialize()));
+				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, power.name));
 		}
 
 		if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
@@ -568,8 +573,7 @@ public class CommonEventHandler
 	private void updateDeflect(PowerDeflect power1)
 	{
 		if (power1.isRunning)
-			((List<Entity>) StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3))).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entity ->
-			{
+			((List<Entity>)StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3))).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entity -> {
 				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
 			});
 	}
@@ -640,7 +644,7 @@ public class CommonEventHandler
 
 				int total = Math.min(xp + addition, maxxp);
 
-				StarWarsMod.network.sendToServer(new MessageRobesIntNBT(StarWarsMod.mc.thePlayer, Resources.nbtXp, total));
+				StarWarsMod.network.sendToServer(new MessageHolocronSetXp(StarWarsMod.mc.thePlayer, total));
 			}
 		}
 	}
@@ -667,7 +671,7 @@ public class CommonEventHandler
 
 				PowerBase active = Cron.getActive(StarWarsMod.mc.thePlayer);
 				if (active != null && active.name.equals(b.name))
-					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, b.serialize()));
+					StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, b.name));
 			}
 
 			powers.setTag(b.name, b.serialize());
@@ -685,7 +689,6 @@ public class CommonEventHandler
 
 		if (server != null && server.provider.dimensionId == Resources.ConfigOptions.dimIlumId && !server.getWorldInfo().isRaining())
 			server.getWorldInfo().setRaining(true);
-
 	}
 
 	/**
@@ -724,6 +727,6 @@ public class CommonEventHandler
 	private void resetRobes(PlayerEvent event)
 	{
 		if (event.player.worldObj.isRemote)
-			StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, new NBTTagCompound()));
+			StarWarsMod.network.sendToServer(new MessageHolocronSetActive(event.player, ""));
 	}
 }

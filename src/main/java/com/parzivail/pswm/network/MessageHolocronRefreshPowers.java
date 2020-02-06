@@ -7,6 +7,7 @@ import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class MessageHolocronRefreshPowers extends PMessage<MessageHolocronRefreshPowers>
@@ -18,19 +19,18 @@ public class MessageHolocronRefreshPowers extends PMessage<MessageHolocronRefres
 	{
 	}
 
-	public MessageHolocronRefreshPowers(EntityPlayer player, NBTTagCompound compound)
+	public MessageHolocronRefreshPowers(EntityPlayer player)
 	{
 		this.player = player;
-		this.compound = compound;
 	}
 
 	@Override
 	public IMessage handleMessage(MessageContext context)
 	{
-		if (this.player == null || this.player.inventory == null || Cron.getHolocron(player) == null || Cron.getHolocron(player).stackTagCompound == null)
+		ItemStack holocron;
+		if (this.player == null || this.player.inventory == null || (holocron = Cron.getHolocron(player)) == null || holocron.stackTagCompound == null)
 			return null;
-		Cron.getHolocron(player).stackTagCompound.setTag(Resources.nbtPowers, compound);
-		StarWarsMod.network.sendToAll(new MessageHolocronRefreshClientPowers(this.player, this.compound));
+		StarWarsMod.network.sendToAll(new MessageHolocronRefreshClientPowers(this.player, holocron.stackTagCompound.getCompoundTag("powers")));
 		return null;
 	}
 

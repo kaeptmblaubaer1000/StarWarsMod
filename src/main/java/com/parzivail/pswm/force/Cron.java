@@ -257,14 +257,13 @@ public class Cron
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield))
 			return null;
 
-		NBTTagCompound compound = ((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtWield));
-		String type = compound.getString("name");
+		String name = stack.stackTagCompound.getString(Resources.nbtWield);
 
 		PowerBase power;
-		if ((power = initNewPower(stack, type)) == null)
+		if ((power = initNewPower(stack, name)) == null)
 			return null;
 
-		return power.deserialize(compound);
+		return power.deserialize(stack.stackTagCompound.getCompoundTag("powers").getCompoundTag(name));
 	}
 
 	/**
@@ -349,10 +348,10 @@ public class Cron
 		if (stack == null || !stack.hasTagCompound() || !stack.stackTagCompound.hasKey(Resources.nbtWield) || powers.get(type) == null)
 			return null;
 
-		Class clazz = powers.get(type);
+		Class<? extends PowerBase> clazz = powers.get(type);
 		try
 		{
-			return ((PowerBase)clazz.getConstructor(int.class).newInstance(0)).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(type));
+			return clazz.getConstructor(int.class).newInstance(0).deserialize((NBTTagCompound)((NBTTagCompound)stack.stackTagCompound.getTag(Resources.nbtPowers)).getTag(type));
 		}
 		catch (Exception e)
 		{
@@ -369,10 +368,10 @@ public class Cron
 	 */
 	public static PowerBase initNewPower(String type)
 	{
-		Class clazz = powers.get(type);
+		Class<? extends PowerBase> clazz = powers.get(type);
 		try
 		{
-			return ((PowerBase)clazz.getConstructor(int.class).newInstance(0));
+			return clazz.getConstructor(int.class).newInstance(0);
 		}
 		catch (Exception e)
 		{
@@ -390,7 +389,7 @@ public class Cron
 	public static float getPercentForLevel(int level)
 	{
 		int i = 100 - level;
-		i = i < 10 ? 10 : i;
+		i = Math.max(i, 10);
 		return i;
 	}
 
