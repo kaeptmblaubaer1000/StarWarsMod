@@ -174,7 +174,7 @@ public class CommonEventHandler
 
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.PROTON, targetted, BlasterPosition.BOTH_SIDES));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
-					StarWarsMod.shipSpecialWeaponCooldown = 200;
+					StarWarsMod.shipSpecialWeaponCooldown = 3000;
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT);
 					if (ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer) != null)
@@ -184,7 +184,7 @@ public class CommonEventHandler
 				{
 					StarWarsMod.network.sendToServer(new MessageCreateBlasterBolt(StarWarsMod.mc.thePlayer, BlasterBoltType.BOMB, null, BlasterPosition.BOTH_SIDES));
 					StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.xwing.proton", 1.0F, 1.0F);
-					StarWarsMod.shipSpecialWeaponCooldown = 200;
+					StarWarsMod.shipSpecialWeaponCooldown = 3000;
 
 					String stat = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber ? QuestStats.BOMBS_DROPPED_EMPIRE : QuestStats.BOMBS_DROPPED_REBEL;
 
