@@ -74,3 +74,5 @@ cloc-1.64.exe
 *.class
 .idea/*
 !.idea/codeStyles
+/logs
+/config
