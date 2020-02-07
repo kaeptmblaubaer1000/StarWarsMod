@@ -37,6 +37,7 @@ public class MobWookiee extends EntityCreature implements IMob
 		getNavigator().setCanSwim(true);
 		setSize(0.5F, 2.0F);
 		getNavigator().setCanSwim(true);
+		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		tasks.addTask(0, new AiMelee(this, EntityPlayer.class, 1, false, 3));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
 		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
