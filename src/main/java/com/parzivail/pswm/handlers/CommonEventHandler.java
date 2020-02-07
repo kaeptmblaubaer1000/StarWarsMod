@@ -231,12 +231,14 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyShipHoverMode.isPressed())
 		{
-			boolean hover = false;
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
+			{
+				boolean hover = false;
 				hover = !((VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity).getHoverMode();
-			StarWarsMod.network.sendToServer(new MessageShipHoverMode(StarWarsMod.mc.thePlayer, hover));
-			GuiToast.makeText(LangUtils.translate("hover.mode.0", hover ? LangUtils.translate("activated") : LangUtils.translate("deactivated")), GuiToast.TIME_SHORT).show();
-			StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.repulsor." + (hover ? "on" : "off"), 1, 1);
+				StarWarsMod.network.sendToServer(new MessageShipHoverMode(StarWarsMod.mc.thePlayer, hover));
+				GuiToast.makeText(LangUtils.translate("hover.mode.0", hover ? LangUtils.translate("activated") : LangUtils.translate("deactivated")), GuiToast.TIME_SHORT).show();
+				StarWarsMod.mc.thePlayer.playSound(Resources.MODID + ":" + "vehicle.repulsor." + (hover ? "on" : "off"), 1, 1);
+			}
 		}
 
 		if (KeybindRegistry.keyLSForge.isPressed() && StarWarsMod.mc.thePlayer.capabilities.isCreativeMode)
