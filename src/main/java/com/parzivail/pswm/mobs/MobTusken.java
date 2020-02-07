@@ -5,6 +5,7 @@ import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiShoot;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.pswm.mobs.trooper.MobTrooper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -51,6 +52,7 @@ public class MobTusken extends EntityCreature implements IMob, IShootThings
 		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, 0, false));
+		targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, MobTrooper.class, 0, false));
 	}
 
 	@Override
