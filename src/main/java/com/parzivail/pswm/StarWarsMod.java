@@ -422,7 +422,6 @@ public class StarWarsMod
 
 		if (Resources.IS_SEQUEL_RELEASE)
 		{
-			Lumberjack.log("Sequel update! Suck it, JJ!");
 			if (ConfigOptions.enableTabSequel)
 				SequelStarWarsTab = new SequelStarWarsTab();
 			else
