@@ -1,17 +1,24 @@
 package com.parzivail.pswm.mobs;
 
+import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
+import com.parzivail.pswm.ai.AiShoot;
+import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -24,19 +31,35 @@ import static com.parzivail.pswm.utils.LootGenUtils.baseRarity;
 import static com.parzivail.pswm.utils.LootGenUtils.getWeightedItemFromList;
 import static java.util.UUID.fromString;
 
-public class MobWookiee extends EntityCreature implements IMob
+public class MobWookiee extends EntityCreature implements IMob, IShootThings
 {
 	private static final UUID field_110189_bq = fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
 	private static final AttributeModifier field_110190_br = new AttributeModifier(field_110189_bq, "Attacking speed boost", 1, 0).setSaved(false);
 	private int angerLevel;
 	private Entity angryAt;
+	private AiShoot aiShoot;
+	private EntityAIArrowAttack aiArrow;
+
+	// TODO: Fix wookiee model?
 
 	public MobWookiee(World par1World)
 	{
 		super(par1World);
 		getNavigator().setCanSwim(true);
 		setSize(0.5F, 2.0F);
-		getNavigator().setCanSwim(true);
+		getNavigator().setEnterDoors(true);
+		getNavigator().setAvoidsWater(true);
+		switch (rand.nextInt(3))
+		{
+			case 0:
+				setCurrentItemOrArmor(0, new ItemStack(StarWarsItems.gaffiStick, 1));
+				break;
+			case 1:
+				setCurrentItemOrArmor(0, new ItemStack(bowcaster, 1));
+				this.tasks.addTask(0, aiShoot = new AiShoot(this, 1.0D, 20, 60, 15.0F));
+				break;
+		}
+		this.tasks.addTask(1, new EntityAISwimming(this));
 		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
 		tasks.addTask(0, new AiMelee(this, EntityPlayer.class, 1, false, 3));
 		tasks.addTask(1, new AiFreqMove(this, 1, 0));
@@ -49,6 +72,12 @@ public class MobWookiee extends EntityCreature implements IMob
 		super.applyEntityAttributes();
 		getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(15.0D);
 		getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
+	}
+
+	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
+	{
+		playSound(MODID + ":" + "fx.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
+		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
 	@Override

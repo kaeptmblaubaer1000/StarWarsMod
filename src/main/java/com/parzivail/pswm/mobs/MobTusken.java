@@ -13,6 +13,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,6 +38,7 @@ public class MobTusken extends EntityCreature implements IMob, IShootThings
 		super(par1World);
 		getNavigator().setCanSwim(true);
 		getNavigator().setEnterDoors(true);
+		getNavigator().setAvoidsWater(true);
 		switch (rand.nextInt(3))
 		{
 			case 0:
@@ -47,6 +49,7 @@ public class MobTusken extends EntityCreature implements IMob, IShootThings
 				this.tasks.addTask(0, aiShoot = new AiShoot(this, 1.0D, 20, 60, 15.0F));
 				break;
 		}
+		this.tasks.addTask(1, new EntityAISwimming(this));
 		tasks.addTask(1, new AiMelee(this, EntityPlayer.class, 1, false, 3));
 		tasks.addTask(2, new AiFreqMove(this, 1, 20));
 		targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));

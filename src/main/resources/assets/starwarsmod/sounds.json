@@ -712,6 +712,12 @@
       "item/hit/sand"
     ]
   },
+  "fx.blasterBow.use": {
+    "category": "neutral",
+    "sounds": [
+      "item/shoot/bowcaster"
+    ]
+  },
   "item.blasterRifle.use": {
     "category": "neutral",
     "sounds": [
