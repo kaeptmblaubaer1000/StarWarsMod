@@ -93,7 +93,7 @@ public class AiTurretAttack extends EntityAIBase
 
 	private boolean shouldIAttack(EntityLivingBase entity)
 	{
-		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null && !(this.rangedAttackEntityHost instanceof MobDroidProbe)  && !(this.rangedAttackEntityHost instanceof GroundTurretImperial))
+		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null && !(this.rangedAttackEntityHost instanceof GroundTurretImperial))
 			return false;
 		if(entity instanceof VehicXWing)
 			return true;
