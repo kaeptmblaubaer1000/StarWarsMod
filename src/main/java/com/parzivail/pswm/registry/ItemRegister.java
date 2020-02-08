@@ -11,6 +11,7 @@ import com.parzivail.pswm.items.crafting.*;
 import com.parzivail.pswm.items.hyperdrive.*;
 import com.parzivail.pswm.items.ingot.*;
 import com.parzivail.pswm.items.lightsaber.*;
+import com.parzivail.pswm.items.turrets.ItemImperialGroundTurret;
 import com.parzivail.pswm.items.weapons.*;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.util.ui.Lumberjack;
@@ -563,6 +564,10 @@ public class ItemRegister
 
 		StarWarsItems.spawnTieAdvanced = new ItemSpawnTIEAdvanced();
 		GameRegistry.registerItem(StarWarsItems.spawnTieAdvanced, "spawnTIEAdvanced");
+
+		// New Turret
+		StarWarsItems.spawnImperialGroundTurret = new ItemImperialGroundTurret();
+		GameRegistry.registerItem(StarWarsItems.spawnImperialGroundTurret, "spawnImperialGroundTurret");
 
 		Lumberjack.info("Items, reporting for duty!");
 	}

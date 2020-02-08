@@ -3,6 +3,7 @@ package com.parzivail.pswm.registry;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
+import com.parzivail.pswm.turrets.GroundTurretImperial;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.VehicNpcXWing;
@@ -87,6 +88,9 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "blasterXWingBolt");
 		EntityUtils.registerEntity(EntityTIEBolt.class, "blasterTIEBolt");
+
+		// New Turrets
+		EntityUtils.registerEntity(GroundTurretImperial.class, "imperialGroundTurret");
 
 		EntityUtils.registerEntity(EntityThrownSaber.class, "thrownSaber");
 

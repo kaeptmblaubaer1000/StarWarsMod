@@ -253,4 +253,7 @@ public class StarWarsItems
 	public static ItemFood dewbackRibs;
 	public static ItemFood gorrnar;
 	public static ItemMusicDisc recordDrift;
+
+	// New Turret
+	public static Item spawnImperialGroundTurret;
 }
