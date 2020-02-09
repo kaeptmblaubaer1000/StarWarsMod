@@ -97,7 +97,7 @@ public class AiTurretAttack extends EntityAIBase
 			return false;
 		if(entity instanceof VehicXWing)
 			return true;
-		if(entity instanceof EntityPlayer)
+		if(entityHost.getAttackTarget() != null)
 			return true;
 //		if (isARebel(rangedAttackEntityHost))
 //			return true;
@@ -168,7 +168,7 @@ public class AiTurretAttack extends EntityAIBase
 			this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, this.entityMoveSpeed);
 		}
 
-		this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
+		this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 5000.0F, 5000.0F);
 		float f;
 
 		if (--this.rangedAttackTime == 0)
@@ -181,14 +181,14 @@ public class AiTurretAttack extends EntityAIBase
 			f = MathHelper.sqrt_double(d0) / this.field_96562_i;
 			float f1 = f;
 
-			if (f < 0.1F)
+			if (f < 2500.0F)
 			{
-				f1 = 0.1F;
+				f1 = 2500.0F;
 			}
 
-			if (f1 > 1.0F)
+			if (f1 > 5000.0F)
 			{
-				f1 = 1.0F;
+				f1 = 5000.0F;
 			}
 
 			((IShootThings)this.rangedAttackEntityHost).rangeAttack(this.attackTarget, f1);
