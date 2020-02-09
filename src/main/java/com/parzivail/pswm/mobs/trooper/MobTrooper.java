@@ -79,9 +79,17 @@ public abstract class MobTrooper extends EntityTameable implements IMob, IShootT
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityLivingBase)
 		{
-			setAngry(true);
-			setLastAttacker(entity);
-			setRevengeTarget((EntityLivingBase) entity);
+			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			for (Entity entity1 : list)
+			{
+				if (entity1 instanceof MobTrooper)
+				{
+					MobTrooper trooper = (MobTrooper)entity1;
+					trooper.setAngry(true);
+					trooper.setLastAttacker(entity);
+					trooper.setRevengeTarget((EntityLivingBase) entity);
+				}
+			}
 		}
 		return super.attackEntityFrom(source, amount);
 	}

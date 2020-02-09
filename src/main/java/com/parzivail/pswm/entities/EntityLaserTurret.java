@@ -21,6 +21,11 @@ public class EntityLaserTurret extends EntityLaserTurretBase
 		super(par1World, par2EntityLivingBase, 10.0f);
 	}
 
+	public EntityLaserTurret(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
+	{
+		super(par1World, par2EntityLivingBase, par3EntityLivingBase, 5.0f);
+	}
+
 	@Override
 	public void recreate(EntityPlayer hit)
 	{

@@ -3,7 +3,6 @@ package com.parzivail.pswm.items.turrets;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.mobs.MobDroidAstromech2;
 import com.parzivail.pswm.turrets.GroundTurretImperial;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

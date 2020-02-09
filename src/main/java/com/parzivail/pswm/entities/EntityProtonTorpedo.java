@@ -15,17 +15,17 @@ public class EntityProtonTorpedo extends EntityBlasterBoltBase
 
 	public EntityProtonTorpedo(World par1World, double par2, double par4, double par6)
 	{
-		super(par1World, par2, par4, par6, 5.0f);
+		super(par1World, par2, par4, par6, 100.0f);
 	}
 
 	public EntityProtonTorpedo(World par1World, EntityLivingBase par2EntityLivingBase)
 	{
-		super(par1World, par2EntityLivingBase, 5.0f);
+		super(par1World, par2EntityLivingBase, 100.0f);
 	}
 
 	public EntityProtonTorpedo(World par1World, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase)
 	{
-		super(par1World, par2EntityLivingBase, par3EntityLivingBase, 5.0f);
+		super(par1World, par2EntityLivingBase, par3EntityLivingBase, 100.0f);
 	}
 
 	@Override

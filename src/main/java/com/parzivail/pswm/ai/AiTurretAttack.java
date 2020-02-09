@@ -1,20 +1,11 @@
 package com.parzivail.pswm.ai;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.armor.*;
-import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.IShootThings;
-import com.parzivail.pswm.mobs.MobDroidProbe;
-import com.parzivail.pswm.mobs.MobTusken;
-import com.parzivail.pswm.mobs.MobWampa;
-import com.parzivail.pswm.mobs.trooper.*;
-import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.turrets.GroundTurretImperial;
-import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.*;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 
 /**
@@ -97,33 +88,15 @@ public class AiTurretAttack extends EntityAIBase
 			return false;
 		if(entity instanceof VehicXWing)
 			return true;
+		if(entity instanceof VehicAWing)
+			return true;
+		if(entity instanceof VehicYWing)
+			return true;
 		if(entityHost.getAttackTarget() != null)
 			return true;
-//		if (isARebel(rangedAttackEntityHost))
-//			return true;
-//		else if (isAnImperial(rangedAttackEntityHost))
-//			return isARebel(entity);
 		return false;
 	}
 
-	private boolean isARebel(EntityLivingBase entity)
-	{
-		if (entity instanceof VehicXWing)
-		{
-			return true;
-		}
-		return (entity instanceof GroundTurretImperial);
-	}
-
-	private boolean isAnImperial(EntityLivingBase entity)
-	{
-		if (entity instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer)entity;
-			return QuestUtils.hasOnArmor(player, ArmorAtatPilot.class) || QuestUtils.hasOnArmor(player, ArmorAtstPilot.class) || QuestUtils.hasOnArmor(player, ArmorSandtrooper.class) || QuestUtils.hasOnArmor(player, ArmorScoutTrooper.class) || QuestUtils.hasOnArmor(player, ArmorShadowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorSnowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorStormtrooper.class) || QuestUtils.hasOnArmor(player, ArmorTiePilot.class) || ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt);
-		}
-		return (entity instanceof MobDroidProbe || entity instanceof MobAtatPilot || entity instanceof MobAtstPilot || entity instanceof MobImperialOfficer || entity instanceof MobSandtrooper || entity instanceof MobScouttrooper || entity instanceof MobSnowtrooper || entity instanceof MobStormtrooper || entity instanceof MobTiePilot);
-	}
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */
@@ -168,7 +141,7 @@ public class AiTurretAttack extends EntityAIBase
 			this.entityHost.getNavigator().tryMoveToEntityLiving(this.attackTarget, this.entityMoveSpeed);
 		}
 
-		this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 5000.0F, 5000.0F);
+		this.entityHost.getLookHelper().setLookPositionWithEntity(this.attackTarget, 30.0F, 30.0F);
 		float f;
 
 		if (--this.rangedAttackTime == 0)
@@ -181,14 +154,14 @@ public class AiTurretAttack extends EntityAIBase
 			f = MathHelper.sqrt_double(d0) / this.field_96562_i;
 			float f1 = f;
 
-			if (f < 2500.0F)
+			if (f < 0.1F)
 			{
-				f1 = 2500.0F;
+				f1 = 0.1F;
 			}
 
-			if (f1 > 5000.0F)
+			if (f1 > 1.0F)
 			{
-				f1 = 5000.0F;
+				f1 = 1.0F;
 			}
 
 			((IShootThings)this.rangedAttackEntityHost).rangeAttack(this.attackTarget, f1);

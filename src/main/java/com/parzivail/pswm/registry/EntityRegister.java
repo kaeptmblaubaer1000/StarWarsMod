@@ -91,6 +91,8 @@ public class EntityRegister
 
 		// New Turrets
 		EntityUtils.registerEntity(GroundTurretImperial.class, "imperialGroundTurret");
+		// Turrets laser
+		EntityUtils.registerEntity(EntityLaserTurret.class, "imperialGroundTurret");
 
 		EntityUtils.registerEntity(EntityThrownSaber.class, "thrownSaber");
 
