@@ -76,7 +76,7 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 
 	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
-		playSound(MODID + ":" + "fx.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
+		playSound(MODID + ":" + "item.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
 		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
