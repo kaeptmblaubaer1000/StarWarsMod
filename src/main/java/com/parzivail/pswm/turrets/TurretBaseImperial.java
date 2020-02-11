@@ -1,7 +1,6 @@
 package com.parzivail.pswm.turrets;
 
-import com.parzivail.pswm.ai.AiTurretAttack;
-import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
+import com.parzivail.util.ai.AiTurretAttack;
 import com.parzivail.pswm.entities.EntityLaserTurret;
 import com.parzivail.pswm.mobs.IShootThings;
 import com.parzivail.pswm.vehicles.VehicAWing;

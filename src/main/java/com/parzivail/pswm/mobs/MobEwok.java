@@ -2,8 +2,8 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.ai.AiFollowType;
-import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.util.ai.AiFollowType;
+import com.parzivail.util.ai.AiFreqMove;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;

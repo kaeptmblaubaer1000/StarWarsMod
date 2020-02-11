@@ -1,15 +1,24 @@
-package com.parzivail.pswm.ai;
+package com.parzivail.util.ai;
 
+import com.parzivail.pswm.Resources;
+import com.parzivail.pswm.armor.*;
+import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.IShootThings;
+import com.parzivail.pswm.mobs.MobDroidProbe;
+import com.parzivail.pswm.mobs.MobTusken;
+import com.parzivail.pswm.mobs.MobWampa;
+import com.parzivail.pswm.mobs.trooper.*;
+import com.parzivail.pswm.quest.QuestUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 
 /**
  * @author Colby
  */
-public class AiShoot extends EntityAIBase
+public class AiTrooperAttack extends EntityAIBase
 {
 	/**
 	 * The entity the AI instance has been applied to
@@ -18,7 +27,7 @@ public class AiShoot extends EntityAIBase
 	/**
 	 * The entity (as a RangedAttackMob) the AI instance has been applied to.
 	 */
-	private final EntityLiving rangedAttackEntityHost;
+	private final EntityLivingBase rangedAttackEntityHost;
 	private EntityLivingBase attackTarget;
 	/**
 	 * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to the
@@ -35,23 +44,23 @@ public class AiShoot extends EntityAIBase
 	private float field_96562_i;
 	private float field_82642_h;
 
-	public AiShoot(IShootThings entityHost, double entityMoveSpeed, int maxRangeAttackTime, float p_i1649_5_)
+	public AiTrooperAttack(EntityLiving entityHost, double entityMoveSpeed, int maxRangeAttackTime, float p_i1649_5_)
 	{
 		this(entityHost, entityMoveSpeed, maxRangeAttackTime, maxRangeAttackTime, p_i1649_5_);
 	}
 
-	public AiShoot(IShootThings entityHost, double entityMoveSpeed, int minRangeAttackTime, int maxRangeAttackTime, float p_i1650_6_)
+	public AiTrooperAttack(EntityLiving entityHost, double entityMoveSpeed, int minRangeAttackTime, int maxRangeAttackTime, float p_i1650_6_)
 	{
 		this.rangedAttackTime = -1;
 
-		if (!(entityHost instanceof EntityLiving))
+		if (!(entityHost instanceof EntityLivingBase))
 		{
-			throw new IllegalArgumentException("ArrowAttackGoal requires EntityLiving");
+			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
 		}
 		else
 		{
-			this.rangedAttackEntityHost = (EntityLiving)entityHost;
-			this.entityHost = (EntityLiving)entityHost;
+			this.rangedAttackEntityHost = entityHost;
+			this.entityHost = entityHost;
 			this.entityMoveSpeed = entityMoveSpeed;
 			this.minRangeAttackTime = minRangeAttackTime;
 			this.maxRangedAttackTime = maxRangeAttackTime;
@@ -82,9 +91,40 @@ public class AiShoot extends EntityAIBase
 
 	private boolean shouldIAttack(EntityLivingBase entity)
 	{
-		return true;
+		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null && !(this.rangedAttackEntityHost instanceof MobDroidProbe))
+			return false;
+		if (entity instanceof MobWampa)
+			return true;
+		if (entity instanceof MobTusken)
+			return true;
+		if(entityHost.getLastAttacker() != null)
+			return true;
+		if (isARebel(rangedAttackEntityHost))
+			return isAnImperial(entity);
+		else if (isAnImperial(rangedAttackEntityHost))
+			return isARebel(entity);
+		return false;
 	}
 
+	private boolean isARebel(EntityLivingBase entity)
+	{
+		if (entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)entity;
+			return QuestUtils.hasOnArmor(player, ArmorEndor.class) || QuestUtils.hasOnArmor(player, ArmorHoth.class) || QuestUtils.hasOnArmor(player, ArmorRebelAPilot.class) || QuestUtils.hasOnArmor(player, ArmorRebelPilot.class) || QuestUtils.hasOnArmor(player, ArmorRebelYPilot.class) || ItemQuestLog.getSide(player).equals(Resources.allegianceRebelFmt);
+		}
+		return (entity instanceof MobEndorRebel || entity instanceof MobHothRebel || entity instanceof MobRebelPilot || entity instanceof MobRebelPilotA || entity instanceof MobRebelPilotY || entity instanceof MobRebelTechnician || entity instanceof MobRebelWorker);
+	}
+
+	private boolean isAnImperial(EntityLivingBase entity)
+	{
+		if (entity instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)entity;
+			return QuestUtils.hasOnArmor(player, ArmorAtatPilot.class) || QuestUtils.hasOnArmor(player, ArmorAtstPilot.class) || QuestUtils.hasOnArmor(player, ArmorSandtrooper.class) || QuestUtils.hasOnArmor(player, ArmorScoutTrooper.class) || QuestUtils.hasOnArmor(player, ArmorShadowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorSnowtrooper.class) || QuestUtils.hasOnArmor(player, ArmorStormtrooper.class) || QuestUtils.hasOnArmor(player, ArmorTiePilot.class) || ItemQuestLog.getSide(player).equals(Resources.allegianceImperialFmt);
+		}
+		return (entity instanceof MobDroidProbe || entity instanceof MobAtatPilot || entity instanceof MobAtstPilot || entity instanceof MobImperialOfficer || entity instanceof MobSandtrooper || entity instanceof MobScouttrooper || entity instanceof MobSnowtrooper || entity instanceof MobStormtrooper || entity instanceof MobTiePilot);
+	}
 	/**
 	 * Returns whether an in-progress EntityAIBase should continue executing
 	 */

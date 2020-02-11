@@ -2,13 +2,12 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.util.ai.AiFreqMove;
 import com.parzivail.pswm.utils.LootGenUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityHorse;
@@ -22,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MobBantha extends EntityHorse implements IShearable
 {

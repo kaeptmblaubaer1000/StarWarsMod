@@ -2,8 +2,8 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.ai.AiMelee;
+import com.parzivail.util.ai.AiFreqMove;
+import com.parzivail.util.ai.AiMelee;
 import com.parzivail.pswm.mobs.trooper.MobTrooper;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;

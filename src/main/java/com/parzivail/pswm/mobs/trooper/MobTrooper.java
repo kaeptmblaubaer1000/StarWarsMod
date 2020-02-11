@@ -1,8 +1,8 @@
 package com.parzivail.pswm.mobs.trooper;
 
-import com.parzivail.pswm.ai.AiFreqMove;
-import com.parzivail.pswm.ai.AiMelee;
-import com.parzivail.pswm.ai.AiTrooperAttack;
+import com.parzivail.util.ai.AiFreqMove;
+import com.parzivail.util.ai.AiMelee;
+import com.parzivail.util.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.pswm.mobs.*;
 import net.minecraft.entity.Entity;
@@ -12,7 +12,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

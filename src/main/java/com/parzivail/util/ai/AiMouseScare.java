@@ -1,4 +1,4 @@
-package com.parzivail.pswm.ai;
+package com.parzivail.util.ai;
 
 import com.parzivail.pswm.Resources;
 import net.minecraft.command.IEntitySelector;

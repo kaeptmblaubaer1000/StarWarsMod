@@ -1,4 +1,4 @@
-package com.parzivail.pswm.ai;
+package com.parzivail.util.ai;
 
 import com.parzivail.pswm.StarWarsMod;
 import net.minecraft.entity.EntityCreature;

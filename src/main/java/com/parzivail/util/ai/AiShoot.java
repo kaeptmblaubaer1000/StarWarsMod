@@ -1,8 +1,6 @@
-package com.parzivail.pswm.ai;
+package com.parzivail.util.ai;
 
 import com.parzivail.pswm.mobs.IShootThings;
-import com.parzivail.pswm.turrets.GroundTurretImperial;
-import com.parzivail.pswm.vehicles.*;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -11,7 +9,7 @@ import net.minecraft.util.MathHelper;
 /**
  * @author Colby
  */
-public class AiTurretAttack extends EntityAIBase
+public class AiShoot extends EntityAIBase
 {
 	/**
 	 * The entity the AI instance has been applied to
@@ -20,7 +18,7 @@ public class AiTurretAttack extends EntityAIBase
 	/**
 	 * The entity (as a RangedAttackMob) the AI instance has been applied to.
 	 */
-	private final EntityLivingBase rangedAttackEntityHost;
+	private final EntityLiving rangedAttackEntityHost;
 	private EntityLivingBase attackTarget;
 	/**
 	 * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to the
@@ -37,23 +35,23 @@ public class AiTurretAttack extends EntityAIBase
 	private float field_96562_i;
 	private float field_82642_h;
 
-	public AiTurretAttack(EntityLiving entityHost, double entityMoveSpeed, int maxRangeAttackTime, float p_i1649_5_)
+	public AiShoot(IShootThings entityHost, double entityMoveSpeed, int maxRangeAttackTime, float p_i1649_5_)
 	{
 		this(entityHost, entityMoveSpeed, maxRangeAttackTime, maxRangeAttackTime, p_i1649_5_);
 	}
 
-	public AiTurretAttack(EntityLiving entityHost, double entityMoveSpeed, int minRangeAttackTime, int maxRangeAttackTime, float p_i1650_6_)
+	public AiShoot(IShootThings entityHost, double entityMoveSpeed, int minRangeAttackTime, int maxRangeAttackTime, float p_i1650_6_)
 	{
 		this.rangedAttackTime = -1;
 
-		if (!(entityHost instanceof EntityLivingBase))
+		if (!(entityHost instanceof EntityLiving))
 		{
-			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
+			throw new IllegalArgumentException("ArrowAttackGoal requires EntityLiving");
 		}
 		else
 		{
-			this.rangedAttackEntityHost = entityHost;
-			this.entityHost = entityHost;
+			this.rangedAttackEntityHost = (EntityLiving)entityHost;
+			this.entityHost = (EntityLiving)entityHost;
 			this.entityMoveSpeed = entityMoveSpeed;
 			this.minRangeAttackTime = minRangeAttackTime;
 			this.maxRangedAttackTime = maxRangeAttackTime;
@@ -84,17 +82,7 @@ public class AiTurretAttack extends EntityAIBase
 
 	private boolean shouldIAttack(EntityLivingBase entity)
 	{
-		if (this.rangedAttackEntityHost.getEquipmentInSlot(0) == null && !(this.rangedAttackEntityHost instanceof GroundTurretImperial))
-			return false;
-		if(entity instanceof VehicXWing)
-			return true;
-		if(entity instanceof VehicAWing)
-			return true;
-		if(entity instanceof VehicYWing)
-			return true;
-		if(entityHost.getAttackTarget() != null)
-			return true;
-		return false;
+		return true;
 	}
 
 	/**
