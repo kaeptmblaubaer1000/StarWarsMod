@@ -15,6 +15,7 @@ import com.parzivail.pswm.tabs.StarWarsTabBlocks;
 import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.util.block.*;
+import com.parzivail.util.common.OpenSimplexNoise;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -32,6 +33,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
@@ -78,6 +80,10 @@ public class StarWarsMod
 	            serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
 	public static SimpleNetworkWrapper network;
+
+	public static ScaledResolution resolution;
+	public static Random random = new Random();
+	public static OpenSimplexNoise simplexNoise = new OpenSimplexNoise();
 
 	public static CreativeTabs StarWarsTab;
 	public static CreativeTabs StarWarsTabBlocks;

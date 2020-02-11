@@ -2,8 +2,8 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.ai.AiFreqMove;
-import com.parzivail.util.ai.AiTrooperAttack;
+import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.mobs.trooper.MobTrooper;

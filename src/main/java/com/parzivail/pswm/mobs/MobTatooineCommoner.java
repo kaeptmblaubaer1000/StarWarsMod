@@ -2,8 +2,8 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.util.ai.AiFollowEntity;
-import com.parzivail.util.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiFollowEntity;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.network.MessageSetQuestLogNbt;
 import com.parzivail.pswm.quest.QuestStats;

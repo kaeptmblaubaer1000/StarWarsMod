@@ -1,4 +1,4 @@
-package com.parzivail.util.ai;
+package com.parzivail.pswm.ai;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;

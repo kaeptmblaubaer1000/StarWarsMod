@@ -4,7 +4,11 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.models.lightsabers.*;
 import com.parzivail.pswm.models.lightsabers.blades.*;
+import com.parzivail.util.ui.Fx;
 import com.parzivail.util.ui.ShaderHelper;
+import com.parzivail.util.ui.gltk.AttribMask;
+import com.parzivail.util.ui.gltk.EnableCap;
+import com.parzivail.util.ui.gltk.GL;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -282,5 +286,63 @@ public class RenderLightsaber implements IItemRenderer
 			GL11.glTranslatef(0, 0.2f, 0);
 			GL11.glScalef(1.3f, 1.3f, 1.3f);
 		}
+	}
+
+	public static void renderBlade(float bladeLength, float shake, int bladeColor, int coreColor, boolean unstable)
+	{
+		if (bladeLength == 0)
+			return;
+
+		GL11.glPushMatrix();
+		GL.PushAttrib(AttribMask.EnableBit);
+		GL.Disable(EnableCap.Lighting);
+		GL.Disable(EnableCap.Texture2D);
+		GL.Disable(EnableCap.AlphaTest);
+		GL.Enable(EnableCap.Blend);
+		GL.Enable(EnableCap.CullFace);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+		StarWarsMod.mc.entityRenderer.disableLightmap(0);
+
+		double dX = StarWarsMod.random.nextGaussian() * shake;
+		double dY = StarWarsMod.random.nextGaussian() * shake;
+		GL.Translate(dX, 0, dY);
+
+		// draw glow
+		GL11.glDepthMask(false);
+		for (int layer = 19; layer >= 0; layer--)
+		{
+			GL.Color(bladeColor, (int)(1.275f * layer));
+			Fx.D3.DrawSolidBoxSkewTaper(0.12 - 0.0058f * layer, 0.16 - 0.0058f * layer, 0, bladeLength - 0.13f + 0.2f * Math.sqrt(1 - Math.pow(1 - layer / 19f, 2)), 0, 0, -(20 - layer) * 0.005f, 0);
+		}
+		GL11.glDepthMask(true);
+
+		// draw core
+		GL.Color(coreColor);
+
+		int segments = unstable ? 15 : 1;
+		float dSegments = 1f / segments;
+		float dLength = bladeLength / segments;
+		float topThickness = 0.022f;
+		float bottomThickness = 0.035f;
+		double offset = StarWarsMod.random.nextGaussian();
+
+		double dTRoundBottom = unstable ? StarWarsMod.simplexNoise.eval(offset, dLength * (segments + 1)) * 0.005f : 0;
+		Fx.D3.DrawSolidBoxSkewTaper(0.01f, 0.022f + dTRoundBottom, 0, bladeLength + 0.02f, 0, 0, bladeLength, 0);
+
+		for (int i = 0; i < segments; i++)
+		{
+			float topThicknessLerp = (float)Fx.Util.Lerp(bottomThickness, topThickness, dSegments * (i + 1));
+			float bottomThicknessLerp = (float)Fx.Util.Lerp(bottomThickness, topThickness, dSegments * i);
+
+			double dTTop = unstable ? StarWarsMod.simplexNoise.eval(offset, dLength * (i + 1)) * 0.005f : 0;
+			double dTBottom = unstable ? StarWarsMod.simplexNoise.eval(offset, dLength * i) * 0.005f : 0;
+
+			Fx.D3.DrawSolidBoxSkewTaper(topThicknessLerp + dTTop, bottomThicknessLerp + dTBottom, 0, dLength * (i + 1), 0, 0, dLength * i, 0);
+		}
+
+		StarWarsMod.mc.entityRenderer.enableLightmap(0);
+		GL.PopAttrib();
+		GL11.glPopMatrix();
 	}
 }

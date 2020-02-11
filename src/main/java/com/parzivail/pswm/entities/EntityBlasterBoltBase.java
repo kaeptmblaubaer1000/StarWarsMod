@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -27,10 +28,21 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	protected float speed = 4.5f;
 	private Entity target;
 
+	private static final int DATA_DX = 11;
+	private static final int DATA_DY = 12;
+	private static final int DATA_DZ = 13;
+	private static final int DATA_LENGTH = 14;
+	private static final int DATA_COLOR = 15;
+
 	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
 	{
 		super(par1World, par2, par4, par6);
 		this.damage = damage;
+		setDx(DATA_DX);
+		setDy(DATA_DY);
+		setDz(DATA_DZ);
+		setLength(5);
+		setColor(0xFF0000);
 	}
 
 	public void setTarget(Entity target)
@@ -104,6 +116,16 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	protected float getGravityVelocity()
 	{
 		return 0.0F;
+	}
+
+	@Override
+	protected void entityInit()
+	{
+		dataWatcher.addObject(DATA_DX, 0f); // dx
+		dataWatcher.addObject(DATA_DY, 0f); // dy
+		dataWatcher.addObject(DATA_DZ, 0f); // dz
+		dataWatcher.addObject(DATA_LENGTH, 1f); // length
+		dataWatcher.addObject(DATA_COLOR, 0xFF0000); // length
 	}
 
 	public EntityLivingBase getSender()
@@ -230,6 +252,13 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	{
 		super.onUpdate();
 
+		motionX = getDx() * 3;
+		motionY = getDy() * 3;
+		motionZ = getDz() * 3;
+
+		posX += motionX;
+		posY += motionY;
+		posZ += motionZ;
 		trackTarget();
 
 		if (this.timeAlive++ > 100)
@@ -256,5 +285,75 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 		double f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
 		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / Math.PI);
 		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / Math.PI);
+	}
+
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag)
+	{
+		tag.setFloat("dx", getDx());
+		tag.setFloat("dy", getDy());
+		tag.setFloat("dz", getDz());
+		tag.setFloat("length", getLength());
+		tag.setInteger("color", getColor());
+	}
+
+	@Override
+	public void readEntityFromNBT(NBTTagCompound tag)
+	{
+		setDx(tag.getFloat("dx"));
+		setDy(tag.getFloat("dy"));
+		setDz(tag.getFloat("dz"));
+		setLength(tag.getFloat("length"));
+		setColor(tag.getInteger("color"));
+	}
+
+	public float getDx()
+	{
+		return dataWatcher.getWatchableObjectFloat(DATA_DX);
+	}
+
+	public void setDx(float f)
+	{
+		dataWatcher.updateObject(DATA_DX, f);
+	}
+
+	public float getDy()
+	{
+		return dataWatcher.getWatchableObjectFloat(DATA_DY);
+	}
+
+	public void setDy(float f)
+	{
+		dataWatcher.updateObject(DATA_DY, f);
+	}
+
+	public float getDz()
+	{
+		return dataWatcher.getWatchableObjectFloat(DATA_DZ);
+	}
+
+	public void setDz(float f)
+	{
+		dataWatcher.updateObject(DATA_DZ, f);
+	}
+
+	public float getLength()
+	{
+		return dataWatcher.getWatchableObjectFloat(DATA_LENGTH);
+	}
+
+	public void setLength(float f)
+	{
+		dataWatcher.updateObject(DATA_LENGTH, f);
+	}
+
+	public int getColor()
+	{
+		return dataWatcher.getWatchableObjectInt(DATA_COLOR);
+	}
+
+	public void setColor(int f)
+	{
+		dataWatcher.updateObject(DATA_COLOR, f);
 	}
 }

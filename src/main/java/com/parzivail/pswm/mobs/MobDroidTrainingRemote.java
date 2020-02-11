@@ -2,7 +2,7 @@ package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
-import com.parzivail.util.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -19,7 +19,7 @@ public class MobDroidTrainingRemote extends EntityDroidBase
 		super(par1World);
 		setSize(0.5F, 2);
 		tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
-		tasks.addTask(3, new com.parzivail.util.ai.AiMouseScare(this, MobWookiee.class, 16.0F, 0.8D, 1.33D));
+		tasks.addTask(3, new com.parzivail.pswm.ai.AiMouseScare(this, MobWookiee.class, 16.0F, 0.8D, 1.33D));
 		tasks.addTask(4, new AiFreqMove(this, 1, 0));
 	}
 

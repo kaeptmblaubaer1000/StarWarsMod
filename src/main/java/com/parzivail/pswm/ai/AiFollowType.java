@@ -1,4 +1,4 @@
-package com.parzivail.util.ai;
+package com.parzivail.pswm.ai;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
