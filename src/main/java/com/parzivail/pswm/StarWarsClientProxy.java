@@ -97,7 +97,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilotY.class, new RenderHuman());
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelWorker.class, new RenderHuman(RenderHuman.textureRebelWorker));
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelTechnician.class, new RenderHuman(RenderHuman.textureRebelTechnician));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBoltTest.class, new RenderBlasterBoltTest());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBoltTest2.class, new RenderBlasterBoltTest());
 
 		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman());
 

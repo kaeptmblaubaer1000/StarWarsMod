@@ -4,6 +4,7 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiShoot;
+import com.parzivail.pswm.entities.EntityBlasterBoltTest2;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import net.minecraft.entity.Entity;
@@ -77,7 +78,7 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
 		playSound(MODID + ":" + "item.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
-		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
+		worldObj.spawnEntityInWorld(new EntityBlasterBoltTest2(worldObj));
 	}
 
 	@Override

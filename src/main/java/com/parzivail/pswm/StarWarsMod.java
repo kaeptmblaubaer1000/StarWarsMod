@@ -80,6 +80,7 @@ public class StarWarsMod
 	            serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
 	public static StarWarsCommonProxy proxy;
 	public static SimpleNetworkWrapper network;
+	public static Common commonProxy;
 
 	public static ScaledResolution resolution;
 	public static Random random = new Random();
