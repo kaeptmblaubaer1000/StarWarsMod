@@ -20,7 +20,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
-public abstract class EntityBlasterBoltTest extends EntityThrowable
+public abstract class EntityBlasterBoltBasePlayer extends EntityThrowable
 {
 	private static final int DATA_DX = 11;
 	private static final int DATA_DY = 12;
@@ -32,12 +32,12 @@ public abstract class EntityBlasterBoltTest extends EntityThrowable
 	private Entity target;
 	private EntityLivingBase sender;
 
-	public EntityBlasterBoltTest(World world)
+	public EntityBlasterBoltBasePlayer(World world)
 	{
 		this(world, 0, 0, 0, 0, 0xFF0000, 5.0f);
 	}
 
-	public EntityBlasterBoltTest(World world, float dx, float dy, float dz, float length, int rgb, float damage)
+	public EntityBlasterBoltBasePlayer(World world, float dx, float dy, float dz, float length, int rgb, float damage)
 	{
 		super(world);
 		this.damage = damage;

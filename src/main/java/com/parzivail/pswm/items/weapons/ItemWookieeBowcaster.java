@@ -3,13 +3,10 @@ package com.parzivail.pswm.items.weapons;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterBoltTest;
-import com.parzivail.pswm.entities.EntityBlasterBoltTest2;
-import com.parzivail.pswm.entities.EntityBlasterVariableBolt;
+import com.parzivail.pswm.entities.EntityBlasterBoltPlayer;
 import com.parzivail.pswm.utils.BlasterUtils;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.RaytraceHit;
-import com.parzivail.util.math.RaytraceHitBlock;
 import com.parzivail.util.math.RaytraceHitEntity;
 import com.parzivail.util.math.RotatedAxes;
 import com.parzivail.util.ui.KeyboardUtils;
@@ -98,13 +95,13 @@ public class ItemWookieeBowcaster extends Item
 							ra.rotateGlobalPitch(vS * vSR);
 
 							Vec3 look = Vec3.createVectorHelper(Math.cos(ra.getPitch() / 180f * Math.PI) * Math.cos(ra.getYaw() / 180f * Math.PI), Math.sin(ra.getPitch() / 180f * Math.PI), Math.cos(ra.getPitch() / 180f * Math.PI) * Math.sin(-ra.getYaw() / 180f * Math.PI));
-							RaytraceHit hit = EntityUtils.rayTrace(look, 500, player, new Entity[0], true);
+							RaytraceHit hit = EntityUtils.rayTrace(look, 100, player, new Entity[0], true);
 
 						//			Sfx.play(player, Resources.modColon("swg.fx." + name), 1 + (float)world.rand.nextGaussian() / 10, 1 - 5);
 
 //							Entity e = new EntityBlasterBoltTest(world, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f)
 
-							Entity e = new EntityBlasterBoltTest2(world, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
+							Entity e = new EntityBlasterBoltPlayer(world, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
 							e.setPosition(player.posX, player.posY + player.getEyeHeight(), player.posZ);
 							world.spawnEntityInWorld(e);
 

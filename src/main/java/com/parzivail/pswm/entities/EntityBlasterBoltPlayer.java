@@ -3,7 +3,7 @@ package com.parzivail.pswm.entities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-public class EntityBlasterBoltTest2 extends EntityBlasterBoltTest
+public class EntityBlasterBoltPlayer extends EntityBlasterBoltBasePlayer
 {
 
 	private float look;
@@ -13,12 +13,12 @@ public class EntityBlasterBoltTest2 extends EntityBlasterBoltTest
 	private int rgb;
 	private float damage;
 
-	public EntityBlasterBoltTest2(World world)
+	public EntityBlasterBoltPlayer(World world)
 	{
 		this(world, 0, 0, 0, 1.0f, 0xFF0000, 5);
 	}
 
-	public EntityBlasterBoltTest2(World world, float dx, float dy, float dz, float length, int rgb, float damage)
+	public EntityBlasterBoltPlayer(World world, float dx, float dy, float dz, float length, int rgb, float damage)
 	{
 		super(world);
 		this.damage = damage;
@@ -33,7 +33,7 @@ public class EntityBlasterBoltTest2 extends EntityBlasterBoltTest
 	@Override
 	public void recreate(EntityPlayer hit)
 	{
-		EntityBlasterBoltTest bolt = new EntityBlasterBoltTest2(this.worldObj, this.look, this.yCoord, this.look2, this.length, this.rgb, this.damage);
+		EntityBlasterBoltPlayer bolt = new EntityBlasterBoltPlayer(this.worldObj, this.look, this.yCoord, this.look2, this.length, this.rgb, this.damage);
 		this.worldObj.spawnEntityInWorld(bolt);
 		this.setDead();
 	}

@@ -1,7 +1,7 @@
 package com.parzivail.pswm.rendering.blaster;
 
 
-import com.parzivail.pswm.entities.EntityBlasterBoltTest;
+import com.parzivail.pswm.entities.EntityBlasterBoltBasePlayer;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.gltk.AttribMask;
@@ -16,19 +16,19 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Created by colby on 12/26/2017.
  */
-public class RenderBlasterBoltTest extends Render
+public class RenderBlasterBoltFX extends Render
 {
-	public RenderBlasterBoltTest()
+	public RenderBlasterBoltFX()
 	{
 	}
 
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float unknown, float partialTicks)
 	{
-		if (!(entity instanceof EntityBlasterBoltTest))
+		if (!(entity instanceof EntityBlasterBoltBasePlayer))
 			return;
 
-		EntityBlasterBoltTest e = ((EntityBlasterBoltTest)entity);
+		EntityBlasterBoltBasePlayer e = ((EntityBlasterBoltBasePlayer)entity);
 
 		GL.PushMatrix();
 
