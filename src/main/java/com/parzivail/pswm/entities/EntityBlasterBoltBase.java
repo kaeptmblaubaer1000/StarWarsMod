@@ -34,15 +34,27 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	private static final int DATA_LENGTH = 14;
 	private static final int DATA_COLOR = 15;
 
-	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
+//	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
+//	{
+//		super(par1World, par2, par4, par6);
+//		this.damage = damage;
+//		setSize(0.1f, 0.1f);
+//		setDx(DATA_DX);
+//		setDy(DATA_DY);
+//		setDz(DATA_DZ);
+//		setLength(DATA_LENGTH);
+//		setColor(0xFF0000);
+//	}
+
+	public EntityBlasterBoltBase(World world, float dx, float dy, float dz, float length, int rgb)
 	{
-		super(par1World, par2, par4, par6);
-		this.damage = damage;
-		setDx(DATA_DX);
-		setDy(DATA_DY);
-		setDz(DATA_DZ);
-		setLength(5);
-		setColor(0xFF0000);
+		super(world);
+		setSize(0.1f, 0.1f);
+		setDx(dx);
+		setDy(dy);
+		setDz(dz);
+		setLength(length);
+		setColor(rgb);
 	}
 
 	public void setTarget(Entity target)
@@ -252,6 +264,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	{
 		super.onUpdate();
 
+		trackTarget();
 		motionX = getDx() * 3;
 		motionY = getDy() * 3;
 		motionZ = getDz() * 3;
@@ -259,10 +272,11 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 		posX += motionX;
 		posY += motionY;
 		posZ += motionZ;
-		trackTarget();
 
-		if (this.timeAlive++ > 100)
-			this.setDead();
+//		if (this.timeAlive++ > 100)
+//			this.setDead();
+		if (ticksExisted > 60)
+			setDead();
 	}
 
 	public void setSender(EntityLivingBase sender)

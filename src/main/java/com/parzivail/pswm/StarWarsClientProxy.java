@@ -13,6 +13,7 @@ import com.parzivail.pswm.models.mobs.*;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.pswm.registry.RegisterGuiOverlays;
 import com.parzivail.pswm.rendering.*;
+import com.parzivail.pswm.rendering.blaster.RenderBlasterBoltTest;
 import com.parzivail.pswm.rendering.item.*;
 import com.parzivail.pswm.rendering.itemblock.*;
 import com.parzivail.pswm.rendering.itemdroid.*;
@@ -96,6 +97,7 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelPilotY.class, new RenderHuman());
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelWorker.class, new RenderHuman(RenderHuman.textureRebelWorker));
 		RenderingRegistry.registerEntityRenderingHandler(MobRebelTechnician.class, new RenderHuman(RenderHuman.textureRebelTechnician));
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlasterBoltTest.class, new RenderBlasterBoltTest());
 
 		RenderingRegistry.registerEntityRenderingHandler(MobBountyhunter.class, new RenderHuman());
 

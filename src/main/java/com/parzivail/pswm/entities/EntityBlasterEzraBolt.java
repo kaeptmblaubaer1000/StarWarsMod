@@ -11,9 +11,9 @@ public class EntityBlasterEzraBolt extends EntityBlasterBoltBase
 		super(par1World, 2.0f);
 	}
 
-	public EntityBlasterEzraBolt(World par1World, double par2, double par4, double par6)
+	public EntityBlasterEzraBolt(World world, float dx, float dy, float dz, float length, int rgb)
 	{
-		super(par1World, par2, par4, par6, 2.0f);
+		super(world, dx, dy, dz, 2.0f, rgb);
 	}
 
 	public EntityBlasterEzraBolt(World par1World, EntityLivingBase par2EntityLivingBase)

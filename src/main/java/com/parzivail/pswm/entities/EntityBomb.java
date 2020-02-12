@@ -13,11 +13,11 @@ public class EntityBomb extends EntityBlasterBoltBase
 		this.speed = 2;
 	}
 
-	public EntityBomb(World par1World, double par2, double par4, double par6)
-	{
-		super(par1World, par2, par4, par6, 100.0f);
-		this.speed = 1;
-	}
+//	public EntityBomb(World par1World, double par2, double par4, double par6)
+//	{
+//		super(par1World, par2, par4, par6, 100.0f);
+//		this.speed = 1;
+//	}
 
 	public EntityBomb(World par1World, EntityLivingBase par2EntityLivingBase)
 	{

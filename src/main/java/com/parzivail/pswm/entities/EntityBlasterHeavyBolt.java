@@ -11,9 +11,9 @@ public class EntityBlasterHeavyBolt extends EntityBlasterBoltBase
 		super(par1World, 8.0f);
 	}
 
-	public EntityBlasterHeavyBolt(World par1World, double par2, double par4, double par6)
+	public EntityBlasterHeavyBolt(World world, float dx, float dy, float dz, float length, int rgb)
 	{
-		super(par1World, par2, par4, par6, 8.0f);
+		super(world, dx, dy, dz, 1.0f, rgb);
 	}
 
 	public EntityBlasterHeavyBolt(World par1World, EntityLivingBase par2EntityLivingBase)

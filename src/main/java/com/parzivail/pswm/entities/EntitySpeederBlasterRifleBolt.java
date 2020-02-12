@@ -14,10 +14,10 @@ public class EntitySpeederBlasterRifleBolt extends EntityBlasterBoltBase
 		super(par1World, 8.0f);
 	}
 
-	public EntitySpeederBlasterRifleBolt(World par1World, double par2, double par4, double par6)
-	{
-		super(par1World, par2, par4, par6, 8.0f);
-	}
+//	public EntitySpeederBlasterRifleBolt(World par1World, double par2, double par4, double par6)
+//	{
+//		super(par1World, par2, par4, par6, 8.0f);
+//	}
 
 	public EntitySpeederBlasterRifleBolt(World par1World, EntityLivingBase par2EntityLivingBase)
 	{

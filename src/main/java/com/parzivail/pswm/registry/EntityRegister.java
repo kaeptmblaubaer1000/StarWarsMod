@@ -3,12 +3,15 @@ package com.parzivail.pswm.registry;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
+import com.parzivail.pswm.rendering.RenderBlasterBolt;
+import com.parzivail.pswm.rendering.blaster.RenderBlasterBoltTest;
 import com.parzivail.pswm.turrets.GroundTurretImperial;
 import com.parzivail.pswm.vehicles.*;
 import com.parzivail.pswm.vehicles.npc.VehicNpcLandspeeder;
 import com.parzivail.pswm.vehicles.npc.VehicNpcXWing;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.ui.Lumberjack;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class EntityRegister
 {
@@ -88,6 +91,7 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntitySpeederBlasterRifleBolt.class, "blasterSpeederRifleBolt");
 		EntityUtils.registerEntity(EntityXWingBolt.class, "blasterXWingBolt");
 		EntityUtils.registerEntity(EntityTIEBolt.class, "blasterTIEBolt");
+		EntityUtils.registerEntity(EntityBlasterBoltTest.class, "testbolt");
 
 		// New Turrets
 		EntityUtils.registerEntity(GroundTurretImperial.class, "imperialGroundTurret");
