@@ -3,7 +3,7 @@ package com.parzivail.pswm.items.weapons;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterBoltPlayer;
+import com.parzivail.pswm.entities.EntityBlasterBoltFX;
 import com.parzivail.pswm.utils.BlasterUtils;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.RaytraceHit;
@@ -101,7 +101,7 @@ public class ItemWookieeBowcaster extends Item
 
 //							Entity e = new EntityBlasterBoltTest(world, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f)
 
-							Entity e = new EntityBlasterBoltPlayer(world, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
+							Entity e = new EntityBlasterBoltFX(world, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
 							e.setPosition(player.posX, player.posY + player.getEyeHeight(), player.posZ);
 							world.spawnEntityInWorld(e);
 

@@ -71,6 +71,7 @@ public abstract class EntityBlasterBoltBaseEntity extends EntityThrowable
 		posX += motionX;
 		posY += motionY;
 		posZ += motionZ;
+		trackTarget();
 
 		if (ticksExisted > 60)
 			setDead();
@@ -85,7 +86,7 @@ public abstract class EntityBlasterBoltBaseEntity extends EntityThrowable
 			return;
 		}
 
-		if (pos.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
+		if (pos.typeOfHit == MovingObjectType.ENTITY && pos.entityHit != this.sender && pos.entityHit != this.sender.ridingEntity)
 		{
 			if (pos.entityHit instanceof EntityPlayer)
 			{
@@ -147,9 +148,31 @@ public abstract class EntityBlasterBoltBaseEntity extends EntityThrowable
 
 	public abstract void recreate(EntityPlayer hit);
 
+	private void trackTarget()
+	{
+		if (this.target != null)
+		{
+			this.renderDistanceWeight = 10.0D;
+			double d0 = this.target.posX - this.posX;
+			double d1 = this.target.boundingBox.minY + this.target.height / 3.0F - this.posY;
+			double d2 = this.target.posZ - this.posZ;
+			double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+			if (d3 >= 1.0E-7D)
+			{
+				float f2 = (float)(Math.atan2(d2, d0) * 180.0D / 3.141592653589793D) - 90.0F;
+				float f3 = (float)-(Math.atan2(d1, d3) * 180.0D / 3.141592653589793D);
+				double d4 = d0 / d3;
+				double d5 = d2 / d3;
+				this.setLocationAndAngles(this.posX + d4, this.posY, this.posZ + d5, f2, f3);
+				this.yOffset = 0.0F;
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 1.0F);
+			}
+		}
+	}
+
 	private void hit(MovingObjectPosition pos)
 	{
-		pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, damage);
+		pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, this.damage);
 		double f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
 		double k = 1;

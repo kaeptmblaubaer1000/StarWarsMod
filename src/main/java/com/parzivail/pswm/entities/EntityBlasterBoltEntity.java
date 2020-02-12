@@ -6,12 +6,13 @@ import com.parzivail.util.math.RaytraceHitEntity;
 import com.parzivail.util.math.RotatedAxes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class EntityBlasterBoltEntity extends EntityBlasterBoltBaseEntity
+public class EntityBlasterBoltEntity extends EntityBlasterBoltBaseFX
 {
 
 	private float look;
@@ -41,6 +42,7 @@ public class EntityBlasterBoltEntity extends EntityBlasterBoltBaseEntity
 	@Override
 	public void recreate(EntityPlayer player)
 	{
+		this.setDead();
 		RotatedAxes ra = new RotatedAxes(270 - player.rotationYaw, -player.rotationPitch, 0);
 
 		float hS = (worldObj.rand.nextFloat() * 2 - 1) * 2;
@@ -54,7 +56,7 @@ public class EntityBlasterBoltEntity extends EntityBlasterBoltBaseEntity
 		Vec3 look = Vec3.createVectorHelper(Math.cos(ra.getPitch() / 180f * Math.PI) * Math.cos(ra.getYaw() / 180f * Math.PI), Math.sin(ra.getPitch() / 180f * Math.PI), Math.cos(ra.getPitch() / 180f * Math.PI) * Math.sin(-ra.getYaw() / 180f * Math.PI));
 		RaytraceHit hit = EntityUtils.rayTrace(look, 100, player, new Entity[0], true);
 
-		Entity e = new EntityBlasterBoltPlayer(this.worldObj, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
+		Entity e = new EntityBlasterBoltEntity(this.worldObj, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
 		e.setPosition(player.posX, player.posY + player.getEyeHeight(), player.posZ);
 		worldObj.spawnEntityInWorld(e);
 
@@ -63,6 +65,5 @@ public class EntityBlasterBoltEntity extends EntityBlasterBoltBaseEntity
 			EntityLiving entity = (EntityLiving)((RaytraceHitEntity)hit).entity;
 			entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 10);
 		}
-		this.setDead();
 	}
 }

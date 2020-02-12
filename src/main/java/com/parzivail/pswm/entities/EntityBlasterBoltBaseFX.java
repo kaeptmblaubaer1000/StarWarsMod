@@ -20,7 +20,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
-public abstract class EntityBlasterBoltBasePlayer extends EntityThrowable
+public abstract class EntityBlasterBoltBaseFX extends EntityThrowable
 {
 	private static final int DATA_DX = 11;
 	private static final int DATA_DY = 12;
@@ -32,12 +32,12 @@ public abstract class EntityBlasterBoltBasePlayer extends EntityThrowable
 	private Entity target;
 	private EntityLivingBase sender;
 
-	public EntityBlasterBoltBasePlayer(World world)
+	public EntityBlasterBoltBaseFX(World world)
 	{
 		this(world, 0, 0, 0, 0, 0xFF0000, 5.0f);
 	}
 
-	public EntityBlasterBoltBasePlayer(World world, float dx, float dy, float dz, float length, int rgb, float damage)
+	public EntityBlasterBoltBaseFX(World world, float dx, float dy, float dz, float length, int rgb, float damage)
 	{
 		super(world);
 		this.damage = damage;
@@ -149,7 +149,7 @@ public abstract class EntityBlasterBoltBasePlayer extends EntityThrowable
 
 	private void hit(MovingObjectPosition pos)
 	{
-		pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, damage);
+		pos.entityHit.attackEntityFrom(StarWarsMod.blasterDamageSource, 50.0f);
 		double f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
 		double k = 1;

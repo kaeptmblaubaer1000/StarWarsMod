@@ -1,7 +1,8 @@
 package com.parzivail.pswm.rendering.blaster;
 
 
-import com.parzivail.pswm.entities.EntityBlasterBoltBasePlayer;
+import com.parzivail.pswm.entities.EntityBlasterBoltBaseEntity;
+import com.parzivail.pswm.entities.EntityBlasterBoltBaseFX;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.gltk.AttribMask;
@@ -25,10 +26,10 @@ public class RenderBlasterBoltFX extends Render
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float unknown, float partialTicks)
 	{
-		if (!(entity instanceof EntityBlasterBoltBasePlayer))
+		if (!(entity instanceof EntityBlasterBoltBaseFX))
 			return;
 
-		EntityBlasterBoltBasePlayer e = ((EntityBlasterBoltBasePlayer)entity);
+		EntityBlasterBoltBaseFX e = (EntityBlasterBoltBaseFX)entity;
 
 		GL.PushMatrix();
 
