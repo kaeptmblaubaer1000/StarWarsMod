@@ -1,6 +1,7 @@
 package com.parzivail.pswm.mobs;
 
 import com.parzivail.pswm.StarWarsItems;
+import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiShoot;
@@ -102,7 +103,7 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 		{
 			EntityPlayer entity = (EntityPlayer)((RaytraceHitEntity)hit).entity;
 //			entity.attackEntityFrom(DamageSource.causeArrowDamage(, this), 10.0f);
-			entity.setDead();
+			entity.attackEntityFrom(StarWarsMod.blasterDamageSource, 50.0f);
 		}
 
 		//		worldObj.spawnEntityInWorld(new EntityBlasterBoltEntity(worldObj));
