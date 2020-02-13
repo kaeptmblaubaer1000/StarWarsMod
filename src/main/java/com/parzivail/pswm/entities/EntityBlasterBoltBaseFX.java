@@ -34,28 +34,45 @@ public abstract class EntityBlasterBoltBaseFX extends EntityThrowable
 
 	public EntityBlasterBoltBaseFX(World world)
 	{
-		this(world, 0, 0, 0, 0, 0xFF0000, 5.0f);
+		this(world, 0xFF0000, 5.0f);
 	}
 
-	public EntityBlasterBoltBaseFX(World world, float dx, float dy, float dz, float length, int rgb, float damage)
+	public EntityBlasterBoltBaseFX(World par1World, double par2, double par4, double par6)
+	{
+		super(par1World, par2, par4, par6);
+		this.damage = damage;
+//		setColor(rgb);
+	}
+
+	public void setTarget(Entity target)
+	{
+		this.target = target;
+	}
+
+	public Entity getTarget()
+	{
+		return target;
+	}
+
+	public EntityBlasterBoltBaseFX(World world, int rgb, float damage)
 	{
 		super(world);
 		this.damage = damage;
 		setSize(0.1f, 0.1f);
-		setDx(dx);
-		setDy(dy);
-		setDz(dz);
-		setLength(length);
+//		setDx(dx);
+//		setDy(dy);
+//		setDz(dz);
+//		setLength(length);
 		setColor(rgb);
 	}
 
 	@Override
 	protected void entityInit()
 	{
-		dataWatcher.addObject(DATA_DX, 0f); // dx
-		dataWatcher.addObject(DATA_DY, 0f); // dy
-		dataWatcher.addObject(DATA_DZ, 0f); // dz
-		dataWatcher.addObject(DATA_LENGTH, 1f); // length
+//		dataWatcher.addObject(DATA_DX, 0f); // dx
+//		dataWatcher.addObject(DATA_DY, 0f); // dy
+//		dataWatcher.addObject(DATA_DZ, 0f); // dz
+//		dataWatcher.addObject(DATA_LENGTH, 1f); // length
 		dataWatcher.addObject(DATA_COLOR, 0xFF0000); // length
 	}
 
@@ -64,13 +81,13 @@ public abstract class EntityBlasterBoltBaseFX extends EntityThrowable
 	{
 		super.onUpdate();
 
-		motionX = getDx() * 3;
-		motionY = getDy() * 3;
-		motionZ = getDz() * 3;
+//		motionX = getDx() * 3;
+//		motionY = getDy() * 3;
+//		motionZ = getDz() * 3;
 
-		posX += motionX;
-		posY += motionY;
-		posZ += motionZ;
+//		posX += motionX;
+//		posY += motionY;
+//		posZ += motionZ;
 
 		trackTarget();
 
@@ -99,6 +116,22 @@ public abstract class EntityBlasterBoltBaseFX extends EntityThrowable
 			}
 		}
 	}
+
+	@Override
+	public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
+	{
+		double f2 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_3_ * p_70186_3_ + p_70186_5_ * p_70186_5_);
+		p_70186_1_ /= f2;
+		p_70186_3_ /= f2;
+		p_70186_5_ /= f2;
+		this.motionX = p_70186_1_ * this.speed;
+		this.motionY = p_70186_3_ * this.speed;
+		this.motionZ = p_70186_5_ * this.speed;
+		double f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
+		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / Math.PI);
+	}
+
 
 	@Override
 	protected void onImpact(MovingObjectPosition pos)
@@ -188,20 +221,20 @@ public abstract class EntityBlasterBoltBaseFX extends EntityThrowable
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tag)
 	{
-		setDx(tag.getFloat("dx"));
-		setDy(tag.getFloat("dy"));
-		setDz(tag.getFloat("dz"));
-		setLength(tag.getFloat("length"));
+//		setDx(tag.getFloat("dx"));
+//		setDy(tag.getFloat("dy"));
+//		setDz(tag.getFloat("dz"));
+//		setLength(tag.getFloat("length"));
 		setColor(tag.getInteger("color"));
 	}
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
-		tag.setFloat("dx", getDx());
-		tag.setFloat("dy", getDy());
-		tag.setFloat("dz", getDz());
-		tag.setFloat("length", getLength());
+//		tag.setFloat("dx", getDx());
+//		tag.setFloat("dy", getDy());
+//		tag.setFloat("dz", getDz());
+//		tag.setFloat("length", getLength());
 		tag.setInteger("color", getColor());
 	}
 

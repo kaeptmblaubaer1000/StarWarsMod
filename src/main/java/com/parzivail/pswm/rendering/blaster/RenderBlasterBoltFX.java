@@ -1,7 +1,6 @@
 package com.parzivail.pswm.rendering.blaster;
 
 
-import com.parzivail.pswm.entities.EntityBlasterBoltBaseEntity;
 import com.parzivail.pswm.entities.EntityBlasterBoltBaseFX;
 import com.parzivail.pswm.rendering.RenderLightsaber;
 import com.parzivail.util.ui.GLPalette;
@@ -43,19 +42,23 @@ public class RenderBlasterBoltFX extends Render
 		GL.Disable(EnableCap.Blend);
 		Minecraft.getMinecraft().entityRenderer.disableLightmap(0);
 
-		double dx = e.getDx();
-		double dy = e.getDy();
-		double dz = e.getDz();
-		float len = e.getLength();
+//		double dx = e.getDx();
+//		double dy = e.getDy();
+//		double dz = e.getDz();
+//		float len = e.getLength();
+//
+//		double d3 = (double)MathHelper.sqrt_double(dx * dx + dz * dz);
+//		float yaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
+//		float pitch = (float)(-(Math.atan2(dy, d3) * 180.0D / Math.PI));
 
-		double d3 = (double)MathHelper.sqrt_double(dx * dx + dz * dz);
-		float yaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
-		float pitch = (float)(-(Math.atan2(dy, d3) * 180.0D / Math.PI));
+//		GL.Rotate(90 - yaw, 0, 1, 0);
+//		GL.Rotate(pitch + 90, 0, 0, 1);
 
-		GL.Rotate(90 - yaw, 0, 1, 0);
-		GL.Rotate(pitch + 90, 0, 0, 1);
+		GL.Rotate(entity.rotationPitch, -MathHelper.cos((float)Math.toRadians(entity.rotationYaw)), 0, MathHelper.sin((float)Math.toRadians(entity.rotationYaw)));
+		GL.Rotate(entity.rotationYaw, 0, 1, 0);
+
 		GL.Scale(0.5);
-		RenderLightsaber.renderBlade(len / 2, 0, e.getColor(), GLPalette.WHITE, false);
+		RenderLightsaber.renderBlade(5, 0, e.getColor(), GLPalette.WHITE, false);
 
 		GL.PopAttrib();
 		GL.PopAttrib();

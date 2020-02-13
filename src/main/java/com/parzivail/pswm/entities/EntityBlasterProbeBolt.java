@@ -11,9 +11,9 @@ public class EntityBlasterProbeBolt extends EntityBlasterBoltBase
 		super(par1World, 5.0f);
 	}
 
-	public EntityBlasterProbeBolt(World world, float dx, float dy, float dz, float length, int rgb)
+	public EntityBlasterProbeBolt(World par1World, double par2, double par4, double par6)
 	{
-		super(world, dx, dy, dz, 1.0f, rgb);
+		super(par1World, par2, par4, par6, 5.0f);
 	}
 
 	public EntityBlasterProbeBolt(World par1World, EntityLivingBase par2EntityLivingBase)

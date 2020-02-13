@@ -1,5 +1,6 @@
 package com.parzivail.pswm.mobs;
 
+import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.ai.AiFreqMove;
@@ -7,6 +8,7 @@ import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiShoot;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.entities.EntityBlasterBoltEntity;
+import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.entity.trade.WeightedLoot;
 import com.parzivail.util.math.RaytraceHit;
@@ -82,7 +84,12 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
 		playSound(MODID + ":" + "item.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
-		RotatedAxes ra = new RotatedAxes(270 - this.rotationYaw, - this.rotationPitch, 0);
+	}
+
+	public void recreate(EntityPlayer player)
+	{
+		this.setDead();
+		RotatedAxes ra = new RotatedAxes(270 - player.rotationYaw, -player.rotationPitch, 0);
 
 		float hS = (worldObj.rand.nextFloat() * 2 - 1) * 2;
 		float vS = (worldObj.rand.nextFloat() * 2 - 1) * 2;
@@ -93,20 +100,17 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 		ra.rotateGlobalYaw(hS * hSR);
 		ra.rotateGlobalPitch(vS * vSR);
 		Vec3 look = Vec3.createVectorHelper(Math.cos(ra.getPitch() / 180f * Math.PI) * Math.cos(ra.getYaw() / 180f * Math.PI), Math.sin(ra.getPitch() / 180f * Math.PI), Math.cos(ra.getPitch() / 180f * Math.PI) * Math.sin(-ra.getYaw() / 180f * Math.PI));
-		RaytraceHit hit = EntityUtils.rayTrace(look, 100, this, new Entity[0], true);
+		RaytraceHit hit = EntityUtils.rayTrace(look, 100, player, new Entity[0], true);
 
 		Entity e = new EntityBlasterBoltEntity(this.worldObj, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
-		e.setPosition(this.posX, this.posY + this.getEyeHeight(), this.posZ);
+		e.setPosition(player.posX, player.posY + player.getEyeHeight(), player.posZ);
 		worldObj.spawnEntityInWorld(e);
 
-		if (hit instanceof RaytraceHitEntity && ((RaytraceHitEntity)hit).entity instanceof EntityPlayer)
+		if (hit instanceof RaytraceHitEntity && ((RaytraceHitEntity)hit).entity instanceof EntityLiving)
 		{
-			EntityPlayer entity = (EntityPlayer)((RaytraceHitEntity)hit).entity;
-//			entity.attackEntityFrom(DamageSource.causeArrowDamage(, this), 10.0f);
-			entity.attackEntityFrom(StarWarsMod.blasterDamageSource, 50.0f);
+			EntityLiving entity = (EntityLiving)((RaytraceHitEntity)hit).entity;
+			entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 10.0f);
 		}
-
-		//		worldObj.spawnEntityInWorld(new EntityBlasterBoltEntity(worldObj));
 	}
 
 	@Override
