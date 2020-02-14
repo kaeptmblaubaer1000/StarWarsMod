@@ -66,17 +66,17 @@ public class RenderBlasterBolt extends Render
 		GL.Disable(EnableCap.Blend);
 		Minecraft.getMinecraft().entityRenderer.disableLightmap(0);
 
-		double dx = entity.posX;
-		double dz = entity.posZ;
-		double dy = entity.posY;
+		double dx = entity.motionX;
+		double dz = entity.motionZ;
+		double dy = entity.motionY;
 
 		double d3 = (double)MathHelper.sqrt_double(dx * dx + dz * dz);
 		float yaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
 		float pitch = (float)(-(Math.atan2(dy, d3) * 180.0D / Math.PI));
 
-		GL.Rotate(entity.rotationPitch, -MathHelper.cos((float)Math.toRadians(entity.rotationYaw)), 0, MathHelper.sin((float)Math.toRadians(entity.rotationYaw)));
-		GL.Rotate(entity.rotationYaw, 0, 0, 1);
-		GL.Rotate(yaw, 0, 1, 0);
+//		GL.Rotate(entity.rotationPitch, -MathHelper.cos((float)Math.toRadians(entity.rotationYaw)), 0, MathHelper.sin((float)Math.toRadians(entity.rotationYaw)));
+//		GL.Rotate(90 - entity.rotationYaw, 0, 1, 0);
+		GL.Rotate(90 - yaw, 0, 1, 0);
 		GL.Rotate(pitch + 90, 0, 0, 1);
 
 //		this.bindEntityTexture(entity);
