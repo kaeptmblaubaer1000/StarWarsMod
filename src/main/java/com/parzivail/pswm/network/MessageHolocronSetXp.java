@@ -5,7 +5,10 @@ import com.parzivail.pswm.force.Cron;
 import com.parzivail.util.network.PMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+
+import java.lang.invoke.MethodHandle;
 
 // TODO: get rid of this completely
 public class MessageHolocronSetXp extends PMessage<MessageHolocronSetXp>
@@ -32,4 +35,47 @@ public class MessageHolocronSetXp extends PMessage<MessageHolocronSetXp>
 		return null;
 	}
 
+
+	private static final MethodHandle toBytes = PMessage.builtToBytes.computeIfAbsent(MessageHolocronSetXp.class, PMessage::createToBytes);
+	private static final MethodHandle fromBytes = PMessage.builtFromBytes.computeIfAbsent(MessageHolocronSetXp.class, PMessage::createFromBytes);
+
+	@Override
+	public void fromBytes(ByteBuf buf)
+	{
+		try
+		{
+			try
+			{
+				fromBytes.invokeExact(this, buf);
+			}
+			catch (Throwable t)
+			{
+				hideException(t);
+			}
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException("Error at reading packet " + this, e);
+		}
+	}
+
+	@Override
+	public void toBytes(ByteBuf buf)
+	{
+		try
+		{
+			try
+			{
+				toBytes.invokeExact(this, buf);
+			}
+			catch (Throwable t)
+			{
+				hideException(t);
+			}
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException("Error at writing packet " + this, e);
+		}
+	}
 }

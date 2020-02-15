@@ -16,6 +16,7 @@ import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.world.StructureBank;
 import com.parzivail.util.block.*;
 import com.parzivail.util.common.OpenSimplexNoise;
+import com.parzivail.util.network.PMessage;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -62,6 +63,8 @@ public class StarWarsMod
 	public static boolean hasShownLeaderboardPart = false;
 
 	private static int packetId = 0;
+
+	private static ArrayList<Class<? extends PMessage<?>>> messages = new ArrayList<>();
 
 	public static Random rngGeneral = new Random();
 
@@ -455,7 +458,7 @@ public class StarWarsMod
 	}
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
+	public void preInit(FMLPreInitializationEvent event) throws NoSuchMethodException, IllegalAccessException
 	{
 		Lumberjack.info("========== Begin Parzi's Star Wars Mod preInit() ==========");
 
@@ -511,7 +514,7 @@ public class StarWarsMod
 		}
 	}
 
-	private void setupNetworking()
+	private void setupNetworking() throws NoSuchMethodException, IllegalAccessException
 	{
 		network = NetworkRegistry.INSTANCE.newSimpleChannel(Resources.MODID + "." + "chan");
 
@@ -551,23 +554,25 @@ public class StarWarsMod
 		this.registerMessageClient(MessageHolocronSetClientActive.class);
 		this.registerMessageClient(MessageEntityClientGrab.class);
 
-		Lumberjack.log("Network registered " + String.valueOf(packetId) + " packets!");
+		Lumberjack.log("Network registered " + packetId + " packets!");
+		PMessage.initializeSerialization(messages);
+		messages = null;
 	}
 
-	@SuppressWarnings("unchecked")
-	private void registerMessageServer(Class messageHandler)
+	private <T extends PMessage<T>> void registerMessageServer(Class<T> messageHandler)
 	{
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.SERVER);
 		Lumberjack.debug("Registered server packet \"" + messageHandler + "\" as packet ID " + packetId);
 		packetId += 1;
+		messages.add(messageHandler);
 	}
 
-	@SuppressWarnings("unchecked")
-	private void registerMessageClient(Class messageHandler)
+	private <T extends PMessage<T>> void registerMessageClient(Class<T> messageHandler)
 	{
 		network.registerMessage(messageHandler, messageHandler, packetId, Side.CLIENT);
 		Lumberjack.debug("Registered client packet \"" + messageHandler + "\" as packet ID " + packetId);
 		packetId += 1;
+		messages.add(messageHandler);
 	}
 
 	@EventHandler

@@ -41,7 +41,7 @@ public class MathUtils
 	 * @param list The list to check
 	 * @return If the List contains
 	 */
-	public static boolean isAnyOfType(List list, Class c)
+	public static boolean isAnyOfType(List<?> list, Class<?> c)
 	{
 		for (Object o : list)
 			if (c.isInstance(o))
@@ -55,7 +55,7 @@ public class MathUtils
 	 * @param list The list to check
 	 * @return How many the List contains
 	 */
-	public static int howManyOfType(List list, Class c)
+	public static int howManyOfType(List<?> list, Class<?> c)
 	{
 		int i = 0;
 		for (Object o : list)
