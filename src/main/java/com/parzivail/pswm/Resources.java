@@ -160,7 +160,7 @@ public class Resources
 	public static final String VERSION_MAJOR = "1.3";
 	public static String ONLINE_VERSION = "";
 
-	public static boolean IS_DEV_ENVIRONVENT = true;
+	public static boolean IS_DEV_ENVIRONVENT = false;
 
 	public static boolean IS_SEQUEL_RELEASE = true;
 
