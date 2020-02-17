@@ -73,11 +73,8 @@ public class AnimationManager
 	 */
 	public static Animation isRunning(Class<? extends Animation> clazz)
 	{
-		Iterator<Animation> i = animations.iterator();
-
-		while (i.hasNext())
+		for (Animation t : animations)
 		{
-			Animation t = i.next();
 			if (clazz.isInstance(t))
 				return t;
 		}

@@ -53,7 +53,7 @@ public class AiTrooperAttack extends EntityAIBase
 	{
 		this.rangedAttackTime = -1;
 
-		if (!(entityHost instanceof EntityLivingBase))
+		if (entityHost == null)
 		{
 			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
 		}

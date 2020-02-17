@@ -10,7 +10,6 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MobBith extends EntityCreature implements IParziNPC
@@ -34,10 +33,8 @@ public class MobBith extends EntityCreature implements IParziNPC
 
 	public MerchantRecipeList createTradesByProfession(MerchantRecipeList list, int type)
 	{
-		new ArrayList();
-		MerchantRecipeList fn = new MerchantRecipeList();
 		//fn.add(new MerchantRecipe(new ItemStack(StarWarsItems.goldImperialCredit, 10), new ItemStack(StarWarsItems.recordCantina, 1)));
-		return fn;
+		return new MerchantRecipeList();
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import com.parzivail.util.block.BlockMultiTexture;
 import com.parzivail.util.world.HarvestLevel;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 

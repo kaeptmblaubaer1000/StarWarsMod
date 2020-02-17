@@ -72,12 +72,9 @@ public class DagobahProvider extends WorldProvider
 			f2 = 1.5F;
 		if (f2 > 5.0F)
 			f2 = 5.0F;
-		float f3 = 0.7529412F;
-		float f4 = 0.84705883F;
-		float f5 = 1.0F;
-		f3 *= f2 * 0.94F + 0.06F;
-		f4 *= f2 * 0.94F + 0.06F;
-		f5 *= f2 * 0.91F + 0.09F;
+		float f3;
+		float f4;
+		float f5;
 		f3 = 0.5F * f2;
 		f4 = 0.5F * f2;
 		f5 = 0.5F * f2;

@@ -25,9 +25,6 @@ class Spline
 
 	/**
 	 * Creates a new Spline.
-	 *
-	 * @param xx
-	 * @param yy
 	 */
 	public Spline(double[] xx, double[] yy)
 	{
@@ -36,9 +33,6 @@ class Spline
 
 	/**
 	 * Set values for this Spline.
-	 *
-	 * @param xx
-	 * @param yy
 	 */
 	public void setValues(double[] xx, double[] yy)
 	{
@@ -53,7 +47,6 @@ class Spline
 	/**
 	 * Returns an interpolated value.
 	 *
-	 * @param x
 	 * @return the interpolated value
 	 */
 	public double getValue(double x)
@@ -96,17 +89,12 @@ class Spline
 	 * are required in order, but ensure checkValues() is called beforehand to
 	 * ensure the boundary checks from getValue() are made
 	 *
-	 * @param x
 	 * @return the interpolated value
 	 */
 	public double getFastValue(double x)
 	{
 		// Fast check to see if previous index is still valid
-		if (storageIndex > -1 && storageIndex < xx.length - 1 && x > xx[storageIndex] && x < xx[storageIndex + 1])
-		{
-
-		}
-		else
+		if (storageIndex <= -1 || storageIndex >= xx.length - 1 || !(x > xx[storageIndex]) || !(x < xx[storageIndex + 1]))
 		{
 			int index = Arrays.binarySearch(xx, x);
 			if (index > 0)
@@ -131,20 +119,12 @@ class Spline
 	 */
 	public boolean checkValues()
 	{
-		if (xx.length < 2)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		return xx.length >= 2;
 	}
 
 	/**
 	 * Returns the first derivation at x.
 	 *
-	 * @param x
 	 * @return the first derivation at x
 	 */
 	public double getDx(double x)

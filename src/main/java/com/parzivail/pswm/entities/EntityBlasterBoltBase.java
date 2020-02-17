@@ -14,7 +14,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -24,7 +23,7 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 {
 	private EntityLivingBase sender;
 	private int timeAlive = 0;
-	protected float damage = 5.0f;
+	protected float damage;
 	protected float speed = 4.5f;
 	private Entity target;
 

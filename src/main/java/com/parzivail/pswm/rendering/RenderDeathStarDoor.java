@@ -3,6 +3,7 @@ package com.parzivail.pswm.rendering;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.models.blocks.ModelDeathStarDoor;
 import com.parzivail.pswm.tileentities.TileEntityDeathStarDoor;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
@@ -56,7 +57,7 @@ public class RenderDeathStarDoor extends TileEntitySpecialRenderer
 		GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(door.getFacing() * 90, 0.0F, 1.0F, 0.0F);
 
-		if (te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(6, 3, 6)).size() > 0)
+		if (!WorldUtils.getEntitiesWithinAABB(te.getWorldObj(), Entity.class, te.getRenderBoundingBox().expand(6, 3, 6)).isEmpty())
 		{
 			door.isClosing = false;
 			door.isOpening = true;

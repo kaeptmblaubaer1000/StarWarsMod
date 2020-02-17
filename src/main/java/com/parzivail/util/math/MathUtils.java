@@ -41,9 +41,9 @@ public class MathUtils
 	 * @param list The list to check
 	 * @return If the List contains
 	 */
-	public static boolean isAnyOfType(List<?> list, Class<?> c)
+	public static <T> boolean isAnyOfType(List<T> list, Class<? extends T> c)
 	{
-		for (Object o : list)
+		for (T o : list)
 			if (c.isInstance(o))
 				return true;
 		return false;
@@ -55,10 +55,10 @@ public class MathUtils
 	 * @param list The list to check
 	 * @return How many the List contains
 	 */
-	public static int howManyOfType(List<?> list, Class<?> c)
+	public static <T> int howManyOfType(List<T> list, Class<? extends T> c)
 	{
 		int i = 0;
-		for (Object o : list)
+		for (T o : list)
 			if (c.isInstance(o))
 				i++;
 		return i;
@@ -143,20 +143,6 @@ public class MathUtils
 			ar[index] = ar[i];
 			ar[i] = a;
 		}
-	}
-
-	/**
-	 * Converts a List<Integer> into an int[]
-	 *
-	 * @param list The list to convert
-	 * @return The new int array
-	 */
-	public static Integer[] toIntArray(List<Integer> list)
-	{
-		Integer[] ret = new Integer[list.size()];
-		for (int i = 0; i < ret.length; i++)
-			ret[i] = list.get(i);
-		return ret;
 	}
 
 	public static float roundToNearest(float f, float nearest)

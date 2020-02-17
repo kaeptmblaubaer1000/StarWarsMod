@@ -57,10 +57,10 @@ public class VehicScootemaroundHoth extends VehicleLandBase
 
 		if (!getEntityIdAtIndex(i).isEmpty())
 		{
-			Entity e = this.worldObj.getPlayerEntityByName(getEntityIdAtIndex(i));
+			EntityPlayer e = this.worldObj.getPlayerEntityByName(getEntityIdAtIndex(i));
 
 			if (e instanceof EntityPlayer)
-				return (EntityPlayer)e;
+				return e;
 		}
 		return null;
 	}

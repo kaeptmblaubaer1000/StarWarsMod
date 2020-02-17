@@ -5,6 +5,7 @@ import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiTrooperAttack;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.pswm.mobs.*;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -78,7 +79,7 @@ public abstract class MobTrooper extends EntityTameable implements IMob, IShootT
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityLivingBase)
 		{
-			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			final List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(worldObj, this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 			for (Entity entity1 : list)
 			{
 				if (entity1 instanceof MobTrooper)
@@ -179,11 +180,11 @@ public abstract class MobTrooper extends EntityTameable implements IMob, IShootT
 
 		if (p_70916_1_)
 		{
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 | 2)));
+			this.dataWatcher.updateObject(16, (byte)(b0 | 2));
 		}
 		else
 		{
-			this.dataWatcher.updateObject(16, Byte.valueOf((byte)(b0 & -3)));
+			this.dataWatcher.updateObject(16, (byte)(b0 & -3));
 		}
 	}
 

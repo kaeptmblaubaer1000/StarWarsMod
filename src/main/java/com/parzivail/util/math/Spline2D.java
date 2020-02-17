@@ -11,8 +11,6 @@ public class Spline2D
 
 	/**
 	 * Creates a new Spline2D.
-	 *
-	 * @param points
 	 */
 	public Spline2D(FPoint[] points)
 	{
@@ -30,9 +28,6 @@ public class Spline2D
 
 	/**
 	 * Creates a new Spline2D.
-	 *
-	 * @param x
-	 * @param y
 	 */
 	public Spline2D(double[] x, double[] y)
 	{
@@ -134,5 +129,4 @@ public class Spline2D
 	{
 		return length;
 	}
-
 }

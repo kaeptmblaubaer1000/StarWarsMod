@@ -728,7 +728,6 @@ public class ModelXWingNew extends ModelBase
 			this.WingRBottomParent.rotateAngleZ = 0.314159f * xwing.getSFoil();
 
 			boolean flag = this.Gear1.isHidden = entity.worldObj.isAirBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ);
-			this.Gear1.isHidden = flag;
 			this.Gear2.isHidden = flag;
 			this.Gear3.isHidden = flag;
 			this.Gear4.isHidden = flag;
@@ -747,12 +746,12 @@ public class ModelXWingNew extends ModelBase
 		else
 		{
 			boolean flag = true;
-			this.Gear1.isHidden = flag;
-			this.Gear2.isHidden = flag;
-			this.Gear3.isHidden = flag;
-			this.Gear4.isHidden = flag;
-			this.Gear5.isHidden = flag;
-			this.Gear6.isHidden = flag;
+			this.Gear1.isHidden = true;
+			this.Gear2.isHidden = true;
+			this.Gear3.isHidden = true;
+			this.Gear4.isHidden = true;
+			this.Gear5.isHidden = true;
+			this.Gear6.isHidden = true;
 		}
 		this.MainParent.render(f5);
 		if (entity instanceof VehicXWing)

@@ -8,7 +8,6 @@ import com.parzivail.pswm.network.MessageSetPlayerHolding;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.registry.KeybindRegistry;
 import com.parzivail.util.math.IntColorComparator;
-import com.parzivail.util.math.MathUtils;
 import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.TextEffects;
@@ -25,7 +24,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class ItemLightsaber extends ItemSword
 {

@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class BiomeGenTatooine extends BiomeGenPSWM
 {
-	public int locY = 0;
+	public int locY;
 
 	public BiomeGenTatooine(int biomeId)
 	{
@@ -39,10 +39,6 @@ public class BiomeGenTatooine extends BiomeGenPSWM
 		this.theBiomeDecorator.reedsPerChunk = -999;
 		this.theBiomeDecorator.cactiPerChunk = -999;
 
-		this.spawnableCreatureList.clear();
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		this.spawnableWaterCreatureList.clear();
 		this.locY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 	}
 

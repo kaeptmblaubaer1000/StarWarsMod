@@ -1,13 +1,11 @@
 package com.parzivail.pswm.registry;
 
-import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.blocks.*;
 import com.parzivail.pswm.blocks.npc.*;
 import com.parzivail.pswm.blocks.ore.*;
 import com.parzivail.pswm.blocks.sensor.*;
 import com.parzivail.pswm.items.*;
-import com.parzivail.pswm.items.lightsaber.ItemLightsaberCrystal;
 import com.parzivail.pswm.tileentities.*;
 import com.parzivail.pswm.tileentities.sensor.*;
 import com.parzivail.util.block.BlockMultiHeight;
@@ -16,7 +14,6 @@ import com.parzivail.util.block.PBlockContainer;
 import com.parzivail.util.ui.Lumberjack;
 import com.parzivail.util.ui.TextUtils;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public class BlockRegister

@@ -4,7 +4,6 @@ import com.parzivail.pswm.Resources;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.MovingSound;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
 public class SoundShipAlarm extends MovingSound
@@ -26,16 +25,6 @@ public class SoundShipAlarm extends MovingSound
 	@Override
 	public void update()
 	{
-		if (false)
-		{
-			float f = MathHelper.sqrt_double(this.player.motionX * this.player.motionX + this.player.motionZ * this.player.motionZ);
-
-			if (f >= 0.01D)
-				this.volume = 0.0F + MathHelper.clamp_float(f, 0.0F, 1.0F) * 0.75F;
-			else
-				this.volume = 0.0F;
-		}
-		else
-			this.donePlaying = true;
+		this.donePlaying = true;
 	}
 }

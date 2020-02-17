@@ -5,7 +5,6 @@ import com.parzivail.util.math.lwjgl.Vector2f;
 import com.parzivail.util.math.lwjgl.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.GLUtessellator;
@@ -312,7 +311,7 @@ public class GL
 
 		for (ArrayList<Double> contour : contours)
 		{
-			double[] verts = ArrayUtils.toPrimitive(contour.toArray(new Double[contour.size()]));
+			double[] verts = contour.stream().mapToDouble(d -> d).toArray();
 			t.gluTessBeginContour();
 			for (int i = 0; i < verts.length; i += 3)
 				t.gluTessVertex(verts, i, new double[] { verts[i], verts[i + 1], verts[i + 2] });

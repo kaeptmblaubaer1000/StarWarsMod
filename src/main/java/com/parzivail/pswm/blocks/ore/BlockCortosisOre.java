@@ -25,6 +25,6 @@ public class BlockCortosisOre extends PBlock
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsItems.ingotCortosis;
+		return StarWarsItems.ingotCortosis; // TODO: convert to smelting recipe
 	}
 }

@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 public class Animation
 {
 	protected int tick = 0;
-	protected int length = 0;
-	protected boolean loop = false;
-	protected boolean isRenderable = false;
+	protected int length;
+	protected boolean loop;
+	protected boolean isRenderable;
 	protected boolean reverse;
 	protected Consumer<Animation> onAnimationEnd;
 
@@ -29,8 +29,6 @@ public class Animation
 
 	/**
 	 * A consumer to be called each time the animation ends
-	 *
-	 * @param onAnimationEnd
 	 */
 	public void setOnAnimationEnd(Consumer<Animation> onAnimationEnd)
 	{
@@ -39,8 +37,6 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation is reversed
-	 *
-	 * @return
 	 */
 	public boolean isReverse()
 	{
@@ -68,8 +64,6 @@ public class Animation
 
 	/**
 	 * Gets the current tick of the animation
-	 *
-	 * @return
 	 */
 	public int getTick()
 	{
@@ -78,8 +72,6 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation loops
-	 *
-	 * @return
 	 */
 	public boolean getLoop()
 	{
@@ -88,8 +80,6 @@ public class Animation
 
 	/**
 	 * Gets the length of the animation
-	 *
-	 * @return
 	 */
 	public int getLength()
 	{
@@ -98,8 +88,6 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation is renderable
-	 *
-	 * @return
 	 */
 	public boolean getRenderable()
 	{
@@ -108,8 +96,6 @@ public class Animation
 
 	/**
 	 * Gets whether or not the animation is done
-	 *
-	 * @return
 	 */
 	public boolean isDone()
 	{
@@ -138,8 +124,7 @@ public class Animation
 	 */
 	public void stop()
 	{
-		if (AnimationManager.animations.contains(this))
-			AnimationManager.animations.remove(this);
+		AnimationManager.animations.remove(this);
 	}
 
 	/**

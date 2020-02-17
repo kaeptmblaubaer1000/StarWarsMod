@@ -2,7 +2,6 @@ package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.powers.PowerNaturalAwareness;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.world.ItemUtils;
 import net.minecraft.entity.Entity;

@@ -20,7 +20,7 @@ public class GuiToast extends Gui
 	/**
 	 * How many ticks are left in it's existence
 	 **/
-	private int life = 0;
+	private int life;
 	/**
 	 * The toast's text
 	 **/
@@ -32,7 +32,7 @@ public class GuiToast extends Gui
 	/**
 	 * The position of the toast
 	 **/
-	private int position = ToastPosition.BOTTOM | ToastPosition.MIDDLE;
+	private int position;
 
 	/**
 	 * Private constructor for a new toast
@@ -73,15 +73,13 @@ public class GuiToast extends Gui
 	 *
 	 * @param text     The text to notify the ship
 	 * @param length   The timespan to show for
-	 * @param position The {@link ToastPotition} of the toast
+	 * @param position The {@link ToastPosition} of the toast
 	 * @return The new toast
 	 */
 	public static GuiToast makeText(Object text, int length, int position)
 	{
 		return new GuiToast(String.valueOf(text), length, position);
 	}
-
-	/** All active toasts **/
 
 	/**
 	 * Draws the tooltip backdrop
@@ -166,7 +164,7 @@ public class GuiToast extends Gui
 	// "ToastPosition.BOTTOM | ToastPosition.RIGHT"
 	// use the bitwise and operator to test i.e.
 	// "if ((position & ToastPosition.BOTTOM) == ToastPosition.BOTTOM) { ... }"
-	public class ToastPosition
+	public static class ToastPosition
 	{
 		/**
 		 * Top Discriminator

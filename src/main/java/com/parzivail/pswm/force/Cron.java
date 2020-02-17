@@ -407,7 +407,6 @@ public class Cron
 			switch (IOUtils.toString(in))
 			{
 				case "OK":
-					break;
 				default:
 					break;
 			}
@@ -525,9 +524,6 @@ public class Cron
 	 */
 	public static boolean isCooling(String power)
 	{
-		for (PowerBase p : coolingPowers)
-			if (p.name.equals(power))
-				return true;
-		return false;
+		return coolingPowers.stream().anyMatch(p -> p.name.equals(power));
 	}
 }

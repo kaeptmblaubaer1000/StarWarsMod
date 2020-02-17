@@ -71,8 +71,10 @@ public class ArmorJediRobes extends ItemArmor
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List)
 	{
+		@SuppressWarnings("unchecked")
+		final List<ItemStack> subItems = par3List;
 		for (int i = 0; i < 2; i++)
-			par3List.add(new ItemStack(this, 1, i));
+			subItems.add(new ItemStack(this, 1, i));
 	}
 
 	@Override

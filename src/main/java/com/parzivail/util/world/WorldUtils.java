@@ -3,11 +3,16 @@ package com.parzivail.util.world;
 import com.parzivail.util.ui.Lumberjack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
+import net.minecraft.command.IEntitySelector;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.BlockSnapshot;
+
+import java.util.List;
 
 public class WorldUtils
 {
@@ -88,5 +93,23 @@ public class WorldUtils
 	public static void m(World world, int x, int y, int z, int metadata)
 	{
 		world.setBlockMetadataWithNotify(x, y, z, metadata, 1 | 2);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Entity> List<T> getEntitiesWithinAABB(World world, Class<T> type, AxisAlignedBB boundingBox)
+	{
+		return (List<T>)world.getEntitiesWithinAABB(type, boundingBox);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Entity> List<T> selectEntitiesWithinAABB(World world, Class<T> type, AxisAlignedBB boundingBox, IEntitySelector selector)
+	{
+		return (List<T>)world.selectEntitiesWithinAABB(type, boundingBox, selector);
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<Entity> getEntitiesWithinAABBExcludingEntity(World world, Entity entity, AxisAlignedBB boundingBox)
+	{
+		return (List<Entity>)world.getEntitiesWithinAABBExcludingEntity(entity, boundingBox);
 	}
 }

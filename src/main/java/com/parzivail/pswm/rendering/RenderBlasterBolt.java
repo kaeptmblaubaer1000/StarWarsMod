@@ -1,12 +1,8 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.entities.EntityBlasterBoltBase;
-import com.parzivail.pswm.entities.EntityBlasterBoltBaseFX;
 import com.parzivail.pswm.models.ModelBlasterBolt;
 import com.parzivail.util.ui.GLPalette;
-import com.parzivail.util.ui.ShaderHelper;
 import com.parzivail.util.ui.gltk.AttribMask;
 import com.parzivail.util.ui.gltk.EnableCap;
 import com.parzivail.util.ui.gltk.GL;
@@ -70,7 +66,7 @@ public class RenderBlasterBolt extends Render
 		double dz = entity.motionZ;
 		double dy = entity.motionY;
 
-		double d3 = (double)MathHelper.sqrt_double(dx * dx + dz * dz);
+		double d3 = MathHelper.sqrt_double(dx * dx + dz * dz);
 		float yaw = (float)(Math.atan2(dz, dx) * 180.0D / Math.PI) - 90.0F;
 		float pitch = (float)(-(Math.atan2(dy, d3) * 180.0D / Math.PI));
 

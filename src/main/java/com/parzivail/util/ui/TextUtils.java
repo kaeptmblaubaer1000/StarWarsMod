@@ -90,7 +90,7 @@ public class TextUtils
 
 			while (word.length() > maxCharInLine)
 			{
-				output.append(word.substring(0, maxCharInLine - lineLen) + "\n");
+				output.append(word, 0, maxCharInLine - lineLen).append("\n");
 				word = word.substring(maxCharInLine - lineLen);
 				lineLen = 0;
 			}
@@ -100,7 +100,7 @@ public class TextUtils
 				output.append("\n");
 				lineLen = 0;
 			}
-			output.append(word + " ");
+			output.append(word).append(" ");
 
 			lineLen += word.length() + 1;
 		}

@@ -31,6 +31,8 @@
  */
 package com.parzivail.util.math.lwjgl;
 
+import java.nio.FloatBuffer;
+
 /**
  * Quaternions for LWJGL!
  *
@@ -38,9 +40,6 @@ package com.parzivail.util.math.lwjgl;
  * @version $Revision$
  * 		$Id$
  */
-
-import java.nio.FloatBuffer;
-
 public class Quaternion extends Vector implements ReadableVector4f
 {
 	private static final long serialVersionUID = 1L;
@@ -67,7 +66,6 @@ public class Quaternion extends Vector implements ReadableVector4f
 
 	/**
 	 * C'tor
-	 *
 	 */
 	public Quaternion(float x, float y, float z, float w)
 	{
@@ -114,8 +112,8 @@ public class Quaternion extends Vector implements ReadableVector4f
 	/**
 	 * Load from another Vector4f
 	 *
-	 * @param src
-	 *            The source vector
+	 * @param src The source vector
+	 *
 	 * @return this
 	 */
 	public Quaternion set(ReadableVector4f src)
@@ -129,6 +127,7 @@ public class Quaternion extends Vector implements ReadableVector4f
 
 	/**
 	 * Set this quaternion to the multiplication identity.
+	 *
 	 * @return this
 	 */
 	public Quaternion setIdentity()
@@ -138,7 +137,9 @@ public class Quaternion extends Vector implements ReadableVector4f
 
 	/**
 	 * Set the given quaternion to the multiplication identity.
+	 *
 	 * @param q The quaternion
+	 *
 	 * @return q
 	 */
 	public static Quaternion setIdentity(Quaternion q)
@@ -161,11 +162,10 @@ public class Quaternion extends Vector implements ReadableVector4f
 	/**
 	 * Normalise the source quaternion and place the result in another quaternion.
 	 *
-	 * @param src
-	 *            The source quaternion
-	 * @param dest
-	 *            The destination quaternion, or null if a new quaternion is to be
-	 *            created
+	 * @param src  The source quaternion
+	 * @param dest The destination quaternion, or null if a new quaternion is to be
+	 *             created
+	 *
 	 * @return The normalised quaternion
 	 */
 	public static Quaternion normalise(Quaternion src, Quaternion dest)
@@ -183,9 +183,9 @@ public class Quaternion extends Vector implements ReadableVector4f
 	/**
 	 * Normalise this quaternion and place the result in another quaternion.
 	 *
-	 * @param dest
-	 *            The destination quaternion, or null if a new quaternion is to be
-	 *            created
+	 * @param dest The destination quaternion, or null if a new quaternion is to be
+	 *             created
+	 *
 	 * @return the normalised quaternion
 	 */
 	public Quaternion normalise(Quaternion dest)
@@ -196,10 +196,9 @@ public class Quaternion extends Vector implements ReadableVector4f
 	/**
 	 * The dot product of two quaternions
 	 *
-	 * @param left
-	 *            The LHS quat
-	 * @param right
-	 *            The RHS quat
+	 * @param left  The LHS quat
+	 * @param right The RHS quat
+	 *
 	 * @return left dot right
 	 */
 	public static float dot(Quaternion left, Quaternion right)
@@ -210,9 +209,8 @@ public class Quaternion extends Vector implements ReadableVector4f
 	/**
 	 * Calculate the conjugate of this quaternion and put it into the given one
 	 *
-	 * @param dest
-	 *            The quaternion which should be set to the conjugate of this
-	 *            quaternion
+	 * @param dest The quaternion which should be set to the conjugate of this
+	 *             quaternion
 	 */
 	public Quaternion negate(Quaternion dest)
 	{
@@ -222,11 +220,9 @@ public class Quaternion extends Vector implements ReadableVector4f
 	/**
 	 * Calculate the conjugate of this quaternion and put it into the given one
 	 *
-	 * @param src
-	 *            The source quaternion
-	 * @param dest
-	 *            The quaternion which should be set to the conjugate of this
-	 *            quaternion
+	 * @param src  The source quaternion
+	 * @param dest The quaternion which should be set to the conjugate of this
+	 *             quaternion
 	 */
 	public static Quaternion negate(Quaternion src, Quaternion dest)
 	{
@@ -273,9 +269,11 @@ public class Quaternion extends Vector implements ReadableVector4f
 
 	/**
 	 * Scale the source quaternion by scale and put the result in the destination
+	 *
 	 * @param scale The amount to scale by
-	 * @param src The source quaternion
-	 * @param dest The destination quaternion, or null if a new quaternion is to be created
+	 * @param src   The source quaternion
+	 * @param dest  The destination quaternion, or null if a new quaternion is to be created
+	 *
 	 * @return The scaled quaternion
 	 */
 	public static Quaternion scale(float scale, Quaternion src, Quaternion dest)
@@ -388,10 +386,8 @@ public class Quaternion extends Vector implements ReadableVector4f
 	 * quaternions left and right (this = left * right). Note that this is safe
 	 * for aliasing (e.g. this can be left or right).
 	 *
-	 * @param left
-	 *            the first quaternion
-	 * @param right
-	 *            the second quaternion
+	 * @param left  the first quaternion
+	 * @param right the second quaternion
 	 */
 	public static Quaternion mul(Quaternion left, Quaternion right, Quaternion dest)
 	{
@@ -402,15 +398,12 @@ public class Quaternion extends Vector implements ReadableVector4f
 	}
 
 	/**
-	 *
 	 * Multiplies quaternion left by the inverse of quaternion right and places
 	 * the value into this quaternion. The value of both argument quaternions is
 	 * preservered (this = left * right^-1).
 	 *
-	 * @param left
-	 *            the left quaternion
-	 * @param right
-	 *            the right quaternion
+	 * @param left  the left quaternion
+	 * @param right the right quaternion
 	 */
 	public static Quaternion mulInverse(Quaternion left, Quaternion right, Quaternion dest)
 	{
@@ -429,8 +422,7 @@ public class Quaternion extends Vector implements ReadableVector4f
 	 * Sets the value of this quaternion to the equivalent rotation of the
 	 * Axis-Angle argument.
 	 *
-	 * @param a1
-	 *            the axis-angle: (x,y,z) is the axis and w is the angle
+	 * @param a1 the axis-angle: (x,y,z) is the axis and w is the angle
 	 */
 	public final void setFromAxisAngle(Vector4f a1)
 	{
@@ -450,8 +442,8 @@ public class Quaternion extends Vector implements ReadableVector4f
 	 * Sets the value of this quaternion using the rotational component of the
 	 * passed matrix.
 	 *
-	 * @param m
-	 *            The matrix
+	 * @param m The matrix
+	 *
 	 * @return this
 	 */
 	public final Quaternion setFromMatrix(Matrix4f m)
@@ -463,10 +455,9 @@ public class Quaternion extends Vector implements ReadableVector4f
 	 * Sets the value of the source quaternion using the rotational component of the
 	 * passed matrix.
 	 *
-	 * @param m
-	 *            The source matrix
-	 * @param q
-	 *            The destination quaternion, or null if a new quaternion is to be created
+	 * @param m The source matrix
+	 * @param q The destination quaternion, or null if a new quaternion is to be created
+	 *
 	 * @return q
 	 */
 	public static Quaternion setFromMatrix(Matrix4f m, Quaternion q)
@@ -478,8 +469,7 @@ public class Quaternion extends Vector implements ReadableVector4f
 	 * Sets the value of this quaternion using the rotational component of the
 	 * passed matrix.
 	 *
-	 * @param m
-	 *            The source matrix
+	 * @param m The source matrix
 	 */
 	public final Quaternion setFromMatrix(Matrix3f m)
 	{
@@ -490,10 +480,9 @@ public class Quaternion extends Vector implements ReadableVector4f
 	 * Sets the value of the source quaternion using the rotational component of the
 	 * passed matrix.
 	 *
-	 * @param m
-	 *            The source matrix
-	 * @param q
-	 *            The destination quaternion, or null if a new quaternion is to be created
+	 * @param m The source matrix
+	 * @param q The destination quaternion, or null if a new quaternion is to be created
+	 *
 	 * @return q
 	 */
 	public static Quaternion setFromMatrix(Matrix3f m, Quaternion q)

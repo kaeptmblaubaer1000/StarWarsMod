@@ -1,6 +1,7 @@
 package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.utils.StatTrack;
+import com.parzivail.util.world.WorldUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -95,8 +96,7 @@ public class TileEntityBactaTank extends TileEntity
 	{
 		if (getPlayerInside().isEmpty())
 		{
-			@SuppressWarnings("unchecked")
-			List<EntityPlayerMP> playersInRange = (List<EntityPlayerMP>) this.worldObj.getEntitiesWithinAABB(EntityPlayerMP.class, getAABB());
+			List<EntityPlayerMP> playersInRange = WorldUtils.getEntitiesWithinAABB(this.worldObj, EntityPlayerMP.class, getAABB());
 
 			if (playersInRange.size() > 0)
 			{

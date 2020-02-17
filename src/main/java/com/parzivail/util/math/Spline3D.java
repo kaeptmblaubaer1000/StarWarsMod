@@ -12,8 +12,6 @@ public class Spline3D
 
 	/**
 	 * Creates a new Spline3D.
-	 *
-	 * @param points
 	 */
 	public Spline3D(FPoint[] points)
 	{
@@ -33,9 +31,6 @@ public class Spline3D
 
 	/**
 	 * Creates a new Spline2D.
-	 *
-	 * @param x
-	 * @param y
 	 */
 	public Spline3D(double[] x, double[] y, double[] z)
 	{
@@ -138,5 +133,4 @@ public class Spline3D
 	{
 		return length;
 	}
-
 }

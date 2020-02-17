@@ -75,12 +75,8 @@ public class RenderHothSign extends TileEntitySignRenderer
 			if (i == p_147500_1_.lineBeingEdited)
 			{
 				s = "> " + s + " <";
-				fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, i * 10 - p_147500_1_.signText.length * 5, b0);
 			}
-			else
-			{
-				fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, i * 10 - p_147500_1_.signText.length * 5, b0);
-			}
+			fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, i * 10 - p_147500_1_.signText.length * 5, b0);
 		}
 
 		GL11.glDepthMask(true);

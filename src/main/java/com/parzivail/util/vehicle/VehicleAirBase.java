@@ -1,5 +1,6 @@
 package com.parzivail.util.vehicle;
 
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -159,10 +160,8 @@ public class VehicleAirBase extends VehicleBase
 
 			this.stepHeight = 1.0F;
 			this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
-			if (!this.worldObj.isRemote) // this.setAIMoveSpeed(p_70612_2_);
-				super.moveEntityWithHeading(strafe, forward);
 		}
-		else if (!this.worldObj.isRemote)
+		if (!this.worldObj.isRemote) // this.setAIMoveSpeed(p_70612_2_);
 			super.moveEntityWithHeading(strafe, forward);
 	}
 
@@ -198,8 +197,8 @@ public class VehicleAirBase extends VehicleBase
 			if (this.worldObj != null && this.boundingBox != null && this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).size() > 0)
 			{
 				this.nearby.clear();
-				this.nearby.addAll(((List<VehicleAirBase>)this.worldObj.getEntitiesWithinAABB(VehicleAirBase.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> entity != this).collect(Collectors.toList()));
-				this.nearby.addAll(((List<EntityPlayer>)this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, this.boundingBox.expand(100, 50, 100))).stream().filter(entity -> !(entity.ridingEntity instanceof VehicleAirBase)).collect(Collectors.toList()));
+				this.nearby.addAll(WorldUtils.getEntitiesWithinAABB(this.worldObj, VehicleAirBase.class, this.boundingBox.expand(100, 50, 100)).stream().filter(entity -> entity != this).collect(Collectors.toList()));
+				this.nearby.addAll(WorldUtils.getEntitiesWithinAABB(this.worldObj, EntityPlayer.class, this.boundingBox.expand(100, 50, 100)).stream().filter(entity -> !(entity.ridingEntity instanceof VehicleAirBase)).collect(Collectors.toList()));
 			}
 	}
 }

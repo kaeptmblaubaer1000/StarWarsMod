@@ -23,7 +23,7 @@ public abstract class EntityLaserTurretBase extends EntityThrowable
 {
 	private EntityLivingBase sender;
 	private int timeAlive = 0;
-	protected float damage = 10.0f;
+	protected float damage;
 	protected float speed = 20.0f;
 	private Entity target;
 

@@ -29,7 +29,7 @@ public class AiShoot extends EntityAIBase
 	private int field_75318_f;
 	private int minRangeAttackTime;
 	/**
-	 * The maximum time the AI has to wait before peforming another ranged attack.
+	 * The maximum time the AI has to wait before performing another ranged attack.
 	 */
 	private int maxRangedAttackTime;
 	private float field_96562_i;

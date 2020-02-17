@@ -7,16 +7,17 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandSWDim implements ICommand
 {
-	private List aliases;
+	private ArrayList<String> aliases;
 
 	public CommandSWDim()
 	{
-		this.aliases = new ArrayList();
+		this.aliases = new ArrayList<>();
 		this.aliases.add("sw-dim");
 	}
 
@@ -33,7 +34,7 @@ public class CommandSWDim implements ICommand
 	}
 
 	@Override
-	public int compareTo(Object o)
+	public int compareTo(@Nonnull Object o)
 	{
 		return 0;
 	}

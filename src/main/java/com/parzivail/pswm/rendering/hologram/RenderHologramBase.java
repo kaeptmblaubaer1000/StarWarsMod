@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderHologramBase extends RenderLiving
 {
 	ModelBase model;
-	boolean doesSpin = false;
+	boolean doesSpin;
 
 	public RenderHologramBase(ModelBase model, float par2, boolean doesSpin)
 	{

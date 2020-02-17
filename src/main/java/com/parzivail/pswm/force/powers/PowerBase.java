@@ -9,9 +9,9 @@ public class PowerBase
 
 	public int currentLevel = 0;
 	public int maxLevel = 5;
-	public String name = "";
-	public String unlocalizedName = "";
-	public String unlocalizedDescription = "";
+	public String name;
+	public String unlocalizedName;
+	public String unlocalizedDescription;
 	public float rechargeTime = 0;
 	public float recharge = 0;
 	public int costMult = 0;
@@ -112,6 +112,7 @@ public class PowerBase
 	 * Gets the XP cost of using the power at a specific level
 	 *
 	 * @param level The level to test
+	 *
 	 * @return The cost in XP
 	 */
 	public int getCostForLevel(int level)
@@ -133,6 +134,7 @@ public class PowerBase
 	 * Gets the max damage / second of using the power at a specific level
 	 *
 	 * @param level The level to test
+	 *
 	 * @return The max damage / second
 	 */
 	public int getDamageForLevel(int level)
@@ -154,6 +156,7 @@ public class PowerBase
 	 * Gets the max duration of using the power at a specific level
 	 *
 	 * @param level The level to test
+	 *
 	 * @return The max duration in seconds
 	 */
 	public int getDurationForLevel(int level)
@@ -163,8 +166,6 @@ public class PowerBase
 
 	/**
 	 * Returns the description, translated into the ship's native lang
-	 *
-	 * @return
 	 */
 	public String getLocalizedDesc()
 	{
@@ -173,8 +174,6 @@ public class PowerBase
 
 	/**
 	 * Returns the name, translated into the ship's native lang
-	 *
-	 * @return
 	 */
 	public String getLocalizedName()
 	{
@@ -195,6 +194,7 @@ public class PowerBase
 	 * Gets the max damage / second of using the power at a specific level
 	 *
 	 * @param level The level to test
+	 *
 	 * @return The max damage / second
 	 */
 	public int getRangeForLevel(int level)
@@ -206,6 +206,7 @@ public class PowerBase
 	 * Applies the power to the ship, called every tick the armor is worn.
 	 *
 	 * @param player The ship to apply the power to
+	 *
 	 * @return Returns true if a power was applied, false otherwise
 	 */
 	public boolean run(EntityPlayer player)

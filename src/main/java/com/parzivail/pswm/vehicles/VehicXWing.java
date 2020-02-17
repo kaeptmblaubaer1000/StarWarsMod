@@ -38,6 +38,7 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60);
 		this.setHealth((float)this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
 	}
+
 	@Override
 	public List<String> getDebugText(List<String> list, EntityPlayer player, World world, int x, int y, int z)
 	{
@@ -188,7 +189,6 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 					this.worldObj.spawnParticle(n2, this.posX + sXa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZa + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
 					this.worldObj.spawnParticle(n2, this.posX + sXb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, ht + StarWarsMod.rngGeneral.nextFloat() * 0.2f, this.posZ + sZb + StarWarsMod.rngGeneral.nextFloat() * width * 2.0F - width, motionX, motionY, motionZ);
 				}
-
 			}
 		}
 	}
@@ -223,8 +223,6 @@ public class VehicXWing extends VehicleAirBase implements IDebugProvider
 
 	/**
 	 * 0 = r2, 1 = r5
-	 *
-	 * @param astroType
 	 */
 	public void setAstroType(int astroType)
 	{

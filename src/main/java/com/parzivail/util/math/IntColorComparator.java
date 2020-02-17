@@ -25,10 +25,6 @@ public class IntColorComparator implements Comparator<Integer>
 			return -1;
 		if (hsb1[1] > hsb2[1])
 			return 1;
-		if (hsb1[2] < hsb2[2])
-			return -1;
-		if (hsb1[2] > hsb2[2])
-			return 1;
-		return 0;
+		return Float.compare(hsb1[2], hsb2[2]);
 	}
 }

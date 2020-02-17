@@ -1,6 +1,5 @@
 package com.parzivail.pswm.network;
 
-import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.util.network.PMessage;

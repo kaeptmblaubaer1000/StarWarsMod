@@ -14,7 +14,7 @@ public class PowerSaberThrow extends PowerBase
 		this.costMult = 50;
 		this.currentLevel = currentLevel;
 		this.maxLevel = 5;
-		this.rechargeTime = 1 * 20; // 15 s
+		this.rechargeTime = 20; // 15 s
 		this.recharge = 0;
 	}
 

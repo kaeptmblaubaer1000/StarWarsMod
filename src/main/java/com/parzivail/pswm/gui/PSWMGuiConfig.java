@@ -14,20 +14,21 @@ import java.util.List;
  */
 public class PSWMGuiConfig extends GuiConfig
 {
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	public PSWMGuiConfig(GuiScreen parent)
 	{
-		super(parent, getConfigElements(), Resources.MODID, Resources.ConfigOptions.configFile.getName(), false, false, "PSWM v" + Resources.VERSION);
+		super(parent, (List<IConfigElement>)(List)getConfigElements(), Resources.MODID, Resources.ConfigOptions.configFile.getName(), false, false, "PSWM v" + Resources.VERSION);
 		titleLine2 = Resources.ConfigOptions.configFile.getAbsolutePath();
 	}
 
-	private static List<IConfigElement> getConfigElements()
+	private static List<IConfigElement<?>> getConfigElements()
 	{
-		List<IConfigElement> list = new ArrayList<>();
-		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("core")));
-		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("dimensions")));
-		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("biomes")));
-		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("gui")));
-		list.add(new ConfigElement(Resources.ConfigOptions.config.getCategory("items")));
+		List<IConfigElement<?>> list = new ArrayList<>();
+		list.add(new ConfigElement<>(Resources.ConfigOptions.config.getCategory("core")));
+		list.add(new ConfigElement<>(Resources.ConfigOptions.config.getCategory("dimensions")));
+		list.add(new ConfigElement<>(Resources.ConfigOptions.config.getCategory("biomes")));
+		list.add(new ConfigElement<>(Resources.ConfigOptions.config.getCategory("gui")));
+		list.add(new ConfigElement<>(Resources.ConfigOptions.config.getCategory("items")));
 		return list;
 	}
 

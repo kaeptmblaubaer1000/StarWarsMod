@@ -283,14 +283,8 @@ public class Vector2f extends Vector implements ReadableVector2f, WritableVector
 	 */
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder(64);
 
-		sb.append("Vector2f[");
-		sb.append(x);
-		sb.append(", ");
-		sb.append(y);
-		sb.append(']');
-		return sb.toString();
+		return "Vector2f[" + x + ", " + y + ']';
 	}
 
 	/**
@@ -311,8 +305,6 @@ public class Vector2f extends Vector implements ReadableVector2f, WritableVector
 
 	/**
 	 * Set X
-	 *
-	 * @param x
 	 */
 	public final void setX(float x)
 	{
@@ -321,8 +313,6 @@ public class Vector2f extends Vector implements ReadableVector2f, WritableVector
 
 	/**
 	 * Set Y
-	 *
-	 * @param y
 	 */
 	public final void setY(float y)
 	{

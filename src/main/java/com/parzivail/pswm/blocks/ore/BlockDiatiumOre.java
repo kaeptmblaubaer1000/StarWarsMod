@@ -25,6 +25,6 @@ public class BlockDiatiumOre extends PBlock
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsItems.ingotDiatium;
+		return StarWarsItems.ingotDiatium; // TODO: convert to smelting recipe
 	}
 }

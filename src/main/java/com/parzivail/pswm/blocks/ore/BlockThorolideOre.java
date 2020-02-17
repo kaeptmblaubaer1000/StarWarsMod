@@ -25,6 +25,6 @@ public class BlockThorolideOre extends PBlock
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsItems.ingotThorolide;
+		return StarWarsItems.ingotThorolide; // TODO: convert to smelting recipe
 	}
 }

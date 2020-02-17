@@ -218,18 +218,14 @@ public class QuestUtils
 					return true;
 				break;
 			case "VehicSpeederBike":
-				return true;
 			case "VehicHothSpeederBike":
-				return true;
 			case "VehicATST":
 				return true;
 		}
 
 		if (ItemQuestLog.getStat(player, QuestStats.LICENSE_XWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_AWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_YWING) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_T47) > 0)
 			return true;
-		else if (ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_ADVANCED) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_BOMBER) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_INTERCEPTOR) > 0)
-			return true;
-
-		return false;
+		else
+			return ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_ADVANCED) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_BOMBER) > 0 && ItemQuestLog.getStat(player, QuestStats.LICENSE_TIE_INTERCEPTOR) > 0;
 	}
 }

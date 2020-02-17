@@ -12,6 +12,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderGenerate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -57,8 +58,7 @@ public class BiomeChunkProviderSpace extends ChunkProviderGenerate
 	@Override
 	public void func_147424_a(int p_147424_1_, int p_147424_2_, Block[] p_147424_3_)
 	{
-		for (int i = 0; i < p_147424_3_.length; i++)
-			p_147424_3_[i] = Blocks.air;
+		Arrays.fill(p_147424_3_, Blocks.air);
 	}
 
 	@Override
@@ -122,9 +122,6 @@ public class BiomeChunkProviderSpace extends ChunkProviderGenerate
 
 		Chunk chunk = new Chunk(this.worldObj, ablock, abyte, p_73154_1_, p_73154_2_);
 		byte[] abyte1 = chunk.getBiomeArray();
-
-		for (int k = 0; k < abyte1.length; ++k)
-			abyte1[k] = 0;
 
 		chunk.generateSkylightMap();
 		return chunk;

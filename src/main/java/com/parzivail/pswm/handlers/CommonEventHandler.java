@@ -3,7 +3,6 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.entities.EntityBlasterBoltBaseFX;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.*;
@@ -25,6 +24,7 @@ import com.parzivail.util.ui.GuiManager;
 import com.parzivail.util.ui.GuiToast;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.vehicle.VehicleAirBase;
+import com.parzivail.util.world.WorldUtils;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -51,7 +51,6 @@ import net.minecraft.world.WorldServer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 //import static com.parzivail.pswm.utils.ForceUtils.activePower;
 
@@ -234,7 +233,7 @@ public class CommonEventHandler
 		{
 			if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicleAirBase)
 			{
-				boolean hover = false;
+				boolean hover;
 				hover = !((VehicleAirBase)StarWarsMod.mc.thePlayer.ridingEntity).getHoverMode();
 				StarWarsMod.network.sendToServer(new MessageShipHoverMode(StarWarsMod.mc.thePlayer, hover));
 				GuiToast.makeText(LangUtils.translate("hover.mode.0", hover ? LangUtils.translate("activated") : LangUtils.translate("deactivated")), GuiToast.TIME_SHORT).show();
@@ -271,9 +270,6 @@ public class CommonEventHandler
 				}
 			}
 		}
-
-		if (KeybindRegistry.keyQuest != null && KeybindRegistry.keyQuest.isPressed())
-			StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_QUEST, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobeGui.isPressed())
 			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
@@ -572,13 +568,10 @@ public class CommonEventHandler
 	 * @param power1 The deflect power NBT Compound
 	 */
 	@SideOnly(Side.CLIENT)
-	@SuppressWarnings("unchecked")
 	private void updateDeflect(PowerDeflect power1)
 	{
 		if (power1.isRunning)
-			((List<Entity>)StarWarsMod.mc.theWorld.getEntitiesWithinAABB(Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3))).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBaseFX).forEach(entity -> {
-				StarWarsMod.network.sendToServer(new MessageEntityReverse(entity));
-			});
+			WorldUtils.getEntitiesWithinAABB(StarWarsMod.mc.theWorld, Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBaseFX).forEach(entity -> StarWarsMod.network.sendToServer(new MessageEntityReverse(entity)));
 	}
 
 	/**

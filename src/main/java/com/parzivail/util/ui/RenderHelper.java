@@ -50,12 +50,13 @@ public class RenderHelper
 		GL11.glPopMatrix();
 	}
 
-	private static Render getEntityClassRenderObject(Class par1Class)
+	@SuppressWarnings("unchecked")
+	private static Render getEntityClassRenderObject(Class<? extends Entity> par1Class)
 	{
 		Render render = (Render)RenderManager.instance.entityRenderMap.get(par1Class);
 		if (render == null && par1Class != Entity.class)
 		{
-			render = getEntityClassRenderObject(par1Class.getSuperclass());
+			render = getEntityClassRenderObject((Class<? extends Entity>)par1Class.getSuperclass());
 		}
 
 		return render;

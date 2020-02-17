@@ -53,10 +53,10 @@ public class DrawTatooineSky extends IRenderHandler
 			for (int l = -byte2 * i; l <= byte2 * i; l += byte2)
 			{
 				tessellator.startDrawingQuads();
-				tessellator.addVertex(j + 0, f, l + 0);
-				tessellator.addVertex(j + byte2, f, l + 0);
+				tessellator.addVertex(j, f, l);
+				tessellator.addVertex(j + byte2, f, l);
 				tessellator.addVertex(j + byte2, f, l + byte2);
-				tessellator.addVertex(j + 0, f, l + byte2);
+				tessellator.addVertex(j, f, l + byte2);
 				tessellator.draw();
 			}
 		GL11.glEndList();
@@ -66,9 +66,9 @@ public class DrawTatooineSky extends IRenderHandler
 		for (int k = -byte2 * i; k <= byte2 * i; k += byte2)
 			for (int i1 = -byte2 * i; i1 <= byte2 * i; i1 += byte2)
 			{
-				tessellator.addVertex(k + byte2, f, i1 + 0);
-				tessellator.addVertex(k + 0, f, i1 + 0);
-				tessellator.addVertex(k + 0, f, i1 + byte2);
+				tessellator.addVertex(k + byte2, f, i1);
+				tessellator.addVertex(k, f, i1);
+				tessellator.addVertex(k, f, i1 + byte2);
 				tessellator.addVertex(k + byte2, f, i1 + byte2);
 			}
 		tessellator.draw();

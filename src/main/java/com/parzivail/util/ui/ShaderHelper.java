@@ -8,6 +8,7 @@ import org.lwjgl.opengl.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -133,7 +134,7 @@ public final class ShaderHelper
 
 	private static int createProgram(String vert, String frag)
 	{
-		int vertId = 0, fragId = 0, program = 0;
+		int vertId = 0, fragId = 0, program;
 		if (vert != null)
 			vertId = createShader(vert, VERT);
 		if (frag != null)
@@ -238,7 +239,7 @@ public final class ShaderHelper
 
 		try
 		{
-			reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+			reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
 
 			Exception innerExc = null;
 			try
@@ -259,10 +260,7 @@ public final class ShaderHelper
 				}
 				catch (Exception exc)
 				{
-					if (innerExc == null)
-						innerExc = exc;
-					else
-						exc.printStackTrace();
+					innerExc = exc;
 				}
 			}
 

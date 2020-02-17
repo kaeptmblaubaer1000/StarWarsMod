@@ -314,16 +314,8 @@ public class Vector3f extends Vector implements ReadableVector3f, WritableVector
 	 */
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder(64);
 
-		sb.append("Vector3f[");
-		sb.append(x);
-		sb.append(", ");
-		sb.append(y);
-		sb.append(", ");
-		sb.append(z);
-		sb.append(']');
-		return sb.toString();
+		return "Vector3f[" + x + ", " + y + ", " + z + ']';
 	}
 
 	/**
@@ -344,8 +336,6 @@ public class Vector3f extends Vector implements ReadableVector3f, WritableVector
 
 	/**
 	 * Set X
-	 *
-	 * @param x
 	 */
 	public final void setX(float x)
 	{
@@ -354,8 +344,6 @@ public class Vector3f extends Vector implements ReadableVector3f, WritableVector
 
 	/**
 	 * Set Y
-	 *
-	 * @param y
 	 */
 	public final void setY(float y)
 	{
@@ -364,8 +352,6 @@ public class Vector3f extends Vector implements ReadableVector3f, WritableVector
 
 	/**
 	 * Set Z
-	 *
-	 * @param z
 	 */
 	public void setZ(float z)
 	{

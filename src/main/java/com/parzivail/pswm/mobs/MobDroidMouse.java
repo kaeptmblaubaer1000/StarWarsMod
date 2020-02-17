@@ -3,6 +3,7 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
+import com.parzivail.pswm.ai.AiMouseScare;
 import com.parzivail.util.entity.EntityUtils;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -26,7 +27,7 @@ public class MobDroidMouse extends EntityDroidBase
 		tasks.addTask(0, aiSit);
 		tasks.addTask(1, new EntityAIFollowOwner(this, 1.0D, 10.0F, 5.0F));
 		tasks.addTask(2, aiTempt = new EntityAITempt(this, 0.6D, StarWarsItems.droidCaller, true));
-		tasks.addTask(3, new com.parzivail.pswm.ai.AiMouseScare(this, MobWookiee.class, 16.0F, 0.8D, 1.33D));
+		tasks.addTask(3, new AiMouseScare<>(this, MobWookiee.class, 16.0F, 0.8D, 1.33D));
 		tasks.addTask(4, new AiFreqMove(this, 1, 0));
 	}
 
@@ -64,7 +65,7 @@ public class MobDroidMouse extends EntityDroidBase
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(18, Byte.valueOf((byte)0));
+		dataWatcher.addObject(18, (byte)0);
 	}
 
 	@Override
@@ -124,7 +125,7 @@ public class MobDroidMouse extends EntityDroidBase
 				}
 			}
 		}
-		else if (itemstack != null && itemstack.getItem() == StarWarsItems.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
+		else if (itemstack.getItem() == StarWarsItems.droidCaller && par1EntityPlayer.getDistanceSqToEntity(this) < 9.0D)
 		{
 			if (!worldObj.isRemote)
 				if (rand.nextInt(3) == 0)

@@ -4,16 +4,17 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandExportIdMap implements ICommand
 {
-	private List aliases;
+	private ArrayList<String> aliases;
 
 	public CommandExportIdMap()
 	{
-		this.aliases = new ArrayList();
+		this.aliases = new ArrayList<>();
 		this.aliases.add("sw-expmap");
 	}
 
@@ -30,7 +31,7 @@ public class CommandExportIdMap implements ICommand
 	}
 
 	@Override
-	public int compareTo(Object o)
+	public int compareTo(@Nonnull Object o)
 	{
 		return 0;
 	}
@@ -65,15 +66,6 @@ public class CommandExportIdMap implements ICommand
 		if (astring.length != 0)
 		{
 			icommandsender.addChatMessage(new ChatComponentText("Usage: sw-expmap"));
-			return;
-		}
-		try
-		{
-
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
 		}
 	}
 }

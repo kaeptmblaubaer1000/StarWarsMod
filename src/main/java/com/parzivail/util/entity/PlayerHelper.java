@@ -17,8 +17,6 @@ public class PlayerHelper
 
 	/**
 	 * Gets the ship's held itemstack, with failsafes
-	 *
-	 * @return
 	 */
 	public ItemStack getHeldItemStack()
 	{
@@ -34,8 +32,6 @@ public class PlayerHelper
 
 	/**
 	 * Gets the ship's username, with failsafes
-	 *
-	 * @return
 	 */
 	public String getUsername()
 	{

@@ -87,11 +87,11 @@ public class BlockCrystalCompressor extends PBlockContainer
 						}
 
 						itemstack.stackSize -= j1;
-						EntityItem entityitem = new EntityItem(world, (double)((float)p_149749_2_ + f), (double)((float)p_149749_3_ + f1), (double)((float)p_149749_4_ + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(world, (float)p_149749_2_ + f, (float)p_149749_3_ + f1, (float)p_149749_4_ + f2, new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
 						float f3 = 0.05F;
-						entityitem.motionX = (double)((float)world.rand.nextGaussian() * f3);
-						entityitem.motionY = (double)((float)world.rand.nextGaussian() * f3 + 0.2F);
-						entityitem.motionZ = (double)((float)world.rand.nextGaussian() * f3);
+						entityitem.motionX = (float)world.rand.nextGaussian() * f3;
+						entityitem.motionY = (float)world.rand.nextGaussian() * f3 + 0.2F;
+						entityitem.motionZ = (float)world.rand.nextGaussian() * f3;
 						world.spawnEntityInWorld(entityitem);
 					}
 				}
@@ -115,9 +115,9 @@ public class BlockCrystalCompressor extends PBlockContainer
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
 	{
-		double d0 = (double)((float)p_149734_2_ + 0.3F + p_149734_5_.nextFloat() * 0.4F);
-		double d1 = (double)((float)p_149734_3_ + 1.8F + p_149734_5_.nextFloat() * 0.3F);
-		double d2 = (double)((float)p_149734_4_ + 0.3F + p_149734_5_.nextFloat() * 0.4F);
+		double d0 = (float)p_149734_2_ + 0.3F + p_149734_5_.nextFloat() * 0.4F;
+		double d1 = (float)p_149734_3_ + 1.8F + p_149734_5_.nextFloat() * 0.3F;
+		double d2 = (float)p_149734_4_ + 0.3F + p_149734_5_.nextFloat() * 0.4F;
 		p_149734_1_.spawnParticle("flame", d0, d1, d2, 0.0D, 0.0D, 0.0D);
 	}
 }

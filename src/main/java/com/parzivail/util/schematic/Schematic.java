@@ -1,9 +1,5 @@
 package com.parzivail.util.schematic;
 
-/**
- * @author Colby
- */
-
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
@@ -37,6 +33,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Colby
+ */
 public class Schematic
 {
 	public int width;
@@ -314,7 +313,6 @@ public class Schematic
 					}
 				}
 			}
-			b = null;
 		}
 	}
 

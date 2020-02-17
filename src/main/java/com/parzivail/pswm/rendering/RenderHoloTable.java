@@ -4,6 +4,7 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityHoloTableBase;
 import com.parzivail.util.ui.RenderHelper;
 import com.parzivail.util.ui.ShaderHelper;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -23,25 +24,23 @@ public class RenderHoloTable extends TileEntitySpecialRenderer
 
 		TileEntityHoloTableBase table = (TileEntityHoloTableBase)te;
 
-		for (Object e : te.getWorldObj().getEntitiesWithinAABB(Entity.class, te.getRenderBoundingBox().expand(table.getSideLength() / 2 - 6, table.getSideLength() / 2 - 2, table.getSideLength() / 2 - 6)))
-			if (e instanceof Entity)
-			{
-				if (e == StarWarsMod.mc.thePlayer)
-					continue;
-				Entity entity = (Entity)e;
-				GL11.glPushMatrix();
-				Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
-				GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
-				float dx = (float)(te.xCoord - entity.posX) / -16f;
-				float dy = (float)(te.yCoord - entity.posY) / -16f;
-				float dz = (float)(te.zCoord - entity.posZ) / -16f;
-				GL11.glTranslatef(te.xCoord + 0.5f + dx + table.getOffsetX() / 16f, te.yCoord + 1.04f + dy + table.getOffsetY() / 16f, te.zCoord + 0.5f + dz + table.getOffsetZ() / 16f);
-				GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
-				GL11.glTranslatef(-1, 0, -1);
-				GL11.glColor4f(1, 1, 1, 1);
-				RenderHelper.renderEntity(entity);
-				GL11.glPopMatrix();
-			}
+		for (Entity e : WorldUtils.getEntitiesWithinAABB(te.getWorldObj(), Entity.class, te.getRenderBoundingBox().expand(table.getSideLength() / 2 - 6, table.getSideLength() / 2 - 2, table.getSideLength() / 2 - 6)))
+		{
+			if (e == StarWarsMod.mc.thePlayer)
+				continue;
+			GL11.glPushMatrix();
+			Vec3 pos = StarWarsMod.mc.thePlayer.getPosition(p);
+			GL11.glTranslated(-pos.xCoord, -pos.yCoord, -pos.zCoord);
+			float dx = (float)(te.xCoord - e.posX) / -16f;
+			float dy = (float)(te.yCoord - e.posY) / -16f;
+			float dz = (float)(te.zCoord - e.posZ) / -16f;
+			GL11.glTranslatef(te.xCoord + 0.5f + dx + table.getOffsetX() / 16f, te.yCoord + 1.04f + dy + table.getOffsetY() / 16f, te.zCoord + 0.5f + dz + table.getOffsetZ() / 16f);
+			GL11.glScalef(1 / 16f, 1 / 16f, 1 / 16f);
+			GL11.glTranslatef(-1, 0, -1);
+			GL11.glColor4f(1, 1, 1, 1);
+			RenderHelper.renderEntity(e);
+			GL11.glPopMatrix();
+		}
 
 		if (table.isMapSetup() && table.getRGB() != null)
 		{

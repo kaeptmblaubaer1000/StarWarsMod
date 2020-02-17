@@ -6,6 +6,7 @@ import com.parzivail.pswm.mobs.IShootThings;
 import com.parzivail.pswm.vehicles.VehicAWing;
 import com.parzivail.pswm.vehicles.VehicXWing;
 import com.parzivail.pswm.vehicles.VehicYWing;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.IMob;
@@ -46,10 +47,10 @@ public abstract class TurretBaseImperial extends EntityCreature implements IMob,
 	@Override
 	public void onUpdate()
 	{
-		List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+		List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(worldObj, this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 		for (Entity entity1 : list)
 		{
-			List<Entity> list2 = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(100.0D, 100.0D, 100.0D));
+			List<Entity> list2 = WorldUtils.getEntitiesWithinAABBExcludingEntity(worldObj, this, boundingBox.expand(100.0D, 100.0D, 100.0D));
 			for(Entity entity : list2)
 			{
 				if (entity1 instanceof GroundTurretImperial)

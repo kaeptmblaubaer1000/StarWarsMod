@@ -1,6 +1,7 @@
 package com.parzivail.pswm.ai;
 
 import com.parzivail.pswm.StarWarsMod;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -32,18 +33,17 @@ public class AiMelee extends EntityAIBase
 	 * The PathEntity of our entity.
 	 */
 	PathEntity entityPathEntity;
-	Class classTarget;
+	Class<? extends Entity> classTarget;
 	private int field_75445_i;
 	private double field_151497_i;
 	private double field_151495_j;
 	private double field_151496_k;
-	private static final String __OBFID = "CL_00001595";
 
 	float damage;
 
 	private int failedPathFindingPenalty;
 
-	public AiMelee(EntityCreature p_i1635_1_, Class p_i1635_2_, double p_i1635_3_, boolean p_i1635_5_, float damage)
+	public AiMelee(EntityCreature p_i1635_1_, Class<? extends Entity> p_i1635_2_, double p_i1635_3_, boolean p_i1635_5_, float damage)
 	{
 		this(p_i1635_1_, p_i1635_3_, p_i1635_5_, damage);
 		this.classTarget = p_i1635_2_;
@@ -127,7 +127,7 @@ public class AiMelee extends EntityAIBase
 		EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
 		this.attacker.getLookHelper().setLookPositionWithEntity(entitylivingbase, 30.0F, 30.0F);
 		double d0 = this.attacker.getDistanceSq(entitylivingbase.posX, entitylivingbase.boundingBox.minY, entitylivingbase.posZ);
-		double d1 = (double)(this.attacker.width * 2.0F * this.attacker.width * 2.0F + entitylivingbase.width);
+		double d1 = this.attacker.width * 2.0F * this.attacker.width * 2.0F + entitylivingbase.width;
 		--this.field_75445_i;
 
 		if ((this.longMemory || this.attacker.getEntitySenses().canSee(entitylivingbase)) && this.field_75445_i <= 0 && (this.field_151497_i == 0.0D && this.field_151495_j == 0.0D && this.field_151496_k == 0.0D || entitylivingbase.getDistanceSq(this.field_151497_i, this.field_151495_j, this.field_151496_k) >= 1.0D || this.attacker.getRNG().nextFloat() < 0.05F))

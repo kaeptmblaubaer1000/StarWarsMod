@@ -1,11 +1,5 @@
 package com.parzivail.pswm.utils;
 
-import com.parzivail.pswm.Resources;
-import org.apache.commons.io.IOUtils;
-
-import java.io.InputStream;
-import java.net.URL;
-
 /**
  * @author Colby
  */

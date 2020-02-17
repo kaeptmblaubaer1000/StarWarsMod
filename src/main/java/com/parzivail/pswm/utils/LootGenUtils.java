@@ -26,7 +26,7 @@ public class LootGenUtils
 
 	public static List<WeightedLoot> getLootForDim(int dimId)
 	{
-		List<WeightedLoot> loot = new ArrayList();
+		List<WeightedLoot> loot = new ArrayList<>();
 		loot.add(new WeightedLoot(new ItemStack(StarWarsItems.imperialCredit, MathUtils.randomRange(1, 4)), baseRarity));
 		return loot;
 	}
@@ -70,10 +70,5 @@ public class LootGenUtils
 			}
 		}
 		return items.get(randomIndex).item;
-	}
-
-	private static int indexOf(String[] haystack, String needle)
-	{
-		return java.util.Arrays.asList(haystack).indexOf(needle);
 	}
 }

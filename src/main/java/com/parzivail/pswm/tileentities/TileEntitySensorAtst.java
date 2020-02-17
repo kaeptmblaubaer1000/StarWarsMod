@@ -1,6 +1,7 @@
 package com.parzivail.pswm.tileentities;
 
 import com.parzivail.pswm.vehicles.VehicATST;
+import com.parzivail.util.world.WorldUtils;
 
 public class TileEntitySensorAtst extends TileEntitySensor
 {
@@ -18,6 +19,6 @@ public class TileEntitySensorAtst extends TileEntitySensor
 	@Override
 	public boolean checkCondition()
 	{
-		return this.worldObj != null && !this.worldObj.getEntitiesWithinAABB(VehicATST.class, this.bb.expand(rX, rY, rZ)).isEmpty();
+		return this.worldObj != null && !WorldUtils.getEntitiesWithinAABB(this.worldObj, VehicATST.class, this.bb.expand(rX, rY, rZ)).isEmpty();
 	}
 }

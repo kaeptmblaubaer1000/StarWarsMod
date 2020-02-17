@@ -65,9 +65,6 @@ public class RenderSpawnScootemaroundHoth implements IItemRenderer
 					GL11.glRotatef(90, 0, 0, 1);
 					GL11.glRotatef(4, 0, 0, 1);
 					GL11.glRotatef(180, 0, 1, 0);
-					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
 				}
 				else
 				{
@@ -81,10 +78,10 @@ public class RenderSpawnScootemaroundHoth implements IItemRenderer
 					GL11.glTranslatef(15, -11, 0);
 					GL11.glScalef(-1, -1, 1);
 					GL11.glRotatef(90, 1, 0, 0);
-					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
 				}
+				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+				GL11.glPopMatrix();
 				break;
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();

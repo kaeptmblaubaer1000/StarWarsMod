@@ -1,5 +1,7 @@
 package com.parzivail.util.common;
 
+import java.util.Objects;
+
 /**
  * Created by colby on 12/25/2017.
  */
@@ -24,7 +26,7 @@ public class Pair<T, T1>
 
 		Pair<?, ?> pair = (Pair<?, ?>)o;
 
-		return (left != null ? left.equals(pair.left) : pair.left == null) && (right != null ? right.equals(pair.right) : pair.right == null);
+		return (Objects.equals(left, pair.left)) && (Objects.equals(right, pair.right));
 	}
 
 	@Override

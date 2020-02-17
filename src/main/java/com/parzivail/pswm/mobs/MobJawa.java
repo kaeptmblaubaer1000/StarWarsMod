@@ -3,6 +3,7 @@ package com.parzivail.pswm.mobs;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -43,8 +44,7 @@ public class MobJawa extends EntityCreature implements IMob
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			@SuppressWarnings("unchecked")
-			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(worldObj, this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 			for (Entity entity1 : list)
 			{
 				if (entity1 instanceof MobJawa)

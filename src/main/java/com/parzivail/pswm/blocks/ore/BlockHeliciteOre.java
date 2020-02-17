@@ -25,6 +25,6 @@ public class BlockHeliciteOre extends PBlock
 	@Override
 	public Item getItemDropped(int metadata, Random random, int fortune)
 	{
-		return StarWarsItems.ingotHelicite;
+		return StarWarsItems.ingotHelicite; // TODO: convert to smelting recipe
 	}
 }

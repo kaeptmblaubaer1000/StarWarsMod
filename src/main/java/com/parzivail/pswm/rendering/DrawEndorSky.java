@@ -40,10 +40,10 @@ public class DrawEndorSky extends IRenderHandler
 			for (int l = -byte2 * i; l <= byte2 * i; l += byte2)
 			{
 				tessellator.startDrawingQuads();
-				tessellator.addVertex(j + 0, f, l + 0);
-				tessellator.addVertex(j + byte2, f, l + 0);
+				tessellator.addVertex(j, f, l);
+				tessellator.addVertex(j + byte2, f, l);
 				tessellator.addVertex(j + byte2, f, l + byte2);
-				tessellator.addVertex(j + 0, f, l + byte2);
+				tessellator.addVertex(j, f, l + byte2);
 				tessellator.draw();
 			}
 		GL11.glEndList();
@@ -53,9 +53,9 @@ public class DrawEndorSky extends IRenderHandler
 		for (int k = -byte2 * i; k <= byte2 * i; k += byte2)
 			for (int i1 = -byte2 * i; i1 <= byte2 * i; i1 += byte2)
 			{
-				tessellator.addVertex(k + byte2, f, i1 + 0);
-				tessellator.addVertex(k + 0, f, i1 + 0);
-				tessellator.addVertex(k + 0, f, i1 + byte2);
+				tessellator.addVertex(k + byte2, f, i1);
+				tessellator.addVertex(k, f, i1);
+				tessellator.addVertex(k, f, i1 + byte2);
 				tessellator.addVertex(k + byte2, f, i1 + byte2);
 			}
 		tessellator.draw();
@@ -81,7 +81,6 @@ public class DrawEndorSky extends IRenderHandler
 		float f1 = (float)vec3.xCoord;
 		float f2 = (float)vec3.yCoord;
 		float f3 = (float)vec3.zCoord;
-		vec3 = null;
 		if (mc.gameSettings.anaglyph)
 		{
 			float f4 = (f1 * 30.0F + f2 * 59.0F + f3 * 11.0F) / 100.0F;
@@ -118,18 +117,8 @@ public class DrawEndorSky extends IRenderHandler
 		afloat[1] = 0.7607843F;
 		afloat[2] = 0.7058824F;
 		afloat[3] = 0.3F;
-		float f6 = afloat[0];
-		float f7 = afloat[1];
-		float f8 = afloat[2];
-		if (mc.gameSettings.anaglyph)
-		{
-			float f9 = (f6 * 30.0F + f7 * 59.0F + f8 * 11.0F) / 100.0F;
-			float f10 = (f6 * 30.0F + f7 * 70.0F) / 100.0F;
-			float f11 = (f6 * 30.0F + f8 * 70.0F) / 100.0F;
-			f6 = f9;
-			f7 = f10;
-			f8 = f11;
-		}
+		float f7;
+		float f8;
 		f18 = 1.0F - f18;
 		tessellator1.startDrawing(6);
 		tessellator1.setColorRGBA_F(0.9F, 0.9F, 1.0F, 1.0F);

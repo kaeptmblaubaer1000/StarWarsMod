@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class BiomeGenEndor extends BiomeGenPSWM
 {
-	public int locY = 0;
+	public int locY;
 
 	public BiomeGenEndor(int biomeId)
 	{
@@ -42,10 +42,6 @@ public class BiomeGenEndor extends BiomeGenPSWM
 		this.theBiomeDecorator.reedsPerChunk = 3;
 		this.theBiomeDecorator.cactiPerChunk = -999;
 
-		this.spawnableCreatureList.clear();
-		this.spawnableCaveCreatureList.clear();
-		this.spawnableMonsterList.clear();
-		this.spawnableWaterCreatureList.clear();
 		this.locY = (int)MathUtils.map(this.rootHeight, -2, 2, 0, 128);
 	}
 

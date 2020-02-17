@@ -24,8 +24,6 @@ public class KeybindRegistry
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyRobePowerPrev;
 	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyQuest;
-	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyLSForge;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyLSToggle;

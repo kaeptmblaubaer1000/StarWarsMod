@@ -299,7 +299,7 @@ public class BiomeChunkProviderDagobah extends ChunkProviderGenerate
 
 						for (int i3 = 0; i3 < 4; ++i3)
 						{
-							int j3 = i3 + k * 4 << 12 | 0 + j1 * 4 << 8 | k2 * 8 + l2;
+							int j3 = i3 + k * 4 << 12 | j1 * 4 << 8 | k2 * 8 + l2;
 							short short1 = 256;
 							j3 -= short1;
 							double d14 = 0.25D;
@@ -379,7 +379,7 @@ public class BiomeChunkProviderDagobah extends ChunkProviderGenerate
 		this.rand.setSeed(p_73153_2_ * i1 + p_73153_3_ * j1 ^ this.worldObj.getSeed());
 		boolean flag = false;
 
-		MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(p_73153_1_, this.worldObj, this.rand, p_73153_2_, p_73153_3_, flag));
+		MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(p_73153_1_, this.worldObj, this.rand, p_73153_2_, p_73153_3_, false));
 
 		if (this.mapFeaturesEnabled)
 		{

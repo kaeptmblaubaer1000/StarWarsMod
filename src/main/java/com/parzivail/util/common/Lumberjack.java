@@ -22,14 +22,15 @@ public class Lumberjack
 		if (!Resources.IS_DEV_ENVIRONVENT)
 			return;
 		StackTraceElement[] trace = Thread.currentThread().getStackTrace();
+		final String s = String.format(String.valueOf(message), params);
 		if (trace.length >= 3)
 		{
 			StackTraceElement stack = trace[2];
-			log("<%s::%s> %s", stack.getClassName(), stack.getMethodName(), String.format(String.valueOf(message), params));
+			log("<%s::%s> %s", stack.getClassName(), stack.getMethodName(), s);
 		}
 		else
 		{
-			log("<Unknown Stack> %s", String.format(String.valueOf(message), params));
+			log("<Unknown Stack> %s", s);
 		}
 	}
 

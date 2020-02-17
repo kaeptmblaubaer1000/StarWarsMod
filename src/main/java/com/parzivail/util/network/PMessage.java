@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.tuple.Pair;
+import com.parzivail.util.common.Pair;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -120,12 +120,12 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 
 	private static <T> void map(Class<T> type, Reader<T> reader, Writer<T> writer)
 	{
-		handlers.put(type, Pair.of(reader, writer));
+		handlers.put(type, new Pair<>(reader, writer));
 	}
 
 	private static void map(Class<?> type, MethodHandle reader, MethodHandle writer)
 	{
-		methodHandleHandlers.put(type, Pair.of(reader, writer));
+		methodHandleHandlers.put(type, new Pair<>(reader, writer));
 	}
 
 	private static boolean readBoolean(ByteBuf buf)
@@ -352,7 +352,7 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 				}
 				final MethodHandle setter = lookup.unreflectSetter(field);
 				// The asType should be a no-op, but do it anyways to be safe
-				final MethodHandle read = methodHandleHandlers.get(field.getType()).getLeft().asType(MethodType.methodType(field.getType(), ByteBuf.class));
+				final MethodHandle read = methodHandleHandlers.get(field.getType()).left.asType(MethodType.methodType(field.getType(), ByteBuf.class));
 				if (prev == null)
 				{
 					prev = MethodHandles.filterArguments(setter, 1, read);
@@ -367,7 +367,9 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 				prev = MethodHandles.dropArguments(lookup.findStatic(PMessage.class, "noValue", MethodType.methodType(void.class)), 0, clazz, ByteBuf.class);
 			}
 			return prev;
-		} catch (ReflectiveOperationException e) {
+		}
+		catch (ReflectiveOperationException e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
@@ -439,12 +441,10 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 	private void readField(Field f, Class clazz, ByteBuf buf) throws IllegalArgumentException, IllegalAccessException
 	{
 		Pair<Reader, Writer> handler = getHandler(clazz);
-		f.set(this, handler.getLeft().read(buf));
+		f.set(this, handler.left.read(buf));
 	}
 
 	/**
-	 * @param clazz
-	 *
 	 * @return {@link MethodHandle} with {@code void (T, io.netty.buffer.ByteBuf)} signature that writes the message to the {@link ByteBuf}
 	 */
 	public static MethodHandle createToBytes(Class<? extends PMessage<?>> clazz)
@@ -463,7 +463,7 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 				}
 				final MethodHandle getter = lookup.unreflectGetter(field);
 				// The asType should be a no-op, but do it anyways to be safe
-				final MethodHandle write = methodHandleHandlers.get(field.getType()).getRight().asType(MethodType.methodType(void.class, field.getType(), ByteBuf.class));
+				final MethodHandle write = methodHandleHandlers.get(field.getType()).right.asType(MethodType.methodType(void.class, field.getType(), ByteBuf.class));
 				if (prev == null)
 				{
 					prev = MethodHandles.filterArguments(write, 0, getter);
@@ -478,7 +478,9 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 				prev = MethodHandles.dropArguments(lookup.findStatic(PMessage.class, "noValue", MethodType.methodType(void.class)), 0, clazz, ByteBuf.class);
 			}
 			return prev;
-		} catch (ReflectiveOperationException e) {
+		}
+		catch (ReflectiveOperationException e)
+		{
 			throw new RuntimeException(e);
 		}
 	}
@@ -532,7 +534,7 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 	private void writeField(Field f, Class clazz, ByteBuf buf) throws IllegalArgumentException, IllegalAccessException
 	{
 		Pair<Reader, Writer> handler = getHandler(clazz);
-		handler.getRight().write(f.get(this), buf);
+		handler.right.write(f.get(this), buf);
 	}
 
 	public interface Reader<T>

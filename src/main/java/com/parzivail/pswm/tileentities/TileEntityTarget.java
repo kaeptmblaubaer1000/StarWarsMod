@@ -10,7 +10,7 @@ public class TileEntityTarget extends TileEntityRotate
 	public boolean isHit = false;
 	public long hitTime = -1;
 	public int hits = 0;
-	public boolean altSkin = false;
+	public boolean altSkin;
 
 	public TileEntityTarget()
 	{

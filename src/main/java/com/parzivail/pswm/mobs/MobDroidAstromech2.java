@@ -64,7 +64,7 @@ public class MobDroidAstromech2 extends EntityDroidBase
 	protected void entityInit()
 	{
 		super.entityInit();
-		dataWatcher.addObject(18, Byte.valueOf((byte)0));
+		dataWatcher.addObject(18, (byte)0);
 	}
 
 	@Override

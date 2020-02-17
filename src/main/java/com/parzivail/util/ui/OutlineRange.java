@@ -36,8 +36,6 @@ public class OutlineRange extends OutlineButton
 
 	/**
 	 * Gets the modified value between 0-[multiplier]
-	 *
-	 * @return
 	 */
 	public float getValue()
 	{

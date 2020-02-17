@@ -45,10 +45,9 @@ public class EntityDestruction extends EntityThrowable
 	public EntityDestruction(World par1World, EntityLivingBase par2EntityLivingBase, Vec3 vector)
 	{
 		super(par1World, par2EntityLivingBase);
-		Vec3 vec3 = vector;
-		double dx = vec3.xCoord * 3;
-		double dy = vec3.yCoord * 3;
-		double dz = vec3.zCoord * 3;
+		double dx = vector.xCoord * 3;
+		double dy = vector.yCoord * 3;
+		double dz = vector.zCoord * 3;
 
 		this.posX += dx;
 		this.posY += dy;

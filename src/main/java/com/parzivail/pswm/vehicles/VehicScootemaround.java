@@ -55,12 +55,7 @@ public class VehicScootemaround extends VehicleLandBase
 		if (i < 0 || i >= ridersDatawatcherIds.length)
 			return null;
 
-		Entity e = this.worldObj.getPlayerEntityByName(getEntityIdAtIndex(i));
-
-		if (e instanceof EntityPlayer)
-			return (EntityPlayer)e;
-
-		return null;
+		return this.worldObj.getPlayerEntityByName(getEntityIdAtIndex(i));
 	}
 
 	private void setRiderAtIndex(int i, EntityPlayer e)

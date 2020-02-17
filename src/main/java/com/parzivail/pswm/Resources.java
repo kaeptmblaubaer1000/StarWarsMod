@@ -160,7 +160,7 @@ public class Resources
 	public static final String VERSION_MAJOR = "1.3";
 	public static String ONLINE_VERSION = "";
 
-	public static boolean IS_DEV_ENVIRONVENT = false;
+	public static boolean IS_DEV_ENVIRONVENT = true;
 
 	public static boolean IS_SEQUEL_RELEASE = true;
 
@@ -176,7 +176,6 @@ public class Resources
 	public static final int GUI_JEDI_SITH = guiCounter++;
 	public static final int GUI_HOLOTABLE = guiCounter++;
 	public static final int GUI_QUESTNPC = guiCounter++;
-	public static final int GUI_QUEST = guiCounter++;
 	public static final int GUI_LSFORGE = guiCounter++;
 	public static final int GUI_SCANNER = guiCounter++;
 	public static final int GUI_HYPERDRIVE = guiCounter++;

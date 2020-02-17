@@ -57,9 +57,6 @@ public class RenderSpear implements IItemRenderer
 					GL11.glRotatef(90, 0, 0, 1);
 					GL11.glRotatef(90, 1, 0, 0);
 					GL11.glTranslatef(-20, 13.5f, -6);
-					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
 				}
 				else
 				{
@@ -78,10 +75,10 @@ public class RenderSpear implements IItemRenderer
 					GL11.glTranslatef(22, -3, 0);
 					GL11.glRotatef(90, 0, 0, 1);
 					GL11.glRotatef(-90, 1, 0, 0);
-					this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
-					GL11.glEnable(GL11.GL_CULL_FACE);
-					GL11.glPopMatrix();
 				}
+				this.model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+				GL11.glPopMatrix();
 				break;
 			case EQUIPPED_FIRST_PERSON:
 				GL11.glPushMatrix();

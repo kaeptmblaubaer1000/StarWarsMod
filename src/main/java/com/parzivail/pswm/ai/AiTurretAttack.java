@@ -46,7 +46,7 @@ public class AiTurretAttack extends EntityAIBase
 	{
 		this.rangedAttackTime = -1;
 
-		if (!(entityHost instanceof EntityLivingBase))
+		if (entityHost == null)
 		{
 			throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
 		}
@@ -92,9 +92,7 @@ public class AiTurretAttack extends EntityAIBase
 			return true;
 		if(entity instanceof VehicYWing)
 			return true;
-		if(entityHost.getAttackTarget() != null)
-			return true;
-		return false;
+		return entityHost.getAttackTarget() != null;
 	}
 
 	/**

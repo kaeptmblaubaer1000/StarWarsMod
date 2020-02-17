@@ -1,5 +1,6 @@
 package com.parzivail.pswm.ai;
 
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 
@@ -30,19 +31,19 @@ public class AiFollowType extends EntityAIBase
 		if (this.theEntity == null || this.targetEntityClass == null)
 			return false;
 
-		List list = this.theEntity.worldObj.getEntitiesWithinAABB(targetEntityClass, this.theEntity.boundingBox.expand(range, range, range));
-		EntityLiving entityanimal = null;
+		List<? extends EntityLiving> list = WorldUtils.getEntitiesWithinAABB(this.theEntity.worldObj, targetEntityClass, this.theEntity.boundingBox.expand(range, range, range));
+		EntityLiving entityAnimal = null;
 
-		for (Object aList : list)
-			entityanimal = (EntityLiving)aList;
+		for (EntityLiving aList : list)
+			entityAnimal = aList;
 
-		if (entityanimal == null)
+		if (entityAnimal == null)
 		{
 			return false;
 		}
 		else
 		{
-			this.targetEntity = entityanimal;
+			this.targetEntity = entityAnimal;
 			return true;
 		}
 	}

@@ -233,7 +233,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 			P3D.glScalef(16f);
 			GL11.glScalef(1, -1, 1);
 			GL11.glRotatef(10, 1, 0, 0);
-			GL11.glRotatef(((long)(System.currentTimeMillis() / (outlineButton == null ? 30L : 15L))) % 360, 0, 1, 0);
+			GL11.glRotatef(System.currentTimeMillis() / (outlineButton == null ? 30L : 15L) % 360, 0, 1, 0);
 			GL11.glTranslatef(0.45f, 0, 0.57f);
 		}, postRenderEmpty);
 		listBMelee.put("bMeleeVibroLance", bMeleeVibroLance);
@@ -250,7 +250,7 @@ public class GuiScreenWeaponsDealer extends GuiScreen
 				P3D.glScalef(0.75f);
 				GL11.glTranslatef(-1, -4, 0);
 			}
-			GL11.glRotatef(((long)(System.currentTimeMillis() / (outlineButton == null ? 30 : 15))) % 360, 0, 1, 0);
+			GL11.glRotatef(System.currentTimeMillis() / (outlineButton == null ? 30 : 15) % 360, 0, 1, 0);
 			GL11.glTranslatef(10, -5, 8);
 			if (outlineButton == null)
 			{

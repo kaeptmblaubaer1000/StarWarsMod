@@ -75,7 +75,6 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 	double[] noiseData3;
 	double[] noiseData4;
 	double[] noiseData5;
-	private static final String __OBFID = "CL_00000392";
 
 	{
 		genNetherBridge = (MapGenNetherBridge)TerrainGen.getModdedMapGen(genNetherBridge, NETHER_BRIDGE);
@@ -121,13 +120,13 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 				for (int k1 = 0; k1 < 16; ++k1)
 				{
 					double d0 = 0.125D;
-					double d1 = this.noiseField[((i1 + 0) * l + j1 + 0) * b2 + k1 + 0];
-					double d2 = this.noiseField[((i1 + 0) * l + j1 + 1) * b2 + k1 + 0];
-					double d3 = this.noiseField[((i1 + 1) * l + j1 + 0) * b2 + k1 + 0];
-					double d4 = this.noiseField[((i1 + 1) * l + j1 + 1) * b2 + k1 + 0];
-					double d5 = (this.noiseField[((i1 + 0) * l + j1 + 0) * b2 + k1 + 1] - d1) * d0;
-					double d6 = (this.noiseField[((i1 + 0) * l + j1 + 1) * b2 + k1 + 1] - d2) * d0;
-					double d7 = (this.noiseField[((i1 + 1) * l + j1 + 0) * b2 + k1 + 1] - d3) * d0;
+					double d1 = this.noiseField[((i1) * l + j1) * b2 + k1];
+					double d2 = this.noiseField[((i1) * l + j1 + 1) * b2 + k1];
+					double d3 = this.noiseField[((i1 + 1) * l + j1) * b2 + k1];
+					double d4 = this.noiseField[((i1 + 1) * l + j1 + 1) * b2 + k1];
+					double d5 = (this.noiseField[((i1) * l + j1) * b2 + k1 + 1] - d1) * d0;
+					double d6 = (this.noiseField[((i1) * l + j1 + 1) * b2 + k1 + 1] - d2) * d0;
+					double d7 = (this.noiseField[((i1 + 1) * l + j1) * b2 + k1 + 1] - d3) * d0;
 					double d8 = (this.noiseField[((i1 + 1) * l + j1 + 1) * b2 + k1 + 1] - d4) * d0;
 
 					for (int l1 = 0; l1 < 8; ++l1)
@@ -140,7 +139,7 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 
 						for (int i2 = 0; i2 < 4; ++i2)
 						{
-							int j2 = i2 + i1 * 4 << 11 | 0 + j1 * 4 << 7 | k1 * 8 + l1;
+							int j2 = i2 + i1 * 4 << 11 | j1 * 4 << 7 | k1 * 8 + l1;
 							short short1 = 128;
 							double d14 = 0.25D;
 							double d15 = d10;
@@ -214,7 +213,7 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 				{
 					int l1 = (l * 16 + k) * 128 + k1;
 
-					if (k1 < 127 - this.hellRNG.nextInt(5) && k1 > 0 + this.hellRNG.nextInt(5))
+					if (k1 < 127 - this.hellRNG.nextInt(5) && k1 > this.hellRNG.nextInt(5))
 					{
 						Block block2 = p_147418_3_[l1];
 
@@ -351,18 +350,17 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 		this.noiseData2 = this.netherNoiseGen1.generateNoiseOctaves(this.noiseData2, p_73164_2_, p_73164_3_, p_73164_4_, p_73164_5_, p_73164_6_, p_73164_7_, d0, d1, d0);
 		this.noiseData3 = this.netherNoiseGen2.generateNoiseOctaves(this.noiseData3, p_73164_2_, p_73164_3_, p_73164_4_, p_73164_5_, p_73164_6_, p_73164_7_, d0, d1, d0);
 		int k1 = 0;
-		int l1 = 0;
 		double[] adouble1 = new double[p_73164_6_];
 		int i2;
 
 		for (i2 = 0; i2 < p_73164_6_; ++i2)
 		{
 			adouble1[i2] = Math.cos((double)i2 * Math.PI * 6.0D / (double)p_73164_6_) * 2.0D;
-			double d2 = (double)i2;
+			double d2 = i2;
 
 			if (i2 > p_73164_6_ / 2)
 			{
-				d2 = (double)(p_73164_6_ - 1 - i2);
+				d2 = p_73164_6_ - 1 - i2;
 			}
 
 			if (d2 < 4.0D)
@@ -376,53 +374,11 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 		{
 			for (int k2 = 0; k2 < p_73164_7_; ++k2)
 			{
-				double d3 = (this.noiseData4[l1] + 256.0D) / 512.0D;
-
-				if (d3 > 1.0D)
-				{
-					d3 = 1.0D;
-				}
-
 				double d4 = 0.0D;
-				double d5 = this.noiseData5[l1] / 8000.0D;
-
-				if (d5 < 0.0D)
-				{
-					d5 = -d5;
-				}
-
-				d5 = d5 * 3.0D - 3.0D;
-
-				if (d5 < 0.0D)
-				{
-					d5 /= 2.0D;
-
-					if (d5 < -1.0D)
-					{
-						d5 = -1.0D;
-					}
-
-					d5 /= 1.4D;
-					d5 /= 2.0D;
-					d3 = 0.0D;
-				}
-				else
-				{
-					if (d5 > 1.0D)
-					{
-						d5 = 1.0D;
-					}
-
-					d5 /= 6.0D;
-				}
-
-				d3 += 0.5D;
-				d5 = d5 * (double)p_73164_6_ / 16.0D;
-				++l1;
 
 				for (int j2 = 0; j2 < p_73164_6_; ++j2)
 				{
-					double d6 = 0.0D;
+					double d6;
 					double d7 = adouble1[j2];
 					double d8 = this.noiseData2[k1] / 512.0D;
 					double d9 = this.noiseData3[k1] / 512.0D;
@@ -446,7 +402,7 @@ public class BiomeChunkProviderMustafar implements IChunkProvider
 
 					if (j2 > p_73164_6_ - 4)
 					{
-						d11 = (double)((float)(j2 - (p_73164_6_ - 4)) / 3.0F);
+						d11 = (float)(j2 - (p_73164_6_ - 4)) / 3.0F;
 						d6 = d6 * (1.0D - d11) + -10.0D * d11;
 					}
 

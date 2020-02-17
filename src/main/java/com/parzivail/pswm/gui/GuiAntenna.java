@@ -3,6 +3,7 @@ package com.parzivail.pswm.gui;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.tileentities.TileEntityAntenna;
 import com.parzivail.util.ui.*;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
@@ -168,22 +169,20 @@ public class GuiAntenna extends GuiScreen
 		GL11.glRotatef(sliderRY.getValue(), 0, 1, 0);
 		GL11.glRotatef(sliderRZ.getValue(), 0, 0, 1);
 
-		for (Object e : antenna.getWorldObj().getEntitiesWithinAABB(Entity.class, antenna.getRenderBoundingBox().expand(blocks, blocks, blocks)))
-			if (e instanceof Entity)
-			{
-				if (e == StarWarsMod.mc.thePlayer)
-					continue;
-				Entity entity = (Entity)e;
-				GL11.glPushMatrix();
+		for (Entity e : WorldUtils.getEntitiesWithinAABB(antenna.getWorldObj(), Entity.class, antenna.getRenderBoundingBox().expand(blocks, blocks, blocks)))
+		{
+			if (e == StarWarsMod.mc.thePlayer)
+				continue;
+			GL11.glPushMatrix();
 
-				GL11.glScalef(1, -1, 1);
-				P3D.glScalef(scale);
-				GL11.glTranslated(entity.posX - antenna.xCoord, entity.posY - antenna.yCoord, entity.posZ - antenna.zCoord);
-				GL11.glTranslatef(-1, 0, -1);
-				GL11.glColor4f(1, 1, 1, 1);
-				com.parzivail.util.ui.RenderHelper.renderEntity(entity, p);
-				GL11.glPopMatrix();
-			}
+			GL11.glScalef(1, -1, 1);
+			P3D.glScalef(scale);
+			GL11.glTranslated(e.posX - antenna.xCoord, e.posY - antenna.yCoord, e.posZ - antenna.zCoord);
+			GL11.glTranslatef(-1, 0, -1);
+			GL11.glColor4f(1, 1, 1, 1);
+			com.parzivail.util.ui.RenderHelper.renderEntity(e, p);
+			GL11.glPopMatrix();
+		}
 
 		if (!alreadyGen)
 		{

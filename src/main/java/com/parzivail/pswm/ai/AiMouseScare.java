@@ -1,6 +1,7 @@
 package com.parzivail.pswm.ai;
 
 import com.parzivail.pswm.Resources;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -14,16 +15,9 @@ import net.minecraft.util.Vec3;
 
 import java.util.List;
 
-public class AiMouseScare extends EntityAIBase
+public class AiMouseScare<T extends Entity> extends EntityAIBase
 {
-	private final IEntitySelector field_98218_a = new IEntitySelector()
-	{
-		@Override
-		public boolean isEntityApplicable(Entity p_82704_1_)
-		{
-			return p_82704_1_.isEntityAlive() && AiMouseScare.this.theEntity.getEntitySenses().canSee(p_82704_1_);
-		}
-	};
+	private final IEntitySelector field_98218_a = p_82704_1_ -> p_82704_1_.isEntityAlive() && AiMouseScare.this.theEntity.getEntitySenses().canSee(p_82704_1_);
 	private EntityCreature theEntity;
 	private double farSpeed;
 	private double nearSpeed;
@@ -31,9 +25,9 @@ public class AiMouseScare extends EntityAIBase
 	private float distanceFromEntity;
 	private PathEntity entityPathEntity;
 	private PathNavigate entityPathNavigate;
-	private Class targetEntityClass;
+	private Class<T> targetEntityClass;
 
-	public AiMouseScare(EntityCreature p_i1616_1_, Class p_i1616_2_, float p_i1616_3_, double p_i1616_4_, double p_i1616_6_)
+	public AiMouseScare(EntityCreature p_i1616_1_, Class<T> p_i1616_2_, float p_i1616_3_, double p_i1616_4_, double p_i1616_6_)
 	{
 		this.theEntity = p_i1616_1_;
 		this.targetEntityClass = p_i1616_2_;
@@ -69,10 +63,10 @@ public class AiMouseScare extends EntityAIBase
 		}
 		else
 		{
-			List list = this.theEntity.worldObj.selectEntitiesWithinAABB(this.targetEntityClass, this.theEntity.boundingBox.expand(this.distanceFromEntity, 3.0D, this.distanceFromEntity), this.field_98218_a);
+			List<T> list = WorldUtils.selectEntitiesWithinAABB(this.theEntity.worldObj, this.targetEntityClass, this.theEntity.boundingBox.expand(this.distanceFromEntity, 3.0D, this.distanceFromEntity), this.field_98218_a);
 			if (list.isEmpty())
 				return false;
-			this.closestLivingEntity = (Entity)list.get(0);
+			this.closestLivingEntity = list.get(0);
 		}
 		Vec3 vec3 = RandomPositionGenerator.findRandomTargetBlockAwayFrom(this.theEntity, 16, 7, Vec3.createVectorHelper(this.closestLivingEntity.posX, this.closestLivingEntity.posY, this.closestLivingEntity.posZ));
 		if (vec3 == null)

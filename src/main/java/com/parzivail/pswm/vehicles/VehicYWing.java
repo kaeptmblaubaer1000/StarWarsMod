@@ -57,8 +57,6 @@ public class VehicYWing extends VehicleAirBase
 
 	/**
 	 * 0 = r2, 1 = r5
-	 *
-	 * @param astroType
 	 */
 	public void setAstroType(int astroType)
 	{

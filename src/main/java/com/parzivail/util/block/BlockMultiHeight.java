@@ -35,7 +35,7 @@ public class BlockMultiHeight extends PBlock
 	{
 		int l = (world.getBlockMetadata(x, y, z) & 15) + 1;
 		float f = 1 / 16f;
-		return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)((float)y + (float)l * f), (double)z + this.maxZ);
+		return AxisAlignedBB.getBoundingBox((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (float)y + (float)l * f, (double)z + this.maxZ);
 	}
 
 	public boolean isOpaqueCube()

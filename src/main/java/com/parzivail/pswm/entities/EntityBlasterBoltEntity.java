@@ -1,29 +1,16 @@
 package com.parzivail.pswm.entities;
 
-import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.force.Cron;
-import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.items.ItemQuestLog;
-import com.parzivail.pswm.items.weapons.ItemLightsaber;
-import com.parzivail.pswm.network.MessageSpawnClientParticle;
-import com.parzivail.pswm.tileentities.TileEntityTarget;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.RaytraceHit;
 import com.parzivail.util.math.RaytraceHitEntity;
 import com.parzivail.util.math.RotatedAxes;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 
 public class EntityBlasterBoltEntity extends EntityBlasterBoltBaseFX
 {

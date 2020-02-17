@@ -7,6 +7,7 @@ import com.parzivail.util.math.RaytraceHitBlock;
 import com.parzivail.util.math.RaytraceHitEntity;
 import com.parzivail.util.ui.LangUtils;
 import com.parzivail.util.ui.Lumberjack;
+import com.parzivail.util.world.WorldUtils;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -19,15 +20,22 @@ import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class EntityUtils
 {
+	@SuppressWarnings("unchecked")
+	public static final Map<Integer, Class<? extends Entity>> IDtoClassMapping = (Map<Integer, Class<? extends Entity>>)EntityList.IDtoClassMapping;
+	@SuppressWarnings("unchecked")
+	public static final Map<Integer, EntityList.EntityEggInfo> entityEggs = (Map<Integer, EntityList.EntityEggInfo>)EntityList.entityEggs;
+
 	private static int mobId = 300;
 
 	/**
 	 * Gets the Droid sitting message
 	 *
 	 * @param isSitting Whether or not the target is sitting
+	 *
 	 * @return The appropriate string based on isSitting
 	 */
 	public static String getDroidSittingMessage(boolean isSitting)
@@ -38,13 +46,6 @@ public class EntityUtils
 	/**
 	 * Gets the Debug text of a Rebel droid based on the given parameters about the droid
 	 *
-	 * @param droid
-	 * @param list
-	 * @param player
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
 	 * @return The List<String> of debug text
 	 */
 	public static List<String> getRebelDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
@@ -60,13 +61,6 @@ public class EntityUtils
 	/**
 	 * Gets the Debug text of a Rebel droid based on the given parameters about the droid
 	 *
-	 * @param droid
-	 * @param list
-	 * @param player
-	 * @param world
-	 * @param x
-	 * @param y
-	 * @param z
 	 * @return The List<String> of debug text
 	 */
 	public static List<String> getImperialDroidDebugText(EntityDroidBase droid, List<String> list, EntityPlayer player, World world, int x, int y, int z)
@@ -81,8 +75,6 @@ public class EntityUtils
 
 	/**
 	 * Gets the last used Mob ID
-	 *
-	 * @return
 	 */
 	public static int getLastUsedId()
 	{
@@ -96,6 +88,7 @@ public class EntityUtils
 	 * @param fromEntity The POV entity
 	 * @param exclude    The entity references to exclude (Note: not classes, but
 	 *                   inequality between two entity pointers)
+	 *
 	 * @return Returns the entity the trace hit, or null if none is hit
 	 */
 	public static Entity rayTrace(int distance, EntityLivingBase fromEntity, Entity[] exclude)
@@ -104,25 +97,21 @@ public class EntityUtils
 			if (fromEntity.worldObj != null)
 			{
 				Entity pointedEntity = null;
-				double d0 = distance;
-				MovingObjectPosition objectMouseOver = fromEntity.rayTrace(d0, 1);
-				double d1 = d0;
+				MovingObjectPosition objectMouseOver = fromEntity.rayTrace(distance, 1);
+				double d1 = distance;
 				Vec3 vec3 = fromEntity.getPosition(0);
 
 				if (objectMouseOver != null)
 					d1 = objectMouseOver.hitVec.distanceTo(vec3);
 
 				Vec3 vec31 = fromEntity.getLook(0);
-				Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
-				pointedEntity = null;
+				Vec3 vec32 = vec3.addVector(vec31.xCoord * (double)distance, vec31.yCoord * (double)distance, vec31.zCoord * (double)distance);
 				float f1 = 1.0F;
-				List list = fromEntity.worldObj.getEntitiesWithinAABBExcludingEntity(fromEntity, fromEntity.boundingBox.addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f1, f1, f1));
+				List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(fromEntity.worldObj, fromEntity, fromEntity.boundingBox.addCoord(vec31.xCoord * (double)distance, vec31.yCoord * (double)distance, vec31.zCoord * (double)distance).expand(f1, f1, f1));
 				double d2 = d1;
 
-				for (int i = 0; i < list.size(); ++i)
+				for (Entity entity : list)
 				{
-					Entity entity = (Entity)list.get(i);
-
 					if (entity.canBeCollidedWith())
 					{
 						float f2 = entity.getCollisionBorderSize();
@@ -170,7 +159,7 @@ public class EntityUtils
 		Entity pointedEntity = null;
 		RaytraceHitBlock rhb = null;
 		Vec3 endPos = startPos.addVector(fromDir.xCoord * distance, fromDir.yCoord * distance, fromDir.zCoord * distance);
-		List list = fromEntity.worldObj.getEntitiesWithinAABBExcludingEntity(fromEntity, fromEntity.boundingBox.addCoord(fromDir.xCoord * distance, fromDir.yCoord * distance, fromDir.zCoord * distance).expand(1, 1, 1));
+		List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(fromEntity.worldObj, fromEntity, fromEntity.boundingBox.addCoord(fromDir.xCoord * distance, fromDir.yCoord * distance, fromDir.zCoord * distance).expand(1, 1, 1));
 
 		if (includeBlocks)
 		{
@@ -184,28 +173,27 @@ public class EntityUtils
 			}
 		}
 
-		for (Object e : list)
+		for (Entity e : list)
 		{
-			Entity entity = (Entity)e;
 
-			if (entity.canBeCollidedWith())
+			if (e.canBeCollidedWith())
 			{
-				float f2 = entity.getCollisionBorderSize();
-				AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f2, f2, f2);
+				float f2 = e.getCollisionBorderSize();
+				AxisAlignedBB axisalignedbb = e.boundingBox.expand(f2, f2, f2);
 				MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(startPos, endPos);
 
-				if (axisalignedbb.isVecInside(startPos) && (0.0D < distance || distance == 0.0D) && !Arrays.asList(exclude).contains(entity))
+				if (axisalignedbb.isVecInside(startPos) && (0.0D < distance || distance == 0.0D) && !Arrays.asList(exclude).contains(e))
 				{
-					pointedEntity = entity;
+					pointedEntity = e;
 					distance = 0.0D;
 				}
 				else if (movingobjectposition != null)
 				{
 					double d3 = startPos.distanceTo(movingobjectposition.hitVec);
 
-					if ((d3 < distance || distance == 0.0D) && !Arrays.asList(exclude).contains(entity))
+					if ((d3 < distance || distance == 0.0D) && !Arrays.asList(exclude).contains(e))
 					{
-						pointedEntity = entity;
+						pointedEntity = e;
 						distance = d3;
 					}
 				}
@@ -234,8 +222,8 @@ public class EntityUtils
 		while (EntityList.getClassFromID(mobId) != null)
 			mobId += 1;
 		EntityRegistry.registerModEntity(entityClass, entityName, mobId, StarWarsMod.instance, 80, 1, true);
-		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), entityClass);
-		Lumberjack.debug("Registered entity \"" + entityName + "\" as ID " + String.valueOf(mobId));
+		IDtoClassMapping.put(mobId, entityClass);
+		Lumberjack.debug("Registered entity \"" + entityName + "\" as ID " + mobId);
 	}
 
 	/**
@@ -251,8 +239,8 @@ public class EntityUtils
 		while (EntityList.getClassFromID(mobId) != null)
 			mobId += 1;
 		EntityRegistry.registerModEntity(mobClass, mobName, mobId, StarWarsMod.instance, 80, 1, true);
-		EntityList.IDtoClassMapping.put(Integer.valueOf(mobId), mobClass);
-		EntityList.entityEggs.put(Integer.valueOf(mobId), new EntityList.EntityEggInfo(mobId, bgColor, fgColor));
-		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + String.valueOf(mobId));
+		IDtoClassMapping.put(mobId, mobClass);
+		entityEggs.put(mobId, new EntityList.EntityEggInfo(mobId, bgColor, fgColor));
+		Lumberjack.debug("Registered entity (and egg) \"" + mobName + "\" as ID " + mobId);
 	}
 }

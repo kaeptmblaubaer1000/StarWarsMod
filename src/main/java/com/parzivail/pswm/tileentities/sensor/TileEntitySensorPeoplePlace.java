@@ -2,6 +2,7 @@ package com.parzivail.pswm.tileentities.sensor;
 
 import com.parzivail.pswm.tileentities.TileEntitySensor;
 import com.parzivail.util.math.MathUtils;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +40,7 @@ public abstract class TileEntitySensorPeoplePlace extends TileEntitySensor
 	{
 		if (!worldObj.isRemote)
 		{
-			List<EntityLiving> entitiesInAabb = this.worldObj.getEntitiesWithinAABB(Entity.class, this.bb.expand(rX, rY, rZ));
+			List<Entity> entitiesInAabb = WorldUtils.getEntitiesWithinAABB(this.worldObj, Entity.class, this.bb.expand(rX, rY, rZ));
 
 			int entities = MathUtils.howManyOfType(entitiesInAabb, getEntityNeedleClass());
 			int entitiesOther = 0;

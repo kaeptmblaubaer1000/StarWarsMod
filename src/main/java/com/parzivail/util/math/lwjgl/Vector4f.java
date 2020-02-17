@@ -328,8 +328,6 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
 
 	/**
 	 * Set X
-	 *
-	 * @param x
 	 */
 	public final void setX(float x)
 	{
@@ -338,8 +336,6 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
 
 	/**
 	 * Set Y
-	 *
-	 * @param y
 	 */
 	public final void setY(float y)
 	{
@@ -348,16 +344,16 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
 
 	/**
 	 * Set Z
-	 *
-	 * @param z
 	 */
 	public void setZ(float z)
 	{
 		this.z = z;
 	}
 
-	/* (Overrides)
-	 * @see org.lwjgl.vector.ReadableVector3f#getZ()
+	/**
+	 * (Overrides)
+	 *
+	 * @see ReadableVector3f#getZ()
 	 */
 	public float getZ()
 	{
@@ -366,16 +362,16 @@ public class Vector4f extends Vector implements ReadableVector4f, WritableVector
 
 	/**
 	 * Set W
-	 *
-	 * @param w
 	 */
 	public void setW(float w)
 	{
 		this.w = w;
 	}
 
-	/* (Overrides)
-	 * @see org.lwjgl.vector.ReadableVector3f#getZ()
+	/**
+	 * (Overrides)
+	 *
+	 * @see ReadableVector3f#getZ()
 	 */
 	public float getW()
 	{

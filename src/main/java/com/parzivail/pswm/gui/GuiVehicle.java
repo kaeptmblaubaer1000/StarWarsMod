@@ -401,14 +401,14 @@ public class GuiVehicle
 
 					/*
 					 * if (tie.getTargetLock()) dist = GlPalette.ORANGE;
-					 * 
+					 *
 					 * if (e instanceof VehicleAirBase && e.riddenByEntity
 					 * instanceof EntityPlayer) {
 					 * StarWarsMod.network.sendToServer(new
 					 * PacketShipTargetLock(e.riddenByEntity.
 					 * getCommandSenderName(), true,
 					 * e.worldObj.provider.dimensionId)); this.lastTarget = e; }
-					 * 
+					 *
 					 * if (e == null && this.lastTarget instanceof
 					 * VehicleAirBase && this.lastTarget.riddenByEntity
 					 * instanceof EntityPlayer) {
@@ -417,7 +417,7 @@ public class GuiVehicle
 					 * getCommandSenderName(), false,
 					 * this.lastTarget.worldObj.provider.dimensionId));
 					 * this.lastTarget = e; }
-					 * 
+					 *
 					 * if (e != null) { dist = GlPalette.ELECTRIC_LIME;
 					 * ClientEventHandler.instance.drawHollowTriangle(centerX,
 					 * centerY - 5, 3, 180, 2, dist);
@@ -425,22 +425,22 @@ public class GuiVehicle
 					 * centerY + 5, 3, 45, 2, dist);
 					 * ClientEventHandler.instance.drawHollowTriangle(centerX + 5,
 					 * centerY + 5, 3, 315, 2, dist);
-					 * 
+					 *
 					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 20, centerY - 10, 2, dist);
 					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY -
 					 * 20, centerX - 10, centerY - 20, 2, dist);
-					 * 
+					 *
 					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 20, centerY - 10, 2, dist);
 					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY -
 					 * 20, centerX + 10, centerY - 20, 2, dist);
-					 * 
+					 *
 					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 20, centerY + 10, 2, dist);
 					 * ClientEventHandler.instance.drawLine(centerX - 20, centerY +
 					 * 20, centerX - 10, centerY + 20, 2, dist);
-					 * 
+					 *
 					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY +
 					 * 20, centerX + 20, centerY + 10, 2, dist);
 					 * ClientEventHandler.instance.drawLine(centerX + 20, centerY +
@@ -858,7 +858,7 @@ public class GuiVehicle
 			}
 		}
 
-		if (StarWarsMod.mc.thePlayer.ridingEntity == null && lastTarget instanceof VehicleAirBase)
+		if (StarWarsMod.mc.thePlayer.ridingEntity == null && lastTarget instanceof VehicleAirBase && lastTarget.riddenByEntity instanceof EntityPlayer)
 		{
 			try
 			{
