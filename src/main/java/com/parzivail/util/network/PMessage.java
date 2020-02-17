@@ -1,6 +1,7 @@
 package com.parzivail.util.network;
 
 import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.util.common.Pair;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -14,7 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import com.parzivail.util.common.Pair;
 
 import java.awt.*;
 import java.io.Serializable;

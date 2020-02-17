@@ -2,7 +2,9 @@ package com.parzivail.pswm.ai;
 
 import com.parzivail.pswm.mobs.IShootThings;
 import com.parzivail.pswm.turrets.GroundTurretImperial;
-import com.parzivail.pswm.vehicles.*;
+import com.parzivail.pswm.vehicles.VehicAWing;
+import com.parzivail.pswm.vehicles.VehicXWing;
+import com.parzivail.pswm.vehicles.VehicYWing;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
