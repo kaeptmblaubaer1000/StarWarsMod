@@ -85,7 +85,9 @@ public class StarWarsMod
 	public static SimpleNetworkWrapper network;
 	public static Common commonProxy;
 
+	@SideOnly(Side.CLIENT)
 	public static ScaledResolution resolution;
+
 	public static Random random = new Random();
 	public static OpenSimplexNoise simplexNoise = new OpenSimplexNoise();
 
