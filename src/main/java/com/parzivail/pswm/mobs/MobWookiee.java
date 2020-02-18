@@ -6,6 +6,7 @@ import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiShoot;
 import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.util.entity.trade.WeightedLoot;
+import com.parzivail.util.world.WorldUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -92,8 +93,7 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			@SuppressWarnings("unchecked")
-			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(worldObj, this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 			for (Entity entity1 : list)
 			{
 				if (entity1 instanceof MobWookiee)
