@@ -3,7 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.entities.EntityBlasterBoltBaseFX;
+import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.ItemHolocron;
 import com.parzivail.pswm.force.powers.PowerBase;
@@ -173,8 +173,7 @@ public class ClientEventHandler
 				}
 
 				if (event.source.getEntity() != null)
-//					EntityBlasterBoltBase.deflectFX(event.source.getEntity());
-					EntityBlasterBoltBaseFX.deflectFX(event.source.getEntity());
+					EntityBlasterBoltBase.deflectFX(event.source.getEntity());
 
 				StarWarsMod.network.sendToServer(new MessageHolocronSetActive(entityPlayer, active.name));
 			}
@@ -183,8 +182,7 @@ public class ClientEventHandler
 				if (event.source.isProjectile())
 				{
 					if (event.source.getEntity() != null)
-//						EntityBlasterBoltBase.deflectFX(event.source.getEntity());
-						EntityBlasterBoltBaseFX.deflectFX(event.source.getEntity());
+						EntityBlasterBoltBase.deflectFX(event.source.getEntity());
 					event.setCanceled(true);
 				}
 		}

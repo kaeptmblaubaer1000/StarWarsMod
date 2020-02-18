@@ -1,14 +1,17 @@
 package com.parzivail.pswm.rendering;
 
 import com.parzivail.pswm.StarWarsMod;
+import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.models.lightsabers.*;
 import com.parzivail.pswm.models.lightsabers.blades.*;
 import com.parzivail.util.ui.Fx;
+import com.parzivail.util.ui.GLPalette;
 import com.parzivail.util.ui.ShaderHelper;
 import com.parzivail.util.ui.gltk.AttribMask;
 import com.parzivail.util.ui.gltk.EnableCap;
 import com.parzivail.util.ui.gltk.GL;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
@@ -106,20 +109,131 @@ public class RenderLightsaber implements IItemRenderer
 			IHandlesRender rB = getBladeRendererForStack(item);
 			if (rB != null && item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeOn) && type != ItemRenderType.INVENTORY)
 			{
-				GL11.glPushMatrix();
-				GL11.glEnable(GL11.GL_BLEND);
-				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+//				GL11.glPushMatrix();
+//				GL11.glEnable(GL11.GL_BLEND);
+//				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+				switch (type)
+				{
+					case ENTITY:
+						break;
+					case EQUIPPED:
+						GL.Rotate(13, 0, 0, 1);
+						GL.Rotate(15.5f, 1, 0, 0);
+						GL.Rotate(10f, 0, 1, 0);
+						GL.Translate(0.425f, 0.2f, 0);
+						break;
+					case EQUIPPED_FIRST_PERSON:
+						GL.Rotate(0, 0, 0, -1);
+						GL.Translate(0.65f, 1.25f, 0.65);
+						break;
+					case INVENTORY:
+						GL.Scale(15);
+						GL.Rotate(-135, 0, 0, 1);
+						GL.Translate(-0.75f, 0.5f, 0);
+						GL.Rotate(135, 0, 1, 0);
+						GL.Disable(EnableCap.CullFace);
+						break;
+				}
+
+				EntityPlayer player = null;
+
+				if(player != null)
+				{
+					if (player.isBlocking())
+					{
+						GL.Rotate(0, 0, 0, -1);
+						GL.Translate(-1.0f, 1.25f, -1.65);
+					}
+				}
+
+//				EntityPlayer player = null;
+//				if (data.length >= 2 && data[1] instanceof EntityPlayer)
+//					player = (EntityPlayer)data[1];
+//
+//				if (player != null)
+//				{
+//					if (player.getItemInUse() == item && player.getItemInUseDuration() > 0 && type == ItemRenderType.EQUIPPED)
+//					{
+//						GL.Translate(0.3f, -0.2f, 0);
+//						GL.Rotate(-75, 0, 0, 1);
+//					}
+//				}
+
+//				GL.PushMatrix();
+//				GL.Translate(-0.5f, 0, -0.5f);
+//				GL.PopMatrix();
+
 				if (item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeDistortion))
-					ShaderHelper.setLightsaberColorDistort(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+					renderBlade(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength), 0.0015f, item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor), GLPalette.WHITE,false);
 				else
-					ShaderHelper.setLightsaberColor(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
-				ShaderHelper.useShader(ShaderHelper.glowSolid);
-				float shakeAmount = 0.0015f;
-				GL11.glTranslatef((float)(StarWarsMod.rngGeneral.nextGaussian() * shakeAmount), 0, (float)(StarWarsMod.rngGeneral.nextGaussian() * shakeAmount));
-				rB.renderItem(type, item, data);
-				ShaderHelper.releaseShader();
-				GL11.glDisable(GL11.GL_BLEND);
-				GL11.glPopMatrix();
+					renderBlade(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeLength), 0.0015f, item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor), GLPalette.WHITE,false);
+//				GL.PopAttrib();
+
+//				GL11.glPushMatrix();
+//				GL.PushAttrib(AttribMask.EnableBit);
+//				GL.Disable(EnableCap.Lighting);
+//				GL.Disable(EnableCap.Texture2D);
+//				GL.Disable(EnableCap.AlphaTest);
+//				GL.Enable(EnableCap.Blend);
+//				GL.Enable(EnableCap.CullFace);
+//				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+//
+//				StarWarsMod.mc.entityRenderer.disableLightmap(0);
+//
+//				double dX = StarWarsMod.random.nextGaussian() * 2;
+//				double dY = StarWarsMod.random.nextGaussian() * 2;
+//				GL.Translate(dX, 0, dY);
+//
+//				// draw glow
+//				GL11.glDepthMask(false);
+//				for (int layer = 19; layer >= 0; layer--)
+//				{
+//					GL.Color(0xFF0000, (int)(1.275f * layer));
+//					Fx.D3.DrawSolidBoxSkewTaper(0.12 - 0.0058f * layer, 0.16 - 0.0058f * layer, 0, 5 - 0.13f + 0.2f * Math.sqrt(1 - Math.pow(1 - layer / 19f, 2)), 0, 0, -(20 - layer) * 0.005f, 0);
+//				}
+//
+//				// draw core
+//				GL.Color(GLPalette.WHITE);
+//
+//				int segments = false ? 15 : 1;
+//				float dSegments = 1f / segments;
+//				float dLength = 5.0f / segments;
+//				float topThickness = 0.022f;
+//				float bottomThickness = 0.035f;
+//				double offset = StarWarsMod.random.nextGaussian();
+//
+//				double dTRoundBottom = false ? StarWarsMod.simplexNoise.eval(offset, dLength * (segments + 1)) * 0.005f : 0;
+//				Fx.D3.DrawSolidBoxSkewTaper(0.01f, 0.022f + dTRoundBottom, 0, 5.0f + 0.02f, 0, 0, 5.0f, 0);
+//
+//				for (int i = 0; i < segments; i++)
+//				{
+//					float topThicknessLerp = (float)Fx.Util.Lerp(bottomThickness, topThickness, dSegments * (i + 1));
+//					float bottomThicknessLerp = (float)Fx.Util.Lerp(bottomThickness, topThickness, dSegments * i);
+//
+//					double dTTop = false ? StarWarsMod.simplexNoise.eval(offset, dLength * (i + 1)) * 0.005f : 0;
+//					double dTBottom = false ? StarWarsMod.simplexNoise.eval(offset, dLength * i) * 0.005f : 0;
+//
+//					Fx.D3.DrawSolidBoxSkewTaper(topThicknessLerp + dTTop, bottomThicknessLerp + dTBottom, 0, dLength * (i + 1), 0, 0, dLength * i, 0);
+//				}
+//
+//				StarWarsMod.mc.entityRenderer.enableLightmap(0);
+//				GL.PopAttrib();
+//				GL11.glPopMatrix();
+
+
+
+//				if (item.stackTagCompound.getBoolean(ItemLightsaber.nbtBladeDistortion))
+//					ShaderHelper.setLightsaberColorDistort(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+//				else
+//					ShaderHelper.setLightsaberColor(item.stackTagCompound.getInteger(ItemLightsaber.nbtBladeColor));
+//				ShaderHelper.useShader(ShaderHelper.glowSolid);
+//				float shakeAmount = 0.0015f;
+//				GL11.glTranslatef((float)(StarWarsMod.rngGeneral.nextGaussian() * shakeAmount), 0, (float)(StarWarsMod.rngGeneral.nextGaussian() * shakeAmount));
+//				rB.renderItem(type, item, data);
+//				ShaderHelper.releaseShader();
+//				GL11.glDisable(GL11.GL_BLEND);
+//				GL11.glPopMatrix();
 			}
 		}
 		else

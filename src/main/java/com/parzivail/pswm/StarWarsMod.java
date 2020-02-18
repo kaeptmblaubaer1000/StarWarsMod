@@ -73,6 +73,7 @@ public class StarWarsMod
 
 	@SideOnly(Side.CLIENT)
 	public static Minecraft mc;
+	public static ScaledResolution resolution;
 
 	public static int shipSpecialWeaponCooldown = 0;
 
@@ -84,9 +85,6 @@ public class StarWarsMod
 	public static StarWarsCommonProxy proxy;
 	public static SimpleNetworkWrapper network;
 	public static Common commonProxy;
-
-	@SideOnly(Side.CLIENT)
-	public static ScaledResolution resolution;
 
 	public static Random random = new Random();
 	public static OpenSimplexNoise simplexNoise = new OpenSimplexNoise();

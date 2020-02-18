@@ -4,14 +4,12 @@ import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.ai.AiFreqMove;
 import com.parzivail.pswm.ai.AiMelee;
 import com.parzivail.pswm.ai.AiShoot;
-import com.parzivail.pswm.entities.EntityBlasterBoltEntity;
-import com.parzivail.util.entity.EntityUtils;
+import com.parzivail.pswm.entities.EntityBlasterProbeBolt;
 import com.parzivail.util.entity.trade.WeightedLoot;
-import com.parzivail.util.math.RaytraceHit;
-import com.parzivail.util.math.RaytraceHitEntity;
-import com.parzivail.util.math.RotatedAxes;
-import com.parzivail.util.world.WorldUtils;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -21,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -58,7 +55,7 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 				setCurrentItemOrArmor(0, new ItemStack(StarWarsItems.gaffiStick, 1));
 				break;
 			case 1:
-//				setCurrentItemOrArmor(0, new ItemStack(bowcaster, 1));
+				setCurrentItemOrArmor(0, new ItemStack(bowcaster, 1));
 				this.tasks.addTask(0, aiShoot = new AiShoot(this, 1.0D, 20, 60, 15.0F));
 				break;
 		}
@@ -80,33 +77,7 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 	public void rangeAttack(EntityLivingBase p_82196_1_, float p_82196_2_)
 	{
 		playSound(MODID + ":" + "item.blasterBow.use", 1.0F, 1.0F + (float)MathHelper.getRandomDoubleInRange(rand, -0.2D, 0.2D));
-	}
-
-	public void recreate(EntityPlayer player)
-	{
-		this.setDead();
-		RotatedAxes ra = new RotatedAxes(270 - player.rotationYaw, -player.rotationPitch, 0);
-
-		float hS = (worldObj.rand.nextFloat() * 2 - 1) * 2;
-		float vS = (worldObj.rand.nextFloat() * 2 - 1) * 2;
-
-		float hSR = 1 - 5;
-		float vSR = 1 - 5;
-
-		ra.rotateGlobalYaw(hS * hSR);
-		ra.rotateGlobalPitch(vS * vSR);
-		Vec3 look = Vec3.createVectorHelper(Math.cos(ra.getPitch() / 180f * Math.PI) * Math.cos(ra.getYaw() / 180f * Math.PI), Math.sin(ra.getPitch() / 180f * Math.PI), Math.cos(ra.getPitch() / 180f * Math.PI) * Math.sin(-ra.getYaw() / 180f * Math.PI));
-		RaytraceHit hit = EntityUtils.rayTrace(look, 100, player, new Entity[0], true);
-
-		Entity e = new EntityBlasterBoltEntity(this.worldObj, (float)look.xCoord, (float)look.yCoord, (float)look.zCoord, 10, 0xFF0000, 5.0f);
-		e.setPosition(player.posX, player.posY + player.getEyeHeight(), player.posZ);
-		worldObj.spawnEntityInWorld(e);
-
-		if (hit instanceof RaytraceHitEntity && ((RaytraceHitEntity)hit).entity instanceof EntityLiving)
-		{
-			EntityLiving entity = (EntityLiving)((RaytraceHitEntity)hit).entity;
-			entity.attackEntityFrom(DamageSource.causePlayerDamage(player), 10.0f);
-		}
+		worldObj.spawnEntityInWorld(new EntityBlasterProbeBolt(worldObj, this, p_82196_1_));
 	}
 
 	@Override
@@ -121,7 +92,8 @@ public class MobWookiee extends EntityCreature implements IMob, IShootThings
 		Entity entity = source.getEntity();
 		if (entity instanceof EntityPlayer)
 		{
-			List<Entity> list = WorldUtils.getEntitiesWithinAABBExcludingEntity(worldObj, this, boundingBox.expand(32.0D, 32.0D, 32.0D));
+			@SuppressWarnings("unchecked")
+			List<Entity> list = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(32.0D, 32.0D, 32.0D));
 			for (Entity entity1 : list)
 			{
 				if (entity1 instanceof MobWookiee)

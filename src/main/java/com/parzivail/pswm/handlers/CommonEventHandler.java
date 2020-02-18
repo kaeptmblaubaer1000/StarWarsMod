@@ -3,7 +3,7 @@ package com.parzivail.pswm.handlers;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
-import com.parzivail.pswm.entities.EntityBlasterBoltBaseFX;
+import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
 import com.parzivail.pswm.force.powers.*;
 import com.parzivail.pswm.gui.GuiVehicle;
@@ -571,7 +571,7 @@ public class CommonEventHandler
 	private void updateDeflect(PowerDeflect power1)
 	{
 		if (power1.isRunning)
-			WorldUtils.getEntitiesWithinAABB(StarWarsMod.mc.theWorld, Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBaseFX).forEach(entity -> StarWarsMod.network.sendToServer(new MessageEntityReverse(entity)));
+			WorldUtils.getEntitiesWithinAABB(StarWarsMod.mc.theWorld, Entity.class, StarWarsMod.mc.thePlayer.boundingBox.expand(3, 3, 3)).stream().filter(entityObj -> entityObj instanceof EntityArrow || entityObj instanceof EntityBlasterBoltBase).forEach(entity -> StarWarsMod.network.sendToServer(new MessageEntityReverse(entity)));
 	}
 
 	/**

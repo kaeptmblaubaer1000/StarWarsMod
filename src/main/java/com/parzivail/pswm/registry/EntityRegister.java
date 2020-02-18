@@ -89,9 +89,6 @@ public class EntityRegister
 		EntityUtils.registerEntity(EntityXWingBolt.class, "blasterXWingBolt");
 		EntityUtils.registerEntity(EntityTIEBolt.class, "blasterTIEBolt");
 
-		EntityUtils.registerEntity(EntityBlasterBoltFX.class, "blasterBoltRed");
-		EntityUtils.registerEntity(EntityBlasterBoltEntity.class, "blasterBoltEntityRed2");
-
 		// New Turrets
 		EntityUtils.registerEntity(GroundTurretImperial.class, "imperialGroundTurret");
 		// Turrets laser
