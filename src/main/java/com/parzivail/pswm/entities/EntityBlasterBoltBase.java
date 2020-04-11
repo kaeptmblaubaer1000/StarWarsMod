@@ -27,12 +27,6 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	protected float speed = 4.5f;
 	private Entity target;
 
-	private static final int DATA_DX = 11;
-	private static final int DATA_DY = 12;
-	private static final int DATA_DZ = 13;
-	private static final int DATA_LENGTH = 14;
-	private static final int DATA_COLOR = 15;
-
 	public EntityBlasterBoltBase(World par1World, double par2, double par4, double par6, float damage)
 	{
 		super(par1World, par2, par4, par6);
@@ -89,6 +83,20 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 			this.setLocationAndAngles(par2EntityLivingBase.posX + d4, this.posY, par2EntityLivingBase.posZ + d5, f2, f3);
 			this.yOffset = 0.0F;
 			this.setThrowableHeading(d0, d1, d2, 1.0F, 1.0F);
+
+			if(par2EntityLivingBase.isSprinting()) {
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 2.5F);
+			} else if(par2EntityLivingBase.isAirBorne && par2EntityLivingBase.isInWater()) {
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 3.5F);
+			} else if(par2EntityLivingBase.isRiding()) {
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 4.5F);
+			} else if(par2EntityLivingBase.isSneaking()) {
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 0.8F);
+			} else if(par2EntityLivingBase.moveForward == 1) {
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 1.8F);
+			} else if(par2EntityLivingBase.moveStrafing == 1) {
+				this.setThrowableHeading(d0, d1, d2, 1.0F, 2.0F);
+			}
 		}
 	}
 
@@ -250,17 +258,17 @@ public abstract class EntityBlasterBoltBase extends EntityThrowable
 	public abstract void recreate(EntityPlayer hit);
 
 	@Override
-	public void setThrowableHeading(double p_70186_1_, double p_70186_3_, double p_70186_5_, float p_70186_7_, float p_70186_8_)
+	public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy)
 	{
-		double f2 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_3_ * p_70186_3_ + p_70186_5_ * p_70186_5_);
-		p_70186_1_ /= f2;
-		p_70186_3_ /= f2;
-		p_70186_5_ /= f2;
-		this.motionX = p_70186_1_ * this.speed;
-		this.motionY = p_70186_3_ * this.speed;
-		this.motionZ = p_70186_5_ * this.speed;
-		double f3 = MathHelper.sqrt_double(p_70186_1_ * p_70186_1_ + p_70186_5_ * p_70186_5_);
-		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(p_70186_1_, p_70186_5_) * 180.0D / Math.PI);
-		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, f3) * 180.0D / Math.PI);
+		double f2 = MathHelper.sqrt_double(x * x + y * y + z * z);
+		x /= f2;
+		y /= f2;
+		z /= f2;
+		this.motionX = x * this.speed;
+		this.motionY = y * this.speed;
+		this.motionZ = z * this.speed;
+		double f3 = MathHelper.sqrt_double(x * x + z * z);
+		this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(x, x) * 180.0D / Math.PI);
+		this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(y, f3) * 180.0D / Math.PI);
 	}
 }

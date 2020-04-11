@@ -153,6 +153,7 @@ public class ItemBlasterHeavy extends Item
 
 				if (!world.isRemote && BlasterUtils.getCooldown(stack) < 15)
 				{
+					// Todo: Add recoil
 					world.spawnEntityInWorld(new EntityBlasterVariableBolt(world, player, 9f));
 
 					BlasterUtils.setCooldown(stack, BlasterUtils.getCooldown(stack) + 1);
