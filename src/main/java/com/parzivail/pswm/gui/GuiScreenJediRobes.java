@@ -2,7 +2,7 @@ package com.parzivail.pswm.gui;
 
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
-import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.powers_old.PowerBase;
 import com.parzivail.pswm.network.MessageHolocronRefreshPowers;
 import com.parzivail.pswm.network.MessageHolocronSetActive;
 import com.parzivail.pswm.network.MessageHolocronUpgradePower;

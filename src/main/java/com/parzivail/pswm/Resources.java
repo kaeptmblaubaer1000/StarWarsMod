@@ -1,6 +1,7 @@
 package com.parzivail.pswm;
 
 import com.parzivail.pswm.dimension.PlanetInformation;
+import com.parzivail.util.common.PendingRename;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
@@ -160,7 +161,7 @@ public class Resources
 	public static final String VERSION_MAJOR = "1.3";
 	public static String ONLINE_VERSION = "";
 
-	public static boolean IS_DEV_ENVIRONVENT = false;
+	public static boolean IS_DEV_ENVIRONVENT = true;
 
 	public static boolean IS_SEQUEL_RELEASE = true;
 
@@ -172,7 +173,7 @@ public class Resources
 
 	private static int guiCounter = 0;
 	public static final int GUI_MV = guiCounter++;
-	public static final int GUI_ROBES = guiCounter++;
+	public static final int GUI_FORCE_POWERS = guiCounter++;
 	public static final int GUI_JEDI_SITH = guiCounter++;
 	public static final int GUI_HOLOTABLE = guiCounter++;
 	public static final int GUI_QUESTNPC = guiCounter++;
@@ -240,11 +241,15 @@ public class Resources
 
 	public static final String nbtMaster = "master";
 	public static final String nbtEntityTarget = "target";
+	@PendingRename(PendingRename.Kind.FORCE_XP)
 	public static final String nbtXp = "xp";
+	@PendingRename(PendingRename.Kind.FORCE_XP)
 	public static final String nbtMaxXp = "maxxp";
 	public static final String nbtSide = "side";
 	public static final String nbtPowers = "powers";
 	public static final String nbtRemainingPts = "points";
+	public static final String nbtUpgradePoints = "upgradePoints";
+	public static final String nbtAskedJediSith = "askedJediSith";
 
 	public static final String nbtQuests = "quests";
 	public static final String nbtOwner = "owner";

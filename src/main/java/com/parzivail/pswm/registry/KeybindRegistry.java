@@ -16,7 +16,7 @@ public class KeybindRegistry
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyDebug;
 	@SideOnly(Side.CLIENT)
-	public static KeyBinding keyRobeGui;
+	public static KeyBinding keyForcePowerGui;
 	@SideOnly(Side.CLIENT)
 	public static KeyBinding keyRobePower;
 	@SideOnly(Side.CLIENT)
@@ -38,7 +38,7 @@ public class KeybindRegistry
 	{
 		KeybindRegistry.keyShootVehicle = registerKeybind("shootVehicle", Keyboard.KEY_F);
 		KeybindRegistry.keySFoil = registerKeybind("toggleSFoil", Keyboard.KEY_C);
-		KeybindRegistry.keyRobeGui = registerKeybind("robeGui", Keyboard.KEY_V);
+		KeybindRegistry.keyForcePowerGui = registerKeybind("forcePowerGui", Keyboard.KEY_V);
 		KeybindRegistry.keyRobePower = registerKeybind("robePower", Keyboard.KEY_B);
 		KeybindRegistry.keyRobePowerNext = registerKeybind("robePowerNext", Keyboard.KEY_G);
 		KeybindRegistry.keyRobePowerPrev = registerKeybind("robePowerPrev", Keyboard.KEY_H);

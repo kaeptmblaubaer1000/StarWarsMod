@@ -67,6 +67,12 @@ processResources {
 	}
 }
 
+jar {
+	manifest {
+		attributes "FMLAT": "pswm_at.cfg"
+	}
+}
+
 runClient {
 	args += ["--username", "Player", "--uuid", "1e82d5df-f979-3bfc-ba78-cae265f60e34"]
 }

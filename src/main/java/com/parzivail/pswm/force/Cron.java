@@ -1,8 +1,9 @@
 package com.parzivail.pswm.force;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.force.powers.*;
+import com.parzivail.pswm.force.powers_old.*;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
+import com.parzivail.util.common.PendingRename;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -212,6 +213,7 @@ public class Cron
 	 * @param player The {@link EntityPlayer} to query
 	 * @return The XP as an int
 	 */
+	@PendingRename(PendingRename.Kind.FORCE_XP)
 	public static int getXP(EntityPlayer player)
 	{
 		ItemStack stack = getHolocron(player);
@@ -226,6 +228,7 @@ public class Cron
 	 * @param stack The {@link ItemHolocron} stack to query
 	 * @return The XP as an int
 	 */
+	@PendingRename(PendingRename.Kind.FORCE_XP)
 	public static int getXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtXp))
@@ -239,6 +242,7 @@ public class Cron
 	 * @param stack The {@link ItemHolocron} stack to query
 	 * @return The max XP as an int
 	 */
+	@PendingRename(PendingRename.Kind.FORCE_XP)
 	public static int getMaxXP(ItemStack stack)
 	{
 		if (stack.stackTagCompound != null && stack.stackTagCompound.hasKey(Resources.nbtMaxXp))
@@ -388,7 +392,7 @@ public class Cron
 	 */
 	public static float getPercentForLevel(int level)
 	{
-		int i = 100 - level;
+		int i = 100 - (level * 10);
 		i = Math.max(i, 10);
 		return i;
 	}
@@ -498,8 +502,9 @@ public class Cron
 	 */
 	public static String getTitle(String side, int level)
 	{
-		String s = side.equals(SIDE_JEDI) ? "Jedi " : "Sith ";
-		if (side.equals(SIDE_JEDI))
+		final boolean isJedi = side.equals(SIDE_JEDI);
+		String s = isJedi ? "Jedi " : "Sith ";
+		if (isJedi)
 		{
 			if (level < 15)
 				s += "Padawan";

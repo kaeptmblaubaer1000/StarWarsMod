@@ -5,7 +5,9 @@ import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
-import com.parzivail.pswm.force.powers.*;
+import com.parzivail.pswm.force.Force;
+import com.parzivail.pswm.force.ForcePower;
+import com.parzivail.pswm.force.powers_old.*;
 import com.parzivail.pswm.gui.GuiVehicle;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
@@ -16,8 +18,8 @@ import com.parzivail.pswm.sound.SoundSFoil;
 import com.parzivail.pswm.utils.BlasterBoltType;
 import com.parzivail.pswm.utils.BlasterPosition;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
-import com.parzivail.pswm.utils.StatTrack;
 import com.parzivail.pswm.vehicles.*;
+import com.parzivail.util.common.Pair;
 import com.parzivail.util.entity.EntityUtils;
 import com.parzivail.util.math.AnimationManager;
 import com.parzivail.util.ui.GuiManager;
@@ -49,10 +51,9 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldServer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-
-//import static com.parzivail.pswm.utils.ForceUtils.activePower;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CommonEventHandler
 {
@@ -177,8 +178,9 @@ public class CommonEventHandler
 					StarWarsMod.shipSpecialWeaponCooldown = 3000;
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, QuestStats.PROTONS_SHOT);
-					if (ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer) != null)
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
+					final ItemStack questLog;
+					if ((questLog = ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer)) != null)
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, questLog.stackTagCompound));
 				}
 				else if (StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber || StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicYWing)
 				{
@@ -189,8 +191,9 @@ public class CommonEventHandler
 					String stat = StarWarsMod.mc.thePlayer.ridingEntity instanceof VehicTIEBomber ? QuestStats.BOMBS_DROPPED_EMPIRE : QuestStats.BOMBS_DROPPED_REBEL;
 
 					ItemQuestLog.addStat(StarWarsMod.mc.thePlayer, stat);
-					if (ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer) != null)
-						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer).stackTagCompound));
+					final ItemStack questLog;
+					if ((questLog = ItemQuestLog.getQuestContainer(StarWarsMod.mc.thePlayer)) != null)
+						StarWarsMod.network.sendToServer(new MessageSetQuestLogNbt(StarWarsMod.mc.thePlayer, questLog.stackTagCompound));
 				}
 			}
 		}
@@ -271,35 +274,34 @@ public class CommonEventHandler
 			}
 		}
 
-		if (KeybindRegistry.keyRobeGui.isPressed())
+		if (KeybindRegistry.keyForcePowerGui.isPressed())
 			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
-				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_ROBES, null, 0, 0, 0);
+				StarWarsMod.mc.thePlayer.openGui(StarWarsMod.instance, Resources.GUI_FORCE_POWERS, null, 0, 0, 0);
 
 		if (KeybindRegistry.keyRobePowerNext.isPressed())
 		{
-			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
+			ItemStack cron;
+			if ((cron = Cron.getHolocron(StarWarsMod.mc.thePlayer)) != null)
 			{
-				PowerBase power = Cron.getActive(StarWarsMod.mc.thePlayer);
-				if (power != null)
+				final List<ForcePower> powers = Force.powers.stream().map(power -> new Pair<>(power.name, cron.stackTagCompound.getCompoundTag(power.name))).filter(data -> data.right.getInteger("level") > 0).map(data -> Force.powersByName.get(data.left)).collect(Collectors.toList());
+				if (powers.isEmpty())
 				{
-
-					String current = power.name;
-					ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
-					int index = Arrays.asList(powers.toArray()).indexOf(current);
-					do
+					Force.selectedPower = null;
+				}
+				else if (Force.selectedPower == null)
+				{
+					Force.selectedPower = powers.get(0);
+				}
+				else
+				{
+					int idx = powers.indexOf(Force.selectedPower);
+					if (idx == -1 || idx == powers.size() - 1)
 					{
-						index++;
-						if (index >= powers.size())
-							index = 0;
+						Force.selectedPower = powers.get(0);
 					}
-					while (Cron.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
-					if (index < powers.size() - 1 && !powers.get(index).equals(current))
+					else
 					{
-						if (index < 0)
-							index = powers.size() - 1;
-						PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
-						//activePower = selectedPower;
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.name));
+						Force.selectedPower = powers.get(idx + 1);
 					}
 				}
 			}
@@ -307,26 +309,32 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePowerPrev.isPressed())
 		{
-			if (Cron.getHolocron(StarWarsMod.mc.thePlayer) != null)
+			ItemStack cron;
+			if ((cron = Cron.getHolocron(StarWarsMod.mc.thePlayer)) != null)
 			{
-				final PowerBase activePower = Cron.getActive(StarWarsMod.mc.thePlayer);
-				if (activePower != null)
+				final List<ForcePower> powers = Force.powers.stream().map(power -> new Pair<>(power.name, cron.stackTagCompound.getCompoundTag(power.name))).filter(data -> data.right.getInteger("level") > 0).map(data -> Force.powersByName.get(data.left)).collect(Collectors.toList());
+				if (powers.isEmpty())
 				{
-					String current = activePower.name; // FIXME: NPE without any powers as none is active, getActive returns null. TODO: add null check
-					ArrayList<String> powers = Cron.getPowersAvailableAtLevel(Cron.getSide(StarWarsMod.mc.thePlayer), Cron.getLevel(StarWarsMod.mc.thePlayer));
-					int index = Arrays.asList(powers.toArray()).indexOf(current);
-					do
+					Force.selectedPower = null;
+				}
+				else if (Force.selectedPower == null)
+				{
+					Force.selectedPower = powers.get(0);
+				}
+				else
+				{
+					int idx = powers.indexOf(Force.selectedPower);
+					switch (idx)
 					{
-						index--;
-						if (index < 0)
-							index = powers.size() - 1;
-					}
-					while (Cron.getLevelOf(StarWarsMod.mc.thePlayer, powers.get(index)) == 0 && !powers.get(index).equals(current));
-					if (index > -1 && !powers.get(index).equals(current))
-					{
-						PowerBase selectedPower = Cron.initNewPower(StarWarsMod.mc.thePlayer, powers.get(index));
-						//activePower = selectedPower;
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, selectedPower.name));
+						case -1:
+							Force.selectedPower = powers.get(0);
+							break;
+						case 0:
+							Force.selectedPower = powers.get(powers.size() - 1);
+							break;
+						default:
+							Force.selectedPower = powers.get(idx - 1);
+							break;
 					}
 				}
 			}
@@ -334,76 +342,11 @@ public class CommonEventHandler
 
 		if (KeybindRegistry.keyRobePower.isPressed())
 		{
-			// FIXME: Definitely put this server-side
 			ItemStack cron;
 			if ((cron = Cron.getHolocron(StarWarsMod.mc.thePlayer)) != null)
 			{
-				PowerBase powerBase = Cron.getActive(cron);
-				if (powerBase != null && Cron.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost() >= 0 && !Cron.isCooling(powerBase.name))
-				{
-					if (powerBase.recharge <= 0)
-					{
-						boolean coolFlag = true;
-						StatTrack.addStat("useForcePower-" + powerBase.name);
-						switch (powerBase.name)
-						{
-							case "defend":
-								PowerDefend powerDefend = (PowerDefend)powerBase;
-								if (powerDefend.isRunning)
-								{
-									powerDefend.isRunning = false;
-									powerDefend.health = 0;
-									powerDefend.recharge = powerDefend.rechargeTime;
-								}
-								else
-								{
-									powerDefend.run(StarWarsMod.mc.thePlayer);
-									coolFlag = false;
-								}
-								break;
-							case "deflect":
-								PowerDeflect powerDeflect = (PowerDeflect)powerBase;
-								if (!powerDeflect.isRunning)
-								{
-									powerDeflect.isRunning = true;
-									powerDeflect.recharge = 0;
-									coolFlag = false;
-								}
-								break;
-							case "lightning":
-								//if (!powerBase.isRunning)
-								//{
-								//	powerBase.isRunning = true;
-								//	powerBase.recharge = 0;
-								//	coolFlag = false;
-								//}
-								break;
-							case "grab":
-								if (powerBase.isRunning)
-								{
-									powerBase.isRunning = false;
-									powerBase.recharge = powerBase.rechargeTime;
-								}
-								else
-								{
-									powerBase.run(StarWarsMod.mc.thePlayer);
-									coolFlag = false;
-								}
-								break;
-							default:
-								powerBase.run(StarWarsMod.mc.thePlayer);
-								powerBase.recharge = powerBase.rechargeTime;
-								break;
-						}
-
-						if (coolFlag)
-							coolPower(powerBase);
-
-						StarWarsMod.network.sendToServer(new MessageHolocronSetActive(StarWarsMod.mc.thePlayer, powerBase.name));
-
-						StarWarsMod.network.sendToServer(new MessageHolocronSetXp(StarWarsMod.mc.thePlayer, Cron.getXP(StarWarsMod.mc.thePlayer) - powerBase.getCost()));
-					}
-				}
+				// TODO: possibly move the raytrace server-side? It uses client-side APIs though
+				StarWarsMod.network.sendToServer(new MessageActivateForcePower(StarWarsMod.mc.thePlayer, Cron.getActive(cron).name, EntityUtils.rayTrace(15, StarWarsMod.mc.thePlayer, new Entity[0])));
 			}
 		}
 	}
@@ -455,7 +398,7 @@ public class CommonEventHandler
 		if (StarWarsMod.mc.theWorld == null || StarWarsMod.mc.thePlayer == null)
 			return;
 
-		updateForcePowers();
+		//updateForcePowers();
 	}
 
 	/**
@@ -556,7 +499,7 @@ public class CommonEventHandler
 		//Lumberjack.log(power.getDurationForLevel(power.currentLevel));
 	}
 
-	private void coolPower(PowerBase power)
+	public static void coolPower(PowerBase power)
 	{
 		if (!Cron.isCooling(power.name))
 			Cron.coolingPowers.add(power);

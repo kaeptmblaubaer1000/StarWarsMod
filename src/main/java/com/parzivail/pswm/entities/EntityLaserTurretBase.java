@@ -3,7 +3,7 @@ package com.parzivail.pswm.entities;
 import com.parzivail.pswm.Resources;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
-import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.powers_old.PowerBase;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.network.MessageSpawnClientParticle;

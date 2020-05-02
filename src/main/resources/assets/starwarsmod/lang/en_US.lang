@@ -2,12 +2,12 @@
 # Original Trilogy
 ####################
 
-// Damage Sources
+# Damage Sources
 death.attack.melee=%1$s was pummeled
 death.attack.blaster.player=%2$s blasted %1$s to bits
 death.attack.saber.player=%1$s was no match for the lightsaber of %2$s
 
-// Items
+# Items
 item.starwarsmod.hiltMetalCompound.name=Hilt Metal Compound
 item.starwarsmod.hiltMetalAlloy.name=Hilt Metal Alloy
 item.starwarsmod.plasmaEmitter.name=Plasma Emitter
@@ -56,14 +56,14 @@ item.starwarsmod.dataPad.name=Data Pad
 item.starwarsmod.xwingSchematics.name=T-65 X-Wing Starfighter Schematics
 item.starwarsmod.sithArtifact.name=Sith Artifact
 
-// Tools
+# Tools
 item.starwarsmod.droidCaller.name=Droid Caller
 item.starwarsmod.droidHacker.name=Droid Hacker
 item.starwarsmod.binocularsHoth.name=TD2.3 Electrobinoculars
 item.starwarsmod.binocularsTatooine.name=MB450 Macrobinoculars
 item.starwarsmod.hydrospanner.name=Hydrospanner
 
-// Food
+# Food
 item.starwarsmod.banthaChop.name=Bantha Chop
 item.starwarsmod.banthaChopCooked.name=Cooked Bantha Chop
 item.starwarsmod.banthaMilk.name=Bantha Milk
@@ -74,7 +74,7 @@ item.starwarsmod.chasuka.name=Chasuka
 item.starwarsmod.banthaPlatter.name=Bantha Platter
 item.starwarsmod.gorrnar.name=Gorrnar
 
-// Weapons
+# Weapons
 item.starwarsmod.gaffiStick.name=Gaderffii (Gaffi Stick)
 item.starwarsmod.lightsaber.name=Lightsaber
 item.starwarsmod.lightsaberOff.name=Lightsaber
@@ -84,7 +84,7 @@ item.starwarsmod.gamorreanAx2.name=Gamorrean Ax
 item.starwarsmod.gamorreanAx3.name=Gamorrean Staff
 item.starwarsmod.vibroLance.name=Vibro-Lance
 
-// Blasters
+# Blasters
 item.starwarsmod.blasterPistol.Dl44.name=BlasTech DL-44 Heavy Blaster Pistol
 item.starwarsmod.blasterPistol.Dl18.name=BlasTech DL-18 Blaster Pistol
 item.starwarsmod.blasterPistol.Dh17.name=BlasTech DH-17 Blaster Pistol
@@ -104,11 +104,11 @@ item.starwarsmod.blasterRifle.Cycler.name=Tusken Cycler
 item.starwarsmod.blasterRifle.Stormtrooper.name=BlasTech E-11 Blaster Rifle
 item.starwarsmod.bowcaster.name=Wookiee Bowcaster
 
-// Music Discs
+# Music Discs
 item.starwarsmod.musicDisc.name=Music Disc
 item.starwarsmod.musicDiscdrift.desc=Tokyo Drift - Teriyaki Boyz
 
-// Hyperdrives
+# Hyperdrives
 item.starwarsmod.hyperdriveTatooine.name=Tatooine Hyperdrive
 item.starwarsmod.hyperdriveEarth.name=Earth Hyperdrive
 item.starwarsmod.hyperdriveHoth.name=Hoth Hyperdrive
@@ -120,7 +120,7 @@ item.starwarsmod.hyperdriveIlum.name=Ilum Hyperdrive
 item.starwarsmod.hyperdriveMustafar.name=Mustafar Hyperdrive
 item.starwarsmod.hyperdriveSpace.name=Space Hyperdrive
 
-// Droid Items
+# Droid Items
 item.starwarsmod.spawnAstromech.name=R2-Series Astromech Droid
 item.starwarsmod.spawnAstromech2.name=R5-Series Astromech Droid
 item.starwarsmod.spawnAstromechImperial.name=R2-Series Astromech Droid
@@ -132,7 +132,7 @@ item.starwarsmod.spawnSurgical.name=2-1B Surgical Droid
 item.starwarsmod.spawnMouse.name=MSE-6 Repair Droid
 item.starwarsmod.spawnProbe.name=Viper Probe Droid
 
-// Droids
+# Droids
 entity.starwarsmod.droidAstromech.name=R2-Series Astromech Droid
 entity.starwarsmod.droidAstromech2.name=R5-Series Astromech Droid
 entity.starwarsmod.droidAstromechImperial.name=R2-Series Astromech Droid
@@ -144,7 +144,7 @@ entity.starwarsmod.droidSurgical.name=2-1B Surgical Droid
 entity.starwarsmod.droidMouse.name=MSE-6 Repair Droid
 entity.starwarsmod.droidProbe.name=Viper Probe Droid
 
-// Vehicle Items
+# Vehicle Items
 item.starwarsmod.spawnHothSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnSpeederBike.name=74-Z Speeder Bike
 item.starwarsmod.spawnLandspeeder.name=X-34 Landspeeder
@@ -161,7 +161,7 @@ item.starwarsmod.spawnAtst.name=AT-ST
 item.starwarsmod.spawnScootemaround.name=Scoot-'Em-Around
 item.starwarsmod.spawnScootemaroundHoth.name=Scoot-'Em-Around
 
-// Vehicles
+# Vehicles
 entity.starwarsmod.speederBike.name=74-Z Speeder Bike
 entity.starwarsmod.landspeeder.name=X-34 Landspeeder
 entity.starwarsmod.tie.name=TIE/LN Starfighter
@@ -169,7 +169,7 @@ entity.starwarsmod.tieInterceptor.name=TIE/IN Interceptor
 entity.starwarsmod.xwing.name=T-65 X-Wing Starfighter
 entity.starwarsmod.awing.name=RZ-1 A-Wing Interceptor
 
-// Blocks
+# Blocks
 tile.starwarsmod.moistureVaporator.name=GX-8 Water Vaporator
 tile.starwarsmod.chromiumOre.name=Chromium Ore
 tile.starwarsmod.titaniumOre.name=Titanium Ore
@@ -268,7 +268,7 @@ tile.starwarsmod.target.name=Practice Target
 tile.starwarsmod.hardpackSnow.name=Hardpack Snow
 item.starwarsmod.hothSign.name=Sign
 
-// Armor
+# Armor
 item.starwarsmod.newJediRobes.name=Jedi Robes
 
 item.starwarsmod.endorHelmet.name=Rebel Endor Helmet
@@ -350,7 +350,7 @@ item.starwarsmod.tiePilotBoots.name=TIE Pilot Boots
 
 item.starwarsmod.leiasBuns.name=Leia's Buns
 
-// Mobs
+# Mobs
 entity.starwarsmod.wookiee.name=Wookiee
 entity.starwarsmod.tusken.name=Tusken Raider
 entity.starwarsmod.jawa.name=Jawa
@@ -373,11 +373,11 @@ entity.starwarsmod.rebelPilot.name=Rebel Pilot
 entity.starwarsmod.bountyhunter.name=Bounty Hunter
 entity.starwarsmod.bith.name=Bith
 
-// Tabs
+# Tabs
 itemGroup.tabStarWars=Original Trilogy
 itemGroup.tabStarWarsBlocks=Original Trilogy Blocks
 
-// Achievements
+# Achievements
 achievement.starwarsmod.becomeJedi=No such thing as luck!
 achievement.starwarsmod.becomeJedi.desc=Craft some Jedi Robes and begin your journey!
 
@@ -417,14 +417,14 @@ achievement.starwarsmod.travelDagobah.desc=Travel to Dagobah!
 achievement.starwarsmod.ezraBlaster=Not a Pickpocket!
 achievement.starwarsmod.ezraBlaster.desc=Use Ezra's Secret Blaster!
 
-// Keys
+# Keys
 key.starwarsmod=Star Wars
 key.starwarsmod.shootVehicle=Fire Lasers (in vehicles)
 key.starwarsmod.toggleSFoil=Toggle Special Wings
-key.starwarsmod.robeGui=Open Jedi Robes GUI
-key.starwarsmod.robePower=Use Selected Robe Power
-key.starwarsmod.robePowerNext=Prev. Robe Power
-key.starwarsmod.robePowerPrev=Next Robe Power
+key.starwarsmod.forcePowerGui=Open Force Power GUI
+key.starwarsmod.robePower=Use Selected Force Power
+key.starwarsmod.robePowerNext=Prev. Force Power
+key.starwarsmod.robePowerPrev=Next Force Power
 key.starwarsmod.lsForge=Creative Lightsaber Forge
 key.starwarsmod.debug=DEBUG
 key.starwarsmod.lsToggle=Toggle Lightsaber
@@ -432,7 +432,7 @@ key.starwarsmod.shipHoverMode=Toggle Hover Mode (in Starfighters)
 key.starwarsmod.shipHyperdrive=Open Galaxy Map (in Starfighters)
 key.starwarsmod.shootSpecial=Shoot Special (in Starfighters)
 
-// Force
+# Force
 force.power.jump=Jump
 force.power.push=Push
 force.power.pull=Pull
@@ -466,17 +466,17 @@ force.power.destruction.desc=Use your knowledge of The Dark Side of The Force to
 # Sequel Trilogy
 ####################
 
-// Weapons
+# Weapons
 item.starwarsmod.sequelLightsaber.name=Lightsaber
 item.starwarsmod.sequelLightsaberOff.name=Lightsaber
 
-// Droid Items
+# Droid Items
 item.starwarsmod.spawnAstromechBb8.name=BB-Series Astromech Droid
 
-// Droids
+# Droids
 entity.starwarsmod.droidAstromechBb8.name=BB-Series Astromech Droid
 
-// Blasters
+# Blasters
 item.starwarsmod.sequelBlasterRifle.F11d.name=F-11D Blaster Rifle
 item.starwarsmod.sequelBlasterRifle.6.name=Definitely Canon #6
 item.starwarsmod.sequelBlasterRifle.Capt.name=F-11D Captain's Rifle
@@ -489,7 +489,7 @@ item.starwarsmod.sequelBlasterPistol.Se44c.name=SE-44C Blaster Pistol
 item.starwarsmod.sequelBlasterPistol.TrandoshanTarget.name=Target Pistol with Trandoshan Doubler
 item.starwarsmod.sequelBlasterPistol.Huttsplitter.name=Huttsplitter
 
-// Armor
+# Armor
 item.starwarsmod.stormtrooperHelmet_new.name=First Order Stormtrooper Helmet
 item.starwarsmod.stormtrooperChestplate_new.name=First Order Stormtrooper Chestplate
 item.starwarsmod.stormtrooperLeggings_new.name=First Order Stormtrooper Leggings
@@ -500,15 +500,15 @@ item.starwarsmod.stormtrooperSilverChestplate_new.name=First Order Stormtrooper 
 item.starwarsmod.stormtrooperSilverLeggings_new.name=First Order Stormtrooper Captain's Leggings
 item.starwarsmod.stormtrooperSilverBoots_new.name=First Order Stormtrooper Captain's Boots
 
-// Vehicle Items
+# Vehicle Items
 item.starwarsmod.spawnJakkuSpeeder.name=Swoop Speeder
 
-// Vehicles
+# Vehicles
 entity.starwarsmod.jakkuSpeeder.name=Swoop Speeder
 
-// Blocks
+# Blocks
 
-// Tabs
+# Tabs
 itemGroup.tabStarWarsSequel=Sequel Trilogy
 
 
@@ -606,7 +606,7 @@ lance.tooltip1=Kinda like a lance, but there's
 lance.tooltip2=something about it we don't quite
 lance.tooltip3=understand...
 leaderboard.thanks=Thanks for participating in the global Jedi vs. Sith leaderboard! You can opt out at any time in the config.
-level.0=Level %s
+level.0=Level %d
 level.s.s=Level %s %s
 light=Light
 locked=Locked

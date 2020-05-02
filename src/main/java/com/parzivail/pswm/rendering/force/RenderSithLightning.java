@@ -1,8 +1,8 @@
 package com.parzivail.pswm.rendering.force;
 
 import com.parzivail.pswm.force.Cron;
-import com.parzivail.pswm.force.powers.PowerBase;
-import com.parzivail.pswm.force.powers.PowerLightning;
+import com.parzivail.pswm.force.powers_old.PowerBase;
+import com.parzivail.pswm.force.powers_old.PowerLightning;
 import com.parzivail.util.ui.Lumberjack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

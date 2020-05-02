@@ -5,8 +5,11 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.entities.EntityBlasterBoltBase;
 import com.parzivail.pswm.force.Cron;
+import com.parzivail.pswm.force.Force;
+import com.parzivail.pswm.force.ForceUser;
 import com.parzivail.pswm.force.ItemHolocron;
-import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.exceptions.NotAForceUserException;
+import com.parzivail.pswm.force.powers_old.PowerBase;
 import com.parzivail.pswm.gui.AnimationHyperspace;
 import com.parzivail.pswm.gui.GuiBinocs;
 import com.parzivail.pswm.gui.GuiBlaster;
@@ -208,7 +211,9 @@ public class ClientEventHandler
 	{
 		if (playerInteractEvent.entityPlayer.ridingEntity != null && playerInteractEvent.action == net.minecraftforge.event.entity.player.PlayerInteractEvent.Action.RIGHT_CLICK_AIR && playerInteractEvent.entityPlayer.inventory.getCurrentItem() == null)
 		{
-			Entity targetted = EntityUtils.rayTrace(100, playerInteractEvent.entityPlayer, new Entity[] { playerInteractEvent.entityPlayer.ridingEntity });
+			Entity targetted = EntityUtils.rayTrace(100, playerInteractEvent.entityPlayer, new Entity[] {
+					playerInteractEvent.entityPlayer.ridingEntity
+			});
 
 			byte pos = (playerInteractEvent.entityPlayer.ridingEntity instanceof VehicXWing) ? BlasterPosition.getNextXwingPosition() : BlasterPosition.getNextPosition();
 
@@ -449,7 +454,6 @@ public class ClientEventHandler
 				}
 			}
 		}
-
 	}
 
 	@SubscribeEvent
@@ -472,7 +476,6 @@ public class ClientEventHandler
 		GuiManager.render(event);
 
 		AnimationManager.render(event);
-
 	}
 
 	@SubscribeEvent
@@ -480,33 +483,6 @@ public class ClientEventHandler
 	public void onRenderPlayerSpecial(RenderPlayerEvent.Specials.Post event)
 	{
 		ClientEventHandler.modelCloak.renderCloak(event);
-	}
-
-	@SubscribeEvent
-	public void onXpPickup(PlayerPickupXpEvent event)
-	{
-		ItemStack holocron = Cron.getHolocron(event.entityPlayer);
-		if (holocron != null)
-		{
-			int currentLevels = Cron.getLevel(holocron);
-			if (StarWarsMod.rngGeneral.nextInt(100) <= Cron.getPercentForLevel(currentLevels))
-				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
-			int newLevels = currentLevels + 1;
-			//Lumberjack.log("%s %s", newLevels, currentLevels);
-			if (newLevels % 10 == 0 && currentLevels % 10 != 0)
-			{
-				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtRemainingPts, Cron.getPoints(event.entityPlayer) + 1);
-				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtLevel, currentLevels + 1);
-				Cron.getHolocron(event.entityPlayer).stackTagCompound.setInteger(Resources.nbtMaxXp, (int)((Math.floor(newLevels / Cron.POINTS_PER_LEVEL) + 1) * 100));
-				event.entityPlayer.addChatMessage(new ChatComponentText("[Holocron] Level up! You gained an upgrade point."));
-				event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] You are now level %s and have %s upgrade points.", (int)Math.floor(Cron.getLevel(holocron) / Cron.POINTS_PER_LEVEL), Cron.getPoints(holocron))));
-				if (newLevels == 350 && currentLevels == 349)
-				{
-					event.entityPlayer.addChatMessage(new ChatComponentText(String.format("[Holocron] %s", TextUtils.makeItalic(TextUtils.addEffect("You hear a dark whisper. Do you answer?", TextEffects.COLOR_DARK_GRAY)))));
-					StarWarsMod.proxy.showJediSithGui(event);
-				}
-			}
-		}
 	}
 
 	@SubscribeEvent

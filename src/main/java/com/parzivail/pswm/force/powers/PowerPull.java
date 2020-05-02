@@ -1,58 +1,60 @@
 package com.parzivail.pswm.force.powers;
 
 import com.parzivail.pswm.Resources;
-import com.parzivail.pswm.StarWarsMod;
-import com.parzivail.pswm.network.MessageEntityAlterMotion;
-import com.parzivail.util.entity.EntityUtils;
+import com.parzivail.pswm.force.ForcePower;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Vec3;
 
-public class PowerPull extends PowerBase
+public class PowerPull extends ForcePower
 {
-	public PowerPull(int currentLevel)
+	public static PowerPull INSTANCE = new PowerPull();
+	private PowerPull()
 	{
-		super("pull");
-		this.costBase = 240;
-		this.costMult = 40;
-		this.currentLevel = currentLevel;
+		this.name = "pull";
 		this.maxLevel = 5;
-		this.rechargeTime = 5 * 20; // 40 ticks/second
-		this.recharge = 0;
+		this.costBase = 240;
+		this.costMultiplier = 40;
+		this.rechargeTime = 5 * 20; // 20 ticks/second
+		this.side = null;
 	}
 
 	@Override
-	public boolean run(EntityPlayer player)
+	public boolean activate(EntityPlayer player, NBTTagCompound data, Entity target)
 	{
-		if (this.recharge == 0)
+		if (!super.activate(player, data, target) || target == null)
+			return false;
+		final PowerData power = new PowerData(data);
+		if (player.getDistanceToEntity(target) > power.getMaxDistance())
 		{
-			Entity e = EntityUtils.rayTrace(this.currentLevel * 3, player, new Entity[0]);
-
-			if (e != null)
-			{
-				Vec3 lookVec = player.getLookVec();
-
-				float mult = 1 + 0.5f * this.currentLevel;
-
-				lookVec.xCoord *= -mult;
-				lookVec.yCoord *= -mult;
-				lookVec.zCoord *= -mult;
-
-				e.motionX += lookVec.xCoord;
-				e.motionY += lookVec.yCoord;
-				e.motionZ += lookVec.zCoord;
-				e.isAirBorne = true;
-
-				if (e instanceof EntityPlayer)
-					((EntityPlayer)e).velocityChanged = true;
-
-				StarWarsMod.network.sendToServer(new MessageEntityAlterMotion(e, lookVec));
-
-				player.worldObj.playSound(player.posX, player.posY, player.posZ, Resources.MODID + ":" + "force.pull", 1, 1, true);
-			}
-
-			return true;
+			return false;
 		}
-		return false;
+		Vec3 lookVec = player.getLookVec();
+
+		float mult = 1 + 0.5f * power.getLevel();
+
+		target.motionX += lookVec.xCoord * -mult;
+		target.motionY += lookVec.yCoord * -mult;
+		target.motionZ += lookVec.zCoord * -mult;
+		target.isAirBorne = true;
+
+		target.velocityChanged = true;
+
+		player.worldObj.playSound(player.posX, player.posY, player.posZ, Resources.MODID + ":" + "force.pull", 1, 1, true);
+		return true;
+	}
+
+	private final class PowerData extends ForcePower.PowerData
+	{
+		public PowerData(NBTTagCompound compoundTag)
+		{
+			super(compoundTag);
+		}
+
+		public int getMaxDistance()
+		{
+			return getLevel() * 3;
+		}
 	}
 }

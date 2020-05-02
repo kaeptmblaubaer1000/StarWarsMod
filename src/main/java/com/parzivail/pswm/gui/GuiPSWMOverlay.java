@@ -5,7 +5,8 @@ import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.StarWarsItems;
 import com.parzivail.pswm.StarWarsMod;
 import com.parzivail.pswm.force.Cron;
-import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.Force;
+import com.parzivail.pswm.force.powers_old.PowerBase;
 import com.parzivail.pswm.items.ItemQuestLog;
 import com.parzivail.pswm.quest.QuestUtils;
 import com.parzivail.pswm.utils.EntityCooldownEntry;
@@ -99,9 +100,8 @@ public class GuiPSWMOverlay extends Gui
 			GL11.glPushMatrix();
 			P3D.glScalef(0.5f);
 
-			PowerBase active;
-			if ((active = Cron.getActive(StarWarsMod.mc.thePlayer)) != null)
-				this.drawString(this.mc.fontRenderer, active.getLocalizedName(), r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
+			if (Force.selectedPower != null)
+				this.drawString(this.mc.fontRenderer, Force.selectedPower.untranslatedName, r.getScaledWidth() + 3, r.getScaledHeight() - 10, guiColor);
 
 			int y = (r.getScaledHeight() - 25) * 2;
 

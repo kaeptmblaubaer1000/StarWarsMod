@@ -3,7 +3,7 @@ package com.parzivail.pswm;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.entities.*;
 import com.parzivail.pswm.font.FontManager;
-import com.parzivail.pswm.gui.GuiJediSith;
+import com.parzivail.pswm.force.Force;
 import com.parzivail.pswm.items.weapons.ItemLightsaber;
 import com.parzivail.pswm.mobs.*;
 import com.parzivail.pswm.mobs.trooper.*;
@@ -28,10 +28,10 @@ import com.parzivail.util.ui.ShaderHelper;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.event.entity.player.PlayerPickupXpEvent;
 
 public class StarWarsClientProxy extends StarWarsCommonProxy
 {
@@ -61,6 +61,9 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 			Minecraft.getMinecraft().fontRenderer = FontManager.aurebesh;
 
 		Lumberjack.log("Client proxy loaded!");
+
+		// this calls the listener while it's registered too, so no need to call Force.translate() here
+		((IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager()).registerReloadListener(Force::translate);
 	}
 
 	@Override
@@ -289,11 +292,5 @@ public class StarWarsClientProxy extends StarWarsCommonProxy
 		RegisterGuiOverlays.registerAll();
 
 		Lumberjack.log("Rendering registered!");
-	}
-
-	@Override
-	public void showJediSithGui(PlayerPickupXpEvent event)
-	{
-		Minecraft.getMinecraft().displayGuiScreen(new GuiJediSith(event.entityPlayer));
 	}
 }

@@ -1,6 +1,6 @@
 package com.parzivail.pswm.gui;
 
-import com.parzivail.pswm.force.powers.PowerBase;
+import com.parzivail.pswm.force.powers_old.PowerBase;
 
 public class GuiPowerListItem
 {

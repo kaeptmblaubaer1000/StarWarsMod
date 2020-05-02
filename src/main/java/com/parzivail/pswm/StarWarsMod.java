@@ -3,10 +3,12 @@ package com.parzivail.pswm;
 import com.parzivail.pswm.Resources.ConfigOptions;
 import com.parzivail.pswm.achievement.StarWarsAchievements;
 import com.parzivail.pswm.blocks.BlockHothSign;
-import com.parzivail.pswm.commands.CommandJediRobes;
+import com.parzivail.pswm.commands.CommandForcePowers;
+import com.parzivail.pswm.force.Force;
 import com.parzivail.pswm.handlers.ClientEventHandler;
 import com.parzivail.pswm.handlers.CommonEventHandler;
 import com.parzivail.pswm.handlers.GuiHandler;
+import com.parzivail.pswm.handlers.ServerEventHandler;
 import com.parzivail.pswm.network.*;
 import com.parzivail.pswm.registry.*;
 import com.parzivail.pswm.tabs.SequelStarWarsTab;
@@ -73,12 +75,14 @@ public class StarWarsMod
 
 	@SideOnly(Side.CLIENT)
 	public static Minecraft mc;
+	@SideOnly(Side.CLIENT)
 	public static ScaledResolution resolution;
 
 	public static int shipSpecialWeaponCooldown = 0;
 
 	static ClientEventHandler clientHandler;
 	private static CommonEventHandler commonHandler;
+	private static ServerEventHandler serverHandler;
 
 	@SidedProxy(clientSide = "com.parzivail.pswm.StarWarsClientProxy",
 	            serverSide = "com.parzivail.pswm.StarWarsCommonProxy")
@@ -409,9 +413,11 @@ public class StarWarsMod
 
 		StarWarsMod.commonHandler = new CommonEventHandler();
 		StarWarsMod.clientHandler = new ClientEventHandler();
+		StarWarsMod.serverHandler = new ServerEventHandler();
 
 		FMLCommonHandler.instance().bus().register(StarWarsMod.commonHandler);
 		MinecraftForge.EVENT_BUS.register(StarWarsMod.clientHandler);
+		MinecraftForge.EVENT_BUS.register(StarWarsMod.serverHandler);
 
 		proxy.doSidedThings();
 
@@ -453,6 +459,8 @@ public class StarWarsMod
 		StructureBank.loadBlockMaps();
 
 		proxy.registerRendering();
+
+		MinecraftForge.EVENT_BUS.register(Force.class);
 
 		Lumberjack.info("=========== End Parzi's Star Wars Mod init() ===========");
 	}
@@ -547,11 +555,13 @@ public class StarWarsMod
 		this.registerMessageServer(MessagePlayerBuyItem.class);
 		this.registerMessageServer(MessageSetQuestLogNbt.class);
 		this.registerMessageServer(MessageHolocronUpgradePower.class);
+		this.registerMessageServer(MessageActivateForcePower.class);
 
 		this.registerMessageClient(MessageSpawnClientParticle.class);
 		this.registerMessageClient(MessageEntityAlterClientMotion.class);
 		this.registerMessageClient(MessageHolocronRefreshClientPowers.class);
 		this.registerMessageClient(MessageHolocronSetClientActive.class);
+		this.registerMessageClient(MessageHolocronSyncClient.class);
 		this.registerMessageClient(MessageEntityClientGrab.class);
 
 		Lumberjack.log("Network registered " + packetId + " packets!");
@@ -578,6 +588,6 @@ public class StarWarsMod
 	@EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
-		event.registerServerCommand(new CommandJediRobes());
+		event.registerServerCommand(new CommandForcePowers());
 	}
 }

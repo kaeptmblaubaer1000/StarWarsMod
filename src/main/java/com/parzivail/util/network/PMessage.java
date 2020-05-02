@@ -23,13 +23,11 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessage, IMessageHandler<REQ, IMessage>
 {
+	@Deprecated // TODO: delete
 	private static final HashMap<Class, Pair<Reader, Writer>> handlers = new HashMap<>();
 	private static final HashMap<Class, Field[]> fieldCache = new HashMap<>(); // TODO: MethodHandles
 	private static final HashMap<Class, Pair<MethodHandle, MethodHandle>> methodHandleHandlers = new HashMap<>();
@@ -158,7 +156,9 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 		int dim = buf.readInt();
 		int id = buf.readInt();
 		if (MinecraftServer.getServer() == null)
+		{
 			return Minecraft.getMinecraft().theWorld.getEntityByID(id);
+		}
 		return MinecraftServer.getServer().worldServerForDimension(dim).getEntityByID(id);
 	}
 
@@ -340,7 +340,7 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 	{
 		try
 		{
-			final MethodHandles.Lookup lookup = MethodHandles.publicLookup();
+			final MethodHandles.Lookup lookup = MethodHandles.lookup();
 			final Field[] fields = clazz.getFields();
 			Arrays.sort(fields, Comparator.comparing(Field::getName).reversed());
 			MethodHandle prev = null;
@@ -352,7 +352,11 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 				}
 				final MethodHandle setter = lookup.unreflectSetter(field);
 				// The asType should be a no-op, but do it anyways to be safe
-				final MethodHandle read = methodHandleHandlers.get(field.getType()).left.asType(MethodType.methodType(field.getType(), ByteBuf.class));
+				MethodHandle read = methodHandleHandlers.get(field.getType()).left.asType(MethodType.methodType(field.getType(), ByteBuf.class));
+				if (field.isAnnotationPresent(OptionalField.class))
+				{
+					read = MethodHandles.guardWithTest(lookup.findStatic(PMessage.class, "readBoolean", MethodType.methodType(boolean.class, ByteBuf.class)), read, MethodHandles.dropArguments(MethodHandles.constant(field.getType(), null), 0, ByteBuf.class));
+				}
 				if (prev == null)
 				{
 					prev = MethodHandles.filterArguments(setter, 1, read);
@@ -451,7 +455,7 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 	{
 		try
 		{
-			final MethodHandles.Lookup lookup = MethodHandles.publicLookup();
+			final MethodHandles.Lookup lookup = MethodHandles.lookup();
 			Field[] fields = clazz.getFields();
 			Arrays.sort(fields, Comparator.comparing(Field::getName).reversed());
 			MethodHandle prev = null;
@@ -463,7 +467,11 @@ public class PMessage<REQ extends PMessage<REQ>> implements Serializable, IMessa
 				}
 				final MethodHandle getter = lookup.unreflectGetter(field);
 				// The asType should be a no-op, but do it anyways to be safe
-				final MethodHandle write = methodHandleHandlers.get(field.getType()).right.asType(MethodType.methodType(void.class, field.getType(), ByteBuf.class));
+				MethodHandle write = methodHandleHandlers.get(field.getType()).right.asType(MethodType.methodType(void.class, field.getType(), ByteBuf.class));
+				if (field.isAnnotationPresent(OptionalField.class))
+				{
+					write = MethodHandles.guardWithTest(MethodHandles.dropArguments(lookup.findStatic(Objects.class, "nonNull", MethodType.methodType(boolean.class, Object.class)), 1, ByteBuf.class).asType(MethodType.methodType(boolean.class, field.getType(), ByteBuf.class)), MethodHandles.foldArguments(write, MethodHandles.dropArguments(MethodHandles.insertArguments(lookup.findStatic(PMessage.class, "writeBoolean", MethodType.methodType(void.class, boolean.class, ByteBuf.class)), 0, true), 0, field.getType())), MethodHandles.dropArguments(MethodHandles.insertArguments(lookup.findStatic(PMessage.class, "writeBoolean", MethodType.methodType(void.class, boolean.class, ByteBuf.class)), 0, false), 0, field.getType()));
+				}
 				if (prev == null)
 				{
 					prev = MethodHandles.filterArguments(write, 0, getter);

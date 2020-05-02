@@ -39,9 +39,12 @@ public class ItemHolocron extends Item
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean bool)
+	public void addInformation(ItemStack stack, EntityPlayer player, List rawList, boolean bool)
 	{
-		list.add(LangUtils.translate("level.0", String.valueOf((int)Math.floor(Cron.getLevel(stack) / 10f))));
+		@SuppressWarnings("unchecked")
+		final List<String> list = (List<String>) rawList;
+		final ForceUser forceUser = new ForceUser(player, stack);
+		list.add(LangUtils.translate("level.0", forceUser.getLevel()));
 	}
 
 	@Override
@@ -61,7 +64,7 @@ public class ItemHolocron extends Item
 			stack.stackTagCompound.setTag(Resources.nbtWield, new NBTTagCompound());
 			stack.stackTagCompound.setTag(Resources.nbtPowers, Cron.makeNewPowersNBT());
 		}
-		if (!stack.stackTagCompound.hasKey("askedJediSith")) {
+		if (entity instanceof EntityPlayer && !stack.stackTagCompound.hasKey("askedJediSith")) {
 			if (stack.stackTagCompound.getString(Resources.nbtSide).equals(Cron.SIDE_SITH)) {
 				stack.stackTagCompound.setBoolean("askedJediSith", true);
 			} else if (stack.stackTagCompound.getInteger(Resources.nbtLevel) > 34 && stack.stackTagCompound.getCompoundTag(Resources.nbtPowers).getCompoundTag("naturalAwareness").getInteger("currentLevel") > 0) {
